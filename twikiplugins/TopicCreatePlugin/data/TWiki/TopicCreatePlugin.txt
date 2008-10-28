@@ -1,0 +1,134 @@
+%META:TOPICINFO{author="StanleyKnutson" date="1132609510" format="1.0" version="1.3"}%
+---+!! Topic Create Plugin 
+
+This Plugin allows you to automatically create topics or attach files at topic save time. This is typically used by TWiki applications to create a set of template based topics.
+
+%TOC%
+
+---++ <nop>TOPICCREATE - Automatically Create a Set of TWiki Topics
+
+	* The =%<nop>TOPICCREATE{}%= <nop>TWikiVariable is useful for creating topics based on templates
+	* Example scenario: You have a notebook application where users can create new notebooks based on a notebook template topic. Each time a user creates a new notebook you would like to create a set of child topics, each based on a separate template.
+	* Syntax: =%<nop>TOPICCREATE{ &lt;attributes&gt; }%=
+	* Attributes recognized
+	  | *Attribute* | *Meaning* | *Valid input* | *Default* |
+	  | =template=""= | Name of TWiki topic to be used as template | Any valid TWiki topic | (required) |
+	  | =topic=""= | Name of new TWiki topic to create | Any valid <nop>WikiWord | (required) |
+	  | =disable=""= | Name of the template topic containing this use of TOPICCREATE | Any valid topic name (<nop>WikiWord) | _recommended_ |
+	  | =parameters=""= | List of parameters to pass to a child topic to initialize any urlparams.| Following syntax:%BR% =&lt;parameter-name&gt;=&lt;parameter-value&gt;= followed by any number of parameter name, value pairs separated by =&= | No Parameters |
+	* The action to create the TWiki topic will not occur until one hits the =Save Changes= button in preview
+	* The =%<nop>TOPICCREATE{}%= variable will be removed upon saving of the topic
+	* Any attachments that are in the =template= will also be copied to the new topic
+	* =%<nop>TOPICCREATE%= is recursive
+	* Write =%<nop>TOPICCREATE{ template="<nop>MyTemplate" topic="<nop>%<nop>TOPIC%MyNewTopicName" parameters="MyParameterName=MyParameterValue&Hello=Goodbye" }%= to create a twiki topic based on another topic =<nop>MyTemplate= with the name =<nop>%<nop>TOPIC%MyNewTopicName=. Any =%<nop>URLPARAM{}%=  with the name =MyParameterName= and =Hello= present in =MyTemplate= will be replaced with =MyParameterValue= and =Goodbye=.
+	* To prevent the action from happening in your template topic you should either include the =disable= argument, or escape it: =%<nop>TOPICCRE%<nop>NOP%ATE{...}%=. The =%<nop>NOP%= gets removed when a topic gets instantiated based on a template.
+
+---++ <nop>TOPICATTACH - Automatically Copy Attachments to a Topic 
+
+	* Example scenario: You have a template topic and would like to attach a file whose's content or name is determined by URL parameters at topic creation time.  This is usually done for a topic that was just created via TOPICCREATE as described above.
+	* Syntax: =%<nop>TOPICATTACH{ &lt;attributes&gt; }%=
+	* Attributes recognized
+	  | *Attribute* | *Meaning* | *Valid input* | *Default* |
+	  | =fromtopic=""= | Topic (or Web.Topic) that contains the attachment  | Any valid TWiki topic | (required) |
+	  | =fromfile=""= | The attachment to copy from | Any attached file from =fromtopic= | (required) |
+	  | =disable=""= | Name of the template topic containing this use of TOPICATTACH | Any valid topic name (<nop>WikiWord) | (required) |
+	  | =comment=""= | Comment to appear for the attachment within this topic, replacing the comment that was in the =fromtopic= | a one line string | {omit parameter if no change desired} |
+	* Write =%<nop>TOPICATTACH{ fromtopic="<nop>SourceTopic" fromfile="Sample.jpg" name="Snoopy.jpg" disable="..."}%= to attach =Sample.jpg= from topic =<nop>SourceTopic= as =Snoopy.jpg=
+	* The parameter value comment is used to change the comment (description) that shows for the topic in the table of attachments
+	* The "hidden" attribute of the topic is removed: the attachment can be hidden in the =fromtopic= if desired
+	* The =fromtopic= can specify a different web if desired.  For example =TWiki<nop>.Some<nop>Template= would be valid as a =fromtopic=
+	* To prevent the action from happening in your template topic you *must* provide the =disable= parameter with the topic name containing the =%<nop>TOPICATTACH%=.
+
+Limitations/TODO:
+	* There should be a =name= argument to rename the topic as it is copied
+	* The =TOPICATTACH= must be in the 'top level' topic being saved by a =TOPICCREATE=.  It can not be in a recursive/subordinate topic invoked by the TOPICCREATE.
+
+<!--
+
+PATCH is not yet working properly in Cairo release
+
+3. Replace a form fields within a Topic 
+
+	* Example scenario: You would like to modify the value of a form field based on a URL input parameter.  This is usually done for a topic that was just created via TOPICCREATE as described above.
+	* Syntax: =%<nop>TOPICPATH{ &lt;attributes&gt; }%=
+	* Attributes recognized
+	  | *Attribute* | *Meaning* | *Valid input* | *Default* |
+	  | =topic=""= | Topic to be modified  | Any valid TWiki topic | (required) |
+	  | =action=""= | Either "replace" or "append" to specify the action to do to a form field value in =topic= | (required) |
+	  | =formfield=""= | Form Field Name to be modified | value | (required) |
+
+not Finished!
+
+	* Write =%<nop>TOPICATTACH{ fromtopic="<nop>SourceTopic" fromfile="Sample.jpg" name="Snoopy.jpg" }%= to attach =Sample.jpg= from topic =<nop>SourceTopic= as =Snoopy.jpg=
+	* The parameter values 
+	* To prevent the action from happening in your template topic you can escape it: =%<nop>TOPICATT%<nop>NOP%ACH{...}%=. The =%<nop>NOP%= gets removed when a topic gets instantiated based on a template.
+
+-->
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>TOPICCREATEPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Automatically create a set of topics and attachments at topic save time
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---++ Known issues
+
+	* This Plugin is Unix specific and depends on the Unix utilities =cp= and =mkdir=.
+	* For safety reasons, the path to the utilities is hardcoded in the Plugin module. The path might need to be changed depending on your environment.
+	* Precautions have been taken to make this Plugin safe. It does not have ANY WARRANTY, does not even have the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. It is up to the administrator to decide if this Plugin is safe for a public TWiki site.
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==lib/TWiki/Plugins/%TOPIC%/Func.pm== | Perl utilities |
+	* Test if the installation was successful (Option A) - pollutes you sandbox, but easiest to try
+		* Unzip the 'sandbox test' attachment in your twiki installation directory
+		* Go to the topic =Sandbox.Create<nop>ClientNotebook=
+		* Enter a name like "MyTest" and press 'create topics'
+		* Press "save" on the page that appears
+		* This will perform these operations:
+			* Create three topics =MyTest<nop>= =MyTestEnvironment= and =<nop>MyTestTripLog= 
+			* Copy an attachment from the =Create<nop>ClientNotebook= topic to the created trip log
+	* Test if the installation was successful (Option B)
+		* Create a test topic called =TestTopicCreate<nop>= with this content: %BR%
+		  =%<nop>TOPICCREATE{ template="%SYSTEMWEB%.WikiWord" topic="<nop>%<nop>TOPIC%Child" }%=
+		* After saving =TestTopicCreate= you should get a new topic =TestTopicCreateChild= with the content of %SYSTEMWEB%.WikiWord.
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.StanleyKnutson, TWiki:Main.PeterThoeny, TWiki:Main.PaulineCheung |
+|  Plugin Version: | 21 Nov 2005 (V1.01) |
+| Change&nbsp;History: | |
+|  11686 | <a rel='nofollow' href='http://develop.twiki.org/~develop/cgi-bin/view/Bugs/Item2956'>Item2956</a>  Freeze TWikiRelease04x00 and copy it to new branch MAIN |
+|  10613 | <a rel='nofollow' href='http://develop.twiki.org/~develop/cgi-bin/view/Bugs/Item2473'>Item2473</a>  files in pub and data directories shouldn't be marked executable in svn (Ordnung muss sein) |
+|  7960 | <a rel='nofollow' href='http://develop.twiki.org/~develop/cgi-bin/view/Bugs/Item1238'>Item1238</a>  plugins cleanup: added BuildContrib support/infrastructure |
+|  7585 | <a rel='nofollow' href='http://develop.twiki.org/~develop/cgi-bin/view/Bugs/Item1016'>Item1016</a>  initial import of TopicCreatePlugin (thanks TWiki:Main.StanleyKnutson and others) |
+|  ?1'<!-- versions below in reverse order -->&nbsp;' | <!-- versions below in reverse order -->&nbsp; |
+|  21 Nov 2005: | Initial TOPICCATTACH |
+|  30 Apr 2005: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.024 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | Unix utilities =cp= and =mkdir= |
+|  Perl Version: | 5.005 |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+
+-- TWiki:Main.StanleyKnutson - 21 Nov 2005
+<br>-- TWiki:Main.PeterThoeny - 30 Apr 2005
+

@@ -1,0 +1,32 @@
+<!-- template: editjavascript.nat.tmpl -->
+%TMPL:DEF{"editjavascript"}%
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/NatSkin/edit.js"></script>
+<script type="text/javascript">
+<!--
+function submitEditForm(script, action) {
+  if (action == 'add form') {
+    document.EditForm.elements['submitChangeForm'].value = action;
+  }
+  document.EditForm.elements['action_preview'].value = '';
+  document.EditForm.elements['action_save'].value = '';
+  document.EditForm.elements['action_checkpoint'].value = '';
+  document.EditForm.elements['action_addform'].value = '';
+  document.EditForm.elements['action_replaceform'].value = '';
+  document.EditForm.elements['action_cancel'].value = '';
+  document.EditForm.elements['action_' + action].value = 'foobar';
+  document.EditForm.submit();
+}
+/* testing ImagePlugin: %IMAGE{"clear"}% */
+function natEditImageButtonAction() {
+  %IFDEFINEDTHEN{"$percntIMAGE{\"clear\"}$percnt" as="<br.*"}%
+    natEditImageButtonActionImagePlugin();
+  %ELSEDEFINED%
+    natEditImageButtonActionStandard();
+  %FIDEFINED%
+}
+//-->
+</script>%TMPL:END%
+%TMPL:DEF{"javascript"}%
+%TMPL:P{"defaultjavascript"}%
+%TMPL:P{"editjavascript"}%
+%TMPL:END%

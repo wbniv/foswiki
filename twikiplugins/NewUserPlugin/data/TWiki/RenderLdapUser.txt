@@ -1,0 +1,43 @@
+%META:TOPICINFO{author="TWikiContributor" date="1165257591" format="1.1" version="$Rev$"}%
+---+ %TOPIC%
+
+---++ Description
+Extract user information from an Ldap directory. Note, you have to install the
+TWiki:Plugins/LdapNgPlugin to make this work. Depending on your directory layout
+and the used schema you have to adjust the filter below.
+
+---++ Parameters
+   * KEY: key used to fetc the user record, e.g. the login name
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%
+%~~ LDAP{"(&(objectClass=posixAccount)(uid=%KEY%))" 
+~~~   limit="1"
+~~~   format="<table cellpadding=\"5\">
+~~~     <tr>
+~~~       <td valign=\"top\">
+~~~         <img src=\"$jpegPhoto\" alt=\"$cn\" title=\"$cn\" width=\"100px\">
+~~~       </td>
+~~~       <td valign=\"top\">
+~~~         <table>
+~~~           <tr><th valign=\"top\">Name:</th>
+~~~               <td valign=\"top\"> $cn </td></tr>
+~~~           <tr><th valign=\"top\">Email:</th>
+~~~               <td valign=\"top\"> $mail </td></tr>
+~~~           <tr><th valign=\"top\">Tel:</th>
+~~~               <td valign=\"top\"> $telephoneNumber </td></tr>
+~~~           <tr><th valign=\"top\">Organization:</th>
+~~~               <td valign=\"top\"> $o </td></tr>
+~~~           <tr><th valign=\"top\">Address:</th>
+~~~               <td valign=\"top\"> $postalAddress </td></tr>
+~~~         </table>
+~~~       </td>
+~~~     </tr>
+~~~    </table>"
+~~~ }%
+%STOPINCLUDE%
+</verbatim>
+
+---++ Test
+%INCLUDE{"%TOPIC%" KEY="%USERNAME%"}%

@@ -1,0 +1,35 @@
+Template: twiki/defaultUrlHost
+Type: string
+Default: http://localhost/
+_Description: Top-level URL of the server TWiki runs under:
+ For a normal install, this should be a URL for your web server's full
+ name, which is used to construct URLs on some pages.  The install will
+ serve up the data by adding "twiki" to the end of this setting; it is also
+ needed for certain redirections.
+
+Template: twiki/wikiwebmaster
+Type: string
+Default: webmaster@localhost
+_Description: Email address of the webmaster for this TWiki:
+ This email address gets mail for new user registration, and is listed on
+ the "oops" page when things go wrong.
+
+Template: twiki/samplefiles
+Type: boolean
+Default: true
+_Description: Install default wiki Topic Set on initial install?
+ TWiki includes a complete "starter kit" which includes user
+ registration pages, documentation, and tutorials.  Only decline if
+ you're re-installing TWiki after deleting the package and want to
+ keep the old data, or if you've got a TWiki data set from your own
+ manual install.  If data/Main/WebHome.txt is present, the starter kit
+ will not be unpacked.  The starter kit files can be found in
+ /usr/share/twiki/twiki-data.tar.gz (and twiki-pub.tar.gz), if you
+ want to install it manually or compare your topics with the new
+ version.
+
+Template: twiki/apacheUserCreationNote
+Type: note
+_Description: Admin User Registration configuration required
+ After you have created yourself a user, edit the Main.TWikiAdminGroup
+ to restrict Admin privileges to that user.

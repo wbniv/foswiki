@@ -1,0 +1,5 @@
+data/TWiki/GoogleAjaxSearchPlugin.txt
+lib/TWiki/Plugins/GoogleAjaxSearchPlugin/build.pl
+lib/TWiki/Plugins/GoogleAjaxSearchPlugin.pm
+pub/TWiki/GoogleAjaxSearchPlugin/googleAjaxSearch.css
+pub/TWiki/GoogleAjaxSearchPlugin/googleAjaxSearch.js

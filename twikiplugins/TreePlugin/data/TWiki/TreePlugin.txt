@@ -1,0 +1,133 @@
+%META:TOPICINFO{author="StephaneLenclud" date="1184108836" format="1.1" reprev="1.16" version="1.16"}%
+---+!! Tree Plugin
+
+Renders topics' parent-child relationships as hierarchical tree view. Useful for dynamic site maps and threads.
+
+%TOC%
+
+
+---++ Syntax Rules
+
+=%<nop>TREEVIEW{}%= displays topic children in a hierarchical tree <br />
+=%<nop>TREE{}%= synonym of =%<nop>TREEVIEW{}%=
+
+|*Parameter*|*Description*|*Default*|
+|=web=| The web to search. | current web |
+|=topic=| Specify tree's root topic. If none the entire web topics' tree is generated | none |
+|=formatting=| Specify the formatting method <br />\
+ =ullist= is a &lt;ul&gt;-list, see [[Sandbox.TreePluginSamples#UlList][sample UL lists]] <br />\
+ =ollist= is a &lt;ol&gt;-list, see [[Sandbox.TreePluginSamples#OlList][sample OL lists]] <br />\
+ =outline= is an outline list, see [[Sandbox.TreePluginSamples#SampleOutlines][sample Outlines]] <br />\
+ =hlist= is a &lt;h<i>n</i>&gt;-list of section heads, see [[Sandbox.TreePluginSamples#SampleHList][sample Headlines]] <br />\
+ =coloroutline:colorlist= is an outline formatting with level values turned into colors, see [[Sandbox.TreePluginSamples#SampleNestedTables][sample Nested tables]]. Example: =formatting="coloroutline:#ffeeff,#eeffee,#ffffee,#eeeeff,#ffeeee,#eeffff"= <br />\
+ =imageoutline:mode= is a way to incorporate images into the outline format, specifically to display thread-like and folder views, see [[Sandbox.TreePluginSamples#SampleImageTrees][sample Image Trees]]. The general format is: imageoutline: _mode_ : _images_ : _imageformat_. Example: =formatting="imageoutline:thread"= or =formatting="imageoutline:thread:I.gif,white.gif,T.gif,L.gif:&lt;img src=\"$image\" border=\"0\">"=. <br />\
+| =outline= | 
+|=excludetopic=| Same meaning as TWiki.VarSEARCH =excludetopic=. Topics with excluded parent or processed like topic without parent. | none |
+|=includetopic=| Same meaning as TWiki.VarSEARCH =topic=. Can improve processing time. | none |
+|=startlevel=| The depth of the tree to start showing nodes from. To hide the root node, supply =startlevel="1"= (root is level 0). The displayed node depths are relative to the root topic. | =0= or =1= if =topic= is not specified |
+|=stoplevel=| The depth of the tree to show, relative to start level. | =999= | 
+|=header=| If specified output the value within a =&lt;div&gt;= of class =treePluginHeader=. | none |
+|=bookview=| List topics in BookView form. %RED%Not supported from v0.9. Instead use something like: %ENDCOLOR% <verbatim>%TREE{topic="GrandParent" formatting="outline" format="$outnum $topic <br /> $summary <hr />"}%</verbatim> | none | 
+|=format=| Specify the format for each node (=outline= & =coloroutline=). \
+The following pseudo-variable are supported on top of the ones described in TWiki.FormattedSearch: <br />\
+ =$spacetopic= - the topic with spaces <br />\
+ =$level= - the tree depth of the topic (in whatever format) <br />\
+ =$count= - the topic's child position <br />\
+ =$index= - the index of the topic in the tree. Starts from one. Most useful when used in combination with [[TWiki:Plugins.TreeBrowserPlugin][TreeBrowserPlugin]] <br />\
+ =$outnum= - outline number for the topic (eg, 1.3.4.2)  <br />\
+ =$url= - the current topic's URL <br />\
+ =$author= - the topic's last author %RED%Not supported from v0.9. Use =%<nop>AUTHOR%= instead. %ENDCOLOR% <br />\
+ =$modTime= - the topic's modification time. %RED%Not supported from v0.9. Use =$date= instead. %ENDCOLOR% <br />\
+| none |
+| =formatbranch= | - specify the format for a group of children (=outline= & =coloroutline=)  <br />\
+ =$parent= - the text of a node  <br />\
+ =$children= - the text of all the node's children (if any) <br />\
+| none |
+|=levelprefix=| Specify a prefix to a node format. The prefix is inserted =$level= times at the beginning of the rendered node format. It allows generation of trees using TWiki bullet list syntax thus enabling usage of !TreePlugin [[#Combination_with_TreeBrowserPlug][in combination with TreeBrowserPlugin]]. | none |
+| =nodiv= | Suppress the =&lt;div&gt;= around the tree. Allows for trees concatenation. | none |
+
+
+---++ Samples
+
+See the following pages for sample usage and output.
+   * [[Sandbox.TreePluginSamples]]
+   * [[Sandbox.HeadingOutlineSample]]
+   * [[Sandbox.TreeBookviewOutlineSample]]
+
+<!-- The Plugins.<nop>TreePluginHelp topic in the installation contains complete help information. -->
+
+---+++ Usage
+
+=%<nop>TREE{web="Sandbox" formatting="ullist"}%=
+
+=%<nop>TREE{web="Sandbox"}%=
+
+<verbatim>
+%TREE{excludetopic="Web*" formatting="outline" format="* [[$topic][$spacetopic]]" levelprefix="   " startlevel="1"}%
+</verbatim>
+
+---+++ Combination with [[TWiki:Plugins.TreeBrowserPlugin][TreeBrowserPlugin]]
+
+=%<nop>TREEBROWSER{"file" title="%<nop>WEB%"}%= %BR%
+=%<nop>TREEVIEW{web="%<nop>WEB%" topic="GrandParent" formatting="outline" format="* $topic" levelprefix="   "}%=
+
+---++ Performance consideration
+
+For each =%<nop>TREE%= or =%<nop>TREEVIEW%= tag a TWiki.VarSEARCH at topic scope is performed. To reduce the scope of that search one can use =includetopic= and =excludetopic=. Those two parameters should be used by TreePlugin users worried about performance. In fact they can potently greatly reduce the processing time. 
+
+For instance if you know that every topic in your tree has a common prefix you can easily make use of =includetopic=. Also when generating web tree you may want to =excludetopic= prefixed with _Web_.
+
+
+---++ Plugin Settings
+
+<!--
+   * Set SHORTDESCRIPTION = Dynamic generation of TWiki topic trees 
+-->
+
+Specify plug-in settings on %USERSWEB%.TWikiPreferences using:
+   * Set #TREEPLUGIN_DEBUG_FAKE = 0
+
+---++ Installation Instructions
+
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your ($TWIKI_ROOT) directory.
+   * Alternatively,
+      * Manually resolve the dependencies listed below.
+      None
+                 
+---++ Plugin Info
+
+| Authors: | TWiki:Main.SlavaKozlov (alpha release), TWiki:Main.StephaneLenclud (2006-2007)  |
+| Copyright&nbsp;&copy;: | Copyright (C) 2002 Slava Kozlov. All Rights Reserved. |
+| License: | [[http://www.gnu.org/copyleft/gpl.html][GPL]] |
+| Dependencies: | None |
+| CPAN&nbsp;Dependencies: | none _(test package relies on Wiki:PerlUnit)_ |
+| Perl Version: | 5.0, 5.6.1, 5.8.7 |
+| Change&nbsp;History: | <!-- specify latest version first -->&nbsp; |
+| 11 Jul 2007 | 1.3 - Fixed =$onum= to =$outnum= in documentation. Fixed endless loop on inconsistent/looping parent/child relationship. Not supporting =bookview= any more. Fixed =imageoutline:thread= not rendering.  By TWiki:Main.StephaneLenclud | 
+| 7 Apr 2007 | 1.2 - Documentation improvement. Adding =includetopic= parameter. By TWiki:Main.StephaneLenclud | 
+| 6 Apr 2007 | 1.1 - Even more code cleaning. Rewrote tree building algorithm. Orphaned topics are now sorted as if child of the web root. No more blank line in the middle of the tree. Adding =nodiv= parameter. By TWiki:Main.StephaneLenclud | 
+| 6 Apr 2007 | 1.0 - More code cleaning. Testing most formatting. Better support for =web="all"=. By TWiki:Main.StephaneLenclud | 
+| 6 Apr 2007 | 0.9 - Support for TWiki.FormattedSearch pseudo-variables. Code cleaning in =TreePlugin.pm=. Removed some dead code. Improved documentation. By TWiki:Main.StephaneLenclud | 
+| 4 Apr 2007 | 0.8 - Adding =excludetopic= parameter. Adding =%<nop>TREE%= as synonym tag. Code cleaning in =TreePlugin.pm=. Fix root issue when no =topic= specified. By TWiki:Main.StephaneLenclud | 
+| 14 Mar 2007 | 0.7.1 - Arthur Clemens: Made =startlevel= and =stoplevel= relative to the root topic. | 
+| 14 Mar 2007 | 0.7 - Arthur Clemens: =web= parameter is now actually used. Added parameter =startlevel=. | 
+| 01 Oct 2006 | 0.6 - TWiki:Main.StephaneLenclud: adding =$index= format subsitution. Useful when used in combination with TWiki:Plugins/TreeBrowserPlugin. Also attempting to restore compatibility with Cairo, but still waiting for someone to test it.  |
+| 16 Sep 2006 | 0.5 - TWiki:Main.StephaneLenclud: adding =levelprefix= parameter to unable usage in combination with TWiki:Plugins/TreeBrowserPlugin. |
+| 26 Jul 2006: | 0.4 - TWiki:Main.SteffenPoulsen: Ported to TWiki 4 (Dakar). Leading text removed, less warnings, no double bracket links, CSS classnames around output. |
+| 15 Feb 2002 | Alpha (0.2) release |
+| 08 Feb 2002 | Internal (0.1) release |
+| Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+| Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+| Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+
+%META:FILEATTACHMENT{name="oT.gif" attr="h" autoattached="1" comment="" date="1158432770" path="oT.gif" size="879" user="UnknownUser" version=""}%
+%META:FILEATTACHMENT{name="I.gif" attr="h" autoattached="1" comment="" date="1158432770" path="I.gif" size="869" user="UnknownUser" version=""}%
+%META:FILEATTACHMENT{name="white.gif" attr="h" autoattached="1" comment="" date="1158432770" path="white.gif" size="56" user="UnknownUser" version=""}%
+%META:FILEATTACHMENT{name="pL.gif" attr="h" autoattached="1" comment="" date="1158432770" path="pL.gif" size="880" user="UnknownUser" version=""}%
+%META:FILEATTACHMENT{name="oL.gif" attr="h" autoattached="1" comment="" date="1158432770" path="oL.gif" size="874" user="UnknownUser" version=""}%
+%META:FILEATTACHMENT{name="L.gif" attr="h" autoattached="1" comment="" date="1158432770" path="L.gif" size="864" user="UnknownUser" version=""}%
+%META:FILEATTACHMENT{name="T.gif" attr="h" autoattached="1" comment="" date="1158432770" path="T.gif" size="873" user="UnknownUser" version=""}%
+%META:FILEATTACHMENT{name="pT.gif" attr="h" autoattached="1" comment="" date="1158432770" path="pT.gif" size="883" user="UnknownUser" version=""}%

@@ -1,0 +1,61 @@
+%META:TOPICINFO{author="PeterThoeny" date="1152441355" format="1.1" reprev="1.1" version="1.1"}%
+%META:TOPICPARENT{name="MediawikiEditSyntaxRegex"}%
+---+ Testing Mediawiki Syntax Edit Conversion
+
+See MediawikiEditSyntaxRegex for regex.
+
+---++ Emphasis
+
+This is *bold* and *bold*, _italic_ and _italic_, =monospaced=, ==monospaced bold==  text.
+
+---++ Links
+
+WebNotify, [[WebNotify][notify]], http://google.com/, [[http://google.com/][Google]]
+
+[[WebNotify]], [[WebNotify][notify]], %ATTACHURL%/file.png
+
+---++ Bullets and Term
+
+   $ term: definition
+   $ foo: bar
+
+   * A level 1
+      * level 2
+         * level 3
+            * level 4
+               * level 5
+                  * level 6
+                     * level 7
+                        * level 8
+                           * level 9
+                              * level 10
+   * B level 1
+
+   1. Number level 1
+      1. N level 2
+         1. N level 3
+         1. N level 3
+      1. N level 2
+         1. N level 3
+         1. N level 3
+            1. N level 4
+               1. N level 5
+                  1. N level 6
+                     1. N level 7
+                        1. N level 8
+                           1. N level 9
+                              1. N level 10
+   1. Number level 1
+
+---++ Headings
+
+---+ H1
+---+ H1
+---+!! Hidden H1
+---++ H2
+---+++ H3
+---++++ H4
+---+++++ H5
+---++++++ H6
+
+-- TWiki:Main.PeterThoeny - 09 Jul 2006

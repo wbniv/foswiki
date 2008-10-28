@@ -1,0 +1,273 @@
+body {
+   background: black; 
+   color: white; 
+   margin: 0; 
+   padding: 0; 
+   font-family: 
+   Verdana, Arial, sans-serif; 
+   font-size: 12px;
+}
+
+
+div {
+   border: 1px solid #335;
+}
+
+h1, div {
+   background-color: #336699; 
+   color: #eee;
+}
+
+p {
+   margin: 1em 0; 
+   padding: 0;
+}
+
+span.leader {
+   font-style: italic;
+}
+
+span.label {
+   font: italic 1em Arial, sans-serif; 
+   letter-spacing: 1px;}
+
+#pageheader {  
+   position: fixed;
+   z-index: 3;
+   height: 66px;  
+   width: 100%;  
+   color: #446;  
+   background-color: #003366;
+}
+#pageheader h1 {
+   background-color: #003366;
+   letter-spacing: 0.5em;
+   color: #eee;
+   padding: 0.25em 0.33em 0.125em;
+   border: 0px;
+} 
+h1, h3, h4 {
+   font-family: Arial, sans-serif; 
+   font-style: italic; 
+   font-weight: normal; margin: 0;
+}
+
+h1 {
+   letter-spacing: 0.5em; 
+   color: #eee; 
+   padding: 0.25em 0.33em 0.125em; 
+   border-bottom: 1px solid white;
+}
+
+h3 {
+   font-weight: bold; 
+   color: #113;
+}
+
+h4 {
+   font-weight: bold; 
+   letter-spacing: 0.3em; 
+   padding: 0.33em 0.5em 0.167em; 
+   border-top: 1px solid #335; 
+   border-bottom: 1px solid #557; 
+   background: #003366; 
+   color: #eee;
+}
+
+h1 a { 
+   text-decoration: none; 
+   color: #eee; 
+}
+
+div#sidebar {
+   position: absolute; 
+   top: 70px; 
+   left: 0; 
+   width: 23%; 
+   background: transparent;
+   padding: 0; 
+   margin: 1em; 
+   border-width: 0;
+}
+
+div#sidebar div {
+  margin-bottom: 1em;
+}
+
+div#sidebar a {
+   display: block; 
+   margin: 1px; 
+   padding: 0.125em; 
+   letter-spacing: 1px; 
+   text-align: right; 
+   font-weight: bold; 
+   border: 1px solid #006699; 
+   color: lightblue; 
+   background: transparent url(/pub/skins/seneca/main_bg.jpg) center left no-repeat; 
+   text-decoration: none;
+}
+
+div#sidebar a:link {
+   color: lightblue; 
+   background-color: transparent;
+}
+
+div#sidebar a:visited {
+   color: lightblue; 
+   background-color: transparent;
+}
+
+div#sidebar a:hover {
+   border: 1px solid #eee; 
+   color: white;
+}
+
+div#sidebar a span {
+   display: none;
+}
+
+.sb_box {
+   border-color: #224;
+}
+
+.sb_box h4 {
+   background: #003366; 
+   color: #ccc;
+}
+
+.sb_box a:visited:hover {
+   background: #AAD;
+}
+
+.sb_box ul {   
+   padding: 0px;   
+   margin: 0px;
+}
+
+.sb_box li {   
+   list-style-type: none;   
+   padding: 0px;   
+   margin: 0px;
+}
+
+.sb_box input {
+   padding: 2px 2px 2px 2px;
+   margin: 2px 2px 5px 2px;
+}
+
+div#sidebar a#gallery {
+   border-top: 4px solid #88B; 
+   font-size: 90%;
+}
+
+div#note p {margin: 0; 
+   padding: 0.66em; 
+   font-size: 80%; 
+   font-family: sans-serif; 
+   line-height: 1.33; 
+   color: #335;
+}
+
+div#sidebar div#credits a {
+   padding: 0.33em 0.66em 0.167em 0.66em; 
+   letter-spacing: 0; 
+   font-weight: normal; 
+   text-align: left; 
+   font-size: 90%;
+}
+
+div#main {
+   position: absolute; 
+   top: 70px; 
+   width: 68%;
+   left: 25%; 
+   margin: 1em;  
+   padding: 1em 1.5em;
+}
+
+div#bbar {
+   position: relative;
+   width: auto;
+   margin: 0em 0em 1em 0em;
+   font-style: italic;
+   border: 0px;
+}
+
+div#main #bbar a {
+   text-decoration: none;
+   padding: 0px 5px 0px 5px;
+   color: #ccc;
+}
+
+div#main #bbar a:hover {
+  color: white;
+}
+
+div#main h3 {
+   letter-spacing: 3px; 
+   margin: 1.25em 0 0;
+}
+
+div#main h3#top {
+   margin-top: 0;
+}
+
+div#main p {
+   margin: 0.25em 0 1em; 
+   line-height: 1.25em;
+}
+
+div#main a {
+   color: lightblue; 
+   text-decoration: underline;
+}
+
+div#main a:hover {
+   color: white
+}
+
+div#main h1 a {
+   text-decoration: none; 
+   color: #eee;
+}
+
+div#main h2 a {
+   text-decoration: none; 
+   color: #eee;
+}
+
+div#main h3 a {
+   text-decoration: none; 
+   color: #eee;
+}
+
+div#main h4 a {
+   text-decoration: none; 
+   color: #eee;
+}
+
+div#main h1 { 
+   margin-bottom: 5px;
+} 
+
+div#main table {
+   border: 1px solid #003366;
+   background-color: #336699;
+}
+
+div#main td {
+   background-color: #336699;
+   border: 1px solid #003366;
+}
+
+div#main th {
+   background-color: #003366;
+   color: #336699;
+   border: 1px solid #336699;
+}
+
+small { 
+   letter-spacing: 0; font-size: 85%;
+}
+
+div.NN4 {display: none;}

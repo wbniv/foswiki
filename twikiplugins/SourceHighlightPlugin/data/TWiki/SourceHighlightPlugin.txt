@@ -1,0 +1,124 @@
+%META:TOPICINFO{author="ChrisWinters" date="1043275886" format="1.0" version="1.0"}%
+---+ <nop>%TOPIC%
+
+This plugin allows you to have code fragments automatically formatted and highlighted using the [[http://www.gnu.org/software/src-highlite/][GNU source-highlight]] package.
+
+---++ Syntax Rules
+
+	* Just paste the code between %<nop>CODE{"syntax"}% and %ENDCODE%.  The following indicates the syntax used for the different languages:
+
+<blockquote>
+| *Language* | *Key* | *Syntax* |
+| C++ | cpp | =%<nop>CODE{"cpp"}%= ... =%ENDCODE%= |
+| C | cpp | =%<nop>CODE{"cpp"}%= ... =%ENDCODE%= |
+| Flex | flex | =%<nop>CODE{"flex"}%= ... =%ENDCODE%= |
+| Java | java | =%<nop>CODE{"java"}%= ... =%ENDCODE%= |
+| Perl | perl | =%<nop>CODE{"perl"}%= ... =%ENDCODE%= |
+| PHP3 | php3 | =%<nop>CODE{"php3"}%= ... =%ENDCODE%= |
+| Prolog | prolog | =%<nop>CODE{"prolog"}%= ... =%ENDCODE%= |
+| Python | python | =%<nop>CODE{"python"}%= ... =%ENDCODE%= |
+</blockquote>
+
+You can also define a default language and use the shortcut:
+
+=%<nop>CODE%= ... =%ENDCODE%=
+
+---++ Examples
+
+<blockquote>
+<pre>
+%<nop>CODE{"cpp"}%
+	void foo() {
+	  print("Do stuff.\n");
+	}
+%ENDCODE%
+</pre>
+</blockquote> 
+
+---++ <nop>%TOPIC% Global Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>SOURCEHIGHLIGHTPLUGIN_DEFAULTLANGUAGE%==
+
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Highlights and formats code fragments using GNU source-highlight.
+		* Set DEBUG = 0
+	* Full path to GNU source-highlight binary (*REQUIRED*)
+		* Set BINARY = /usr/bin/source-highlight
+	* Language to use when none specified (optional); choose from one of the *Key* values in the table above
+		* Set DEFAULTLANG =
+	* CSS class to use for the =div= tag surrounding the HTML output; if undefined we use *codefragment*
+		* Set FORMATCLASS = 
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+    * Install the GNU source-highlight package and note its location
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* To get a smart-looking box around the code fragment, something like the following is needed in the skin's stylesheet. Note that you may need to change the class name if you modify the *FORMATCLASS* configuration variable above.
+
+<blockquote>
+<pre>
+.codefragment {
+		  background : #FFFFCC;
+		  border : 1px solid #CCCCCC;
+		  margin-left : 2em;
+		  margin-right : 2em;
+		  padding : 4px;
+}
+</pre>
+</blockquote>
+	* Test if the installation was successful:
+
+%CODE{"java"}%
+package com.foo.stuff;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Thingy
+{
+    private List myList;
+
+    public Thingy()
+    {
+        myList = new ArrayList();
+    }
+
+    /**
+     * @param count This is the thingy you want.
+     */
+    public String getThingy( int count ) 
+    {
+    	 return (String)myList.get( count );
+    }
+}
+%ENDCODE%
+
+
+---++ Bugs
+
+
+---++ History
+
+| *Date* | *Change* | *Name* |
+| 23 Jan 2003 | Adapted from BeautifierPlugin | Main.ChrisWinters |
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/ChrisWinters |
+|  Plugin Version: | 23 Jan 2003 (V1.00) |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | [[http://www.gnu.org/software/src-highlite/][GNU source-highlight]] |
+|  Perl Version: | 5.005 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+
+-- TWiki:Main.ChrisWinters - 23 Jan 2003

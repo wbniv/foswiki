@@ -1,0 +1,120 @@
+/* Default stylesheet for the SeeSkin theme for TWiki web collaboration platform.
+/* Homepage: http://twiki.org/cgi-bin/view/Plugins/SeeSkin
+/* Matt Wilkie -  2003-July-16
+
+
+/* --------- redefined html elements ---------- */
+/* for most text sizing issues, just change 'body font-size', everything else will follow suit. 
+   Wierd things happen if you go less than 76% though. */
+body{ font-size:80%; 
+   font-family: Georgia,"Times New Roman", serif; text-align:justify;
+   /*font-family: Arial, Helvetica, sans-serif; text-align:left;*/}
+	ol,ul,dl,td,dt {text-align:left;}
+	th { text-align: center; }
+   
+h1,h2,h3,h4,h5,h6 { text-align: left; font-weight: normal; }
+h1 { font-size: 4.0ex; }
+h2 { font-size: 3.4ex; }
+h3 { font-size: 2.8ex; }
+h4 { font-size: 2.4ex; font-weight: bold; }
+h5 { font-size: 2.0ex; font-weight: bold; }
+h6 { font-size: 1.6ex; font-weight: bold; }
+
+/* anchors  must be defined in order (link,visited,active,hover) */
+a:link {text-decoration:none;}
+a:visited {text-decoration:none;}
+a:active { }
+a:hover{text-decoration:underline;}
+
+p { text-indent: 2ex; }
+ul,ol { margin-right: 4ex; }
+code, pre { text-align: left; }
+textarea { font-family: monospace;}
+p,table,td,th,ol,ul,dl,dt,dd { font-size: 2ex; }
+
+dl{margin-left:0; padding-left:1ex; }
+dt { /*display: list-item; list-style: none;*/ 
+   font-weight: bold; margin: 3ex 0 1ex 0;}
+dd{ /*display: list-item; list-style:none;*/ margin-left: 0; padding-left: 0;}
+dt a, dd a {padding:0.5ex 0.7ex 0.5ex 0.7ex;}
+dd a:link{ }
+dd a:visited{ }
+dd a:hover{ }
+
+/* -------- IDs ------------ */
+#topsection { position: relative; top: 6ex; left: 0; }
+#title { display: none; }
+#logochar {position:absolute; top:0; left:0; font-size: 36ex; font-weight: bold; color: rgb(234, 234, 234);width: 1em;}
+#search { position: relative; top: 0; right: 2ex; /*text-align: right;*/}
+#search input { font-size: 1.6ex; border: 1px solid #bbb;}
+#search a { color: #bbb; }
+
+/* what the users read and write */
+#content { border: none; /*margin: 3ex 18ex 6ex 18ex;*/ width: auto;}
+#content pre { overflow: auto; background-color: #eee;}
+#editcont { margin-left: 1ex;}
+
+/* revision data and parentage */
+#lineage { width: 15ex; position: absolute; top: 11ex; left: 1ex; text-align: left;  overflow: hidden; }
+#lineage * { color: #bbb; }
+#lineage a {  }
+/* the search for subdued left/right columns */
+#lineage *,#navigate *,#search a {color:#888;}
+#lineage a, #navigate a {color: #6699cc;}
+/*#lineage *:hover { color: black; }*/
+/*#navigate *:hover { color: black; }*/
+
+/* %WEBTOPICLIST% and %WIKIWEBLIST% */
+#navigate { width: 15ex; position: absolute; top: 11ex; right: 2ex; text-align: left; }
+#navigate dd { padding-left: 1.5ex; }
+#navigate * { color: #555; }
+
+/* trying % instead of ex for left/right columns */
+#content { margin: 3ex 18% 6ex 18%; position:relative; }
+#navigate, #lineage { width: 15%; }
+
+#meta { text-align: center; }
+
+/* ----- menu ----- */
+#menu{ margin:0; width:100%; height: auto; position:fixed; top:0; left:0; border: none;
+   border-bottom: thin groove ThreedShadow; color: MenuText; background-color: Menu; 
+   line-height: 3ex;}
+#menu a { color: MenuText; }
+#menu dl, #menu dt,#menu dd { display: inline; list-style: none; }
+#menu dt {display: none;}
+#diffs { display:inline; font-size:1.6ex;}
+#menu #editmore { font-style: italic;}
+/*#menu input { border: thin solid groove; background-color: transparent; }*/
+/*
+#menu dl dt a, #menu dl dd a { padding:0.5ex 0.7ex 0.5ex 0.7ex; color: MenuText;}
+*/
+#bugreport { position: absolute; top: 0; right: 1ex; font-style: italic;}
+
+/* layer order, 1 = bottom, 100 = top */
+#logochar {	z-index: 1;}
+#lineage, #navigate { z-index: 5; }
+#content { z-index: 9; }
+#menu { z-index: 10; }
+#bugreport { z-index: 11; }
+
+/* hide stuff which is only for non-css browsers */
+.nocss { display: none; }
+/* de-emphasize */
+.deem { font-size: smaller; }
+/* inset box , e.g. for %TOC% */
+div.inset { width: 15em; float: right; border: thin dotted Gray; margin: 2ex; padding-left: 1ex;}
+div.inset ul {padding-left:0; padding-right:0; margin-left:0; margin-right:0;}
+div.inset ul li {padding-left:2ex;}
+
+/* ----- IE5,6/Win workarounds ----- */
+* html body { margin: 0; }
+* html #menu { /* IE doesn't do 'fixed' */ position: absolute; }
+* html #content table{ width: auto; }
+* html #content textarea { width: 40em; }
+* html #diffs {padding:0;}
+/* Fix IE AccessKey behaviour; 
+	leave commented out, is handled by twiki.see.tmpl */
+/* a { behavior: url(/twiki/pub/Plugins/SeeSkin/akey.htc) } */
+/* ----------------------- */
+
+/* END */

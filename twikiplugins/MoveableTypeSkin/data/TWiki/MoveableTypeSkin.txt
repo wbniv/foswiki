@@ -1,0 +1,202 @@
+---+!! MoveableTypeSkin Contrib Package
+
+---+++ See [[http://www.home.org.au/cgi-bin/view/TWiki/MoveableTypeSkin][Sven's personal Blog]] for a *DEMO*
+
+MoveableTypeSkin is a simple TWiki Skin that allows you define a look and feel for TWiki using the css tags defined by by the 
+[[http://www.thestylecontest.com][Moveable Type style contest archive]] (the default moveable type templates for v3.3). 
+
+There are several advantages to this skin
+   1 Its very lightweight, and only contains the bare minimum html required to implement the Moveable type classes and IDs
+   2 Its not implemented specifically for TWiki, so any theme you develop for this skin, will work for _all_ versions of TWiki in the future
+   3 It reuses TWiki's base 'default' skin, so any new functionality will automatically become available for your use.
+   4 it means you can share your style between your TWiki, and your SixApart based blog!
+
+Through this reusable design, you can also preview ideas for a design _using_ the themes from [[http://www.sixapart.com/movabletype/styles/library][The Moveable tpe Style library]]. (The Style contest guys have changed their site to make this more difficult, so to see or use those styles, you will need to download them to your system as per the Customisation instructions)
+
+To try it out, install the contrib, then use the =next= and =previous= design links below
+
+Some css designs are not suitable for generic useage, as they make assumptions about the number of pixels that the text is long, but you should be able to get inspiration from these works anyway. 
+
+%STARTSECTION{"css-browser"}%
+<!--
+      * Set FIRSTCSS=148
+      * Set LASTCSS=182
+      * Set CURRENTCSS = %URLPARAM{"upto" default="%FIRSTCSS%"}%
+      * Set NEXTCSS = %CALC{"$IF( $EVAL( %CURRENTCSS% + 1 ) > %LASTCSS%, %FIRSTCSS%, $EVAL( %CURRENTCSS% + 1 ))"}%
+      * Set PREVIOUSCSS = %CALC{"$IF( $EVAL( %CURRENTCSS% - 1 ) < %FIRSTCSS%, %LASTCSS%, $EVAL( %CURRENTCSS% - 1 ))"}%
+      
+      * Set CURRENTCSSURL = cssfile=%URLPARAM{"cssfile" default="%CSS%CURRENTCSS%%"}%
+      * Set CURRENTCOLUMNS = moveabletypecolumns=%URLPARAM{"moveabletypecolumns" default="one-column"}%      
+      
+      * Set CURRENTQUERYSTRING = skin=moveabletype;moveabletypetopic=%URLPARAM{"moveabletypetopic" default="%MOVEABLETYPESKIN_DESIGNTOPIC%"}%
+-->
+<div align="center" style="margin:6px;">
+<div style="color:black;align:center;width:80%;background-color:#F3FEF6;border:1px solid;margin:6px;padding:10px;">
+---++ To browse the designs from [[http://www.sixapart.com/movabletype/styles/library][The Six Apart style library]]
+
+[[%SCRIPTURL{view}%/%WEB%/%TOPIC%?skin=moveabletype;moveabletypetopic=%MOVEABLETYPESKIN_DESIGNTOPIC%;cssfile=%CSS%PREVIOUSCSS%%;upto=%PREVIOUSCSS%][&lt;&lt; Previous]] 
+[[%SCRIPTURL{view}%/%WEB%/%TOPIC%?skin=moveabletype;moveabletypetopic=%MOVEABLETYPESKIN_DESIGNTOPIC%;cssfile=%CSS%NEXTCSS%%;upto=%NEXTCSS%][Next &gt;&gt;]] 
+
+view in: 
+[[%SCRIPTURL{view}%/%WEB%/%TOPIC%?moveabletypecolumns=one-column;%CURRENTQUERYSTRING%;%CURRENTCSSURL%;upto=%CURRENTCSS%][one column]], 
+[[%SCRIPTURL{view}%/%WEB%/%TOPIC%?moveabletypecolumns=two-column-left;%CURRENTQUERYSTRING%;%CURRENTCSSURL%;upto=%CURRENTCSS%][two column left]], 
+[[%SCRIPTURL{view}%/%WEB%/%TOPIC%?moveabletypecolumns=two-column-right;%CURRENTQUERYSTRING%;%CURRENTCSSURL%;upto=%CURRENTCSS%][two column right]], 
+[[%SCRIPTURL{view}%/%WEB%/%TOPIC%?moveabletypecolumns=three-column;%CURRENTQUERYSTRING%;%CURRENTCSSURL%;upto=%CURRENTCSS%][three column]]
+
+currently showing : [[%CSS%CURRENTCSS%%][CSS%CURRENTCSS%]]
+
+show using HTML
+[[%SCRIPTURL{view}%/%WEB%/%TOPIC%?skin=moveabletypeonecolumn;%CURRENTCSSURL%][one column]], 
+[[%SCRIPTURL{view}%/%WEB%/%TOPIC%?skin=moveabletypetwocolumn-left;%CURRENTCSSURL%][two column left]], 
+[[%SCRIPTURL{view}%/%WEB%/%TOPIC%?skin=moveabletypetwocolumn-right;%CURRENTCSSURL%][two column right]], 
+[[%SCRIPTURL{view}%/%WEB%/%TOPIC%?skin=moveabletypethreecolumn;%CURRENTCSSURL%][three column]]
+
+</div></div>
+%ENDSECTION{"css-browser"}%
+
+---++ Customisation instructions
+The fastest way to develop your own css, is to use [[http://styles.movalog.com/generator/][the Movable Type Style generator]], or to adapt one of the existing css's on the web. There is documentation for this set of css classes and tags found at [[http://www.thestylearchive.com/help/stylesheet_reference][Stylesheet Reference]] and other related pages.
+
+   1 *COPY* the MoveableTypeSampleDesign topic text to =YourSitesMoveableTypeDesign= (or something of your choosing) and then attach your css and images (including a copy of base-weblog.css) to that topic. You should now be able to proof your design from that topic.
+   2 customise =TWiki.css= (copy from MoveableTypeSampleDesign) and attach it to your design's topic.
+      * This file contains most TWiki specific styles, such as tables, forms and diffs. (WORK in progress)
+   3 to customise the common text sections in your design edit the _Moveable Type Common Text sections_ in your new design's topic (=YourSitesMoveableTypeDesign=).
+
+Once you are done, you will be able to set the following in your %USERSWEB%.TWikiPreferences to roll the skin out to everyone:
+
+---++ Settings
+
+Skin Settings are stored as preferences variables that must be added to %USERSWEB%.TWikiPreferences. They are:
+
+set TWiki to use the moveabletype skin
+      * Set SKIN=moveabletype
+set the moveabletype skin to use this topic to get the _moveabletype Common Text sections_ from this topic
+      * Set MOVEABLETYPESKIN_DESIGNTOPIC = %URLPARAM{"moveabletypetopic" default="MoveableTypeSampleDesign"}%
+set the moveabletype skin to use this topic to get the css and images from here (must be in the %SYSTEMWEB%)
+      * Set MOVEABLETYPESKIN_CSSFILE = %URLPARAM{"cssfile" default="%CSS%FIRSTCSS%%"}%
+      * Set MOVEABLETYPESKIN_TWIKICSSFILE = %URLPARAM{"twikicssfile" default="%PUBURLPATH%/%SYSTEMWEB%/%MOVEABLETYPESKIN_DESIGNTOPIC%/TWiki.css"}%
+   * is the css one-column, two-column-left, two-column-right, three-column (if not set, either as TWikiVariable or the UrlParameter moveabletypecolumns, it defaults to one-column)
+      * Set MOVEABLETYPESKIN_COLUMNS = %URLPARAM{"moveabletypecolumns" default="two-column-left"}%
+
+
+
+There are static text sections in the MoveableType css that can be customised by editing the named sections on the %SYSTEMWEB%.MoveableTypeSampleDesign topic - each section can be re-defined either inline, or using INCLUDEs.
+
+---+++ Skin variables
+If you set =PAGETOPIC= in your preferences or in your topic, it will be used as the page's HTML title, in preference to the Topic's name. This is useful to make userfriendly titles for AUTO topic name TWikiApps like TWiki:Plugins:BugsContrib.
+
+---+++ Skin URL Parameters for testing skin designs
+   * skin - must be set to moveabletype
+   * cssfile - the url to the moveabletype css file you want to view
+   * twikicssfile - the url to the TWiki.css file
+   * moveabletypetopic - the topic (in the %SYSTEMWEB% only) that the moveabletype common sections come from
+   * moveabletypecolumns - column setting (one-column, two-column-left, two-column-right, three-column)
+   
+---+++ Technical details
+This skin is an example of how to make a TWikiSkin _without_ duplicating the work of the TWiki Core release. It reuses the default skin, and only adds a =twiki.moveabletype.tmpl= (and a viewprint that I hope to remove later), and only defines the bare essentials to create HTML that is similar to an existing system.
+
+You can use this technique to create a TWikiSkin that matches closely the HTML of your existing web site, and thus re-use the existing site's css styling, thus creating a comon look & feel.
+
+---+++ Plugin topic Settings
+   * One line description:
+      * Set SHORTDESCRIPTION = a TWiki skin based on the HTML used by [[http://www.thestylecontest.com][The Style Archive]] and [[http://www.sixapart.com/movabletype/styles/library][The Six Apart style library]]
+
+---++ Installation Instructions
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	| *File:* | *Description:* |
+%$MANIFEST%
+	* Run ==%TOPIC%_installer.pl== to automatically check and install other modules that this module depends on. You can also do this step manually. Dependencies:
+	%$DEPENDENCIES%
+
+---++ Interesting URLS
+   * http://www.bkdesign.ca/movable-type/movable-type-styles.php
+   * http://www.bkdesign.ca/movable-type/simplify-movable-type.php
+
+---++ Contrib Info
+
+|  Contrib Author: | TWiki:Main.SvenDowideit - SvenDowideit@DistributedINFORMATION.com [[http://DistributedINFORMATION.com][DistributedINFORMATION]] - a <img src="%ATTACHURLPATH%/wikiringlogo20x20.png" /> [[http://www.wikiring.com][WikiRing.com]] partner |
+|  Copyright &copy;: | SixApart and designs by various, and twiki adaption by TWiki:Main.SvenDowideit - SvenDowideit@DistributedINFORMATION.com |
+|  License: | Various Open Source |
+|  Description: | a TWiki skin based on the HTML used by [[http://www.thestylecontest.com][The Style Archive]] and [[http://www.sixapart.com/movabletype/styles/library][The Six Apart style library]] |
+|  Screenshot: | <a href="%ATTACHURL%/fullscreen.gif"><img src="%ATTACHURL%/screenshot.gif" alt="Click for full screen image" width="600" height="130" /></a> |
+|  Screenshot: | <a href="%ATTACHURL%/splattered_edit.gif"><img src="%ATTACHURL%/preview_splattered_edit.gif" alt="Click for full screen image" width="600" height="130" /></a> |
+|  Screenshot: | <a href="%ATTACHURL%/iconic.gif"><img src="%ATTACHURL%/iconic_preview.gif" alt="Click for full screen image" width="600" height="130" /></a> |
+|  Preview: | [[%SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%][Preview with this topic]] |
+|  Base Name: | moveabletype |
+|  Skin Version: | 03 Apr 2007 (v1.000) |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Version: | %$VERSION% |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  %DATE%: | Initial version |
+|  30 Mar 2007: | initial release of Skin | 
+|  Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences
+
+-- TWiki:Main/SvenDowideit - %DATE%
+
+<!--
+
+      * Set CSS148 = %PUBURL%/%TWIKIWEB%/MoveableTypeSample2Design/theme.css
+      * Set CSS149 = %PUBURL%/%TWIKIWEB%/MoveableTypeSampleDesign/theme.css
+      * Set CSS150 = http://www.sixapart.com/movabletype/styles/vicksburg_variations/theme-vicksburg_desert/theme-vicksburg_desert.css
+      * Set CSS151 = http://www.sixapart.com/movabletype/styles/vicksburg_variations/theme-vicksburg_khaki/theme-vicksburg_khaki.css
+      * Set CSS152 = http://www.sixapart.com/movabletype/styles/vicksburg_variations/theme-vicksburg_violet/theme-vicksburg_violet.css
+      * Set CSS153 = http://www.sixapart.com/movabletype/styles/pale_palettes/theme-subtle/theme-subtle.css
+      * Set CSS154 = http://www.sixapart.com/movabletype/styles/bold_palettes/theme-forest_green/theme-forest_green.css
+      * Set CSS155 = http://www.sixapart.com/movabletype/styles/bold_palettes/theme-sunburned/theme-sunburned.css
+      * Set CSS156 = http://www.sixapart.com/movabletype/styles/pale_palettes/theme-city_blend/theme-city_blend.css
+      * Set CSS157 = http://www.sixapart.com/movabletype/styles/vicksburg_variations/theme-vicksburg_red/theme-vicksburg_red.css
+      * Set CSS158 = http://www.sixapart.com/movabletype/styles/cool_colors/theme-powell_street/theme-powell_street.css
+      * Set CSS159 = http://www.sixapart.com/movabletype/styles/special_interest/theme-baby/theme-baby.css
+      * Set CSS160 = http://www.sixapart.com/movabletype/styles/pale_palettes/theme-tickle/theme-tickle.css
+      * Set CSS161 = http://www.sixapart.com/movabletype/styles/classic/theme-april_showers/theme-april_showers.css
+      * Set CSS162 = http://www.sixapart.com/movabletype/styles/bold_palettes/theme-purple_crush/theme-purple_crush.css
+      * Set CSS163 = http://www.sixapart.com/movabletype/styles/cool_colors/theme-porpoise/theme-porpoise.css
+      * Set CSS164 = http://www.sixapart.com/movabletype/styles/special_interest/theme-knitting/theme-knitting.css
+      * Set CSS165 = http://www.sixapart.com/movabletype/styles/special_interest/theme-travel/theme-travel.css
+      * Set CSS166 = http://www.sixapart.com/movabletype/styles/special_interest/theme-wedding/theme-wedding.css
+      * Set CSS167 = http://www.sixapart.com/movabletype/styles/cool_colors/theme-bryant/theme-bryant.css
+      * Set CSS168 = http://www.sixapart.com/movabletype/styles/vicksburg_variations/theme-vicksburg_rose/theme-vicksburg_rose.css
+      * Set CSS169 = http://www.sixapart.com/movabletype/styles/vicksburg_variations/theme-vicksburg_olive/theme-vicksburg_olive.css
+      * Set CSS170 = http://www.sixapart.com/movabletype/styles/vicksburg_variations/theme-vicksburg_teal/theme-vicksburg_teal.css
+      * Set CSS171 = http://www.sixapart.com/movabletype/styles/bold_palettes/theme-beckett/theme-beckett.css
+      * Set CSS172 = http://www.sixapart.com/movabletype/styles/classic/theme-earth/theme-earth.css
+      * Set CSS173 = http://www.sixapart.com/movabletype/styles/classic/theme-green_grass/theme-green_grass.css
+      * Set CSS174 = http://www.sixapart.com/movabletype/styles/special_interest/theme-stitch/theme-stitch.css
+      * Set CSS175 = http://www.sixapart.com/movabletype/styles/classic/theme-minimalist/theme-minimalist.css
+      * Set CSS176 = http://www.sixapart.com/movabletype/styles/bold_palettes/theme-masala/theme-masala.css
+      * Set CSS177 = http://www.sixapart.com/movabletype/styles/classic/theme-classy/theme-classy.css
+      * Set CSS178 = http://www.sixapart.com/movabletype/styles/cool_colors/theme-blue_crush/theme-blue_crush.css
+      * Set CSS179 = http://www.sixapart.com/movabletype/styles/vicksburg_variations/theme-vicksburg/theme-vicksburg.css
+      * Set CSS180 = http://www.sixapart.com/movabletype/styles/cool_colors/theme-stevenson/theme-stevenson.css
+      * Set CSS181 = http://www.sixapart.com/movabletype/styles/bold_palettes/theme-folio/theme-folio.css
+      * Set CSS182 = http://www.sixapart.com/movabletype/styles/classic/theme-bonjour_chatette/theme-bonjour_chatette.css
+
+
+-->
+
+
+%META:FORM{name="SkinPackage"}%
+%META:FIELD{name="TopicClassification" attributes="" title="TopicClassification" value="IncompletePackage"}%
+%META:FIELD{name="TestedOnTWiki" attributes="" title="TestedOnTWiki" value="4.1"}%
+%META:FIELD{name="TestedOnOS" attributes="" title="TestedOnOS" value="AnyOS"}%
+%META:FIELD{name="ShouldRunOnOS" attributes="" title="ShouldRunOnOS" value="AnyOS"}%
+%META:FIELD{name="InstalledOnTWikiOrg" attributes="" title="InstalledOnTWikiOrg" value="No"}%
+%META:FIELD{name="DemoUrl" attributes="" title="DemoUrl" value="http://home.org.au"}%
+%META:FIELD{name="DevelopedInSVN" attributes="" title="DevelopedInSVN" value="No"}%
+%META:FIELD{name="ModificationPolicy" attributes="" title="ModificationPolicy" value="ContactAuthorFirst"}%
+%META:FIELD{name="RelatedTopics" attributes="" title="RelatedTopics" value=""}%
+%META:FILEATTACHMENT{name="skindemo.js" attachment="skindemo.js" attr="H" comment="" date="1174054380" path="skindemo.js" user="SvenDowideit" version="1"}%
+%META:FILEATTACHMENT{name="wikiringlogo20x20.png" attachment="wikiringlogo20x20.png" attr="H" comment="" date="1174054380" path="wikiringlogo20x20.png" user="SvenDowideit" version="1"}%
+%META:FILEATTACHMENT{name="screenshot.gif" attachment="screenshot.gif" attr="H" comment="" date="1174054380" path="screenshot.gif" user="SvenDowideit" version="1"}%
+%META:FILEATTACHMENT{name="fullscreen.gif" attachment="fullscreen.gif" attr="H" comment="" date="1174054380" path="fullscreen.gif" user="SvenDowideit" version="1"}%
+
+%META:FILEATTACHMENT{name="iconic.gif" attachment="iconic.gif" attr="H" comment="" date="1174054380" path="iconic.gif" user="SvenDowideit" version="1"}%
+%META:FILEATTACHMENT{name="iconic_preview.gif" attachment="iconic_preview.gif" attr="H" comment="" date="1174054380" path="iconic_preview.gif" user="SvenDowideit" version="1"}%
+%META:FILEATTACHMENT{name="preview_splattered_edit.gif" attachment="preview_splattered_edit.gif" attr="H" comment="" date="1174054380" path="preview_splattered_edit.gif" user="SvenDowideit" version="1"}%
+%META:FILEATTACHMENT{name="splattered_edit.gif" attachment="splattered_edit.gif" attr="H" comment="" date="1174054380" path="splattered_edit.gif" user="SvenDowideit" version="1"}%
+

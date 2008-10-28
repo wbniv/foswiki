@@ -1,0 +1,23 @@
+---+ Union of DonaldCurrie2 and JanetFinlaySinclair
+%INCLUDE{"StdUnion"}%
+---++ Records
+
+
+%EDITTABLE{include="RecordTable"}%
+| Place | St Georges, Hanover Square, Edinburgh |
+---++ Children
+%EDITTABLE{include="ChildTable"}%
+| JohnRonaldCurrie |
+| ElizabethMaryCurrie |
+| EdithSinclairCurrie |
+| JanetCrawfordCurrie |
+| DonaldCurrie3 |
+
+
+
+
+%META:FORM{name="UnionForm"}%
+%META:FIELD{name="Date" title="Date" value="24 Dec 1869"}%
+%META:FIELD{name="Male" title="Male" value="DonaldCurrie2"}%
+%META:FIELD{name="Female" title="Female" value="JanetFinlaySinclair"}%
+

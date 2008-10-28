@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+<HTML>
+<HEAD>
+<TITLE>%WEB% - %TOPIC%</TITLE> 
+<meta content="text/html; charset=windows-1252" http-equiv="Content-Type">
+<link href="%PUBURLPATH%/%SYSTEMWEB%/DallasSkin/twiki.css" rel="stylesheet" type
+="text/css">
+</HEAD>
+
+<BODY bgColor="#ffffff" leftMargin="0" topMargin="0" MARGINHEIGHT="0" MARGINWIDTH="0"><!-- HEADER WITH TOP NAVIGATION BEGINS -->
+<TABLE cellSpacing="0" cellPadding="0" width="100%" border="0">
+  <TR bgColor="#000000">
+    <TD vAlign="bottom" width="103">
+      <A href="/twiki/bin/view"><IMG alt="Go to Main page"  border=0 src="%PUBURLPATH%/TWiki/DallasSkin/left_header_logo.jpg"></a>
+    </TD> 
+<td>
+<table border=1>
+<tr>
+    <TD align="middle" valign="center" bgcolor="%WEBBGCOLOR%" width="500">
+       <b>You are currently in the topic, %TOPIC% in the %WEB% Web</b><br/><a hr
+ef="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%USERSWEB%/WebColors"><font size="-2">Why do the colors
+change here?</font></a>
+    </TD>
+</tr>
+</table>
+</td>
+
+    <TD vAlign="bottom" align="right">
+      <a href="/twiki/bin/view" ><IMG alt="Go to Main page" border=0 src="%PUBURLPATH%/TWiki/DallasSkin/right_header_logo.jpg"></a>
+    </TD>
+  </TR>
+</TABLE>
+<TABLE cellSpacing="0" cellPadding="0" width="100%" border="0">
+  <TR bgColor="#c9d2d9">
+    <TD vAlign="center"><A href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%?topic=%WIKIUSERNAME%"><IMG alt="%WIKIUSERNAME%" border=1 height=30 src="%PUBURLPATH%/TWiki/DallasSkin/personal_homepage.gif" width=160 ></A></TD>
+	<TD vAlign="center" bgColor="#c9d2d9">
+	  <form name="search" action="%SCRIPTURLPATH%/search%SCRIPTSUFFIX%/%WEB%">
+		<b>Quick Search</b>&nbsp;
+		<INPUT type="radio" name="scope" value="text" checked> &nbsp; 
+		<b>Topic Name Only</b>&nbsp;
+		<INPUT type="radio" name="scope" value="topic"> &nbsp; 
+		<INPUT type="text" name="search" size="32" >
+		<input type="hidden" name="web" value="on">
+		<INPUT type="image" src="%PUBURLPATH%/TWiki/DallasSkin/go_butt.gif" border="0" name="submit">
+	  </form></TD></TR>
+</TABLE>
+<!-- This is major table...toolbar, common web topics, topic text, and footer -->
+<TABLE cellSpacing="0" cellPadding="0" width="100%" border="0">
+    <TR>
+	    <TD bgColor="#c9d2d9" ></TD>
+		<TD vAlign="top" height="25" colSpan="2"><IMG alt="" border="0" height="25" src="%PUBURLPATH%/TWiki/DallasSkin/rounded_border.gif" ><IMG alt="" border =0 height=25 src="%PUBURLPATH%/TWiki/DallasSkin/bottom_nav_corner.gif"></TD><TD vAlign="top" align="left" bgColor="#000000" width="3600" height="25" ><A Href="%SCRIPTURLPATH%/edit%SCRIPTSUFFIX%/%WEB%/%TOPIC%"><IMG alt="edit" border="0" height="25" src="%PUBURLPATH%/TWiki/DallasSkin/edit.gif" title="Double-clicking inside the topic works too! :-)" width=60></A><A Href="%SCRIPTURLPATH%/attach%SCRIPTSUFFIX%/%WEB%/%TOPIC%"><IMG alt="attach" border="0" height="25" src="%PUBURLPATH%/TWiki/DallasSkin/attach.gif" title="Attach files to this topic" width=60></A><A href="%SCRIPTURLPATH%/view/Main/WebSearch"><IMG alt="advanced search" border="0" height=25 src="%PUBURLPATH%/TWiki/DallasSkin/advsearch.gif" width=80 title="Search across webs, use regular expressions, etc."></A><A Href="%SCRIPTURLPATH%/search%SCRIPTSUFFIX%/%WEB%/?scope=text&web=all&amp;regex=on&amp;search=%SPACEDTOPIC%%5B%5EA-Za-z%5D"><IMG alt="crossreference" border="0" height="25" src="%PUBURLPATH%/TWiki/DallasSkin/ref_by.gif" width=70 title="What topics reference this topic?"></A><A Href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%?skin=print" ><IMG alt="print" border="0" height="25" src="%PUBURLPATH%/TWiki/DallasSkin/printable.gif" width=90 title="When the urge to kill trees just can't be stopped..."></A><A Href="%SCRIPTURLPATH%/createtopic%SCRIPTSUFFIX%/%WEB%"><IMG alt="create" border="0" height="25" src="%PUBURLPATH%/TWiki/DallasSkin/create.gif" width=75 title="Unlease the Wiki Genie!"></A><A Href="%SCRIPTURLPATH%/rename%SCRIPTSUFFIX%/%WEB%/%TOPIC%"><IMG alt="rename" border="0" height="25" src="%PUBURLPATH%/TWiki/DallasSkin/rename.gif" width=60 title="You can make it run, but you can't make it hide!"></A></TD>
+		<!-- BLACK HORIZ. TOOLBAR ENDS-->
+     </TR>
+     <TR>
+	    <TD vAlign="top" align="right" width="161" bgColor="#c9d2d9" rowSpan="3"><font size=+1><em><strong>%WEB% Web</strong></em></font><br> 
+          <A href="/twiki/bin/view/%WEB%/WebHome">WebHome</A>&nbsp;<br>
+          <A href="/twiki/bin/view/%WEB%/WebChanges">WebChanges</A>&nbsp;<br>
+          <A href="/twiki/bin/view/%WEB%/WebIndex">WebIndex</A>&nbsp;<br>
+          <A href="/twiki/bin/view/%WEB%/WebNotify" title="Get e-mail notification when topics in this web change">WebNotify</A>&nbsp;<br> 
+          <A href="/twiki/bin/view/%WEB%/WebStatistics">WebStatistics</A>&nbsp;<br>
+          <A href="/twiki/bin/view/%WEB%/WebPreferences">WebPreferences</A>&nbsp;<br>
+          <HR>
+<!-- LEFT Twiki Web MENU ENDS -->
+		  <!-- OPTIONAL ITEMS IN LEFT COLUMN BEGINS -->
+	      <TABLE cellSpacing="0" cellPadding="2" width="90%" border="0">
+<tr><td align=center bgcolor="#6699ff"><b>Web List</b></td></tr>
+%WEBLIST{"<tr bgcolor=#66ccff><td align=left><a href=/twiki/bin/view/$name/WebHome>$name</a></td></tr>"}% 
+
+<tr><td><hr></td></tr>
+
+	          <TR>
+	          <TD vAlign="top" align="middle" colSpan="2">
+	              <A href="http://www.twiki.org"><IMG alt="" border=0 src="%PUBURLPATH%/TWiki/DallasSkin/plain_twiki_logo.gif" width=131></A>
+	          </TD>
+	          </TR>
+	      </TABLE>
+		  <!--OPTIONAL ITEMS IN LEFT COLUMN ENDS -->
+        </TD>
+		<!--SPACER COLUMN - SETS UP VERTICAL BORDER -->        
+	    <TD vAlign="bottom" bgColor="#000000" rowSpan="3"> 
+		  <IMG alt=" " border =0 height=4 src="%PUBURLPATH%/TWiki/DallasSkin/spacer.gif"> 
+	    </TD>
+		<!-- MAIN CONTENT BEGINS -->
+	    <TD vAlign="top" colSpan="2" onload="window.defaultStatus='Viewmode'" ondblclick="location.href='%SCRIPTURLPATH%/edit%SCRIPTSUFFIX%/%WEB%/%TOPIC%'"> 
+		%TEXT%
+                %META{"form"}%
+                %META{"attachments"}%
+
+		</TD>
+      </TR>
+	  <!-- MAIN CONTENT ENDS -->
+	  <!-- FOOTER BEGINS -->
+	<TR BGCOLOR="#00b000">
+	  <TD align="left"  colSpan="2">
+		<B>Current Rev: %REVINFO%, Revision History:</B><A href="%SCRIPTURLPATH%/rdiff%SCRIPTSUFFIX%/%WEB%/%TOPIC%">Diffs</A>%REVISIONS%
+	  </TD>
+	</TR>
+	<!--- COPYRIGHT DATA -->
+    <TR>
+        <TD vAlign="top" align="right" width="97">&nbsp;&nbsp;&nbsp;&nbsp;</TD> 
+	<TD align="middle"><br>
+          &copy; 2002 YOUR COMPANY/BUSINESS HERE. All rights reserved.<BR>
+          Void where prohibited by law.  Mmeber FDIC.  Batteries not included.  Internal use only - Prosecutors will be violated :) 
+	</TD> 
+	<TD vAlign="top"> 
+  <IMG alt=" " border=0 height=5 src="%PUBURLPATH%/TWiki/DallasSkin/spacer.gif" width=4 ></TD>
+      </TR><!-- FOOTER ENDS -->
+    </TABLE>
+</BODY>
+</HTML>

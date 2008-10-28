@@ -1,0 +1,10 @@
+%TMPL:INCLUDE{"oopserrbase"}%
+<!-- template: oopssendmailerr.nat.tmpl -->
+%TMPL:DEF{"heading"}%%MAKETEXT{"Send Mail Error"}%%TMPL:END%
+%TMPL:DEF{"errormessage"}%<!-- -->
+%MAKETEXT{"The e-mail could not be delivered."}% 
+<div class="natErrorMsg">%PARAM1%</div>
+%TMPL:END%
+%TMPL:DEF{"formvariables"}%<!-- -->
+<input type="hidden" name="Error" value="%PARAM1%" />
+%TMPL:END%

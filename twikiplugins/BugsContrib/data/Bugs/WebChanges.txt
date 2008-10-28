@@ -1,0 +1,11 @@
+
+---+!! The %URLPARAM{"limit" default="20"}% most recent changes
+
+%TABLE{tablewidth="100%" columnwidths="7%,,10%,,15%," valign="top"}%
+%SEARCH{"^Item\.*" web="%INCLUDINGWEB%" excludetopic="ItemTemplate" nosearch="on" scope="topic" regex="on"  reverse="on" limit="%URLPARAM{"limit" default="20"}%" order="modified"  header="| *Id* | *Summary* | *State,%BR% Waiting for* | *Priority* | *Applies&nbsp;To* | *Changed&nbsp;By* |" format="| [[$web.$topic#r$rev][$topic(10)]] | $formfield(Summary) | $formfield(CurrentState) $percntCALC{$IF($EXACT($formfield(CurrentState), Waiting for Feedback), $SUBSTITUTE($formfield(WaitingFor), TWiki:Main[\.\/], : <nop>, , r))}$percnt | $formfield(Priority) | $formfield(AppliesTo) $formfield(Component) | [[TWiki:$wikiusername][$wikiname]] <span style='white-space: nowrap;'>$date</span> | "}%
+
+__See also:__ %ICON{rss-small}% [[%SCRIPTURL{"view"}%/%INCLUDINGWEB%/WebRss][RSS feed]], recent changes with 
+<a href="%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%?limit=20" rel="nofollow">20 topics</a>,
+<a href="%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%?limit=50" rel="nofollow">50 topics</a>,
+<a href="%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%?limit=100" rel="nofollow">100 topics</a>,
+<a href="%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%?limit=200" rel="nofollow">200 topics</a>

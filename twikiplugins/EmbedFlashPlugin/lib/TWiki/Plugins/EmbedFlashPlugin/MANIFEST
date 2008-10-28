@@ -1,0 +1,4 @@
+data/TWiki/EmbedFlashPlugin.txt 0660
+lib/TWiki/Plugins/EmbedFlashPlugin.pm 0440
+pub/TWiki/EmbedFlashPlugin/sample.fla 0777
+pub/TWiki/EmbedFlashPlugin/sample.swf 0777

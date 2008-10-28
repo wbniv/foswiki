@@ -1,0 +1,108 @@
+%META:TOPICINFO{author="TWikiContributor" date="1145692316" format="1.1" reprev="1.2" version="1.2"}%
+---+!! <nop>%TOPIC%
+
+This plugin is used to help find orphaned topics. It can also be used to count the number of references to a particular topic.
+
+%TOC%
+
+---++ Syntax Rules
+
+   * Lists are generated with the following:
+      * %TO%NOP%PICREFERENCELIST{"(argument)" [web="webname"]}%
+
+| *Argument* | *Description* |
+| orphans | Show all topics with a ref count of 0 (default if you used %TO%NOP%PICREFERENCELIST{}%) |
+| hasref | Show all topics with references (excluded orphans) |
+| all | Show all topics for the web and their reference counts (e.g. number of times a topic is referenced from another topic) |
+
+---++ Syntax Examples
+
+   * List orphaned topics
+      * %TO%NOP%PICREFERENCELIST{"orphans"}%
+      * %TO%NOP%PICREFERENCELIST{}%
+
+   * List orphaned topics in a different web
+      * %TO%NOP%PICREFERENCELIST{"orphans" web="MyWeb"}%
+
+   * List topics with references (non-zero)
+      * %TO%NOP%PICREFERENCELIST{"hasref"}%
+
+   * List all topics and reference counts
+      * %TO%NOP%PICREFERENCELIST{"all"}%
+
+---++ Rendered Example, Orphans in the Main web
+
+<table>
+<tr>
+<td>
+Plugin output (pre-rendered):
+
+<ul>
+<li> <a href="/%SCRIPTURLPATH%/view/Main/TWikiGuestLeftBar" class="twikiLink">TWikiGuestLeftBar</a> (0)
+</li> <li> <a href="/%SCRIPTURLPATH%/view/Main/NobodyGroup" class="twikiLink">NobodyGroup</a> (0)
+</li> <li> <a href="/%SCRIPTURLPATH%/view/Main/TWikiGuestSideBar" class="twikiLink">TWikiGuestSideBar</a> (0)
+</li> <li> <a href="/%SCRIPTURLPATH%/view/Main/PatternSkinUserViewTemplate" class="twikiLink">PatternSkinUserViewTemplate</a> (0)
+</li> <li> <a href="/%SCRIPTURLPATH%/view/Main/WebLeftBar" class="twikiLink">WebLeftBar</a> (0)
+</li> <li> <a href="/%SCRIPTURLPATH%/view/Main/OrphanTest" class="twikiLink">OrphanTest</a> (0)
+</li></ul>
+</td>
+<td>
+Plugin output (if enabled):
+
+%TOPICREFERENCELIST{"orphans" web="Main"}% 
+</td>
+<td>
+Used syntax:
+<verbatim>
+%TOPICREFERENCELIST{"orphans" web="Main"}% 
+</verbatim>
+</td>
+</tr>
+</table>
+
+---++ Plugin Settings
+
+   * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = Find orphaned topics or topic ref counts.
+
+   * Debug plugin: (See output in =data/debug.txt=)
+      * Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the TWiki server. 
+
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+   * Configure the Plugin:
+      * TWiki 4.0 and up: Run the [[%SCRIPTURL%/configure%SCRIPTSUFFIX%][configure]] script to enable the Plugin
+      * Change the Plugin settings as needed
+   * Test if the installation was successful (verify rendered example above)
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.JeffCrawford |
+|  Copyright: | &copy; 2006, TWiki:Main.JeffCrawford |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | 19 Apr 2006 (V1.001) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  19 Apr 2006: | Changed name of plugin (formerly !OrphanFindPlugin), modified for better speed and added default, added web option |
+|  15 Apr 2006: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 58% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
+
+-- TWiki:Main.JeffCrawford - 19 Apr 2006
+
+%META:REVCOMMENT{ncomments="0"}%

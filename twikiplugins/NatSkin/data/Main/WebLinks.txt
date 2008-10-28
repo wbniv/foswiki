@@ -1,0 +1,23 @@
+%META:TOPICINFO{author="TWikiContributor" date="1170329845" format="1.1" reprev="1.4" version="$Rev$"}%
+%META:TOPICPARENT{name="TWikiPreferences"}%
+---+ %TOPIC%
+
+Sidebar navigation in the %WEB% web. See also the %SYSTEMWEB%.TWikiWebLinks
+
+%STARTINCLUDE% <!-- -->
+   * [[%SYSTEMWEB%.WelcomeGuest][%MAKETEXT{"Welcome"}%]]
+   * [[%TWIKIREGISTRATION%][%MAKETEXT{"Registration"}%]]
+   * %IF{"istopic '%USERSWEB%.TWikiUsers'" else="$percntMAKETEXT{\"Users\"}$percnt" then="[[$percntUSERSWEB$percnt.TWikiUsers][$percntMAKETEXT{\"Users\"}$percnt]]"}%
+   * [[%USERSWEB%.TWikiGroups][%MAKETEXT{"Groups"}%]]
+   * [[%SYSTEMWEB%.ChangePassword][%MAKETEXT{"Password"}%]]
+%IFDEFINEDTHEN{"%IFACCESS{"%USERSWEB%.WebLinks" type="change"}%" as="1"}%
+<!-- -->
+   * [[%BASEWEB%.WebPreferences][%MAKETEXT{"Preferences"}%]]
+   * [[%USERSWEB%.TWikiPreferences][%MAKETEXT{"SitePreferences"}%]]
+%FIDEFINED%
+%STOPINCLUDE%
+
+
+<!--
+   * Set ALLOWTOPICCHANGE = TWikiAdminGroup
+-->

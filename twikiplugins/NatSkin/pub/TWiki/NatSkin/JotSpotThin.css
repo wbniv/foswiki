@@ -1,0 +1,15 @@
+/* thin variant for jotspot */
+@import url("../../TWiki/NatSkin/BaseThin.css");
+
+.natBodyContents {
+  background: #E6E9EB;
+  border: 1px solid #B3BCC0;
+  padding:0px;
+}
+.natBody {
+  background:#eee;
+}
+.natBottomBar {
+  float:left;
+  padding:20px;
+}

@@ -1,0 +1,41 @@
+%META:TOPICINFO{author="JohnTalintyre" date="996229175" format="1.0beta2" version="1.1"}%
+# %WEB{name="..." home="<Web>|<Web>.<Topic>" [expand="always|never"]}% -
+
+entry for Web
+
+# %ITEM{name="..." [topic="..."]}% - topic in Web
+
+# %DEFAULTITEMS% - default topics
+
+
+
+# %DEFAULTITEMS% replaced by this 
+
+
+
+   * SET DEFAULTITEMS = %ITEM{name="WebChanges" topic="WebChanges"}%,ITEM{name="WebIndex" topic="WebIndex"}%, %ITEM{name="WebNotify" topic="WebNotify"}%, %ITEM{name="WebStatistics" topic="WebStatistics"}%
+
+
+
+%WEB{name="TWiki System" home="TWiki"}%
+
+%ITEM{name="Welcome" topic="WelcomeGuest"}%
+
+%DEFAULTITEMS%
+
+
+
+%WEB{name="People" home="Main"}%
+
+%ITEM{name="Everyone" topic="TWikiUsers"}%
+
+%DEFAULTITEMS%
+
+
+
+%WEB{name="Test (play area)" home="Test"}%
+
+%DEFAULTITEMS%
+
+
+

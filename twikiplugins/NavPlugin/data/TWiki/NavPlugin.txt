@@ -1,0 +1,113 @@
+%META:TOPICINFO{author="MikeBarton" date="1012588120" format="1.0" version="1.14"}%
+---++ Nav Plugin
+This plugin allows an author to create a set of TWiki Topic pages that together form a logical, ordered set.  This could be a for a presentation/slide-show or sections of a document.
+
+Each document set is composed of a number of individual topics and an *"index"* topic.  To link each of these topics together, a variable named *%<nop>DOCNAME%* is introduced.
+
+Based on the value of %<nop>DOCNAME%, NavPlugin finds the name of the "index" topic, and parses the contents of it to determine the respective navigation links.  The Index lists the individual pages in the order.
+
+If a document does not have a %<nop>DOCNAME% variable defined, the document is displayed without the navigation links.
+
+The NavPlugin uses a simple skin (included with the plugin) for the viewing/navigation.  A small <nop>JavaScript function is used to determine if the navigation icons should be displayed and to insert the correct hyperlinks.
+
+See TWiki:Plugins.NavPluginDev for development discussion.
+
+---+++ Example
+
+See the example document set Sandbox.NavPluginExample.
+
+---+++ Syntax Rules
+*Title Page*
+
+Start the document set with a hyperlink that forces the page to be viewed with the "nav" skin.  
+You could do this from a Title Page.
+<verbatim>
+   =&lt;a href="NavPluginPageOne?skin=nav">Begin the example&lt;/a>=   
+</verbatim>
+
+*Index Page*
+
+Every document set needs an index page.  
+The index page must be a valid TWiki.WikiWord name that ends in Index:  &lt; <i>SomeWikiName</i> >Index.
+
+The Index page contains an ordered list of TWiki pages.  This list must use the bullet syntax and start with an <nop>IndexStart and <nop>IndexEnd flag in HTML comments.
+<verbatim>
+<!--IndexStart-->
+	* NavPluginPageOne
+	* NavPluginPageTwo
+	* NavPluginLastPage
+<!--IndexEnd-->
+</verbatim>
+
+The index page can be a part of the document set by putting the DOCNAME variable in it.  Often, this it's useful for the Index page to double as the "Agenda" or "Table of Contents" of the presentation/document.
+
+*On each page, identify that it belongs to a document set*
+
+Each page in the document set must have the DOCNAME variable defined.   It can defined in an HTML comment so that it's not visible, putting the start/end comment delimeters on the line above it and after it.
+
+The DOCNAME should be set to the base document name, such as "NavPlugin." The plugin source code will automatically append "Index" to this name to determine the next/previous/index hyperlinks.
+
+<verbatim>
+   &lt;!--
+	* Set DOCNAME = SomeWikiName
+   -->
+</verbatim>
+
+*First and Last Pages*
+
+When you are on the first page, the "Previous" simply reloads the first page in the index. 
+When you get to the last page, the "Next" simply reloads the last page. 
+The TOC always takes you to the index page. 
+
+*Navigation*
+
+When you are viewing with the nav skin, these icons appear at the top of the page
+	* <img src="%ATTACHURLPATH%/prev.gif"  alt="prev.gif">:  Go to previous page in the document set
+	* <img src="%ATTACHURLPATH%/toc.gif"  alt="toc.gif">: Go to the document set index (i.e. table of contents), identified by DOCNAMEIndex
+	* <img src="%ATTACHURLPATH%/next.gif"  alt="next.gif">: Go to the next page in the document set
+
+If you are viewing with the nave skin and you want to "break-out" so that you can edit one of the pages, edit the URL and remove the ==?skin=nav== parameter.
+
+---+++ <nop>%TOPIC% Settings
+
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
+	* Set SHORTDESCRIPTION = This plugin allows a user to easily combine different TWiki topics into one logical document that a user can can easily navigate through "navigation" links displayed at the header and footer of each page.
+
+	* Debug plugin: (See output in data/debug.txt) 
+	* Set DEBUG = 0 
+
+---+++ Plugin Installation Instructions
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+      | *File:* | *Description:* |
+      | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+      | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+      | ==data/Sandbox/%TOPIC%Example*.txt== | Example |
+      | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+      | ==templates/view.nav.tmpl== | (skin for navigation) |
+      | ==pub/TWiki/NavPlugin/*.gif== | next, previous, and index images for the nav skin |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+
+	* Test if the plugin is correctly installed, by viewing Sandbox.NavPluginExample
+
+---+++ Known Issues/Limitations
+All pages referenced in the index must be in the same web as the index page.
+
+---+++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.MikeBarton, TWiki:Main.AlbertoBaez |
+|  Plugin Version: | 30 Jan 2002 |
+|  Change History: | 30 Jan 2002: Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.0 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+
+-- TWiki:Main.MikeBarton - 30 Jan 2002<br />
+%META:FILEATTACHMENT{name="NavPlugin.zip" attr="" comment="" date="1012414230" path="\\fs1\userhomes\mikeb\mikeb\TWiki-Installs\NavPlugin.zip" size="18376" user="MikeBarton" version="1.1"}%
+%META:FILEATTACHMENT{name="toc.gif" attr="" comment="" date="1012411533" path="C:\Temp\toc.gif" size="248" user="MikeBarton" version="1.1"}%
+%META:FILEATTACHMENT{name="next.gif" attr="" comment="" date="1012411549" path="C:\Temp\next.gif" size="226" user="MikeBarton" version="1.1"}%
+%META:FILEATTACHMENT{name="prev.gif" attr="" comment="" date="1012411562" path="C:\Temp\prev.gif" size="221" user="MikeBarton" version="1.1"}%

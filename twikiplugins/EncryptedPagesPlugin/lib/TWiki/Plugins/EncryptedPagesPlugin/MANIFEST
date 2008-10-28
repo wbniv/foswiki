@@ -1,0 +1,8 @@
+data/TWiki/EncryptedPagesPlugin.txt NEW
+lib/TWiki/Plugins/EncryptedPagesPlugin.pm NEW
+pub/TWiki/EncryptedPagesPlugin/Crypt.jar NEW
+pub/TWiki/EncryptedPagesPlugin/TwikiEncrypt.jar NEW
+uk/org/ellery/twiki/Crypt.java NEW
+uk/org/ellery/twiki/FileUploader.java NEW
+uk/org/ellery/twiki/GetPassword.java NEW
+uk/org/ellery/twiki/TwikiEncrypt.java NEW

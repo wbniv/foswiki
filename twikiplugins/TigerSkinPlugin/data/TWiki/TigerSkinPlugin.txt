@@ -1,0 +1,11 @@
+%META:TOPICINFO{author="JohnTalintyre" date="996260656" format="1.0beta2" version="1.2"}%
+	* Set SHORTDESCRIPTION = Supports TigerSkin
+
+	* Max number of revisions to show on drop down menu
+
+		* Set NUMREVISIONS = 7
+
+	* Set DEBUG = 
+
+
+

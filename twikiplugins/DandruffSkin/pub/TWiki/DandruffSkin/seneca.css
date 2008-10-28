@@ -1,0 +1,118 @@
+body {
+   background-color: black;
+   color: white;
+   padding: 0px 0px 0px 0px;
+   margin: 0px;
+}
+
+
+img {
+  border: 0px;
+}
+
+.leftlogo {
+  float: left;
+}
+
+.rightlogo {
+  float: right;
+}
+
+#pageheader {
+  height: 66px;
+  width: 100%;
+  background-color: #003366;
+}
+   
+
+#titlebox {
+  background-color: #336699;
+  padding: 5px;
+}
+
+#titlebox h1 {
+  font-size: large;
+  padding: 0px;
+  margin: 0px;
+}
+
+#pagemenu {
+  background-color: #336699;
+  height: 15px;
+}
+
+#text {
+  position: relative;
+  padding: 5px;
+  float: right;
+  width: 70%;
+  background-color: #336699;
+  border-left: 0px solid black;
+}
+
+#text a {
+  color: white;
+  text-decoration: underline;
+}
+
+#text a:hover {
+  color: lightblue;
+  text-decoration: underline;
+}
+
+ul {
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 20px;
+}
+
+#weblist {
+}
+
+#weblist a {
+  font-variant: small-caps;
+  text-decoration: none;
+  font-size: 12px;
+  font-stretch: ultra-condensed;
+  color: white;
+}
+
+#weblist a:hover {
+  color: lightblue;
+}
+
+#footer {
+  background-color: #003366;
+}
+
+#content {
+  background-color: pink;
+  border: 1px solid white;
+  position: relative;
+  display: block;
+}
+
+#toolbox {
+  background-color: #336699;
+}
+
+#toolbox a {
+  color: white;
+  text-decoration: none;
+}
+
+#toolbox a:hover {
+  color: lightblue;
+}
+
+#toolbox h1 {
+  font-size: medium;
+  padding-top: 0px;
+  margin-top: 0px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+.toolbox_group {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+}

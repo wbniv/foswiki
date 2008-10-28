@@ -1,0 +1,52 @@
+%META:TOPICINFO{author="guest" date="1020626820" format="1.0" version="1.4"}%
+	+++ Translate Tags, Options and Formats
+
+This Plugin transparently translates tags/options and format variables from English to other languages (for the happyness of our foreign friends :-) ).
+
+The translation happens only at Edit and Preview time.
+	* the stored form is always English
+	* at Edit time the english TAGS are translated
+		* this way you edit in your preferred language
+	* at Preview time the tags are translated back to English
+		* this way all the twiki/plugins machinery works as usual
+
+The table of Translations is kept in the TagTranslations topic (by default).
+
+	+++ Plugin settings
+
+	* One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Translates TAGS on-the-fly for editing in foreign languages.
+	* Topic containing the translations (default: Plugins.TagTranslations)
+		* #Set TOPIC = TranslateTagPlugin
+	* Language setting (you can place it also in a global/web/user preference topic)
+		* Set LANG = it
+	* Set to ==1== to enable some debug
+		* Set DEBUG = 0
+
+	+++ Syntax Example
+Each translation is stored as a table row as in the example below.
+| *English*				| *Translated*			 | *Language* |
+| SEARCH.format.topic  | CERCA.formato.pagina  | it			|
+| SEARCH.format.topic  | CHERCHE.format.page	| FR			|
+
+	+++ Is it working?
+
+Check for correct installation by uncommenting the above TOPIC setting. This will enable the example translations above.
+	* on ==edit== the ==%<nop>SEARCH{"Plugin" format="$topic"}%== tag below will be translated to ==%<nop>CERCA{"Plugin" formato="$pagina"}%==.
+	* on ==preview== the search will work fine as usual.
+
+%CERCA{"Plugin" formato="$pagina"}%
+
+	+++ Installation
+	* Unpack the package
+	* apply (if needed) the attached before/afterEditHandler patches to enable ==before/afterEditHandler== calls
+	* Edit TagTranslations
+
+	+++ TODO
+	* Translate also VARIABLES
+
+	+++ Change History
+	* V 1.000 First release
+%META:FILEATTACHMENT{name="edit.diff" attr="" comment="patch to enable beforeEditHandler" date="1020633283" path="edit.diff" size="707" user="guest" version="1.1"}%
+%META:FILEATTACHMENT{name="preview.diff" attr="" comment="patch to enable afterEditHandler" date="1020633320" path="preview.diff" size="802" user="guest" version="1.1"}%
+%META:FILEATTACHMENT{name="Plugins.pm.diff" attr="" comment="patch to enable before/afterEditHandler" date="1020633366" path="Plugins.pm.diff" size="2459" user="guest" version="1.1"}%

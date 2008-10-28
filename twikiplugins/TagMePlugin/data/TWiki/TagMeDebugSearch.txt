@@ -1,0 +1,25 @@
+%META:TOPICINFO{author="TWikiContributor" date="1142985766" format="1.0" version="1.1"}%
+%META:TOPICPARENT{name="TagMeDebugViewTags"}%
+---+ Tag-me: Debug Tag Search
+
+<noautolink>
+<form action="%SCRIPTURL{view}%/%WEB%/%TOPIC%">
+|  web: | <input name="qweb" value="%URLPARAM{ "qweb" encode="entity" }%" size="80" /> |
+|  topic: | <input name="qtopic" value="%URLPARAM{ "qtopic" encode="entity" }%" size="80" /> |
+|  tag: | <input name="qtag" value="%URLPARAM{ "qtag" encode="entity" }%" size="80" /> |
+|  by: | <input name="qby" value="%URLPARAM{ "qby" encode="entity" }%" size="80" /> |
+|  sort: | <input name="qsort" value="%URLPARAM{ "qsort" encode="entity" }%" size="80" /> |
+|  norelated: | <input name="qnorelated" value="%URLPARAM{ "qnorelated" encode="entity" }%" size="80" /> |
+|  nototal: | <input name="qnototal" value="%URLPARAM{ "qnototal" encode="entity" }%" size="80" /> |
+|  minsize: | <input name="qmin" value="%URLPARAM{ "qmin" encode="entity" }%" size="80" /> |
+|  maxsize: | <input name="qmax" value="%URLPARAM{ "qmax" encode="entity" }%" size="80" /> |
+|  format: | <input name="qformat" value="%URLPARAM{ "qformat" encode="entity" }%" size="80" />%BR% =&lt;span style='font-size:$size%;'&gt; [<nop>[$web.$topic][$topic]] $votecount&lt;/span&gt;= |
+|  separator: | <input name="qseparator" value="%URLPARAM{ "qseparator" encode="entity" }%" size="80" /> |
+|	| <input type="submit" /> |
+</form>
+</noautolink>
+
+__Result:__ %BR%
+%TAGME{ tpaction="query" web="%URLPARAM{qweb}%" topic="%URLPARAM{qtopic}%" tag="%URLPARAM{qtag}%" by="%URLPARAM{qby}%" sort="%URLPARAM{qsort}%" norelated="%URLPARAM{qnorelated}%" nototal="%URLPARAM{qnototal}%" minsize="%URLPARAM{qmin}%" maxsize="%URLPARAM{qmax}%" format="%URLPARAM{qformat}%" separator="%URLPARAM{qseparator}%" }%
+
+__See also:__ TagMePlugin, TagMeViewAllTags, TagMeViewMyTags, TagMeSearch, TagMeDebugViewTags

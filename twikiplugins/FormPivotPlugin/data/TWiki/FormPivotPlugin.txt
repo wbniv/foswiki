@@ -1,0 +1,63 @@
+%META:TOPICINFO{author="JohnTalintyre" date="1018985829" format="1.0" version="1.8"}%
+%META:TOPICPARENT{name="TWikiPreferences"}%
+---+ Form Pivot Plugin
+
+Basic analysis of values for a [[%SYSTEMWEB%.TWikiForms][form]] used by the topics in a Web.
+
+---++ %TOPIC% Global Settings
+
+Plugin settings are stored as preferences variables. To reference
+a plugin setting write ==%<plugin>_<setting>%==, for example, ==%INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Statistics of values in a TWikiForm
+
+	* Set DEBUG to 1 to get debug messages in =data/debug.txt=.  Default: =0=
+		* Set DEBUG = 0
+
+---++ Syntax rules
+
+%<nop>FORMPIVOT{form="..." [fields="..."] [type="grid|count"]}%
+
+If fields not specified, all fields in the form are used.
+
+If type is "count":
+	* For each field, gives a break down of occurance of values in sortable tables.
+
+If type is "grid":
+	* There should be two fields, each square in the grid produced will be the count of those topics containing the two values e.g. Bug and High Priority
+
+---++ Known Issues
+
+This is a fairly simple initial implementation and probably doesn't yet deserve the designiation of pivot.
+
+---++ Plugin Installation Instructions
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the plugin is correctly installed:
+		* Extract test topics from attachment [[%ATTACHURL%/formpivot-example.zip][formpivot-example.zip]]
+		* See [[Test.TestFormPivot][Test.TestFormPivot]] for the two types of pivot (assuming you extracting to the Test Web).
+
+---++ Plugin Info
+
+|  Plugin Author: | %SYSTEMWEB%.JohnTalintyre |
+|  Plugin Version: | 15Apr 2002 |
+|  Change History: | 15 Apr 2002: Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.0 |
+|  Plugin Home: | TWiki:Plugins/%TOPIC% |
+|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+
+-- %SYSTEMWEB%.JohnTalintyre - 15 Apr 2002
+	* : Simple example of using FormPivotPlugin
+
+%META:FILEATTACHMENT{name="formpivot-example.zip" attr="" comment="Simple example of using FormPivotPlugin" date="1018989276" path="c:\devel\twiki\formpivot-example.zip" size="5306" user="JohnTalintyre" version="1.1"}%

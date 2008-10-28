@@ -1,0 +1,2 @@
+# Dependencies for UploadToTWikiAddOn
+LWP,>=0,cpan,Required

@@ -1,0 +1,324 @@
+   /*
+    * TWkiki SimpleBlueSkin - Style Informationen
+    */
+    body{
+		margin: 0 0 0 0;
+		padding: 0 0 0 0;
+	}
+
+    #simpleBlueContentBook {
+        clear: both;
+    }
+
+    #simpleBlueHeader {
+        padding: 10px 10px 10px 10px;
+    }
+
+    #simpleBlueNavigationArea {
+        padding-left: 1em;
+        width: 160px;
+        overflow: hidden;
+    }
+
+    #simpleBlueNaviBoxHeader {
+        margin-top: 1em;
+        margin-bottom: 0.5em;
+        text-align: left;
+        border-bottom: 1px dotted;
+    }
+
+    #simpleBlueNaviBox {
+        margin-bottom: 0.5em;
+        text-align: left;
+        padding-left: 0.5em;
+    }
+
+    #simpleBlueNaviBox_L1 {
+        margin-left: 0.5em;
+    }
+
+    #simpleBlueNaviBox_L2 {
+        margin-left: 1em;
+    }
+
+    #simpleBlueNavigationArea ul {
+        list-style: none;
+        padding: 0 0 0 0;
+        margin: 0;
+    }
+
+    #simpleBlueNavigationArea p {
+        padding: 0 0 0 0;
+        margin: 0;
+    }
+
+    #simpleBlueNavigationArea .link {
+        margin-top: 0.2em;
+        margin-left: 5px;
+    }
+
+    #simpleBlueContentArea {
+        margin-left: 180px;
+        margin-right: 0px;
+        border-left: 0px solid;
+        padding: 1em;
+    }
+
+    #simpleBlueContentArea h1 {
+        border-bottom: 0px dotted;
+        padding-bottom: 0.1em;
+    }
+
+    #simpleBlueContentArea h2 {
+        border-bottom: 1px dotted;
+        padding-bottom: 0.1em;
+    }
+
+    #simpleBlueInfoArea {
+        padding: 0.5em;
+        display: none;
+    }
+
+    #simpleBlueActionBarTop {
+        vertical-align: middle;
+        border-bottom: 1px solid;
+        padding-bottom: 0.5em;
+    }
+
+    #simpleBlueActionsActionBar {
+        float: left;
+    }
+
+    #simpleBluePageDownLink {
+        float: right;
+    }
+
+    #simpleBlueActionsActionBar a {
+        margin-right: 1em;
+    }
+
+    #simpleBlueContentNotes {
+        border-bottom: 1px solid;
+    }
+
+    #simpleBlueActionBarBottom {
+        padding-top: 0.5em;
+        border-top: 1px solid;
+    }
+
+    #simpleBlueActionsActionBarBottom {
+        float: left;
+    }
+
+    #simpleBluePageUpLink {
+        float: right;
+    }
+
+    #simpleBlueFooter {
+        padding: 0.5em;
+    }
+
+    #simpleBlueContentArea .twikiChangeFormButtonHolder  tr td {
+        border: 0px;
+    }
+
+    #simpleBlueContentArea .twikiForm {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #simpleBlueContentArea #twikiSearchTable {
+        border: 1px solid #e2e2e2;
+    }
+
+    #simpleBlueContentArea #twikiSearchTable tr {
+        border: 1px solid #e2e2e2;
+    }
+
+    #simpleBlueContentArea #twikiSearchTable th {
+        border: 0px;;
+    }
+
+    #simpleBlueContentArea #twikiSearchTable td {
+        border: 0px;
+    }
+
+    #simpleBlueContentArea #twikiSearchTable .last hr {
+        size: 0px;
+        border: 0px solid;
+    }
+
+    #simpleBlueContentArea #twikiSearchTable hr {
+        size: 0px;
+        border: 0px solid;
+    }
+
+    #simpleBlueContentArea table {
+        border-collapse: collapse;
+        padding: 0px;
+        border-spacing: 0px;
+        empty-cells: show;
+        border: 0px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #simpleBlueContentArea table th {
+        border: 1px solid;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+
+    #simpleBlueContentArea table td {
+        border: 1px solid;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-right: 2px;
+        padding-left: 2px;
+    }
+
+    #simpleBlueContentArea table th a:hover {
+        border-width: 1px;
+    }
+
+    /* hide sort icons */
+    #simpleBlueContentArea table th img,
+        #simpleBlueContentArea table th a:link img,
+        #simpleBlueContentArea table th a:visited img {
+        display: none;
+    }
+
+    #simpleBlueContentArea img {
+        align: center;
+    }
+
+    #simpleBlueSearchResults {
+        margin: 0.5em;
+        border-bottom: 1px dotted;
+    }
+
+    #simpleBlueSearchResults table th tr td {
+        border: 0px;
+    }
+
+    #simpleBlueGrayText {
+        padding-left: 2em;
+        padding-right: 2em;
+    }
+
+    #simpleBlueContentArea pre {
+        border: 1px dotted;
+        padding: 5px;
+        width: 90%;
+        mind-width: 90%;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        overflow: hidden;
+    }
+
+    .width50 {
+        width: 50px;
+        min-width: 50px;
+        max-width: 50px;
+    }
+
+    .width75 {
+        width: 75px;
+        min-width: 75px;
+        max-width: 75px;
+    }
+
+    .width100 {
+        width: 100px;
+        min-width: 100px;
+        max-width: 100px;
+    }
+
+    .width125 {
+        width: 125px;
+        min-width: 125px;
+        max-width: 125px;
+    }
+
+    .width130 {
+        width: 130px;
+        min-width: 130px;
+        max-width: 130px;
+    }
+
+    .width180 {
+        width: 180px;
+        min-width: 180px;
+        max-width: 180px;
+    }
+
+    .width200 {
+        width: 200px;
+        min-width: 200px;
+        max-width: 200px;
+    }
+
+    .width225 {
+        width: 225px;
+        min-width: 225px;
+        max-width: 225px;
+    }
+
+    .width275 {
+        width: 275px;
+        min-width: 275px;
+        max-width: 275px;
+    }
+
+    .width300 {
+        width: 300px;
+        min-width: 300px;
+        max-width: 300px;
+    }
+
+    .width430 {
+        width: 430px;
+        min-width: 430px;
+        max-width: 430px;
+    }
+
+    .width480 {
+        width: 480px;
+        min-width: 480px;
+        max-width: 480px;
+    }
+
+    .width600 {
+        width: 600px;
+        min-width: 600px;
+        max-width: 600px;
+    }
+
+    #simpleBlueTable {
+        width: 600px;
+        min-width: 600px;
+        max-width: 600px;
+    }
+
+    #simpleBlueTableRow {
+        vertical-align: bottom;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+    }
+
+    #simpleBlue2CTableColumn1 {
+        position: relative;
+        padding-right: 5px;
+        text-align: right;
+        float: left;
+    }
+
+    #simpleBlue2CTableColumn2 {
+        padding-left: 5px;
+        text-align: left;
+        float: none;
+    }
+

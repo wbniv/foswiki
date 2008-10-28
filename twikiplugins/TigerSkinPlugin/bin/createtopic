@@ -1,0 +1,84 @@
+#!c:/apps/perl/bin/perl
+#-d:ptkdb
+#
+# TWiki WikiClone (see wiki.pm for $wikiversion and other info)
+#
+# Based on parts of Ward Cunninghams original Wiki and JosWiki.
+# Copyright (C) 1998 Markus Peter - SPiN GmbH (warpi@spin.de)
+# Some changes by Dave Harris (drh@bhresearch.co.uk) incorporated
+# Copyright (C) 1999-2000 Peter Thoeny, peter@thoeny.com
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details, published at 
+# http://www.gnu.org/copyleft/gpl.html
+
+use CGI::Carp qw(fatalsToBrowser);
+use CGI;
+use lib ( '../lib' );
+use TWiki;
+
+&main();
+
+# =========================
+sub main
+{
+    my $query = new CGI;
+    my $tmpl = "";
+    my $text = "";
+    my $thePathInfo = $query->path_info(); 
+    my $theRemoteUser = $query->remote_user();
+    my $theTopic = $query->param( 'topic' ) || "";
+    my $theNewTopic = $query->param( 'newtopic' ) || "";
+    my $doAllowNonWikiWord = $query->param( 'nonwikiword' ) || "";
+    my $theUrl = $query->url;
+
+    my( $topic, $webName, $dummy, $userName ) = 
+        &TWiki::initialize( $thePathInfo, $theRemoteUser, $theTopic, $theUrl, $query );
+    $dummy = "";  # to suppress warning
+    
+    my $onlyWikiName = $query->param( 'onlywikiname' ) || "";
+    my $wikiUserName = &TWiki::userToWikiName( $userName );
+
+    if( ! &TWiki::Store::webExists( $webName ) ) {
+        TWiki::writeHeader( $query );
+	$tmpl = &TWiki::Store::readTemplate( "noweb" );
+	$tmpl = &TWiki::handleCommonTags( $tmpl, $topic );
+	print $tmpl;
+        return;
+    }
+    
+    my $warning = "";
+    if( $theNewTopic ) {
+        # check access permission FIXME - I don't think this check does anything
+        if( ! &TWiki::Access::checkAccessPermission( "create", $wikiUserName, "", $topic, $webName ) ) {
+            # user has not permission to create this topic
+            my $url = &TWiki::getOopsUrl( $webName, $topic, "oopsaccesschange" );
+            print TWiki::redirect( $query, $url );
+            return;
+        }
+
+        if( $theNewTopic =~ /[^a-zA-Z0-9]+/ ) {
+            $warning = "Please enter a Topic name with only letter and number characters.";
+        } elsif( ! ( &TWiki::isWikiName( $theNewTopic ) || $doAllowNonWikiWord ) ) {
+            $warning = "Please use <nop>WikiWord format for Topic names, alternatively check \"Allow non <nop>WikiWord\" to resubmit.";
+        } else {
+            my $url = "$TWiki::urlHost$TWiki::scriptUrlPath/edit$TWiki::scriptSuffix/$webName/$theNewTopic";
+            print TWiki::redirect( $query, $url );
+        }
+    }
+    
+    TWiki::writeHeader( $query );   
+    $tmpl = &TWiki::Store::readTemplate( "createtopic" );   
+    $tmpl =~ s/%WARNING%/$warning/o;
+    $tmpl =~ s/%NEWTOPIC%/$theNewTopic/o;
+    $tmpl = &TWiki::handleCommonTags( $tmpl, $topic );
+    $tmpl = &TWiki::getRenderedVersion( $tmpl );
+    print $tmpl;
+}

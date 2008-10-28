@@ -1,0 +1,127 @@
+#!/usr/bin/perl -wT
+#
+# TWiki WikiClone (see wiki.pm for $wikiversion and other info)
+#
+# Copyright (C) 1999 Peter Thoeny, peter@thoeny.com
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details, published at 
+# http://www.gnu.org/copyleft/gpl.html
+
+use CGI::Carp qw(fatalsToBrowser);
+use CGI;
+use lib ( '.' );
+use lib ( '../lib' );
+use TWiki;
+use HTML::Entities;
+
+use strict;
+
+&main();
+
+
+sub main
+{
+    my $query = new CGI;
+    my $thePathInfo = $query->path_info(); 
+    my $theRemoteUser = $query->remote_user();
+    my $theTopic = $query->param( 'topic' );
+    my $theUrl = $query->url;
+    my( $topic, $webName, $dummy, $userName ) = 
+       &TWiki::initialize( $thePathInfo, $theRemoteUser, $theTopic, $theUrl, $query );
+    $dummy = "";  # to suppress warning
+
+    my $tmpl = ""; 
+    my $text = "";
+    my $ptext = "";
+    my $meta = "";
+    my $formFields = "";
+    my $wikiUserName = &TWiki::userToWikiName( $userName );
+
+    if( ! &TWiki::Store::webExists( $webName ) ) {
+        my $url = &TWiki::getOopsUrl( $webName, $topic, "oopsnoweb" );
+        TWiki::redirect( $query, $url );
+        return;
+    }
+
+    my( $mirrorSiteName, $mirrorViewURL ) = &TWiki::readOnlyMirrorWeb( $webName );
+    if( $mirrorSiteName ) {
+        my $url = &TWiki::getOopsUrl( $webName, $topic, "oopsmirror", $mirrorSiteName, $mirrorViewURL );
+        TWiki::redirect( $query, $url );
+        return;
+    }
+
+    # reset lock time, this is to prevent contention in case of a long edit session
+    &TWiki::Store::lockTopic( $topic );
+
+    my $skin = $query->param( "skin" ) || &TWiki::Prefs::getPreferencesValue( "SKIN" );
+
+    # get view template, standard view or a view with a different skin
+    $tmpl = &TWiki::Store::readTemplate( "spellcheck-preview", $skin );
+    my $dontNotify = $query->param( "dontnotify" ) || "";
+    $tmpl =~ s/%DONTNOTIFY%/$dontNotify/go;
+    $tmpl =~ s/%CMD%//go;
+    
+    my $dummy = "";
+    ( $meta, $dummy ) = &TWiki::Store::readTopic( $webName, $topic );
+        
+	$tmpl =~ s/%TOPICPARENT%//;
+
+	$tmpl =~ s/%FORMTEMPLATE%//go;
+
+    # get the edited text and combine text, form and attachments for preview
+    &TWiki::Form::fieldVars2Meta( $webName, $query, $meta );
+    my $idx = 1;
+    my $done = 0;
+    my $word;
+    my $text = "";
+    do {
+    	if ($word = $query->param("noc$idx")) {
+    		$word =~ s/\<TWSCBREAK\>/\r\n/g;
+    		$text .= $word;
+    	} elsif ($word = $query->param("sug$idx")) {
+    		if ($word eq "(manual)") {
+    			$text .= $query->param("usr$idx");
+    		} else {
+    			$text .= $word;
+    		}
+    	} else {
+    		$done = 1;
+    	}
+    	$idx++;
+    } until ($done);
+    $ptext = $text;
+        
+	if( $meta->count( "FORM" ) ) {
+	   $formFields = &TWiki::Form::getFieldParams( $meta );
+	}
+    
+    $ptext =~ s/ {3}/\t/go;
+    $ptext = &TWiki::handleCommonTags( $ptext, $topic );
+    $ptext = &TWiki::getRenderedVersion( $ptext );
+
+    # do not allow click on link before save:
+    $ptext =~ s@(href=".*?")@href="%SCRIPTURLPATH%/oops%SCRIPTSUFFIX%/%WEB%/%TOPIC%\?template=oopspreview"@goi;
+    $ptext = &TWiki::handleCommonTags( $ptext, $topic );
+
+    $tmpl = &TWiki::handleCommonTags( $tmpl, $topic );
+    $tmpl = &TWiki::handleMetaTags( $webName, $topic, $tmpl, $meta );
+    $tmpl = &TWiki::getRenderedVersion( $tmpl );
+    $tmpl =~ s/%TEXT%/$ptext/go;
+    
+    $text = &TWiki::encodeSpecialChars( $text );
+
+    $tmpl =~ s/%HIDDENTEXT%/$text/go;
+    $tmpl =~ s/%FORMFIELDS%/$formFields/go;
+    $tmpl =~ s|( ?) *</*nop/*>\n?|$1|gois;   # remove <nop> tags (PTh 06 Nov 2000)
+
+    &TWiki::writeHeader( $query );
+    print $tmpl;
+}

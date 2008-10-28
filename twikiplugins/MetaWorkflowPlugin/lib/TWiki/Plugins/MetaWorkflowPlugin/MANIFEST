@@ -1,0 +1,10 @@
+
+# Release manifest for MetaWorkflowPlugin
+data/TWiki/MetaWorkflowPlugin.txt 0644 Documentation
+data/Sandbox/MetaWorkflowExample.txt 0644 Example
+data/Sandbox/MetaWorkflowExampleFormDefinition.txt 0644 Example
+data/Sandbox/MetaWorkflowExamplePhaseOne.txt 0644 Example
+data/Sandbox/MetaWorkflowExamplePhaseThree.txt 0644 Example
+data/Sandbox/MetaWorkflowExamplePhaseTwo.txt 0644 Example
+lib/TWiki/Plugins/MetaWorkflowPlugin.pm 0644 Perl module
+

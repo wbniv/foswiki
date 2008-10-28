@@ -1,0 +1,19 @@
+%META:TOPICINFO{author="TWikiContributor" date="1130150138" format="1.1" version="1.1"}%
+%META:TOPICPARENT{name="TopicTemplate"}%
+---+ %TOPIC%
+%FORMFIELD{"TopicDescription"}%
+
+| *Name:*| *Type:* | *Size:* | *Values:* | *Tooltip message:* | *Attributes:* |
+
+
+
+See also: %TWIKIWEB%.TWikiForms
+<!--
+   * Set ALLOWTOPICCHANGE = %MAINWEB%.BlogAdminGroup
+   * Set SIDEBAR = Admin
+   * Set SIDEBARARG = TWikiForm
+-->
+
+%META:FORM{name="TopicForm"}%
+%META:FIELD{name="TopicType" attributes="M" title="TopicType" value="TopicTemplate"}%
+%META:FIELD{name="TopicDescription" attributes="M" title="TopicDescription" value="Template to create TWikiForm topics"}%

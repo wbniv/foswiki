@@ -1,0 +1,213 @@
+%META:TOPICINFO{author="TWikiContributor" date="1148716603" format="1.1" version="$Rev: 14854 $"}%
+<!--
+
+   PLEASE DO NOT EDIT THIS TOPIC
+
+   It is automatically generated from the subversion repository, and any changes
+   you make will simply be overwritten the next time a release is generated.
+
+   Instead, you could check your fix in, raise a bug in the Bugs web, or mail the author(s).
+-->
+---+!! Headlines Plugin
+%TOC%
+
+---++ Description
+This plugin displays RSS and ATOM feeds from news sites. Use it to build news portals that show headline news.
+
+__Note:__ Syndic8.com ( http://www.syndic8.com/ ) is a good site listing many RSS feeds.
+
+---++ Syntax Rules
+
+=%<nop>HEADLINES{"..."}%=
+
+| *Parameter* | *Explanation* | *Default* |
+| ="..."= | source of RSS feed; this can be an url (starting with http) \
+            or a <nop>web.topic location for internal feeds \
+| None; is required |
+| =href="..."= | (Alternative to above) | N/A |
+| =refresh="60"= | Refresh rate in minutes for caching feed; ="0"= for no caching | Global =REFRESH= setting |
+| =limit="12"= | Maximum number of items shown | Global =LIMIT= setting |
+| =header= | Header. Can include these variables: \
+             - $channeltitle, $title: title of channel (channel.title) %BR% \
+             - $channellink, $link: link of channel (channel.link) %BR% \
+             - $channeldescription, $description: description (channel.description) %BR% \
+             - $channeldate, $date: publication date of the channel (channel.pubDate) %BR% \
+             - $rights: copyrights of the channel (channel.copyright) %BR% \
+             - $imagetitle: title text for site (image.title) %BR% \
+             - $imagelink: link for site (image.link) %BR% \
+             - $imageurl: URL of image (image.url) %BR% \
+             - $imagedescription: description of image (image.description) \
+             | Global =HEADER= setting |
+| =format= | Format of one item. Can include these variables: %BR% \
+             - $title: news item title (item.title) %BR% \
+             - $link: news item link (item.link)  %BR% \
+             - $description: news item description (item.description) %BR% \
+             - $date: the publication date (item.pubDate, item.date) %BR% \
+             - $category: the article category (item.category) \
+             | Global =FORMAT= setting |
+
+The =header= and =format= parameters might also use variables rendering the =dc=, =image= and
+=content= namespace information. Note, that only bits of interest have been implemented
+so far and those namespaces might not be implemented fully yet.
+
+---+++ Rendering the =dc= namespace
+The following variables are extracting the =dc= namespace info,
+that could be used in =header= and =format=. Nnote, that some of the variables are 
+already used above. This is done by purpose to use different feeds with the 
+same formating parameters. If there's a conflict the non-dc tags have higher precedence, 
+i.e. a &lt;title&gt; content &lt;/title&gt; is prefered over 
+&lt;dc:title&gt; content &lt;/dc:title&gt; .
+   * $title: channel/article title (dc:title)
+   * $creator: channel creator (dc:creator)
+   * $subject: subject text; this will also add an image according to the subject hash
+               list, see [[#Subject_Images][above]] (dc:subject)
+   * $description: ... (dc:description)
+   * $publisher: the channel/article publisher (dc:publisher)
+   * $contributor: ... (dc:contributor)
+   * $date: ... (dc:date)
+   * $type: ... (dc:type)
+   * $format: ... (dc:format)
+   * $identifier: ... (dc:identifier)
+   * $source: ... (dc:source)
+   * $language: ... (dc:language)
+   * $relation: ... (dc:relation)
+   * $coverage: ... (dc: coverage)
+   * $rights: ... (dc: rights)
+
+---+++ Rendering the =image= namespace
+An =image:item= is converted into an &lt;img&gt; tag using the following mappings:
+   * =src=: image url (rdf:about attribute of the image.item tag)
+   * =alt=: image title (title)
+   * =width=: image width (image:width)
+   * =height=: image height image:height)
+
+---+++ Rendering the =content= namespace
+The variable $content is refering to the &lt;content:encoding&gt; content &lt;/content:encoding&gt;.
+
+---++ Examples
+
+Write 
+<verbatim>
+%HEADLINES{"http://slashdot.org/slashdot.rdf" 
+  header="*[[$link][$title]]:* $description" 
+  format="$t* [[$link][$title]]"
+}%
+</verbatim>  
+to get the latest Slashdot news as a bullet list format:
+
+%HEADLINES{"http://slashdot.org/slashdot.rdf" header="---+!! [[$link][$title]]$n $description" format="$t* [[$link][$title]]"}%
+
+Write 
+<verbatim>
+%HEADLINES{"http://www.business-opportunities.biz/feed" limit="3"}%
+</verbatim>
+
+to get the latest postings on the "Business Opportunities" weblog:
+
+%HEADLINES{"http://www.business-opportunities.biz/feed" limit="3"}%
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference
+a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, for example, ==%<nop>HEADLINES_SHORTDESCRIPTION%==
+
+   * One line description, shown in the TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = Build news portals that show headline news based on RSS news feeds from news sites.
+
+   * Refresh rate in minutes for cached feeds. Disable caching: =0=, default: =60=
+      * Set REFRESH = 60
+
+   * Maximum number of items shown. Default: =100=
+      * Set LIMIT = 100
+
+   * Use LWP::UserAgent, or fallback to TWiki's internal =getUrl()= method, Default: =yes=
+      * Set USELWPUSERAGENT = yes
+   * Timeout fetching a feed using the LWP::UserAgent, Default: =20=
+      * Set USERAGENTTIMEOUT = 20
+
+   * Default header: (variables are explained in the syntax rules)
+<verbatim>
+      * Set HEADER = <div class="headlinesChannel"><div class="headlinesLogo"><img src="$imageurl" alt="$imagetitle" border="0" />%BR%</div><div class="headlinesTitle">$n---+!! <a href="$link">$title</a></div><div class="headlinesDate">$date</div><div class="headlinesDescription">$description</div><div class="headlinesRight">$rights</div></div>
+</verbatim>
+   * Default format of one item: (variables are explained in the syntax rules)
+<verbatim>
+      * Set FORMAT = <div class="headlinesArticle"><div class="headlinesTitle"><a href="$link">$title</a></div>$n<span class="headlinesDate">$date</span> <span class="headlinesCreator"> $creator</span> <span class="headlinesSubject"> $subject </span>$n<div class="headlinesText"> $description</div></div>
+</verbatim>
+
+---++ Style sheets
+The default HEADER and FORMAT settings use the following styles. See the [[%ATTACHURL%/style.css][style.css]] file 
+defining the default CSS properties  (indentation illustrates enclosure).
+
+   * headlinesRss: output of the HeadlinesPlugin (div)
+      * headlinesChannel: channel header (div)
+         * headlinesLogo: channel logo (div)
+         * headlinesTitle: channel title (div)
+         * headlinesDate: channel date (div)
+         * headlinesDescription: channel description (div)
+         * headlinesRight: channel copyright (div)
+      * headlinesArticle: one news item (div)
+         * headlinesTitle: article title (div)
+         * headlinesDate: article date (span)
+         * headlinesCreator: author of article (span)
+         * headlinesSubject: subect category of the article (span)
+         * headlineText: article text (div)
+
+---++ Plugin Installation Instructions
+
+   * [[%ATTACHURL%/%TOPIC%.zip][Download]] the ZIP file
+   * Unzip it in your twiki installation directory. Content: 
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | plugin topic |
+     | ==pub/TWiki/%TOPIC%/style.css== | default css |
+     | ==lib/TWiki/%TOPIC%.pm== | plugin perl module |
+     | ==lib/TWiki/%TOPIC%/Core.pm== | plugin core |
+     Check if above examples show a news feed instead of variable.
+   * Optionally, run ==%TOPIC%_installer.pl== to automatically check and
+     install other TWiki modules that this module depends on. You can also do
+     this step manually.
+   * Alternatively, manually make sure the dependencies listed in the table
+     below are resolved.
+     %$DEPENDENCIES%
+
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.PeterThoeny, TWiki:Main.MichaelDaum |
+|  Copyright &copy;: | 2002-2006, Peter Thoeny; 2005-2007, Michael Daum http://wikiring.de |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | v2.12 |
+|  Change History: | <!-- specify latest version first -->&nbsp; |
+|  13 Sep 2007: | fixed parsing of content:encoded |
+|  23 Jul 2006: | improved atom parser; if a posting has no title default to 'Untitled' |
+|  26 Apr 2006: | added lazy compilation |
+|  10 Feb 2006: | packaged using the TWiki:Plugins/BuildContrib; \
+                  minor fixes |
+|  03 Feb 2006: | off-by-one: limit="n" returned n+1 articles; \
+        make FORMAT and HEADER format strings more robust |
+|  23 Jan 2006: | released v2.00 | 
+|  05 Dec 2005: | internal feed urls must be absolute |
+|  02 Dec 2005: | added <nop>web.topic shorthand for internal feeds |
+|  29 Nov 2005: | fixed CDATA handling |
+|  21 Nov 2005: | added ATOM support; \
+        extended RSS support; \
+        added dublin core support; \
+        added content support; \
+        optionally using LWP to fetch feeds to follow redirections; \
+        corrected CPAN dependencies ; \
+        recoding special chars from html integer to entity encoding \
+        to increase browser compatibility; \
+        added css support;\
+        use =getWorkArea()= if available |
+|  11 May 2005: | TWiki:Main.WillNorris: added <nop>DevelopBranch compatability |
+|  31 Oct 2004: | Fixed taint issue by TWiki:Main.AdrianWeiler; small performance improvement |
+|  29 Oct 2004: | Fixed issue of external caching if mod_perl or <nop>SpeedyCGI is used |
+|  02 Aug 2002: | Implemented caching of feeds, thanks to TWiki:Main/RobDuarte |
+|  11 Jun 2002: | Initial version (V1.000) |
+|  Perl Version: | 5.8 |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 100%, %SYSTEMWEB%.FormattedSearch 99.5%, %TOPIC% 94% |
+|  Plugin Home: | TWiki:Plugins/%TOPIC% |
+|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
+|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+
+-- TWiki:Main.PeterThoeny - 11 May 2005 %BR%
+-- TWiki:Main.MichaelDaum - 13 Sep 2007

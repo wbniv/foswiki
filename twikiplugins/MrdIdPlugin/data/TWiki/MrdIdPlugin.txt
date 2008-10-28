@@ -1,0 +1,68 @@
+%META:TOPICINFO{author="BrianSpinar" date="1107406282" format="1.0" version="1.5"}%
+---+!! <nop>%TOPIC%
+
+Our marketing department keeps track of product requirements in TWiki. They wanted a way to label each requirement with a unique ID with a user defined format. This is a simple plugin to meet that need. It allows users to generate incrementing ID values that are unique across an entire TWiki site. The user can prepend the numeric ID with custom tags. See the examples in the next section for usage.
+
+---++ Syntax Rules/Examples
+
+%TABLE{ cellpadding="3" columnwidths="20%, 20%, 60%"}%
+| *You Enter* | *Displayed Value* | *Comment* |
+|  %<nop>MRDID%  |  x  | where x is a number that will start at 1 and increment each time %<nop>MRDID% is entered |
+|  %<nop>MRDID{ id="NWID" }%  |  NWIDx  | where x is a number that will start at 1 and increment each time %<nop>MRDID{ id="NWID" }% is entered |
+|  %<nop>MRDID{ id="SSREQ" }%  |  SSREQx  | where x is a number that will start at 1 and increment each time %<nop>MRDID{ id="SSREQ" }% is entered |
+|  %<nop>MRDID{ id="SSREQ33" }%  |  SSREQ33  | This will force the id to SSREQ33 regardless of what the next value should be. Note that this will also prevent the id from being unique as 33 will still be used by the id generator. |
+
+---++ Usage Caveats
+
+Note that the tags are case sensitive (i.e. NWID is different from <nop>NwId) and that the numeric values of each tag are independent of each other. In other words (using examples from the table above), the NWID values will start at 1 and increment. The SSREQ values will also start at 1 and increment. Not supplying an id field is the same as supplying id="". Also note that the next time you edit a page, the =%<nop>MRDID%= tag will be updated with the latest value (e.g. after an edit =%<nop>MRDID{ id="NWID" }%= will become =%<nop>MRDID{ id="NWIDx" }%=. Editing the id field after the first save should be avoided to guarantee unique id's.
+
+The plugin keeps track of ID's by storing the last used ID value of each tag in a text file (=data/mrdIdReg=). If this file is deleted (or moved), the plugin will restart generating ID values with 1 for all new ID's. Note that previously saved pages with ID's will not be updated, and ID's will almost certainly no longer be unique. Once an ID is saved on a page, it is never updated again by the plugin.
+
+The plugin is designed to allow %<nop>MRDID% to work in both the normal page area and in TWiki forms (i.e. meta data).
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
+	* Set SHORTDESCRIPTION = Generates unique incrementing ID's with custom tags
+
+	* Debug plugin: (See output in =data/debug.txt=)
+	* Set DEBUG = 0
+
+	* If you want ID's to start at a value other than 1, change the value below:
+	* Set STARTINGIDVALUE = 1
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the installation was successful:
+	* If it was installed correctly, you should see "MRDIDTESTx" below (where x is a number, probably 1). If it failed, you will probably see something like: %<nop>MRDID{ id="MRDIDTEST" }%.
+	* %MRDID{ id="MRDIDTEST1" }%
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/BrianSpinar |
+|  Plugin Version: | 29 Jan 2005 (V1.000) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  29 Jan 2005: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.024 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+
+-- TWiki:Main/BrianSpinar - 29 Jan 2005
+

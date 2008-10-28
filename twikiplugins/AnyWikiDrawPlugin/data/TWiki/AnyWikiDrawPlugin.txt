@@ -1,0 +1,139 @@
+%META:TOPICINFO{author="WernerRandelshofer" date="1181542124" format="1.1" reprev="1.3" version="1.3"}%
+---+!! <nop>%TOPIC%
+<!--
+
+   PLEASE DO NOT EDIT THIS TOPIC
+
+   It is automatically generated from the subversion repository, and any changes
+   you make will simply be overwritten the next time a release is generated.
+
+   Instead, you could check your fix in, raise a bug in the Bugs web, or mail thge author.
+-->
+
+%TOC%
+
+<nop>AnyWikiDraw is a graphical editor for rapid editing of drawings and diagrams on Wiki pages. It supports the following file formats: SVG, PNG, JPEG and <nop>TWikiDraw-DRAW.
+
+<nop>The <nop>TWikiDraw-DRAW format is supported by the <nop>TWikiDraw Java Applet, which has been incorporated into this plugin. 
+That's why *the AnyWikiDrawPlugin can not be used together with the TWikiDrawPlugin*.
+
+The <nop>TWikiDraw Java Applet has first been developed by TWiki:Main/PeterThoeny from the original <nop>JHotDraw.
+
+A drawing can also have a "map" which makes figures in the drawing sensitive to the mouse cursor. A map is automatically added to an image when a URL is attached to any of the figures.
+
+Browser support for Java 1.5 or later required.
+
+---++ Syntax Rules
+
+   * Write the command =%<nop>DRAWING{name.extension|width|height}%= anywhere in a TWiki topic. You can name the drawing anything you like, allowed characters are =A-Z a-z 0-9 _ - .= . Supported extensions are =svg=, =png=, =jpg=, =draw=. If you omit the extension, or if you specify an unsupported extension, the =draw= extension is used. Use =width= and =height= to specify the size of the drawing. 
+If you have only one drawing in the topic you can simply write =%<nop>DRAWING%= .
+
+---+++ Plugin Installation Instructions
+
+   * Download the ZIP file from the Plugin web (see below). Contents:
+   | *File:* | *Description:* |
+   | ==data/TWiki/AnyWikiDrawPlugin.txt== |  |
+   | ==lib/TWiki/Plugins/AnyWikiDrawPlugin.pm== |  |
+   | ==lib/TWiki/Plugins/AnyWikiDrawPlugin/twikidraw-source.zip== | Zip of <nop>TWikiDraw java sources |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/ATEXT1.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/ATEXT2.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/ATEXT3.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/BORDDEC1.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/BORDDEC2.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/BORDDEC3.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/CONN1.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/CONN2.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/CONN3.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/DIAMOND2.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/DIAMOND3.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/ELLIPSE1.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/ELLIPSE2.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/ELLIPSE3.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/ERASER2.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/ERASER3.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/example.draw== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/example.map== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/example.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/LINE1.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/LINE2.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/LINE3.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/OCONN1.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/OCONN2.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/OCONN3.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/PERT2.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/PERT3.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/POLYGON1.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/POLYGON2.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/POLYGON3.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/RECT1.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/RECT2.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/RECT3.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/RRECT1.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/RRECT2.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/RRECT3.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/SCRIBBL1.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/SCRIBBL2.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/SCRIBBL3.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/SEL1.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/SEL2.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/SEL3.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/TEXT1.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/TEXT2.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/TEXT3.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/TOBACK2.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/TOBACK3.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/TOFRONT2.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/TOFRONT3.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/TRIANGLE2.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/TRIANGLE3.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/URL1.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/URL2.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/URL3.gif== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/screenshot.png== |  |
+   | ==pub/TWiki/AnyWikiDrawPlugin/TWikiDraw/twikidraw.jar== | JAR file for applet |
+   | ==templates/twikidraw.tmpl== | Template for drawing editor |
+   | ==templates/twikidraw.pattern.tmpl== | Template for drawing editor, pattern skin |
+
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory.
+   *Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+   * To test if the plugin is correctly installed, view this topic in the installation and you should see a placeholder box below. Click on it.<br />
+
+   %DRAWING{empty.svg|400|300}%
+
+   * Here's an example using an image map. Move the mouse over the image and watch the status bar.
+   %DRAWING{example}%
+
+---+++ Known Problems
+If you add a map to a drawing by setting a URL on any of the figures a map file is created. If you subsequently remove all the URLs from figures in the drawing the map still exists, but is now empty. There is no way to remove the map other than by manually moving the attachment.
+
+---+++ Plugin Info
+
+|  Plugin Author: | Werner Randelshofer http://www.randelshofer.ch |
+|  Plugin Version: | 0001 |
+|  Change History: | |
+|  0001 | 2007-06-03 First prototype |
+|  Dependencies: | Java 1.5 enabled browser<br />None |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+
+   * %TOPIC% is based on <nop>JHotDraw 7. (<nop>JHotDraw 7 is Copyright (c) 1996-2007 by the original authors of <nop>JHotDraw
+ * and all its contributors ("<nop>JHotDraw.org"))
+   * <nop>TWikiDraw uses Erich Gamma's <nop>JHotDraw 5.1 for support of the <nop>TWikiDraw-DRAW format. (<nop>JHotDraw 5.1 is copyright 1996, 1997 by <a href="http://www.ifa.ch/">IFA Informatik</a> and Erich Gamma, erich_gamma@acm.org . _It is hereby granted that this software can be used, copied, modified, and distributed without fee provided that this copyright notice appears in all copies._ )
+   * <nop>TWikiDraw uses <a href="http://www.acme.com/java/">ACME Labs</a>' <nop>GifEncoder to convert a drawing into a GIF file format. (<nop>GifEncoder is Copyright &copy;1996,1998 by Jef Poskanzer, jef@acme.com . All rights reserved. _<font size="-6"> THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. )</font>_
+   * <nop>TWikiDraw uses some ideas of <a href="http://www.eng.untech.com/serg/bin/KmWiki?Load=FrontPage">KmWiki</a> drawing applet.
+   * <nop>TWikiDraw is Copyright 2000 by Peter Thoeny, Peter@Thoeny.com. It is hereby granted that this software can be used, copied, modified, and distributed without fee provided that this copyright notice appears in all copies.
+   * <nop>TWikiDraw Modifications Copyright &copy; 2001 Motorola. All Rights Reserved.
+   * <nop>TWikiDraw Modifications &copy; 2003-2004 Copyright Crawford Currie http://www.c-dot.co.uk
+ 
+-- TWiki:Main/CrawfordCurrie - 23:02:51 12 April 2006
+
+
+%META:FILEATTACHMENT{name="example.draw" attachment="example.draw" attr="" comment="TWiki Draw draw file" date="1180861883" path="/~werni/twiki/pub/TWiki/AnyWikiDrawPlugin/example.draw" size="28830" stream="/~werni/twiki/pub/TWiki/AnyWikiDrawPlugin/example.draw" user="Main.WernerRandelshofer" version="1"}%
+%META:FILEATTACHMENT{name="example.map" attachment="example.map" attr="" comment="TWiki Draw map file" date="1180861884" path="/~werni/twiki/pub/TWiki/AnyWikiDrawPlugin/example.map" size="3724" stream="/~werni/twiki/pub/TWiki/AnyWikiDrawPlugin/example.map" user="Main.WernerRandelshofer" version="1"}%
+%META:FILEATTACHMENT{name="example.gif" attachment="example.gif" attr="" comment="TWiki Draw GIF file" date="1180861885" path="/~werni/twiki/pub/TWiki/AnyWikiDrawPlugin/example.gif" size="10175" stream="/~werni/twiki/pub/TWiki/AnyWikiDrawPlugin/example.gif" user="Main.WernerRandelshofer" version="1"}%
+%META:FILEATTACHMENT{name="empty.svg" attachment="empty.svg" attr="" comment="" date="1181542123" path="empty.svg" size="237" stream="empty.svg" user="Main.WernerRandelshofer" version="1"}%
+%META:FILEATTACHMENT{name="empty.svg.png" attachment="empty.svg.png" attr="" comment="" date="1181542123" path="empty.svg.png" size="3940" stream="empty.svg.png" user="Main.WernerRandelshofer" version="1"}%
+%META:FILEATTACHMENT{name="empty.svg.map" attachment="empty.svg.map" attr="" comment="" date="1181542124" path="empty.svg.map" size="43" stream="empty.svg.map" user="Main.WernerRandelshofer" version="1"}%

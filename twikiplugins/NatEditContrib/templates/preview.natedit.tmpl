@@ -1,0 +1,42 @@
+%TMPL:INCLUDE{"preview"}%
+%TMPL:INCLUDE{"editjavascript"}%
+%TMPL:INCLUDE{"previewtoolbar"}%
+
+%TMPL:DEF{"styles"}%
+%TMPL:P{"stylesscreen"}%
+<style type="text/css" media="all">
+  @import url("%PUBURLPATH%/%SYSTEMWEB%/NatEditContrib/styles.css");
+  @import url("%PUBURLPATH%/%SYSTEMWEB%/NatEditContrib/%IF{"defined NATEDIT_THEME" then="%NATEDIT_THEME%" else="default"}%/styles.css");
+</style>
+%TMPL:END%
+
+%TMPL:DEF{"content"}%%TMPL:P{"pagetitle"}%
+%TMPL:P{"pagehelp"}%
+%TMPL:P{"formstart"}%
+%TMPL:P{"previewtoolbar"}%
+<div class="patternPreviewArea">
+<div class="patternContent">
+<div class="patternTopic">
+%TEXT%
+</div>
+%META{"form"}%
+</div>
+</div>
+<input type="hidden" name="action_preview" value="" />
+<input type="hidden" name="action_save" value="" />
+<input type="hidden" name="action_checkpoint" value="" />
+<input type="hidden" name="action_addform" value="" />
+<input type="hidden" name="action_replaceform" value="" />
+<input type="hidden" name="action_cancel" value="" />
+%TMPL:P{"formend"}%
+%TMPL:P{"nojavascript_pagehelp"}%
+%TMPL:END%
+
+%TMPL:DEF{"pagehelp"}%<div class="twikiHelp">
+%MAKETEXT{"<span class='twikiAlert'><b>Do not forget</b></span> to save your changes."}%
+<ul>
+  <li> %MAKETEXT{"To *save* changes: Press the ~[Save~] button."}%</li>
+  <li> %MAKETEXT{"To make *more changes*: Press the ~[Edit~] button."}%</li>
+  <li> %MAKETEXT{"To *cancel* and discard any changes: Press the ~[Cancel~] button."}%</li>
+</ul>
+</div>%TMPL:END%

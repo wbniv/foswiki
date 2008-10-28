@@ -1,0 +1,31 @@
+%META:TOPICINFO{author="TWikiContributor" date="1184958640" format="1.1" reprev="1.2" version="$Rev$"}%
+---+!! !MediaWikiToTWikiAddOn
+<!--
+One line description, required for extensions repository catalog.
+   * Set SHORTDESCRIPTION = <nop>MediaWiki 2 TWiki Conversion Tool
+-->
+%SHORTDESCRIPTION%
+
+%TOC%
+<br clear="all" />
+
+%$POD%
+
+
+---++ <nop>AddOn Info
+
+|  <nop>AddOn Author: | TWiki:Main.MichaelDaum |
+|  Copyright &copy;: | 2006, Michael Daum http://wikiring.com |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  <nop>AddOn Version: | v1.0 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  20 Jul 2007 | initial release |
+|  Dependencies: | %$DEPENDENCIES% |
+|  <nop>AddOn Home: | http://twiki.org/cgi-bin/view/Plugins/MediaWikiToTWikiAddOn |
+|  Feedback: | http://twiki.org/cgi-bin/view/Plugins/MediaWikiToTWikiAddOnDev |
+|  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/MediaWikiToTWikiAddOnAppraisal |
+
+Sponsored by <a href="http://www.schenck-rotec.net"><img src="%ATTACHURLPATH%/schenck_logo.gif" border="0" title="Schenck-RoTec"/></a>
+
+
+%META:FILEATTACHMENT{name="schenck_logo.gif" attachment="schenck_logo.gif" attr="h" comment="" date="1184958431" path="schenck_logo.gif" size="882" stream="schenck_logo.gif" tmpFilename="/var/tmp/CGItemp4701" user="TWikiContributor" version="1"}%

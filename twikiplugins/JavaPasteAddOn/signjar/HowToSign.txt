@@ -1,0 +1,21 @@
+See http://java.sun.com/j2se/1.4/docs/guide/security/SecurityToolsSummary.html
+
++---First off, create the policy file for the applet:
+
+Run jdk/bin/policytool on twiki.policy.
+
+You will have to add the address (maybe IP) of your server.
+
+Our file to date looks like this, but this is still alpha, so beware!
+
+keystore "c:/WINNT/Profiles/Cmacleod/userKeyStore";
+
+grant {
+  permission java.awt.AWTPermission "accessClipboard";
+  permission java.util.PropertyPermission "user.dir", "read";
+  permission java.net.SocketPermission "twiki.org:80", "connect, resolve";
+  permission java.net.SocketPermission "twikiplugins.org", "connect, resolve";
+  permission java.net.SocketPermission "127.0.0.1:80", "connect, resolve";
+};
+
++--- Next, create 

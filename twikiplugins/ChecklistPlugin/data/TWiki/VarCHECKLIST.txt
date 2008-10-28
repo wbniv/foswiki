@@ -1,0 +1,11 @@
+%META:TOPICINFO{author="TWikiContributor" date="1181029189" format="1.1" reprev="1.1" version="1.1"}%
+%META:TOPICPARENT{name="ChecklistPlugin"}%
+#VarCHECKLIST
+---+++ CHECKLIST{attributes} -- add a checklist setup, legends or reset buttons to a topic
+   * The =%<nop>CHECKLIST%= variable is handled by the ChecklistPlugin.
+   * Syntax: =%<nop>CHECKLIST{attr1="value" attr2="value"}%=
+   * Examples:
+      * =%<nop>CHECKLIST{states="to|doing|done" stateicons=":-(|:-I|:ok:"}%= defines the states and state icons: 'to': :-( - 'doing': :-I - 'done': :ok: 
+      * =%<nop>CHECKLIST{showlegend="on"}%= adds a state legend to a topic, e.g. ( :-( - todo :-I - doing :ok: - done ) 
+      * =%<nop>CHECKLIST{reset=":-( Set to default"}%= adds a reset button to a topic, e.g. <a href="#reset">:-( Set to default</a>
+   * Related: VarCHECKLISTSTART, VarCHECKLISTEND, VarCLI, ChecklistPlugin

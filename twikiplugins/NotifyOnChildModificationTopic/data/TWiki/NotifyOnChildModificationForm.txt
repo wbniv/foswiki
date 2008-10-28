@@ -1,0 +1,6 @@
+%META:TOPICINFO{author="rex" date="1056800640" format="1.0" version="1.2"}%
+%META:TOPICPARENT{name="NotifyOnChildModificationPlugin"}%
+| *Name*				| *Type*	| *Size* | *Values* | *Tooltip message*|
+|NotifyOnChildModificationFormFrom		 | text	  | 80	  | %WIKIWEBMASTER%			|The sender email address|
+|NotifyOnChildModificationFormSubject	 | text	  | 80	  | Modification on %TOPIC% (%TOPICPARENT% child) |Subject of the message|
+|NotifyOnChildModificationFormHeaders	 | textarea | 80x5	|								 |Other headers, one by line|

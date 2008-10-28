@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>MTVWebdesign MailPage</title>
+</head>
+
+<body text="#000080">
+<h2>MTVWebdesign MailPage v2.0</h2>
+For the latest version of the script, <a href="#download">click here.</a><br>
+Thank you for your interest in MTVWebdesign MailPage. Please notice the copyright notice in the scripts.<p>
+You should be very careful handling CGI files. If you type something wrong, it might be that the script will fail. We take good care of our scripts and all the script we place on the internet are tested. They work for us. If they don't work for you you'll see an error in the browser, sometimes with a detailed message. Read more about such problems by clicking <a href="#faq">here</a>.<br> If you are not an experienced perl programmer, we advice you not to edit the code. (Except the things you need to change as described in <a href="#gettingstarted">&quot;Getting the script to work&quot;</a>. If you want to become a perl programmer, we advice you to look over as much scripts as you possibly can. This script included! Make sure you keep a copy of the script before you start changing things. Get to know certain routines etc., and visit sites like the <a href="http://mtvwebdesign.hypermart.net/Perl">MTVWebdesign Perl section</a>, <a href="http://www.cgi-resources.com">CGI-Resources.com</a> (A lot of scripts and tutorials), <a href="http://www.scriptsearch.com">Scriptsearch.com</a> and <a href="http://www.devdaily.com">Developer Daily</a>. Also, we advice you too read messages in cgi-newsgroups.<br>
+Good luck!
+<p>
+I will try to give as much information as possible about the use of this script. Hope you understand it all. If not, you can always email me at <a href="mailto:cgi@mtvwebdesign.hypermart.net">cgi@mtvwebdesign.hypermart.net</a>.
+<hr noshade>
+<a name="menu"></a>
+<a href="#features">Features</a><Br>
+<a href="#whatsnew">What's new?</a><Br>
+<a href="#download">Downloading the script</a><br>
+<A href="#requirements">Requirements</a><br>
+<a href="#gettingstarted">Getting the script to work</a><br>
+<a href="#Demo">Demo of the script</a><br>
+<a href="#bugs">Known problems</a><br>
+<a href="#faq">FAQ</a><br>
+<a href="#about">About MTVWebdesign open source</a><br>
+<a href="#disclaimer">Disclaimer</a><br>
+<hr noshade>
+<a name="features"></a>
+<h2>Features</h2>
+<ul>
+<li>Easy to setup.
+<li>Send page as URL, In body of email or as attachement.
+<li>You can set a <a href="#faq">tokenfile</a>.
+<li>Unlimited pages allowed
+</ul>
+<p>
+You'll find more information about some of the features in the rest of this page.
+<p><a href="#menu">Back to top</a>
+<hr noshade>
+<a name="whatsnew"></a>
+<h2>What's new?</h2>
+<ul>
+<li>LWP added: now you can attach the page to the email or send the page in the body of the email
+</ul>
+<hr noshade>
+<a name="download"></a>
+<h2>Downloading the script</h2>
+<font size="-1"><b>Note:</b> All scripts come in .ZIP format.</font><p>
+Go to <a href="http://mtvwebdesign.hypermart.net/scripts/">http://mtvwebdesign.hypermart.net/scripts/</a> for the latest version
+<p>
+
+<p><a href="#menu">Back to top</a>
+<hr noshade>
+<a name="requirements"></a>
+<h2>Requirements</h2>
+You need a server which allows you to execute Perl scripts. (CGI access).
+<p>
+You need to have LWP installed on your server. Ask your webmaster.
+<p>
+The script is tested with success on the following system(s):<br>
+Pentium 133Mhz (32 Mb RAM), <a href="http://www.apache.com">Apache</a> 1.3.4 and <a href="http://www.sambar.com">Sambar</a> Perl 5 (ActiveState) build 509 (January 4th 1999), Microsoft Internet Explorer 5.0.
+
+<p><a href="#menu">Back to top</a><hr noshade>
+<a name="gettingstarted"></a>
+<h2>Getting the script to work.</h2>
+<p>
+<h3>Changes in the CGI files</h3>
+<ul>
+<li>Please check the first line of all the .CGI files. (#!/usr/local/bin/perl). This should be the place where Perl is located on your server. Ask your webmaster for more information.<br>
+
+<li>In all the .CGI files, you can find the following lines (They might look different in the script):
+<pre>
+use LWP::UserAgent;
+$ua = new LWP::UserAgent;
+$ua->agent("$ENV{'HTTP_USER_AGENT'}");
+use CGI::Carp qw(fatalsToBrowser); # Provides you with fatal error message if they occur.
+use CGI qw/:standard/;
+require '/home/username/mailpage/mailpage.conf';
+require $mtvwebdesignlib;
+</pre>These lines are probably the most important. <br>Now, what you need to do is this: The <pre>require '/home/username/mailpage/mailpage.conf';</pre>line should point to your config file. Please make sure you use an absolute path (as shown). Ask you webmaster for more information. 
+</ul>
+<p><h3>Changes in the mailpage.conf file</h3>
+<ul>
+<li><b>$servicename</b><br>This is the name of the service you are providing. You can leave it the way it is.
+<li><b>$servicelocation</b><br>This is the URL to the page where people can find out how to place a link to the script on their page so people surfing on their pages can also email their pages. 
+
+<li><b>$mtvwebdesignlib</b><br>This should point to the mtvwebdesign.lib file. Make sure it's the absolute path to the file. Example: "/home/username/mailpage/mtvwebdesign.lib";
+
+<li><b>$privacy_file</b><br>This should point to the privacy.txt file. Make sure it's the absolute path to the file. Example: "/home/username/mailpage/privacy.txt";
+
+<li><b>$use_flock</b><br>Set this to 1 if you are on a UNIX or WindowsNT system. If you don't know what system you are on, just set it to 1.
+
+<li><b>$mailprog</b><br>This should point to the mailprogram on your server. Example: "|/usr/bin/sendmail -t";<br>Ask you webmaster. Please note that you have to include the pipe (|) and flags like "-t".
+
+<li><b>$usetoken</b><br>Set to 1 if you want to use the tokenfile option. Read more about it <a href="#faq">here.</a>
+<li><b>$tokenfile</b><br>The name of the file containing the $token. (See the example file tokefile.html)
+<li><b>$token</b><br>This is the commentline which the script will look for in the $tokenfile. Default is &lt;-- TOKEN --&gt;
+
+<li><b>1;</b><br>Just don't delete the 1...
+</ul>
+<p>
+<h3>Uploading the files</h3>
+First: Be sure to have the directory read where you want to place your CGI script. Make sure this directory is CHMOD 777. See the <a href="#faq">FAQ</a> for more information about CHMOD<p>
+<font color="#ff0000">UPLOAD IN ASCII FORMAT!</font>
+<ol>
+<li><b>mailpage.cgi</b><br>Upload this file to the directory where you want it. CHMOD the file 755.
+<li><b>mailpage.conf</b><br>Upload this file to the place specified in each .cgi file under "require". CHMOD 777.
+<li><b>mtvwebdesign.lib</b><br>Upload this file to the place specified in $mtvwebdesignlib. CHMOD the file 777.
+<li><b>tokenfile.html</b><br>Upload this file to the place specified in $tokefile. CHMOD 644. (Just upload.)
+</ol>
+<p>
+<h3>Running the script</h3>
+You simpley add a link to the script from the pages you want to be available for email:
+<pre>&lt;a href="/cgi-bin/mailpage/mailpage.cgi"&gt;Email this page!&lt;/a&gt;</pre>
+You can also email other pages:
+<pre>&lt;a href="/cgi-bin/mailpage/mailpage.cgi?url=http://mtvwebdesign.hypermart.net"&gt;Email the MTVWebdesign page to a friend!&lt;/a&gt;</pre>
+See the test.html file in the package.
+
+<p><a href="#menu">Back to top</a>
+<hr noshade>
+<a name="demo"></a>
+<h2>Demo of the script</h2>
+I'm sorry, but there is no working demo of this script right now.
+<p><a href="#menu">Back to top</a><hr noshade>
+<a name="bugs"></a>
+<h2>Known problems</h2>
+None at this moment<p>
+<p><a href="#menu">Back to top</a><hr noshade>
+<a name="faq"></a>
+<h2>FAQ</h2>
+<b>What is CHMOD?</b><br>
+CHMOD is changing the attributes of a file. (UNIX systems only.). You should do that when you have uploaded the file, or create a new directory. Most FTP clients (like WS_FTP and BulletProofFTP) have the feature, only they call it CHANGE ATTRIBUTES and won't really show number but instead they show READABLE, WRITEBLE and EXECUTABLE. You can find out what you need to do by using this:<p>
+BinaryDecimal<br>
+000 = 0<br>
+001 = 1<br>
+010 = 2<br>
+011 = 3<br>
+100 = 4<br>
+101 = 5<br>
+110 = 6<br>
+111 = 7<p>
+
+r = readable<br>w = writeble<br>x = executable<p>
+
+So to set the permission above, "rw-r--r-x", on the file "test.txt," you would figure out the decimal first:<br>
+rw- r-- r-x =<br>
+110 100 101 =<br>
+6 4 5<p>
+<b>I get a 501 Internal server error. What should I do?</b><br>
+Well, you have a problem there....<bR>
+What you should do first is checking if you uploaded the CGI file in ASCII format and not in BINARY format.<Br>
+If that doesn't work, check if all the permissions (CHMOD) are set right.<br>
+If that doesn't work, check the server error log. Ask your webmaster for more information<br>
+<p>
+<b>What does &quot;premature end of script headers mean&quot;?</b><bR>
+You probably uploaded the file in BINARY format. This should be ASCII format.<br>
+If that doesn't work, you should check the things you have changed in the script:<Br>
+Is there a &quot;;&quot; at the end of lines? Are there any missing quotes (&quot;)? Etceteras.
+<p>
+<b>How do I use a tokenfile?</b><br>
+First, take a look in the source of <a href="tokenfile.html">tokenfile.html</a>. This is a page which has a tag in the source, which you cannot see when you view it in the browser. The tag is &lt;!-- TOKEN --&gt; (specified in setup.txt at $token). When you select that you want to use a template, Chat with me! will look for the $tokenfile (tokenfile.html) and that it 'll
+search for the $token. If it finds the token (WHICH NEEDS TO BE PLACE ON A SEPARATE LINE IN THE SOURCE OF THE HTML DOCUMENT!), it'll print it's output at that spot in the html document. This way you get your own nice layout for the Chat with me! service!<br>
+<b>TIP:</b> Try to use STYLE tags in the $tokenfile!
+<p><a href="#menu">Back to top</a>
+<hr noshade>
+<a name="about"></a>
+<h2>About MTVWebdesign open source.</h2>
+MTVWebdesign open source means that if you make a change to the script which you think makes the script run even better, we would like you to sent the change to us. This way, we can keep providing better and better scripts. Your help is very important. 
+<p>
+We particularly point out our use of the English language. Since English is not our first language, we cannot make sure that there a no misspellings in the code.
+<p>
+If your made a change which you think makes the script run better, please email the change (script) to <a href="mailto:opensource@mtvwebdesign.hypermart.net">opensource@mtvwebdesign.hypermart.net</a>
+<p><a href="#menu">Back to top</a><hr noshade>
+<a name="disclaimer"></a>
+<h2>Disclaimer</h2>
+By using this code you agree to indemnify Maarten Veerman and MTVWebdesign from any liability that might arise from its use.<br>
+MTVWebdesign is not responsible for improper use of this script.<br>
+Copyright &copy; MTVWebdesign 2000. Selling the code is prohibited.
+
+<p><a href="#menu">Back to top</a>
+<hr noshade>
+<p align=right><A href="http://mtvwebdesign.hypermart.net/scripts/"><font size="-1" color="#800000">Copyright &copy; MTVWebdesign scripts 2000.</font></A></p>
+</body>
+</html>

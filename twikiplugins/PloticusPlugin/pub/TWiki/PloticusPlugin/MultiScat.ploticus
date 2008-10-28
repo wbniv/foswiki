@@ -1,0 +1,197 @@
+#proc page
+  pagesize: 8.5 11
+  #if @DEVICE in gif,png
+    scale: 0.8 0.7
+  #endif
+  title: Correlation between test procedures
+	 June, 1998
+<p />
+#proc getdata
+ file: vf.dat
+<p />
+#procdef areadef
+  box: 1.5 1.5
+  xrange: 0 120
+  yrange: 0 120
+  xaxis.stubs: inc 100
+  xaxis.axisline: none
+  yaxis.stubs: inc 100
+  yaxis.axisline: none
+  frame: width=0.5 style=1 
+  #saveas A
+<p />
+///// start with upper right hand corner plot
+#proc areadef
+  #clone A
+  location: 1 8
+  title: Group 1, 30 day
+<p />
+#proc line
+  linedetails: width=0.5 style=1 dashscale=3
+  points: min min max max
+  #saveas L
+<p />
+#proc scatterplot
+  select: @@2 = 1
+  xfield: 5 
+  yfield: 6
+  labelfield: 3
+  #if @DEVICE in gif,png
+  textdetails: color=blue
+  #endif
+  #saveas: S
+<p />
+////////////////////////////
+#proc areadef
+  title: Group 2, 30 day
+  #clone A
+  location: 3.5 8
+<p />
+#proc line
+  #clone L
+<p />
+#proc scatterplot
+  #clone S
+  select: @@2 = 2 
+<p />
+////////////////////////////
+#proc areadef
+  title: Group 3, 30 day
+  #clone A
+  location: 6 8
+<p />
+#proc line
+  #clone L
+<p />
+#proc scatterplot
+  #clone S
+  select: @@2 = 3
+<p />
+////////////////////////////
+#proc areadef
+  title: Group 4, 30 day
+  #clone A
+  location: 1 5.5
+<p />
+#proc line
+  #clone L
+<p />
+#proc scatterplot
+  #clone S
+  select: @@2 = 4
+<p />
+////////////////////////////
+#proc areadef
+  title: Group 5, 30 day
+  #clone A
+  location: 3.5 5.5
+<p />
+#proc line
+  #clone L
+<p />
+#proc scatterplot
+  #clone S
+  select: @@2 = 5
+<p />
+////////////////////////////
+#proc areadef
+  title: Group 6, 30 day
+  #clone A
+  location: 6 5.5
+<p />
+#proc line
+  #clone L
+<p />
+#proc scatterplot
+  #clone S
+  select: @@2 = 6
+<p />
+/////////////////////////////
+#proc areadef
+  title: Groups 1-4, 45 day
+  #clone A
+  location: 1 3
+<p />
+#proc line
+  #clone L
+<p />
+#proc scatterplot
+  select: @@2 in 1,2,3,4
+  xfield: 7
+  yfield: 8
+  labelfield: 3
+  #if @DEVICE in gif,png
+  textdetails: color=blue
+  #endif
+  #saveas: S
+<p />
+/////////////////////////////
+#proc areadef
+  title: Group 5, 45 day
+  #clone A
+  location: 3.5 3
+<p />
+#proc line
+  #clone L
+<p />
+#proc scatterplot
+  #clone S
+  select: @@2 = 5 
+<p />
+/////////////////////////////
+#proc areadef
+  title: Group 6, 45 day
+  #clone A
+  location: 6 3
+<p />
+#proc line
+  #clone L
+<p />
+#proc scatterplot
+  #clone S
+  select: @@2 = 6
+<p />
+/////////////////////////////
+#proc areadef
+  title: Groups 1-4, 60 day
+  #clone A
+  location: 1 0.5
+<p />
+#proc line
+  #clone L
+<p />
+#proc scatterplot
+  select: @@2 in 1,2,3,4
+  xfield: 10
+  yfield: 11
+  labelfield: 3
+  #if @DEVICE in gif,png
+  textdetails: color=blue
+  #endif
+  #saveas: S
+<p />
+/////////////////////////////
+#proc areadef
+  title: Group 5, 60 day
+  #clone A
+  location: 3.5 0.5
+<p />
+#proc line
+  #clone L
+<p />
+#proc scatterplot
+  select: @@2 = 5 
+  #clone: S
+<p />
+/////////////////////////////
+#proc areadef
+  title: Group 6, 60 day
+  #clone A
+  location: 6 0.5
+<p />
+#proc line
+  #clone L
+<p />
+#proc scatterplot
+  select: @@2 = 6
+  #clone: S

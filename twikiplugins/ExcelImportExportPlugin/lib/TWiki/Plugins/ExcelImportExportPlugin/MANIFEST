@@ -1,0 +1,12 @@
+lib/TWiki/Plugins/ExcelImportExportPlugin.pm 0440
+lib/TWiki/Plugins/ExcelImportExportPlugin/Import.pm 0440
+lib/TWiki/Plugins/ExcelImportExportPlugin/Export.pm 0440
+data/TWiki/ExcelImportExportPlugin.txt 0660
+bin/excel2topics 0550
+bin/topics2excel 0550
+bin/table2excel 0550
+data/Sandbox/ExcelExport1.txt 0660
+data/Sandbox/ExcelImport1.txt 0660
+data/Sandbox/IssueExcelExportImport.txt 0660
+data/Sandbox/IssueTrackingForm.txt 0660
+pub/Sandbox/IssueExcelExportImport/IssueExcelExportImport.xls 0660

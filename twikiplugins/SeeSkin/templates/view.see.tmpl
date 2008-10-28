@@ -1,0 +1,55 @@
+%TMPL:INCLUDE{"twiki"}%
+%TMPL:P{"htmldoctype"}%
+<head>
+ %TMPL:P{"headview"}%
+ %TMPL:P{"css"}%
+</head>
+<body>
+#PageTop
+<div id="topsection">
+	<h1 class="nocss">%LOGOCHAR% %INTURLENCODE{"%TOPIC%"}% %TMPL:P{"titleaction"}%</h1>
+	<!-- <form id="search"> -->
+		<form id="search" name="photonsearch" action="%SCRIPTURLPATH%/photonsearch%SCRIPTSUFFIX%/%INTURLENCODE{"%INCLUDINGWEB%"}%" method="post">
+			<p align="right">
+		<input type="text" name="topic" size="10" title="type topic name to search for and press [Enter]" accesskey="/" /> <a href="%SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%/WebSearch" title="Go to advanced search form">Search</a>
+			</p>
+	</form>
+</div>
+<div id="content">%TEXT%
+	<div id="meta">
+	%META{"form"}%
+	%META{"attachments"}%
+	%META{"moved"}%	
+	</div>
+</div>
+<hr class="nocss">
+<dl id="lineage">
+	<dt>%INTURLENCODE{"%TOPIC%"}%
+	<dd>Revision %REVINFO%
+	<dt>%META{"parent" prefix="Parents:<dd>{" suffix="}" separator="<dd>&lt;" nowebhome="on"}%
+</dl>
+<hr class="nocss">
+<dl id="menu">
+	<dt>Topic Action:
+		%TMPL:P{"topicaction"}%
+</dl>
+<dl id="navigate">
+	<dt><a name="Navigate"></a>Near:
+	<dd>%WEBTOPICLIST%
+	<dt><a name="%TMPL:P{"weblabel"}%s"></a>Far:
+	<dd>%WIKIWEBLIST%
+</dl>
+<div id="logochar">%LOGOCHAR%</div>
+<span id="bugreport">%TMPL:P{"bugreport"}%</span>
+#PageBottom
+</body>
+</html>
+%TMPL:DEF{"sep"}%<dd>%TMPL:END%
+%TMPL:DEF{"topicaction"}%
+  %TMPL:P{"sep"}% <a href="%SCRIPTURLPATH%/edit%SCRIPTSUFFIX%/%WEB%/%TOPIC%?t=%GMTIME{"$year$month$day$hours$minutes$seconds"}%" accesskey="i" title="Edit this page">Ed<u>i</u>t</a>
+  %TMPL:P{"sep"}% <a href="%SCRIPTURLPATH%/attach%SCRIPTSUFFIX%/%WEB%/%TOPIC%" accesskey="a" title="Upload a file to this topic"><u>A</u>ttach</a>
+  %TMPL:P{"sep"}% <a href="%SCRIPTURLPATH%/search%SCRIPTSUFFIX%/%WEB%/SearchResult?scope=text&amp;regex=on&amp;search=%SPACEDTOPIC%%5B%5EA-Za-z%5D" accesskey="r" title="Which pages link to this one?"><u>R</u>ef-By</a>
+  %TMPL:P{"sep"}% <a href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%?skin=print%REVARG%" accesskey="p" title="a barebones version of this page more suitable for printing"><u>P</u>rintable</a>
+  %TMPL:P{"sep"}% <a href="%SCRIPTURLPATH%/rdiff%SCRIPTSUFFIX%/%WEB%/%TOPIC%" accesskey="s" title="View previous versions of this page">Hi<u>s</u>tory</a>
+  <dd id="diffs">{ %REVISIONS% }
+  %TMPL:P{"sep"}% <a href="%SCRIPTURLPATH%/oops%SCRIPTSUFFIX%/%WEB%/%TOPIC%?template=oopsmore&param1=%MAXREV%&param2=%CURRREV%" accesskey="m" title="advanced actions: rename/move, parentage, compare revisions, etc." id="editmore"><u>M</u>ore...</a>%TMPL:END%

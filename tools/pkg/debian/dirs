@@ -1,0 +1,10 @@
+var/www/twiki/pub
+var/lib/twiki/templates
+var/lib/twiki/data
+var/log/twiki
+usr/lib/cgi-bin/twiki
+usr/share/perl5
+etc/twiki
+usr/share/doc/twiki
+usr/share/twiki
+tmp/twiki

@@ -1,0 +1,10 @@
+%META:TOPICINFO{author="TWikiContributor" date="1172605768" format="1.1" version="1.1"}%
+---+!! Face book
+
+<div class="twikiPageForm"><table id="twikiSearchTable" border="0" cellspacing="0" cellpadding="0"><tr><td class="first">
+*Search name:* <input type="text" class="twikiInputField" size="%IF{"'%inputfieldsize%'!=''" then="%inputfieldsize%" else="12"}%" id="personalInfoSearchBox" name="personalInfoSearchBox" />
+</td></tr></table></div>
+
+%INCLUDE{"PersonalInfo" section="pictures" imgHeight="120" imgWidth="120"}%
+%INCLUDE{"PersonalInfo" section="pictureFilterSearch"}%
+

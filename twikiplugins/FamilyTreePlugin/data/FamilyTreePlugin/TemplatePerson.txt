@@ -1,0 +1,17 @@
+---+ %URLPARAM{"Forenames"}% %URLPARAM{"Surname"}%
+%INCLUDE{"StdPerson"}%
+---++ Records
+<!--
+This table is for arbitrary event records in the person's life that don't
+have standard fields in the form. See the RecordTable topic for details of
+how to use it.
+-->   
+%EDITTABLE{include="RecordTable"}%
+
+%META:FORM{name="PersonForm"}%
+%META:FIELD{name="Forenames" attributes="" title="Forenames" value=""}%
+%META:FIELD{name="Surname" attributes="" title="Surname" value=""}%
+%META:FIELD{name="Born" attributes="" title="Born" value=""}%
+%META:FIELD{name="Died" attributes="" title="Died" value=""}%
+%META:FIELD{name="Sex" attributes="" title="Sex" value="M"}%
+

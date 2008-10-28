@@ -1,0 +1,27 @@
+.headerClass {
+	background-image:url(images/ft-head.gif);
+	background-repeat:no-repeat;
+	background-position:top right;
+}
+
+.tbodyClass {
+	background:#e3edfa;
+}
+
+.selectedUp {
+	background-image:url(images/ft-headup.gif);
+	background-repeat:no-repeat;
+	background-position:top right;
+}
+
+.selectedDown {
+	background-image:url(images/ft-headdown.gif);
+	background-repeat:no-repeat;
+	background-position:top right;
+}
+
+.selected td{
+	background:#a6c2e7;
+}
+
+

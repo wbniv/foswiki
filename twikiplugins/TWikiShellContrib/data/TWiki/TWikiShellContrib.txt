@@ -1,0 +1,78 @@
+%META:TOPICINFO{author="TWikiGuest" date="1099288894" format="1.0" version="1.3"}%
+---+!! TWiki Shell
+
+%TOC%
+
+---+ Purpose
+%STARTINCLUDE%
+TWikiShellContrib is  a shell that can be use to replace all twiki command line scripts with a single interface. Each command available in the twikishell is also available as a command line option (i.e: to invoke the =help= command, type =twikishell help=)
+%STOPINCLUDE%
+
+---+ Usage
+
+In the TWiki home directory, there is an uber-command:
+	* twikishell
+
+This will fire the shell. The following command line options are available:
+
+| *Option* | *Description* |
+| -v | Verbose mode (Verbosity level 1) (Default) |
+| -vv | Very Verbose mode (Verbosity level 2) |
+| -q | Quiet Operation (Verbosity level 0) |
+| -d | Turns on debugging (prints debug statements to console) |
+| &lt;command&gt; | Execute the specified command. Must be the last option in the cli. i.e: twikishell package CalendarPlugin|
+
+---+ Operation
+
+When the shell starts, it first try to load the =.twikirc= file for the stored configuration. If it can't find it, it will create an empty configuration, and is up to each CommandSet to reconfigure themselves.
+
+On a bare installation (without any CommandSets installed), you have the following available commands:
+
+| *Command* | *Description* |
+| help | Shows a list of available commands  |
+| help <command> | Shows a detailed help of the specified command  |
+| help <command> <subcommand> | Shows a detailed help of the specified subcommand  |
+| exit, q , quit | Quits the shell |
+| import <perl module> | Imports a perl module and scan it for new commands to be added to the shell |
+| verbose <level> | Changes the verbosity level to either 1 or 2 |
+| quiet | Changes the verbosity level to 0 |
+| debug | Set debugging On and Off. Usage: debug [on/off] |
+
+The config file is a dump (using CPAN:Data::Dumper) of the configuration object used internally
+
+%INCLUDE{CommandSet}%
+
+%INCLUDE{TWikiShellBundledCommandSets}%
+
+%INCLUDE{TWikiShellConfigObject}%
+
+%INCLUDE{"TWikiShellServices"}%
+
+---+ Installation
+
+	* Make sure that CPAN:Term::Shell is installed (either in the perl distribution or locally in twiki)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	| *File:* | *Description:* |
+%$MANIFEST%
+
+If you have a non-standard installation, then move the files wherever you need them to be.
+
+---+ Settings
+   * Name of the perl package
+      * Set STUB = TWiki::Contrib::TWikiShellContrib
+
+---+ Contrib Info
+
+| Authors: | TWiki:Main.MartinCleaver, TWiki:Main.RafaelAlvarez |
+| Copyright &copy;: | 2004,2005 Crawford Currie, Rafael Alvarez, and Martin Cleaver|
+| License: | GPL |
+| Dependencies: | CPAN:Term::Shell |
+| 10/08/2005 | 2.0 Removed reload and register commands. Major overhaul of the code. Added new CommandSets |
+| 02/11/04 | 1.1 Added reload and register commands |
+| 21/10/04 | 1.000 Initial release, based on the work of TWiki:Main.MartinCleaver|
+|  Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ TWiki:Main.TWikiShell
+
+

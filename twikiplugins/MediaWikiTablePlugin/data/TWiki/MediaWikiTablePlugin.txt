@@ -1,0 +1,1254 @@
+%META:TOPICINFO{author="TWikiContributor" date="1158936993" format="1.1" reprev="1.2" version="1.1"}%
+<!--
+
+   PLEASE DO NOT EDIT THIS TOPIC
+
+   It is automatically generated from the subversion repository, and any changes
+   you make will simply be overwritten the next time a release is generated.
+
+   Instead, you could check your fix in, raise a bug in the Bugs web, or mail the author(s).
+-->
+---+!! <nop>%TOPIC%
+%TOC%
+
+This plugin allows to create tables using the 
+[[http://meta.wikimedia.org/wiki/Help:Table][MediaWiki table syntax]]
+and can be used to help porting <nop>MediaWiki content to TWiki as well as
+lower the entry barier of users acustommed to <nop>MediaWiki to also use TWiki.
+
+This plugin deliberately does not provide the full <nop>MediaWiki markup syntax
+and only focuses on table markup. 
+TWiki's and <nop>MediaWiki's table markup can't be mapped on each other
+as the latter is much more powerful and allows to control the resulting
+HTML markup in much detail.
+
+If you want to enable <nop>MediaWiki wiki markup then
+you might also be interested in the TWiki:Plugins/EditSyntaxPlugin.
+
+If you want to import content in <nop>MediaWiki format and convert it
+to TWiki markup as much as possible then use the 
+TWiki:Plugins/MediaWiki2TWikiAddOn (forthcoming).
+
+---++ Syntax Rules
+The entire *table* is encased with curly brackets and a vertical bar character
+(a pipe).  So use =={|== to begin a table, and
+==|}== to end it.  Each one needs to be on its own line: 
+<div class="mwIndent">
+<pre>
+<span style="font-weight:bold; color:red">{<nop>|</span>
+   <em>table code goes here</em>
+<span style="font-weight:bold; color:red">|<nop>}</span>
+</pre>
+</div>
+
+An optional *caption* is included with a line
+starting with a vertical bar and plus sign ==|+== and the
+caption after it:
+<div class="mwIndent">
+<pre>
+{<nop>|
+<span style="font-weight:bold; color:red">|+ <em>caption</em></span>
+   <em>table code goes here</em>
+|}
+</pre>
+</div>
+
+To start a new *row*, type a vertical bar and a dash
+on its own line: ==|-==.  The codes for the cells in that row
+will start on the next line.
+<div class="mwIndent">
+<pre>
+{<nop>|
+ |+ The table's caption
+ <span style="font-weight:bold; color:red">|-</span>
+   <em>cell code goes here</em>
+ <span style="font-weight:bold; color:red">|-</span>
+   <em>cell code goes here</em>
+|}
+</pre>
+</div>
+
+Type the codes for each *cell* in the next row, starting
+with a bar:
+<div class="mwIndent">
+<pre>
+{<nop>|
+|+ The table's caption
+|-
+<span style="font-weight:bold; color:red">|</span> <em>cell codes go here</em>
+|-
+<span style="font-weight:bold; color:red">|</span> <em>cells in the next row go here</em>
+<span style="font-weight:bold; color:red">|</span> <em>more cells in the same row here</em>
+|}
+</pre>
+</div>
+
+Cells can be separated with either a new line and new bar, or by a double bar
+==||== on the same line. Both produce the same output:
+<div class="mwIndent">
+<pre>
+{<nop>|
+|+ The table's caption
+|-
+<span style="font-weight:bold; color:red">|Cell 1 || Cell 2 || Cell 3</span>
+|-
+<span style="font-weight:bold; color:red">|Cell A </span>
+<span style="font-weight:bold; color:red">|Cell B</span>
+<span style="font-weight:bold; color:red">|Cell C</span>
+|}
+</pre>
+</div>
+
+A row of *column headings* is identified by using ==!==
+instead of ==|==, and using ==!!== instead of ==||==.  Header cells typically render
+differently than regular cells, depending on the browser.  They are often
+rendered in a bold font and centered.
+<div class="mwIndent">
+<pre>
+{<nop>|
+|+ The table's caption
+<span style="font-weight:bold; color:red">! Column heading 1 !! Column heading 2 !! Column heading 3</span>
+|-
+|Cell 1 || Cell 2 || Cell 3
+|-
+|Cell A
+|Cell B
+|Cell C
+|}
+</pre>
+</div>
+
+The first cell of a row is identified as *row heading* by
+starting the line with ==!== instead of ==|==, and starting subsequent data cells
+on a new line.
+<div class="mwIndent">
+<pre>
+{<nop>|
+|+ The table's caption
+! Column heading 1 !! Column heading 2 !! Column heading 3
+|-
+<span style="font-weight:bold; color:red">! Row heading 1</span> 
+| Cell 2 || Cell 3
+|-
+<span style="font-weight:bold; color:red">! Row heading A</span> 
+|Cell B
+|Cell C
+|}
+</pre>
+</div>
+
+Optional *parameters* can modify the behavior of cells, rows, or the
+entire table.  For instance, a border could be added to the table:
+<div class="mwIndent">
+<pre>
+{<nop>| <span style="font-weight:bold; color:red">border="1"</span>
+|+ The table's caption
+! Column heading 1 !! Column heading 2 !! Column heading 3
+|-
+! Row heading 1
+| Cell 2 || Cell 3
+|-
+! Row heading A
+|Cell B
+|Cell C
+|}
+</pre>
+</div>
+
+The final table would display like this:
+<div class="mwBorder">
+{| border="1"
+|+ The table's caption
+! Column heading 1 !! Column heading 2 !! Column heading 3
+|-
+! Row heading 1
+| Cell 2 || Cell 3
+|-
+! Row heading A
+|Cell B
+|Cell C
+|}
+</div>
+
+The table parameters and cell parameters are the same as in HTML
+see  [[http://www.w3.org/TR/html401/struct/tables.html#edef-TABLE][w3c]]
+However, the =thead=, =tbody=,
+=tfoot=, =colgroup=, and =col= elements are
+currently not supported.
+
+A table can be useful even if none of the cells have content.  For example, the
+background colors of cells can be changed with cell parameters, making the
+table into a diagram.  An "image" in the form of a table is much more
+convenient to edit than an uploaded image.
+
+Each row must have the same number of cells as the other rows, so that the
+number of columns in the table remains consistent (unless there are cells which
+span several columns or rows, see colspan and rowspan in M&#233;lange example
+below). For empty cells, use the non-breaking space <code>&amp;nbsp;</code> as
+content to ensure that the cells are displayed. To show a visible pipe in a
+cell, use ==&lt;nop>|== or ==&amp;#124;==.
+
+---++ Pipe syntax in terms of the HTML produced
+The pipe syntax, developed by Magnus Manske,
+substitutes pipes (|) for HTML. There is an
+[[http://www.uni-bonn.de/~manfear/html2wiki-tables.php][on-line script]] which
+converts html tables to pipe syntax tables.
+
+The pipes must start at the beginning of a new line, except when separating
+parameters from content or when using <code>||</code> to separate cells on a
+single line. The parameters are optional.
+
+---+++ Tables
+A table is defined by
+<div class="mwIndent">
+<pre>
+ {| <b>params</b>
+ |}
+</pre>
+</div>
+which equals
+<div class="mwIndent">
+<pre>
+ &lt;table <b>params</b>&gt;Insert non-formatted text here
+ &lt;/table&gt;
+</pre>
+</div>
+<!-- blockquote>
+_Careful_: 
+You *must include* the *space* between =={|== and ==params==, or the first parameter gets ignored.
+</blockquote-->
+
+---+++ Rows
+&lt;tr&gt; tags will be generated automatically for the first row. To start a new row, use
+<div class="mwIndent">
+<pre>
+ |-
+</pre>
+</div>
+which results in
+<div class="mwIndent">
+<pre>
+ &lt;tr&gt;
+</pre>
+</div>
+
+Parameters can be added like this:
+<div class="mwIndent">
+<pre>
+ |- <b>params</b>
+</pre>
+</div>
+which results in
+<div class="mwIndent">
+<pre>
+ &lt;tr <b>params</b>&gt;
+</pre>
+</div>
+
+<!--
+Note:
+   * &lt;tr&gt; tags will be automatically opened at the first <td&gt; equivalent
+   * &lt;tr&gt; tags will be automatically closed at <tr&gt; and </table&gt; equivalents
+-->
+
+---+++ Cells
+Cells are generated either like this:
+<div class="mwIndent">
+<pre>
+ | cell1
+ | cell2
+ | cell3
+</pre>
+</div>
+or like this:
+<div class="mwIndent">
+<pre>
+ | cell1 || cell2 || cell3
+</pre>
+</div>
+which both equal
+<div class="mwIndent">
+<pre>
+ &lt;td&gt;cell1&lt;/td&gt;&lt;td&gt;cell2&lt;/td&gt;&lt;td&gt;cell3&lt;/td&gt;
+</pre>
+</div>
+so "||" equals "newline" + "|"
+
+Parameters in cells can be used like this:
+<div class="mwIndent">
+<pre>
+ | <b>params</b>|cell1 || <b>params</b>|cell2 || <b>params</b>|cell3
+</pre>
+</div>
+which will result in
+<div class="mwIndent">
+<pre>
+ &lt;td <b>params</b>&gt;cell1&lt;/td&gt;
+ &lt;td <b>params</b>&gt;cell2&lt;/td&gt;
+ &lt;td <b>params</b>&gt;cell3&lt;/td&gt;
+</pre>
+</div>
+
+---+++ Headers
+Functions the same way as TD, except "!" is used instead of the opening "|".
+"!!" can be used instead of "||". Parameters still use "|", though!  Example:
+<div class="mwIndent">
+<pre>
+ ! <b>params</b>|cell1
+</pre>
+</div>
+
+---+++ Captions
+A &lt;caption&gt; tag is created by
+<div class="mwIndent">
+<pre>
+ |+ Caption
+</pre>
+</div>
+which generates
+<div class="mwIndent">
+<pre>
+ &lt;caption&gt;Caption&lt;/caption&gt;
+</pre>
+</div>
+You can also use parameters:
+<div class="mwIndent">
+<pre>
+ |+ <b>params</b>|Caption
+</pre>
+</div>
+which will generate
+<div class="mwIndent">
+<pre>
+ &lt;caption <b>params</b>&gt;Caption&lt;/caption&gt;
+</pre>
+</div>
+
+---++ Comparison of table syntax
+This is a comparison of the three basic ways to compose tables. The TWiki
+collumn just lists the basic markup capabilities. 
+Note, that there are table plugins to enhance the formatting capabilities,
+i.e. the TWiki:Plugins/TablePlugin. For the sake of simplicity its features
+are not under consideration here.
+
+The the notion of =n/a= in some cases means that the element under consideration
+is not represented in the markup model.
+
+<table class="twikiTable">
+<tr>
+<th>&nbsp;</th>
+<th>XHTML</th>
+<th>TWiki</th> 
+<th><nop>MediaWiki</th>
+</tr>
+
+<tr>
+<th>Table</th>
+<td>&lt;table>&lt;/table></td>
+<td>n/a</td>
+<td>{| <br />
+|}</td>
+</tr>
+
+<tr>
+<th>Caption</th>
+<td>&lt;caption>&lt;/caption></td>
+<td>n/a</td>
+<td>|+ </td>
+</tr>
+
+<tr>
+<th>Row</th>
+<td>&lt;tr>&lt;/tr></td>
+<td>n/a</td>
+<td>|- </td>
+</tr>
+
+<tr>
+<th>Data cell</th>
+<td>&lt;td>cell1&lt;/td><br>&lt;td>cell2&lt;/td></td>
+<td>&#124; cell1 &#124; cell2 &#124; cell3 &#124;</td>
+<td>
+| cell1<br />
+| cell2<br />
+| cell1 || cell2 || cell3
+</td>
+
+<tr>
+<th>Header cell</th>
+<td>&lt;th>&lt;/th></th>
+<td>&#124; <nop>*cell1* &#124; <nop>*cell2* &#124; <nop>*cell3* &#124;</td>
+<td>! </td>
+
+<tr>
+<th rowspan="2">Sample table</th>
+<td colspan="3">
+<table align="center" border="1" cellspacing="0" cellpadding="3">
+   <tr>
+      <td>1</td>
+      <td>2</td>
+   </tr> 
+   <tr>
+      <td>3</td> 
+      <td>4</td> 
+   </tr>
+</table>
+
+<tr>
+<td>
+&lt;table><br />
+&nbsp;&lt;tr><br />
+&nbsp;&nbsp;&lt;td>1&lt;/td><br />
+&nbsp;&nbsp;&lt;td>2&lt;/td><br />
+&nbsp;&lt;/tr> <br />
+&nbsp;&lt;tr><br />
+&nbsp;&nbsp;&lt;td>3&lt;/td> <br />
+&nbsp;&nbsp;&lt;td>4&lt;/td> <br />
+&nbsp;&lt;/tr><br />
+&lt;/table>
+</td>
+
+<td>
+&#124; 1 &#124; 2 &#124;<br />
+&#124; 3 &#124; 4 &#124;
+</td>
+
+<td>
+<nop>{| <br />
+| 1 || 2<br />
+|- <br />
+| 3 || 4<br />
+|}</td>
+
+</tr></table>
+
+---++ Examples
+---+++ Simple example
+Both of these generate the same output.  Choose a style based on the amount of
+cells in each row and the total text inside each cell.
+
+*Wiki markup*
+<div class="mwIndent"><verbatim>
+{| 
+| A 
+| B
+|- 
+| C
+| D
+|}
+</verbatim></div>
+
+<div class="mwIndent"><verbatim>
+{| 
+| A || B
+|- 
+| C || D 
+|}
+</verbatim></div>
+
+*What it looks like in your browser*
+<div class="mwBorder">
+{| 
+| A
+| B
+|- 
+| C
+| D
+|}
+</div>
+
+---+++ Multiplication table
+
+*Wiki markup*
+<div class="mwIndent"><verbatim>
+{| class="wikitable" style="text-align:center"
+|+Multiplication table
+|-
+! &amp;times; !! 1 !! 2 !! 3
+|-
+! 1
+| 1 || 2 || 3
+|-
+! 2
+| 2 || 4 || 6
+|-
+! 3
+| 3 || 6 || 9
+|-
+! 4
+| 4 || 8 || 12
+|-
+! 5
+| 5 || 10 || 15
+|}
+</verbatim></div>
+
+*What it looks like in your browser*
+<div class="mwBorder">
+{| class="wikitable" style="text-align:center"
+|+Multiplication table
+|-
+! &times; !! 1 !! 2 !! 3
+|-
+! 1
+| 1 || 2 || 3
+|-
+! 2
+| 2 || 4 || 6
+|-
+! 3
+| 3 || 6 || 9
+|-
+! 4
+| 4 || 8 || 12
+|-
+! 5
+| 5 || 10 || 15
+|}
+</div>
+
+---+++ Colors and scope of parameters
+Two ways of specifying color of text and background for a single cell are as
+follows.  The first form is preferred:
+
+*Wiki markup*
+<div class="mwIndent"><verbatim>
+{| 
+| style="background:red; color:white" | abc
+| def
+| bgcolor="red" | <font color="white"> ghi </font>
+| jkl
+|}
+</verbatim></div>
+
+*What it looks like in your browser*
+<div class="mwBorder">
+{| 
+| style="background:red; color:white" | abc
+| def
+| bgcolor="red" | <font color="white"> ghi </font>
+| jkl
+|}
+</div>
+
+Like other parameters, colors can also be specified for a whole row or the
+whole table; parameters for a row override the value for the table, and those
+for a cell override those for a row:
+
+*Wiki markup*
+<div class="mwIndent"><verbatim>
+{| style="background:yellow; color:green"
+|- 
+| abc || def || ghi
+|- style="background:red; color:white"
+| jkl || mno || pqr
+|-
+| stu || style="background:silver" | vwx || yz
+|}
+</verbatim></div>
+
+*What it looks like in your browser*
+<div class="mwBorder">
+{| style="background:yellow; color:green"
+|- 
+| abc || def || ghi
+|- style="background:red; color:white"
+| jkl || mno || pqr
+|-
+| stu || style="background:silver" | vwx || yz
+|}
+</div>
+
+To make the table blend in with the background, use
+<code>style="background:none"</code>. (Warning:
+<code>style="background:inherit"</code>, does not work with some browsers,
+including IE6!)
+
+
+---+++ Width and height
+The width and height of the whole table can be specified, as well as the height
+of a row. To specify the width of a column one can specify the width of an
+arbitrary cell in it. If the width is not specified for all columns, and/or the
+height is not specified for all rows, then there is some ambiguity, and the
+result depends on the browser. 
+
+*Wiki markup*
+<div class="mwIndent"><verbatim>
+{| style="width:75%; height:200px" border="1"
+|- 
+| abc || def || ghi
+|- style="height:100px" 
+| jkl || style="width:200px" |mno || pqr
+|-
+| stu || vwx || yz
+|}
+</verbatim></div>
+
+*What it looks like in your browser*
+<div class="mwBorder">
+{| style="width:75%; height:200px" border="1"
+|- 
+| abc || def || ghi
+|- style="height:100px" 
+| jkl || style="width:200px" |mno || pqr
+|-
+| stu || vwx || yz
+|}
+</div>
+
+Note that <code>style="</code>inline CSS<code>"</code> has no effect with some
+browsers. If it's important equivalent older constructs like
+<code>width="75%"</code> should work on more browsers. 
+
+
+---+++ Setting your column widths
+If you wish to force column widths to your own requirements, rather than
+accepting the width of the widest text element in a column's cells, then follow
+this example.  Note that wrap-around of text is forced.
+
+<div class="mwIndent"><verbatim>
+{| border="1" cellpadding="2"
+!width="50"|Name
+!width="225"|Effect
+!width="225"|Games Found In
+|-
+|Pok� Ball || Regular Pok� Ball || All Versions
+|-
+|Great Ball || Better than a Pok� Ball || All Versions
+|}
+</verbatim></div>
+
+<div class="mwBorder">
+{| border="1" cellpadding="2"
+!width="50"|Name
+!width="225"|Effect
+!width="225"|Games Found In
+|-
+|Pok� Ball || Regular Pok� Ball || All Versions
+|-
+|Great Ball || Better than a Pok� Ball || All Versions
+|}
+</div>
+
+To set column widths in a table without headers, specify the width in the first
+cell for each column, like this:
+
+<div class="mwIndent"><verbatim>
+{| border="1" cellpadding="2"
+|-
+|width="100pt"|This column is 100 points wide
+|width="200pt"|This column is 200 points wide
+|width="300pt"|This column is 300 points wide
+|-
+|blah || blah || blah
+|}
+</verbatim></div>
+
+<div class="mwBorder">
+{| border="1" cellpadding="2"
+|-
+|width="100pt"|This column is 100 points wide
+|width="200pt"|This column is 200 points wide
+|width="300pt"|This column is 300 points wide
+|-
+|blah || blah || blah
+|}
+</div>
+
+---+++ Vertical alignment
+By default data in tables is vertically centrally aligned, which results in
+odd-looking layouts like this:
+
+<div class="mwBorder">
+{| border="1" cellpadding="2"
+|-
+|width="10%"|'''Row heading'''
+|width="70%"|A longer piece of text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
+|width="20%"|A shorter piece of text.
+|-
+|'''Row heading'''
+|A longer piece of text.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
+|A shorter piece of text.
+|}
+</div>
+
+To fix this, apply the valign="top" attribute to the rows (unfortunately it
+seems to be necessary to apply this individually to every single row). For
+example:
+
+<div class="mwIndent"><verbatim>
+{| border="1" cellpadding="2"
+|-valign="top"
+|width="10%"|'''Row heading'''
+|width="70%"|A longer piece of text. Lorem ipsum...
+|width="20%"|A shorter piece of text.
+|-valign="top"
+|'''Row heading'''
+|A longer piece of text. Lorem ipsum... 
+|A shorter piece of text.
+|}
+</verbatim></div>
+
+<div class="mwBorder">
+{| border="1" cellpadding="2"
+|-valign="top"
+|width="10%"|'''Row heading'''
+|width="70%"|A longer piece of text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
+|width="20%"|A shorter piece of text.
+|-valign="top"
+|'''Row heading'''
+|A longer piece of text.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
+|A shorter piece of text.
+|}
+</div>
+
+
+---+++ Positioning
+One can position the table itself, and all contents in a row, and contents in a
+cell, but not with a single parameter all contents in the table. Do not, under
+any circumstances, use "float" to position a table. It will break page
+rendering at large font sizes.
+
+---+++ M&eacute;lange
+Here's a more advanced example, showing some more options available for making
+up tables. You can play with these settings in your own table to see what
+effect they have. Not all of these techniques may be appropriate in all cases;
+just because you can add colored backgrounds, for example, doesn't mean it's
+always a good idea. Try to keep the markup in your tables relatively simple --
+remember, other people are going to be editing the article too! This example
+should give you an idea of what is possible, though.
+
+*Wiki markup*
+<div class="mwIndent"><verbatim>
+{| border="1" cellpadding="5" cellspacing="0" align="center"
+|+'''An example table'''
+|-
+! style="background:#efefef;color:black;" | First header
+! colspan="2" style="background:#ffdead;color:black;" | Second header
+|-
+| upper left
+| &nbsp;
+| rowspan=2 style="border-bottom:3px solid grey;" valign="top" |
+right side
+|-
+| style="border-bottom:3px solid grey;" | lower left
+| style="border-bottom:3px solid grey;" | lower middle
+|-
+| colspan="3" align="center" |
+{| border="0"
+|+''A table in a table''
+|-
+| align="center" width="150px" | [[Image:wiki.png]]
+| align="center" width="150px" | [[Image:wiki.png]]
+|-
+| align="center" colspan="2" style="border-top:1px solid red; border-right:1px
+          solid red; border-bottom:2px solid red; border-left:1px solid red;" |
+Two logos
+|}
+|}
+</verbatim></div>
+
+*What it looks like in your browser*
+<div class="mwBorder">
+{| border="1" cellpadding="1" cellspacing="0" align="center"
+|+'''An example table'''
+|-
+! style="background:#efefef;color:black;" | First header
+! colspan="2" style="background:#ffdead;color:black;" | Second header
+|-
+| upper left
+| &nbsp;
+| rowspan=2 style="border-bottom:3px solid grey;" valign="top" |
+right side
+|-
+| style="border-bottom:3px solid grey;" | lower left
+| style="border-bottom:3px solid grey;" | lower middle
+|-
+| colspan="3" align="center" |
+{| border="0"
+|+''A table in a table''
+|-
+| align="center" width="150px" | <img src="%PUBURLPATH%/%SYSTEMWEB%/TWikiLogos/T-logo-65x50-t.gif" alt="TWiki" />
+| align="center" width="150px" | <img src="%PUBURLPATH%/%SYSTEMWEB%/TWikiLogos/T-logo-65x50-t.gif" alt="TWiki" />
+|-
+| align="center" colspan="2" style="border-top:1px solid red; border-right:1px solid red; border-bottom:2px solid red; border-left:1px solid red;" | Two logos
+|}
+|}
+</div>
+
+---+++ Floating table
+*Wiki markup*
+<div class="mwIndent"><verbatim>
+This paragraph is before the table.  Lorem ipsum dolor sit
+amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad
+minim veniam, quis nostrud exercitation...
+
+{| align="right" border="1"
+| Col 1, row 1 
+|rowspan="2"| Col 2, row 1 (and 2) 
+| Col 3, row 1 
+|- 
+| Col 1, row 2 
+| Col 3, row 2 
+|}
+
+Note the floating table to the right.   
+
+This paragraph is after the table.  Lorem ipsum dolor sit
+amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad
+minim veniam, quis nostrud exercitation...
+</verbatim></div>
+
+*What it looks like in your browser*
+<div class="mwBorder">
+This paragraph is before the table.  Lorem ipsum dolor sit
+amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad
+minim veniam, quis nostrud exercitation...
+
+{| align="right" border="1"
+| Col 1, row 1 
+|rowspan="2"| Col 2, row 1 (and 2) 
+| Col 3, row 1 
+|- 
+| Col 1, row 2 
+| Col 3, row 2 
+|}
+
+Note the floating table to the right.
+
+This paragraph is after the table.  Lorem ipsum dolor sit
+amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad
+minim veniam, quis nostrud exercitation...
+</div>
+
+
+---+++ Nested tables
+This shows one table (in blue) nested inside another table's cell2.  ''Nested
+tables have to start on a new line.''
+
+*Wiki markup*
+<div class="mwIndent"><verbatim>
+{| border="1"<br />
+| &amp;alpha;<br />
+| align="center" | cell2<br />
+<span style="color: navy;">
+'''{| border="2" style="background-color:#ABCDEF;"'''<br />
+'''| NESTED'''<br />
+'''|-'''<br />
+'''| TABLE'''<br />
+'''|}'''<br />
+</span>
+| valign="bottom" | the original table again<br />
+|}
+</verbatim></div>
+
+*What it looks like in your browser*
+<div class="mwBorder">
+{| border="1"
+| &alpha;
+| align="center" | cell2
+{| border="2" style="background-color:#ABCDEF;color:black"
+| NESTED
+|-
+| TABLE
+|}
+| valign="bottom" | the original table again
+|}
+</div>
+
+
+---+++ Combined use of COLSPAN and ROWSPAN
+
+*Wiki markup*
+<div class="mwIndent"><verbatim>
+{| border="1" cellpadding="5" cellspacing="0"
+|-
+! Column 1 || Column 2 || Column 3
+|-
+| rowspan="2"| A
+| colspan="2" align="center"| B
+|-
+| C &lt;!-- column 1 occupied by cell A --&gt;
+| D 
+|-
+| E
+| rowspan="2" colspan="2" align="center"| F
+|- 
+| G &lt;!-- column 2+3 occupied by cell F --&gt;
+|- 
+| colspan="3" align="center"| H
+|}
+</verbatim></div>
+
+*What it looks like in your browser*
+<div class="mwBorder">
+{| border="1" cellpadding="5" cellspacing="0"
+|-
+! Column 1 || Column 2 || Column 3
+|-
+| rowspan="2"| A
+| colspan="2" align="center"| B
+|-
+| C <!-- column 1 occupied by cell A -->
+| D
+|-
+| E
+| rowspan="2" colspan="2" align="center"| F
+|- 
+| G <!-- column 2+3 occupied by cell F -->
+|- 
+| colspan="3" align="center"| H
+|}
+</div>
+
+Note that using <code>rowspan="2"</code> for cell *G* combined with
+<code>rowspan="3"</code> for cell *F* to get another row below *G* and
+*F* won't work, because all (implicit) cells would be empty.  Likewise
+complete columns are not displayed if all their cells are empty. Borders
+between non-empty and empty cells might be also not displayed (depending on the
+browser), use <code>&amp;nbsp;</code> to fill an empty cell with dummy content.
+
+---+++ Centering tables
+Centered tables can be achieved, but they will not "float"; that is to say, no
+text will appear to either side. The trick is ={<nop>| style="margin: 1em auto 1em auto"=
+
+*Wiki markup*
+<div class="mwIndent"><verbatim>
+{| class="wikitable" style="margin: 1em auto 1em auto"
+|+ *Cells left-aligned, table centered*
+! Duis || aute || irure
+|-
+| dolor  || in reprehenderit || in voluptate velit
+|-
+| esse cillum dolore || eu fugiat nulla || pariatur.
+|}
+</verbatim></div>
+
+*What it looks like in your browser*
+<div class="mwBorder">
+{| class="wikitable" style="margin: 1em auto 1em auto"
+|+ *Cells left-aligned, table centered* 
+! Duis || aute || irure
+|-
+| dolor  || in reprehenderit || in voluptate velit
+|-
+| esse cillum dolore || eu fugiat nulla || pariatur.
+|}
+</div>
+
+---+++ Setting parameters
+At the start of a cell, add your parameter followed by a single pipe. For
+example =width="300"|= will set that cell to a width of 300 pixels. To
+set more than one parameter, leave a space between each one.
+
+*Wiki markup*
+<div class="mwIndent"><verbatim>
+{| style="color:white"
+|-
+| bgcolor="red"|cell1 || width="300" bgcolor="blue"|cell2 || bgcolor="green"|cell3
+|}
+</verbatim></div>
+
+*What it looks like in your browser*
+<div class="mwBorder">
+{| style="color:white"
+|-
+| bgcolor="red"|cell1 || width="300" bgcolor="blue"|cell2 || bgcolor="green"|cell3
+|}
+</div>
+
+---+++ Decimal point alignment
+
+A method to get columns of numbers aligned at the decimal point is as follows:
+
+*Wiki markup*
+<div class="mwIndent"><verbatim>
+{| cellpadding="0" cellspacing="0"
+|align="right"| 432 || .1
+|-
+|align="right"| 43 || .21
+|-
+|align="right"| 4 || .321
+|}
+</verbatim></div>
+
+*What it looks like in your browser*
+<div class="mwBorder">
+{| cellpadding="0" cellspacing="0"
+|align="right"| 432 || .1
+|-
+|align="right"| 43 || .21
+|-
+|align="right"| 4 || .321
+|}
+</div>
+
+If the column of numbers appears in a table with cell padding or cell spacing,
+one can still align the decimal points without an unsightly gap in the middle.
+Embed a table in each number's cell and specify its column widths.  Make the
+embedded tables' column widths the same for each cell in the column.  
+(If decimal points are still misaligned using this method, the main table's
+column may be too narrow.  Add a parameter to increase the column's width.)
+
+*Wiki markup*
+<div class="mwIndent"><verbatim>
+{|border="1" cellpadding="4" cellspacing="2" width="100px"
+|
+{|cellpadding="0" cellspacing="0" width="100%"
+|align="right" width="50%"| 432 ||width="50%"| .1
+|}
+|-
+|
+{|cellpadding="0" cellspacing="0" width="100%"
+|align="right" width="50%"| 43 ||width="50%"| .21
+|}
+|-
+|
+{|cellpadding="0" cellspacing="0" width="100%"
+|align="right" width="50%"| 4 ||width="50%"| .321
+|}
+|}
+</verbatim></div>
+
+*What it looks like in your browser*
+<div class="mwBorder">
+{|border="1" cellpadding="4" cellspacing="2" width="100px"
+|
+{|cellpadding="0" cellspacing="0" width="100%"
+|align="right" width="50%"| 432 ||width="50%"| .1
+|}
+|-
+|
+{|cellpadding="0" cellspacing="0" width="100%"
+|align="right" width="50%"| 43 ||width="50%"| .21
+|}
+|-
+|
+{|cellpadding="0" cellspacing="0" width="100%"
+|align="right" width="50%"| 4 ||width="50%"| .321
+|}
+|}
+</div>
+
+In simple cases one can dispense with the table feature and simply start the
+lines with a space, and put spaces to position the numbers:
+
+<verbatim>
+ 432.1
+  43.21
+   4.321
+</verbatim>
+
+---++ Style classes
+Some users have created CSS classes and templates
+to make table styles easier.  Instead of remembering table parameters, you just
+include an appropriate style class after the =={|==.  This helps keep
+table formatting consistent, and can allow a single change to the class to fix
+a problem or enhance the look of all the tables that are using it at once.  For
+instance, this:
+
+<div class="mwIndent"><verbatim>
+{| border="1" cellpadding="2"
+|+Multiplication table
+|-
+! &amp;times; !! 1 !! 2 !! 3
+|-
+! 1
+| 1 || 2 || 3
+|-
+! 2
+| 2 || 4 || 6
+|-
+! 3
+| 3 || 6 || 9
+|-
+! 4
+| 4 || 8 || 12
+|-
+! 5
+| 5 || 10 || 15
+|}
+</verbatim></div>
+
+<div class="mwBorder">
+{| border="1" cellpadding="2"
+|+Multiplication table
+|-
+! &times; !! 1 !! 2 !! 3
+|-
+! 1
+| 1 || 2 || 3
+|-
+! 2
+| 2 || 4 || 6
+|-
+! 3
+| 3 || 6 || 9
+|-
+! 4
+| 4 || 8 || 12
+|-
+! 5
+| 5 || 10 || 15
+|}
+</div>
+becomes this:
+<div class="mwIndent"><verbatim>
+{| class="wikitable"
+|+Multiplication table
+|-
+! &amp;times; !! 1 !! 2 !! 3
+|-
+! 1
+| 1 || 2 || 3
+|-
+! 2
+| 2 || 4 || 6
+|-
+! 3
+| 3 || 6 || 9
+|-
+! 4
+| 4 || 8 || 12
+|-
+! 5
+| 5 || 10 || 15
+|}
+</verbatim></div>
+<div class="mwBorder">
+{| class="wikitable"
+|+Multiplication table
+|-
+! &times; !! 1 !! 2 !! 3
+|-
+! 1
+| 1 || 2 || 3
+|-
+! 2
+| 2 || 4 || 6
+|-
+! 3
+| 3 || 6 || 9
+|-
+! 4
+| 4 || 8 || 12
+|-
+! 5
+| 5 || 10 || 15
+|}
+</div>
+
+simply by replacing inline CSS for the table by <code>class="wikitable"</code>.
+This is because the _wikitable_ class in the plugin's =style.css= file contains a
+number of _wikitable_ CSS style rules.  These are all applied
+at once when you mark a table with the class.  You can then add additional
+style rules if desired.  These override the class's rules, allowing you to use
+the class style as a base and build up on it:
+
+*Wiki markup*
+<div class="mwIndent"><verbatim>
+{| class="wikitable" style="font-style:italic; font-size:120%; border:3px dashed red;"
+|+Multiplication table
+|-
+! &amp;times; !! 1 !! 2 !! 3
+|-
+! 1
+| 1 || 2 || 3
+|-
+! 2
+| 2 || 4 || 6
+|-
+! 3
+| 3 || 6 || 9
+|-
+! 4
+| 4 || 8 || 12
+|-
+! 5
+| 5 || 10 || 15
+|}
+</verbatim></div>
+
+
+*What it looks like in your browser*
+<div class="mwBorder">
+{| class="wikitable" style="font-style:italic; font-size:120%; border:3px dashed red;"
+|+Multiplication table
+|-
+! &times; !! 1 !! 2 !! 3
+|-
+! 1
+| 1 || 2 || 3
+|-
+! 2
+| 2 || 4 || 6
+|-
+! 3
+| 3 || 6 || 9
+|-
+! 4
+| 4 || 8 || 12
+|-
+! 5
+| 5 || 10 || 15
+|}
+</div>
+
+Notice that the table retains the gray background of the wikitable class, and
+the headers are still bold and centered.  But now the text formatting has been
+overridden by the local _style_ statement; all of the text in the table has
+been made italic and 120% normal size, and the wikitable border has been
+replaced by the red dashed border. 
+
+Of course this works only for browsers supporting inline CSS, if it's important
+use XHTML markup like <code>&lt;big&gt;</code> instead of "font-size:120%", or
+Wiki markup like <code>_text_</code> instead of "font-style:italic".
+
+
+<style type="text/css">
+.mwIndent,
+.mwBorder {
+  margin:10px 50px;
+}
+.mwIndent pre,
+.mwBorder {
+  border:1px solid #aaa;
+}
+.mwBorder {
+  padding:10px;
+}
+</style>
+
+
+---++ Plugin Installation Instructions
+
+   * [[http://twiki.org/p/pub/Plugins/%TOPIC%/%TOPIC%.zip][Download]] the ZIP file
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+%$MANIFEST%
+   * (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+
+---++ Plugin Info
+<!-- provided for compatibility only
+   * Set SHORTDESCRIPTION = Format tables the <nop>MediaWiki way
+-->
+|  Plugin Author: | TWiki:Main.MichaelDaum |
+|  Copyright &copy;: | 2006, Michael Daum http://wikiring.com |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | v0.02 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  13 Oct 2006: | table markup may start have whitespaces at the beginning of a line |
+|  22 Sep 2006: | Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.8 |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | TWiki:Plugins/%TOPIC% |
+|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
+|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+
+-- TWiki:Main/MichaelDaum - 13 Oct 2006

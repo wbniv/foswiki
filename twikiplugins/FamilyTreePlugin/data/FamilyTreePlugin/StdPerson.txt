@@ -1,0 +1,16 @@
+---++ Male line
+%MANCESTORS{%BASETOPIC%}%
+---++ Female line
+%FANCESTORS{%BASETOPIC%}%
+
+---++ Unions
+%SEARCH{ "FIELD{.*value=.%INCLUDINGTOPIC%.[}|\s]"
+         type="regex"
+         format="| $formfield(Male) [[$topic][ *married* ]] $formfield(Female) | $formfield(Date) |"
+         header="| *Union* | *Date* |"
+         nosearch="on"
+         nototal="on"
+}%
+
+---++ Descendants
+%DESCENDANTS{%BASETOPIC%}%

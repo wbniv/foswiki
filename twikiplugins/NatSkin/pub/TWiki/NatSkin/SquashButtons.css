@@ -1,0 +1,46 @@
+/* variation to switch on the web buttons for squash */
+@import url('BaseButtons.css');
+
+.natTopBar {
+  border-bottom:0px;
+}
+.natWebButtons {
+  border-bottom: 1px solid #FFFFFF;
+}
+.natWebButtonsContents {
+  font-size:14px;
+  font-family:'Trebuchet MS', arial, sans-serif;
+  margin:5px 22px;
+}
+.natWebButtons ul li {
+  margin-right:4px;
+}
+.natWebButtons ul li a {
+  padding-right:10px;
+  color:white;
+  font-weight:bold;
+  letter-spacing: .1em;
+}
+.natWebButtons ul li a:hover {
+  text-decoration: none;
+  /*
+  background:#CC6600;
+  color:white;*/
+  color:#CC6600;
+}
+
+.natWebButtons ul li.current a:hover {
+  /*
+  background:#aa4400;
+  */
+  color:#aa4400;
+}
+.natWebButtons ul li.current a {
+  text-decoration: none;
+  /*
+  background:#CC6600;
+  color:white;
+  */
+  color:#CC6600;
+  border:0px;
+}

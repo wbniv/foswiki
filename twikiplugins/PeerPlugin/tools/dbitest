@@ -1,0 +1,79 @@
+#!/opt/DKBapache/ASperl/bin/perl -wT
+
+my $database = "ENTERDATABASENAMEHERE";  #(e.g. "dbi:mysql:Peer")
+my $username = "ENTERUSERNAMEHERE";
+my $password = "ENTERPASSWORDHERE";
+my $topic = "ENTERTOPICURLHERE"; #(e.g. "http://www.twiki.org/twiki/bin/view/TWiki/WebHome")
+
+use DBI;
+
+#open connection to database
+$dbh = DBI->connect($database,$username,$password);
+
+my @reviewers = ();
+
+#get reviewers of topic - 
+$sqlstatement=qq{
+SELECT DISTINCT Reviewer 
+FROM reviews
+WHERE Topic='$topic'
+};
+
+$sth = $dbh->prepare($sqlstatement);
+$sth->execute || die "Could not execute SQL statement ... maybe invalid?";
+
+#output database results
+while (@row=$sth->fetchrow_array)
+{
+    push( @reviewers, $row[0] );
+}
+
+
+print "##############################\n";
+print "reviewers: @reviewers\n";
+print "##############################\n";
+
+my $reviewer = "";
+foreach $reviewer ( @reviewers )
+{
+    #clear temp table
+    $sqlstatement=qq{
+    DELETE FROM temp
+    };
+    
+    $sth = $dbh->prepare($sqlstatement);
+    $sth->execute || die "Could not execute SQL statement ... maybe invalid?";
+    
+    #load temp table
+    $sqlstatement=qq{
+    INSERT INTO temp
+    SELECT *
+    FROM reviews
+    WHERE Topic='$topic' 
+    && Reviewer='$reviewer'
+    };
+    
+    $sth = $dbh->prepare($sqlstatement);
+    $sth->execute || die "Could not execute SQL statement ... maybe invalid?";
+    
+    #view temp table
+    $sqlstatement=qq{
+    SELECT *
+    FROM temp
+    ORDER BY TopicRev DESC, DateTime DESC
+    LIMIT 1
+    };
+    
+    $sth = $dbh->prepare($sqlstatement);
+    $sth->execute || die "Could not execute SQL statement ... maybe invalid?";
+    
+    #view temp table (need to loop to keep DBI happy)
+    while (@row=$sth->fetchrow_array)
+    {
+        print "@row\n";
+    }
+}
+ 
+$dbh->disconnect;
+
+# EOF

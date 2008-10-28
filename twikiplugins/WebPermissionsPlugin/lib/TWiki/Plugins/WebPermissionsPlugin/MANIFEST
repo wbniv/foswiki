@@ -1,0 +1,17 @@
+lib/TWiki/Plugins/WebPermissionsPlugin.pm
+lib/TWiki/Plugins/WebPermissionsPlugin/Core.pm
+data/TWiki/WebPermissionsPlugin.txt
+pub/TWiki/WebPermissionsPlugin/CHANGE.gif
+pub/TWiki/WebPermissionsPlugin/VIEW.gif
+pub/TWiki/WebPermissionsPlugin/uparrow.png
+pub/TWiki/WebPermissionsPlugin/downarrow.png
+pub/TWiki/WebPermissionsPlugin/leftarrow.png
+pub/TWiki/WebPermissionsPlugin/rightarrow.png
+pub/TWiki/WebPermissionsPlugin/logo.gif
+pub/TWiki/WebPermissionsPlugin/wikiringlogo20x20.png 0660
+pub/TWiki/WebPermissionsPlugin/WebPermissionsPlugin.js
+templates/webpermissionsplugin.topichtml.tmpl
+templates/webpermissionsplugin.topicjavascript.tmpl
+templates/oopsmore.webpermissions.tmpl
+templates/oopsmoretopicacls.tmpl
+templates/topicacls.tmpl

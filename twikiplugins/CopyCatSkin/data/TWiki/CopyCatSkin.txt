@@ -1,0 +1,51 @@
+%META:TOPICINFO{author="guest" date="1051506397" format="1.0" version="1.1"}%
+%META:TOPICPARENT{name="WebHome"}%
+---+ the Copy Cat Skin
+
+...is not really a skin per se, rather it is (will be)  a collection of partially built skins modelled after other popular sites on the net.
+
+%TOC%
+
+---++ Movable Type
+To kick things off, atached is a Codev.MovableType look alike,  ==cc-moveabletype== .To install, 
+	* put the download archive in =$twikiroot=
+	* unzip, with directories (will put files in =templates/, pub/Plugins/CopyCatSkin/, data/Plugins/=)
+	* edit TWiki.TWikiPreferences, WebPreferences, or your personal page and set the variables
+<verbatim>
+		* Set SKIN = cc-movabletype
+		* Set CCSTYLE = mt-georgia-blue
+		* Set TAGLINE = ...what this twiki site is all about...
+</verbatim>
+
+To try out the different looks available, substitute _georgia-blue_ with any of the css files in =pub/Plugins/CopyCatSkin/= . The twiki template uses the same class and id names as the default Moveable Type template. You should be able to put any MT template into /pub/Plugins/CopyCatSkin, update the CCSTYLE variable, and it will just work. No edits necessary.
+
+The included styles are verbatim from http://www.movabletype.org/default_styles.shtml. Only some of the rules in the stylesheets are used so you could delete the unused stuff for efficiency's sake (and to make it easier to understand what the stylesheets say).
+
+UPDATE: All of the stylesheets are loaded as "alternates" so you can cycle through all of them without having to edit the WebPreferences topic every time. In Mozilla use _View > Use Style_ ,and for Internet Explorer use the _Choose style sheet_ favelet at http://tantek.com/favelets/. I don't know what the Opera equivalent is.
+
+---+++ Skin Info
+I built this skin as a proof of concept and probably won't spend much time on maintaining or extending it. Only the view template is defined. Anybody who wants to take it over is welcome to.
+
+|  Skin Author: | TWiki:Main/MattWilkie |
+|  Skin Version: | 20 Apr 2003 (v0.1) |
+|  Change History: | <!-- specify latest version first -->&nbsp; |
+|  20 Apr 2003: | Initial version (v0.1) |
+|  Skin Home: | http://TWiki.org/cgi-bin/view/Plugins/CopyCatSkin |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/CopyCatSkinDev |
+
+-- Main.MattWilkie - 20,28 Apr 2003
+
+Moved hardcoded TAGLINE from template to preferences.
+
+-- Main.MattWilkie - 03 Oct 2003
+
+
+---++ Blogger ...?
+
+...
+
+
+
+
+__Related topics:__ %SYSTEMWEB%.TWikiSkins, AdaptBlogSkins
+

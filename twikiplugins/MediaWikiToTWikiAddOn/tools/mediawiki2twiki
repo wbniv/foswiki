@@ -1,0 +1,84 @@
+#!/usr/bin/perl -w
+# Copyright (C) 2006-2007 Michael Daum http://wikiring.de
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details, published at 
+# http://www.gnu.org/copyleft/gpl.html
+
+=head1 NAME
+
+MediaWiki 2 TWiki Conversion Tool
+
+=head1 SYNOPSIS
+
+mediawiki2twiki
+      --file <dumpfile>
+      [--<debug>]
+      [--<defaultweb> <webname>]
+      [--<dry>]
+      [--<exclude> <regex>]
+      [--<help>]
+      [--<images> <path>]
+      [--<include> <regex>]
+      [--<language> <language code>]
+      [--<match> <regex>]
+      [--<max> <number>]
+      [--<namespace> <name>]
+      [--<plugin> <perlfile>]
+      [--<topicmap> <fromTopic1=toTopic1,fromTopic2=toTopic2,...>]
+      [--<web> <target web>]
+      [--<webmap> <fromWeb1=toWeb1,fromWeb2=toWeb2,...>]
+
+=head1 Examples
+
+mediawiki2twiki 
+      --file dump.xml 
+      --web MediaWiki 
+      --language de 
+      --topicmap 'Hauptseite=WebHome,Spezial.Allpages=WebTopicList' 
+      --images /var/www/mediawiki/images 
+      --defaultweb _mediawiki_default
+      --plugin MyConversionPlugin 
+      --exclude '^(MediaWiki|Bild|Kategorie):' 
+
+This reads the file "dump.xml", and creats a TWiki web called MediaWiki in our
+current TWiki installation (see Setup); the source content is German; the pages
+pages "Hauptseite" will be stored in the the "WebHome" topic; the "Special.Allpages"
+page will be stored in "WebTopicList"; images are taken from the images subdirectory
+of our MediaWiki installation at /var/www/mediawiki; we prepared a template web 
+called "_mediawiki_default" that will be used when creating TWiki webs; we have
+some perl code in MyConversionPlugin.pm that defines some custom conversions only
+of relevance for our own content; source pages that match the regular expression
+"MediaWiki|Bild|Kategorie" will be excluded from the translation process.
+
+=head1 Options
+
+
+The only mandatory option is the name of the MediaWiki dump file from
+which content is extracted. Before you start extracting large amount of data
+you should test the conversion result by using the B<-debug>, B<-dry> and B<-max>.
+
+
+=cut
+
+BEGIN {
+    unshift @INC, '.';
+    unshift @INC, '../bin'; # SMELL: argh where's the twiki installation
+    require 'setlib.cfg';
+    require 'LocalSite.cfg';
+}
+
+use strict;
+use TWiki::Contrib::MediaWikiToTWikiAddOn;
+
+TWiki::Contrib::MediaWikiToTWikiAddOn::main();
+
+
+1;

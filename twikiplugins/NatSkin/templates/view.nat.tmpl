@@ -1,0 +1,59 @@
+%TMPL:INCLUDE{"page"}%
+<!-- template: view.nat.tmpl -->
+<!-- include viewbody -->%TMPL:INCLUDE{"viewbody"}%
+<!-- include viewtopicactions -->%TMPL:INCLUDE{"viewtopicactions"}%
+<!-- include viewsidebar -->%TMPL:INCLUDE{"viewsidebar"}%
+<!-- include viewjavascript -->%TMPL:INCLUDE{"viewjavascript"}%
+<!-- include viewjavascript -->%TMPL:INCLUDE{"viewstyles"}%
+<!-- include viewjavascript -->%TMPL:INCLUDE{"searchbox"}%
+%TMPL:DEF{"bodyclass"}%natViewBody%TMPL:END%
+
+%TMPL:DEF{"title"}%%IFDEFINED{"%PAGETITLE%" then="$test" else="%TOPIC% - %WEB%"}%%TMPL:END%
+
+%TMPL:DEF{"meta"}%%HTTP_EQUIV_ON_VIEW%
+%IFDEFINED{"%METAKEYWORDS%" then="<meta name=\"keywords\" content=\"$test\" />$n<meta http-equiv=\"keywords\" content=\"$test\" />"}%
+%IFDEFINED{"%METAAUTHOR%" glue="off" then="<meta name=\"author\" content=\"$test\" />"}%
+%IFDEFINED{"%METADESCRIPTION%" then="<meta name=\"description\" content=\"$test\" />"}%%TMPL:END%
+
+%TMPL:DEF{"content"}%%STARTALIASAREA%%TEXT%
+%META{"form"}%
+%STOPALIASAREA%%TMPL:END%
+
+%TMPL:DEF{"contentheader"}% <!-- -->
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr>
+  <td valign="top">
+    <div class="natBreadCrumbs">
+      %BREADCRUMBS{separator="<span class='natSep'>&nbsp;&#187; </span>"}%
+    </div>
+  </td>
+  <td valign="top" align="right">
+    <dirtyarea>
+    %IFDEFINEDTHEN{"$percntBROADCASTMESSAGE$percnt"}%
+    <span class="natBroadCastToggle">
+    %$nopTWISTYBUTTON{id="broadcastmessage" 
+      remeber="on"
+      showlink="Broadcast on " hidelink="Broadcast off " 
+      showimg="%ICONURLPATH{toggleopenleft-small}%"
+      hideimg="%ICONURLPATH{toggleclose-small}%"
+    }%
+    </span>
+    %FIDEFINED%
+    </dirtyarea>
+  </td>
+</tr></table>%TMPL:END%
+
+%TMPL:DEF{"contentfooter"}%<div class="natTopicAttachments"> %META{"attachments"}% </div>
+<div class="natRevision"> %REVINFO% </div>%TMPL:END%
+
+%TMPL:DEF{"broadcast"}%<!-- -->
+%IFDEFINEDTHEN{"$percntBROADCASTMESSAGE$percnt"}%
+  %$nopTWISTYTOGGLE{id="broadcastmessage"
+  mode="div" 
+  firststart="show"
+  remember="on" 
+}%
+<div class="twikiBroadcastMessage"> $test </div>
+%$nopENDTWISTY%
+%FIDEFINED% 
+%TMPL:END%

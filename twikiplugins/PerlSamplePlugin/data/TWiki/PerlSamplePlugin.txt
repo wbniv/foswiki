@@ -1,0 +1,58 @@
+%META:TOPICINFO{author="AndreaSterbini" date="1006849174" format="1.0" version="1.3"}%
+*Perl examples Plugin*
+
+This plugin nicely formats a Perl piece of code, together with its STDOUT and STDERR outputs.
+	* To avoid unproper usage it executes the Perl code in a *Safe* compartment.
+
+His brother is the PrologSamplePlugin.
+
+*TODO:*
+	* Apply a timeout to the perl execution (spawn a delayed kill process)
+	* Limit the output size (disk quota?)
+	* Use a random generated file for the output/stderr 
+ 
+*Usage example*
+<table border=1><tr><th> You type: </th><th> You get: </th><th> If correctly installed: </th></tr>
+<tr valign=top><td>
+<pre>
+%<nop>PERLSAMPLE{
+print "hello world!";
+}% 
+</pre>
+</td><td>
+<table border=0>
+	<tr>
+		<th> </th>
+		<th bgcolor = #aaaaaa>code</th>
+		<th bgcolor = #aaffaa>return</th>
+	</tr>
+	<tr valign="top" bgcolor = #eeeeff>
+		<td bgcolor="#aaaaaa"><font color="#0000ff"><pre>1</pre></font></td>
+		<td bgcolor="#eeeeee"><font color="#ff0000"><pre>print "hello world!";</pre></font></td>
+		<td bgcolor = #eeffee><pre>1&nbsp;</pre></td>
+	</tr>
+		<th> </th>
+		<th bgcolor = #ffaaff>stdout</th>
+		<th bgcolor = #ffaaaa>stderr</th>
+	</tr>
+	<tr valign="top" bgcolor = #eeeeff>
+		<td></td>
+		<td bgcolor = #ffeeff><pre> 1: hello world!&nbsp;</pre></td>
+		<td bgcolor = #ffeeee><pre>&nbsp;</pre></td>
+	</tr>
+</table>
+</td><td>
+ %PERLSAMPLE{print "hello world!";}% 
+</td></tr>
+</table>
+
+*Installation*
+
+	* Install the *Safe* Perl module (see http://www.cpan.org).
+	* Unzip the *%TOPIC%<nop>.zip* file in your TWiki installation directory.
+	* double check that =bin/perl_stdout.tmp= and =bin/perl_stderr.tmp= are writable by the Apache user.
+
+If the installation is correct you will see a nice table showing the code, its value and stdout/stderr near the example.
+
+-- %SYSTEMWEB%.AndreaSterbini and TWiki:Main/FrancoBagnoli -- 27 Nov 2001
+%META:TOPICMOVED{by="AndreaSterbini" date="1006844912" from="Plugins.PerlsamplePlugin" to="Plugins.PerlSamplePlugin"}%

@@ -1,0 +1,2 @@
+# Dependencies for BatchUploadPlugin
+Archive::Zip,>=1.18,cpan,Required.

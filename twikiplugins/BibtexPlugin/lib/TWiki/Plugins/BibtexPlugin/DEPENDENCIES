@@ -1,0 +1,2 @@
+ONLYIF( $TWiki::Plugins::VERSION < 1.1 )
+TWiki::Contrib::DakarContrib,>=0.1,perl,Required

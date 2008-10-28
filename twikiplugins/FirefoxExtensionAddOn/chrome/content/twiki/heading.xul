@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin" type="text/css"?>
+<!DOCTYPE dialog SYSTEM "chrome://twiki/locale/twiki.dtd">
+<dialog id="twiki-list" title="&twiki.heading.title;" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" buttons="accept,cancel" onload="onLoad(); sizeToContent();" ondialogaccept="return qnAccept();" ondialogcancel="onCancel();">
+	<script type="application/x-javascript"> <![CDATA[//
+////////////
+function onLoad()
+{
+	var params = window.arguments[1];
+//	document.getElementById('list-file').value = params[0];
+//	document.getElementById('list-description').value = params[1];
+}
+
+function qnAccept()
+{
+	var ok = window.arguments[0];
+	var params = window.arguments[1];
+	params[0] = document.getElementById('list-headinglevel').selectedIndex;
+	ok[0] = true;
+	return true;
+}
+function onCancel()
+{
+  var ok = window.arguments[0]; 
+  ok[0] = false;
+  return true;
+}
+////////////
+]]></script>
+	<grid flex="1">
+		<columns>
+			<column/>
+			<column flex="1"/>
+		</columns>
+		<rows>
+			<row>
+				<label value="&twiki.headinglevel;" control="heading.level"/>
+				<menulist id="list-headinglevel">
+					<menupopup>
+						<menuitem label="&twiki.headinglevel.one;" selected="true"/>
+						<menuitem label="&twiki.headinglevel.two;"/>
+						<menuitem label="&twiki.headinglevel.three;"/>
+						<menuitem label="&twiki.headinglevel.four;"/>
+						<menuitem label="&twiki.headinglevel.five;"/>
+						<menuitem label="&twiki.headinglevel.six;"/>
+					</menupopup>
+				</menulist>
+			</row>
+		</rows>
+	</grid>
+</dialog>
+

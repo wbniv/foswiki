@@ -1,0 +1,10 @@
+All people recorded in this history, in alphabetical order:
+
+%SEARCH{
+   "%[Mm]ETA:FORM{name=.PersonForm"
+   type="regex"
+   format="[[$topic][$percntSPACEOUT{$topic}$percnt]]"
+   nonoise="on"
+   separator=" <br /> "
+   excludetopic="TemplatePerson"
+}%

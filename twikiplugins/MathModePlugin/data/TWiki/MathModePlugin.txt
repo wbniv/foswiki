@@ -1,0 +1,213 @@
+%META:TOPICINFO{author="TWikiContributor" date="1154718489" format="1.1" reprev="1.2" version="1.1"}%
+<!--
+
+   PLEASE DO NOT EDIT THIS TOPIC
+
+   It is automatically generated from the subversion repository, and any changes
+   you make will simply be overwritten the next time a release is generated.
+
+   Instead, you could check your fix in, raise a bug in the Bugs web, or mail the author.
+
+   NatSkin: grant to have a style with a light background
+-->
+---+!! %TOPIC%
+%TOC%
+---++ Description
+This plugin allows you to include mathematics in a TWiki page, with a format
+very similar to <nop>LaTeX.  The external program =latex2html= is used to
+generate =gif= (or =png=) images from the math markup, and the image is then included in
+the page.  The first time a particular expression is rendered, you will notice
+a lag as =latex2html= is being run on the server.  Once rendered, the image is
+saved as an attached file for the page, so subsequent viewings will not require
+re-renders.  When you remove a math expression from a page, its image is
+deleted.  
+
+Note that this plugin is called MathModePlugin, not <nop>LaTeXPlugin, because
+the only piece of <nop>LaTeX implemented is rendering of images of mathematics.
+
+---++ Syntax Rules
+<b>&lt;latex [attr="value"]* &gt; =formula= &lt;/latex&gt;</b>
+
+generates an image from the contained =formula=. In addition attribute-value
+pairs may
+be specified that are passed to the resulting =img= html tag. The only exeptions
+are the following attributes which take effect in the latex rendering pipeline:
+   * =size=: the latex font size; possible values are 
+      tiny, scriptsize, footnotesize, small, normalsize, large, Large, LARGE,
+      huge or Huge; defaults to %<nop>LATEXFONTSIZE%
+   * =color=: the foreground color of the formula; defaults to
+      %<nop>LATEXFGCOLOR%
+   * =bgcolor=: the background color; defaults to
+      %<nop>LATEXBGCOLOR%
+
+The formula
+will be displayed using a =math= latex environment by default. If the formula
+contains a latex linebreak (=\\=) then a =multline= environment of amsmath is used instead.
+If the formula contains an alignment sequence (=& = &=) then an =eqnarray= environment
+is used.
+
+Note that the old notation using =%<nop>$formula$%= and =%<nop>\[formula\]%=
+is still supported but are deprecated.
+
+If you might want to recompute the images cached for the current page then append =?refresh=on= to its url,
+e.g. click *[[%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%?refresh=on][here]]* to refresh the formulas
+in the examples below.
+
+
+---++ Examples
+The following will only display correctly if this plugin is installed and 
+configured correctly.
+<verbatim>
+<latex title="this is an example">
+  \int_{-\infty}^\infty e^{-\alpha x^2} dx = \sqrt{\frac{\pi}{\alpha}}
+</latex>
+</verbatim>
+<latex title="this is an example">
+  \int_{-\infty}^\infty e^{-\alpha x^2} dx = \sqrt{\frac{\pi}{\alpha}}
+</latex>
+
+<verbatim>
+<latex>
+  {\cal P} & = & \{f_1, f_2, \ldots, f_m\} \\
+  {\cal C} & = & \{c_1, c_2, \ldots, c_m\} \\
+  {\cal N} & = & \{n_1, n_2, \ldots, n_m\}
+</latex>
+</verbatim>
+
+<latex>
+  {\cal P} & = & \{f_1, f_2, \ldots, f_m\} \\
+  {\cal C} & = & \{c_1, c_2, \ldots, c_m\} \\
+  {\cal N} & = & \{n_1, n_2, \ldots, n_m\}
+</latex>
+
+<verbatim>
+<latex title="Calligraphics" color="orange">
+  \cal
+  A, B, C, D, E, F, G, H, I, J, K, L, M, \\
+  \cal
+  N, O, P, Q, R, S, T, U, V, W, X, Y, Z
+</latex>
+</verbatim>
+
+<latex title="Calligraphics" color="orange" size="Large">
+  \cal
+  A, B, C, D, E, F, G, H, I, J, K, L, M, \\
+  \cal
+  N, O, P, Q, R, S, T, U, V, W, X, Y, Z
+</latex>
+
+<verbatim>
+<latex>
+  \sum_{i_1, i_2, \ldots, i_n} \pi * i + \sigma
+</latex>
+</verbatim>
+
+<latex>
+  \sum_{i_1, i_2, \ldots, i_n} \pi * i + \sigma
+</latex>
+
+This is <latex color="red" size="large">\cal A</latex> new inline test.
+
+
+| *Greek letters* ||||
+| =\alpha= | <latex>\alpha</latex> | =\theta= | <latex>\theta</latex> |
+| =\beta= | <latex>\beta</latex> | =\iota= | <latex>\iota</latex> |
+| =\gamma= | <latex>\gamma</latex> | =\kappa= | <latex>\kappa</latex> |
+| =\delta= | <latex>\delta</latex> | =\lambda= | <latex>\lambda</latex> |
+| =\epsilon= | <latex>\epsilon</latex> | =\mu= | <latex>\mu</latex> |
+| =\zeta= | <latex>\zeta</latex> | =\nu= | <latex>\nu</latex> |
+| =\eta= | <latex>\eta</latex> | =\xi= | <latex>\xi</latex> |
+
+---++ Plugin Installation Instructions
+
+   * [[http://twiki.org/p/pub/Plugins/%TOPIC%/%TOPIC%.zip][Download]] the ZIP file
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+   | *File:* | *Description:* |
+%$MANIFEST%
+   * This plugin makes use of three additional tools that are used to convert latex formulas
+     to images. These are 
+      * a working <nop>LaTeX implementation 
+      * [[http://sourceforge.net/projects/dvipng/][dvipng]] and
+      * [[http://www.imagemagick.org/][ImageMagick]]
+   * Make sure they are installed and check the paths to the programs =latex=, =dvipng= and
+     =convert= in the latex2img shiped with this plugin 
+   * Edit the file =&lt;path-to-twiki>/pub/%SYSTEMWEB%/%TOPIC%/latex2img= accordingly
+   * (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+
+---++ Configuration
+There are a set of configuration variables that an be set in different places.
+All of the below variables can be set in your =LocalSite.cfg= file like this:
+<verbatim>
+$TWiki::cfg{MathModePlugin}{<Name>} = <value>;
+</verbatim>
+Some of the below variables can _only_ be set this way, some of the may be
+overridden by defining the respective prefrence variable.
+
+| *Name* | *Preference Variable* | *Default* |
+| =HashCodeLength= |  | 32 |
+| &nbsp; | length of the hash code. If you switch to a different \
+           hash function, you will likely have to change this ||
+| =ImagePrefix= | | '_MathModePlugin_' |
+| &nbsp; | string to be prepended to any auto-generated image ||
+| =ImageType= | %<nop>LATEXIMAGETYPE% | 'png' |
+| &nbsp; | extension of the image type; \
+           possible values are 'gif' and 'png' ||
+| =Latex2Img= | | '.../%SYSTEMWEB%/%TOPIC%/latex2img' |
+| &nbsp; | the script to convert a latex formula to an image ||
+| =LatexPreamble= | %<nop>LATEXPREAMBLE% | '\usepackage{latexsym}' |
+| &nbsp; | latex preamble to include additional packages \
+           (e.g. \usepackage{mathptmx} to change the math font) ;\
+           note, that the packages =amsmath= and =color= are loaded too \
+	   as they are obligatory ||
+| =ScaleFactor= | %<nop>LATEXSCALEFACTOR% | 1.2 |
+| &nbsp; | factor to scale images  ||
+| =LatexFGColor= | %<nop>LATEXFGCOLOR% | black |
+| &nbsp; | default text color ||
+| =LatexBGColor= | %<nop>LATEXBGCOLOR% | white |
+| &nbsp; | default background color ||
+| =LatexFontSize= | %<nop>LATEXFONTSIZE% | normalsize |
+| &nbsp; | default font size ||
+
+---++ Plugin Info
+<!-- provided for compatibility only
+   * Set SHORTDESCRIPTION = Include <nop>LaTeX formatted math in your TWiki pages
+-->
+|  Plugin Author: | TWiki:Main.GraemeLufkin, TWiki:Main.MichaelDaum |
+|  Copyright &copy;: | 2002 Graeme Lufkin, gwl@u.washington.edu, 2006, MichaelDaum@WikiRing.com |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | 2.94 |
+|  Change History: | &nbsp; |
+|  18 Dec 2006: | only use one bgcolor |
+|  02 Oct 2006: | don't fail on hierarchical webs; backwards compatible tempfile cleanup |
+|  31 Aug 2006: | added NO_PREFS_IN_TOPIC; \
+                  using =xcolor= instead of =color= latex package now to be able to \
+		  specify colors in html typical codes; default preamble uses latexsym now |
+|  07 Aug 2006: | switched from latex2html to latex+dvipng+convert; \
+                  added =size=, =color=, =bgcolor= to &lt;latex> tag; \
+		  rendering pngs by default now; \
+		  reworked plugin settings; \
+		  added a latex2img shell script; \
+		  returning full latex error report |
+|  04 Aug 2006: | major rewrite; \
+        fixed security issues by using TWiki's sandbox feature \
+        and creating tempfiles properly; \
+                  added new &lt;latex>...&lt;/latex> tag to support multiline formulas;\
+                  better configurability; \
+        better error reporting; \
+        fixed issues where images have not been cleaned up regularly; \
+        speedup don't clean orphaned images during =view= but during =save=; \
+                  speedup by adding lazy compilation and initialization; \
+                  implemented a =postRenderingHandler= for TWiki V4; \
+                  prevent auto-generated images stored in pub from \
+        being auto-attached using TWiki V4 |
+|  03 Apr 2002: | Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | <nop>LaTeX, dvipng, <nop>ImageMagick |
+|  Perl Version: | 5.8 |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | TWiki:Plugins/%TOPIC% |
+|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
+|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+
+-- TWiki:Main.GraemeLufkin - 05 Jun 2002 %BR%
+-- TWiki:Main.MichaelDaum - 18 Dec 2006

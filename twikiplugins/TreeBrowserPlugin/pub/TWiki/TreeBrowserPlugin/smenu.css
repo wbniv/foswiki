@@ -1,0 +1,165 @@
+/*
+ Copyright (c) 2007 Stéphane Lenclud
+*/
+
+/*Prevents NatSkin firefox bug*/ 
+.natMainContents {
+overflow:visible;
+}
+
+.smenu {
+    z-index:200; 
+    line-height:100%;
+    max-width:200px;
+    /*overflow:hidden;*/
+    cursor:pointer;
+}
+
+.smenu img {
+        display:inline; /*Important for compatibility with NatSkin TOC*/
+        border: 0px;
+        vertical-align: middle;
+}
+
+/*Make sure background item have lower z-index than the rest*/
+div.dmenuTranslucentBackground {
+    z-index: 150;
+}
+
+.smenuLevel0 > .smenuNodeOpened a,
+.smenuLevel0 > .smenuNodeClosed a,
+.smenuLevel0 > .smenuLeaf a{
+   color: #444444;
+   text-decoration: none;
+   display:block;
+   width:100%;
+}
+
+.smenuLevel0 > .smenuNodeOpened a {
+color: orange;
+}
+
+.smenuLevel1 > .smenuNodeOpened a {
+color: orange;
+}
+
+.smenuLevel0 > .smenuNodeOpened a:hover,
+.smenuLevel0 > .smenuNodeClosed a:hover,
+.smenuLevel0 > .smenuLeaf a:hover {
+   color: orange;
+}
+
+
+.smenuNodeOpened a,
+.smenuNodeClosed a,
+.smenuLeaf a{
+   color: #FFFFFF;
+   text-decoration: none;
+   display:block;
+   width:100%;
+   padding: 4px 4px 4px 4px;
+   /*overflow: hidden;*/ /* prevents text to overflow*/
+}
+
+.smenuNodeOpened a:hover,
+.smenuNodeClosed a:hover,
+.smenuLeaf a:hover {
+    text-decoration: none;
+    color:orange;
+}
+
+.smenuLevel0 div {
+   /*font-weight: bold!important;*/ /*so that we overide the leaf settings*/
+}
+
+.smenuFakeItem {
+    padding: 4px 4px 4px 4px; 
+}
+
+div.smenuTranslucentBackground.smenuLevel1  {
+    z-index: 150;
+    background-color:#000000;
+    opacity:0.40; 
+    filter: alpha (opacity=40); 
+    border-style:solid;
+    border-width:2px;
+    border-color:#FFFFFF;     
+}
+
+div.smenuChildren.smenuLevel1 {
+   z-index: 200;
+   background-color:transparent;
+   border-style:solid;
+   border-width:2px;
+   border-color:#FFFFFF;
+}
+
+
+/*smenuTranslucentBackground.smenuLevel0 not working yet*/
+/*
+div.smenuTranslucentBackground.smenuLevel0  {
+    z-index: 150;
+    background-color:#000000;
+    opacity:0.40; 
+    filter: alpha (opacity=40);
+    color:black;  
+    border-style:solid;
+    border-width:2px;
+    border-color:#FFFFFF;     
+}
+*/
+
+div.smenuChildren.smenuLevel0 {
+    z-index: 200;
+    background-color:transparent;
+    /*overflow:hidden;*/
+    border-style:solid;
+    border-width:0px 0px 0px 1px;
+    border-color:#555555;     
+}
+
+.smenuNodeOpened, .smenuNodeOpened a {
+   /*text-decoration: underline!important;*/ /*Make it important so that it overrides the decoration defined in .detree a:hover*/
+   font-weight: bold;
+   /*color: red;*/
+}
+
+.smenuNodeClosed, .smenuNodeClosed a {
+   /*text-decoration: underline;*/
+   font-weight: bold;
+   /*color: red;*/
+}
+
+.smenuLeaf {
+   font-weight: normal;
+   display:block;
+   /*position: relative;*/
+}
+
+.smenuChildren div {
+width:180px; /* Fixes funny IE bug by which every menu item has a different size */
+}
+
+.smenuRoot {
+width:180px; /* Align with the above */
+}
+
+div.smenuTranslucentBackground.smenuLevel2  {
+    z-index: 150;
+    background-color:#000000;
+    opacity:0.40; 
+    filter: alpha (opacity=40); 
+    border-style:solid;
+    border-width:2px;
+    border-color:#FFFFFF;     
+}
+
+div.smenuChildren.smenuLevel2 {
+   z-index: 200;
+   background-color:transparent;
+   /*overflow:hidden;*/
+   border-style:solid;
+   border-width:2px;
+   border-color:#FFFFFF;
+}
+

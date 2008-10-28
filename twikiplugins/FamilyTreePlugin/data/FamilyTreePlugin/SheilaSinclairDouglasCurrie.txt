@@ -1,0 +1,13 @@
+---+ Sheila Sinclair Douglas Currie
+%INCLUDE{"StdPerson"}%
+---++ Records
+| Cremated | Warriston Crematorium, 23 March 1990 |
+
+%EDITTABLE{include="RecordTable"}%
+
+%META:FORM{name="PersonForm"}%
+%META:FIELD{name="Forenames" attributes="" title="Forenames" value="Sheila Sinclair Douglas"}%
+%META:FIELD{name="Surname" attributes="" title="Surname" value="Currie"}%
+%META:FIELD{name="Born" attributes="" title="Born" value="25 August 1902"}%
+%META:FIELD{name="Died" attributes="" title="Died" value="20 March 1990"}%
+%META:FIELD{name="Sex" attributes="" title="Sex" value="F"}%

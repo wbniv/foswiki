@@ -1,0 +1,51 @@
+head	1.1;
+access;
+symbols;
+locks
+	root:1.1; strict;
+comment	@# @;
+expand	@b@;
+
+
+1.1
+date	2002.05.05.21.14.45;	author guest;	state Exp;
+branches;
+next	;
+
+
+desc
+@none
+@
+
+
+1.1
+log
+@beforeEditHandler patch
+@
+text
+@--- edit	Tue Apr 23 23:28:45 2002
++++ edit.old	Sat May  4 00:55:36 2002
+@@@@ -32,6 +32,11 @@@@
+ 
+ use vars qw( $query );
+ 
++##### for debug only: Remove next 2 comments (but redirect does not work)
++#print "Content-type: text/html\n\n";
++#open(STDERR,'>&STDOUT'); # redirect error to browser
++#$| = 1;                  # no buffering
++
+ $query = new CGI;
+ 
+ &main();
+@@@@ -179,6 +184,10 @@@@
+     $text =~ s/>/&gt\;/go;
+     $text =~ s/\t/   /go;
+ 
++#AS added hook for plugins that want to do heavy stuff
++    &TWiki::Plugins::beforeEditHandler( $text, $topic, $webName );
++#/AS
++
+     if( $TWiki::doLogTopicEdit ) {
+         # write log entry
+         &TWiki::Store::writeLog( "edit", "$webName.$topic", $extra );
+@

@@ -1,0 +1,4 @@
+Net::LDAP,>=0.33,cpan,Required
+Digest::MD5,>=2.36,cpan,Required
+Unicode::MapUTF8,>=1.11,cpan,Required. Download from CPAN:Unicode::MapUTF8 
+Storable,>=2.07,cpan,Required; Download from CPAN:Storable 

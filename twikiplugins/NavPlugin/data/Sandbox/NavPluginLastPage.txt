@@ -1,0 +1,11 @@
+Last page for the NavPluginExample.
+
+When you get to the last page, the "Next" simply reloads the last page in the index.
+
+When you are on the first page, the "Previous" simply reloads the first page in the index.
+
+TOC always takes you to the index page.
+
+<!-- 
+	* Set DOCNAME = NavPlugin
+-->

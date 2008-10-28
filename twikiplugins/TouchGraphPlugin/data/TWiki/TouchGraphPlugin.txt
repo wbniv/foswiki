@@ -1,0 +1,85 @@
+%META:TOPICINFO{author="christo" date="1078333732" format="1.0" version="1.1"}%
+---+ <nop>%TOPIC%
+
+This plugin is based on TWiki:Plugins/TouchGraphAddOn
+. Instead of a standalone java app with its own HTML browser, <nop>%TOPIC% provides a popup window containing an applet.
+
+Advantages:
+	* no need to install anything but a Java Runtime on the clients.
+	* interacts with standard, full featured browsers instead of Java HTML component.
+
+
+---++ Syntax Rules
+
+	* Insert %<nop>TGPOPUP% where you'd like to have a link to a popup window containing the applet. %BR% I have put it into the view action list (%<nop>TMPL:DEF{"topicaction"}% of =/<i>path/to/twiki</i>/bin/view.tmpl=).
+
+   You can still use the unmodified standalone <nop>TGWikiBowser as well e. g. from the command line:
+<pre>
+java -jar /<i>path/to</i>%PUBURLPATH%/%SYSTEMWEB%/%TOPIC%/TGWikiBrowser.jar \ 
+     <nop>%PUBURL%/%WEB%/touchgraph.txt \
+     <nop>%SCRIPTURL%/view/%WEB%/
+</pre>
+
+
+---++ Examples
+
+Test it here: %TGPOPUP%. 
+
+The window popping up schould resemble [[%ATTACHURL%/touchgraph_applet.png][this]].
+
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
+	* Set SHORTDESCRIPTION = Displays the relations between topics of a web in a [[http://www.touchgraph.com/][TouchGraph]] applet
+
+	* Debug plugin: (See output in =data/debug.txt=)
+	* Set DEBUG = 0
+
+	* You may redefine TGPOPUP to your needs. 
+<verbatim>
+
+	* Set TGPOPUP = <a target="wikigraph" onClick="open('%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%?skin=tglaunch', 'wikigraph', 'titlebar=0,width=600,height=600,resizable,scrollbars'); return false" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%?skin=tglaunch title="The topology of the topics in this web (java applet)">Graph</a> 
+</verbatim>
+
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module (almost empty) |
+     | ==bin/tgdb== | database generator for the <nop>TouchGraphBrowser |
+     | ==data/TWiki/TouchGraphAppletInstructions.txt== | howto use the applet |
+     | ==pub/TWiki/TouchGraphPlugin/TGWikiBrowser.jar== | applet code |
+     | ==pub/TWiki/TouchGraphPlugin/touchgraph_applet.png== | screenshot |
+     | ==pub/TWiki/TouchGraphAppletInstructions/kill.png== | icon for the applets stop button |
+     | ==templates/view.tglaunch.tmpl== | special skin for popup window |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+
+	* Edit your crontab to schedule =/<i>path/to/twiki</i>/bin/tgdb= like =[[TWikiSiteTools#Setting_the_Automatic_Email_Sche][mailnotify]]=, e. g.:%BR% =4,19,34,49 * * * * cd /<i>path/to/twiki</i>/bin; ./tgdb > /dev/null=
+
+	* You'll get an applet error unless you have run ==tgdb== once.
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/ChristopherHuhn |
+|  Plugin Version: | 03 Mar 2004 (V1.000) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  03 Mar 2004: | Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | [[http://java.sun.com/j2se/1.4.2/download.html][Java Runtime Environment / Java Plugin]] - tested with 1.4 |
+|  Perl Version: | 5.005 |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins, TWiki:Plugins/TouchGraphAddOn
+
+-- TWiki:Main/ChristopherHuhn - 03 Mar 2004

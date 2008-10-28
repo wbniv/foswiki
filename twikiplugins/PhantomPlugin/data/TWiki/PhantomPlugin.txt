@@ -1,0 +1,63 @@
+%META:TOPICINFO{author="AlexeyEfimov" date="1037492217" format="1.0" version="1.4"}%
+---+ <nop>%TOPIC%
+
+---++ <nop>%TOPIC% Purpose
+
+One of target of this plugin - help with documentation for developers. It have custom variables syntax, custom highlighting support for languages and colorers to highlight the plain text.
+
+---++ Current Features
+
+	* Variables macro language. You can define variables on all TWiki pages. Read PhantomPluginVariables topic to get more information about this feature.
+	* Text Formatters. You can define how plugin will format text. For more information please read PhantomPluginFormatters topic.
+	* Highlighters. You can use predefined or create yourself custom highliters for text (or programmimg code). Read PhantomHighlighters topic to get more information about this feature.
+
+---++ Plugin Development 
+
+Please see topic [[http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev][%TOPIC%Dev]].
+
+If you can say something about this plugin or you have any ideas, i'll be glag if you write in development topic about it.
+
+---++ <nop>%TOPIC% Global Settings
+
+Following variables may using in your work. You can customize each TWiki web by setting this variables in WebPreferences of web. The variables setted in WebPreferences are overload this settings. The %SYSTEMWEB%.TWikiPreferences overload this %TOPIC% settings, WebPreferences overload %SYSTEMWEB%.TWikiPreferences.
+
+---+++ Plugin core settings
+
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
+	* Set SHORTDESCRIPTION = Text processing plugin. Custom variables, custom text formatters etc.
+
+	* Debug plugin: (See output in =data/debug.txt=)
+	* Set DEBUG = 0
+
+	* Content type of every server response. You can use custom content type. If you don't set skin, this variable have effect only to HTTP header. If you enable a skin, in each template was a META tag with value of this variable. To get more information about skin support, please read PhantomSkin topic. You can leave it variable with empty value, then no content type will be used. This may solve the problem of displaying some non-ISO languages encodings.
+	* Set WEBCONTENTTYPE = text/html; charset=windows-1251
+
+---+++ Plugins installation
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory.
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the installation was successful:
+	* The pages chage encoding to charset in %<nop>WEBCONTENTTYPE%
+	* Try [[%SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%?skin=phantom]]
+
+---++ Plugin Info
+
+|  Plugin Author: | Main.AlexeyEfimov |
+|  Plugin Version: | 09 Sep 2002 (V1.100) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  28 Aug 2002: | Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+
+-- Main.AlexeyEfimov - 17 Nov 2002 
+
+%META:FILEATTACHMENT{name="defaultSkin_Guest.gif" attr="h" comment="" date="1030620135" path="D:\defaultSkin_Guest.gif" size="11037" user="AlexeyEfimov" version="1.1"}%
+%META:FILEATTACHMENT{name="defaultSkin_TWikiSite.gif" attr="h" comment="" date="1030620316" path="D:\defaultSkin_TWikiSite.gif" size="23916" user="AlexeyEfimov" version="1.1"}%
+%META:TOPICMOVED{by="AlexeyEfimov" date="1030489106" from="TWiki.PhantomSkinPreferences" to="TWiki.PhantomPlugin"}%

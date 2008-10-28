@@ -1,0 +1,500 @@
+OK
+--------------------------------------------------------------------------------
+* ActionTrackerPlugin
+* AgentPlugin - works, but is a bit dated (doesn't have firefox); also missing opera and safari
+* AliasPlugin
+* AntiWikiSpamPlugin - sven's work-in-development
+* ApprovalPlugin - probably, but too hard to test...
+* BarcodePlugin - works but produces errors in error_log
+* BeautifierPlugin
+* BibliographyPlugin
+* BlackListPlugin - assume it works
+* BlogPlugin - seems to work---will test more later personally
+* BugzillaLinkPlugin
+* CalendarPlugin
+* ChartPlugin
+* ChecklistPlugin
+* ChildTopicTemplatePlugin - works as well as dakar, but doesn't handle "'s in topic name parameter or a web parameter, either (ie, a combined %WEB%.%TOPIC% (or even %WEB%/%TOPIC%) - style topic specifier) - ok, it doesn't get rendered correctly (that is, it %CHILDTOPICPARENT% *does* get rendered, but it seems to work...)
+* CommentPlugin
+* ContributorsPlugin - i think so, anyway; i think the topic's "history" has been stripped to TWikiContributor
+* CounterPlugin - arg, some *seriously* crap code
+* CpanContrib
+* DBCacheContrib
+* DBCachePlugin
+* DateFieldPlugin - (i'm assuming this works...)
+* DateTimePlugin
+* DirectedGraphPlugin
+* DirectedGraphWebMapPlugin
+* DoxygenPlugin
+* EFetchPlugin - (i think)
+* EditTablePlugin
+* EmbedFlashPlugin
+*! EmbedPDFPlugin - missing pdf.pdf, weird render of %>EMBEDPDF{ pdf }% (why the >?)
+* EmbedPlugin
+* EmbedQTPlugin
+* EmbedTopicPlugin
+* ExifMetaDataPlugin - abusing TWiki globals for web and topic name (plugin still doesn't support specifying a web/topic for its target)
+* ExplicitNumberingPlugin
+* ExtendedSelectPlugin
+*! ExternalLinkPlugin - fails one internal test (links to non-existant topic)
+* FamilyTreePlugin
+* FilterPlugin
+* FindElsewherePlugin
+* FormFieldListPlugin -- (well, probably, anyway)
+* FormQueryPlugin - i assume...
+* GaugePlugin
+* GetAWebAddOn
+* GlobalReplacePlugin - it says it works, anyway :)
+* GluePlugin
+* GoogleSearchPlugin
+* GuidPlugin
+* HeadlinesPlugin
+* HiddenTextPlugin
+* HistoryPlugin - seems to work
+* HolidaylistPlugin
+* ImageGalleryPlugin
+* IncludeIndexPlugin - "works", but doesn't number correctly (has extra <p>)
+* InterwikiPlugin
+* IrcPlugin - need more docs
+* IrcLogPlugin
+* JSCalendarContrib
+* LinkOptionsPlugin - works, but has strange interaction with (/is being affected by) some other plugin
+* LocalCityTimePlugin - assuming it works (from PTh) as i don't have an internet connection atm :(
+* LocalTimePlugin
+* MacrosPlugin
+* MailerContrib
+* MrdIdPlugin
+* MultiLangPlugin - probably works as well as it did with Cairo, but it's hard to tell
+* NatSkin
+* NatSkinPlugin
+* NavPlugin
+* NetgrepPlugin
+* NewTopicEventPlugin
+* OoPlugin - need _some_ "docs" - probably should be renamed OoPluginContrib ?
+* PageStatsPlugin
+* PatentLinkPlugin - seems to work
+* PatternSkin
+* PerlDocPlugin
+* PerlSamplePlugin - need to clean up (and rename to PerlPlugin, or something like that)
+* PhotoarchivePlugin - seems to work, but why is the sample image in data/TWiki/ instead of pub/ ?
+* PreferencesPlugin
+* ProjectPlannerPlugin - i guess it works, don't include a useful sample, tho
+* QuickCalendarPlugin
+* RandomQuotePlugin
+* RandomTopicPlugin
+* RecursiveRenderPlugin - (i think it's used on develop.twiki.org)
+* RedDotPlugin
+* RenderListPlugin
+* RevCommentPlugin
+* RevRecoverPlugin
+* SecurityPlugin
+* SingletonWikiWordPlugin
+* SlideShowPlugin
+* SmiliesPlugin
+* SourceHighlightPlugin - (merge with BeautifierPlugin and SyntaxHighlightingPlugin)
+* SpacedWikiWordPlugin - (although it renders TWiki as "T Wiki")
+* SpreadSheetPlugin
+* StylePlugin - seems to work, made some fixes to topic text
+* SuggestLinksPlugin - it's a bit awkward, but it seems to work as well as it ever did (also gives dodgy InstalledPlugins info because of the way it enables itself)(so does NavPlugin)
+* SyntaxHighlightingPlugin - (merge with BeautifierPlugin and SourceHighlightPlugin)
+* TablePlugin
+* TextSectionPlugin
+* TimeSincePlugin
+* TipsContrib
+* TocPlugin - i guess...
+* TodaysVisitorsPlugin - seems to work
+* ToolTipPlugin
+* TopicCreatePlugin - yes, but see email/patch (also, currently only works on UNIX)
+* TopicTranslationsPlugin - seems to work
+* TreePlugin
+* TwistyContrib
+* TwistyPlugin
+* UserInfoPlugin
+* VarCachePlugin
+* VotePlugin - but email MichaelDaum about: view.cgi: Argument "100%" isn't numeric in division (/) at /home/twiki/public_html/cgi-bin/twiki/lib/TWiki/Plugins/VotePlugin.pm line 210.
+* WeatherPlugin
+* WysiwygPlugin
+
+114
+
+
+Broken, but looking into fixes (or, still testing...)
+--------------------------------------------------------------------------------
+? BatchUploadPlugin - still debugging - all files now get uploaded, but they're zero size
+   * also, doesn't clean up its temporary unzip directory
+T ImmediateNotifyPlugin
+   * find WebImmediateNotify topic sample (and put in all of the webs, esp. including _default)
+* PseudoXmlPlugin - well, it *used* to work with 7?84, but is broken with latest
+
+(3)
+
+Should test, but haven't got around to it
+--------------------------------------------------------------------------------
+? DistributionContrib
+? MailInContrib - ok, added dependencies to CpanContrib
+? TWikiShellContrib - pretty sure it works; it's in active development - but, where to put twikishell (it's in the root directory)??
+
+(3)
+
+Missing documentation topics to create a full plugin
+--------------------------------------------------------------------------------
+?- CategoryPlugin - no plugin topic
+?- SlashFilenamePlugin - Plugins: could not fully register SlashFilenamePlugin, no plugin topic
+?- ProtocolTlaPlugin - Plugins: could not fully register ProtocolTlaPlugin, no plugin topic
+
+(3)
+
+in CVS, but missing from SVN ???
+--------------------------------------------------------------------------------
+UserCookiePlugin
+AbusePlugin
+JavaDocPlugin
+PdfPlugin ?
+PrologSamplePlugin
+RicherSyntaxPlugin
+SiteMinderPlugin
+WtfPlugin
+
+(8)
+================================================================================
+17 in limbo....
+
+
+Broken
+--------------------------------------------------------------------------------
+! AlbumOfSnapsPlugin - kinda works - view.cgi: Use of uninitialized value in concatenation (.) or string at /home/twiki/public_html/cgi-bin/twiki/lib/TWiki.pm line 879.
+  End-of-central-directory signature not found.  Either this file is not
+  a zipfile, or it constitutes one disk of a multi-part archive.  In the
+  latter case the central directory and zipfile comment will be found on
+  the last disk(s) of this archive.
+unzip:  cannot find zipfile directory in one of testpics.zip or
+        testpics.zip.zip, and cannot find testpics.zip.ZIP, period.
+mv: cannot stat `testpics': No such file or directory
+./archive_files: line 5: syntax error near unexpected token `;'
+./archive_files: line 5: `;'
+! ControlsPlugin - TWiki::Form::getPossibleFieldValues() called
+! DiskUsagePlugin
+! EditInTablePlugin - after edit and save: Can't locate object method "_removeAutoAttachmentsFromMeta" via package "TWiki" at /home/twiki/public_html/cgi-bin/twiki/lib/TWiki/Store.pm line 738.
+! EditTablerowPlugin - i couldn't get this to do anything when i clicked on the "Edit" button - File does not exist: /home/twiki/public_html/cgi-bin/twiki/pub/TWiki/EditTablerowPlugin, referer: http://localhost/~twiki/cgi-bin/twiki/bin/view.cgi/TWiki/EditTablerowPlugin
+! EmbedBibPlugin - Can't locate object method "findOne" via package "TWiki::Meta" at /home/twiki/public_html/cgi-bin/twiki/lib/TWiki/Plugins/EmbedBibPlugin.pm line 146.
+! FileListPlugin - calls TWiki::formatTime and TWiki::Attach
+! GenerateSearchPlugin - calls TWiki::Form::getFormDef() directly
+! IncludeRevisionPlugin - doesn't render
+!& LatexModePlugin - viewing the page (after configuring program paths properly) yields: AccessControlException: Access to CHANGE TWiki.LatexModePlugin for TWikiGuest is denied. access not allowed on web[Sun Dec 11 17:27:09 2005] [error] [client 127.0.0.1] Premature end of script headers: view.cgi - need to move the sample to the Sandbox web
+! LoginNameAliasesPlugin - TWiki::Plugins::LoginNameAliasesPlugin::earlyInitPlugin failed: 1
+! MsOfficeAttachmentsAsHTMLPlugin - no docs, not sure what to do...
+! NavbarPlugin - fix Colas' TWiki: name, fix parents, fix references back to (%SYSTEMWEB%.)NavbarPlugin - calls TWiki::Store::saveFile()
+! PhantomPlugin - no skin, probably other stuff...
+! PollPlugin - problems with TWiki::userToWikiName(), TWiki::editLockTime, TWiki::dataDir
+! PublishContrib - Can't locate object method "param" via package "TWikiGuest" (perhaps you forgot to load "TWikiGuest"?) at ../lib/TWiki.pm line 1044.
+! QuickSearchPlugin - sh: - : invalid option
+! RevisionLinkPlugin - Can't locate object method "_getHandler" via package "TWiki" at /home/twiki/public_html/cgi-bin/twiki/lib/TWiki/Store.pm line 629.
+! SpellCheckerPlugin (still in development)
+! ThreadedDiscussionPlugin - calling TWiki::Prefs directly (also requires EditContrib, whose status is unknown)
+! TopicReadersPlugin - nothing renders
+! TopicVarsPlugin - parts work, others don't [text in brackets]
+T TranslateTagPlugin - *highly unlikely* to work as it includes patches to scripts (maybe made obsolete by L10N changes to Dakar?)
+! TypographyPlugin - has rendering issues (even with Cairo, more like a bad regex problem)
+! TWikiReleaseTrackerPlugin - didn't build (Can't locate FileDigest.pm in @INC...)
+! UpdateInfoPlugin - no rendering changes
+! VersionLinkPlugin - perhaps due to changes with attachments' use of viewfile ?
+! XpTrackerPlugin - installs a template web called Tracking; should be renamed _XpTrackerPlugin; also, view.cgi: Use of uninitialized value in concatenation (.) or string at /home/twiki/public_html/cgi-bin/twiki/lib/TWiki/Plugins/XpTrackerPlugin.pm line 70.
+Can't call method "maketext" on an undefined value at
+        /home/twiki/public_html/cgi-bin/twiki/lib/TWiki/Access.pm line 175 (#2)
+while processing TWiki.BulkResetPassword (during (re)build of cache)
+
+28
+
+Obselete Plugins (i think...)
+--------------------------------------------------------------------------------
+- GenPDFAddOn - use PublishContrib instead
+! NewsPlugin - topic in data/Plugins/, but isn't this made obsolete by HeadlinesPlugin anyway?  (if so, "delete" from SVN)
+! ConditionalPlugin - old, and probably made obsolete by parts of Dakar and/or NatSkinPlugin
+
+
+
+Untested - don't have prerequisites
+--------------------------------------------------------------------------------
+? AddDBMGroupPlugin - not sure how to test
+? AdvertsPlugin - don't have phpadsnew
+? BugzillaQueryPlugin - can't test (sql)
+? DatabasePlugin - can't test (sql)
+? LaTeXToMathMLPlugin - need to install itex2MML
+? LDAPPasswordChangerPlugin - _looks_ like it should work
+? LdapPlugin - ??? (also references TWiki.TWikiLdapRegistration---what is that?)
+? MailReminderPlugin - can't test (mysql)
+? MathModePlugin - need latex2html
+? MessageBoardPlugin - can't test (sql)
+? MovableTypePlugin - Can't locate MT.pm
+? NotificationPlugin - too much trouble to test...
+? PeerPlugin - can't test (sql) - also, Can't locate object method "_getHandler" via package "TWiki" at /home/twiki/public_html/cgi-bin/twiki/lib/TWiki/Store.pm line 556.
+T- SablotronPlugin - need sablot installed...
+? SnmpCommandPlugin - can't test
+? SvgPlugin - need librsvg-2.0
+? TouchGraphPlugin - don't have java applet
+? WebDAVPlugin (doesn't compile (missing dev headers/libraries))
+T XmlQueryPlugin - need more CPAN modules - change XMLDIR to use getWorkArea() (or whatever it's called)
+?- XmlXslPlugin - need a test sample... or something
+
+21
+
+Untested - Can't tell...
+--------------------------------------------------------------------------------
+? EncryptedPagesPlugin - can't really tell... seems to mostly be working...
+? EditContrib - does this also require SectionalEditPlugin and RecursiveRenderPlugin ?
+? FakeBasicAuthRegPlugin - too much trouble to test, probably made obsolete by Dakar, anyway
+? FlowchartPlugin - can't tell
+! FormFieldsPlugin - doesn't seem to do anything
+? FormPivotPlugin - missing Test.TestFormPivot (after finding it, move it to Sandbox!)
+? FundraisingPlugin - no sample
+? GpgkeyPlugin - can't tell
+? MultiEditPlugin - does this also require SectionalEditPlugin and RecursiveRenderPlugin ? (requies EditContrib)
+? PowerEditPlugin
+? RedirectPlugin - can't tell, no sample
+? RollupPlugin - need sample to test
+? SearchToTablePlugin - missing sample to test
+? SoapClientPlugin (no docs, no example)
+? TWikiDrawSvgPlugin - view.cgi: Use of uninitialized value in concatenation (.) or string at /home/twiki/public_html/cgi-bin/twiki/lib/TWiki/Plugins/TWikiDrawSvgPlugin.pm line 154. - problems with 
+? URLCachePlugin - no sample
+
+18
+
+
+N/A (either development tools, or in/replaced by core now)
+--------------------------------------------------------------------------------
+- BuildContrib
+- DefaultPlugin
+- HelloPlugin
+NA SectionalEditPlugin - version in core
+- TestFixturePlugin
+- TWikiInstallerContrib
+
+6
+
+--- (don't care)
+--------------------------------------------------------------------------------
+- TigerSkinPlugin - didn't test; don't care
+
+1
+ 
+================================================================================
+================================================================================
+things to install on the new computers:
+   * =rcs= (DONE)
+   * server - Tk (i guess) for perl ptkdb(?)
+   * perlmagick
+   * (other debian perl packges?)
+   * SVN::Core (grrr, need to install SVN from source (or something...))
+
+redeploy all webs (with appropriate permissions)
+   * (although RcsWrap scares me...)
+
+(recreate) tinderbox - done, i think...
+
+(recreate) plugins testing area - in-progress
+
+download the real debian
+   * maybe try out vmware player on these computers? (cpu instruction issue with other box)
+
+* how to install debian from the network (should be trivial with http, i'd guess)
+* -how to get a list of installed packages-
+(also /var/lib/dpkg/status)
+* how to create a repository (and sources.list)
+* how to do a partial mirror of other repositories
+* how to master a cd (/publish cd definitions)
+* reinstall server with debian (keep user machine as kubuntu)
+
+(other stuff)
+apt-key
+
+
+* update GetAWebAddOn to support saving to .zip
+   * (and/or update TWikiPluginInstallerContrib/TWikiInstallerContrib to support install from .tar/.tar.gz)
+* update TWikiPluginInstallerContrib/TWikiInstallerContrib to support installation from raw TWikiFor files
+
+(svn add pub/TWiki/TWikiDocGraphics/twiki.gif)
+
+does %TOPICLIS% support metadata extraction (eg, formfield?)
+should WebTopicList be implementing using %SEARCH% instead?
+
+================================================================================
+* Registration of Main.WebHome could go away when someone is already logged in!
+
+   * rebuild twiki system again from scratch (with minimal cpan modules, to bootstrap)
+      * did a lot of work last system move/reinstall, but there's still more work to do (but the end _is_ in sight ;-) )
+
+*** OTHER ISSUES: ***
+
+---+ seem to be bugs
+
+   * TWiki.ExtendedSelectPlugin renders +option as H1's
+
+   * TWiki/TWikiAccessControl has ^ in table header (that's only without the TablePlugin enabled)
+
+   * TWikiGroups doesn't seem to be working (eg, showing values from TWikiAdminGroup, but not from BlogAdminGroup and BlogAuthorsGroup)
+      * ok, it shows all of the groups now, but doesn't show any of the group members from any of the groups
+
+   * oops error messages like
+=No such file or directory at /usr/share/perl/5.8/CGI/Carp.pm line 314. CGI::Carp::re...
+      have a = at the front and end of the string as if TWiki were supposed to <tt> it
+
+   * ImageGalleryPlugin says 
+Error: can't initialize from ''
+   from a topic with an _ in it
+
+   * TablePlugin use isn't protected by %IF{ "context TablePluginEnabled" then="..." }%
+      * attachtables.pattern.tmpl, attachagain.pattern.tmpl, 
+
+   * ManagingWebs baseweb doesn't accept a URL parameter
+tried:
+%CALC{ "$SET(base_web, %URLPARAM{"baseweb" default="_default"}%)" }%
+baseweb: %CALC{$GET(base_web)}%
+<input type="select" ... selection="%CALC{$GET(base_web)}%" ... />
+
+   * are there variables for TWikiGuest?  (if so, TWiki/SitePermissions doesn't use them, who knows where else)
+
+
+---+ (my) task list
+
+   * install project tracking software!!!
+
+   * develop twiki outline editor!!!
+      * (and topic/web refactoring, too!)
+
+   * convert TWikiPluginInstallerContrib to a TWikiShellContribExtension?
+
+   * TWiki 4.1
+      * bug fixes (esp. including security fixes)
+      * TWikiShellContrib
+      * TWikiExtensionInstallerContrib
+      * tinderbox (but would be nice for Dakar, otherwise first thing for Edinburgh)
+      * 
+
+   * review development processes
+      * pth's document editting issues - subversive storage backend, i think?
+      * wow, we really need more test cases (esp. including for bug fixes!)
+      * 
+
+   * see README in test/tinderbox
+
+   * rename TWikiPluginInstallerContrib to TWikiExtensionInstallerContrib
+      * (can't until below issues are resolved)
+   * move TWikiInstallerContrib.pm to TWikiPluginInstallerContrib
+      * (can't until TWikiInstallerContrib.pm's changes are committed)
+
+   * (other renaming?)
+
+   * DakarReleaseNotes - occurences or occurances? (a, right?)
+
+   * beforeAttachmentSaveHandler - does this even bloody work ? (or is it BatchUploadPlugin? or both??? -- hm, no unit test :( )
+      * who even uses it?
+         * Store.pm
+         * RevCommentPlugin - but only modifies the comment field
+         * MsOfficeAttachmentAsHTMLPlugin - can't test...
+
+      * first case fails because a directory doesn't exist for the file to be copied to (eg, Sandbox/TestTopic0)
+         * but why is it copying it there anyway?  it hasn't been approved/digested?
+
+   * who installed the Tracking web? (ah) (it should be called _XpTrackerPlugin, i think...)
+
+   * missing TWiki/PluginTopicName.txt
+      * CategoryPlugin
+      * ProtocolTlaPlugin
+      * SlashFilenamePlugin
+
+   * clicking "attach link" wiped out my topic text (*and* replace it with a non-functional link (using %ATTACHPUBURL%))
+
+   * TWiki.WebReferences - delete? - just put on twiki.org ??? - links from TWiki.TWikiSite and TWiki.WelcomeGuest
+
+   * FindElsewherePlugin renders [[%SYSTEMWEB%.BookView][%MAKETEXT{"about BookView"}%]] incorrectly --- [[]]'s show up and link text BookView is a link :(
+
+   * do a pass on proper dashes: endash vs. emdash (&ndash; vs. &mdash;)
+
+   * review TWiki:Codev.CategoryCookbook
+
+---+ design issues
+
+   * MANIFEST sucks --- eg, CpanContrib doesn't actually show any of the *real* files, because they're added
+      during the build process, but not in the actual MANIFEST file (because when i added them to the MANIFEST
+      file, that messed up pseudo-install!)
+
+
+FIXED (i think)
+--------------------------------------------------------------------------------
+
+   * XML::RSS demonstrates the MAN copy problem that sometimes occurs
+      * (/usr/local/man/man3: permission denied...)
+      * FIXED: was INSTALLSITEMAN3DIR, etc.
+
+   * TWikiPluginInstallerContrib didn't redirect to the right page after installing PatternSkin (it doesn't match the standard name pattern?) --- or maybe i just broke something in TWikiPluginInstallerContrib
+
+   * TWikiTip009 isn't rendering its < >, nor in =tt= text
+
+   * get docs from twiki.org for ImmediateNotifiyPlugin (ok, now merge with the SMTP additions)
+
+THINGS TO INSTALL:
+--------------------------------------------------------------------------------
+apache2-doc
+apache2-prefork-dev
+apache2-threaded-dev - which am i using? - apache2-mpm-worker (and/or plain apache2), but what does that tell me???
+latex2html -- says non-free; not sure what to do...
+ircd - 
+libapache2svn - ???
+maybe libapache-mod-speedycgi ?
+webmin-apache ?
+perl-tk libdevel-ptkdb-perl (locally installed in twikibuilder atm (well, i hope, anyway))
+mozilla-firefox-dev ???
+??? debconf-doc
+??? doc-linux-html
+??? dkpg-doc
+transcode-doc
+??? kicker-applets
+squid, squid-common
+htdig (to search kde (and everything else) help)
+
+================================================================================
+################################################################################
+TODO:
+   * re-setup tinderbox
+   * re-setup twikiplugins (on net, that is)
+
+################################################################################
+================================================================================
+
+hm, these are missing completely...
+
+CacheAddOn
+CacheChooserAddOn
+CompareRevisionsAddOn
+DolphinToTWikiAddOn
+EncryptedApplet
+FireFoxSidebarContrib
+FirefoxExtensionAddOn
+FormsAddOn
+GenericWikiToTWikiAddOn
+JSPwikiToTWikiAddOn
+JavaPasteAddOn
+KwikiToTWikiAddOn
+MailPageAddOn
+MailToTWikiAddOn
+MakeCtrlTopicsListAddOn
+NamespaceManagerAddOn
+NavBarAddOn
+NotifyOnChildModificationTopic
+PhpWikiToTWikiAddOn
+PluginBenchmarkAddOn
+PluginCvsToolsAddOn
+PluginsInstaller
+PowerEditAddon
+RedirectBySubdomainAddOn
+SearchEnginePluceneAddOn
+SetVariableAddOn
+SpellCheckAddOn
+SyncContrib
+TWikiCacheAddOn
+TWikiDeploymentSpiderAddOn
+TableToolAddOn
+TopicClassificationAddOn
+UseModWikiToTWikiAddOn
+UserHomePageAddOn
+VoodooPadXmlRpcAddOn

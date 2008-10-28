@@ -1,0 +1,184 @@
+%META:TOPICINFO{author="WadeTurland" date="1119916176" format="1.0" version="1.19"}%
+<!-- PDFSTART -->
+---+!! Generate PDF Add-On
+<!-- PDFSTOP -->
+%TOC%
+<!-- PDFSTART -->
+<!--
+   * Set SHORTDESCRIPTION = Generate a PDF from a single TWiki page
+-->
+%SHORTDESCRIPTION%
+
+<em>
+This is a substantial re-write of the TWiki:Codev.PrintUsingPDF pdf script. It essentially accomplishes the same goal but with more integration with TWiki (e.g. use of TWiki variables for configuration and the TWiki rendering methods instead of using a hacked version of the =TWiki::view= for generating HTML) as well as more modular code structure (i.e. most of the logic is moved to a perl package).
+
+We began using the TWiki:Codev.PrintUsingPDF pdf script to publish pages but found it somewhat TWiki unfriendly (no offense to the authors as it's a great idea). This version allows most of the script configuration (such as page size, table of contents, etc.) via preference variables in TWiki. It also allows header, footer, and title page configuration via TWiki topics.
+</em>
+
+---++ Usage
+
+	* Like the TWiki:Codev.PrintUsingPDF pdf script, a page can be published by substituting =genpdf= for =view= in the topic URL.
+	* To make it even easier for novice TWiki users to use, we added a link (like edit and attach) to our =view.tmpl= to publish the current page (using the current topic as the document title). The line we added to our template is:
+		* =&lt;a href="%<nop>SCRIPTURLPATH%/genpdf%<nop>SCRIPTSUFFIX%/%<nop>WEB%/%<nop>TOPIC%?pdftitle=%<nop>TOPIC%"&gt;PDF&lt;/a&gt;=
+	* You may also choose to replace the Printable (?skin=print) targets in your favourite skin with
+<verbatim>
+[[%SCRIPTURL%/genpdf/%WEB%/%TOPIC%][Printable]]
+</verbatim>
+	* %N% You can now generate a PDF document containing all of the descendents of the base topic as separate chapters. For example, if you create a !ParentTopic, then create !FirstChild and !SecondChild with !ParentTopic as their parent topic, then create !GrandChildOne with !FirstChild as its parent (and so on), you get a tree like this:
+<verbatim>
+ParentTopic
+	- FirstChild
+		- GrandChildOne
+		- GrandChildTwo
+	- SecondChild
+		- GrandChildThree
+</verbatim>
+	If you add ='?pdfrecursive=on'= to the URL parameters, all of the topics will be rolled into the PDF.
+
+---++ Configuring the Script
+
+The script can be configured either via URL parameters or web preference variables. URL parameters have precedence over web preference variables. If neither of these are present, the script will use hard-coded default variables. The general script configuration variables are explained in the next section while header/footer and title page configuration are explained in subsequent sections.
+
+---+++ General Configuration
+
+The following table shows the various configuration variables and their meaning. The first column gives the variable to use if passed in the URL. The second column shows the variable to use if using a TWiki preference variable (i.e. Set VARIABLE = ). The third column gives the default value if neither the URL nor TWiki preference variable is used. Note that URL variables have precedence over TWiki preference variables. For a more detailed description of the HTMLDOC related variables, see the HTMLDOC documentation at http://www.htmldoc.org.
+
+%TABLE{ cellpadding="3" columnwidths="15%, 15%, 15%, 15%, 40%"}%
+| *URL Variable* | *Twiki Preference Variable* | *Default Value* | *Example* | *Explanation* |
+| =pdfbanner= | GENPDFADDON_BANNER | | Foobar Documentation System | Used to override the banner of a title page. |
+| =pdftitle= | GENPDFADDON_TITLE | | Writing Foobars | |
+| =pdfsubtitle= | GENPDFADDON_SUBTITLE | | A short guide to creating foobar documents | |
+| =pdfheadertopic= | GENPDFADDON_HEADERTOPIC | | !GenPDFHeaderFooterTopic | The name of a topic that defines headers and footers using &lt;-- HEADER LEFT "foobar" --> syntax |
+| =pdftitletopic= | GENPDFADDON_TITLETOPIC | | !GenPDFTitleTopic | The name of a topic that defines the layout of the title page |
+| =skin= | GENPDFADDON_SKIN | =print.pattern= | =print.nat= | Default skin to use for PDF generation |
+| =pdfrecursive= | GENPDFADDON_RECURSIVE | undef | =on= | Include children of the base topic in the PDF |
+| =pdfformat= | GENPDFADDON_FORMAT | =pdf14= | =pdf12= | HTMLDOC output format |
+| =pdftoclevels= |GENPDFADDON_TOCLEVELS | =5= | =3= | Number of levels to include in the PDF table of contents (use 0 to disable the generation of a table of contents). Note that HTMLDOC generates a table of contents based on HTML headers in the page. |
+| =pdfpagesize= | GENPDFADDON_PAGESIZE | =a4= | =letter= | The page size for PDF output |
+| =pdforientation= | GENPDFADDON_ORIENTATION | =portrait= | =landscape= | The page orientation (e.g. landscape or portrait) |
+| =pdfwidth= | GENPDFADDON_WIDTH | =860= | =1060= | The pixel width of the browser (used to scale images--images wider than this will be truncated) |
+| =pdfheadershift= | GENPDFADDON_HEADERSHIFT | =0= | =+3= | Shift all headers up or down (for negative values) by this amount (e.g. H1 would become H3 for a value of 2). |
+| =pdfkeywords= | GENPDFADDON_KEYWORDS | =%<nop>FORMFIELD{"KeyWords"}%= | 'foo, bar, baz, zip' | Used for PDF Keywords META info to help search engines |
+| =pdfsubject= | GENPDFADDON_SUBJECT | =%<nop>FORMFIELD{"TopicHeadline"}%= | 'Foobar document creation' | Used for PDF Subject META info to help search engines |
+| =pdftocheader= | GENPDFADDON_TOCHEADER | =...= | =l..= | See http://www.htmldoc.org/ |
+| =pdftocfooter= | GENPDFADDON_TOCFOOTER | =..i= | =.i.= | See http://www.htmldoc.org/ |
+| =pdfheadfootfont= | GENPDFADDON_HEADFOOTFONT | | Helvetica-Bold | Font specification for headers and footers. |
+| =pdfbodyimage= | GENPDFADDON_BODYIMAGE | | http:<nop>//my.server.com/path/to/background.jpeg | The image that will appear tiled in the background of every page |
+| =pdflogoimage= | GENPDFADDON_LOGOIMAGE | | http:<nop>//my.server.com/path/to/logo.jpeg | The logo that will appear in a header or footer if you specify 'l' in the string (see http://www.htmldoc.org) |
+| =pdfnumberedtoc= | GENPDFADDON_NUMBEREDTOC | =undef= | True | Option flag for getting numbered headings and Table of Contents. Set it to anything for true. |
+| =pdfduplex= | GENPDFADDON_DUPLEX | =undef= | True | Option flag to set up the document for duplex printing. Headers and footers will swap position on alternating pages. Set it to anything for true. |
+| =pdfpermissions= | GENPDFADDON_PERMISSIONS | =undef= | print,no-copy | PDF Security permissions to disable print/copy etc. By default the PDF is not protected. |
+| =pdfmargins= | GENPDFADDON_MARGINS | =undef= | =top:0.5in,bottom:2.5cm,left:12pt,right:15mm= | Specify the page margins (white space to edge of page) |
+| =pdfbodycolor= | GENPDFADDON_BODYCOLOR | =undef= | =#CCff99= | Specify the background colour of all pages |
+
+If using TWiki preference variables, copy them to the appropriate web preferences page.
+
+%SEARCH{"GENPDFADDON_" topic="%TOPIC%" type="literal" casesensitive="on" limit="21" nosearch="on" nosummary="on" header="	* Settings for the %SYSTEMWEB%.%TOPIC% Plugin" nototal="on" multiple="on" format="		* #Set $pattern(.*(G.*?N_.*? ).*) = "}%
+
+---+++ Limiting the PDF Generation Region
+
+The add-on allows the user to define the region of the topic that should be included in the PDF generation (much like the TWiki %<nop>STARTINCLUDE% and %<nop>STOPINCLUDE% variables. In this case, HTML comments are used instead. Everything between these two comments will be included in the PDF generation. The rest of topic will be excluded.
+
+	* Use =&lt;!-- PDFSTART --&gt;= to mark the starting point in the topic for PDF generation.
+	* Use =&lt;!-- PDFSTOP --&gt;= to mark the stopping point in the topic for PDF generation.
+
+Note that there can be multiple PDFSTART and PDFSTOP comment pairs in a single topic to selectively include/exclude multiple sections of the topic in the PDF document. (If you view this page in =raw= mode or edit it, you'll see an example of multiple PDFSTART/PDFSTOP sections to exclude the TWiki table of contents). If no PDFSTART/PDFSTOP comment pair appears in the topic, the entire topic text is used. In general, this should not be a problem except for title topics that include forms as the form meta-data will show up in a fairly illegible manner at the end of the document. Therefore, for topics that reference forms, a PDFSTART comment should be placed at the beginning of the topic and a PDFSTOP should be placed at the end.
+
+%T% __NOTE:__ all %META: tags are removed from the base topic. If you want to display form data, you should add %<nop>FORMFIELD{"field"}% tags to the topic or title topic.
+
+---+++ Creating and Configuring a Title Page
+
+The add-on allows the user to use a topic as a title page for PDF generation. Earlier versions of the add-on required that the title page be expressed using pure HTML as the title page topic was not TWiki rendered. The latest version of add-on, however, does full TWiki rendering of the title topic page like any other TWiki topic. In addition, the following variables can be passed with the URL to override their settings elsewhere (e.g. in the web preferences or TWiki preferences pages).
+
+Also note that the PDFSTART and PDFSTOP HTML comments should be placed at the beginning and end of title topic. An example title page can be found at GenPDFExampleTitleTopic.
+
+---+++ Creating and Configuring Headers and Footers
+
+The add-on also allows the user to configure header and footer formats for both the main section of the document and the table of contents. Configuring the main header and footer is much like configuring a title page. You can select a TWiki topic to use for the header and footer. Remember to wrap the HTML comments that HTMLDOC uses for the header and footer between &lt;!-- PDFSTART --&gt; and &lt;!-- PDFSTOP --&gt; tags. The add-on will perform TWiki common variable substition within the HTMLDOC header/footer HTML comments. This will allow TWiki variables (such as %<nop>REVINFO{web="%<nop>WEB%" topic="%<nop>BASETOPIC%"}%) to be embedded in the headers and footers.
+
+See the HTMLDOC documentation at http://www.htmldoc.org for details of the format of the header and footers. In addition, the =genpdf= script will perform variable substition for the %<nop>GENPDFADDON _BANNER%, %<nop>GENPDFADDON _TITLE%, and %<nop>GENPDFADDON _SUBTITLE% variables as it does for the title page. Finally, the PDFSTART and PDFSTOP HTML comments should be placed at the beginning and end of header/footer topic. An example header/footer page can be found at GenPDFExampleHeaderFooterTopic.
+
+---++ Frequently Asked Questions
+	$ *How do I stop the table of contents from being generated?* : For some topics, like User topics, it doesn't make any sense to have a table of contents generated so add ='pdftoclevels=0'= as a URL parameter.
+	$ *When I do a recursive PDF of !WebHome it doesn't include all topics* : That's because some topics distributed with !TWiki don't have a parent association. If you _really_ want to include every topic in the web, you should reparent them all with !WebHome as the parent.
+
+---++ Add-On Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this add-on. The following instructions are for the administrator who installs the add-on on the server where TWiki is running. 
+
+	* Install htmldoc from http://www.htmldoc.org/ (optionally use the patch in the Addon's zip file for headers on every page)
+	* Download the ZIP file from the Add-on Home (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+      %$MANIFEST%
+	* Adjust the script ownership to match your webserver configuration (e.g. =chown nobody genpdf=) if needed.
+	* Make sure the script is executable (e.g =chmod 755 genpdf=).
+	* *Adjust the perl path in the genpdf script to match your perl installation location.*
+	* %X% *BEFORE TWiki-4* Add the variable =$htmldocCmd = "/path/to/htmldoc";= to your =lib/TWiki.cfg= file so TWiki can find the location of the htmldoc executable. Look for $fgrepCmd.
+	* %X% *TWiki-4 and later* Add the setting =$TWiki::cfg{Extensions}{GenPDFAddOn}{htmldocCmd} = "/path/to/htmldoc";= to your =LocalSite.cfg= file.
+	* %T% Copy the preferences from above and paste them into %USERSWEB%.TWikiPreferences, or the !WebPreferences topic for a single web.
+	* Test if the installation was successful:
+		* Try loading [[%SCRIPTURL%/genpdf/%WEB%/%TOPIC%][this page]]
+		* If it doesn't work, check your webserver logs for any problems. The most common issue is probably an htmldoc installation problem.
+
+---++ Known Bugs
+	* *Verbatim text runs off the page.* This is a limitation of HTMLDOC. Preformatted text may run off the edge of the page and be truncated.
+	* *HTMLDOC crashes with segmentation faults.* Eg it fails to generate TWiki.TWikiDocumentation. I managed to get it to work a few times, but it generally fails. The error returned is =Conversion failed: 'Inappropriate ioctl for device' at /var/www/twiki/lib/TWiki/Contrib/GenPDF.pm line XXX=
+	* *Some pages don't have a header.* HTMLDOC breaks the page for every level 1 heading (Eg. &lt;h1&gt;) but it doesn't write a header for the new page, so topics with lots of level 1 headings and not much content don't seem to have any headers. Therefore I patched htmldoc-1.8.24 to force a header for every new page:
+<verbatim>
+*** htmldoc-1.8.24/htmldoc/ps-pdf.cxx	Sat Oct 30 05:53:59 2004
+--- htmldoc-1.8.24/htmldoc/ps-pdf_force_header.cxx		Tue Jun 13 02:12:28 2005
+***************
+*** 1465,1471 ****
+
+		pspdf_prepare_heading(page, print_page, pages[page].header, top,
+									 page_text, sizeof(page_text),
+!								 page > chapter_starts[chapter] ||
+										OutputType != OUTPUT_BOOK);
+		pspdf_prepare_heading(page, print_page, pages[page].footer, 0,
+									 page_text, sizeof(page_text));
+--- 1465,1472 ----
+
+		pspdf_prepare_heading(page, print_page, pages[page].header, top,
+									 page_text, sizeof(page_text),
+! /*							 page > chapter_starts[chapter] || */
+!								 1 || /* force heading onto chapter front page */
+										OutputType != OUTPUT_BOOK);
+		pspdf_prepare_heading(page, print_page, pages[page].footer, 0,
+									 page_text, sizeof(page_text));
+</verbatim>
+
+---++ Add-On Info
+
+|  Add-on Author: | TWiki:Main/BrianSpinar, TWiki:Main/WadeTurland |
+|  Add-on Version: | 31 Aug 2007 |
+|  Change History: | |
+|  31 Aug 2007 | Fixed Bugs:Item4530, improper rendering of lists | 
+|  13196 | Removed =nop= tags before sending to htmldoc, fixed Bugs:Item3549 |
+|  11673 | TWiki:Main/RickMach updated MIME type to pdf from x-pdf, fixed bug preventing disabling the TOC |
+|  9716 | TWiki:Main/CrawfordCurrie added content-disposition header to files, so they download using a sensible file name |
+|  9683 | TWiki:Main/CrawfordCurrie updated for TWiki-4 |
+|  Version 0.6 (28 Jun 2005) | <ul><li>Less aggressive regex for removing twikiNewLink spans so it doesn't break when using the TWiki:Plugins.SpacedWikiWordPlugin</li><li>%T% Added 'recursive' preference to include chapters for all descendents of the base topic</li><li>Use File::Spec->tmpdir to specify the default directory for temporary files</li></ul> |
+|  Version 0.5 (16 Jun 2005) |<ul><li>Redirect to 'oops' URLs if permission denied or topic does not exist.</li><li>Removed twikiNewLink spans from title page so they render as normal text (without the blue ? mark).</li><li>Fully qualify image/href URLs on the title page.</li><li>Changed temp files to use OO style 'new File::Temp;' for better code portability.</li></ul> |
+|  Version 0.4 (13 Jun 2005) |<ul><li>Better security (now calls =system($TWiki::htmldocCmd, @htmldocArgs)= )</li><li>Checks return code of htmldoc and returns an error on failure</li><li>Validation of preferences</li><li>%X% Preferences changed to comply with TWikiPlugins standard</li><li>Better HTML3.2 compatibility for htmldoc 1.8.24 (downgrades a few elements)</li><li>Full integration of PDF META tags (optionally using 2 FORMFIELDs):</li><li><ul>	<li>==%<nop>FORMFIELD{"Topic<nop>Headine"}%== for PDF Subject field</li>	<li>==%<nop>FORMFIELD{"Key<nop>Words"}%== for PDF Keywords field</li>	<li>all other PDF fields use topic info</li></ul></li><li>More htmldoc options (margins, permissions, numbered TOC, logoimage, headfootfont) using preferences</li><li>Removed ==%<nop>TOC%== fields so it only uses HTMLDOC's TOC</li><li>Title topic _and_ header/footer topics are now fully rendered</li><li>Fixed the heading shifting function</li><li>Fully qualify links, making the document portable</li><li>HTMLDOC output goes to a temp file instead of stdout</li><li>Temp files now use 'GenPDFAddOn' prefix. (Eg. /tmp/GenPDFAddOn1wr3C48ibd.html)</li></ul>|
+|  Version 0.3 (12 Apr 2005) |<ul><li>Added full TWiki rendering to title topic page</li><li>Added TWiki common variable expansion to header/footer topic page</li></ul>|
+|  Version 0.2 (26 Mar 2005) |<ul><li>Fixed bug with table of contents generation (i.e. it was always generated even if =pdftoclevels= was set to 0)</li><li>Now allow multiple =PDFSTART/PDFSTOP= pairs within a single page to include/exclude multiple sections of the same page</li><li>Added Main.BrentRoberts fix to allow operation with latest version (1.8.24) of HTMLDOC</li></ul>|
+|  Version 0.1 (30 Jan 2005) |<ul><li>Initial version</li></ul>|
+|  CPAN Dependencies: | File::Temp (if for some reason you don't already have it installed ) |
+|  Other Dependencies: | HTMLDOC (http://www.htmldoc.org) |
+|  Perl Version: | 5.005 or above |
+|  License: | GPL |
+|  Add-on Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+
+__Related Topic:__ %SYSTEMWEB%.TWikiAddOns
+<!-- PDFSTOP -->
+
+-- TWiki:Main/WadeTurland - 28 Jun 2005%BR%
+-- TWiki:Main/BrianSpinar - 12 Apr 2005
+
+<!-- vim:noet:sw=3:ts=3:tw=0
+-->
+

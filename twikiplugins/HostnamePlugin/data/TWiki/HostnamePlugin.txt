@@ -1,0 +1,44 @@
+%META:TOPICINFO{author="TWikiContributor" date="1182547552" format="1.1" version="$Rev$"}%
+---+!! !HostnamePlugin
+<!--
+One line description, required for extensions repository catalog.
+   * Set SHORTDESCRIPTION = Displays the hostname of the server serving TWiki.
+-->
+%SHORTDESCRIPTION%
+
+%TOC%
+
+---++ Usage
+
+%STARTSECTION{"usage"}%
+   * Displays the hostname of the server.
+   * Syntax: =%HOS<nop>TNAME%=
+   * Expands to: =%HOSTNAME%=
+   * Related: [[#VarHTTPHOST][HTTP_HOST]], [[#VarREMOTEADDR][REMOTE_ADDR]], [[#VarREMOTEPORT][REMOTE_PORT]], [[#VarREMOTEUSER][REMOTE_USER]]
+%ENDSECTION{"usage"}%
+
+---++ Installation Instructions
+
+%$INSTALL_INSTRUCTIONS%
+
+---++ Plugin Files
+
+   | *File:* | *Description:* |
+%$MANIFEST%
+
+---++ Plugin Info
+
+|  Plugin Author(s): | TWiki:Main.AndrewRJones |
+|  Copyright: | &copy; 2007, TWiki:Main.AndrewRJones |
+|  License: | [[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License)]] |
+|  Plugin Version: | %$VERSION% |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  14486 | Bugs:Item4420 - Initial version |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Plugin Home: | http://twiki.org/cgi-bin/view/Plugins/HostnamePlugin |
+|  Feedback: | http://twiki.org/cgi-bin/view/Plugins/HostnamePluginDev |
+|  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/HostnamePluginAppraisal |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiVariables
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the feedback topic on twiki.org instead. -->

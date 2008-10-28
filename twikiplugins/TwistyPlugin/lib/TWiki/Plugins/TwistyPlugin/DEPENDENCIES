@@ -1,0 +1,2 @@
+TWiki::Contrib::TwistyContrib,>=1.4.1,perl,Required. Twisty javascript library
+TWiki::Contrib::BehaviourContrib,>=0,perl,Javascript module

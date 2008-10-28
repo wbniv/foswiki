@@ -1,0 +1,76 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1172278418" format="1.1" reprev="1.3" version="1.3"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+%RED%TODO%ENDCOLOR%
+
+---+++++ Parameters
+   * TOPICTYPES - %RED%Required%ENDCOLOR% Which !TopicTypes to include. Enter with "bar" ("|") between.
+   * FACETS - %RED%Required%ENDCOLOR% Which facets to provide filters for. 
+
+---+++++ Css
+   * 
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%
+%INCLUDE{"%TCAOWEB%.RenderBarFilterWithSort" INITSORT="created" INITLIMIT="10"}% 
+%~~  SEARCH{ 
+*~~      
+%~~      INCLUDE{"%TCAOWEB%.RenderSearchString" 
+~~~           FORSEARCH="yes" 
+~~~           BASESEARCH="[T]opicType.*value\=.*
+*~~               %IFDEFINED{"%TOPICTYPES%" as=".*\|.*" then="($test)" else="$test" glue="off"}%
+*~~               " 
+~~~           INITSORT="created" 
+~~~           INITLIMIT="10" }%
+~~~    nonoise="on" 
+~~~    web="%BASEWEB%" 
+~~~    type="regex"  
+~~~    reverse="on" 
+~~~    newline="%BR%" 
+~~~    separator="$n$n"
+~~~    format="<h4>[[$web.$topic][$percntSPACEOUT{$topic}$percnt]] </h4>
+~~~       <span class=twikiSmall><em>
+~~~          Posted $createdate by $createwikiusername $percntIFDEFINED{\"$formfield(SubjectArea)\" then=\" 
+~~~          in <noautolink>$formfield(SubjectArea)</noautolink>\"}$percnt &nbsp; |  
+~~~          $percntIFDEFINED{\"$count(.*?(---[+][+][+][+]) .*)\" as=\"1\" then=\"$test comment\" else=\"$test comments\" glue=\"off\" }$percnt
+~~~       </em></span> $percntBR$percnt $percntBR$percnt
+~~~       $pattern(.*?---[+]*.*?[\n\r]+(.*?)[\n\r]+.*)  _[[$web.$topic][continued...]]_ " 
+~~~    }% 
+%STOPINCLUDE%
+</verbatim>
+
+<!-- interrupt glue -->
+
+---++ Test
+<div class="alt">
+%INCLUDE{"%TOPIC%" TOPICTYPES="HelpTopic"}%
+</div>
+
+%DBCALL{"RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+(C) 2006 LynnwoodBrown@Skyloom.com
+
+%DBCALL{"GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+
+<!--
+   * Set SIDEBAR = TopicType
+   * Set SIDEBARARG = TopicFunction
+-->
+
+%META:FORM{name="TCAO.TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="SubjectArea" attributes="" title="SubjectArea" value=""}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Displays short intro to topic with number of comments"}%
+%META:REVCOMMENT{ncomments="0"}%

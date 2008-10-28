@@ -1,0 +1,20 @@
+%TMPL:INCLUDE{"oops"}%
+<!-- template: ooslockedrename.nat.tmpl -->
+%TMPL:DEF{"heading"}%%MAKETEXT{"Topic is locked by another user"}%%TMPL:END%
+%TMPL:DEF{"message"}%<!-- -->
+%OLD_LOCK%
+%NEW_LOCK%
+<br />
+<ul>
+ <li> %MAKETEXT{"To look at the text without editing the topic click on the [[[_1]][View raw text]]." args="%SCRIPTURLPATH{\"view\"}%/%WEB%/%TOPIC%?raw=on"}%</li>
+ <li> %MAKETEXT{"To rename anyway click on [[[_1]][Rename anyway]]" args="%SCRIPTURLPATH{\"rename\"}%/%WEB%/%TOPIC%?breaklock=on&newWeb=%NEW_WEB%&newTopic=%NEW_TOPIC%&attachment=%ATTACHMENT%"}%</li>
+ <li> %MAKETEXT{"To cancel go <a href=\"javscript:history.back()\">back</a> in your browser."}%</li>
+</ul>
+<form class="natOopsButtons" name="ButtonBox">
+  <input class="natOkButton" type="button" value='%MAKETEXT{"Rename anyway"}%' onclick="window.location.href='%SCRIPTURLPATH{"rename"}%/%WEB%/%TOPIC%?breaklock=on&newWeb=%NEW_WEB%&newTopic=%NEW_TOPIC%&attachment=%ATTACHMENT%'">&nbsp;
+  <input class="natAltButton" type="button" value='%MAKETEXT{"View raw"}%' onclick="window.location.href='%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%?raw=on';">&nbsp;
+  <input class="natCancelButton" type="button" value='%MAKETEXT{"Cancel"}%' onclick="history.back()">
+</form> 
+%MAKETEXT{"[_1] __Note:__ Renaming a topic which is being edited by someone else might 
+cause serious trouble as it will _break_ the lock on the topic!" args="%I%"}%
+%TMPL:END%

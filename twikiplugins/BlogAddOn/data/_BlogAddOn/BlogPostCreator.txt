@@ -1,0 +1,55 @@
+%META:TOPICINFO{author="TWikiContributor" date="1165850723" format="1.1" version="1.1"}%
+---+!! %MAKETEXT{"Write a new blog post"}%
+
+<script type="text/javascript">
+/* <![CDATA[ */
+
+var didSwitchToJsField = false;
+
+function canSubmit() {
+  var inputField = (didSwitchToJsField) ? document.forms.newtopic.jstopic : document.forms.newtopic.topic;
+  
+  var inputTitle = inputField.value;
+  if (!inputTitle) return false;
+  document.forms.newtopic.Title.value = inputTitle;
+  var wikiTitle = removeSpacesAndPunctuation(capitalize(inputTitle));
+  document.forms.newtopic.topic.value = wikiTitle;
+  
+  /* no-js-fallback */
+  /* hide 'topic' field and show replacement field instead */
+  /* so field contents does not get suddenly wikiworded */
+  document.forms.newtopic.topic.style.display = 'none';
+  document.forms.newtopic.jstopic.style.display = 'inline';
+  document.forms.newtopic.jstopic.value = inputTitle;
+  didSwitchToJsField = true;
+  
+  if (wikiTitle) return true;
+  return false;
+}
+/* ]]> */
+</script>
+
+<form name="newtopic" id="newtopic" action="%SCRIPTURLPATH{edit}%/%BASEWEB%/" onsubmit="return canSubmit();">
+<div class="twikiFormSteps">
+<div class="twikiFormStep">
+*%MAKETEXT{"Title of new blog post:"}%* %MAKETEXT{"(one or multiple words)"}% %BR%
+<input type="text" class="twikiInputField" name="topic" id="topic" size="40" /><input style="display:none;" type="text" class="twikiInputField" name="jstopic" id="jstopic" size="40" value="HA" />
+</div>
+<div class="twikiFormStep">
+*%MAKETEXT{"Category:"}%* %MAKETEXT{"(you may choose later)"}% %BR%
+<select name="Category" class="twikiSelect">
+<option>%MAKETEXT{"Select..."}%</option>
+%SEARCH{"   *\s*.*?" topic="BlogCategory" type="regex" multiple="on" casesensitive="on" nonoise="on" format="<option>$pattern(.*   \*\s*([^\n]*).*)</option>"}%
+</select> <span class="twikiSmallish">[[BlogCategory][%MAKETEXT{"Add categories..."}%]]</span>
+</div>
+<div class="twikiFormStep">
+<input type="hidden" name="Title" />
+<input type="hidden" name="nonwikiword" value="on" />
+<input type="hidden" name="onlywikiname" value="off" />
+<input type="hidden" name="onlynewtopic" value="on" />
+<input type="hidden" name="templatetopic" value="BlogPostTemplate" />
+<input type="hidden" name="topicparent" value="BlogPost" />
+<input type="submit" class="twikiSubmit" value='%MAKETEXT{"Start writing"}%' />
+</div>
+</div>
+</form>

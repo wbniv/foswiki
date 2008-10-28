@@ -1,0 +1,204 @@
+#!/bin/bash
+#
+# 	original idea  GNU (C) by Peter Klausner 2003
+#
+#	completely rewritten by Jens Röder j.roeder@tu-bs.de   29.03.2005
+#	
+#	original was not working because slashes in file names
+#	additionaly TWiki-Authentication was included
+#	now, the directory structure of a TWiki is mirrored in the cache
+#
+#	
+# Function:	
+#	script-chooser to decide, if a Topic needs to be rerendered
+#	or supplied from cache.
+#
+# Installation:
+#	copy 'cache' into TWiki bin/ directory.
+#	mv view render
+# 	ln -s cache view
+#	ln -s cache refresh
+#	mkdir cache in TWiki main directory
+#
+# See also:
+#	TWiki:Plugins/CacheChooserAddOn
+#
+#
+# customize if directories in your TWiki are different from standard installation tree:
+data=${PWD%bin}/data
+cache=${PWD%bin}/cache
+errlog=$cache/.htcacherr.log
+twikipref=$data/TWiki/TWikiPreferences.txt
+#
+# debug:
+#exec 2>/tmp/cacherun
+#set -x
+#set >/tmp/cachevar
+
+[ ! "$PATH_INFO" ] && [ "$@" ] && PATH_INFO=$@
+
+if [ ! "$PATH_INFO" ] || [ "$PATH_INFO" == "/" ] ; then
+NEWPATH=`grep 'Set WIKILOGOURL = http:' $twikipref | cut -d= -f2`
+NEWPATH=${NEWPATH#*/view/}
+: ${NEWPATH:=Main/WebHome}
+PATH_INFO="/$NEWPATH-start"
+fi
+
+[ "$QUERY_STRING" ] && QUERY="?$QUERY_STRING"
+
+case $HTTPS in
+
+	[oO][nN])
+		cache=$cache/ssl-cache
+		;;
+esac
+
+entry="$cache$PATH_INFO$QUERY"
+
+datafile="$data$PATH_INFO.txt"
+webpref="$data${PATH_INFO%/*}/WebPreferences.txt"
+
+[ "$QUERY_STRING" ] && case $QUERY_STRING in
+
+	skin=plain)
+		echo -n
+		;;
+	
+	*refresh=cache*)
+		QUERY_STRING=${QUERY_STRING//refresh=cache'\&'/}
+		QUERY_STRING=${QUERY_STRING//refresh=cache/}
+		REQUEST_URI=${REQUEST_URI//refresh=cache'\&'/}
+		REQUEST_URI=${REQUEST_URI//'\?'refresh=cache/}
+		entry=${entry//refresh=cache'\&'/}
+		entry=${entry//'\?'refresh=cache/}
+		rm -f $entry
+		;;
+
+	*sortcol=*)
+		echo -n
+		;;
+	*)
+		AVOIDCACHING=1
+		;;
+esac
+
+if [ "$AVOIDCACHING" ] ; then
+CHOOSE=1
+else
+
+[ -f $entry ] && checkentry=$entry
+
+Z=0
+for D in `grep -c -h -e '^[lL]ocation: http://' -e 'Set CACHE = [a-zA-Z0-9]' -e 'Set NOCACHE' -e 'Set .*TOPICVIEW = [a-zA-Z].*' -e 'Set .*WEBVIEW = [a-zA-Z].*' $datafile $webpref $checkentry` ; do
+
+	Z=$(( $Z + $D ))
+done
+
+FILESTATE=
+[ "$entry" -nt "$data/$PATH_INFO.txt" ] && FILESTATE=nonewer
+
+CHOOSE=0
+[ ! "${0##*/}" = refresh ] && [ "$FILESTATE" ] && CHOOSE=-1
+[ "$Z" -gt "0" ] && CHOOSE=1
+
+if [ "$Z" -gt "0" ] ; then
+
+if [  "$checkentry" ] ; then
+[ "`grep -c -h -e '[lL]ocation: http://' $checkentry`" -gt "0" ] && CLEARCACHE=1
+fi
+
+TIME=0
+for D in "`grep -h -e 'Set CACHE = [a-zA-Z0-9].*' $webpref $datafile `" ; do
+
+DAT=${D##*Set CACHE = }
+DAT=${DAT%%\ *}
+
+for DA  in ${DAT//-/ } ; do
+
+case "$DA" in
+
+        cache)
+		SETCACHE=y
+		;;
+	daily)
+		DAYSTART='-daystart'
+		TIME='1440'
+		;;
+
+        [1-9]m)
+                TIME=$(( $TIME + ${DA%m} ))
+                ;;
+
+        [1-5][0-9]m)
+                TIME=$(( $TIME + ${DA%m} ))
+                ;;
+
+        [1-9]h)
+                TIME=$(( $TIME + ${DA%h} * 60 ))
+                ;;
+
+        [1-2][0-9]h)
+                TIME=$(( $TIME + ${DA%h} * 60 ))
+                ;;
+
+        [1-6]d)
+                TIME=$(( $TIME + ${DA%d} * 60 * 24 ))
+                ;;
+
+        [1-9]w)
+                TIME=$(( $TIME + ${DA%w} * 60 * 24 * 7 ))
+                ;;
+        [1-9]M)
+                TIME=$(( $TIME + ${DA%M} * 60 * 24 * 31 ))
+                ;;
+
+        [1][0-9]M)
+                TIME=$(( $TIME + ${DA%M} * 60 * 24 * 31 ))
+                ;;
+	*)
+		DATE=`date`
+		echo "$DATE :: Error $datafile :: $DA" >> $errlog
+		;;
+esac
+
+done
+done
+
+if [ "$TIME" -gt "0" ] || [ "$SETCACHE" ] ; then
+
+ZC=0
+                for D in `grep -c -h -e 'Set .*TOPICVIEW = [a-zA-Z].*' -e 'Set .*WEBVIEW = [a-zA-Z].*'  $datafile $webpref ` ; do
+                ZC=$(( $ZC + $D ))
+                done
+                [ "$ZC" -eq "0" ] && CACHE=y
+                [ "$ZC" -gt "0" ] && CACHE=n
+fi
+
+[ ! "$CACHE" = "n" ] && [ "$TIME" -gt "0" ] && [ ! "`find $entry $DAYSTART -mmin -$TIME `" ] && NEWCACHE=new
+
+[ "$CACHE" = "y" ] && CHOOSE=0
+[ "$CACHE" = "y" ] && [ ! "${0##*/}" = refresh ] && [ "$FILESTATE" ] && CHOOSE=-1
+[ "$NEWCACHE" = "new" ] && CHOOSE=0
+[ "$CACHE" = "n" ] && CHOOSE=1 
+fi
+
+[ "$CLEARCACHE" ] && [ "$CHOOSE" -lt "0" ] && CHOOSE=0
+
+fi
+
+
+if [ "$CHOOSE" -gt "0" ] ; then
+	rm -f "$entry"
+	exec ./render "$@" 2>/dev/null
+
+elif [ "$CHOOSE" -lt "0" ] ; then
+
+	exec cat "$entry"
+
+else
+	[ "$CLEARCACHE" ] && rm -f "$entry"
+	mkdir -p ${entry%/*}
+	exec ./render "$@" | tee "$entry" 2>/dev/null
+fi
+
+

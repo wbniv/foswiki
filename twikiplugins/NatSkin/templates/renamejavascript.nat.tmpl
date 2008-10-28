@@ -1,0 +1,15 @@
+<!-- template: renamejavascript.nat.tmpl-->
+%TMPL:DEF{"renamejavascript"}%<script type="text/javascript">
+<!--
+ function checkAll(formular, theCheck) {
+  var j = 0;
+  for( var i = 0; i < document.forms[formular].length; i++ ) {
+    document.forms[formular].elements[i].checked = theCheck;
+  }
+}
+//-->
+</script>%TMPL:END%
+%TMPL:DEF{"javascript"}%
+%TMPL:P{"defaultjavascript"}% 
+%TMPL:P{"renamejavascript"}% 
+%TMPL:END%

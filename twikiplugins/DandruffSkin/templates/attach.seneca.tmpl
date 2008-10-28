@@ -1,0 +1,80 @@
+%TMPL:INCLUDE{"twiki"}%
+%TMPL:DEF{"attach"}%
+%TMPL:DEF{"script"}%
+function initPage() {
+   document.main.filepath.focus();
+}
+function launchWindow( theWeb, theTopic ) {
+  win = open("%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/" + theWeb + "/" + theTopic + "?skin=plain", theTopic, "titlebar=0,width=500,height=480,resizable,scrollbars");
+  if( win ) {
+    win.focus();
+  }
+  return false;
+}
+%TMPL:END%
+%TMPL:DEF{"style"}%
+div#main {
+   position: absolute; 
+   top: 70px; 
+   width: auto;
+   left: 0%; 
+   margin: 1em;  
+   padding: 1em 1.5em;
+} %TMPL:END%
+%TMPL:P{"html_start"}%
+%TMPL:P{"standardheader"}%
+%TMPL:P{"text_start"}%
+<form name="main" enctype="multipart/form-data" action="%SCRIPTURLPATH%/upload%SCRIPTSUFFIX%/%WEB%/%TOPIC%" method="post">
+---++ Existing attachments for <nop>%TOPIC%
+%META{"attachments" all="on"}%
+%TMPL:P{"previousdetails"}%
+<table width="100%">
+   %TMPL:P{"previous"}%
+ <tr>
+  <td align="right">
+   Local file:
+  </td><td>
+   <input type="hidden" name="filename" value="%FILENAME%" />
+   <input type="file" name="filepath" value="%FILEPATH%" size="50" />
+  </td>
+ </tr>
+ <tr>
+  <td align="right">
+   Comment:
+  </td><td>
+   <input type="text" name="filecomment" value="%FILECOMMENT%" maxlength="50" size="50" />
+  </td>
+ </tr>
+ <tr>
+  <td align="right">
+   Link:
+  </td><td>
+   <input type="checkbox" name="createlink" %ATTACHLINKBOX% /> Create a link to the attached file at the end of the topic.
+  </td>
+ </tr>
+ <tr>
+  <td align="right">
+   Hide file:
+  </td><td>
+   <input type="checkbox" name="hidefile" %HIDEFILE% /> Hide attachment in normal topic view.
+  </td>
+ </tr>
+</table>
+%TMPL:P{"topicaction"}%
+__Notes:__
+
+   * *Link checkbox:* In case the attached file is a JPG, GIF or PNG image and you check the box, 
+     it will create an inline image (e.g. show the image) at the end of the topic.  For other
+     file types a simple link will be created.
+   * *Bug:* Internet Explorer 4.0 or earlier: If you get an "Internal Server Error"
+     message when you upload a file, you need to try again. It should work the second time.
+%TMPL:P{"extranotes"}%
+
+</form>
+%TMPL:DEF{"footer"}% %TMPL:P{"simple_footer"}% %TMPL:END%
+%TMPL:P{"text_end"}%
+%TMPL:P{"html_end"}%
+%TMPL:END%
+
+
+

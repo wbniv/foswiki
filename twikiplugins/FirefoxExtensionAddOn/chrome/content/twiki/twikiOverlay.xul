@@ -1,0 +1,517 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://twiki/skin/twiki.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://twiki/locale/twiki.dtd">
+<overlay id="twikiOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script type="application/x-javascript" src="chrome://twiki/content/twiki.js"/>
+	<stringbundleset id="stringbundleset">
+		<stringbundle src="chrome://twiki/locale/twikistrings.properties" id="twikistrings"/>
+	</stringbundleset>
+	<commandset>
+		<command id="cmd_toolbar_homepage" label="&twiki.toolbar.homepage;" oncommand="twiki.setLocation('toolbar')"/>
+		<command id="cmd_toolbar_options" label="&twiki.toolbar.options;" oncommand="twiki.toolbarOptions()"/>
+	</commandset>
+	<commandset>
+		<command id="cmd_bold" label="&twiki.bold;" oncommand="twiki.bold();"/>
+		<command id="cmd_italic" label="&twiki.italic;" oncommand="twiki.italic();"/>
+		<command id="cmd_bolditalic" label="&twiki.bolditalic;" oncommand="twiki.bolditalic();"/>
+		<command id="cmd_underline" label="&twiki.underline;" oncommand="twiki.underline();"/>
+
+		<command id="cmd_strike" label="&twiki.strike;" oncommand="twiki.strike();"/>
+		<command id="cmd_fixed" label="&twiki.fixed;" oncommand="twiki.fixed();"/>
+		<command id="cmd_bold_fixed" label="&twiki.bold.fixed;" oncommand="twiki.boldfixed();"/>
+		<command id="cmd_pre" label="&twiki.pre;" oncommand="twiki.pre();"/>
+		<command id="cmd_verbatim" label="&twiki.verbatim;" oncommand="twiki.verbatim();"/>
+		<command id="cmd_red" class="menuitem-iconic menu-iconic" label="&twiki.red;" oncommand="twiki.red();"/>
+		<command id="cmd_blue" class="menuitem-iconic menu-iconic" label="&twiki.blue;" oncommand="twiki.blue();"/>
+		<command id="cmd_green" class="menuitem-iconic menu-iconic" label="&twiki.green;" oncommand="twiki.green();"/>
+
+		<command id="cmd_forcedlink" label="&twiki.forcedlink;" oncommand="twiki.insertForcedLink();"/>
+		<command id="cmd_anchor" label="&twiki.anchor;" oncommand="twiki.anchor();"/>
+		<command id="cmd_makeWikiWord" label="&twiki.makeWikiWord;" oncommand="twiki.makeWikiWord();"/>
+		
+		<command id="cmd_paragraph" label="&twiki.paragraph.level1;" accesskey="&twiki.paragraph.level1.accesskey;" oncommand="twiki.paragraph('paragraph','---+');"/>
+		<command id="cmd_subparagraph" label="&twiki.paragraph.level2;" accesskey="&twiki.paragraph.level2.accesskey;" oncommand="twiki.paragraph('subparagraph','---++');"/>
+		<command id="cmd_subsubparagraph" label="&twiki.paragraph.level3;" accesskey="&twiki.paragraph.level3.accesskey;" oncommand="twiki.paragraph('subsubparagraph','---+++');"/>
+		<command id="cmd_paragraph-decrement" label="&twiki.paragraph.declevel;" accesskey="&twiki.paragraph.declevel.accesskey;" oncommand="twiki.changeParagraphs(-1);"/>
+		<command id="cmd_paragraph-increment" label="&twiki.paragraph.inclevel;" accesskey="&twiki.paragraph.inclevel.accesskey;" oncommand="twiki.changeParagraphs(1);"/>
+		<command id="cmd_paragraph-fancy;" label="&twiki.paragraph.fancy;" accesskey="&twiki.paragraph.fancy.accesskey;" oncommand="twiki.insertHeadingFancy();"/>
+
+		<command id="cmd_list-simple" label="&twiki.list.simple;" accesskey="&twiki.list.simple.accesskey;" oncommand="twiki.insertList('*');"/>
+		<command id="cmd_list-numbered" label="&twiki.list.numbered;" accesskey="&twiki.list.numbered.accesskey;" oncommand="twiki.insertList('1.');"/>
+		<command id="cmd_list-fancy" class="menuitem-iconic menu-iconic" label="&twiki.list.fancy;" accesskey="&twiki.list.fancy.accesskey;" oncommand="twiki.insertListFancy('*');"/>
+		<command id="cmd_list-definition" label="&twiki.list.definition;" accesskey="&twiki.list.definition.accesskey;" oncommand="twiki.insertDefinitionList();"/>
+		<command id="cmd_indentation_more" label="&twiki.indentation.more;" accesskey="&twiki.indentation.more.accesskey;" oncommand="twiki.indentMore();"/>
+		<command id="cmd_indentation_less" label="&twiki.indentation.less;" accesskey="&twiki.indentation.less.accesskey;" oncommand="twiki.indentLess();"/>
+		<command id="cmd_list-remove" label="&twiki.list.remove;" accesskey="&twiki.list.remove.accesskey;" oncommand="twiki.removeList();"/>
+
+		<command id="cmd_toc" label="&twiki.template.toc;" oncommand="twiki.insert('%TOC%');"/>
+		<command id="cmd_notoc" label="&twiki.template.notoc;" oncommand="twiki.insert('__NOTOC__');"/>
+		<command id="cmd_tipicon" label="&twiki.template.tipicon;" oncommand="twiki.insert('%T% ');"/>
+		<command id="cmd_helpicon" label="&twiki.template.helpicon;" oncommand="twiki.insert('%H% ');"/>
+		<command id="cmd_warnicon" label="&twiki.template.warnicon;" oncommand="twiki.insert('%X% ');"/>
+		<command id="cmd_staricon" label="&twiki.template.staricon;" oncommand="twiki.insert('%S%');"/>
+		<command id="cmd_newicon" label="&twiki.template.newicon;" oncommand="twiki.insert('%N% ');"/>
+		<command id="cmd_updatedicon" label="&twiki.template.updatedicon;" oncommand="twiki.insert('%U% ');"/>
+		<command id="cmd_attachurlvar" label="&twiki.template.attachurlvar;" oncommand="twiki.insert('%ATTACHURL% ');"/>
+		<command id="cmd_topicvar" label="&twiki.template.topicvar;" oncommand="twiki.insert('%TOPIC% ');"/>
+		<command id="cmd_webvar" label="&twiki.template.webvar;" oncommand="twiki.insert('%WEB% ');"/>
+
+
+		<command id="cmd_table" label="&twiki.table;..." accesskey="&twiki.table.accesskey;" oncommand="twiki.insertTable();"/>
+		<command id="cmd_image" label="&twiki.image;..." accesskey="&twiki.image.accesskey;" oncommand="twiki.insertImage();"/>
+		<command id="cmd_signature" label="&twiki.signature;" accesskey="&twiki.signature.accesskey;" oncommand="twiki.insertSignature();"/>
+		<command id="cmd_horline" label="&twiki.horline;" accesskey="&twiki.horline.accesskey;" oncommand="twiki.insert('\n---\n');"/>
+	</commandset>
+	<keyset>
+		<key id="key_bold" modifiers="&twiki.modifiers.bold;" key="&twiki.key.bold;" oncommand="twiki.bold();"/>
+		<key id="key_bolditalic" modifiers="&twiki.modifiers.bolditalic;" key="&twiki.key.bolditalic;" oncommand="twiki.bolditalic();"/>
+		<key id="key_italic" modifiers="&twiki.modifiers.italic;" key="&twiki.key.italic;" oncommand="twiki.italic();"/>
+		<key id="key_links" modifiers="&twiki.modifiers.links;" key="&twiki.key.links;"/>
+		<key id="key_table" modifiers="&twiki.modifiers.table;" key="&twiki.key.table;" oncommand="twiki.insertTable();"/>
+		<key id="key_image" modifiers="&twiki.modifiers.image;" key="&twiki.key.image;" oncommand="twiki.insertImage();"/>
+		<key id="key_signature" modifiers="&twiki.modifiers.signature;" key="&twiki.key.signature;" oncommand="twiki.insertSignature();"/>
+	</keyset>
+	<toolbox id="navigator-toolbox">
+		<toolbar id="twiki-toolbar" toolbarname="TWiki" class="chromeclass-toolbar" customizable="true" mode="full" iconsize="small" context="toolbar-context-menu">
+			<hbox>
+				<toolbarbutton type="menu" label="&twiki.toolbar;" image="chrome://twiki/skin/icon_twiki.png" orient="horizontal" tooltiptext="&twiki.toolbar.tip;" >
+					<menupopup>
+						<menuitem id="menu_toolbar_options" label="&twiki.toolbar.options;" oncommand="twiki.toolbarOptions();"/>
+						<menuitem id="menu_toolbar_homepage" label="&twiki.toolbar.homepage;" oncommand="twiki.setLocation('toolbar');"/>
+					</menupopup>
+				</toolbarbutton>
+				<toolbarseparator/>
+			</hbox>
+			<hbox id="twiki-buttons">
+				<toolbarbutton label="&twiki.bold;" image="chrome://twiki/skin/icon_bold.png" accesskey="&twiki.bold.accesskey;" oncommand="twiki.bold();" tooltiptext="&twiki.bold.tip;" class="toolbarbutton-1 chromeclass-toolbar-additional"/>
+				<toolbarbutton label="&twiki.bolditalic;" image="chrome://twiki/skin/icon_bolditalic.png" accesskey="&twiki.bolditalic.accesskey;" oncommand="twiki.bolditalic();" tooltiptext="&twiki.bolditalic.tip;" class="toolbarbutton-1 chromeclass-toolbar-additional"/>
+				<toolbarbutton label="&twiki.italic;" image="chrome://twiki/skin/icon_italic.png" accesskey="&twiki.italic.accesskey;" oncommand="twiki.italic();" tooltiptext="&twiki.italic.tip;" class="toolbarbutton-1 chromeclass-toolbar-additional"/>
+				<toolbarbutton type="menu" id="toolbar-format" accesskey="&twiki.format.accesskey;" oncommand="open=true;" label="&twiki.format.menu;" image="chrome://twiki/skin/icon_format.png" tooltiptext="&twiki.format.tip;" orient="vertical">
+					<menupopup>
+						<menuitem id="context-underline" label="&twiki.underline;" oncommand="twiki.underline();" class="menuitem-iconic menu-iconic"/>
+						<menuitem id="context-strike" label="&twiki.strike;" oncommand="twiki.strike();" class="menuitem-iconic menu-iconic"/>
+						<menuitem id="context-fixed" label="&twiki.fixed;" oncommand="twiki.fixed();"/>
+						<menuitem id="context-bold-fixed" label="&twiki.bold.fixed;" oncommand="twiki.boldfixed();"/>
+						<menuseparator/>
+						<menuitem id="context-pre" label="&twiki.pre;" oncommand="twiki.pre();"/>
+oncommand="twiki.surround('pre','&lt;pre&gt;','&lt;/pre&gt;');"/>
+						<menuitem id="context-verbatim" label="&twiki.verbatim;" oncommand="twiki.verbatim();"/>
+						<menuseparator/>
+						<menuitem id="context-red" class="menuitem-iconic menu-iconic" label="&twiki.red;" oncommand="twiki.red();"/>
+						<menuitem id="context-blue" class="menuitem-iconic menu-iconic" label="&twiki.blue;" oncommand="twiki.blue();"/>
+						<menuitem id="context-green" class="menuitem-iconic menu-iconic" label="&twiki.green;" oncommand="twiki.green();"/>
+					</menupopup>
+				</toolbarbutton>
+				<toolbarseparator/>
+				<toolbarbutton type="menu" label="&twiki.links.menu;" accesskey="&twiki.links.accesskey;" oncommand="open=true;" image="chrome://twiki/skin/links.gif" tooltiptext="&twiki.links.tip;" orient="vertical">
+					<menupopup>
+						<menuitem id="context-forcedlink" class="menuitem-iconic menu-iconic" label="&twiki.forcedlink;" oncommand="twiki.insertForcedLink();"/>
+						<menuitem id="context-anchor" class="menuitem-iconic menu-iconic" label="&twiki.anchor;" oncommand="twiki.anchor();"/>
+						<menuitem id="context-wikiword" class="menuitem-iconic menu-iconic" label="&twiki.makeWikiWord;" oncommand="twiki.makeWikiWord();"/>
+					</menupopup>
+				</toolbarbutton>
+				<toolbarbutton type="menu" label="&twiki.paragraph.menu;" accesskey="&twiki.paragraph.accesskey;" oncommand="open=true;" image="chrome://twiki/skin/person.gif" tooltiptext="&twiki.paragraph.tip;" orient="vertical">
+					<menupopup>
+						<menuitem label="&twiki.paragraph.level1;" class="menuitem-iconic menu-iconic" oncommand="twiki.paragraph('paragraph','---+');"/>
+						<menuitem label="&twiki.paragraph.level2;" class="menuitem-iconic menu-iconic" oncommand="twiki.paragraph('paragraph','---++');"/>
+						<menuitem label="&twiki.paragraph.level3;" class="menuitem-iconic menu-iconic" oncommand="twiki.paragraph('paragraph','---+++');"/>
+						<menuseparator/>
+						<menuitem id="context-paragraph-decrement" class="menuitem-iconic menu-iconic" label="&twiki.paragraph.declevel;" oncommand="twiki.changeParagraphs(-1);"/>
+						<menuitem id="context-paragraph-increment" class="menuitem-iconic menu-iconic" label="&twiki.paragraph.inclevel;" oncommand="twiki.changeParagraphs(1);"/>
+						<menuseparator/>
+						<menuitem id="context-paragraph-fancy;" class="menuitem-iconic menu-iconic" label="&twiki.paragraph.fancy;" oncommand="twiki.insertHeadingFancy();"/>
+					</menupopup>
+				</toolbarbutton>
+				<toolbarbutton type="menu" label="&twiki.list.menu;" accesskey="&twiki.list.accesskey;" oncommand="open=true;" image="chrome://twiki/skin/icon_list_simple.png" tooltiptext="&twiki.list.tip;" orient="vertical">
+					<menupopup>
+						<menuitem id="context-list-simple" class="menuitem-iconic menu-iconic" label="&twiki.list.simple;" oncommand="twiki.insertList('*');"/>
+						<menuitem id="context-list-numbered" class="menuitem-iconic menu-iconic" label="&twiki.list.numbered;" oncommand="twiki.insertList('1.');"/>
+						<menuitem id="context-list-fancy" class="menuitem-iconic menu-iconic" label="&twiki.list.fancy;" oncommand="twiki.insertListFancy('*');"/>
+						<menuitem id="context-list-definition" class="menuitem-iconic menu-iconic" label="&twiki.list.definition;" oncommand="twiki.insertDefinitionList();"/>
+						<menuseparator/>
+						<menuitem id="context-indentation-more" label="&twiki.indentation.more;" class="menuitem-iconic menu-iconic" oncommand="twiki.indentMore();"/>
+						<menuitem id="context-indentation-less" label="&twiki.indentation.less;" class="menuitem-iconic menu-iconic" oncommand="twiki.indentLess();"/>
+						<menuseparator/>
+						<menuitem id="context-list-remove" class="menuitem-iconic menu-iconic" label="&twiki.list.remove;" oncommand="twiki.removeList();"/>
+					</menupopup>
+				</toolbarbutton>
+				<toolbarbutton type="menu" label="&twiki.template.menu;" accesskey="&twiki.template.accesskey;" oncommand="open=true;" image="chrome://twiki/skin/icon_template.png" tooltiptext="&twiki.template.tip;" orient="vertical">
+					<menupopup id="popupTemplates1">
+						<menuitem id="context-toc" label="&twiki.template.toc;" oncommand="twiki.insert('%TOC%');"/>
+						<menuitem id="context-notoc"  label="&twiki.template.notoc;" oncommand="twiki.insert('__NOTOC__');"/>
+						<menuseparator/>
+						<menuitem id="context-tipicon" class="menuitem-iconic menu-iconic" label="&twiki.template.tipicon;" oncommand="twiki.insert('%T% ');"/>
+						<menuitem id="context-helpicon" class="menuitem-iconic menu-iconic" label="&twiki.template.helpicon;" oncommand="twiki.insert('%H% ');"/>
+						<menuitem id="context-warnicon" class="menuitem-iconic menu-iconic" label="&twiki.template.warnicon;" oncommand="twiki.insert('%X% ');"/>
+						<menuitem id="context-staricon" class="menuitem-iconic menu-iconic" label="&twiki.template.staricon;" oncommand="twiki.insert('%S%');"/>
+						<menuitem id="context-newicon" class="menuitem-iconic menu-iconic" label="&twiki.template.newicon;" oncommand="twiki.insert('%N% ');"/>
+						<menuitem id="context-updatedicon" class="menuitem-iconic menu-iconic" label="&twiki.template.updatedicon;" oncommand="twiki.insert('%U% ');"/>
+						<menuseparator/>
+						<menuitem id="context-attachurlvar" class="menuitem-iconic menu-iconic" label="&twiki.template.attachurlvar;" oncommand="twiki.insert('%ATTACHURL% ');"/>
+						<menuitem id="context-topicvar" class="menuitem-iconic menu-iconic" label="&twiki.template.topicvar;" oncommand="twiki.insert('%TOPIC% ');"/>
+						<menuitem id="context-webvar" class="menuitem-iconic menu-iconic" label="&twiki.template.webvar;" oncommand="twiki.insert('%WEB% ');"/>
+						<menuseparator/>
+					</menupopup>
+				</toolbarbutton>
+				<toolbarseparator/>
+				<toolbarbutton image="chrome://twiki/skin/icon_table.png" label="&twiki.table;..." accesskey="&twiki.table.accesskey;" oncommand="twiki.insertTable();" tooltiptext="&twiki.table.tip;" class="toolbarbutton-1 chromeclass-toolbar-additional"/>
+				<toolbarbutton image="chrome://twiki/skin/icon_image.png" label="&twiki.image;..." accesskey="&twiki.image.accesskey;" oncommand="twiki.insertImage();" tooltiptext="&twiki.image.tip;"  class="toolbarbutton-1 chromeclass-toolbar-additional"/>
+				<toolbarbutton image="chrome://twiki/skin/icon_line.png" label="&twiki.horline;" accesskey="&twiki.horline.accesskey;" oncommand="twiki.insert('\n---\n');" tooltiptext="&twiki.horline.tip;" class="toolbarbutton-1 chromeclass-toolbar-additional"/>
+				<toolbarseparator/>
+				<toolbarbutton disabled="false" type="menu" label="&twiki.specialchars.menu;" accesskey="&twiki.specialchars.accesskey;" oncommand="open=true;" image="chrome://twiki/skin/icon_special_character.png" tooltiptext="&twiki.specialchars.tip;" orient="vertical">
+					<menupopup>
+						<menu label="&twiki.quotations;">
+							<menupopup id="popupQuotations">
+								<menuitem id="context-quote-double" label="&#8222;&#8230;&#8221;" oncommand="twiki.surroundBlock('quotation','„','”');"/>
+								<menuitem id="context-quote-double-upper" label="&#8220;&#8230;&#8221;" oncommand="twiki.surroundBlock('quotation','“','”');"/>
+								<menuitem id="context-quote-single" label="&#8218;&#8230;&#8217;" oncommand="twiki.surroundBlock('quotation','‚','’');"/>
+								<menuitem id="context-quote-single-upper" label="&#8216;&#8230;&#8217;" oncommand="twiki.surroundBlock('quotation','‘','’');"/>
+								<menuitem id="context-quote-double-alt" label="&#187;&#8230;&#171;" oncommand="twiki.surroundBlock('quotation','»','«');"/>
+								<menuitem id="context-quote-single-alt" label="&#8250;&#8230;&#8249;" oncommand="twiki.surroundBlock('quotation','›','‹');"/>
+							</menupopup>
+						</menu>
+						<menu label="&twiki.super;">
+							<menupopup>
+								<menuitem label="1" oncommand="twiki.insert('¹');"/>
+								<menuitem label="2" oncommand="twiki.insert('²');"/>
+								<menuitem label="3" oncommand="twiki.insert('³');"/>
+								<menuitem label="4" oncommand="twiki.insert('&lt;sup&gt;4&lt;/sup&gt;');"/>
+								<menuitem label="5" oncommand="twiki.insert('&lt;sup&gt;5&lt;/sup&gt;');"/>
+								<menuitem label="6" oncommand="twiki.insert('&lt;sup&gt;6&lt;/sup&gt;');"/>
+								<menuitem label="7" oncommand="twiki.insert('&lt;sup&gt;7&lt;/sup&gt;');"/>
+								<menuitem label="8" oncommand="twiki.insert('&lt;sup&gt;8&lt;/sup&gt;');"/>
+								<menuitem label="9" oncommand="twiki.insert('&lt;sup&gt;9&lt;/sup&gt;');"/>
+								<menuitem label="0" oncommand="twiki.insert('&lt;sup&gt;0&lt;/sup&gt;');"/>
+							</menupopup>
+						</menu>
+						<menuseparator/>
+						<menuitem id="context-nbsp" label="&twiki.nbsp;" oncommand="twiki.insert('&amp;nbsp;');"/>
+						<menuitem id="context-dash" label="&twiki.dash;" oncommand="twiki.insert('&#8211;');"/>
+						<menuitem id="context-dagger" label="&twiki.dagger;" oncommand="twiki.insert('&#8224;');"/>
+						<menuitem id="context-midpoint" label="&twiki.middot;" oncommand="twiki.insert('·');"/>
+						<menuitem id="context-times" label="&twiki.times;" oncommand="twiki.insert('×');"/>
+						<menuitem id="context-euro" label="&twiki.euro;" oncommand="twiki.insert('&#8364;');"/>
+						<menuitem id="context-szlig" label="&#223;" oncommand="twiki.insert('ß');"/>
+						<menuitem id="context-micro" label="&#181;" oncommand="twiki.insert('µ');"/>
+						<menuseparator/>
+						<menu label="a">
+							<menupopup>
+								<menuitem id="context-agrave" label="&#224; &twiki.specialchar.grave;" oncommand="twiki.insert('à');"/>
+								<menuitem id="context-aacute" label="&#225; &twiki.specialchar.acute;" oncommand="twiki.insert('á');"/>
+								<menuitem id="context-acirc" label="&#226; &twiki.specialchar.circumflex;" oncommand="twiki.insert('â');"/>
+								<menuitem id="context-atilde" label="&#227; &twiki.specialchar.tilde;" oncommand="twiki.insert('ã');"/>
+								<menuitem id="context-auml" label="&#228; &twiki.specialchar.umlaut;" oncommand="twiki.insert('ä');"/>
+								<menuitem id="context-aring" label="&#229; &twiki.specialchar.ring;" oncommand="twiki.insert('å');"/>
+								<menuitem id="context-aelig" label="&#230;" oncommand="twiki.insert('æ');"/>
+								<menuitem id="context-amacron" label="&#257; &twiki.specialchar.macron;" oncommand="twiki.insert('&#257;');"/>
+								<menuitem id="context-abreve" label="&#259; &twiki.specialchar.breve;" oncommand="twiki.insert('&#259;');"/>
+								<menuseparator/>
+								<menuitem id="context-agravecap" label="&#192; &twiki.specialchar.grave;" oncommand="twiki.insert('À');"/>
+								<menuitem id="context-aacutecap" label="&#193; &twiki.specialchar.acute;" oncommand="twiki.insert('Á');"/>
+								<menuitem id="context-acirccap" label="&#194; &twiki.specialchar.circumflex;" oncommand="twiki.insert('Â');"/>
+								<menuitem id="context-atildecap" label="&#195; &twiki.specialchar.tilde;" oncommand="twiki.insert('Ã');"/>
+								<menuitem id="context-aumlcap" label="&#196; &twiki.specialchar.umlaut;" oncommand="twiki.insert('Ä');"/>
+								<menuitem id="context-aringcap" label="&#197; &twiki.specialchar.ring;" oncommand="twiki.insert('Å');"/>
+								<menuitem id="context-aeligcap" label="&#198;" oncommand="twiki.insert('Æ');"/>
+								<menuitem id="context-amacroncap" label="&#256; &twiki.specialchar.macron;" oncommand="twiki.insert('&#256;');"/>
+								<menuitem id="context-abreve-cap" label="&#258; &twiki.specialchar.breve;" oncommand="twiki.insert('&#258;');"/>
+							</menupopup>
+						</menu>
+						<menu label="e">
+							<menupopup>
+								<menuitem id="context-egrave" label="&#232; &twiki.specialchar.grave;" oncommand="twiki.insert('è');"/>
+								<menuitem id="context-eacute" label="&#233; &twiki.specialchar.acute;" oncommand="twiki.insert('é');"/>
+								<menuitem id="context-eirc" label="&#234; &twiki.specialchar.circumflex;" oncommand="twiki.insert('ê');"/>
+								<menuitem id="context-euml" label="&#235; &twiki.specialchar.umlaut;" oncommand="twiki.insert('ë');"/>
+								<menuitem id="context-emacron" label="&#275; &twiki.specialchar.macron;" oncommand="twiki.insert('&#275;');"/>
+								<menuitem id="context-ebreve" label="&#277; &twiki.specialchar.breve;" oncommand="twiki.insert('&#277;');"/>
+								<menuseparator/>
+								<menuitem id="context-egravecap" label="&#200; &twiki.specialchar.grave;" oncommand="twiki.insert('È');"/>
+								<menuitem id="context-eacutecap" label="&#201; &twiki.specialchar.acute;" oncommand="twiki.insert('É');"/>
+								<menuitem id="context-ecirccap" label="&#202; &twiki.specialchar.circumflex;" oncommand="twiki.insert('Ê');"/>
+								<menuitem id="context-eumlcap" label="&#203; &twiki.specialchar.umlaut;" oncommand="twiki.insert('Ë');"/>
+								<menuitem id="context-emacroncap" label="&#274; &twiki.specialchar.macron;" oncommand="twiki.insert('&#274;');"/>
+								<menuitem id="context-ebreve-cap" label="&#276; &twiki.specialchar.breve;" oncommand="twiki.insert('&#276;');"/>
+							</menupopup>
+						</menu>
+						<menu label="i">
+							<menupopup>
+								<menuitem id="context-igrave" label="&#236; &twiki.specialchar.grave;" oncommand="twiki.insert('ì');"/>
+								<menuitem id="context-iacute" label="&#237; &twiki.specialchar.acute;" oncommand="twiki.insert('í');"/>
+								<menuitem id="context-iirc" label="&#238; &twiki.specialchar.circumflex;" oncommand="twiki.insert('î');"/>
+								<menuitem id="context-iuml" label="&#239; &twiki.specialchar.umlaut;" oncommand="twiki.insert('ï');"/>
+								<menuitem id="context-imacron" label="&#299; &twiki.specialchar.macron;" oncommand="twiki.insert('&#299;');"/>
+								<menuitem id="context-ibreve" label="&#301; &twiki.specialchar.breve;" oncommand="twiki.insert('&#301;');"/>
+								<menuseparator/>
+								<menuitem id="context-igravecap" label="&#204; &twiki.specialchar.grave;" oncommand="twiki.insert('Ì');"/>
+								<menuitem id="context-iacutecap" label="&#205; &twiki.specialchar.acute;" oncommand="twiki.insert('Í');"/>
+								<menuitem id="context-icirccap" label="&#206; &twiki.specialchar.circumflex;" oncommand="twiki.insert('Î');"/>
+								<menuitem id="context-iumlcap" label="&#207; &twiki.specialchar.umlaut;" oncommand="twiki.insert('Ï');"/>
+								<menuitem id="context-imacroncap" label="&#298; &twiki.specialchar.macron;" oncommand="twiki.insert('&#298;');"/>
+								<menuitem id="context-ibreve-cap" label="&#300; &twiki.specialchar.breve;" oncommand="twiki.insert('&#300;');"/>
+							</menupopup>
+						</menu>
+						<menu label="o">
+							<menupopup>
+								<menuitem id="context-ograve" label="&#242; &twiki.specialchar.grave;" oncommand="twiki.insert('ò');"/>
+								<menuitem id="context-oacute" label="&#243; &twiki.specialchar.acute;" oncommand="twiki.insert('ó');"/>
+								<menuitem id="context-ocirc" label="&#244; &twiki.specialchar.circumflex;" oncommand="twiki.insert('ô');"/>
+								<menuitem id="context-otilde" label="&#245; &twiki.specialchar.tilde;" oncommand="twiki.insert('õ');"/>
+								<menuitem id="context-ouml" label="&#246; &twiki.specialchar.umlaut;" oncommand="twiki.insert('ö');"/>
+								<menuitem id="context-oslash" label="&#248;" oncommand="twiki.insert('ø');"/>
+								<menuitem id="context-omacron" label="&#333; &twiki.specialchar.macron;" oncommand="twiki.insert('&#333;');"/>
+								<menuitem id="context-obreve" label="&#335; &twiki.specialchar.breve;" oncommand="twiki.insert('&#335;');"/>
+								<menuseparator/>
+								<menuitem id="context-ogravecap" label="&#210; &twiki.specialchar.grave;" oncommand="twiki.insert('Ò');"/>
+								<menuitem id="context-oacutecap" label="&#211; &twiki.specialchar.acute;" oncommand="twiki.insert('Ó');"/>
+								<menuitem id="context-ocirccap" label="&#212; &twiki.specialchar.circumflex;" oncommand="twiki.insert('Ô');"/>
+								<menuitem id="context-otildecap" label="&#213; &twiki.specialchar.tilde;" oncommand="twiki.insert('Õ');"/>
+								<menuitem id="context-oumlcap" label="&#214; &twiki.specialchar.umlaut;" oncommand="twiki.insert('Ö');"/>
+								<menuitem id="context-oslash" label="&#216;" oncommand="twiki.insert('Ø');"/>
+								<menuitem id="context-omacroncap" label="&#332; &twiki.specialchar.macron;" oncommand="twiki.insert('&#332;');"/>
+								<menuitem id="context-obreve-cap" label="&#334; &twiki.specialchar.breve;" oncommand="twiki.insert('&#334;');"/>
+							</menupopup>
+						</menu>
+						<menu label="u">
+							<menupopup>
+								<menuitem id="context-ugrave" label="&#249; &twiki.specialchar.grave;" oncommand="twiki.insert('ù');"/>
+								<menuitem id="context-uacute" label="&#250; &twiki.specialchar.acute;" oncommand="twiki.insert('ú');"/>
+								<menuitem id="context-ucirc" label="&#251; &twiki.specialchar.circumflex;" oncommand="twiki.insert('û');"/>
+								<menuitem id="context-utilde" label="&#361; &twiki.specialchar.tilde;" oncommand="twiki.insert('&#361;');"/>
+								<menuitem id="context-uuml" label="&#252; &twiki.specialchar.umlaut;" oncommand="twiki.insert('ü');"/>
+								<menuitem id="context-umacron" label="&#363; &twiki.specialchar.macron;" oncommand="twiki.insert('&#363;');"/>
+								<menuitem id="context-ubreve" label="&#365; &twiki.specialchar.breve;" oncommand="twiki.insert('&#365;');"/>
+								<menuseparator/>
+								<menuitem id="context-ugravecap" label="&#217; &twiki.specialchar.grave;" oncommand="twiki.insert('Ù');"/>
+								<menuitem id="context-uacutecap" label="&#218; &twiki.specialchar.acute;" oncommand="twiki.insert('Ú');"/>
+								<menuitem id="context-ucirccap" label="&#219; &twiki.specialchar.circumflex;" oncommand="twiki.insert('Û');"/>
+								<menuitem id="context-utildecap" label="&#360; &twiki.specialchar.tilde;" oncommand="twiki.insert('&#360;');"/>
+								<menuitem id="context-uumlcap" label="&#220; &twiki.specialchar.umlaut;" oncommand="twiki.insert('Ü');"/>
+								<menuitem id="context-umacroncap" label="&#362; &twiki.specialchar.macron;" oncommand="twiki.insert('&#362;');"/>
+								<menuitem id="context-ubreve-cap" label="&#364; &twiki.specialchar.breve;" oncommand="twiki.insert('&#364;');"/>
+							</menupopup>
+						</menu>
+					</menupopup>
+				</toolbarbutton>
+			</hbox>
+			<spacer flex="1"></spacer>
+			<hbox id="twiki-toolbar-close" class="tabs-closebutton-box" align="center" pack="end">
+				<toolbarbutton ondblclick="event.preventBubble();" class="tabs-closebutton close-button" inherits="disabled=disableclose,oncommand=onclosetab" oncommand="document.getElementById('twiki-toolbar').collapsed=true;"/>
+			</hbox>
+		</toolbar>
+	</toolbox>
+	<popup id="contentAreaContextMenu">
+		<menu id="context-twiki" position="3" label="TWiki" class="menuitem-iconic menu-iconic icon-twiki16" accesskey="W" >
+			<menupopup>
+				<menuitem id="context-bold" label="&twiki.bold;" key="key_bold" class="menuitem-iconic menu-iconic" oncommand="twiki.bold();"/>
+				<menuitem id="context-bolditalic" label="&twiki.bolditalic;" key="key_bolditalic" class="menuitem-iconic menu-iconic" oncommand="twiki.bolditalic();"/>
+				<menuitem id="context-italic" label="&twiki.italic;" key="key_italic" class="menuitem-iconic menu-iconic" oncommand="twiki.italic();"/>
+				<menu label="&twiki.format.menu;" id="context-format" class="menuitem-iconic menu-iconic">
+					<menupopup>
+						<menuitem id="context-underline" label="&twiki.underline;" class="menuitem-iconic menu-iconic" oncommand="twiki.underline();"/>
+						<menuitem id="context-strike" label="&twiki.strike;" class="menuitem-iconic menu-iconic" oncommand="twiki.strike();"/>
+						<menuitem id="context-fixed" label="&twiki.fixed;" class="menuitem-iconic menu-iconic" oncommand="twiki.fixed();"/>
+						<menuitem id="context-bold-fixed" label="&twiki.bold.fixed;" class="menuitem-iconic menu-iconic" oncommand="twiki.boldfixed();"/>
+					<menuseparator/>
+						<menuitem id="context-pre" label="&twiki.pre;" class="menuitem-iconic menu-iconic" oncommand="twiki.pre();"/>
+						<menuitem id="context-verbatim" label="&twiki.verbatim;" class="menuitem-iconic menu-iconic" oncommand="twiki.verbatim();"/>
+					<menuseparator/>
+						<menuitem id="context-red" label="&twiki.red;" class="menuitem-iconic menu-iconic" oncommand="twiki.red();"/>
+						<menuitem id="context-blue" label="&twiki.blue;" class="menuitem-iconic menu-iconic" oncommand="twiki.blue();"/>
+						<menuitem id="context-green" label="&twiki.green;" class="menuitem-iconic menu-iconic" oncommand="twiki.green();"/>
+					</menupopup>
+				</menu>
+				<menuseparator/>
+				<menu label="&twiki.links.menu;" id="context-links" class="menuitem-iconic menu-iconic" key="key_links">
+					<menupopup>
+						<menuitem id="context-forcedlink" label="&twiki.forcedlink;" class="menuitem-iconic menu-iconic" oncommand="twiki.insertForcedLink();"/>
+						<menuitem id="context-anchor" label="&twiki.anchor;" class="menuitem-iconic menu-iconic" oncommand="twiki.anchor();"/>
+						<menuitem id="context-wikiword" label="&twiki.makeWikiWord;" class="menuitem-iconic menu-iconic" oncommand="twiki.makeWikiWord();"/>
+					</menupopup>
+				</menu>
+				<menu label="&twiki.paragraph.menu;" accesskey="&twiki.paragraph.accesskey;" id="context-paragraph" class="menuitem-iconic menu-iconic">
+					<menupopup>
+						<menuitem id="context-paragraph" label="&twiki.paragraph.level1;" oncommand="twiki.paragraph('paragraph','---+');"/>
+						<menuitem id="context-subparagraph" label="&twiki.paragraph.level2;" oncommand="twiki.paragraph('subparagraph','---++');"/>
+						<menuitem id="context-subsubparagraph" label="&twiki.paragraph.level3;" oncommand="twiki.paragraph('subsubparagraph','---+++');"/>
+						<menuseparator/>
+						<menuitem id="context-paragraph-decrement" class="menuitem-iconic menu-iconic" label="&twiki.paragraph.declevel;" oncommand="twiki.changeParagraphs(-1);"/>
+						<menuitem id="context-paragraph-increment" class="menuitem-iconic menu-iconic" label="&twiki.paragraph.inclevel;" oncommand="twiki.changeParagraphs(1);"/>
+						<menuseparator/>
+						<menuitem id="context-paragraph-fancy;" class="menuitem-iconic menu-iconic" label="&twiki.paragraph.fancy;" oncommand="twiki.insertHeadingFancy();"/>
+					</menupopup>
+				</menu>
+				<menu label="&twiki.list.menu;" id="context-list" class="menuitem-iconic menu-iconic">
+					<menupopup>
+						<menuitem id="context-list-simple" class="menuitem-iconic menu-iconic" label="&twiki.list.simple;" oncommand="twiki.insertList('*');"/>
+						<menuitem id="context-list-numbered" class="menuitem-iconic menu-iconic" label="&twiki.list.numbered;" oncommand="twiki.insertList('1.');"/>
+						<menuitem id="context-list-definition" class="menuitem-iconic menu-iconic" label="&twiki.list.definition;" oncommand="twiki.insertDefinitionList();"/>	
+						<menuitem id="context-list-fancy" class="menuitem-iconic menu-iconic" label="&twiki.list.fancy;" oncommand="twiki.insertListFancy('*');"/>
+					<menuseparator/>
+						<menuitem id="context-indentation-more" class="menuitem-iconic menu-iconic" label="&twiki.indentation.more;" oncommand="twiki.indentMore();"/>
+						<menuitem id="context-indentation-less" class="menuitem-iconic menu-iconic" label="&twiki.indentation.less;" oncommand="twiki.indentLess();"/>
+						<menuseparator/>
+						<menuitem id="context-list-remove" class="menuitem-iconic menu-iconic" label="&twiki.list.remove;" oncommand="twiki.removeList();"/>
+					</menupopup>
+				</menu>
+				<menu label="&twiki.template.menu;" id="context-template" class="menuitem-iconic menu-iconic">
+					<menupopup id="popupTemplates2">
+						<menuitem id="context-toc" label="&twiki.template.toc;" oncommand="twiki.insert('%TOC%');"/>
+						<menuitem id="context-notoc" label="&twiki.template.notoc;" oncommand="twiki.insert('__NOTOC__');"/>
+					<menuseparator/>
+						<menuitem id="context-tipicon" class="menuitem-iconic menu-iconic" label="&twiki.template.tipicon;" oncommand="twiki.insert('%T% ');"/>
+						<menuitem id="context-helpicon" class="menuitem-iconic menu-iconic" label="&twiki.template.helpicon;" oncommand="twiki.insert('%H% ');"/>
+						<menuitem id="context-warnicon" class="menuitem-iconic menu-iconic" label="&twiki.template.warnicon;" oncommand="twiki.insert('%X% ');"/>
+						<menuitem id="context-staricon" class="menuitem-iconic menu-iconic" label="&twiki.template.staricon;" oncommand="twiki.insert('%S%');"/>
+						<menuitem id="context-newicon" class="menuitem-iconic menu-iconic" label="&twiki.template.newicon;" oncommand="twiki.insert('%N% ');"/>
+						<menuitem id="context-updatedicon" class="menuitem-iconic menu-iconic" label="&twiki.template.updatedicon;" oncommand="twiki.insert('%U% ');"/>
+					<menuseparator/>
+						<menuitem id="context-attachurlvar" class="menuitem-iconic menu-iconic" label="&twiki.template.attachurlvar;" oncommand="twiki.insert('%ATTACHURL% ');"/>
+						<menuitem id="context-topicvar" class="menuitem-iconic menu-iconic" label="&twiki.template.topicvar;" oncommand="twiki.insert('%TOPIC% ');"/>		
+						<menuitem id="context-webvar" class="menuitem-iconic menu-iconic" label="&twiki.template.webvar;" oncommand="twiki.insert('%WEB% ');"/>		
+					</menupopup>
+				</menu>
+				<menuseparator/>
+				<menuitem id="context-table" key="key_table" class="menuitem-iconic menu-iconic" label="&twiki.table;..." accesskey="&twiki.table.accesskey;" oncommand="twiki.insertTable();"/>
+				<menuitem id="context-image" key="key_image" class="menuitem-iconic menu-iconic" label="&twiki.image;..." accesskey="&twiki.image.accesskey;" oncommand="twiki.insertImage();"/>
+				<menuitem id="context-horline" class="menuitem-iconic menu-iconic" label="&twiki.horline;" accesskey="&twiki.horline.accesskey;" oncommand="twiki.insert('\n---\n');"/>
+				<menuseparator/>
+				<menu disabled="false" label="&twiki.specialchars.menu;">
+					<menupopup>
+						<menu label="&twiki.quotations;">
+							<menupopup id="popupQuotations">
+								<menuitem id="context-quote-double" label="&#8222;&#8230;&#8221;" oncommand="twiki.surroundBlock('quotation','„','”');"/>
+								<menuitem id="context-quote-double-upper" label="&#8220;&#8230;&#8221;" oncommand="twiki.surroundBlock('quotation','“','”');"/>
+								<menuitem id="context-quote-single" label="&#8218;&#8230;&#8217;" oncommand="twiki.surroundBlock('quotation','‚','’');"/>
+								<menuitem id="context-quote-single-upper" label="&#8216;&#8230;&#8217;" oncommand="twiki.surroundBlock('quotation','‘','’');"/>
+								<menuitem id="context-quote-double-alt" label="&#187;&#8230;&#171;" oncommand="twiki.surroundBlock('quotation','»','«');"/>
+								<menuitem id="context-quote-single-alt" label="&#8250;&#8230;&#8249;" oncommand="twiki.surroundBlock('quotation','›','‹');"/>
+							</menupopup>
+						</menu>
+						<menu label="&twiki.super;">
+							<menupopup>
+								<menuitem label="1" oncommand="twiki.insert('¹');"/>
+								<menuitem label="2" oncommand="twiki.insert('²');"/>
+								<menuitem label="3" oncommand="twiki.insert('³');"/>
+								<menuitem label="4" oncommand="twiki.insert('&lt;sup&gt;4&lt;/sup&gt;');"/>
+								<menuitem label="5" oncommand="twiki.insert('&lt;sup&gt;5&lt;/sup&gt;');"/>
+								<menuitem label="6" oncommand="twiki.insert('&lt;sup&gt;6&lt;/sup&gt;');"/>
+								<menuitem label="7" oncommand="twiki.insert('&lt;sup&gt;7&lt;/sup&gt;');"/>
+								<menuitem label="8" oncommand="twiki.insert('&lt;sup&gt;8&lt;/sup&gt;');"/>
+								<menuitem label="9" oncommand="twiki.insert('&lt;sup&gt;9&lt;/sup&gt;');"/>
+								<menuitem label="0" oncommand="twiki.insert('&lt;sup&gt;0&lt;/sup&gt;');"/>
+							</menupopup>
+						</menu>
+						<menuseparator/>
+						<menuitem id="context-nbsp" label="&twiki.nbsp;" oncommand="twiki.insert('&amp;nbsp;');"/>
+						<menuitem id="context-dash" label="&twiki.dash;" oncommand="twiki.insert('&#8211;');"/>
+						<menuitem id="context-dagger" label="&twiki.dagger;" oncommand="twiki.insert('&#8224;');"/>
+						<menuitem id="context-midpoint" label="&twiki.middot;" oncommand="twiki.insert('·');"/>
+						<menuitem id="context-times" label="&twiki.times;" oncommand="twiki.insert('×');"/>
+						<menuitem id="context-euro" label="&twiki.euro;" oncommand="twiki.insert('&#8364;');"/>
+						<menuitem id="context-szlig" label="&#223;" oncommand="twiki.insert('ß');"/>
+						<menuitem id="context-micro" label="&#181;" oncommand="twiki.insert('µ');"/>
+						<menuseparator/>
+						<menu label="a">
+							<menupopup>
+								<menuitem id="context-agrave" label="&#224; &twiki.specialchar.grave;" oncommand="twiki.insert('à');"/>
+								<menuitem id="context-aacute" label="&#225; &twiki.specialchar.acute;" oncommand="twiki.insert('á');"/>
+								<menuitem id="context-acirc" label="&#226; &twiki.specialchar.circumflex;" oncommand="twiki.insert('â');"/>
+								<menuitem id="context-atilde" label="&#227; &twiki.specialchar.tilde;" oncommand="twiki.insert('ã');"/>
+								<menuitem id="context-auml" label="&#228; &twiki.specialchar.umlaut;" oncommand="twiki.insert('ä');"/>
+								<menuitem id="context-aring" label="&#229; &twiki.specialchar.ring;" oncommand="twiki.insert('å');"/>
+								<menuitem id="context-aelig" label="&#230;" oncommand="twiki.insert('æ');"/>
+								<menuitem id="context-amacron" label="&#257; &twiki.specialchar.macron;" oncommand="twiki.insert('&#257;');"/>
+								<menuitem id="context-abreve" label="&#259; &twiki.specialchar.breve;" oncommand="twiki.insert('&#259;');"/>
+								<menuseparator/>
+								<menuitem id="context-agravecap" label="&#192; &twiki.specialchar.grave;" oncommand="twiki.insert('À');"/>
+								<menuitem id="context-aacutecap" label="&#193; &twiki.specialchar.acute;" oncommand="twiki.insert('Á');"/>
+								<menuitem id="context-acirccap" label="&#194; &twiki.specialchar.circumflex;" oncommand="twiki.insert('Â');"/>
+								<menuitem id="context-atildecap" label="&#195; &twiki.specialchar.tilde;" oncommand="twiki.insert('Ã');"/>
+								<menuitem id="context-aumlcap" label="&#196; &twiki.specialchar.umlaut;" oncommand="twiki.insert('Ä');"/>
+								<menuitem id="context-aringcap" label="&#197; &twiki.specialchar.ring;" oncommand="twiki.insert('Å');"/>
+								<menuitem id="context-aeligcap" label="&#198;" oncommand="twiki.insert('Æ');"/>
+								<menuitem id="context-amacroncap" label="&#256; &twiki.specialchar.macron;" oncommand="twiki.insert('&#256;');"/>
+								<menuitem id="context-abreve-cap" label="&#258; &twiki.specialchar.breve;" oncommand="twiki.insert('&#258;');"/>
+							</menupopup>
+						</menu>
+						<menu label="e">
+							<menupopup>
+								<menuitem id="context-egrave" label="&#232; &twiki.specialchar.grave;" oncommand="twiki.insert('è');"/>
+								<menuitem id="context-eacute" label="&#233; &twiki.specialchar.acute;" oncommand="twiki.insert('é');"/>
+								<menuitem id="context-eirc" label="&#234; &twiki.specialchar.circumflex;" oncommand="twiki.insert('ê');"/>
+								<menuitem id="context-euml" label="&#235; &twiki.specialchar.umlaut;" oncommand="twiki.insert('ë');"/>
+								<menuitem id="context-emacron" label="&#275; &twiki.specialchar.macron;" oncommand="twiki.insert('&#275;');"/>
+								<menuitem id="context-ebreve" label="&#277; &twiki.specialchar.breve;" oncommand="twiki.insert('&#277;');"/>
+								<menuseparator/>
+								<menuitem id="context-egravecap" label="&#200; &twiki.specialchar.grave;" oncommand="twiki.insert('È');"/>
+								<menuitem id="context-eacutecap" label="&#201; &twiki.specialchar.acute;" oncommand="twiki.insert('É');"/>
+								<menuitem id="context-ecirccap" label="&#202; &twiki.specialchar.circumflex;" oncommand="twiki.insert('Ê');"/>
+								<menuitem id="context-eumlcap" label="&#203; &twiki.specialchar.umlaut;" oncommand="twiki.insert('Ë');"/>
+								<menuitem id="context-emacroncap" label="&#274; &twiki.specialchar.macron;" oncommand="twiki.insert('&#274;');"/>
+								<menuitem id="context-ebreve-cap" label="&#276; &twiki.specialchar.breve;" oncommand="twiki.insert('&#276;');"/>
+							</menupopup>
+						</menu>
+						<menu label="i">
+							<menupopup>
+								<menuitem id="context-igrave" label="&#236; &twiki.specialchar.grave;" oncommand="twiki.insert('ì');"/>
+								<menuitem id="context-iacute" label="&#237; &twiki.specialchar.acute;" oncommand="twiki.insert('í');"/>
+								<menuitem id="context-iirc" label="&#238; &twiki.specialchar.circumflex;" oncommand="twiki.insert('î');"/>
+								<menuitem id="context-iuml" label="&#239; &twiki.specialchar.umlaut;" oncommand="twiki.insert('ï');"/>
+								<menuitem id="context-imacron" label="&#299; &twiki.specialchar.macron;" oncommand="twiki.insert('&#299;');"/>
+								<menuitem id="context-ibreve" label="&#301; &twiki.specialchar.breve;" oncommand="twiki.insert('&#301;');"/>
+								<menuseparator/>
+								<menuitem id="context-igravecap" label="&#204; &twiki.specialchar.grave;" oncommand="twiki.insert('Ì');"/>
+								<menuitem id="context-iacutecap" label="&#205; &twiki.specialchar.acute;" oncommand="twiki.insert('Í');"/>
+								<menuitem id="context-icirccap" label="&#206; &twiki.specialchar.circumflex;" oncommand="twiki.insert('Î');"/>
+								<menuitem id="context-iumlcap" label="&#207; &twiki.specialchar.umlaut;" oncommand="twiki.insert('Ï');"/>
+								<menuitem id="context-imacroncap" label="&#298; &twiki.specialchar.macron;" oncommand="twiki.insert('&#298;');"/>
+								<menuitem id="context-ibreve-cap" label="&#300; &twiki.specialchar.breve;" oncommand="twiki.insert('&#300;');"/>
+							</menupopup>
+						</menu>
+						<menu label="o">
+							<menupopup>
+								<menuitem id="context-ograve" label="&#242; &twiki.specialchar.grave;" oncommand="twiki.insert('ò');"/>
+								<menuitem id="context-oacute" label="&#243; &twiki.specialchar.acute;" oncommand="twiki.insert('ó');"/>
+								<menuitem id="context-ocirc" label="&#244; &twiki.specialchar.circumflex;" oncommand="twiki.insert('ô');"/>
+								<menuitem id="context-otilde" label="&#245; &twiki.specialchar.tilde;" oncommand="twiki.insert('õ');"/>
+								<menuitem id="context-ouml" label="&#246; &twiki.specialchar.umlaut;" oncommand="twiki.insert('ö');"/>
+								<menuitem id="context-oslash" label="&#248;" oncommand="twiki.insert('ø');"/>
+								<menuitem id="context-omacron" label="&#333; &twiki.specialchar.macron;" oncommand="twiki.insert('&#333;');"/>
+								<menuitem id="context-obreve" label="&#335; &twiki.specialchar.breve;" oncommand="twiki.insert('&#335;');"/>
+								<menuseparator/>
+								<menuitem id="context-ogravecap" label="&#210; &twiki.specialchar.grave;" oncommand="twiki.insert('Ò');"/>
+								<menuitem id="context-oacutecap" label="&#211; &twiki.specialchar.acute;" oncommand="twiki.insert('Ó');"/>
+								<menuitem id="context-ocirccap" label="&#212; &twiki.specialchar.circumflex;" oncommand="twiki.insert('Ô');"/>
+								<menuitem id="context-otildecap" label="&#213; &twiki.specialchar.tilde;" oncommand="twiki.insert('Õ');"/>
+								<menuitem id="context-oumlcap" label="&#214; &twiki.specialchar.umlaut;" oncommand="twiki.insert('Ö');"/>
+								<menuitem id="context-oslash" label="&#216;" oncommand="twiki.insert('Ø');"/>
+								<menuitem id="context-omacroncap" label="&#332; &twiki.specialchar.macron;" oncommand="twiki.insert('&#332;');"/>
+								<menuitem id="context-obreve-cap" label="&#334; &twiki.specialchar.breve;" oncommand="twiki.insert('&#334;');"/>
+							</menupopup>
+						</menu>
+						<menu label="u">
+							<menupopup>
+								<menuitem id="context-ugrave" label="&#249; &twiki.specialchar.grave;" oncommand="twiki.insert('ù');"/>
+								<menuitem id="context-uacute" label="&#250; &twiki.specialchar.acute;" oncommand="twiki.insert('ú');"/>
+								<menuitem id="context-ucirc" label="&#251; &twiki.specialchar.circumflex;" oncommand="twiki.insert('û');"/>
+								<menuitem id="context-utilde" label="&#361; &twiki.specialchar.tilde;" oncommand="twiki.insert('&#361;');"/>
+								<menuitem id="context-uuml" label="&#252; &twiki.specialchar.umlaut;" oncommand="twiki.insert('ü');"/>
+								<menuitem id="context-umacron" label="&#363; &twiki.specialchar.macron;" oncommand="twiki.insert('&#363;');"/>
+								<menuitem id="context-ubreve" label="&#365; &twiki.specialchar.breve;" oncommand="twiki.insert('&#365;');"/>
+								<menuseparator/>
+								<menuitem id="context-ugravecap" label="&#217; &twiki.specialchar.grave;" oncommand="twiki.insert('Ù');"/>
+								<menuitem id="context-uacutecap" label="&#218; &twiki.specialchar.acute;" oncommand="twiki.insert('Ú');"/>
+								<menuitem id="context-ucirccap" label="&#219; &twiki.specialchar.circumflex;" oncommand="twiki.insert('Û');"/>
+								<menuitem id="context-utildecap" label="&#360; &twiki.specialchar.tilde;" oncommand="twiki.insert('&#360;');"/>
+								<menuitem id="context-uumlcap" label="&#220; &twiki.specialchar.umlaut;" oncommand="twiki.insert('Ü');"/>
+								<menuitem id="context-umacroncap" label="&#362; &twiki.specialchar.macron;" oncommand="twiki.insert('&#362;');"/>
+								<menuitem id="context-ubreve-cap" label="&#364; &twiki.specialchar.breve;" oncommand="twiki.insert('&#364;');"/>
+							</menupopup>
+						</menu>
+					</menupopup>
+				</menu>
+			</menupopup>
+		</menu>
+	</popup>
+</overlay>

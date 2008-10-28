@@ -1,0 +1,100 @@
+# translation of po-debconf template to German
+# Copyright (C) 2007, Matthias Julius
+# This file is distributed under the same license as the twiki package.
+#
+# Matthias Julius <mdeb@julius-net.net>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: twiki 1:4.0.5-9\n"
+"Report-Msgid-Bugs-To: svenud@ozemail.com.au\n"
+"POT-Creation-Date: 2007-02-17 09:09+0100\n"
+"PO-Revision-Date: 2007-02-17 02:55-0500\n"
+"Last-Translator: Matthias Julius <mdeb@julius-net.net>\n"
+"Language-Team: German <debian-l10n-german@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#. Type: string
+#. Description
+#: ../templates:1001
+msgid "Top-level URL of the server TWiki runs under:"
+msgstr "Wurzel-URL des Servers unter dem TWiki läuft:"
+
+#. Type: string
+#. Description
+#: ../templates:1001
+msgid ""
+"For a normal install, this should be a URL for your web server's full name, "
+"which is used to construct URLs on some pages.  The install will serve up "
+"the data by adding \"twiki\" to the end of this setting; it is also needed "
+"for certain redirections."
+msgstr ""
+"Für eine normale Installation sollte dies eine URL für den vollständigen "
+"Namen Ihres Webservers sein. Diese wird auf einigen Seiten zur Erzeugung von "
+"URLs verwendet. Die Installation wird die Daten aussenden indem »twiki« an "
+"das Ende dieses Wertes gehägt wird. Er wird auch für bestimmte "
+"Weiterleitungen benötigt."
+
+#. Type: string
+#. Description
+#: ../templates:2001
+msgid "Email address of the webmaster for this TWiki:"
+msgstr "Email-Adresse des Webmasters für dieses TWiki:"
+
+#. Type: string
+#. Description
+#: ../templates:2001
+msgid ""
+"This email address gets mail for new user registration, and is listed on the "
+"\"oops\" page when things go wrong."
+msgstr ""
+"Diese Email-Adresse erhält Email für die Registration neuer Nutzer und wird "
+"auf der »oops«-Seite aufgeführt, wenn Fehler auftreten."
+
+#. Type: boolean
+#. Description
+#: ../templates:3001
+msgid "Install default wiki Topic Set on initial install?"
+msgstr ""
+"Den voreingestellten Wiki-Themen-Satz bei der ersten Installation "
+"installieren?"
+
+#. Type: boolean
+#. Description
+#: ../templates:3001
+msgid ""
+"TWiki includes a complete \"starter kit\" which includes user registration "
+"pages, documentation, and tutorials.  Only decline if you're re-installing "
+"TWiki after deleting the package and want to keep the old data, or if you've "
+"got a TWiki data set from your own manual install.  If data/Main/WebHome.txt "
+"is present, the starter kit will not be unpacked.  The starter kit files can "
+"be found in /usr/share/twiki/twiki-data.tar.gz (and twiki-pub.tar.gz), if "
+"you want to install it manually or compare your topics with the new version."
+msgstr ""
+"TWiki enthält ein vollständiges »Starter-Kit«, welches Seiten zur "
+"Benutzerregistration, Dokumentation und Tutorials enthält. Lehnen Sie hier "
+"nur ab, falls Sie TWiki neu installieren, nachdem das Paket entfernt wurde, "
+"und Sie die alten Daten behalten möchten, oder falls Sie TWiki-Daten von "
+"Ihrer eigenen manuellen Installation haben. Falls data/Main/WebHome.txt "
+"vorhanden ist, wird das Starter-Kit nicht entpackt. Die Dateien des Starter-"
+"Kits befinden sich in /usr/share/twiki/twiki-data.tar.gz (und twiki-pub.tar."
+"gz). für den Fall, dass Sie sie manuell installieren oder Ihre Themen mit "
+"der neuen Version vergleichen möchten."
+
+#. Type: note
+#. Description
+#: ../templates:4001
+msgid "Admin User Registration configuration required"
+msgstr "Konfiguration für die Admin-Benutzer-Registration erforderlich"
+
+#. Type: note
+#. Description
+#: ../templates:4001
+msgid ""
+"After you have created yourself a user, edit the Main.TWikiAdminGroup to "
+"restrict Admin privileges to that user."
+msgstr ""
+"Nachdem Sie sich selbst einen Benutzer angelegt haben, editieren Sie Main."
+"TWikiAdminGroup, um die Admin-Privilegien auf diesen Benutzer zu beschränken."

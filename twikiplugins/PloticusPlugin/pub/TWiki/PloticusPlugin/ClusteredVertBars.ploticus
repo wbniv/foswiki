@@ -1,0 +1,56 @@
+//  Specify data using proc getdata
+#proc getdata
+data:
+   // region      	1985   1995
+  "Middle East"		17	8
+  "Eastern Europe" 	12	8
+  "North Africa"	7.5	4
+  "Sub Saharan Africa"	3	1.5
+  "North America"	5.5	3.5
+  "Western Europe"	3	2.5
+  "South Asia"		3.7	2.2
+  "East Asia"		2.5	1.5
+  "South America"	2	1.6
+<p />
+//  Define plotting area using proc areadef
+#proc areadef
+  title: Military Expenditure as percent of GDP
+  titledetails: adjust=-0.4,0 align=C
+  rectangle: 2 1 4 3.5
+  yrange: 0 10
+  xrange: 0 20
+<p />
+//  Set up X axis using proc axis
+#proc xaxis
+  stubs: inc 5
+  stubformat: %3.0f%%
+  grid: color=gray(0.9)
+<p />
+//  Do Y axis using proc axis
+#proc yaxis:
+  stubs: datafields 1
+  tics: none
+  axisline: none
+<p />
+//  Do orange bars using proc bars
+#proc bars
+  horizontalbars: yes
+  color: redorange
+  lenfield: 2
+  cluster: 1 / 2
+  barwidth: 0.08
+  legendlabel: 1985
+<p />
+//  Do blue bars using proc bars
+#proc bars
+  horizontalbars: yes
+  // color: powderblue
+  color: yellow
+  lenfield: 3
+  cluster: 2 / 2
+  barwidth: 0.08
+  legendlabel: 1995
+<p />
+//  Do legend using proc legend
+#proc legend
+  location: max-0.6 min+0.5

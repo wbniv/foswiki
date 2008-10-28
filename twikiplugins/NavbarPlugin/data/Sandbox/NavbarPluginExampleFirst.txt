@@ -1,0 +1,7 @@
+%META:TOPICINFO{author="ColasNahaboo" date="1031821541" format="1.0" version="1.2"}%
+%META:TOPICPARENT{name="NavbarPluginExample"}%
+There was a time when computer games didn't have graphics. Or at least they couldn't have graphics and sound at the same time. They certainly couldn't have graphics, sound and enough content to keep even a human being amused for more than a few minutes. So they had text. This was radical - a computer game you could control by typing in commands. The game would then respond to your commands with a breathtakingly prescient understanding of your intent. Or not. Usually not - the early text parsers (circa 1977) weren't that bright. But, as long as you limited yourself to what the game understood and the game designers wrote creatively enough to misunderstand you in a humorous and entertaining fashion, it all worked. It therefore stands to reason that any game which combined a really good ogrammer with a really good writer was likely to do well. So when Steve Meretzky of Infocom got together with Douglas Adams to create a game based around the Hitchhiker's Guide to the Galaxy, the result was never going to be less than interesting and more than likely insane. So it proved - the Hitchhiker's Guide adventure game was one of the best-selling games of its era, selling some 350,000 copies. In 1984. 
+
+On this page (body and/or skin), 
+	* %NAVBAR% is expanded to %NAVBAR%
+	* and %NAVBAR{graphics="on"}% is expanded to %NAVBAR{graphics="on"}%

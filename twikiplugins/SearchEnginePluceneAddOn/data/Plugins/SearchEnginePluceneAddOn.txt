@@ -1,0 +1,113 @@
+%META:TOPICINFO{author="jmv" date="1103106233" format="1.0" version="1.4"}%
+---++ Plucene Search Engine Add-On
+
+TWiki original search engine is a simple yet powerful tool. However, it can not search within attached documents. That has been discused in many topics in the Codev web:
+	* TWiki:Codev/ImprovedSearchByKeywordIndex
+	* TWiki:Codev/SearchAttachmentContent
+	* TWiki:Codev/SearchAttachments
+	* TWiki:SearchEngineVsGrepSearch
+	* and many others, just look at TWiki:Codev/SearchEnhancements which lists more than 100 topics about search issues
+
+I'm not a Perl guru, however I found [[http://www.kasei.com/archives/001039.html][Plucene]], which is a Perl port of the java library [[http://jakarta.apache.org/lucene/][Lucene]], so I tried to implement a new search engine, using Plucene as its backend.
+
+---++ Usage
+
+---+++ Indexing with plucindex
+
+The ==plucindex== script indexes all the content of your data folder, and it uses some TWiki code to retrieve the list of available webs and to retrieve their topic list. For each topic, the meta data is inspected and indexed, as the text body. Also, if the topic has attachments, those are indexed (see below for more details).
+
+By now, you should run this script manually after installation to create the index files used by ==plucsearch==. If you want, you can also schedule a weekly or monthly crontab job to create the index files again, or maybe execute it manually when you take down your server for maintenance tasks. It should not be invoked by browser.
+
+Please, to suggest indexing improvements read/post to TWiki:Plugins/SearchEnginePluceneAddOnDev
+
+---+++ Searching with plucsearch
+
+The ==plucsearch== script uses one of the templates ==plucsearh.tmpl== (that can be adapted to your site skin easily) or the ==plucsearch.pattern.tmpl== (if you use the pattern skin). There is also a *PluceneSearch* topic with a form ready to use with *plucsearch* script.
+
+However, the query syntax is quite different:
+	* you can use *and*, *or*
+	* if you want to search inside the topic body, you should use the prefix ==text:== or just type the search string
+	* if you want to search using some meta data, you should use the prefix ==field:== where *field* is the meta data name
+	* if you want to search using some form field, you should use the prefix ==field:== where *field* is the form's field name
+	* plucene adds the *type* field for the indexed attachments, so you can use it to filter your results
+
+Query examples (just type it in your ==PluceneSearch== site topic)
+	* text:plucene
+	* plucene
+	* author:JoanMVigo
+	* <nop>TopicClassification:ItemToDo
+	* type:pdf and learning
+
+Please, to suggest searching improvements read/post to TWiki:Plugins/SearchEnginePluceneAddOnDev
+
+---+++ Updating with plucupdate
+
+The ==plucupdate== script uses the web's ==.changes== files to know about topic modifications, in a way such ==mailnotify== works. Also, a ==.plucupdate== file is used on each web directory storing the last timestamp the script was run on it. So when this script is executed, first checks if there are any topic updates since last execution. The most recent topic updates are removed from the index and then reindexed again (the same goes for attachments).
+
+This script should be executed by an hourly crontab. It should not be invoked by browser.
+
+Please, to suggest indexing improvements read/post to TWiki:Plugins/SearchEnginePluceneAddOnDev
+
+---+++ Attachment file types to be indexed
+
+All the PDF, HTML and text attachments are also indexed by default. If you want to override this setting you can use a TWiki preference ==PLUCENEINDEXEXTENSIONS==. You can copy & paste the next lines in your [[%SYSTEMWEB%.TWikiPreferences]] topic
+<verbatim>
+	* Plucene settings
+		* Set PLUCENEINDEXEXTENSIONS = .pdf,.html,.txt,.doc
+</verbatim>
+or whatever extensions you want. Remember that you may need additional CPAN:Plucene::SearchEngine::Index libraries and install required third party tools such as *antiword* or *xlhtml*.
+
+You can find/post additional CPAN:Plucene::SearchEngine::Index libraries for many file types at TWiki:Plugins/SearchEnginePluceneAddOnDev. Thanks to TWiki:Main/SopanShewale for his contributions.
+
+---++ Add-On Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this add-on. The following instructions are for the administrator who installs the add-on on the server where TWiki is running. 
+
+	* Once you have compiled and installed all the requirements
+	* Download the ZIP file from the Add-on Home (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==bin/plucindex== | script that indexes all topics and PDF/HTML/TXT attachments |
+	  | ==bin/plucupdate== | script that uses web's ==.changes== files to update the index |
+	  | ==bin/plucsearch== | script that searches the index files |
+	  | ==templates/plucsearch.pattern.tmpl== | template used by new search script for the pattern skin |
+	  | ==templates/plucsearch.tmpl== | template used by new search script for the standard skin |
+	  | ==data/TWiki/PluceneSearch.txt== | Plucene search topic |
+	  | ==data/TWiki/PluceneSearch.txt,v== | Plucene search topic repository |
+	  | ==data/Plugins/SearchEnginePluceneAddOn.txt== | Add-on topic |
+	  | ==data/Plugins/SearchEnginePluceneAddOn.txt,v== | Add-on topic repository |
+	  | ==index/== | directory for index files to be stored |
+	* %RED% ATTENTION! %ENDCOLOR% Now the ==$idxpath== variable is loaded with the new TWiki preference ==PLUCENEINDEXPATH== value, so you should add to your [[%SYSTEMWEB%.TWikiPreferences]] topic the next text
+<verbatim>
+	* Plucene settings
+		* Set PLUCENEINDEXPATH = /srv/www/personal/index or whatever path your index folder is located
+</verbatim>
+	* Test if the installation was successful:
+		* change the working directory to your ==bin== twiki installation directory
+		* run ./plucindex
+		* once finished, open a browser window and point it to the ==TWiki/PluceneSearch== topic
+		* just type a query and check the results
+	* Just create a new hourly crontab entry for the ==bin/plucupdate== script.
+
+---++ Add-On Info
+
+|  Add-on Author: | TWiki:Main/JoanMVigo |
+|  Add-on Version: | 26 Nov 2004 (v1.200) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  15 Dec 2004: | Use of TWiki preferences for indexing path & attachment extensions (v1.210) |
+|  26 Nov 2004: | ==<nop>TWikiCairo== release compatible version (v1.200) |
+|  23 Nov 2004: | Incremental version (v1.100) |
+|  18 Nov 2004: | Initial version (v1.000) |
+|  CPAN Dependencies: | Plucene 1.19, Plucene-SearchEngine-1.1 |
+|  Other Dependencies: | xpdf (pdftotext) and other CPAN packages required by above dependencies |
+|  Perl Version: | Tested with 5.8.0 |
+|  License: | GPL |
+|  Add-on Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+
+__Related Topic:__ %SYSTEMWEB%.TWikiAddOns
+
+-- TWiki:Main/JoanMVigo - 15 Dec 2004
+

@@ -1,0 +1,30 @@
+%META:TOPICINFO{author="TWikiContributor" date="1111929255" format="1.0" version="$Rev: 17304 $"}%
+---+ Classic Skin
+
+The classic TWiki skin is a bare bone and functional skin, supporting any browser, and has a minimum of graphics
+
+This is not really a skin. It is the set of default templates, shown if no skin is activated. The default templates are part of every TWiki distribution.
+
+---++ Skin Info
+
+|  Description: | The classic TWiki skin, bare bone and functional, for any browser, with a minimum of graphics |
+|  Screenshot: | <a href="%ATTACHURL%/fullscreen.gif"><img src="%ATTACHURL%/screenshot.gif" alt="Click for full screen image" width="600" height="130" /></a> |
+|  Base Name: | classic |
+|  Skin Author: | TWiki:Main/PeterThoeny |
+|  Skin Version: | 03 Aug 2008 |
+|  Change History: | <!-- specify latest version first -->&nbsp; |
+|  03 May 2008 | TWiki 4.2.1 release version |
+|  21 May 2007 | Bugs:Item3969 - 8bit email fix (TWiki:Main.WillNorris) |
+|  25 Jul 2004: | Initial version (v1.000) |
+|  Dependencies: |  |
+|  Skin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Note:__ The Description, Screenshot and Base Name rows are needed by the %TWIKIWEB%.TWikiSkinBrowser
+
+__Related topic:__ %TWIKIWEB%.TWikiSkins, %TWIKIWEB%.TWikiSkinBrowser
+
+-- TWiki:Main/PeterThoeny - 25 Jul 2004
+
+%META:FILEATTACHMENT{name="screenshot.gif" attr="h" comment="" date="1090796589" path="C:\Data\Temp\screenshot.gif" size="8683" user="TWikiContributor" version="1.1"}%
+%META:FILEATTACHMENT{name="fullscreen.gif" attr="h" comment="" date="1090796600" path="C:\Data\Temp\fullscreen.gif" size="21130" user="TWikiContributor" version="1.1"}%

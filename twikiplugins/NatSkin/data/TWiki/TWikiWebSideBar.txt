@@ -1,0 +1,60 @@
+%META:TOPICINFO{author="TWikiContributor" date="1160831695" format="1.1" reprev="1.2" version="$Rev$"}%
+%STARTINCLUDE%<div class="natSideBarTitle">
+  <h1>%MAKETEXT{"Navigation"}%</h1>
+</div>
+<style type="text/css">
+.navButton { %IFSKINSTATE{buttons="on" then="display:none"}% }
+</style>
+%~~ FLEXWEBLIST{
+~~~   webs="%USERSWEB%,User,publiccurrent,%SYSTEMWEB%" 
+~~~   map="%SYSTEMWEB%=System"
+~~~   include="\w+|%BASEWEB%"
+~~~   exclude="TestCases|Trash" 
+~~~   selection="%BASEWEB%" 
+~~~   format="<h2 class=\"navButton\">
+~~~     $percntWEBLINK{web=\"$web\" name=\"$name\"}$percnt
+~~~     </h2>$n" 
+~~~   markerformat="
+~~~     <div class=\"navCurrent\">
+~~~     <h2 class=\"navButton\" style=\"display:block\">
+~~~       $percntWEBLINK{web=\"$web\" name=\"$name\"}$percnt
+~~~     </h2>
+~~~     $percntBREADCRUMBS{\"%BASEWEB%.WebHome\"
+~~~       recurse=\"once\"
+~~~       exclude=\".*($name|$web|%BASETOPIC%|WebHome).*\"
+~~~       format=\"<ul><li>[[$dollartarget][%MAKETEXT{"Parent web"}%]]</li></ul>\"
+~~~     }$percnt
+~~~     $percntFLEXWEBLIST{
+~~~       include=\"$web/\w+\"
+~~~       header=\"<ul><li>
+~~~         $dollarpercntTWISTY{
+~~~           id=\\"subweb_$web\\" 
+~~~           mode=\\"div\\"
+~~~           remember=\\"on\\"
+~~~           link=\\"Subwebs\\"
+~~~         }$dollarpercnt
+~~~         <ul class=\\"natSubWebs\\">\"
+~~~       format=\"<li> $dollarpercntWEBLINK{name=\\"$dollarname\\" web=\\"$dollarweb\\"}$dollarpercnt</li>\"
+~~~       footer=\"</ul>$dollarpercntENDTWISTY$dollarpercnt</li></ul>\"
+~~~     }$percnt
+~~~     $percntWEBCOMPONENT{\"WebLinks\"}$percnt$n<!-- -->
+~~~     </div>"
+~~~ }%
+%IFDEFINEDTHEN{"%BASEWEB%" as="Trash"}%
+<h2 class="navButton navButtonTrash">%WEBLINK{"Trash"}%</h2>
+   * [[Trash.TrashAttachment][%MAKETEXT{"Attachments"}%]]
+%$nopWEBCOMPONENT{"WebLinks"}%
+%FIDEFINED%
+%IFSKINSTATETHEN{searchbox="pos2" glue="off"}%
+<div class="natSearchBox natSearchBoxPos2">
+%TMPL:P{"searchbox"}%
+</div>
+%FISKINSTATE%
+<div class="natSideBarPersonal"> 
+%IFDEFINEDTHEN{"$percntINCLUDE{\"%USERSWEB%.%WIKINAME%SideBar\" warn=\"off\"}$percnt"}%
+$test
+%ELSEDEFINED%
+%$nopWEBCOMPONENT{"MySideBar"}%
+%FIDEFINED%
+</div>
+%STOPINCLUDE%

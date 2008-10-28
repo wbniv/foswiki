@@ -1,0 +1,66 @@
+%META:TOPICINFO{author="TWikiGuest" date="1081766083" format="1.0" version="1.1"}%
+---+ Disk Usage TWiki Plugin
+
+This plugin shows you the diskusage (in kb) for the current web.
+
+---++ Syntax Rules
+
+%<nop>LOGSIZES%
+
+%LOGSIZES%
+
+%<nop>QUOTA%
+%QUOTA%
+
+%<nop>DISKUSAGE%
+%DISKUSAGE%
+
+%<nop>DISKUSAGE{web="Main"}%
+%DISKUSAGE{web="Main"}%
+
+---++ <nop>%TOPIC% Global Settings
+
+	* There are no settings for this plugin
+	* One line description, shown in the Text Formatting Rules topic: 
+	* Set SHORTDESCRIPTION = This plugin shows the disk usage for the current web 
+	* Whether you want debug output
+	* Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+(This plugin is preinstalled, you do not need to install it.)
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running.
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the plugin is correctly installed:
+	* see whether the %<nop>DISKUSAGE% directive is expanded above
+
+---++ Future development possibilities
+
+It could be improved on considerably. e.g.
+	* One possibility is to install it in the TWiki web and use an include like <nop>WebChanges does
+	* This could be called <nop>WebDiskUsage or used on a page called <nop>WebStatus
+	* It should allow specification of topic and web. Currently it works only for the current web
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.MartinCleaver |
+|  Plugin Version: | 11 Mar 2004 Martin Cleaver |
+|  Change History: | 11 Mar 2004 Martin Cleaver - initial release&nbsp; |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | /usr/bin/du |
+|  Perl Version: | 5.005 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+
+-- TWiki:Main.MartinCleaver - 11 Mar 2004 <br /> 
+

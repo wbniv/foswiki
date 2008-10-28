@@ -1,0 +1,18 @@
+%META:TOPICINFO{author="WillNorris" date="1066118460" format="1.0" version="1.1"}%
+%META:TOPICPARENT{name="TWiki.PseudoXmlPlugin"}%
+<style>
+.wiki		{ background:green; color:white; }
+.author	 { background:%WEBBGCOLOR%; color:white; }
+.bad		 { background:red; }
+.tags		{ background:red; }
+</style>
+
+<wiki>Project Wiki</wiki>
+
+<author>Steven Brust</author>
+
+<bad>bag tags</tags>
+
+<wiki>wiki<author>author</author> more wiki</wiki>
+
+-- Main.WillNorris - 14 Oct 2003

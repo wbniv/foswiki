@@ -1,0 +1,53 @@
+%META:TOPICINFO{author="DonnyKurniawan" date="1060215240" format="1.0" version="1.2"}%
+---+ EmbedQTPlugin
+
+This is a plugin that you can use to embed <nop>QuickTime files in TWiki webs.
+
+---++ Syntax Rules
+
+%<nop>EMBEDQT{filename="string" width="number" height="number"}%
+
+---++ <nop>%TOPIC% Global Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, for example, ==%<nop>EMBEDQTPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Embeds <nop>QuickTime files in a TWiki page
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+__Note:__ You need to install a <nop>QuickTime plugin on the browser to see the <nop>QuickTime content. The following instructions are for the administrator who installs the plugin on the server where TWiki is running.
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==pub/TWiki/EmbedQTPlugin/sample.mov==| Plugin sample movie |
+	  | ==pub/TWiki/EmbedQTPlugin/sample.mov,v==| Plugin sample movie repository |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the plugin is correctly installed:
+		* A small <nop>QuickTime movie below: 
+
+%EMBEDQT{filename="%ATTACHURL%/sample.mov" width="80" height="60"}%
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.DonnyKurniawan |
+|  Plugin Version: | 6 Aug 2003 (V1.000) |
+|  Change History: | <!-- specify latest version first -->&nbsp; |
+|  6 Aug 2003: | Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+ 
+-- TWiki:Main.DonnyKurniawan - 6 Aug 2003
+%META:FILEATTACHMENT{name="sample.mov" attr="h" comment="A small <nop>QuickTime movie" date="1060215181" path="sample.mov" size="494658" user="DonnyKurniawan" version="1.1"}%

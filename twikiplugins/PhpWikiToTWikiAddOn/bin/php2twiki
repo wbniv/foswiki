@@ -1,0 +1,129 @@
+#!/usr/bin/perl -w
+#
+# Migrate from phpwiki to twiki
+#  
+#  Use phpwiki dump tool, dump as raw text
+#
+# Juan Grigera <juan@ec.gba.gov.ar>
+# ver 0.1 - 20050502
+
+use strict;
+$VERSION = '0.1';
+
+use constant DEBUG => 0;
+
+my %HEADERS;
+
+my $PHPWIKI_DUMP = "/tmp/wikidump/";
+my $DEST_DIR = "/var/lib/twiki/data/TPing/";
+
+# Iterate dump
+  my $file;
+  opendir(DIR, $PHPWIKI_DUMP) || die "can't opendir $PHPWIKI_DUMP: $!";
+  while($file = readdir(DIR)) {
+     convertFile("$file") if -f "$PHPWIKI_DUMP/$file";
+  }
+  closedir DIR;
+
+
+#
+# convert a File
+sub convertFile
+{
+  my ($file) = @_;
+  my $flag_header = 1;
+
+  my ($HANDLE, $OUTPUT);
+  open($HANDLE, "$PHPWIKI_DUMP/$file") || die "can't open read file $file: $!";;
+
+  $file = "WebHome" if ($file eq "HomePage");
+  open($OUTPUT, "> $DEST_DIR/$file.txt") || die "can't open dest file $file $!";
+  
+  
+  while(<$HANDLE>) {
+   # Read headers
+   if($flag_header) {
+	if($_ =~ /^\r?$/) {
+		$flag_header = 0;
+  
+  		# Print header
+		print $OUTPUT "\%META:TOPICINFO{author=\"" . 
+		  	$HEADERS{'author'} . '" date="' .
+			$HEADERS{'lastmodified'} . '" format="1.0" version="1.1"}%' . "\n";
+	} else {
+		readHeader($_);
+	}
+   } else {
+   	filterWiki($_, $OUTPUT);
+   }
+  }  
+  close($OUTPUT);
+  close($HANDLE);
+}
+
+#
+#
+# parse phpwiki Header
+sub readHeader
+{
+   my ($line) = @_;
+   my $key;
+   my $value;
+
+   $line =~ m/^([^:]+): (.*)\r?$/;
+   if(defined $1) {
+   	$key = $1;
+	$value = $2;
+   } else {
+   	$line =~ m/^\s*([^=]+)=(.*)\r?$/;
+	$key = $1 if (defined $1);
+	$value = $2;
+   }
+   $value =~ s/\r|\n//g;
+   $HEADERS{$key} = $value;
+}
+
+#
+#
+# Filter php-Wiki format
+my $verbatim = 0;
+sub filterWiki
+{
+   my ($line, $OUTPUT) = @_;
+
+
+   # check verbatim
+   if($line =~ m/<pre>/) {
+   	$line =~ s/<pre>/<verbatim>/;
+	$verbatim = 1;
+   } 
+   if($verbatim && not($line =~ m/<\/pre>/)) {
+   	print $OUTPUT $line;
+	return;
+   }
+
+   if($line =~ m/<\/pre>/)   {
+   	$line =~ s/<\/pre>/<\/verbatim>/;
+	$verbatim = 0;
+   }
+
+   # Lists: * for bullet lists, # for numbered lists, 
+   $line =~ s/^\s*\*/\t*/;
+   $line =~ s/^#/   1 /;
+
+   # Titulos
+   $line =~ s/^!!!/---+/;
+   $line =~ s/^!!/---++/;
+   $line =~ s/^!/---+++/;
+
+   # Tables
+   if($line =~ m/\|\s*$/) {
+        $line =~ s/\r\n//;
+	$line = "|" . $line ;
+   }
+   # Forced links
+   $line =~ s/\[//g;
+   $line =~ s/\]//g;
+   print $OUTPUT $line;
+}
+

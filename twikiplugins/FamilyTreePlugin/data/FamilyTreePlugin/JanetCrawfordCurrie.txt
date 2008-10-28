@@ -1,0 +1,13 @@
+---+ Janet Crawford Currie
+%INCLUDE{"StdPerson"}%
+---++ Records
+
+
+%EDITTABLE{include="RecordTable"}%
+
+%META:FORM{name="PersonForm"}%
+%META:FIELD{name="Forenames" title="Forenames" value="Janet Crawford"}%
+%META:FIELD{name="Surname" title="Surname" value="Currie"}%
+%META:FIELD{name="Born" title="Born" value="8 Jun 1878"}%
+%META:FIELD{name="Died" title="Died" value="16 Mar 1881"}%
+%META:FIELD{name="Sex" title="Sex" value="F"}%

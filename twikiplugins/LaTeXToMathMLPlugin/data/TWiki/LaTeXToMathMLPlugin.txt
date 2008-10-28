@@ -1,0 +1,180 @@
+%META:TOPICINFO{author="SimonClift" date="1051038900" format="1.0" version="1.6"}%
+---+ <nop>LaTeX to <nop>MathML Mathematical Equation Plug-in
+
+This plugin translates embedded <nop>LaTeX-like equations into in-line <nop>MathML.
+It requires a <nop>MathML enabled browser, such as Mozilla.
+
+---++ Syntax Rules
+
+The syntax rules for embedding equations are identical to those of the
+TWiki:Plugins/MathModePlugin and are based on <nop>LaTeX's own markup 
+for equations.  The equations themselves are expressed in a language
+very, very similar to <nop>LaTeX called
+[[http://pear.math.pitt.edu/mathzilla/itex2mmlItex.html][Itex]].
+(Apparently the major differences are in the way equation arrays are
+handled.)
+
+To put an equation in-line with your text, enclose it with percent signs and
+the dollar sign, 
+<pre>
+	%$ put your math here $%
+</pre>
+for example:
+<pre>
+	%$  \frac{\partial u}{\partial x} = U(x) $%
+</pre>
+where the opening and closing delimiter must be on the same line.
+
+For equations set on their own line, use the 
+<pre>
+	%\[ put your math here \]%
+</pre>
+notation, for example:
+<pre>
+	%\[  \frac{\partial u}{\partial x} = U(x) \]%
+</pre>
+and the font will be slightly larger.
+
+For equations written over several lines in the original TWiki document
+you use the =<verbatim>%MATH<nop>MODE{ "a=b" }%</verbatim>=
+delimiter.  The value in quotes is type set, whether or not it is on
+a single line.  However, unlike the other delimiters, this is also
+typeset in &lt;pre&gt; environments.
+
+---++ Examples
+
+%$ \sum_{n=1}^\infty \frac{1}{n} $% is divergent, but %$ \lim_{n \to \infty}\sum_{i=1}^n \frac{1}{i} - \ln n $% exists.
+
+This is an %$\frac{\partial u}{\partial x} = U(x)$% inline equation.
+
+This equation %\[\frac{\partial u}{\partial x} = \pi \int_a^b F(x) dx\]% should be typset
+on its own line.
+
+This equation %MATHMODE{"
+\frac{\partial u}{\partial x} = 
+			 \omega \int_a^b F(x) dx
+"}%
+is broken over several lines of source text.
+
+---++ Resources for <nop>MathML
+
+	* [[http://www.mozilla.org/projects/mathml/][Mozilla's <nop>MathML Project]]
+		contains information on how to get started with <nop>MathML in Mozilla.
+		A default installation from a major Linux distribution ought to be
+		complete enough to use this plug-in.  It is available for free.
+		_See notes below._
+	* The [[http://pear.math.pitt.edu/mathzilla/itex2mml.html][itex2MML]]
+		program is a [[http://www.gnu.org/directory/flex.html][FLEX/LEX]]
+		parser which this plug-in uses to do the actual translation of the
+		<nop>LaTeX equations into <nop>MathML.
+	* At the [[http://www.w3.org/Math/][W3C Math Home Page]] you can find the DTD for
+	  <nop>MathML along with authoring information.  You can even read the 1993 proposal
+	  neglected for so many years.  Advocates of the commercialization of the web:
+	  please note the delay and feel __shame__.
+	* If your organisation does not allow Mozilla then there is a plug-in available
+	  at [[http://www.dessci.com/en/products/webeq/webeq.asp][Design Science]] which
+	  may do the trick. _(I haven't tried this one.)_
+
+
+---++ <nop>%TOPIC% Global Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Display <nop>LaTeX-like equations in-line using <nop>MathML
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this
+plugin (although your browser must be capable of displaying <nop>MathML).  The
+following instructions are for the administrator who installs the plugin on the
+server where TWiki is running. 
+
+	* Install the program
+	  [[http://pear.math.pitt.edu/mathzilla/itex2mml.html][itex2MML]] on your
+	  system.  The location must be somewhere that your web server can access.
+
+	* If you have it installed, disable the TWiki:Plugins/MathModePlugin by
+	 adding it to the =DISABLEDPLUGINS= line of your [[%LOCALSITEPREFS%]]
+	 page.  For example:%BR%
+		* Set DISABLEDPLUGINS = <nop>MathModePlugin 
+
+	* Alter the main =twiki.tmpl= template in the TWiki installation, in the
+		=./templates= directory, or in the sub-directory of any Web that will
+		use this plugin.  The line
+		<pre> &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt; </pre>
+		must be changed to support the <nop>MathML DTD.  Over-write it with:
+		<pre> &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus <nop>MathML 2.0//EN" "http://www.w3.org/TR/MathML2/dtd/xhtml-math11-f.dtd"&gt; </pre>
+
+	* Alter the =lib/TWiki.pm= file so that the content type is emitted not
+		as =text/html= but rather =application/xhtml+xml= .  *This is a rather*
+		__dire__ *change.*  If you have done anything on your pages that is not
+		legal XHTML then your browser may complain mightily.
+		<p></p> The change is in =sub writeHeader= about line 505, where
+		the statement 
+		<pre> writeHeaderFull( $query, 'basic', 'text/html', 0);</pre>
+		needs to become 
+		<pre> writeHeaderFull( $query, 'basic', 'application/xhtml+xml', 0);</pre>
+
+	* Download the ZIP file from the Plugin web (see below)
+
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  <p></p>
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==pub/TWiki/%TOPIC%/xhtml-math11-f.dtd== | XML DTD for XHTML 1.1 and <nop>MathML |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+
+	* If your system does not have =itex2MML= on the default path, edit
+	  the line of =%TOPIC%.pm= that reads:
+	 <pre> my $itex2MML = 'itex2MML'; </pre> 
+	 to contain the whole path to the executable.  For example:
+	 <pre> my $itex2MML = '/usr/local/bin/itex2MML';</pre>
+	* Test if the installation was successful: the examples above should be
+		rendered as equations, not text.
+
+---+++ Notes
+
+	1. This plug-in conflicts with the TWiki:Plugins/MathModePlugin 
+		which will need to be disabled.  If you re-enable it later, you may need
+		to re-edit pages to update any graphics of math that it would have
+		otherwise generated.  You may wish to clean-up the graphics left by
+		TWiki:Plugins/MathModePlugin in the =pub/= directories.
+	<p></p>
+	3. Note that documents must be served to Mozilla as =application/xhtml+xml= for the
+	  <nop>MathML portion to be rendered correctly.  This can pose some challenges for
+	  existing TWiki installations with less than tidy XHTML.
+	<p></p>
+	3. Mozilla on Linux has a problem with Xft, the <nop>FreeType renderer for fonts.
+	  This in turn causes problems with =xfs=, the X11 font server that uses Xft.
+	  For Mozilla versions before 1.4 (assuming this gets fixed in 1.4) you have to
+	  set the environment variable <pre>  setenv GDK_USE_XFT 0 </pre> to enable
+	  the correct rendering of the <nop>TeX Computer Modern fonts.  You may also need to
+	  install those fonts, as noted on the
+	  [[http://www.mozilla.org/projects/mathml/fonts][<nop>MathML project fonts page.]]
+
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/%USERNAME% |
+|  Plugin Version: | 15 Apr 2003 (V1.000) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  15 Apr 2003: | Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins,
+TWiki:Plugins/MathModePlugin
+
+-- Main.SimonClift - 22 Apr 2003
+
+%META:FILEATTACHMENT{name="xhtml-math11-f.dtd" attr="" comment="W3C's DTD for <nop>MathML with XHTML 1.1" date="1050421607" path="xhtml-math11-f.dtd" size="400317" user="SimonClift" version="1.1"}%
+%META:TOPICMOVED{by="SimonClift" date="1050416433" from="Main.LaTeXToMathMLPlugin" to="TWiki.LaTeXToMathMLPlugin"}%

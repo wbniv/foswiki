@@ -1,0 +1,4 @@
+%META:TOPICINFO{author="StephaneLenclud" date="1179063566" format="1.1" reprev="1.2" version="1.2"}%
+%META:TOPICPARENT{name="TaskExeManager"}%
+   * Executer name: %FORMFIELD{"Name"}%
+   * Executer URL: %FORMFIELD{"BinURL"}%

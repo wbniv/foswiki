@@ -1,0 +1,94 @@
+%TMPL:INCLUDE{"twiki"}%
+
+%TMPL:DEF{"script"}%
+<script type="text/javascript">
+<!--HIDE
+	function initPage() { }
+	function launchWindow( theWeb, theTopic ) {
+		win = open("%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/" + theWeb + "/" + theTopic + "?skin=plain", theTopic, "titlebar=0,width=500,height=480,resizable,scrollbars");
+		if( win ) {
+			win.focus();
+		}
+		return false;
+	}
+	function checkAll( theCheck ) {
+		// find button element index
+		var j = 0;
+		for( var i = 0; i < document.rename.length; i++ ) {
+			if( document.rename.elements[i].name.match( "RENAME" ) ) {
+				document.rename.elements[i].checked = theCheck;
+			}
+		}
+	}
+	function submitForm(id)
+	{
+	var formid = document.forms.length-1;
+	if (id == "submit") {
+	document.forms[formid].action.value="submit";
+	}
+	document.forms[formid].submit()
+	}
+//STOP HIDING-->
+</script>%TMPL:END%
+
+%TMPL:DEF{"allownonwikiword"}%
+<input type="checkbox" name="nonwikiword" %NONWIKIWORDFLAG% /><label for="nonwikiword">Allow non <nop>WikiWord for the new topic name</label>%TMPL:END%
+
+%TMPL:DEF{"newweb"}%<select name="newweb" class="width200">%WEBLIST{"<option $marker value=$qname>$name</option>" webs="Trash,public" selection="%NEW_WEB%" separator=" "}%</select>%TMPL:END%
+
+%TMPL:DEF{"simpleBlueFormAction"}%
+<form method="post" name="rename" action="%SCRIPTURLPATH%/rename%SCRIPTSUFFIX%/%WEB%/%TOPIC%">%TMPL:END%
+
+%TMPL:DEF{"references"}%
+<h3>Change links in topics that refer to %TOPIC% in the <nop>%WEB% Web:</h2>
+%RESEARCH{ "%TOPIC%" web="%WEB%" noempty="on" showlock="on" nototal="on" regex="on" nosearch="on" order="modified" reverse="on" nosummary="on" showlock="on" renameview="local"}%
+<h3>Change links in topics that refer to [[%WEB%.%TOPIC%]] in any Web:</h2>
+%RESEARCH{ "%WEB%\.%TOPIC%" web="all" noempty="on" showlock="on" nototal="on" regex="on" nosearch="on" order="modified" reverse="on" bookview="off" nosummary="on" showlock="on" renameview="global"}%
+  <div id="simpleBlueSpacer10">&nbsp;</div>%TMPL:END%
+
+%TMPL:DEF{"simpleBlueContentPane"}%
+%TMPL:P{"contentheadingvariable"}%
+---++ %TMPL:P{"webaction"}%
+<div id="simpleBlueTable">
+  <div id="simpleBlueTableRow" class="floatbox, width600">
+    <div id="simpleBlue2CTableColumn1" class="width100">
+      Change from:
+    </div>
+    <div id="simpleBlue2CTableColumn2" class="width480">
+      <nop>%WEB%.%TOPIC%
+    </div>
+  </div>
+  <div id="simpleBlueTableRow" class="floatbox, width600">
+    <div id="simpleBlue2CTableColumn1" class="width100">
+      To web:
+    </div>
+    <div id="simpleBlue2CTableColumn2" class="width480">
+      %TMPL:P{"newweb"}%
+    </div>
+  </div>
+  <div id="simpleBlueTableRow" class="floatbox, width600">
+    <div id="simpleBlue2CTableColumn1" class="width100">
+      Topic name:
+    </div>
+    <div id="simpleBlue2CTableColumn2" class="width480">
+      %TMPL:P{"newtopic"}%
+    </div>
+  </div>
+  <div id="simpleBlueTableRow" class="floatbox, width600">
+    <div id="simpleBlue2CTableColumn1" class="width100">
+      &nbsp;
+    </div>
+    <div id="simpleBlue2CTableColumn2" class="width480">
+      %TMPL:P{"allownonwikiword"}%
+    </div>
+  </div>
+</div>
+%TMPL:P{"references"}%
+%TMPL:P{"actionbarbottomvariable"}%
+%TMPL:P{"contentnotes"}%
+%TMPL:P{"hidden"}%
+%TMPL:END%
+
+%TMPL:DEF{"renamebase"}%
+%TMPL:P{"simpleBluePage"}%
+%TMPL:END%

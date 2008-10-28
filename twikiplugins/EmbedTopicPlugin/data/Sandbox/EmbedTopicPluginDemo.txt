@@ -1,0 +1,13 @@
+%META:TOPICINFO{author="dbourget" date="1104135331" format="1.0" version="1.1"}%
+%META:TOPICPARENT{name="TWiki.EmbedTopicPlugin"}%
+---+Demo of TWiki.EmbedTopicPlugin
+
+I often felt that I wanted to be able to refer to some chunk of text in a topic as a topic in itself, but did not want to create a separate topic for this chunk of text to avoid clutter. TWiki.EmbedTopicPlugin is the solution. 
+
+Suppose that we need a definition of "water" in the present text. We embed a WaterDef topic here. We will be able to edit it here, and it will also be available on its own for embeding in or linking from other topics. The plugin also supports recursion. 
+
+%EmbedTopic{WaterDef}%
+
+
+-- TWiki:Main.DavidBourget - 23 Dec 2004
+

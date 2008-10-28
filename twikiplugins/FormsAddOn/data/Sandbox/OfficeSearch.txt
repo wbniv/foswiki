@@ -1,0 +1,3 @@
+| *Name*          | *Type* | *Tooltip message* |
+|                 |        |                   |
+%SEARCH{"Office$" regex="on" scope="topic" web="Main" nototal="on" nosummary="on" nosearch="on" format="| Main.$topic | option | |"}%

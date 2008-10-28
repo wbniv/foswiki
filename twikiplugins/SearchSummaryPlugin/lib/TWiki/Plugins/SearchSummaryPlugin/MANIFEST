@@ -1,0 +1,5 @@
+# Release manifest for SearchSummaryPlugin
+data/TWiki/SearchSummaryPlugin.txt 0644 Documentation
+lib/TWiki/Plugins/SearchSummaryPlugin.pm 0644 Perl module
+pub/TWiki/SearchSummaryPlugin/screenshot.gif 0444 Example
+pub/TWiki/SearchSummaryPlugin/wikiringlogo20x20.png 0444 Logo

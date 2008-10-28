@@ -1,0 +1,230 @@
+#!/usr/bin/perl -w
+#
+# TWiki Collaboration Platform, http://TWiki.org/
+#
+# Copyright (C) 1999-2003 Peter Thoeny, peter@thoeny.com
+#
+# For licensing info read license.txt file in the TWiki root.
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details, published at 
+# http://www.gnu.org/copyleft/gpl.html
+
+# Colas (http://colas.nahaboo.net)
+# modifications from mailnotify script from Dec 2001 release:
+# - email is now optional, is fetched from the user homepage
+# - webs not beginning by a capital letter are ignored ( _default, ...)
+# - no mail is sent to TWikiGuest
+# - if user is a group, recurses through its members
+
+# Set library paths in @INC, at compile time
+BEGIN { unshift @INC, '.'; require 'setlib.cfg'; }
+
+use TWiki;
+use TWiki::Net;
+use TWiki::Func;
+use TWiki::Plugins::NotificationPlugin;
+
+my $debug = ! ( @ARGV && $ARGV[0] eq "-q" );
+
+&main();
+
+sub main
+{
+  &TWiki::basicInitialize();
+  my ( $topic, $webName, $dummy, $userName, $dataDir) =  &TWiki::initialize( "/Main", "nobody" );
+
+  &TWiki::Func::writeDebug( "START REGULAR NOTIFICATIONS" );
+  &TWiki::Func::writeDebug( "===========================" );
+  $debug && print "TWiki mail notification\n";
+  $debug && print "- to suppress all normal output: mailnotify -q\n";
+  my @users = &TWiki::Plugins::NotificationPlugin::getUsers();
+  my %notify;
+  foreach my $user ( @users ) {
+    $notify{$user}{"web"} = join( ",", &TWiki::Plugins::NotificationPlugin::getNotificationsOfUser( $user, 4 ) );
+    $notify{$user}{"topic"} = join( ",", &TWiki::Plugins::NotificationPlugin::getNotificationsOfUser( $user, 3 ) );
+    $notify{$user}{"regex"} = join( ",", &TWiki::Plugins::NotificationPlugin::getNotificationsOfUser( $user, 5 ) );
+  }
+  
+  #print "WEBS = $notify{'RichardBaar'}{'web'}\n";
+  #print "TOPICS = $notify{'RichardBaar'}{'topic'}\n";
+  #print "REGEX = $notify{'RichardBaar'}{'regex'}\n";
+  
+  #my $dataDir = &TWiki::getDataDir();
+  opendir( DIR, "$dataDir" ) or die "could not open $dataDir";
+  my @weblist = grep !/^\.\.?$/, readdir DIR;
+  closedir DIR;
+  
+  my $allChanges = "";
+  my %lastmodify;
+  
+  foreach my $web ( @weblist ) {
+    # Only process webs with normal names, i.e. not starting with '_'
+    if( -d "$dataDir/$web" && &TWiki::isWebName( $web ) ) {
+      my $changes= &TWiki::Store::readFile( "$dataDir/$web/.changes" );
+      $lastmodify{$web} = &TWiki::Store::readFile( "$dataDir/$web/.mailnotify" ) || "0";
+      my $currmodify = 0;
+      my %exclude;
+      #print ( "WEB = $lastmodify{$web}\n" );
+      foreach ( reverse split( /\n/, $changes ) ) {
+      	my ( $topicName, $userName, $changeTime, $revision ) = split( /\t/ );
+      	#print ( "$web.$topicName\n" );
+        next if ( $exclude{ "$web.$topicName" } );
+        #print ( "JSEM TU...\n" );
+      	$currmodify = $changeTime if ( $changeTime > $currmodify );
+      	#print( "TIME = $changeTime\n" );
+	      last if ( $changeTime <= $lastmodify{$web} );
+	      #print( "PLATIIIII\n");
+	      $allChanges .= "$web\t$_\n";
+	      $exclude{"$web.$topicName"} = 1;
+      }
+      # remove obsolete .lock files
+      &TWiki::Store::removeObsoleteTopicLocks( $web );
+      # save date of the last modification
+      &TWiki::Store::saveFile( "$dataDir/$web/.mailnotify", $currmodify );
+    }
+  }
+
+  #print "CHANGES = $allChanges";
+  my $skin = TWiki::Prefs::getPreferencesValue( "SKIN" );
+  my $htmlTmpl = TWiki::Store::readTemplate( "htmlchanges", $skin );
+  
+  $htmlTmpl = &TWiki::handleCommonTags( $htmlTmpl, $topic );
+
+  my $htmlBefore = "";
+  my $htmlAfter = "";
+  ( $htmlBefore, $htmlWebTmpl, $htmlTopicTmpl, $htmlAfter) = split( /%REPEAT%/, $htmlTmpl );
+  #print "BEFORE = $htmlBefore\n";
+  #print "HTML = $htmlTmpl\n";
+  #print "AFTER = $htmlAfter\n";
+  my $htmlEmailTmpl = &TWiki::getRenderedVersion( $htmlBefore );
+  $htmlAfter = &TWiki::getRenderedVersion( $htmlAfter );
+
+  my $from = &TWiki::Prefs::getPreferencesValue("WIKIWEBMASTER");
+  my $scriptUrlPath = $TWiki::scriptUrlPath;
+  
+  foreach my $user ( @users ) {
+    my $htmlEmailBody = $htmlEmailTmpl;
+    $htmlEmailBody =~ s/%WIKIUSER%/$user/g;
+    my $topiclist = "";
+    my $htmltopiclist = "";
+    my $htmlregexlist = "";
+    my $newtext;
+    my %handled;
+    my $count = 0;
+    foreach my $line ( split( /\n/, $allChanges ) ) {
+      my ( $web, $topicName, $userName, $changeTime, $revision ) = split( /\t/, $line );
+ 	    my $wikiuser = &TWiki::userToWikiName( $userName, 1 );
+      #print "LINE = $line\n";
+      #print "WEBS = $notify{$user}{'web'}\n";
+      #print "TOPICS = $notify{$user}{'topic'}\n";
+      foreach my $tweb ( split( /,/, $notify{$user}{"web"} ) ) {
+        #print "!$web!, !$tweb!\n";
+        if ( $web eq $tweb ) {
+          #print "HOP\n";
+          if ( ! $handled{$tweb} ) {
+            $newText = $htmlWebTmpl;
+            $newText =~ s/%WEBNAME%/$web/g;
+      	    $newText = &TWiki::getRenderedVersion( $newText );
+            $htmlEmailBody .= $newText;
+            $handled{$tweb} = 1;
+          }
+          # new HTML text for web
+          #print "WEB = $web, TOP = $topicName, USER = $userName, WIKI = $wikiuser\n";
+          $newText = $htmlTopicTmpl;
+    	    $newText =~ s/%TOPICNAME%/$topicName/g;
+    	    $newText =~ s/%WEBNAME%/$web/g;
+    	    $newText =~ s/%AUTHOR%/$wikiuser/g;
+          $newText =~ s/%LOCKED%//g;
+    	    my $time = &TWiki::formatGmTime( $changeTime );
+          $newText =~ s/%TIME%/$time/g;
+          $newText =~ s/%REVISION%/1\.$revision/g;
+    	    $newText = &TWiki::getRenderedVersion( $newText );
+          my $head = &TWiki::Store::readFileHead( "$dataDir\/$web\/$topicName.txt", 16 );
+          $head = &TWiki::makeTopicSummary( $head, $topicName, $web );
+          $newText =~ s/%TEXTHEAD%/$head/g;
+    	    $htmlEmailBody .= $newText;
+          # new plain text for web
+          $count++;
+        }
+      }
+      foreach my $ttopic ( split( /,/, $notify{$user}{"topic"} ) ) {
+        if ( "$web.$topicName" eq $ttopic ) {
+          $newText = $htmlTopicTmpl;
+    	    $newText =~ s/%TOPICNAME%/$topicName/g;
+    	    $newText =~ s/%WEBNAME%/$web/g;
+    	    $newText =~ s/%AUTHOR%/$wikiuser/g;
+          $newText =~ s/%LOCKED%//g;
+    	    my $time = &TWiki::formatGmTime( $changeTime );
+          $newText =~ s/%TIME%/$time/g;
+          $newText =~ s/%REVISION%/1\.$revision/g;
+    	    $newText = &TWiki::getRenderedVersion( $newText );
+          my $head = &TWiki::Store::readFileHead( "$dataDir\/$web\/$topicName.txt", 16 );
+          $head = &TWiki::makeTopicSummary( $head, $topicName, $web );
+          $newText =~ s/%TEXTHEAD%/$head/g;
+          $htmltopiclist .= $newText;
+          $count++;
+        }
+      }
+      foreach my $tregex ( split( /,/, $notify{$user}{"regex"} ) ) {
+        if ( "$web.$topicName" =~ /$tregex/ ) {
+          $newText = $htmlTopicTmpl;
+    	    $newText =~ s/%TOPICNAME%/$topicName/g;
+    	    $newText =~ s/%WEBNAME%/$web/g;
+    	    $newText =~ s/%AUTHOR%/$wikiuser/g;
+          $newText =~ s/%LOCKED%//g;
+    	    my $time = &TWiki::formatGmTime( $changeTime );
+          $newText =~ s/%TIME%/$time/g;
+          $newText =~ s/%REVISION%/1\.$revision/g;
+    	    $newText = &TWiki::getRenderedVersion( $newText );
+          my $head = &TWiki::Store::readFileHead( "$dataDir\/$web\/$topicName.txt", 16 );
+          $head = &TWiki::makeTopicSummary( $head, $topicName, $web );
+          $newText =~ s/%TEXTHEAD%/$head/g;
+          $htmlregexlist .= $newText;
+          $count++;
+        }
+    }
+    }
+    #print "COUNT = $count\n";
+    if ( $count > 0 ) {
+      $htmlEmailBody .= $htmlAfter;
+      $htmlEmailBody =~ s/%TOPICLIST%/$htmltopiclist/goi;
+      $htmlEmailBody =~ s/%REGEXLIST%/$htmlregexlist/goi;
+      #print "HTML = $htmlEmailBody";
+      
+      my $email = TWiki::Store::readTemplate( "mailnotify", $skin );
+      $email =~ s/%EMAILFROM%/$from/go;
+      my $mail = &TWiki::Plugins::NotificationPlugin::getUserEmail( $user );
+      #print "USER = $user, EMAIL = $mail";
+      $email =~ s/%EMAILTO%/$mail/go;
+      $email =~ s/%HTMLEMAILBODY%/$htmlEmailBody/go;
+      $email = &TWiki::handleCommonTags( $email, $topic );
+  
+      # change absolute addresses to relative ones & do some cleanup
+      $email =~ s/(href=\")$scriptUrlPath/$1..\/../goi;
+      $email =~ s/(action=\")$scriptUrlPath/$1..\/../goi;
+      $email =~ s|( ?) *</*nop/*>\n?|$1|gois;
+  
+      $debug && print "- Sending mail notification to $user\n";
+      &TWiki::Func::writeDebug( "MAIL SENT TO $user ..." );
+      #print "$email\n";
+      my $error = &TWiki::Net::sendEmail( $email );
+      if( $error ) {
+        &TWiki::Func::writeDebug( "ERROR IN SENDING MAIL - $error" );
+  	    print STDERR "* $error\n";
+        $debug && print "- End TWiki.$webName\n";
+      }    
+    }
+  }
+  
+  &TWiki::Func::writeDebug( "FINISH REGULAR NOTIFICATIONS" );
+  &TWiki::Func::writeDebug( "============================" );
+  $debug && print "End TWiki mail notification\n";
+
+}

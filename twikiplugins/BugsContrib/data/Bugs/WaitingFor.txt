@@ -1,0 +1,6 @@
+
+
+---+++ Waiting For
+Use Main.<nop>UserName 
+   * If the Current State is "Waiting for Feedback" then this report is waiting for attention from the person named in this field.
+   * If the Current State is "Being Worked On" that person is working on this problem (please do *not* set this on behalf of others! It should only be set by the person doing the work.)

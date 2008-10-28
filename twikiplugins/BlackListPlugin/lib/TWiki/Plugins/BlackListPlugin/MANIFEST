@@ -1,0 +1,4 @@
+data/TWiki/BlackListPlugin.txt 0644
+lib/TWiki/Plugins/BlackListPlugin.pm 0444
+pub/TWiki/BlackListPlugin/.htaccess 0644
+templates/oopsblacklist.tmpl 0444

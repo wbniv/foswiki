@@ -1,0 +1,8 @@
+<!-- template: settingstoolbar.nat.tmpl -->
+%TMPL:DEF{"edittoolbar"}%<div class="natEditToolBar">%TMPL:P{"exittools"}%</div>%TMPL:END%
+%TMPL:DEF{"exittools"}%<span class="natEditExitTools"><!--
+--><a class="natEditDoneButton" href="javascript:document.SettingsForm.submit()" accesskey="d"><!--
+--><img src="%PUBURLPATH%/%SYSTEMWEB%/NatSkin/button_done.png" alt='%MAKETEXT{"Save and exit"}%' title='%MAKETEXT{"Save and exit"}%' /></a><!--
+--><a class="natEditCancelButton" href="%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%?unlock=on" accesskey="c" title='%MAKETEXT{"Abandon your changes and exit"}%'><!--
+--><img src="%PUBURLPATH%/%SYSTEMWEB%/NatSkin/button_cancel.png" alt='%MAKETEXT{"Cancel and abandon changes"}%' title='%MAKETEXT{"Cancel and abandon changes"}%' /></a><!--
+--></span>%TMPL:END%

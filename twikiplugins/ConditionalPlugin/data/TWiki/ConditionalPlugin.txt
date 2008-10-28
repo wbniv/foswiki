@@ -1,0 +1,90 @@
+%META:TOPICINFO{author="guest" date="1029083151" format="1.0" version="1.1"}%
+---+ %TOPIC%
+
+%RED% This is an alpha version and is still under development. See ConditionalPluginDev for discussion. %ENDCOLOR% 
+
+This plugin adds the ability to do simple, not nested, conditional rendering in topics. 
+
+It attempts to do this in a relatively secure manner by applying the following security measures:
+	* restrictive filter for the expression of 'scalar operator scalar' 
+		* where 'operator' must be one of ==,>,<,<=,>=,!=,eq,ne,gt,lt,le,ge,<=>,cmp,=~,!~
+		* the list of valid operators is hardcoded and cannot be changed by users
+		* and 'scalar' is a string consisting of alphanumeric characters + underscore with no whitespace (\w)
+	* evaluation of the expression in a sandbox, created with the [[http://search.cpan.org/author/JHI/perl-5.8.0/ext/Opcode/Safe.pm Safe ]] module. 
+		* only the opcodes in the :base_core set are allowed (see [[http://search.cpan.org/author/JHI/perl-5.8.0/ext/Opcode/Opcode.pm Opcode]])
+
+More sophisticated constructs (like support for range-conditions or nested constructs) may appear in future revisions, if and when the need for them
+arises.
+
+---++ Syntax Rules
+
+	* <nop>%IF{ scalar operator scalar }% text %ELSE% text %ENDIF%
+	* the '<nop>%ELSE% text' clause is optional
+
+	* __Note__: at the moment nested if-else-endif constructs are not supported.
+
+---++ Examples
+
+The following example prints something dependent on the topicname (can be usefull in templates)
+
+	* <nop>%IF{ %<nop>TOPIC% eq WebHome }% This is the WebHome topic %ELSE% This is NOT the WebHome topic %ENDIF%
+
+Result
+
+	 * %IF{ %TOPIC% eq WebHome }% This is the WebHome topic %ELSE% This is NOT the WebHome topic %ENDIF%
+
+A different approach, without the 'else' clause:
+
+	 * This is <nop>%IF{ %<nop>TOPIC% ne WebHome }% NOT %ENDIF% the WebHome topic
+
+Which of course als results in:
+
+	* This is %IF{ %TOPIC% ne WebHome }% NOT %ENDIF% the WebHome topic
+
+Or:
+	* <nop>%IF{ %<nop>GMTIME{"$hour"}% > 18 }% __Good evening folks!!__  %ELSE% __Good day folks!!__ %ENDIF%
+
+Which results in:
+	* %IF{ %GMTIME{"$hour"}% > 18 }% __Good evening folks!!__  %ELSE% __Good day folks!!__ %ENDIF%
+
+---++ <nop>%TOPIC% Global Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Adds conditional rendering (if/then/else)
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* See the examples above to check if the installation was successful.
+
+---++ Plugin Info
+
+|  Plugin Author: | Main.JeroenVanDongen |
+|  Plugin Version: | 10 Aug 2002 (V1.000) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  10 Aug 2002: | Initial version |
+|  10 Aug 2002: | Improved regexp to deal with multi-line constructs |
+|  11 Aug 2002: | Added lazy-loading for Safe.pm |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | Safe.pm (part of Perl 5.005_3 and up |
+|  Perl Version: | 5.005 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+
+
+-- Main.JeroenVanDongen - 10 Aug 2002

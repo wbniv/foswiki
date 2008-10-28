@@ -1,0 +1,49 @@
+---+!! %TOPIC%
+
+%TOC%
+
+---+ Purpose
+%STARTINCLUDE%
+Short Explanation of this extension
+%STOPINCLUDE%
+
+---++ Syntax Rules
+(none)
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference
+a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>%PLUGIN%_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = No Description
+
+	* Your own setting, i.e.:
+		* Set EXAMPLE = got it!
+
+	* Debug plugin: (See output in =$logdir/debug.txt=)
+		* Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+---+ Installation Instructions
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your TWiki  directory. Content:
+	| *File:* | *Description:* |
+%$MANIFEST%
+	* Optionally, if it exists, run ==%TOPIC%_installer== to automatically check and install other TWiki modules that this module depends on. You can also do this step manually.
+	* Alternatively, manually make sure the dependencies listed in the table below are resolved.
+	%$DEPENDENCIES%
+
+---+ Contrib Info
+
+| Authors: |  |
+| Copyright &copy;: |  |
+| License: | [[http://www.gnu.org/copyleft/gpl.html][GPL]] |
+| Dependencies: | %$DEPENDENCIES% |
+| DD/MM/YY | 1.000 First Version |
+|  Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences

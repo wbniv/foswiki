@@ -1,0 +1,70 @@
+/*
+ * TWkiki SimpleBlueSkin - Layout Informationen
+ */
+  
+#simpleBlueContentBook {
+  clear:both;
+}
+
+#simpleBlueNavigationArea {
+  position: relative;
+  z-index: 3;
+  float: left;
+}
+
+#simpleBlueContentArea {
+  z-index: 1;
+  float:none;
+  width: auto;
+}
+
+#simpleBlueInfoArea {
+  position: relative;
+  z-index: 4;
+  float:right; 
+}
+
+#simpleBlueFooter {
+  clear:both; 
+  width:auto; 
+}
+
+/* Hides from IE-mac \*/
+* html .hold_floats {height: 1%;}
+/* End hide from IE-mac */
+
+/* Cleafix-Hack zum Clearen der Float-Umgebungen */
+.clearfix:after {
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+
+.clearfix {display: inline-table;}
+
+/* Hides from IE-mac \*/
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
+
+/* Overflow-Hack zum Clearen der Float-Umgebungen */
+.floatbox { overflow:hidden; }
+
+/* Hides from IE-mac \*/
+* html .floatbox {width:100%;}
+/* End hide from IE-mac */
+
+
+.clear_columns {	
+	content: "."; 
+	display: block;  
+	height: 0; 
+	font-size: 0; 
+	clear: both; 
+	float: left; 
+	visibility: hidden; 
+	border: 0; 
+	margin-top: -2em; 
+}

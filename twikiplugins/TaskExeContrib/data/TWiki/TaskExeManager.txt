@@ -1,0 +1,25 @@
+%META:TOPICINFO{author="StephaneLenclud" date="1179063276" format="1.1" version="1.1"}%
+%META:TOPICPARENT{name="TaskExeContrib"}%
+---+!! Task Executer Manager
+
+From here you can easily manage every aspect of the task executer application.
+
+---++ Application topics
+
+   * TaskStarter
+
+   * TaskSpecList
+   * TaskSpecCreate
+   * TaskSpecForm
+   * TaskSpecTemplate
+   * TaskSpecSelect
+
+   * ExecuterList
+   * ExecuterRegistration
+   * ExecuterForm
+   * ExecuterTemplate
+   * ExecuterSelect
+
+---++ Related topics
+
+TaskExeContrib, TaskExePlugin.

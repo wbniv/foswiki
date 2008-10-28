@@ -1,0 +1,34 @@
+%TMPL:INCLUDE{"search"}%
+
+%TMPL:DEF{"footernote"}%
+Revision %REVTITLE% - %REVINFO% <br />%TMPL:END%
+
+%TMPL:DEF{"titleaction"}%(%REVTITLE2% vs. %REVTITLE1%) %TMPL:END%
+
+%TMPL:DEF{"topicaction"}% <a href="%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%">%MAKETEXT{"View topic"}%</a>
+ %TMPL:P{"sep"}% %TMPL:P{"revisions"}%
+ %TMPL:P{"sep"}% <a href="%SCRIPTURLPATH{"oops"}%/%WEB%/%TOPIC%?template=oopsmore&amp;param1=%MAXREV%&amp;param2=%CURRREV%" rel='nofollow'>%MAKETEXT{"More topic actions..."}%</a> %TMPL:END%
+
+%TMPL:DEF{"searchbody"}%%TMPL:P{"repeatedsearchblock"}%%TMPL:END%
+
+%TMPL:DEF{"repeatedsearchblock"}%%REPEAT%<div class=SearchResultsHeader>
+<tt>&lt;&lt;O&gt;&gt;</tt>&nbsp; Difference Topic
+<a href="%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%">%TOPIC%</a>
+(<a href="%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%?rev=%REVTITLE1%" rel='nofollow'>%REVTITLE1%</a> - %REVINFO1%)</div>
+%BR%
+%TEXT%
+%BR%
+%BR%
+%REPEAT%%TMPL:END%
+
+%TMPL:DEF{"topicinfo"}%<div class=TopicAction>
+%TMPL:P{"topicaction"}%
+</div>
+<div class="twikiRdiffRevInfo">
+%TAIL%</div>
+%TMPL:P{"copyright"}%%TMPL:END%
+
+%TMPL:DEF{"content"}%<div class=twikiTopic>
+%TMPL:P{"searchbody"}%
+%TMPL:P{"topicinfo"}%</div>%TMPL:END%
+%REPEAT%%TMPL:P{"footernote"}%

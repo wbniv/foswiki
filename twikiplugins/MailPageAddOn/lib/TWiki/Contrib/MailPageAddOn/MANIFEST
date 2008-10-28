@@ -1,0 +1,9 @@
+bin/mailpage/mailpage.cgi 0755
+bin/mailpage/mailpage.conf 0744
+bin/mailpage/mtvwebdesign.lib 0755
+bin/mailpage/privacy.txt 0755
+bin/mailpage/readme.html 0755
+bin/mailpage/tokenfile.html 0755
+data/TWiki/MailPageAddOn.txt 0664
+templates/mailpage.pattern.tmpl 0755
+templates/mailpage.tmpl 0755

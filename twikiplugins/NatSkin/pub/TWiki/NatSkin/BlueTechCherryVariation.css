@@ -1,0 +1,18 @@
+/* header art variation */
+.natHeaderArt {
+  border:1px solid white; /* IE fix */
+  background-image:url(BlueTechCherryBar.jpg); 
+  background-repeat:no-repeat;
+  background-position:top center;
+}
+
+.natTopBar a,
+.natSearchBoxTop {
+  color:white;
+}
+.natSearchBoxTop input {
+  background:#2474BD;
+  color:white;
+  border:0px;
+}
+

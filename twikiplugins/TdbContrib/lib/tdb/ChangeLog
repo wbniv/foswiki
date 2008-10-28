@@ -1,0 +1,24 @@
+Mon Dec 10 2001 Ben Woodard <ben@zork.net>
+	* Applied a couple of cosmetic fixes from jnelson@users.sf.net to 
+	the tdb package
+	* Added a spec file from jnelson@users.sf.net
+	* Added a python module from jnelson@users.sf.net
+	* Incremented the version number 
+	* Added a feature to tdbtool which dumps to a file in addition to dumping 
+	to stdout. From christooley@users.sf.net
+	* Added tdb.magic
+	* Synced up with samba's copy of tdb.
+	
+April 19 2000 Ben Woodard <ben@valinux.com>
+	* Fixed a complilation problem with tdbtorture compiling on Linux.
+	* Moved to the next version.
+
+December 04 2000 Jeremy Allison <jeremy@valinux.com>
+	* tdb.c Added sorted freelist implementation.
+
+September 22 2000 Jeffrey W. Baker <jwbaker@acm.org>
+	* tdb.c include <config.h> to make the mmap stuff work
+
+August 16, 2000 <ben@valinux.com>
+	I excised it from the samba CVS tree and autoconf'd and automake'd
+	it. Added some documentation.

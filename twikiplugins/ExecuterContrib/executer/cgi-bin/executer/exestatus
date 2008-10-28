@@ -1,0 +1,140 @@
+#!/usr/bin/perl
+
+#NOTE: Apache on linux does not like it when the shebang line ends with Windows style new line.
+#!c:/perl/bin/Perl.exe
+##  exestatus - CGI gives the status of the executer 
+##  That script is designed to be included as a javascript in HTML page.
+##	Example:
+##  <script src="http://buildserver.local/cgi-bin/exestatus?target=executerstatus"></script>
+##
+##	URL parameters:
+##  @target: The name/id of the HTML object to update
+##  @timeout: The frequency for status update in milliseconds
+##
+
+use strict;
+use warnings;
+
+use CGI qw/:standard/;
+
+print "Content-type: text/plain; charset=iso-8859-1\n\n";
+
+my $startFile;
+my $outputFile;
+
+if ($^O eq 'MSWin32')
+    {
+    $startFile='C:\executer\exestart.txt';
+    $outputFile='C:\executer\exeoutput.txt';
+    }
+else
+    {
+    $startFile='/tmp/exestart.txt';
+    $outputFile='/tmp/exeoutput.txt';
+    }
+
+
+my $target=param('target');
+my $timeout=param('timeout');
+
+unless ($timeout)
+	{
+	$timeout=5000; #5 sec by default	
+	}
+
+if (-f $startFile)
+	{
+	if ($target) #If called from web page
+		{
+		my $status='Busy';	
+		if (-f $outputFile)
+			{
+			#Retrieve information about the output topic	
+			open FILE, "< $outputFile";
+			my ($url,$web,$topic)=<FILE>;
+			close FILE;
+			$url=trim($url);
+			$web=trim($web);
+			$topic=trim($topic); 				
+			my $href=$url.'/view/'.$web.'/'.$topic;
+			$status .= " - Watch progress on : <a href=$href>$topic</a>";
+			}	
+			
+		my $res=UpdateStatus($target,$status,$timeout);		
+		print $res;
+		}
+	else
+		{
+		my $status='Busy';	
+		if (-f $outputFile)
+			{
+			#Retrieve information about the output topic	
+			open FILE, "< $outputFile";
+			my ($url,$web,$topic)=<FILE>;
+			close FILE;
+			$url=trim($url);
+			$web=trim($web);
+			$topic=trim($topic); 				
+			my $href=$url.'/view/'.$web.'/'.$topic;
+			$status .= " - Watch progress on : $href";
+			}
+			
+		print $status;					
+		}
+	}
+else
+	{
+	if ($target) #If called from web page
+		{	
+		my $res=UpdateStatus($target,'Idle',$timeout);		
+		print $res;			
+		}
+	else
+		{
+		print "Idle";	
+		}
+	}
+	
+exit(0);	
+
+#Return some javascript for auto status update
+sub UpdateStatus
+	{
+	my $serverName=$ENV{SERVER_NAME};
+	my $scriptName=$ENV{SCRIPT_NAME};
+	my $time=time();
+	
+	my $target=shift;	
+	my $status=shift;	
+	my $timeout=shift;
+	
+	#More information about the following javascript on http://www.ariadne-cms.org/news/00009/
+ 	my $res=<<JavascriptRes;		
+document.getElementById("$target").innerHTML="$status";
+exestatus_timeout = setTimeout(function() {
+var script=document.getElementById("script_$target");
+if (script)
+	{
+    script.parentNode.removeChild(script);
+  	}
+script=document.createElement('SCRIPT');
+script.id="script_$target";
+script.src='http://$serverName$scriptName?target=$target&time=$time&timeout=$timeout';
+var head=document.getElementsByTagName('HEAD')[0];
+head.appendChild(script);
+}, $timeout);
+JavascriptRes
+	
+	return $res;		
+	}
+
+	
+		
+sub trim
+	{
+	my $string = shift;
+	$string =~ s/^\s+//;
+	$string =~ s/\s+$//;
+	return $string;
+	}
+

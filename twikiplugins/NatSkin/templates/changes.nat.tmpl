@@ -1,0 +1,39 @@
+%TMPL:INCLUDE{"page"}% 
+<!-- template: changes.nat.tmpl -->
+<!-- -->%TMPL:INCLUDE{"changesbody"}%
+<!-- -->%TMPL:INCLUDE{"changessidebar"}%
+<!-- -->%TMPL:INCLUDE{"changestopicactions"}%
+<!-- -->%TMPL:INCLUDE{"changesjavascript"}%
+<!-- -->%TMPL:INCLUDE{"changesstyles"}%
+%TMPL:DEF{"bodyclass"}%natChangesBody%TMPL:END%
+%TMPL:DEF{"title"}%%TOPIC% (%MAKETEXT{"changes"}%)%TMPL:END%
+%TMPL:DEF{"meta"}% %HTTP_EQUIV_ON_VIEW% %TMPL:END%
+%TMPL:DEF{"locator"}%<span class="natSep">&middot;</span>[[WebHome][%WEB%]]<span class="natSep">&middot;</span>[[%TOPIC%]]%TMPL:END%
+%TMPL:DEF{"content"}% <!-- -->
+<table class="natSearchTable" cellpadding="0" cellspacing="0" width=100%>
+<tr>
+  <th width="50%">%MAKETEXT{"Topic"}%</th>
+  <th width="30%">%MAKETEXT{"Changed"}%</th>
+  <th width="20%">%MAKETEXT{"Changed by"}%</th>
+</tr>
+</table>
+<table class="natSearchHit" cellpadding="0" cellspacing="0" width=100%>
+<!-- debug: before repeat -->%REPEAT%<!-- debug: after repeat -->  
+<tr>
+  <th width="50%">
+    <a href="%SCRIPTURLPATH{"view"}%/%WEB%/%TOPICNAME%"><b>%TOPICNAME%</b></a>
+  </th><th width="30%">
+    <a href="%SCRIPTURLPATH{"rdiff"}%/%WEB%/%TOPICNAME%">%TIME%</a> - %REVISION%
+  </th><th width="20%">
+    %AUTHOR%
+  </th>
+</tr>
+<tr>
+  <td colspan="3" width="80%">
+    <font size="-1">
+    %TEXTHEAD% </font>
+  </td>
+</tr>
+<!-- debug: search repeat end -->%REPEAT%<!-- debug: search footer start-->
+</table>
+%TMPL:END%

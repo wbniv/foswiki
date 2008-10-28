@@ -1,0 +1,104 @@
+# SAMPLE Configuration file for SyncContrib
+# Used on a windows box
+# Eventually this will become a section in TWiki Dakar's configure file
+
+# Copy this and save as unisonsync.cfg in the SyncContrib directory
+# This is an EARLY RELEASE - YOUR FEEDBACK IS ESSENTIAL
+# (C) Martin@Cleaver.org
+# Released under the GPL
+
+# PRECONDITIONS
+# the default unison profile must not exist 
+# Putty must be installed
+# pageant must be running
+# unison key must be set up
+
+# Common debug options
+# SYMPTOM:
+#   Two or more files on a Unix system have names identical except for case.
+#   They cannot be synchronized to a Windows file system.
+# DIAGNOSIS
+#   unisonOptions => '-debug update',
+
+# Items in the accounts nested structure override the general settings 
+
+$UnisonSync::options = {
+## CHANGE FROM HERE DOWN
+
+# Which accounts to sync by default (see the nested structure below)
+    'syncAccounts' => ['TestAccountRemote'],
+
+# Where your TWiki directory is on your local machine(contains pub and data).
+    'clientRoot' => 'c:/moreprgs/indigoperl/apache/TWiki',
+
+# The executable for PuTTY plink, I used the putty-0.58-installer.exe to install
+# From http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
+    'plinkExecutable' => 'c:\\program files\\putty\plink.exe',
+
+# Where you've stored your private key for PuTTY
+# See http://twiki.org/cgi-bin/view/Codev/UnisonKeySetup
+    'clientServerPrivateKey' => 'c:\\Documents and Settings\\Martin Cleaver\\PuttyPrivateKey.ppk',
+
+# Download Unison from http://www.cis.upenn.edu/~bcpierce/unison/download.html
+# e.g. https://svn.cis.upenn.edu/svnroot/unison-contributed-binaries/windows/
+    'clientUnisonExecutable' => 'c:\\moreprgs\\unison\\unison-2.12.15-win-gui.exe',
+    'serverUnisonExecutable' => 'unison',
+
+	'accounts' => {
+
+# Define as many of these accounts as you like
+
+
+		'TestAccountRemote' => {
+									# How you log in
+		    serverAccount => 'wikiconsulting',
+									# Where you keep TWiki installed
+			serverRoot => '/home/mrjc/wikiconsulting.com/twiki',
+									# Machine to ssh to
+		    serverSite => 'wikiconsulting.com',
+									# Which webs to sync
+			webs => ['Sandbox'],
+									# debug = 0, 1, 2
+			debug => '1',
+									# If not undef, don't actually execute the command.
+									# Use with debug
+			dryrun => '',
+		},
+
+# Much rarer case:
+# local to local transfer
+# in principle useful if you are syncing with acrowiki
+		'TestAccountLocal' => {
+			clientRoot => 'd:/acrowikidirectory/TWiki',
+	            serverRoot => 'c:/moreprgs/indigoperl/apache/TWiki',
+			webs => ['Sandbox', 'CleaverSite'],
+			unisonOptions => '-backups',
+			debug => '1',
+			dryrun => '',
+		},
+	}	
+
+
+    
+## OKAY STOP!!! THIS IS THE END OF THE COMMONLY CHANGED OPTIONS.
+    'plinkTempLauncherScriptFile' => 'c:\\temp\\plinkLauncher.bat',
+
+    'unisonStdErrFile' => '%timestamp%-%accountName%.stdErr',
+    'unisonCaptureErrors' => '2> %unisonStdErrFile%',
+    'unisonCaptureLog' => '%timestamp%-%accountName%.uniLog',
+
+    'unisonLogfile' => '%timestamp%-%accountName%.log',
+    'unisonUimode' => '-ui text',
+    'unisonOptions' => '%unisonBatchMode% %unisonDebugMode% %unisonUimode% -logfile %unisonCaptureLog% %unisonIgnoreTWikiHistory% %unisonTimeOutProtection%',
+    'unisonIgnoreTWikiHistory' => '-ignore "Regex ^.*,v$"',
+    'unisonTimeOutProtection' => '-sshargs "-o ServerAliveInterval=60"',
+    'unisonDebugMode' => '-debug none', # none, all, update
+    'unisonBatchMode' => '-batch', # e.g. -prefer roota or -force roota (see docs)
+    
+    'dataDir' => 'data',
+    'pubDir' => 'pub',
+    'protocol' => 'ssh',
+    
+};
+
+1;

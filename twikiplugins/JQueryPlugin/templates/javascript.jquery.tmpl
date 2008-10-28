@@ -1,0 +1,46 @@
+%TMPL:INCLUDE{"javascript"}%
+
+%TMPL:DEF{"javascript"}%
+%TMPL:P{"jqueryjavascript"}%
+%TMPL:P{"defaultjavascript"}%
+%TMPL:P{"twikijavascript"}%
+%TMPL:P{"patternjavascript"}%
+%TMPL:P{"twistyjavascript"}%
+%TMPL:P{"templatejavascript"}%
+%TMPL:END%
+
+%TMPL:DEF{"jqueryjavascript"}%<!-- javascript.jquery.tmpl -->
+<script type="text/javascript">
+var twiki;
+if (!twiki) {
+  twiki = {};
+}
+
+/* propagate TWikiVariables to javascript, need more? */
+twiki.pubUrlPath = '%PUBURLPATH%';
+twiki.viewUrlPath = '%SCRIPTURLPATH{"view"}%';
+twiki.editUrlPath = '%SCRIPTURLPATH{"edit"}%';
+twiki.renameUrlPath = '%SCRIPTURLPATH{"rename"}%';
+twiki.saveUrlPath = '%SCRIPTURLPATH{"save"}%';
+twiki.twikiWeb = '%SYSTEMWEB%';
+twiki.mainWeb = '%USERSWEB%';
+twiki.wikiName = '%USERINFO{format="$wikiname"}%';
+twiki.userName = '%USERINFO{format="$username"}%';
+twiki.JQueryPluginEnabled = 1;
+</script>
+
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JQueryPlugin/jquery.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JQueryPlugin/jquery.dom.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JQueryPlugin/jquery.bgiframe.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JQueryPlugin/jquery.easing.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JQueryPlugin/jquery.hoverIntent.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JQueryPlugin/jquery.dimensions.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JQueryPlugin/jquery.tooltip.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JQueryPlugin/jquery.nifty.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JQueryPlugin/jquery.treeview.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JQueryPlugin/jquery.shrinkurls.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JQueryPlugin/jquery.blockUI.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JQueryPlugin/jquery.twiki.js"></script>
+<link rel="stylesheet" href="%PUBURL%/%SYSTEMWEB%/JQueryPlugin/jquery.nifty.css" type="text/css" media="all" />
+<link rel="stylesheet" href="%PUBURL%/%SYSTEMWEB%/JQueryPlugin/jquery.twiki.css" type="text/css" media="all" />
+<!-- //javascript.jquery.tmpl --> %TMPL:END%

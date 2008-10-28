@@ -1,0 +1,14 @@
+%META:TOPICINFO{author="StephaneLenclud" date="1179063512" format="1.1" reprev="1.2" version="1.2"}%
+%META:TOPICPARENT{name="TaskExeManager"}%
+---+ Task Executers
+
+%STARTINCLUDE%
+
+<table cellspacing="1" cellpadding="1" class="twikiTable" border="0"><tr><th bgcolor="#dadada" class="twikiFirstCol"> <a rel="nofollow" href="%SCRIPTURL%/view/%TASKEXE_INSTALLEDWEB%/ExecuterList?sortcol=0;table=1;up=0#sorted_table" title="Sort by this column"><font color="#000000">Name</font></a> </th><th bgcolor="#dadada"> <a rel="nofollow" href="%SCRIPTURL%/view/%TASKEXE_INSTALLEDWEB%/ExecuterList?sortcol=1;table=1;up=0#sorted_table" title="Sort by this column"><font color="#000000">URL</font></a> </th><th bgcolor="#dadada"> <font color="#000000">Status</font> </th></tr>
+%SEARCH{ "META\:FORM.name\=.*ExecuterForm" scope="all" regex="on" nosearch="on" nonoise="on" noheader="on" format="<tr> <td bgcolor='#eaeaea' class='twikiFirstCol'> [[$web.$topic][$formfield(Name)]] </td><td bgcolor='#eaeaea' class='twikiFirstCol'> $formfield(BinURL) </td><td bgcolor='#eaeaea' class='twikiFirstCol'> <font id='$topic_executerstatus'>Offline</font> </td> </tr> <script src='$formfield(BinURL)/exestatus?target=$topic_executerstatus&timeout=5000'></script>" web="%TASKEXE_TASKWEB%" excludetopic="Fake*, Test*"}%
+</table>
+%STOPINCLUDE%
+
+---++ Related Topics
+
+TaskStarter, TaskSpecList, ExecuterRegistration

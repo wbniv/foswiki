@@ -1,0 +1,465 @@
+/* Clean Style */
+@import url("BaseStyle.css");
+
+/* html elements */
+.twikiEmulatedLink,
+a:active, a:link, a {
+  color:#003366;
+  text-decoration:none;
+}
+a:hover {
+  color:#003366;
+  text-decoration:underline;
+}
+
+hr {
+  border-bottom:1px solid #aaaaaa;
+}
+
+/* twiki styles */
+.twikiTable {
+  border:1px #aaaaaa solid;
+  font-size:12px;
+}
+.twikiTable th {
+  border:1px #aaaaaa solid;
+  background:#e5e5e5;
+}
+.twikiTable th a {
+  text-decoration:none;
+  font-weight:bold;
+}
+.twikiTable th,
+.twikiTable th a,
+.twikiTable th span,
+.twikiTable th font {
+  color:#444444 !important; /* SMELL temporary hack */
+}
+.twikiTable td {
+  border:1px #aaaaaa solid;
+  background:white;
+}
+.twikiTableEven td {
+  background:#eeeeee;
+}
+
+/* twikiDiff */
+.twikiDiffTable { 
+  border:1px solid #aaaaaa;
+  background:#fafafa;
+}
+.twikiDiffTable td,
+.twikiDiffTable th {
+  border:0px;
+}
+.twikiDiffTable th { 
+  border-bottom:1px solid #aaaaaa;
+}
+
+.twikiDiffChangedHeader { }
+.twikiDiffChangedMarker { }
+.twikiDiffChangedText { }
+
+.twikiDiffDeletedHeader { }
+.twikiDiffDeletedMarker { }
+.twikiDiffDeletedText { 
+ background:#FFD7D7;
+}
+
+.twikiDiffAddedHeader { }
+.twikiDiffAddedMarker { }
+.twikiDiffAddedText { }
+
+.twikiDiffUnchangedText { }
+
+
+/* twiki page form */
+.twikiPageForm table {
+  border:1px #aaaaaa solid;
+  border-collapse:collapse;
+}
+.twikiPageForm table th,
+.twikiPageForm table td {
+  padding:5px;
+}
+
+.twikiPageForm th {
+  border-right:1px #aaaaaa solid;
+  color:#444444;
+  background: #eeeeee;
+  padding-top:2px;
+  padding-bottom:2px;
+}
+.twikiPageForm th a {
+  color:#444444;
+  text-decoration:none;
+  font-weight:bold;
+}
+.twikiPageForm td {
+}
+
+/* helpers */
+.natErrorMsg {
+  background:#eeeeee;
+}
+
+/* page layout */
+.natBody {
+  margin:0;
+  padding:0;
+  background:#e5e5e5;
+}
+.natTopLeftContents {
+  margin:15px 0px 15px 20px;
+}
+.natTopRightContents {
+  margin:15px 20px 15px 0px;
+}
+.natMiddle {
+  padding:20px 10px 20px 10px;
+}
+.natMain,
+.natMainFooter,
+.natSideBar {
+  padding-left:20px;
+  padding-right:20px;
+}
+
+/* login */
+.natLoginBody .natLoginMessage {
+  padding:20px;
+  border:1px #aaa dotted;
+  _border:1px #aaa solid; /* IE only */
+}
+.natLoginBody hr {
+  border-bottom:1px solid #eee;
+}
+
+/* top */
+.natHeaderArt {
+  background:#eeeeee;
+}
+.natTopBar {
+  color:#333333;
+  border-top:5px #aaaaaa solid;
+  border-bottom:1px #aaaaaa dotted;
+  _border-bottom:1px #aaaaaa solid; /* IE only */
+}
+.natTopLeftContents, .natTopRightContents {
+  font-family:arial,sans-serif;
+}
+.natWebTitle {
+  font-weight:normal;
+  font-family:verdana,arial,sans-serif;
+  letter-spacing:1px;
+}
+.natWebSlogan {
+  font-family:arial,sans-serif;
+  font-weight:bold;
+  font-size:12px;
+  color:#333333;
+  margin-left:3px;
+}
+.natSearchBox input {
+  width:170px;
+  background:white;
+  font-weight:normal;
+  border:1px solid #aaaaaa;
+}
+.natSearchBoxPos1 {
+  padding-bottom:5px;
+}
+.natSearchBoxPos2,
+.natSearchBoxPos3 {
+  padding:10px 0px;
+}
+
+/* sidebar */
+.natTopRight, 
+.natSideBarRight {
+  width:260px;
+  min-width:260px;
+}
+.natSideBarContents {
+  color:#003366;
+  font-family:arial,sans-serif;
+  font-weight:normal;
+}
+.natSideBar h1,
+.natSideBar h1 a {
+  color:#444444;
+  font-weight:normal;
+  font-family:verdana,arial,sans-serif;
+  font-size:14px;
+}
+.natSideBar h1 {
+  text-transform:uppercase;
+  letter-spacing:.3em;
+  border-bottom:1px dotted #444444;
+  _border-bottom:1px solid #aaaaaa; /* IE only */
+}
+.natWebLink,
+.natWebLink a,
+.natSideBar h2 a,
+.natSideBar h2 {
+  font-weight:bold;
+  font-size:14px;
+}
+.natSideBar ul {
+  margin-left:15px;
+  padding-left:17px;
+}
+.natSideBar li {
+  margin-top:0px;
+}
+
+.natNotes p {
+  border-bottom:1px #444444 dotted;
+  _border-bottom:1px #444444 solid; /* IE only */
+  margin-left:15px;
+  margin-top:10px;
+  margin-bottom:0px;
+  padding-bottom:10px;
+}
+
+/* main area */
+.natMiddle {
+  background:white;
+}
+.natMainContents,
+.natMainFooterContents,
+.natMainHeaderContents,
+.natMainContents table {
+  color:#444444;
+  font-family:arial,sans-serif;
+}
+.natMainHeaderContents {
+  margin-top:3px;
+  margin-bottom:1em;
+  font-size:13px;
+}
+
+.natMain select,
+.natMain input,
+.natMain textarea {
+  font-size:13px;
+
+}
+
+/* anchors in natMain */
+.natMain .twikiEmulatedLink,
+.natMain a,
+.natMainFooter a {
+  font-weight:normal;
+  text-decoration:none;
+  color:#003366;
+}
+.natMainFooter a:hover,
+.natMain a:hover {
+  text-decoration:underline;
+}
+
+.natMain h1, .natMain h2, .natMain h3, .natMain h4, .natMain h5, .natMain h6,
+.natMain h1 a, .natMain h2 a, .natMain h3 a, .natMain h4 a,
+.natMain h5 a, .natMain h6 a,
+.natMain h1 a:hover, .natMain h2 a:hover, .natMain h3 a:hover,
+.natMain h4 a:hover, .natMain h5 a:hover, .natMain h6 a:hover {
+  color:#003366;
+  font-weight:normal;
+}
+
+.natMain input,
+.natMain select {
+  vertical-align:middle;
+}
+
+/* bottom */
+.natBottomBar {
+  padding-left:5px;
+  padding-right:5px;
+  background:white;
+}
+.natBottomBarContents {
+  color:#444444;
+  height:5em;
+  width:100%;
+}
+.natCopyRight {
+  display:inline;
+}
+.natRevision {
+  margin-top:10px;
+}
+
+/* forms */
+.natTopicForm td,
+.natTopicForm th,
+.natTopicForm {
+  font-size:12px;
+}
+.natTopicForm table {
+  border:1px #aaaaaa solid;
+}
+
+.natTopicForm .natTopicFormFirstCol,
+.natTopicForm .twikiFirstCol,
+.natTopicForm table th {
+  color:#444444;
+  background: #eeeeee;
+  vertical-align:top;
+  padding-top:2px;
+  border:0px;
+}
+.natTopicForm table th a {
+  color:#444444;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.natTopicEditForm table td {
+  border:0px;
+}
+.natTopicEditForm .twikiFirstCol a,
+.natTopicEditForm .twikiFirstCol {
+  font-weight:bold;
+  color:#444444;
+}
+
+/* search tables */
+.natSearchTable {
+  border-top:1px #aaaaaa solid;
+  border-bottom:1px #aaaaaa solid;
+  margin-top:1em;
+}
+.natSearchTable:first-child {
+  margin-top:0em;
+}
+
+.natSearchTableTitle th {
+  background:#eeeeee;
+  border-bottom:1px #aaaaaa solid;
+  border-left:1px #aaaaaa solid;
+  border-right:1px #aaaaaa solid;
+}
+.natSearchHit {
+  border:1px #aaaaaa solid;
+}
+
+.natSearchHitEven {
+  background:#eeeeee;
+}
+
+/* TOC */
+.twikiTocTitle {
+  color:#003366;
+}
+
+/* supported plugins and applications */
+
+/* Blogging */
+.alt {
+  border-top:1px #aaaaaa solid;
+  border-bottom:1px #aaaaaa solid;
+}
+.border {
+  border:1px #aaaaaa solid;
+}
+/* BlackListPlugin */
+.blackList {
+  border:1px solid #acaaac;
+  background:#eeeeee;
+}
+.blackListComments {
+  border-top:1px dashed #aaaaaa;
+  margin-top:5px;
+}
+.blackListTitle {
+  border-bottom:1px dashed #aaaaaa;
+}
+
+/* blogging */
+.blogAbout {
+  font-size:0.9em;
+  line-height:1.3em;
+}
+.blogAbout h1 {
+  line-height:1.4em;
+}
+.blogSideBarLatest h1,
+.blogSideBarComments h1 {
+  border-bottom:0px;
+  margin-bottom:0px;
+}
+.natSideBar .blogSideBarHeader h1 {
+  border:0px;
+}
+.blogSideBarHeader {
+  border-bottom:1px dotted #444444;
+  _border-bottom:1px solid #aaaaaa; /* IE only */
+  margin-bottom:5px;
+}
+.blogSideBar {
+  line-height:1.4em;
+}
+.blogSideBarSection {
+  margin-bottom:1em;
+}
+.blogSideBarSection ol {
+  margin-top:0px;
+}
+.blogSideBarSection ul {
+  margin-top:0px;
+  margin-left:0px;
+}
+.blogInfo {
+  font-size:0.9em;
+}
+.blogText {
+  margin-top:5px;
+  padding:1px; /* fix for konqueror */
+}
+.blogCommentOdd {
+  background:#fafafa;
+  border-bottom:1px #eeeeee solid;
+  border-top:1px #eeeeee solid;
+}
+.blogComment .blogDate {
+  font-size:0.8em;
+  color:#777;
+  font-weight:normal;
+}
+.blogCommentNr {
+  color:#444444;
+  margin-right:10px;
+}
+.blogCommentCount {
+  color:#777;
+  margin-left:10px;
+  text-align:right;
+}
+.blogHeadline .blogCommentCount {
+  font-size:20px;
+}
+.blogSubComments {
+  padding:5px;
+}
+.blogSubComment {
+  border-left:5px solid #eeeeee;
+  padding-left:5px;
+}
+.blogAddComment textarea,
+.blogAddComment input {
+  font-family: Arial, Sans-Serif;
+}
+.blogArchiveDescription {
+  margin-bottom:20px;
+  font-size:0.9em;
+}
+.blogAdminButtons,
+.blogAuthorButtons {
+  background:#fafafa;
+  border:1px #eeeeee solid;
+}
+.blogSideBarSection ol {
+  padding-left:2em;
+}

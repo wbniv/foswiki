@@ -1,0 +1,60 @@
+%TMPL:INCLUDE{"twiki"}%
+%TMPL:P{"htmldoctype"}%
+<head>
+ <title>(search result) %WEB% &lt; %WIKITOOLNAME%</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=%CHARSET%" />
+ <meta name="robots" content="noindex" /> %HTTP_EQUIV_ON_VIEW%
+ <base href="%SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%" />
+ %TMPL:P{"dragoncss"}%
+</head>
+%TMPL:DEF{"titleaction"}%(search result) %TMPL:END%
+%TMPL:DEF{"webaction"}%  Search: <b> %SEARCHSTRING% </b> %TMPL:END%
+<body>%SPLIT%%TMP:P{"simpleheader"}%
+#PageTop
+<div id="nmcontent">
+<form>
+%SPLIT%<table width="100%" border="0" cellpadding="0" cellspacing="4" class="ds-searchresultsheading" style="border-top: 3px solid %WEBBGCOLOR%; border-bottom: 3px solid %WEBBGCOLOR%;">
+<tr>
+  <td width="15%">
+    <b>Update ref: </b>
+  </td><td width="40%">
+    <b>Topics in <nop>%WEB% web:</b>
+  </td><td width="25%">
+    <b>Changed:</b> now %DISPLAYTIME{"$hour:$min"}% 
+  </td><td width="20%">
+    <b>Changed by:</b>
+  </td>
+</tr>
+</table>
+%REPEAT%<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+  <td width="15%">
+    %SELECTION%<input type="checkbox" name="RENAME%LABEL%%TOPIC_NUMBER%" checked="checked" />
+    <input type="hidden" name="TOPIC%LABEL%%TOPIC_NUMBER%" value="%WEB%.%TOPICNAME%" />%SELECTION%
+  </td><td width="40%">
+    <a href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOPICNAME%"><b>%TOPICNAME%</b></a> %LOCKED%
+  </td><td width="25%">
+    <a href="%SCRIPTURLPATH%/rdiff%SCRIPTSUFFIX%/%WEB%/%TOPICNAME%">%TIME%</a> - %REVISION% &nbsp;
+  </td><td width="20%">
+    %AUTHOR%
+  </td>
+</tr>
+<tr>
+  <td colspan="2">
+    <font size="-1">
+    %TEXTHEAD% </font>
+  </td><td width="20%">
+    &nbsp;
+  </td>
+</tr></table>
+%REPEAT%<br clear="all" />
+<p />%SPLIT%Number of topics: <b>%NTOPICS%</b>
+<p />%SPLIT%
+</form>
+%TMPL:DEF{"topicaction"}% %TMPL:END%
+</div>
+#PageBottom
+%TMPL:P{"standardfooter"}%
+</div>
+</body>
+</html>

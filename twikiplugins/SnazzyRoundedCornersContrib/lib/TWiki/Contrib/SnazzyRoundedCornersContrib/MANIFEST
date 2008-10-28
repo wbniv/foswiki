@@ -1,0 +1,4 @@
+# Release manifest for SnazzyRoundedCornersContrib
+data/TWiki/SnazzyRoundedCornersContrib.txt 0644 Documentation
+lib/TWiki/Contrib/SnazzyRoundedCornersContrib.pm 0644 Perl module
+

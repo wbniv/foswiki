@@ -1,0 +1,157 @@
+---+ %TOPIC%
+<!--
+   * Set SHORTDESCRIPTION = Associate a "state" with a topic and then control the work flow that the topic progresses through as content is added.
+-->
+TWiki benefits from the fact that every user can modify a topic instantly without restrictions. However sometimes you want to be able to associate a "state" with a topic and then control the work flow that the topic progresses through as content is added. 
+<div style="float:right">
+%ATTACHURL%/Flow.gif
+</div>
+For example,
+   * When writing documents compliant with ISO 9000 (e.g. a quality manual), it is essential that documents are approved by the management before they may be applied by the employees.
+   * In a defect tracking data base, defects typically transition through a series of states from submission to resolution, with different actions available depending on the state of the defect.
+   * In a journal database, papers must be reviewed and approved by several experts in the field before being allowed to be published.
+
+This plugin lets you associate a complex work flow with topics in your TWiki.
+
+A workflow can be associated with a single topic, or with an entire web. If a topic is under workflow control, you can define a set of _states_ for this topic (e.g. "under revision", "waiting for approval", "approved") and _transitions_ (e.g. "revise", "approve") between these states. Furthermore, you can define which users/groups are permitted to perform specific transistions. In this way, you can control, for example, who is allowed to "approve" a topic and who is not. 
+
+In order to print a list of which topics are under document control, have a look at the TWiki:Plugins.MakeCtrlTopicsListAddOn.
+
+%X% Note: This plugin only works with TWiki-4.0.0 and later.
+
+---++ Usage
+
+A topic is under document control if the preference variable =WORKFLOW= is set
+in the topic page page. =WORKFLOW= must be set to the TWiki name of a topic that describes your specific workflow (the _workflow description topic_).
+
+Note: you can hide the setting in a normal view using HTML comments, or better, you can put these settings into the local topic settings, accessible from the "more" screen.
+
+---+++ Settings in the workflow description topic 
+
+The workflow description topic must contain one state table and one transition table. The state table has three columns, as in this example:
+
+| *State* | *Allow Edit* | *Message* |
+| UNDERREVISION | | This document is being revised. |
+| APPROVED | | This documented has been approved for release. |
+| WAITINGFORQM | Main.<nop>User1,Main.Quality<nop>Group | This document is waiting for approval by the Quality Manager. |
+| WAITINGFORCEO | nobody | This document is waiting for approval by the CEO.|
+
+Each row in the table defines a state where:
+	* the *State* column specifies a name for the state, 
+	* the *Allow Edit* column specifies who is permitted to edit the topic when it is in the state, and 
+	* the *Message* column defines a message which can be displayed on the document page when the document is in this state.
+
+In the example we have defined four states. Anyone can make changes to the document in UNDERREVISION state. Only =Main.<nop>User1= and =Main.<nop>QualityGroup= are permitted to make changes to the document when it is in the =WAITINGFORQM= state. Nobody can edit the document in =WAITINGFORCEO= state.
+
+The first state in the table is the initial/default state.
+
+%X% NOTE: The state table must be defined *before* the transition table!
+
+The transition table consists of four columns, as in this example:
+| *State* | *Action* | *Next State* | *Allowed* | *Form* |
+| APPROVED | revise | UNDERREVISION | Main.<nop>QualityGroup | <nop>ApprovedForm |
+| UNDERREVISION | send to Quality Manager for approval | WAITINGFORQM | Main.<nop>QualityGroup | In<nop>ProcessForm |
+| WAITINGFORQM | approve and send to CEO for approval| WAITINGFORCEO | Main.<nop>QualityManager |  |
+| WAITINGFORQM | reject and keep revising| UNDERREVISION | Main.<nop>QualityManager |  |
+| WAITINGFORCEO | approve | APPROVED | Main.<nop>TechnicalDirector | Approved<nop>Form |
+| WAITINGFORCEO | reject and keep revising | UNDERREVISION | Main.<nop>TechnicalDirector |  |
+
+Each row in this table defines a transition from one state to another state:
+	* the *State* column contains the name of a state in the state table, 
+	* the *Action* column describes a possible action when the topic is in this state,
+	* the *Next State* column defines the new state of the document after the specified action is performed, and
+	* the *Allowed* column specifies who is allowed to perform the corresponding action. 
+	* The _optional_ *Form* column defines a form that is attached to the topic in this state.
+
+In our example the Main.<nop>QualityGroup is allowed to revise the document. After finishing the revision, the document must be approved by the Main.<nop>QualityManager, and after that by the Main.<nop>TechnicalDirector. Even though they can't edit the document themselves (see state table above), they _can_ reject the revision and put the document back into the =UNDERREVISION= state. 
+
+If a form name is given in the last column, this form will be attached to the topic, and the topic will put in edit mode to allow information to be provided in the form *when that state transition happens*. in the examples above, a form of type Approved<nop>Form will be attached to the topic when the CEO transitions the topic into =APPROVED= state.
+   * if there is already a form of a different type attached to the topic, then any fields that have the same name in the *new* form will be preserved.
+   * If no form is given, the existing form (if any) is left in place.
+A typical usage of the form would be to collect additional information as the topic walks through the work flow, or to make information in the form unchangeable (by setting it to a =label= field) once a given state is reached.
+
+An example of a workflow that also controls the form information can be found in WorkflowPluginDemo.ControlledDocument (only available if the plugin is installed).
+
+You can also define other TWiki variables starting with =WORKFLOW= in the workflow description topic. These will be expanded to their defined values in any topic that uses the workflow. For example:
+	* Set WORKFLOWNOTICE = This topic is under document control.
+will define =WORKFLOWNOTICE= in any topic that uses the workflow.
+
+---+++ Settings in your controlled document/topic
+
+As described above the topic needs to contain a definition for the variable =WORKFLOW= for it to be controlled under the approval workflow. This is best set as a document-specific preference setting in the =More topic actions= screen.
+
+The plugin defines a number of %SYSTEMWEB%.TWikiVariables that can be used in the topic under flow control:
+| *Variable* | *Description* |
+| =%<nop>WORKFLOWTRANSITION%= | Expands to either (a) a pull-down menu if the user can perform more than one transition, (b) a button if the current user can only perform one transition, or (c) empty space if the current user is not allowed to perform any action. |
+| =%<nop>WORKFLOWSTATEMESSAGE%= | Expands to the corresponding message in the state table. |
+| =%<nop>WORKFLOWLASTTIME_State%= | Expands to the timestamp when the document was last in the _State_ last state. For example, in our example above =%<nop>WORKFLOWLASTTIME_APPROVED%= would be replaced by the timestamp when the document was last in the =APPROVED= state. |
+| =%<nop>WORKFLOWLASTVERSION_State%= | Expands to topic version when the document was last in the state _State_. |
+| =%<nop>WORKFLOWHISTORY%= | Expands to the history of state transitions the topic has undergone. The format of the history is dictated by the =WORKFLOWHISTORYFORMAT= (described below). |
+| =%<nop>WORKFLOWSTATE%= | Expands to the current state of the document. It can also be given a =topic= parameter (default), in which case the state of that topic is returned. |
+
+Furthermore, the plugin replaces any variable starting with =WORKFLOW= that is defined in the workflow description file. If the topic is *not* controlled, then any references to =WORKFLOW= variables are simply removed (you can use this behaviour to place these tags in the header or footer in your %SYSTEMWEB%.TWikiTemplates. They appear only if the currently displayed document is controlled. Otherwise, they are just removed and do not disturb the layout)
+
+If you replace =%<nop>EDITTOPIC%= with =%<nop>WORKFLOWEDITTOPIC%= in your %SYSTEMWEB%.TWikiTemplates, then the _Edit_ link is crossed out when the user is not allowed to edit the page in a state.  
+
+---++ Bugs
+
+	* You can attach a file to a contolled topic even if the state of the topic does not allow the user to edit it. In general, the plugin should prevent any changes to the topic in such case.
+	* If a transition attaches a form, the initial values are not taken from the form definition, due to the TWiki form initialization algorithm.
+
+---++ History and Acknowledgements
+
+This plugin was motivated by [[TWiki:Main.ThomasWeigert][Thomas Weigert]] 's [[TWiki:Plugins.WorkFlowAddOn][WorkFlowAddOn]] and its first version (then called !ApprovalPlugin) was written by [[TWiki:Main.ThomasHartkens][Thomas Hartkens]], albeit it was focused on document approval and control. [[TWiki:Main.ThomasWeigert][Thomas Weigert]] then merged the functionality of the [[TWiki:Plugins.WorkFlowAddOn][WorkFlowAddOn]] into this plugin. [[TWiki:Main.CrawfordCurrie][Crawford Currie]] enhanced the documentation and installation procedure.
+
+---++ Plugin Settings
+Plugin settings are stored as preferences variables. To reference
+a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>WORKFLOWPLUGIN_SHORTDESCRIPTION%==
+
+   * History format. In this example, the first line tells the plugin to format the history as a bullet list, the second just writes a newline separated list. The variables =$state=, =$wikiusername=, =$date=, =$quot=, and =$n= (or =$n()=) can be used in the format statement, with the same meaning as in TWiki.FormattedSearch.
+      * #Set WORKFLOWHISTORYFORMAT = "	* $state -- $wikiusername, $date"
+      * Set WORKFLOWHISTORYFORMAT = "$n$state, $wikiusername, $date"
+
+   * Appearance of the button to change state can be configured by providing a sytle element, either defining a class for the control, or a local style:
+      * Set STYLE = class="twikiChangeFormButton twikiSubmit"
+      * #Set STYLE = style="padding:0; margin:0; color:#888; text-decoration:underline; background-color:transparent; border:none;"
+
+---++ Plugin Installation Instructions
+
+%$INSTALL_INSTRUCTIONS%
+
+__Note:__ The script =[[%ATTACHURL/convert.pl][convert.pl]]= supplied will convert topics written for the !ApprovalPlugin to the WorkflowPlugin. The script takes a topic at the standard input and outputs the converted topic on standard output.
+
+Look at the examples in the !Sandbox web.
+
+__Note:__ For strict access control, the plugin should know who is looking at the controlled document/topic at all times.  To enable this, you may want to set up the TWiki in such way that users have to log-in *even if they just display a topic*.
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/ThomasHartkens, Dakar port and changes from 24 Jul 2006 by TWiki:Main/ThomasWeigert |
+|  Plugin Version: | 10 Dec 2006 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  10 Dec 2006: | Add =<nop>%WORKFLOWSTATE%=. |
+|  25 Sep 2006: | Restored ability to put workflow related tags into templates. Support the visual customization of the generated controls. |
+|  11463 | TWiki:Main.CrawfordCurrie rewrote the doc and corrected the install procedure |
+|  10 Aug 2006: | Added conversion script. |
+|  05 Aug 2006: | Converted from !ApprovalPlugin to %TOPIC%. |
+|  26 Jul 2006: | Minor bug fix. Additional examples provided. |
+|  25 Jul 2006: | Added state-based forms and history from TWiki:Plugins/WorkFlowAddOn. Changed time stamp format to be more wiki like. |
+|  24 Jul 2006: | Ported to Dakar. Fixed problem in referencing previous versions. Fixed error messages. Fixed Documentation errors. |
+|  16 Feb 2005: | Initial version of !ApprovalPlugin |
+|  05 Feb 2004: | Initial version of !WorkFlowAddOn |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+|  Dependencies: | None |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+
+-- TWiki:Main/ThomasWeigert - 25 Sep 2006
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the Dev topic instead. -->
+
+%META:FILEATTACHMENT{name="convert.pl" attr="h" autoattached="1" comment="" date="1159057355" path="convert.pl" size="355" user="Main.TWikiGuest" version="1"}%
+%META:FILEATTACHMENT{name="Flow.draw" attr="h" autoattached="1" comment="" date="1159056685" path="Flow.draw" size="5504" user="UnknownUser" version=""}%
+%META:FILEATTACHMENT{name="Flow.gif" attr="h" autoattached="1" comment="" date="1159056685" path="Flow.gif" size="3252" user="UnknownUser" version=""}%

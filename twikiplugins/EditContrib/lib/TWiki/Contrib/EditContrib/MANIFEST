@@ -1,0 +1,8 @@
+bin/savesection 0555
+bin/addsection 0555
+templates/editsection.pattern.tmpl 0444
+templates/editsection.tmpl 0444
+data/TWiki/EditContrib.txt 0644
+lib/TWiki/Contrib/EditContrib.pm 0444
+lib/TWiki/Contrib/EditContrib/Include40.pm 0444
+lib/TWiki/Contrib/EditContrib/Include41.pm 0444

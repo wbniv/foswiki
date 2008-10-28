@@ -1,0 +1,12 @@
+# Release manifest for SearchEngineSwishEAddOn
+data/TWiki/SearchEngineSwishEAddOn.txt 0644 Documentation
+lib/TWiki/Contrib/SearchEngineSwishEAddOn.pm 0644 Perl module
+bin/swish-cgi.config 0644 config for search to allow search of multiple indexes
+bin/swish.cgi 0755 search script, basically same as distributed
+lib/TWiki/Contrib/SearchEngineSwishEAddOn.pm 0644
+swishe/build-twiki-index.sh 0755 script to run via =cron=
+swishe/twiki.config 0644 included config file
+swishe/spider-only.sh 0755 run spidering only for test
+swishe/twiki-index.config 0644 Swish config file
+swishe/twiki-spider-config.pl 0644 Spider.pl config file to decide what to index
+swishe/TemplateDefault.pm 0755 modified template, includes a 'help' link and link back to twiki. Search for "CUSTOMIZED" to see what should be reviewed or modified. Copy to =/usr/local/lib/swish-e/perl/SWISH/TemplateDefault.pm= if you want to use it.

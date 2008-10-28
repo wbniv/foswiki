@@ -1,0 +1,103 @@
+%META:TOPICINFO{author="StephaneLenclud" date="1179353276" format="1.1" version="1.3"}%
+%META:TOPICPARENT{name="TaskExeManager"}%
+<table border="0" cellpadding="3" cellspacing="0" width="100%"><tr><td bgcolor="orange"><font color="red"><strong></font><font size="-1">Warning: pushing the button on that page triggers a task on a remote machine. If you have nothing to do here just don't do it.</font></strong></td></tr></table>
+
+---+ Task Starter
+
+<!--
+Access to that topic is restricted:
+   * Set #ALLOWTOPICVIEW = 
+-->
+
+---++ Usage
+
+   1 Select a machine on which you want to execute a task.
+   1 Select the task you want to execute.
+   1 Push the "Start task" button.
+
+---++ Console
+
+<!-- Display executer message if any -->
+<script language="JavaScript">
+//<![CDATA[ 
+
+//Declare our global timeout variable so that we can clearTimeout upon executer change
+exestatus_timeout=0;
+
+addLoadEvent(executerChange);
+function executerChange()
+   {
+   //Get the selected executer
+   var executerIndex=document.executerSelectForm.executers.selectedIndex;
+   //Change the action property in the starter form according to the selected executer
+   document.startTaskForm.action= document.executerSelectForm.executers[executerIndex].value + '/exestart';
+   //Clear our timeout 
+   window.clearTimeout(exestatus_timeout);
+
+   //Reset status
+   var status=document.getElementById("executerstatus");
+   if (status)
+      {
+      status.innerHTML="Offline"; 
+      }
+
+   //Load javascript for executer status update
+   var script=document.getElementById("statusupdate");
+   if (script)
+	{
+        //alert("Removed statusupdate");
+        script.parentNode.removeChild(script);
+  	}
+
+   script=document.getElementById("script_executerstatus");
+   while (script)
+	{
+        script.parentNode.removeChild(script);
+        script=document.getElementById("script_executerstatus");
+  	}
+
+   //Clear our timeout, do that one more time just to be sure :)
+   window.clearTimeout(exestatus_timeout);
+
+   script=document.createElement('SCRIPT');
+   script.id="statusupdate";
+   script.src= document.executerSelectForm.executers[executerIndex].value + '/exestatus?target=executerstatus&timeout=5000';
+   var head=document.getElementsByTagName('HEAD')[0];
+   head.appendChild(script);
+   }
+
+addLoadEvent(displayMsg);
+function displayMsg ()
+   {
+   %IF{"$'URLPARAM{executermsg}'=''" then="//"}% alert("%URLPARAM{executermsg}%");
+   }
+//]]>
+</script>
+
+<form name="executerSelectForm">
+Task executer
+<select name="executers" onchange="javascript:executerChange()">
+%INCLUDE{"%TASKEXE_INSTALLEDWEB%.ExecuterSelect"}%
+</select>
+
+</form>
+
+Current status: <b id="executerstatus">Offline</b> <br>
+
+<form name="startTaskForm" action="">
+
+Task to execute
+<select name=topic>
+%INCLUDE{"%TASKEXE_INSTALLEDWEB%.TaskSpecSelect"}%
+</select>
+
+<input type=hidden name=web value="%TASKEXE_TASKWEB%" />
+<input type=hidden name=bin value="%SCRIPTURL%" />
+
+<input type="submit" class="twikiSubmit" value='Start task' /> 
+
+</form>
+
+---++ Related topics
+
+ExecuterList, TaskSpecList, TaskExeContrib

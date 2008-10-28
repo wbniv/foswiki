@@ -1,0 +1,122 @@
+#
+#    Translators, if you are not familiar with the PO format, gettext
+#    documentation is worth reading, especially sections dedicated to
+#    this format, e.g. by running:
+#         info -n '(gettext)PO Files'
+#         info -n '(gettext)Header Entry'
+#
+#    Some information specific to po-debconf are available at
+#            /usr/share/doc/po-debconf/README-trans
+#         or http://www.debian.org/intl/l10n/po-debconf/README-trans
+#
+#    Developers do not need to manually edit POT or PO files.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: twiki\n"
+"Report-Msgid-Bugs-To: svenud@ozemail.com.au\n"
+"POT-Creation-Date: 2007-02-17 09:09+0100\n"
+"PO-Revision-Date: 2007-02-17 10:48+0100\n"
+"Last-Translator: Miroslav Kure <kurem@debian.cz>\n"
+"Language-Team: Czech <debian-l10n-czech@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: string
+#. Description
+#: ../templates:1001
+msgid "Top-level URL of the server TWiki runs under:"
+msgstr "Vrcholové URL serveru, pod kterým TWiki poběží:"
+
+#. Type: string
+#. Description
+#: ../templates:1001
+msgid ""
+"For a normal install, this should be a URL for your web server's full name, "
+"which is used to construct URLs on some pages.  The install will serve up "
+"the data by adding \"twiki\" to the end of this setting; it is also needed "
+"for certain redirections."
+msgstr ""
+"Pro běžné instalace by to měla být celá adresa vašeho webového serveru. "
+"Instalace přidá na konec této adresy řetězec \"twiki\", čímž vznikne URL, "
+"pod kterým bude vaše wiki dostupné. Zadané URL se použije pro vytváření "
+"odkazů na některých stránkách."
+
+#. Type: string
+#. Description
+#: ../templates:2001
+msgid "Email address of the webmaster for this TWiki:"
+msgstr "E-mailová adresa správce tohoto TWiki:"
+
+#. Type: string
+#. Description
+#: ../templates:2001
+msgid ""
+"This email address gets mail for new user registration, and is listed on the "
+"\"oops\" page when things go wrong."
+msgstr ""
+"Na tuto emailovou adresu budou zasílány požadavky o registraci nových "
+"uživatelů a také se bude zobrazovat na webové stránce v případě, že se věci "
+"pokazí."
+
+#. Type: boolean
+#. Description
+#: ../templates:3001
+msgid "Install default wiki Topic Set on initial install?"
+msgstr "Instalovat při prvotní instalaci výchozí sadu stránek?"
+
+#. Type: boolean
+#. Description
+#: ../templates:3001
+msgid ""
+"TWiki includes a complete \"starter kit\" which includes user registration "
+"pages, documentation, and tutorials.  Only decline if you're re-installing "
+"TWiki after deleting the package and want to keep the old data, or if you've "
+"got a TWiki data set from your own manual install.  If data/Main/WebHome.txt "
+"is present, the starter kit will not be unpacked.  The starter kit files can "
+"be found in /usr/share/twiki/twiki-data.tar.gz (and twiki-pub.tar.gz), if "
+"you want to install it manually or compare your topics with the new version."
+msgstr ""
+"TWiki obsahuje kompletní \"sadu pro začátečníky\", která zahrnuje stránky s "
+"registrací uživatelů, dokumentací a návody. Zamítněte pouze pokud "
+"reinstalujete twiki po předchozím odstranění balíku a chcete zachovat svá "
+"stará data, nebo pokud máte data po dřívější ruční instalaci. Sada pro "
+"začátečníky se nerozbalí, pokud existuje soubor data/Main/WebHome.txt. "
+"Budete-li chtít data nainstalovat ručně, nachází se v souboru /usr/share/doc/"
+"twiki/twiki-data.tar.gz (a twiki-pub.tar.gz).)"
+
+#. Type: note
+#. Description
+#: ../templates:4001
+msgid "Admin User Registration configuration required"
+msgstr "Vyžadována změna v nastavení registrace uživatelů"
+
+#. Type: note
+#. Description
+#: ../templates:4001
+msgid ""
+"After you have created yourself a user, edit the Main.TWikiAdminGroup to "
+"restrict Admin privileges to that user."
+msgstr ""
+"Až si pro sebe vytvoříte uživatele, upravte Main.TWikiAdminGroup a omezte "
+"správcovská oprávnění na vytvořeného uživatele."
+
+#~ msgid ""
+#~ "The default debian installation of the TWiki is configured to create new "
+#~ "users automatically when a user Registers. This is not as secure as the "
+#~ "default TWiki but is more useful for trying TWiki out. To change it so "
+#~ "the users are created manually by the administrator use TWiki RenameTopic "
+#~ "to rename the TWikiRegistration to TWikiRegistrationPub, and "
+#~ "TWikiRegistrationDefault to TWikiRegistration. IMPORTANT: After you have "
+#~ "created yourself a user, edit the Main.TWikiAdminGroup to restrict Admin "
+#~ "privileges"
+#~ msgstr ""
+#~ "Výchozí instalace TWiki v Debianu je nastavena tak, aby při registraci "
+#~ "uživatele automaticky vytvářela nové uživatele. To není tak bezpečné, "
+#~ "jako výchozí nastavení TWiki, avšak pro pouhé vyzkoušení TWiki je to "
+#~ "užitečnější. Změnu, aby uživatele zakládal administrátor ručně, provedete "
+#~ "pomocí TWiki RenameToppic, kde přejmenujete TWikiRegistration na "
+#~ "TWikiRegistrationPub a poté TWikiRegistrationDefault na "
+#~ "TWikiRegistration. DŮLEŽITÉ: Až si pro sebe vytvoříte uživatele, omezte "
+#~ "administrátorská oprávnění úpravou Main.TWikiAdminGroup."

@@ -1,0 +1,55 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+expand	@b@;
+
+
+1.1
+date	2006.04.28.21.16.29;	author TWikiContributor;	state Exp;
+branches;
+next	;
+
+
+desc
+@none
+@
+
+
+1.1
+log
+@Datafile for Ploticus Logo example
+@
+text
+@movs 1.7 2.0     
+lins 8.0 2.0
+lins 4.6 2.0
+lins 4.7 8.9
+lins 4.7 2.0
+lins 1.6 2.0
+movs 9.4 1.8    
+lins 11.1 9.2
+lins 12.3 1.6
+lins 13.4 8.5
+lins 15.2 1.9
+movs 16.7 2.3 
+lins 16.7 9.0
+movs 19.9 2.3      
+lins 19.9 2.2
+lins 18.9 9.3
+lins 19.6 4.9
+lins 23.2 2.2
+lins 19.5 5.0
+lins 22.2 9.3
+movs 24.9 2.4  
+lins 25.1 9.1
+lins 25.0 2.4
+movs 27.6 2.7 
+lins 27.7 7.7
+movs 27.2 8.6   
+lins 28.2 8.6
+lins 28.2 9.5
+lins 27.3 9.5
+lins 27.3 8.7
+@

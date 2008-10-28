@@ -1,0 +1,46 @@
+GENERAL:
+    * "Loading" message for context switches (12081)
+    * Disable switching during a transition (12620)
+
+BUGS:
+
+REFACTOR:
+
+FIREFOX:
+    * Ctl-k should emulate IE for hyperlinks
+
+IE:
+    * Style dropdown empty. (12598)
+
+SAFARI:
+    * No support at all yet :(
+
+TOOLBAR:
+    * Insert Image (11960)
+    * Undo
+    * Redo
+
+WYSIWYG:
+
+WIKITEXT:
+
+OPEN SOURCE:
+    * Allow public readonly access to the Wikiwyg svn server (11975)
+    * wikiwyg.net -> wikiwyg.org (11977)
+
+KWIKI:
+
+NLW:
+    * Integrate into Comments (12079)
+    * Context sensitive help button (12130)
+
+IDEAS:
+    * Spike an integration with TiddlyWiki
+    * Make a greasemonkey overlay for Flickr comments 
+    * Spike integration with these wikis:
+    ** TWiki
+    ** MoinMoin
+
+DEMO:
+    * Change Demo Text to be more relevant to the demo
+    * Basic demo should have editor already opened

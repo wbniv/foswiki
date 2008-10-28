@@ -1,0 +1,10 @@
+data/TWiki/EditHiddenTablePlugin.txt 0660
+lib/TWiki/Plugins/EditHiddenTablePlugin.pm 0440
+lib/TWiki/Plugins/EditHiddenTablePlugin/Edit.pm 0440
+pub/TWiki/EditHiddenTablePlugin/edit_ex2.jpg 0440
+pub/TWiki/EditHiddenTablePlugin/editwithcalendar.jpg 0440
+bin/editTable 0550
+bin/uploadTable 0550
+templates/editnewTable.pattern.tmpl 0440
+templates/editnewTable.tmpl 0440
+

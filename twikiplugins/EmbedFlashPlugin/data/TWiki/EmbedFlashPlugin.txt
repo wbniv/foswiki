@@ -1,0 +1,107 @@
+%META:TOPICINFO{author="TWikiContributor" date="1162498499" format="1.1" version="$Rev: 14786 $"}%
+---+!! <nop>%TOPIC%
+
+*Embeds an Adobe Flash file.*
+
+---++ Example
+
+<verbatim>
+%EMBEDFLASH{filename="%ATTACHURL%/sample.swf" width="550" height="400"}%
+</verbatim>
+
+If this plugin is installed you will see a Flash movie here:
+
+%EMBEDFLASH{filename="%ATTACHURL%/sample.swf" width="550" height="400"}%
+
+---++ General syntax
+
+All options:
+
+<verbatim>
+%EMBEDFLASH{
+	filename="string"
+	width="percentage or number"
+	height="percentage or number"
+	background="hex string"
+	version="number"
+	align="string"
+	scale="string"
+	quality="string"
+	menu="true or false"
+	id="string"
+	align="string"
+}%
+</verbatim>
+
+Minimum syntax:
+
+<verbatim>
+%EMBEDFLASH{
+	filename="string"
+	width="percentage or number"
+	height="percentage or number"
+}%
+</verbatim>
+
+(other attributes are inserted automatically).
+
+---++ Flash attributes
+
+Pass Flash movie attributes within the =%<nop>EMBEDFLASH{...}%= accolades (all values within quotes). When a particular parameter is not specified, the default value will be used (see table below).
+
+
+<!-- %TABLE{sort="off" headeralign="left, center, center, center"}% -->
+| *Argument*   | *Comment*   | *Example*   | *Default value*   |
+| <strong>Required attributes</strong>  ||||
+| =filename=     | Filename of the movie; should have suffix .swf | =flashmovie.swf= | =none= |
+| <strong>General attributes</strong>  ||||
+| =width=  | Width of Flash movie in pixels, or a percentage. 100% means one hundred percent of the available width on the page. | =320= | =100%= |
+| =height=  | Height of Flash movie in pixels, or a percentage. 100% means one hundred percent of the available height on the page. | =50%= | =100%= |
+| =background= | Background color of Flash movie in hex string. When omitted, no background color will be specified and the background color of the Flash movie will be used. | =#cccccc= | =""= |
+| =version=  | Flash Player version needed to view movie: version 5, 6, 7 or 8 | =8= | =6= |
+| <strong>Advanced attributes</strong>  ||||
+| =align= | HTML alignment. Possible values: "" (default), left, right, top, bottom. | =right= | =""= |
+| =scale= | Scaling of Flash movie. Possible values: "" (default), noborder, exactfit, noscale. | =noscale= | =""= |
+| =quality= | Playback quality (default Flash setting is "high"). Possible values: best, high, medium, low, autohigh, autolow. | =best= | =high= |
+| =menu= | Should right-click on Flash movie show a (default) menu? Possible values: true, false. Note that with the Flash 7 player the menu cannot be removed. | =true= | =false= |
+| =id=     | ID of Flash movie; for general use not necessary to specify. | =movie2= | the filename without suffix, eg. =flashmovie= |
+
+Note that this plugin writes =object= and =embed= tags.%BR%
+More information on  [[http://www.adobe.com/cfusion/knowledgebase/index.cfm?id=tn_12701][Flash OBJECT and EMBED tag attributes]] (Adobe !TechNote).
+
+---++ Settings
+
+	* Set SHORTDESCRIPTION = Embeds an Adobe Flash file
+	* Set STUB = %$STUB%
+
+	* Debug plugin: (See output in =data/debug.txt=)
+	* Set DEBUG = 0
+	
+---++ Installation Instructions
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your ($TWIKI_ROOT) directory. Content:
+	| *File:* | *Description:* |
+%$MANIFEST%
+	* Optionally, run ==%TOPIC%_installer== to automatically check and install other TWiki modules that this module depends on. You can also do this step manually.
+	* Alternatively, manually make sure the dependencies listed in the table below are resolved.
+	%$DEPENDENCIES%
+
+---++ Plugin Info
+
+|  Plugin Author: | Main.ArthurClemens |
+|  Plugin Version: | 2 Nov 2006 (v1.010) |
+|  Change History: | &nbsp; |
+|  2 Nov 2006: | Version 1.01 - Updated Flash sample, small changes to documentation |
+|  28 Dec 2003: | Version 1.0 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+
+%META:FILEATTACHMENT{name="sample.fla" attr="" autoattached="1" comment="" date="1162495736" path="sample.fla" size="40448" user="UnknownUser" version=""}%
+%META:FILEATTACHMENT{name="sample.swf" attr="" autoattached="1" comment="" date="1162497279" path="sample.swf" size="1981" user="UnknownUser" version=""}%
+ 

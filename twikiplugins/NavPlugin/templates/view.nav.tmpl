@@ -1,0 +1,46 @@
+<html>
+<head>
+  <title>%WIKITOOLNAME% . %WEB% . %TOPIC%</title>
+  <base href="%SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%"> <meta name="ROBOTS" content="NOINDEX"> %HTTP_EQUIV_ON_VIEW%
+</head>
+
+
+<script language="JavaScript">
+function navBarDisplay()
+{
+  var strToc = "%TOCTOPIC%";
+  if (strToc.length != 0) {
+    var textOut = "<TR BGCOLOR=\"%WEBBGCOLOR%\"><TD colspan=\"3\" align=\"right\"> \
+       <A href=\"%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%PREVTOPIC%?skin=nav\"><IMG src=\"%PUBURLPATH%/%SYSTEMWEB%/NavPlugin/prev.gif\" border=\"0\" alt=\"Previous\"></A> \
+       <A href=\"%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOCTOPIC%?skin=nav\"><IMG src=\"%PUBURLPATH%/%SYSTEMWEB%/NavPlugin/toc.gif\" border=\"0\" alt=\"Table of Contents\"></A> \
+       <A href=\"%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%NEXTTOPIC%?skin=nav\"><IMG src=\"%PUBURLPATH%/%SYSTEMWEB%/NavPlugin/next.gif\" border=\"0\" alt=\"Next\"></A> </TD></TR>";
+    document.write(textOut);
+  }
+}
+</script>
+
+<body bgcolor="#ffffff">
+<table width="100%" border="0" cellpadding="3" cellspacing="0">
+  <tr bgcolor="%WEBBGCOLOR%">
+    <td>
+      <b>%WIKITOOLNAME% . %WEB% . </b><font size="+2"><b>%TOPIC%</b></font>
+    </td>
+  </tr>
+  <SCRIPT> navBarDisplay();  </SCRIPT>
+</table>
+<p>
+%TEXT%
+<br clear=all><p>
+<hr>
+
+<table width="100%" border="0" cellpadding="3" cellspacing="0">
+  <tr bgcolor="%WEBBGCOLOR%">
+    <td valign="top">
+      ===== Revision %REVINFO%
+    </td>
+  </tr>
+</table>
+%WEBCOPYRIGHT%
+</body>
+</html>
+

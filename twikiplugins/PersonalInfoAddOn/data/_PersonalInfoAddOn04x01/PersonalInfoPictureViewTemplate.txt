@@ -1,0 +1,104 @@
+%META:TOPICINFO{author="TWikiContributor" date="1166089765" format="1.1" version="1.1"}%
+%{ Compatibility change TWiki 4.1: this template differs a lot from the TWiki 4.2 version}%
+%TMPL:INCLUDE{"page"}%
+%TMPL:INCLUDE{"logo"}%
+%TMPL:INCLUDE{"viewtoolbar"}%
+%TMPL:INCLUDE{"viewtopicactionbuttons"}%
+%TMPL:INCLUDE{"viewbottombar"}%
+
+%TMPL:INCLUDE{"attachtables"}%
+
+
+%TMPL:DEF{"bodystyle"}% %{ optional CSS styles to be placed in body text }% %TMPL:END%
+
+%TMPL:DEF{"appcontents"}% %{ main application contents }% %TMPL:END%
+
+
+
+%TMPL:DEF{"content"}%%TMPL:P{"bodystyle"}%
+<div class="patternTopic">
+%TMPL:P{"pagetitle"}%
+%TMPL:P{"appcontents"}%
+</div><!-- /patternTopic-->
+%TMPL:END%
+
+
+
+%{ Header for topic attachment table }%
+%TMPL:DEF{ATTACH:files:header}%%TMPL:P{"formstart"}%
+<div class="pIPictures">
+<div class="twikiFormSteps">
+%TMPL:END%
+
+%{ Header for table at top of attach screen }%
+%TMPL:DEF{ATTACH:files:header:A}%%TMPL:P{ATTACH:files:header}%%TMPL:END%
+
+%{ Row for table at top of attach screen }%
+%TMPL:DEF{ATTACH:files:row:A}%%TMPL:P{ATTACH:files:row(basic)}%%TMPL:END%
+
+%{ Footer for table at top of attach screen }%
+%TMPL:DEF{ATTACH:files:footer:A}%%TMPL:P{ATTACH:files:footer}%%TMPL:END%
+
+%{ A basic row definition, for attachment table and attach screen }%
+%TMPL:DEF{ATTACH:files:row(basic)}%<div class="twikiFormStep twikiLast pIimage genericFileType fileType%A_EXT%">
+<input type="radio" class="twikiRadioButton" id="<nop>Picture%A_FILE%" name="Picture" value="%A_FILE%" %IF{" '%FORMFIELD{"Picture" topic="%BASEWEB%.%BASETOPIC%"}%' = '%A_FILE%' " then="checked=\"checked\"" else=""}% /><label for="Picture%A_FILE%"><img src="%PUBURL%/%BASEWEB%/%BASETOPIC%/%A_FILE%" alt="" /></label><span class="twikiSmallish twikiGrayText userPictureActions"><a href="%SCRIPTURLPATH{"rename"}%/%WEB%/%TOPIC%?template=PersonalInfoPictureDeleteView&attachment=%ENCODE{"%A_FILE%"}%" rel='nofollow'>Delete</a></span>
+</div>%TMPL:END%
+
+%{ Footer for topic attachment table }%
+%TMPL:DEF{ATTACH:files:footer}%</div><!--/twikiFormSteps--></div><!--/pIPictures-->
+%TMPL:P{"topicaction"}%
+%TMPL:P{"formend"}%
+%TMPL:END%
+
+
+
+%TMPL:DEF{"topicactionbuttons"}%<input type="submit" class="twikiSubmit" value='%MAKETEXT{"Set selected as my picture"}%' /> %MAKETEXT{"or"}% %TMPL:P{"canceltopicaction"}%
+%TMPL:END%
+
+%TMPL:DEF{"pagetitle"}%<h1 class="patternTemplateTitle"> %TMPL:P{"pagetitlecontents"}% </h1>%TMPL:END%
+
+%TMPL:DEF{"pagetitlecontents"}%%MAKETEXT{"Set your personal picture"}%%TMPL:END%
+
+%TMPL:DEF{"uploadnew"}%<div class="piUploadNew"><a href="%SCRIPTURL{view}%/%BASEWEB%/%BASETOPIC%?template=PersonalInfoPictureUploadView;t=%GMTIME{$epoch"}%">%MAKETEXT{"Upload a new picture"}%</a></div><!--/piUploadNew-->%TMPL:END%
+
+
+
+%TMPL:DEF{"picturelist"}%%META{"attachments" all="on" template="%TEMPLATE%"}%
+%TMPL:P{"uploadnew"}%%TMPL:END%
+
+
+
+%TMPL:DEF{"form"}%%TMPL:END%
+%TMPL:DEF{"attachments"}%%TMPL:END%
+
+
+
+%TMPL:DEF{"formstart"}%<form method="post" action="%SCRIPTURL{save}%/%BASEWEB%/%BASETOPIC%" enctype="application/x-www-form-urlencoded" name="userpicture" id="userpicture">
+<input type="hidden" name="action_quietsave" value="1" />
+<input type="hidden" name="template" value="%URLPARAM{"template"}%" />%TMPL:END%
+
+%TMPL:DEF{"formend"}%</form>%TMPL:END%
+
+
+
+%TMPL:DEF{"bodystyle"}%<style type="text/css" media="all">
+.twikiFormSteps {border-width:1px 0 0 0;}
+.patternTopicActions {margin-top:-1px;}
+.pIPictures .genericFileType {display:none;}
+.pIPictures .fileTypepng,
+.pIPictures .fileTypePNG,
+.pIPictures .fileTypegif,
+.pIPictures .fileTypeGIF,
+.pIPictures .fileTypejpg,
+.pIPictures .fileTypeJPG,
+.pIPictures .fileTypejpeg,
+.pIPictures .fileTypeJPEG {display:block;}
+.pIPictures .userPictureActions {margin:0 0 0 1em;}
+.piUploadNew {margin:2em 0 0 0; text-align:center;}
+.piUploadNew a {font-weight:bold;}
+</style>
+%INCLUDE{"PersonalInfoLayoutModules" section="imageStyle"}%
+%TMPL:END%
+
+
+%TMPL:DEF{"appcontents"}%%TMPL:P{"picturelist"}%%TMPL:END%

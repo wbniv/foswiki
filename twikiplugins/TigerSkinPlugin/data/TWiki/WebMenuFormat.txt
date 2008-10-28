@@ -1,0 +1,16 @@
+%META:TOPICINFO{author="JohnTalintyre" date="996259720" format="1.0beta2" version="1.1"}%
+%META:TOPICPARENT{name="TigerSkin"}%
+---+ WebMenu format
+
+
+
+| %<nop>WEB{name="..." home="..." [expand="always or never"]}% | entry for Web |
+
+| %<nop>ITEM{name="..." [topic="..."]}% | topic in Web, any number of these after %<nop>WEB% |
+
+| %<nop>DEFAULTITEMS% | default topics sefined by using SET DEFAULTITEMS |
+
+
+
+	* One of the above items per line, see example that comes with TigerSkinPlugin
+

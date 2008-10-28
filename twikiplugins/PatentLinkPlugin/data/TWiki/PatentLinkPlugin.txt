@@ -1,0 +1,69 @@
+%META:TOPICINFO{author="AlexGK" date="1117268736" format="1.0" version="1.2"}%
+---+ Patent URL Plugin
+
+This plugin is designed to create links to US Patent and US Patent Application Numbers based on their numbers.
+
+	* Create a  ==&lt;name&gt;Plugin== topic in the %SYSTEMWEB% web. Do so by visiting http://TWiki.org/cgi-bin/view/Plugins/ and starting a new topic to get the default plugin topic text (don't save the topic). Customize your plugin topic to your needs.
+	* See details in %SYSTEMWEB%.TWikiPlugins.
+
+---++ Syntax Rules
+
+	* =%<nop>PATENT{[patent number]}%= will convert patent # to its URL in US Patent Office database
+		* E.g., =%<nop>PATENT{5,887,385}%= will be shown as %PATENT{5,887,385}%
+		* E.g., =%<nop>PATENT{5887385}%= will be shown as %PATENT{5887385}%
+	* =%<nop>PATENTAPP{[patent number]}%= will do a similar thing with a Patent Application from "PreGranted" database
+		* E.g., =%<nop>PATENTAPP{20040010116}%= will be shown as %PATENTAPP{20040010116}%
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference
+a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>PATENTLINKPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = This plugin does nothing, but can be used as a template for your own plugins.
+
+	* Patent URL is formed of three chanks with patent ID inserted as follows, ==01== + *ID* + ==02== + *ID* + ==03== + *ID*
+		* Set PATENTURL01 = http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO1&Sect2=HITOFF&d=PALL&p=1&u=/netahtml/srchnum.htm&r=1&f=G&l=50&s1=
+		* Set PATENTURL02 =.WKU.&OS=PN
+		* Set PATENTURL03 =&RS=PN/
+
+	* Patent Application URL  is formed of two chanks with patent ID inserted as follows, ==01== + *ID* + ==02==
+		* Set PATENTAPPURL01 = http://appft1.uspto.gov/netacgi/nph-Parser?Sect1=PTO1&Sect2=HITOFF&d=PG01&p=1&u=%2Fnetahtml%2FPTO%2Fsrchnum.html&r=1&f=G&l=50&s1=%
+		* Set PATENTAPPURL02 = %22.PGNR.&OS=DN/
+		* Set PATENTAPPURL03 = &RS=DN/
+
+	* Patent image URL
+		* Set PATENTIMGURL = %S%
+	* Patent Application image URL
+		* Set PATENTAPPIMGURL = %I%
+
+	* Patent text
+		* Set PATENTTEXT = Patent #
+	* Patent application text
+		* PATENTAPPTEXT = Patent Application #
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+---+++ Files
+	* ==data/TWiki/PatentLinkPlugin.txt==
+	* ==data/TWiki/PatentLinkPlugin.txt,v==
+	* ==lib/TWiki/Plugins/PatentLinkPlugin.pm==
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.AK47 |
+|  Plugin Version: | 28 May 2005 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  28 May 2005: | Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.0 |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle /%, %SYSTEMWEB%.FormattedSearch ?%, %TOPIC% ?% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+

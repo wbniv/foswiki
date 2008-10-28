@@ -1,0 +1,38 @@
+%TMPL:INCLUDE{"edit"}%
+
+%TMPL:DEF{"formstart"}%<div class="patternFormHolder twistyMakeHidden" id="formHolder">
+<form name="main" action="%SCRIPTURLPATH{"savesection"}%/%WEB%/%TOPIC%" method="post">%TMPL:END%
+
+%TMPL:DEF{"textarea"}%<textarea class="twikiEditboxStyleProportional" id="topic" name="text" rows="%SECTIONEDITBOXHEIGHT%" cols="%SECTIONEDITBOXWIDTH%" style='%SECTIONEDITBOXSTYLE%' onkeydown='handleKeyDown(event)'>%TEXT%</textarea><script type="text/javascript">initTextAreaHeight();</script>%TMPL:END%
+
+
+%TMPL:DEF{"formend"}%<input type="hidden" name="originalrev" value="%ORIGINALREV%" />
+<input type="hidden" name="skin" value="%URLPARAM{"skin"}%" />
+<input type="hidden" name="cover" value="%URLPARAM{"cover"}%" />
+<input type="hidden" name="formtemplate" value="%FORMTEMPLATE%" />
+<input type="hidden" name="templatetopic" value="%TEMPLATETOPIC%" />
+<input type="hidden" name="settingstopic" value="%SETTINGSTOPIC%" />
+<input type="hidden" name="topicparent" value="%TOPICPARENT%" />
+<input type="hidden" name="newtopic" value="%NEWTOPIC%" />
+<input type="hidden" name="cmd" value="%CMD%" />
+<input type="hidden" name="edit" value="%EDIT%" />
+<input type="hidden" name="editparams" value="%EDITPARAMS%" />
+<input type="hidden" name="redirectto" value="%ORIGURL%" />
+<input type="hidden" name="pretxt" value="%PRETEXTFIELD%">
+<input type="hidden" name="postxt" value="%POSTEXTFIELD%"></form></div><!-- /patternFormHolder-->%TMPL:END%
+
+
+%TMPL:DEF{"content"}%%TMPL:P{"pagetitle"}%
+%PRETEXT%
+%TMPL:P{"formstart"}%%TMPL:P{"formattop"}%
+%TMPL:P{"toolbar"}%
+%TMPL:P{"pagehelp"}%
+<div id="SECEDITBOX">
+%TMPL:P{"textarea"}%
+</div>%TEXTDETAIL%
+%TMPL:P{"sig_textareabuttons"}%
+%TMPL:P{"formatbottom"}%%TMPL:P{"topicaction"}%
+%TMPL:P{"formend"}%
+%POSTEXT%
+%TMPL:P{"pagehelp_nojavascript"}%
+%TMPL:END%

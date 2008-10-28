@@ -1,0 +1,12 @@
+/* thin variant for stormy */
+@import url("BaseThin.css");
+
+.natBodyContents {
+  background:#333333;
+  border-left:1px solid #cccccc;
+  border-right:1px solid #cccccc;
+  border-bottom:1px solid #cccccc;
+}
+.natBody {
+  background:#6699cc;
+}

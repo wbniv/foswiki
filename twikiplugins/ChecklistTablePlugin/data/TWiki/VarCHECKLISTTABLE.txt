@@ -1,0 +1,11 @@
+%META:TOPICINFO{author="TWikiContributor" date="1187707015" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TWikiVariables"}%
+#VarCHECKLISTTABLE
+---+++ CHECKLISTTABLE{attributes} -- add a checklist table to a topic
+   * The =%<nop>CHECKLISTTABLE%= variable is handled by the ChecklistTablePlugin.
+   * Syntax: =%<nop>CHECKLISTTABLE{attr1="value" attr2="value"}%=
+   * Examples:
+      * =%<nop>CHECKLISTTABLE%= puts a simple checklist table to a topic
+      * =%<nop>CHECKLISTTABLE{name="myfirstchecklisttable")%= puts a checklist table with a name to a topic
+      * =%<nop>CHECKLISTTABLE{allowmove="1"}%= puts a checklist to a topic with additional buttons for moving entries (row) up and down
+   * Related: ChecklistTablePlugin, ChecklistPlugin

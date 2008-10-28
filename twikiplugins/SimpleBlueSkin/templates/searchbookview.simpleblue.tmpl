@@ -1,0 +1,33 @@
+%TMPL:INCLUDE{"twiki"}%
+
+%TMPL:DEF{"actionstring"}%Search Results%TMPL:END%
+
+%TMPL:DEF{"repeatedsearchblock"}%
+  <h2>Results from %WEB% web</h2>
+  %REPEAT%
+    <div id="simpleBlueSearchResults">
+      <div id="simpleBlueTopRow">
+          <a href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOPICNAME%"><b>%TOPICNAME%</b></a>
+      </div>
+      <div id="simpleBlueGrayText">
+        %TEXTHEAD%<br>
+      </div>
+        Last version %REVISION% edited on %TIME% by %AUTHOR%.
+    </div>
+  %REPEAT%
+%TMPL:END%
+
+
+%TMPL:DEF{"searchbody"}%
+  %SPLIT%
+    %TMPL:P{"repeatedsearchblock"}%
+  %SPLIT%
+  Number of topics: <b>%NTOPICS%</b>
+%TMPL:END%
+
+%TMPL:DEF{"simpleBlueContentPane"}%
+%TMPL:P{"contentheadingvariable"}%
+%SPLIT%
+<span>%MAKETEXT{"Searched:"}% <b><noautolink>%SEARCHSTRING%</noautolink></b></span><br><span>%TMPL:P{"searchbody"}%%SPLIT%%TMPL:END%
+
+%TMPL:P{"simpleBluePage"}%

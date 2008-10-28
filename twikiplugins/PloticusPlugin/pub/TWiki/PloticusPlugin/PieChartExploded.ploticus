@@ -1,0 +1,30 @@
+#proc page
+#if @DEVICE in gif,png
+  scale: 0.5
+#endif
+<p />
+//  specify data using proc getdata
+#proc getdata
+data:	Brazil 22
+	Columbia 17
+	"Costa Rica" 22
+	Guatemala 3
+	Honduras 12
+	Mexico 14
+	Nicaragua 28
+	Belize 9
+ 	United\nStates 21
+	Canada 8
+<p />
+//  render the pie graph using proc pie
+#proc pie
+clickmapurl: @CGI?country=@@1&n=@@2
+firstslice: 90
+explode: .2 0 0 0 0  .2 0
+datafield: 2
+labelfield: 1
+labelmode: line+label
+center: 4 4
+radius: 2
+colors: yellow pink pink pink pink yellow pink
+labelfarout: 1.05

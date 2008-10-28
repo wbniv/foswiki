@@ -1,0 +1,10 @@
+%META:TOPICINFO{author="guest" date="1112637897" format="1.0" version="1.1"}%
+| *Name* | *Type* | *Size* | *Values* | *Tooltip message* |
+| TranslatedLanguage | text | 15 | | language of the original page |
+| TranslatedRevision | text | 5 | | revision of the original page |
+| TranslationMaintainer | text | 50 | | person responsible for updating the translation (not yet supported) |
+| OutdatedMinimum | text | 4 | | minimum of revisions difference until the translation is marked as =outdated= (not yet supported) |
+| OutdatedMaximum | text | 4 | | maximum of revisions difference, the translation is marked as =too outdated= after it is reached (not yet supported) |
+
+-- TWiki:Main/FrankLichtenheld - 04 Apr 2005
+

@@ -1,0 +1,6 @@
+# Release manifest for HTTPDUserAdminContrib
+data/TWiki/HTTPDUserAdminContrib.txt 0644 Documentation
+lib/TWiki/Contrib/HTTPDUserAdminContrib.pm 0644 Perl module
+lib/TWiki/Contrib/HTTPDUserAdminContrib/Config.spec
+lib/TWiki/Users/HTTPDUserAdminUser.pm 0644 Perl module
+

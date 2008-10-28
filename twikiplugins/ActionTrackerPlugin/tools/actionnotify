@@ -1,0 +1,31 @@
+#!/usr/bin/perl -w
+#
+# TWiki WikiClone (see wiki.pm for $wikiversion and other info)
+#
+# Copyright (C) 2002 Motorola - all rights reserved
+# Copyright (C) 2004-2006 Crawford Currie http://c-dot.co.uk
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details, published at 
+# http://www.gnu.org/copyleft/gpl.html
+#
+# NOTE: THIS SCRIPT MUST BE RUN FROM THE bin DIRECTORY
+# This is so it can find setlib.cfg.
+#
+BEGIN {
+    require 'setlib.cfg';
+}
+
+use TWiki::Plugins::ActionTrackerPlugin::ActionNotify;
+
+my $attrs = join( ',', @ARGV );
+TWiki::Plugins::ActionTrackerPlugin::ActionNotify::actionNotify( $attrs );
+
+1;

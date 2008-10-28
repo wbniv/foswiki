@@ -1,0 +1,36 @@
+
+
+%INCLUDE{"CreatorScript"}%
+<script type="text/javascript">
+function checkName() {
+    var form = document.spec;
+    return buildName(form.Male.options[form.Male.selectedIndex].text,'X',
+                     form.Female.options[form.Female.selectedIndex].text);
+}
+</script>
+---+ Create new union
+
+<form name="spec" action="%SCRIPTURL%/edit%SCRIPTSUFFIX%/%WEB%">
+<table><tr>
+<th>Male</th>
+<td><select name="Male" onblur="checkName()"><option>UNKNOWN</option>%SEARCH{
+   "[Mm]ETA:FORM{name=.PersonForm;Sex. value=.M"
+   type="regex"
+   nonoise="on"
+   format="<option>$topic</option>"
+   excludetopic="TemplatePerson"
+}%</select></td><tr>
+<tr><th>Female</th><td><select name="Female" onblur="checkName()"><option>UNKNOWN</option>%SEARCH{
+   "[Mm]ETA:FORM{name=.PersonForm;Sex. value=.F"
+   type="regex"
+   nonoise="on"
+   format="<option>$topic</option>"
+   excludetopic="TemplatePerson"
+}%</select></td><tr>
+<tr><th>Date</th><td><input type="text" name="Date" value="%URLPARAM{"Date"}%" /></td></tr></table>
+<input type="text" size=60 name="topic" value="%URLPARAM{"topic"}%" /> <input type="submit" value="Create" onclick="checkName()"/>
+<input type="hidden" name="_hidden_topics" value="%TOPICLIST{separator="|"}%" />
+<input type="hidden" name="formtemplate" value="UnionForm" />
+<input type="hidden" name="templatetopic" value="TemplateUnion" />
+</form>
+

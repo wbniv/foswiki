@@ -1,0 +1,89 @@
+%META:TOPICINFO{author="PascalBuchbinder" date="1088806380" format="1.0" version="1.5"}%
+---+ <nop>%TOPIC%
+Most current digital camera store images using EXIF (Exchangeable Image File) compressed files. EXIF is a standard defined by the Japan Electronic Industry Development Association and supports the storage of extended camera information within the header of a JPEG file. ExifMetaDataPlugin is a TWiki plugin that make use of the EXIF standard. It displays EXIF data for images attached to a topic.
+
+---++ Syntax Rules
+The =%<nop>EXIFMETADATA{...}%= variable gets expanded to the EXIF data extracted from the image specified by the =file= parameter.
+
+| *Parameters* | *Comment* | *Example* |
+| =file=	  | File name of the EXIF file to process. The file must be attched to the topic.  | =file="picture.jpg"= |
+| =tags=	  | User specifed list of EXIF tags to show. Default is ="33434,33437,34855,36867,37386"=. See below for a list of supported tags. You may specify =all= to read all supported EXIF tags from the file. | =tags="271,305"= |
+
+---+++ Supported EXIF Tags
+| *Number* | *Description*  |
+| =270= | Describes image |
+| =271= | Shows manufacturer of digicam |
+| =272= | Shows model number of digicam |
+| =305= | Shows firmware version number. |
+| =306= | Date/Time of image was last modified. Data format is "YYYY:MM:DD HH:MM:SS". In usual, it has the same value of =36867= |
+| =33434= | Exposure time (reciprocal of shutter speed if shorter than one second). |
+| =33437= | F-stop of lens when the image was taken. |
+| =34855= | ISO speed (CCD sensitivity equivalent to film speedrate). |
+| =36867= | Date/Time of original image taken. This value should not be modified by user program. |
+| =36868= | Date/Time of image digitized. Usually, it contains the same value of =36867=. |
+| =37386= | Focal length of lens used to take image. |
+| =37510= | User comment (ASCII only). |
+
+---+++ Error Codes
+If the EXIF data can not be obtained for some reason, the =%<nop>EXIFMETADATA{...}%= variable gets expanded to an error code.
+
+| *Code* | *Description*  |
+| =EXIF-ERROR-01= | No =file= attribute specified. |
+| =EXIF-ERROR-02= | Can't open file. |
+| =EXIF-ERROR-03= | No exif data. |
+| =EXIF-ERROR-04= | APP1 does not contain EXIF data. |
+| =EXIF-ERROR-05= | Invalid byte alignment. |
+| =EXIF-ERROR-06= | Invalid tag mark. |
+| =EXIF-ERROR-07= | Error reading block length. |
+
+---++ Examples
+Write =%<nop>EXIFMETADATA{ file="picture.jpg" tags="271,272" }%= to get the manufacturer and model name of tha camera used to take the image in the file =picture.jpg=.
+
+| *Variable*																  | *Output* |
+| =%<nop>EXIFMETADATA{ file="picture.jpg" }%=					  | %EXIFMETADATA{ file="picture.jpg" }%  |
+| =%<nop>EXIFMETADATA{ file="picture.jpg" tags="271,305" }%=	| %EXIFMETADATA{ file="picture.jpg" tags="271,305" }%  |
+
+---++ Plugin Settings
+
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Displays EXIF data for jpeg images attached to a topic.
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==pub/TWiki/%TOPIC%/picture.jpg== | Sample jpeg file |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the installation was successful:
+		Write =%<nop>EXIFMETADATA%= anywhere in a topic. The variable gets expanded to the error message =EXIF-ERROR-01=.
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/PascalBuchbinder |
+|  Plugin Version: | 02 Jul 2004 (V1.010) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  02 Jul 2004: | bug fix, don't process unknown IFD entries |
+|  30 Jan 2004: | support for 37510 |
+|  29 Jan 2004: | round f-stop (33437) |
+|  19 Jan 2004: | round focal lenght (37386) and enable debug messages |
+|  18 Jan 2004: | Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+
+-- TWiki:Main/PascalBuchbinder - 18 Jan 2004
+%META:FILEATTACHMENT{name="picture.jpg" attr="" comment="sample jpeg file" date="1074463218" path="picture.jpg" size="41994" user="PascalBuchbinder" version="1.1"}%

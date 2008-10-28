@@ -1,0 +1,182 @@
+---+ Web Permissions Plugin
+%SHORTDESCRIPTION%
+<a href="http://wikiring.com"><img src="%ATTACHURL%/logo.gif" style="float:right" /></a>
+
+<!--
+   * Set C = <img src="%ATTACHURL%/CHANGE.gif" />
+   * Set V = <img src="%ATTACHURL%/VIEW.gif" />
+   * Set Y = <input checked="checked" type="checkbox" />
+   * Set N = <input type="checkbox" />
+-->
+This plugin provides a centralised interface to TWiki permissions.
+
+Web permissions are presented as a matrix that has columns of webs and rows of users. For each web, you can control which users can view or change that web. All user webs, every registered user (except admin users), and every group (except admin groups) are shown in the matrix.
+
+To interactivly edit topic permissions, it adds an "Edit topic ACLs" option to the "More Actions" page.
+
+---++++ Web Permissions
+<table class="twikiTable">
+<tr><th width="50%"> Viewing </th><th width="50%"> Editing </th></tr>
+<tr><td>
+VIEW = %V% CHANGE = %C%
+<table class="twikiTable">
+<tr><th></th><th>Albums</th><th>Singles</th><th>Reviews</th><th>Statistics</th></tr>
+<tr><th>AnnieLennox<td>%V%%C%</td><td>%V%%C%</td><td>%V%%C%</td><td>%V%</td></tr>
+<tr><th>BillyBragg </th><td>%V%<td>%V%</td><td>%V%</td><td></td></tr>
+<tr><th>ColinTowns </th><td>%V%%C%</td><td>%V%%C%</td><td>%V%%C%</td><td>%V%</td></tr>
+<tr><th>DavidSoul </th><td></td><td>%V%%C%</td><td></td><td>%V%</td></tr>
+<tr><th>EaglesGroup </th><td>%C%<td></td><td>%V%%C%</td><td>%V%</td></tr>
+</table>
+<button>Edit</button>
+</td><td>
+VIEW = %V% CHANGE = %C%
+<table class="twikiTable" border="1">
+<tr><th></th><th>Albums</th><th>Singles</th><th>Reviews</th><th>Statistics</th></tr>
+<tr><th> AnnieLennox </th><td>%V%%Y% %C%%Y%</td><td>%V%%Y%%C%%Y%</td><td>%V%%Y%%C%%Y%</td><td>%V%%Y%%C%%N%</td></tr>
+<tr><th> BillyBragg </th><td>%V%%Y%%C%%N%<td>%V%%Y%%C%%N%</td><td>%V%%Y%%C%%N%</td><td>%V%%N%%C%%N%</td></tr>
+<tr><th> ColinTowns </th><td>%V%%Y%%C%%Y%</td><td>%V%%Y%%C%%Y%</td><td>%V%%Y%%C%%Y%</td><td>%V%%Y%%C%%N%</td></tr>
+<tr><th> DavidSoul </th><td>%V%%N%%C%%N%</td><td>%V%%Y%%C%%Y%</td><td>%V%%N%%C%%N%</td><td>%V%%Y%%C%%N%</td></tr>
+<tr><th> EaglesGroup </th><td>%V%%N%%C%%Y%<td>%V%%N%%C%%N%</td><td>%V%%Y%%C%%Y%</td><td>%V%%Y%%C%%N%</td></tr>
+</table>
+<button>Save</button> <button>Cancel</button>
+</td></tr></table>
+
+<hr />
+
+This control model is very useful in cases such as a web per project environment. In this case you will probably want to give team members change access to the specific projects they are working on. The plugin gives you a simple, one page interface, for handling these permissions.
+
+The plugin tries very hard to keep the permissions specification you started with, though it does move them to METADATA.
+
+---++++ Topic Permissions
+<!--
+   * Set LEFT = <img src="%ATTACHURL%/leftarrow.png"  alt="<"/>
+   * Set RIGHT = <img src="%ATTACHURL%/rightarrow.png"  alt=">"/>
+   * Set UP = <img src="%ATTACHURL%/uparrow.png"  alt="^"/>
+   * Set DOWN = <img src="%ATTACHURL%/downarrow.png"  alt="v"/>
+-->
+<form name="topicpermissionsform" method="post" >
+<table border="0"><tbody><tr>
+		  <td rowspan="3" width="40%">
+<h4><a name="All_Users_and_Groups"></a> All Users and Groups </h4>
+				<select size="14" name="disallowedusers" multiple="multiple" style="width: 100%;">
+					 <optgroup label="Groups"></optgroup>
+					 <optgroup label="Users"><option>TWikiContributor</option><option>TWikiGuest</option></optgroup></select>
+		  </td><td align="center" width="100">
+				<button type="button" style="width: 100%;" class="twikiSubmit" name="action_save" id="save">%LEFT% Remove</button>
+				<button type="button" style="width: 100%;" class="twikiSubmit" name="action_cancel" id="cancel">Add %RIGHT%</button></td>
+		  <td width="40%">
+<h4><a name="Editors"></a> Editors </h4>
+				<select size="5" name="topiceditors" multiple="multiple" style="width: 100%;">
+					 <optgroup label="Groups">
+                    <option>TWikiAdminGroup</option>			 
+					 </optgroup><optgroup label="Users">
+                    <option>AnnieLennox</option>
+				</optgroup></select>
+		  </td>
+	 </tr>
+	 <tr><td></td>
+		  <td align="center" valign="center">
+				<button type="button" style="height: 20px; width: 30%;" class="twikiSubmit" name="action_save" id="save">%DOWN%</button>
+				<button type="button" style="height: 20px; width: 30%;" class="twikiSubmit" name="action_cancel" id="cancel">%UP%</button>
+		  </td>
+	 </tr>
+	 <tr><td align="center">
+				<button type="button" style="width: 100%;"class="twikiSubmit" name="action_save" id="save">%LEFT% Remove</button>
+				<button type="button" style="width: 100%;" class="twikiSubmit" name="action_cancel" id="cancel">Add %RIGHT%</button></td>
+		  <td><h4><a name="Viewers"></a> Viewers </h4>
+				<select size="5" name="topicviewers" multiple="multiple" style="width: 100%;">
+					 <optgroup label="Groups">
+                        <option>NobodyGroup</option>					 
+					 </optgroup><optgroup label="Users">
+                        <option>TWikiRegistrationAgent</option><option>UnknownUser</option>
+				</optgroup></select></td>
+	 </tr><tr height="10">
+	 </tr><tr>
+		  <td colspan="3" align="right">
+				<input class="twikiSubmit" name="topic_permissions_action" id="save" value="Save" >
+				<input class="twikiSubmit" name="topic_permissions_action" id="cancel" value="Cancel"> &nbsp; &nbsp; &nbsp; &nbsp;
+			</td>
+	 </tr>
+</tbody></table>
+</form>
+<hr />
+
+*THIS PLUGIN REQUIRES TWiki-4.0.0 or later*
+
+---++ Syntax Rules
+
+The permissions matrix can be viewed (and edited) by entering =%<nop>WEBPERMISSIONS%= anywhere in a topic. You have to have admin rights (be a member of !TWikiAdminGroup) to view/edit the matrix.
+
+The =WEBPERMISSIONS= TWiki variable accepts the following parameters:
+   * =webs= - a comma-separated list of webs to show. Default is to show all webs.
+   * =repeatheads= - if set to a number, headings will be repeated every this number of rows. This is very useful when you have a lot of users and groups.
+
+If you have a lot of webs, use the following form to select the subset of webs you want to display. If you have admin rights, and the plugin is installed, you will see the matrix below the form:
+
+<!-- Copy from HERE -->
+<div style="background-color: #ffffdf; padding: 10px">
+Select the webs you want to change permissions for from the list below. Ctrl+click and Shift+click work as normal.<br />
+<form action="%SCRIPTURL{view}%/%WEB%/%TOPIC%">
+<select size="7" name="webs" multiple="multiple" method="POST">
+%WEBLIST{format="<option $marker>$name</option>" selection="%URLPARAM{"webs" multiple="on" separator=", "}%"}%
+</select> <br />
+<input type="submit" value="Select webs"/>
+</form>
+
+%WEBPERMISSIONS{webs="%URLPARAM{"webs" multiple="on" separator="," default="%SYSTEMWEB%"}%" repeatheads="10"}%
+</div>
+<!-- TO HERE -->
+
+---++ Plugin Settings
+<!--
+   * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = View and edit web permissions
+-->
+By default, the plugin only supports VIEW and CHANGE permissions on webs. You can change the set of access modes handled by the plugin by defining a configuration variable (in !LocalSite.cfg) to be a comma-separated list of access modes. For example,
+<verbatim>
+$TWiki::cfg{Plugins}{WebPermissionsPlugin}{modes} = 'VIEW,CHANGE,RENAME';
+</verbatim>
+See %SYSTEMWEB%.TWikiAccessControls for more information on what access modes can be used to control.
+
+---++ Plugin Installation Instructions
+
+__Note:__ These instructions are for the TWiki maintainer. No changes to your browser are required. *This plugin makes extensive use of new features added to TWiki in the Feb 2006 release*. Earlier versions lack all the features described here. Make sure you install using the zip appropriate to your TWiki installation. For best overall performance, please upgrade your TWiki to the latest released version.
+
+	* Download the archive (zip or tgz) from the Plugin web (see below). Contents:
+	| *File:* | *Description:* |
+%$MANIFEST%
+	* Unpack the archive in your twiki installation directory.
+	* =perl= ==%TOPIC%_installer.pl== to automatically check and install other TWiki modules that this module depends on. This script also includes an _uninstaller_ should you ever wish to remove the plugin from your installation.
+	* Alternatively, manually make sure the dependencies listed in the table below are resolved.
+%$DEPENDENCIES%
+	* Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* to enable the TOPIC ACLs user interface, add webpermissions to the front of the SKIN setting (eg Set SKIN=webpermissions,pattern)
+
+---++ Plugin Info
+
+Another great TWiki extension from the <a style="text-decoration:none" href="http://wikiring.com"><img src="%ATTACHURLPATH%/wikiringlogo20x20.png" alt="" /> *WikiRing* </a> - working together to improve your wiki experience!
+
+Many thanks to the following sponsors for supporting this work:
+   * This plugin was developed on behalf of <a href="http://www.evolvedmedianetwork.com">Evolved Media Network</a>
+   * Further work supported by [[http://www.spanlink.com/][Spanlink Communications]]
+
+|  Plugin Author: | TWiki:Main.CrawfordCurrie & TWiki:Main.SvenDowideit, http://wikiring.com |
+|  Copyright: | &copy; 2006, Evolved Media Network, Spanlink Communications and WikiRing |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | %$VERSION% |
+|  Change History: | |
+| 8 Sep 2007 | Updated for TWiki-4.2.0 |
+| July 2006 | add Topic ACLs user interface via More topic actions - SvenDowideit@WikiRing.com |
+|  10216 | <a rel='nofollow' href='http://develop.twiki.org/~develop/cgi-bin/view/Bugs/Item1766'>Item2291</a> Added repeatheads and webs parameters |
+|  9048 | <a rel='nofollow' href='http://develop.twiki.org/~develop/cgi-bin/view/Bugs/Item1766'>Item1766</a> corrected problems with passing incorrect parameters to setACLs and not interpreting values from the form correctly. |
+|  8877 | <a rel='nofollow' href='http://develop.twiki.org/~develop/cgi-bin/view/Bugs/Item1701'>Item1701</a>  first release |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Demo Url: | http://demo.wikiring.com/twiki/bin/view/Demo/TopicPermissionsDemo |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
+
+%META:FILEATTACHMENT{name="wikiringlogo20x20.png" attr="h" comment="" version="1"}%
+%META:FILEATTACHMENT{name="logo.gif" attr="h" comment="" version="1"}%

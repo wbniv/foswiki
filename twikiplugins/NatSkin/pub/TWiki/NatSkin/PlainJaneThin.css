@@ -1,0 +1,11 @@
+/* thin variant for plain jane */
+@import url("BaseThin.css");
+
+.natBodyContents {
+  border:1px solid #aaaaaa;
+  padding:20px;
+}
+.natBody {
+  margin-bottom:40px;
+  background:#efefef;
+}

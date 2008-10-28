@@ -1,0 +1,180 @@
+<html>
+<head>
+  <title>Edit %WEB%.%TOPIC% (wikiwyg)</title>
+  <meta http-equiv="Expires" content="0" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <meta http-equiv="Content-Type" content="text/html; charset=%CHARSET%"/>
+%IF{ "$ TWIKILAYOUTURL" then="<link rel='stylesheet' type='text/css' href='%TWIKILAYOUTURL%' type='text/css' media='all'/>"}%
+%IF{ "$ TWIKISTYLEURL"  then="<link rel='stylesheet' type='text/css' href='%TWIKISTYLEURL%' type='text/css' media='all'/>"}%
+%IF{ "$ TWIKICOLORSURL"  then="<link rel='stylesheet' type='text/css' href='%TWIKICOLORSURL%' type='text/css' media='all'/>"}%
+%IF{ "$ USERLAYOUTURL" then="<link rel='stylesheet' type='text/css' href='%USERLAYOUTURL%' type='text/css' media='all'/>"}%
+%IF{ "$ USERSTYLEURL"  then="<link rel='stylesheet' type='text/css' href='%USERSTYLEURL%' type='text/css' media='all'/>"}%
+%IF{ "$ USERCOLORSURL"  then="<link rel='stylesheet' type='text/css' href='%USERCOLORSURL%' type='text/css' media='all'/>"}%
+<link rel="stylesheet" type="text/css" href="%PUBURLPATH%/%SYSTEMWEB%/WikiwygContrib/css/wikiwyg.css" type='text/css' media='all'/>
+<link rel="stylesheet" type="text/css" href="%PUBURLPATH%/%SYSTEMWEB%/WikiwygContrib/twikiwyg.css" type='text/css' media='all'/>
+
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/TWikiJavascripts/twiki.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/WikiwygContrib/lib/Wikiwyg.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/WikiwygContrib/lib/Wikiwyg/Util.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/WikiwygContrib/lib/Wikiwyg/HTML.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/WikiwygContrib/lib/Wikiwyg/Toolbar.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/WikiwygContrib/lib/Wikiwyg/Wysiwyg.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/WikiwygContrib/lib/Wikiwyg/Wikitext.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/WikiwygContrib/lib/Wikiwyg/Preview.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/WikiwygContrib/TWikitext.js"></script>
+<script type="text/javascript">
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//WikiWyg impl
+
+//called after saveChanges has returned
+//redirects to view (because replacing HTML in current doc fails)
+showReply = function(reply) {
+    document.body.style.cursor = "default";
+    location.href = '%SCRIPTURL{"view"}%/%WEB%/%TOPIC%';
+    
+//    Wish there was a replywitherrors=1 param for save, that returns nothing on success....
+// this currently causes teh server to render twice - once as the reply to the save, and once when the browser is re-directed
+}
+
+proto = new Subclass('Wikiwyg.ClientServer', 'Wikiwyg');
+
+proto.saveChanges = function() {
+    document.body.style.cursor = "wait";
+    var postdata = '';
+
+    var twikitext_mode = this.mode_objects['Wikiwyg.TWikitext'];
+    var current_mode = this.current_mode;
+
+    //if the user saves from raw edit mode, use that text literally, otherwise, send html to ysiwygPlugin
+    if (twikitext_mode == current_mode) { 
+        //hard coded not to do html
+        if (twikitext_mode != current_mode) {
+            //does a conversion to TML, and lets the user see what the damage is
+            this.switchMode('Wikiwyg.TWikitext');
+        }
+        postdata = 'replywitherrors=1;forcenewrevision=1'+
+            ';text=' + encodeURIComponent(this.current_mode.textarea.value);        //
+    } else {
+        this.current_mode.toHtml( function(html) { self.html = html });
+    
+        postdata = 'replywitherrors=1;forcenewrevision=1;wysiwyg_edit=1'+
+            ';text=' + encodeURIComponent(self.html);
+    }
+
+    //TODO: redo this to use a rest api that does not return a view..
+    Wikiwyg.liveUpdate(
+        'POST',
+       '%SCRIPTURLPATH{"save"}%/%WEB%/%TOPIC%',
+        postdata,
+        showReply
+    );
+}
+
+proto.cancelEdit = function() {
+    document.body.style.cursor = "default";
+    location.href = '%SCRIPTURL{"view"}%/%WEB%/%TOPIC%?unlock=1';
+}
+
+//TODO:decide how best to de-wikiwyg this
+proto.requestTopicState = function(restUrl, webDotTopic) {
+    var url = restUrl;
+
+    var postdata = 'rest=InlineEditPlugin.setTopicLock;topicName='+webDotTopic;
+    Wikiwyg.liveUpdate(
+        'GET',
+        url,
+        postdata,
+        showTopicState
+    );
+}
+
+// initialise and select edit mode
+proto.editMode = function() { // See IE, below
+    this.current_mode = this.first_mode;
+
+    var htmlDiv = document.getElementById('edit-div');
+    this.current_mode.fromHtml(htmlDiv.innerHTML);                   //this is needed for wysiwyg
+//    var textarea = document.getElementById('rawtopictext');
+//    this.current_mode.textarea.value = textarea.value;     //this works for textmode only
+
+    this.toolbarObject.resetModeSelector();
+    this.current_mode.enableThis();
+}
+
+//not used at this point (stub from wikiwyg demo)
+proto = new Subclass('Wikiwyg.Wikitext.ClientServer', 'Wikiwyg.Wikitext');
+
+proto.convertWikitextToHtml = function(wikitext, func) {
+    var postdata = 'inlineeditsave=1;html2tml=1;section='+
+            this.topicSectionObject.topicSection+';rev='+
+            this.topicSectionObject.topicRevision+
+            ';content=' + encodeURIComponent(wikitext);
+    Wikiwyg.liveUpdate(
+        'POST',
+        Wikiwyg.uri(),
+        postdata,
+        func
+    );
+}
+
+setHTML = function(reply) {
+    var div = document.getElementById('edit-div');
+    div.innerHTML = reply;
+    
+    var config = {
+        doubleClickToEdit: false,
+        editHeightMinimum: 200,
+        editHeightAdjustment: 1,
+        wysiwyg: {
+            iframeId: 'wikiwyg-iframe'
+        },
+        toolbar: {
+            imagesLocation: '%PUBURLPATH%/%SYSTEMWEB%/WikiwygContrib/TWikiImages/button_',
+            imagesExtension: '.png',
+            controlLayout: [
+                'save', 'cancel', 'mode_selector', '|',     // '/',
+                'h1', 'h2', 'h3', 'h4', 
+                'bold', 'italic', '|', 
+                'ordered', 'unordered', '|',
+                'link', 'pre', '|', 'table'
+            ]            
+        }, 
+        modeClasses: [
+            'Wikiwyg.Wysiwyg',
+            'Wikiwyg.TWikitext',        //used to do the html->tml conversion in wikiwyg (if using the non-html save)
+        ]
+    };
+//    wikiwyg1 = new Wikiwyg();
+    wikiwyg1 = new Wikiwyg.ClientServer();
+    wikiwyg1.createWikiwygArea(div, config);
+    wikiwyg1.editMode();
+}
+
+windowOnload = function() {
+//TODO: add test to see if wikiwyg works in this browser, and if not, got textarea/nat edit.
+    var postdata = 'skin=text;wysiwyg_edit=1;t=%TIME%';
+    Wikiwyg.liveUpdate(
+        'GET',
+        '%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%',
+        postdata,
+        setHTML
+    );
+}
+addLoadEvent(windowOnload, true);
+</script>
+</head>
+<body>
+<div align="left" style="margin:2px;" >
+<div class="edit-div" id="edit-div" >
+<p />
+<p />
+<h1>Please wait, loading topic into editor....</h1>
+<p />
+<p />
+</div>
+</div>
+<textarea id="rawtopictext" name="rawtopictext" rows="0" cols="0" style='display:none;width:0;height:0;' >%TEXT%</textarea>
+<iframe id="wikiwyg-iframe" height="0" width="0" frameborder="0"></iframe
+</body></html>

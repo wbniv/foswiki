@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin" type="text/css"?>
+<!DOCTYPE dialog SYSTEM "chrome://twiki/locale/twiki.dtd">
+<dialog id="twiki-image" title="&twiki.image.title;" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" buttons="accept,cancel" onload="onLoad(); sizeToContent();" ondialogaccept="return qnAccept();" ondialogcancel="onCancel();">
+	<script type="application/x-javascript"> <![CDATA[//
+////////////
+function onLoad()
+{
+	var params = window.arguments[1];
+	document.getElementById('image-file').value = params[0];
+	document.getElementById('image-description').value = params[1];
+}
+
+function qnAccept()
+{
+	var ok = window.arguments[0];
+	var params = window.arguments[1];
+	params[0] = document.getElementById('image-file').value;
+	params[1] = document.getElementById('image-description').value;
+	params[2] = document.getElementById('format-thumb').selected;
+	params[3] = document.getElementById('format-thumbsized').selected;
+	params[4] = document.getElementById('format-framed').selected;
+	params[5] = document.getElementById('format-full').selected;
+	params[6] = document.getElementById('format-pixels').value;
+	params[7] = document.getElementById('image-alignment').selectedIndex;
+	ok[0] = true;
+	return true;
+}
+function onCancel()
+{
+  var ok = window.arguments[0]; 
+  ok[0] = false;
+  return true;
+}
+////////////
+]]></script>
+	<groupbox flex="1" align="start">
+		<caption label="&twiki.image;"/>
+		<grid flex="1">
+			<columns>
+				<column/>
+				<column flex="1"/>
+			</columns>
+			<rows>
+				<row>
+					<label value="&twiki.image.file;" control="image-file"/>
+					<textbox id="image-file" value="image.png" flex="1"/>
+				</row>
+				<row>
+					<label value="&twiki.image.description;" control="image-description"/>
+					<textbox id="image-description" value=""/>
+				</row>
+				<row>
+					<label value="&twiki.alignment;" control="image-alignment"/>
+					<menulist id="image-alignment" label="&twiki.alignment;">
+						<menupopup>
+							<menuitem label="&twiki.alignment.none;" selected="true"/>
+							<menuitem label="&twiki.alignment.left;"/>
+							<menuitem label="&twiki.alignment.center;"/>
+							<menuitem label="&twiki.alignment.right;"/>
+						</menupopup>
+					</menulist>
+				</row>
+			</rows>
+		</grid>
+	</groupbox>
+	<groupbox flex="1" align="start">
+		<caption label="&twiki.image.format;"/>
+		<radiogroup oncommand="document.getElementById('format-pixels').disabled = !document.getElementById('format-thumbsized').selected">
+			<radio id="format-full" label="&twiki.image.format.full;" selected="true"/>
+			<radio id="format-framed" label="&twiki.image.format.framed;"/>
+			<radio id="format-thumb" label="&twiki.image.format.thumb;" disabled="true"/>
+			<radio id="format-thumbsized" label="&twiki.image.format.thumbsized;" disabled="true"/>
+		</radiogroup>
+		<hbox>
+			<spacer width="22"/>
+			<textbox id="format-pixels" value="180" disabled="true" flex="1"/>
+		</hbox>
+	</groupbox>
+</dialog>

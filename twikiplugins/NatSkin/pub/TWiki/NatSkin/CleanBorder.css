@@ -1,0 +1,27 @@
+/* border variation for clean */
+@import url('BaseBorder.css');
+
+.natWebButtons,
+.natTopLeft {
+  border-left:1px #aaaaaa solid;
+}
+.natWebButtons,
+.natTopRight {
+  border-right:1px #aaaaaa solid;
+}
+.natMiddleLeft {
+  border-left:1px #aaaaaa solid;
+}
+.natMiddleRight {
+  border-right:1px #aaaaaa solid;
+}
+.natSideBar,
+.natMainFooter {
+  border-bottom:1px #aaaaaa solid;
+}
+.natBottomBar {
+  background:#e5e5e5;
+}
+.natBottomBarContents {
+  margin-top:1px; /* konqueror fix */
+}

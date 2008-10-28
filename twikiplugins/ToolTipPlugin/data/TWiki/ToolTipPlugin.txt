@@ -1,0 +1,111 @@
+%META:TOPICINFO{author="TWikiContributor" date="1069422060" format="1.0" version="1.1"}%
+---+!! <nop>%TOPIC%
+
+This is a plugin to generate dynamic Tool Tips in HTML + javascript (mouseover event).
+This tooltip is based on http://www.walterzorn.com/tooltip/tooltip_e.htm
+
+%TOC%
+
+---++ Examples
+
+<a border="0" href="javascript:void(0);" onmouseover=" this.T_FONTCOLOR='#336699'; this.T_TITLE='Nice tooltip, no ?'; this.T_SHADOWCOLOR='#ccaacc'; this.T_FONTSIZE='18px'; this.T_BGIMG='%ATTACHURLPATH%/ToolTipBackground.jpg'; return escape('Whaoooo ! With such a tooltip, you can keep your topics light... and get better communication ! ');"> put your mouse here, you should see a tooltip </A>.
+
+You can use one or more <a border="0" href="javascript:void(0);" onmouseover=" this.T_BGCOLOR='#FF8000'; this.T_FONTCOLOR='#00FF80'; this.T_TITLE='PARAMETERS'; this.T_SHADOWCOLOR='#ccaacc'; this.T_FONTSIZE='30px';;return escape('there are soo many parameters...')">parameter</A> to get your own and nice tool tip !.
+
+Note that you can also <a border="0" href="javascript:void(0);" onmouseover=" this.T_FONTCOLOR='#336699'; this.T_TITLE='PHOTOS !'; this.T_SHADOWCOLOR='#ccaacc'; this.T_FONTSIZE='18px';;return escape('You can also insert &lt;img src=\'%ATTACHURLPATH%/ToolTipPhoto.gif\'&gt; gif/jpg photos in your text... this is simply HTML! (but remember to escape &lt;, &gt;, \', I18N chars etc :-))!')">do this</A> and <a border="0" href="javascript:void(0);" onmouseover=" this.T_FONTCOLOR='#336699'; this.T_TITLE='Background image'; this.T_SHADOWCOLOR='#ccaacc'; this.T_FONTSIZE='18px'; this.T_BGIMG='%ATTACHURLPATH%/ToolTipBackground.jpg';;return escape('you can set a background image so to get a nice tool tip and also add some &lt;img src=\'%ATTACHURLPATH%/ToolTipPhoto.gif\'&gt; gif/jpg photos ')"> this </A>too !.
+
+%N%: A nice feature is to get clicable TWiki site map in <nop>ToolTip : 
+
+   * <a border="0" href="../TWiki/SiteMap"  onmouseover="   this.T_STICKY='true'; this.T_BORDERCOLOR='#333366';  this.T_PADDING=0; this.T_BORDERWIDTH=1; this.T_FONTSIZE='12px'; this.T_FONTCOLOR='black'; this.T_ABOVE='false'; this.T_OFFSETY='-50'; this.T_WIDTH=550; ;return escape('  <table width=100% border=0 cellspacing=1 bgcolor=#cccccc cellpadding=1>  <tr bgcolor=#003366>    <td> <font color=#fafafa> Web </font></td>    <td><font color=#fafafa> Why (<i>pourquoi</i>) ? </font></td>    <td width=1% align=right><a href=javascript:void()><font color=#ffffff><b>X</b></font></a></td>  </tr> <tr height=10 style=font-size:8pt; color=#000000; bgcolor=#FFEFA6><td><a class=twikiLink href=/cgi-bin/view/Main/WebHome><font color=black><b>Main</b></font></a></font></td><td colspan=2><font color=#000000> Welcome to TWiki... <a class=twikiLink href=/cgi-bin/view/Main/TWikiUsers>Users</a>, <a class=twikiLink href=/cgi-bin/view/Main/TWikiGroups>Groups</a>, <a class=twikiLink href=/cgi-bin/view/Main/OfficeLocations>Offices</a> - tour this expandable virtual workspace. </font></td></tr> <tr height=10 style=font-size:8pt; color=#000000; bgcolor=#FFD8AA><td><a class=twikiLink href=/cgi-bin/view/TWiki/WebHome><font color=black><b>TWiki</b></font></a></font></td><td colspan=2><font color=#000000> <a class=twikiLink href=/cgi-bin/view/TWiki/WelcomeGuest>Welcome</a>, <a class=twikiLink href=/cgi-bin/view/TWiki/TWikiRegistration>Registration</a>, and other <a class=twikiLink href=/cgi-bin/view/TWiki/StartingPoints>StartingPoints</a>; TWiki history &amp; Wiki style; All the docs... </font></td></tr> <tr height=10 style=font-size:8pt; color=#000000; bgcolor=#E0E3E7><td><a class=twikiLink href=/cgi-bin/view/Sandbox/WebHome><font color=black><b>Sandbox</b></font></a></font></td><td colspan=2><font color=#000000> Sandbox test area.  </font></td></tr> <tr height=10 style=font-size:8pt; color=#000000; bgcolor=#F9D1C9><td><a class=twikiLink href=/cgi-bin/view/Codev/WebHome><font color=black><b>Codev</b></font></a></font></td><td colspan=2><font color=#000000> TWiki development: the core collaboration zone for the TWiki Project. </font></td></tr> <tr height=10 style=font-size:8pt; color=#000000; bgcolor=#E3E9A5><td><a class=twikiLink href=/cgi-bin/view/Plugins/WebHome><font color=black><b>Plugins</b></font></a></font></td><td colspan=2><font color=#000000> Repository for TWiki Plugins, Skins and Add-Ons. </font></td></tr> <tr height=10 style=font-size:8pt; color=#000000; bgcolor=#E0E3E7><td><a class=twikiLink href=/cgi-bin/view/Salgina/WebHome><font color=black><b>Salgina</b></font></a></font></td><td colspan=2><font color=#000000> Civil engineering exchange for the Salginatobel Bridge. </font></td></tr> <tr height=10 style=font-size:8pt; color=#000000; bgcolor=#B9DAFF><td><a class=twikiLink href=/cgi-bin/view/Support/WebHome><font color=black><b>Support</b></font></a></font></td><td colspan=2><font color=#000000> Tech support for the TWiki collaboration platform. </font></td></tr> <tr height=10 style=font-size:8pt; color=#000000; bgcolor=#FFFED5><td><a class=twikiLink href=/cgi-bin/view/Wikilearn/WebHome><font color=black><b>Wikilearn</b></font></a></font></td><td colspan=2><font color=#000000> Learn or teach anything related to free or open source software. </font></td></tr></table>  ')"> <font color=black>Tidy'ed <nop>SiteMap as <nop>ToolTip</font> </A>
+   * %TOOLTIP{ URL="../TWiki/SiteMap"  STICKY="true" BORDERCOLOR="#333366"  PADDING="0" BORDERWIDTH="1" FONTSIZE="12px" FONTCOLOR="black" ABOVE="false" OFFSETY="-350" WIDTH="720" INCLUDE="SiteMap"}% Raw included <nop>SiteMap as <nop>ToolTip %TOOLTIP%
+
+---++ Parameters
+
+All walterzorn tooltip parameters are allowed and simply passed to the javascript applet.
+You just don't put the %RED% this.T_ %ENDCOLOR%  before each of them.
+%<nop>TOOLTIP{END}% close the URL and is mandatory.
+
+I have added TWiki specific parameter INCLUDE to fill <nop>ToolTip with content of any TWiki topic. The syntax of INCLUDE parameter can be __INCLUDE="topic"__ or __INCLUDE="web.topic"__. Included topic text should only content simple TWiki or HTML datas. 
+
+| *name* | *usage* | *example* |
+| END (or empty parameter) | End of url text that activate the tooltip (mandatory !). | %<nop>TOOLTIP{END}% |
+| ABOVE | Places the tooltip above the mousepointer. Additionally applying the OFFSETY command allows to set the vertical distance from the mousepointer.| ABOVE="true" |
+| BGCOLOR | Background color of the tooltip. | BGCOLOR="#d3e3f6" |
+| BGIMG | Background image. | BGIMG="images/myBgImg.jpg" |
+| BORDERWIDTH | Width of tooltip border. May be 0 to hide the border. | BORDERWIDTH="3" |
+| BORDERCOLOR | Border color. | BORDERCOLOR="#336699" |
+| DELAY | Tooltip shows up after the specified timeout (milliseconds). | DELAY="1000" |
+| FIX | Fixes the tooltip to the co-ordinates specified. Useful, for example, if combined with the STICKY command. | FIX="[200, 2400]" |
+| FONTCOLOR | Font color. | FONTCOLOR="#993399" |
+| FONTFACE | Font face / family. | FONTFACE="verdana,geneva,sans-serif" |
+| FONTSIZE | Font size + unit. Unit inevitably required. | FONTSIZE="30px" |
+| FONTWEIGHT | Font weight. Available values: "normal" or "bold". | FONTWEIGHT="bold" |
+| LEFT | Tooltip positioned on the left side of the mousepointer.| LEFT="true" |
+| OFFSETX | Horizontal offset from mouse-pointer. | OFFSETX="32" |
+| OFFSETY | Vertical offset from mouse-pointer. | OFFSETY="32" |
+| OPACITY | Transparency of tooltip. Opacity is the opposite of transparency. Value must be a number between 0 (fully transparent) and 100 (opaque, no transparency). Not (yet) supported by Opera.| OPACITY="50" |
+| PADDING | Inner spacing, i.e. the spacing between border and content, for instance text or image(s). | PADDING="5" |
+| SHADOWCOLOR | Creates shadow with the specified color. Shadow width (strength) will be automatically processed to 3 (pixels) if no global shadow width setting can be found in in wz_tooltip.js, and the concerned html tag doesn"t contain a SHADOWWIDTH command. | SHADOWCOLOR="#ccaacc" |
+| SHADOWWIDTH | Creates shadow with the specified width (strength). | SHADOWWIDTH="6" |
+| STATIC | Like OS-based tooltips, the tooltip doesn"t follow the movements of the mouse-pointer. | STATIC="true" |
+| STICKY | The tooltip stays fixed on it's initial position until another tooltip is activated, or the user clicks on the document. | STICKY="true" |
+| TEMP | Specifies a time span in milliseconds after which the tooltip disappears, even if the mousepointer is still on the concerned HTML element, or if the STICKY command has been applied. Values <=0 make the tooltip behave "normally" as if no time span had been specified. | TEMP="3500" |
+| TEXTALIGN | Aligns the text of both the title and the body of the tooltip. Values must be included in single quotes and can be either 'right', 'justify' or 'left', the latter being unnecessary since it is the preset default value. | TEXTALIGN="right" |
+| TITLE | Title. Text in single quotes. Background color is automatically the same as the border color. | TITLE="Some title" |
+| TITLECOLOR | Color of title text. | TITLECOLOR="#ff6666" |
+| WIDTH | Width of tooltip. | WIDTH="200" |
+| TEXT | <nop>ToolTip text. |  |
+| INCLUDE | Topic containing <nop>ToolTip text (like TWiki INCLUDE feature). |  |
+
+---++ General Settings
+
+	* One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = create Tool Tips for links
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+     | ==pub/TWiki/ToolTipPlugin/ToolTipBackground.jpg== | sample image |
+     | ==pub/TWiki/ToolTipPlugin/ToolTipPhoto.gif== | sample image |
+     | ==pub/TWiki/ToolTipPlugin/wz_tooltip.js== | wz tooltip library |
+
+   * Test if the installation was successful:
+
+The same tooltip is displayed if Plugin is installed and not:
+
+---
+With plugin :
+%TOOLTIP{TEXT="Whaoooo !" FONTCOLOR="#336699" TITLE="Nice tooltip, no ?" SHADOWCOLOR="#ccaacc" FONTSIZE="18px"}% put your mouse here, you should see a tooltip %TOOLTIP{END}%
+---
+Without plugin :
+<a border="0" href="javascript:void(0);" onmouseover=" this.T_FONTCOLOR='#336699'; this.T_TITLE='Nice tooltip, no ?'; this.T_SHADOWCOLOR='#ccaacc'; this.T_FONTSIZE='18px';return escape('Whaoooo !')"> put you mouse here, you should see a tooltip </A>.
+---
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/PatrickNomblot  |
+|  Plugin Version: | 1.3 |
+|  Change History: | &nbsp; |
+|  15 Apr 2006 | TWiki:Main/SteffenPoulsen: Updated with new version of =wz_tooltip.js= (updated browser support), support for Dakar, cleaned up doc a bit |
+|  21 Nov 2003 | TWiki:Main/PatrickNomblot: Initial version |
+|  10 Sep 2004 | TWiki:Main/PatrickNomblot: tooltip text can comes from any TOPIC |
+|  29 Dec 2005 | TWiki:Main/AndreUlrich: updated to wz_tooltip.js v. 3.38; added further parameters|
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | ?? |
+|  Perl Version: | 5.6 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+
+-- TWiki:Main/PatrickNomblot - 21 Nov 2003
+

@@ -1,0 +1,85 @@
+%META:TOPICINFO{author="TWikiContributor" date="1111929255" format="1.0" version="8"}%
+---+ <nop>ExcelImportExportPlugin
+
+This plugin renders an attached Excel spreadsheet as a TWiki table, and vice versa. It also provides scripts to generate a set of topics from an Excel spreadsheet, and vice versa.
+
+The code of this plugin is based on the TWiki:Plugins.ExcelImportExportAddOn by TWiki:Main.ClausLanghans.
+
+---++ Syntax Rules
+
+   * Syntax: =%<nop>EXCEL2TABLE{"topic" ...}%=
+   * Supported parameters:
+   | *Parameter:* | *Description:* | *Default:* |
+   | =topic="..."= | The topic at which the spreadsheet is attached | Current topic |
+   | =file="..."= | Default parameter: The name of the attached spreadsheet file (without the extension)  | Current topic |
+   | =template="..."= | A form definition (see TWiki.TWikiForms); it defines the columns of the table to be generated | Current web  |
+
+Inserts the first worksheet of the designated Excel spreadsheet as a table, formatted per the definition of the form given in the =template= parameter.
+
+   * Syntax: =%<nop>TABLE2EXCEL{"topic" ...}%=
+   * Supported parameters:
+   | *Parameter:* | *Description:* | *Default:* |
+   | =topic="..."= | The topic at which the spreadsheet is attached | Current topic |
+   | =file="..."= | Default parameter: The name of the generated spreadsheet file (without the extension)  | Current topic |
+   | =map="..."= | The topic which contains the mapping between the columns of the table and the columns in the generated Excel file. | Current topic  |
+
+Generates an Excel spreadsheet file from the first table found in this topic, with the columns mapped as given in the =map= parameter.
+
+For further details, and the documentation of the scripts =excel2topics= and =topics2excel= please see the example in Sandbox.IssueExcelExportImport.
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference
+a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>SMARTEDITPLUGIN_SHORTDESCRIPTION%==
+
+   * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = Renders an attached Excel spreadsheet as TWiki table
+
+   * Debug plugin: (See output in =data/debug.txt=)
+      * Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this add-on. The following instructions are for the administrator who installs the add-on on the server where TWiki is running. 
+
+   * Download the archive from the Plugin Home (see below)
+   * Unpack the archive in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+   | ==lib/TWiki/Plugins/ExcelImportExportPlugin.pm== |  |
+   | ==lib/TWiki/Plugins/ExcelImportExportPlugin/Import.pm== |  |
+   | ==lib/TWiki/Plugins/ExcelImportExportPlugin/Export.pm== |  |
+   | ==data/TWiki/ExcelImportExportPlugin.txt== |  |
+   | ==bin/excel2topics== |  |
+   | ==bin/topics2excel== |  |
+   | ==bin/table2excel== |  |
+   | ==data/Sandbox/ExcelExport1.txt== |  |
+   | ==data/Sandbox/ExcelImport1.txt== |  |
+   | ==data/Sandbox/IssueExcelExportImport.txt== |  |
+   | ==data/Sandbox/IssueTrackingForm.txt== |  |
+   | ==pub/Sandbox/IssueExcelExportImport/IssueExcelExportImport.xls== |  |
+
+   * Make sure that all files are readable by the web server user, that the scripts are executable, and that the scripts are given the proper access rights in your =.htaccess= file, if applicable.     
+
+Look at the example in Sandbox...
+
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.ThomasWeigert, based on code by TWiki:Main.ClausLanghans |
+|  Copyright: | &copy; 2001-2006, %SYSTEMWEB%.TWikiContributor |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | 13 Aug 2006 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  13 Aug 2006: | Initial version |
+|  TWiki Dependency: |  |
+|  CPAN Dependencies: | <table border="1"><tr><th>Name</th><th>Version</th><th>Description</th></tr><tr><td align="left">Spreadsheet::ParseExcel</td><td align="left">Required. Available from [[http://search.cpan.org][CPAN]].</td></tr><tr><td align="left">Spreadsheet::WriteExcel</td><td align="left">Required. Available from [[http://search.cpan.org][CPAN]].</td></tr><tr><td align="left">Date::Manip</td><td align="left">Required. Available from [[http://search.cpan.org][CPAN]].</td></tr></table> |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences, TWiki:Plugins.ExcelImportExportAddOn
+
+-- TWiki:Main.ThomasWeigert - 13 Aug 2006

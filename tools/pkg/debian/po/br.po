@@ -1,0 +1,119 @@
+#
+#    Translators, if you are not familiar with the PO format, gettext
+#    documentation is worth reading, especially sections dedicated to
+#    this format, e.g. by running:
+#         info -n '(gettext)PO Files'
+#         info -n '(gettext)Header Entry'
+#
+#    Some information specific to po-debconf are available at
+#            /usr/share/doc/po-debconf/README-trans
+#         or http://www.debian.org/intl/l10n/po-debconf/README-trans
+#
+#    Developers do not need to manually edit POT or PO files.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: TWiki\n"
+"Report-Msgid-Bugs-To: svenud@ozemail.com.au\n"
+"POT-Creation-Date: 2007-02-14 17:20+1100\n"
+"PO-Revision-Date: 2004-08-23 00:00-0300\n"
+"Last-Translator: Tiago Bortoletto Vaz <tiagovaz@im.ufba.br>\n"
+"Language-Team: Debian-BR Project <debian-l10n-portuguese@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: string
+#. Default
+#: ../templates:1001
+msgid "http://localhost/"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../templates:1002
+msgid "What is the top-level URL of the server TWiki runs under?"
+msgstr "Qual é a URL de mais alto nível do servidor que o TWiki irá rodar?"
+
+#. Type: string
+#. Description
+#: ../templates:1002
+msgid ""
+"For a normal install, this should be a URL for your web server's full name, "
+"which is used to construct urls on some pages.  The install will serve up "
+"the data by adding \"twiki\" to the end of this setting; it is also needed "
+"for certain redirections."
+msgstr ""
+"Para uma instalação normal, isto deve ser uma URL do nome completo do seu "
+"servidor WEB, que é usada como base das urls de algumas páginas. A "
+"instalação irá prover os dados adicionando \"twiki\" no final desta URL; "
+"isso também é necessário para alguns redirecionamentos."
+
+#. Type: string
+#. Default
+#: ../templates:2001
+msgid "webmaster@localhost"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../templates:2002
+msgid "What is the email address of the webmaster for this TWiki?"
+msgstr "Qual o endereço de email do webmaster deste TWiki?"
+
+#. Type: string
+#. Description
+#: ../templates:2002
+msgid ""
+"This email address gets mail for new user registration, and is listed on the "
+"\"oops\" page when things go wrong."
+msgstr ""
+"Este endereço de email recebe os emails dos novos registros de usuários, e é "
+"listado na página \"oops\" quando algo der errado."
+
+#. Type: boolean
+#. Description
+#: ../templates:3001
+#, fuzzy
+msgid "Install default wiki Topic Set on initial install?"
+msgstr "Instalar os exemplos padrão de wiki na instalação inicial?"
+
+#. Type: boolean
+#. Description
+#: ../templates:3001
+#, fuzzy
+msgid ""
+"TWiki includes a complete \"starter kit\" which includes user registration "
+"pages, documentation, and tutorials.  Only decline if you're re-installing "
+"twiki after deleting the package and want to keep the old data, or if you've "
+"got a twiki data set from your own manual install. If data/Main/WebHome.txt "
+"is present, the starter kit will not be unpacked. The the starter kit files "
+"can be found in /usr/share/twiki/twiki-data.tar.gz  (and twiki-pub.tar.gz), "
+"if you want to install it manually or compare your  topics with the new "
+"version)"
+msgstr ""
+"O TWiki inclui um completo \"kit de inicialização\" que inclui páginas de "
+"registro de usuário, documentação e tutoriais. Se você está reinstalando o "
+"twiki depois de ter removido o pacote anterior e quer preservar os dados "
+"antigos, ou se você tem os dados de configuração do twiki a partir do seu "
+"próprio manual de instalação, você deve recusar aqui. Numa instalação "
+"inicial normal, aceitando essa opção, dados de exemplo de configuração serão "
+"instalados em /var/lib/twiki/data. (Num outro caso, se data/Main/WebHome.txt "
+"está presente, o kit de inicialização não será desempacotado; você pode "
+"encontrá-lo em /usr/share/doc/twiki/twiki-data.tar.gz se quiser instalá-lo "
+"manualmente ou comparar com uma nova versão.)"
+
+#. Type: note
+#. Description
+#: ../templates:4001
+msgid "Admin User Registration configuration required"
+msgstr ""
+
+#. Type: note
+#. Description
+#: ../templates:4001
+msgid ""
+"After you have created yourself a user, edit the Main.TWikiAdminGroup to "
+"restrict Admin privileges to that user."
+msgstr ""

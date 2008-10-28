@@ -1,0 +1,15 @@
+/* border variation for jotspot */
+@import url('../../TWiki/NatSkin/BaseBorder.css');
+
+.natBodyContents {
+  background: #E6E9EB;
+  border: 1px solid #B3BCC0;
+}
+.natBody {
+  background:#eee;
+}
+.natMainFooterContents,
+.natMainHeaderContents,
+.natMainContents {
+  width:97%;
+}

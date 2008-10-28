@@ -1,0 +1,12 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1160083627" format="1.1" version="1.2"}%
+%META:TOPICPARENT{name="WebLog"}%
+---+ %TOPIC% for the %WEB% web
+
+| *Name:*| *Type:* | *Size:* | *Values:* | *Tooltip message:* | *Attributes* |
+| TopicType | label | 1 |	| Classify a topic by function | |
+| SubjectArea | checkbox | 3 | %DBQUERY{"Classification = 'SubjectArea'" format="$topic" separator=", "}%   | Select a catagory  | |
+| Summary   | text   | 50  |   | The <nop>WebLog title.  |   | 
+| Url | text | 25 |  | Url for web page logged. | H |
+| Title | text | 25 |  | Name of web page logged. | H |
+
+Related Topic: WebLogs, WebLogLinkList

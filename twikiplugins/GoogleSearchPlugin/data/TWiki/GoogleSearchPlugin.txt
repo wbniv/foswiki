@@ -1,0 +1,30 @@
+%META:TOPICINFO{author="guest" date="1099157317" format="1.0" version="1.1"}%
+*GOOGLE SEARCH PLUGIN*
+
+This Plugin allows the topic creater to  specify 
+if he/she wants to create link to search in Google
+for the meaning of the topic. It divides the topic
+name into various parts for the search.
+
+Following is the debug settings. If debug is 1
+then runtime information is stored in /data/debug.txt
+which is placed in the twiki directory.
+You can change this option to required value (0 or 1).
+
+
+		* Set DEBUG = 0
+
+Demo of this document is present at http://www.it.iitb.ac.in/~naval/twiki/bin/view/Main/GoogleSearchdemo
+
+
+*Usage of Plugin :-*
+
+Anyone who has installed this plugin can  use it by just writing =%<nop>GOOGLE_SEARCH_PLUGIN%= where the link to Search will appear when page is loaded.
+	* Test: %GOOGLE_SEARCH_PLUGIN%
+
+
+
+
+
+-- TWiki:Main.NavalBhandari - 30 Oct 2004
+

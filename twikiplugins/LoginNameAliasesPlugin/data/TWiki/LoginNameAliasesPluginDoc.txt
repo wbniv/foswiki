@@ -1,0 +1,65 @@
+%META:TOPICINFO{author="cbs" date="1090800003" format="1.0" version="1.1"}%
+---+ !LoginNameAliasesPlugin documentation
+In an intranet
+environment, access to TWiki may be controlled via external authentication 
+mechanisms (<nop>PubCookie, for example) and users are identified to TWiki via 
+a REMOTE_USER variable that is set by such a mechanism.  This can lead to the following issues:
+
+	* This remote user variable may not be suitable for direct use as a TWiki login name (e.g. it may contain special characters).
+	* The same person may connect to TWiki via various authentication domains or methods. For example, !JohnSmith may connect both as jsmith@DOMAIN1 and johns@DOMAIN2, and should be identified as the same user to TWiki.
+	* Non-registered but identified users may connect to TWiki in this way 
+	and one may wish to map such users to a particular registered user.
+
+These issues have been discussed in several TWiki support topics
+on http://twiki.org. Proposed solutions have often involved making small changes to TWiki source files. The !LoginNameAliasesPlugin makes use of initializeUserHandler and attempts to provide a configurable, plugin-based solution to some of these problems. It was originally
+designed to be used in a intranet environment where all registered users have both a !WikiName and a user name (which is often the same as a Unix or Windows username).
+
+---++ Settings
+Behavior of this plugin is controlled through the following settings in the [[TWiki.LoginNameAliasesPlugin][TWiki.LoginNameAliasesPlugin]] topic.  *Important:* the settings topic will not be read if you have renamed your TWiki web or installed this topic in another web.
+
+	* MAP_BLANK_USER = &lt;user&gt;
+	* USE_ALIASES = &lt;boolean&gt;
+	* REMOVE_PREFIX = &lt;string&gt;
+	* REMOVE_SUFFIX = &lt;string&gt;
+	* MAP_UNREGISTERED = &lt;login name&gt;
+	* RETURN_NOTHING_IF_UNCHANGED = &lt;boolean&gt;
+	* LOGGING = &lt;boolean&gt;
+	* DEBUG = &lt;boolean&gt;
+ 
+*To activate the plugin:* the variable *$useLoginNameAliasesPlugin* in *TWiki.cfg* must be set to a true value in order for the plugin to perform any actions. 
+  
+In addition to the settings, the configuration page may contain aliases. An alias entry is a single line of the form:
+<pre>
+&lt;multiple of 3 spaces&gt;*&lt;space&gt;ALIAS:&lt;space&gt;&lt;string&gt;&lt;space&gt;&lt;username&gt;
+</pre>
+For example:
+<pre>
+	* ALIAS: johns@BAR.COM jsmith
+</pre>
+If the user (as passed to the plugin) is an exact match for the first string, the plugin will return the given username. 
+---++ How it works
+When it runs, the plugin performs the following steps in  succession to the username passed to initializeUserHandler.  $TWiki::securityFilter is applied  to all results before they are returned. Note that if $ENV{'REMOTE_ADDR'} is not set, the plugin will return "" after logging some debugging information (if DEBUG is set).
+
+	1. If the username is blank or would be blank after applying $TWiki::securityFilter,  return either "", or the value of MAP_BLANK_USER if it is set. *Note:* a username that would evaluate to false in Perl (e.g. the user "0") is treated as blank.
+	2. If USE_ALIASES is set, the alias list is checked for a match and the first match found is  returned. 
+	3. If REMOVE_PREFIX is set, an attempt is made to remove that string from the beginning of the username (quotemeta is applied to the string before it is used).
+	4. If REMOVE_SUFFIX is set, an attempt is made to remove that string from the end of the username (quotemeta is applied to the string before it is used).
+	5. The MAP_BLANK_USER check from step 1 is applied again, since steps 3 or 4 may have zapped the whole username.
+	6. If MAP_UNREGISTERED is set, then check to see if the user has a !WikiName.  If not, then  return the value of MAP_UNREGISTERED. If the user already has a !WikiName, go to step 7. *Note:* This setting will not work unless doMapUserToWikiName is set to 1 in TWiki.cfg.
+	7. If the username after the PREFIX/SUFFIX transformations is different from 
+	the  one passed to us in the original username argument, the new name will
+	be returned after being passed through the security filter.  If it is the same as	 the original one, then "" will be returned if RETURN_NOTHING_IF_UNCHANGED is true, otherwise the original username will be returned.
+
+If LOGGING is turned on, the following fields will be logged to to the file !PubDir()/TWiki/LoginNameAliasesPlugin/_logfile.txt: timestamp, $ENV{'REMOTE_ADDR'}, $ENV{'REMOTE_USER'}, the username that was passed to the plugin, the username that the plugin returned.
+This is useful for debugging and keeping a record of user names before they are mapped. Note that the logfile must be writable by the web server (just like other TWiki log files).
+
+---++ Security
+There are obvious security risks with allowing arbitrary user names to get mapped to arbitrary TWiki users. To mitigate these risks:
+	* The plugin does not do anything unless $useLoginNameAliasesPlugin is set
+	in TWiki.cfg.
+	* The plugin configuration topic, [[TWiki.LoginNameAliasesPlugin][TWiki.LoginNameAliasesPlugin]], should have
+	access permissions set such that only people in the %USERSWEB%.TWikiAdminGroup	(or other people who can be trusted) can change it.  By default, the topic is distributed with this access restriction.
+
+---++ Caution
+Misconfiguration of this plugin could cause problems for TWiki operation, and/or create various security problems.
+

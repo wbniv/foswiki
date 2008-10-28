@@ -1,0 +1,14 @@
+/TRTtestsuite/bin/localAndDistro1               distro1=/TRTtestsuite/bin/localAndDistro1
+/TRTtestsuite/bin/localAndDistro2               distro2=/TRTtestsuite/bin/localAndDistro2
+/TRTtestsuite/bin/sameAsDistro1                 distro1=/TRTtestsuite/bin/matchesOnlyDistro1
+/TRTtestsuite/bin/differentInDistro2            distro2=/TRTtestsuite/bin/matchesOnlyDistro1
+/TRTtestsuite/bin/changedEveryDistro1           distro1=/TRTtestsuite/bin/changedEveryDistro
+/TRTtestsuite/bin/changedEveryDistro2           distro2=/TRTtestsuite/bin/changedEveryDistro
+/TRTtestsuite/bin/stayedTheSameSingleton        distro1=/TRTtestsuite/bin/stayedTheSame
+/TRTtestsuite/bin/stayedTheSameSingleton        distro2=/TRTtestsuite/bin/stayedTheSame
+/TRTtestsuite/bin/alteredInInstallation1        distro1=/TRTtestsuite/bin/alteredInInstallation
+/TRTtestsuite/bin/alteredInInstallation1        distro2=/TRTtestsuite/bin/alteredInInstallation
+/TRTtestsuite/bin/sameButCopied                 distro1=/TRTtestsuite/bin/sameButCopied
+/TRTtestsuite/bin/sameButCopied                 distro2=/TRTtestsuite/bin/sameButCopied
+/TRTtestsuite/bin/onlyInDistro1                 distro1=/TRTtestsuite/bin/onlyInDistro1
+/TRTtestsuite/bin/onlyInDistro2                 distro2=/TRTtestsuite/bin/onlyInDistro2

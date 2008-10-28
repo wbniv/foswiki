@@ -1,0 +1,8 @@
+bin/editTableRow 0755
+bin/uploadTableRow 0755
+data/TWiki/EditTablerowPlugin.txt 0660
+lib/TWiki/Plugins/EditTablerowPlugin.pm 0660
+templates/editTableRow.pattern.tmpl 0440
+templates/editTableRow.tmpl 0440
+pub/TWiki/EditTablerowPlugin/edit_ex2.jpg 0660
+pub/TWiki/EditTablerowPlugin/editwithcalendar.jpg 0660

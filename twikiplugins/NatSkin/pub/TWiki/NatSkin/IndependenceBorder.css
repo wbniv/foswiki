@@ -1,0 +1,5 @@
+/* border variation for independence */
+@import url('BaseBorder.css');
+.natBody {
+  background-color: #0F314E;
+}

@@ -1,0 +1,13 @@
+Index: lib/TWiki/Plugins/TablePlugin/Core.pm
+===================================================================
+--- lib/TWiki/Plugins/TablePlugin/Core.pm	(revision 11310)
++++ lib/TWiki/Plugins/TablePlugin/Core.pm	(working copy)
+@@ -548,7 +548,7 @@
+             $rowtext .= &$fn($attr, " $cell ");
+             use strict 'refs';
+         }
+-        $text .= $currTablePre.CGI::Tr( {}, $rowtext )."\n";
++        $text .= $currTablePre.CGI::Tr( { class=> ($rowCount % 2)?'twikiTableOdd':'twikiTableEven'}, $rowtext )."\n";
+         $rowCount++;
+         $dataColorCount++;
+     }

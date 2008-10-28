@@ -1,0 +1,74 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1171946375" format="1.1" reprev="1.6" version="1.6"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+This is a layout for TopicTypes that are messages and have comments. The counting of comments depends on the each comment being marked with "COMMENT_TAG" string which can be hidden in html comment tags.
+
+---+++++ Parameters
+   * 
+
+---+++++ Css
+   * 
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%
+<span class="twikiRight" style="margin:.25em 0 0 0;" /><form name="browseClasses" action="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%BASEWEB%/" >
+<select name="subject" size="1" onchange="document.location=this.value;"> <option>Jump to different <nop>%FORMFIELD{"Classification" topic="%BASEWEB%.%BASETOPIC%"}%...</option>%DBQUERY{ "Classification='%FORMFIELD{"Classification" topic="%BASEWEB%.%BASETOPIC%"}%'" web="%BASEWEB%"  exclude="%BASETOPIC%" regex= "on" noheader="on" nosearch="on" nosummary="on" nototal="on" order="topic" format= "<option>$topic</option>" }% </select></form> </span>
+---++!! %SPACEOUT{%BASETOPIC%}%
+%IF{"defined CLASS_DESCRIPTION" then="%CLASS_DESCRIPTION%"}%
+%IFDEFINED{"%FORMFIELD{"Classification" topic="%BASEWEB%.%BASETOPIC%"}%" as="TopicType" then="<p /><form method=\"link\" action=\"$percntSCRIPTURL{view}$percnt/$percntBASEWEB$percnt/CreateNewTopic\"><input type=hidden name=type value=$percntBASETOPIC$percnt><input type=hidden name=step value=two><input type=hidden name=parent value=$percntBASETOPIC$percnt><input type=\"submit\" class=\"twikiButton\" value=\"Create new <nop>$percntBASETOPIC$percnt \" /></form>" else="" glue="off"}%
+
+%DBCALL{"%TCAOWEB%.RenderBarFilterWithSort"}%
+%~~  SEARCH{
+~~~    %DBCALL{"%TCAOWEB%.RenderSearchString" FORSEARCH="yes"}%
+~~~    web="%BASEWEB%" 
+~~~    type="regex" 
+~~~    nonoise="on" 
+~~~    reverse="on" 
+~~~    newline="%BR%" 
+~~~    separator="$n$n"
+~~~    format="<h3>[[$web.$topic][$percntSPACEOUT{$topic}$percnt]] </h3>
+~~~       <span class=twikiSmall><em>
+~~~          Posted $createdate by $createwikiusername $percntIFDEFINED{\"$formfield(SubjectArea)\" then=\" 
+~~~          in <noautolink>$formfield(SubjectArea)</noautolink>\"}$percnt &nbsp; |  
+~~~          $percntIFDEFINED{\"$count(.*?(COMMENT_TAG) .*)\" as=\"1\" then=\"$test comment\" else=\"$test comments\" glue=\"off\" }$percnt
+~~~       </em></span> $percntBR$percnt $percntBR$percnt
+~~~       $pattern(.*?---[+]*.*?[\n\r]+(.*?)[\n\r]+.*)  _[[$web.$topic][continued...]]_ " 
+~~~    }%
+%STOPINCLUDE%
+</verbatim>
+
+<!-- interrupt glue -->
+
+---++ Test
+<div class="alt">
+%DBCALL{"%TOPIC%" TOPICTYPES="HelpTopic|MasterTopic"}%
+</div>
+
+%DBCALL{"RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+(C) 2006 LynnwoodBrown@Skyloom.com
+
+%DBCALL{"GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+
+<!--
+   * Set SIDEBAR = TopicType
+   * Set SIDEBARARG = TopicFunction
+-->
+
+%META:FORM{name="TCAO.TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="SubjectArea" attributes="" title="SubjectArea" value="TcaoUse"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Displays short intro to topic with number of comments"}%
+%META:REVCOMMENT{ncomments="0"}%

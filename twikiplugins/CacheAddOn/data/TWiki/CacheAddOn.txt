@@ -1,0 +1,209 @@
+%META:TOPICINFO{author="guest" date="1046815987" format="1.0" version="1.1"}%
+The *CacheAddOn* implements a simple,
+agressive server side caching strategy for TWiki pages.
+The speed-up is considerable.
+
+%TOC%
+
+---++ Rationale
+
+While the functionality and flexibility of TWiki is all nice and useful,
+it comes at a high price: TWiki _is_ slow.
+Especially, if you make use of the form system
+combined with dynamic searches,
+performance is too slow for slick day-to-day operation,
+i.e. page response time is consistently >> 1 sec.
+This is pityful, as the generated pages could make excellent navigation pages.
+
+Here benchmark figures for TWiki Dec2001 on a
+[[http://www.sun.com/desktop/sunblade100/][SunBlade100]]
+with few plug-ins installed
+(TWiki:Main.DefaultPlugin TWiki:Main.TablePlugin TWiki:Main.EditTablePlugin TWiki:Main.IncludeIndexPlugin TWiki:Main.InterwikiPlugin TWiki:Main.PdfPlugin TWiki:Main.SpacedWikiWordPlugin TWiki:Main.SpreadSheetPlugin TWiki:Main.TWikiDrawPlugin TWiki:Main.XpTrackerPlugin)
+
+|					  Test case | Min[s]| Avg[s]| Max[s]| URL path				|
+|	Hello-world = load+compile+init perl |	0.65|	0.75|	0.93| /twiki/benchmark?-h |
+|					 Short page |	1.51|	2.03|	3.10| /twiki/render/TWiki/BumpyWord |
+|			 Formatted search |	2.44|	2.58|	3.17| /twiki/render/TWiki/TWikiContributor |
+|	 Large index w/much RCS |	5.36|	5.82|	7.46| /twiki/render/TWiki/WebIndex |
+|	  Large page w/INCLUDEs |	6.91|	7.21|	8.37| /twiki/render/TWiki/TWikiDocumentation |
+
+mod_perl could cut the fist figure, startup+compile overhead, to zero;
+[[http://daemoninc.com/SpeedyCGI/][SpeedyCGI]] to almost zero.
+If I understand correctly,
+for TWiki you can only _subtract_ that gain of 0.65s from the other figures.
+4.7s instead of 5.3s for the TWiki documentation index -- no big deal.
+
+Given, that viewing is far more frequent than editing,
+caching could significantly improve the speed of navigation,
+especially for computed overview pages.
+Changes in reports or linked to pages are far less frequent;
+even if some details are not displayed properly,
+it's not a big deal while you are clicking along to your actual target page.
+
+The problem with client side caching is,
+that you cannot pick-up changes from edits.
+You definitely do not want _that_.
+Therefore, caching can happen only at the server side,
+where we _do_ know, whether the topic itself changed or not.
+
+
+---+++ Disadvantages:
+
+	0 Wiki links, mostly to missing topics, may be out-dated;
+	0 TWiki search results are very likely to be out-dated
+	0 Layout changes in templates are not reflected in cached pages
+	0 Decide for ultra fast, but clunky Unix only ksh/bash implementation
+	  versus optional, cleaner, slower Perl version
+	0 Cache eats up disk space
+	0 WebStatistics for view cannot does not count actual views, but refreshes
+	0 URLs with '/' in them cannot be cached (easily),
+	  as it is the directory separator
+		0 For hierarchically nested webs it is feasible
+		  to create the proper directories in advance
+		0 For individual topics with e.g. a =contenttype=text/xml= argument
+		  probably not.
+	0 Pages skinned via preferences would mix with normal pages in the cache
+
+
+---+++ Advantages:
+
+With all these disadvantages, there should be a good reason to do it anyway...
+	0 The CPU load from heavily used RSS feeds decreases significantly
+	0 It _is_ faster:
+	|					  Test case | Min[s]| Avg[s]| Max[s]| URL path				|
+	|	Hello-world = load+compile+init perl |	0.63|	0.68|	0.98| /twiki/benchmark?-h |
+	|					 Short page |	0.05|	0.06|	0.08| /twiki/view/TWiki/BumpyWord |
+	|			 Formatted search |	0.05|	0.06|	0.12| /twiki/view/TWiki/TWikiContributor |
+	|	 Large index w/much RCS |	0.05|	0.06|	0.07| /twiki/view/TWiki/WebIndex |
+	|	  Large page w/INCLUDEs |	0.05|	0.07|	0.10| /twiki/view/TWiki/TWikiDocumentation |
+
+
+
+---++ How it works
+
+Amazingly simple.  Actually,  primitive:
+	0 The 'cache' shell [perl] script replaces the view script
+	0 It passes the environment 1:1 to the actual view = render script, but:
+	0 It inserts a tee into the pipeline from the render script to the web server
+	0 The tee output is stored in the file system
+	0 Next time it's called, it compares the TWiki data file modification
+	  time with that of the cached page
+	0 If up to date, pipe the cached page to the web server
+	0 Else, run the actual view script as above
+
+The (original) shell version is ultra-fast,
+but relies on external scripts for refreshing and invalidating the cache.
+
+The Perl version does it all in one script,
+works nicely on Windows
+and offers an option to control the maximum age of the cached copies.
+
+| Semantic of <code>-maxage=<var>n</var></codePlugin> option ||
+| n > 0	 | maximum age of cached copy [hours] |
+| n = 0	 | *any* change within web will invalidate cached copy <br> (the shell script =fresh= supports this option as well) |
+| n &lt; 0 | flush _all_ cached variants of page |
+
+
+---++ Installation Instructions
+
+	0 Unpack the zipfile in =/your/twiki=
+	  | *File* | *Description* | *Variant* |
+	  | bin/benchmark | to actually measure the improvement | shell |
+	  | bin/cache.sh | the shell caching wrapper for view/render | shell |
+	  | bin/cache.pl | the perl caching wrapper for view/render | perl |
+	  | bin/fresh | shell force rendering a fresh page into the cache | shell |
+	  | bin/edit.cache.diff | patch for edit script | optional for both |
+	  | data/TWiki/CachePlugin.txt | this description | both |
+	0 Create the the =/your/twiki/cache= directory,
+	  make sure everything below is writable for the web server, e.g. <br>
+	  =chgrp www /your/twiki/cache; chmod g+ws /your/twiki/cache=
+	0 Create one sub-directory per web which you want to cache, e.g.:
+	  =/your/twiki/cache/TWiki= for the documentation
+	0 To minimize misleading out-dated edit links,
+	  modify the =/your/twiki/bin/edit= script with the supplied patch;
+	  add the =.pl= suffix if necessary
+
+---+++ Shell version
+This is recommended for Unix,
+when you need maximum performance
+and don't need any tinkering.
+People made it working on Windows,
+but the Perl route is easier and faster (on Windows).
+
+	0 Copy [or hardlink] your =bin/view= script to =bin/render=
+	0 Customize the path variables in =/your/twiki/bin/cache.sh=
+	0 Test it:
+		0 Load a page from a web to be cached;
+		0 Replace =/view/= in the URL by =/cache.sh/= ->
+		  you should see the page as normal
+		0 Check the cache directory -> an entry like =YourPage?= should be there
+		0 Force your browser to reload the page -> feel the difference?
+	0 If you trust the caching, remove =bin/view= and copy =bin/cache.sh= onto it
+	0 If you are using =bin/viewauth= link it to =bin/render=
+	  (For example the EditTablePlugin relies on this!)
+	0 Change =/your/twiki/template/view.tmpl= to have a refresh function,
+	  e.g. next to the the "More" link:<br>
+	  =%<nop>TMPL:P{"sep"}% &lt;a href="%<nop>SCRIPTURLPATH%/fresh%<nop>SCRIPTSUFFIX%/%<nop>WEB%/%<nop>TOPIC%">Refresh&lt;/a>=
+	0 Install a cron job to remove old cache entries;
+	  e.g. everything older than 2 weeks:<br>
+	  =find /your/twiki/cache/ -mtime +14 -exec rm {} \;= 
+	0 Optionally cache RSS feeds:
+	  First create the subdirectory named
+	  =WebRss?contenttype=text= in =/your/twiki/cache/Yourweb=.
+	  This must match the first part of the XML URL you communicate, e.g.:
+	  =/twiki/fresh/Yourweb/WebRss?contenttype=text/xml&maxage=0&skin=rss=
+
+---+++ Perl version
+This is preferred for Windows
+or if you need more cache aging control from your templates.
+
+	0 Copy your =bin/view.pl= script to =bin/render.pl=
+	0 Customize the path variables in =/your/twiki/bin/cache.pl=
+	0 Test it:
+		0 Load a page from a web to be cached;
+		0 Replace =/view.pl/= in the URL by =/cache.pl/= ->
+		  you should see the page as normal
+		0 Check the cache directory -> an entry like =YourPage?= should be there
+		0 Force your browser to reload the page -> feel the difference?
+	0 If you trust the caching, remove =bin/view.pl= and copy =bin/cache.pl= onto it
+	0 Change =/your/twiki/template/view.tmpl= to have a refresh function,
+	  e.g. next to the the "More" link:<br>
+	  =%<nop>TMPL:P{"sep"}% &lt;a href="%<nop>SCRIPTURLPATH%/view%<nop>SCRIPTSUFFIX%/%<nop>WEB%/%<nop>TOPIC%?maxage=-1">Refresh&lt;/a>=
+	0 Optionally cache RSS feeds:
+	  First create the subdirectory named
+	  =WebRss__contenttype=text= in =/your/twiki/cache/Yourweb=.
+	  This must match the first part of the XML URL you communicate, e.g.:
+	  =/twiki/view.pl/Yourweb/WebRss?contenttype=text/xml&maxage=0&skin=rss=
+
+---++ Usage
+
+By definition, you should not see any difference.
+If you suspect a page is outdated, click refresh.
+(You may want to insert the %<nop>DATE% variable into your template
+to show the last render date.)
+	* A useful string to insert in your template is =&lt;small>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;[cached %<nop>GMTIME{"$month $day $year at $hour:$min:$sec"}% - &lt;i>[<nop>[%<nop>SCRIPTURL%/fresh%<nop>SCRIPTSUFFIX%/%<nop>WEB%/%<nop>BASETOPIC% refresh]]&lt;/i>]&lt;/small>= - this makes it easy to see the date, and also provides a Refresh link (calling the =fresh= script on the page). [ Main.RichardDonkin 13 Nov 2002 ]
+
+---++ Add-On Info
+
+|  Add-On Author: | TWiki:Main/PeterKlausner |
+|  Add-On Version: | 2.00 |
+|  Change History: | 4 Mar 2003: Perl version + better refresh for shell version |
+|						| 8 Nov 2002: released |
+|						| Oct 2002 creation |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | -nt operator in ksh/bash |
+|  Perl Version: | 5.x (optional) |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+
+
+---++ See also
+
+
+	* TWiki:Codev/CachedResponses
+	* TWiki:Codev/EditTablePluginAndCachePluginProblem
+	* TWiki:Codev/BuiltinCache
+	* TWiki:Codev/EvEm
+	* TWiki:Codev/SetSkinViaUrlPath
+

@@ -1,0 +1,6 @@
+data/TWiki/MailReminderPlugin.txt NEW
+lib/TWiki/Plugins/MailReminderPlugin.pm NEW
+lib/TWiki/Plugins/MailReminderPlugin/calender_config_file NEW
+lib/TWiki/Plugins/MailReminderPlugin/config_file NEW
+lib/TWiki/Plugins/MailReminderPlugin/cron.pl NEW
+pub/TWiki/MailReminderPlugin/exclam.gif NEW

@@ -1,0 +1,64 @@
+%META:TOPICINFO{author="Main.TWikiContributor" date="1173011728" format="1.1" reprev="1.1" version="1.1"}%
+%TABLE{columnwidths="5%,15%,80%"}%
+%EDITTABLE{ format="|text, 10| textarea, 8x90 |"}%
+| *Order* | *Image file* | *Description* |
+| 2 | view_delft.jpg | *View of Delft* <br />c. 1660-1661 <br />Oil on canvas <br />96.5 x 115.7 cm (38 x 45 9/16 in.) <br />Royal Cabinet of Paintings Mauritshuis, The Hague<br /> <br />In an early review of the exhibition, curator Arthur Wheeler was quoted as asserting that the show would not have been held had "View of Delft" not been made available. Although I had always considered it a remarkable painting, this claim still seemed somewhat extravagant. Then I saw the exhibition. "View of Delft" is prominently hung in the center of the second room. It is without a doubt one of the most captivating, compelling works of art I have ever seen. It has an overwhelming presence, conveying the perception that you are beholding a cityscape more real, more substantial than anything you could possibly encounter in the outside world. One of the pleasures of Vermeer's art is its accessibility. You can stand in awestruck wonder before this painting without having to analyze it, without needing to understand it on an intellectual level in order to appreciate it. |
+| 1 | wmn_blue.jpg | *Woman in Blue Reading a Letter* <br />c. 1663-1664<br />Oil on canvas<br />46.6 x 39.1 cm (18 11/32 x 15 13/32 in.)<br />Rijksmuseum, Amsterdam<br /> <br />We all know how annoying it can be in a crowded gallery to overhear the comments of other patrons discussing a work. And the Vermeer show was of course so crowded that this was inevitable. Yet my experience in the exhibition was that as viewers approached this painting, they assumed a hushed silence. It was as if no one dared to interrupt the woman's concentration on the contents of her letter. In this painting, Vermeer has rendered an intense contrast by combining the dynamically expectant posture of the woman with a geometric composition that locks her in space. |
+
+
+%INCLUDE{"%TOPIC%" section="paragraphWithImageLeftStyle"}%
+%TABLEDATA{ rows="2.." sortdirection="descending" sortcolumn="1"  format="$percntINCLUDE{$quot%TOPIC%$quot section=$quotparagraphWithImageLeft$quot imagePath=$quot$percntATTACHURLPATH$percnt/$C2$quot text=$quot$C3$quot}$percnt" }%
+
+<!-- HIDE AND DISABLE ON THIS PAGE --><pre style="display:none;">
+
+%STARTSECTION{"paragraphWithImageLeft"}%<div class="pIparagraphWithImageLeft">
+<div class="pIparagraphWithImageLeftImage">
+<div class="twikiImage"><img src="%imagePath%" alt="" /></div><!--/twikiImage-->
+</div><!--/pIparagraphWithImageLeftImage-->
+<div class="pIparagraphWithImageLeftText">
+%text%
+</div><!--/pIparagraphWithImageLeftText-->
+<br class="twikiClear" />
+</div><!--/pIparagraphWithImageLeft-->%ENDSECTION{"paragraphWithImageLeft"}%
+
+
+
+%STARTSECTION{"paragraphWithImageLeftStyle"}%%INCLUDE{"%TOPIC%" section="imageStyle"}%
+<style type="text/css" media="all">
+.pIparagraphWithImageLeft {
+margin:1em 0 0 0;
+}
+.pIparagraphWithImageLeftText {
+margin-left:145px; /* img width 120px + spacing 25px */
+}
+.pIparagraphWithImageLeftImage {
+float:left;
+}
+</style>%ENDSECTION{"paragraphWithImageLeftStyle"}%
+
+
+
+
+%STARTSECTION{"imageStyle"}%<style type="text/css" media="all">
+/* twiki style for installations not up to date with the latest */
+.twikiImage img {
+padding:3px;
+border-width:1px;
+border-style:solid;
+}
+.twikiImage img {
+border-color:#eee;
+background-color:#fff;
+}
+/* */
+.twikiImage img {
+width:120px;
+vertical-align:middle;
+}
+</style>%ENDSECTION{"imageStyle"}%
+
+</pre><!-- END HIDE AND DISABLE ON THIS PAGE -->
+
+
+%META:FILEATTACHMENT{name="view_delft.jpg" attachment="view_delft.jpg" attr="h" comment="" date="1173011299" path="view_delft.jpg" size="6967" stream="view_delft.jpg" user="Main.TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="wmn_blue.jpg" attachment="wmn_blue.jpg" attr="h" comment="" date="1173011321" path="wmn_blue.jpg" size="10527" stream="wmn_blue.jpg" user="Main.TWikiContributor" version="1"}%

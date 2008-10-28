@@ -1,0 +1,105 @@
+%TMPL:DEF{"templatescript"}%%TMPL:P{"templatejavascript"}%%TMPL:END%
+%TMPL:DEF{"templatejavascript"}%
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/TWikiJavascripts/twiki.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/TWikiJavascripts/twikiPref.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/TWikiJavascripts/twikiCSS.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/TWikiJavascripts/twikiEvent.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/TWikiJavascripts/twiki_edit.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/NatEditContrib/edit.js"></script>
+<script type="text/javascript">
+// button functions
+
+function natEditTableButtonAction() {
+  // this function gets replaced if JQueryPlugin is installed
+  if (!twiki.JQueryPluginEnabled) {
+    natInsertTags(%IF{"defined NATEDIT_TABLE" then="%NATEDIT_TABLE%" else="'\n| ** | ** | ** |\n|    |    |    |\n|    |    |    |\n', '', ''"}%);
+  }
+}
+function natEditNumberedButtonAction() {
+  natInsertListTag(%IF{"defined NATEDIT_NUMBERED" then="%NATEDIT_NUMBERED%" else="'   1 ','enumerated item',''"}%);
+}
+function natEditBulletButtonAction() {
+  natInsertListTag(%IF{"defined NATEDIT_BULLET" then="%NATEDIT_BULLET%" else="'   * ','bullet item',''"}%);
+}
+function natEditIndentButtonAction() {
+  natInsertListTag(%IF{"defined NATEDIT_INDENT" then="%NATEDIT_INDENT%" else="'   ','', ''"}%);
+}
+function natEditUndentButtonAction() {
+  natInsertListTag(%IF{"defined NATEDIT_UNDENT" then="%NATEDIT_UNDENT%" else="'','', ''"}%);
+}
+
+function natEditSignatureButtonAction() {
+  natInsertTags(%IF{"defined NATEDIT_SIGNATURE" then="%NATEDIT_SIGNATURE%" else="'-- ','%WIKIUSERNAME%',' - %DATE%'"}%);
+}
+function natEditImageButtonAction () {
+  %IF{"context ImagePluginEnabled" then="natEditImageButtonActionImagePlugin();" else="natEditImageButtonActionStandard();"}%
+}
+function natEditImageButtonActionStandard() {
+  natInsertTags(%IF{"defined NATEDIT_IMAGE" then="%NATEDIT_IMAGE" else="'<img src=\"%<nop>ATTACHURLPATH%/','Example.jpg','\" title=\"Example\" />'"}%);
+}
+function natEditImageButtonActionImagePlugin() {
+  natInsertTags(%IF{"defined NATEDIT_IMAGE" then="%NATEDIT_IMAGE%" else="'%<nop>IMAGE{\"','Example.jpg','|400px|Caption text|frame|center\"}<nop>%'"}%);
+}
+function natEditBoldButtonAction() {
+  natInsertTags(%IF{"defined NATEDIT_BOLD" then="%NATEDIT_BOLD%" else="'*', 'Bold text', '*'"}%);
+}
+function natEditItalicButtonAction() {
+  natInsertTags(%IF{"defined NATEDIT_ITALIC" then="%NATEDIT_ITALIC%" else="'_', 'Italic text', '_'"}%);
+}
+function natEditMonoButtonAction() {
+  natInsertTags(%IF{"defined NATEDIT_MONO" then="%NATEDIT_MONO%" else="'=', 'Monospace text', '='"}%);
+}
+function natEditUnderlineButtonAction() {
+  natInsertTags(%IF{"defined NATEDIT_UNDERLINE" then="%NATEDIT_UNDERLINE%" else="'<u>', 'Underlined text', '</u>'"}%);
+}
+function natEditStrikeButtonAction() {
+  natInsertTags(%IF{"defined NATEDIT_STRIKE" then="%NATEDIT_STRIKE%" else="'<strike>', 'Strike through text', '</strike>'"}%);
+} 
+function natEditSubButtonAction() {
+  natInsertTags(%IF{"defined NATEDIT_SUB" then="%NATEDIT_SUB%" else="'<sub>', 'Subscript text', '</sub>'"}%);
+}
+function natEditSupButtonAction() {
+  natInsertTags(%IF{"defined NATEDIT_SUP" then="%NATEDIT_SUP%" else="'<sup>', 'Superscript text', '</sup>'"}%);
+}
+
+function natEditLeftButtonAction() {
+  natInsertTags(%IF{"defined NATEDIT_LEFT" then="%NATEDIT_LEFT%" else="'<div style=\"text-align:left\">\n','Align left','\n<\/div>\n'"}%);
+}
+function natEditRightButtonAction() {
+  natInsertTags(%IF{"defined NATEDIT_RIGHT" then="%NATEDIT_RIGHT%" else="'<div style=\"text-align:right\">\n','Align right','\n<\/div>\n'"}%);
+}
+function natEditJustifyButtonAction() {
+  natInsertTags(%IF{"defined NATEDIT_JUSTIFY" then="%NATEDIT_JUSTIFY%" else="'<div style=\"text-align:justify\">\n','Justify text','\n<\/div>\n'"}%);
+}
+function natEditCenterButtonAction() {
+  natInsertTags(%IF{"defined NATEDIT_CENTER" then="%NATEDIT_CENTER%" else="'<div style=\"text-align:center\">\n','Center text','\n<\/div>\n'"}%);
+}
+function natEditVerbatimButtonAction() {
+  natInsertTags(%IF{"defined NATEDIT_VERBATIM" then="%NATEDIT_VERBATIM%" else="'<<nop>verbatim>\n','Insert non-formatted text here','\n<\/verbatim>\n'"}%);
+}
+function natEditExtButtonAction() {
+  natInsertTags(%IF{"defined NATEDIT_EXTLINK" then="%NATEDIT_EXTLINK%" else="'[<nop>[http://...][','link text',']]'"}%);
+}
+function natEditIntButtonAction() {
+  natInsertTags(%IF{"defined NATEDIT_INTLINK" then="%NATEDIT_INTLINK%" else="'[<nop>[','web.topic][link text',']]'"}%);
+}
+function natEditHeadlineButtonAction(level) {
+  if (level == 2) {
+    natInsertTags(%IF{"defined NATEDIT_H2" then="%NATEDIT_H2%" else="'\n---++ ','Headline text','\n'"}%);
+  } else if (level == 3) {
+    natInsertTags(%IF{"defined NATEDIT_H3" then="%NATEDIT_H3%" else="'\n---+++ ','Headline text','\n'"}%);
+  } else if (level == 4) {
+    natInsertTags(%IF{"defined NATEDIT_H4" then="%NATEDIT_H4%" else="'\n---++++ ','Headline text','\n'"}%);
+  } else if (level == 5) {
+    natInsertTags(%IF{"defined NATEDIT_H5" then="%NATEDIT_H5%" else="'\n---+++++ ','Headline text','\n'"}%);
+  } else if (level == 6) {
+    natInsertTags(%IF{"defined NATEDIT_H6" then="%NATEDIT_H6%" else="'\n---++++++ ','Headline text','\n'"}%);
+  } else {
+    natInsertTags(%IF{"defined NATEDIT_H1" then="%NATEDIT_H1%" else="'\n---+ ','Headline text','\n'"}%);
+  }
+}
+function natEditMathButtonAction() {
+  natInsertTags(%IF{"defined NATEDIT_MATH" then="%NATEDIT_MATH%" else="'<<nop>latex title=\"Example\">\n','\\sum_{x=1}^{n}\\frac{1}{x}','\n</latex>'"}%); 
+}
+</script>
+%TMPL:END%

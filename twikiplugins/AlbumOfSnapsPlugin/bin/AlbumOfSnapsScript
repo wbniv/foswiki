@@ -1,0 +1,401 @@
+#! /usr/bin/perl
+
+                         ###### ALBUM OF SNAPS PLGUIN SCRIPT FILE (AlbumOfSnapsScript) #########
+                         ############################################################
+                                                                                
+#################################################################################################
+# CONTRIBUTED TO TWIKI WORLD BY   Naval Bhandari and Ashish Khurange
+# Date of Completion : 02/11/2004
+# Version number     : 1.000
+# Email id           : naval@it.iitb.ac.in  , ashishk@it.iitb.ac.in
+# Web Site           : http://www.it.iitb.ac.in/~naval    ,   http://www.it.iitb.ac.in/~ashishk
+                                                                                
+#################################################################################################
+
+# Declaring the global variables
+
+# Aray Variable to contain the list of all the directories in the topic directory
+@dir_array_list = ("");
+
+# Array Variable to contain the list of all the files in the specified directory
+@filename_array = ("");
+
+# Array Variable to contain the contain the count of the images
+@counter_array = ("");
+
+$filename;
+$dirname;
+$menu;
+
+print "Content-type: text/html", "\n\n";		
+#  variable which contains the get parameters
+@pairs = split /;/, $ENV{ QUERY_STRING };
+
+#Following variable gets there value from get parameters
+
+# $dir will contain the name of current album directory
+$dir;
+
+# $page will contain the page number  in thumbnail view (as only 20 images are shown per page
+
+$page;
+
+# $prev will contain the path of previous page
+$prev;
+
+# $path wil contain the relative path of the scirpt
+$path;
+
+# $abspath will contain the absolute path of directory containing image directories
+$abspath;
+
+# $id will contain the id no. of snap.
+$id;
+
+$width;
+$height;
+
+# Extracting the values from pairs vairable which contains the values from get parameters
+for($count=0 ;$count<@pairs;$count++)
+{
+	if ( $pairs[$count]=~/dir=(.*)/)
+	{
+		 $dir=$1;
+	}
+	if ( $pairs[$count]=~/image=(.*)/)
+	{
+		 $id=$1;
+	}
+	if ( $pairs[$count]=~/prev=(.*)/)
+	{
+		 $prev=$1;
+	}
+
+	if ( $pairs[$count]=~/menu=(.*)/)
+	{
+		 $menu=$1;
+	}
+	if ( $pairs[$count]=~/page=(.*)/)
+	{
+		 $page=$1;
+	}
+
+	if ( $pairs[$count]=~/script=(.*)/)
+	{
+		 $script=$1;
+	}
+
+	if ( $pairs[$count]=~/relurl=(.*)/)
+	{
+		 $path=$1;
+	}
+
+	if ( $pairs[$count]=~/abspath=(.*)/)
+	{
+		 $abspath=$1;
+	}
+
+}	
+
+
+print "<html><body  background=\"$menu/marb157.jpg\">";
+chdir ($abspath);
+$imagedir=$path;
+
+# update_file_list() function extract extract the ame of files in various directories into .txt files
+update_file_list();
+
+# giving default values to the parameters if the values are not specified in get parameter
+$dir ||= 0;
+$page ||= 1; # if no url_param exists, make it 1
+$id ||= 0;
+
+  	
+
+if($dir ne "0")
+{
+        # if Album directory name is specified as get parameter then extract the name of files from that directory
+	go_to_selected_dir($dir);
+
+	if ($id eq "0")
+	{
+        # if id is zero means  image is not selected then show thumbnail view.
+		show_thumbnails();
+	}
+	else
+	{
+        # if image id is specified thenshow that particular image.
+		show_image();
+	}
+}
+
+else
+{
+        # if directory name is not specified in get parameters then call this funtion to display list of directories.
+	show_dir();
+}
+
+# Following function stores the list of files in various directories in the text files by calling create_flie() function
+
+sub update_file_list ()
+{
+
+	foreach $dirname (`find -type d -maxdepth 1`)
+	{
+		chop ($dirname);
+		if ($dirname ne ".")
+		{
+			push (@dir_array_list, substr($dirname, 2));
+			open (OPENFILE, substr($dirname, 2).".txt") || create_file ($dirname);
+		}
+	}
+
+	`perl -p -i -e "s#\./##g" *.txt`;
+
+	@dirname = `find -type d -maxdepth 1`;
+
+	foreach $filename (`find -name \"*.txt\" -maxdepth 1`)
+	{
+		($file) = split (/.txt/, $filename);
+		$file = $file."\n";	
+		$flag = 0;
+
+		foreach $dir (@dirname)
+		{
+			if ($file eq $dir)
+			{
+				$flag = 1;
+				break;
+			}
+		}
+
+		if ($flag == 0)
+		{
+			$cmd = "rm ".$filename;
+			system ($cmd);
+		}
+	}		
+
+}
+
+
+# This subrouting will store the name of images present in a directory in corresponding .txt file
+
+sub create_file ()
+{	
+	my $dirname = $_[0];
+	open (OUTFILE, ">".substr($dirname, 2).".txt");
+	chdir ($dirname);
+	foreach $filename (`find -type f -maxdepth 1`)
+	{
+		chop ($filename);
+		print OUTFILE $filename . ":0"."\n";
+	}
+	close (OUTFILE);
+	chdir ("..");
+}
+
+# This functionis called to get the name of images present in given directory
+
+sub go_to_selected_dir()
+{
+	my $dirname = $_[0];
+	my $f;
+	my $c;
+
+	open (INFILE, $dirname.".txt");
+
+	while (<INFILE>)
+	{
+		($f, $c) = split(/:/, $_);
+		push (@filename_array, $f);
+ 	      	push (@counter_array, $c);
+ 	}
+	close (INFILE);
+}
+
+# This funtion will display the list of Album directories in that topic
+
+sub show_dir()
+	{
+
+	
+	$first = 1 ;
+	$last = @dir_array_list;
+	print $last;
+
+	print <<"MENU";
+  <center><table width="50%" border="1" cellpadding="3" cellspacing="0" 	bordercolor="#0000CC">
+	<tr bgcolor="#CCCCCC"><td>
+	<center>
+MENU
+
+
+
+for ($i=$first; $i<$last; $i++)
+	{
+		if ($i%5 == 0)
+		{
+			print "</tr><tr>";
+		}
+	
+	print qq(<td>$dir_array_list[i] <a href="$script?prev=$prev;menu=$menu;dir=$dir_array_list[$i]"><img src=\"/$imagedir/$dir_array_list[$i]/nav.jpg\" width=100 height=100 alt=\"$dir_array_list[$i]\"></a></td>\n);
+	}
+	
+	print "</table></center>";
+	
+	}
+
+
+# Following function displays the thumbnail view of images 20 at a time. 
+sub show_thumbnails()
+{
+	my $first = ($page - 1) * 20+1;
+	my $last  = $first + 19;
+	$total=@filename_array;
+
+	  print <<"MENU";
+	<center> <table width="50%" border="0" cellpadding="3" cellspacing="0" bordercolor="#0000CC">
+	<tr ><td><center><h2>
+MENU
+	if ( $page > 1 )
+	{
+		$page--;
+		print qq(<a href="$script?prev=$prev;relurl=$path;menu=$menu;abspath=$abspath;dir=$dir;page=$page"><b>&lt;&lt;</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp);
+	}
+	
+	else{
+		print qq(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp);
+	}
+
+
+if ( 1 ) 
+	{
+		print qq(<a href=\"$prev\">^</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp);
+	} 
+	else
+	{
+	print qq(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp);
+	}
+
+	if ($last < $total )
+	{
+		$page++;
+		print qq(<a href="$script?prev=$prev;menu=$menu;relurl=$path;abspath=$abspath;dir=$dir;page=$page"><b>&gt;&gt;</b></a>&nbsp;&nbsp;&nbsp);
+	}
+	
+	else
+	{
+		print qq(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp);
+	}
+	print "</h2></center></td></tr></table></center><br><br>";
+
+	print <<"MENU";
+      	<center><table width="50%" border="3" cellpadding="20" cellspacing="0" bordercolor="#0000CC">
+	<tr bgcolor="#CCCCCC">
+	<center>
+MENU
+
+        for ($i=$first; $i<=$last; $i++)
+	{
+	        if( $i >= $total)
+	        { 
+			next;
+	         }
+		if (($i-1)%5 == 0)
+		{
+		print "</tr><tr>";
+		}
+		
+			
+				print qq(<td><a href="$script?prev=$prev;menu=$menu;relurl=$path;abspath=$abspath;dir=$dir;image=$i"><img src=\"$imagedir$dir/$filename_array[$i]\" width=120 height=120 alt=\"$filename_array[$i]\"></a><br>$filename_array[$i] $counter_array[$i]</td>);
+			
+	}
+}	
+
+
+
+# Following functionis used to display the images 
+
+sub show_image()
+{
+	if (exists $filename_array[$id])
+	{
+		my  $filename = $filename_array[$id];
+		my  $counter = $counter_array[$id];
+		$counter++;	
+		`perl -p -i -e "s#^$filename:.*#$filename:$counter#g" $dir".txt" `;
+		     print <<"MENU";
+		<center> <table width="50%" border="0" cellpadding="0" cellspacing="0" bordercolor="#0000CC">
+		<tr ><td><center><h2>
+MENU
+	$lastimageid = @filename_array - 1 ;
+
+		if ($id > 1)
+		{
+			my $backid = $id - 1;
+			print qq(<a href=\"$script?prev=$prev;menu=$menu;abspath=$abspath;relurl=$path;dir=$dir;image=$backid\"><b>&lt;&lt;</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp);
+		} 
+	
+		else
+		{
+			print qq(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp);
+		}
+
+		if ( 1 ) 
+		{
+			print qq(<a href=\"$relurl?prev=$prev;menu=$menu;relurl=$path;abspath=$abspath;dir=$dir;\">^</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp);
+		} 
+	
+		if($id < "$lastimageid")    
+		{
+			my $forwardid = $id + 1 ;
+			print qq(<a href=\"$script?prev=$prev;menu=$menu;abspath=$abspath;relurl=$path;dir=$dir;image=$forwardid\"><b>&gt;&gt;</b></a>&nbsp;&nbsp;&nbsp);
+print "                 </td><td>";
+		}
+		else
+		{
+			print qq(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp);
+		}
+
+
+
+print "</h2></center></td></tr></table></center><br><br>";
+	print "<center><table  border=0 cellpading=20 cellspacing=0>\n";
+	print "<tr><td><img src=\"$imagedir$dir/$filename\"   alt=\"$imagedir$dir/$filename\"></td></tr></table></center>\n";
+	print "<br>";
+	print <<"ALL";
+       <center>
+       <table width="50%" border="1" cellpadding="3" cellspacing="0" bordercolor="#0000CC">
+       <tr bgcolor="#FFFFF">
+       <td colspan="2"><strong><font face="Courier New, Courier, mono">Image Info  </font></strong></td>
+       </tr>
+       <tr bgcolor="#FFFFFF">
+       <td>Filename:</td>
+       <td>$filename&nbsp;</td>
+       </tr>
+       <tr bgcolor="#FFFFFF">
+       <td>Count</td>
+       <td>$counter </td>
+       </tr>
+      </table>
+      </center>
+ALL
+}
+   
+	else 
+	{
+	     print "<font color=red>ERROR!  Image cannot be found.  Process denied.</font>";
+	} 
+
+	print "</body></html>";
+}
+
+
+
+
+
+
+
+
+

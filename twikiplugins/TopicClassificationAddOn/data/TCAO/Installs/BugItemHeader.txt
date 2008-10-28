@@ -1,0 +1,13 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1164257191" format="1.1" reprev="1.1" version="1.1"}%
+%META:TOPICPARENT{name="BugItem"}%
+---+!! %SPACEOUT{%TOPIC%}%
+__This topic is included in all !BugItem topics and provides a formatted table of the data provided in the !BugForm of the BASETOPIC.__
+
+%STARTINCLUDE%
+%TABLE{sort="off" databg="none" headerbg="none" tableframe="box" tablewidth="100%"}%
+|<font size="+1">%BASETOPIC%: <noautolink>%FORMFIELD{"Summary" topic="%BASEWEB%.%BASETOPIC%"}% </noautolink></font> |||
+| App: %FORMFIELD{"Application" topic="%BASEWEB%.%BASETOPIC%"}% (Ver. %FORMFIELD{"Version" topic="%BASEWEB%.%BASETOPIC%"}%) | Priority: %FORMFIELD{"Priority" topic="%BASEWEB%.%BASETOPIC%"}% | Status: %FORMFIELD{"Status" topic="%BASEWEB%.%BASETOPIC%"}% |
+%STOPINCLUDE%
+
+%META:TOPICMOVED{by="LynnwoodBrown" date="1164256265" from="Applications.BugItemMaster" to="Applications.BugItemHeader"}%
+%META:REVCOMMENT{comment_1=" " minor_1="1" ncomments="1" rev_1="1" t_1="1164256416"}%

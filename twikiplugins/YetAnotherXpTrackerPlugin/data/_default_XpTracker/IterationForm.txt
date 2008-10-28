@@ -1,0 +1,13 @@
+%META:TOPICINFO{author="TWikiGuest" date="1143241449" format="1.0" version="1.6"}%
+| *Name* | *Type*  | *Size* | *Values* | *Tooltip message* | *Mandatory* |
+| Summary		        | text	       | 40 | | | M |
+| Project		        | text	       | 40 | | | M |
+| [[TeamMembers][Feature Lead]] | select       | 1  | | |   |
+| [[TeamMembers][Participants]] | select+multi | 3  | | |   |
+| Description   | textarea | | | | |
+| Justification | textarea | | | | |
+| Minutes Page | text | 40 | | | |
+| Start | date	      | 10 | | | |
+| End | date	      | 10 | | | |
+| Estimated | date    | 10 | | | |
+| Actual | date	      | 10 | | | |

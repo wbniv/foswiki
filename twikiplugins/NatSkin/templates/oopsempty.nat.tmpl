@@ -1,0 +1,16 @@
+%TMPL:INCLUDE{"oops"}%
+<!-- template: oopsempty.nat.tmpl -->
+%TMPL:DEF{"heading"}%%MAKETEXT{"Topic must not be empty"}%%TMPL:END%
+%TMPL:DEF{"message"}%<!-- -->
+%MAKETEXT{"You cannot save a topic with no text entered. Please try again.
+
+Some browser configurations occasionally send undefined data to the
+server. <br/>
+Don't worry, your changes are not lost. Just go <a href=\"javascript:history.back()\">back</a>
+and try again."}%
+<form class="natOopsButtons" name="ButtonBox" action="%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%">
+  <input type="button" class="natOkButton" value='%MAKETEXT{"OK"}%' onclick="history.back()">&nbsp;
+  <input type="submit" class="natCancelButton" value='%MAKETEXT{"Cancel"}%'>
+</form> 
+%MAKETEXT{"The other possibility is that someone sent you the preview URL of [[[_1]]] instead of the view URL." args="%WEB%.%TOPIC%"}%
+%TMPL:END%

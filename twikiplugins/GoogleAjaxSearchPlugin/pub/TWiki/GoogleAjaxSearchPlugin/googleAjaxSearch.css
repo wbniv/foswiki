@@ -1,0 +1,15 @@
+.gsc-control {
+	width:auto;
+	border-width:0 0 0 3px;
+	border-style:solid;
+	border-color:#ccc;
+	padding-left:1em;
+}
+.gsc-webResult a:hover div.gs-title,
+.patternTopic .gsc-webResult a:hover div.gs-title {
+	color:#FBF7E8;
+	background-color:#D6000F;
+}
+.gs-visibleUrl {
+	display:none;
+}

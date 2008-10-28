@@ -1,0 +1,271 @@
+<!ENTITY twiki.homepage "Homepage">
+<!ENTITY twiki.recentchanges "Recent changes">
+<!ENTITY twiki.randompage "Random page">
+<!ENTITY twiki.watchlist "Watchlist">
+<!ENTITY twiki.user "User">
+<!ENTITY twiki.usertalk "User talk">
+<!ENTITY twiki.preferences "Preferences">
+<!ENTITY twiki.contributions "Contributions">
+
+<!ENTITY twiki.toolbar "TWiki">
+<!ENTITY twiki.toolbar.menu "Toolbar">
+<!ENTITY twiki.toolbar.homepage "Homepage">
+<!ENTITY twiki.toolbar.options "Options">
+<!ENTITY twiki.toolbar.tip "TWiki options, homepage">
+
+<!-- character formatting -->
+<!ENTITY twiki.bold "Bold">
+<!ENTITY twiki.bold.accesskey "o">	<!-- could interfere with Bookmarks, mentioned in twikioverlay.xul	was b -->
+<!ENTITY twiki.bold.tip "Bold">
+<!ENTITY twiki.bolditalic "Bold Italic">
+<!ENTITY twiki.bolditalic.accesskey "y"> <!-- was j - changed for visibility -->
+<!ENTITY twiki.bolditalic.tip "Bold Italic">
+<!ENTITY twiki.italic "Italic">
+<!ENTITY twiki.italic.accesskey "z">
+<!ENTITY twiki.italic.tip "Italic">
+<!ENTITY twiki.format.menu "Format">
+<!ENTITY twiki.format.accesskey "r">	<!-- could interfere with File, mentioned in twikioverlay.xul	was f -->
+<!ENTITY twiki.format.tip "Font, style, hue">
+<!ENTITY twiki.underline "Underlined">
+<!ENTITY twiki.underline.accesskey "z">
+<!ENTITY twiki.strike "Strike through">
+<!ENTITY twiki.strike.accesskey "x">
+<!ENTITY twiki.small "Small">	<!-- this isn't used -->
+<!ENTITY twiki.small.accesskey "a">
+<!ENTITY twiki.fixed "Fixed">
+<!ENTITY twiki.fixed.accesskey "z">
+<!ENTITY twiki.pre "Preformatted">
+<!ENTITY twiki.pre.accesskey "x">
+<!ENTITY twiki.verbatim "Verbatim">
+<!ENTITY twiki.verbatim.accesskey "V">	<!-- no interference, because not mentioned in twikioverlay.xul -->
+<!ENTITY twiki.red "Red">
+<!ENTITY twiki.red.accesskey "X">
+<!ENTITY twiki.blue "Blue">
+<!ENTITY twiki.blue.accesskey "Y">
+<!ENTITY twiki.green "Green">
+<!ENTITY twiki.green.accesskey "Z">
+<!ENTITY twiki.bold.fixed "Bold fixed">
+<!ENTITY twiki.bold.fixed.accesskey "T">	<!-- no interference, because not mentioned in twikioverlay.xul -->
+
+<!-- links -->
+<!ENTITY twiki.links.menu "Links">
+<!ENTITY twiki.links.accesskey "x">
+<!ENTITY twiki.links.tip "Links">
+<!ENTITY twiki.forcedlink "Forced link...">
+<!ENTITY twiki.forcedlink.accesskey "z">	<!-- could interfere with format, even though not mentioned in twikioverlay.xul?	was f -->
+<!ENTITY twiki.makeWikiWord "Make WikiWord">
+<!ENTITY twiki.makeWikiWord.accesskey "Q">
+<!ENTITY twiki.anchor "Anchor...">
+<!ENTITY twiki.anchor.accesskey "e">	<!-- no interference, because not mentioned in twikioverlay.xul -->
+
+<!-- paragraph -->
+<!ENTITY twiki.paragraph.menu "Heading">
+<!ENTITY twiki.paragraph.accesskey "n">
+<!ENTITY twiki.paragraph.tip "Heading">
+<!ENTITY twiki.paragraph.level1 "1st Level heading">
+<!ENTITY twiki.paragraph.level1.accesskey "1">
+<!ENTITY twiki.paragraph.level2 "2nd Level heading">
+<!ENTITY twiki.paragraph.level2.accesskey "2">
+<!ENTITY twiki.paragraph.level3 "3rd Level heading">
+<!ENTITY twiki.paragraph.level3.accesskey "3">
+<!ENTITY twiki.paragraph.inclevel "Demote heading">
+<!ENTITY twiki.paragraph.inclevel.accesskey "z">
+<!ENTITY twiki.paragraph.declevel "Promote heading">
+<!ENTITY twiki.paragraph.declevel.accesskey "I">
+<!ENTITY twiki.paragraph.fancy "Fancy heading...">
+<!ENTITY twiki.paragraph.fancy.accesskey "y">
+
+<!-- template -->
+<!ENTITY twiki.template.menu "Insert">
+<!ENTITY twiki.template.accesskey "i">
+<!ENTITY twiki.template.tip "Insert TOC, Icons, etc">
+<!ENTITY twiki.template.toc "Table of contents">
+<!ENTITY twiki.template.notoc "Omit table of contents">
+<!ENTITY twiki.template.tipicon "Suggestion">
+<!ENTITY twiki.template.helpicon "Help">
+<!ENTITY twiki.template.warnicon "Warning">
+<!ENTITY twiki.template.staricon "Important">
+<!ENTITY twiki.template.newicon "New">
+<!ENTITY twiki.template.updatedicon "Updated">
+<!ENTITY twiki.template.attachurlvar "Attachment URL">
+<!ENTITY twiki.template.topicvar "Current Topic">
+<!ENTITY twiki.template.webvar "Current Web">
+
+<!-- list -->
+<!ENTITY twiki.list.menu "List">
+<!ENTITY twiki.list.accesskey "L">
+<!ENTITY twiki.list.tip "List">
+<!ENTITY twiki.list.simple "Bulleted">
+<!ENTITY twiki.list.simple.accesskey "z">
+<!ENTITY twiki.list.numbered "Numbered">
+<!ENTITY twiki.list.numbered.accesskey "z">
+<!ENTITY twiki.list.fancy "Fancy...">
+<!ENTITY twiki.list.fancy.accesskey "y">
+<!ENTITY twiki.list.definition "Definition">
+<!ENTITY twiki.list.definition.accesskey "z">
+<!ENTITY twiki.list.remove "Remove">
+<!ENTITY twiki.list.remove.accesskey "y"> <!-- could interfere with format, mentioned in twikioverlay.xul	was r -->
+
+<!ENTITY twiki.indentation.more "More indentation">
+<!ENTITY twiki.indentation.more.accesskey "z">
+<!ENTITY twiki.indentation.less "Less indentation">
+<!ENTITY twiki.indentation.less.accesskey "z">
+
+<!-- other complex elements -->
+<!ENTITY twiki.table "Table">
+<!ENTITY twiki.table.accesskey "a">	<!-- could interfere with Tools, mentioned in twikioverlay.xul	was t -->
+<!ENTITY twiki.table.tip "Table">
+<!ENTITY twiki.image "Image">
+<!ENTITY twiki.image.accesskey "m">
+<!ENTITY twiki.image.tip "Image">
+<!ENTITY twiki.signature "Signature">
+<!ENTITY twiki.signature.accesskey "x">	<!-- could interfere with Go, mentioned in twikioverlay.xul (but it seems it doesn't, as not in toolbar?)	was g -->
+<!ENTITY twiki.horline "Separator">
+<!ENTITY twiki.horline.accesskey "u">	<!-- could interfere with Help, mentioned in twikioverlay.xul	was h -->
+<!ENTITY twiki.horline.tip "Horizontal line">
+
+<!-- special characters -->
+<!ENTITY twiki.specialchars.menu "Special chars">
+<!ENTITY twiki.specialchars.accesskey "@">
+<!ENTITY twiki.specialchars.tip "Non-ASCII characters">
+<!ENTITY twiki.quotations "Quotation marks">
+<!ENTITY twiki.super "Super">
+<!ENTITY twiki.nbsp "Nonbreaking space">
+<!ENTITY twiki.dash "&#8211; dash">
+<!ENTITY twiki.dagger "&#8224; dagger">
+<!ENTITY twiki.euro "&#8364; Euro">
+<!ENTITY twiki.times "&#215; multiplication">
+<!ENTITY twiki.middot "&#183; middot">
+
+<!ENTITY twiki.specialchar.grave "grave">
+<!ENTITY twiki.specialchar.acute "acute">
+<!ENTITY twiki.specialchar.circumflex "circumflex">
+<!ENTITY twiki.specialchar.tilde "tilde">
+<!ENTITY twiki.specialchar.ring "ring">
+<!ENTITY twiki.specialchar.umlaut "diaresis">
+<!ENTITY twiki.specialchar.macron "macron">
+<!ENTITY twiki.specialchar.breve "breve">
+
+<!-- table creation dialog -->
+<!ENTITY twiki.table.title "Insert table">
+<!ENTITY twiki.table.basic "Size">
+<!ENTITY twiki.table.rows "Rows">
+<!ENTITY twiki.table.columns "Columns">
+<!ENTITY twiki.table.content "Default content">
+<!ENTITY twiki.table.options "Options (only available with TablePlugin)">
+<!ENTITY twiki.table.usePlugin "Use TablePlugin (disabled)">
+<!ENTITY twiki.table.border "Visible border">
+<!ENTITY twiki.table.heading "Emphasized title row">
+<!ENTITY twiki.table.color "Background color">
+<!ENTITY twiki.table.color.select "Select">
+<!ENTITY twiki.table.caption "Caption">
+
+<!-- image creation dialog -->
+<!ENTITY twiki.image.title "Insert image">
+<!ENTITY twiki.image.file "File name">
+<!ENTITY twiki.image.description "Description">
+<!ENTITY twiki.image.format "Format">
+<!ENTITY twiki.image.format.thumb "Thumbnail with standard size">
+<!ENTITY twiki.image.format.thumbsized "Thumbnail with selected size">
+<!ENTITY twiki.image.format.framed "Full size framed">
+<!ENTITY twiki.image.format.full "Full size">
+<!ENTITY twiki.image.format.pixels "Pixels">
+
+<!ENTITY twiki.alignment "Alignment">
+<!ENTITY twiki.alignment.left "Left">
+<!ENTITY twiki.alignment.center "Center">
+<!ENTITY twiki.alignment.right "Right">
+<!ENTITY twiki.alignment.none "None">
+
+<!-- list creation dialog -->
+<!ENTITY twiki.list.title "Nested List">
+<!ENTITY twiki.list.format "Format">
+<!ENTITY twiki.list.format.bulleted "Bullets">
+<!ENTITY twiki.list.format.arabic "1,2,3...">
+<!ENTITY twiki.list.format.letterA "A,B,C...">
+<!ENTITY twiki.list.format.lettera "a,b,c...">
+<!ENTITY twiki.list.format.romanI "I,II,III...">
+<!ENTITY twiki.list.format.romani "i,ii,iii...">
+
+<!ENTITY twiki.nestlevel "Nesting Level">
+<!ENTITY twiki.nestlevel.one "1">
+<!ENTITY twiki.nestlevel.two "2">
+<!ENTITY twiki.nestlevel.three "3">
+<!ENTITY twiki.nestlevel.four "4">
+<!ENTITY twiki.nestlevel.five "5">
+<!ENTITY twiki.nestlevel.six "6">
+
+<!-- heading creation dialog -->
+<!ENTITY twiki.heading.title "Heading">
+<!ENTITY twiki.headinglevel "Heading Level">
+<!ENTITY twiki.headinglevel.one "1">
+<!ENTITY twiki.headinglevel.two "2">
+<!ENTITY twiki.headinglevel.three "3">
+<!ENTITY twiki.headinglevel.four "4">
+<!ENTITY twiki.headinglevel.five "5">
+<!ENTITY twiki.headinglevel.six "6">
+
+<!-- forced link creation dialog -->
+<!ENTITY twiki.link.title "Insert forced link">
+<!ENTITY twiki.link.target "Target">
+<!ENTITY twiki.link.label "Visible text (optional)">
+<!--
+<!ENTITY twiki.link.headlevel "Heading level (0=none)">
+-->
+<!ENTITY twiki.link.headlevel "Heading level">
+<!ENTITY twiki.link.headlevel.zero "None">
+<!ENTITY twiki.link.headlevel.one "1">
+<!ENTITY twiki.link.headlevel.two "2">
+<!ENTITY twiki.link.headlevel.three "3">
+<!ENTITY twiki.link.headlevel.four "4">
+<!ENTITY twiki.link.headlevel.five "5">
+<!ENTITY twiki.link.headlevel.six "6">
+
+<!-- anchor creation dialog -->
+<!ENTITY twiki.anchor.title "Insert anchor">
+<!ENTITY twiki.anchor.target "Target">
+<!ENTITY twiki.anchor.label "Visible text (optional)">
+<!--
+<!ENTITY twiki.anchor.headlevel "Heading level (0=none)">
+-->
+<!ENTITY twiki.anchor.headlevel "Heading level">
+<!ENTITY twiki.anchor.headlevel.zero "None">
+<!ENTITY twiki.anchor.headlevel.one "1">
+<!ENTITY twiki.anchor.headlevel.two "2">
+<!ENTITY twiki.anchor.headlevel.three "3">
+<!ENTITY twiki.anchor.headlevel.four "4">
+<!ENTITY twiki.anchor.headlevel.five "5">
+<!ENTITY twiki.anchor.headlevel.six "6">
+
+<!-- extension options -->
+<!ENTITY twiki.settings.window "TWiki options">
+<!ENTITY twiki.settings.context "twiki.settings.context;">
+<!ENTITY twiki.activation.title "Show TWiki menu">
+<!ENTITY twiki.activation.always "Always">
+<!ENTITY twiki.activation.conditional "Only if URL contains">
+<!ENTITY twiki.settings.user "User options">
+<!ENTITY twiki.settings.locale "Home TWiki">
+<!ENTITY twiki.settings.username "Username">
+
+<!-- shortcut keys; not used if key is empty string -->
+<!--ENTITY twiki.modifiers.bold "control alt"-->
+<!ENTITY twiki.modifiers.bold "alt">
+<!ENTITY twiki.key.bold "b">
+<!ENTITY twiki.modifiers.bolditalic "alt">
+<!ENTITY twiki.key.bolditalic "w">
+<!ENTITY twiki.modifiers.italic "alt">
+<!ENTITY twiki.key.italic "i">
+<!ENTITY twiki.modifiers.links "accel shift">
+<!ENTITY twiki.key.links "x">	<!-- could interfere with Links?	was k -->
+<!--
+<!ENTITY twiki.modifiers.forcedlink "accel shift">
+<!ENTITY twiki.key.forcedlink "L">
+<!ENTITY twiki.modifiers.makeWikiWord "accel shift">
+<!ENTITY twiki.key.makeWikiWord "Q">
+-->
+<!ENTITY twiki.modifiers.table "accel shift">	<!-- probably doesn't interfere with Tools,because of modifiers -->
+<!ENTITY twiki.key.table "T">
+<!ENTITY twiki.modifiers.image "accel shift">
+<!ENTITY twiki.key.image "M">
+<!ENTITY twiki.modifiers.signature "accel shift">
+<!ENTITY twiki.key.signature "Q">

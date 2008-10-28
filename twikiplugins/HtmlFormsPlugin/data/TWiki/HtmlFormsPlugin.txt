@@ -1,0 +1,124 @@
+%META:TOPICINFO{author="SvenDowideit" date="1158056830" format="1.1" reprev="1.3" version="1.3"}%
+---+ %TOPIC%
+
+This plugin can be used to make html forms that set %SYSTEMWEB%.TWikiVariables. SELECT, CHECKBOX and RADIO can be used to select from a comma separated list of options (that could be defined using a SEARCH), while BUTTON, TEXTVALUE and TEXTAREA will set the %SYSTEMWEB%.TWikiVariable based on the value.
+
+I will be using SELECT to allow the user to set a variable to a set of topics, which they will later publish to a web site using TWiki:Plugins/PublishContrib.
+
+---++ Syntax Rules
+
+   * =%<nop>CHECKBOX{}%=
+   * =%<nop>RADIO{}%=
+   * =%<nop>SELECT{}%=
+      * =options=""= - the comma separated list of options, or VARIABLE containing or resulting in such a list (SEARCH is valid)
+      * =currentvalue=""= - single value, or comma separated list of values as appropriate
+      * =destinationaddress="Web.Topic.VARIABLENAME"= (and where Web & Topic can be left out for the usual context driven locations
+   * =%<nop>TEXTVALUE{}%=
+   * =%<nop>TEXTAREA{}%=
+   * =%<nop>BUTTON{}%=
+      * =value=""= - the value to set the destination to
+      * =destinationaddress="Web.Topic.VARIABLENAME"= (and where Web & Topic can be left out for the usual context driven locations
+
+---++++ future development
+   * the addressing scheme is going to change to be XPathy
+   * make all buttons submit all changes - just like inline edit!!
+   * =%<nop>FORMVALUES{"Web.FormDefinitionTopic.FormfieldName"}%= - returns a comma separated list of options defined for that form field
+   * later make a TOM like destination and source value syntax to get values from text, formfields etc
+      * see TWiki:Codev/TopicObjectModel
+
+---++ Examples
+select multiple values from a scrolling selection list, and set WHOWILLITBENOW in Sandbox.WebHome topic
+
+=%<nop>SELECT{options="mary, peter, annabel, nicky, jennifer" currentvalue="%<nop>WHOWILLITBENOW%" destinationaddress="Sandbox.WebHome.WHOWILLITBENOW"}%=
+---+++ if installed
+%SELECT{options="mary, peter, annabel, nicky, jennifer" currentvalue="%WHOWILLITBENOW%" destinationaddress="Sandbox.WebHome.WHOWILLITBENOW"}%
+---+++ demo
+<form method="post" action="" enctype="multipart/form-data">
+<select name="WHOWILLITBENOW"  size="5" multiple="multiple">
+<option value="mary">mary</option>
+<option value="peter">peter</option>
+<option selected="selected" value="annabel">annabel</option>
+<option value="nicky">nicky</option>
+<option selected="selected" value="jennifer">jennifer</option>
+<option selected="selected" value="bananaman">bananaman</option>
+</select><input type="submit" name="button_name" value="set value (WHOWILLITBENOW)" /><input type="hidden" name="htmlformvalue" value="set"  /><input type="hidden" name="variable" value="WHOWILLITBENOW"  /><input type="hidden" name="redirectto" value="TWiki.HtmlFormsPlugin"  /></form>
+---
+select multiple values from a checkbox group list, and set WHOWILLITBENOW in this topic
+
+=%<nop>CHECKBOX{options="mary, peter, annabel, nicky, jennifer" currentvalue="%<nop>WHOWILLITBENOW%" destinationaddress="WHOWILLITBENOW"}%=
+---+++ if installed
+%CHECKBOX{options="mary, peter, annabel, nicky, jennifer" currentvalue="%WHOWILLITBENOW%" destinationaddress="WHOWILLITBENOW"}%
+---+++ demo
+<form method="post" action="" enctype="multipart/form-data">
+<label><input type="checkbox" name="WHOWILLITBENOW" value="mary" />mary</label><br /> <label><input type="checkbox" name="WHOWILLITBENOW" value="peter" />peter</label><br /> <label><input type="checkbox" name="WHOWILLITBENOW" value="annabel" checked="checked" />annabel</label><br /> <label><input type="checkbox" name="WHOWILLITBENOW" value="nicky" />nicky</label><br /> <label><input type="checkbox" name="WHOWILLITBENOW" value="jennifer" checked="checked" />jennifer</label><br /> <label><input type="checkbox" name="WHOWILLITBENOW" value="bananaman" checked="checked" />bananaman</label><br /><input type="submit" name="button_name" value="set value (WHOWILLITBENOW)" /><input type="hidden" name="htmlformvalue" value="set"  /><input type="hidden" name="variable" value="WHOWILLITBENOW"  /><input type="hidden" name="redirectto" value="TWiki.HtmlFormsPlugin"  /></form>
+---
+select one value from a radio selector list, and set WHOWILLITBENOW in this topic
+
+=%<nop>RADIO{options="mary, peter, annabel, nicky, jennifer" currentvalue="%<nop>WHOWILLITBENOW%" destinationaddress="WHOWILLITBENOW"}%=
+---+++ if installed
+%RADIO{options="mary, peter, annabel, nicky, jennifer" currentvalue="%WHOWILLITBENOW%" destinationaddress="WHOWILLITBENOW"}%
+---+++ demo
+<form method="post" action="" enctype="multipart/form-data">
+<label><input type="radio" name="WHOWILLITBENOW" value="mary" />mary</label><br /> <label><input type="radio" name="WHOWILLITBENOW" value="peter" />peter</label><br /> <label><input type="radio" name="WHOWILLITBENOW" value="annabel" checked="checked" />annabel</label><br /> <label><input type="radio" name="WHOWILLITBENOW" value="nicky" />nicky</label><br /> <label><input type="radio" name="WHOWILLITBENOW" value="jennifer" />jennifer</label><br /> <label><input type="radio" name="WHOWILLITBENOW" value="bananaman" />bananaman</label><br /><input type="submit" name="button_name" value="set value (WHOWILLITBENOW)" /><input type="hidden" name="htmlformvalue" value="set"  /><input type="hidden" name="variable" value="WHOWILLITBENOW"  /><input type="hidden" name="redirectto" value="TWiki.HtmlFormsPlugin"  /></form>
+---
+use a single line text edit, and set WHOWILLITBENOWTEXT in this topic
+
+=%<nop>TEXTVALUE{value="There once was a girl" destinationaddress="WHOWILLITBENOWTEXT"}%=
+---+++ if installed
+%TEXTVALUE{value="There once was a girl"  destinationaddress="WHOWILLITBENOWTEXT"}%
+---+++ demo
+<form method="post" action="" enctype="multipart/form-data">
+<input type="text" name="WHOWILLITBENOWTEXT" value="There once was a girl" size="50" maxlength="80" /><input type="submit" name="button_name" value="set value (WHOWILLITBENOWTEXT)" /><input type="hidden" name="htmlformvalue" value="set"  /><input type="hidden" name="variable" value="WHOWILLITBENOWTEXT"  /><input type="hidden" name="redirectto" value="TWiki.HtmlFormsPlugin"  /></form>
+---
+use a multi line text edit, and set WHOWILLITBENOWTEXT in this topic
+
+=%<nop>TEXTAREA{value="There once was a girl" destinationaddress="WHOWILLITBENOWTEXT"}%=
+---+++ if installed
+%TEXTAREA{value="There once was a girl" destinationaddress="WHOWILLITBENOWTEXT"}%
+---+++ demo
+<form method="post" action="" enctype="multipart/form-data">
+<textarea name="WHOWILLITBENOWTEXT"  rows="10" cols="80">There once was a girl</textarea><input type="submit" name="button_name" value="set value (WHOWILLITBENOWTEXT)" /><input type="hidden" name="htmlformvalue" value="set"  /><input type="hidden" name="variable" value="WHOWILLITBENOWTEXT"  /><input type="hidden" name="redirectto" value="TWiki.HtmlFormsPlugin"  /></form>
+---
+
+and set WHOWILLITBENOWTEXT in this topic to "There once was a girl"
+
+=%<nop>BUTTON{value="There once was a girl" destinationaddress="WHOWILLITBENOWTEXT"}%=
+---+++ if installed
+%BUTTON{value="There once was a girl" destinationaddress="WHOWILLITBENOWTEXT"}%
+---+++ demo
+<form method="post" action="" enctype="multipart/form-data">
+<input type="hidden" name="WHOWILLITBENOWTEXT" value="There once was a girl"  /><input type="submit" name="button_name" value="set value (WHOWILLITBENOWTEXT)" /><input type="hidden" name="htmlformvalue" value="set"  /><input type="hidden" name="variable" value="WHOWILLITBENOWTEXT"  /><input type="hidden" name="redirectto" value="TWiki.HtmlFormsPlugin"  /></form>
+---
+
+
+---++ Plugin Installation Instructions
+
+
+---++ Plugin Info
+|  Plugin Author: | TWiki:Main.SvenDowideit |
+|  Copyright: | &copy; 2006, SvenDowideit@WikiRing.com |
+|  License: | GPL2 ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | September 2006 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  September 2006: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 99% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
+
+%META:FORM{name="PackageForm"}%
+%META:FIELD{name="TopicClassification" attributes="" title="TopicClassification" value="PluginPackage"}%
+%META:FIELD{name="TestedOnTWiki" attributes="" title="TestedOnTWiki" value="4.0.0"}%
+%META:FIELD{name="InstalledOnTWikiOrg" attributes="" title="InstalledOnTWikiOrg" value="No"}%
+%META:FIELD{name="DemoUrl" attributes="" title="DemoUrl" value=""}%
+%META:FIELD{name="DevelopedInSVN" attributes="" title="DevelopedInSVN" value="Yes"}%
+%META:FIELD{name="ModificationPolicy" attributes="" title="ModificationPolicy" value="ContactAuthorFirst"}%
+%META:FIELD{name="RelatedTopics" attributes="" title="RelatedTopics" value=""}%
+%META:PREFERENCE{name="WHOWILLITBENOW" title="PREFERENCE_WHOWILLITBENOW" type="Set" value="annabel, jennifer, bananaman"}%
+%META:PREFERENCE{name="SHORTDESCRIPTION" title="PREFERENCE_SHORTDESCRIPTION" type="Set" value="Make HTML forms that set TWiki variables"}%

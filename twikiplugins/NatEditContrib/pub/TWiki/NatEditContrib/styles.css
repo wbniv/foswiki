@@ -1,0 +1,73 @@
+/* natedit base styles */
+ul.natEditTextTools,
+ul.natEditHeadlineTools,
+ul.natEditParagraphTools,
+ul.natEditListTools,
+ul.natEditObjectTools,
+ul.natEditEditTools,
+ul.natEditExitTools,
+ul.natEditOptionTools,
+ul.natEditPreviewTools,
+ul.natEditHelpTools {
+  margin:0px 10px 0px 0px;
+  padding:0px;
+  white-space:nowrap;
+  float:left;
+}
+ul.natEditHelpTools {
+  float:right;
+}
+.natEditToolBar li {
+  display:inline;
+}
+.natEditToolBar ul li a span {
+  display:none;
+}
+
+.natEditToolBar a {
+  text-decoration:none;
+  background-position:top left;
+  background-repeat:no-repeat;
+  float:left;
+  display:block;
+}
+.natEditToolBar a:hover {
+  text-decoration:none;
+  background-color:transparent;
+  _background-color:white;
+  border:0px;
+}
+
+.natEditOptionTools {
+  font-size:12px;
+}
+.natEditForceNewRevision label,
+.natEditForceNewRevision input {
+  margin:4px;
+  _margin:0px;
+  border:0px;
+  vertical-align:middle;
+}
+.natEditFontButtons {
+  margin:0.5em;
+  float:right;
+}
+
+.twikiForm {
+  clear:both;
+}
+
+/* RevCommentPlugin support */
+.revComment {
+  margin:0.5em 0px;
+}
+.revComment label {
+  font-weight:bold;
+}
+.revComment input {
+  width:80%;
+}
+.natEditDoneButton img,
+.natEditCancelButton  img {
+  border:0px;
+}

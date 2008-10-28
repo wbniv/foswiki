@@ -1,0 +1,34 @@
+%META:TOPICINFO{author="StephaneLenclud" date="1179098999" format="1.1" reprev="1.3" version="1.3"}%
+%META:TOPICPARENT{name="TaskExeManager"}%
+---+ Register an executer machine
+
+---++ Usage
+
+   1 Give a TWiki.WikiName for your new executer topic. Example: _ExecuterMyPc_.
+   1 Give the URL for your Executer scripts. Example: _http://my.machine.com/cgi-bin/executer_.
+   1 Give the machine name of your Executer. Example: _my-pc_.
+   1 Click the register button.
+   1 Add some comment and save the newly created topic.
+
+Be careful once your Executer is registered and running everyone can potentially start-up any kind of task on that machine. 
+Of course you can always make your Executer private by using =ALLOWTOPICVIEW= for instance.
+
+---++ Console
+
+%STARTINCLUDE%<form name="executercreate" action="%SCRIPTURLPATH{edit}%/%TASKEXE_TASKWEB%">
+<table>
+<tr><td>Topic name:</td><td><input type="text" value="" name="topic" size="32" /></td> <td>e.g. !ExecuterMyBuildServer</td> </tr>
+<tr><td>Bin URL:</td><td><input type="text" value="" name="BinURL" size="32" /></td> <td>e.g. http://buildserver.local/executer</td> </tr>
+<tr><td>Machine name:</td><td><input type="text" value="" name="Name" size="32" /></td> <td>e.g. build-server</td> </tr>
+<tr><td></td><td></td></tr> 
+
+     <input type="hidden" name="templatetopic" value="%TASKEXE_INSTALLEDWEB%.ExecuterTemplate" />
+     <input type="hidden" name="formtemplate" value="%TASKEXE_INSTALLEDWEB%.ExecuterForm" />
+     <input type="hidden" name="topicparent" value="%TASKEXE_EXECUTERPARENT%" />
+     <input type="hidden" name="onlynewtopic" value="on" />
+     <input type="hidden" name="onlywikiname" value="on" />
+</table>
+<input type="submit" class="twikiSubmit" value='Register' />
+</form>%STOPINCLUDE%
+
+%META:TOPICMOVED{by="StephaneLenclud" date="1178811576" from="TWiki.ExecuterCreate" to="TWiki.ExecuterRegistration"}%

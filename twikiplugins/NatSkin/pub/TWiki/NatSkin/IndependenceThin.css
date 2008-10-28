@@ -1,0 +1,5 @@
+/* thin variant for independence */
+@import url("BaseThin.css");
+.natBody {
+  background-color: #0F314E;
+}

@@ -1,0 +1,59 @@
+%META:TOPICINFO{author="DeanCording" date="1086408449" format="1.0" version="1.3"}%
+---+ <nop>%TOPIC%
+
+This plugin allows you to specify in a topic what template should be used when a child topic is created via Twiki's '?' link.  A number of different templates can be specified thoughout a topic to allow different child topics to be created in different sections of the parent.
+
+---++ Syntax Rules
+
+	* Write the command =%<nop>CHILDTOPICTEMPLATE {= _NameOfTopicTemplate_ =}%= anywhere in your text.
+	* All subsequent unlinked WikiWords will be created using the specified topic template.
+	* Use =%<nop>CHILDTOPICTEMPLATE {}%= to remove the child topic template.
+	* A topic can contain any number of CHILDTOPICTEMPLATE commands. 
+
+---++ Examples
+
+	* =%<nop>CHILDTOPICTEMPLATE {= !NewTopicTemplate =}%=
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Allows templates to be specified for automatic child topic creation.
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the installation was successful:
+		* =%<nop>CHILDTOPICTEMPLATE{ %WEB%.%TOPIC% }%= %CHILDTOPICTEMPLATE{ %WEB%.%TOPIC% }%
+		* Sandbox.NewChildTopicTemplateLinkTest
+
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/DeanCording |
+|  Plugin Version: | 01 Jun 2004 (V1.000) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  01 Jun 2004: | Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+
+-- TWiki:Main/DeanCording - 01 Jun 2004
+

@@ -1,0 +1,69 @@
+/* basic page shadows */
+
+/* debug 
+
+.natPageBox,
+.natBoxBorderTopLeft,
+.natBoxBorderTopRight,
+.natBoxBorderBottomLeft,
+.natBoxBorderBottomRight,
+.natBoxBorderRight,
+.natBoxBorderLeft {
+  order:1px solid red;
+}
+*/
+
+.natBodyContents {
+  background:white;
+}
+
+/* Rules for the top corners and border */
+.natBoxBorderTopLeft {
+  /*margin:0 0 0 18px;*/
+  height:17px;
+  background:url(Box.gif) no-repeat top left;
+}
+tr > .natBoxBorderTopLeft { /* non-IE */
+  background:url(Box.png) no-repeat top left;
+}
+.natBoxBorderTopRight {
+  background:url(Box.gif) no-repeat top right;
+}
+tr > .natBoxBorderTopRight { /* non-IE */
+  background:url(Box.png) no-repeat top right;
+}
+
+/* Rules for the bottom corners and border */
+.natBoxBorderBottomLeft {
+  /*margin:0 0 0 18px;*/
+  height:17px;
+  padding-left:17px;
+  background:url(Box.gif) no-repeat bottom left;
+}
+tr > .natBoxBorderBottomLeft { /* non-IE */
+  background:url(Box.png) no-repeat bottom left;
+}
+.natBoxBorderBottomRight {
+  height:17px;
+  background:url(Box.gif) no-repeat bottom right;
+}
+tr > .natBoxBorderBottomRight { /* non-IE */
+  background:url(Box.png) no-repeat bottom right;
+}
+/* Insert the left border */
+.natBoxBorderLeft {
+  background:url(Border.gif) repeat-y left;
+  padding-left:17px;
+}
+tr > .natBoxBorderLeft { /* non-IE */
+  background:url(Border.png) repeat-y left;
+}
+/* Insert the right border */
+.natBoxBorderRight {
+  background:url(Border.gif) repeat-y right;
+  width:17px;
+}
+tr > .natBoxBorderRight { /* non-IE */
+  background:url(Border.png) repeat-y right;
+}
+

@@ -1,0 +1,26 @@
+#proc page
+pagesize: 8.5 11
+#if @DEVICE in gif,png
+  scale: 0.5
+#endif
+
+#proc drawcommands
+commands: 
+  color blue
+  linetype 0 2 1
+  mov 1 9
+  lin 2 9
+  lin 1.5 10
+  lin 1 9
+  cblock 3 9 5 10 yelloworange 1
+  mark 2.4 9.5 sym9agreen .5
+  mov 1 9.5
+  lin 5 9.5
+
+#proc areadef
+  rectangle: 1 7 5 9
+  xrange: 0 30
+  yrange: 0 10
+
+#proc drawcommands
+file: logo.dcm

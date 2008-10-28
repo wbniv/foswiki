@@ -1,0 +1,14 @@
+Document: twiki
+Title: Debian twiki Manual
+Author: Peter Thoeny <Peter@Thoeny.com>
+Abstract: This manual describes the TWiki web-based collaboration system.
+Section: web
+
+Format: HTML
+Index: /usr/share/doc/twiki/index.html
+Files: /usr/share/doc/twiki/*.html
+
+Format: Text
+Files: /usr/share/doc/twiki/readme.txt
+
+  

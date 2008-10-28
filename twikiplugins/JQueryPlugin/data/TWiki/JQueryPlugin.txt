@@ -1,0 +1,183 @@
+%META:TOPICINFO{author="TWikiContributor" date="1185440968" format="1.1" reprev="1.6" version="$Rev$"}%
+---+!! %TOPIC%
+<!--
+   * Set SHORTDESCRIPTION = jQuery <nop>JavaScript library for TWiki
+-->
+%SHORTDESCRIPTION%
+
+%TOC%
+
+---++ Summary
+This contrib contains the latest version of the [[http://jquery.com][jQuery]]
+<nop>JavaScript library. 
+
+<blockquote>
+"jQuery is a fast, concise, <nop>JavaScript Library that simplifies how you traverse
+HTML documents, handle events, perform animations, and add Ajax interactions to
+your web pages."
+</blockquote>
+
+---++ Included libraries
+   1 jquery v1.1.3.1
+   1 jquery.bgiframe
+   1 jquery.dom 
+   1 jquery.easing
+   1 jquery.hoverIntent
+   1 jquery.innerfade
+   1 jquery.nifty
+   1 jquery.shrinkurls
+   1 jquery.tooltips
+   1 jquery.treeview
+   1 jquery.blockUI
+
+
+---++ TWiki wrappers & helpers
+There are helpers to ease creating buttons and a toggle helpers.
+
+---++ Documentation
+%RED%missing%ENDCOLOR%
+
+---++ Documentation
+   * [[http://docs.jquery.com/How_jQuery_Works][Getting the feets wet]]
+   * [[http://docs.jquery.com/Tutorials][Tutorials]]
+   * [[http://docs.jquery.com/Main_Page][Reference API]]
+   * [[http://docs.jquery.com/Using_jQuery_with_Other_Libraries][Using jQuery with other libraries]]
+   * [[http://docs.jquery.com/Plugins][Plugin repository]]
+
+
+---++ Examples
+---+++ Buttons
+%BUTTON{bg="bluish"}%
+%BUTTON{bg="pinkish"}%
+%BUTTON{bg="greenish"}%
+%BUTTON{style="background-color:orange;color:white;"}%
+%CLEAR%
+
+
+---+++ Toggles
+%TOGGLE{target="#lorem_area" text="$percntX$percnt Slide" effect="slide"}%
+
+<input type="button" value="Toggle" onclick="twiki.JQueryPlugin.toggle('#lorem_area', 'toggle')" />
+<input type="button" value="Fade " onclick="twiki.JQueryPlugin.toggle('#lorem_area', 'fade')"/>
+<input type="button" value="Slide" onclick="twiki.JQueryPlugin.toggle('#lorem_area', 'slide')"/>
+<input type="button" value="Bounce" onclick="twiki.JQueryPlugin.toggle('#lorem_area', 'bounce')"/>
+<input type="button" value="Ease" onclick="twiki.JQueryPlugin.toggle('#lorem_area', 'ease')"/>
+
+<div id="lorem_area" style="border:1px solid #ccc;padding:5px;width:250px">
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nulla dui turpis,
+convallis eget, lacinia id, vulputate ut, ipsum. Donec sed sem. Ut tempus. Nunc
+egestas consectetuer augue. Sed a nibh. Duis rutrum nibh. Sed in orci at arcu
+molestie ultrices. Quisque a lectus. In mollis, nulla id rutrum tincidunt,
+lacus dui vestibulum sapien, vel tincidunt nulla lectus a elit. Nullam laoreet,
+nunc ut varius pulvinar, lacus lectus condimentum orci, nec mattis augue erat
+at mauris. Donec sollicitudin, sapien id lobortis vulputate, tellus sem
+dignissim felis, in laoreet massa purus in mauris. Suspendisse tempus leo quis
+massa. Curabitur tortor eros, dictum sed, tincidunt sit amet, tristique nec,
+nisi. Mauris est urna, fermentum vel, luctus sed, luctus eu, elit. In nulla.
+</div>
+
+---+++ Tooltips
+   * <span class="jqToolTip" title="Hello World: This is my first tooltip!!!">Hello world</span>
+
+---+++ Rounded corners
+<div style="width:520px;">
+  <div class="jqRounded" style="width:250px;float:left;margin:5px">
+    <h2 style="color:#ffffff;background:#778cca;border:0px">1. Lorem ipsum dolor sit amet</h2>
+    <div style="background:#bfdded;color:black">
+      Consectetuer adipiscing elit. Nulla dui turpis,
+      convallis eget, lacinia id, vulputate ut, ipsum. Donec sed sem. Ut tempus. Nunc
+      egestas consectetuer augue. Sed a nibh. Duis rutrum nibh. Sed in orci at arcu
+      molestie ultrices. Quisque a lectus. In mollis, nulla id rutrum tincidunt,
+    </div>
+  </div>
+  <div class="jqRounded" style="width:250px;float:right;margin:5px">
+    <h2 style="color:#ffffff;background:#9DC35B;border:0px;">2. Lorem ipsum dolor sit amet</h2>
+    <div style="background:#C4E786;color:black">
+      Consectetuer adipiscing elit. Nulla dui turpis,
+      convallis eget, lacinia id, vulputate ut, ipsum. Donec sed sem. Ut tempus. Nunc
+      egestas consectetuer augue. Sed a nibh. Duis rutrum nibh. Sed in orci at arcu
+      molestie ultrices. Quisque a lectus. In mollis, nulla id rutrum tincidunt,
+    </div>
+  </div>
+  <div class="jqRounded" style="width:250px;float:left;margin:5px;">
+    <h2 style="color:#ffffff;background:#DBB13F;border:0px;">3. Lorem ipsum dolor sit amet</h2>
+    <div style="background:#ffd154;color:black">
+      Consectetuer adipiscing elit. Nulla dui turpis,
+      convallis eget, lacinia id, vulputate ut, ipsum. Donec sed sem. Ut tempus. Nunc
+      egestas consectetuer augue. Sed a nibh. Duis rutrum nibh. Sed in orci at arcu
+      molestie ultrices. Quisque a lectus. In mollis, nulla id rutrum tincidunt,
+    </div>
+  </div>
+  <div class="jqRounded" style="width:250px;float:right;margin:5px">
+    <h2 style="color:#ffffff;background:#aa0000;border:0px;">4. Lorem ipsum dolor sit amet</h2>
+    <div style="background:#EDC2C2;color:black">
+      Consectetuer adipiscing elit. Nulla dui turpis,
+      convallis eget, lacinia id, vulputate ut, ipsum. Donec sed sem. Ut tempus. Nunc
+      egestas consectetuer augue. Sed a nibh. Duis rutrum nibh. Sed in orci at arcu
+      molestie ultrices. Quisque a lectus. In mollis, nulla id rutrum tincidunt,
+    </div>
+  </div>
+</div>
+<br clear="all" />
+<div class="jqRounded" style="background:#EDC2C2;color:black;width:250px;margin:5px;">
+  <div>
+  Consectetuer adipiscing elit. Nulla dui turpis,
+  convallis eget, lacinia id, vulputate ut, ipsum. Donec sed sem. Ut tempus. Nunc
+  egestas consectetuer augue. Sed a nibh. Duis rutrum nibh. Sed in orci at arcu
+  molestie ultrices. Quisque a lectus. In mollis, nulla id rutrum tincidunt,
+  </div>
+</div>
+
+---+++ Treeview
+<div class="jqTreeview">
+   * list
+      * item
+      * item
+      * item
+   * list
+      * item
+      * item
+      * item
+   * list
+      * item
+      * item
+      * item
+</div>
+<div class="jqTreeview closed red">
+   * list
+      * item
+      * item
+      * item
+   * list
+      * item
+      * item
+      * item
+   * list
+      * item
+      * item
+      * item
+</div>
+
+---++ Installation Instructions
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+%$MANIFEST%
+   * add the following line to the =twiki.tmpl= file
+     <verbatim><script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JQueryContrib/jquery.js"></script></verbatim>
+
+---++ Contrib Info
+|  Contrib Author(s): | TWiki:Main/MichaelDaum - http://wikiring.de |
+|  Copyright: | &copy; 2007 John Resig (jquery.com) |
+|  License: | Dual licensed under the MIT and GPL |
+|  Contrib Version: | v0.1 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  12 Jul 2007: | initial package containing jQuery-1.1.3.1 |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Contrib Home: | http://twiki.org/cgi-bin/view/Plugins/JQueryContrib |
+|  Feedback: | http://twiki.org/cgi-bin/view/Plugins/JQueryContribDev |
+|  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/JQueryContribAppraisal |
+
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add
+comments/questions/remarks to the feedback topic on twiki.org instead. -->

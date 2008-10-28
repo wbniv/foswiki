@@ -1,0 +1,13 @@
+---+ John Ronald Currie
+%INCLUDE{"StdPerson"}%
+---++ Records
+
+
+%EDITTABLE{include="RecordTable"}%
+
+%META:FORM{name="PersonForm"}%
+%META:FIELD{name="Forenames" title="Forenames" value="John Ronald"}%
+%META:FIELD{name="Surname" title="Surname" value="Currie"}%
+%META:FIELD{name="Born" title="Born" value="22 Sep 1870"}%
+%META:FIELD{name="Died" title="Died" value="13 Apr 1949"}%
+%META:FIELD{name="Sex" title="Sex" value="M"}%

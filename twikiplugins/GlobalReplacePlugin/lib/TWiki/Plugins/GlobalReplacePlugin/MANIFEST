@@ -1,0 +1,6 @@
+data/TWiki/GlobalReplacePlugin.txt NEW
+data/TWiki/GlobalSearchAndReplace.txt NEW
+data/TWiki/GlobalSearchAndReplaceHelp.txt NEW
+data/TWiki/GlobalSearchAndReplaceTopics.txt NEW
+lib/TWiki/Plugins/GlobalReplacePlugin.pm NEW
+pub/TWiki/GlobalSearchAndReplaceHelp/GSR.gif NEW

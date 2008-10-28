@@ -1,0 +1,111 @@
+%META:TOPICINFO{author="TWikiContributor" date="1176591878" format="1.1" reprev="1.1" version="1.1"}%
+---+!! Send Email Plugin
+
+*Allows to send e-mail through an e-mail form.*
+
+%TOC%
+
+---++ Usage
+
+   * Create a form on the page.
+      * Call =action= script =sendemail=
+         * =action="%<nop>SCRIPTURL{sendemail}%/%<nop>WEB%/%<nop>TOPIC%"=
+      * Required is a field with =name="to"=
+      * Optional are the fields =cc=, =subject= and =body=
+      * Field =from= may be used but by default the address of =%<nop>WIKIWEBMASTER%= is used (this is set to: %WIKIWEBMASTER%)
+   * To show feedback write =%<nop>SENDEMAIL%= anywhere on the page where the feedback should appear.
+      * Optionally pass parameters =feedbackSuccess= and =feedbackError=. Default feedback messages are set below in [[#PluginSettings][Plugin Settings]].
+
+---++ Example
+---+++ Example form
+
+This form only works if this plugin is enabled - see [[#PluginTest][Plugin Tests]] below to check this.
+
+%SENDEMAIL%
+
+<form enctype="application/x-www-form-urlencoded" name="mailform" action="%SCRIPTURL{sendemail}%/%WEB%/%TOPIC%" method="POST">
+<p>To:<br /><input class="twikiInputField" id="to" name="to" size="30" type="text" value="" /></p>
+<p>CC:<br /><input type="text" class="twikiInputField" id="cc" name="cc" size="30"  value="" /></p>
+<p>Subject:<br /><input type="text" class="twikiInputField" id="subject" name="subject" size="30" value="" /></p>
+<p>Message:<br /><textarea class="twikiInputField" cols="80" name="body" rows="6"></textarea></p>
+<p><input type="submit" class="twikiSubmit" value="Send message" %IF{"context SendEmailPluginEnabled" then='' else='disabled="disabled"'}% /></p>
+</form>
+
+---+++ Example usage
+<verbatim>
+%SENDEMAIL{feedbackSuccess="Successfully sent" feedbackError="Something went wrong." }%
+
+<form enctype="application/x-www-form-urlencoded" name="mailform" action="%SCRIPTURL{sendemail}%/%WEB%/%TOPIC%" method="POST">
+<p>To:<br /><input class="twikiInputField" id="to" name="to" size="30" type="text" value="" /></p>
+<p>CC:<br /><input type="text" class="twikiInputField" id="cc" name="cc" size="30"  value="" /></p>
+<p>Subject:<br /><input type="text" class="twikiInputField" id="subject" name="subject" size="30" value="" /></p>
+<p>Message:<br /><textarea class="twikiInputField" cols="80" name="body" rows="6"></textarea></p>
+<p><input type="submit" class="twikiSubmit" value="Send message" %IF{"context SendEmailPluginEnabled" then='' else='disabled="disabled"'}% /></p>
+</form>
+</verbatim>
+
+
+
+#PluginTest
+---++ Plugin Tests
+   * !SendEmailPlugin is %IF{"context SendEmailPluginEnabled" then='%GREEN%enabled%ENDCOLOR%' else='%RED%not enabled%ENDCOLOR%'}%.
+
+
+
+#PluginSettings
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>CACHECONTENTPLUGIN_SHORTDESCRIPTION%==
+
+   * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = Allows to send e-mail through an e-mail form
+
+   * Default feedback messages:
+      * Set EMAIL_SENT_SUCCESS_MESSAGE = Email sent!
+      * Set EMAIL_SENT_ERROR_MESSAGE = Could not send email
+
+   * Debug plugin: (See output in =data/debug.txt=)
+      * Set DEBUG = 0
+
+
+---++ CSS classes
+
+| *Class name* | *Note* |
+| =sendEmailPluginNotification=  | Used for feedback after sending a mail  |
+| =sendEmailPluginError=         | Styles =sendEmailPluginNotification= in case of an error   |
+
+
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.ArthurClemens |
+|  Plugin Version: | 16 May 2007  |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  16 may 2007 | 1.1.3 Arthur Clemens: fixed bug in bin script that caused form query data to get emptied. |
+|  15 may 2007 | 1.1.2 Arthur Clemens: improved error notifications. |
+|  13 May 2007 | 1.1.1 Arthur Clemens: changed sendmail script invocation to be called through bin script =sendemail=; added CSS styles for feedback notification; fixed typo 'feedbackSucces'. |
+|  05 May 2007 | 1.0 First release. |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+
+
+%META:FILEATTACHMENT{name="sendemailplugin.css" attr="" comment="CSS styles" date="1179167993" path="sendemailplugin.css" size="348" user="Main.TWikiContributor" version=""}%

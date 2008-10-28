@@ -1,0 +1,185 @@
+#!/usr/bin/perl -wT
+#
+# TWiki Enterprise Collaboration Platform, http://TWiki.org/
+#
+# Copyright (C) 2005-2007 TWiki Contributors
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version. For
+# more details read LICENSE in the root of this distribution.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# As per the GPL, removal of this notice is prohibited.
+
+BEGIN {
+
+    # Set default current working directory (needed for mod_perl)
+    if (   $ENV{"SCRIPT_FILENAME"}
+        && $ENV{"SCRIPT_FILENAME"} =~ /^(.+)\/[^\/]+$/ )
+    {
+        chdir $1;
+    }
+
+    # Set library paths in @INC, at compile time
+    unshift @INC, '.';
+    require 'setlib.cfg';
+}
+
+use strict;
+use TWiki;
+use Error qw( :try );
+
+# Use unbuffered IO
+$| = 1;
+
+my $initialContext = { rest => 1 };
+
+# Rest scripts are *always* CGI scripts.
+my $query;
+if ( $ENV{GATEWAY_INTERFACE} ) {
+    $query = new CGI;
+}
+else {
+
+    # script is called by cron job or user
+    $initialContext->{command_line} = 1;
+
+    $query = new CGI();
+    while ( scalar(@ARGV) ) {
+        my $arg = shift(@ARGV);
+        if ( $arg =~ /^-?([A-Za-z0-9_]+)$/o ) {
+            my $name = $1;
+            my $arg  = TWiki::Sandbox::untaintUnchecked( shift(@ARGV) );
+            $query->param( -name => $name, -value => $arg );
+        }
+        else {
+            $query->path_info( TWiki::Sandbox::untaintUnchecked($arg) );
+        }
+    }
+}
+
+my $login = $query->param('username');
+my $pass  = $query->param('password');
+
+# Must define topic param in the query to avoid plugins being
+# passed the path_info when the are initialised. We can't affect
+# the path_info, but we *can* persuade TWiki to ignore it.
+my $topic = $query->param('topic');
+if ($topic) {
+    unless ( $topic =~ /((?:.*[\.\/])+)(.*)/ ) {
+        print $query->header(
+            -type   => 'text/html',
+            -status => '400'
+        );
+        print
+"ERROR: (400) Invalid REST invocation - Invalid topic - no web specified\n";
+        print STDERR
+"ERROR: (400) Invalid REST invocation - Invalid topic - no web specified\n";
+        exit;
+    }
+}
+else {
+
+    # Point it somewhere innocent
+    $topic = $TWiki::cfg{UsersWebName} . '.' . $TWiki::cfg{HomeTopicName};
+    $query->param( -name => 'topic', -value => $topic );
+}
+
+my $twiki = new TWiki( undef, $query, $initialContext );
+
+local $SIG{__DIE__} = \&Carp::confess;
+
+if ($login) {
+    my $validation = $twiki->{users}->checkPassword( $login, $pass );
+    unless ($validation) {
+        print $query->header(
+            -type   => 'text/html',
+            -status => '401'
+        );
+        print "ERROR: (401) Can't login as $login\n";
+        print STDERR "ERROR: (401) Can't login as $login\n";
+        $twiki->finish();
+        exit;
+    }
+
+    my $cUID     = $twiki->{users}->getCanonicalUserID($login);
+    my $WikiName = $twiki->{users}->getWikiName($cUID);
+    $twiki->{users}->{loginManager}->userLoggedIn( $login, $WikiName );
+
+#TODO: its a bit odd that $twiki->{user} has to be manually set (expected userLoggedIn would do it)
+    $twiki->{user} = $cUID;
+}
+
+try {
+    $twiki->{users}->{loginManager}->checkAccess();
+}
+catch Error with {
+    my $e = shift;
+    print $query->header(
+        -type   => 'text/html',
+        -status => '401'
+    );
+    print "ERROR: (401) $e\n";
+    print STDERR "ERROR: (401) $e\n";
+    $twiki->finish();
+    exit;
+};
+
+my $pathInfo = $query->path_info();
+my $cgiScriptName = $ENV{'SCRIPT_NAME'} || '';
+$pathInfo =~ s!$cgiScriptName/!/!i;
+
+unless ( $pathInfo =~ /\/(.*?)[\.\/](.*?)([\.\/].*?)*$/ ) {
+    #TWiki rest invocations are defined as having a subject (pluginName)
+    # and verb (restHandler in that plugin)
+    print $query->header(
+        -type   => 'text/html',
+        -status => '400'
+    );
+    print "ERROR: (400) Invalid REST invocation\n";
+    print STDERR "ERROR: (400) Invalid REST invocation\n";
+    $twiki->finish();
+    exit;
+}
+my ( $subject, $verb ) = ( $1, $2 );
+
+unless ( TWiki::isValidWikiWord($subject) ) {
+    print $query->header(
+        -type   => 'text/html',
+        -status => '404'
+    );
+    print "ERROR: (404) Invalid REST invocation ($subject)\n";
+    print STDERR "ERROR: (404) Invalid REST invocation ($subject)\n";
+    $twiki->finish();
+    exit;
+}
+
+my $function = TWiki::restDispatch( $subject, $verb );
+unless ($function) {
+    print $query->header(
+        -type   => 'text/html',
+        -status => '404'
+    );
+    print "ERROR: (404) Invalid REST invocation ($subject on $verb)\n";
+    print STDERR "ERROR: (404) Invalid REST invocation ($subject on $verb)\n";
+    $twiki->finish();
+    exit;
+}
+no strict 'refs';
+my $result = &$function( $twiki, $subject, $verb );
+use strict 'refs';
+my $endPoint = $query->param('endPoint');
+if ( defined($endPoint) ) {
+    $twiki->redirect( $twiki->getScriptUrl( 1, 'view', '', $endPoint ) );
+}
+else {
+    $twiki->writeCompletePage($result) if $result;
+}
+$twiki->finish();
+
+1;

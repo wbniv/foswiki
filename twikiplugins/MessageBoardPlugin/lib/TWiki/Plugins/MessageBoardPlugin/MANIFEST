@@ -1,0 +1,4 @@
+data/TWiki/MessageBoardPlugin.txt NEW
+lib/TWiki/Plugins/MessageBoardPlugin.pm NEW
+pub/TWiki/MessageBoardPlugin/editicon.png NEW
+pub/TWiki/MessageBoardPlugin/trashcan.png NEW

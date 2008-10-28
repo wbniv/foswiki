@@ -1,0 +1,11 @@
+AUTHOR:
+-------
+My understanding is that the majority of the code was written by
+Andrew Trigell <tridge@linuxcare.com> with the help of Paul "Rusty"
+Russell <rusty@linuxcare.com>. Luke Kenneth Casson Leighton
+<luke@samba.org> also contributed a few patches. Sorted freelist
+merge code added by Jeremy Allison <jeremy@valinux.com>.
+
+PACKAGER
+--------
+Ben Woodard <ben@valinux.com>

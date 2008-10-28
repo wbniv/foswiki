@@ -1,0 +1,22 @@
+%META:TOPICINFO{author="WillNorris" date="1059264720" format="1.0" version="1.2"}%
+%META:TOPICPARENT{name="DoxygenPlugin"}%
+---++ ProjectAP
+   * %DOX{nCelMeshNode project="ProjectAP"}%
+   * %DOX{nKernelServer project="ProjectAP"}%
+   * %DOX{ nKernelServer[does this work????] project="ProjectAP"}%
+   * html file: %DOX{classnCelMeshNode.html project="ProjectAP"}%
+
+---++ TheNebulaDevice
+   * %DOX{nKernelServer}%
+   * %DOX{ nKernelServer project="nebula"}%
+   * %DOX{ nKernelServer[does this work????] project="nebula"}%
+
+---++ other tests?
+   * %DOX{http://drdevtools.sourceforge.net/}%
+   * %DOX{http://drdevtools.sourceforge.net/index.html}%
+
+   * %DOX{http://www.worldfoundry.org/wfwiki/}%
+   * %DOX{http://www.worldfoundry.org/wfwiki/index.html}%
+
+-- Main.WillNorris - 26 Jul 2003
+%META:TOPICMOVED{by="WillNorris" date="1059268412" from="TWiki.DoxygenPluginTest" to="TWiki.DoxygenPluginTests"}%

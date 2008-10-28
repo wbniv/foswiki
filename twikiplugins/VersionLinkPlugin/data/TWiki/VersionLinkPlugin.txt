@@ -1,0 +1,49 @@
+%META:TOPICINFO{author="EdLott" date="1007851656" format="1.0" version="1.1"}%
+---++ <nop>%TOPIC%
+
+This plugin makes it easy to link to a VERSION of an attached file vs. linking to the latest version (what ATTACHURLPATH does).  I basically pinched the code that viewfile.pm uses to let you download versions of files from RCS.
+
+---++ Syntax Rules
+
+	%<nop>VERSIONLINK{ _filename_ , _version_ }%
+
+	*Example:* %<nop>VERSIONLINK{foo.c,1.1}%
+
+---++ <nop>%TOPIC% Settings
+
+Plugin settings are stored as preferences variables. To reference
+a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Version link pluggin
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---+++ Plugin Installation Instructions
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Check this topic here if the installation was successful
+	* Test if the plugin is correctly installed:
+		* %VERSIONLINK{foo.c,1.1}%
+
+---+++ Plugin Info
+
+|  Plugin Author: | Main.EdLott |
+|  Plugin Version: | 08 Dec 2001 |
+|  Change History: | ?? ??? 2001: Added... <br /> 08 Dec 2001: Initial version |
+|  CPAN Dependencies: |  |
+|  Other Dependencies: |  |
+|  Perl Version: | 5.0 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+
+-- Main.EdLott - 08 Dec 2001 <br>

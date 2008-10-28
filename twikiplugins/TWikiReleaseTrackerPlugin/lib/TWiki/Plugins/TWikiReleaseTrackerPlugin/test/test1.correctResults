@@ -1,0 +1,10 @@
+| *File* | *Status* | *Also Occurs In* |
+| /TRTtestsuite/bin/localAndDistro1 | FSCS | <LI>distro1 |
+| /TRTtestsuite/bin/localAndDistro2 | FSCS | <LI>distro2 |
+| /TRTtestsuite/bin/matchesOnlyDistro1 | FSCS | <LI>distro1 |
+| /TRTtestsuite/bin/changedEveryDistro | <A HREF="http://localhost/testPluginTestSuite.pl?mode=lineCount;file=%2FTRTtestsuite%2Fbin%2FchangedEveryDistro;to=distro1%2Cdistro2">FSCD </A> | <LI>distro1 <LI>distro2 |
+| /TRTtestsuite/bin/stayedTheSame | FSCS | <LI>distro1<LI>distro2 |
+| /TRTtestsuite/bin/alteredInInstallation | <A HREF="http://localhost/testPluginTestSuite.pl?mode=lineCount;file=%2FTRTtestsuite%2Fbin%2FalteredInInstallation;to=distro1%2Cdistro2">FSCD </A> | <LI>distro1 <LI>distro2 |
+| (/TRTtestsuite/bin/onlyInInstallation name not recognised, and no content match)  | FDCD | |
+| /TRTtestsuite/bin/sameButCopied | FSCS | <LI>distro1<LI>distro2 |
+| /TRTtestsuite/bin/sameButCopied2 | FDCS | <LI>distro1: same content as '/TRTtestsuite/bin/sameButCopied'<LI>distro2: same content as '/TRTtestsuite/bin/sameButCopied' |

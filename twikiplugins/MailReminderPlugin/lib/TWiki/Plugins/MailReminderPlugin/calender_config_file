@@ -1,0 +1,20 @@
+
+	# configuration file for cron job.
+
+	# name of the host for database.
+	host = paarth.it.iitb.ac.in
+
+	# name of the database.
+	database = it619
+	
+	# name of the user.
+	user = flab
+
+	# the password for the user.
+	passwd = flab123
+
+	# the email address from which to send the reminders.
+	email_from = ashishk@it.iitb.ac.in
+
+	# the mail server.
+	mailserver = smtp.iitb.ac.in

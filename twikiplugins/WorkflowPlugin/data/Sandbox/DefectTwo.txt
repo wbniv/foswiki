@@ -1,0 +1,6 @@
+Here will be the detailed description of the %FORMFIELD{IssueType}%.
+
+%META:FIELD{name="History" attributes="" title="History" value="%WORKFLOWHISTORY%"}%
+%META:PREFERENCE{name="WORKFLOW" title="WORKFLOW" type="Set" value="DefectWorkflow"}%
+%META:PREFERENCE{name="VIEW_TEMPLATE" title="VIEW_TEMPLATE" type="Set" value="ApprovalView"}%
+

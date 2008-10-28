@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="720px" height="630px">
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  <<             Created with FlowchartPlugin for TWiki                >>
+  <<  Get it on http://twiki.org/cgi-bin/view/Plugins/FlowchartPlugin  >>
+    This flowchart was based on:
+    http://localhost/cgi-bin/twiki/view/TWiki/FlowchartPluginExample
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <rect id="caixa_fluxIten1" x="20" y="15"
+        rx="13.3333333333333" ry="13.3333333333333"
+        width="140" height="40"
+        style="fill:#c0d8c0;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;overflow:visible;" />
+  <text xml:space="preserve" id="text_fluxIten1" style="font-size:17px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;stroke:none;font-family:Bitstream Vera Sans;text-anchor:middle;writing-mode:lr-tb;"><tspan x="90" y="35">Flowchart Start</tspan></text>
+  <path id="caixa_fluxIten2"
+        d="M 0.4,0.0 L 0.6,0.0 L 1.0,0.3 L 1.0,0.7 L 0.6,1.0 L 0.4,1.0 L 0.0,0.7 L 0.0,0.3 L 0.4,0.0 z"
+        transform="matrix(140, 0,0, 40, 20,85)"
+        style="fill:#e0d0c0;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;overflow:visible;" />
+  <text xml:space="preserve" id="text_fluxIten2" style="font-size:17px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;stroke:none;font-family:Bitstream Vera Sans;text-anchor:middle;writing-mode:lr-tb;"><tspan x="90" y="105">Question 1</tspan></text>
+  <rect id="caixa_trunk1" x="20" y="155"
+        width="140" height="40"
+        style="fill:#70B070;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;overflow:visible;" />
+  <text xml:space="preserve" id="text_trunk1" style="font-size:17px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;stroke:none;font-family:Bitstream Vera Sans;text-anchor:middle;writing-mode:lr-tb;"><tspan x="90" y="175">Start of</tspan><tspan x="90" y="192">Trunk 1</tspan></text>
+  <rect id="caixa_fluxIten4" x="20" y="225"
+        width="140" height="40"
+        style="fill:#c0d0e0;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;overflow:visible;" />
+  <text xml:space="preserve" id="text_fluxIten4" style="font-size:17px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;stroke:none;font-family:Bitstream Vera Sans;text-anchor:middle;writing-mode:lr-tb;"><tspan x="90" y="245">Bli...</tspan></text>
+  <path id="caixa_fluxIten5"
+        d="M 0.4,0.0 L 0.6,0.0 L 1.0,0.3 L 1.0,0.7 L 0.6,1.0 L 0.4,1.0 L 0.0,0.7 L 0.0,0.3 L 0.4,0.0 z"
+        transform="matrix(140, 0,0, 40, 20,295)"
+        style="fill:#e0d0c0;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;overflow:visible;" />
+  <text xml:space="preserve" id="text_fluxIten5" style="font-size:17px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;stroke:none;font-family:Bitstream Vera Sans;text-anchor:middle;writing-mode:lr-tb;"><tspan x="90" y="315">Question 2</tspan></text>
+  <path id="caixa_fluxIten6"
+        d="M 0.4,0.0 L 0.6,0.0 L 1.0,0.3 L 1.0,0.7 L 0.6,1.0 L 0.4,1.0 L 0.0,0.7 L 0.0,0.3 L 0.4,0.0 z"
+        transform="matrix(140, 0,0, 40, 20,365)"
+        style="fill:#e0d0c0;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;overflow:visible;" />
+  <text xml:space="preserve" id="text_fluxIten6" style="font-size:17px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;stroke:none;font-family:Bitstream Vera Sans;text-anchor:middle;writing-mode:lr-tb;"><tspan x="90" y="385">Question 4</tspan></text>
+  <rect id="caixa_fluxIten7" x="20" y="435"
+        width="140" height="40"
+        style="fill:#c0d0e0;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;overflow:visible;" />
+  <text xml:space="preserve" id="text_fluxIten7" style="font-size:17px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;stroke:none;font-family:Bitstream Vera Sans;text-anchor:middle;writing-mode:lr-tb;"><tspan x="90" y="455">Bla bla bla...</tspan></text>
+  <path id="caixa_Quest6"
+        d="M 0.4,0.0 L 0.6,0.0 L 1.0,0.3 L 1.0,0.7 L 0.6,1.0 L 0.4,1.0 L 0.0,0.7 L 0.0,0.3 L 0.4,0.0 z"
+        transform="matrix(140, 0,0, 40, 20,505)"
+        style="fill:#e0d0c0;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;overflow:visible;" />
+  <text xml:space="preserve" id="text_Quest6" style="font-size:17px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;stroke:none;font-family:Bitstream Vera Sans;text-anchor:middle;writing-mode:lr-tb;"><tspan x="90" y="525">Question 6</tspan></text>
+  <rect id="caixa_Fim1" x="20" y="575"
+        rx="13.3333333333333" ry="13.3333333333333"
+        width="140" height="40"
+        style="fill:#b0b8c0;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;overflow:visible;" />
+  <text xml:space="preserve" id="text_Fim1" style="font-size:17px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;stroke:none;font-family:Bitstream Vera Sans;text-anchor:middle;writing-mode:lr-tb;"><tspan x="90" y="595">End of Trunk 1</tspan></text>
+  <rect id="caixa_Lennon" x="200" y="505"
+        width="140" height="40"
+        style="fill:#c0d0e0;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;overflow:visible;" />
+  <text xml:space="preserve" id="text_Lennon" style="font-size:17px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;stroke:none;font-family:Bitstream Vera Sans;text-anchor:middle;writing-mode:lr-tb;"><tspan x="270" y="525">"Imagine all</tspan><tspan x="270" y="542">the people..."</tspan></text>
+  <rect id="caixa_trunk2" x="380" y="85"
+        width="140" height="40"
+        style="fill:#E0B040;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;overflow:visible;" />
+  <text xml:space="preserve" id="text_trunk2" style="font-size:17px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;stroke:none;font-family:Bitstream Vera Sans;text-anchor:middle;writing-mode:lr-tb;"><tspan x="450" y="105">Start of</tspan><tspan x="450" y="122">Trunk 2</tspan></text>
+  <rect id="caixa_fluxIten12" x="380" y="155"
+        width="140" height="40"
+        style="fill:#c0d0e0;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;overflow:visible;" />
+  <text xml:space="preserve" id="text_fluxIten12" style="font-size:17px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;stroke:none;font-family:Bitstream Vera Sans;text-anchor:middle;writing-mode:lr-tb;"><tspan x="450" y="175">Blo...</tspan></text>
+  <path id="caixa_fluxIten13"
+        d="M 0.4,0.0 L 0.6,0.0 L 1.0,0.3 L 1.0,0.7 L 0.6,1.0 L 0.4,1.0 L 0.0,0.7 L 0.0,0.3 L 0.4,0.0 z"
+        transform="matrix(140, 0,0, 40, 380,225)"
+        style="fill:#e0d0c0;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;overflow:visible;" />
+  <text xml:space="preserve" id="text_fluxIten13" style="font-size:17px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;stroke:none;font-family:Bitstream Vera Sans;text-anchor:middle;writing-mode:lr-tb;"><tspan x="450" y="245">Question 3</tspan></text>
+  <path id="caixa_fluxIten14"
+        d="M 0.4,0.0 L 0.6,0.0 L 1.0,0.3 L 1.0,0.7 L 0.6,1.0 L 0.4,1.0 L 0.0,0.7 L 0.0,0.3 L 0.4,0.0 z"
+        transform="matrix(140, 0,0, 40, 380,295)"
+        style="fill:#e0d0c0;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;overflow:visible;" />
+  <text xml:space="preserve" id="text_fluxIten14" style="font-size:17px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;stroke:none;font-family:Bitstream Vera Sans;text-anchor:middle;writing-mode:lr-tb;"><tspan x="450" y="315">Question 5</tspan></text>
+  <path id="caixa_fluxIten15"
+        d="M 0.4,0.0 L 0.6,0.0 L 1.0,0.3 L 1.0,0.7 L 0.6,1.0 L 0.4,1.0 L 0.0,0.7 L 0.0,0.3 L 0.4,0.0 z"
+        transform="matrix(140, 0,0, 40, 380,365)"
+        style="fill:#e0d0c0;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;overflow:visible;" />
+  <text xml:space="preserve" id="text_fluxIten15" style="font-size:17px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;stroke:none;font-family:Bitstream Vera Sans;text-anchor:middle;writing-mode:lr-tb;"><tspan x="450" y="385">Question 7</tspan></text>
+  <rect id="caixa_fluxIten16" x="380" y="435"
+        width="140" height="40"
+        style="fill:#c0d0e0;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;overflow:visible;" />
+  <text xml:space="preserve" id="text_fluxIten16" style="font-size:17px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;stroke:none;font-family:Bitstream Vera Sans;text-anchor:middle;writing-mode:lr-tb;"><tspan x="450" y="455">Faz algo</tspan></text>
+  <path id="caixa_fluxIten17"
+        d="M 0.4,0.0 L 0.6,0.0 L 1.0,0.3 L 1.0,0.7 L 0.6,1.0 L 0.4,1.0 L 0.0,0.7 L 0.0,0.3 L 0.4,0.0 z"
+        transform="matrix(140, 0,0, 40, 380,505)"
+        style="fill:#e0d0c0;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;overflow:visible;" />
+  <text xml:space="preserve" id="text_fluxIten17" style="font-size:17px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;stroke:none;font-family:Bitstream Vera Sans;text-anchor:middle;writing-mode:lr-tb;"><tspan x="450" y="525">Question 9</tspan></text>
+  <rect id="caixa_fim" x="380" y="575"
+        rx="13.3333333333333" ry="13.3333333333333"
+        width="140" height="40"
+        style="fill:#b0b8c0;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;overflow:visible;" />
+  <text xml:space="preserve" id="text_fim" style="font-size:17px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;stroke:none;font-family:Bitstream Vera Sans;text-anchor:middle;writing-mode:lr-tb;"><tspan x="450" y="595">End of Trunk 2</tspan><tspan x="450" y="612">:-)</tspan></text>
+  <rect id="caixa_error" x="560" y="505"
+        rx="13.3333333333333" ry="13.3333333333333"
+        width="140" height="40"
+        style="fill:#e0a0a0;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;overflow:visible;" />
+  <text xml:space="preserve" id="text_error" style="font-size:17px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;stroke:none;font-family:Bitstream Vera Sans;text-anchor:middle;writing-mode:lr-tb;"><tspan x="630" y="525">ERROR bla...</tspan><tspan x="630" y="542">:-(</tspan></text>
+
+  <path id="form_fluxIten1_to_fluxIten2"
+        d="M 90,55 C 90,55 90,85 90,85"
+        style="stroke-width:2px;stroke:#000000;stroke-opacity:0.40;fill:none;" />
+  <path id="seta_to_fluxIten2" d="M 5,10 L 0,0 L 5,2 L 10,0 L 5,10 z"
+        transform="translate(85,80)" style="stroke:none;fill:#707070;" />
+
+  <path id="form_fluxIten2_to_trunk1"
+        d="M 90,125 C 90,125 90,155 90,155"
+        style="stroke-width:2px;stroke:#000000;stroke-opacity:0.40;fill:none;" />
+  <path id="seta_to_trunk1" d="M 5,10 L 0,0 L 5,2 L 10,0 L 5,10 z"
+        transform="translate(85,150)" style="stroke:none;fill:#707070;" />
+  <circle cx="90" cy="125" r="2.5" stroke="none" fill="green"/>
+
+  <path id="form_trunk1_to_fluxIten4"
+        d="M 90,195 C 90,195 90,225 90,225"
+        style="stroke-width:2px;stroke:#000000;stroke-opacity:0.40;fill:none;" />
+  <path id="seta_to_fluxIten4" d="M 5,10 L 0,0 L 5,2 L 10,0 L 5,10 z"
+        transform="translate(85,220)" style="stroke:none;fill:#707070;" />
+
+  <path id="form_fluxIten4_to_fluxIten5"
+        d="M 90,265 C 90,265 90,295 90,295"
+        style="stroke-width:2px;stroke:#000000;stroke-opacity:0.40;fill:none;" />
+  <path id="seta_to_fluxIten5" d="M 5,10 L 0,0 L 5,2 L 10,0 L 5,10 z"
+        transform="translate(85,290)" style="stroke:none;fill:#707070;" />
+
+  <path id="form_fluxIten5_to_trunk1"
+        d="M 160,321.666666666667 C 186.666666666667,321.666666666667 220,168.333333333333 160,168.333333333333"
+        style="stroke-width:2px;stroke:#000000;stroke-opacity:0.40;fill:none;" />
+  <path id="seta_to_trunk1" d="M 0,5 L 10,0 L 8,5 L 10,10 L 0,5 z"
+        transform="translate(155,163.333333333333)" style="stroke:none;fill:#707070;" />
+  <circle cx="160" cy="321.666666666667" r="2.5" stroke="none" fill="green"/>  <path id="form_fluxIten5_to_fluxIten6"
+        d="M 90,335 C 90,335 90,365 90,365"
+        style="stroke-width:2px;stroke:#000000;stroke-opacity:0.40;fill:none;" />
+  <path id="seta_to_fluxIten6" d="M 5,10 L 0,0 L 5,2 L 10,0 L 5,10 z"
+        transform="translate(85,360)" style="stroke:none;fill:#707070;" />
+  <circle cx="90" cy="335" r="2.5" stroke="none" fill="red"/>
+
+  <path id="form_fluxIten6_to_fluxIten7"
+        d="M 90,405 C 90,405 90,435 90,435"
+        style="stroke-width:2px;stroke:#000000;stroke-opacity:0.40;fill:none;" />
+  <path id="seta_to_fluxIten7" d="M 5,10 L 0,0 L 5,2 L 10,0 L 5,10 z"
+        transform="translate(85,430)" style="stroke:none;fill:#707070;" />
+  <circle cx="90" cy="405" r="2.5" stroke="none" fill="green"/>
+
+  <path id="form_fluxIten7_to_Quest6"
+        d="M 90,475 C 90,475 90,505 90,505"
+        style="stroke-width:2px;stroke:#000000;stroke-opacity:0.40;fill:none;" />
+  <path id="seta_to_Quest6" d="M 5,10 L 0,0 L 5,2 L 10,0 L 5,10 z"
+        transform="translate(85,500)" style="stroke:none;fill:#707070;" />
+
+  <path id="form_Quest6_to_Fim1"
+        d="M 90,545 C 90,545 90,575 90,575"
+        style="stroke-width:2px;stroke:#000000;stroke-opacity:0.40;fill:none;" />
+  <path id="seta_to_Fim1" d="M 5,10 L 0,0 L 5,2 L 10,0 L 5,10 z"
+        transform="translate(85,570)" style="stroke:none;fill:#707070;" />
+  <circle cx="90" cy="545" r="2.5" stroke="none" fill="green"/>  <path id="form_Quest6_to_Lennon"
+        d="M 160,531.666666666667 C 180,531.666666666667 180,518.333333333333 200,518.333333333333"
+        style="stroke-width:2px;stroke:#000000;stroke-opacity:0.40;fill:none;" />
+  <path id="seta_to_Lennon" d="M 10,5 L 0,0 L 2,5 L 0,10 L 10,5 z"
+        transform="translate(195,513.333333333333)" style="stroke:none;fill:#707070;" />
+  <circle cx="160" cy="531.666666666667" r="2.5" stroke="none" fill="red"/>
+
+  <path id="form_Lennon_to_trunk1"
+        d="M 252.5,505 C 252.5,435 250,168.333333333333 160,168.333333333333"
+        style="stroke-width:2px;stroke:#000000;stroke-opacity:0.40;fill:none;" />
+  <path id="seta_to_trunk1" d="M 0,5 L 10,0 L 8,5 L 10,10 L 0,5 z"
+        transform="translate(155,163.333333333333)" style="stroke:none;fill:#707070;" />  <path id="form_fluxIten6_to_Quest6"
+        d="M 160,391.666666666667 C 186.666666666667,391.666666666667 220,518.333333333333 160,518.333333333333"
+        style="stroke-width:2px;stroke:#000000;stroke-opacity:0.40;fill:none;" />
+  <path id="seta_to_Quest6" d="M 0,5 L 10,0 L 8,5 L 10,10 L 0,5 z"
+        transform="translate(155,513.333333333333)" style="stroke:none;fill:#707070;" />
+  <circle cx="160" cy="391.666666666667" r="2.5" stroke="none" fill="red"/>  <path id="form_fluxIten2_to_trunk2"
+        d="M 160,111.666666666667 C 250,129.166666666667 290,80.8333333333333 380,98.3333333333333"
+        style="stroke-width:2px;stroke:#000000;stroke-opacity:0.40;fill:none;" />
+  <path id="seta_to_trunk2" d="M 10,5 L 0,0 L 2,5 L 0,10 L 10,5 z"
+        transform="translate(375,93.3333333333333)" style="stroke:none;fill:#707070;" />
+  <circle cx="160" cy="111.666666666667" r="2.5" stroke="none" fill="red"/>
+
+  <path id="form_trunk2_to_fluxIten12"
+        d="M 450,125 C 450,125 450,155 450,155"
+        style="stroke-width:2px;stroke:#000000;stroke-opacity:0.40;fill:none;" />
+  <path id="seta_to_fluxIten12" d="M 5,10 L 0,0 L 5,2 L 10,0 L 5,10 z"
+        transform="translate(445,150)" style="stroke:none;fill:#707070;" />
+
+  <path id="form_fluxIten12_to_fluxIten13"
+        d="M 450,195 C 450,195 450,225 450,225"
+        style="stroke-width:2px;stroke:#000000;stroke-opacity:0.40;fill:none;" />
+  <path id="seta_to_fluxIten13" d="M 5,10 L 0,0 L 5,2 L 10,0 L 5,10 z"
+        transform="translate(445,220)" style="stroke:none;fill:#707070;" />
+
+  <path id="form_fluxIten13_to_Lennon"
+        d="M 380,251.666666666667 C 300,251.666666666667 420,518.333333333333 340,518.333333333333"
+        style="stroke-width:2px;stroke:#000000;stroke-opacity:0.40;fill:none;" />
+  <path id="seta_to_Lennon" d="M 0,5 L 10,0 L 8,5 L 10,10 L 0,5 z"
+        transform="translate(335,513.333333333333)" style="stroke:none;fill:#707070;" />
+  <circle cx="380" cy="251.666666666667" r="2.5" stroke="none" fill="green"/>  <path id="form_fluxIten13_to_fluxIten14"
+        d="M 450,265 C 450,265 450,295 450,295"
+        style="stroke-width:2px;stroke:#000000;stroke-opacity:0.40;fill:none;" />
+  <path id="seta_to_fluxIten14" d="M 5,10 L 0,0 L 5,2 L 10,0 L 5,10 z"
+        transform="translate(445,290)" style="stroke:none;fill:#707070;" />
+  <circle cx="450" cy="265" r="2.5" stroke="none" fill="red"/>
+
+  <path id="form_fluxIten14_to_fluxIten15"
+        d="M 450,335 C 450,335 450,365 450,365"
+        style="stroke-width:2px;stroke:#000000;stroke-opacity:0.40;fill:none;" />
+  <path id="seta_to_fluxIten15" d="M 5,10 L 0,0 L 5,2 L 10,0 L 5,10 z"
+        transform="translate(445,360)" style="stroke:none;fill:#707070;" />
+  <circle cx="450" cy="335" r="2.5" stroke="none" fill="green"/>
+
+  <path id="form_fluxIten15_to_fluxIten16"
+        d="M 450,405 C 450,405 450,435 450,435"
+        style="stroke-width:2px;stroke:#000000;stroke-opacity:0.40;fill:none;" />
+  <path id="seta_to_fluxIten16" d="M 5,10 L 0,0 L 5,2 L 10,0 L 5,10 z"
+        transform="translate(445,430)" style="stroke:none;fill:#707070;" />
+  <circle cx="450" cy="405" r="2.5" stroke="none" fill="green"/>
+
+  <path id="form_fluxIten16_to_fluxIten17"
+        d="M 450,475 C 450,475 450,505 450,505"
+        style="stroke-width:2px;stroke:#000000;stroke-opacity:0.40;fill:none;" />
+  <path id="seta_to_fluxIten17" d="M 5,10 L 0,0 L 5,2 L 10,0 L 5,10 z"
+        transform="translate(445,500)" style="stroke:none;fill:#707070;" />
+
+  <path id="form_fluxIten17_to_fim"
+        d="M 450,545 C 450,545 450,575 450,575"
+        style="stroke-width:2px;stroke:#000000;stroke-opacity:0.40;fill:none;" />
+  <path id="seta_to_fim" d="M 5,10 L 0,0 L 5,2 L 10,0 L 5,10 z"
+        transform="translate(445,570)" style="stroke:none;fill:#707070;" />
+  <circle cx="450" cy="545" r="2.5" stroke="none" fill="green"/>  <path id="form_fluxIten17_to_error"
+        d="M 520,531.666666666667 C 540,531.666666666667 540,518.333333333333 560,518.333333333333"
+        style="stroke-width:2px;stroke:#000000;stroke-opacity:0.40;fill:none;" />
+  <path id="seta_to_error" d="M 10,5 L 0,0 L 2,5 L 0,10 L 10,5 z"
+        transform="translate(555,513.333333333333)" style="stroke:none;fill:#707070;" />
+  <circle cx="520" cy="531.666666666667" r="2.5" stroke="none" fill="red"/>  <path id="form_fluxIten15_to_trunk2"
+        d="M 520,391.666666666667 C 546.666666666667,391.666666666667 580,98.3333333333333 520,98.3333333333333"
+        style="stroke-width:2px;stroke:#000000;stroke-opacity:0.40;fill:none;" />
+  <path id="seta_to_trunk2" d="M 0,5 L 10,0 L 8,5 L 10,10 L 0,5 z"
+        transform="translate(515,93.3333333333333)" style="stroke:none;fill:#707070;" />
+  <circle cx="520" cy="391.666666666667" r="2.5" stroke="none" fill="red"/>  <path id="form_fluxIten14_to_error"
+        d="M 520,321.666666666667 C 600,321.666666666667 480,518.333333333333 560,518.333333333333"
+        style="stroke-width:2px;stroke:#000000;stroke-opacity:0.40;fill:none;" />
+  <path id="seta_to_error" d="M 10,5 L 0,0 L 2,5 L 0,10 L 10,5 z"
+        transform="translate(555,513.333333333333)" style="stroke:none;fill:#707070;" />
+  <circle cx="520" cy="321.666666666667" r="2.5" stroke="none" fill="red"/>
+</svg>

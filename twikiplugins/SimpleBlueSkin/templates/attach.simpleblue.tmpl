@@ -1,0 +1,77 @@
+%TMPL:INCLUDE{"twiki"}%
+
+%TMPL:DEF{"script"}%
+<script type="text/javascript">
+<!--HIDE
+function initForm() {
+   document.main.filepath.focus();
+}
+function uploadFile()
+{
+  document.forms[document.forms.length-1].submit();
+}
+
+function changeProperties()
+{
+  document.forms[document.forms.length-1].changeproperties.value="1";
+  document.forms[document.forms.length-1].submit();
+}
+//STOP HIDING-->
+</script>%TMPL:END%
+
+%TMPL:DEF{"notes"}%
+*Notes:*
+   * *Help:* Please see %SYSTEMWEB%.FileAttachment for more information about attaching files.
+   * *File size:* You can upload files up to %ATTACHFILESIZELIMIT% KB in size.
+   * *Link checkbox:* If the attached file is a JPG, GIF or PNG image and you check the box, 
+     it will create an inline image (e.g. show the image) at the end of the topic.  For other
+     file types a simple link will be created.
+   * *Bug:* Internet Explorer 4.0 or earlier: If you get an "Internal Server Error"
+     message when you upload a file, you need to try again. It should work the second time.
+%TMPL:END%
+
+%TMPL:DEF{"actionstring"}%Attach%TMPL:END%
+
+%TMPL:DEF{"simpleBlueFormAction"}%
+<form name="main" enctype="multipart/form-data" action="%SCRIPTURLPATH%/upload%SCRIPTSUFFIX%/%WEB%/%TOPIC%" method="post">%TMPL:END%
+
+%TMPL:DEF{"simpleBlueContentPane"}%
+%TMPL:P{"contentheadingvariable"}%
+---++ Existing attachments for <nop>%TOPIC%
+%META{"attachments" all="on"}%
+%TMPL:P{"attachHeading"}%
+<div id="simpleBlueTable">
+ <div id="simpleBlueRow" class="floatbox, width600">
+  <div id="simpleBlue2CTableColumn1" class="width100">Local file:</div>
+  <div id="simpleBlue2CTableColumn2" class="width480">
+   <input type="hidden" name="filename" value="%FILENAME%" />
+   <input class="width300" type="file" name="filepath" value="%FILEPATH%"/>
+  </div>
+ </div>
+ <div id="simpleBlueRow" class="floatbox, width600">
+  <div id="simpleBlue2CTableColumn1" class="width100">Comment:</div>
+  <div id="simpleBlue2CTableColumn2" class="width480">
+   <input class="width300" type="text" name="filecomment" value="%FILECOMMENT%" maxlength="256"/>
+  </div>
+ </div>
+ <div id="simpleBlueRow" class="floatbox, width600">
+  <div id="simpleBlue2CTableColumn1" class="width100"></div>
+  <div id="simpleBlue2CTableColumn2" class="width480">
+   <input type="checkbox" name="createlink" %ATTACHLINKBOX% /> Create a link to the attached file at the end of the topic.
+  </div>
+ </div>
+ <div id="simpleBlueRow" class="floatbox, width600">
+  <div id="simpleBlue2CTableColumn1" class="width100"></div>
+  <div id="simpleBlue2CTableColumn2" class="width480">
+   <input type="checkbox" name="hidefile" %HIDEFILE% /> Hide attachment in normal topic view.
+  </div>
+ </div>
+ <div id="simpleBlueSpacer10">&nbsp;</div>
+ </div>
+ %TMPL:P{"actionbarbottomvariable"}%
+ %TMPL:P{"contentnotes"}%
+%TMPL:END%
+
+%TMPL:DEF{"attach"}%
+%TMPL:P{"simpleBluePage"}%
+%TMPL:END%

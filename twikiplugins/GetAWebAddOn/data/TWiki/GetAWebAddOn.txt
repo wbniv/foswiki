@@ -1,0 +1,59 @@
+%META:TOPICINFO{author="guest" date="1103336402" format="1.0" version="1.1"}%
+---+!! <nop>GetAWebAddOn version 0.97
+
+%TOC%
+
+---++ Background
+
+Sometime I find useful to make a zipped copy of a whole Web
+from remote (for backup or offline reading).
+
+Here I enclose a small package for zipping a whole Web.
+
+=get-a-web= can be used as a link, as it gets the compression type from the URI itself
+
+---++ Supported File Formats
+
+The script produces files in the formats:
+	* =.tar=
+
+---++ Usage
+
+| Web | Format | Versions | URI |
+| Webname | tar | all | =%<nop>SCRIPTURL%/get-a-web%<nop>SCRIPTSUFFIX%/Webname/Webname.tar= |
+
+---++ Security
+	* All the data/pub/template files of the chosen web are zipped, except for the .htaccess and .htpasswd and the *.lock files.
+	* User authentication can be handled with apache &lt;Location&gt; directive.
+
+---++ Demo
+
+%WEBLIST{ format="	* %SCRIPTURL%/get-a-web%SCRIPTSUFFIX%/$name/$name.wiki.tar" }%
+
+---++ Installation
+	* usual Add-On installation (unzip in twiki root directory)
+
+---++ Add-On Info
+
+|  Add-on Author: | TWiki:Main.AndreaSterbini, TWiki:Main.WillNorris |
+|  Add-on Version: | 08 Dec 2004 (v0.96) |
+|						| 02 Dec 2004 (v0.95) |
+|						| 12 Oct 2004 (v0.9) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|	7 Feb 2005: | 0.97 made compatable with Cairo _or_ DEVELOP |
+|	8 Dec 2004: | 0.96 added more error checking, redirects errors to browser for easier debugging |
+|	2 Dec 2004: | 0.95 updated to use Archive::Tar instead of system calls (only tar is available atm); also now works correctly and automatically regardless of whether your pub, templates, and data directories all share the same parent directory, or are spread out |
+|  12 Oct 2004: | 0.9 for TWiki:Codev/TWikiRelease01Sep2004 |
+|  17 Sep 2000: | Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | zip or tar + gzip or bzip2 |
+|  Perl Version: | 5.005 |
+|  License: | GPL |
+|  Add-on Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topic:__ %SYSTEMWEB%.TWikiAddOns
+
+-- TWiki:Main.AndreaSterbini - 17 Sep 2000 %BR%
+-- TWiki:Main.WillNorris - 12 Oct 2004, 02 Dec 2004, 08 Dec 2004, 07 Feb 2005
+

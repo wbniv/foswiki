@@ -1,0 +1,7 @@
+%META:TOPICINFO{author="StephaneLenclud" date="1179063488" format="1.1" reprev="1.2" version="1.2"}%
+%META:TOPICPARENT{name="TaskExeManager"}%
+<select name="taskspec">
+%STARTINCLUDE%
+%SEARCH{ "META\:FORM.name\=.*TaskSpecForm" scope="all" regex="on" nonoise="on" nosearch="on" format="<option value='$topic'>$formfield(Name)</option>" web="%TASKEXE_TASKWEB%" excludetopic="Fake*, Test*"}%
+%STOPINCLUDE%
+</select>

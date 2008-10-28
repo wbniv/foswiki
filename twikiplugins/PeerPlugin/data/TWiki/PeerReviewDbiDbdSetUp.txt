@@ -1,0 +1,18 @@
+%META:TOPICINFO{version="1.1" date="993658761" author="RoeS01" format="1.0beta"}%
+*DBD/DBI Setup*
+
+Do PeerReviewMySQLSetUp first!
+
+Use CPAN to install the DBI bundle.
+
+Use CPAN to install the DBD bundle (DBD::msql::mysql) - it will ask you for a username and password to connect to the database - use test access to get started).
+
+
+
+-- People.StephenRoe - 27 Jun 2001 <br>
+<!--TWikiCat--> <h4> WikiCategory </h4>
+<table border="1" cellspacing="0" cellpadding="1">
+<tr>
+<td valign="top" align="right"> TopicClassification:  <br></td><td>  FeatureUnderConstruction </td>
+</tr>
+</table><!--TWikiCat-->

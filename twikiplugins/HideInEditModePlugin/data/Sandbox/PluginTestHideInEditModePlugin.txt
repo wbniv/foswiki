@@ -1,0 +1,13 @@
+%META:TOPICINFO{author="NobodySpecial" date="1142017356" format="1.1" version="1.2"}%
+%META:TOPICPARENT{name="WebTopicList"}%
+%STARTHIDDEN%
+
+<!--
+   * Set ALLOWTOPICHIDDEN = %USERSWEB%.TWikiAdminGroup
+-->
+
+This should be hidden in edit mode
+
+%ENDHIDDEN%
+
+This should be visible

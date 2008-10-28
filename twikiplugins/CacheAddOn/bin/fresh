@@ -1,0 +1,36 @@
+#!/bin/ksh
+#
+# @(#)$Id: fresh 4835 2003-05-19 21:08:57Z pklausner $ GNU (c) Peter Klausner
+#
+# NAME:
+#	fresh - force refreshing cache
+#
+# SYNOPSIS:
+#	%SCRIPTURL%/fresh/%WEB%/%TOPIC%
+#	%SCRIPTURL%/fresh/%WEB%/%TOPIC%?maxage=0
+#
+# DESCRIPTION:
+#	Simply deletes all files created by cache script.
+#	Use PATH_INFO to map topic to files.
+#	The option maxage=0 compares the date of the cached entry
+#	to that of the data directory.
+#	This changes with each begin/end edit operation in TWiki.
+#
+# SEE ALSO:
+#	cache.sh  flush  view
+#
+
+# customize...
+cache=/var/twiki/cache
+data=/var/twiki/data
+
+if  expr "$QUERY_STRING" : ".*maxage=0" >/dev/null
+then
+    if [ "$cache$PATH_INFO?$QUERY_STRING" -nt `dirname "$data$PATH_INFO"` ]
+    then
+	exec ./view "$@"
+    fi
+fi
+/bin/rm -f "/var/twiki/cache$PATH_INFO?"* \
+	   "/var/twiki/cache$PATH_INFO?$QUERY_STRING"	2>/dev/null
+exec ./view "$@"

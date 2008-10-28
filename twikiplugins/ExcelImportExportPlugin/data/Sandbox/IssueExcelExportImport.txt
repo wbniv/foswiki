@@ -1,0 +1,84 @@
+%META:TOPICINFO{author="ClausLanghans" date="1155480919" format="1.0" version="1.1"}%
+%META:TOPICPARENT{name="IssueTracking"}%
+---+!! Excel Export and Import
+%TOC%
+*%RED% This is an alpha version of a potentially dangerous programs%ENDCOLOR%*
+---++ Description
+
+Two programs are provided:
+	1 topics2excel to convert a set of topic into an Excel sheet
+	1 excel2topics to convert an Excel sheet into topics
+
+---+++ topics2excel 
+
+---+++ excel2topics
+	* *WARNING*: The =excel2topics= script is a very powerful tool. It can overwrite every topic in your web with a new version. Be careful what you are doing with this program.
+	* You can use this tool to import topics that do not have a form attached to them at all. Just create a Excel sheet with a TEXT and a TOPIC column. The TEXT column contains the raw text of the topic while the TOPIC column contains the topic name.
+
+---++ How it works
+	1 Export by clicking [[%SCRIPTURL%/topics2excel/%WEB%/%TOPIC%][here]]
+	1 Edit the Excel file
+	1 Attach the Excel file to this topic with the name "<nop>%UPLOADFILE%"
+	1 Import by clicking [[%SCRIPTURL%/excel2topics/%WEB%/%TOPIC%][here]]
+	1 Check for the issues in the IssueTracker
+
+---++ Settings 
+
+---+++ Common Settings
+
+	* Set FORM = IssueTrackingForm 
+	* Set DEBUG = 0
+	* Set TEXTTOPIC = TEXT
+	* Set TOPICCOLUMN = TOPIC
+
+---+++ Import Settings
+	* Set TOPICPARENT = IssueTracker
+	* Set UPLOADFILE = IssueExcelExportImport.xls 
+	* Set NEWTOPICTEMPLATE = IssueTemplate
+
+---+++ Export Settings
+	* Set VERTICALCOLWIDTH = 2.66
+	* Set PAGEWIDTH = 215
+	* Set DATETIMEFORMAT = yyyymmdd-hh:mm
+	* Set TEMPLATETOPIC = Template
+
+%EDITTABLE{}%
+| *Field* | *Meaning* | *Default* |
+| Name | Name of the form field |  |
+| Short Name | Column header. The Short Name and Name need to be the same if you want to be able to import the exported files without changing the column headers |  |
+| Width | Width of the column |  |
+| Orientation | Vertical | h |
+| Data Type | empty (=text) or date | text |
+
+Format of the exported Excel:
+<noautolink>
+%EDITTABLE{}%
+| *Name* | *Short Name* | *Width* | *Orientation* | *Data Type* |
+| STATUS | STATUS |  | v |  |
+| NUM | NUM |  | v |  |
+| DATE_LOGGED | DATE_LOGGED |  | v | date |
+| LOGGED_BY | LOGGED_BY |  | v |  |
+| SERVICE | SERVICE |  | v |  |
+| REGION | REGION |  | v |  |
+| REGION_AFFECTED  | REGION_AFFECTED |  | v |  |
+| USERS_AFFECTED | USERS_AFFECTED |  |  |  |
+| SHORT_DESCRIPTION | SHORT_DESCRIPTION |  |  |  |
+| PROBLEM_DETAILS | PROBLEM_DETAILS |  |  |  |
+| SERVICE | SERVICE |  | v |  |
+| ACTION_OWNER | ACTION_OWNER |  | v |  |
+| NEXT_STEPS | NEXT_STEPS |  |  |  |
+| START | START |  | v |  |
+| DURATION | DURATION |  | v |  |
+| SEVERITY | SEVERITY |  | v |  |
+| REOC | REOC |  | v |  |
+| FIX_PRIORITY | FIX_PRIORITY |  | v |  |
+| NEXT_UPDATE | NEXT_UPDATE |  | v | date |
+| TOPIC | TOPIC |  |  |  |
+| TEXT | TEXT |  |  |  |
+| TopicClassification | TopicClassification |  |  |  |
+</noautolink>
+
+
+
+
+%META:FILEATTACHMENT{name="IssueExcelExportImport.xls" attr="" comment="" date="1155480798" path="h:\tmp\IssueExcelExportImport.xls" size="24064" user="ClausLanghans" version="1.1"}%

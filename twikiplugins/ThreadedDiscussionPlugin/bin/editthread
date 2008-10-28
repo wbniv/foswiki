@@ -1,0 +1,93 @@
+#!/usr/bin/perl -wT
+#
+# TWiki Collaboration Platform, http://TWiki.org/
+#
+# Copyright (C) 1999-2004 Peter Thoeny, peter@thoeny.com
+#
+# Based on parts of Ward Cunninghams original Wiki and JosWiki.
+# Copyright (C) 1998 Markus Peter - SPiN GmbH (warpi@spin.de)
+# Some changes by Dave Harris (drh@bhresearch.co.uk) incorporated
+#
+# For licensing info read license.txt file in the TWiki root.
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details, published at 
+# http://www.gnu.org/copyleft/gpl.html
+
+BEGIN {
+    # Set default current working directory
+    if( $ENV{"SCRIPT_FILENAME"} && $ENV{"SCRIPT_FILENAME"} =~ /^(.+)\/[^\/]+$/ ) {
+        chdir $1;
+    }
+    # Set library paths in @INC at compile time
+    unshift @INC, '.';
+    require 'setlib.cfg';
+}
+
+# Which ones do we really need?
+use vars qw(
+        $web $topic $user $installWeb $VERSION $pluginName
+	$translationToken
+    );
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+use CGI;
+use TWiki;
+use TWiki::Contrib::EditContrib;
+use TWiki::Plugins::ThreadedDiscussionPlugin;
+
+&main();
+
+sub main
+{
+    my ($query, $topic, $webName, $text, $tmpl ) = &TWiki::Contrib::EditContrib::edit( );
+
+    my $theNr = int($query->param('nr')) || 0;
+    if ( $theNr == 0 ) {
+
+      # redirect to view script
+
+    } else {
+
+      my $theSec = int($query->param('sec')) || 0;
+      my $sectxt = "";
+      my $pretxt = "";
+      my $postxt = "";
+      $TWiki::Plugins::ThreadedDiscussionPlugin::pos = 0;
+
+      # Identify the sections (note this loops over all text, even
+      # if the relevant section is found early
+      $text =~ s/%DISCUSSION{(.*?)}%(([\n\r]+[^\t]{1}[^\n\r]*)*?)(([\n\r]+\t[^\n\r]*)+)/&TWiki::Plugins::ThreadedDiscussionPlugin::handleAnalyzeList($1, $2, $4, $theNr, $query, $theSec)/ges;
+
+      if ( ($TWiki::Plugins::ThreadedDiscussionPlugin::postxt eq "")
+	   && ($TWiki::Plugins::ThreadedDiscussionPlugin::pretxt eq "") ) {
+	# Start a new discussion
+        $TWiki::Plugins::ThreadedDiscussionPlugin::pos = 0;
+	$text =~ s/%DISCUSSION{(.*?)}%(.*?)([\n\r])/&TWiki::Plugins::ThreadedDiscussionPlugin::handleAnalyzeEmptyList($1, $2, $3, $theNr, $query)/ges;
+      }
+
+      my $theLevel = int($query->param('level')) || 0;
+      my $editUrl = &TWiki::Func::getScriptUrl( $webName, $topic, "editthread" );
+      my $editUrlParams = "&nr=$theNr&sec=$theSec&level=$theLevel#SECEDITBOX";
+      $tmpl =~ s/%EDIT%/$editUrl/go;
+      $tmpl =~ s/%EDITPARAMS%/$editUrlParams/go;
+
+      my @sections = split(/${translationToken}_section_$translationToken/i, $text);
+      my $leader = $TWiki::Plugins::ThreadedDiscussionPlugin::pretxt;
+      $pretxt = $sections[0] . $leader;
+      $sectxt = $TWiki::Plugins::ThreadedDiscussionPlugin::sectxt;
+      $postxt = $TWiki::Plugins::ThreadedDiscussionPlugin::postxt . $sections[2];
+
+      $leader = "%DISCUSSION{noicons=\"on\" focus=\"$translationToken%DISCUSSIONDELETE%$translationToken\"}%" .  $leader .  $translationToken . "%DISCUSSIONDELETE%" . $translationToken . "\n";
+
+      TWiki::Contrib::EditContrib::finalize_edit ($query, $topic, $webName, $pretxt, $sectxt, $postxt, $leader, "", $tmpl);
+
+    }
+}

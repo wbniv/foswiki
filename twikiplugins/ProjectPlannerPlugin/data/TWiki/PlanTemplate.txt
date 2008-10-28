@@ -1,0 +1,18 @@
+%META:TOPICINFO{author="kiran" date="1097088689" format="1.0" version="1.3"}%
+<h1>%TOPIC%</h1>
+
+%EDITTABLE{ format="| text, 20 | text, 40 |" changerows="off" }%
+|*PP Plan Project*| PPPARENTPAGE |
+|*PP Plan Summary*| PPSUMMARY |
+|*PP Plan Id(s)*| PPID |
+
+<h3>Tasks in this Plan</h3>
+
+
+%EDITTABLE{ header="|*Num* | *Task Name* | *Summary* | *Module* | *Developer* | *Priority* | *Status* | *Est. Days* | *Spent Days* | *Est. Effort* | *Results_Comments* | *Date Added* | *Key* |" format="| row, -1 | text, 20, NewTaskNameWikiWord | text, 40, | select, 1, design, development, testing, environment, other | text, 20, unassigned | select, 1, none, high, medium, low | select, 1, not started, in progress, waiting, done, cancelled | select, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 20, 25, 30, 35, 40, 45, 50 | select, 1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 20, 25, 30, 35, 40, 45, 50 | select, 1, 100, 50, 75, 25, 10, 20, 30, 40, 50, 60, 70, 80, 90 | text, 30, | label, 0, %SERVERTIME{"$day $mon $year"}% | label, 0, PPTASK |"  changerows="on" }%
+| *Num* | *Task Name* | *Summary* | *Module* | *Developer* | *Priority* | *Status* | *Est. Days* | *Spent Days* | *Est. Effort* | *Results_Comments* | *Date Added* | *Key* |
+
+
+
+<b>Plan Details</b>
+

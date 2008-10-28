@@ -1,0 +1,5 @@
+%META:TOPICINFO{author="TWikiContributor" date="1132161897" format="1.1" version="$Rev$"}%
+%STARTINCLUDE%
+---+ Recent Changes
+%SEARCH{".*" regex="on" scope="topic" nonoise="on" format="   * [[$web.$topic][$topic]]" limit="20" order="modified" reverse="on"}%
+%STOPINCLUDE%

@@ -1,0 +1,55 @@
+---+!! WikiwygContrib Package
+
+WikiwygContrib bundles up [[http://www.wikiwyg.net][WikiWyg]] wiki editor, and adds it to the options that you can use for Wysiwyg editing using the WysiwygPlugin. If you are using =pattern= skin (or any other skin thst uses =COMPOSER=), then when you set the =COMPOSER= variable to =wikiwyg=, the WYSIWYG edit button will use wikiwyg. Right now, it works only with FireFox, but I'm looking into getting it working in InternetExplorer etc.
+
+This is a work in progress, using Wikiwyg version 0.12 , and it is not advisable to be used on topics that contain inline html.
+
+*Caveat*: %TOPIC% is designed for editing TWiki topics, not as a general purpose HTML editor. It will work fine on topics that contain text, TML formatting, and most HTML. However, because of the complexity of transforming TML into HTML and back, complex TML, and mixing HTML and TML may not give the results you expect. You are recommended to use the standard browser textarea editor for editing existing topics that contain mixed HTML and TML, or complex %<nop>TML%-type variables.
+
+---++ Settings
+
+Settings are stored as preferences variables. To reference a setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, e.g. ==%<nop>WIKIWYGCONTRIB_STUB%==
+
+   * One line description:
+      * Set SHORTDESCRIPTION = Add Wikiwyg editor to Wysiwyg
+
+   * Name of the perl package
+      * Set STUB = %$STUB%
+
+---++ Installation Instructions
+%$INSTALL_INSTRUCTIONS%
+
+*Do not forget to enable the WysiwygPlugin in =configure= or it won't work*.
+
+If you are using =pattern= skin:
+   * set the COMPOSER variable to 'wikiwyg' in %USERSWEB%.TWikiPreferences
+Otherwise:
+	* To enable the editor in one of your skins, add the following link to the skin alongside or in place of the existing 'edit' link:<br /><code>&lt;a href="%<nop>SCRIPTURLPATH%/edit%<nop>SCRIPTSUFFIX%/%<nop>WEB%/%<nop>TOPIC%?skin=wikiwyg"&gt;Wikiwyg&lt;/a&gt;</code><br />As you can see this is just a standard edit link with the wikiwyg skin in place of the usual edit skin. Here it is for this topic: <a href="%SCRIPTURLPATH%/edit%SCRIPTSUFFIX%/%WEB%/%TOPIC%?skin=wikiwyg">Wikiwyg</a>. Try clicking on it, but _do not save_!
+
+---++ Contrib Info
+
+|  Plugin Author: | TWiki:Main.SvenDowideit - SvenDowideit@wikiring.com - <img src="%ATTACHURLPATH%/wikiringlogo20x20.png" /> [[http://www.wikiring.com][WikiRing.com]] |
+|  Copyright &copy;: | 2006, SvenDowideit@WikiRing.com and Copyright (c) 2005,2006 Socialtext Corporation |
+|  License: | LGPL ([[http://www.gnu.org/copyleft/lesser.txt][GNU Lesser General Public License]])  |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Version: | %$VERSION% |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  12119 | Minor changes since Kupu and WysiwygPlugin got divorced |
+|  | Initial version |
+|  Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences
+
+%META:FORM{name="PackageForm"}%
+%META:FIELD{name="TopicClassification" attributes="" title="TopicClassification" value="PluginPackage"}%
+%META:FIELD{name="TestedOnTWiki" attributes="" title="TestedOnTWiki" value="4.0.0"}%
+%META:FIELD{name="InstalledOnTWikiOrg" attributes="" title="InstalledOnTWikiOrg" value="No"}%
+%META:FIELD{name="DemoUrl" attributes="" title="DemoUrl" value=""}%
+%META:FIELD{name="DevelopedInSVN" attributes="" title="DevelopedInSVN" value="Yes"}%
+%META:FIELD{name="ModificationPolicy" attributes="" title="ModificationPolicy" value="ContactAuthorFirst"}%
+%META:FIELD{name="RelatedTopics" attributes="" title="RelatedTopics" value="WysiwygPlugin"}%
+%META:FIELD{name="TestedOnOS" attributes="" title="TestedOnOS" value="OsLinux"}%
+%META:FIELD{name="ShouldRunOnOS" attributes="" title="ShouldRunOnOS" value="AnyOS"}%
+%META:FILEATTACHMENT{name="wikiringlogo20x20.png" attr="h" autoattached="1" comment="wikiringlogo20x20.png" date="1161609076" path="wikiringlogo20x20.png" size="1343" user="Main.SvenDowideit" version="1"}%

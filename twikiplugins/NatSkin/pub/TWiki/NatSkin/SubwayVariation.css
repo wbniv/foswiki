@@ -1,0 +1,79 @@
+/* header art variation */
+.natHeaderArt {
+  background:black;
+  background-image:url(SubwayBar.jpg); 
+  background-repeat:no-repeat;
+  background-position:top left;
+}
+.natSearchBoxTop input {
+  background:black;
+  color:white;
+  border:0px;
+}
+.natAction {
+  color:#EBF020;
+}
+.natSearchBox,
+.natTopBar,
+.natTopBar a {
+  color:white;
+}
+.natWebTitle a,
+.natWebButtons,
+.natWebButtons a {
+  color:white;
+}
+.natWebLocator {
+  display:none;
+}
+.natWebSlogan,
+.natWebTitle {
+  color:white;
+}
+
+/* twiki table variation */
+.twikiPageForm table,
+.twikiTable th {
+  border:0px;
+  border-bottom:1px solid #d9d6e7;
+  background:transparent;
+}
+.natTopicForm .twikiTable {
+  background:transparent;
+}
+.natTopicForm {
+  border-top:2px solid #06c;
+  border-bottom:2px solid #06c;
+  background:#ddd;
+}
+.twikiPageForm th,
+.natTopicForm td {
+  background:transparent;
+  border:0px;
+}
+.twikiPageForm table th,
+.twikiPageForm table th a,
+.twikiPageForm table th,
+.natTopicForm table th a {
+  background:transparent;
+}
+.natTopicForm select,
+.twikiPageForm select,
+.twikiPageForm table textarea,
+.twikiPageForm table input,
+.natTopicForm table textarea,
+.natTopicForm table input {
+  background:#ddd;
+  border:0px;
+  border:1px solid #666666;
+}
+
+/* twiki toc variation */
+.twikiToc {
+  background:transparent;
+  border:0px;
+}
+.twikiToc li a:hover {
+  background:#06c;
+  color:white;
+}

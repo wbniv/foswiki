@@ -1,0 +1,51 @@
+
+<link rel='stylesheet' type='text/css' href='%PLUGINPUBURL%/twikiwyg.css' />
+<script src="%PLUGINPUBURL%//dojo-0.2.2-kitchen_sink/dojo.js" type="text/javascript"></script>
+<script type="text/javascript">
+dojo.require("dojo.widget.Editor");
+</script>
+
+<script>
+//find a way to detect and chain to ComponentEditPlugin
+//returns the potentially modified TWikiVariable
+callComponentEdit = function(event, tml) {
+    if (typeof this.popupComponentEdit!="undefined") {//defined by component edit
+        tml = popupComponentEdit(event, tml);
+    } else {
+        alert('no ComponentEditPlugin loaded: '+tml);
+    }
+    return tml;
+}
+
+//ONLY one config
+var editorArgs = {
+    //items: ["bold", "italic", "underline", "strikethrough"]
+};
+
+function gotoEditMode(topicSectionObject) {
+    topicSectionObject.HTMLdiv.style.display = 'none';
+    topicSectionObject.TML2HTMLdiv.style.display = 'inline';
+    topicSectionObject.TML2HTMLdiv.innerHTML = getEditableHTML(topicSectionObject);//TODO:careful this should never be called twice
+
+    //add popup TWikiComponent edit
+    if (typeof addComponentEditClick!="undefined") {
+        addComponentEditClick(topicSectionObject.TML2HTMLdiv);
+    }
+    return;
+//TODO: this does not quite work 
+    var editor = dojo.widget.fromScript("Editor", editorArgs,
+                                    topicSectionObject.TML2HTMLdiv);
+    editor.onSave = function(e) {alert('save')};
+    editor.onCancel = function(e) {
+                                                    topicSectionObject.HTMLdiv.style.display = 'inline';
+                                                    topicSectionObject.TML2HTMLdiv.style.display = 'none';
+                                            };
+
+    
+    return editor;
+}
+
+initialiseInlineEditDiv = function(topicSectionObject) {
+}
+
+</script>

@@ -1,0 +1,5 @@
+/* border variation for squash */
+@import url('BaseBorder.css');
+.natBody {
+  background:#dbdad6;
+}

@@ -1,0 +1,529 @@
+%META:TOPICINFO{author="TWikiGuest" date="1155224748" format="1.1" version="1.2"}%
+---+!! FormQueryPlugin
+
+The FormQueryPlugin provides a query interface to the [[TWiki:Plugins/DBCacheContrib][TWiki::Contrib::DBCacheContrib]] module, giving a way to present query results as formatted tables.
+
+When using the plugin each topic is treated as a container for data fields. These fields can be the fields in the form attached to the topic, or can be parsed out of the topic. The database is managed by the [[TWiki:Plugins/DBCacheContrib][TWiki::Contrib::DBCacheContrib]] module, which must be installed for this plugin to work.
+
+The tutorial section of this topic gives an introduction to formulating and formatting queries using this plugin, and is a good place to start.
+
+%RED%
+Note: This variant of FormQueryPlugin is incompatible with earlier releases by
+   * removing support for features that are not part of the core functionality of this plugin, and
+   * striving towards compatibility with core TWiki functionality and key plugins such as Plugins.SpreadSheetPlugin.
+If the requirements management features of earlier versions of FormQueryPlugin
+are required, do not use this version.
+%ENDCOLOR%
+
+%TOC%
+
+---++ Features
+   * Perform complex queries on the database
+   * Extensive conditional formatting support
+   * Automatic derivation of new topic names
+   * Recognition and special formatting of key data strings
+
+---+++ How the database gets built
+The basic database is built using the DBCacheContrib. Refer to the documentation of that module for details of how it works.
+
+As well as the form data loaded by the DBCacheContrib, the FormQueryPlugin adds the ability to extract embedded tables from topics.
+
+Embedded tables that follow a specific format (defined using the Edit<nop>TablePlugin) are added to the topic as an array of rows, each of which contains a map keyed on the fields and mapping to the values in the table. This array is added to the topic as a field named the same as the table type. Where there are multiple tables of the same type in a topic, they are concatenated together into a single array. See [[#SettingsAnchor][Settings]] for more information about how to set up tables.
+
+Topics can also be automatically related to each other by name. The plugin uses something called [[#TopicRelations][Topic Relations]] that allow the creation of two-way relationships between topics. Topic relations from parent topics to child topics are stored in the map of the parent topic using _the name of the relation_ as the field name and an array of references to the maps of child topics. Reverse relations from child to parent topics are also stored. See [[#SettingsAnchor][Settings]] for more information about how to set up topic relations.
+
+Most of the rest of this documentation describes how to search this database and generate reports.
+
+---++ Syntax Rules
+
+A query has first to be _formed_ using =FORMQUERY=, and then _shown_ using =SHOWQUERY=. You can combine these operations using =DOQUERY=. Queries are output according to a format specification in the parameters to =SHOWQUERY=. You can cache these specifications for re-use by defining them using =TABLEFORMAT=.
+
+---+++ Queries
+---++++ <code>%FORMQUERY</code>
+<code>%FORMQUERY</code> is the basic query mechanism. A <code>%FORMQUERY</code> works either on the whole database or, if the =query= parameter is given, the results of another query.
+| *Parameter* | *Description* |
+| =name= | Required, gives the name of the query result for use in <code>%SHOWQUERY</code> or another <code>%FORMQUERY</code> |
+| =search= | Required, the search to perform (see [[#SearchOperators][Search operators]]). Default parameter; the keyword =search= may be omitted. |
+| =casesensitive= | Optional, if missing or =off= search is not casesensitive. |
+| =query= | Optional, the name of the query to refine. If missing, defaults to the whole database |
+| =extract= | Optional, the name of a field in each of the matched maps to flatten out into the returned list. |
+| =moan= | Optional, "on" or "off", if set to "off" will disable match failed message |
+
+For example,
+<pre>
+%<nop>FORMQUERY{name=AQuery search="Owner='Main\.Fred'"}%
+%<nop>FORMQUERY{name=BQuery query=AQuery search="Product='Boiled Egg'"}%
+%<nop>FORMQUERY{name=CQuery query=BQuery search="" extract=Cooking<nop>Times}%
+%<nop>FORMQUERY{name=DQuery query=CQuery search="Time < '4'"}%
+</pre>
+will search for all topics with a form field =Owner= set to =Main.Fred=, then filter that down to those topics that have =Product= set to =Boiled Egg=. Then it will extract and flatten out the embedded table =Cooking<nop>Times= in each matched topic. By "flatten out" we mean that future queries on =CQuery= must refer to the fields of the =Cooking<nop>Times= table, not the fields of the topic, i.e. =CQuery= will be an array of all the rows in the embedded table. Finally it will filter down to those rows that have the column =Time= &lt; 4 minutes.
+
+Of course there is more than one way to skin a cat. A faster way to formulate the *same* query would be to say:
+<pre>
+%<nop>FORMQUERY{name=AQuery search="Owner='Main\.Fred' AND Product='Boiled Egg'" extract=Cooking<nop>Times}%
+%<nop>FORMQUERY{name=DQuery query=AQuery search="Time < '4'"}%
+</pre>
+
+FORMQUERY is normally silent i.e. it generates no output unless there is an error, in which case an error description is inserted. This error message can be disabled using the =moan= parameter which makes =FORMQUERY= totally silent.
+
+#SearchOperators
+---+++++ Search operators
+%INCLUDE{"DBCacheContrib" section="searchoperators"}%
+
+Search operators work on the fields of each map, be it a topic or an embedded table row.
+
+Fields can be simple field names or can be more complex, and may even contain embedded searches. See [[#FieldRefs][Fields]] below for more information.
+
+A search defined as some text _string_ without any search operators is interpreted as =text=~'string'=.
+
+At present there is no way to constrain a search on the contents of a contained table, such as an embedded table or forward relation. However there are usually ways around this; for example, a <code>%FORMQUERY</code> that uses =extract= to flatten all the sub-tables, and then use of the parent relation to complete the search. For example:
+<pre>
+%<nop>FORMQUERY{name=AQuery search="Product='Boiled Egg'" extract=Cooking<nop>Times}%
+%<nop>FORMQUERY{name=DQuery query=AQuery search="Time < '4' AND CookingTimes_of.Owner='Main\.Fred'"}%
+</pre>
+
+#FieldRefs
+---+++++ Fields
+Field references can be as simple as the name of a field, or may be more complex expressions that can even include embedded searches. The precise interpretation of the syntax depends on the type (Map or Array) of the object being referenced.
+
+*Arrays*
+   * =N= where =N= is a number will get the Nth entry in the array e.g. =attachments.9=
+   * =X= will return the sum of the subfield =X= of each entry e.g. =TaskTable.Effort= will sum the =Effort= column in a table called =TaskTable=.
+   * =[?<i>search</i>]= will perform the given search over the entries in the array. Always returns an array result, even when there is only one result. For example: <code>attachments[?name='pitcha.gif']</code> will return an array of all the entries that have their subfield =name= set to =pitcha.gif=.
+   * =[*X]= will get a new array made from field X of each entry in this array. For example =attachments[*size]= will get an array of the sizes of each attachment.
+*Maps*
+   * =X= will get the subfield named =X=. For example, =Product= will get the formfield named =Product=.
+   * =X.Y= will get the subfield =Y= of the subfield named =X=.
+In all cases
+   * =#= means "reset to root". So =#.Y= will return the subfield =Y= of the Map at the root of the query.
+
+---+++ Reports
+---++++ <code>%TABLEFORMAT</code>
+<code>%TABLEFORMAT</code> provides a template for the display of values extracted from a query (like the old Fortran 'format' statement).
+| *Parameter* | *Description* |
+| =name= | Required, gives the name of the format for use in <code>%SHOWQUERY</code> or another <code>%FORMQUERY</code> |
+| =format= | Required, gives the format of the body rows (or the format to subclass) |
+| =header= | Optional, gives the format of the header row |
+| =separator= | Optional, separate rows with this (default newline) |
+| =footer= | Optional, gives the string to use to terminate the table |
+| =sort= | Optional, defines the [[#SortOrder][sort order]] |
+| =help= | Optional, if present then a helpful message will be output for undefined fields. So if you see a table entry that is blank and you don;t think it should be, add the =help= parameter and it should give some guidance. |
+| =moan= | Optional, "on" or "off", if set to "off" disables error output |
+
+The =header=, =footer= and =format= parameters are very similar in application to the parameters used in the standard <code>%SEARCH</code> TWiki command. For the uninitiated, the header is used to define the first row of the results table:
+
+<pre>
+header="| <nop>*Topic*<nop> | <nop>*Summary*<nop> |"
+header="&lt;table>&lt;tr>&lt;th>Topic&lt;/th>&lt;th>Summary&lt;/th>&lt;/tr> |"
+footer="&lt;/table>"
+</pre>
+
+The =format= parameter is overloaded so it can also be used to refer to a table format previously defined using <code>%TABLEFORMAT</code>. This allows you to derive new formats (e.g. with different [[#SortOrder][sort orders]]) For example,
+<pre>
+%<nop>TABLEFORMAT{ name=TBLFMT format="|$topic|" sort="Owner,Priority"}%
+%<nop>TABLEFORMAT{ name=SUBFMT format=TBLFMT sort="Priority,Owner" }%
+</pre>
+Any of the =header=, =footer= or =sort= parameters in the referenced table format can be overridden by giving new values in the <code>%SHOWQUERY</code>.
+
+The footer is usually only used for tables generated directly in HTML, in which case it is usually set to =footer="&lt;/table>"=
+
+<pre>
+footer="&lt;/table>"
+</pre>
+
+The format is used to define the rows in the body of the table:
+
+=format="| $topic | $Summary |"=
+
+Any fields in the form in the topic can be output by putting a $ sign before the name of the field. The two special fields =$topic= and =$form= are available for outputting the name of the topic and the type of the form. You can also refer to fields in related topics using the syntax <code>$field.field</code> where $field is the name of the relation and =field= is a field in the related topic; for example, <code>format="|$Child_of.topic|"</code>.
+
+The following special variables can be used in the format string:
+
+|*Name:*|*Expands To:*|
+|=$web= |Name of the web |
+|=$topic= |Topic name |
+| =$topic(20)= | Topic name, "<tt>- </tt>" hyphenated each 20 characters |
+| =$topic(30, -&lt;br /&gt;)= | Topic name, hyphenated each 30 characters with separator "<tt>-&lt;br /&gt;</tt>" |
+| =$topic(40, ...)= | Topic name, shortended to 40 characters with "<tt>...</tt>" indication |
+| =$parent= | Name of parent topic; empty if not set |
+| =$parent(20)= | Name of parent topic, same hyphenation/shortening like =$topic()= |
+| =$text= | Formatted topic text. |
+| =$locked= | LOCKED flag (if any) |
+| =$date= | Time stamp of last topic update, e.g. =%GMTIME{"$day $mon $year - $hour:$min"}%= |
+| =$isodate= | Time stamp of last topic update, e.g. =%GMTIME{"$year-$mo-$dayT$hour:$minZ"}%= |
+| =$rev= | Number of last topic revision, e.g. =1.4= |
+| =$username= | Login name of last topic update, e.g. =jsmith= |
+| =$wikiname= | Wiki user name of last topic update, e.g. =<nop>JohnSmith= |
+| =$wikiusername= | Wiki user name of last topic update, like =%USERSWEB%.<nop>JohnSmith= |
+| =$createdate= | Time stamp of topic revision 1.1 |
+| =$createusername= | Login name of topic revision 1.1, e.g. =jsmith= |
+| =$createwikiname= | Wiki user name of topic revision 1.1, e.g. =<nop>JohnSmith= |
+| =$createwikiusername= | Wiki user name of topic revision 1.1, e.g. =%USERSWEB%.<nop>JohnSmith= |
+| =$summary= | Topic summary, with 162 characters |
+| =$summary(50)= | Topic summary, with 50 characters |
+| =$summary(showvarnames)= | Topic summary, with =%<nop>ALLTWIKI{...}%= variables shown as =ALLTWIKI{...}= |
+| =$summary(noheader)= | Topic summary, with leading =---+ headers= removed%BR% __Note:__ The tokens can be combined into a comma separated list like =$summary(100, showvarnames, noheader)= |
+| =$formname= | The name of the form attached to the topic; empty if none |
+| =$formfield(name)= | The field value of a form field; for example, =$formfield(<nop>TopicClassification)= would get expanded to =PublicFAQ=. This applies only to topics that have a [[TWikiForms][TWikiForm]]. An alternative to using the name of the field directly. |
+| =$formfield(name, 10)= | Form field value, "<tt>- </tt>" hyphenated each 10 characters |
+| =$formfield(name, 20, -&lt;br /&gt;)= | Form field value, hyphenated each 20 characters with separator "<tt>-&lt;br /&gt;</tt>" |
+| =$formfield(name, 30, ...)= | Form field value, shortended to 30 characters with "<tt>...</tt>" indication |
+| =$pattern(reg-exp)= | A regular expression pattern to extract some text from the topic text (does not search meta data; use fields instead). %BB% Specify a RegularExpression that covers the whole text (topic or line), which typically starts with =.*=, and must end in =.*= %BB% Put text you want to keep in parenthesis, like =$pattern(.*?(from here.*?to here).*)= %BB% Example: =$pattern(.*?\*.*?Email\:\s*([^\n\r]+).*)= extracts the email address from a bullet of format =* Email: ...= %BB% This example has non-greedy =.*?= patterns to scan for the first occurance of the Email bullet; use greedy =.*= patterns to scan for the last occurance %BB% Limitation: Do not use =.*)= inside the pattern, e.g. =$pattern(.*foo(.*)bar.*)= does not work, but =$pattern(.*foo(.*?)bar.*)= does %BB% Note: Make sure that the integrity of a web page is not compromised; for example, if you include an HTML table make sure to include everything including the table end tag |
+| =$n= or =$n()= | New line |
+| =$nop= or =$nop()= | Is a "no operation". This variable gets removed; useful for nested search |
+|=$quot= |Double quote (="=). Alternatively, write =\"= to escape it. |
+|=$percnt= |Percent sign (=%=) |
+|=$dollar= |Dollar sign (=$=) |
+
+#SummingFields
+It is also possible to expand the contents of tables embedded in the topic, in two ways:
+   * using the syntax <code>$field[format=FORMAT]</code> where =$field= is the table type, which is named the same as the table topic, and =FORMAT= is the name of a format previously defined using <code>%TABLEFORMAT</code> and suitable for expanding the sub-table.
+   * using the syntax <code>$field.subfield</code> where =subfield= is a numeric field in the contents of the embedded table (i.e. it contains a number). In this case the result will be the sum of all =subfield= values over all the rows in the table.
+
+#SortOrder
+=sort= is used to define the sort order, and is a list of field names (without $'s) separated by commas. You can reverse the sort order for a column by prepending '-' to the field name. For example,
+
+=sort="Owner,-Priority"=
+
+The default sort method is string comparison. If the field data is numeric, then you can put a '#' in front of the field name to force the sort to be numeric. For example,
+
+=sort="Owner,#Priority"=
+
+or
+
+=sort="Owner,-#Priority"=
+
+<code>%TABLEFORMAT</code> is silent i.e. it produces no output on the page unless there is an error, in which case a descriptive error message is output. This message can be disabled using the =moan= parameter.
+
+---+++ <code>%SHOWQUERY</code>
+Used to show the results of a query, <code>%SHOWQUERY</code> accepts all the same parameters as <code>%TABLEFORMAT</code> (except =name=), and also the following parameters:
+| *Parameter* | *Description* |
+| =query= | Required, gives the name of the query to show |
+| =start= | Optional, first row to display |
+| =limit= | Optional, number of rows to display, or =all= |
+For example,
+<pre>
+%<nop>SHOWQUERY{ query=AFORMQUERY format=ATBLFMT }%
+</pre>
+*Note:* If you render your results in TWiki table format and limit the rows displayed using =limit= (e.g. first 10 from 99 rows), and also use TWiki.TablePlugin to allow sorting on the headers, then only the 10 displayed rows will be sorted by TablePlugin (and not the full 99 rows in the table).
+
+---+++ <code>%DOQUERY</code>
+Combines a query and showing the results of that query, <code>%DOQUERY</code> accepts all the same parameters as <code>%FORMQUERY</code> and <code>%SHOWQUERY</code> (except =name= and =query=).
+
+---+++ Interface to !SpreadSheetPlugin
+---++++ <code>%QUERYTOCALC</code>
+Used to transform the results of a query into a format which TWiki.SpreadSheetPlugin can operate on. %QUERYTOCALC accepts all the same parameters as %TABLEFORMAT (except name), and also the following parameters: 
+| *Parameter* | *Description* |
+| =query= | Required, gives the name of the query to show |
+| =start= | Optional, first row to display |
+| =limit= | Optional, number of rows to display, or =all= |
+For example,
+<pre>
+%<nop>QUERYTOCALC{ query=AFORMQUERY format=ATBLFMT }%
+</pre>
+The query must be formatted as a table. This variable produces no output, but must precede any calculation on the resultant query.
+
+---++++ <code>%SHOWCALC</code>
+Operates on the result of a query represented as a table, using a previous %QUERYTOCALC. Accepts a single, unnamed parameter:
+| *Parameter* | *Description* |
+| &nbsp; | Required; the calculation to perform |
+The parameter is text as required by the $CALC statement (see TWiki.SpreadSheetPlugins); all operations supported by %CALC are supported by %SHOWCALC. This command behaves identical to %CALC when used following a table; it operates on the implicit table constructed by a preceding %QUERYTOCALC statement. Arbitrary many %SHOWCALC can be performed; all apply to the preceeding implicit table.
+
+Example:
+<pre>
+%<nop>SHOWCALC{"$ROW()"}%
+</pre>
+returns the number of matches of a query that had been formatted as an implicit table.
+
+---+++ Querying results of a search
+
+---++++ <code>%SUMFIELD</code>
+Used to calculate the sum of a numeric field across all the matches in a query result.
+| *Parameter* | *Description* |
+| =query= | Required, name of the query to sum over |
+| =field= | Required, name of the field to sum |
+For example, let's say we have a form type called "VitalStatistics" that has a field "Age" in it. We can sum all the ages in all occurences of the form using:
+<pre>
+%<nop>FORMQUERY{name=vs search="form='VitalStatistics'"}%
+Sum of ages = %<nop>SUMFIELD{query=vs field="Age"}%
+</pre>
+The result is a single number representing the sum of all the fields.
+
+Note that values embedded in tables can be summed using the shorthand described [[#SummingFields][above]].
+
+---++++ <code>%MATCHCOUNT</code>
+Used to determine the total number of results a query returned.
+| *Parameter* | *Description* |
+| =query= | Required, name of the query to sum over |
+The result is a single number representing the number of results the query returned.
+
+---+++ Tutorial
+See TWiki::Plugins/FormQueryPluginTutorial for a tutorial describing how to use the plugin in real-world applications.
+
+---++ Formatted query examples
+
+!%TABLEFORMAT% is able to generate (roughly) the same output as TWiki.FormattedSearch, based on an earlier query. Multiple different formatted results can be produced without having to rerun the query.
+
+#SearchBulletList
+---+++ Bullet list showing topic name and summary
+
+*Write this:*
+
+=%<nop>FORMQUERY{name="q1" search="topic=~'FAQ'" web="TWiki"}%= %BR%
+=%<nop>SHOWQUERY{query="q1" header="   * *Topic: Summary:*" format="   * [<nop>[$web.$topic]]: $summary(25)"}%=
+
+*To get this:*
+
+%FORMQUERY{name="q1" search="topic=~'FAQ'" web="TWiki"}%
+%SHOWQUERY{query="q1" header="   * *Topic: Summary:*" format="      * [[$web.$topic]]: $summary(25)"}%
+
+
+---+++ Extract some text from a topic using regular expression
+
+*Write this:*
+
+=%<nop>FORMQUERY{name="q1" search="text=~'__Back to:__ <nop>TWikiFAQ'" web="TWiki"}%= %BR%
+=%<nop>SHOWQUERY{query="q1" header="TWiki FAQs:" format="   * $pattern(.*?FAQ\:[\n\r]*([^\n\r]+).*) [<nop>[$web.$topic][Answer...]]"}%=
+
+*To get this:*
+
+%FORMQUERY{name="q1" search="text=~'__Back to:__ TWikiFAQ'" web="TWiki"}%
+%SHOWQUERY{query="q1" header="TWiki FAQs:" format="   * $pattern(.*?FAQ\:[\n\r]*([^\n\r]+).*) [[$web.$topic][Answer...]]"}%
+
+
+---+++ Nested Search
+
+Search can be nested. For example, search for some topics, then form a new search for each topic found in the first search. The idea is to build the nested search string using a formatted search in the first search.
+
+For example, let's search for all topics that contain the word "culture" (first search), and let's find out where each topic found is linked from (second search).
+
+   * First search:
+      * =%<nop>FORMQUERY{name="q1" search="text=~'culture'" web="TWiki"}% %<nop>SHOWQUERY{query="q1" format="   * $web.$topic is referenced by:$n(list all references)"}%=
+   * Second search. For each hit we want this search:
+      * =%<nop>DOQUERY{"(topic found in first search)" separator=", " web="TWiki" format="$web.$topic"}%=
+   * Now let's nest the two. We need to escape the second search, e.g. the first search will build a valid second search string. Note that we escape the second search so that it does not get evaluated prematurely by the first search:
+      * Use =$percnt= to escape the leading percent of the second search
+      * Use =\"= to escape the double quotes
+      * Use =$dollar= to escape the =$= of =$topic=
+
+*Write this:*
+
+=%<nop>FORMQUERY{name="q1" search="text=~'culture'" web="TWiki"}%= %BR%
+=%<nop>SHOWQUERY{query="q1" format="   * $web.$topic is referenced by:$n      * $percntDOQUERY{\"$topic\" separator=\", \" web=\"TWiki\" format=\"$dollarweb.$dollartopic\"}$percnt "}%=
+
+*To get this:*
+
+%FORMQUERY{name="q1" search="text=~'culture'" web="TWiki"}%
+%SHOWQUERY{query="q1" format="   * $web.$topic is referenced by:$n      * $percntDOQUERY{\"$topic\" separator=\", \" web=\"TWiki\" format=\"$dollarweb.$dollartopic\"}$percnt "}%
+
+__Note:__ Nested search can be slow, especially if you nest more then 3 times. Nesting is limited to 16 levels. For each new nesting level you need to "escape the escapes", e.g. write =$dollarpercntDOQUERY= for level three, =$dollardollarpercntDOQUERY= for level four, etc.
+
+---+++ Most recently changed pages
+
+*Write this:*
+
+=%<nop>FORMQUERY{name="q1" search="" web="TWiki"}%= %BR%
+=%<nop>SHOWQUERY{query="q1" limit="7" sort="info.date" format="| $web.$topic | $wikiusername | $date |"}%=
+
+*To get this:*
+
+%FORMQUERY{name="q1" search="" web="TWiki"}%
+%SHOWQUERY{query="q1" limit="7" sort="info.date" format="| $web.$topic | $wikiusername | $date |"}%
+
+---+++ Search with conditional output
+
+A regular expression search is flexible, but there are limitations. For example, you cannot show all topics that are up to exactly one week old, or create a report that shows all records with invalid form fields or fields within a certain range, etc. You need some additional logic to format output based on a condition:
+   1. Specify a search which returns more hits then you need
+   1. For each search hit apply a spreadsheet formula to determine if the hit is needed
+   1. If needed, format and output the result
+   1. Else supress the search hit
+
+This requires the TWiki:Plugins.SpreadSheetPlugin. The following example shows all topics that are up to exactly one week old.
+
+*Write this:*
+
+=%<nop>CALC{$SET(weekold, $TIMEADD($TIME(), -7, day))}%= %BR%
+=%<nop>FORMQUERY{name="q1" search="name='.*'" web="TWiki"}%= %BR%
+=%<nop>SHOWQUERY{query="q1" sort="info.date" format="$percntCALC{$dollarIF($dollarTIME($date) &lt; $dollarGET(weekold), <nop>, | $web.$topic | $wikiusername | $date | $rev |)}$percnt" }%=
+
+   * The first line sets the =weekold= variable to the serialized date of exactly one week ago
+   * The SHOWQUERY has a deferred CALC. The =$percnt= makes sure that the CALC gets executed once for each search hit
+   * The CALC compares the date of the topic with the =weekold= date
+   * If topic is older, a =&lt;nop&gt;= is returned, which gets removed at the end of the TWiki rendering process
+   * Otherwise, the search hit is formatted and returned
+
+*To get this:*
+
+%CALC{$SET(weekold, $TIMEADD($TIME(), -7, day))}%
+%FORMQUERY{name="q1" search="name='.*'" web="TWiki"}%
+%SHOWQUERY{query="q1" sort="info.date" format="$percntCALC{$dollarIF($dollarTIME($date) < $dollarGET(weekold), <nop>, | $web.$topic | $wikiusername | $date | $rev |)}$percnt" }%
+
+_Note: If you don't see any output, then there are no files newer than 7 days. Rows without entries in all but the first field are due to incorrect topics present in the TWiki web (no topic info line, thus we cannot find date, author, rev)._
+
+---+++ Embedding search forms to return a formatted result
+
+Use an HTML form and an embedded formatted search on the same topic. You can link them together with an =%<nop>URLPARAM{"..."}%= variable. Example:
+
+*Write this:*
+
+<verbatim>
+<form action="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%">
+Find Topics: 
+<input type="text" name="q" size="32" value="%URLPARAM{"q"}%" />
+<input type="submit" value="Search" />
+</form>
+Result:
+</verbatim>
+=%<nop>FORMQUERY{name="q1" search="text=~'%URLPARAM{"q"}%'" web="TWiki"}%= %BR%
+=%<nop>SHOWQUERY{query="q1" limit="7" format="   * $web.$topic: %<nop>BR% $summary" }%=
+
+*To get this:*
+
+<form action="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%">
+Find Topics: 
+<input type="text" name="q" size="32" value="%URLPARAM{"q"}%" />
+<input type="submit" value="Search" />
+</form><br>
+Result (first 7):
+%FORMQUERY{name="q1" search="text=~'%URLPARAM{"q"}%'" web="TWiki"}%
+%SHOWQUERY{query="q1" limit="7" format="   * $web.$topic: %BR% $summary" }%
+
+---+++ Generate a table with embedded calculations
+
+Assume you want to produce a summary of all the large attachments in a topic (where by large we mean any attachment greater than 10k). The table should show topic, the name of the attachment, the file size in k, and the date when the attachment was created.
+
+*Write this:*
+
+=%<nop>FORMQUERY{name="all" search="" web="TWiki" extract="attachments"}%= %BR%
+=%<nop>FORMQUERY{name="big" query="all" search="size&gt;'10240'"}%= %BR%
+=%<nop>SHOWQUERY{query="big" format="|$_up.web.$_up.name|$name|  $percntCALC{$dollarROUND($dollarEVAL($size / 1024), 1)k}$percnt|$percntCALC{$dollarFORMATTIME($date, $dollarday $dollarmon $dollaryear)}$percnt|"}%=
+
+*To get this:*
+
+%FORMQUERY{name="all" search="" web="TWiki" extract="attachments"}%
+%FORMQUERY{name="big" query="all" search="size>'10240'"}%
+%SHOWQUERY{query="big" format="|$_up.web.$_up.name|$name|  $percntCALC{$dollarROUND($dollarEVAL($size / 1024), 1)k}$percnt|$percntCALC{$dollarFORMATTIME($date,  $dollarday $dollarmon $dollaryear)}$percnt|"}%
+
+<!--
+One line description, shown in the TWiki.TextFormattingRules topic:
+   * Set SHORTDESCRIPTION = Provides query capabilities across a database defined using forms and embedded tables in TWiki topics. 
+-->
+
+#TopicRelations
+---+++ Topic Relations
+Topic relations are defined by setting the =FORMQUERYPLUGIN_RELATIONS= variable in the Web<nop>Preferences topic of the web to be processed. This defines a semicolon-separated list of rules for deriving relationships between topics using common portions of names. This is best illustrated by an example. Let's say we set =FORMQUERYPLUGIN_RELATIONS= to be:
+<pre>
+ReQ%Ax%B SubReq ReQ%A; TiT%An%B TestItem ReQ%A
+</pre>
+This describes two rules, the first of which says "Any topic named "ReQ&lt;something>x&lt;something>" is a Sub<nop>Req of another topic called "ReQ&lt;something>". Single upper case characters with a preceding percent sign are used to define the &lt;something>s. So, in this example, =ReQ1456= has the =SubReq= relation to =ReQ1456x7=. The reverse relation is also inserted, but appending =_of= to the relation name, so =ReQ1456x7= has the =SubReq_of= relation to =ReQ1456=.
+
+Obviously a single topic may have many topics that have the same relation to it (i.e. they are _one-to-many_), so forward relations are stored as arrays in the maps that represent topics. Reverse relations are _many_to_one_ so they are stored as a simple field in the other topic. Relations are stored as pointers to the maps of the other topic so they can't be printed as if they were simple names. Instead you have to use them to refer to fields within the other topic. For example, in a <code>%SHOWQUERY</code> showing =ReQReQ1456x7= you can't refer simply to =$SubReq_of= to get =ReQ1456= (the name of the related topic); you have to use =$SubReq_of.topic= instead.
+
+The default value of =FORMQUERYPLUGIN_RELATIONS= is none.
+
+#FqTables
+---+++ Tables
+Tables to be read into the database must use the Edit<nop>TablePlugin 'include= _topic_ ' feature (or the <nop>EditTablerow 'template= _topic_ ' feature), which define the format of the tables in another topic. Tables to be read are defined by setting the =FORMQUERYPLUGIN_TABLES= variable in the WebPreferences topic of the web. This is a list of the names of the topics that Edit<nop>TablePlugin or <nop>EditTablerowPlugin use to find the table formats. Tables are read in as arrays of maps, with each map keyed on a field name generated by stripping all non-alphabetic characters from the column header. Note that the column header where the table is defined is used, not the column header in the Edit<nop>Table include= topic. If the =FORMQUERYPLUGIN_TABLES= variable is set to =All= (case-insensitive), then any valid table is added to the database.
+
+The defaut is to load all tables:
+   * Set TABLES = all
+
+Two special map entries are added to each table row, =topic= and the equivalent of the reverse relation described above, represented by =_up=. So if you load a table type "CookingTimes", each row will have =topic= set to the name of the topic it was loaded from and =_up= set to the map of that topic. This allows you to refer to the fields of the topic that contains a table even after the table has been extracted.
+
+When a table contains calculations using TWiki:Plugins.SpreadSheetPlugin, these are applied before the map entries are created for this table. These calculations must not refer to data outside of the table.
+
+If there are multiple EDITTABLE calls with the same table type, all the table
+data is concatenated into a single table.
+
+The current value of =FORMQUERYPLUGIN_TABLES= is %FORMQUERYPLUGIN_TABLES%.
+
+For example, let's say we have a table in a topic called !TableDefinition, 
+like this:
+
+|*Name*|*Description*|
+
+Now, in another topic, !TableUse, we have
+<verbatim>
+%EDITTABLE{include="TableDefinition"}%
+| Cat | Small furry animal |
+...
+%EDITTABLE{include="TableDefinition"}%
+| Dog | Latch used to seal a hatch on a ship |
+</verbatim>
+In this case, =$TableDefinition.0.Name= is =Cat=, =$TableDefinition.1.Name= is =Dog=.
+
+---++ Plugin Installation Instructions
+%$INSTALL_INSTRUCTIONS%
+   * The variable %<nop>FORMQUERYPLUGIN_ENABLE% must be set either globally or in the web where you want to use it. If the plugin is enabled globally (on all webs), this may have an unwelcome performance impact, as the plugin may create a cache of topics in a web where it is not intended to be used. To enable the plugin for selected webs only, put the following line into the !WebPreferences topic of the web you want to enable it on:
+<pre>
+      * <nop>Set FORMQUERYPLUGIN_ENABLE = 1
+</pre>
+   * You can set a global default for the =moan= parameter by setting the =FORMQUERYPLUGIN_MOAN variable in %USERSWEB%.TWikiPreferences, WebPreferences in individual webs, or in individual topics.
+   * FormQueryPlugin must appear in the Plugins evaluation order *before* TWiki:Plugins/SpreadSheetPlugin. You can ensure this by putting !FormQueryPlugin immediately after Default<nop>Plugin in the {PluginsOrder} list in =configure=.
+   * Note: If you are using it, TWiki:Plugins/MacrosPlugin must appear in the Plugins evaluation order *before* FormQueryPlugin.
+
+---
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/CrawfordCurrie, TWiki:Main/ThomasWeigert |
+|  Plugin Version: | %$VERSION% |
+|  Change History: | |
+|  21 May 2007 | Bugs:Item3969 - 8bit email fix (TWiki:Main.WillNorris) |
+|  24 Apr 2007 (13527) | Merge !YetAnotherFormQueryPlugin back in. Fixed a lot. Prepared for use with TWiki 4.2. |
+|  04 Sep 2006 | Expand calculations using TWiki:Plugins.FormQueryPlugin. |
+|  23 Jun 2006 | Ported to Dakar. |
+|  9 Jul 2005 | Added support for tables defined using TWiki:Plugins/EditTablerowPlugin |
+| | Added support for searches over multiple webs |
+| | Support !%MATCHCOUNT%  |
+| | Allow TWiki:Plugins/SpreadSheetPlugin computation to be applied to the result of a query |
+| | Made "moan" a preference rather than a per call option |
+| | Removed !%TOPICCREATOR% |
+| | Removed !%ARITHMETIC% (as one can use the TWiki:Plugins/SpreadSheetPlugin) |
+| | Removed the color map feature |
+| | Extended !%FQPINFO% to support showing results of queries |
+| | Integrate the Attribute parser from TWiki:Codev/DakarRelease |
+| | Add caseinsensitivity as option |
+| | Handle one line at a time so that query memory can be reused in another query |
+| | Added the special variables supported by TWiki.FormattedSearch |
+| | Changed some of the option names to be more consistent with TWiki.TWikiSearch (e.g., =row_count=) |
+| | More flexibility for using tables |
+| | Add a !%DOANDSHOWQUERY% tag |
+| | Support embedding of !%SEARCH% and !%FORMQUERY% in the format option to allow searches and queries to be applied to the result of a query (a poor man's intersection) |
+| | Added option to switch on/off "Undefined" messages for undefined field values |
+| | Expanded fields no longer have spaces around them. This is more correct, but requires care in =format= definitions. |
+| 16 Jul 2004  | Split into sub-components |
+| 02 Apr 2004  | TWiki:Main/SimonHardyFrancis bugfixes incorporated. TWiki:Main/TimSlidel patches incoporated for mod_perl, autocreate, and collapsing same-type tables in a single topic |
+| 05 Feb 2004  | Bugfix version |
+| 11 Jul 2003  | Initial version |
+|  TWiki Dependencies: | TWiki:Plugins.SpreadSheetPlugin |
+|  Dependencies: | <table border=1><tr><th align="left">Name</th><th align="left">Version</th><th align="left">Description</th></tr><tr><td align="left">TWiki::Contrib::DBCacheContrib</td><td align="left">&gt;=1.001</td><td align="left">Required. Download and install from the TWiki:Plugins/DBCacheContrib code library.</td></tr></tr><tr><td align="left">Time::ParseDate</td><td align="left">Required. Available from [[http://cpan.uwinnipeg.ca/dist/Time-modules][CPAN]].</td></tr><tr><td align="left">Storable</td><td align="left">&gt;=2.07</td><td align="left">2.13 recommended; accelerates cache handling. Available from [[http://cpan.uwinnipeg.ca/dist/Storable][CPAN]]</td></tr><tr><td align="left">TWiki::Plugins::MacrosPlugin</td><td align="left">&gt;=1.000</td><td align="left">Recommended; used for parameterised includes. Download from TWiki:Plugins/MacrosPlugin repository.</td></tr></table> |
+|  Perl Version: | 5.0 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Demo URL: | http://www.owiki.org/FQP/ |
+
+---+++ Copyright
+
+This code is based on an original development of Motorola Inc. and is protected by the following copyrights:
+   * Copyright &copy; 2002-2003, 2005 Motorola. All Rights Reserved.
+   * Copyright &copy; 2004. Crawford Currie http://www.c-dot.co.uk
+
+---+++ Extending or customising
+Extension or customisation is welcome, as long as all extensions are described and code provided back to the author.
+
+The module is shipped with a perl build file, which should be used for installation and testing. Testing is done using Test::Unit, and is invoked using the 'test' build target. Writing tests is a useful way of feeding back bugs as well. I can't encourage you enough to maintain and extend the tests!
+
+---+++ License
+
+As required for the publication of all extensions to TWiki, this
+software is published under the terms of the GNU General Public
+License.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details, published at
+http://www.gnu.org/copyleft/gpl.html
+
+-- TWiki:Main/ThomasWeigert - 04 Sep 2006
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the Dev topic instead. -->

@@ -1,0 +1,190 @@
+%META:TOPICINFO{author="tisser_n" date="1043231880" format="1.0" version="1.4"}%
+%META:TOPICPARENT{name="TWikiPreferences"}%
+---++ Syntax Highlighting TWiki Plugin
+
+The Syntax Highlighting Twiki Plugin is used to emphasize the rendering of your wiki text according to several languages.
+
+It currently uses =enscript= to render its output.
+
+It supports the following languages : 
+	* ada
+	* asm
+	* awk
+	* bash
+	* c
+	* changelog
+	* c++
+	* csh
+	* delphi
+	* diff
+	* diffs
+	* diffu
+	* elisp
+	* fortran
+	* fortran_pp
+	* haskell
+	* html
+	* idl
+	* inf
+	* java
+	* javascript
+	* ksh
+	* m4
+	* mail
+	* makefile
+	* maple
+	* matlab
+	* modula_2
+	* nested
+	* nroff
+	* objc
+	* outline
+	* pascal
+	* perl
+	* postscript
+	* python
+	* rfc
+	* scheme
+	* sh
+	* skill
+	* sql
+	* states
+	* synopsys
+	* tcl
+	* tcsh
+	* tex
+	* vba
+	* verilog
+	* vhdl
+	* vrml
+	* wmlscript
+	* zsh
+
+---+++ Syntax Rules
+
+To enable syntax highlighting on some text, just type :
+
+<verbatim>%begin [numbered] language% 
+
+	 some text belonging to the language
+
+%end%</verbatim> where language is one of the list above, and numbered an optional keyword triggering the line numbering feature.
+
+Notice that the =%begin language%= and =%end%= must be left alone on one single line.
+
+----+++ Example
+
+The following text :
+
+<verbatim>%begin c++% 
+#include <iostream>
+int main()
+{
+  std::cout << "Hello, world." << std::endl;
+}
+%end% </verbatim>
+gives :
+
+%begin c++%
+#include <iostream>
+int main()
+{
+  std::cout << "Hello, world." << std::endl;
+}
+%end%
+
+_If you do not see a nice colorized piece of code above this, you should check if the plugin is well installed._
+
+You can also output numbered lines starting at 10 with this text:
+
+<verbatim>%begin numbered:10 sh% 
+#!/bin/sh
+languages=`enscript --help-highlight | grep 'Name:' | cut -d ' ' -f 2`
+for l in $languages; do
+	 cat << EOF
+	* $l
+EOF
+done
+%end% </verbatim>
+which outputs:
+
+%begin numbered:10 sh%
+#!/bin/sh
+languages=`enscript --help-highlight | grep 'Name:' | cut -d ' ' -f 2`
+for l in $languages; do
+	 cat << EOF
+	* $l
+EOF
+done
+%end%
+
+---+++ <nop>%TOPIC% Settings
+
+Plugin settings are stored as preferences variables. To reference
+a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>DEFAULTPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = This Plugin is used to emphasize the rendering of your wiki text according to several languages.
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---+++ Plugin Installation Instructions
+
+	* Make sure you have GNU enscript 1.6.3 or above installed.
+
+	* Unzip the =SyntaxHighlighting.zip= package in your TWiki installation directory.
+
+	* If the installation is correct, you should see some highlighted text in this page.
+
+	* If you want support for additional languages (for customized or future enscript versions), you must edit the plugin file and add your languages to the languages array. _(Make sure that your =enscript= version supports the languages you add.)_
+
+---+++ Known Bugs
+
+---++++ Enscript oddities
+
+<verbatim>
+%begin numbered sh% 
+# youpi
+%end% 
+</verbatim>
+
+gives
+
+%begin numbered sh%
+# youpi
+%end%
+
+Because =enscript= strangely adds an extra line (for closing its emphasizing markers) between the matched  &lt;pre&gt; &lt;/pre&gt; to its html output.
+
+Working around such a weird behavior is ... not planned.
+
+---++++ WikiWords on last line
+
+<verbatim>%begin sh%
+UnmatchedWikiword :)
+MatchedWikiWord :(
+%end%</verbatim>
+
+gives
+
+%begin sh%
+UnmatchedWikiword :)
+MatchedWikiWord :(
+%end%
+
+Adding a newline at the end of input stops TWiki in its greedy matching, but this workaround is not an acceptable solution. Feel free to find another one ....
+---+++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.NicolasTisserand, TWiki:Main.NicolasBurrus, Perceval Anichini |
+|  Plugin Version: | 12 Jul 2002 |
+|  Change History: | 12 Jul 2002: Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | GNU enscript 1.6.3 |
+|  Perl Version: | 5.0 |
+|  Plugin Home: | http://www.lrde.epita.fr/cgi-bin/twiki/view/TWiki/SyntaxHighlightingPlugin |
+|  Feedback: | TWiki:Main.NicolasTisserand |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+
+-- TWiki:Main.NicolasTisserand - 12 Jul 2002

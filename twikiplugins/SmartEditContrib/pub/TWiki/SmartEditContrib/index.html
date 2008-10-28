@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>SmartEditor working page</title>
+<script type="text/javascript" src="js/smartedit.js"></script>
+</head>
+<body>
+<table width="99%" height="25" id="smarttoolbar"><tr>
+<td height="25" valign="top"><select id="twikismartselect" onchange="twikismartInsertFormat();">
+<option value="9">Normal</option>
+<option value="0">Formatted</option>
+<option value="1">Heading 1</img></option>
+<option value="2">Heading 2</option>
+<option value="3">Heading 3</option>
+<option value="4">Heading 4</option>
+<option value="5">Heading 5</option>
+<option value="6">Heading 6</option>
+<option value="7">Paragraph</option>
+<option value="10">Verbatim</option>
+</select></td>
+<td height="25" valign="top"><img id="twikismartbold" src="img/bold.gif" onclick="twikismartInsertBold();"></img></td>
+<td height="25" valign="top"><img id="twikismartitalic" src="img/italic.gif" onclick="twikismartInsertItalic();"></img></td>
+<td height="25" valign="top"><img id="twikismartbullet" src="img/bullist.gif" onclick="twikismartInsertBulletList();"></img></td>
+<td height="25" valign="top"><img id="twikismartnum" src="img/numlist.gif" onclick="twikismartInsertNumList();"></img></td>
+<td height="25" valign="top"><img id="twikismartexlink" src="img/exthyperlink.png" onclick="twikismartExlink();"></img></td>
+<td height="25" valign="top"><img id="twikismartindent" src="img/indent.gif" onclick="twikismartIndent();"></img></td>
+<td height="25" valign="top"><img id="twikismartoutdent" src="img/outdent.gif" onclick="twikismartOutdent();"></img></td>
+<td height="25" valign="top"><img id="twikismarthr" src="img/hr.gif" onclick="twikismartInsertHR();"></img></td>
+<td height="25" valign="top"><img id="twikismartnop" src="img/nop.png" onclick="twikismartNop();"></img></td>
+<td height="25" valign="top"><select id="twikismartselectcommon" onchange="twikismartCommon();">
+<option value="0">Common</option>
+<option value="1">Signature</option>
+<option value="2">Date</option>
+<option value="3">Table of content</option>
+</select></td>
+<td id="cheatItem" height="25" valign="top"></td>
+<td height="25" valign="top" align="right"><input id="twikismartadjustmode" type="checkbox" selected="false" onclick="twikismartAdjustMode();">Adjust to text size</input><img id="twikismartzoomin" src="img/loupe.gif" onclick="twikismartZoomIn();" title="Increase textarea size"></img><img id="twikismartzoomout" src="img/loupem.gif" onclick="twikismartZoomOut();" title="Decrease textarea size"></img><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#60a0e0">TWikiSmartEdit alpha release</font></td>
+</tr></table><form method="post">
+<textarea id="topic" name="text" rows="22" cols="70" style='width: 99%'>---+Sample Heading
+Sample Text
+Sample Text
+Sample text
+
+   * Sample Bullet </textarea>
+<div class="patternSig">
+<label for="sig" class="twikiGrayText">Your signature to copy/paste:&nbsp;&nbsp;</label><input size="41" name="sig" type="text" readonly="readonly" title='Select, copy and paste your signature text to the bottom of your entry' id="sig" value="-- Main.GaelCrova - 03 May 2006" /></div>
+</form>
+<script type="text/javascript">
+twikismartEdit('topic');
+</script>
+</body>
+</html>

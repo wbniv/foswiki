@@ -1,0 +1,130 @@
+%META:TOPICINFO{author="guest" date="1112338137" format="1.0" version="1.7"}%
+---+ Controls Plugin
+
+This plugin creates controls that can be used to define HTML forms from possible values defined in a topic.
+
+TWiki.TWikiForms allow possible values for a form field to be defined in a topic (see Section "Defining a Form with Multiple Topics"). The same set of values are often used as the values of HTML form controls (e.g., when defining a search where these values are selectable parameters). Using this plugin, these lists of values can be kept synchronized by having the form controls generated based on the topic that defined the values in the first place.
+
+Background: I often found myself defining the possible values for a field of a TWiki.TWikiForms in a TWiki:Codev/TWikiApplication, and then had to manually define the same possible values for a drop down selection or similar in an HTML form. Keeping these consistent was a nuisance. This plugin automates that process.
+
+
+---++ Syntax Rules
+
+	* Syntax: =%<nop>CONTROL{"name" ...}%=
+	* Supported parameters:
+	| *Parameter:* | *Description:* | *Default:* |
+	| ="name"= | The name of the control to be generated, i.e. =%<nop>CONTROL{"address"}%= | required |
+	| =topic="..."= | The topic defining the field values  | Current topic |
+	| =web="..."= | The web from which the topic is taken | Current web |
+	| =type="..."= | The control to be rendered. Possible values are =select=, =radio=, or =checkbox= | =select= |
+	| =size="..."= | The size parameter for the control. | =1= |
+	| =urlparam="..."= | Generates a select option to be passed as URL parameter (valid only with =type="select"= ). Possible values are =on=, =off=  | =off= |
+
+---++ Example
+
+Below is the definition of the field values for <nop>TopicClassifications from TWiki.TWikiForms:
+	  | *Name* | *Type* | *Tooltip message* |
+	  | <nop>NoDisclosure | option | blah blah... |
+	  | <nop>PublicSupported | option | blah blah... |
+	  | <nop>PublicFAQ | option | blah blah... |
+
+If this plugins is installed, the variable
+<verbatim>
+%<nop>CONTROL{"firstInput" type="checkbox" size="1"}%
+</verbatim>
+
+will expand as follows:
+<table border="0"><tr><td> *Output* </td><td> *Expected* </td></tr>
+<tr><td>%CONTROL{"firstInput" type="checkbox" size="1"}%</td><td><table  cellspacing="0" cellpadding="0"><tr>
+<td><input class="twikiEditFormCheckboxField" type="checkbox" name="firstInputNoDisclosure" />NoDisclosure &nbsp;&nbsp;</td>
+</tr><tr>
+<td><input class="twikiEditFormCheckboxField" type="checkbox" name="firstInputPublicSupported" />PublicSupported &nbsp;&nbsp;</td>
+</tr><tr>
+<td><input class="twikiEditFormCheckboxField" type="checkbox" name="firstInputPublicFAQ" />PublicFAQ &nbsp;&nbsp;</td>
+</tr></table></td></tr>
+</table>
+
+---++ Hierarchical Select
+
+This plugin also supports the dynamic selection of hierarchical (cascaded) menus, albeit only for _select_ type controls. A selection in the first menu will configure the second menu with only those options relevant to the selection made in the first menu. A selection in the second menu will in turn configure the options in the third menu, and so on.
+
+The dynamic aspects of hierarchical menus requires Javascript to be available. Where Javascript is not enabled, this plugin degrades gracefully and provides all options in the dependent menus. (The ability to degrade gracefully explains the rather large amount of Javascript to be included. Unfortunately, a side effect is that preselecting a choice via URL parameters is not supported.)
+
+	* The following additional parameters are supported in the =CONTROL= tag and are useful for hierarchical menus:
+	| *Parameter:* | *Description:* | *Default:* |
+	| =form="..."= | The name of the form the hierarchical control will be used in. This form must be given a name attribute. | required |
+	| =separator="..."= | A string inserted between the controls generated for each level of the hierarchy. | single space |
+	| =initmessage="..."= | A string that will be shown in a dependent menubefore a selection in the parent menu is made | =Select previous level first= |
+	| =nextmessage="..."= | A string that will be shown in a dependent once a selection in the parent menu has been made |  |
+
+The options for each menu are given in a topic as described above. If a menu is hierarchical, its field value must point to another topic where the options for the dependent menu are defined. See TWikiForms for detail of how to define option tables. As a reminder, when a field is defined with the syntax =[<nop>[XXX][YYY]]=, where =XXX= is a topic name, and =YYY= is some text, then while =YYY= is chosen as the displayed text, the topic =XXX= will be consulted for the dependent menu.
+
+For hierarchical menus, the name of the controls generated are given by the =name= parameter, with the depth of the control suffixed, starting at =0= for the first level.
+
+%X% Note that this plugin assumes that menu hierarchy is fully defined, that is, that all branches of the menu tree have the same depth.
+
+%X% Note that the =urlparam= parameter does not apply to hierarchical menus.
+
+_Acknowledgement_: The Javascript for the hierarchical menus was written by Richard Comford, see [[http://www.litotes.demon.co.uk/example_scripts/dependent_select.html][here]].
+
+---++ Dependent Select
+
+This plugin also supports the generation of a select dependent of a selection made, e.g., in a URL parameter. One sets up a hierarchical menu as for hierarchical selects, but one of the options at the top level will be selected. In this way, one can pass in a parameter to the topic, and configure a menu (or hierarchy of menus) dependent on this parameter.
+
+If the resultant control is hierarchical, it is treated as a hierarchical menu. Otherwise, the control functions as a standard control.
+
+	* The following additional parameters are supported in the =CONTROL= tag to support dependant select:
+	| *Parameter:* | *Description:* | *Default:* |
+	| =selection="..."= | The name of the option that is selected from the options defined in the =topic= parameter. If empty, all dependent options are selected. If the selected option is not among those specified, no control is generated. | required |
+
+Note: If the =selection= parameter is left empty, all options possible are concatenated. This could be enhanced by (i) sorting all options and/or (ii) removing duplicates.
+
+
+---++ Plugin Settings
+
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = This plugin renders a control (typically used in an HTML form) based on values defined in a topic.
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==pub/TWiki/%TOPIC%/cascade_select.js== | Java script supporting hierarchical menus |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==lib/TWiki/Plugins/ControlsPlugin/menuexample.zip== | Demo example |
+	* Test if the installation was successful:
+		* See if above example rendered correctly
+		* Unzip =lib/TWiki/Plugins/ControlsPlugin/menuexample.zip= in a web and view topic =CitiesMenu=.
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/ThomasWeigert |
+|  Plugin Version: | 04 Aug 2006 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  04 Aug 2006: | Fixed erroneous hierarchy presentation when selections were links. |
+|  19 Jul 2006: | Added dependent select and example. |
+|  17 Jul 2006: | Added hierarchical menu support |
+|  07 Jul 2006: | Ported to Dakar |
+|  20 Feb 2005: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.024 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ TWiki.TWikiForms
+
+-- TWiki:Main/ThomasWeigert - 04 Aug 2006
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the Dev topic instead. -->
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the Dev topic instead. -->

@@ -1,0 +1,30 @@
+%TMPL:INCLUDE{"twiki"}%
+%TMPL:INCLUDE{"search"}%
+
+%TMPL:DEF{"repeatedsearchblock"}%
+  %REPEAT%
+    <div id="simpleBlueSearchResults">
+      <div id="simpleBlueTopRow">
+	  %SELECTION%
+	    <input type="checkbox" class="twikiCheckbox" name="RENAME%LABEL%%TOPIC_NUMBER%" checked="checked" />
+	    <input type="hidden" name="TOPIC%LABEL%%TOPIC_NUMBER%" value="%WEB%.%TOPICNAME%" />
+	  %SELECTION%
+	  <a href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOPICNAME%">
+	  <a href="%SCRIPTURLPATH%/rdiff%SCRIPTSUFFIX%/%WEB%/%TOPICNAME%">%TIME%</a> - %REVISION%
+	  %AUTHOR%
+      <div id="simpleBlueGrayText">
+        %TEXTHEAD%
+      </div>
+    </div>
+    </div>
+  %REPEAT%
+%TMPL:END%
+
+%TMPL:DEF{"searchbody"}%
+  %SPLIT%%TMPL:P{"repeatedsearchblock"}%%SPLIT%
+%TMPL:END%
+
+%TMPL:DEF{"simpleBlueContentPane"}%
+  %TMPL:P{"contentheadingvariable"}%
+  %SPLIT%%TMPL:P{"searchbody"}%%SPLIT%
+%TMPL:END%

@@ -1,0 +1,16 @@
+*** edit        2002/06/19 13:53:37     1.1
+--- edit        2003/02/13 08:06:30
+***************
+*** 150,155 ****
+--- 150,160 ----
+          $meta->put( "TOPICPARENT", ( "name" => $theParent ) );
+      }
+      $tmpl =~ s/%TOPICPARENT%/$theParent/;
++
++     # touch parent file to update links in cache; breaks in different web!
++     my $now = time();
++     my $parent = "$TWiki::dataDir/$webName/$theParent.txt";
++     $parent =~ /^([A-Za-z0-9_-]+)/    and utime $now, $now, $1;
+
+      # Processing of formtemplate - comes directly from query parameter formtemplate ,
+      # or indirectly from webtopictemplate parameter.

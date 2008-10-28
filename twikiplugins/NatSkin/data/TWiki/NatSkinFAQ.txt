@@ -1,0 +1,95 @@
+%META:TOPICINFO{author="TWikiContributor" date="1156519729" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="NatSkin"}%
+---+!! %TOPIC%
+%TOC%
+
+---++ The documentation of <nop>NatSkin is crap. I'm lost!
+If you need help there are a couple of options:
+   * Create a support request on TWiki:Support/WebHome.
+   * Explain the problem on TWiki:Plugins/NatSkinDev.
+   * Join the [[irc://irc.freenode.net/twiki][#twiki]] IRC channel and ask for help.
+   * Contact the [[mailto:daum@wikiring.com][WikiRing]] in case you need 
+     professional support.
+
+In any case helping out improving documentation, fixing bugs, helping others
+with the same problems is very welcome.
+
+---++ Why does <nop>NatSkin depend on so many extra plugins?
+Because some things can't be done with the inventory being
+shipped with standard TWiki. A lot of the plugins once have been an integral
+part of the NatSkinPlugin and then been externalized into plugins
+of their own for the greater benefit. This tendency is still ongoing.
+
+---++ It does not work (on my TWiki/Cairo installation).
+<nop>NatSkin once supported TWiki-2 (Beijing), TWiki-3 (Cairo) and TWiki-4 (Dakar)
+but has dropped support for Beijing and Cairo since version 3.0. 
+If you still need <nop>NatSkin on a legacy TWiki installation then try 
+[[http://twiki.org/cgi-bin/viewfile/Plugins/NatSkin?rev=37;filename=NatSkin.zip][NatSkin v2.9999]],
+[[http://twiki.org/cgi-bin/viewfile/Plugins/NatSkinPlugin?rev=31;filename=NatSkinPlugin.zip][NatSkinPlugin v2.9998]].
+
+
+
+---++ Why are there so many template files?
+<nop>NatSkin does not build upon the standard templates/skin of TWiki as
+it differs substantially in the way it is broken up into components. Therefor 
+every function of the core engine will use a =*.nat.tmpl= file. Infact,
+the <nop>NatSkin templates are created to provide an independent base
+for further template modifications. See the discussion on TWiki:Codev/ConsolidateSkinTemplates.
+
+---++ Can I disable offsite link detection?
+No. Missing feature to make this feature optional.
+
+---++ I can't change the colors of <nop>TWikiTables using the TablePlugin.
+Yes, this is a known issue. NatSkin styles <nop>TWikiTables matching the
+selected style and thus overrides the html attributes the TablePlugin sets.
+This can only be resolved by teaching the TablePlugin css. In addition it must
+be able to distinguish global defaults, being overridable by the skin's css, from
+user-defined table properties.
+See the discussion at TWiki:Codev/CompleteCssControlofTWikiTables.
+
+---++ Why is the sidebar switched off during =edit=?
+In case you use =STYLEBORDERS = thin= <nop>NatSkin will automatically disable
+the sidebar during edit not to narrow the text area even more. Try a different
+setting for =STYLEBORDERS= and you will have the sidebar during edit showing
+the help information again.
+
+---++ I can't finish editing!
+Most probably you clicked on "Save" which saved your changes but keept you in the edit process.
+If you want to save&amp;quit click on "Done". Have a look at a comparison of the topic actions
+in the next FAQ.
+
+---++ Why are the topic actions named differently compared to standard TWiki?
+Here is a comparison of the differences:
+
+| *NatSkin* | *PatternSkin* | *Description* |
+| %GREEN%Preview%ENDCOLOR%   | %GREEN%Preview%ENDCOLOR% | preview changes after editing |
+| %GREEN%Cancel%ENDCOLOR%    | %GREEN%Cancel%ENDCOLOR% | abandon changes and exit |
+| %YELLOW%Undo%ENDCOLOR%      | %YELLOW%n/a%ENDCOLOR%     | abandon changes and continue editing |
+| %YELLOW%n/a%ENDCOLOR%       | %YELLOW%Quiet Save%ENDCOLOR% | save changes "quietly"|
+| %RED%Save%ENDCOLOR%      | %RED%Checkpoint%ENDCOLOR% | save changes and continue editing |
+| %RED%Done%ENDCOLOR%      | %RED%Save%ENDCOLOR%        | save changes and exit |
+
+<nop>NatSkin's tries to be at least a bit closer to the terminology known from standard desktop 
+applications.
+
+---++ Does <nop>NatSkin support <nop>QuietSave?
+This TWiki feature confuses more than provide any added value and has thus been removed from
+the =edit= page to simplify the interface.
+
+---++ Why are there different actions in the attachment table?
+The table column of the attachments table has the title "Actions". In standard TWiki,
+the only thing that you can do per attachment here one action: "manage". 
+The things that you _can_ do with attachments is 
+   1 changing their properties (comments, attributes), 
+   1 moving (which is used for deleting also) and 
+   1 creatinga link to it in the topic text. 
+<nop>NatSkin tries to ease the standard use cases making them accessible
+with less mouse clicks, meanwhile not cluttering the interface.
+That's why there's "props, move" and not only "manage".
+
+---++ How do I create a custom style for <nop>NatSkin?
+
+---++ How do I create a custom header art?
+
+---++ How do I restrict the possible choice of styles and variations?
+

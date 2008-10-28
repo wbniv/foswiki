@@ -1,0 +1,98 @@
+check.double = on
+check.double.delete = off
+expand.macros = off
+fmt.et.al = {Etal}
+fmt.inter.name = {}
+fmt.name.name = {}
+fmt.name.title = {}
+ignored.word = "a"
+ignored.word = "an"
+ignored.word = "das"
+ignored.word = "der"
+ignored.word = "die"
+ignored.word = "ein"
+ignored.word = "eine"
+ignored.word = "el"
+ignored.word = "il"
+ignored.word = "la"
+ignored.word = "le"
+ignored.word = "les"
+ignored.word = "the"
+ignored.word = "un"
+ignored.word = "une"
+ignored.word = annual
+ignored.word = conference
+ignored.word = for
+ignored.word = meeting
+ignored.word = of
+key.base = cased
+key.number.separator = {}
+key.format = 
+{
+  %s(bibkey)
+  # {
+      { 
+	  { 
+	    { %2.2#p(author) %2n(author) } #
+	    %1n(author) 
+	  } # 
+	  %1n(editor) #
+	  %999W(title) 
+      }
+      {
+	%2d(year) #
+      }
+  }
+  # 
+  **key*
+}
+pass.comments = on
+%preserve.key.case = on
+print.align = 18
+print.align.comment = 10
+print.align.key = 0
+print.align.preamble = 11
+print.align.string = 18
+print.braces = on
+print.comma.at.end = 1
+print.deleted.entries    = on
+print.deleted.prefix     = "###"
+print.equal.right = on
+print.indent = 2
+print.line.length = 79
+print.newline = 1
+print.use.tab = 0
+print.wide.equal = 1
+%resource = {improve.rsc}
+%resource = {sort_fld.rsc}
+%resource = {iso2tex.rsc}
+sort = on
+sort.cased = on
+sort.macros = on
+sort.format = 
+{
+  %s(bibkey)
+  # {
+      { 
+	  %n(author) # 
+	  %n(editor) #
+	  %n(publisher) #
+      }
+      {
+	%2d(year) #
+      }
+      {
+	%s(booktitle) #
+	%s(journal) #
+      }
+      :%s($type)
+      :%999W(title) 
+  }
+}
+suppress.initial.newline = on
+symbol.type = lower
+rewrite.case.sensitive   = off
+check.case.sensitive     = off
+rewrite.rule {abstract = "^[{\"]\(.*\)[}\"]$" = " {{\\bf Abstract}: \1}" }
+rewrite.rule {annote = "^[{\"]\(.*\)[}\"]$" = " {{\\bf Comment}: \1}" }
+rewrite.rule {keywords = "^[{\"]\(.*\)[}\"]$" = " {{\\bf Keywords}: \1}" }

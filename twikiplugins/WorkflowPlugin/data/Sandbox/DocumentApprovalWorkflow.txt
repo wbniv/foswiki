@@ -1,0 +1,30 @@
+
+
+---++ Tags used in controlled topics
+
+	* Set WORKFLOWNOTICE = This topic is under document control. Last approval on %WORKFLOWLASTTIME_APPROVED%: %WORKFLOWLASTVERSION_APPROVED%
+
+	* Set WORKFLOWBUTTON =  <table border="0" cellspacing="0" cellpadding="0"> <tr><td>You are permitted to change the status of this document:</td><td>%WORKFLOWTRANSITION%</TD></tr></table>
+
+
+
+---++ States
+
+| *State*       | *Allow Edit*         | *Message* |
+| UNDERREVISION |                      | <div class="twikiAlert">This document is under revision.</div> |
+| APPROVED      |                      | |
+| WAITINGFORQM  | Main.TWikiAdminGroup | <div class="twikiAlert">This document is waiting for approval by the Quality Manager.</div> |
+| WAITINGFORCEO | Main.TWikiAdminGroup | <div class="twikiAlert">This document is waiting for approval by the CEO.</div> |
+
+
+
+
+---++ Transitions
+
+| *State*       | *Action*                             | *Next State*  | *Allowed* | *Form* |
+| APPROVED      | revise                               | UNDERREVISION | Main.TWikiAdminGroup | ApprovedForm |
+| UNDERREVISION | send to Quality Manager for approval | WAITINGFORQM  |  |  |
+| WAITINGFORQM  | approve and send to CEO for approval | WAITINGFORCEO |  | QMApprovalForm |
+| WAITINGFORQM  | reject and keep revising             | UNDERREVISION |  | QMApprovalForm |
+| WAITINGFORCEO | approve                              | APPROVED      |  | TMApprovalForm |
+| WAITINGFORCEO | reject and keep revising             | UNDERREVISION |  |

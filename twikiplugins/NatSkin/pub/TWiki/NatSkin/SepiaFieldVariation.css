@@ -1,0 +1,26 @@
+/* header art variation */
+.natHeaderArt {
+  background-image:url(SepiaFieldBar.jpg); 
+  background-repeat:no-repeat;
+  background-position:top left;
+}
+/*
+.natTopBar {
+  border-top:10px solid white;
+}
+.natWebButtons,
+.natMiddleLeft,
+.natTopLeft {
+  border-left:10px solid white;
+}
+.natMiddleRight,
+.natWebButtons,
+.natTopRight {
+  border-right:10px solid white;
+}
+*/
+.natSearchBoxTop input {
+  background:black;
+  color:white;
+  border:1px solid #AF9258;
+}

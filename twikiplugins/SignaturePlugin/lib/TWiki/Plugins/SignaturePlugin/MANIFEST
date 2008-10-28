@@ -1,0 +1,6 @@
+data/TWiki/SignaturePlugin.txt 0660
+lib/TWiki/Plugins/SignaturePlugin.pm 0440
+lib/TWiki/Plugins/SignaturePlugin/Signature.pm 0440
+bin/digisign 0550
+templates/oopsgeneric.pattern.tmpl_twiki40 0440
+templates/oopsgeneric.tmpl_twiki40 0440

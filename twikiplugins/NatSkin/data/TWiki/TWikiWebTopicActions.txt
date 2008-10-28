@@ -1,0 +1,5 @@
+%META:TOPICINFO{author="TWikiContributor" date="1161605041" format="1.1" reprev="1.2" version="$Rev$"}%
+---+ %TOPIC%
+Default site-level configuration for the !WebTopicActions !WebComponent
+
+%STARTINCLUDE%%USERACTIONS%%STOPINCLUDE%

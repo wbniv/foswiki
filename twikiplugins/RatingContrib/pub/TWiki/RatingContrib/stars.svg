@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.44.1"
+   sodipodi:docbase="/home/twiki/MAIN/twikiplugins/VotePlugin/pub/TWiki/VotePlugin"
+   sodipodi:docname="alt_stars.svg"
+   inkscape:export-filename="/home/twiki/MAIN/twikiplugins/VotePlugin/pub/TWiki/VotePlugin/star.gif"
+   inkscape:export-xdpi="204.54546"
+   inkscape:export-ydpi="204.54546">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient2840">
+      <stop
+         style="stop-color:#b3aba8;stop-opacity:1;"
+         offset="0"
+         id="stop2842" />
+      <stop
+         style="stop-color:#f0f0f0;stop-opacity:1;"
+         offset="1"
+         id="stop2844" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient2834">
+      <stop
+         id="stop2836"
+         offset="0"
+         style="stop-color:#f58635;stop-opacity:1;" />
+      <stop
+         id="stop2838"
+         offset="1"
+         style="stop-color:#fc9;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient2800">
+      <stop
+         style="stop-color:#fdc036;stop-opacity:1;"
+         offset="0"
+         id="stop2804" />
+      <stop
+         id="stop2818"
+         offset="1"
+         style="stop-color:#feeda6;stop-opacity:1;" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2800"
+       id="radialGradient2824"
+       cx="336.51263"
+       cy="119.36132"
+       fx="336.51263"
+       fy="119.36132"
+       r="65.208977"
+       gradientTransform="matrix(1,0,0,0.983536,0,1.965221)"
+       gradientUnits="userSpaceOnUse" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2834"
+       id="radialGradient2832"
+       cx="336.51263"
+       cy="119.36132"
+       fx="336.51263"
+       fy="119.36132"
+       r="69.502495"
+       gradientTransform="matrix(1,0,0,0.984553,0,1.84382)"
+       gradientUnits="userSpaceOnUse" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2840"
+       id="radialGradient2846"
+       cx="336.51262"
+       cy="119.36132"
+       fx="336.51262"
+       fy="119.36132"
+       r="65.208978"
+       gradientTransform="matrix(1,0,0,0.983536,0,1.965221)"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="5.6"
+     inkscape:cx="319.05054"
+     inkscape:cy="954.70169"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:window-width="1270"
+     inkscape:window-height="945"
+     inkscape:window-x="328"
+     inkscape:window-y="25" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       sodipodi:type="star"
+       style="opacity:1;fill:url(#radialGradient2846);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.58703613;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.23529412"
+       id="path1878"
+       sodipodi:sides="5"
+       sodipodi:cx="334.28571"
+       sodipodi:cy="123.79075"
+       sodipodi:r1="68.942451"
+       sodipodi:r2="34.471222"
+       sodipodi:arg1="1.0471976"
+       sodipodi:arg2="1.6755161"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="M 368.75693,183.49666 L 330.68248,158.07313 L 288.1542,175.02497 L 300.56776,130.95772 L 271.30364,95.749324 L 317.0501,93.937794 L 341.49216,55.225971 L 357.35146,98.173639 L 401.7216,109.45681 L 365.77673,137.81146 L 368.75693,183.49666 z "
+       transform="matrix(0.188613,-2.087073e-2,1.982393e-2,0.198573,134.0357,55.01408)"
+       inkscape:export-filename="/home/twiki/MAIN/twikiplugins/VotePlugin/pub/TWiki/VotePlugin/star.gif"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="opacity:1;fill:url(#radialGradient2824);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:12.78055573;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.23529412"
+       id="path1880"
+       sodipodi:sides="5"
+       sodipodi:cx="334.28571"
+       sodipodi:cy="123.79075"
+       sodipodi:r1="68.942451"
+       sodipodi:r2="34.471222"
+       sodipodi:arg1="1.0471976"
+       sodipodi:arg2="1.6755161"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="M 368.75693,183.49666 L 330.68248,158.07313 L 288.1542,175.02497 L 300.56776,130.95772 L 271.30364,95.749324 L 317.0501,93.937794 L 341.49216,55.225971 L 357.35146,98.173639 L 401.7216,109.45681 L 365.77673,137.81146 L 368.75693,183.49666 z "
+       transform="matrix(0.188613,-2.087073e-2,1.982393e-2,0.198573,134.0357,80.06309)"
+       inkscape:export-filename="/home/twiki/MAIN/twikiplugins/VotePlugin/pub/TWiki/VotePlugin/star.gif"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="opacity:1;fill:url(#radialGradient2832);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.58703613;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.23529412"
+       id="path1882"
+       sodipodi:sides="5"
+       sodipodi:cx="334.28571"
+       sodipodi:cy="123.79075"
+       sodipodi:r1="68.942451"
+       sodipodi:r2="34.471222"
+       sodipodi:arg1="1.0471976"
+       sodipodi:arg2="1.6755161"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="M 368.75693,183.49666 L 330.68248,158.07313 L 288.1542,175.02497 L 300.56776,130.95772 L 271.30364,95.749324 L 317.0501,93.937794 L 341.49216,55.225971 L 357.35146,98.173639 L 401.7216,109.45681 L 365.77673,137.81146 L 368.75693,183.49666 z "
+       transform="matrix(0.188613,-2.087073e-2,1.982393e-2,0.198573,134.0357,105.1121)"
+       inkscape:export-filename="/home/twiki/MAIN/twikiplugins/VotePlugin/pub/TWiki/VotePlugin/star.gif"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="opacity:1;fill:red;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.58703613;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.23529412"
+       id="path2848"
+       sodipodi:sides="5"
+       sodipodi:cx="334.28571"
+       sodipodi:cy="123.79075"
+       sodipodi:r1="68.942451"
+       sodipodi:r2="34.471222"
+       sodipodi:arg1="1.0471976"
+       sodipodi:arg2="1.6755161"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="M 368.75693,183.49666 L 330.68248,158.07313 L 288.1542,175.02497 L 300.56776,130.95772 L 271.30364,95.749324 L 317.0501,93.937794 L 341.49216,55.225971 L 357.35146,98.173639 L 401.7216,109.45681 L 365.77673,137.81146 L 368.75693,183.49666 z "
+       transform="matrix(0.188613,-2.087073e-2,1.982393e-2,0.198573,172.7096,54.82191)"
+       inkscape:export-filename="/home/twiki/MAIN/twikiplugins/VotePlugin/pub/TWiki/VotePlugin/pick_star.gif"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="opacity:1;fill:#c8c8c8;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.58703613;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.23529412"
+       id="path2852"
+       sodipodi:sides="5"
+       sodipodi:cx="334.28571"
+       sodipodi:cy="123.79075"
+       sodipodi:r1="68.942451"
+       sodipodi:r2="34.471222"
+       sodipodi:arg1="1.0471976"
+       sodipodi:arg2="1.6755161"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="M 368.75693,183.49666 L 330.68248,158.07313 L 288.1542,175.02497 L 300.56776,130.95772 L 271.30364,95.749324 L 317.0501,93.937794 L 341.49216,55.225971 L 357.35146,98.173639 L 401.7216,109.45681 L 365.77673,137.81146 L 368.75693,183.49666 z "
+       transform="matrix(7.52523e-2,-8.326947e-3,7.909298e-3,7.922612e-2,252.7687,67.25321)"
+       inkscape:export-filename="/home/twiki/MAIN/twikiplugins/VotePlugin/pub/TWiki/VotePlugin/star_small.gif"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="opacity:1;fill:#fdc036;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:12.78055573;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.23529412"
+       id="path2854"
+       sodipodi:sides="5"
+       sodipodi:cx="334.28571"
+       sodipodi:cy="123.79075"
+       sodipodi:r1="68.942451"
+       sodipodi:r2="34.471222"
+       sodipodi:arg1="1.0471976"
+       sodipodi:arg2="1.6755161"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="M 368.75693,183.49666 L 330.68248,158.07313 L 288.1542,175.02497 L 300.56776,130.95772 L 271.30364,95.749324 L 317.0501,93.937794 L 341.49216,55.225971 L 357.35146,98.173639 L 401.7216,109.45681 L 365.77673,137.81146 L 368.75693,183.49666 z "
+       transform="matrix(7.52523e-2,-8.326947e-3,7.909298e-3,7.922612e-2,252.7687,77.24721)"
+       inkscape:export-filename="/home/twiki/MAIN/twikiplugins/VotePlugin/pub/TWiki/VotePlugin/star_small.gif"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="opacity:1;fill:#f56335;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.58703613;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.23529412"
+       id="path2856"
+       sodipodi:sides="5"
+       sodipodi:cx="334.28571"
+       sodipodi:cy="123.79075"
+       sodipodi:r1="68.942451"
+       sodipodi:r2="34.471222"
+       sodipodi:arg1="1.0471976"
+       sodipodi:arg2="1.6755161"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="M 368.75693,183.49666 L 330.68248,158.07313 L 288.1542,175.02497 L 300.56776,130.95772 L 271.30364,95.749324 L 317.0501,93.937794 L 341.49216,55.225971 L 357.35146,98.173639 L 401.7216,109.45681 L 365.77673,137.81146 L 368.75693,183.49666 z "
+       transform="matrix(7.52523e-2,-8.326947e-3,7.909298e-3,7.922612e-2,252.7687,87.24111)"
+       inkscape:export-filename="/home/twiki/MAIN/twikiplugins/VotePlugin/pub/TWiki/VotePlugin/star_small.gif"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="opacity:1;fill:red;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.58703613;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.23529412"
+       id="path2858"
+       sodipodi:sides="5"
+       sodipodi:cx="334.28571"
+       sodipodi:cy="123.79075"
+       sodipodi:r1="68.942451"
+       sodipodi:r2="34.471222"
+       sodipodi:arg1="1.0471976"
+       sodipodi:arg2="1.6755161"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="M 368.75693,183.49666 L 330.68248,158.07313 L 288.1542,175.02497 L 300.56776,130.95772 L 271.30364,95.749324 L 317.0501,93.937794 L 341.49216,55.225971 L 357.35146,98.173639 L 401.7216,109.45681 L 365.77673,137.81146 L 368.75693,183.49666 z "
+       transform="matrix(7.52523e-2,-8.326947e-3,7.909298e-3,7.922612e-2,268.1987,67.17651)"
+       inkscape:export-filename="/home/twiki/MAIN/twikiplugins/VotePlugin/pub/TWiki/VotePlugin/pick_star_small.gif"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+  </g>
+</svg>

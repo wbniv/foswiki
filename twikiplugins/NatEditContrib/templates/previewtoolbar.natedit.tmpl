@@ -1,0 +1,10 @@
+%TMPL:INCLUDE{"edittoolbar"}%
+%TMPL:DEF{"previewtoolbar"}%<div class="natEditToolBar">%TMPL:P{"previewtools"}%</div>%TMPL:END%
+
+%TMPL:DEF{"previewtools"}%<ul class="natEditPreviewTools">
+%TMPL:P{"editbutton"}%
+%TMPL:P{"savebutton"}%
+%TMPL:P{"cancelbutton"}%
+</ul>%TMPL:END%
+
+%TMPL:DEF{"editbutton"}%<li class="natEditEditButton"><a accesskey="e" href="javascript:history.back()" title="%MAKETEXT{"Continue editing"}%"><span>%MAKETEXT{"Edit"}%</span></a></li>%TMPL:END%

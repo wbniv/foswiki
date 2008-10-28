@@ -1,0 +1,105 @@
+%META:TOPICINFO{author="TWikiContributor" date="1140597757" format="1.1" version="$Rev$"}%
+---+!! <nop>%TOPIC%
+
+*[[http://www.jsunit.net/][JSUnit]] !JavaScript unit testing framework.*
+
+---++ Usage
+After installing, include the core js file with:
+<verbatim>
+<script language="javascript" src="%PUBURL%/%SYSTEMWEB%/JSUnitContrib/app/jsUnitCore.js"></script>
+</verbatim>
+   
+
+---++ Example
+Adapted example from the site:
+
+Suppose we want to write a test for a function called =multiplyAndAddFive(value1, value2)= which multiplies =value1= and =value2= together, adds five, and returns the result. Also suppose that this function lives in a file called [[%ATTACHURL%/sample_script_to_test.js][sample_script_to_test]]. Assume that if non-numeric values are passed in, the function should return null. A suitable Test Page would look like the following:
+
+<blockquote>
+<verbatim>
+<html>
+<head>
+<title>Test Page for multiplyAndAddFive(value1, value2)</title>
+<script language="javascript" src="%PUBURL%/%SYSTEMWEB%/JSUnitContrib/app/jsUnitCore.js"></script>
+<script language="javascript" src="%PUBURL%/%SYSTEMWEB%/JSUnitContrib/sample_script_to_test.js"></script>
+</head>
+<body>
+<script language="javascript">
+    function testWithValidArgs() {
+        assertEquals("2 times 3 plus 5 is 11", 11, multiplyAndAddFive(2, 3));
+        assertEquals("Should work with negative numbers", -15, multiplyAndAddFive(-4, 5));
+    }
+    function testWithInvalidArgs() {
+        assertNull("A null argument should result in null", multiplyAndAddFive(2, null));
+        assertNull("A string argument should result in null", multiplyAndAddFive(2, "a string"));
+    }
+    function testStrictReturnType() {
+        assertNotEquals("Should return a number, not a string", "11", multiplyAndAddFive(2, 3));
+    }
+    function testWithUndefinedValue() {
+        assertNull("An undefined argument should result in null", multiplyAndAddFive(2, JSUNIT_UNDEFINED_VALUE));
+    }
+</script>
+*[[%PUBURL%/%SYSTEMWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%SYSTEMWEB%/JSUnitContrib][Run test]]*
+</body>
+</html>
+</verbatim>
+</blockquote>
+
+If installed this will result in:
+
+<script language="javascript" src="%PUBURL%/%SYSTEMWEB%/JSUnitContrib/app/jsUnitCore.js"></script>
+<script language="javascript" src="%PUBURL%/%SYSTEMWEB%/JSUnitContrib/sample_script_to_test.js"></script>
+<script language="javascript">
+/*<![CDATA[*/
+    function testWithValidArgs() {
+        assertEquals("2 times 3 plus 5 is 11", 11, multiplyAndAddFive(2, 3));
+        assertEquals("Should work with negative numbers", -15, multiplyAndAddFive(-4, 5));
+    }
+    function testWithInvalidArgs() {
+        assertNull("A null argument should result in null", multiplyAndAddFive(2, null));
+        assertNull("A string argument should result in null", multiplyAndAddFive(2, "a string"));
+    }
+    function testStrictReturnType() {
+        assertNotEquals("Should return a number, not a string", "11", multiplyAndAddFive(2, 3));
+    }
+    function testWithUndefinedValue() {
+        assertNull("An undefined argument should result in null", multiplyAndAddFive(2, JSUNIT_UNDEFINED_VALUE));
+    }
+/*]]>*/
+</script>
+
+*[[%PUBURL%/%SYSTEMWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%SYSTEMWEB%/JSUnitContrib][Run test]]*
+
+---++ Documentation
+See: http://www.jsunit.net/documentation/
+
+---++ Settings
+
+	* Set SHORTDESCRIPTION = JSUnit !JavaScript unit testing framework
+	* Set STUB = %$STUB%
+
+---++ Installation Instructions
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your ($TWIKI_ROOT) directory. Content:
+	| *File:* | *Description:* |
+%$MANIFEST%
+	* Optionally, run ==%TOPIC%_installer== to automatically check and install other TWiki modules that this module depends on. You can also do this step manually.
+	* Alternatively, manually make sure the dependencies listed in the table below are resolved.
+	%$DEPENDENCIES%
+
+
+---++ Contrib Info
+
+| Authors: | TWiki:Main.ArthurClemens |
+| Copyright &copy;: | Copyright (C) 2001-6 Edward Hieatt, edward@jsunit.net. Packaged for TWiki 2006 by Arthur Clemens. Directory =java= removed to reduce package size.  |
+| License: | [[http://www.gnu.org/copyleft/gpl.html][GPL]], GNU Library or Lesser General Public License (LGPL), Mozilla Public License 1.1 (MPL 1.1)  |
+| Dependencies: | %$DEPENDENCIES% |
+| 28 Oct 2006 | Version jsunit2.2alpha11  |
+| Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+| Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+| Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences
+ 

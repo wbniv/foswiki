@@ -1,0 +1,12 @@
+%META:TOPICINFO{author="PaulHoesli" date="1162670968" format="1.1" reprev="1.2" version="1.2"}%
+%META:TOPICPARENT{name="WebHome"}%
+---+ %TOPIC%
+
+%TOC%
+
+---++ Sample Issue 1
+This topic is under workflow control. See topic preferences.
+
+%META:WORKFLOWHISTORY{value="ASSIGNED -- 07 Oct 2006 - 23:46%0d%0aCLOSED -- 08 Oct 2006 - 00:29%0d%0a   * ASSIGNED -- Main.PaulHoesli, 08 Oct 2006 - 01:26%0d%0a   * REJECTED -- Main.PaulHoesli, 08 Oct 2006 - 01:29 - $rev%0d%0a   * ASSIGNED am 08 Oct 2006 - 01:32 durch Main.PaulHoesli, "}%
+%META:WORKFLOW{name="ASSIGNED" LASTTIME_ASSIGNED="08 Oct 2006 - 01:32" LASTTIME_CLOSED="08 Oct 2006 - 00:29" LASTTIME_REJECTED="08 Oct 2006 - 01:29" LASTVERSION_ASSIGNED="1" LASTVERSION_CLOSED="1" LASTVERSION_REJECTED="1"}%
+%META:PREFERENCE{name="WORKFLOW" title="WORKFLOW" type="Set" value="IssueWorkflow"}%

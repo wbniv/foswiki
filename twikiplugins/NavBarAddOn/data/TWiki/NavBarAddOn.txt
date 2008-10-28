@@ -1,0 +1,102 @@
+%META:TOPICINFO{author="PeterThoeny" date="1159213083" format="1.0" version="1.1"}%
+%INCLUDE{NavBarAddOnExample}%
+---+ Navigation Bar Add-On
+
+Add tabbed navigation bars to TWiki topics. A navigation bar can be defined once for a set of topics and then simply included in those topics.
+
+---++ Usage
+
+---+++ 1. Define Navigation Bar
+Create a topic that defines the navigation bar.
+	* Example =MyOwnNavBar= topic content:
+	  %BR% =%<nop>STARTINCLUDE%=
+	  %BR% =%<nop>CALC{$SET( ...optional parameters listed below... )}%=
+	  %BR% =%<nop>INCLUDE{%<nop>SYSTEMWEB%.NavBarAddOnStart}%=
+	  %BR% =%<nop>CALC{$SET(topic, <nop>TopicArt) $SET(label, Art) $EXEC($GET(tab))}%=
+	  %BR% =%<nop>CALC{$SET(topic, <nop>TopicBar) $SET(label, Bar) $EXEC($GET(tab))}%=
+	  %BR% =%<nop>CALC{$SET(topic, <nop>TopicCat) $SET(label, Cat) $EXEC($GET(tab))}%=
+	  %BR% =%<nop>INCLUDE{%<nop>SYSTEMWEB%.NavBarAddOnEnd}%=
+	  %BR% =%<nop>STOPINCLUDE%=
+	* Optional parameters can be defined by setting spreadsheet variables: (default values are shown)
+	  %BR% =$SET(bga_color, #999999)= %M% Background [[%SYSTEMWEB%.StandardColors][color]] of active tab
+	  %BR% =$SET(fga_color, #FFFFFF)= %M% Foreground color of active tab
+	  %BR% =$SET(bgi_color, #DDDDDD)= %M% Background color of inactive tab
+	  %BR% =$SET(fgi_color, #000000)= %M% Foreground color of inactive tab
+	  %BR% =$SET(min_width, 60)= %M% Minimum tab width in pixel
+	* For each tab define the link (web name / topic name) and the label:
+	  %BR% =$SET(web, %<nop>USERSWEB%)= %M% Name of web (optional)
+	  %BR% =$SET(topic, %<nop>HOMETOPIC%)= %M% Name of topic (required)
+	  %BR% =$SET(label, Home)= %M% Label of tab (required) which may contain an [[%SYSTEMWEB%.TWikiDocGraphics][icon]]
+
+---+++ 2. Use Navigation Bar
+In each participating topic, include the navigation bar topic.
+	* Example:
+	  %BR% =%<nop>INCLUDE{MyOwnNavBar}%=
+
+See working NavBarAddOnExample
+
+---++ Add-On Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this add-on. The following instructions are for the administrator who installs the add-on on the server where TWiki is running. 
+
+	* Download the ZIP file from the Add-on Home (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Add-on topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Repository of above topic |
+	  | ==data/TWiki/%TOPIC%Example.txt== | Example topic |
+	  | ==data/TWiki/%TOPIC%Example.txt,v== | Repository of above topic |
+	  | ==data/TWiki/%TOPIC%Start.txt== | Nav bar start topic |
+	  | ==data/TWiki/%TOPIC%Start.txt,v== | Repository of above topic |
+	  | ==data/TWiki/%TOPIC%End.txt== | Nav bar end topic |
+	  | ==data/TWiki/%TOPIC%End.txt,v== | Repository of above topic |
+	  | ==pub/TWiki/%TOPIC%/blackpixel.gif== | Image file: Black pixel |
+	  | ==pub/TWiki/%TOPIC%/clearpixel.gif== | Image file: Clear pixel |
+	  | ==pub/TWiki/%TOPIC%/screenshot.gif== | Image file: Screenshot |
+	  | ==pub/TWiki/%TOPIC%/tab_l.gif== | Image file: Left side of tab |
+	  | ==pub/TWiki/%TOPIC%/tab_t.gif== | Image file: Top part of tab |
+	  | ==pub/TWiki/%TOPIC%/tab_r.gif== | Image file: Right side of tab |
+	* Test if the installation was successful:
+		* The navigation bar should look like this screenshot:
+		  %BR% <img src="%ATTACHURLPATH%/screenshot.gif" alt="screenshot"  width="549" height="46" />
+		* Click on the navigation bar on top to verify that the navigation is working as expected
+
+---++ Known Limitations
+
+This Add-on works properly with different skins on IE, Netspace and Firefox. It works nicely with the !PatternSkin shipped with the TWiki:Codev.TWikiRelease02Sep2004, but not with the latest version of the TWiki:Plugins:PatternSkin due to interference of the Plugin stylesheet with the table layout of the tabs. [[%SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%?skin=classic][Test this topic]] with the %SYSTEMWEB%.ClassicSkin
+
+---++ Add-On Info
+
+
+	* Set SHORTDESCRIPTION = Add tabbed navigation bars to TWiki topics
+
+|  Add-on Author: | TWiki:Main.PeterThoeny |
+|  Copyright: | &copy; 2005, TWiki:Main.PeterThoeny |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public
+License]]) |
+|  Add-on Version: | 15 Jul 2005 (v1.000) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  15 Jul 2005: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.024 (TWiki 01-Sep-2004) |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | TWiki:Plugins.SpreadSheetPlugin version 17 Jun 2005
+(1.018) |
+|  Perl Version: | 5.005 |
+|  Add-on Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topic:__
+	* %SYSTEMWEB%.TWikiAddOns
+	* NavBarAddOnExample
+	* NavBarAddOnStart
+	* NavBarAddOnEnd
+
+-- TWiki:Main/PeterThoeny - 15 Jul 2005
+
+%META:FILEATTACHMENT{name="tab_l.gif" attr="h" comment="" date="1121492685" path="tab_l.gif" size="160" user="PeterThoeny" version="1.1"}%
+%META:FILEATTACHMENT{name="tab_t.gif" attr="h" comment="" date="1121492698" path="tab_t.gif" size="88" user="PeterThoeny" version="1.1"}%
+%META:FILEATTACHMENT{name="tab_r.gif" attr="h" comment="" date="1121492706" path="tab_r.gif" size="129" user="PeterThoeny" version="1.1"}%
+%META:FILEATTACHMENT{name="clearpixel.gif" attr="h" comment="" date="1121492718" path="clearpixel.gif" size="807" user="PeterThoeny" version="1.1"}%
+%META:FILEATTACHMENT{name="blackpixel.gif" attr="h" comment="" date="1121492733" path="blackpixel.gif" size="807" user="PeterThoeny" version="1.1"}%
+%META:FILEATTACHMENT{name="screenshot.gif" attr="h" comment="" date="1121492814" path="screenshot.gif" size="2490" user="PeterThoeny" version="1.1"}%

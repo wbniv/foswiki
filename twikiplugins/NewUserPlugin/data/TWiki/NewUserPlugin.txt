@@ -1,0 +1,53 @@
+%META:TOPICINFO{author="TWikiContributor" date="1164920448" format="1.1" reprev="1.2" version="$Rev$"}%
+---+!! NewUserPlugin
+%TOC%
+---++ Description
+<table style="float:right">
+<tr>
+  <td><img src="%ATTACHURLPATH%/wikiringlogo40x40.png"></td>
+  <td><a href="http://wikiring.de" title="Lets your Wiki Ring" style="text-decoration:none">
+      Powered by <br /> <nop>WikiRing Consultants </a>
+  </td>
+</tr>
+</table>
+This plugin is of use in those cases where TWiki users are registered and authenticated externally, 
+for example using LDAP.
+So users are not registered to TWiki using its own registration workflow and therefore don't
+have a user topic in the %USERSWEB% web.
+This plugin fills that gap and creates a user's topic if it does not yet exist.
+
+---++ Settings
+<!--
+    * Set SHORTDESCRIPTION = Create a user topic if it does not exist yet
+-->
+You can customize the template that is used to create a new user topic
+by setting the =NEWUSERTEMPLATE= preference variable (e.g. in %USERSWEB%.TWikiPreferences):
+   
+   * Set NEWUSERTEMPLATE = %SYSTEMWEB%.NewLdapUserTemplate
+
+If not set, it defaults to <nop>NewUserTemplate. This plugin comes with an example template,
+NewLdapUserTemplate, to illustrate how to extract user data from an LDAP directory and integrate
+the information into the user's topic dynamically. You will need to install the
+TWiki:Plugins/LdapNgPlugin and the TWiki:Plugins/GluePlugin to make use of it.
+
+---++ Installation Instructions
+
+%$INSTALL_INSTRUCTIONS%
+
+---++ Plugin Info
+This work is partly funded by [[http://www.hennerich.de][T+T Hennerich <nop>GmbH]].
+
+|  Plugin Author: | TWiki:Main/MichaelDaum |
+|  Copyright &copy;: | 2006-2007, Michael Daum http://wikiring.de |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | v1.00 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  17 Sep 2007 | replace usernames in formtemplates as well as in the topic text |
+|  18 Dec 2006 | initial release |
+|  Dependencies: | None |
+|  Plugin Home: | TWiki:Plugins/%TOPIC% |
+|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
+|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+
+
+%META:FILEATTACHMENT{name="wikiringlogo40x40.png" attachment="wikiringlogo40x40.png" attr="h" comment="" date="1189787359" path="wikiringlogo40x40.png" size="2571" stream="wikiringlogo40x40.png" tmpFilename="" user="TWikiContributor" version="1"}%

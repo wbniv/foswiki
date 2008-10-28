@@ -1,0 +1,55 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1173335574" format="1.1" version="1.5"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+%FORMFIELD{"Summary"}%
+
+---+++++ Parameters
+   * None
+
+---+++++ Css
+   * 
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE% <form action="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%BASEWEB%/CreateNewTopic">
+*Post New:*  <select name="type" onchange="this.form.submit()"> 
+~~~   <option value="%URLPARAM{"type" default=""}%">%URLPARAM{"type" default="Select..."}%</option><option >Blank Topic</option> 
+~~~   
+%~~   DBQUERY{ "Classification= 'TopicType'" 
+~~~        web="%BASEWEB%" 
+~~~        format= "<option value=\"$topic\" >
+*~~              $percntSPACEOUT{$topic}$percnt</option>" 
+~~~        separator=" "
+~~~    }%</select>
+~~~    <input type="hidden" name="step" value="two"> 
+~~~    </form>
+%STOPINCLUDE%
+</verbatim>
+
+<!-- interrupt glue -->
+
+---++ Test
+<div class="alt">
+%DBCALL{"%TOPIC%"}%
+</div>
+
+%DBCALL{"RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+(C) 2006 LynnwoodBrown@Skyloom.com
+
+%DBCALL{"GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+
+%META:FORM{name="TCAO.TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="SubjectArea" attributes="" title="SubjectArea" value=""}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Renders a drop-down menu for creating new topics."}%

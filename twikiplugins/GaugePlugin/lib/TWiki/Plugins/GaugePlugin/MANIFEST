@@ -1,0 +1,9 @@
+data/TWiki/GaugePlugin.txt NEW
+data/TWiki/GaugePluginTests.txt NEW
+lib/TWiki/Plugins/GaugePlugin.pm NEW
+#pub/TWiki/GaugePlugin/_GaugePlugin_tambar_t1.png NEW
+pub/TWiki/GaugePlugin/tambar1.gif NEW
+pub/TWiki/GaugePlugin/trenddn.gif NEW
+pub/TWiki/GaugePlugin/trendeq.gif NEW
+pub/TWiki/GaugePlugin/trendnd.gif NEW
+pub/TWiki/GaugePlugin/trendup.gif NEW

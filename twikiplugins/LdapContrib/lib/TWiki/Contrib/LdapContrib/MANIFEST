@@ -1,0 +1,6 @@
+data/TWiki/LdapContrib.txt 0644
+lib/TWiki/Contrib/LdapContrib/Cache.pm 0644
+lib/TWiki/Contrib/LdapContrib/Config.spec 0644
+lib/TWiki/Contrib/LdapContrib.pm 0644
+lib/TWiki/Users/LdapUserMapping.pm 0644
+lib/TWiki/Users/LdapUser.pm 0644

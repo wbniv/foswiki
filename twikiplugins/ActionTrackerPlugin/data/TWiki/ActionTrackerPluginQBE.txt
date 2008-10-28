@@ -1,0 +1,13 @@
+---+ Query-by-example action search
+
+<form name="searchaction" action="%SCRIPTURL{view}%/%WEB%/%TOPIC%#QueryByExample">
+|  Who: | <input type="text" name="qwho" value="%URLPARAM{"qwho"}%" size="20" /> |
+|  Notify: | <input type="text" name="qnotify" value="%URLPARAM{"qnotify"}%" size="20" /> |
+|  State: | <select name="qstate"> <option>%URLPARAM{"qstate"}%</option> <option>open</option> <option>late</option> <option>closed</option> <option></option> </select> |
+|  Within: | <input type="text" name="qwithin" value="%URLPARAM{"qwithin"}%" size="3" /> days |
+|  Web: | <input type="text" name="qweb" value="%URLPARAM{"qweb"}%" size="20" /> |
+|  Topic: | <input type="text" name="qtopic" value="%URLPARAM{"qtopic"}%" size="20" /> |
+| | <input type="submit" value="Go" /> |
+</form>
+Result:
+%ACTIONSEARCH{ %IF{"$qwho!=''" then="who='%URLPARAM{qwho}%'"}% %IF{"$qnotify!=''" then="notify='%URLPARAM{qnotify}%'"}% %IF{"$qstate!=''" then="state='%URLPARAM{qstate}%'"}}% %IF{"$qwithin!=''" then="within='%URLPARAM{qwithin}%'"}% %IF{"$qweb!=''" then="web='%URLPARAM{qweb}%'"}% %IF{"$qtopic!=''" then="topic='%URLPARAM{qtopic}%'"}% }%

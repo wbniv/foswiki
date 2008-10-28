@@ -1,0 +1,63 @@
+%META:TOPICINFO{author="WillNorris" date="1068273427" format="1.0" version="1.8"}%
+---+ <nop>%TOPIC%
+
+renders a chunk of text 
+
+this is just a prototype/proof of concept.  it needs to support parameters like =web= and =topic=, an arbitrary url (=href=?), perhaps some prepackaged css stylesheets for the rendered log.  maybe some sort of filtering?  plus, it would be nice for the rendering to show timestamps, which it currently ignores.  stuff like that...
+
+other suggestions for improvements:
+	* (optionally and/or by default) mask ip addresses
+	* merge multiple lines into a single block
+
+---++ Syntax Rules
+
+	* =%<nop>IRCLOG{ text... }%=
+
+---++ Examples
+
+	* see [[Sandbox.TestTopicIrcLogPlugin]]
+
+---++ <nop>%TOPIC% Global Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Pretty prints IRC logs
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+	* (not functional yet)
+		* Set COLOUR_PART		 = #009
+		* Set COLOUR_JOIN		 = #090
+		* Set COLOUR_SERVER	  = #090
+		* Set COLOUR_NICKCHANGE = #090
+		* Set COLOUR_ACTION	  = #0f0
+		* Set COLOUR_NICKS		= 
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+Test:
+	* see Sandbox.TestTopicIrcLogPlugin
+
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.WillNorris |
+|  Plugin Version: | 07 Nov 2003 (V1.000) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  07 Nov 2003: | Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Required: | 5.005? |
+|  Perl Running: | 5.8.0 |
+|  Plugin Home: | TWiki:Plugins.%TOPIC% |
+|  Feedback: | TWiki:Plugins.%TOPIC%Dev |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+
+-- TWiki:Main.WillNorris - 07 Nov 2003
+ 
+

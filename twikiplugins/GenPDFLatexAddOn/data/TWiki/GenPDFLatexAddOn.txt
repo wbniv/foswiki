@@ -1,0 +1,152 @@
+%META:TOPICINFO{author="guest" date="1131676496" format="1.1" version="1.6"}%
+---+ Generate PDF-Latex Add On
+
+This add-on generates a latex file for a specified topic, and/or the PDF output of =pdflatex= processing this latex file.  The goal is to provide PDF versions of TWiki topics with nicely rendered mathematics, using a latex document preparation environment installed on the TWiki server.
+
+The package is tightly integrated with the TWiki:Plugins.LatexModePlugin, which is a required prerequisite.
+
+The goal of this package development is to provide a mechanism for groups to edit and produce latex documents suitable for publication submission.  The use of this package on a TWiki installation provides the following advantages:
+   * there is no need for each user to install a latex environment themselves, 
+   * one can leverage the revision control (and =diff= rendering) provided by TWiki,
+   * document templates, in the form of latex style files, required by publishers or conference organizers can be easily employed.
+
+---++ Usage
+
+   * This package provides a new cgi script =genpdflatex=.
+      * The first call to this script produces a form through which latex/pdflatex file generation options can be set, (e.g. single or dual columns, draft settings, latex document style, etc.)
+      * subsequent calls to the cgi script _from this form_ will produce either a raw latex file or the associated PDF file.
+
+---+++ Startup Form
+
+This add on uses an intermediate form to declare the latex/pdflatex rendering options, including =documentclass= to be used, single or double column, etc...  A default form is provided with the script.  A custom form can be used by declaring GENPDFLATEX_OPTIONSPAGE somewhere within the twiki or web preferences (or in the GenPDFLatexPlugin topic). If the following strings appear in the form, =$web=, =$topic=, =$style=, and =$packages=, these strings will be respectively replaced by !%WEB%, !%TOPIC%, and the option arguments described below.
+
+---+++ Topic Syntax
+
+The following TWiki topic syntax commands are provided through the included 
+GenPDFLatexPlugin:
+
+The tag !%PDFLATEXLINK{<em>options</em>}% will render as a link to the =genpdflatex= script.  The available options are
+   | *option* | *function* | *default* |
+   | =text= | text for hyperlink | "Create PDF/Latex Version" |
+   | =packages= | pass a list of latex packages to the form |   (empty)   |
+   | =style= | declare a default style in the form |   (empty)   |
+
+Inclusion or exclusion of topic content from either the HTML or Latex renderings-up, is provided through the following conditional commands:%BR%
+
+   %<nop>PDFLATEXIF% [tex] %<nop>ELSE% [html] %<nop>PDFLATEXENDIF% %BR%
+   and %BR%
+   %<nop>PDFLATEXIF% [tex] %<nop>PDFLATEXENDIF% %BR%
+
+In each case, content in the [tex] region will only appear in the PDF/Latex rendered file, and content in the [html] region will only appear in HTML renderings (i.e. a standard TWiki =view=).
+
+Most notably, this is useful for declaring the titlepage in the latex rendering.  This conditional allows one to use, for example, a professional name in the latex file and a TWiki username in the HTML topic rendering.
+
+---+++ =genpdflatex= script parameters
+
+The following =html2latex= parameters are available for passing latex options to =genpdflatex=:
+| *option* | *description* |
+| class | the <nop>LaTeX2e document class (article,IEEEtran,letter,etc.) |
+| font_size | font size (9,10,11,12) |
+| imgscale | scale factor for the HTML images |
+| packages | to supply a list of <nop>Latex2e packages (graphicx,doublespace,etc) |
+
+These parameters can be set in the setup form, or declared in the %<nop>PDFLATEXLINK{}% call.   The default settings for the parameters are initialized in the =html2latex= configuration (i.e. <nop>LatexLMP.pm).
+
+
+---++ Add-On Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this add-on. The following instructions are for the administrator who installs the add-on on the server where TWiki is running. 
+
+   * Install the html2latexLMP package, and prerequisites
+      * Download the html2latexLMP tar.gz file from the Add-On Home (see below)
+      * untar the tarball, (=tar zxvf html2latexLMP...=)
+      * chdir to the HTML subdirectory (=cd html2latexLMP.../HTML=)
+      * perform the standard perl module install steps. (=perl Makefile.PL; make test; make install;=) See the INSTALL file for a complete description.
+   * Setup the Latex rendering software
+      * Ensure that a latex document preparation system is available to the user name (uid) running the twiki web server.
+      * Install any custom latex style files needed.  The best suggestion is to create a local =texmf= tree accessible by the server.  For example, for an apache server running as 'nobody' on a linux system:
+         * create the directory =/home/nobody/texmf/tex/latex=, with reasonable permissions.
+         * Place the custom =.cls= and =.sty= latex files in this directory
+         * as user =root= or =nobody=, run =texhash /home/nobody/texmf= to create the =ls-R= latex database file for the =/home/nobody/texmf/= tree.
+   * Setup the add on 
+      * Download the ZIP file from the Add-on Home (see below) %BR%       %ICON{warning}% Note: versions 2.0 and above are compatible only  with TWiki 4.x.x.  If you are running an earlier version of TWiki,  (i.e. Cairo) [[http://twiki.org/cgi-bin/viewfile/Plugins/GenPDFLatexAddOn?rev=4;filename=GenPDFLatexAddOn.zip][download v1.4]] instead. %ICON{warning}%
+      * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+        | *File:* | *Description:* |
+        | ==data/TWiki/%TOPIC%.txt== | Add-on topic |
+        | ==data/TWiki/GenPDFLatexPlugin.txt== | The Plugin topic |
+        | ==data/Main/GenPDFLatexForm.txt== | form listing file generation options |
+        | ==bin/genpdflatex== | Add-on script |
+        | ==lib/TWiki/Contrib/GenPDFLatex.pm== | the perl code package module |
+        | ==lib/TWiki/Plugins/GenPDFLatexPlugin.pm== | code for conditional content rendering |
+      * if using server authentication, add the =genpdflatex= file to the .htaccess permission list in the =twiki/bin= directory
+      * in <nop>GenPDFLatex.pm, declare the =pdflatex= executable path and the =$ENV{'HOME'}= variables, if needed.
+      * Set up the pdflatex generation form. Note, this form topic is _optional_.  If no form is declared, the cgi script will use a default form which can be modified by the administrator instead.
+         * Modify the file generation form, <nop>GenPDFLatexForm, to reflect your own needs.  
+         * declare which topic to use as the form in a Preferences topic %BR% (e.g.  declare %BR% * Set GENPDFLATEX_OPTIONSPAGE = Main.<nop>GenPDFLatexForm %BR% in the TWiki.TWikiPreferences topic)
+      * Test if the installation was successful:
+         * point your browser to a TWiki topic that contains TWiki:Plugins.LatexModePlugin markup.
+         * replace =view= with =genpdflatex= in the url, and reload the page.%BR% _(At this point, you should see the <nop>GenPDFLatex form)_
+         * select file generation options
+         * press the 'Produce PDF/Latex' button and view the returned .tex/.pdf file.
+
+---+++ Package particulars
+
+To convert the topic HTML code generated by twiki into a latex source file, this add-on uses a modified version of HTML::Latex from CPAN, renamed HTML::LatexLMP and included with the html2latexLMP package attached to this topic.  The modifications are minor, providing two new HTML tag handlers (for 'font' and 'a') and changes to the default HTML tag to Latex mark-up mapping configuration.
+
+---++++ Image sizing
+
+The relative size and placeement of images in HTML doesn't not generally translate well to latex documents.  Thus, with rev 1.4 of =html2latexLMP=, a few hooks were added to allow greater control of the image rendering in the latex document.  Standard =html2latex= provides an image =scale= parameter.  The LMP version allows two new attributes, =texwidth= and =texheight=, to be declared in the html =img= tag.  For example, a standard HTML tag for the attached screen shot image would read:
+<verbatim>
+   <img src="screenshot.png" alt="screen shot example" width="800" height="600">
+</verbatim>
+
+To render this same image in the pdf/latex document to cover almost the whole width of the page, one could declare:
+<verbatim>
+   <img src="screenshot.png" alt="screen shot example" width="800" height="600" texwidth="0.95\linewidth">
+</verbatim>
+The =html2latex= processing will convert this tag to 
+<verbatim>
+  \includegraphics[width=0.95\linewidth]{screenshot.png}
+</verbatim>
+and proceed happily along.
+
+---++++ The latex preamble
+
+The latex preamble generated by the !LatexModePlugin during HTML rendering is included in the latex/pdf file generated by this add-on.
+
+Color in the latex/pdf output is possible, with a few caveats.  First, the rendered color is currently drawn _from HTML &lt;font&gt; tags_, __not the !LatexModePlugin option__ or cascading style sheets.  This may seem counterintuitive, but bear with us. ;-)  The !LatexModePlugin color option was introduced to enable rendered mathematics images with font-color consistent with normal font color declarations.  It is assumed that any color option specified in a %<nop>BEGINLATEXMODE{}% TWiki tag is embedded in a font-color block.  Second, the =\usepackage{color}= call needs to be in the latex preamble.  This will happen automatically if using colors defined by the !LatexModePlugin.  
+
+This code is still very much under development.  All syntax calls,
+e.g. equations, figures, and tables, in the !LatexModePlugin are supported.
+The TWiki:Plugins.BibtexPlugin can be used for bibliography support. 
+
+
+---++ Add-On Info
+
+   * Set SHORTDESCRIPTION = Generate PDF files of TWiki topics with nicely rendered mathematics
+
+
+%STARTINCLUDE%
+|  Add-on Author: | TWiki:Main/ScottHoge |
+|  Add-on Version: | 09 Feb 2007 (v2.1) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  09 Feb 2007 (v2.1): | improved reporting of errors, now includes bibtex support |
+|  30 Sep 2006 (v2.01): | minor change, for compatibility with TWiki:Plugins.LatexModePlugin v3.0 |
+|  1 Feb 2006 (v1.4): | fixed bug in stripping of &lt;p&gt; tags within latex environments |
+|  6 Dec 2005 (v1.3): | modified for Dakar compatibility |
+|  11 Nov 2005 (v1.2): | Added PDFLATEXLINK tag, tweaked image handling |
+|  15 Oct 2005 (v1.1): | Initial version |
+|  TWiki Dependencies: | TWiki:Plugins.LatexModePlugin v2.0 or greater |
+|  CPAN Dependencies: | File::Basename, File::Temp, HTML::TreeBuilder, XML::Simple |
+|  Other Dependencies: | HTML::LatexLMP v1.4 or greater (included in the html2latexLMP package attached below), a working latex installation |
+|  Perl Version: | 5.005 |
+|  License: | GPL |
+|  Add-on Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topic:__ TWiki:Plugins.LatexModePlugin, TWiki:Plugins,GenPDFAddOn
+
+%STOPINCLUDE%
+-- TWiki:Main/ScottHoge - 10 Oct 2005
+

@@ -1,0 +1,98 @@
+---+!! !SnazzyRoundedCornersContrib
+<!--
+One line description, required for extensions repository catalog.
+   * Set SHORTDESCRIPTION = Add snazzy curved bordered boxes (with INCLUDED content) to TWiki topics
+-->
+%SHORTDESCRIPTION%
+
+%STARTINCLUDE%<style type="text/css">
+#xsnazzy%IDSHOW% qh1, #xsnazzy%IDSHOW% qh2, #xsnazzy%IDSHOW% p {margin:0 10px; letter-spacing:1px;}
+#xsnazzy%IDSHOW% qh1 {font-size:2.5em; color:#fff;}
+#xsnazzy%IDSHOW% qh2 {font-size:2em;color:#06a; border:0;}
+#xsnazzy%IDSHOW% p {padding-bottom:0.5em;}
+#xsnazzy%IDSHOW% qh2 {padding-top:0.5em;}
+#xsnazzy%IDSHOW% {background: transparent; margin:1em;}
+.xtop%IDSHOW%, .xbottom%IDSHOW% {display:block; background:transparent; font-size:1px;}
+.xb1%IDSHOW%, .xb2%IDSHOW%, .xb3%IDSHOW%, .xb4%IDSHOW% {display:block; overflow:hidden;}
+.xb1%IDSHOW%, .xb2%IDSHOW%, .xb3%IDSHOW% {height:1px;}
+.xb2%IDSHOW%, .xb3%IDSHOW%, .xb4%IDSHOW% {background:%BGCOLOR%; border-left:1px solid %BORDERCOLOR%; border-right:1px solid %BORDERCOLOR%;}
+.xb1%IDSHOW% {margin:0 5px; background:%BORDERCOLOR%;}
+.xb2%IDSHOW% {margin:0 3px; border-width:0 2px;}
+.xb3%IDSHOW% {margin:0 2px;}
+.xb4%IDSHOW% {height:2px; margin:0 1px;}
+.xboxcontent%IDSHOW% {display:block; background:%BGCOLOR%; border:0 solid %BORDERCOLOR%; border-width:0 1px;padding-left:8px;padding-right:8px;}
+</style>
+<div  style="margin-bottom:0px;margin-left:2px;margin-right:2px;display:block; overflow:hidden;float:%FLOAT%;width:%WIDTH%;height:%HEIGHT%;">
+<div id="xsnazzy%IDSHOW%">
+<b class="xtop%IDSHOW%">
+<b class="xb1%IDSHOW%">
+</b><b class="xb2%IDSHOW%">
+</b><b class="xb3%IDSHOW%">
+</b><b class="xb4%IDSHOW%"></b></b>
+<div class="xboxcontent%IDSHOW%" >
+<div>
+%INCLUDE{"%TOPICTOSHOW%" warn="%WARN%"}%
+</div>
+  <span align="right"><font size="-6">Source: %TOPICTOSHOW% </font></span>
+</div>
+<b class="xbottom%IDSHOW%">
+<b class="xb4%IDSHOW%">
+</b><b class="xb3%IDSHOW%">
+</b><b class="xb2%IDSHOW%">
+</b><b class="xb1%IDSHOW%"></b></b>
+</div>
+</div>%STOPINCLUDE%
+
+
+%TOC%
+
+---++ Usage
+__Note:__ Snazzy curved box with thanks from http://cssplay.co.uk/boxes/snazzy.html
+
+usage:
+<verbatim>
+%INCLUDE{
+  "%TOPIC%" 
+  TOPICTOSHOW="WebTopicList" 
+  BORDERCOLOR="%WEBBGCOLOR%" 
+  BGCOLOR="#FAFAFA"
+  FLOAT="right" 
+  WIDTH="300px" 
+  HEIGHT="500px"
+  IDSHOW="unique"
+}%
+</verbatim>
+
+---++ Examples
+
+Settings for demoing on this topic
+   * Set BORDERCOLOR=#929234
+   * Set BGCOLOR=%WEBBGCOLOR%
+   * Set FLOAT = right
+   * Set WIDTH = 350px
+   * Set HEIGHT = 500px
+   * Set IDSHOW = 
+   * Set TOPICTOSHOW=Plugins.SearchByTags
+
+---++ Installation Instructions
+
+%$INSTALL_INSTRUCTIONS%
+
+---++ Contrib Info
+
+|  Contrib Author(s): | TWiki:Main.SvenDowideit |
+|  Copyright: | &copy; 2007 SvenDowideit@distributedINFORMATION.com |
+|  License: | [[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License)]] |
+|  Contrib Version: | %$VERSION% |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Contrib Home: | http://twiki.org/cgi-bin/view/Plugins/SnazzyRoundedCornersContrib |
+|  Feedback: | http://twiki.org/cgi-bin/view/Plugins/SnazzyRoundedCornersContribDev |
+|  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/SnazzyRoundedCornersContribAppraisal |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiContribs, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the feedback topic on twiki.org instead. -->
+
+
+

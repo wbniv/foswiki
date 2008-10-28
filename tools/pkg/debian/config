@@ -1,0 +1,16 @@
+#!/bin/sh 
+set -e
+
+# Source debconf library.
+. /usr/share/debconf/confmodule
+
+# What is the top-level URL of the server TWiki runs under?
+# high = Items that don't have a reasonable default
+# unless we preload it with mailname...
+db_input high twiki/defaultUrlHost || true
+db_input high twiki/wikiwebmaster || true
+# medium = Normal items that have reasonable defaults.
+db_input medium twiki/samplefiles || true
+# add info due to 3-4 bug reports
+db_input high twiki/apacheUserCreationNote || true
+db_go || true

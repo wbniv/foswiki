@@ -1,0 +1,87 @@
+%META:TOPICINFO{author="WillNorris" date="1066213500" format="1.0" version="1.8"}%
+---+ <nop>%TOPIC%
+
+This plugin allows the user to type just any tag, and have the twiki engine convert it to =span= employing the pseudo-tag as the <code>span</code>'s =class= or =id=
+
+---++ Syntax Rules
+
+<code>&lt;date>11 Oct 2003&lt;/date></code> would be renamed: <code>&lt;span class="date">11 Oct 2003&lt;/span></code>
+
+	* psuedo-tags are numbers, upper and lowercase letters, hyphen (-), and the underscore (_) only
+	* does not support tag properties (e.g,. id="name", width="320", etc.)
+	* no extra spaces around the angle brackets
+
+<code>&lt;#id>11 Oct 2003&lt;/id></code> would be renamed: <code>&lt;span id="date">11 Oct 2003&lt;/span></code>
+
+---++ Examples
+<style>
+.wiki		{ background:green; color:white; }
+.author	 { background:%WEBBGCOLOR%; color:white; }
+.bad		 { background:red; }
+.tags		{ background:red; }
+</style>
+<verbatim>
+<style>
+.wiki		{ background:green; color:white; }
+.author	 { background:%<nop>WEBBGCOLOR%; color:white; }
+.bad		 { background:red; }
+.tags		{ background:red; }
+</style>
+</verbatim>
+| <code>&lt;wiki>Project Wiki&lt;/wiki></code> | <wiki>Project Wiki</wiki> |
+| <code>&lt;author>Steven Brust&lt;/author></code> | <author>Steven Brust</author> |
+| <code>&lt;wiki>wiki&lt;author>author&lt;/author> more wiki&lt;/wiki> | <wiki>wiki<author>author</author> more wiki</wiki> |
+| <code>&lt;bad>bad tags&lt;/tags></code> | <bad>bad tags</tags> |
+
+feel free to improve the examples by editing TWiki:Plugins/%TOPIC%
+
+---++ Caveats
+	* Nested tags are now expanded, but I think I might have significantly impacted the performance :(
+	* Multiline tags aren't handled correctly
+
+---++ <nop>%TOPIC% Global Settings
+
+	 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>PSEUDOXMLPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = renders xml-like tags as span with class or id of the pseudo-tag
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==data/Sandbox/TestTopic%TOPIC%.txt== | Plugin topic test |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the installation was successful:
+		* see also Sandbox.TestTopicPseudoXmlPlugin
+| <code>&lt;wiki>Project Wiki&lt;/wiki></code> | <wiki>Project Wiki</wiki> |
+| <code>&lt;author>Dr. Seuss&lt;/author></code> | <author>Dr. Seuss</author> |
+		* see also also Sandbox.TestTopicPseudoXmlPluginNoSubstitutions, Sandbox.TestTopicPseudoXmlPluginHalfSubstitutions, Sandbox.TestTopicPseudoXmlPluginAllSubstitutions, Sandbox.TestTopicPseudoXmlPluginNestedSubstitutions
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/WillNorris |
+|  Plugin Version: | 12 Oct 2003 (V1.000) |
+	 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  12 Oct 2003: | Initial version |
+|  14 Oct 2003: | v1.001 - handles nested tags (but still not multiline tags) |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+
+-- TWiki:Main/WillNorris - 12 Oct 2003
+%META:FILEATTACHMENT{name="PseudoXmlPlugin.zip" attr="" comment="" date="1066187760" path="PseudoXmlPlugin.zip" size="6673" user="WillNorris" version="1.4"}%
+%META:TOPICMOVED{by="WillNorris" date="1065937905" from="TWiki.SimpleXmlPlugin" to="TWiki.PseudoXmlPlugin"}%

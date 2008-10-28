@@ -1,0 +1,173 @@
+---+!! Benchmark Contrib User Guide
+
+Web/TWiki based performance measurement tool for TWiki
+
+%TOC%
+
+%X% *Note:* The contrib is in early alpha state.  The feature set and
+the documentation may change radically without a notice (with
+exception of the usual Bugs/SVN announcement).  If we're lucky then
+documentation and code will keep in sync. :-)
+
+---++ Summary of Contents
+
+This contrib is intended to be used mainly by developers, which is
+quite typical for a "contrib" as opposed to plugins.  But unlike many
+contribs it is not centered around an API.  It is used by filling a
+form, like a a TWiki Application.  But unlike those it brings its own
+Perl modules, and might even require to install some extra CPAN
+modules which are not needed for "normal" TWiki operation.
+
+This is the user guide, written for people who want to run benchmarks.
+If you are interested in installation instructions, contrib
+information, module descriptions, please refer to BenchmarkContrib.
+
+---++ Introduction
+Performance and response times of a web application are affected by
+many many things, of which the runtime of the application code is in
+most cases only a small part.  CPU speed, disk performance, network
+latency, proxy or firewall delay, browser hickups: All those
+contribute to the user experience.
+
+However, all these factors are _installation_ specific and TWiki
+developers can hardly influence them.  But we _can_ look at the
+performance of TWiki code, and either improve it or at least offer
+workarounds, or document what we know to be "expensive" functions
+(internationalization comes into my mind).
+
+This tool is intended to identify the parts in the code which take up
+most of the time.  It can be run by developers, when trying to
+streamline the code or to estimate performance impacts of their
+changes.  And it can be run by TWiki admins to find out whether
+changing a particular config setting, or disabling a particular
+plugin, will gain a benefit.  They may even be able to point a finger
+to points where TWiki, as seen by developers, doesn't scale properly
+(e.g. with huge numbers of users, topics, webs, custom plugins,
+preference settings, whatever).
+
+Basically, this contrib is just a wrapper over profiling tools which
+can be run on the command line as well.  In certain circumstances it
+may still be useful, or required to do so.  The contrib is simply
+trying to offer both a convenient interface and a twikish
+presentation of results, in the hope to encourage more developers to
+do measurements.
+
+---++ Parameters of the Form
+
+To measure where TWiki spends its time, point your browser to
+[[Benchmarks.WebHome]] (the link should work if the contrib is
+installed) and fill the form.  The fields which are provided may
+change rapidly - it isn't really difficult to add Yet Another
+Parameter, but it _is_ difficult to select those which can tell you
+something without bloating the form beyond limits.
+
+The parameters of the current implementation are:
+
+| *Parameter%BR%(field name)* | *Description* | *defaults to* |
+| Benchmark Method%BR%(profiler) | Select the tool to use.  Currently only =DProf= is implemented, =SmallProf= is in work | DProf |
+| Topic%BR%(topic) | What to measure, in =Webname.Topicname= notation | [[TWiki.WebHome]] |
+| Revision%BR%(revision) | Revision of the topic to measure.  Use with care, since composing older revisions will introduce RCS artifacts into the figures | most recent revision |
+| Script%BR%(method) | What script from TWiki's =bin= directory is to be measured.%BR%Currently, only =view= is implemented. | =view= |
+| Skin%BR%(pskin) | Which skin to use on the topic to measure.  Using =plain= or =text= skin will allow easier isolation of topic related performance issues.  Comparing your skin against other skins may give some insights. | Installation default skin (%SKIN%) |
+| View as%BR%(viewer) | TWiki user name (usually !WikiName) to disguise as for measurement.  Only available if you are a member of %USERWEB%.TWikiAdminGroup.  Use, for example, to view as !TWikiGuest or a member of a particularly huge group | visitor of [[Benchmarks.WebHome]] |
+
+
+---++ How To Use The Results
+
+---+++ What You Get
+
+The result of a measurement is made available as a topic in the Benchmarks web.  The name of the topic is derived from the web and topic of your benchmark target, plus a running number, separated by underscores (Example: the first measurement of [[TWiki.WebHome]] will create a topic called !Benchmarks.TWiki_WebHome_0, the next measurement of the same topic will create !Benchmarks.TWiki_WebHome_1, and so on).
+
+What you get as a result is composed of several parts:  It starts with a form identical to that of [[Benchmarks.WebHome]], but with all parameters set to the values with which the current measurement has been done.  This allows easy re-running the same benchmark again, or changing just one parameter.
+
+Below that there is a table quite similar to that of vanilla
+perl's =dprofpp= tool, but as a TWiki table.  
+
+---+++ Interpreting Is An Art
+
+Let's have a look at a real life example (almost real, some lines have been suppressed), and then at how to start interpreting:
+
+<div style="padding: 5px; background: #eee; border: 1px solid black;">
+|  *Total Elapsed Time:* |  0.948527 sec |
+|    *User+System Time:* |  0.917277 sec |
+
+%TABLE{}%
+|  *%Time*  |  *ExclSec*  |  *CumulS*  |  *#Calls*  |  *sec/call*  |  *Csec/c*  |  *Name*  |
+|  7.52 |  0.069 |  0.136 |  3 |  0.0230 |  0.0455 | TWiki::Render::getRenderedVersion  ||
+|  6.76 |  0.062 |  0.108 |  1 |  0.0624 |  0.1078 | Locale::Maketext::Lexicon::import  ||
+|  5.89 |  0.054 |  0.336 |  27 |  0.0020 |  0.0124 | TWiki::BEGIN  ||
+|  5.12 |  0.047 |  0.046 |  11 |  0.0042 |  0.0042 | Locale::Maketext::Lexicon::lexicon_get_  ||
+|  4.25 |  0.039 |  0.374 |  7 |  0.0056 |  0.0535 | TWiki::UI::View::BEGIN  ||
+|  2.51 |  0.023 |  0.023 |  10 |  0.0023 |  0.0023 | TWiki::Store::RcsFile::getWebNames  ||
+|  2.51 |  0.023 |  0.028 |  20 |  0.0011 |  0.0014 | TWiki::Prefs::Parser::parseText  ||
+|  2.29 |  0.021 |  0.025 |  84 |  0.0003 |  0.0003 | TWiki::I18N::toSiteCharSet  ||
+|  1.74 |  0.016 |  0.016 |  1 |  0.0156 |  0.0156 | TWiki::writeCompletePage  ||
+|  1.74 |  0.016 |  0.016 |  5 |  0.0031 |  0.0031 | File::Basename::BEGIN  ||
+|  1.74 |  0.016 |  0.015 |  3 |  0.0052 |  0.0052 | CGI::BEGIN  ||
+|  1.74 |  0.016 |  0.015 |  6 |  0.0026 |  0.0026 | TWiki::Store::RcsWrap::BEGIN  ||
+|  1.74 |  0.016 |  0.015 |  10 |  0.0016 |  0.0015 | TWiki::Client::BEGIN  ||
+|  1.74 |  0.016 |  0.023 |  7 |  0.0022 |  0.0032 | CGI::Session::Serialize::default::BEGIN  ||
+|  1.74 |  0.016 |  0.106 |  9 |  0.0017 |  0.0118 | TWiki::Attach::BEGIN  ||
+|  1.64 |  0.015 |  0.015 |  24 |  0.0006 |  0.0006 | CGI::_compile  ||
+|  1.64 |  0.015 |  0.015 |  7 |  0.0022 |  0.0022 | TWiki::Plugins::BEGIN  ||
+|  1.64 |  0.015 |  0.106 |  10 |  0.0015 |  0.0106 | TWiki::Store::BEGIN  ||
+|  1.64 |  0.015 |  0.098 |  2 |  0.0073 |  0.0492 | TWiki::Search::searchWeb  ||
+|  1.53 |  0.014 |  0.021 |  105 |  0.0001 |  0.0002 | TWiki::getScriptUrl  ||
+|  1.53 |  0.014 |  0.014 |  532 |  0.0000 |  0.0000 | TWiki::Prefs::getPreferencesValue  ||
+|  1.42 |  0.013 |  0.013 |  794 |  0.0000 |  0.0000 | TWiki::Sandbox::untaintUnchecked  ||
+|  1.31 |  0.012 |  0.008 |  144 |  0.0001 |  0.0001 | TWiki::Templates::tmplP  ||
+</div>
+
+   $ Understand the first lines of the table: Initially, the table is sorted so that the routines which are consuming most time are listed first.  Those are the most important to look at.  There is little to gain if you optimize a routine which is taking up less than 1%.
+      1 =TWiki::Render::getRenderedVersion= is the routine which basically converts TWiki markup language (TML) to HTML.  You'll see that the percentage for that routine varies wildly for different topics.  Measuring TWiki.TWikiVariables usually has about 25%.
+   $ Find patterns: Look at "simiar" lines in the right column.
+      1 Many lines in the top region of the table are labeled =BEGIN=.  These are the parts which are run at compile time.  Together they take quite some time.  What you see here is your potential speedup from persistent interpreters like mod_perl.
+      1 Many lines start with =Locale::= or have =I18N= in them.  This is caused by the fact that that particular site has internationalisation switched on.  Note that the topic in question did not have any =%<nop>MAKETEXT%= tags at all, but two of them were present in the left bar of pattern skin.  If your site is all-english or you don't care for internationalisation, this may gain you quite a bit.
+      1 If the number for =TWiki::Store::RcsFile::getWebNames= looks surprising: This has been identified, and if I recall correctly, fixed.  Note that on a pure cygwin installation I got as much as 25% for =getWebNames=, attributable to the slow mapping from unix to windows file system in cygwin.
+
+---+++ Hands On
+
+%X% A word of warning: Measurements will take some time, especially in
+future releases of BenchmarkContrib which will average over a few
+runs, trying to weed out variances.  And, of course, the measurement
+process itself introduces artifacts (Heisenberg's principle).
+
+Together with this contrib you find a topic consisting of plain
+nothingness at Benchmarks.EmptyTopic.  If the contrib is installed,
+you can get an impression about what TWiki does on your platform
+without providing anything useful: Run a measurement on that topic
+with =text= skin - or just
+[[%SCRIPTURL{profile}%/?topic=Benchmarks.EmptyTopic;pskin=text][click
+here]].
+
+Then try to vary some of the parameters, by simply filling the form on
+the results page of your first benchmark.  Try the same topic with
+pattern skin, for example, and watch
+=TWiki::Render::getRenderedVersion= to become visible in the table,
+due to the contents of the navigation bars.
+
+Sooner or later you'll get a feeling of how the figures should be on
+your platform.  If you find something surprising
+
+---+++ Cleaning Up
+
+After having done a couple of runs, you might want to get rid of the
+topics in the Benchmarks web.  Unfortunately, there is no easy web
+based method for bulk deletion in !BenchmarkContrib.  The best bet
+would be to delete the files from a shell (if you don't have shell
+access, I wonder how you did install !BenchmarkContrib in the first
+place.  Well, maybe you used the web installer.  Tough luck).
+
+The results are stored in a separate web, and each one under its own
+topic name (instead of having new revisions for new measurements of
+the same topic) to give you the freedom to keep a selection of
+results, for later reference, or as base benchmarks for some future
+time when !BenchmarkContrib will show differences between two runs.
+
+---+++ Feedback
+
+Before the contrib is distributed on twiki.org (if we need that at
+all, given that developers are using SVN right away), feedback in
+TWiki:Codev.BenchmarkFramework is highly appreciated.
+
+-- TWiki:Main/HaraldJoerg - September 2006 --

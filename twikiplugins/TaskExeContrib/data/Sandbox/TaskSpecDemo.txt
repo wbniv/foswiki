@@ -1,0 +1,12 @@
+%META:TOPICINFO{author="StephaneLenclud" date="1179069230" format="1.1" reprev="1.2" version="1.2"}%
+%META:TOPICPARENT{name="TaskExeParent"}%
+Use commands to define your task
+
+   * Cmd OUTPUTWEB = Sandbox
+   * Cmd OUTPUTTOPIC = TaskExeDemoOutput
+
+   * Cmd OUTPUT = ---+ TWiki.TaskExeContrib demo
+   * Cmd SHELLEXE = dir
+
+%META:FORM{name="TWiki.TaskSpecForm"}%
+%META:FIELD{name="Name" attributes="M" title="Name" value="Test TWiki.TaskExeContrib installation"}%

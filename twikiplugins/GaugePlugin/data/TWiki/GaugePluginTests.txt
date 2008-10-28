@@ -1,0 +1,143 @@
+%META:TOPICINFO{author="PeterThoeny" date="1022193900" format="1.0" version="1.2"}%
+%META:TOPICPARENT{name="GaugePlugin"}%
+*Tests for GaugePlugin*
+
+%TOC%
+
+---++ Target Measure Bar Gauge
+
+%TABLE{ sort="off" tableborder="1" cellpadding="1" cellspacing="1" headerbg="#99CCCC" databg="#C8CB8F,#DBDDB5" }% 
+| *Value Range* ||
+| %GAUGE{ name="foo-5" value="-5" }% | value="-5" |
+| %GAUGE{ name="foo-4" value="-4" }% | value="-4" |
+| %GAUGE{ name="foo-3" value="-3" }% | value="-3" |
+| %GAUGE{ name="foo-2" value="-2" }% | value="-2" |
+| %GAUGE{ name="foo-1" value="-1" }% | value="-1" |
+| %GAUGE{ name="foo0" value="0" }% | value="0" |
+| %GAUGE{ name="foo1" value="1" }% | value="1" |
+| %GAUGE{ name="foo2" value="2" }% | value="2" |
+| %GAUGE{ name="foo3" value="3" }% | value="3" |
+| %GAUGE{ name="foo4" value="4" }% | value="4" |
+| %GAUGE{ name="foo5" value="5" }% | value="5" |
+| %GAUGE{ name="foo6" value="6" }% | value="6" |
+| %GAUGE{ name="foo7" value="7" }% | value="7" |
+| %GAUGE{ name="foo8" value="8" }% | value="8" |
+| %GAUGE{ name="foo9" value="9" }% | value="9" |
+| %GAUGE{ name="foo10" value="10" }% | value="10" |
+| %GAUGE{ name="foo11" value="11" }% | value="11" |
+| %GAUGE{ name="foo12" value="12" }% | value="12" |
+| %GAUGE{ name="foo13" value="13" }% | value="13" |
+| %GAUGE{ name="foo14" value="14" }% | value="14" |
+| %GAUGE{ name="foo15" value="15" }% | value="15" |
+| %GAUGE{ name="foo16" value="16" }% | value="16" |
+| %GAUGE{ name="foo17" value="17" }% | value="17" |
+| %GAUGE{ name="foo18" value="18" }% | value="18" |
+| %GAUGE{ name="foo19" value="19" }% | value="19" |
+| %GAUGE{ name="foo20" value="20" }% | value="20" |
+| %GAUGE{ name="foo21" value="21" }% | value="21" |
+| %GAUGE{ name="foo22" value="22" }% | value="22" |
+| %GAUGE{ name="foo23" value="23" }% | value="23" |
+| %GAUGE{ name="foo24" value="24" }% | value="24" |
+| %GAUGE{ name="foo25" value="25" }% | value="25" |
+| %GAUGE{ name="foo26" value="26" }% | value="26" |
+| %GAUGE{ name="foo27" value="27" }% | value="27" |
+| %GAUGE{ name="foo28" value="28" }% | value="28" |
+| %GAUGE{ name="foo29" value="29" }% | value="29" |
+| %GAUGE{ name="foo30" value="30" }% | value="30" |
+| %GAUGE{ name="foo31" value="31" }% | value="31" |
+| %GAUGE{ name="foo32" value="32" }% | value="32" |
+| %GAUGE{ name="foo33" value="33" }% | value="33" |
+| %GAUGE{ name="foo34" value="34" }% | value="34" |
+| %GAUGE{ name="foo35" value="35" }% | value="35" |
+|||
+| *Error: no arguments at all so arg _name_ is missing* ||
+| %GAUGE{}% ||
+|||
+| *Make sure that more then one gauge can exist on a single line* ||
+| %GAUGE{ name="line1a" value="7" }%%GAUGE{ name="line1b" value="19" }% ||
+|||
+| *Value not defined* ||
+| %GAUGE{ name="undef1" }% | Value not defined, default sizes |
+| %GAUGE{ name="null" value="" }% | value="", default sizes |
+| %GAUGE{ name="undef2" width="100" height="40" }% | width="100" height="40", value not defined |
+| %GAUGE{ name="undef3" width="10" height="10" }% | width="10" height="10", value not defined |
+|||
+| *Overriding the default colors.  Instead of red, yellow, and then green it is green, yellow, and then red* ||
+| %GAUGE{ name="foo8c" value="8" colors="#00FF00 #CCFFCC #FFFF00 #FFFFCC #FF0000 #FFCCCC" }% | value="8" colors="#00FF00 #CCFFCC #FFFF00 #FFFFCC #FF0000 #FFCCCC" |
+| %GAUGE{ name="foo20c" value="19" colors="#00FF00 #CCFFCC #FFFF00 #FFFFCC #FF0000 #FFCCCC" }% | value="19" colors="#00FF00 #CCFFCC #FFFF00 #FFFFCC #FF0000 #FFCCCC" |
+| %GAUGE{ name="foo54c" value="54" colors="#00FF00 #CCFFCC #FFFF00 #FFFFCC #FF0000 #FFCCCC" }% | value="54" colors="#00FF00 #CCFFCC #FFFF00 #FFFFCC #FF0000 #FFCCCC" |
+|||
+| *Overriding the default tambar scale %GAUGEPLUGIN_TAMBAR_SCALE%* ||
+| %GAUGE{ name="foo58s1" value="58" scale="0 40 80 120" }% | value="58" scale="0 40 80 120" |
+| %GAUGE{ name="foo5s2" value="5" scale="-10 0 10 20" }% | value="5" scale="-10 0 10 20" |
+| %GAUGE{ name="foo-5s2" value="-5" scale="-10 0 10 20" }% | value="-5" scale="-10 0 10 20" |
+| %GAUGE{ name="foo350s3" value="350" scale="100 200 300 400" }% | value="350" scale="100 200 300 400" |
+| %GAUGE{ name="foo17s4" value="17.7" scale="0, 15.8, 22.5, 29.3" }% | value="17.7" scale="0, 15.8, 22.5, 29.3" |
+| %GAUGE{ name="foorev600" value="600" scale="800 200 100 -100" }% | value="600" scale="800 200 100 -100" |
+| %GAUGE{ name="foorev150" value="150" scale="800 200 100 -100" }% | value="150" scale="800 200 100 -100" |
+| %GAUGE{ name="foorev75" value="75" scale="800 200 100 -100" }% | value="75" scale="800 200 100 -100" |
+| %GAUGE{ name="foorev-75" value="-75" scale="800 200 100 -100" }% | value="-75" scale="800 200 100 -100" |
+| %GAUGE{ name="foorev175" value="-175" scale="-100 -200 -400 -800" }% | value="-175" scale="-100 -200 -400 -800" |
+| %GAUGE{ name="foorev375" value="-375" scale="-100 -200 -400 -800" }% | value="-375" scale="-100 -200 -400 -800" |
+| %GAUGE{ name="foorev675" value="-675" scale="-100 -200 -400 -800" }% | value="-675" scale="-100 -200 -400 -800" |
+| %GAUGE{ name="foorev-505" value="-50" scale="-100 -200 -400 -800" }% | value="-50" scale="-100 -200 -400 -800" |
+| %GAUGE{ name="foorev900" value="-900" scale="-100 -200 -400 -800" }% | value="-900" scale="-100 -200 -400 -800" |
+|||
+| *Overriding the default tambar height %GAUGEPLUGIN_TAMBAR_HEIGHT%* ||
+| %GAUGE{ name="foo15h1" value="15" height="40" }% | value="15" height="40" |
+| %GAUGE{ name="foo15h2" value="15" height="8" }% | value="15" height="8" |
+| *Overriding the default tambar width %GAUGEPLUGIN_TAMBAR_WIDTH%* ||
+| %GAUGE{ name="foo15w" value="15" width="140" }% | value="15" width="140" |
+|||
+| *Override the =alt= parameter* ||
+| %GAUGE{ name="fooalt" value="15" alt="The actual value is 15" }% | value="15" alt="The actual value is 15" |
+|||
+| *Overriding everything on the tambar* ||
+| %GAUGE{ name="foo75all" value="75" colors="#00FF00 #CCFFCC #FFFF00 #FFFFCC #FF0000 #FFCCCC" scale="0,33,66,100" height="32" width="140" }% | value="75" colors="#00FF00 #CCFFCC #FFFF00 #FFFFCC #FF0000 #FFCCCC" scale="0,33,66,100" height="32" width="140" |
+| %GAUGE{ name="foo9d" value="9" }% | Now go back to using just default values, with value="9" |
+|||
+| *Add some additional IMG options* ||
+| %GAUGE{ name="foo13i1" value="13" align="top" }% <font size="+2">Align</font> | value="13" align="top" |
+| %GAUGE{ name="foo13i2" value="13" align="bottom" }% <font size="+2">Align</font> | value="13" align="bottom" |
+| %GAUGE{ name="foo13i3" value="13" align="middle" }% <font size="+2">Align</font> | value="13" align="middle" |
+| %GAUGE{ name="foo13i4" value="13" align="left" }% <font size="+2">Align</font> | value="13" align="left" |
+| %GAUGE{ name="foo13i5" value="13" align="right" }% <font size="+2">Align</font> | value="13" align="right" |
+|||
+| *Specify a border around the image* ||
+| %GAUGE{ name="foo26border" value="26" border="5" }% | value="26" border="5" |
+
+---++ Trend Gauge
+
+%TABLE{ sort="off" tableborder="1" cellpadding="1" cellspacing="1" headerbg="#99CCCC" databg="#C8CB8F,#DBDDB5" }% 
+| *Trend gauge with different value* ||
+| %GAUGE{ type="trend" name="bar-1" value="-1" }% | value="-1" |
+| %GAUGE{ type="trend" name="bar0" value="0" }% | value="0" |
+| %GAUGE{ type="trend" name="bar1" value="1" }% | value="1" |
+| %GAUGE{ type="trend" name="bar-100" value="-100" }% | value="-100" |
+| %GAUGE{ type="trend" name="bar0" value="-0" }% | value="-0" |
+| %GAUGE{ type="trend" name="bar100" value="100" }% | value="100" |
+| %GAUGE{ type="trend" name="bar+100" value="+100" }% | value="+100" |
+|||
+| *Missing =name= or =value= parameters* ||
+| %GAUGE{ type="trend" value="1" }% | type="trend" value="1" (No =name= specified) |
+| %GAUGE{ type="trend" name="trendNoValue" }% | type="trend" name="trendNoValue" (No =value= specified) |
+| %GAUGE{ type="trend" }% | type="trend" (No =name= and =value= specified) |
+|||
+| *Specifying =alt= tag* ||
+| %GAUGE{ type="trend" value="1" alt="This is an alt tag" }% | value="1" alt="This is an alt tag" |
+|||
+| *Change the size* ||
+| %GAUGE{ type="trend" value="1" width="50" height="50" }% | value="1" width="50" height="50" |
+| %GAUGE{ type="trend" value="1" width="50" height="100" }% | value="1" width="50" height="100" |
+| %GAUGE{ type="trend" value="1" width="100" height="50" }% | value="1" width="100" height="50" |
+| %GAUGE{ type="trend" value="1" width="100" }% | value="1" width="100" |
+| %GAUGE{ type="trend" value="1" height="100" }% | value="1" height="100" |
+
+---++ Invalid Gauge
+
+%TABLE{ sort="off" tableborder="1" cellpadding="1" cellspacing="1" headerbg="#99CCCC" databg="#C8CB8F,#DBDDB5" }% 
+| *Try an invalid =type= gauge* ||
+| %GAUGE{ type="bad" value="1" }% | type="bad" value="1" |
+
+-- Main.TaitCyrus - 20 May 2002 <br />
+-- Main.PeterThoeny - 20 May 2002

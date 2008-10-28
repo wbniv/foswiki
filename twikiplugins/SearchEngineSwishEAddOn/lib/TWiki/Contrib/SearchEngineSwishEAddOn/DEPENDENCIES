@@ -1,0 +1,9 @@
+# Dependencies for SearchEngineSwishEAddOn
+# Example:
+# Time::ParseDate,>=2003.0211,cpan,Required.
+# TWiki::Plugins,>=1.15,perl,TWiki 4.1 release.
+Swish,>0,program,Swish itself, from http://www.swish-e.org
+catdoc,>0,program,The =catdoc= parsing program, from http://www.45.free.net/~vitus/ice/catdoc/. This program is used to convert MS Word (.doc) and Powerpoint (.ppt) to text format that can be indexed.
+Spreadsheet::ParseExcel,>=0,cpan,Required for indexing Excel attachments.
+Spreadsheet::ParseExcel_XlHTML,>=0,cpan,Required for indexing Excel attachments.
+pdf_convertor,>0,program,PDF conversion tool. I used the recommended one: http://www.foolabs.com/xpdf/download.html

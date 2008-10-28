@@ -1,0 +1,43 @@
+data/TWiki/GnuPlotHelp.txt NEW
+data/TWiki/GnuPlotPlugin.txt NEW
+lib/TWiki/Plugins/GnuPlotPlugin.pm NEW
+lib/TWiki/Plugins/GnuPlotPlugin/Plot.pm NEW
+lib/TWiki/Plugins/GnuPlotPlugin/PlotSettings.pm NEW
+lib/TWiki/Plugins/GnuPlotPlugin/TestInstall.err NEW
+lib/TWiki/Plugins/GnuPlotPlugin/TestInstall.gnu NEW
+lib/TWiki/Plugins/GnuPlotPlugin/TestInstall.png NEW
+pub/TWiki/GnuPlotHelp/gnuplot.html NEW
+pub/TWiki/GnuPlotPlugin/BlueWhale.err NEW
+pub/TWiki/GnuPlotPlugin/BlueWhale.gnu NEW
+pub/TWiki/GnuPlotPlugin/BlueWhale.png NEW
+pub/TWiki/GnuPlotPlugin/BlueWhaleSample.png NEW
+pub/TWiki/GnuPlotPlugin/CIAWorldDataBankIIDenmark.err NEW
+pub/TWiki/GnuPlotPlugin/CIAWorldDataBankIIDenmark.gnu NEW
+pub/TWiki/GnuPlotPlugin/CIAWorldDataBankIIDenmark.png NEW
+pub/TWiki/GnuPlotPlugin/CIAWorldDataBankIIDenmarkData.data NEW
+pub/TWiki/GnuPlotPlugin/CIAWorldDataBankIIDenmarkSample.png NEW
+pub/TWiki/GnuPlotPlugin/DampedSinus.err NEW
+pub/TWiki/GnuPlotPlugin/DampedSinus.gnu NEW
+pub/TWiki/GnuPlotPlugin/DampedSinus.png NEW
+pub/TWiki/GnuPlotPlugin/DampedSinusData.data NEW
+pub/TWiki/GnuPlotPlugin/DampedSinusSample.png NEW
+pub/TWiki/GnuPlotPlugin/InterlockingTori.err NEW
+pub/TWiki/GnuPlotPlugin/InterlockingTori.gnu NEW
+pub/TWiki/GnuPlotPlugin/InterlockingTori.png NEW
+pub/TWiki/GnuPlotPlugin/InterlockingToriSample.png NEW
+pub/TWiki/GnuPlotPlugin/MultigraphWithErrorbars.err NEW
+pub/TWiki/GnuPlotPlugin/MultigraphWithErrorbars.gnu NEW
+pub/TWiki/GnuPlotPlugin/MultigraphWithErrorbars.png NEW
+pub/TWiki/GnuPlotPlugin/MultigraphWithErrorbarsData.data NEW
+pub/TWiki/GnuPlotPlugin/MultigraphWithErrorbarsSample.png NEW
+pub/TWiki/GnuPlotPlugin/RosenbrockFunction.err NEW
+pub/TWiki/GnuPlotPlugin/RosenbrockFunction.gnu NEW
+pub/TWiki/GnuPlotPlugin/RosenbrockFunction.png NEW
+pub/TWiki/GnuPlotPlugin/RosenbrockFunctionSample.png
+pub/TWiki/GnuPlotPlugin/TestInstall.err NEW
+pub/TWiki/GnuPlotPlugin/TestInstall.gnu NEW
+pub/TWiki/GnuPlotPlugin/TestInstall.png NEW
+pub/TWiki/GnuPlotPlugin/TestInstallSample.png NEW
+pub/TWiki/GnuPlotPlugin/whale.dat NEW
+tools/gnuplot.pl
+

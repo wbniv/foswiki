@@ -1,0 +1,47 @@
+tools/dav.pl									0550 Checkin script
+tools/dav_recache								0550 Protections DB maintenance script
+tools/dumpLockDB.pl                         	0550 Protections DB dump script
+data/TWiki/WebDAVPlugin.txt						0660 Plugin topic
+lib/TWiki/Plugins/WebDAVPlugin.pm				0440 Main plugin module
+lib/TWiki/Plugins/WebDAVPlugin/Permissions.pm	0440 Perl module
+lib/twiki_dav/autogen.sh						0550 Build support script
+lib/twiki_dav/CHANGES							0440 Documentation
+lib/twiki_dav/config.h.in						0440 Build support script
+lib/twiki_dav/configure							0550 Build support script
+lib/twiki_dav/configure.in						0550 Build support script
+lib/twiki_dav/dav_dyn.c							0440 Code
+lib/twiki_dav/dav_fs_dbm.c						0440 Code
+lib/twiki_dav/dav_fs_lock.c						0440 Code
+lib/twiki_dav/dav_fs_repos.c					0440 Code
+lib/twiki_dav/dav_fs_repos.h					0440 Code
+lib/twiki_dav/dav_fs_vsn.c						0440 Code
+lib/twiki_dav/dav_lock.c						0440 Code
+lib/twiki_dav/dav_opaquelock.c					0440 Code
+lib/twiki_dav/dav_opaquelock.h					0440 Code
+lib/twiki_dav/dav_props.c						0440 Code
+lib/twiki_dav/dav_shared_stub.c					0440 Code
+lib/twiki_dav/dav_util.c						0440 Code
+lib/twiki_dav/dav_xmlparse.c					0440 Code
+lib/twiki_dav/INSTALL							0440 Documentation
+lib/twiki_dav/libdav.module.in					0550 Build support script
+lib/twiki_dav/LICENSE.html						0440 Documentation
+lib/twiki_dav/Makefile.in						0550 Build support script
+lib/twiki_dav/Makefile.libdir					0550 Build support script
+lib/twiki_dav/Makefile.tmpl						0550 Build support script
+lib/twiki_dav/mod_dav.c							0440 Code
+lib/twiki_dav/mod_dav.h							0440 Code
+lib/twiki_dav/dav_twiki.c						0440 Code
+lib/twiki_dav/dav_twiki.h						0440 Code
+lib/twiki_dav/sdbm/sdbm.c						0440 Code
+lib/twiki_dav/sdbm/sdbm.h						0440 Code
+lib/twiki_dav/sdbm/sdbm_hash.c					0440 Code
+lib/twiki_dav/sdbm/sdbm_lock.c					0440 Code
+lib/twiki_dav/sdbm/sdbm_pair.c					0440 Code
+lib/twiki_dav/sdbm/sdbm_pair.h					0440 Code
+lib/twiki_dav/sdbm/sdbm_tune.h					0440 Code
+lib/twiki_dav/util/dbu.c						0440 Code
+lib/twiki_dav/util/fixvers.c					0440 Code
+lib/twiki_dav/util/lock.py						0440 Test code
+lib/twiki_dav/util/lockview.c					0440 Code
+lib/twiki_dav/util/Makefile						0440 Build support script
+lib/twiki_dav/util/regress						0440 Test script

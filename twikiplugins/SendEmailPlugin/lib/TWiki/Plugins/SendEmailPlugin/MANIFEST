@@ -1,0 +1,4 @@
+bin/sendemail 0755 Form action script
+data/TWiki/SendEmailPlugin.txt 0644 Documentation
+lib/TWiki/Plugins/SendEmailPlugin.pm 0644 Perl module
+pub/TWiki/SendEmailPlugin/sendemailplugin.css 0777 CSS styles

@@ -1,0 +1,81 @@
+---++ <nop>%TOPIC%
+
+Table of contents and cross-reference management.
+
+This plugin adds powerful support for generation and maintenance of tables of contents and cross-references within a TWiki web. Originally developed for use by Motorola documentation teams.
+
+---+++ Syntax Rules
+
+Adds a number of new tags:
+
+	* %<nop>SECTIONn% - inserts an anchored section header
+	* %<nop>CONTENTS% - generates a table of contents for a topic or an entire web, with full expansion depth control
+	* %<nop>REF% - inserts a symbolically named cross-reference URL
+	* %<nop>ANCHOR% - inserts a symbolically named jump target
+
+The TWiki.<nop>TocPluginHelp topic in the installation contains complete help information.
+
+---++ <nop>%TOPIC% Settings
+
+	* Set SHORTDESCRIPTION = Sophisticated table of contents generation
+
+	* Set DEBUG = 0
+
+---+++ Plugin Installation Instructions
+
+	* Download the ZIP file from the Plugin web (see below). Contents:
+	| *File:* | *Description:* |
+	| ==data/TWiki/TocPlugin.txt== | Plugin topic |
+	| ==data/TWiki/TocPluginHelp.txt== | Plugin help |
+	| ==data/TWiki/WebOrder.txt== | Order topic for TWiki web |
+	| ==lib/TWiki/Plugins/TocPlugin.pm== | Plugin Perl module |
+	| ==lib/TWiki/Plugins/TocPlugin/Attrs.pm== | Library component |
+	| ==lib/TWiki/Plugins/TocPlugin/Anchor.pm== | Library component |
+	| ==lib/TWiki/Plugins/TocPlugin/Section.pm== | Library component |
+	| ==lib/TWiki/Plugins/TocPlugin/TOC.pm== | Library component |
+	| ==lib/TWiki/Plugins/TocPlugin/TOCIF.pm== | Library component |
+	| ==lib/TWiki/Plugins/TocPlugin/TopLevelSection.pm== | Library component |
+	| ==lib/TWiki/Plugins/TocPlugin/test.zip== | Test code |
+	| ==lib/TWiki/Plugins/TocPlugin/build.xml== | Ant build file |
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory.
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* If you see a link here: %REF{topic=TocPluginHelp,type=Section,name=installation}% then installation was successful
+	* Check the TocPluginHelp topic. You should see expanded section numbers.
+
+---+++ Plugin Info
+
+|  One Line Description: | Table of contents and cross-reference management |
+|  Plugin Author: | TWiki:Main.CrawfordCurrie |
+|  Plugin Version: | 1.0 |
+|  Change History: | 15 Sep 2001: Initial version |
+| | 23 Sep 2001: Directories restructured according to Plugin requirements, and turned into a zip file |
+| | 1 Oct 2001: Corrected directory naming (no thanks to <nop>WindowsME!) |
+| | 20 Apr 2006: Minor doc update, headings no longer marked up as anchor text (TWiki:Main.SteffenPoulsen) |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.0 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+
+---++++ Copyright
+
+This code is a development of the Architectures and Systems
+Platforms group of Motorola Inc. and is protected by the following
+copyrights:
+
+	* Copyright (C) 2002 Motorola. All Rights Reserved.
+
+---++++ License
+
+As required for the publication of all extensions to TWiki, this
+software is published under the terms of the GNU General Public
+License.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details, published at
+http://www.gnu.org/copyleft/gpl.html
+

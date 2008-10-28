@@ -1,0 +1,162 @@
+
+---+!! !SearchEngineSwishEAddOn
+<!--
+One line description, required for extensions repository catalog.
+    * Set SHORTDESCRIPTION = Search within attached documents, such as doc, html, txt, pdf, ppt, xls
+-->
+%SHORTDESCRIPTION%
+
+%TOC%
+---+!! Search Engine Swish-E Add-On
+
+A common request by my users was better search that included attachments.
+We picked [[http://www.swish-e.org][Swish-E]] since it now includes capability to index various Microsoft formats: .doc, .ppt, .xls
+
+The instructions here are for setting it up on Linux. Sorry I don't think this will work on Windows.
+
+%TOC%
+
+---++ Summary
+
+   * Fast search of TWiki topic text and attachments
+   * Attachments of Microsoft Word (.doc), Powerpoint (.ppt) and Excel (.xls) are indexed
+   * Fast: for our site, it is about 20x faster than twiki's built in serach, with much less server load. 
+
+*User reaction*
+
+   * "Excellent, does the job"
+   * "We needed this months ago"
+
+*Caveats*
+   * Swish does not have incremental index updating, so the index rebuild is very time consuming given how slow TWiki is
+   * Requires some unix skill to configure, comparable to setting up TWiki itself.
+
+---++ Usage
+Full text search uses the [[http://www.swish-e.org][Swish-E]] search engine.
+
+Key things to know:
+	* Use "" around a phrase
+	* Use _and_  _or_ as needed to combine words or phrases
+
+See <a href="http://swish-e.org/docs/swish-search.html" target="_new">Swish Searching Reference</a> for details
+
+*Index Updates*
+	* Twiki index is updated only once per day, about 3 am. So if content does not appear, the topic may be new today.  (It takes 1.5 hour to rebuild this index)
+	* The bugzero indexes are updated several times per day so as to be more current.
+
+---++ Installation Instructions
+
+%$INSTALL_INSTRUCTIONS%
+
+---+++ Configure Swish to index TWiki including attachments
+This uses the configuration scripts (in the ZIP file), along with these steps:
+
+   1. Create a new user specifically for use by the spidering program. I used =SpideringEngine=
+   1. Edit the %<nop>USERSWEB%/SpideringEngine page to specify =plain= as the default skin for this user
+      %BR% =* Set default skin to remove 'print' button etc=
+      %BR% =&nbsp;&nbsp;&nbsp;* Set SKIN = plain=
+   1. Edit the =twiki-spider-config.pl= file
+      1. Modify the =base_url= 
+      2. Modify the =credentials= given in the =twiki-spider-config.pl= match the created user.
+   1. Check the limit for number of URLS.  I use 15000, which must include any duplicate URLs.  Twiki generates duplicate URLs frequently.  It will print out "Max indexed files Reached" if this is too small for your site.
+   1. The default filtering of topics should be ok for most twikis.  The default in =twiki-spider-config.pl= is like this:
+      1. Excludes some specific topics (Codev.WebChanges, etc) that take a long time to render with little value to the index
+      2. It filters out the index links when query parameters are present, so as to avoid indexing the same topic due to table sorting links, attachment management links, etc.
+
+---+++ Test that spidering is working
+
+   * Edit the =twiki-spider-config.pl= to enable debug printing at 'info' level (see comments in the file)
+   * Run the spider tool to create a data file of the content to be indexed. The script =spider-only.sh= is provied for this.
+
+*Check these things*
+   * The printout while spidering is running should include your URL's and topic names
+   * You should glance through the resulting data file to verify contents are reasonable  It may be necessary to use =tail= to edit the latter part of file if it is more than 8mb.  Look for =Path-Name= at the beginning of a line to locate start of each URL indexed.
+   * You don't really need to let it spider the entire twiki, you can ctrl-C after just a few 100 topics are indexed.  The main thing is to make sure the indexing is finding your twiki content properly.
+   * It is a good idea to verify the attachments get their content converted properly so indexing will include them.  This usually requires indexing the entire twiki, or altering the starting URL.
+
+If it is not finding your twiki URL's, or failing due to username/password error, fix the settings in =twiki-spider-config.pl=
+
+_Remove the debug line in =twiki-spider-config.pl= when finished with this step_
+
+---+++ Manually build the indexes for testing
+
+This is the =build-twiki-index.sh= script in the attached zip file that combines the spidering and indexing.
+
+*Be sure to look through the log to ensure it has properly indexed the attachments:* it will include error messages if the various filter programs are not properly enabled.
+
+The first time, you can reuse the data file created by the spidering if you want, see the Swish documentation for how to do this.
+
+---+++ Engage search within the TWiki
+
+This is a simple setup of the [[http://www.swish-e.org/docs/swish.cgi.html][swish.cgi search script]] inside of the twiki =bin= directory.
+
+Be sure to read the swish documentation on customizing the templates, since some customization is always required.
+
+I included our script that has multiple indexes to allow search of our bug database (updated every 3 hours).
+
+---+++ Test the search script and index
+URL will be =%<nop>TWIKI%/searchtools/swish.cgi=
+
+---+++ Configure your twiki to have an appropriate "Full Text Search" button
+We put a button on the left column that goes to the swish search page
+
+---+++ Set up =cron= to run the index as desired
+The script =build-twiki-index.sh= should be run periodically to rebuild the index.
+
+Even with use of SpeedyCgi, TWiki rendering is not fast.  As a result, I rebuild the index only once per day at 4 am. It takes about 1.5 hours to index our TWiki, which has ~4000 topics and attachments
+
+---+++ Create Documentation
+Create a =SearchEngineSwishEAddOn= topic in your local TWiki, view the raw text for TWiki:Plugins/SearchEngineSwishEAddOn, and copy the contents to your local TWiki.
+
+
+---++ Future work
+
+The current implementation is http spidering of twiki.  This made it easy to get correct indexing of the current versions, but at significant cost in indexing speed.
+
+*Future ideas:*
+   * Get 'last modified date' to work.  Approach (A) is to index the files, (B) is to integrate some kind of last-modified-date into the generated HTTP as sent to the spider (and probably not for general users)
+   * Set up swish to index the files directly (both data/**/*.txt and pub).  This would allow ranking by "last modified date", and make it faster.   A more complicated filter would be required to remove the twiki 'meta' fields from the topics.
+   * Modify spidering/indexing to include author and web as 'meta' fields for swish.  Goal is to enable subset searching (only in this web, or only by this author).  
+
+---++ Known Issues
+
+It appears the =Spreadsheet::ParseExcel_XlHTML= module does not properly handle non-ascii content in the excel files.
+I've not investigated this to determine how the Russian and Japanese content is getting handled (I know it is present in the files).  The warning printed in the log is about the =pack= of the bytes retrieved from the data file.
+
+Testing the =catdoc= and =pdf= tools separately is recommended.
+
+---++ Add-On Info
+
+|  Add-on Author: | TWiki:Main.StanleyKnutson |
+|  Add-on Version: | 16 Aug 2005 (v1.000) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|               | Packaged as a TWiki-4 package - -TWiki:Main.CrawfordCurrie |
+|  27 Aug 2005: | Updated slightly, added doc about testing spidering first. |
+|  16 Aug 2005: | Initial version |
+|  Codev.CPAN Dependencies: | Spreadsheet::ParseExcel and Spreadsheet::ParseExcel_XlHTML |
+|  Other Dependencies: | [[http://www.swish-e.org][Swish-E]], [[http://www.45.free.net/~vitus/ice/catdoc/][catdoc]], PDF conversion tool e.g. [[http://www.foolabs.com/xpdf/download.html][xpdf]] |
+|  Perl Version: | 5.005 |
+|  License: | GPL |
+|  Add-on Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topic:__ %SYSTEMWEB%.TWikiAddOns
+
+-- TWiki:Main.StanleyKnutson - 16 Aug 2005
+
+
+
+---++ AddOn Info
+
+|  AddOn Author(s): | |
+|  AddOn Version: | %$VERSION% |
+|  Copyright: | &copy; |
+|  License: | [[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License)]] |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  Dependencies: | %$DEPENDENCIES% |
+|  AddOn Home: | http://twiki.org/cgi-bin/view/Plugins/SearchEngineSwishEAddOn |
+|  Feedback: | http://twiki.org/cgi-bin/view/Plugins/SearchEngineSwishEAddOnDev |
+|  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/SearchEngineSwishEAddOnAppraisal |
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the Dev topic instead. -->

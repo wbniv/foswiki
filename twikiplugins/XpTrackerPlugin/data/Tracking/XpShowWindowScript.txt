@@ -1,0 +1,18 @@
+%META:TOPICINFO{author="RafaelAlvarez" date="1089684585" format="1.0" version="1.1"}%
+%STARTINCLUDE%
+<script language="JavaScript">
+<!--HIDE
+function launchWindow (theWeb, theTopic)
+{
+  win = open ("%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/" + theWeb + "/" + theTopic + "?skin=plain&xptopic=%INCLUDINGTOPIC%",
+			theTopic, "titlebar=0,width=700,height=480,resizable,scrollbars");
+  if (win)
+	 {
+		win.focus();
+	 }
+  return false;
+}
+//STOP HIDING-->
+</script>
+%STOPINCLUDE%
+

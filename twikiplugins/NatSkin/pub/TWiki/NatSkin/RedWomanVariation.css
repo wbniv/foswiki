@@ -1,0 +1,15 @@
+/* header art variation */
+.natSearchBoxTop,
+.natSearchBoxTop input {
+  background:#B41D02;
+  color:white;
+}
+.natSearchBoxTop input {
+  border:1px solid white;
+}
+.natHeaderArt {
+  background:#B41D02;
+  background-image:url(RedWomanBar.jpg); 
+  background-repeat:no-repeat;
+  background-position:top left;
+}

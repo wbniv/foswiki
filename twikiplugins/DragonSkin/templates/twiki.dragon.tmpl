@@ -1,0 +1,101 @@
+%TMPL:DEF{"sep"}% | %TMPL:END%
+%TMPL:DEF{"htmldoctype"}%
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="%LANG%" lang="%LANG%">%TMPL:END%
+%TMPL:DEF{"dragoncss"}%
+<style type="text/css" media="screen">
+@import url(%PUBURLPATH%/%SYSTEMWEB%/DragonSkin/%DS_THEME%.theme.css);
+@import url(%PUBURLPATH%/%SYSTEMWEB%/DragonSkin/typography.css);
+</style>
+<style type="text/css" media="screen">
+<!--/*--><![CDATA[<!--*/
+%TMPL:INCLUDE{"dragoncssvars"}%
+/*]]>*/-->
+</style>%TMPL:END%
+%TMPL:DEF{"dragonlogo"}%<img src="%WIKILOGOIMG%" class="ds-logo" alt="%WIKILOGOALT%" title="%WIKILOGOALT%" />%TMPL:END%
+%TMPL:DEF{"breadcrumb"}%
+<div class="ds-breadcrumb">
+<a href="%SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%/%HOMETOPIC%">%WEB%</a>
+&gt; %META{"parent" nowebhome="on" suffix=" &gt;"}%
+      <span class="ds-largerbold">%TOPIC% %TMPL:P{"titleaction"}%</span>
+</div>%TMPL:END%
+%TMPL:DEF{"topeditbar"}%
+<div class="ds-topeditbar">
+<ul>
+<li><a href="%SCRIPTURLPATH%/oops%SCRIPTSUFFIX%/%WEB%/%TOPIC%?template=oopsmore&amp;param1=%MAXREV%&amp;param2=%CURRREV%">
+More...</a></li>
+<li><a href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%?skin=plain%REVARG%">Printable version</a></li>
+<li><a href="%SCRIPTURLPATH%/attach%SCRIPTSUFFIX%/%WEB%/%TOPIC%">Attach a file</a></li>
+<li><a href="%EDITURL%">Edit this page</a></li>
+</ul>
+</div>
+%TMPL:END%%TMPL:DEF{"fullfooter"}%
+<div class="ds-footer">
+<div class="ds-footereditbar">%TMPL:P{"sep"}%
+<a href="%EDITURL%" accesskey="3">Edit</a>&nbsp;%TMPL:P{"sep"}%
+<a href="%SCRIPTURLPATH%/attach%SCRIPTSUFFIX%/%WEB%/%TOPIC%">Attach</a>
+%TMPL:P{"sep"}%
+<a href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%?skin=plain%REVARG%">Printable</a>%TMPL:P{"sep"}%
+<a href="%SCRIPTURLPATH%/oops%SCRIPTSUFFIX%/%WEB%/%TOPIC%?template=oopsmore&amp;param1=%MAXREV%&amp;param2=%CURRREV%">More...</a>
+<br /></div><div class="ds-footerleft">Revised: %REVINFO%</div>
+<div class="ds-clearer">&nbsp;</div>
+<div class="ds-footerrevisions">
+<a href="%SCRIPTURLPATH%/search%SCRIPTSUFFIX%/%WEB%/SearchResult?scope=text&amp;regex=on&amp;search=%SPACEDTOPIC%%5B%5EA-Za-z%5D">
+Referrers to this page</a> %TMPL:P{"sep"}% <a href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%?raw=on">View raw text</a>
+%TMPL:P{"sep"}%&nbsp;<a href="%SCRIPTURLPATH%/rdiff%SCRIPTSUFFIX%/%WEB%/%TOPIC%">Revision history</a> %REVISIONS%
+</div>
+<div class="ds-footerlogininfo">
+You are logged in as: %WIKIUSERNAME%
+</div>
+<div class="ds-clearer">&nbsp;</div>
+</div>
+%TMPL:END%
+%TMPL:DEF{"simpleheaderlogo"}%
+<noautolink>
+<a href="%WIKILOGOURL%" title="%WIKILOGOALT%" alt="%WIKILOGOALT%">%TMPL:P{"dragonlogo"}%</a>
+</noautolink>
+%TMPL:END%
+%TMPL:DEF{"simpleheader"}%
+<div class="ds-nmwrapper">
+<div class="ds-nmheaderwrapper">
+<div class="ds-nmlogowrapper">
+%TMPL:P{"simpleheaderlogo"}%
+</div>
+<div class="ds-nmheaderhelp">
+%TMPL:P{"headerhelp"}%
+</div>
+</div>
+<div class="ds-nmtitlemessage">
+<noautolink>
+<b>%WEB%.%TOPIC%</b>&nbsp;<span class="ds-largerbold">%TMPL:P{"titleaction"}%</span>
+</noautolink>
+</div>
+<div class="ds-nmwebaction">
+%TMPL:P{"webaction"}%
+</div>
+%TMPL:END%
+%TMPL:DEF{"standardfooter"}%
+<div class="ds-nmtopicaction">
+Topic: <b>%TOPIC%</b> . { %TMPL:P{"topicaction"}% }
+</div>
+%TMPL:END%
+%TMPL:DEF{"oops"}%
+%TMPL:P{"htmldoctype"}%
+<head>
+<title>%TMPL:P{"titleaction"}%%TOPIC% &lt; %WEB% &lt; %WIKITOOLNAME%</title>
+<meta http-equiv="Content-Type" content="text/html; charset=%CHARSET%" />
+<meta name="robots" content="noindex" /> %HTTP_EQUIV_ON_VIEW%
+<base href="%SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%" />
+%TMPL:P{"dragoncss"}%
+</head>
+<body>
+%TMPL:P{"simpleheader"}%
+<div class="ds-nmcontent">
+---+ %TMPL:P{"heading"}%
+%TMPL:P{"message"}%
+</div>
+%TMPL:P{"standardfooter"}%
+</div>
+</body>
+</html> 
+%TMPL:END%

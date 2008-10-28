@@ -1,0 +1,95 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Piarres Beobide <pi@beobide.net>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: twiki-debconf\n"
+"Report-Msgid-Bugs-To: svenud@ozemail.com.au\n"
+"POT-Creation-Date: 2007-02-17 09:09+0100\n"
+"PO-Revision-Date: 2007-02-20 09:54+0100\n"
+"Last-Translator: Piarres Beobide <pi@beobide.net>\n"
+"Language-Team: Librezale <Librezale@librezale.org.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Pootle 0.10.1\n"
+
+#. Type: string
+#. Description
+#: ../templates:1001
+msgid "Top-level URL of the server TWiki runs under:"
+msgstr "TWiki exekutatzen duen zerbitzariaren erro URL-a:"
+
+#. Type: string
+#. Description
+#: ../templates:1001
+msgid ""
+"For a normal install, this should be a URL for your web server's full name, "
+"which is used to construct URLs on some pages.  The install will serve up "
+"the data by adding \"twiki\" to the end of this setting; it is also needed "
+"for certain redirections."
+msgstr ""
+"Instalazio arrun batetarako hau web zerbitzariaren izen osoa da, hau orri "
+"batzuen url-ak eraikitzeko erabiliko da.  Zerbitzariak datuak ezarpen hauen "
+"amaieran \"twiki\" gehituaz zerbitzatuko ditu; ere beharrezkoa da "
+"birbidalketa batzuentzat."
+
+#. Type: string
+#. Description
+#: ../templates:2001
+msgid "Email address of the webmaster for this TWiki:"
+msgstr "Twiki honen arduradunaren eposta helbidea:"
+
+#. Type: string
+#. Description
+#: ../templates:2001
+msgid ""
+"This email address gets mail for new user registration, and is listed on the "
+"\"oops\" page when things go wrong."
+msgstr ""
+"ePosta honek harpidedun berrien postak jasoko ditu eta berau bistaraziko da "
+"\"ooops\" orrietan errorerik balego."
+
+#. Type: boolean
+#. Description
+#: ../templates:3001
+msgid "Install default wiki Topic Set on initial install?"
+msgstr "Hasierako instalazioan lehenetsiriko wiki izenburu bilduma instalatu?"
+
+#. Type: boolean
+#. Description
+#: ../templates:3001
+msgid ""
+"TWiki includes a complete \"starter kit\" which includes user registration "
+"pages, documentation, and tutorials.  Only decline if you're re-installing "
+"TWiki after deleting the package and want to keep the old data, or if you've "
+"got a TWiki data set from your own manual install.  If data/Main/WebHome.txt "
+"is present, the starter kit will not be unpacked.  The starter kit files can "
+"be found in /usr/share/twiki/twiki-data.tar.gz (and twiki-pub.tar.gz), if "
+"you want to install it manually or compare your topics with the new version."
+msgstr ""
+"Twiki-k \"hasiera tresna-joko\" osatu bat dakar, harpidetza orriak, "
+"dokumentazioa eta tutorialak barne.  Twiki pakete zaharra ezabatu eta gero "
+"eta datu zaharrak erabili nahiez gero edo eskuzko instalazio pertsonalizatu "
+"bat nahi izanez gero bakarrik ez instalatu. data/Main/WebHome.txt aurkitzen "
+"badu, hasiera tresna-jokoak ez da despaketatuko. Fitxategi horiek  /usr/"
+"share/twiki/twiki-data.tar.gz  (eta twiki-pub.tar.gz)-en aurki ditzakezu "
+"eskuz instalatu edo zure gaiak bertsio berriarekin parekatu nahi badituzu."
+
+#. Type: note
+#. Description
+#: ../templates:4001
+msgid "Admin User Registration configuration required"
+msgstr "Kudeatzaile Erabiltzaile Harpidetza konfigurazioa beharrezkoa"
+
+#. Type: note
+#. Description
+#: ../templates:4001
+msgid ""
+"After you have created yourself a user, edit the Main.TWikiAdminGroup to "
+"restrict Admin privileges to that user."
+msgstr ""
+"Zure erabiltzailea sortu ondoren, Main.TWikiAdminGroup  editatu kudeaketa "
+"baimenak erabiltzaile horri mugatzeko."

@@ -1,0 +1,20 @@
+
+---++ This is the TWiki.TWikiForms definition for the structured form based data
+see WebTopicEditTemplate for the TopicTemplate
+
+| *Name*       | *Type* | *Size* | *Values* | *Tooltip message* | *Attributes* |
+|              | label  |        | %INCLUDE{Summary}% | | |
+| Summary      | text   | 85     | | | M |
+|              | label  |        | %INCLUDE{ReportedBy}% | | |
+| ReportedBy   | text   | 35     | %WIKIUSERNAME% | | M |
+|              | label  |        | %INCLUDE{AppliesTo}% | | |
+| AppliesTo    | select | 1      | | | M |
+|              | label  |        | %INCLUDE{Priority}% | | |
+| [[Priority]] | select | 1      | | | M |
+|              | label  |        | %INCLUDE{CurrentState}% | |
+| CurrentState | select | 1      |  | | M |
+|              | label  |        | %INCLUDE{WaitingFor}% |
+| WaitingFor   | text   | 35     | | |  |
+
+
+

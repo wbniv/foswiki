@@ -1,0 +1,66 @@
+%META:TOPICINFO{author="PeterThoeny" date="1100858912" format="1.0" version="1.5"}%
+---++ <nop>%TOPIC%
+
+This plugin shows the local time of a city embedded in a %WIKITOOLNAME% topic. The current local time is taken from the Date and Time Gateway at http://TWiki.org/cgi-bin/xtra/tzdate, or calculated internally.
+
+---++ Syntax Rules
+
+Add the =%<nop>LOCALCITYTIME{"timezone"}%= variable anywhere in your topic. ="timezone"= is a Continent/City combination as defined in the Date and Time Gateway page.
+
+Examples:
+
+| *What:* | *You type:* | *You get: (static text for demo)* |
+| Time in Zurich: | =%<nop>LOCALCITYTIME{"Europe/Zurich"}%= | Sun, 15 Jul 2001, 02:03:50 CEST (<a href="http://www.bsdi.com/date?Europe/Zurich">Europe/Zurich</a>) |
+| Incorrect timezone: | =%<nop>LOCALCITYTIME{"Not/There"}%= | %TOPIC% warning: Invalid Timezone. Use a Continent/City timezone code listed in http://TWiki.org/cgi-bin/xtra/tzdate, e.g. %<nop>LOCALCITYTIME{"Europe/Zurich"}% |
+| Help: | =%<nop>LOCALCITYTIME%= | %LOCALCITYTIME% |
+
+---++ <nop>%TOPIC% Settings
+
+Plugin settings are stored as preferences variables. To reference
+a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>LOCALCITYTIMEPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Shows the local time of a city embedded in a %WIKITOOLNAME% topic.
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+	* Use internal date command instead of Date and Time Gateway. This is faster, but depends on BSD / Linux style zoneinfo files and the =date= command:
+		* Set USEDATECOMMAND = 0
+
+
+---++ Plugin Installation Instructions
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Check if the following =%<nop>LOCALCITYTIME{"Europe/Zurich"}%= works:
+		* %LOCALCITYTIME{"Europe/Zurich"}%
+	* Optionally enable internal date calculation with the =USEDATECOMMAND = 1= setting. This is faster then getting the data from the Date and Time Gateway page, but it depends on BSD / Linux style zoneinfo files and the =date= command; configure the =$tzDir=, =$dateCmd=, =$dateParam= settings in =twiki/lib/TWiki/Plugins/LocalCityTimePlugin.pm= in case needed.
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/PeterThoeny |
+|  Plugin Version: | 19 Nov 2004 |
+|  Change History: | &nbsp; |
+|  19 Nov 2004: | Minor code cleanup; added benchmarks |
+|  23 Nov 2003: | New URL for gateway (www.bsdi.com is decommissioned); choice of internal date calculation |
+|  14 Jul 2001: | Changed to plug & play |
+|  26 Apr 2001: | initPlugin returns 1; fixed uninitialized value warning |
+|  25 Apr 2001: | Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | If =USEDATECOMMAND = 0=: Format of Date and Time Gateway web page at http://TWiki.org/cgi-bin/xtra/tzdate <br />Else: BSD or Linux zoneinfo files and date command |
+|  Perl Version: | 5.0 |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, LocalCityTimePlugin with internal date command 96%, without 55% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.TextFormattingRules
+
+-- TWiki:Main/PeterThoeny - 19 Nov 2004
+

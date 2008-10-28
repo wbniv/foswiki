@@ -1,0 +1,24 @@
+
+
+This is an Item Tracking System implemented using TWiki.TWikiForms. It has been implemented to be used in a web on its own, but could be intermingled with a discussion style !TWikiWeb. It is a pure TWiki Application implemented using only what you get in the box when you download TWiki. 
+
+---+ How to use the Bugs Web
+
+The Bugs web is intended for collecting reports of issues, and then tracking progress towards getting those issues fixed. Issues are simply structured TWiki topics, where forms are used to store a number of fields that contain data about the issue.
+
+The main entry point for examining the list of issues is AllOutStandingItems, which can be used to perform general purpose searches over the database. You can subdivide the web into different areas using the AppliesTo field, and provide each area with its own search topic.
+
+The reporting form has extensive help information associated with it, so when you create a new issue you get help suggesting how it should be used.
+
+You create a new bug by clicking the "Create New Item" link in the left bar.
+
+---+ Configuring the Bugs Web
+
+The web is configured as a simple bug tracker, but can easily be customised to meet your own requirements. Here are some pointers:
+   1 ItemTemplate contains the basic bug form. This is a [[%SYSTEMWEB%.TWikiForms][TWikiForm]].
+   1 WebLeftBar contains the left menu bar
+   1 AppliesTo contains the list of areas that an issue might apply to. Configure this to your own requirements
+   1 [[Priority]] contains a list of valid priorities
+   1 CurrentState contains a list of valid item states
+   
+   

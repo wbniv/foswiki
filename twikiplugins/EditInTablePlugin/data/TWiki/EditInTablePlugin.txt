@@ -1,0 +1,77 @@
+---+ <nop>%TOPIC%
+
+Allows you to edit tables as a grid of text edits, without requiring modification of existing TWiki tables to use plugin.
+
+Raw TWiki Content is preserved in the text edit fields.
+
+<a href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%?edittable=1">Click to try it now</a> (only works if plugin is installed)
+
+---++ Examples
+
+| *Item1*            |*Item2*   | *Item3* |
+| rbierach@yahoo.com | _something_ | kewl |
+
+This is what the above example table looks like using the plugin (clicking the edit tables link):
+
+<form method="post">
+<input type="hidden" name="edittable" value="1">
+<table border="1" cellspacing="1" cellpadding="0">
+<tr><td bgcolor="#FFFFCC"> <input type="text" value='&#32;&#42;&#73;&#116;&#101;&#109;&#49;&#42;&#9;&#9;&#9;&#9;' name="tableItem_0_0"> </td><td bgcolor="#FFFFCC"> <input type="text" value='&#42;&#73;&#116;&#101;&#109;&#50;&#42;&#9;' name="tableItem_0_1"> </td><td bgcolor="#FFFFCC"> <input type="text" value='&#32;&#42;&#73;&#116;&#101;&#109;&#51;&#42;&#32;' name="tableItem_0_2"> </td></tr>
+<tr><td bgcolor="#FFFFFF"> <input type="text" value='&#32;&#114;&#98;&#105;&#101;&#114;&#97;&#99;&#104;&#64;&#121;&#97;&#104;&#111;&#111;&#46;&#99;&#111;&#109;&#32;' name="tableItem_1_0"> </td><td bgcolor="#FFFFFF"> <input type="text" value='&#32;&#95;&#115;&#111;&#109;&#101;&#116;&#104;&#105;&#110;&#103;&#95;&#32;' name="tableItem_1_1"> </td><td bgcolor="#FFFFFF"> <input type="text" value='&#32;&#107;&#101;&#119;&#108;&#32;' name="tableItem_1_2"> </td></tr>
+</table>
+<input type="hidden" name="edittableSave" value="1">
+<input type="submit" value=" Save Table ">
+</form>
+
+To use it add a button or a link to your skin (or to the topic) that runs the view script with ?edittable=1 at the end
+
+Here is a example you can cut and paste
+	* &lt;a href="%<nop>SCRIPTURLPATH%/view%<nop>SCRIPTSUFFIX%/%<nop>WEB%/%<nop>TOPIC%?edittable=1"&gt;Edit Tables&lt;/a&gt;
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
+	* Set SHORTDESCRIPTION = _one line description here_
+
+	* Debug plugin: (See output in =data/debug.txt=)
+	* Set DEBUG = 0
+
+	* My own setting:
+	* Set HOWTO = got it!
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the installation was successful:
+	* _enter samples here_
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/RudiBierach |
+|  Plugin Version: | 13 Feb 2004 (V1.010) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  13 Feb 2004 (V1.010): | Initial version |
+|  15 Feb 2004 (V1.020): | Fixed blank cells with all cells to the right of the blank cell not being saved |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+
+-- TWiki:Main/RudiBierach - 13 Feb 2004
+
+	* [[%ATTACHURL%/EditInTablePlugin.zip][EditInTablePlugin.zip]]: initial release
+

@@ -1,0 +1,28 @@
+%META:TOPICINFO{author="jeroen" date="1030899840" format="1.0" version="1.4"}%
+<div id="sidebar">
+  <div class="sb_box">
+  <h4>Jump!</h4>
+  <form style="padding: 0px; margin:0px" name="main" action="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%INCLUDINGWEB%/"> 
+  <input type="text" name="topic" size="18" />
+ </form> 
+</div>
+  <div class="sb_box">
+	<h4>Weblist</h4>
+	<ul>
+%WEBLIST{"<li>[[$name.WebHome][$name]]</li>"}%
+	</ul>
+ </div>
+<div class="sb_box">
+	<h4>Shortcuts</h4>
+%INCLUDE{"%USERSWEB%.ShortCuts"}%</div>
+<div class="sb_box">
+	<h4>Site tools</h4>
+	* [[%INCLUDINGWEB%.WebSearch][WebSearch]]
+	* [[%INCLUDINGWEB%.WebChanges][WebChanges]]
+	* [[%INCLUDINGWEB%.WebIndex][WebIndex]]
+	* [[%INCLUDINGWEB%.WebTopicList][WebTopicList]]
+	* [[%INCLUDINGWEB%.%NOTIFYTOPIC%][%NOTIFYTOPIC%]]
+	* [[%INCLUDINGWEB%.%STATISTICSTOPIC%][%STATISTICSTOPIC%]]
+	* [[%INCLUDINGWEB%.%WEBPREFSTOPIC%][%WEBPREFSTOPIC%]]
+	* [[%SYSTEMWEB%.%WIKIPREFSTOPIC%][SitePreferences]]</div>
+</div>

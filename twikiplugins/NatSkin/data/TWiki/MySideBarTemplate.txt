@@ -1,0 +1,39 @@
+%META:TOPICINFO{author="TWikiContributor" date="1133357180" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="MySideBar"}%
+---+ %MAKETEXT{"[_1]'s sidebar" args="%WIKIUSERNAME%"}%
+
+%STARTINCLUDE%
+---+ [[%USERSWEB%.%WIKINAME%SideBar][%MAKETEXT{"MySidebar"}%]]%REDDOT{"%USERSWEB%.%WIKINAME%SideBar"}%
+<ul>
+  <li> %TWISTY{id="mylinks" link="%MAKETEXT{"Links"}%" remember="on" mode="div"}%
+    <ul>
+      <li> ... </li>
+      <li> ... </li>
+      <li> ... </li>
+      <li> ... </li>
+    </ul> %ENDTWISTY% 
+  </li>
+  <li> %TWISTY{id="mydocu" link="%MAKETEXT{"Documentation"}%" remember="on" mode="div"}%
+    <ul>
+      <li> [[%SYSTEMWEB%.WelcomeGuest][%MAKETEXT{"Welcome Guest"}%]] </li>
+      <li> [[%SYSTEMWEB%.TWikiUsersGuide][%MAKETEXT{"User's Guide"}%]] </li>
+      <li> [[%SYSTEMWEB%.TWikiReferenceManual][%MAKETEXT{"Reference Manual"}%]] </li>
+      <li> [[%SYSTEMWEB%.GoodStyle][%MAKETEXT{"Good Style"}%]] </li>
+      <li> [[%SYSTEMWEB%.TWikiFAQ][%MAKETEXT{"FAQs"}%]] </li>
+      <li> [[%SYSTEMWEB%.TWikiVariables][%MAKETEXT{"TWiki Variables"}%]] </li>
+      <li> [[%SYSTEMWEB%.TWikiForms][%MAKETEXT{"TWiki Forms"}%]] </li>
+      <li> [[%SYSTEMWEB%.FormattedSearch][%MAKETEXT{"Formatted Search"}%]] </li>
+      <li> [[%SYSTEMWEB%.FileAttachment][%MAKETEXT{"File Attachment"}%]] </li>
+    </ul> %ENDTWISTY% 
+  </li>
+  <li> %TWISTY{id="myplugins" link="%MAKETEXT{"Plugins"}%" remember="on" mode="div"}%
+    <ul>
+      %FORMATLIST{"%ACTIVATEDPLUGINS%" separator="$n" format="<li> $1 </li>" sort="on"}%
+    </ul> %ENDTWISTY% 
+  </li>
+  <li> [[%SYSTEMWEB%.NatSkinStyleBrowser][Style Browser]] </li>
+</ul>
+
+<!--
+   * Set ALLOWTOPICCHANGE = %WIKIUSERNAME%
+-->

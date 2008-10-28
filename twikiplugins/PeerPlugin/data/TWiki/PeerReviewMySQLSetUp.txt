@@ -1,0 +1,104 @@
+%META:TOPICINFO{version="1.2" date="994247776" author="RoeS01" format="1.0beta"}%
+Back to PeerReview
+
+*MySQL*
+
+Get MySQL from http://www.mysql.com/ and follow the install instructions.
+
+Create a new database using something like...
+
+/path/to/mysql/bin/mysqladmin -u root -p rootpassword create Peer
+
+Then go to the mysql command line for the database with something like...
+
+mysql -u username -ppassword Peer
+
+Create a new user account using somthing like...
+
+GRANT ALL<br>
+	 ON Peer.*<br>
+	 TO username IDENTIFIED BY 'password'<br>
+
+
+
+Make sure that the Plugin config variables match the database setup:
+
+my $reviewTable = "reviews";<br>
+my $tempTable	= "temp";<br>
+my $tempOutTable= "tempout";<br>
+my $tempCountTable = "tempcount";<br>
+my $tempBestTable = "tempbest";<br>
+my $dataBase	 = "dbi:mysql:Peer";<br>
+my $dbUsername  = "username";<br>
+my $dbPassword  = "password";<br>
+
+The following table needS to be created manually:
+
+<PRE>
+
+CREATE TABLE reviews
+(Reviewer VARCHAR(255) NOT NULL,
+Topic VARCHAR(255) NOT NULL,
+TopicRev INT,
+Notify INT NOT NULL,
+Quality INT NOT NULL,
+Relevance INT,
+Completeness INT,
+Timeliness INT,
+Comment VARCHAR(255),
+DateTime DATETIME)
+
+</PRE>
+
+The following tables are automatically created by Review.pm - this allows each connection to have private tables with the same name...make sure that the user has create privileges.
+
+<PRE>
+
+CREATE TEMPORARY TABLE temp
+(Reviewer VARCHAR(255) NOT NULL,
+Topic VARCHAR(255) NOT NULL,
+TopicRev INT,
+Notify INT NOT NULL,
+Quality INT NOT NULL,
+Relevance INT,
+Completeness INT,
+Timeliness INT,
+Comment VARCHAR(255),
+DateTime DATETIME)
+
+CREATE TEMPORARY TABLE tempout
+(Reviewer VARCHAR(255) NOT NULL,
+Topic VARCHAR(255) NOT NULL,
+TopicRev INT,
+Notify INT NOT NULL,
+Quality INT NOT NULL,
+Relevance INT,
+Completeness INT,
+Timeliness INT,
+Comment VARCHAR(255),
+DateTime DATETIME)
+
+CREATE TEMPORARY TABLE tempcount
+(Topic VARCHAR(255),
+Count INT)
+
+CREATE TEMPORARY TABLE tempbest
+(Topic VARCHAR(255),
+Quality INT,
+Metric INT)
+
+</PRE>
+
+
+-- People.StephenRoe - 27 Jun 2001 <br>
+
+
+
+
+
+<!--TWikiCat--> <h4> WikiCategory </h4>
+<table border="1" cellspacing="0" cellpadding="1">
+<tr>
+<td valign="top" align="right"> TopicClassification:  <br></td><td>  FeatureUnderConstruction </td>
+</tr>
+</table><!--TWikiCat-->

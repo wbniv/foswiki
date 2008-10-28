@@ -1,0 +1,6 @@
+data/TWiki/FlowchartPlugin.txt NEW
+data/TWiki/FlowchartPluginExample.txt NEW
+lib/TWiki/Plugins/FlowchartPlugin.pm NEW
+pub/TWiki/FlowchartPluginExample/flowchartMapImg_FlowchartPluginExample.txt NEW
+pub/TWiki/FlowchartPluginExample/flowchart_FlowchartPluginExample.png NEW
+pub/TWiki/FlowchartPluginExample/flowchart_FlowchartPluginExample.svg NEW

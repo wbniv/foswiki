@@ -1,0 +1,16 @@
+TWiki::Plugins,>=1.1,perl,TWiki Dakar release.
+TWiki::Plugins::AliasPlugin,>=1.2,perl,Required; download from TWiki:Plugins/AliasPlugin 
+TWiki::Plugins::DBCachePlugin,>=1.20,perl,Required; download from TWiki:Plugins/DBCachePlugin 
+TWiki::Plugins::ExtendedSelectPlugin,>=1.10,perl,Required; download from TWiki:Plugins/ExtendedSelectPlugin 
+TWiki::Plugins::FilterPlugin,>=0.94,perl,Required; download from TWiki:Plugins/FilterPlugin 
+TWiki::Plugins::GluePlugin,>=1.5,perl,Required; download from TWiki:Plugins/GluePlugin 
+TWiki::Plugins::HeadlinesPlugin,>=1.91,perl,Required; download from TWiki:Plugins/HeadlinesPlugin 
+TWiki::Plugins::IfDefinedPlugin,>0.93,perl,Required; download from TWiki:Plugins/IfDefinedPlugin 
+TWiki::Plugins::RedDotPlugin,>=1.35,perl,Required; download from TWiki:Plugins/RedDotPlugin 
+TWiki::Plugins::SpreadSheetPlugin,>=1.001,perl,Required; download from TWiki:Plugins/SpreadSheetPlugin 
+TWiki::Plugins::TagCloudPlugin,>=0.20,perl,Required; download from TWiki:Plugins/TagCloudPlugin 
+TWiki::Plugins::TimeSincePlugin,>=0.99,perl,Required; download from TWiki:Plugins/TimeSincePlugin 
+TWiki::Plugins::TwistyPlugin,,perl,Required; download from TWiki:Plugins/TwistyPlugin 
+TWiki::Plugins::UserInfoPlugin,>=1.5,perl,Optional; download from TWiki:Plugins/UserInfoPlugin 
+TWiki::Plugins::NatSkin,>=2.9998,perl,Recommended; download from TWiki:Plugins/NatSkin 
+TWiki::Plugins::ImagePlugin,>=0.3,perl,Recommended; download from TWiki:Plugins/ImagePlugin 

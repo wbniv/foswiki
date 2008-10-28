@@ -1,0 +1,55 @@
+%META:TOPICINFO{author="guest" date="1131075316" format="1.0" version="1.4"}%
+Use the following form to set options for the <nop>LaTeX or <nop>PDFLaTeX file generator.
+
+<form action="%SCRIPTURLPATH%/genpdflatex%SCRIPTSUFFIX%/$web/$topic">
+<table border=1>
+<tr>
+<td> Web Name: 
+<td> $web
+<tr>
+<td> Topic Name: 
+<td> $topic
+<tr> 
+<td> Latex document style:
+<td>
+<select name="class">
+<option value="$style">$style</option>
+<option value="article">Generic Article</option>
+<option value="book">Book</option>
+<option value="IEEEtran2e">IEEE Trans</option>
+<option value="ismrm">MRM / JMRI (ISMRM)</option>
+<option value="cmr">Concepts in MR</option>
+<option value="letter">Letter</option>
+</select>
+<tr> 
+<td> Number of columns per page:
+<td>
+<input type="radio" name="ncol" value="onecolumn" checked="on" /> 1 column
+<input type="radio" name="ncol" value="twocolumn" /> 2 column
+<tr>
+<td> Font size:
+<td>
+<select name="fontsize">
+<option value="10"> 10pt </option>
+<option selected="true" value="11"> 11pt </option>
+<option value="12"> 12pt </option>
+</select>
+<tr>
+<td>Draft? (typically, double-spaced <br> with end-floats)
+<td>
+<input type="checkbox" name="draftcls" checked="on" />
+<tr>
+<td>Additional packages to include:
+<td><input name="packages" type="text" size="40" value="$packages" ></input>
+<tr>
+<td>Output file type:
+<td>
+<input type="radio" name="output" checked="on" value="latex" /> latex .tex file
+<input type="radio" name="output" value="pdf" /> pdflatex PDF file
+<tr>
+<td>
+<td>
+<input type="submit" value="Produce PDF/Latex" />
+</table>
+</form>
+

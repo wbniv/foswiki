@@ -1,0 +1,33 @@
+%META:TOPICINFO{author="PaulHoesli" date="1160347731" format="1.1" reprev="1.1" version="1.1"}%
+%META:TOPICPARENT{name="ContribPackage"}%
+
+%$POD%
+
+---++ Installation Instructions
+%$INSTALL_INSTRUCTIONS%
+
+ZIP-Contents:
+     | *File:* | *Description:* |
+     %$MANIFEST%
+
+   * Test if the installation was successful:
+      * _enter samples here_
+
+---++ Contrib Info
+
+|  Author: | TWiki:Main/PaulHoesli |
+|  Copyright &copy;: | 2006, Logismatic <nop>GmbH, All Rights Reserved |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Version: | %$VERSION% |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  04 Nov 2006: | Untainted webs param, some refactoring |
+|  22 Oct 2006: | Initial version |
+|  Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences
+
+-- TWiki:Main.PaulHoesli - %$DATE%
+

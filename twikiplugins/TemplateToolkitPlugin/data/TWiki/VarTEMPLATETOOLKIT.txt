@@ -1,0 +1,5 @@
+---+++ TEMPLATETOOLKIT -- pipe a topic through Template Toolkit
+
+%INCLUDE{"TemplateToolkitPlugin" section="VarTEMPLATETOOLKIT"}%
+
+See TemplateToolkitPlugin for details.
