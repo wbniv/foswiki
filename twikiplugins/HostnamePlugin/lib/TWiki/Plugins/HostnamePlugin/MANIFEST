@@ -1,4 +1,0 @@
-# Release manifest for HostnamePlugin
-data/TWiki/HostnamePlugin.txt 0644 Documentation
-data/TWiki/VarHOSTNAME.txt 0644 Variable documentation
-lib/TWiki/Plugins/HostnamePlugin.pm 0644 Perl module

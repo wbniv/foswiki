@@ -1,9 +1,0 @@
-%TMPL:INCLUDE{"view"}%
-
-%TMPL:DEF{"formattop"}%%TMPL:P{"form"}%%TMPL:END%
-%TMPL:DEF{"formatbottom"}%
-<h3>Tasks in this story</h3>
-*Task Details:*
-%XPSHOWTASKTABLE{"%TOPIC%"}%
-
-%TMPL:END%

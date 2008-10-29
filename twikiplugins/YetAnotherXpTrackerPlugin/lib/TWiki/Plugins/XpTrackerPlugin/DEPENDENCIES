@@ -1,4 +1,0 @@
-TWiki::Plugins::EditHiddenTablePlugin,>=0,perl,Required. Download and install from [[TWiki:Plugins/EditHiddenTablePlugin][plugin library]].
-TWiki::Plugins::ControlsPlugin,>=0,perl,Required. Download and install from [[TWiki:Plugins/ControlsPlugin][plugin library]].
-HTTP::Date,>=1,cpan,Required. Available from [[http://cpan.uwinnipeg.ca/dist/Time-modules][CPAN]].
-Time::CTime,>=1,cpan,Required. Available from [[http://cpan.uwinnipeg.ca/dist/Time-modules][CPAN]].

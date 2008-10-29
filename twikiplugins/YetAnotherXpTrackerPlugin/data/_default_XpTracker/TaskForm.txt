@@ -1,9 +1,0 @@
-%META:TOPICINFO{author="TWikiGuest" date="1143241268" format="1.0" version="1.13"}%
-| *Name* | *Type* | *Size* | *Values* | *Tooltip message* |
-| Task name | text  | 30 |	| |
-| Est		 | text  |  5 |  | |
-| Spent | text		|  5 | 0 | |
-| To do | text		|  5 |  | |
-| [[TeamMembers][Developer]] | select|  1 | | |
-| COQ		 | select|  1 | , Creation, Appraisal, Internal failure, External failure, Prevention, N/A | |
-| [[TeamMembers][Reviewer]]  | select|  1 |  | |

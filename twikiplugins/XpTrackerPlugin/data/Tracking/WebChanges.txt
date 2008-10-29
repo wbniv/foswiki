@@ -1,6 +1,0 @@
-%META:TOPICINFO{author="RafaelAlvarez" date="1073572920" format="1.0" version="1.1"}%
-%META:TOPICPARENT{name="WebHome"}%
-%SEARCH{".*" web="%INCLUDINGWEB%" regex="on" nosearch="on" order="modified" reverse="on" nosummary="on" limit="50"}%
-
-	* See [[%SCRIPTURL%/search%SCRIPTSUFFIX%/%INCLUDINGWEB%/?search=%5C.*&amp;scope=topic&amp;order=modified&amp;reverse=on&amp;regex=on&amp;nosearch=on&amp;nosummary=on&amp;limit=100][100]], [[%SCRIPTURL%/search%SCRIPTSUFFIX%/%INCLUDINGWEB%/?search=%5C.*&amp;scope=topic&amp;order=modified&amp;reverse=on&amp;regex=on&amp;nosearch=on&amp;nosummary=on&amp;limit=200][200]], [[%SCRIPTURL%/search%SCRIPTSUFFIX%/%INCLUDINGWEB%/?search=%5C.*&amp;scope=topic&amp;order=modified&amp;reverse=on&amp;regex=on&amp;nosearch=on&amp;nosummary=on&amp;limit=400][400]], [[%SCRIPTURL%/search%SCRIPTSUFFIX%/%INCLUDINGWEB%/?search=%5C.*&amp;scope=topic&amp;order=modified&amp;reverse=on&amp;regex=on&amp;nosearch=on&amp;nosummary=on&amp;limit=800][800]] most recent changes
-	* See [[%SCRIPTURL%/search%SCRIPTSUFFIX%/%INCLUDINGWEB%/SearchResult?search=%5C.*&amp;scope=topic&amp;order=modified&amp;reverse=on&amp;regex=on&amp;nosummary=on&amp;nosearch=on][all]] changes

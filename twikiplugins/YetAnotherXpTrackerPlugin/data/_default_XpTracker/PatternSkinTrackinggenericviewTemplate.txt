@@ -1,4 +1,0 @@
-%TMPL:INCLUDE{"view"}%
-
-%TMPL:DEF{"formattop"}%%TMPL:P{"form"}%%TMPL:END%
-%TMPL:DEF{"formatbottom"}% %TMPL:END%

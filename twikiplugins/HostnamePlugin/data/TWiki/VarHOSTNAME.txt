@@ -1,6 +1,0 @@
-%META:TOPICINFO{author="TWikiContributor" date="1182547552" format="1.1" version="$Rev$"}%
-%META:TOPICPARENT{name="TWikiVariables"}%
-#VarHOSTNAME
----+++ HOSTNAME -- the name of the host
-%INCLUDE{"%SYSTEMWEB%.HostnamePlugin" section="usage"}%
-   * See HostnamePlugin for more information
