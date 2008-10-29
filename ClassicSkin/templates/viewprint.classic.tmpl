@@ -1,0 +1,27 @@
+%TMPL:INCLUDE{"twiki.classic"}%
+
+%TMPL:DEF{"form"}%%META{"form"}%%TMPL:END%
+%TMPL:DEF{"attachments"}%%META{"attachments"}%%TMPL:END%
+
+%TMPL:DEF{"main"}%
+%TMPL:P{"content"}%
+%TMPL:P{"standardfooter"}%%TMPL:END%
+
+%TMPL:DEF{"topicinfo"}%---
+%MAKETEXT{"This topic:"}% <nop>%WEB%%META{"parent" prefix="%TMPL:P{"topicpathseparator"}%" suffix=""}%%TMPL:P{"topicpathseparator"}%%TOPIC%</span> %BR%
+%MAKETEXT{"Topic revision:"}% %REVINFO%%TMPL:END%
+
+
+
+%TMPL:DEF{"content"}%%TEXT%
+#TopicEnd
+%TMPL:P{"form"}%%TMPL:P{"attachments"}%
+%TMPL:P{"topicinfo"}%%TMPL:END%
+
+%TMPL:P{"htmldoctype"}%
+%TMPL:P{"head"}%
+%TMPL:P{"bodystart"}%
+%TMPL:P{"main"}%
+---
+%TMPL:P{"copyright"}%
+%TMPL:P{"bodyend"}% 
