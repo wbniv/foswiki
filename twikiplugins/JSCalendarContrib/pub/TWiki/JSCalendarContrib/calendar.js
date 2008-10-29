@@ -12,7 +12,7 @@
  * Read the entire license text here: http://www.gnu.org/licenses/lgpl.html
  */
 
-// $Id: calendar.js 17490 2008-09-10 14:55:27Z ArthurClemens $
+// $Id: calendar.js 17491 2008-09-10 14:55:50Z ArthurClemens $
 
 // patched to make the calendar appear in the right position on IE7, using patch
 // http://sourceforge.net/tracker/index.php?func=detail&aid=1679433&group_id=75569&atid=544287

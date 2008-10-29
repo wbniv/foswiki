@@ -75,7 +75,7 @@ ACTUAL
 sub test_simpleTheadTableUsingTablePlugin {
     my $this = shift;
 
-    my $cgi = $this->{twiki}->{cgiQuery};
+    my $cgi = $this->{request};
     my $url = $cgi->url(-absolute => 1);
 
     my $expected = <<EXPECTED;
@@ -147,7 +147,7 @@ ACTUAL
 sub test_doubleTheadTableUsingTablePlugin {
     my $this = shift;
 
-    my $cgi = $this->{twiki}->{cgiQuery};
+    my $cgi = $this->{request};
     my $url = $cgi->url(-absolute => 1);
 
     my $expected = <<EXPECTED;
@@ -190,7 +190,7 @@ ACTUAL
 sub test_doubleTheadandTfootTableusingTablePlugin {
     my $this = shift;
 
-    my $cgi = $this->{twiki}->{cgiQuery};
+    my $cgi = $this->{request};
     my $url = $cgi->url(-absolute => 1);
 
     my $expected = <<EXPECTED;
@@ -243,7 +243,7 @@ Test sorting of Size column (format: '1.1 K')
 sub test_sort_size {
     my $this = shift;
 
-    my $cgi = $this->{twiki}->{cgiQuery};
+    my $cgi = $this->{request};
     my $url = $cgi->url(-absolute => 1);
     my $pubUrlTWikiWeb = TWiki::Func::getPubUrlPath() . '/TWiki';
     
@@ -321,7 +321,7 @@ Test sorting of Date column with HTML tags before the date
 sub test_sort_dateWithHtml {
     my $this = shift;
 
-    my $cgi = $this->{twiki}->{cgiQuery};
+    my $cgi = $this->{request};
     my $url = $cgi->url(-absolute => 1);
     my $pubUrlTWikiWeb = TWiki::Func::getPubUrlPath() . '/TWiki';
     

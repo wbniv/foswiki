@@ -222,19 +222,25 @@ sub unsubscribe {
 ---++ stringify() -> string
 Return a string representation of this object, in %NOTIFYTOPIC% format.
 
+Optional $subscribersOnly parameter to only print the parsed subscription list.
+Used when running a mailnotify, where printing out the entire WebNotify topic is confusing,
+as its different from the actual topic contents, but doesn't inform the user why.
+
 =cut
 
 sub stringify {
     my $this = shift;
+    my $subscribersOnly = shift || 0;
 
-    my $page = $this->{pretext};
+    my $page = $this->{pretext} if (!$subscribersOnly);
 
     foreach my $name ( sort keys %{$this->{subscribers}} ) {
         my $subscriber = $this->{subscribers}{$name};
         $page .= $subscriber->stringify() . "\n";
     }
+    $page .= $this->{posttext} if (!$subscribersOnly);
 
-    return $page.$this->{posttext};
+    return $page;
 }
 
 =pod
@@ -367,7 +373,7 @@ sub _load {
             $topics = undef unless ($topics =~ s/^://);
             $subscriber =~ s/^(['"])(.*)\1$/$2/; # remove quotes
             if ($topics) {
-                $this->_parsePages( $subscriber, $topics );
+                $this->parsePageSubscriptions( $subscriber, $topics );
             } else {
                 $this->subscribe($subscriber, '*', 0, 0 );
             }
@@ -383,30 +389,44 @@ sub _load {
     }
 }
 
-# PRIVATE parse a pages list, adding subscriptions as appropriate
-sub _parsePages {
-    my ( $this, $who, $spec ) = @_;
-    my $ospec = $spec;
-    $spec =~ s/,/ /g;
-    while ( $spec =~ s/^\s*([+-])?\s*([\w\*]+)([!?]?)\s*(?:\((\d+)\))?// ) {
-        my $opts = 0;
-        if ($3) {
-            $opts |= $MailerConst::FULL_TOPIC;
-            if ($3 =~ /!/) {
-                $opts |= $MailerConst::ALWAYS;
-            }
-        }
-        my $kids = $4 or 0;
-        if ( $1 && $1 eq '-' ) {
-            $this->unsubscribe( $who, $2, $kids );
-        } else {
-            $this->subscribe( $who, $2, $kids, $opts );
-        }
-    }
-    if ( $spec =~ m/\S/ ) {
+# parse a pages list, adding subscriptions as appropriate
+# $unsubscribe is set to '-' by SubscribePlugin to force a '-' operation
+sub parsePageSubscriptions {
+    my ( $this, $who, $spec, $unsubscribe ) = @_;
+    
+    $this->{topicSub} = \&_subscribeTopic;
+    
+    my $ret = TWiki::Contrib::MailerContrib::parsePageList($this, $who, $spec, $unsubscribe);
+    if ( $ret =~ m/\S/ ) {
         TWiki::Func::writeWarning(
-            "Badly formatted page list at $who: $ospec");
+            "Badly formatted page list at $who: $spec");
+	return -1;
     }
+    return;
+}
+
+sub _subscribeTopic {
+    my ( $this, $who, $unsubscribe, $webTopic, $options, $childDepth ) = @_;
+    
+    my ($web, $topic) = TWiki::Func::normalizeWebTopicName($this->{web}, $webTopic);
+    $this->_alert('warning: ignoring web prefix on '.$webTopic) if ($web ne $this->{web});
+    
+#print STDERR "_subscribeTopic($topic)\n";
+    my $opts = 0;
+    if ($options) {
+	$opts |= $MailerConst::FULL_TOPIC;
+	if ($options =~ /!/) {
+	    $opts |= $MailerConst::ALWAYS;
+	}
+    }
+    my $kids = $childDepth or 0;
+    if ( $unsubscribe && $unsubscribe eq '-') {
+	$this->unsubscribe( $who, $topic, $kids );
+    } else {
+	$this->subscribe( $who, $topic, $kids, $opts );
+    }
+    #TODO: howto find & report errors?
+    return '';
 }
 
 # PRIVATE emailWarn to warn when an email address cannot be found

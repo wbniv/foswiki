@@ -22,6 +22,8 @@ use base 'TWikiFnTestCase';
 
 use strict;
 
+use Unit::Request;
+use Unit::Response;
 use TWiki;
 use TWiki::Plugins::WysiwygPlugin;
 
@@ -77,16 +79,18 @@ sub save_test {
     my $text = join('', @test).".";
     my $t = $charset ? Encode::encode($charset, $text) : $text;
 
-    my $query = new CGI({
+    my $query = new Unit::Request({
         'wysiwyg_edit' => [ 1 ],
         'action_save' => [ 1 ],
         'text' => [ $t ],
     });
-    $query->charset($charset) if $charset;
-    $query->path_info("/$this->{test_web}/WysiwygPluginTest");
+    $query->path_info("/$this->{test_web}/WysiwygPluginTest" );
     $query->param(text => $t);
 
     $TWiki::Plugins::SESSION = new TWiki('guest', $query );
+	# charset definition affects output, so it is a response method and
+	# can only be adjusted after creating session object.
+	$TWiki::Plugins::SESSION->{response}->charset($charset) if $charset;
 
     require TWiki::UI::Save;
     my ($dummy, $result) =
@@ -106,24 +110,24 @@ sub TML2HTML_test {
 
     # Is this enough? Regexes are inited before we get here, aren't they?
     $TWiki::cfg{Site}{CharSet} = $charset;
-    CGI::charset($charset) if $charset;
 
     my @test;
     for (my $i = $firstchar; $i <= $lastchar; $i++) {
         push(@test, chr($i));
     }
     my $text = join('', @test).".";
-    my $query = new CGI({
+    my $query = new Unit::Request({
         'wysiwyg_edit' => [ 1 ],
         # REST parameters are always UTF8 encoded
         'text' => [ Encode::encode_utf8($text) ],
     });
 
     my $twiki = new TWiki('guest', $query );
+	$twiki->{response}->charset($charset) if $charset;
 
     my ($out, $result) = $this->capture(
         \&TWiki::Plugins::WysiwygPlugin::_restTML2HTML,
-        $twiki);
+        $twiki, undef, undef, $twiki->{response});
 
     $this->assert(!$result, $result);
     # Strip ASCII header
@@ -147,24 +151,24 @@ sub HTML2TML_test {
 
     # Is this enough? Regexes are inited before we get here, aren't they?
     $TWiki::cfg{Site}{CharSet} = $charset;
-    CGI::charset($charset) if $charset;
 
     my @test;
     for (my $i = $firstchar; $i <= $lastchar; $i++) {
         push(@test, chr($i));
     }
     my $text = join('', @test).".";
-    my $query = new CGI({
+    my $query = new Unit::Request({
         'wysiwyg_edit' => [ 1 ],
         # REST parameters are always UTF8 encoded
         'text' => [ Encode::encode_utf8($text) ],
     });
 
     my $twiki = new TWiki('guest', $query );
+	$twiki->{response}->charset($charset) if $charset;
 
     my ($out, $result) = $this->capture(
         \&TWiki::Plugins::WysiwygPlugin::_restHTML2TML,
-        $twiki);
+        $twiki, undef, undef, $twiki->{response});
 
     $this->assert(!$result, $result);
     # Strip ASCII header

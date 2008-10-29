@@ -32,11 +32,7 @@ sub renderForEdit {
               'twikiInputField twikiEditFormDateField'});
     my $ifFormat = $TWiki::cfg{JSCalendarContrib}{format} || '%e %b %Y';
     TWiki::Contrib::JSCalendarContrib::addHEAD( 'twiki' );
-    if( $TWiki::cfg{Plugins}{TwistyPlugin}{Enabled} ) {
-        $value .= '%TWISTY{link="" noscript="hide" start="show"'.
-          'prefix="&nbsp;"}%';
-    }
-    $value .= CGI::image_button(
+    my $button .= CGI::image_button(
         -name => 'calendar',
         -onclick =>
           "return showCalendar('id$this->{name}','$ifFormat')",
@@ -45,9 +41,10 @@ sub renderForEdit {
             '/JSCalendarContrib/img.gif',
         -alt => 'Calendar',
         -class => 'twikiButton twikiEditFormCalendarButton' );
-    if( $TWiki::cfg{Plugins}{TwistyPlugin}{Enabled} ) {
-        $value .= '%ENDTWISTY%';
-    }
+    $value .= CGI::span(
+        { -class => 'twikiMakeVisible' },
+        '&nbsp;' . $button
+    );
     my $session = $this->{session};
     $value = $session->renderer->getRenderedVersion(
         $session->handleCommonTags( $value, $web, $topic ));

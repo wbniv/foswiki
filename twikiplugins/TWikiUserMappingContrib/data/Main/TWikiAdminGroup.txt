@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1111931141" format="1.0" version="$Rev: 16889 $"}%
+%META:TOPICINFO{author="TWikiContributor" date="1111931141" format="1.0" version="$Rev: 17023 $"}%
 ---+ TWiki Administrator Group
 
 
@@ -25,6 +25,6 @@ If you haven't previously set up an administrator, follow these steps:
 <sticky></div></sticky>
 %IF{"(NOT defined GROUP) OR $GROUP = ''" then="" else="-->"}%
 
-__Related topics:__ %WIKIUSERSTOPIC%, TWikiAdminUser, TWikiGroups, %TWIKIWEB%.TWikiAccessControl
+__Related topics:__ [[%WIKIUSERSTOPIC%]], [[TWikiAdminUser]], [[TWikiGroups]], [[%TWIKIWEB%.TWikiAccessControl][TWikiAccessControl]]
 
 

@@ -5,7 +5,7 @@
 <!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the Dev topic instead. -->
 %SHORTDESCRIPTION%
 
-Support for the integration of WYSIWYG (What-You-See-Is-What-You-Get) editors. On its own, the only thing this plugin gives you is a stand-alone HTML to TWiki translator script. For WYSIWYG editing in TWiki, you will also need to install a specific editor package such as TWiki:Plugins.KupuEditorContrib or TWiki:Plugins.WikiwygContrib.
+Support for the integration of WYSIWYG (What-You-See-Is-What-You-Get) editors. On its own, the only thing this plugin gives you is a stand-alone HTML to TWiki translator script. For WYSIWYG editing in TWiki, you will also need to install a specific editor package such as TWiki:Plugins.TinyMCEPlugin.
 
 This plugin provides a generic framework that supports editing of TWiki topics using any browser-based HTML editor. It works by transforming TML (TWiki Meta Language) into HTML for the editor, and then transforming HTML back into TML on save.
 
@@ -74,7 +74,7 @@ The flow of control is as follows:
    1 The =afterEditHandler= in the !WyswiygPlugin sees that =wysiwyg_edit= is set, which triggers the conversion back to TML.
 
    * The HTML form in the edit template *must* include an =&lt;input= called =wysiwyg_edit= and set it to 1, to trigger the conversion from HTML back to TML.
-   * =WYSIWYGPLUGIN_WYSIWYGSKIN= must be set to the name of the skin used for WYSIWYG editing. This is usually the name of the editor e.g. =kupu=.
+   * =WYSIWYGPLUGIN_WYSIWYGSKIN= must be set to the name of the skin used for WYSIWYG editing. This is often the name of the editor e.g. =xinha=.
 
 ---++++ Fetching content from a URL
 In this scenario, the edit template is generated *without* the content-to-be-edited. The content is retrieved from the server using a URL e.g. from an =IFRAME=.

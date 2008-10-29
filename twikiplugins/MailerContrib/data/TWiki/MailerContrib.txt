@@ -107,25 +107,7 @@ In addition, the %<nop>STARTPUBLISH% and %<nop>STOPPUBLISH% markers used by TWik
 The second part of the module is a code library that provides the services for other applications to modify the subscription topics through a clean, well documented API. This allows (for example) plugin developers to add (for example) a "Register me for this newsletter" button to their pages. Developers should refer to the POD documentation for the !WebNotify class as their starting point.
 
 ---++ Installation Instructions
-You do not need to install anything in the browser to use this extension. The following instructions are for the administrator who installs the extension on the server where TWiki is running.
-
-Like many other TWiki extensions, this module is shipped with a fully
-automatic installer script written using the Build<nop>Contrib.
-   * If you have TWiki 4.2 or later, you can install from the =configure= interface (Go to Plugins->Find More Extensions)
-      * See the [[http://twiki.org/cgi-bin/view/Plugins/BuildContribInstallationSupplement][installation supplement]] on TWiki.org for more information.
-   * If you have any problems, then you can still install manually from the command-line:
-      1 Download one of the =.zip= or =.tgz= archives
-      1 Unpack the archive in the root directory of your TWiki installation.
-      1 Run the installer script ( =perl &lt;module&gt;_installer= )
-      1 Run =configure= and enable the module, if it is a plugin.
-      1 Repeat for any missing dependencies.
-   * If you are *still* having problems, then instead of running the installer script:
-      1 Make sure that the file permissions allow the webserver user to access all files.
-      1 Check in any installed files that have existing =,v= files in your existing install (take care *not* to lock the files when you check in)
-      1 Manually edit !LocalSite.cfg to set any configuration variables.
-
-%IF{"defined 'SYSTEMWEB'" else="<div class='twikiAlert'>%X% WARNING: SYSTEMWEB is not defined in this TWiki. Please add these definitions to your %MAINWEB%.TWikiPreferences, if they are not already there:<br><pre>   * <nop>Set SYSTEMWEB = %<nop>TWIKIWEB%<br>   * <nop>Set USERSWEB = %<nop>MAINWEB%</pre></div>"}%
-
+%$INSTALL_INSTRUCTIONS%
    * To make sure the installation was successful, run the =mailnotify= script from the command line, with no parameters. In this case it will print out what it would have done to =STDOUT=.
 *Additional settings*
    * You can change the regular expression that matches email addresses in <nop>%NOTIFYTOPIC% using the ={MailerContrib}{EmailFilterIn} setting in =configure=. This allows you to limit the domains to which emails can be sent, or even block email addresses altogether.
@@ -180,11 +162,12 @@ Many thanks to the following sponsors for supporting this work:
    * [[http://wikigardens.com][WikiGardens]]
 
 |  Author: | TWiki:Main/CrawfordCurrie (http://c-dot.co.uk) |
-|  Copyright &copy;: | 2004, Wind River Systems; 2006, http://WikiRing.com |
+|  Copyright &copy;: | 2004, Wind River Systems; 2008, http://WikiRing.com |
 |  License: | GPL |
-|  Version: | 17629 (14 Oct 2008) |
+|  Version: | %$VERSION% |
 |  Change History: | |
-|  14 Oct 2008 | TWikibug:Item6066: fixed issue for user mappings where cuid != login |
+|  15 Oct 2008 | TWikibug:Item: generalised code to enable TWiki:Codev.SubscribePlugin to delegate parsing to %TOPIC% - TWiki:Main.SvenDowideit |
+|  14 Oct 2008 | TWikibug:Item6066: fixed issue for user mappings where cuid != login  - TWiki:Main.SvenDowideit |
 |  27 Aug 2008 | TWikibug:Item5949: fixed problem with unsubscribe that should result in an empty subscription |
 |  03 Aug 2008 | TWiki 4.2.1 release version |
 |  27 Jul 2008 | TWikibug:Item5776: TWiki:Main.KennethLavrsen added note to warn against running multiple instances of mailnotify at the same time. |

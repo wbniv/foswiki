@@ -17,7 +17,7 @@ require TWiki::Func;    # The plugins API
 
 use vars qw( $VERSION $RELEASE $SHORTDESCRIPTION );
 
-$VERSION = '$Rev: 17304 $';
+$VERSION = '$Rev: 17305 $';
 $RELEASE = '03 Aug 2008';
 $SHORTDESCRIPTION = "[[http://dynarch.com/mishoo/calendar.epl][Mishoo JSCalendar]], packaged for use by plugins, skins and add-ons";
 

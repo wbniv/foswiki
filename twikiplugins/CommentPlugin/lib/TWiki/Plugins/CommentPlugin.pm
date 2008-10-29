@@ -29,10 +29,10 @@ require TWiki::Plugins;
 
 use vars qw( $VERSION $RELEASE $SHORTDESCRIPTION $NO_PREFS_IN_TOPIC );
 
-# This should always be $Rev: 17302 $ so that TWiki can determine the checked-in
+# This should always be $Rev: 17303 $ so that TWiki can determine the checked-in
 # status of the plugin. It is used by the build automation tools, so
 # you should leave it alone.
-$VERSION = '$Rev: 17302 $';
+$VERSION = '$Rev: 17303 $';
 
 # This is a free-form string you can use to "name" your own plugin version.
 # It is *not* used by the build automation tools, but is reported as part

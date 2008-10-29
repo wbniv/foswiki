@@ -82,6 +82,8 @@ sub stringify {
 Check if we match this topic. Recurses up the parenthood tree seeing if
 this is a child of a parent that matches within the depth range.
 
+TODO: '*' should match alot of things..
+
 =cut
 
 sub matches {
@@ -93,7 +95,7 @@ sub matches {
     $depth = $this->{depth} unless defined( $depth );
     $depth ||= 0;
 
-    if ( $depth ) {
+    if ( $depth && $db) {
         my $parent = $db->getParent( $topic );
         $parent =~ s/^.*\.//;
         return $this->matches( $parent, $db, $depth - 1 ) if ( $parent );
@@ -117,6 +119,9 @@ specified by another subscription. Thus:
 
 sub covers {
     my( $this, $tother, $db ) = @_;
+    
+    #* should win always.
+    return 1 if ($this->{topics} eq '*');
 
     # Does the mode cover the other subscription?
     return 0 unless

@@ -1,11 +1,18 @@
 use strict;
 
-# tests the new UserMapping including dealing with legacy cUIDs
-
+#
+# Tests the TWikiUserMappingContrib, including dealing with legacy login
+# names and wiki names stored in topics, in TOPICINFO and FILEATTACHMENT
+# meta-data.
+#
+# Only works with the RCS store.
+#
 package TWikiUserMappingContribTests;
 
 use base qw( TWikiFnTestCase );
 
+use Unit::Request;
+use Unit::Response;
 use TWiki;
 use Error qw( :try );
 
@@ -20,10 +27,39 @@ sub new {
     return $self;
 }
 
+sub fixture_groups {
+    return ( [ 
+        'NormalTWikiUserMapping',
+        'NamedTWikiUserMapping',
+       ] );
+}
+
+sub NormalTWikiUserMapping {
+    my $this = shift;
+    $TWiki::Users::TWikiUserMapping::TWIKI_USER_MAPPING_ID = '';
+    $this->set_up_for_verify();
+}
+
+sub NamedTWikiUserMapping {
+    my $this = shift;
+    # Set a mapping ID for purposes of testing named mappings
+    $TWiki::Users::TWikiUserMapping::TWIKI_USER_MAPPING_ID = 'TestMapping_';
+    $this->set_up_for_verify();
+}
+
+# Override default set_up in base class; will call it after the mapping
+#  id has been set
 sub set_up {
+}
+
+# Delay the calling of set_up till after the cfg's are set by above closure
+sub set_up_for_verify {
     my $this = shift;
 
     $this->SUPER::set_up();
+
+    $this->assert($TWiki::cfg{StoreImpl} =~ /^Rcs/,
+                  "Test does not run with non-RCS store");
 
     #default settings	
     $TWiki::cfg{LoginManager} = 'TWiki::LoginManager::TemplateLogin';
@@ -39,7 +75,7 @@ sub setup_new_session() {
     my $this = shift;
 	
 	my ( $query, $text );
-    $query = new CGI ({});
+    $query = new Unit::Request ({});
     $query->path_info( "/Main/WebHome" );
     $ENV{SCRIPT_NAME} = "view";
 
@@ -78,22 +114,23 @@ sub set_up_user {
 
 #TODO: add tests for when you're not using TWikiUserMapping at all...
 #New 4.2 cUID based topics
-sub test_WikiNameTWikiUserMapping {
+sub verify_WikiNameTWikiUserMapping {
     my $this = shift;
     $this->setup_new_session();
     $this->set_up_user();
   	$this->std_tests($this->{user_id}, $this->{twiki}->{users}->webDotWikiName($this->{user_id}));
 }
-sub test_LoginNameTWikiUserMapping {
+
+sub verify_LoginNameTWikiUserMapping {
     my $this = shift;
-    $TWiki::cfg{Register}{AllowLoginName} = 1; 
-    $this->setup_new_session();    
+    $TWiki::cfg{Register}{AllowLoginName} = 1;
+    $this->setup_new_session();
     $this->set_up_user();
   	$this->std_tests($this->{user_id}, $this->{twiki}->{users}->webDotWikiName($this->{user_id}));
 }
 
 #legacy topic forms
-sub test_valid_login_no_Mapper_in_cUID {
+sub verify_valid_login_no_Mapper_in_cUID {
     my $this = shift;
     $TWiki::cfg{Register}{AllowLoginName} = 1;
     $this->setup_new_session();
@@ -101,42 +138,42 @@ sub test_valid_login_no_Mapper_in_cUID {
   	$this->std_tests($this->{userLogin}, $this->{twiki}->{users}->webDotWikiName($this->{user_id}));
 }
 
-sub test_valid_wikiname_no_Mapper_in_cUID {
+sub verify_valid_wikiname_no_Mapper_in_cUID {
     my $this = shift;
-    $TWiki::cfg{Register}{AllowLoginName} = 1; 
-    $this->setup_new_session();    
+    $TWiki::cfg{Register}{AllowLoginName} = 1;
+    $this->setup_new_session();
     $this->set_up_user();
   	$this->std_tests($this->{userWikiName}, $this->{twiki}->{users}->webDotWikiName($this->{user_id}));
 }
 
-sub test_web_and_wikiname_no_Mapper_in_cUID {
+sub verify_web_and_wikiname_no_Mapper_in_cUID {
     my $this = shift;
-    $TWiki::cfg{Register}{AllowLoginName} = 1; 
-    $this->setup_new_session();    
+    $TWiki::cfg{Register}{AllowLoginName} = 1;
+    $this->setup_new_session();
     $this->set_up_user();
   	$this->std_tests($this->{twiki}->{users}->webDotWikiName($this->{user_id}), $this->{twiki}->{users}->webDotWikiName($this->{user_id}));
 }
 
-sub test_valid_login_no_Mapper_in_cUID_NOAllowLoginName {
+sub verify_valid_login_no_Mapper_in_cUID_NOAllowLoginName {
     my $this = shift;
-    #$TWiki::cfg{Register}{AllowLoginName} = 1; 
-    $this->setup_new_session();    
+    #$TWiki::cfg{Register}{AllowLoginName} = 1;
+    $this->setup_new_session();
     $this->set_up_user();
   	$this->std_tests($this->{userLogin}, $this->{twiki}->{users}->webDotWikiName($this->{user_id}));
 }
 
-sub test_valid_wikiname_no_Mapper_in_cUID_NOAllowLoginName {
+sub verify_valid_wikiname_no_Mapper_in_cUID_NOAllowLoginName {
     my $this = shift;
-    #$TWiki::cfg{Register}{AllowLoginName} = 1; 
-    $this->setup_new_session();    
+    #$TWiki::cfg{Register}{AllowLoginName} = 1;
+    $this->setup_new_session();
     $this->set_up_user();
   	$this->std_tests($this->{userWikiName}, $this->{twiki}->{users}->webDotWikiName($this->{user_id}));
 }
 
-sub test_web_and_wikiname_no_Mapper_in_cUID_NOAllowLoginName {
+sub verify_web_and_wikiname_no_Mapper_in_cUID_NOAllowLoginName {
     my $this = shift;
-    #$TWiki::cfg{Register}{AllowLoginName} = 1; 
-    $this->setup_new_session();    
+    #$TWiki::cfg{Register}{AllowLoginName} = 1;
+    $this->setup_new_session();
     $this->set_up_user();
   	$this->std_tests($this->{twiki}->{users}->webDotWikiName($this->{user_id}), $this->{twiki}->{users}->webDotWikiName($this->{user_id}));
 }
@@ -144,8 +181,8 @@ sub test_web_and_wikiname_no_Mapper_in_cUID_NOAllowLoginName {
 #error and fallback tests
 sub TODOtest_non_existantIser {
     my $this = shift;
-    #$TWiki::cfg{Register}{AllowLoginName} = 1; 
-    $this->setup_new_session();    
+    #$TWiki::cfg{Register}{AllowLoginName} = 1;
+    $this->setup_new_session();
     $this->set_up_user();
   	$this->std_tests('nonexistantUser', $this->{users_web}.'.UnknownUser');
 }
@@ -182,13 +219,13 @@ sub std_tests {
 		$this->assert_not_null($attachment->{'user'});
     }
 
-#test func outputs
+    #test func outputs
 
+    #peek at old rev's to see what rcs tells us
+    #render diff & history to make sure those are all wikiname
 
-#peek at old rev's to see what rcs tells us
-#render diff & history to make sure those are all wikiname
-
-#render attahcment tables, and rev history of attachment tables, all must be wikiname
+    #render attahcment tables, and rev history of attachment tables,
+    #all must be wikiname
 	my $renderedMeta = $this ->{twiki}->attach->renderMetaData ( $this->{test_web}, 'CuidWithMappers' , 
 				$meta, {template=>'attachtables.tmpl'} );
 	$this->assert_not_null($renderedMeta);
@@ -209,7 +246,7 @@ THIS
 }
 
 ###########################################
-sub test_BaseMapping_handleUser {
+sub verify_BaseMapping_handleUser {
 	my $this = shift;
 	my $basemapping = $this->{twiki}->{users}->{basemapping};
 	

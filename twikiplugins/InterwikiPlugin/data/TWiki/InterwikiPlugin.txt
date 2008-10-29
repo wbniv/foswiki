@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1186881349" format="1.1" version="$Rev: 17387 $"}%
+%META:TOPICINFO{author="PeterThoeny" date="1186881349" format="1.1" version="$Rev: 17303 $"}%
 ---+!! Interwiki Plugin
 
 The <nop>%TOPIC% links ==ExternalSite:Page== text to external sites based on aliases defined in the %TWIKIWEB%.InterWikis topic. This plugin is inspired by <nop>UseMod Wiki's inter-wiki links, http://www.usemod.com/cgi-bin/wiki.pl?InterWiki.

@@ -5,6 +5,8 @@ package PreferencesPluginTests;
 use base qw(TWikiFnTestCase);
 
 use strict;
+use Unit::Request;
+use Unit::Response;
 use TWiki;
 
 sub set_up {
@@ -17,7 +19,7 @@ sub set_up {
 
 sub test_edit_simple {
     my $this = shift;
-    my $query = new CGI(
+    my $query = new Unit::Request(
         {
             prefsaction => [ 'edit' ],
         });
@@ -47,7 +49,7 @@ HTML
 # Item4816
 sub test_edit_multiple_with_comments {
     my $this = shift;
-    my $query = new CGI(
+    my $query = new Unit::Request(
         {
             prefsaction => [ 'edit' ],
         });
@@ -85,7 +87,7 @@ HTML
 
 sub test_save {
     my $this = shift;
-    my $query = new CGI(
+    my $query = new Unit::Request(
         {
             prefsaction => [ 'save' ],
             FLEEGLE => [ 'flurb' ],
@@ -103,8 +105,10 @@ HERE
     # This will attempt to redirect, so must capture
     my ($result, $ecode) = $this->capture(
         sub {
-            print TWiki::Func::expandCommonVariables(
-                $input, $this->{test_topic}, $this->{test_web}, undef);
+            $twiki->{response}->body(
+                TWiki::Func::expandCommonVariables(
+                $input, $this->{test_topic}, $this->{test_web}, undef)
+            );
         });
     $this->assert($result =~ /Status: 302/);
     my $viewUrl = TWiki::Func::getScriptUrl(

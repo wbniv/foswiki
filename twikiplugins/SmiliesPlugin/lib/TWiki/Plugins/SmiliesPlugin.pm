@@ -29,10 +29,10 @@ use vars qw( $VERSION $RELEASE
             %smiliesUrls %smiliesEmotions
             $smiliesPubUrl $allPattern $smiliesFormat );
 
-# This should always be $Rev: 16049 $ so that TWiki can determine the checked-in
+# This should always be $Rev: 16048 $ so that TWiki can determine the checked-in
 # status of the plugin. It is used by the build automation tools, so
 # you should leave it alone.
-$VERSION = '$Rev: 16049 $';
+$VERSION = '$Rev: 16048 $';
 
 # This is a free-form string you can use to "name" your own plugin version.
 # It is *not* used by the build automation tools, but is reported as part

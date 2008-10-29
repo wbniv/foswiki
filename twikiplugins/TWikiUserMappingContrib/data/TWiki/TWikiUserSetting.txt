@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1187649998" format="1.1" version="1.2"}%
+%META:TOPICINFO{author="SteP" date="1187649998" format="1.1" version="1.2"}%
 %META:TOPICPARENT{name="TWikiPreferences"}%
 ---+++ User Settings -- preference variables customizable by users
 Some of the TWikiPreferences are explicitly intended to be customized by TWiki users, though a default is provided in [[%TWIKIWEB%.%WIKIPREFSTOPIC%]], and a site customisation can take place in [[%LOCALSITEPREFS%]].

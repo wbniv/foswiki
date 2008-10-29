@@ -118,7 +118,7 @@ sub getEmailAddressesForUser {
     return $emails;
 }
 
-# Add a subsciption to an internal list, optimising the list so that
+# Add a subscription to an internal list, optimising the list so that
 # the fewest subscriptions are kept that are needed to cover all
 # topics.
 sub _addAndOptimise {
@@ -192,7 +192,17 @@ sub unsubscribe {
     my ( $this, $subs ) = @_;
 
     $this->_addAndOptimise( 'unsubscriptions', $subs );
+    if ($subs->matches('*')) {
+        # -* makes no sense and causes evaluation problems.
+        $this->_subtract( 'unsubscriptions', $subs );
+    }
     $this->_subtract( 'subscriptions', $subs );
+    #TODO: should look at removing redundant exclusions ie a - SubScribe (2) when there is no positive subscription
+    
+    #if there are no subscriptions, there is no point luging around the unsubs
+    if (scalar(@{$this->{'subscriptions'}}) == 0) {
+        undef @{$this->{'unsubscriptions'}};
+    }
 }
 
 =pod

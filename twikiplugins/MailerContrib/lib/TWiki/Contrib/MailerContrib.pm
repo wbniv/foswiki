@@ -45,8 +45,8 @@ require TWiki::Contrib::MailerContrib::UpData;
 
 use vars qw ( $VERSION $RELEASE $verbose );
 
-$VERSION = '$Rev: 17630 $';
-$RELEASE = '14 Oct 2008';
+$VERSION = '$Rev: 17641 $';
+$RELEASE = '15 Oct 2008';
 
 # PROTECTED STATIC ensure the contrib is initernally initialised
 sub initContrib {
@@ -115,6 +115,93 @@ sub mailNotify {
     return $report;
 }
 
+=pod
+
+=cut
+
+sub changeSubscription {
+    my ($defaultWeb, $who, $topicList, $unsubscribe) = @_;
+
+    #we can get away with a normalise on a list of topics, so long as the list starts with a topic
+    my ($web, $t) = TWiki::Func::normalizeWebTopicName($defaultWeb, $topicList);
+    #TODO: this limits us to subscribing to one web.
+    my $wn = new TWiki::Contrib::MailerContrib::WebNotify(
+        $TWiki::Plugins::SESSION, $web, $TWiki::cfg{NotifyTopicName}, 1 );
+    $wn->parsePageSubscriptions( $who, $topicList, $unsubscribe );
+    $wn->writeWebNotify();
+    return;
+}
+
+
+=pod
+---+++ isSubscribedTo ($web, $who, $topicList) -> boolean
+returns true if all topics mentioned in the $topicList are subscribed to by $who.
+
+is able to ignore all valid special characters that can be used on the WebNotify topic
+such as NewsTopic! , TopicAndChildren (2)
+
+=cut
+
+sub isSubscribedTo {
+    my ($defaultWeb, $who, $topicList) = @_;
+    
+    my $subscribed = {
+                        currentWeb=>$defaultWeb,
+                        topicSub=>\&_isSubscribedToTopic
+                    };
+
+    my $ret = TWiki::Contrib::MailerContrib::parsePageList($subscribed, $who, $topicList);
+    
+    return (!defined($subscribed->{not_subscribed}) ||
+                (0 == scalar($subscribed->{not_subscribed})) );
+}
+sub _isSubscribedToTopic {
+    my ( $subscribed, $who, $unsubscribe, $topic, $options, $childDepth ) = @_;
+    
+    require TWiki::Contrib::MailerContrib::WebNotify;
+    my ($sweb, $stopic) = TWiki::Func::normalizeWebTopicName($subscribed->{currentWeb}, $topic);
+
+    #TODO: extract this code so we only create $wn objects for each web once..    
+    my $wn = new TWiki::Contrib::MailerContrib::WebNotify( $TWiki::Plugins::SESSION, $sweb, $TWiki::cfg{NotifyTopicName} );
+    my $subscriber = $wn->getSubscriber($who);
+    
+    my $db = new TWiki::Contrib::MailerContrib::UpData( $TWiki::Plugins::SESSION, $sweb );
+    #TODO: need to check $childDepth topics too (somehow)
+    if ( $subscriber->isSubscribedTo($stopic, $db) &&
+         (!$subscriber->isUnsubscribedFrom($stopic, $db))) {
+      	push(@{$subscribed->{subscribed}}, $stopic);
+    } else {
+      	push(@{$subscribed->{not_subscribed}}, $stopic);
+    }
+    return '';
+}
+
+=pod
+---+++ sub parsePageList ( $object, $who, $spec, $unsubscribe ) => unprocessable remainder of $spec line
+calls the $topicSub (ref to sub) once per identified topic entry.
+   * $object (is a hashref) can be used to set status' and its definition is dependent on $topicSub
+   * $object->{topicSub} _must_ be a sub ref and _must_ return an empty string
+   * $unsubscribe can be set to '-' to force an unsubscription (used by SubscribePlugin)
+   
+   $object is a functor.
+
+=cut
+
+sub parsePageList {
+    my ( $object, $who, $spec, $unsubscribe ) = @_;
+    #ASSERT(defined($object->{topicSub}));
+    
+    return $spec if (!defined($object->{topicSub}));
+    
+    $spec =~ s/,/ /g;
+    #TODO: refine the $2 regex to be proper web.topic/topic/* style..
+    while ($spec =~ s/^\s*([+-])?\s*([\w.\*]+)([!?]?)\s*(?:\((\d+)\))?/&{$object->{topicSub}}($object, $who, $unsubscribe||$1, $2, $3, $4)/e) {
+	#go
+    }
+    return $spec;
+}
+
+
 # PRIVATE: Read the webnotify, and notify changes
 sub _processWeb {
     my( $twiki, $web) = @_;
@@ -135,7 +222,7 @@ sub _processWeb {
         print "\t$web has no subscribers\n" if $verbose;
     } else {
         # create a DB object for parent pointers
-        print $wn->stringify() if $verbose;
+        print $wn->stringify(1) if $verbose;
         my $db = new TWiki::Contrib::MailerContrib::UpData( $twiki, $web );
         $report .= _processSubscriptions( $twiki, $web, $wn, $db );
     }

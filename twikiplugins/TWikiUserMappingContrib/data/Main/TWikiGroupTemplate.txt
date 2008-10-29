@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1111931141" format="1.0" version="$Rev: 15675 $"}%
+%META:TOPICINFO{author="TWikiContributor" date="1111931141" format="1.0" version="$Rev: 16686 $"}%
 %META:TOPICPARENT{name="TWikiGroups"}%
 ---+!! <nop>%URLPARAM{"topic"}%
 
@@ -7,5 +7,5 @@
    * Persons/group who can change the list:
       * Set ALLOWTOPICCHANGE = %URLPARAM{"topic"}%
 
-__%MAKETEXT{"Related topics:"}%__ %WIKIUSERSTOPIC%, TWikiGroups, %TWIKIWEB%.TWikiAccessControl
+__%MAKETEXT{"Related topics:"}%__ [[%WIKIUSERSTOPIC%]], [[TWikiGroups]], [[%TWIKIWEB%.TWikiAccessControl][TWikiAccessControl]]
 

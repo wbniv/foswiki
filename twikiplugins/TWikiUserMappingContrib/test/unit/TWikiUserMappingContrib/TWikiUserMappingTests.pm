@@ -11,6 +11,7 @@ use base qw(TWikiTestCase);
 
 use TWiki;
 use TWiki::Users;
+use TWiki::Users::TWikiUserMapping;
 use Error qw( :try );
 
 my $twiki;
@@ -22,7 +23,33 @@ my $testNormalWeb = "TemporaryTWikiUserMappingTestsNormalWeb";
 my $testUsersWeb = "TemporaryTWikiUserMappingTestsUsersWeb";
 my $testUser;
 
+sub fixture_groups {
+    return ( [ 
+        'NormalTWikiUserMapping',
+        'NamedTWikiUserMapping',
+       ] );
+}
+
+sub NormalTWikiUserMapping {
+    my $this = shift;
+    $TWiki::Users::TWikiUserMapping::TWIKI_USER_MAPPING_ID = '';
+    $this->set_up_for_verify();
+}
+
+sub NamedTWikiUserMapping {
+    my $this = shift;
+    # Set a mapping ID for purposes of testing named mappings
+    $TWiki::Users::TWikiUserMapping::TWIKI_USER_MAPPING_ID = 'TestMapping_';
+    $this->set_up_for_verify();
+}
+
+# Override default set_up in base class; will call it after the mapping
+#  id has been set
 sub set_up {
+}
+
+# Delay the calling of set_up till after the cfg's are set by above closure
+sub set_up_for_verify {
     my $this = shift;
 
     $this->SUPER::set_up();
@@ -72,8 +99,8 @@ sub tear_down {
 }
 
 sub new {
-  my $self = shift()->SUPER::new(@_);
-  return $self;
+    my $self = shift()->SUPER::new(@_);
+    return $self;
 }
 
 my $initial = <<'THIS';
@@ -132,7 +159,7 @@ sub createFakeUser {
     return $base.$i;
 }
 
-sub testAddUsers {
+sub verify_AddUsers {
     my $this = shift;
     my $ttpath = "$TWiki::cfg{DataDir}/$TWiki::cfg{UsersWebName}/$TWiki::cfg{UsersTopicName}.txt";
     my $me =  "TWikiRegistrationAgent";
@@ -161,7 +188,7 @@ sub testAddUsers {
     $this->assert_matches(qr/Aaron.*George.*Zebediah/s, $text);
 }
 
-sub testLoad {
+sub verify_Load {
     my $this = shift;
 
     my $me = "TWikiRegistrationAgent";
@@ -180,7 +207,7 @@ sub testLoad {
     $twiki->finish();
     $twiki = new TWiki();
     my $n = $twiki->{users}->{mapping}->login2cUID("auser");
-    $this->assert_str_equals($n, $auser_id);    
+    $this->assert_str_equals($n, $auser_id);
     $this->assert_str_equals("AaronUser", $twiki->{users}->getWikiName($n));
     $this->assert_str_equals("auser", $twiki->{users}->getLoginName($n));
 
@@ -225,7 +252,7 @@ sub groupFix {
         "   * Set GROUP = GeorgeUser,$testUsersWeb.ZebediahUser\n");
 }
 
-sub test_getListOfGroups {
+sub verify_getListOfGroups {
     my $this = shift;
     $this->groupFix();
     my $i = $twiki->{users}->eachGroup();
@@ -235,7 +262,7 @@ sub test_getListOfGroups {
     $this->assert_str_equals("AdminGroup,AmishGroup,BaptistGroup,TWikiBaseGroup", $k);
 }
 
-sub test_groupMembers {
+sub verify_groupMembers {
     my $this = shift;
     $this->groupFix();
     my $g = "AmishGroup";

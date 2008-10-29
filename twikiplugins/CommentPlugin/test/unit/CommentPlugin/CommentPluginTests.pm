@@ -5,6 +5,8 @@ package CommentPluginTests;
 use base qw(TWikiFnTestCase);
 
 use strict;
+use Unit::Request;
+use Unit::Response;
 use TWiki;
 use TWiki::UI::Save;
 use TWiki::Plugins::CommentPlugin;
@@ -178,7 +180,7 @@ HERE
 
     # Compose the query
     my $comm = "This is the comment";
-    my $query = new CGI(
+    my $query = new Unit::Request(
                         {
                          'comment_action' => 'save',
                          'comment_type' => $type,
@@ -327,7 +329,7 @@ HERE
 
     # Compose the query
     my $comm = "This is the comment";
-    my $query = new CGI(
+    my $query = new Unit::Request(
                         {
                          'comment_action' => 'save',
                          'comment_type' => 'above',
@@ -371,7 +373,7 @@ HERE
 
     # Compose the query
     my $comm = "This is the comment";
-    my $query = new CGI(
+    my $query = new Unit::Request(
                         {
                          'comment_action' => 'save',
                          'comment_type' => 'above',

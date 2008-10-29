@@ -456,6 +456,20 @@ sub testCovers {
         'AxB', 0, $MailerConst::FULL_TOPIC);
     $this->assert(!$s1->covers($s2));
     $this->assert($s2->covers($s1));
+    
+    # * covers everything.
+    my $AStar = new TWiki::Contrib::MailerContrib::Subscription(
+        'A*', 1, $MailerConst::FULL_TOPIC);
+    my $Star = new TWiki::Contrib::MailerContrib::Subscription(
+        '*', 1, $MailerConst::FULL_TOPIC);
+    $this->assert($Star->covers($AStar));
+    $this->assert(!$AStar->covers($Star));
+
+    #as parent-child relationshipd are broken across webs, * should cover topic (2)
+    my $ChildrenOfWebHome = new TWiki::Contrib::MailerContrib::Subscription(
+        'WebHome', 2, $MailerConst::FULL_TOPIC);
+    $this->assert($Star->covers($ChildrenOfWebHome));
+    $this->assert(!$ChildrenOfWebHome->covers($Star));
 }
 
 # Check filter-in on email addresses
@@ -542,9 +556,110 @@ HERE
     $wn->unsubscribe("TestUser1", "SpringCabbage");
     $this->assert_str_equals(<<HERE, $wn->stringify());
 Before
-   * TestUser1:  - SpringCabbage
+   * TestUser1: 
 After
 HERE
+}
+
+sub test_changeSubscription_and_isSubScribedTo_API {
+    my $this = shift;
+    
+    #start by removing all subscriptions
+    my $meta = new TWiki::Meta($this->{twiki},$this->{test_web},
+                               $TWiki::cfg{NotifyTopicName});
+    $meta->put( "TOPICPARENT", { name => "$this->{test_web}.WebHome" } );
+    TWiki::Func::saveTopic( $this->{test_web},
+                            $TWiki::cfg{NotifyTopicName}, $meta,
+                            "Before\nAfter\n",
+                            $meta);
+    
+    my $defaultWeb = $this->{test_web};
+    my $who = 'TestUser1';
+    my $topicList = 'WebHome';
+    my $unsubscribe;    #undefined == subscribe / do what the topicList says..
+    
+    $this->assert(!TWiki::Contrib::MailerContrib::isSubscribedTo($defaultWeb, $who, $topicList));
+    
+    TWiki::Contrib::MailerContrib::changeSubscription($defaultWeb, $who, $topicList, $unsubscribe);
+    $this->assert(TWiki::Contrib::MailerContrib::isSubscribedTo($defaultWeb, $who, $topicList));
+    $this->assert(!TWiki::Contrib::MailerContrib::isSubscribedTo($defaultWeb, $who, 'WebIndex'));
+    my $wn = new TWiki::Contrib::MailerContrib::WebNotify(
+        $TWiki::Plugins::SESSION, $this->{test_web},
+        $TWiki::cfg{NotifyTopicName}, 1 );
+    $this->assert_str_equals("   * $who: $topicList\n", $wn->stringify(1));
+    
+    $topicList = '*';
+    TWiki::Contrib::MailerContrib::changeSubscription($defaultWeb, $who, $topicList, $unsubscribe);
+    $this->assert(TWiki::Contrib::MailerContrib::isSubscribedTo($defaultWeb, $who, $topicList));
+    $this->assert(TWiki::Contrib::MailerContrib::isSubscribedTo($defaultWeb, $who, 'WebHome'));
+    $wn = new TWiki::Contrib::MailerContrib::WebNotify(
+        $TWiki::Plugins::SESSION, $this->{test_web},
+        $TWiki::cfg{NotifyTopicName}, 1 );
+    $this->assert_str_equals("   * $who: $topicList\n", $wn->stringify(1));
+    
+    $topicList = '-*';
+    TWiki::Contrib::MailerContrib::changeSubscription($defaultWeb, $who, $topicList, $unsubscribe);
+    $this->assert(!TWiki::Contrib::MailerContrib::isSubscribedTo($defaultWeb, $who, 'WebHome'));
+    $wn = new TWiki::Contrib::MailerContrib::WebNotify(
+        $TWiki::Plugins::SESSION, $this->{test_web},
+        $TWiki::cfg{NotifyTopicName}, 1 );
+    #removing * results in nothing.
+    $this->assert_null($wn->stringify(1));
+    
+    $topicList = 'WebHome (2)';
+    TWiki::Contrib::MailerContrib::changeSubscription($defaultWeb, $who, $topicList, $unsubscribe);
+    $this->assert(TWiki::Contrib::MailerContrib::isSubscribedTo($defaultWeb, $who, 'WebHome'));
+    $this->assert(!TWiki::Contrib::MailerContrib::isSubscribedTo($defaultWeb, $who, 'WebChanges'));
+    $this->assert(!TWiki::Contrib::MailerContrib::isSubscribedTo($defaultWeb, $who, 'SomethingElse'));
+    $wn = new TWiki::Contrib::MailerContrib::WebNotify(
+        $TWiki::Plugins::SESSION, $this->{test_web},
+        $TWiki::cfg{NotifyTopicName}, 1 );
+    $this->assert_str_equals("   * $who: $topicList\n", $wn->stringify(1));
+
+    $topicList = 'WebIndex';
+    TWiki::Contrib::MailerContrib::changeSubscription($defaultWeb, $who, $topicList, $unsubscribe);
+    $this->assert(TWiki::Contrib::MailerContrib::isSubscribedTo($defaultWeb, $who, 'WebHome'));
+    $this->assert(!TWiki::Contrib::MailerContrib::isSubscribedTo($defaultWeb, $who, 'WebChanges'));
+    $this->assert(!TWiki::Contrib::MailerContrib::isSubscribedTo($defaultWeb, $who, 'SomethingElse'));
+    $wn = new TWiki::Contrib::MailerContrib::WebNotify(
+        $TWiki::Plugins::SESSION, $this->{test_web},
+        $TWiki::cfg{NotifyTopicName}, 1 );
+    $this->assert_str_equals("   * $who: WebHome (2) $topicList\n", $wn->stringify(1));
+
+    $topicList = '*';
+    $unsubscribe = '-';
+    TWiki::Contrib::MailerContrib::changeSubscription($defaultWeb, $who, $topicList, $unsubscribe);
+    $this->assert(!TWiki::Contrib::MailerContrib::isSubscribedTo($defaultWeb, $who, 'WebHome'));
+    $this->assert(!TWiki::Contrib::MailerContrib::isSubscribedTo($defaultWeb, $who, 'WebChanges'));
+    $this->assert(!TWiki::Contrib::MailerContrib::isSubscribedTo($defaultWeb, $who, 'SomethingElse'));
+    $wn = new TWiki::Contrib::MailerContrib::WebNotify(
+        $TWiki::Plugins::SESSION, $this->{test_web},
+        $TWiki::cfg{NotifyTopicName}, 1 );
+    $this->assert(!TWiki::Contrib::MailerContrib::isSubscribedTo($defaultWeb, $who, $topicList));
+    
+    $topicList = 'WebHome (2)';
+    $unsubscribe = '-';
+    TWiki::Contrib::MailerContrib::changeSubscription($defaultWeb, $who, $topicList, $unsubscribe);
+    $this->assert(!TWiki::Contrib::MailerContrib::isSubscribedTo($defaultWeb, $who, 'WebHome'));
+    $this->assert(!TWiki::Contrib::MailerContrib::isSubscribedTo($defaultWeb, $who, 'WebChanges'));
+    $this->assert(!TWiki::Contrib::MailerContrib::isSubscribedTo($defaultWeb, $who, 'SomethingElse'));
+    $wn = new TWiki::Contrib::MailerContrib::WebNotify(
+        $TWiki::Plugins::SESSION, $this->{test_web},
+        $TWiki::cfg{NotifyTopicName}, 1 );
+    $this->assert(!TWiki::Contrib::MailerContrib::isSubscribedTo($defaultWeb, $who, $topicList));
+    
+    #it should remove the - WebHome (2) as un-necessary
+    $topicList = 'WebIndex - WebHome (2)';
+    $unsubscribe = undef;
+    TWiki::Contrib::MailerContrib::changeSubscription($defaultWeb, $who, $topicList, $unsubscribe);
+    $this->assert(!TWiki::Contrib::MailerContrib::isSubscribedTo($defaultWeb, $who, 'WebHome'));
+    $this->assert(TWiki::Contrib::MailerContrib::isSubscribedTo($defaultWeb, $who, 'WebIndex'));
+    $this->assert(!TWiki::Contrib::MailerContrib::isSubscribedTo($defaultWeb, $who, 'WebChanges'));
+    $this->assert(!TWiki::Contrib::MailerContrib::isSubscribedTo($defaultWeb, $who, 'SomethingElse'));
+    $wn = new TWiki::Contrib::MailerContrib::WebNotify(
+        $TWiki::Plugins::SESSION, $this->{test_web},
+        $TWiki::cfg{NotifyTopicName}, 1 );
+    $this->assert_str_equals("   * $who: WebIndex\n", $wn->stringify(1));
 }
 
 1;
