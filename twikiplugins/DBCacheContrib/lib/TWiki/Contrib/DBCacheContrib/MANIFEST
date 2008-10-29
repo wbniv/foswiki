@@ -1,9 +1,0 @@
-lib/TWiki/Contrib/DBCacheContrib.pm  Web cache class
-lib/TWiki/Contrib/DBCacheContrib/Search.pm  SQL-style syntax search object
-lib/TWiki/Contrib/DBCacheContrib/FileTime.pm  Cache support for remembering file dates
-lib/TWiki/Contrib/DBCacheContrib/Array.pm  Array class 
-lib/TWiki/Contrib/DBCacheContrib/Map.pm  Map class 
-lib/TWiki/Contrib/DBCacheContrib/Archivist/Storable.pm
-lib/TWiki/Contrib/DBCacheContrib/Archivist/File.pm
-lib/TWiki/Configure/Checkers/DBCacheContrib/Archivist.pm
-data/TWiki/DBCacheContrib.txt  Documentation topic 

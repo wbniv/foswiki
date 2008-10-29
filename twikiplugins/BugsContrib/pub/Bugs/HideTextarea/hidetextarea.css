@@ -1,6 +1,0 @@
-/* hide the topic text area editing box for Task Items */
-textarea#topic,
-.patternSigLine,
-.patternTop {
-	display: none;
-}

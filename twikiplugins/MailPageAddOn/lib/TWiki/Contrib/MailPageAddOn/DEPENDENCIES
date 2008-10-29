@@ -1,3 +1,0 @@
-LWP::UserAgent,>=0,cpan,required for bin/mailpage/mailpage.cgi
-CGI,>=0,cpan,required for bin/mailpage/mailpage.cgi
-CGI::Carp,>=0,cpan,required for bin/mailpage/mailpage.cgi

@@ -1,9 +1,0 @@
-Select the Web and the compression format to download:
-
-|  | *Zip* | *Tar.gz* | *Tar.bz2* |
-| *All* | <A href="%SCRIPTURLPATH%/get-a-web%SCRIPTSUFFIX%/all.zip">Download</A> | <A href="%SCRIPTURLPATH%/get-a-web%SCRIPTSUFFIX%/all.tar.gz">Download</A> | <A href="%SCRIPTURLPATH%/get-a-web%SCRIPTSUFFIX%/all.tar.bz2">Download</A> |
-| *TWiki* | <A href="%SCRIPTURLPATH%/get-a-web%SCRIPTSUFFIX%/TWiki.zip">Download</A> | <A href="%SCRIPTURLPATH%/get-a-web%SCRIPTSUFFIX%/TWiki.tar.gz">Download</A> | <A href="%SCRIPTURLPATH%/get-a-web%SCRIPTSUFFIX%/TWiki.tar.bz2">Download</A> |
-
-| | *Last* | *version* | *only* |
-| *All* | <A href="%SCRIPTURLPATH%/get-a-web%SCRIPTSUFFIX%/all.zip?lastOnly=yes">Download</A> | <A href="%SCRIPTURLPATH%/get-a-web%SCRIPTSUFFIX%/all.tar.gz?lastOnly=yes">Download</A> | <A href="%SCRIPTURLPATH%/get-a-web%SCRIPTSUFFIX%/all.tar.bz2?lastOnly=yes">Download</A> |
-| *TWiki* | <A href="%SCRIPTURLPATH%/get-a-web%SCRIPTSUFFIX%/TWiki.zip?lastOnly=yes">Download</A> | <A href="%SCRIPTURLPATH%/get-a-web%SCRIPTSUFFIX%/TWiki.tar.gz?lastOnly=yes">Download</A> | <A href="%SCRIPTURLPATH%/get-a-web%SCRIPTSUFFIX%/TWiki.tar.bz2?lastOnly=yes">Download</A> |

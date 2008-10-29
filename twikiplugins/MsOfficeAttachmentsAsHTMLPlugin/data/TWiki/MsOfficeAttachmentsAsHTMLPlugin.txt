@@ -1,8 +1,0 @@
-%META:TOPICINFO{author="MartinCleaver" date="1080310920" format="1.0" version="1.2"}%
-		* Set DEBUG = 0
-		* Set SHORTDESCRIPTION = Changes attached DOC files into HTML files and then replaces the content with an include to the HTML source
-		* Set REPLACEMENTNOTE = This text was automatically generated from the attachment <nop>$attachment<br>%INCLUDE{%ATTACHURL%/$convertedAttachmentPath}%
-
-
-
-%META:FILEATTACHMENT{name="wvWiki.xml" attr="" comment="" date="1080227696" path="C:\Documents and Settings\Martin Cleaver\My Documents\MBA\SRC\wvWiki.xml" size="3649" user="MartinCleaver" version="1.1"}%

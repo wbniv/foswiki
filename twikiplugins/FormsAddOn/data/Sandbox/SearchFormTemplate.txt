@@ -1,8 +1,0 @@
----+ Offices of the %META{"formfield" name="IssueName"}% department
-%META{"formfield" name="IssueDescription"}%
-<p />
-%TABLE{tableborder="0" cellpadding="1" cellspacing="3" headerbg="#000099" headercolor="#FFFFCC" databg="#C8CB8F"}%
-|*Office 1*|*<nop>OfficeSearch*|*Office 2*|*Office 3*|*Office 4*|
-|%META{"formfield" name="Office1"}%|%META{"formfield" name="OfficeSearch"}%|%META{"formfield" name="Office2"}%|%META{"formfield" name="Office3"}%|%META{"formfield" name="Office4"}%|
-|%META{"formfield" name="IssueDescription"}%|||||
-<p />

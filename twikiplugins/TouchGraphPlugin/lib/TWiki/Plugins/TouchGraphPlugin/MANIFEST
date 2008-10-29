@@ -1,8 +1,0 @@
-bin/tgdb NEW
-data/TWiki/TouchGraphAppletInstructions.txt NEW
-data/TWiki/TouchGraphPlugin.txt NEW
-lib/TWiki/Plugins/TouchGraphPlugin.pm NEW
-pub/TWiki/TouchGraphAppletInstructions/kill.png NEW
-pub/TWiki/TouchGraphPlugin/TGWikiBrowser.jar NEW
-pub/TWiki/TouchGraphPlugin/touchgraph_applet.png NEW
-templates/view.tglaunch.tmpl NEW

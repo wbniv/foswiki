@@ -1,9 +1,0 @@
-%TMPL:INCLUDE{"renamebase"}%
-<!-- template: renamerefs.nat.tmpl -->
-%TMPL:DEF{"newtopic"}%<input type="hidden" name="newtopic" value="%NEW_TOPIC%" />%NEW_TOPIC%%TMPL:END%
-%TMPL:DEF{"newweb"}%<input type="hidden" name="newweb" value="%NEW_WEB%" />%NEW_WEB%%TMPL:END%
-%TMPL:DEF{"hidden"}% <input type="hidden" name="changeRefs" value="on" /> %TMPL:END%
-%TMPL:DEF{"buttons"}%
-<input type="submit" class="natOkButton" value='%MAKETEXT{"Change references"}%' />&nbsp;
-<input type="button" class="natCancelButton" value='%MAKETEXT{"Cancel"}%' onclick="window.location.href='%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%'">
-%TMPL:END%

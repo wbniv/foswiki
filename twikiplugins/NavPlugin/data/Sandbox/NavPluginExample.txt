@@ -1,7 +1,0 @@
-This is like a title page for the "Example" document set.  This is probably a wiki page viewed with your regular skin.
-
-On the front page, kick off the document viewing by forcing the "nav" skin with an HTML hyperlink.
-
-<a href="NavPluginPageOne?skin=nav">Begin the example</a>
-
-Every document set needs an index page.  That page might be a part of the document set.  The index page is titled NavPluginIndex.

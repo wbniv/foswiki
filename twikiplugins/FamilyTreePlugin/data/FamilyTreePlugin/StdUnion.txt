@@ -1,4 +1,0 @@
-%SEARCH{ "value=.%INCLUDINGTOPIC%" type="regex" format="| $topic | $formfield(Born) |" nosearch="on" nototal="on" header="| *Child* | *Born* |"}%
-
-
-

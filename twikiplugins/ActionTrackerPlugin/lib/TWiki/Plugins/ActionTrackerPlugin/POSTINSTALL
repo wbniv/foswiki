@@ -1,6 +1,0 @@
-open(W,">>LocalSite.cfg") || die "Could not write LocalSite.cfg";;
-print W <<'THIS';
-# Config for ActionTrackerPlugin
-$TWiki::cfg{RCS}{logAtDate} = qq(/usr/bin/rlog -d'%DATE|D%' %FILENAME|F%);
-THIS
-close W;

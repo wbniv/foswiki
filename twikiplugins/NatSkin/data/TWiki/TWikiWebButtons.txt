@@ -1,6 +1,0 @@
-%META:TOPICINFO{author="TWikiContributor" date="1143536609" format="1.1" version="$Rev$"}%
-%STARTINCLUDE% <noautolink> 
-<ul>
-%FLEXWEBLIST{webs="%USERSWEB%,User,publiccurrent,%SYSTEMWEB%" map="%SYSTEMWEB%=System" include="\w+|%BASEWEB%" exclude="TestCases|Trash|Attic" format="<li class=\"$marker\">$percntWEBLINK{web=\"$web\" name=\"$name\"}$percnt</li>" selection="%BASEWEB%" marker="current"}%
-</ul>
-</noautolink> %STOPINCLUDE%

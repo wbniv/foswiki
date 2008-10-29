@@ -1,3 +1,0 @@
-TWiki::Plugins,>=1.1,perl,TWiki Dakar release.
-TWiki::Contrib::LdapContrib,>=1.10,perl,Required
-Unicode::MapUTF8,>=1.11,cpan,Required. Download from CPAN:Unicode::MapUTF8 

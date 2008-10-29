@@ -1,2 +1,0 @@
-Digest::MD5,>=2.33,cpan,Required. Download from CPAN:Digest::MD5
-LWP::UserAgent,>=5.803,cpan,Optional. Download from CPAN:LWP::UserAgent

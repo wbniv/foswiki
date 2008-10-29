@@ -1,8 +1,0 @@
-TWiki::Plugins::SpreadSheetPlugin,>=1.018,perl,Required. Download and install from TWiki:Plugins/SpreadSheetPlugin 
-TWiki::Plugins::RedDotPlugin,>=1.35,perl,Recommended; Download from TWiki:Plugins/RedDotPlugin 
-TWiki::Plugins::FlexWebListPlugin,>=0.07,perl,Required; Download from TWiki:Plugins/FlexWebListPlugin 
-TWiki::Plugins::BreadCrumbsPlugin,>=0.01,perl,Required; Download from TWiki:Plugins/BreadCrumbsPlugin 
-TWiki::Plugins::FilterPlugin,>=0.94,perl,Required; Download from TWiki:Plugins/FilterPlugin 
-TWiki::Plugins::GluePlugin,>=1.5,perl,Required; Download from TWiki:Plugins/GluePlugin 
-TWiki::Plugins::IfDefinedPlugin,>=0.93,perl,Required; Download from TWiki:Plugins/IfDefinedPlugin 
-TWiki::Plugins::TwistyPlugin,>=1.000,perl,Required; Download from TWiki:Plugins/TwistyPlugin 

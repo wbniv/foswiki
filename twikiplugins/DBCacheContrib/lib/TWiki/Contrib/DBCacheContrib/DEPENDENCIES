@@ -1,2 +1,0 @@
-Time::ParseDate,>=2003.0211,cpan,Required. Available from [[http://cpan.uwinnipeg.ca/dist/Time-modules][CPAN]].
-Storable,>=2.07,cpan,Recommended; accelerates cache handling. Available from [[http://cpan.uwinnipeg.ca/dist/Storable][CPAN]]

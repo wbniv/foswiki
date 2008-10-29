@@ -1,9 +1,0 @@
-data/TWiki/LightboxPlugin.txt 	        0644  plugin description
-lib/TWiki/Plugins/LightboxPlugin.pm 	0644  plugin perl code
-pub/TWiki/LightboxPlugin/lightbox.css 	0644  stylesheet
-pub/TWiki/LightboxPlugin/lightbox.js 	0644  javascript
-pub/TWiki/LightboxPlugin/blank.gif 	0644  close image button
-pub/TWiki/LightboxPlugin/close.gif 	0644  close image button
-pub/TWiki/LightboxPlugin/loading.gif 	0644  image loading animation
-pub/TWiki/LightboxPlugin/overlay.png 	0644  overlay image
-pub/TWiki/LightboxPlugin/ScreenShot001.jpg  0644  thumbnail example

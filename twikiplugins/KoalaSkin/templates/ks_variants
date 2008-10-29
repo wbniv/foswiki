@@ -1,7 +1,0 @@
-## This script can be redefined by theme authors to execute code
-## after each generation of themes
-## It is sourced into the main execution space (beware of side effects),
-## but you can then use variables: (and set persitent ones)
-##
-## $templates the path of the templates dir
-## $web the current web name

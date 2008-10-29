@@ -1,7 +1,0 @@
-lib/TWiki/Plugins/FormQueryPlugin.pm  Main plugin script 
-lib/TWiki/Plugins/FormQueryPlugin/Relation.pm  Topic relation class 
-lib/TWiki/Plugins/FormQueryPlugin/TableDef.pm  Table format definition class 
-lib/TWiki/Plugins/FormQueryPlugin/TableFormat.pm  Table formatter 
-lib/TWiki/Plugins/FormQueryPlugin/TablerowDef.pm Table format definition class 
-lib/TWiki/Plugins/FormQueryPlugin/WebDB.pm  Subclass of Map for a whole web 
-data/TWiki/FormQueryPlugin.txt  Plugin topic 

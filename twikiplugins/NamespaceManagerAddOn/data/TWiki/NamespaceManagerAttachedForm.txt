@@ -1,9 +1,0 @@
-%META:TOPICINFO{author="vinod" date="1091609484" format="1.0" version="1.3"}%
-%META:TOPICPARENT{name="WebHome"}%
-| *Name* | *Type* | *Size* | *Values* | *Tooltip* |
-| Name | text | 50 | Initial Name |	|
-| Age  | text | 10 | 12  |  |
-| Date | date | 10 |  |  |
-| Gender | select | 1 | Male, Female | |
-
-%META:TOPICMOVED{by="vinod" date="1091609484" from="TWiki.ExampleNEAttachedForm" to="TWiki.NamespaceManagerAttachedForm"}%

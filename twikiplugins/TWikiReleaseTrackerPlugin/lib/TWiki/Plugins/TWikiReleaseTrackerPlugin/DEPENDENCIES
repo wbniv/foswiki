@@ -1,2 +1,0 @@
-TWiki::Contrib::Build,>=1.000,perl,Required. Needed for the plugin to build itself.
-TWiki::Contrib::DistributionContrib,>=0.4,perl,Required. Needed for the plugin to get information about releases and to fetch distribution versions of files

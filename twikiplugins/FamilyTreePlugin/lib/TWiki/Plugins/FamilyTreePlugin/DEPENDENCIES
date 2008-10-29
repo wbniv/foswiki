@@ -1,3 +1,0 @@
-TWiki::Plugins,>=1.026,perl,Required, TWiki 4.0 or later
-TWiki::Plugins::EditTablePlugin,>=0,perl,Optional, used for editing record tables
-TWiki::Plugins::DateFieldPlugin,>=0,perl,Optional, only required for TWiki 4.0

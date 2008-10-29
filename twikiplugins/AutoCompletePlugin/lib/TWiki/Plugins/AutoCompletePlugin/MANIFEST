@@ -1,6 +1,0 @@
-# Release manifest for AutoCompletePlugin
-data/TWiki/AutoCompletePlugin.txt 0644 Documentation
-lib/TWiki/Plugins/AutoCompletePlugin.pm 0644 Perl module
-data/Sandbox/AutoCompletePluginTestData.txt 0644 Test Data
-pub/TWiki/AutoCompletePlugin/AutoCompletePluginScreenshot.png 0644 Screenshot
-lib/TWiki/Plugins/AutoCompletePlugin/Config.spec 0444 Spec file for =configure=
