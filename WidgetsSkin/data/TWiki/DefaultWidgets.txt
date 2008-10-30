@@ -1,3 +1,4 @@
+%META:TOPICINFO{author="SvenDowideit" date="1225256327" format="1.1" reprev="1.3" version="1.3"}%
 %META:TOPICPARENT{name="WidgetsSkin"}%
 ---+ <nop>%TOPIC%
 
@@ -131,9 +132,7 @@ Need a magical WebWidgets topic that can add widgets to the list for a web - sim
 ---+++ widget-powered
 %STARTSECTION{"widget-powered"}%<div class="widget-powered widget">
    <div class="widget-content">
-      <a href="http://twiki.org"><img src="%PUBURLPATH%/%TWIKIWEB%/TWikiLogos/T-logo-34x26.png" />TWiki powered</a> %WIKIVERSION% 
-%BR% skin by [[http://fosiki.com][fosiki.com]]
-%BR% [[http://WikiRing.com][a <img src="%PUBURLPATH%/%TWIKIWEB%/WidgetsSkin/wikiringlogo20x20.png" alt="@" width='20' height='20' border='0'  /> WikiRing.com partner]]
+powered by the community. 28th October 2008.
    </div>
 </div> %ENDSECTION{"widget-powered"}%
 
@@ -148,10 +147,35 @@ Need a magical WebWidgets topic that can add widgets to the list for a web - sim
             format="<a href='$url' class='twikiButton'>$action</a> to changes to %BASEWEB%.%BASETOPIC%"
             formatunsubscribe="<a href='$url' class='twikiButton'>$action</a> from changes to %BASEWEB%.%BASETOPIC%"
         }%
+        %BR%
+        %SUBSCRIBE{
+            topic="%BASEWEB%.*"
+            format="<a href='$url' class='twikiButton'>$action</a> to changes in %BASEWEB% web"
+            formatunsubscribe="<a href='$url' class='twikiButton'>$action</a> from changes in %BASEWEB% web"
+        }%
         %IF{"context SubscribePluginEnabled AND NOT context authenticated" then="</div>"}%
     </div>
 </div>%ENDSECTION{"widget-subscribe"}%
 
 
-%META:FILEATTACHMENT{name="base-weblog.css" attachment="base-weblog.css" attr="" comment="" date="1174054380" path="base-weblog.css" size=""  user="SvenDowideit" version="1"}%
+---+++ widget-bugs
+%STARTSECTION{"widget-bugs"}%<div class="widget-bugs widget">
+   <h2 class="widget-header">bugs</h2>
+   <div class="widget-content">
+<form method="post" action="%SCRIPTURL{save}%/Bugs/ItemXXXXXXXXXX" enctype="multipart/form-data" name="fastCreateNewBug" id="fastCreateNewBug">
+<input  type="text" name="Summary" value="" size="" />
+<select name="AppliesTo">
+%INCLUDE{"Bugs.AppliesTo" section="form_options" AppliesTo="Web Site"}%
+</select>
+<input  type="hidden" name="templatetopic" value="Bugs.WebTopicEditTemplate" />
+<input  type="hidden" name="formtemplate" value="Bugs.ItemTemplate" />
+<input  type="hidden" name="ReportedBy" value="%WIKIUSERNAME%" />
+<input  type="hidden" name="Priority" value="Normal" />
+<input  type="hidden" name="CurrentState" value="New" />
+<input  type="submit" value="Add Issue" class="twikiButton" />
+</form>
+    </div>
+</div>%ENDSECTION{"widget-subscribe"}%
+
+%META:FILEATTACHMENT{name="base-weblog.css" attachment="base-weblog.css" attr="" comment="" date="1174054380" path="base-weblog.css" size="" user="SvenDowideit" version="1"}%
 %META:FILEATTACHMENT{name="TWiki.css" attachment="TWiki.css" attr="" comment="" date="1174054380" path="TWiki.css" user="SvenDowideit" version="1"}%
