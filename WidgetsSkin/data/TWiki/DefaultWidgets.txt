@@ -1,0 +1,157 @@
+%META:TOPICPARENT{name="WidgetsSkin"}%
+---+ <nop>%TOPIC%
+
+Common Widgets used by WidgetsSkin. 
+
+Unfortuanatly the =css-browser= Widget on WidgetsSkin won't work, as it relies heavily on a long list of topic Settings - DBCALL style.
+
+Each Contrib and Plugin can define its own set of Widgets that can be included into the TWiki structure, or topics as desired.
+
+Need a magical WebWidgets topic that can add widgets to the list for a web - similar to all the other settings. that'll be interesting :/
+
+---++++ TODOs
+   1 add a 'help' div to each widget that then uses twistie/popup/hover
+   1 add js to let the user move widgets around..
+---++++ Widgets TODO
+   * and add/remove widgets widget
+   * an admin widget
+   * topic actions widget
+   * oopsmore widget
+   * topic info widget - parents, useage, history
+   * publishplugin - publish this version, show last published version, publish topic set
+   * todo list - atp / checklistplugin
+   * annotate topic..
+   * message or email someone about this topic - ask them a q, to review etc
+   * topic permissions widget
+   * history widget - who change this topic when and how much..
+   * recent comments - like recent changes, but shows uses of comment plugin, and what that comment was
+   * Popular topics / posts
+   * popular searchs, tags, blah
+   * show tags of most actuve topics - ie this month's IA
+   * most recently added tags
+   * slideshow / information wizard widget.. 
+   * float a widget persistently over topics..
+   * RWOP widget - sync this, sync web, sync twiki - with ajax progress bar...
+   * 
+
+
+---+++ widget-search
+%STARTSECTION{"widget-search"}%<div class="widget-search widget">
+   <h2 class="widget-header">Search</h2>
+   <div class="widget-content">
+<form name="quickSearchForm" action="%SCRIPTURLPATH{view}%/%BASEWEB%/WebSearch">%IF{" '%URLPARAM{"search" encode="entity" scope="topic"}%' = '' " then="<input type=\"text\" class=\"twikiInputField patternFormFieldDefaultColor\" name=\"search\" value=\"%MAKETEXT{"Search"}%\" size=\"14\" onfocus=\"clearDefaultandCSS(this);\" onblur=\"setDefaultText(this);\" />" else="<input type=\"text\" class=\"twikiInputField\" name=\"search\" value=\"%URLPARAM{ "search" encode="entity" scope="topic" }%\" size=\"14\" />"}%</form>
+   </div>
+</div>%ENDSECTION{"widget-search"}%
+
+
+---+++ widget-categories
+%STARTSECTION{"widget-categories"}%<div class="widget-categories widget">
+   <h2 class="widget-header">Categories</h2>
+   <div class="widget-content">
+      <ul class="widget-list">
+            <li class="widget-list-item"><a href="http://www.thestylecontest.com/browser/category_1/" title="">Category 1</a>
+            <ul class="widget-list">
+            <li class="widget-list-item"><a href="http://www.thestylecontest.com/browser/category_1/sub_category_a/" title="">Sub Category a</a></li>
+            <li class="widget-list-item"><a href="http://www.thestylecontest.com/browser/category_1/sub_category_b/" title="">Sub Category b</a></li>
+   </ul>
+      </li>
+            <li class="widget-list-item"><a href="http://www.thestylecontest.com/browser/category_2/" title="">Category 2</a>
+      </li>
+   </ul>
+   </div>
+</div>%ENDSECTION{"widget-categories"}%
+
+---+++ widget-weblist
+%STARTSECTION{"widget-weblist"}%<div class="widget-archives widget">
+   <h2 class="widget-header">TWiki Webs</h2>
+   <div class="widget-content">
+         <ul class="widget-list">
+            <li class="widget-list-item">%TMPL:P{"login"}%</li>
+%WEBLIST{"<li class="widget-list-item">[[$name.WebHome][$name]]</li>"}%
+      </ul>
+   </div>
+</div>%ENDSECTION{"widget-weblist"}%
+
+---+++ widget-webchanges
+%STARTSECTION{"widget-webchanges"}%<div class="widget-archives widget">
+   <h2 class="widget-header">%BASEWEB% Changes</h2>
+   <div class="widget-content">
+         <ul class="widget-list">
+%SEARCH{".*" web="%BASEWEB%" type="regex" order="modified" reverse="on" limit="15" nonoise="on" format="            <li class='widget-list-item'>[[$web.$topic][$topic]]</li>"}%
+      </ul>
+   </div>
+</div>%ENDSECTION{"widget-webchanges"}%
+
+---+++ widget-webleftbar
+%STARTSECTION{"widget-webleftbar"}%<div class="widget-archives widget">
+   <h2 class="widget-header">%BASEWEB%</h2>
+   <div class="widget-content">
+%INCLUDE{"%BASEWEB%.WebLeftBar"}%      
+   </div>
+</div>%ENDSECTION{"widget-webleftbar"}%
+
+
+---+++ widget-skins
+%STARTSECTION{"widget-skins"}%<div class="widget-skins widget">
+    <h2 class="widget-header">Skin Browser</h2>    
+    <div class="widget-content">
+    Need to add skin selector, and then appropriate details
+    <b class="widget-header3"> %SYSTEMWEB%.WidgetsSkin options: </b>    
+        <ul class="widget-list">
+            <li class="widget-list-item">[[%SCRIPTURL{view}%/%BASEWEB%/%BASETOPIC%?skin=widgets;widgetscolumns=w][Wide]]</li>
+            <li class="widget-list-item">[[%SCRIPTURL{view}%/%BASEWEB%/%BASETOPIC%?skin=widgets;widgetscolumns=wt][Wide - Thin]]</li>
+            <li class="widget-list-item">[[%SCRIPTURL{view}%/%BASEWEB%/%BASETOPIC%?skin=widgets;widgetscolumns=tw][Thin - Wide]]</li>
+            <li class="widget-list-item">[[%SCRIPTURL{view}%/%BASEWEB%/%BASETOPIC%?skin=widgets;widgetscolumns=twt][Thin - Wide - Thin]]</li>
+            <li class="widget-list-item">[[%SCRIPTURL{view}%/%BASEWEB%/%BASETOPIC%?skin=widgets;widgetscolumns=wtt][Wide - Thin - Thin]]</li>
+            <li class="widget-list-item">[[%SCRIPTURL{view}%/%BASEWEB%/%BASETOPIC%?skin=widgets;widgetscolumns=wm][Wide - Medium]]</li>
+            <li class="widget-list-item">[[%SCRIPTURL{view}%/%BASEWEB%/%BASETOPIC%?skin=widgets;widgetscolumns=mw][Medium - Wide]]</li>
+        </ul>
+    </div>
+</div>%ENDSECTION{"widget-skins"}%
+
+
+---+++ widget-syndicate
+%STARTSECTION{"widget-syndicate"}%<div class="widget-syndicate widget">
+   <div class="widget-content">
+      <a href="http://www.thestylecontest.com/browser/atom.xml">Subscribe to this blog's feed</a><br />
+      [<a href="http://www.sixapart.com/about/feeds">What is this?</a>]
+   </div>
+</div>%ENDSECTION{"widget-syndicate"}%
+
+---+++ widget-topicactions
+%STARTSECTION{"widget-topicactions"}%<div class="widget-topicactions widget">
+   <h2 class="widget-header">%BASETOPIC% actions</h2>
+   <div class="widget-content">
+         <ul class="widget-list">
+            %TMPL:P{"topicactionbuttons"}%
+      </ul>
+   </div>
+</div>%ENDSECTION{"widget-topicactions"}%
+
+---+++ widget-powered
+%STARTSECTION{"widget-powered"}%<div class="widget-powered widget">
+   <div class="widget-content">
+      <a href="http://twiki.org"><img src="%PUBURLPATH%/%TWIKIWEB%/TWikiLogos/T-logo-34x26.png" />TWiki powered</a> %WIKIVERSION% 
+%BR% skin by [[http://fosiki.com][fosiki.com]]
+%BR% [[http://WikiRing.com][a <img src="%PUBURLPATH%/%TWIKIWEB%/WidgetsSkin/wikiringlogo20x20.png" alt="@" width='20' height='20' border='0'  /> WikiRing.com partner]]
+   </div>
+</div> %ENDSECTION{"widget-powered"}%
+
+---+++ widget-subscribe
+%STARTSECTION{"widget-subscribe"}%<div class="widget-subscribe widget">
+   <h2 class="widget-header">Subscribe</h2>
+   <div class="widget-content">
+        %IF{"context SubscribePluginEnabled" then="" else="SubscribePlugin not installed/enabled"}%
+        %IF{"context SubscribePluginEnabled AND NOT context authenticated" then="You need to log in to subscribe to a topic<div stlye='display:none;'>"}%
+        %SUBSCRIBE{
+            topic="%BASEWEB%.%BASETOPIC%"
+            format="<a href='$url' class='twikiButton'>$action</a> to changes to %BASEWEB%.%BASETOPIC%"
+            formatunsubscribe="<a href='$url' class='twikiButton'>$action</a> from changes to %BASEWEB%.%BASETOPIC%"
+        }%
+        %IF{"context SubscribePluginEnabled AND NOT context authenticated" then="</div>"}%
+    </div>
+</div>%ENDSECTION{"widget-subscribe"}%
+
+
+%META:FILEATTACHMENT{name="base-weblog.css" attachment="base-weblog.css" attr="" comment="" date="1174054380" path="base-weblog.css" size=""  user="SvenDowideit" version="1"}%
+%META:FILEATTACHMENT{name="TWiki.css" attachment="TWiki.css" attr="" comment="" date="1174054380" path="TWiki.css" user="SvenDowideit" version="1"}%

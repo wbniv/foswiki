@@ -1,0 +1,168 @@
+%META:TOPICPARENT{name="WidgetsSkin"}%
+---+ <nop>%TOPIC%
+Create your own TWiki <nop>Widget design by attaching your Moveable Type css and images 
+(and a copy of base-weblog.css) to your copy of the WidgetSampleDesign topic. 
+Then configure the settings on the topic to match, so that you can Proof your design. 
+
+=wiki.gif= background is from Ward Cunninghams' Wiki - http://c2.com/cgi/wiki
+
+%STARTSECTION{"css-browser"}%
+<!--
+<noautolink>
+Iterators for Design, CSS file, and column layout
+   * Set CURRENTCOLS = %URLPARAM{"colsidx" default="3"}%
+   * Set NEXTCOLS = %CALC{"$IF( $EVAL( %CURRENTCOLS% + 1 ) > %LASTCOLS%, %FIRSTCOLS%, $EVAL( %CURRENTCOLS% + 1 ))"}%
+   * Set PREVIOUSCOLS = %CALC{"$IF( $EVAL( %CURRENTCOLS% - 1 ) < %FIRSTCOLS%, %LASTCOLS%, $EVAL( %CURRENTCOLS% - 1 ))"}%
+   * Set COLSPARAM = Widgetcolumns=%URLPARAM{"Widgetcolumns" default="%COLS%CURRENTCOLS%%"}%;colsidx=%CURRENTCOLS%
+   
+   * Set DESIGNPARAM=Widgettopic=%WidgetsSkin_DESIGNTOPIC%
+   * Set CSSPARAM=cssfile=%WidgetsSkin_CSSFILE%
+   
+Column layouts
+   * Set FIRSTCOLS = 1
+   * Set COLS1 = two-column-left
+   * Set COLS2 = two-column-right
+   * Set COLS3 = three-column
+   * Set COLS4 = one-column
+   * Set LASTCOLS = 4
+</noautolink>
+-->
+<div align="center" style="margin:6px;">
+<div align="left" style="color:black;align:NOcenter;width:80%;background-color:#F3FEF6;border:1px solid;margin:6px;padding:6px;">
+Choose COLUMNS:
+<nobr> &nbsp;&nbsp;&nbsp; [[%SCRIPTURL{view}%/%WEB%/%TOPIC%?skin=Widget;%DESIGNPARAM%;%CSSPARAM%;Widgetcolumns=%COLS%PREVIOUSCOLS%%;colsidx=%PREVIOUSCOLS%][%ICON{"go_back"}%]] 
+%COLS%CURRENTCOLS%% (%CALC{"$EVAL( %CURRENTCOLS% - %FIRSTCOLS% +1 ) of $EVAL( %LASTCOLS% - %FIRSTCOLS% +1 )"}%)
+[[%SCRIPTURL{view}%/%WEB%/%TOPIC%?skin=Widget;%DESIGNPARAM%;%CSSPARAM%;Widgetcolumns=%COLS%NEXTCOLS%%;colsidx=%NEXTCOLS%][%ICON{"go_forward"}%]] </nobr>
+</div></div>
+%ENDSECTION{"css-browser"}%
+
+---++ Enable this design
+Copy and paste the following section to your %MAINWEB%.TWikiPreferences topic (or !WebPreferences, or your personal topic)
+
+<noautolink>
+<textarea readonly rows="13" style="width:85%;margin:10px;">
+   * Set TWiki to use this Widget design, set the following on %MAINWEB%.TWikiPreferences (don't copy the raw text)
+      * Set SKIN=Widget
+   * set the Widget skin to use this topic to get the _Moveable Type Common Text sections_ from this topic
+      * Set WidgetsSkin_DESIGNTOPIC = %TOPIC%
+   * set the Widget skin to use to get the css and images from here
+      * Set WidgetsSkin_CSSFILE = %PUBURL%/%TWIKIWEB%/%WidgetsSkin_DESIGNTOPIC%/theme.css
+   * is the css one-column, two-column-left, two-column-right, three-column
+      * Set WidgetsSkin_COLUMNS = %URLPARAM{"Widgetcolumns" default="%COLS%CURRENTCOLS%%"}%
+</textarea>
+</noautolink>
+
+----
+---++ Moveable Type Common Text sections
+---+++ module-search-left
+%STARTSECTION{"module-search-left-three-column"}%%STARTSECTION{"module-search-left"}%
+%ENDSECTION{"module-search-left"}%%ENDSECTION{"module-search-left-three-column"}%
+---+++ module-categories-left
+%STARTSECTION{"module-categories-left-three-column"}%%STARTSECTION{"module-categories-left"}%
+%ENDSECTION{"module-categories-left"}%%ENDSECTION{"module-categories-left-three-column"}%
+---+++ module-categories-left
+%STARTSECTION{"module-archives-left-three-column"}%%STARTSECTION{"module-archives-left"}%
+%ENDSECTION{"module-archives-left"}%%ENDSECTION{"module-archives-left-three-column"}%
+---+++ module-syndicate-left
+%STARTSECTION{"module-syndicate-left-three-column"}%%STARTSECTION{"module-syndicate-left"}%
+%ENDSECTION{"module-syndicate-left"}%%ENDSECTION{"module-syndicate-left-three-column"}%
+---+++ module-powered-left
+%STARTSECTION{"module-powered-left-three-column"}%%STARTSECTION{"module-powered-left"}%
+%ENDSECTION{"module-powered-left"}%%ENDSECTION{"module-powered-left-three-column"}%
+
+
+---+++ module-search-right
+%STARTSECTION{"module-search-right-three-column"}%%STARTSECTION{"module-search-right-two-column-right"}%%STARTSECTION{"module-search-left-two-column-left"}%%STARTSECTION{"module-search-right"}%<div class="module-search module">
+   <h2 class="module-header">Search</h2>
+   <div class="module-content">
+<form name="quickSearchForm" action="%SCRIPTURLPATH{view}%/%INCLUDINGWEB%/WebSearch">%IF{" '%URLPARAM{"search" encode="entity" scope="topic"}%' = '' " then="<input type=\"text\" class=\"twikiInputField patternFormFieldDefaultColor\" name=\"search\" value=\"%MAKETEXT{"Search"}%\" size=\"14\" onfocus=\"clearDefaultandCSS(this);\" onblur=\"setDefaultText(this);\" />" else="<input type=\"text\" class=\"twikiInputField\" name=\"search\" value=\"%URLPARAM{ "search" encode="entity" scope="topic" }%\" size=\"14\" />"}%</form>
+   </div>
+</div>%ENDSECTION{"module-search-right"}%%ENDSECTION{"module-search-left-two-column-left"}%%ENDSECTION{"module-search-right-two-column-right"}%%ENDSECTION{"module-search-right-three-column"}%
+---
+---+++ module-categories-right
+%STARTSECTION{"module-categories-right-three-column"}%%STARTSECTION{"module-categories-right-two-column-right"}%%STARTSECTION{"module-categories-left-two-column-left"}%%STARTSECTION{"module-categories-right"}%
+%ENDSECTION{"module-categories-right"}%%ENDSECTION{"module-categories-left-two-column-left"}%%ENDSECTION{"module-categories-right-two-column-right"}%%ENDSECTION{"module-categories-right-three-column"}%
+<div class="module-categories module">
+   <h2 class="module-header">Categories</h2>
+   <div class="module-content">
+      <ul class="module-list">
+            <li class="module-list-item"><a href="http://www.thestylecontest.com/browser/category_1/" title="">Category 1</a>
+            <ul class="module-list">
+            <li class="module-list-item"><a href="http://www.thestylecontest.com/browser/category_1/sub_category_a/" title="">Sub Category a</a></li>
+            <li class="module-list-item"><a href="http://www.thestylecontest.com/browser/category_1/sub_category_b/" title="">Sub Category b</a></li>
+   </ul>
+      </li>
+            <li class="module-list-item"><a href="http://www.thestylecontest.com/browser/category_2/" title="">Category 2</a>
+      </li>
+   </ul>
+   </div>
+</div>
+
+---+++ module-categories-right
+%STARTSECTION{"module-archives-right-three-column"}%%STARTSECTION{"module-archives-right-two-column-right"}%%STARTSECTION{"module-archives-left-two-column-left"}%%STARTSECTION{"module-archives-right"}%<div class="module-archives module">
+   <h2 class="module-header">TWiki Webs</h2>
+   <div class="module-content">
+         <ul class="module-list">
+            <li class="module-list-item">%TMPL:P{"login"}%</li>
+%WEBLIST{"<li class="module-list-item">[[$name.WebHome][$name]]</li>"}%
+      </ul>
+   </div>
+</div>
+<div class="module-archives module">
+   <h2 class="module-header">Links</h2>
+   <div class="module-content">
+%INCLUDE{"%BASEWEB%.WebLeftBar"}%      
+   </div>
+</div>%ENDSECTION{"module-archives-right"}%%ENDSECTION{"module-archives-left-two-column-left"}%%ENDSECTION{"module-archives-right-two-column-right"}%%ENDSECTION{"module-archives-right-three-column"}%
+
+
+
+---+++ module-syndicate-right
+%STARTSECTION{"module-syndicate-right-three-column"}%%STARTSECTION{"module-syndicate-right-two-column-right"}%%STARTSECTION{"module-syndicate-left-two-column-left"}%%STARTSECTION{"module-syndicate-right"}%
+%ENDSECTION{"module-syndicate-right"}%%ENDSECTION{"module-syndicate-left-two-column-left"}%%ENDSECTION{"module-syndicate-right-two-column-right"}%%ENDSECTION{"module-syndicate-right-three-column"}%
+<div class="module-syndicate module">
+   <div class="module-content">
+      <a href="http://www.thestylecontest.com/browser/atom.xml">Subscribe to this blog's feed</a><br />
+      [<a href="http://www.sixapart.com/about/feeds">What is this?</a>]
+   </div>
+</div>
+
+
+---+++ module-powered-right
+%STARTSECTION{"module-powered-right-three-column"}%%STARTSECTION{"module-powered-right-two-column-right"}%%STARTSECTION{"module-powered-left-two-column-left"}%%STARTSECTION{"module-powered-right"}%<div class="module-powered module">
+   <div class="module-content">
+      <a href="http://twiki.org"><img src="%PUBURLPATH%/%TWIKIWEB%/TWikiLogos/T-logo-34x26.png" />TWiki powered</a>
+ skin by <a href="http://DistributedINFORMATION.com">Distributed INFORMATION.com</a>
+ [[http://WikiRing.com][a <img src="%PUBURLPATH%/%TWIKIWEB%/WidgetsSkin/wikiringlogo20x20.png" alt="@" width='20' height='20' border='0'  /> WikiRing.com partner]]
+   </div>
+</div> %ENDSECTION{"module-powered-right"}%%ENDSECTION{"module-powered-left-two-column-left"}%%ENDSECTION{"module-powered-right-two-column-right"}%%ENDSECTION{"module-powered-right-three-column"}%
+
+---
+---+++ extra html around each section
+In this case, using TWiki:Plugins.SnazzyRoundedCornersContrib code
+---++++ startsectionwrapper
+%STARTSECTION{"startsectionwrapper-nobanner"}%%STARTSECTION{"startsectionwrapper-main"}% <div>
+<div class="xsnazzy">
+<b class="xtop">
+<b class="xb1">
+</b><b class="xb2">
+</b><b class="xb3">
+</b><b class="xb4"></b></b>
+<div class="xboxcontent" >
+<div>%ENDSECTION{"startsectionwrapper-nobanner"}%%ENDSECTION{"startsectionwrapper-main"}%
+---++++ endsectionwrapper
+%STARTSECTION{"endsectionwrapper-nobanner"}%%STARTSECTION{"endsectionwrapper-main"}% </div>
+</div>
+<b class="xbottom">
+<b class="xb4">
+</b><b class="xb3">
+</b><b class="xb2">
+</b><b class="xb1"></b></b>
+</div>
+</div>%ENDSECTION{"endsectionwrapper-nobanner"}%%ENDSECTION{"endsectionwrapper-main"}%
+
+
+
+
+%META:FILEATTACHMENT{name="base-weblog.css" attachment="base-weblog.css" attr="" comment="" date="1174054380" path="base-weblog.css" size=""  user="SvenDowideit" version="1"}%
+%META:FILEATTACHMENT{name="TWiki.css" attachment="TWiki.css" attr="" comment="" date="1174054380" path="TWiki.css" user="SvenDowideit" version="1"}%

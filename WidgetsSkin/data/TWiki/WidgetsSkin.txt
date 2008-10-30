@@ -1,0 +1,348 @@
+<style>
+.demoImage {
+    width: 95%;
+    max-width: 480px;
+    width:expression(document.body.clientWidth > (200)?"200px":"95%" );
+    algin: center;
+}
+ContribInfoTable {
+    width: 95%;
+    max-width: 480px;
+    width:expression(document.body.clientWidth > (200)?"200px":"95%" );
+}
+</style>
+
+---+!! WidgetsSkin Contrib Package
+This is a revised version of the WidgetsSkin, updated to match the changes made for MT4. There are some css id and class changes, that will need to be applied to any theme from MT3.
+
+I have now included the 38 themes included in the Open source version of Moveable Type, and you can try them out using the Theme Browser below.
+
+There is a set of reasonably easy upgrade steps to modify your css and Design topic to work with this upgrade. 
+
+---+++ Theme Browser
+*If the skin is installed*, you can use this browser to mix and match layouts with various CSS files that are available from the [[http://www.sixapart.com/][Six Apart website]]. 
+Use the navigation buttons to select between options. Click on the theme name to see the CSS.
+
+%INCLUDE{"WidgetsSkin" section="css-browser"}%
+
+---+++ TODO:
+   * context and 'webHome' css classes in body, so that web home's can have a larger banner pic - and different ones for each web
+   * where's the top list of webs/pages thing like wp has?
+   * http://www.movabletype.org/design/assistant/ 
+
+
+%I% Unfortunately there is no easy way to preview designs found from the [[http://www.thestylearchive.com/browser/][style archive browser]]. 
+But it's easy to download and install these designs. 
+Download the zip file for your chosen design, and unzip it in the directory on the server that corresponds to this URL: %PUBURL%/%WEB%/%TOPIC%. Then type the full URL into the text box in the browser.
+
+<nop>%TOPIC% is a simple TWiki Skin that re-uses these style and HTML definitions, so making designs done for Moveable Type available to TWiki sites.
+
+Aside from the ability to re-use these designs, there are several other advantages to this skin:
+   1 It's very lightweight, only generating the bare minimum html required to implement the Moveable type classes and IDs. This means it is *fast*, *portable* and *easy to upgrade*.
+   2 The CSS is independent of TWiki, so any stylesheet you develop for this skin *will work with _all_ versions of TWiki* that support the skin,
+   3 This also means the same CSS can be *shared with other applications* (such as Six Apart based blogs).
+   4 The skin reuses TWiki's base templates for most of the TWiki-specific bits, so when those base templates are extended any *new functionality will automatically become available* for your use.
+
+You can preview some design ideas at the [[http://www.sixapart.com/movabletype/styles/library][the Moveable Type style library]]. To use one of these designs with TWiki, 
+you will need to install the skin, and then download and install the theme as per the Customisation instructions, below. Some designs are not suitable for re-use with TWiki, 
+as they make assumptions about the number of pixels that the text is long, but you should be able to get inspiration from these works anyway. 
+
+Alternatively you can visit [[http://www.home.org.au/cgi-bin/view/TWiki/WidgetsSkin][Sven's personal Blog]] for a *DEMO*.
+
+<nop>%TOPIC% is a <img src="%ATTACHURLPATH%/wikiringlogo20x20.png" /> [[http://www.wikiring.com][WikiRing]] partnership production.
+
+---++ Settings
+As with all skins, the basic page layout is defined in a set of templates.
+The Moveable Type classes can support several different column layouts, so
+the skin gets some of the layout from a "design topic", which defines HTML
+to use in different sections of the page, for the different column layouts.
+
+The skin uses two CSS files; the reusable CSS that defines the Moveable Type
+classes, and a mapping CSS that adds additional classes that TWiki requires,
+but aren't defined by the Moveable Type standard.
+
+Once you have chosen your CSS and layout, you must tell TWiki to use those
+options. If you have used the Theme Browser to select your preferred setup,
+you can copy and paste the following section to your
+%MAINWEB%.TWikiPreferences topic (or !WebPreferences, or your personal topic)
+
+<noautolink>
+<div align="center">
+<textarea readonly rows="13" style="width:85%;margin:10px;font-size:10pt;">
+Select the Widget skin:
+   * Set SKIN = widgets
+Get the common text section definitions from this topic (see the "Customisation" section in %WEB%.%TOPIC% for more information on what this means):
+   * Set WIDGETSSKIN_DESIGNTOPIC = %DESIGN%CURRENTDESIGN%%
+Get the Moveable Type compatible CSS and images from this topic (must be in the %TWIKIWEB%):
+   * Set WIDGETSSKIN_CSSFILE = %CSS%CURRENTCSS%%
+Get the extra CSS required by TWiki from this topic
+   * Set WIDGETSSKIN_TWIKICSSFILE = %URLPARAM{"twikicssfile" default="%PUBURLPATH%/%WIDGETSSKIN_DESIGNTOPIC%/TWiki.css"}%
+Set the column preference:
+   * Set WIDGETSSKIN_COLUMNS = %COLS%CURRENTCOLS%%
+</textarea>
+</div>
+</noautolink>
+
+---+++ Skin variables
+If you set =PAGETOPIC= in your preferences or in your topic, it will be used as the page's HTML title, in preference to the topic name. 
+This is useful for creating user-friendly titles for AUTOINC-named topics
+   
+---++ Customisation
+Customisation of this skin to create your own look and feel is very straightforward. You only have to develop (or re-use) a CSS file. 
+You can also customise the _text section definitions_ (WIDGETSSKIN_DESIGNTOPIC) and the _TWiki css_ WIDGETSSKIN_TWIKICSSFILE) 
+for even greater control over the rendering, but this is not necessary for most applications.
+
+The fastest way to develop your own CSS is to use [[http://styles.movalog.com/generator/][the Movable Type Style generator]]. 
+Alternatively you can adapt one an existing CSS from the web (though please be careful to respect author copyright). 
+There is documentation for the required set of CSS classes and tags found at [[http://www.thestylearchive.com/help/stylesheet_reference][Stylesheet Reference]] and other related pages.
+
+Once you have a CSS that you want to use, simply upload it to a TWiki topic and point the WIDGETSSKIN_CSSFILE setting at it.
+
+For more radical customisations (or to distribute your theme as a Contrib) you will want to create your own _design topic_. To create a design topic:
+   1 Copy the text from the [[%SCRIPTURL{view}%/%WEB%/WidgetsSampleDesign?raw=on][WidgetsSampleDesign]] topic and paste it to =YourWidgetDesign= (or another name of your choosing).
+   1 Copy the WidgetsSampleDesign attachments =TWiki.css= and =base-weblog.css= to your new topic (save the files locally, and then upload them again to your new topic)
+   1 Attach your custom TWiki CSS and imagefiles to your new topic.
+   1 Edit your new topic and modify the WIDGETSSKIN_CSSFILE setting to reflect the name of your CSS file. You should now be able to proof your design by viewing that topic.
+
+You can also optionally customise the TWiki.css attached to your design topic. This file contains most TWiki specific styles, such as tables, forms and diffs.
+
+Finally you can also customise the common text sections in your design by editing the _Moveable Type Common Text sections_. 
+There are two sample design topics, WidgetsSampleDesign and  WidgetsSample2Design.
+
+Once you are done, you will be able to follow the instructions under 'Enable this design' in your design topic to roll out your design.
+
+---++ Uprgading from MT3 based WidgetsSkin
+   1 
+
+
+---+++ Skin URL Parameters for testing skin designs
+   * skin - must be set to Widget
+   * cssfile - the url to the Widget css file you want to view
+   * twikicssfile - the url to the TWiki.css file (usually directly linked to the widgetstopic)
+   * widgetstopic - the topic (in the %TWIKIWEB% only) that the Widget common sections come from
+   * widgetscolumns - column setting (one-column, two-column-left, two-column-right, three-column)
+
+---++ Installation Instructions
+%$INSTALL_INSTRUCTIONS%
+
+---++ Interesting URLS
+   * http://wiki.movabletype.org/MT4_Default_Templates_HTML_Structure
+   * http://www.bkdesign.ca/movable-type/movable-type-styles.php
+   * http://www.bkdesign.ca/movable-type/simplify-movable-type.php
+
+---++ Contrib Info
+
+This skin is an example of how to make a [[TWikiSkins][TWikiSkin]] _without_ duplicating the work of the TWiki Core release. It reuses the default skin, and only adds a =twiki.Widget.tmpl= 
+(and a viewprint that I hope to remove later), and only defines the bare essentials to create HTML that is similar to an existing system.
+
+You can use this technique to create a TWikiSkin that matches closely the HTML of your existing web site, and thus re-use the existing site's css styling, thus creating a comon look & feel.
+
+%TABLE{ id="ContribInfoTable"}%
+|  Contrib Author: | TWiki:Main.SvenDowideit - SvenDowideit@fosiki.com [[http://fosiki.com][fosiki]] - a <img src="%ATTACHURLPATH%/wikiringlogo20x20.png" /> [[http://www.wikiring.com][WikiRing.com]] partner |
+|  Copyright &copy;: | !SixApart and designs by various, twiki adaption by TWiki:Main.SvenDowideit - SvenDowideit@fosiki.com |
+|  License: | Various Open Source |
+|  Description: | a TWiki skin based on the HTML used by [[http://www.thestylecontest.com][The Style Archive]] and [[http://www.sixapart.com/movabletype/styles/library][The Six Apart style library]] |
+|  Screenshot: | <a href="%ATTACHURL%/fullscreen.gif"><img class="demoImage"  src="%ATTACHURL%/screenshot.gif" alt="Click for full screen image" width="600" height="130" /></a> |
+|  Screenshot: | <a href="%ATTACHURL%/splattered_edit.gif"><img class="demoImage"  src="%ATTACHURL%/preview_splattered_edit.gif" alt="Click for full screen image" width="600" height="130" /></a> |
+|  Screenshot: | <a href="%ATTACHURL%/iconic.gif"><img class="demoImage" src="%ATTACHURL%/iconic_preview.gif" alt="Click for full screen image" width="600" height="130" /></a> |
+|  Preview: | [[%SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%][Preview with this topic]] |
+|  Base Name: | Widget |
+|  Skin Version: | 03 Apr 2007 (v1.000) |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Version: | %$VERSION% |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  7 Dec 2007:  | stop the demo images from overflowing the design, other Skin fixes |
+|  15 Oct 2007: | Doc rewrite - TWiki:Main.CrawfordCurrie |
+|  30 Mar 2007: | initial release of Skin | 
+|  Home: | [[http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%][%TOPIC%]] |
+|  Feedback: | [[http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev][%TOPIC%Dev]] |
+|  Appraisal: | [[http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal][%TOPIC%Appraisal]] |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences
+
+-- TWiki:Main/SvenDowideit - %DATE%
+
+<!--
+%STARTSECTION{"css-browser"}%
+
+<div align="center" style="margina:12px;padding:12px;">
+<div align="left" style="color:black;align:NOcenter;width:80%;background-color:#ffffdd;border:1px solid;margin:6px;padding:6px;">
+Choose DESIGNTOPIC:
+<nobr> &nbsp;&nbsp;&nbsp; [[%SCRIPTURL{view}%/%WEB%/%TOPIC%?skin=widgets;widgetstopic=%DESIGN%PREVIOUSDESIGN%%;designidx=%PREVIOUSDESIGN%;%CSSPARAM%][%ICON{"go_back"}%]] 
+[[%DESIGN%CURRENTDESIGN%%]] (%CALC{"$EVAL( %CURRENTDESIGN% - %FIRSTDESIGN% +1 ) of $EVAL( %LASTDESIGN% - %FIRSTDESIGN% +1 )"}%)
+[[%SCRIPTURL{view}%/%WEB%/%TOPIC%?skin=widgets;widgetstopic=%DESIGN%NEXTDESIGN%%;designidx=%NEXTDESIGN%;%CSSPARAM%;%COLSPARAM%][%ICON{"go_forward"}%]] </nobr>
+
+Choose CSSFILE:
+<nobr> &nbsp;&nbsp;&nbsp; [[%SCRIPTURL{view}%/%WEB%/%TOPIC%?skin=widgets;%DESIGNPARAM%;cssfile=%CSS%PREVIOUSCSS%%;cssidx=%PREVIOUSCSS%;%COLSPARAM%][%ICON{"go_back"}%]] 
+[[%CSS%CURRENTCSS%%][%NAME%CURRENTCSS%%]] (%CALC{"$EVAL( %CURRENTCSS% - %FIRSTCSS% +1 ) of $EVAL( %LASTCSS% - %FIRSTCSS% +1 )"}%)
+[[%SCRIPTURL{view}%/%WEB%/%TOPIC%?skin=widgets;%DESIGNPARAM%;cssfile=%CSS%NEXTCSS%%;cssidx=%NEXTCSS%;%COLSPARAM%][%ICON{"go_forward"}%]] </nobr>
+
+Choose COLUMNS:
+<nobr> &nbsp;&nbsp;&nbsp; [[%SCRIPTURL{view}%/%WEB%/%TOPIC%?skin=widgets;%DESIGNPARAM%;%CSSPARAM%;widgetscolumns=%COLS%PREVIOUSCOLS%%;colsidx=%PREVIOUSCOLS%][%ICON{"go_back"}%]] 
+%COLS%CURRENTCOLS%% (%CALC{"$EVAL( %CURRENTCOLS% - %FIRSTCOLS% +1 ) of $EVAL( %LASTCOLS% - %FIRSTCOLS% +1 )"}%)
+[[%SCRIPTURL{view}%/%WEB%/%TOPIC%?skin=widgets;%DESIGNPARAM%;%CSSPARAM%;widgetscolumns=%COLS%NEXTCOLS%%;colsidx=%NEXTCOLS%][%ICON{"go_forward"}%]] </nobr>
+---
+Or type the *full URL path* to a CSS you have downloaded from the style browser here:
+<div align="center">
+<form action="" method="POST">
+<input type="hidden" name="designidx" value="%CURRENTDESIGN%" />
+<input type="hidden" name="widgetstopic" value="%URLPARAM{"widgetstopic" default="%DESIGN%CURRENTDESIGN%%"}%" />
+<input type="hidden" name="cssidx" value="%CURRENTCSS%" />
+<input type="hidden" name="colsidx" value="%CURRENTCOLS%" />
+<input type="hidden" name="widgetscolumns" value="%URLPARAM{"widgetscolumns" default="%COLS%CURRENTCOLS%%"}%" />
+<input type="text" style="width:65%" name="cssfile" value="%PUBURL%/%TWIKIWEB%/WidgetsSkin/"/>
+<input type="submit" value="View design" />
+</form>
+</div>
+</div></div>
+
+<div style="display:none;">
+Iterators for Design, CSS file, and column layout
+   * Set CURRENTDESIGN = %URLPARAM{"designidx" default="%DEFAULTDESIGN%"}%
+   * Set NEXTDESIGN = %CALC{"$IF( $EVAL( %CURRENTDESIGN% + 1 ) > %LASTDESIGN%, %FIRSTDESIGN%, $EVAL( %CURRENTDESIGN% + 1 ))"}%
+   * Set PREVOUSDESIGN = %CALC{"$IF( $EVAL( %CURRENTDESIGN% - 1 ) < %FIRSTDESIGN%, %LASTDESIGN%, $EVAL( %CURRENTDESIGN% - 1 ))"}%
+   * Set DESIGNPARAM = widgetstopic=%URLPARAM{"widgetstopic" default="%WIDGETSSKIN_DESIGNTOPIC%"}%;designidx=%CURRENTDESIGN%
+
+   * Set CURRENTCSS = %URLPARAM{"cssidx" default="%DEFAULTCSS%"}%
+   * Set NEXTCSS = %CALC{"$IF( $EVAL( %CURRENTCSS% + 1 ) > %LASTCSS%, %FIRSTCSS%, $EVAL( %CURRENTCSS% + 1 ))"}%
+   * Set PREVIOUSCSS = %CALC{"$IF( $EVAL( %CURRENTCSS% - 1 ) < %FIRSTCSS%, %LASTCSS%, $EVAL( %CURRENTCSS% - 1 ))"}%
+   * Set CSSPARAM = cssfile=%URLPARAM{"cssfile" default="%CSS%CURRENTCSS%%"}%;cssidx=%CURRENTCSS%
+
+   * Set CURRENTCOLS = %URLPARAM{"colsidx" default="%DEFAULTCOLS%"}%
+   * Set NEXTCOLS = %CALC{"$IF( $EVAL( %CURRENTCOLS% + 1 ) > %LASTCOLS%, %FIRSTCOLS%, $EVAL( %CURRENTCOLS% + 1 ))"}%
+   * Set PREVIOUSCOLS = %CALC{"$IF( $EVAL( %CURRENTCOLS% - 1 ) < %FIRSTCOLS%, %LASTCOLS%, $EVAL( %CURRENTCOLS% - 1 ))"}%
+   * Set COLSPARAM = widgetscolumns=%URLPARAM{"widgetscolumns" default="%COLS%CURRENTCOLS%%"}%;colsidx=%CURRENTCOLS%
+
+
+BROWSER SETTINGS
+Designs
+   * Set DEFAULTDESIGN = 1
+   * Set FIRSTDESIGN = 1
+   * Set DESIGN1 = %SYSTEMWEB%/WidgetsSampleDesign
+   * Set DESIGN2 = %SYSTEMWEB%/WidgetsSample2Design
+   * Set DESIGN3 = %SYSTEMWEB%/WidgetsSample3Design
+   * Set LASTDESIGN = 3
+
+Column layouts
+   * Set DEFAULTCOLS = 2
+   * Set FIRSTCOLS = 1
+   * Set COLS1 = w
+   * Set COLS2 = tw
+   * Set COLS3 = wt
+   * Set COLS4 = twt
+   * Set COLS5 = wtt
+   * Set COLS6 = wm
+   * Set COLS7 = mw
+   * Set LASTCOLS = 7
+
+CSSes
+   * Set DEFAULTCSS = 70
+   * Set FIRSTCSS = 50
+removed as they are MT3 css   
+   * Set CSS47 = %PUBURL%/%TWIKIWEB%/WidgetsSample3Design/theme.css
+   * Set NAME47 = Sample3Theme
+   * Set CSS48 = %PUBURL%/%TWIKIWEB%/WidgetsSample2Design/theme.css
+   * Set NAME48 = Sample2Theme
+   * Set CSS49 = %PUBURL%/%TWIKIWEB%/WidgetsSampleDesign/theme.css
+   * Set NAME49 = SampleTheme
+   
+   * Set CSS50 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-austin/screen.css
+   * Set NAME50 = cityscape-austin
+   * Set CSS51 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-boston/screen.css
+   * Set NAME51 = cityscape-boston
+   * Set CSS52 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-chicago/screen.css
+   * Set NAME52 = cityscape-chicago
+   * Set CSS53 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-dc/screen.css
+   * Set NAME53 = cityscape-dc
+   * Set CSS54 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-houston/screen.css
+   * Set NAME54 = cityscape-houston
+   * Set CSS55 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-kiev/screen.css
+   * Set NAME55 = cityscape-kiev
+   * Set CSS56 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-la/screen.css
+   * Set NAME56 = cityscape-la
+   * Set CSS57 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-london/screen.css
+   * Set NAME57 = cityscape-london
+   * Set CSS58 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-miami/screen.css
+   * Set NAME58 = cityscape-miami
+   * Set CSS59 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-nashville/screen.css
+   * Set NAME59 = cityscape-nashville
+   * Set CSS60 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-nyc/screen.css
+   * Set NAME60 = cityscape-nyc
+   * Set CSS61 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-paris/screen.css
+   * Set NAME61 = cityscape-paris
+   * Set CSS62 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-philadelphia/screen.css
+   * Set NAME62 = cityscape-philadelphia
+   * Set CSS63 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-portland/screen.css
+   * Set NAME63 = cityscape-portland
+   * Set CSS64 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-seattle/screen.css
+   * Set NAME64 = cityscape-seattle
+   * Set CSS65 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-sf/screen.css
+   * Set NAME65 = cityscape-sf
+   * Set CSS66 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-sydney/screen.css
+   * Set NAME66 = cityscape-sydney
+   * Set CSS67 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-tokyo/screen.css
+   * Set NAME67 = cityscape-tokyo
+   * Set CSS68 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-toronto/screen.css
+   * Set NAME68 = cityscape-toronto
+   * Set CSS69 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-vegas/screen.css
+   * Set NAME69 = cityscape-vegas
+   * Set CSS70 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/hills-dusk/screen.css
+   * Set NAME70 = hills-dusk
+   * Set CSS71 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/hills-green/screen.css
+   * Set NAME71 = hills-green
+   * Set CSS72 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/hills-midnight/screen.css
+   * Set NAME72 = hills-midnight
+   * Set CSS73 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/hills-pink/screen.css
+   * Set NAME73 = hills-pink
+   * Set CSS74 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/minimalist-blue/screen.css
+   * Set NAME74 = minimalist-blue
+   * Set CSS75 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/minimalist-brown/screen.css
+   * Set NAME75 = minimalist-brown
+   * Set CSS76 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/minimalist-green/screen.css
+   * Set NAME76 = minimalist-green
+   * Set CSS77 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/minimalist-grey/screen.css
+   * Set NAME77 = minimalist-grey
+   * Set CSS78 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/minimalist-light-blue/screen.css
+   * Set NAME78 = minimalist-light-blue
+   * Set CSS79 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/minimalist-light-green/screen.css
+   * Set NAME79 = minimalist-light-green
+   * Set CSS80 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/minimalist-pink/screen.css
+   * Set NAME80 = minimalist-pink
+   * Set CSS81 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/minimalist-purple/screen.css
+   * Set NAME81 = minimalist-purple
+   * Set CSS82 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/minimalist-red/screen.css
+   * Set NAME82 = minimalist-red
+   * Set CSS83 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/minimalist-white/screen.css
+   * Set NAME83 = minimalist-white
+   * Set CSS84 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/unity-blue/screen.css
+   * Set NAME84 = unity-blue
+   * Set CSS85 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/unity-green/screen.css
+   * Set NAME85 = unity-green
+   * Set CSS86 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/unity-purple/screen.css
+   * Set NAME86 = unity-purple
+   * Set CSS87 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/unity-tricolor/screen.css
+   * Set NAME87 = unity-tricolor
+   * Set CSS88 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/unstyled/screen.css
+   * Set NAME88 = unstyled
+
+
+
+
+
+   * Set LASTCSS = 88
+</div>
+%ENDSECTION{"css-browser"}%
+
+-->
+
+
+%META:FILEATTACHMENT{name="skindemo.js" attachment="skindemo.js" attr="H" comment="" date="1174054380" path="skindemo.js" user="SvenDowideit" version="1"}%
+%META:FILEATTACHMENT{name="wikiringlogo20x20.png" attachment="wikiringlogo20x20.png" attr="H" comment="" date="1174054380" path="wikiringlogo20x20.png" user="SvenDowideit" version="1"}%
+%META:FILEATTACHMENT{name="screenshot.gif" attachment="screenshot.gif" attr="H" comment="" date="1174054380" path="screenshot.gif" user="SvenDowideit" version="1"}%
+%META:FILEATTACHMENT{name="fullscreen.gif" attachment="fullscreen.gif" attr="H" comment="" date="1174054380" path="fullscreen.gif" user="SvenDowideit" version="1"}%
+
+%META:FILEATTACHMENT{name="iconic.gif" attachment="iconic.gif" attr="H" comment="" date="1174054380" path="iconic.gif" user="SvenDowideit" version="1"}%
+%META:FILEATTACHMENT{name="iconic_preview.gif" attachment="iconic_preview.gif" attr="H" comment="" date="1174054380" path="iconic_preview.gif" user="SvenDowideit" version="1"}%
+%META:FILEATTACHMENT{name="preview_splattered_edit.gif" attachment="preview_splattered_edit.gif" attr="H" comment="" date="1174054380" path="preview_splattered_edit.gif" user="SvenDowideit" version="1"}%
+%META:FILEATTACHMENT{name="splattered_edit.gif" attachment="splattered_edit.gif" attr="H" comment="" date="1174054380" path="splattered_edit.gif" user="SvenDowideit" version="1"}%
+

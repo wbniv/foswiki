@@ -1,0 +1,39 @@
+%META:TOPICPARENT{name="WidgetsSkin"}%
+---+ <nop>%TOPIC%
+Create your own TWiki <nop>Widget design by attaching your Moveable Type css and images (and a copy of base-weblog.css) to your copy of the WidgetSampleDesign topic. Then configure the settings on the topic to match, so that you can Proof your design. 
+
+---++ Enable this design
+Copy and paste the following section to your %MAINWEB%.TWikiPreferences topic (or !WebPreferences, or your personal topic)
+<textarea readonly rows="13" style="width:85%;margin:10px;">
+   * Set TWiki to use this Widget design, set the following on %MAINWEB%.TWikiPreferences (don't copy the raw text)
+      * Set SKIN=widgets
+   * set the Widget skin to use this topic to get the _Moveable Type Common Text sections_ from this topic
+      * Set WIDGETSSKIN_DESIGNTOPIC = %TOPIC%
+   * set the Widget skin to use to get the css and images from here
+      * Set WIDGETSSKIN_CSSFILE = %PUBURL%/%TWIKIWEB%/%WIDGETSSKIN_DESIGNTOPIC%/theme.css
+   * is the css w, tw, wt, twt, wtt (wide, thin-wide, wide-thin, thin-wide-thin, wide-thin-thin)
+      * Set WIDGETSSKIN_COLUMNS = wt
+</textarea>
+
+----
+---++ sidebar widgets
+---+++ first column
+%STARTSECTION{"column-one"}%
+%INCLUDE{"%TWIKIWEB%.DefaultWidgets" section="widget-search" warn="on"}%
+%INCLUDE{"%TWIKIWEB%.DefaultWidgets" section="widget-weblist" warn="on"}%
+%INCLUDE{"%TWIKIWEB%.DefaultWidgets" section="widget-subscribe" warn="on"}%
+%INCLUDE{"%TWIKIWEB%.DefaultWidgets" section="widget-webleftbar" warn="on"}%
+%INCLUDE{"%TWIKIWEB%.DefaultWidgets" section="widget-powered" warn="on"}%
+%ENDSECTION{"column-one"}%
+
+---+++ second column (for three column designs)
+%STARTSECTION{"column-two"}%
+%INCLUDE{"%TWIKIWEB%.DefaultWidgets" section="widget-skins" warn="on"}%
+%INCLUDE{"%TWIKIWEB%.DefaultWidgets" section="widget-webchanges" warn="on"}%
+%INCLUDE{"%TWIKIWEB%.DefaultWidgets" section="widget-powered" warn="on"}%
+%ENDSECTION{"column-two"}%
+      
+
+
+%META:FILEATTACHMENT{name="base-weblog.css" attachment="base-weblog.css" attr="" comment="" date="1174054380" path="base-weblog.css" size=""  user="SvenDowideit" version="1"}%
+%META:FILEATTACHMENT{name="TWiki.css" attachment="TWiki.css" attr="" comment="" date="1174054380" path="TWiki.css" user="SvenDowideit" version="1"}%

@@ -1,0 +1,105 @@
+%TMPL:INCLUDE{"twiki"}%
+
+%{ **************************************************************************************************************************************************************************** }%
+%{ ******************************************* }%
+%TMPL:DEF{"simpleheader"}%%TMPL:P{"standardheader"}%%TMPL:END%
+%{ ******************************************* }%
+%TMPL:DEF{"windowtitle"}%<title>%TMPL:P{"titleaction"}%%IF{"defined PAGETITLE" then="%PAGETITLE%" else="<nop>%TOPIC% &lt; %WEB% &lt; <nop>%WIKITOOLNAME%"}%</title>%TMPL:END%
+%{ ******************************************* }%
+%TMPL:DEF{"copyright"}% %WEBRSSCOPYRIGHT% %BR% skin by <a href="http://DistributedINFORMATION.com">DistributedINFORMATION</a> a [[http://WikiRing.com][<img src="%PUBURLPATH%/%TWIKIWEB%/MOVEABLETYPESKIN/wikiringlogo20x20.png" alt="@" width='20' height='20' border='0'  /> WikiRing.com partner]] %TMPL:END%
+%{ ******************************************* }%
+%TMPL:DEF{"topicinfo"}%%BR%<hr />%TMPL:P{"topicaction"}%%TMPL:END%
+%{ ******************************************* }%
+%TMPL:DEF{"sep"}% &#8226; %TMPL:END%
+%{ ******************************************* }%
+%TMPL:DEF{"login_actions"}%
+%IF{"context authenticated" then='%MAKETEXT{"Hello [_1]!" args="[[%WIKIUSERNAME%][%SPACEOUT{%WIKINAME%}%]]"}% %SEP% %LOGOUT%' else='%LOGIN% %MAKETEXT{"or"}% [[%TWIKIWEB%.TWikiRegistration][%MAKETEXT{"Register"}%]]'}%%TMPL:END%
+   
+%{ **************************************************************************************************************************************************************************** }%
+%{ ******************************************* }%
+%TMPL:DEF{"widgetstext"}%%URLPARAM{"widgetstopic" default="%IF{"defined WIDGETSSKIN_DESIGNTOPIC" then="%WIDGETSSKIN_DESIGNTOPIC%" else="%SYSTEMWEB%/WidgetsSampleDesign"}%"}%%TMPL:END%
+%{ ******************************************* }%
+
+%{ widgetscolumns := w,tw,wt,twt,wtt,wm,mw }%
+%TMPL:DEF{"widgetscolumns"}%%URLPARAM{"widgetscolumns" default="%IF{"defined WIDGETSSKIN_COLUMNS AND context view" then="%WIDGETSSKIN_COLUMNS%" else="%IF{"context view" then="tw" else="w"}%"}%"}%%TMPL:END%
+
+
+
+%{ ******************************************* }%
+%TMPL:DEF{"widgetscss"}%%URLPARAM{"cssfile" default="%IF{"defined WIDGETSSKIN_CSSFILE" then="%WIDGETSSKIN_CSSFILE%" else="%PUBURLPATH%/%TMPL:P{widgetstext}%/theme.css"}%"}%%TMPL:END%
+%{ ******************************************* }%
+%TMPL:DEF{"widgetstwikicss"}%%URLPARAM{"twikicssfile" default="%IF{"defined WIDGETSSKIN_TWIKICSSFILE" then="%WIDGETSSKIN_TWIKICSSFILE%" else="%PUBURLPATH%/%TMPL:P{widgetstext}%/TWiki.css"}%"}%%TMPL:END%
+%{ ******************************************* }%
+%TMPL:DEF{"twikistyle"}%
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="%SCRIPTURL{view}%/%BASEWEB%/WebRss" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="%SCRIPTURL{view}%/%BASEWEB%/WebAtom" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="%SCRIPTURL{view}%/%BASEWEB%/WebRss" />
+<link rel="alternate" href="%SCRIPTURL{edit}%/%BASEWEB%/%BASETOPIC%?_T=%DATE%" type="application/x-wiki" title="edit %BASETOPIC%" />
+<!-- to correct the unsightly Flash of Unstyled Content. http://www.bluerobot.com/web/css/fouc.asp -->
+<script type="text/javascript"></script>
+<!-- css widgets skin -->	
+<!-- base_weblog.css is a basic stylesheet that gives you a foundation to work off, please include it in your zip file -->
+<link rel="stylesheet" href="%PUBURL%/%TMPL:P{"widgetstext"}%/base-weblog.css" type="text/css" />
+<link rel="stylesheet" href="%TMPL:P{widgetstwikicss}%" type="text/css" />
+<link rel="stylesheet" href="%TMPL:P{widgetscss}%" type="text/css" />
+<style type="text/css" title="currentStyle" media="screen">
+#gamma {
+    %IF{"'%TMPL:P{widgetscolumns}%' = 'twt' OR '%TMPL:P{widgetscolumns}%' = 'wtt'" then="hello:12;" else="display:none;"}%
+}
+#beta {
+    %IF{"'%TMPL:P{widgetscolumns}%' = 'tw' OR '%TMPL:P{widgetscolumns}%' = 'wt' OR '%TMPL:P{widgetscolumns}%' = 'twt' OR '%TMPL:P{widgetscolumns}%' = 'wtt' OR '%TMPL:P{widgetscolumns}%' = 'wm' OR '%TMPL:P{widgetscolumns}%' = 'mw'" then="hello:12;" else="display:none;"}%
+}
+</style> <!-- this is the MAIN --> 
+<!--
+DEBUG info
+widgetscolumns = %TMPL:P{"widgetscolumns"}%
+-->%TMPL:END%
+
+%{ **************************************************************************************************************************************************************************** }%
+%{ ******************************************* }%
+%TMPL:DEF{"bodystart"}%<body class="layout-%TMPL:P{widgetscolumns}% ">
+   <div id="container">
+      <div id="container-inner" class="pkg">%TMPL:END%
+%{ ******************************************* }%
+%TMPL:DEF{"standardheader"}%         <div id="header">%INCLUDE{"%TMPL:P{widgetstext}%" section="startsectionwrapper-banner"}%
+               <span id="banner-extra"></span>
+            <div id="header-inner" class="pkg">
+            <div id="header-content">
+               <h1 id="header-name">%TMPL:P{"titleaction"}%%IF{"defined PAGETITLE" then="%PAGETITLE%" else="<nop>%TOPIC% "}%</h1>
+               <h2 id="header-description"> [[%WEB%.WebHome][%WEB%]] </h2>
+            </div>
+            </div>
+%INCLUDE{"%TMPL:P{widgetstext}%" section="endsectionwrapper-banner"}%         </div>
+         <div id="pagebody">
+            <div id="pagebody-inner" class="pkg">               <div id="alpha">
+%INCLUDE{"%TMPL:P{widgetstext}%" section="startsectionwrapper-main"}%  <div id="alpha-inner" class="pkg">
+	<span id="twiki_text">%TMPL:END%
+	
+	
+%{ ******************************************* }%
+
+%{ ******************************************* }%
+%TMPL:DEF{"standardfooter"}%
+	</span><!-- twiki_text -->
+  </div>%INCLUDE{"%TMPL:P{widgetstext}%" section="endsectionwrapper-main"}%
+               </div>%TMPL:P{thin-columns}%      </div>
+         </div>
+%TMPL:END%
+%{ ******************************************* }%
+%TMPL:DEF{"bodyend"}%
+      </div>
+   </div>
+</body>
+</html> %TMPL:END%
+%{ ******************************************* }%
+%TMPL:DEF{"thin-columns"}%%TMPL:P{two-columns}%%TMPL:P{three-columns}%%TMPL:END%
+%{ ******************************************* }%
+%TMPL:DEF{"three-columns"}%               <div id='gamma' >%INCLUDE{"%TMPL:P{widgetstext}%" section="startsectionwrapper-right-three-column"}%
+<div id='gamma-inner' class='pkg'> %INCLUDE{"%TMPL:P{widgetstext}%" section="column-two" warn="off"}% </div>
+%INCLUDE{"%TMPL:P{widgetstext}%" section="endsectionwrapper-right-three-column"}%</div>%TMPL:END%
+%{ ******************************************* }%
+%TMPL:DEF{"two-columns"}%               <div id="beta" >%INCLUDE{"%TMPL:P{widgetstext}%" section="startsectionwrapper-left-three-column"}%
+<div id='beta-inner' class='pkg'> %INCLUDE{"%TMPL:P{widgetstext}%" section="column-one" warn="off"}% </div>
+%INCLUDE{"%TMPL:P{widgetstext}%" section="endsectionwrapper-left-three-column"}%</div>           %TMPL:END%
+
+

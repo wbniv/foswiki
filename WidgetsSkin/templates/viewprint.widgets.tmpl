@@ -1,0 +1,33 @@
+%TMPL:INCLUDE{"twiki"}%
+
+%{ moveabletypecolumns == w for printing }%
+%TMPL:DEF{"moveabletypecolumns"}%%URLPARAM{"NOmoveabletypecolumns" default="w"}%%TMPL:END%
+
+
+
+%TMPL:DEF{"form"}%%META{"form"}%%TMPL:END%
+%TMPL:DEF{"attachments"}%%META{"attachments"}%%TMPL:END%
+
+
+%{ ******************************************* }%
+%TMPL:DEF{"topicinfo"}%%BR%<hr />History: %REVINFO%%TMPL:END%
+
+
+%{ ******************************************* }%
+%TMPL:DEF{"content"}%%TEXT%
+#TopicEnd
+%TMPL:P{"form"}%%TMPL:P{"attachments"}%
+%TMPL:P{"topicinfo"}%%TMPL:END%
+
+
+%{ ******************************************* }%
+%TMPL:DEF{"standardfooter"}%
+	</span><!-- twiki_text -->
+	</span></p><!-- p1 -->
+	</div><!-- explanation -->
+#PageBottom 
+	<div id="footer">
+		%TMPL:P{"footernote"}%
+		%TMPL:P{"copyright"}%
+	</div><!-- footer -->
+</div><!-- supportingText -->%TMPL:END%
