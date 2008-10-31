@@ -70,16 +70,20 @@ sub initPlugin {
     $doneHeader  = 0;
     $twistyCount = 0;
 
-    $prefMode = TWiki::Func::getPreferencesValue('TWISTYMODE')
+    $prefMode =
+         TWiki::Func::getPreferencesValue('TWISTYMODE')
       || TWiki::Func::getPluginPreferencesValue('TWISTYMODE')
       || $defaultMode;
-    $prefShowLink = TWiki::Func::getPreferencesValue('TWISTYSHOWLINK')
+    $prefShowLink =
+         TWiki::Func::getPreferencesValue('TWISTYSHOWLINK')
       || TWiki::Func::getPluginPreferencesValue('TWISTYSHOWLINK')
       || $defaultShowLink;
-    $prefHideLink = TWiki::Func::getPreferencesValue('TWISTYHIDELINK')
+    $prefHideLink =
+         TWiki::Func::getPreferencesValue('TWISTYHIDELINK')
       || TWiki::Func::getPluginPreferencesValue('TWISTYHIDELINK')
       || $defaultHideLink;
-    $prefRemember = TWiki::Func::getPreferencesValue('TWISTYREMEMBER')
+    $prefRemember =
+         TWiki::Func::getPreferencesValue('TWISTYREMEMBER')
       || TWiki::Func::getPluginPreferencesValue('TWISTYREMEMBER')
       || $defaultRemember;
 
@@ -150,7 +154,7 @@ sub _TWISTYBUTTON {
     my $btnHide = _twistyBtn( 'hide', @_ );
     my $prefix = $params->{'prefix'} || '';
     my $suffix = $params->{'suffix'} || '';
-    my $btn = $prefix . ' ' . $btnShow . $btnHide . ' ' . $suffix;
+    my $btn    = $prefix . ' ' . $btnShow . $btnHide . ' ' . $suffix;
     return _decodeFormatTokens( _wrapInButtonHtml( $btn, $mode ) );
 }
 
@@ -173,7 +177,7 @@ sub _TWISTYTOGGLE {
         return '';
     }
     my $idTag = $id . 'toggle';
-    my $mode  = $params->{'mode'} || $prefMode;
+    my $mode = $params->{'mode'} || $prefMode;
     unshift @modes, $mode;
 
     my $isTrigger = 0;
@@ -183,19 +187,19 @@ sub _TWISTYTOGGLE {
         $cookieState );
     my $props = @propList ? " " . join( " ", @propList ) : '';
     my $modeTag = '<' . $mode . $props . '>';
-    return _decodeFormatTokens( _wrapInContentHtmlOpen( $mode ) . $modeTag );
+    return _decodeFormatTokens( _wrapInContentHtmlOpen($mode) . $modeTag );
 }
 
 sub _ENDTWISTYTOGGLE {
     my ( $session, $params, $theTopic, $theWeb ) = @_;
     my $mode = shift @modes;
     my $modeTag = ($mode) ? '</' . $mode . '>' : '';
-    return $modeTag . _wrapInContentHtmlClose( $mode );
+    return $modeTag . _wrapInContentHtmlClose($mode);
 }
 
 sub _createId {
     my ( $rawId, $theWeb, $theTopic ) = @_;
-    
+
     if ( !defined $rawId || $rawId eq '' ) {
         return 'twistyId' . $theWeb . $theTopic . $twistyCount;
     }
@@ -232,13 +236,16 @@ sub _twistyBtn {
         $link = $defaultLink || '';
     }
 
-    my $img = $params->{ $twistyControlState . 'img' }
+    my $img =
+         $params->{ $twistyControlState . 'img' }
       || $params->{'img'}
       || '';
-    my $imgright = $params->{ $twistyControlState . 'imgright' }
+    my $imgright =
+         $params->{ $twistyControlState . 'imgright' }
       || $params->{'imgright'}
       || '';
-    my $imgleft = $params->{ $twistyControlState . 'imgleft' }
+    my $imgleft =
+         $params->{ $twistyControlState . 'imgleft' }
       || $params->{'imgleft'}
       || '';
     $img      =~ s/['\"]//go;
@@ -305,10 +312,10 @@ sub _createHtmlProperties {
     push( @classList, $class ) if $class && !$isTrigger;
     push( @classList, 'twistyRememberSetting' ) if ( $remember eq 'on' );
     push( @classList, 'twistyForgetSetting' )   if ( $remember eq 'off' );
-    push( @classList, 'twistyStartHide' )      if $startHidden;
-    push( @classList, 'twistyStartShow' )      if $startShown;
-    push( @classList, 'twistyFirstStartHide' ) if $firstStartHidden;
-    push( @classList, 'twistyFirstStartShow' ) if $firstStartShown;
+    push( @classList, 'twistyStartHide' )       if $startHidden;
+    push( @classList, 'twistyStartShow' )       if $startShown;
+    push( @classList, 'twistyFirstStartHide' )  if $firstStartHidden;
+    push( @classList, 'twistyFirstStartShow' )  if $firstStartShown;
 
     # Mimic the rules in twist.js, function _update()
     my $state = '';

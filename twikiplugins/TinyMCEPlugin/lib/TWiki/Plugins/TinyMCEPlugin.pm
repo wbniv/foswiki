@@ -19,21 +19,24 @@ use strict;
 use vars qw( $VERSION $RELEASE $SHORTDESCRIPTION );
 use Assert;
 
-$VERSION = '$Rev$';
-$RELEASE = '03 Aug 2008';
+$VERSION          = '$Rev$';
+$RELEASE          = '03 Aug 2008';
 $SHORTDESCRIPTION = 'Integration of TinyMCE with WysiwygPlugin';
 
 use TWiki::Func;
 
 my $query;
+
 # Info about browser type
 my %browserInfo;
 
 sub initPlugin {
     $query = TWiki::Func::getCgiQuery();
     return 0 unless $query;
-    unless( $TWiki::cfg{Plugins}{WysiwygPlugin}{Enabled} ) {
-        TWiki::Func::writeWarning("TinyMCEPlugin is enabled but WysiwygPlugin is not enabled. Both plugins must be installed and enabled for TinyMCE.");
+    unless ( $TWiki::cfg{Plugins}{WysiwygPlugin}{Enabled} ) {
+        TWiki::Func::writeWarning(
+"TinyMCEPlugin is enabled but WysiwygPlugin is not enabled. Both plugins must be installed and enabled for TinyMCE."
+        );
         return 0;
     }
 
@@ -41,15 +44,15 @@ sub initPlugin {
     my $ua = $query->user_agent();
     if ($ua) {
         $browserInfo{isMSIE} = $ua =~ /MSIE/;
-        $browserInfo{isMSIE5} = $browserInfo{isMSIE} && ($ua =~ /MSIE 5/);
-        $browserInfo{isMSIE5_0} = $browserInfo{isMSIE} && ($ua =~ /MSIE 5.0/);
+        $browserInfo{isMSIE5}   = $browserInfo{isMSIE} && ( $ua =~ /MSIE 5/ );
+        $browserInfo{isMSIE5_0} = $browserInfo{isMSIE} && ( $ua =~ /MSIE 5.0/ );
         $browserInfo{isMSIE6} = $browserInfo{isMSIE} && $ua =~ /MSIE 6/;
         $browserInfo{isMSIE7} = $browserInfo{isMSIE} && $ua =~ /MSIE 7/;
-        $browserInfo{isGecko} = $ua =~ /Gecko/; # Will also be true on Safari
+        $browserInfo{isGecko}  = $ua =~ /Gecko/;   # Will also be true on Safari
         $browserInfo{isSafari} = $ua =~ /Safari/;
-        $browserInfo{isOpera} = $ua =~ /Opera/;
-        $browserInfo{isMac} = $ua =~ /Mac/;
-        $browserInfo{isNS7} = $ua =~ /Netscape\/7/;
+        $browserInfo{isOpera}  = $ua =~ /Opera/;
+        $browserInfo{isMac}    = $ua =~ /Mac/;
+        $browserInfo{isNS7}  = $ua =~ /Netscape\/7/;
         $browserInfo{isNS71} = $ua =~ /Netscape\/7.1/;
     }
 
@@ -57,42 +60,45 @@ sub initPlugin {
 }
 
 sub _notAvailable {
-    return "Disabled by preference '".TWiki::Func::getPreferencesValue('TINYMCEPLUGIN_DISABLE')."'" if
-      TWiki::Func::getPreferencesFlag('TINYMCEPLUGIN_DISABLE');
+    return
+      "Disabled by preference '"
+      . TWiki::Func::getPreferencesValue('TINYMCEPLUGIN_DISABLE') . "'"
+      if TWiki::Func::getPreferencesFlag('TINYMCEPLUGIN_DISABLE');
 
     # Disable TinyMCE if we are on a specialised edit skin
     my $skin = TWiki::Func::getPreferencesValue('WYSIWYGPLUGIN_WYSIWYGSKIN');
     return "$skin is active"
-      if( $skin && TWiki::Func::getSkin() =~ /\b$skin\b/o );
+      if ( $skin && TWiki::Func::getSkin() =~ /\b$skin\b/o );
 
     return "No browser" unless $query;
 
     return "Disabled by URL parameter" if $query->param('nowysiwyg');
 
     # Check the client browser to see if it is blacklisted
-    my $ua = TWiki::Func::getPreferencesValue('TINYMCEPLUGIN_BAD_BROWSERS') ||
-      '(?i-xsm:Konqueror|Opera)';
-    return 'Unsupported browser: '.$query->user_agent()
+    my $ua = TWiki::Func::getPreferencesValue('TINYMCEPLUGIN_BAD_BROWSERS')
+      || '(?i-xsm:Konqueror|Opera)';
+    return 'Unsupported browser: ' . $query->user_agent()
       if $ua && $query->user_agent() && $query->user_agent() =~ /$ua/;
 
     return 0;
 }
 
 sub beforeEditHandler {
+
     #my ($text, $topic, $web) = @_;
 
     my $mess = _notAvailable();
     if ($mess) {
-        if (($mess !~ /^Disabled/ || DEBUG) &&
-              defined &TWiki::Func::setPreferencesValue) {
-            TWiki::Func::setPreferencesValue(
-                'EDITOR_MESSAGE',
-                'WYSIWYG could not be started: '.$mess);
+        if ( ( $mess !~ /^Disabled/ || DEBUG )
+            && defined &TWiki::Func::setPreferencesValue )
+        {
+            TWiki::Func::setPreferencesValue( 'EDITOR_MESSAGE',
+                'WYSIWYG could not be started: ' . $mess );
         }
         return;
     }
-    if (defined &TWiki::Func::setPreferencesValue) {
-        TWiki::Func::setPreferencesValue('EDITOR_HELP', 'TinyMCEQuickHelp');
+    if ( defined &TWiki::Func::setPreferencesValue ) {
+        TWiki::Func::setPreferencesValue( 'EDITOR_HELP', 'TinyMCEQuickHelp' );
     }
 
     my $init = TWiki::Func::getPreferencesValue('TINYMCEPLUGIN_INIT')
@@ -100,39 +106,42 @@ sub beforeEditHandler {
 '
 HERE
     my $extras = '';
+
     # The order of these conditions is important, because browsers
     # spoof eachother
-    if ($browserInfo{isSafari}) {
+    if ( $browserInfo{isSafari} ) {
         $extras = 'SAFARI';
-    } elsif ($browserInfo{isOpera}) {
+    }
+    elsif ( $browserInfo{isOpera} ) {
         $extras = 'OPERA';
-    } elsif ($browserInfo{isGecko}) {
+    }
+    elsif ( $browserInfo{isGecko} ) {
         $extras = 'GECKO';
-    } elsif ($browserInfo{isMSIE}) {
+    }
+    elsif ( $browserInfo{isMSIE} ) {
         $extras = 'MSIE';
     }
     if ($extras) {
-        $extras = TWiki::Func::getPreferencesValue(
-            'TINYMCEPLUGIN_INIT_'.$extras);
-        if (defined $extras) {
-            $init = join(',', (split(',',$init), split(',',$extras)));
+        $extras =
+          TWiki::Func::getPreferencesValue( 'TINYMCEPLUGIN_INIT_' . $extras );
+        if ( defined $extras ) {
+            $init = join( ',', ( split( ',', $init ), split( ',', $extras ) ) );
         }
     }
 
     require TWiki::Plugins::WysiwygPlugin;
 
-    $mess = TWiki::Plugins::WysiwygPlugin::notWysiwygEditable($_[0]);
+    $mess = TWiki::Plugins::WysiwygPlugin::notWysiwygEditable( $_[0] );
     if ($mess) {
-        if (defined &TWiki::Func::setPreferencesValue) {
-            TWiki::Func::setPreferencesValue(
-                'EDITOR_MESSAGE',
-                'WYSIWYG could not be started: '.$mess);
+        if ( defined &TWiki::Func::setPreferencesValue ) {
+            TWiki::Func::setPreferencesValue( 'EDITOR_MESSAGE',
+                'WYSIWYG could not be started: ' . $mess );
         }
         return;
     }
 
     my $USE_SRC = '';
-    if (TWiki::Func::getPreferencesValue('TINYMCEPLUGIN_DEBUG')) {
+    if ( TWiki::Func::getPreferencesValue('TINYMCEPLUGIN_DEBUG') ) {
         $USE_SRC = '_src';
     }
 
@@ -140,24 +149,25 @@ HERE
     # use a REST call to the WysiwygPlugin tml2html REST handler to convert
     # the textarea content from TML to HTML.
     my $pluginURL = '%PUBURL%/%TWIKIWEB%/TinyMCEPlugin';
-    my $tmceURL = $pluginURL.'/tinymce/jscripts/tiny_mce';
+    my $tmceURL   = $pluginURL . '/tinymce/jscripts/tiny_mce';
+
     # expand and URL-encode the init string
     my $metainit = TWiki::Func::expandCommonVariables($init);
     $metainit =~ s/([^0-9a-zA-Z-_.:~!*'\/%])/'%'.sprintf('%02x',ord($1))/ge;
     my $behaving;
     eval {
         require TWiki::Contrib::BehaviourContrib;
-        if (defined(&TWiki::Contrib::BehaviourContrib::addHEAD)) {
+        if ( defined(&TWiki::Contrib::BehaviourContrib::addHEAD) ) {
             TWiki::Contrib::BehaviourContrib::addHEAD();
             $behaving = 1;
         }
     };
     unless ($behaving) {
-        TWiki::Func::addToHEAD(
-            'BEHAVIOURCONTRIB',
-            '<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/BehaviourContrib/behaviour.js"></script>');
+        TWiki::Func::addToHEAD( 'BEHAVIOURCONTRIB',
+'<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/BehaviourContrib/behaviour.js"></script>'
+        );
     }
-    TWiki::Func::addToHEAD('tinyMCE', <<SCRIPT);
+    TWiki::Func::addToHEAD( 'tinyMCE', <<SCRIPT);
 <meta name="TINYMCEPLUGIN_INIT" content="$metainit" />
 <script language="javascript" type="text/javascript" src="$tmceURL/tiny_mce$USE_SRC.js"></script>
 <script language="javascript" type="text/javascript" src="$pluginURL/twiki_tiny$USE_SRC.js"></script>

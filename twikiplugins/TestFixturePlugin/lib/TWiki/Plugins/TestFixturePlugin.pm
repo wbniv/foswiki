@@ -10,7 +10,7 @@
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details, published at 
+# GNU General Public License for more details, published at
 # http://www.gnu.org/copyleft/gpl.html
 #
 package TWiki::Plugins::TestFixturePlugin;
@@ -43,9 +43,9 @@ require TWiki::Plugins::TestFixturePlugin::HTMLDiffer;
 # the plugin to do other tests as well.
 #
 use vars qw(
-            $installWeb $VERSION $RELEASE $pluginName
-            $topic $web $user $installWeb
-           );
+  $installWeb $VERSION $RELEASE $pluginName
+  $topic $web $user $installWeb
+);
 use vars qw( %TWikiCompatibility );
 
 use CGI qw( :any );
@@ -78,21 +78,26 @@ sub _parse {
 
     foreach my $tok ( split( /(<!--\s*\/?$tag.*?-->)/, $text ) ) {
         if ( $tok =~ /<!--\s*$tag(.*?)-->/ ) {
-            $opt = $1;
+            $opt       = $1;
             $gathering = 1;
-        } elsif ( $tok =~ /<!--\s*\/$tag\s*-->/ ) {
-            throw Error::Simple("<!-- /$tag --> found without matching <!-- $tag --> $lastTok")
-              unless ( $gathering );
-            push( @list, { text => $lastTok, options=> $opt } );
+        }
+        elsif ( $tok =~ /<!--\s*\/$tag\s*-->/ ) {
+            throw Error::Simple(
+                "<!-- /$tag --> found without matching <!-- $tag --> $lastTok")
+              unless ($gathering);
+            push( @list, { text => $lastTok, options => $opt } );
             $gathering = 0;
-        } elsif ( $gathering &&
-                  $tok =~ /^<!--\/?\s*(expected|actual).*?-->$/ ) {
-            throw Error::Simple("$tok encountered when in open <!-- $tag --> bracket");
+        }
+        elsif ($gathering
+            && $tok =~ /^<!--\/?\s*(expected|actual).*?-->$/ )
+        {
+            throw Error::Simple(
+                "$tok encountered when in open <!-- $tag --> bracket");
         }
         $lastTok = $tok;
     }
-    if ( $gathering ) {
-        push( @list, { text => $lastTok, options=> $opt } );
+    if ($gathering) {
+        push( @list, { text => $lastTok, options => $opt } );
     }
 
     return \@list;
@@ -103,10 +108,11 @@ sub _compareExpectedWithActual {
     my ( $expected, $actual, $topic, $web ) = @_;
     my $errors = '';
 
-    unless( $#$actual == $#$expected ) {
-        my $mess = "Numbers of actual ($#$actual) and expected ($#$expected) blocks don't match<table width=\"100%\"><th>Expected</th><th>Actual</th></tr>";
-        for my $i ( 0..$#$actual ) {
-            my $e = $expected->[$i];
+    unless ( $#$actual == $#$expected ) {
+        my $mess =
+"Numbers of actual ($#$actual) and expected ($#$expected) blocks don't match<table width=\"100%\"><th>Expected</th><th>Actual</th></tr>";
+        for my $i ( 0 .. $#$actual ) {
+            my $e  = $expected->[$i];
             my $et = $e->{text};
             my $at = $actual->[$i]->{text};
             $et =~ s/&/&amp;/g;
@@ -115,15 +121,16 @@ sub _compareExpectedWithActual {
             $at =~ s/</&lt;/g;
             $mess .= "<tr><td>$et</td><td>$at</td></tr>";
         }
-        return "$mess</table>";;
+        return "$mess</table>";
     }
 
-    for my $i ( 0..$#$actual ) {
-        my $e = $expected->[$i];
+    for my $i ( 0 .. $#$actual ) {
+        my $e  = $expected->[$i];
         my $et = $e->{text};
         if ( $e->{options} =~ /\bagain\b/ ) {
-            my $prev = $expected->[$i-1];
+            my $prev = $expected->[ $i - 1 ];
             $et = $prev->{text};
+
             # inherit the text so that the next 'again' will see the
             # previous text
             $e->{text} = $et;
@@ -131,20 +138,27 @@ sub _compareExpectedWithActual {
         if ( $e->{options} =~ /\bexpand\b/ ) {
             $et = TWiki::Func::expandCommonVariables( $et, $topic, $web );
         }
-        my $at = $actual->[$i]->{text};
+        my $at      = $actual->[$i]->{text};
         my $control = {
-                       options => $e->{options},
-                       reporter => \&_processDiff,
-                       result => ''
-                      };
+            options  => $e->{options},
+            reporter => \&_processDiff,
+            result   => ''
+        };
 
-        if( TWiki::Plugins::TestFixturePlugin::HTMLDiffer::diff
-            ( $et, $at, $control )) {
+        if (
+            TWiki::Plugins::TestFixturePlugin::HTMLDiffer::diff(
+                $et, $at, $control
+            )
+          )
+        {
 
-            $errors .= CGI::table({border=>1},
-                                  CGI::Tr(CGI::th({},
-                                                  'Expected '.$e->{options}).
-                                          $control->{result}));
+            $errors .= CGI::table(
+                { border => 1 },
+                CGI::Tr(
+                    CGI::th( {}, 'Expected ' . $e->{options} )
+                      . $control->{result}
+                )
+            );
         }
     }
 
@@ -152,24 +166,25 @@ sub _compareExpectedWithActual {
 }
 
 sub _processDiff {
-    my($code, $a, $b, $opts) = @_;
+    my ( $code, $a, $b, $opts ) = @_;
 
-    if( $code) {
+    if ($code) {
         $opts->{result} .=
-          CGI::Tr({}, CGI::td({valign=>'top', colspan=>2},
-                              CGI::code($a)));
-    } else {
-        $opts->{result} .= CGI::Tr({valign=>'top'},
-                                   CGI::td({bgcolor=>'#99ffcc'},CGI::pre($a)));
-        $opts->{result} .= CGI::Tr({valign=>'top'},
-                                   CGI::td({bgcolor=>'#ffccff'},CGI::pre($b)));
+          CGI::Tr( {},
+            CGI::td( { valign => 'top', colspan => 2 }, CGI::code($a) ) );
+    }
+    else {
+        $opts->{result} .= CGI::Tr( { valign => 'top' },
+            CGI::td( { bgcolor => '#99ffcc' }, CGI::pre($a) ) );
+        $opts->{result} .= CGI::Tr( { valign => 'top' },
+            CGI::td( { bgcolor => '#ffccff' }, CGI::pre($b) ) );
     }
 }
 
 sub initPlugin {
     ( $topic, $web, $user, $installWeb ) = @_;
 
-    TWiki::Func::registerTagHandler('STRICTTAG', \&_STRICTTAG);
+    TWiki::Func::registerTagHandler( 'STRICTTAG', \&_STRICTTAG );
 
     return 1;
 }
@@ -179,18 +194,19 @@ sub commonTagsHandler {
 }
 
 sub _extractParams {
-    my $params = new TWiki::Attrs(shift, 1);
+    my $params = new TWiki::Attrs( shift, 1 );
     return $params->stringify();
 }
 
 sub _STRICTTAG {
-    my( $session, $params ) = @_;
+    my ( $session, $params ) = @_;
 
     return $params->stringify();
 }
 
 my $iph = 0;
 my $oph = 0;
+
 sub preRenderingHandler {
     $iph = 0;
     $oph = 0;
@@ -198,32 +214,39 @@ sub preRenderingHandler {
 
 #$TWikiCompatibility{outsidePREHandler} = 1.1;
 sub outsidePREHandler {
+
     # Replace the text "%outsidePREHandler%" with some
     # recognisable text.
-    $_[0] =~ s/%outsidePreHandler(\d+)%/$oph++;"$1OPH${oph}_line1\n$1OPH${oph}_line2\n$1OPH${oph}_line3\n"/ge;
+    $_[0] =~
+s/%outsidePreHandler(\d+)%/$oph++;"$1OPH${oph}_line1\n$1OPH${oph}_line2\n$1OPH${oph}_line3\n"/ge;
 }
 
 #$TWikiCompatibility{insidePREHandler} = 1.1;
 sub insidePREHandler {
+
     # Replace the text "%insidePREHandler%" with some
     # recognisable text.
-    $_[0] =~ s/%insidePreHandler(\d+)%/$iph++;"$1IPH${iph}_line1\n$1IPH${iph}_line2\n$1IPH${iph}_line3\n"/ge;
+    $_[0] =~
+s/%insidePreHandler(\d+)%/$iph++;"$1IPH${iph}_line1\n$1IPH${iph}_line2\n$1IPH${iph}_line3\n"/ge;
 }
 
 sub postRenderingHandler {
     my $q = TWiki::Func::getCgiQuery();
     my $t;
-    $t = $q->param( 'test' ) if ( $q );
+    $t = $q->param('test') if ($q);
     $t = '' unless $t;
 
     if ( $t eq 'compare' && $_[0] =~ /<!--\s*actual\s*-->/ ) {
         my ( $meta, $expected ) = TWiki::Func::readTopic( $web, $topic );
-        my $res = _compareExpectedWithActual( _parse( $expected, 'expected' ),
-                                              _parse( $_[0], 'actual' ),
-                                              $topic, $web);
-        if ( $res ) {
+        my $res = _compareExpectedWithActual(
+            _parse( $expected, 'expected' ),
+            _parse( $_[0],     'actual' ),
+            $topic, $web
+        );
+        if ($res) {
             $res = "<font color=\"red\">TESTS FAILED</font><p />$res";
-        } else {
+        }
+        else {
             $res = "<font color=\"green\">ALL TESTS PASSED</font>";
         }
         $_[0] = $res;

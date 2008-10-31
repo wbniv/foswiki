@@ -144,22 +144,22 @@ sub _parseParameters {
     $tmp           = $params{sort};
     $tmp           = '0' if ( defined $tmp && $tmp =~ /^off$/oi );
     $sortAllTables = $tmp if ( defined $tmp && $tmp ne '' );
-    
-    # If EditTablePlugin is installed and we are editing a table, the CGI
-    # parameter 'sort' is defined as "off" to disable all header sorting ((Item5135)
+
+# If EditTablePlugin is installed and we are editing a table, the CGI
+# parameter 'sort' is defined as "off" to disable all header sorting ((Item5135)
     my $cgi = TWiki::Func::getCgiQuery();
     $tmp = $cgi->param('sort');
     if ( defined $tmp && $tmp =~ /^off$/oi ) {
         undef $sortAllTables;
     }
 
-    # If EditTablePlugin is installed and we are editing a table, the 
+    # If EditTablePlugin is installed and we are editing a table, the
     # 'disableallsort' TABLE parameter is added to disable initsort and header
     # sorting in the table that is being edited. (Item5135)
     $tmp = $params{disableallsort};
     if ( defined $tmp && $tmp =~ /^on$/oi ) {
         undef $sortAllTables;
-        undef $initSort;        
+        undef $initSort;
     }
 
     $tmp = $params{tableborder};
@@ -582,7 +582,8 @@ sub _processTableRow {
 
     $theRow =~ s/\t/   /go;    # change tabs to space
     $theRow =~ s/\s*$//o;      # remove trailing spaces
-    $theRow =~ s/(\|\|+)/'colspan'.$translationToken.length($1)."\|"/geo;   # calc COLSPAN
+    $theRow =~
+      s/(\|\|+)/'colspan'.$translationToken.length($1)."\|"/geo;  # calc COLSPAN
     my $colCount = 0;
     my @row      = ();
     $span = 0;
@@ -1318,7 +1319,7 @@ sub emitTable {
             }
         }
 
-        $stype = $columnType{'UNDEFINED'}; # default value
+        $stype = $columnType{'UNDEFINED'};    # default value
 
         # only get the column type if within bounds
         if ( $sortCol < $maxCols ) {
@@ -1337,14 +1338,12 @@ sub emitTable {
                 # SMELL: efficient? That's not efficient!
                 @curTable = map { $_->[0] }
                   sort { $b->[1] cmp $a->[1] }
-                  map { [ $_, lc( $_->[$sortCol]->{text} ) ] }
-                  @curTable;
+                  map { [ $_, lc( $_->[$sortCol]->{text} ) ] } @curTable;
             }
             if ( $currentSortDirection == $sortDirection{'ASCENDING'} ) {
                 @curTable = map { $_->[0] }
                   sort { $a->[1] cmp $b->[1] }
-                  map { [ $_, lc( $_->[$sortCol]->{text} ) ] }
-                  @curTable;
+                  map { [ $_, lc( $_->[$sortCol]->{text} ) ] } @curTable;
             }
         }
         else {
@@ -1637,29 +1636,30 @@ sub emitTable {
         my $isHeaderRow = ( $headerCellCount == $colCount );
         my $isFooterRow = ( ( $numberOfRows - $rowCount ) <= $footerRows );
 
-		if (!$isHeaderRow && !$isFooterRow) {
-			# don't include non-adjacent header rows to the top block of header rows
-			$isPastHeaderRows = 1;
-		}
-		
-		
+        if ( !$isHeaderRow && !$isFooterRow ) {
+
+        # don't include non-adjacent header rows to the top block of header rows
+            $isPastHeaderRows = 1;
+        }
+
         if ($isFooterRow) {
             push @footerRowList, $rowHTML;
         }
-        elsif ($isHeaderRow && !$isPastHeaderRows) {
+        elsif ( $isHeaderRow && !$isPastHeaderRows ) {
             push( @headerRowList, $rowHTML );
         }
         else {
             push @bodyRowList, $rowHTML;
             $dataColorCount++;
         }
-        
-		if ($isHeaderRow) {
-			# reset data color count to start with first color after
+
+        if ($isHeaderRow) {
+
+            # reset data color count to start with first color after
             # each table heading
             $dataColorCount = 0;
-		}
-		
+        }
+
         $rowCount++;
     }    # foreach my $row ( @curTable )
 
@@ -1676,7 +1676,9 @@ sub emitTable {
     $text .= $currTablePre . $tfoot if scalar @footerRowList;
 
     my $tbody =
-      "$singleIndent<tbody>" . join( "", @bodyRowList ) . "$singleIndent</tbody>";
+        "$singleIndent<tbody>"
+      . join( "", @bodyRowList )
+      . "$singleIndent</tbody>";
     $text .= $currTablePre . $tbody if scalar @bodyRowList;
 
     $text .= $currTablePre . CGI::end_table() . "\n";
@@ -1697,12 +1699,12 @@ sub handler {
         return unless $cgi;
 
         # Copy existing values
-        my (@origSort, @origTable, @origUp);
+        my ( @origSort, @origTable, @origUp );
         @origSort  = $cgi->param('sortcol');
         @origTable = $cgi->param('table');
         @origUp    = $cgi->param('up');
-        $cgi->delete('sortcol', 'table', 'up');
-        $url = $cgi->url(-absolute => 1, -path => 1) . '?';
+        $cgi->delete( 'sortcol', 'table', 'up' );
+        $url = $cgi->url( -absolute => 1, -path => 1 ) . '?';
         my $queryString = $cgi->query_string();
         $url .= $queryString . ';' if $queryString;
 

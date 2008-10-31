@@ -39,13 +39,17 @@ $VERSION = '$Rev: 17303 $';
 # of the version number in PLUGINDESCRIPTIONS.
 $RELEASE = '03 Aug 2008';
 
-$SHORTDESCRIPTION = 'Allows users to quickly post comments to a page without an edit/preview/save cycle';
+$SHORTDESCRIPTION =
+'Allows users to quickly post comments to a page without an edit/preview/save cycle';
 
 sub initPlugin {
+
     #my ( $topic, $web, $user, $installWeb ) = @_;
 
-    if( $TWiki::Plugins::VERSION < 1.026 ) {
-        TWiki::Func::writeWarning( "CommentPlugin $VERSION requires TWiki::Plugins::VERSION >= 1.026, $TWiki::Plugins::VERSION found." );
+    if ( $TWiki::Plugins::VERSION < 1.026 ) {
+        TWiki::Func::writeWarning(
+"CommentPlugin $VERSION requires TWiki::Plugins::VERSION >= 1.026, $TWiki::Plugins::VERSION found."
+        );
         return 0;
     }
 
@@ -58,19 +62,21 @@ sub commonTagsHandler {
     require TWiki::Plugins::CommentPlugin::Comment;
 
     my $query = TWiki::Func::getCgiQuery();
-    return unless( defined( $query ));
+    return unless ( defined($query) );
 
     return unless $_[0] =~ m/%COMMENT({.*?})?%/o;
 
     # SMELL: Nasty, tacky way to find out where we were invoked from
     my $scriptname = $ENV{'SCRIPT_NAME'} || '';
+
     # SMELL: unreliable
-    my $previewing = ($scriptname =~ /\/(preview|gnusave|rdiff)/);
-    TWiki::Plugins::CommentPlugin::Comment::prompt( $previewing,
-                                                    $_[0], $web, $topic );
+    my $previewing = ( $scriptname =~ /\/(preview|gnusave|rdiff)/ );
+    TWiki::Plugins::CommentPlugin::Comment::prompt( $previewing, $_[0], $web,
+        $topic );
 }
 
 sub beforeSaveHandler {
+
     #my ( $text, $topic, $web ) = @_;
 
     require TWiki::Plugins::CommentPlugin::Comment;
@@ -80,8 +86,8 @@ sub beforeSaveHandler {
 
     my $action = $query->param('comment_action');
 
-    return unless( defined( $action ) && $action eq 'save' );
-    TWiki::Plugins::CommentPlugin::Comment::save( @_ );
+    return unless ( defined($action) && $action eq 'save' );
+    TWiki::Plugins::CommentPlugin::Comment::save(@_);
 }
 
 1;

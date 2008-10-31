@@ -8,7 +8,7 @@ use base qw( TWikiFnTestCase );
 use strict;
 
 sub new {
-    my $self = shift()->SUPER::new('URLPARAM', @_);
+    my $self = shift()->SUPER::new( 'URLPARAM', @_ );
     return $self;
 }
 
@@ -24,36 +24,37 @@ sub test_default {
 
     # test default parameter
 
-    $str = $this->{twiki}->handleCommonTags(
-        '%URLPARAM{"foo"}%', $this->{test_web}, $this->{test_topic});
-    $this->assert_str_equals('', "$str");
+    $str =
+      $this->{twiki}->handleCommonTags( '%URLPARAM{"foo"}%', $this->{test_web},
+        $this->{test_topic} );
+    $this->assert_str_equals( '', "$str" );
 
-    $str = $this->{twiki}->handleCommonTags(
-        '%URLPARAM{"foo" default="0"}%', $this->{test_web}, $this->{test_topic});
-    $this->assert_str_equals('0', "$str");
+    $str = $this->{twiki}->handleCommonTags( '%URLPARAM{"foo" default="0"}%',
+        $this->{test_web}, $this->{test_topic} );
+    $this->assert_str_equals( '0', "$str" );
 
-    $str = $this->{twiki}->handleCommonTags(
-        '%URLPARAM{"foo" default=""}%', $this->{test_web}, $this->{test_topic});
-    $this->assert_str_equals('', "$str");
+    $str = $this->{twiki}->handleCommonTags( '%URLPARAM{"foo" default=""}%',
+        $this->{test_web}, $this->{test_topic} );
+    $this->assert_str_equals( '', "$str" );
 
-    $str = $this->{twiki}->handleCommonTags(
-        '%URLPARAM{"foo" default="bar"}%', $this->{test_web}, $this->{test_topic});
-    $this->assert_str_equals('bar', "$str");
+    $str = $this->{twiki}->handleCommonTags( '%URLPARAM{"foo" default="bar"}%',
+        $this->{test_web}, $this->{test_topic} );
+    $this->assert_str_equals( 'bar', "$str" );
 
-    $this->{twiki}->{cgiQuery}->param( -name=>'foo', -value=>'bar');
-    $str = $this->{twiki}->handleCommonTags(
-        '%URLPARAM{"foo" default="0"}%', $this->{test_web}, $this->{test_topic});
-    $this->assert_str_equals('bar', "$str");
+    $this->{twiki}->{cgiQuery}->param( -name => 'foo', -value => 'bar' );
+    $str = $this->{twiki}->handleCommonTags( '%URLPARAM{"foo" default="0"}%',
+        $this->{test_web}, $this->{test_topic} );
+    $this->assert_str_equals( 'bar', "$str" );
 
-    $this->{twiki}->{cgiQuery}->param( -name=>'foo', -value=>'0');
-    $str = $this->{twiki}->handleCommonTags(
-        '%URLPARAM{"foo" default="bar"}%', $this->{test_web}, $this->{test_topic});
-    $this->assert_str_equals('0', "$str");
+    $this->{twiki}->{cgiQuery}->param( -name => 'foo', -value => '0' );
+    $str = $this->{twiki}->handleCommonTags( '%URLPARAM{"foo" default="bar"}%',
+        $this->{test_web}, $this->{test_topic} );
+    $this->assert_str_equals( '0', "$str" );
 
-    $this->{twiki}->{cgiQuery}->param( -name=>'foo', -value=>'');
-    $str = $this->{twiki}->handleCommonTags(
-        '%URLPARAM{"foo" default="bar"}%', $this->{test_web}, $this->{test_topic});
-    $this->assert_str_equals('', "$str");
+    $this->{twiki}->{cgiQuery}->param( -name => 'foo', -value => '' );
+    $str = $this->{twiki}->handleCommonTags( '%URLPARAM{"foo" default="bar"}%',
+        $this->{test_web}, $this->{test_topic} );
+    $this->assert_str_equals( '', "$str" );
 }
 
 sub test_encode {
@@ -61,20 +62,21 @@ sub test_encode {
 
     my $str;
 
-    $this->{twiki}->{cgiQuery}->param( -name=>'foo', -value=>'&?*!"');
-    $str = $this->{twiki}->handleCommonTags(
-        '%URLPARAM{"foo" encode="entity"}%', $this->{test_web}, $this->{test_topic});
-    $this->assert_str_equals('&#38;?&#42;!&#34;', "$str");
+    $this->{twiki}->{cgiQuery}->param( -name => 'foo', -value => '&?*!"' );
+    $str =
+      $this->{twiki}->handleCommonTags( '%URLPARAM{"foo" encode="entity"}%',
+        $this->{test_web}, $this->{test_topic} );
+    $this->assert_str_equals( '&#38;?&#42;!&#34;', "$str" );
 
-    $this->{twiki}->{cgiQuery}->param( -name=>'foo', -value=>'&?*!" ');
-    $str = $this->{twiki}->handleCommonTags(
-        '%URLPARAM{"foo" encode="url"}%', $this->{test_web}, $this->{test_topic});
-    $this->assert_str_equals('%26%3f*!%22%20', "$str");
+    $this->{twiki}->{cgiQuery}->param( -name => 'foo', -value => '&?*!" ' );
+    $str = $this->{twiki}->handleCommonTags( '%URLPARAM{"foo" encode="url"}%',
+        $this->{test_web}, $this->{test_topic} );
+    $this->assert_str_equals( '%26%3f*!%22%20', "$str" );
 
-    $this->{twiki}->{cgiQuery}->param( -name=>'foo', -value=>'&?*!" ');
-    $str = $this->{twiki}->handleCommonTags(
-        '%URLPARAM{"foo" encode="quote"}%', $this->{test_web}, $this->{test_topic});
-    $this->assert_str_equals('&?*!\" ', "$str");
+    $this->{twiki}->{cgiQuery}->param( -name => 'foo', -value => '&?*!" ' );
+    $str = $this->{twiki}->handleCommonTags( '%URLPARAM{"foo" encode="quote"}%',
+        $this->{test_web}, $this->{test_topic} );
+    $this->assert_str_equals( '&?*!\" ', "$str" );
 }
 
 sub test_defaultencode {
@@ -82,17 +84,23 @@ sub test_defaultencode {
 
     my $str;
 
-    $str = $this->{twiki}->handleCommonTags(
-        '%URLPARAM{"foo" default="&?*!\" " encode="entity"}%', $this->{test_web}, $this->{test_topic});
-    $this->assert_str_equals('&?*!" ', "$str");
+    $str =
+      $this->{twiki}
+      ->handleCommonTags( '%URLPARAM{"foo" default="&?*!\" " encode="entity"}%',
+        $this->{test_web}, $this->{test_topic} );
+    $this->assert_str_equals( '&?*!" ', "$str" );
 
-    $str = $this->{twiki}->handleCommonTags(
-        '%URLPARAM{"foo" default="&?*!\" " encode="url"}%', $this->{test_web}, $this->{test_topic});
-    $this->assert_str_equals('&?*!" ', "$str");
+    $str =
+      $this->{twiki}
+      ->handleCommonTags( '%URLPARAM{"foo" default="&?*!\" " encode="url"}%',
+        $this->{test_web}, $this->{test_topic} );
+    $this->assert_str_equals( '&?*!" ', "$str" );
 
-    $str = $this->{twiki}->handleCommonTags(
-        '%URLPARAM{"foo" default="&?*!\" " encode="quote"}%', $this->{test_web}, $this->{test_topic});
-    $this->assert_str_equals('&?*!" ', "$str");
+    $str =
+      $this->{twiki}
+      ->handleCommonTags( '%URLPARAM{"foo" default="&?*!\" " encode="quote"}%',
+        $this->{test_web}, $this->{test_topic} );
+    $this->assert_str_equals( '&?*!" ', "$str" );
 }
 
 sub test_multiple {
@@ -100,37 +108,54 @@ sub test_multiple {
 
     my $str;
 
-    my @multiple=('foo','bar','baz');
+    my @multiple = ( 'foo', 'bar', 'baz' );
 
-    $this->{twiki}->{cgiQuery}->param( -name=>'multi', -value=>['foo','bar','baz']);
-    $str = $this->{twiki}->handleCommonTags(
-        '%URLPARAM{"multi" multiple="on"}%', $this->{test_web}, $this->{test_topic});
-    $this->assert_str_equals("foo\nbar\nbaz", "$str");
+    $this->{twiki}->{cgiQuery}
+      ->param( -name => 'multi', -value => [ 'foo', 'bar', 'baz' ] );
+    $str =
+      $this->{twiki}->handleCommonTags( '%URLPARAM{"multi" multiple="on"}%',
+        $this->{test_web}, $this->{test_topic} );
+    $this->assert_str_equals( "foo\nbar\nbaz", "$str" );
 
-    $this->{twiki}->{cgiQuery}->param( -name=>'multi', -value=>['foo','bar','baz']);
-    $str = $this->{twiki}->handleCommonTags(
-        '%URLPARAM{"multi" multiple="on" separator=","}%', $this->{test_web}, $this->{test_topic});
-    $this->assert_str_equals("foo,bar,baz", "$str");
+    $this->{twiki}->{cgiQuery}
+      ->param( -name => 'multi', -value => [ 'foo', 'bar', 'baz' ] );
+    $str =
+      $this->{twiki}
+      ->handleCommonTags( '%URLPARAM{"multi" multiple="on" separator=","}%',
+        $this->{test_web}, $this->{test_topic} );
+    $this->assert_str_equals( "foo,bar,baz", "$str" );
 
-    $this->{twiki}->{cgiQuery}->param( -name=>'multi', -value=>['foo','bar','baz']);
-    $str = $this->{twiki}->handleCommonTags(
-        '%URLPARAM{"multi" multiple="on" separator=""}%', $this->{test_web}, $this->{test_topic});
-    $this->assert_str_equals("foobarbaz", "$str");
+    $this->{twiki}->{cgiQuery}
+      ->param( -name => 'multi', -value => [ 'foo', 'bar', 'baz' ] );
+    $str =
+      $this->{twiki}
+      ->handleCommonTags( '%URLPARAM{"multi" multiple="on" separator=""}%',
+        $this->{test_web}, $this->{test_topic} );
+    $this->assert_str_equals( "foobarbaz", "$str" );
 
-    $this->{twiki}->{cgiQuery}->param( -name=>'multi', -value=>['foo','bar','baz']);
-    $str = $this->{twiki}->handleCommonTags(
-        '%URLPARAM{"multi" multiple="-$item-" separator=" "}%', $this->{test_web}, $this->{test_topic});
-    $this->assert_str_equals("-foo- -bar- -baz-", "$str");
+    $this->{twiki}->{cgiQuery}
+      ->param( -name => 'multi', -value => [ 'foo', 'bar', 'baz' ] );
+    $str =
+      $this->{twiki}->handleCommonTags(
+        '%URLPARAM{"multi" multiple="-$item-" separator=" "}%',
+        $this->{test_web}, $this->{test_topic} );
+    $this->assert_str_equals( "-foo- -bar- -baz-", "$str" );
 
-    $this->{twiki}->{cgiQuery}->param( -name=>'multi', -value=>['foo','bar','baz']);
-    $str = $this->{twiki}->handleCommonTags(
-        '%URLPARAM{"multi" multiple="-$item-" separator=""}%', $this->{test_web}, $this->{test_topic});
-    $this->assert_str_equals("-foo--bar--baz-", "$str");
+    $this->{twiki}->{cgiQuery}
+      ->param( -name => 'multi', -value => [ 'foo', 'bar', 'baz' ] );
+    $str =
+      $this->{twiki}
+      ->handleCommonTags( '%URLPARAM{"multi" multiple="-$item-" separator=""}%',
+        $this->{test_web}, $this->{test_topic} );
+    $this->assert_str_equals( "-foo--bar--baz-", "$str" );
 
-    $this->{twiki}->{cgiQuery}->param( -name=>'multi', -value=>['foo','bar','baz']);
-    $str = $this->{twiki}->handleCommonTags(
-        '%URLPARAM{"multi" multiple="-$item-"}%', $this->{test_web}, $this->{test_topic});
-    $this->assert_str_equals("-foo-\n-bar-\n-baz-", "$str");
+    $this->{twiki}->{cgiQuery}
+      ->param( -name => 'multi', -value => [ 'foo', 'bar', 'baz' ] );
+    $str =
+      $this->{twiki}
+      ->handleCommonTags( '%URLPARAM{"multi" multiple="-$item-"}%',
+        $this->{test_web}, $this->{test_topic} );
+    $this->assert_str_equals( "-foo-\n-bar-\n-baz-", "$str" );
 }
 
 sub test_newline {
@@ -138,15 +163,19 @@ sub test_newline {
 
     my $str;
 
-    $this->{twiki}->{cgiQuery}->param( -name=>'textarea', -value=>"foo\nbar\nbaz\n");
-    $str = $this->{twiki}->handleCommonTags(
-        '%URLPARAM{"textarea" newline="-"}%', $this->{test_web}, $this->{test_topic});
-    $this->assert_str_equals("foo-bar-baz-", "$str");
+    $this->{twiki}->{cgiQuery}
+      ->param( -name => 'textarea', -value => "foo\nbar\nbaz\n" );
+    $str =
+      $this->{twiki}->handleCommonTags( '%URLPARAM{"textarea" newline="-"}%',
+        $this->{test_web}, $this->{test_topic} );
+    $this->assert_str_equals( "foo-bar-baz-", "$str" );
 
-    $this->{twiki}->{cgiQuery}->param( -name=>'textarea', -value=>"foo\nbar\nbaz\n");
-    $str = $this->{twiki}->handleCommonTags(
-        '%URLPARAM{"textarea" newline=""}%', $this->{test_web}, $this->{test_topic});
-    $this->assert_str_equals("foobarbaz", "$str");
+    $this->{twiki}->{cgiQuery}
+      ->param( -name => 'textarea', -value => "foo\nbar\nbaz\n" );
+    $str =
+      $this->{twiki}->handleCommonTags( '%URLPARAM{"textarea" newline=""}%',
+        $this->{test_web}, $this->{test_topic} );
+    $this->assert_str_equals( "foobarbaz", "$str" );
 }
 
 1;

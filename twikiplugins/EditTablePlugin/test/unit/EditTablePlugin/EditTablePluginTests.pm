@@ -25,7 +25,8 @@ sub set_up {
     #    $this->{sup} = $this->{twiki}->getScriptUrl(0, 'view');
     $TWiki::cfg{AntiSpam}{RobotsAreWelcome} = 1;
     $TWiki::cfg{AllowInlineScript} = 0;
-    #$TWiki::cfg{TablePlugin}{Attributes} = 'tableborder="1" cellpadding="0" cellspacing="0" valign="top" headercolor="#252b37" headerbg="#d8dde4" headerbgsorted="#ced4dd" headercolor="#252b37" databg="#ffffff,#f2f3f6" databgsorted="#f3f5f7,#e7e9ee" tablerules="cols"';
+
+#$TWiki::cfg{TablePlugin}{Attributes} = 'tableborder="1" cellpadding="0" cellspacing="0" valign="top" headercolor="#252b37" headerbg="#d8dde4" headerbgsorted="#ced4dd" headercolor="#252b37" databg="#ffffff,#f2f3f6" databgsorted="#f3f5f7,#e7e9ee" tablerules="cols"';
 
     $ENV{SCRIPT_NAME} = '';    #  required by fake sort URLs in expected text
 }
@@ -46,14 +47,13 @@ sub do_testHtmlOutput {
             $topicName );
     }
 
-
     # remove ever changing bgcolors from table cells
     # as well as the rules property
     # these are not important for these tests now
     $expected =~ s/bgcolor\=\"*\#[a-z0-9]{6}\"*//go;
-    $actual =~ s/bgcolor\=\"*\#[a-z0-9]{6}\"*//go;
+    $actual   =~ s/bgcolor\=\"*\#[a-z0-9]{6}\"*//go;
     $expected =~ s/rules\=\"*(cols|rows|all)\"*//go;
-    $actual =~ s/rules\=\"*(cols|rows|all)\"*//go;
+    $actual   =~ s/rules\=\"*(cols|rows|all)\"*//go;
 
     $this->assert_html_equals( $expected, $actual );
 }
@@ -270,7 +270,7 @@ INPUT
 </form>
 </div><!-- /editTable --></noautolink>
 EXPECTED
-    
+
     $this->do_testHtmlOutput( $expected, $result, 0 );
 
     # Add 2 rows
@@ -353,13 +353,16 @@ EXPECTED
         $input );
 
     $twiki = new TWiki( undef, $query );
-	my $response = new Unit::Response;
+    my $response = new Unit::Response;
     $TWiki::Plugins::SESSION = $twiki;
 
     my ( $saveResult, $ecode ) = $this->capture(
         sub {
-            $response->body(TWiki::Func::expandCommonVariables( $input,
-                $this->{test_topic}, $this->{test_web}, undef ) );
+            $response->body(
+                TWiki::Func::expandCommonVariables(
+                    $input, $this->{test_topic}, $this->{test_web}, undef
+                )
+            );
         }
     );
     $this->assert( $saveResult =~ /Status: 302/ );
@@ -657,13 +660,16 @@ INPUT
         $input );
 
     $twiki = new TWiki( undef, $query );
-	my $response = new Unit::Response;
+    my $response = new Unit::Response;
     $TWiki::Plugins::SESSION = $twiki;
 
     my ( $saveResult, $ecode ) = $this->capture(
         sub {
-            $response->body( TWiki::Func::expandCommonVariables( $input,
-                $this->{test_topic}, $this->{test_web}, undef ) );
+            $response->body(
+                TWiki::Func::expandCommonVariables(
+                    $input, $this->{test_topic}, $this->{test_web}, undef
+                )
+            );
         }
     );
 
@@ -724,13 +730,16 @@ INPUT
         $input );
 
     $twiki = new TWiki( undef, $query );
-	my $response = new Unit::Response;
+    my $response = new Unit::Response;
     $TWiki::Plugins::SESSION = $twiki;
 
     my ( $saveResult, $ecode ) = $this->capture(
         sub {
-            $response->body( TWiki::Func::expandCommonVariables( $input,
-                $this->{test_topic}, $this->{test_web}, undef ) );
+            $response->body(
+                TWiki::Func::expandCommonVariables(
+                    $input, $this->{test_topic}, $this->{test_web}, undef
+                )
+            );
         }
     );
 
@@ -758,7 +767,7 @@ Test if cells with a space do not voided (and rendered with a colspan): text fie
 =cut
 
 sub test_keepSpacesInEmptyCellsWithTexts {
-    my $this = shift;
+    my $this      = shift;
     my $topicName = $this->{test_topic};
     my $webName   = $this->{test_web};
     my $viewUrlAuth =
@@ -780,7 +789,7 @@ INPUT
     $query->path_info("/$webName/$topicName");
     my $twiki = new TWiki( undef, $query );
     $TWiki::Plugins::SESSION = $twiki;
-    $query = new Unit::Request(
+    $query                   = new Unit::Request(
         {
             etsave    => ['on'],
             ettablenr => ['1'],
@@ -790,12 +799,15 @@ INPUT
     TWiki::Func::saveTopic( $this->{test_web}, $this->{test_topic}, undef,
         $input );
     $twiki = new TWiki( undef, $query );
-	my $response = new Unit::Response;
+    my $response = new Unit::Response;
     $TWiki::Plugins::SESSION = $twiki;
     my ( $saveResult, $ecode ) = $this->capture(
         sub {
-            $response->body(TWiki::Func::expandCommonVariables( $input,
-                $this->{test_topic}, $this->{test_web}, undef ) );
+            $response->body(
+                TWiki::Func::expandCommonVariables(
+                    $input, $this->{test_topic}, $this->{test_web}, undef
+                )
+            );
         }
     );
     my ( $meta, $newtext ) = TWiki::Func::readTopic( $webName, $topicName );
@@ -816,7 +828,7 @@ Test if cells with a space do not voided (and rendered with a colspan): date fie
 =cut
 
 sub test_keepSpacesInEmptyCellsWithDates {
-    my $this = shift;
+    my $this      = shift;
     my $topicName = $this->{test_topic};
     my $webName   = $this->{test_web};
     my $viewUrlAuth =
@@ -839,7 +851,7 @@ INPUT
     $query->path_info("/$webName/$topicName");
     my $twiki = new TWiki( undef, $query );
     $TWiki::Plugins::SESSION = $twiki;
-    $query = new Unit::Request(
+    $query                   = new Unit::Request(
         {
             etsave    => ['on'],
             ettablenr => ['1'],
@@ -849,12 +861,15 @@ INPUT
     TWiki::Func::saveTopic( $this->{test_web}, $this->{test_topic}, undef,
         $input );
     $twiki = new TWiki( undef, $query );
-	my $response = new Unit::Response;
+    my $response = new Unit::Response;
     $TWiki::Plugins::SESSION = $twiki;
     my ( $saveResult, $ecode ) = $this->capture(
         sub {
-            $response->body(TWiki::Func::expandCommonVariables( $input,
-                $this->{test_topic}, $this->{test_web}, undef ) );
+            $response->body(
+                TWiki::Func::expandCommonVariables(
+                    $input, $this->{test_topic}, $this->{test_web}, undef
+                )
+            );
         }
     );
     my ( $meta, $newtext ) = TWiki::Func::readTopic( $webName, $topicName );
@@ -879,7 +894,7 @@ If a merge feature is added please pay attention to Item5217
 =cut
 
 sub test_addSpacesToEmptyCells {
-    my $this = shift;
+    my $this      = shift;
     my $topicName = $this->{test_topic};
     my $webName   = $this->{test_web};
     my $viewUrlAuth =
@@ -900,7 +915,7 @@ INPUT
     $query->path_info("/$webName/$topicName");
     my $twiki = new TWiki( undef, $query );
     $TWiki::Plugins::SESSION = $twiki;
-    $query = new Unit::Request(
+    $query                   = new Unit::Request(
         {
             etsave    => ['on'],
             ettablenr => ['1'],
@@ -910,12 +925,15 @@ INPUT
     TWiki::Func::saveTopic( $this->{test_web}, $this->{test_topic}, undef,
         $input );
     $twiki = new TWiki( undef, $query );
-	my $response = new Unit::Response;
+    my $response = new Unit::Response;
     $TWiki::Plugins::SESSION = $twiki;
     my ( $saveResult, $ecode ) = $this->capture(
         sub {
-            $response->body(TWiki::Func::expandCommonVariables( $input,
-                $this->{test_topic}, $this->{test_web}, undef ) );
+            $response->body(
+                TWiki::Func::expandCommonVariables(
+                    $input, $this->{test_topic}, $this->{test_web}, undef
+                )
+            );
         }
     );
     my ( $meta, $newtext ) = TWiki::Func::readTopic( $webName, $topicName );
@@ -949,9 +967,8 @@ sub test_TMLFormattingInsideCell {
 INPUT
 
     my $result =
-      TWiki::Func::expandCommonVariables( $input, $topicName,
-        $webName, undef );
-        
+      TWiki::Func::expandCommonVariables( $input, $topicName, $webName, undef );
+
     my $expected = <<NEWEXPECTED;
 <a name="edittable1"></a>
 <div class="editTable">
@@ -974,7 +991,7 @@ NEWEXPECTED
 }
 
 sub test_keepStars {
-    my $this = shift;
+    my $this      = shift;
     my $topicName = $this->{test_topic};
     my $webName   = $this->{test_web};
     my $viewUrlAuth =
@@ -994,7 +1011,7 @@ INPUT
     $query->path_info("/$webName/$topicName");
     my $twiki = new TWiki( undef, $query );
     $TWiki::Plugins::SESSION = $twiki;
-    $query = new Unit::Request(
+    $query                   = new Unit::Request(
         {
             etsave    => ['on'],
             ettablenr => ['1'],
@@ -1004,12 +1021,15 @@ INPUT
     TWiki::Func::saveTopic( $this->{test_web}, $this->{test_topic}, undef,
         $input );
     $twiki = new TWiki( undef, $query );
-	my $response = new Unit::Response;
+    my $response = new Unit::Response;
     $TWiki::Plugins::SESSION = $twiki;
     my ( $saveResult, $ecode ) = $this->capture(
         sub {
-            $response->body(TWiki::Func::expandCommonVariables( $input,
-                $this->{test_topic}, $this->{test_web}, undef ) );
+            $response->body(
+                TWiki::Func::expandCommonVariables(
+                    $input, $this->{test_topic}, $this->{test_web}, undef
+                )
+            );
         }
     );
     my ( $meta, $newtext ) = TWiki::Func::readTopic( $webName, $topicName );
@@ -1028,7 +1048,7 @@ Test if linebreaks inside input fields are kept.
 =cut
 
 sub test_lineBreaksInsideInputField {
-    my $this = shift;
+    my $this      = shift;
     my $topicName = $this->{test_topic};
     my $webName   = $this->{test_web};
     my $viewUrlAuth =
@@ -1048,7 +1068,7 @@ INPUT
     $query->path_info("/$webName/$topicName");
     my $twiki = new TWiki( undef, $query );
     $TWiki::Plugins::SESSION = $twiki;
-    $query = new Unit::Request(
+    $query                   = new Unit::Request(
         {
             etsave    => ['on'],
             ettablenr => ['1'],
@@ -1058,12 +1078,15 @@ INPUT
     TWiki::Func::saveTopic( $this->{test_web}, $this->{test_topic}, undef,
         $input );
     $twiki = new TWiki( undef, $query );
-	my $response = new Unit::Response;
+    my $response = new Unit::Response;
     $TWiki::Plugins::SESSION = $twiki;
     my ( $saveResult, $ecode ) = $this->capture(
         sub {
-            $response->body(TWiki::Func::expandCommonVariables( $input,
-                $this->{test_topic}, $this->{test_web}, undef ) );
+            $response->body(
+                TWiki::Func::expandCommonVariables(
+                    $input, $this->{test_topic}, $this->{test_web}, undef
+                )
+            );
         }
     );
     my ( $meta, $newtext ) = TWiki::Func::readTopic( $webName, $topicName );

@@ -23,11 +23,10 @@
 
 package TWiki::Plugins::SpreadSheetPlugin;
 
-
 # =========================
 use vars qw(
-        $web $topic $user $installWeb $VERSION $RELEASE $debug $skipInclude $doInit
-    );
+  $web $topic $user $installWeb $VERSION $RELEASE $debug $skipInclude $doInit
+);
 
 # This should always be $Rev: 15269 $ so that TWiki can determine the checked-in
 # status of the plugin. It is used by the build automation tools, so
@@ -42,51 +41,57 @@ $RELEASE = 'any TWiki';
 $doInit = 0;
 
 # =========================
-sub initPlugin
-{
+sub initPlugin {
     ( $topic, $web, $user, $installWeb ) = @_;
 
     # check for Plugins.pm versions
-    if( $TWiki::Plugins::VERSION < 1 ) {
-        TWiki::Func::writeWarning( "Version mismatch between SpreadSheetPlugin and Plugins.pm" );
+    if ( $TWiki::Plugins::VERSION < 1 ) {
+        TWiki::Func::writeWarning(
+            "Version mismatch between SpreadSheetPlugin and Plugins.pm");
         return 0;
     }
 
     # Get plugin debug flag
-    $debug = TWiki::Func::getPreferencesFlag( "SPREADSHEETPLUGIN_DEBUG" );
+    $debug = TWiki::Func::getPreferencesFlag("SPREADSHEETPLUGIN_DEBUG");
 
     # Flag to skip calc if in include
-    $skipInclude = TWiki::Func::getPreferencesFlag( "SPREADSHEETPLUGIN_SKIPINCLUDE" );
+    $skipInclude =
+      TWiki::Func::getPreferencesFlag("SPREADSHEETPLUGIN_SKIPINCLUDE");
 
     # Plugin correctly initialized
-    TWiki::Func::writeDebug( "- TWiki::Plugins::SpreadSheetPlugin::initPlugin( $web.$topic ) is OK" ) if $debug;
+    TWiki::Func::writeDebug(
+        "- TWiki::Plugins::SpreadSheetPlugin::initPlugin( $web.$topic ) is OK")
+      if $debug;
     $doInit = 1;
     return 1;
 }
 
 # =========================
-sub commonTagsHandler
-{
+sub commonTagsHandler {
 ### my ( $text, $topic, $web ) = @_;   # do not uncomment, use $_[0], $_[1]... instead
 
-    TWiki::Func::writeDebug( "- SpreadSheetPlugin::commonTagsHandler( $_[2].$_[1] )" ) if $debug;
+    TWiki::Func::writeDebug(
+        "- SpreadSheetPlugin::commonTagsHandler( $_[2].$_[1] )")
+      if $debug;
 
-    if( ( $_[3] ) && ( $skipInclude ) ) {
+    if ( ( $_[3] ) && ($skipInclude) ) {
+
         # bail out, handler called from an %INCLUDE{}%
         return;
     }
-    unless( $_[0] =~ /%CALC\{.*?\}%/ ) {
+    unless ( $_[0] =~ /%CALC\{.*?\}%/ ) {
+
         # nothing to do
         return;
     }
 
     require TWiki::Plugins::SpreadSheetPlugin::Calc;
 
-    if( $doInit ) {
+    if ($doInit) {
         $doInit = 0;
         TWiki::Plugins::SpreadSheetPlugin::Calc::init( $web, $topic, $debug );
     }
-    TWiki::Plugins::SpreadSheetPlugin::Calc::CALC( @_ );
+    TWiki::Plugins::SpreadSheetPlugin::Calc::CALC(@_);
 }
 
 1;

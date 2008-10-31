@@ -7,38 +7,41 @@ use Error qw(:try);
 
 sub new {
     my $class = shift;
-    return bless({}, $class);
+    return bless( {}, $class );
 }
 
 sub start {
-    my $this = shift;
+    my $this  = shift;
     my @files = @_;
-    @{$this->{failures}} = ();
+    @{ $this->{failures} } = ();
     my $passes = 0;
 
     # First use all the tests to get them compiled
-    while (scalar(@files)) {
+    while ( scalar(@files) ) {
         my $suite = shift @files;
         $suite =~ s/^(.*?)(\w+)\.pm$/$2/;
         if ($1) {
-            push(@INC, $1);
+            push( @INC, $1 );
         }
         eval "use $suite";
         if ($@) {
             my $m = "*** Failed to use $suite: $@";
             print $m;
-            push(@{$this->{failures}}, $m);
+            push( @{ $this->{failures} }, $m );
             next;
         }
         print "Running $suite\n";
         my $tester = $suite->new($suite);
-        if ($tester->isa('Unit::TestSuite')) {
+        if ( $tester->isa('Unit::TestSuite') ) {
+
             # Get a list of included tests
-            push(@files, $tester->include_tests());
-        } else {
+            push( @files, $tester->include_tests() );
+        }
+        else {
+
             # Get a list of the test methods in the class
             my @tests = $tester->list_tests($suite);
-            unless (scalar(@tests)) {
+            unless ( scalar(@tests) ) {
                 print "*** No tests in $suite\n";
                 next;
             }
@@ -48,23 +51,29 @@ sub start {
                 try {
                     $tester->$test();
                     $passes++;
-                } catch Error::Simple with {
+                }
+                catch Error::Simple with {
                     my $e = shift;
-                    print "*** ",$e->stringify(),"\n";
-                    push(@{$this->{failures}}, $test."\n".$e->stringify());
+                    print "*** ", $e->stringify(), "\n";
+                    push(
+                        @{ $this->{failures} },
+                        $test . "\n" . $e->stringify()
+                    );
                 };
                 $tester->tear_down();
             }
         }
     }
 
-    if (scalar(@{$this->{failures}})) {
-        print scalar(@{$this->{failures}})." failures\n";
-        print  join("\n---------------------------\n",
-                    @{$this->{failures}}),"\n";
-        print "$passes of ",$passes + scalar(@{$this->{failures}})," test cases passed\n";
-        return scalar(@{$this->{failures}});
-    } else {
+    if ( scalar( @{ $this->{failures} } ) ) {
+        print scalar( @{ $this->{failures} } ) . " failures\n";
+        print join( "\n---------------------------\n", @{ $this->{failures} } ),
+          "\n";
+        print "$passes of ", $passes + scalar( @{ $this->{failures} } ),
+          " test cases passed\n";
+        return scalar( @{ $this->{failures} } );
+    }
+    else {
         print "All tests passed ($passes)\n";
         return 0;
     }

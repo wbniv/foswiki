@@ -2,28 +2,29 @@
 # by MailerContrib.
 
 sub TWiki::Func::pushTopicContext {
-    my( $web, $topic ) = @_;
+    my ( $web, $topic ) = @_;
     my $twiki = $TWiki::Plugins::SESSION;
-    my( $web, $topic ) = $twiki->normalizeWebTopicName( @_ );
+    my ( $web, $topic ) = $twiki->normalizeWebTopicName(@_);
     my $old = {
-        web => $twiki->{webName},
+        web   => $twiki->{webName},
         topic => $twiki->{topicName},
-        mark => $twiki->{prefs}->mark() };
+        mark  => $twiki->{prefs}->mark()
+    };
 
-    push( @{$twiki->{_FUNC_PREFS_STACK}}, $old );
-    $twiki->{webName} = $web;
+    push( @{ $twiki->{_FUNC_PREFS_STACK} }, $old );
+    $twiki->{webName}   = $web;
     $twiki->{topicName} = $topic;
-    $twiki->{prefs}->pushWebPreferences( $web );
+    $twiki->{prefs}->pushWebPreferences($web);
     $twiki->{prefs}->pushPreferences( $web, $topic, 'TOPIC' );
-    $twiki->{prefs}->pushPreferenceValues(
-        'SESSION', $twiki->{loginManager}->getSessionValues() );
+    $twiki->{prefs}->pushPreferenceValues( 'SESSION',
+        $twiki->{loginManager}->getSessionValues() );
 }
 
 sub TWiki::Func::popTopicContext {
     my $twiki = $TWiki::Plugins::SESSION;
-    my $old = pop( @{$twiki->{_FUNC_PREFS_STACK}} );
-    $twiki->{prefs}->restore( $old->{mark});
-    $twiki->{webName} = $old->{web};
+    my $old   = pop( @{ $twiki->{_FUNC_PREFS_STACK} } );
+    $twiki->{prefs}->restore( $old->{mark} );
+    $twiki->{webName}   = $old->{web};
     $twiki->{topicName} = $old->{topic};
 }
 

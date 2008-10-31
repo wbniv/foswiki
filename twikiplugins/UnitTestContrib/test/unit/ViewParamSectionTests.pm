@@ -31,28 +31,26 @@ sub tear_down {
 }
 
 sub _viewSection {
-    my ($this,$section) = @_;
+    my ( $this, $section ) = @_;
 
-    $twiki->{webName} = 'TestCases';
+    $twiki->{webName}   = 'TestCases';
     $twiki->{topicName} = 'IncludeFixtures';
 
     my $query = $twiki->{cgiQuery};
-    $query->param('-name'=>'skin','-value'=>'text');
+    $query->param( '-name' => 'skin', '-value' => 'text' );
     $query->path_info('TestCases/IncludeFixtures');
 
-    $query->param('-name'=>'section','-value'=>$section);
-    my ($text,$result)  =  $this->capture( \&TWiki::UI::View::view, $twiki);
+    $query->param( '-name' => 'section', '-value' => $section );
+    my ( $text, $result ) = $this->capture( \&TWiki::UI::View::view, $twiki );
     $text =~ s/(.*?)\r?\n\r?\n//s;
 
     return ($text);
 }
 
-
 # ----------------------------------------------------------------------
 # General:  All tests assume that formatting parameters (especially
-#           skin) are applied correctly after the section has been 
+#           skin) are applied correctly after the section has been
 #           extracted from the topic
-
 
 # ----------------------------------------------------------------------
 # Purpose:  Test a simple section
@@ -60,8 +58,8 @@ sub _viewSection {
 sub test_sectionFirst {
     my $this = shift;
 
-    my $result  =  $this->_viewSection('first');
-    $this->assert_matches(qr(^\s*This is the first section\s*$)s,$result);
+    my $result = $this->_viewSection('first');
+    $this->assert_matches( qr(^\s*This is the first section\s*$)s, $result );
 }
 
 # ----------------------------------------------------------------------
@@ -71,10 +69,13 @@ sub test_sectionFirst {
 sub test_sectionOuter {
     my $this = shift;
 
-    my $result  =  $this->_viewSection('outer');
-    $this->assert_matches(qr(^\s*This is the start of the outer section)s,$result);
-    $this->assert_matches(qr(This is the whole content of the inner section)s,$result);
-    $this->assert_matches(qr(This is the end of the outer section\s*$)s,$result);
+    my $result = $this->_viewSection('outer');
+    $this->assert_matches( qr(^\s*This is the start of the outer section)s,
+        $result );
+    $this->assert_matches( qr(This is the whole content of the inner section)s,
+        $result );
+    $this->assert_matches( qr(This is the end of the outer section\s*$)s,
+        $result );
 }
 
 # ----------------------------------------------------------------------
@@ -83,8 +84,9 @@ sub test_sectionOuter {
 sub test_sectionInner {
     my $this = shift;
 
-    my $result  =  $this->_viewSection('inner');
-    $this->assert_matches(qr(^\s*This is the whole content of the inner section\s*$)s,$result);
+    my $result = $this->_viewSection('inner');
+    $this->assert_matches(
+        qr(^\s*This is the whole content of the inner section\s*$)s, $result );
 }
 
 # ----------------------------------------------------------------------
@@ -95,8 +97,8 @@ sub test_sectionInner {
 sub test_sectionNotExisting {
     my $this = shift;
 
-    my $result  =  $this->_viewSection('notExisting');
-    $this->assert_matches(qr/\s*/,$result);
+    my $result = $this->_viewSection('notExisting');
+    $this->assert_matches( qr/\s*/, $result );
 }
 
 1;

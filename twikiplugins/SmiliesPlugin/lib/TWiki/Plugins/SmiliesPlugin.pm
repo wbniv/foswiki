@@ -26,8 +26,8 @@ use strict;
 use TWiki::Func;
 
 use vars qw( $VERSION $RELEASE
-            %smiliesUrls %smiliesEmotions
-            $smiliesPubUrl $allPattern $smiliesFormat );
+  %smiliesUrls %smiliesEmotions
+  $smiliesPubUrl $allPattern $smiliesFormat );
 
 # This should always be $Rev: 16048 $ so that TWiki can determine the checked-in
 # status of the plugin. It is used by the build automation tools, so
@@ -40,33 +40,38 @@ $VERSION = '$Rev: 16048 $';
 $RELEASE = 'Dakar';
 
 sub initPlugin {
-    my( $topic, $web, $user, $installWeb ) = @_;
+    my ( $topic, $web, $user, $installWeb ) = @_;
 
     # check for Plugins.pm versions
-    if( $TWiki::Plugins::VERSION < 1.026 ) {
-        TWiki::Func::writeWarning( "Version mismatch between InterwikiPlugin and Plugins.pm" );
+    if ( $TWiki::Plugins::VERSION < 1.026 ) {
+        TWiki::Func::writeWarning(
+            "Version mismatch between InterwikiPlugin and Plugins.pm");
         return 0;
     }
 
     # Get plugin preferences
-    $smiliesFormat =
-      TWiki::Func::getPreferencesValue( 'SMILIESPLUGIN_FORMAT' ) 
-          || '<img src="$url" alt="$tooltip" title="$tooltip" border="0" />';
+    $smiliesFormat = TWiki::Func::getPreferencesValue('SMILIESPLUGIN_FORMAT')
+      || '<img src="$url" alt="$tooltip" title="$tooltip" border="0" />';
 
-    $topic =
-      TWiki::Func::getPreferencesValue( 'SMILIESPLUGIN_TOPIC' ) 
-          || "$installWeb.SmiliesPlugin";
+    $topic = TWiki::Func::getPreferencesValue('SMILIESPLUGIN_TOPIC')
+      || "$installWeb.SmiliesPlugin";
 
     $web = $installWeb;
-    if( $topic =~ /(.+)\.(.+)/ ) {
-        $web = $1;
+    if ( $topic =~ /(.+)\.(.+)/ ) {
+        $web   = $1;
         $topic = $2;
     }
 
     $allPattern = "(";
-    foreach( split( /\n/, TWiki::Func::readTopicText( $web, $topic, undef, 1 ) ) ) {
+    foreach (
+        split( /\n/, TWiki::Func::readTopicText( $web, $topic, undef, 1 ) ) )
+    {
+
         # smilie       url            emotion
-        if( m/^\s*\|\s*<nop>(?:\&nbsp\;)?([^\s|]+)\s*\|\s*%ATTACHURL%\/([^\s]+)\s*\|\s*"([^"|]+)"\s*\|\s*$/o ) {
+        if (
+m/^\s*\|\s*<nop>(?:\&nbsp\;)?([^\s|]+)\s*\|\s*%ATTACHURL%\/([^\s]+)\s*\|\s*"([^"|]+)"\s*\|\s*$/o
+          )
+        {
             $allPattern .= "\Q$1\E|";
             $smiliesUrls{$1}     = $2;
             $smiliesEmotions{$1} = $3;
@@ -75,20 +80,23 @@ sub initPlugin {
     $allPattern =~ s/\|$//o;
     $allPattern .= ")";
     $smiliesPubUrl =
-      TWiki::Func::getUrlHost() . TWiki::Func::getPubUrlPath() .
-          "/$installWeb/SmiliesPlugin";
+        TWiki::Func::getUrlHost()
+      . TWiki::Func::getPubUrlPath()
+      . "/$installWeb/SmiliesPlugin";
 
     # Initialization OK
     return 1;
 }
 
 sub commonTagsHandler {
+
     # my ( $text, $topic, $web ) = @_;
     $_[0] =~ s/%SMILIES%/_allSmiliesTable()/geo;
 }
 
 sub preRenderingHandler {
-#    my ( $text, \%removed ) = @_;
+
+    #    my ( $text, \%removed ) = @_;
 
     $_[0] =~ s/(\s|^)$allPattern(?=\s|$)/_renderSmily($1,$2)/geo;
 }
@@ -98,7 +106,7 @@ sub _renderSmily {
 
     return $thePre unless $theSmily;
 
-    my $text = $thePre.$smiliesFormat;
+    my $text = $thePre . $smiliesFormat;
     $text =~ s/\$emoticon/$theSmily/go;
     $text =~ s/\$tooltip/$smiliesEmotions{$theSmily}/go;
     $text =~ s/\$url/$smiliesPubUrl\/$smiliesUrls{$theSmily}/go;
@@ -109,9 +117,12 @@ sub _renderSmily {
 sub _allSmiliesTable {
     my $text = "| *What to Type* | *Graphic That Will Appear* | *Emotion* |\n";
 
-    foreach my $k ( sort { $smiliesEmotions{$b} cmp $smiliesEmotions{$a} }
-                 keys %smiliesEmotions ) {
-        $text .= "| <nop>$k | $k | ". $smiliesEmotions{$k} ." |\n";
+    foreach my $k (
+        sort { $smiliesEmotions{$b} cmp $smiliesEmotions{$a} }
+        keys %smiliesEmotions
+      )
+    {
+        $text .= "| <nop>$k | $k | " . $smiliesEmotions{$k} . " |\n";
     }
     return $text;
 }

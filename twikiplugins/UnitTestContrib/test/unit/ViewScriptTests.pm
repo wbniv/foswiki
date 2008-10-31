@@ -42,7 +42,7 @@ pretemplate%STARTTEXT%pre%ENDTEXT%posttemplate
 HERE
 
 sub new {
-    my $self = shift()->SUPER::new("ViewScript", @_);
+    my $self = shift()->SUPER::new( "ViewScript", @_ );
     return $self;
 }
 
@@ -52,39 +52,35 @@ sub set_up {
     $this->SUPER::set_up();
 
     $twiki = $this->{twiki};
-    $twiki->{store}->saveTopic(
-        $this->{test_user_wikiname}, $this->{test_web}, 'TestTopic1',
-        $topic1, undef );
-    $twiki->{store}->saveTopic(
-        $this->{test_user_wikiname}, $this->{test_web}, 'ViewoneTemplate',
-        $templateTopicContent1, undef );
-    $twiki->{store}->saveTopic(
-        $this->{test_user_wikiname}, $this->{test_web}, 'ViewtwoTemplate',
-        $templateTopicContent2, undef );
-    $twiki->{store}->saveTopic(
-        $this->{test_user_wikiname}, $this->{test_web}, 'ViewthreeTemplate',
-        $templateTopicContent3, undef );
-    $twiki->{store}->saveTopic(
-        $this->{test_user_wikiname}, $this->{test_web}, 'ViewfourTemplate',
-        $templateTopicContent4, undef );
-    $twiki->{store}->saveTopic(
-        $this->{test_user_wikiname}, $this->{test_web}, 'ViewfiveTemplate',
-        $templateTopicContent5, undef );
+    $twiki->{store}->saveTopic( $this->{test_user_wikiname},
+        $this->{test_web}, 'TestTopic1', $topic1, undef );
+    $twiki->{store}->saveTopic( $this->{test_user_wikiname},
+        $this->{test_web}, 'ViewoneTemplate', $templateTopicContent1, undef );
+    $twiki->{store}->saveTopic( $this->{test_user_wikiname},
+        $this->{test_web}, 'ViewtwoTemplate', $templateTopicContent2, undef );
+    $twiki->{store}->saveTopic( $this->{test_user_wikiname},
+        $this->{test_web}, 'ViewthreeTemplate', $templateTopicContent3, undef );
+    $twiki->{store}->saveTopic( $this->{test_user_wikiname},
+        $this->{test_web}, 'ViewfourTemplate', $templateTopicContent4, undef );
+    $twiki->{store}->saveTopic( $this->{test_user_wikiname},
+        $this->{test_web}, 'ViewfiveTemplate', $templateTopicContent5, undef );
 }
 
 sub setup_view {
     my ( $this, $web, $topic, $tmpl ) = @_;
-    my $query = new CGI({
-        webName => [ $web ],
-        topicName => [ $topic ],
-        template => [ $tmpl ],
-    });
-    $query->path_info( "$web/$topic" );
+    my $query = new CGI(
+        {
+            webName   => [$web],
+            topicName => [$topic],
+            template  => [$tmpl],
+        }
+    );
+    $query->path_info("$web/$topic");
     $twiki = new TWiki( $this->{test_user_login}, $query );
-    my ($text, $result) = $this->capture( \&TWiki::UI::View::view, $twiki);
+    my ( $text, $result ) = $this->capture( \&TWiki::UI::View::view, $twiki );
     $twiki->finish();
     $text =~ s/\r//g;
-    $text =~ s/^.*?\n\n+//s; # remove CGI header
+    $text =~ s/^.*?\n\n+//s;    # remove CGI header
     return $text;
 }
 
@@ -96,21 +92,25 @@ sub test_prepostamble {
 
     $text = $this->setup_view( $this->{test_web}, 'TestTopic1', 'viewone' );
     $text =~ s/\n+$//s;
-    $this->assert_equals('pretemplatepreCONTENT
-postposttemplate', $text);
+    $this->assert_equals(
+        'pretemplatepreCONTENT
+postposttemplate', $text
+    );
 
     $text = $this->setup_view( $this->{test_web}, 'TestTopic1', 'viewtwo' );
-    $this->assert_equals('pretemplateCONTENT
-postposttemplate', $text);
+    $this->assert_equals(
+        'pretemplateCONTENT
+postposttemplate', $text
+    );
 
     $text = $this->setup_view( $this->{test_web}, 'TestTopic1', 'viewthree' );
-    $this->assert_equals('pretemplatepreCONTENTposttemplate', $text);
+    $this->assert_equals( 'pretemplatepreCONTENTposttemplate', $text );
 
     $text = $this->setup_view( $this->{test_web}, 'TestTopic1', 'viewfour' );
-    $this->assert_equals('pretemplateCONTENTposttemplate', $text);
+    $this->assert_equals( 'pretemplateCONTENTposttemplate', $text );
 
     $text = $this->setup_view( $this->{test_web}, 'TestTopic1', 'viewfive' );
-    $this->assert_equals('pretemplateposttemplate', $text);
+    $this->assert_equals( 'pretemplateposttemplate', $text );
 }
 
 1;

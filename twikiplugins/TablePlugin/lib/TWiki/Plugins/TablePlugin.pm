@@ -25,8 +25,8 @@ use strict;
 
 package TWiki::Plugins::TablePlugin;
 
-require TWiki::Func;    # The plugins API
-require TWiki::Plugins; # For the API version
+require TWiki::Func;       # The plugins API
+require TWiki::Plugins;    # For the API version
 
 use vars qw( $topic $installWeb $VERSION $RELEASE $initialised );
 
@@ -41,12 +41,13 @@ $VERSION = '$Rev: 17558 $';
 $RELEASE = '1.036';
 
 sub initPlugin {
-    my( $web, $user );
+    my ( $web, $user );
     ( $topic, $web, $user, $installWeb ) = @_;
 
     # check for Plugins.pm versions
-    if( $TWiki::Plugins::VERSION < 1.026 ) {
-        TWiki::Func::writeWarning( 'Version mismatch between TablePlugin and Plugins.pm' );
+    if ( $TWiki::Plugins::VERSION < 1.026 ) {
+        TWiki::Func::writeWarning(
+            'Version mismatch between TablePlugin and Plugins.pm');
         return 0;
     }
 
@@ -61,13 +62,14 @@ sub initPlugin {
 sub preRenderingHandler {
     ### my ( $text, $removed ) = @_;
 
-    my $sort = TWiki::Func::getPreferencesValue( 'TABLEPLUGIN_SORT' );
-    return unless ($sort && $sort =~ /^(all|attachments)$/) ||
-      $_[0] =~ /%TABLE{.*?}%/;
+    my $sort = TWiki::Func::getPreferencesValue('TABLEPLUGIN_SORT');
+    return
+      unless ( $sort && $sort =~ /^(all|attachments)$/ )
+      || $_[0] =~ /%TABLE{.*?}%/;
 
     # on-demand inclusion
     require TWiki::Plugins::TablePlugin::Core;
-    TWiki::Plugins::TablePlugin::Core::handler( @_ );
+    TWiki::Plugins::TablePlugin::Core::handler(@_);
 }
 
 1;

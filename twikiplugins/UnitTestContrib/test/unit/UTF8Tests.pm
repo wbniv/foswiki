@@ -25,25 +25,25 @@ sub tear_down {
 
 sub DISABLEtest_urlEncodeDecode {
     my $this = shift;
-    my $s = '';
-    my $t = '';
+    my $s    = '';
+    my $t    = '';
 
-    for (my $i = 0; $i < 256; $i++) {
+    for ( my $i = 0 ; $i < 256 ; $i++ ) {
         $s .= chr($i);
     }
     $t = TWiki::urlEncode($s);
-    $this->assert($s eq TWiki::urlDecode($t));
+    $this->assert( $s eq TWiki::urlDecode($t) );
 
     $s = TWiki::urlDecode('%u7FFF%uA1EE');
-    $this->assert_equals(chr(0x7FFF).chr(0xA1EE), $s);
+    $this->assert_equals( chr(0x7FFF) . chr(0xA1EE), $s );
 
     $s = TWiki::urlDecode('%ACTION{}%');
-    $this->assert_equals(chr(0xAC).'TION{}%', $s);
+    $this->assert_equals( chr(0xAC) . 'TION{}%', $s );
 }
 
 sub DISABLEtest_segfault1 {
     my $this = shift;
-    my $s = <<'EOS';
+    my $s    = <<'EOS';
 ---+!! %TOPIC%
 
 i spoke with Spum Garbo on IRC today (transcript enclosed).  it didn't start out as a long chat, but evolved into one.  
@@ -321,11 +321,11 @@ sub segfaulting_urlDecode {
     my $text = shift;
 
     $text =~ s/%([\da-f]{2})/chr(hex($1))/gei;
-    $text =~ s/%u([\da-f]{4})/chr(hex($1))/gei; 
+    $text =~ s/%u([\da-f]{4})/chr(hex($1))/gei;
 
-    my $t = TWiki::UTF82SiteCharSet( $text ); 
+    my $t = TWiki::UTF82SiteCharSet($text);
 
-    $text = $t if ( $t ); 
+    $text = $t if ($t);
 
     return $text;
 }

@@ -11,7 +11,7 @@ use Error qw( :try );
 my $TEST_WEB_NAME = 'TemporaryTwistyFormattingTestWeb';
 
 sub new {
-    my $self = shift()->SUPER::new('TwistyFormatting', @_);
+    my $self = shift()->SUPER::new( 'TwistyFormatting', @_ );
     return $self;
 }
 
@@ -24,15 +24,16 @@ sub set_up {
 # This formats the text up to immediately before <nop>s are removed, so we
 # can see the nops.
 sub do_test {
-    my ($this, $expected, $actual) = @_;
-    my $session = $this->{twiki};
-    my $webName = $this->{test_web};
+    my ( $this, $expected, $actual ) = @_;
+    my $session   = $this->{twiki};
+    my $webName   = $this->{test_web};
     my $topicName = $this->{test_topic};
 
     $actual = $session->handleCommonTags( $actual, $webName, $topicName );
-    $actual = $session->renderer->getRenderedVersion( $actual, $webName, $topicName );
+    $actual =
+      $session->renderer->getRenderedVersion( $actual, $webName, $topicName );
 
-    $this->assert_html_equals($expected, $actual);
+    $this->assert_html_equals( $expected, $actual );
 }
 
 sub test_TWISTY_mode_default {
@@ -48,7 +49,7 @@ SOURCE
 <!--/twistyPlugin-->
 RESULT
 
-    $this->do_test($result, $source);
+    $this->do_test( $result, $source );
 }
 
 sub test_TWISTY_mode_div {
@@ -64,12 +65,12 @@ SOURCE
 <!--/twistyPlugin-->
 RESULT
 
-    $this->do_test($result, $source);
+    $this->do_test( $result, $source );
 }
 
 sub test_TWISTY_mode_default_with_id {
     my $this = shift;
-    
+
     my $source = <<SOURCE;
 %TWISTY{id="myid"}%content%ENDTWISTY%
 SOURCE
@@ -80,12 +81,12 @@ SOURCE
 <!--/twistyPlugin-->
 RESULT
 
-    $this->do_test($result, $source);
+    $this->do_test( $result, $source );
 }
 
 sub test_TWISTYSHOW {
     my $this = shift;
-    
+
     my $source = <<SOURCE;
 %TWISTYSHOW{id="myid"}%%TWISTYHIDE{id="myid"}%%TWISTYTOGGLE{id="myid"}%toggle content%ENDTWISTYTOGGLE%
 SOURCE
@@ -97,12 +98,12 @@ SOURCE
 <!--/twistyPlugin-->
 RESULT
 
-    $this->do_test($result, $source);
+    $this->do_test( $result, $source );
 }
 
 sub test_TWISTYBUTTON {
     my $this = shift;
-    
+
     my $source = <<SOURCE;
 %TWISTYBUTTON{id="myid" link="more"}%%TWISTYTOGGLE{id="myid"}%content%ENDTWISTYTOGGLE%
 SOURCE
@@ -113,11 +114,11 @@ SOURCE
 <!--/twistyPlugin-->
 RESULT
 
-    $this->do_test($result, $source);
+    $this->do_test( $result, $source );
 }
 
 sub test_TWISTY_with_icons {
-    my $this = shift;
+    my $this           = shift;
     my $pubUrlTWikiWeb = TWiki::Func::getPubUrlPath() . '/TWiki';
 
     my $source = <<SOURCE;
@@ -136,16 +137,16 @@ SOURCE
 <div class="twistyPlugin twikiMakeVisibleInline">
  <span id="twistyIdTemporaryTwistyFormattingTestWebTwistyFormattingTestTopicTwistyFormatting1show" class="twistyTrigger twikiUnvisited twistyHidden twistyInited"><a href="#"><img src="
 RESULT1
- 
-     $result .= "$pubUrlTWikiWeb/TWikiDocGraphics/toggleopen-small.gif";
-     
-$result .= <<RESULT2;
+
+    $result .= "$pubUrlTWikiWeb/TWikiDocGraphics/toggleopen-small.gif";
+
+    $result .= <<RESULT2;
 " border="0" alt="" /><span class="twikiLinkLabel twikiUnvisited">Show...</span></a> </span> <span id="twistyIdTemporaryTwistyFormattingTestWebTwistyFormattingTestTopicTwistyFormatting1hide" class="twistyTrigger twikiUnvisited twistyHidden twistyInited"><a href="#"><img src="
 RESULT2
 
-     $result .= "$pubUrlTWikiWeb/TWikiDocGraphics/toggleclose-small.gif";
+    $result .= "$pubUrlTWikiWeb/TWikiDocGraphics/toggleclose-small.gif";
 
-$result .= <<RESULT3;
+    $result .= <<RESULT3;
 " border="0" alt="" /><span class="twikiLinkLabel twikiUnvisited">Hide</span></a> </span>  </div><!--/twistyPlugin twikiMakeVisibleInline--> <div class="twistyPlugin"><div id="twistyIdTemporaryTwistyFormattingTestWebTwistyFormattingTestTopicTwistyFormatting1toggle" class="twistyContent twikiMakeHidden twistyInited">
 content with icons
 </div></div>
@@ -154,13 +155,13 @@ RESULT3
 
     # fix introduced linebreaks
     $result =~ s/src="\n/src="/go;
-    
-    $this->do_test($result, $source);
+
+    $this->do_test( $result, $source );
 }
 
 sub test_TWISTY_remember {
     my $this = shift;
-    
+
     my $source_off = <<SOURCE_OFF;
 %TWISTY{
 showlink="Show..."
@@ -179,8 +180,8 @@ my twisty content
 <!--/twistyPlugin-->
 RESULT_OFF
 
-    $this->do_test($result_off, $source_off);
-    
+    $this->do_test( $result_off, $source_off );
+
     my $source = <<SOURCE;
 %TWISTY{
 showlink="Show..."
@@ -199,11 +200,11 @@ my twisty content
 <!--/twistyPlugin-->
 RESULT
 
-    $this->do_test($result, $source);
+    $this->do_test( $result, $source );
 }
 
 sub test_TWISTY_escaped_variable {
-    my $this = shift;
+    my $this           = shift;
     my $pubUrlTWikiWeb = TWiki::Func::getPubUrlPath() . '/TWiki';
 
     my $source = <<SOURCE;
@@ -230,8 +231,8 @@ RESULT3
 
     # fix introduced linebreaks
     $result =~ s/src="\n/src="/go;
-    
-    $this->do_test($result, $source);
+
+    $this->do_test( $result, $source );
 }
 
 1;

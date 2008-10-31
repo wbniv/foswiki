@@ -11,7 +11,6 @@ propagated into the TOC.
 
 =cut
 
-
 use base qw(TWikiTestCase);
 
 use strict;
@@ -21,7 +20,7 @@ use TWiki::Form;
 use CGI;
 use Error qw( :try );
 
-my $testweb = "TestWeb";
+my $testweb    = "TestWeb";
 my $testtopic1 = "TestTopic1";
 
 my $twiki;
@@ -30,8 +29,8 @@ my $testuser1 = "TestUser1";
 
 my $setup_failure = '';
 
-my $aurl; # Holds the %ATTACHURL%
-my $surl;# Holds the %SCRIPTURL%
+my $aurl;    # Holds the %ATTACHURL%
+my $surl;    # Holds the %SCRIPTURL%
 
 my $testtext1 = <<'HERE';
 %TOC%
@@ -61,92 +60,96 @@ sub set_up {
     $this->SUPER::set_up();
 
     $twiki = new TWiki();
-    $user = $twiki->{user};
+    $user  = $twiki->{user};
 
     $surl = $twiki->getScriptUrl(1);
 
-    $twiki->{store}->createWeb($user, $testweb);
-
+    $twiki->{store}->createWeb( $user, $testweb );
 
     $TWiki::Plugins::SESSION = $twiki;
 }
 
 sub tear_down {
     my $this = shift;
-    $this->removeWebFixture($twiki, $testweb);
-    eval {$twiki->finish()};
+    $this->removeWebFixture( $twiki, $testweb );
+    eval { $twiki->finish() };
     $this->SUPER::tear_down();
 }
 
 sub setup_TOCtests {
-  my ( $this, $text, $web, $topic, $params, $tocparams ) = @_;
+    my ( $this, $text, $web, $topic, $params, $tocparams ) = @_;
 
-  $twiki->{webName} = $web;
-  $twiki->{topicName} = $topic;
-  my $render = $twiki->renderer;
+    $twiki->{webName}   = $web;
+    $twiki->{topicName} = $topic;
+    my $render = $twiki->renderer;
 
-  use TWiki::Attrs;
-  my $attr = new TWiki::Attrs( $params );
-  foreach my $k ( keys %$attr ) {
-    next if $k eq '_RAW';
-    $twiki->{cgiQuery}->param( -name=>$k, -value=>$attr->{$k});
-  }
+    use TWiki::Attrs;
+    my $attr = new TWiki::Attrs($params);
+    foreach my $k ( keys %$attr ) {
+        next if $k eq '_RAW';
+        $twiki->{cgiQuery}->param( -name => $k, -value => $attr->{$k} );
+    }
 
-  # Now generate the TOC
-  my $res = $twiki->_TOC( $text, $topic, $web, $tocparams );
+    # Now generate the TOC
+    my $res = $twiki->_TOC( $text, $topic, $web, $tocparams );
 
-  eval 'use HTML::TreeBuilder; use HTML::Element;';
-  if( $@ ) {
-      my $current_failure = $@;
-      $current_failure =~ s/\(eval \d+\)//g; # remove number for comparison
-      if ($current_failure  eq  $setup_failure) {
-          # we've seen the same error before.  Probably one of the CPAN
-          # prerequisites is missing.
-          $this->assert(0,"Unable to set up test:  Same problem as above.");
-      }
-      else {
-          $setup_failure  =  $current_failure;
-          $this->assert(0,"Unable to set up test: '$@'");
-      }
-      return;
-  }
+    eval 'use HTML::TreeBuilder; use HTML::Element;';
+    if ($@) {
+        my $current_failure = $@;
+        $current_failure =~ s/\(eval \d+\)//g;    # remove number for comparison
+        if ( $current_failure eq $setup_failure ) {
 
-  my $tree = HTML::TreeBuilder->new_from_content($res);
+            # we've seen the same error before.  Probably one of the CPAN
+            # prerequisites is missing.
+            $this->assert( 0,
+                "Unable to set up test:  Same problem as above." );
+        }
+        else {
+            $setup_failure = $current_failure;
+            $this->assert( 0, "Unable to set up test: '$@'" );
+        }
+        return;
+    }
 
-  # ----- now analyze the resultant $tree
+    my $tree = HTML::TreeBuilder->new_from_content($res);
 
-  my @children = $tree->content_list();
-  return ($children[1]->content_list())[0]->content_list();
+    # ----- now analyze the resultant $tree
+
+    my @children = $tree->content_list();
+    return ( $children[1]->content_list() )[0]->content_list();
 
 }
 
 sub test_parameters {
-  my $this = shift;
-  
-  my @children = setup_TOCtests( $this, $testtext1, $testtopic1, $testweb, 'param1="a little luck" param2="no luck"', '' );
-  # @children will have alternating ' * ' and an href
-  foreach my $c ( @children ) {
-    next if ($c eq " * ");
-    my $res = $c->{href};
-    $res =~ s/#.*$//o;  # Delete anchor
-    $this->assert_matches(qr/\?[\w;&=%]+$/, $res);
-    $this->assert_matches(qr/param2=no%20luck/, $res);
-    $this->assert_matches(qr/param1=a%20little%20luck/, $res);
-  }
+    my $this = shift;
+
+    my @children = setup_TOCtests( $this, $testtext1, $testtopic1, $testweb,
+        'param1="a little luck" param2="no luck"', '' );
+
+    # @children will have alternating ' * ' and an href
+    foreach my $c (@children) {
+        next if ( $c eq " * " );
+        my $res = $c->{href};
+        $res =~ s/#.*$//o;    # Delete anchor
+        $this->assert_matches( qr/\?[\w;&=%]+$/,             $res );
+        $this->assert_matches( qr/param2=no%20luck/,         $res );
+        $this->assert_matches( qr/param1=a%20little%20luck/, $res );
+    }
 }
 
 sub test_no_parameters {
-  my $this = shift;
-  
-  my @children = setup_TOCtests( $this, $testtext1, $testtopic1, $testweb, '', '' );
-  # @children will have alternating ' * ' and an href
-  foreach my $c ( @children ) {
-    next if ($c eq " * ");
-    my $res = $c->{href};
-    $res =~ s/#.*$//o;  # Delete anchor
-    $this->assert_str_equals('', $res);
-  }
-}
+    my $this = shift;
 
+    my @children =
+      setup_TOCtests( $this, $testtext1, $testtopic1, $testweb, '', '' );
+
+    # @children will have alternating ' * ' and an href
+    foreach my $c (@children) {
+        next if ( $c eq " * " );
+        my $res = $c->{href};
+        $res =~ s/#.*$//o;    # Delete anchor
+        $this->assert_str_equals( '', $res );
+    }
+}
 
 1;

@@ -15,7 +15,7 @@ use Error qw( :try );
 
 require TWiki;
 require TWiki::Sandbox;
-require TWiki::Render; # SMELL: expensive
+require TWiki::Render;    # SMELL: expensive
 
 my $queryParser;
 
@@ -97,9 +97,12 @@ sub _tokensFromSearchString {
     }
     elsif ( $type eq 'literal' || $type eq 'query' ) {
 
-        if( $searchString eq '' ) {
+        if ( $searchString eq '' ) {
+
             # Legacy: empty search returns nothing
-        } else {
+        }
+        else {
+
             # Literal search (old style) or query
             $tokens[0] = $searchString;
         }
@@ -122,8 +125,7 @@ sub _tokensFromSearchString {
 
         # Tokenize string taking account of literal strings, then remove
         # stop words and convert '+' and '-' syntax.
-        @tokens =
-          map {
+        @tokens = map {
             s/^\+//o;
             s/^\-/\!/o;
             s/^"//o;
@@ -150,10 +152,10 @@ sub _translateSpace {
 # get a list of topics to search in the web, filtered by the $topic
 # spec
 sub _getTopicList {
-    my( $this, $web, $topic, $options ) = @_;
+    my ( $this, $web, $topic, $options ) = @_;
 
     my @topicList = ();
-    my $store = $this->{session}->{store};
+    my $store     = $this->{session}->{store};
     if ($topic) {
 
         # limit search to topic list
@@ -167,8 +169,8 @@ sub _getTopicList {
             $topics =~ s/\)\$//o;
 
             # build list from topic pattern
-            @topicList = grep( $store->topicExists($web, $_),
-                               split( /\|/, $topics ));
+            @topicList =
+              grep( $store->topicExists( $web, $_ ), split( /\|/, $topics ) );
         }
         else {
 
@@ -194,12 +196,11 @@ sub _getTopicList {
 
 # Run a query over a list of topics
 sub _queryTopics {
-    my( $this, $web, $query, @topicList ) = @_;
+    my ( $this, $web, $query, @topicList ) = @_;
 
     my $store = $this->{session}->{store};
 
-    my $matches = $store->searchInWebMetaData(
-        $query, $web, \@topicList);
+    my $matches = $store->searchInWebMetaData( $query, $web, \@topicList );
 
     return keys %$matches;
 }
@@ -253,8 +254,8 @@ sub _searchTopics {
                     casesensitive       => $options->{'caseSensitive'},
                     wordboundaries      => $options->{'wordBoundaries'},
                     files_without_match => 1
-                   }
-               );
+                }
+            );
             @scopeTextList = keys %$matches;
         }
 
@@ -340,7 +341,7 @@ FIXME: =callback= cannot work with format parameter (consider format='| $topic |
 =cut
 
 sub searchWeb {
-    my $this = shift;
+    my $this          = shift;
     my %params        = @_;
     my $callback      = $params{_callback};
     my $cbdata        = $params{_cbdata};
@@ -359,8 +360,7 @@ sub searchWeb {
     my $noEmpty       = TWiki::isTrue( $params{noempty}, $nonoise );
 
     # Note: a defined header overrides noheader
-    my $noHeader =
-      !defined($header)
+    my $noHeader = !defined($header)
       && TWiki::isTrue( $params{noheader}, $nonoise )
 
       # Note: This is done for Cairo compatibility
@@ -371,29 +371,30 @@ sub searchWeb {
     my $zeroResults =
       1 - TWiki::isTrue( ( $params{zeroresults} || 'on' ), $nonoise );
     my $noTotal = TWiki::isTrue( $params{nototal}, $nonoise );
-    my $newLine   = $params{newline} || '';
-    my $sortOrder = $params{order}   || '';
-    my $revSort        = TWiki::isTrue( $params{reverse} );
-    my $scope          = $params{scope} || '';
-    my $searchString   = $params{search} || '';
-    my $separator      = $params{separator};
-    my $template       = $params{template} || '';
-    my $topic          = $params{topic} || '';
-    my $type           = $params{type} || '';
+    my $newLine      = $params{newline}  || '';
+    my $sortOrder    = $params{order}    || '';
+    my $revSort      = TWiki::isTrue( $params{reverse} );
+    my $scope        = $params{scope}    || '';
+    my $searchString = $params{search}   || '';
+    my $separator    = $params{separator};
+    my $template     = $params{template} || '';
+    my $topic        = $params{topic}    || '';
+    my $type         = $params{type}     || '';
 
     my $wordBoundaries = 0;
     if ( $type eq 'word' ) {
+
         # 'word' is exactly the same as 'keyword', except we will be searching
         # with word boundaries
-        $type = 'keyword';
+        $type           = 'keyword';
         $wordBoundaries = 1;
     }
 
-    my $webName        = $params{web} || '';
-    my $date           = $params{date} || '';
-    my $recurse        = $params{'recurse'} || '';
-    my $finalTerm      = $inline ? ( $params{nofinalnewline} || 0 ) : 0;
-    my $users          = $this->{session}->{users};
+    my $webName = $params{web}       || '';
+    my $date    = $params{date}      || '';
+    my $recurse = $params{'recurse'} || '';
+    my $finalTerm = $inline ? ( $params{nofinalnewline} || 0 ) : 0;
+    my $users = $this->{session}->{users};
 
     $baseWeb =~ s/\./\//go;
 
@@ -450,7 +451,7 @@ sub searchWeb {
             else {
                 push( @tmpWebs, $web );
                 if ( TWiki::isTrue($recurse) || $web =~ /^(all|on)$/i ) {
-                    my $webarg = ( $web =~ /^(all|on)$/i ) ? undef: $web;
+                    my $webarg = ( $web =~ /^(all|on)$/i ) ? undef : $web;
                     push( @tmpWebs,
                         $store->getListOfWebs( 'user,allowed', $webarg ) );
                 }
@@ -582,20 +583,24 @@ sub searchWeb {
     my $query;
     my @tokens;
 
-    if( $type eq 'query' ) {
-        unless( defined( $queryParser )) {
+    if ( $type eq 'query' ) {
+        unless ( defined($queryParser) ) {
             require TWiki::Query::Parser;
             $queryParser = new TWiki::Query::Parser();
         }
         my $error = '';
         try {
-            $query = $queryParser->parse( $searchString );
-        } catch TWiki::Infix::Error with {
+            $query = $queryParser->parse($searchString);
+        }
+        catch TWiki::Infix::Error with {
+
             # Pass the error on to the caller
-            throw Error::Simple( shift->stringify());
+            throw Error::Simple( shift->stringify() );
         };
         return $error unless $query;
-    } else {
+    }
+    else {
+
         # Split the search string into tokens depending on type of search -
         # each token is ANDed together by actual search
         @tokens = _tokensFromSearchString( $this, $searchString, $type );
@@ -605,7 +610,7 @@ sub searchWeb {
     # Loop through webs
     my $isAdmin = $session->{users}->isAdmin( $session->{user} );
     my $ttopics = 0;
-    my $prefs = $session->{prefs};
+    my $prefs   = $session->{prefs};
     foreach my $web (@webs) {
         $web =~ s/$TWiki::cfg{NameFilter}//go;
         $web = TWiki::Sandbox::untaintUnchecked($web);
@@ -629,7 +634,7 @@ sub searchWeb {
         };
 
         # Run the search on topics in this web
-        my @topicList = _getTopicList($this, $web, $topic, $options);
+        my @topicList = _getTopicList( $this, $web, $topic, $options );
 
         # exclude topics, Codev.ExcludeWebTopicsFromSearch
         if ( $caseSensitive && $excludeTopic ) {
@@ -640,12 +645,13 @@ sub searchWeb {
         }
         next if ( $noEmpty && !@topicList );    # Nothing to show for this web
 
-        if ($type eq 'query' ) {
-            @topicList = _queryTopics(
-                $this, $web, $query, @topicList );
-        } else {
-            @topicList = _searchTopics(
-                $this, $web, $scope, $type, $options, \@tokens, @topicList );
+        if ( $type eq 'query' ) {
+            @topicList = _queryTopics( $this, $web, $query, @topicList );
+        }
+        else {
+            @topicList =
+              _searchTopics( $this, $web, $scope, $type, $options, \@tokens,
+                @topicList );
         }
 
         my $topicInfo = {};
@@ -751,7 +757,7 @@ sub searchWeb {
             }
             my $epochSecs = $topicInfo->{$topic}->{modified};
             require TWiki::Time;
-            my $revDate   = TWiki::Time::formatTime($epochSecs);
+            my $revDate = TWiki::Time::formatTime($epochSecs);
             my $isoDate =
               TWiki::Time::formatTime( $epochSecs, '$iso', 'gmtime' );
 
@@ -759,7 +765,8 @@ sub searchWeb {
             my $revNum = $topicInfo->{$topic}->{revNum} || 0;
 
             my $cUID = $users->getCanonicalUserID($ru);
-            if (!$cUID) {
+            if ( !$cUID ) {
+
                 # Not a login name or a wiki name. Is it a valid cUID?
                 my $ln = $users->getLoginName($ru);
                 $cUID = $ru if defined $ln && $ln ne 'unknown';
@@ -817,7 +824,7 @@ sub searchWeb {
 
                 my $wikiusername = $users->webDotWikiName($cUID);
                 $wikiusername = "$TWiki::cfg{UsersWebName}.UnknownUser"
-                    unless defined $wikiusername;
+                  unless defined $wikiusername;
 
                 if ($format) {
                     $out = $format;
@@ -833,11 +840,11 @@ sub searchWeb {
                     my $wikiname = $users->getWikiName($cUID);
                     $wikiname = 'UnknownUser' unless defined $wikiname;
                     $out =~ s/\$wikiname/$wikiname/ges;
-                    
+
                     my $username = $users->getLoginName($cUID);
                     $username = 'unknown' unless defined $username;
                     $out =~ s/\$username/$username/ges;
-                    
+
                     my $r1info = {};
                     $out =~ s/\$createdate/_getRev1Info(
                             $this, $web, $topic, 'date', $r1info )/ges;
@@ -890,8 +897,8 @@ sub searchWeb {
                     $text =
                       $session->handleCommonTags( $text, $web, $topic, $meta );
                     $text =
-                      $session->renderer
-                      ->getRenderedVersion( $text, $web, $topic );
+                      $session->renderer->getRenderedVersion( $text, $web,
+                        $topic );
 
                     # FIXME: What about meta data rendering?
                     $out =~ s/%TEXTHEAD%/$text/go;
@@ -1060,7 +1067,7 @@ s/\$pattern\((.*?\s*\.\*)\)/getTextPattern( $text, $1 )/ges;
         }
     }
 
-    return undef         if ( defined $callback );
+    return undef if ( defined $callback );
     return $searchResult if $inline;
 
     $searchResult =
@@ -1075,13 +1082,13 @@ s/\$pattern\((.*?\s*\.\*)\)/getTextPattern( $text, $1 )/ges;
 sub _sortTopics {
     my ( $this, $web, $topics, $sortfield, $revSort ) = @_;
 
-    my $users = $this->{session}->{users};
+    my $users     = $this->{session}->{users};
     my $topicInfo = {};
     foreach my $topic (@$topics) {
         $topicInfo->{$topic} =
           _extractTopicInfo( $this, $web, $topic, $sortfield );
-          $topicInfo->{$topic}->{editby} =
-            $users->getWikiName( $topicInfo->{$topic}->{editby} );
+        $topicInfo->{$topic}->{editby} =
+          $users->getWikiName( $topicInfo->{$topic}->{editby} );
     }
     if ($revSort) {
         @$topics = map { $_->[1] }
@@ -1131,9 +1138,8 @@ sub _extractTopicInfo {
     $info->{revNum}   = $revnum;
 
     $info->{allowView} =
-      $session->security
-      ->checkAccessPermission( 'VIEW', $session->{user}, $text, $meta, $topic,
-        $web );
+      $session->security->checkAccessPermission( 'VIEW', $session->{user},
+        $text, $meta, $topic, $web );
 
     return $info unless $sortfield;
 
@@ -1184,19 +1190,18 @@ hyphenated string.
 =cut
 
 sub displayFormField {
-    my( $meta, $args ) = @_;
+    my ( $meta, $args ) = @_;
 
-    my $name = $args;
+    my $name      = $args;
     my $breakArgs = '';
-    my @params = split( /\,\s*/, $args, 2 );
-    if( @params > 1 ) {
-        $name = $params[0] || '';
+    my @params    = split( /\,\s*/, $args, 2 );
+    if ( @params > 1 ) {
+        $name      = $params[0] || '';
         $breakArgs = $params[1] || 1;
     }
 
-    return $meta->renderFormFieldForDisplay(
-        $name, '$value', 
-	{ break => $breakArgs, protectdollar => 1, showhidden => 1} );
+    return $meta->renderFormFieldForDisplay( $name, '$value',
+        { break => $breakArgs, protectdollar => 1, showhidden => 1 } );
 }
 
 # Returns the topic revision info of the base version,

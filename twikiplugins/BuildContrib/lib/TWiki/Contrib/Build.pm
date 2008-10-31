@@ -190,7 +190,8 @@ sub new {
     # Read the manifest
 
     my $manifest = _findRelativeTo( $buildpldir, 'MANIFEST' );
-    if (!defined($manifest)) {
+    if ( !defined($manifest) ) {
+
         #the twiki core MANIFEST is in the lib dir, not the tools dir
         $manifest = _findRelativeTo( $libpath, 'MANIFEST' );
     }
@@ -219,7 +220,8 @@ sub new {
     # Work out the dependencies
 
     my $dependancies = _findRelativeTo( $buildpldir, 'DEPENDENCIES' );
-    if (!defined($dependancies)) {
+    if ( !defined($dependancies) ) {
+
         #the twiki core DEPENDENCIES is in the lib dir, not the tools dir
         $dependancies = _findRelativeTo( $libpath, 'DEPENDENCIES' );
     }
@@ -229,8 +231,10 @@ sub new {
     if ( $this->{other_modules} ) {
         foreach my $module ( @{ $this->{other_modules} } ) {
             try {
-                my $depsfile = _findRelativeTo("$basedir/$module", 'DEPENDENCIES' );
-                die 'Failed to find DEPENDENCIES for ' . $module unless $depsfile && -f $depsfile;
+                my $depsfile =
+                  _findRelativeTo( "$basedir/$module", 'DEPENDENCIES' );
+                die 'Failed to find DEPENDENCIES for ' . $module
+                  unless $depsfile && -f $depsfile;
 
                 $this->_loadDependenciesFrom($depsfile);
             }
@@ -415,7 +419,8 @@ sub _loadDependenciesFrom {
         }
     }
     else {
-        warn 'WARNING: no ' . $depsFile
+        warn 'WARNING: no '
+          . $depsFile
           . '; dependencies will only be extracted from code';
     }
     close(PF);
@@ -425,23 +430,28 @@ sub _get_svn_version {
     my $this = shift;
     unless ( $this->{VERSION} ) {
         $this->{VERSION} = 0;
+
         #Shelling out with a large number of files dies, killing the build.
         my $idx = 0;
-        while ($idx < scalar(@{$this->{files}})) {
+        while ( $idx < scalar( @{ $this->{files} } ) ) {
             my @files;
-            # #@files = map { "$this->{basedir}/$_->{name}" } @{ $this->{files} };
+
+          # #@files = map { "$this->{basedir}/$_->{name}" } @{ $this->{files} };
             my $limit = $idx + 1000;
-            $limit = scalar(@{$this->{files}}) if
-              $limit > scalar(@{$this->{files}});
-            while( $idx < $limit ) {
-                my $file = ${$this->{files}}[$idx++];     #accessing ->{name} directly creats it.
-                push(@files, $this->{basedir}.'/'.($file->{name}||''));
+            $limit = scalar( @{ $this->{files} } )
+              if $limit > scalar( @{ $this->{files} } );
+            while ( $idx < $limit ) {
+                my $file =
+                  ${ $this->{files} }[ $idx++ ]
+                  ;    #accessing ->{name} directly creats it.
+                push( @files,
+                    $this->{basedir} . '/' . ( $file->{name} || '' ) );
             }
+
             # svn info all the files in the manifest
             my $max = $this->{VERSION} || 0;
             eval {
-                my $log =
-                  $this->sys_action( 'svn', 'info', @files );
+                my $log = $this->sys_action( 'svn', 'info', @files );
 
                 foreach my $line ( split( /\n/, $log ) ) {
                     if ( $line =~ /^Last Changed Rev: (.*)$/ ) {
@@ -626,7 +636,7 @@ chmod notation.
 
 sub prot {
     my ( $this, $perms, $file ) = @_;
-    if (! -d $file) {   #skip directories
+    if ( !-d $file ) {    #skip directories
         $this->perl_action("chmod($perms,'$file')");
     }
 }
@@ -774,22 +784,18 @@ sub target_test {
 
     # find testrunner
     my $testrunner =
-      _findRelativeTo( $this->{basedir}, 'core/test/bin/TestRunner.pl' ) ||
-      _findRelativeTo( $this->{basedir}, 'test/bin/TestRunner.pl' );
+         _findRelativeTo( $this->{basedir}, 'core/test/bin/TestRunner.pl' )
+      || _findRelativeTo( $this->{basedir}, 'test/bin/TestRunner.pl' );
 
     my $tests =
-      _findRelativeTo(
-          $this->{basedir},
-          'test/unit/' . $this->{project} . '/'
-            . $this->{project} . 'Suite.pm' );
+      _findRelativeTo( $this->{basedir},
+        'test/unit/' . $this->{project} . '/' . $this->{project} . 'Suite.pm' );
     unless ($tests) {
         $tests =
-          _findRelativeTo(
-              $this->{basedir},
-              '/core/test/unit/' . $this->{project} . 'Suite.pm' ) ||
-              _findRelativeTo(
-                  $this->{basedir},
-                  '/test/unit/' . $this->{project} . 'Suite.pm' );
+          _findRelativeTo( $this->{basedir},
+            '/core/test/unit/' . $this->{project} . 'Suite.pm' )
+          || _findRelativeTo( $this->{basedir},
+            '/test/unit/' . $this->{project} . 'Suite.pm' );
         unless ($tests) {
             warn 'WARNING: COULD NOT FIND ANY UNIT TESTS FOR '
               . $this->{project};
@@ -989,7 +995,7 @@ sub target_release {
 
     print "Building a release for ";
     print "Version $this->{VERSION} of $this->{project}\n";
-    if ($this->{-v}) {
+    if ( $this->{-v} ) {
         print 'Package name will be ', $this->{project}, "\n";
         print 'Topic name will be ', $this->_getTopicName(), "\n";
     }
@@ -1371,7 +1377,7 @@ END
           ' -- ', $response->status_line, "\n";
         $newform{formtemplate} = 'PackageForm';
         if ( $this->{project} =~ /(Plugin|Skin|Contrib|AddOn)$/ ) {
-            $newform{TopicClassification} = $1.'Package';
+            $newform{TopicClassification} = $1 . 'Package';
         }
     }
     else {
@@ -1430,8 +1436,8 @@ END
     my @attachments;
     my %uploaded;    # flag already uploaded
 
-    my $doupattachements = ask("Do you want to upload the attachments?", 1);
-        
+    my $doupattachements = ask( "Do you want to upload the attachments?", 1 );
+
     if ($doupattachements) {
         $newform{text} =~ s/%META:FILEATTACHMENT(.*)%/push(@attachments, $1)/ge;
         foreach my $a (@attachments) {
@@ -1444,9 +1450,18 @@ END
             $a =~ /attr="([^"]*)"/;
             my $attrs = $1 || '';
 
-            $this->_uploadAttachment( $userAgent, $user, $pass, $name,
-                $this->{basedir} . '/pub/TWiki/' . $this->{project} . '/' . $name,
-                $comment, $attrs =~ /h/ ? 1 : 0 );
+            $this->_uploadAttachment(
+                $userAgent,
+                $user,
+                $pass,
+                $name,
+                $this->{basedir}
+                  . '/pub/TWiki/'
+                  . $this->{project} . '/'
+                  . $name,
+                $comment,
+                $attrs =~ /h/ ? 1 : 0
+            );
             $uploaded{$name} = 1;
         }
     }
@@ -1504,7 +1519,8 @@ sub _postForm {
     my $response =
       $userAgent->post( $url, $form, 'Content_Type' => 'form-data' );
 
-    if (   $response->is_redirect() && $response->headers->header('Location') =~ /oopsaccessdenied|login/ ) 
+    if (   $response->is_redirect()
+        && $response->headers->header('Location') =~ /oopsaccessdenied|login/ )
     {
 
         # Try login if we got access denied despite passing creds
@@ -1526,7 +1542,8 @@ sub _postForm {
     die 'Upload failed ', $response->request->uri,
       ' -- ', $response->status_line, "\n", 'Aborting', "\n",
       $response->as_string
-      unless $response->is_redirect && $response->headers->header('Location') !~ /oops/;
+      unless $response->is_redirect
+          && $response->headers->header('Location') !~ /oops/;
 
     my $sleep = $GLACIERMELT;
     if ( $sleep > 0 ) {
@@ -1659,7 +1676,7 @@ sub target_installer {
             }
         );
         print STDERR 'Auto-adding install script to manifest', "\n"
-          if ($this->{-v});
+          if ( $this->{-v} );
     }
 
     # Find the template on @INC

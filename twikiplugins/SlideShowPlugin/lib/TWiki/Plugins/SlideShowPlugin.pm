@@ -19,8 +19,8 @@
 package TWiki::Plugins::SlideShowPlugin;
 
 use vars qw(
-        $web $topic $user $installWeb $VERSION $RELEASE $debug
-    );
+  $web $topic $user $installWeb $VERSION $RELEASE $debug
+);
 
 # This should always be $Rev$ so that TWiki can determine the checked-in
 # status of the plugin. It is used by the build automation tools, so
@@ -33,13 +33,13 @@ $VERSION = '$Rev$';
 $RELEASE = '02 Aug 2008';
 
 # =========================
-sub initPlugin
-{
+sub initPlugin {
     ( $topic, $web, $user, $installWeb ) = @_;
 
     # check for Plugins.pm versions
-    if( $TWiki::Plugins::VERSION < 1 ) {
-        TWiki::Func::writeWarning( "Version mismatch between SlideShowPlugin and Plugins.pm" );
+    if ( $TWiki::Plugins::VERSION < 1 ) {
+        TWiki::Func::writeWarning(
+            "Version mismatch between SlideShowPlugin and Plugins.pm");
         return 0;
     }
 
@@ -47,13 +47,12 @@ sub initPlugin
 }
 
 # =========================
-sub commonTagsHandler
-{
+sub commonTagsHandler {
 ### my ( $text, $topic, $web ) = @_;   # do not uncomment, use $_[0], $_[1]... instead
-    if( $_[0] =~ /%SLIDESHOWSTART/ ) {
+    if ( $_[0] =~ /%SLIDESHOWSTART/ ) {
         require TWiki::Plugins::SlideShowPlugin::SlideShow;
-        TWiki::Plugins::SlideShowPlugin::SlideShow::init( $installWeb );
-        $_[0] = TWiki::Plugins::SlideShowPlugin::SlideShow::handler( @_ );
+        TWiki::Plugins::SlideShowPlugin::SlideShow::init($installWeb);
+        $_[0] = TWiki::Plugins::SlideShowPlugin::SlideShow::handler(@_);
     }
 }
 

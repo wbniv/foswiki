@@ -47,9 +47,9 @@ with CGI accelerators such as mod_perl.
 use strict;
 use Assert;
 use Error qw( :try );
-use CGI;             # Always required to get the CGI object
+use CGI;    # Always required to get the CGI object
 
-require 5.005;       # For regex objects and internationalisation
+require 5.005;    # For regex objects and internationalisation
 
 # Site configuration constants
 use vars qw( %cfg );
@@ -62,18 +62,18 @@ use vars qw( %cfg );
 
 # Other computed constants
 use vars qw(
-            $TranslationToken
-            $twikiLibDir
-            %regex
-            %functionTags
-            %contextFreeSyntax
-            %restDispatch
-            $VERSION $RELEASE
-            $TRUE
-            $FALSE
-            $sandbox
-            $ifParser
-           );
+  $TranslationToken
+  $twikiLibDir
+  %regex
+  %functionTags
+  %contextFreeSyntax
+  %restDispatch
+  $VERSION $RELEASE
+  $TRUE
+  $FALSE
+  $sandbox
+  $ifParser
+);
 
 # Token character that must not occur in any normal text - converted
 # to a flag character if it ever does occur (very unlikely)
@@ -85,7 +85,7 @@ use vars qw(
 # muRfleFli5ble8leep (do *not* use punctuation characters or whitspace
 # in the string!)
 # See Codev.NationalCharTokenClash for more.
-$TranslationToken= "\0";
+$TranslationToken = "\0";
 
 =pod
 
@@ -96,58 +96,67 @@ Returns the full path of the directory containing TWiki.pm
 =cut
 
 sub getTWikiLibDir {
-    if( $twikiLibDir ) {
+    if ($twikiLibDir) {
         return $twikiLibDir;
     }
 
     # FIXME: Should just use $INC{"TWiki.pm"} to get path used to load this
     # module.
     my $dir = '';
-    foreach $dir ( @INC ) {
-        if( $dir && -e "$dir/TWiki.pm" ) {
+    foreach $dir (@INC) {
+        if ( $dir && -e "$dir/TWiki.pm" ) {
             $twikiLibDir = $dir;
             last;
         }
     }
 
     # fix path relative to location of called script
-    if( $twikiLibDir =~ /^\./ ) {
-        print STDERR "WARNING: TWiki lib path $twikiLibDir is relative; you should make it absolute, otherwise some scripts may not run from the command line.";
+    if ( $twikiLibDir =~ /^\./ ) {
+        print STDERR
+"WARNING: TWiki lib path $twikiLibDir is relative; you should make it absolute, otherwise some scripts may not run from the command line.";
         my $bin;
-        if( $ENV{SCRIPT_FILENAME} &&
-            $ENV{SCRIPT_FILENAME} =~ /^(.+)\/[^\/]+$/ ) {
+        if (   $ENV{SCRIPT_FILENAME}
+            && $ENV{SCRIPT_FILENAME} =~ /^(.+)\/[^\/]+$/ )
+        {
+
             # CGI script name
             $bin = $1;
-        } elsif ( $0 =~ /^(.*)\/.*?$/ ) {
+        }
+        elsif ( $0 =~ /^(.*)\/.*?$/ ) {
+
             # program name
             $bin = $1;
-        } else {
+        }
+        else {
+
             # last ditch; relative to current directory.
             require Cwd;
             import Cwd qw( cwd );
             $bin = cwd();
         }
         $twikiLibDir = "$bin/$twikiLibDir/";
+
         # normalize "/../" and "/./"
         while ( $twikiLibDir =~ s|([\\/])[^\\/]+[\\/]\.\.[\\/]|$1| ) {
-        };
+        }
         $twikiLibDir =~ s|([\\/])\.[\\/]|$1|g;
     }
-    $twikiLibDir =~ s|([\\/])[\\/]*|$1|g; # reduce "//" to "/"
-    $twikiLibDir =~ s|[\\/]$||;           # cut trailing "/"
+    $twikiLibDir =~ s|([\\/])[\\/]*|$1|g;    # reduce "//" to "/"
+    $twikiLibDir =~ s|[\\/]$||;              # cut trailing "/"
 
     return $twikiLibDir;
 }
 
 BEGIN {
     require Monitor;
-    require TWiki::Sandbox;            # system command sandbox
-    require TWiki::Configure::Load;    # read configuration files
+    require TWiki::Sandbox;                  # system command sandbox
+    require TWiki::Configure::Load;          # read configuration files
 
-    $TRUE = 1;
+    $TRUE  = 1;
     $FALSE = 0;
 
-    if( DEBUG ) {
+    if (DEBUG) {
+
         # If ASSERTs are on, then warnings are errors. Paranoid,
         # but the only way to be sure we eliminate them all.
         # Look out also for $cfg{WarningsAreErrors}, below, which
@@ -158,9 +167,10 @@ BEGIN {
         # production environment, and no stack traces or paths are
         # output to the browser.
         $SIG{'__WARN__'} = sub { die @_ };
-        $Error::Debug = 1; # verbose stack traces, please
-    } else {
-        $Error::Debug = 0; # no verbose stack traces
+        $Error::Debug = 1;    # verbose stack traces, please
+    }
+    else {
+        $Error::Debug = 0;    # no verbose stack traces
     }
 
     # DO NOT CHANGE THE FORMAT OF $VERSION
@@ -226,41 +236,50 @@ BEGIN {
         WEBLIST           => \&WEBLIST,
         WIKINAME          => \&WIKINAME_deprecated,
         WIKIUSERNAME      => \&WIKIUSERNAME_deprecated,
+
         # Constant tag strings _not_ dependent on config. These get nicely
         # optimised by the compiler.
-        ENDSECTION        => sub { '' },
-        WIKIVERSION       => sub { $VERSION },
-        STARTSECTION      => sub { '' },
-        STARTINCLUDE      => sub { '' },
-        STOPINCLUDE       => sub { '' },
-       );
+        ENDSECTION   => sub { '' },
+        WIKIVERSION  => sub { $VERSION },
+        STARTSECTION => sub { '' },
+        STARTINCLUDE => sub { '' },
+        STOPINCLUDE  => sub { '' },
+    );
     $contextFreeSyntax{IF} = 1;
 
-    unless( ( $TWiki::cfg{DetailedOS} = $^O ) ) {
+    unless ( ( $TWiki::cfg{DetailedOS} = $^O ) ) {
         require Config;
         $TWiki::cfg{DetailedOS} = $Config::Config{'osname'};
     }
     $TWiki::cfg{OS} = 'UNIX';
-    if ($TWiki::cfg{DetailedOS} =~ /darwin/i) { # MacOS X
+    if ( $TWiki::cfg{DetailedOS} =~ /darwin/i ) {    # MacOS X
         $TWiki::cfg{OS} = 'UNIX';
-    } elsif ($TWiki::cfg{DetailedOS} =~ /Win/i) {
+    }
+    elsif ( $TWiki::cfg{DetailedOS} =~ /Win/i ) {
         $TWiki::cfg{OS} = 'WINDOWS';
-    } elsif ($TWiki::cfg{DetailedOS} =~ /vms/i) {
+    }
+    elsif ( $TWiki::cfg{DetailedOS} =~ /vms/i ) {
         $TWiki::cfg{OS} = 'VMS';
-    } elsif ($TWiki::cfg{DetailedOS} =~ /bsdos/i) {
+    }
+    elsif ( $TWiki::cfg{DetailedOS} =~ /bsdos/i ) {
         $TWiki::cfg{OS} = 'UNIX';
-    } elsif ($TWiki::cfg{DetailedOS} =~ /dos/i) {
+    }
+    elsif ( $TWiki::cfg{DetailedOS} =~ /dos/i ) {
         $TWiki::cfg{OS} = 'DOS';
-    } elsif ($TWiki::cfg{DetailedOS} =~ /^MacOS$/i) { # MacOS 9 or earlier
+    }
+    elsif ( $TWiki::cfg{DetailedOS} =~ /^MacOS$/i ) {    # MacOS 9 or earlier
         $TWiki::cfg{OS} = 'MACINTOSH';
-    } elsif ($TWiki::cfg{DetailedOS} =~ /os2/i) {
+    }
+    elsif ( $TWiki::cfg{DetailedOS} =~ /os2/i ) {
         $TWiki::cfg{OS} = 'OS2';
     }
 
-    # Validate and untaint Apache's SERVER_NAME Environment variable
-    # for use in referencing virtualhost-based paths for separate data/ and templates/ instances, etc
-    if ( $ENV{SERVER_NAME} &&
-         $ENV{SERVER_NAME} =~ /^(([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6})$/ ) {
+# Validate and untaint Apache's SERVER_NAME Environment variable
+# for use in referencing virtualhost-based paths for separate data/ and templates/ instances, etc
+    if (   $ENV{SERVER_NAME}
+        && $ENV{SERVER_NAME} =~
+        /^(([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6})$/ )
+    {
         $ENV{SERVER_NAME} =
           TWiki::Sandbox::untaintUnchecked( $ENV{SERVER_NAME} );
     }
@@ -268,42 +287,43 @@ BEGIN {
     # readConfig is defined in TWiki::Configure::Load to allow overriding it
     TWiki::Configure::Load::readConfig();
 
-    if( $TWiki::cfg{WarningsAreErrors} ) {
+    if ( $TWiki::cfg{WarningsAreErrors} ) {
+
         # Note: Warnings are always errors if ASSERTs are enabled
         $SIG{'__WARN__'} = sub { die @_ };
     }
 
-    if( $TWiki::cfg{UseLocale} ) {
+    if ( $TWiki::cfg{UseLocale} ) {
         require locale;
         import locale();
     }
 
     # Constant tags dependent on the config
-    $functionTags{ALLOWLOGINNAME}  =
+    $functionTags{ALLOWLOGINNAME} =
       sub { $TWiki::cfg{Register}{AllowLoginName} || 0 };
-    $functionTags{AUTHREALM}       = sub { $TWiki::cfg{AuthRealm} };
-    $functionTags{DEFAULTURLHOST}  = sub { $TWiki::cfg{DefaultUrlHost} };
-    $functionTags{HOMETOPIC}       = sub { $TWiki::cfg{HomeTopicName} };
-    $functionTags{LOCALSITEPREFS}  = sub { $TWiki::cfg{LocalSitePreferences} };
-    $functionTags{NOFOLLOW}        =
-      sub { $TWiki::cfg{NoFollow} ? 'rel='.$TWiki::cfg{NoFollow} : '' };
-    $functionTags{NOTIFYTOPIC}     = sub { $TWiki::cfg{NotifyTopicName} };
-    $functionTags{SCRIPTSUFFIX}    = sub { $TWiki::cfg{ScriptSuffix} };
-    $functionTags{STATISTICSTOPIC} = sub { $TWiki::cfg{Stats}{TopicName} };
-    $functionTags{SYSTEMWEB}       = sub { $TWiki::cfg{SystemWebName} };
-    $functionTags{TRASHWEB}        = sub { $TWiki::cfg{TrashWebName} };
-    $functionTags{TWIKIADMINLOGIN} = sub { $TWiki::cfg{AdminUserLogin} };
-    $functionTags{USERSWEB}        = sub { $TWiki::cfg{UsersWebName} };
-    $functionTags{WEBPREFSTOPIC}   = sub { $TWiki::cfg{WebPrefsTopicName} };
-    $functionTags{WIKIPREFSTOPIC}  = sub { $TWiki::cfg{SitePrefsTopicName} };
-    $functionTags{WIKIUSERSTOPIC}  = sub { $TWiki::cfg{UsersTopicName} };
-    $functionTags{WIKIWEBMASTER}   = sub { $TWiki::cfg{WebMasterEmail} };
+    $functionTags{AUTHREALM}      = sub { $TWiki::cfg{AuthRealm} };
+    $functionTags{DEFAULTURLHOST} = sub { $TWiki::cfg{DefaultUrlHost} };
+    $functionTags{HOMETOPIC}      = sub { $TWiki::cfg{HomeTopicName} };
+    $functionTags{LOCALSITEPREFS} = sub { $TWiki::cfg{LocalSitePreferences} };
+    $functionTags{NOFOLLOW} =
+      sub { $TWiki::cfg{NoFollow} ? 'rel=' . $TWiki::cfg{NoFollow} : '' };
+    $functionTags{NOTIFYTOPIC}       = sub { $TWiki::cfg{NotifyTopicName} };
+    $functionTags{SCRIPTSUFFIX}      = sub { $TWiki::cfg{ScriptSuffix} };
+    $functionTags{STATISTICSTOPIC}   = sub { $TWiki::cfg{Stats}{TopicName} };
+    $functionTags{SYSTEMWEB}         = sub { $TWiki::cfg{SystemWebName} };
+    $functionTags{TRASHWEB}          = sub { $TWiki::cfg{TrashWebName} };
+    $functionTags{TWIKIADMINLOGIN}   = sub { $TWiki::cfg{AdminUserLogin} };
+    $functionTags{USERSWEB}          = sub { $TWiki::cfg{UsersWebName} };
+    $functionTags{WEBPREFSTOPIC}     = sub { $TWiki::cfg{WebPrefsTopicName} };
+    $functionTags{WIKIPREFSTOPIC}    = sub { $TWiki::cfg{SitePrefsTopicName} };
+    $functionTags{WIKIUSERSTOPIC}    = sub { $TWiki::cfg{UsersTopicName} };
+    $functionTags{WIKIWEBMASTER}     = sub { $TWiki::cfg{WebMasterEmail} };
     $functionTags{WIKIWEBMASTERNAME} = sub { $TWiki::cfg{WebMasterName} };
 
     # Compatibility synonyms, deprecated in 4.2 but still used throughout
     # the documentation.
-    $functionTags{MAINWEB}         = $functionTags{USERSWEB};
-    $functionTags{TWIKIWEB}        = $functionTags{SYSTEMWEB};
+    $functionTags{MAINWEB}  = $functionTags{USERSWEB};
+    $functionTags{TWIKIWEB} = $functionTags{SYSTEMWEB};
 
     # locale setup
     #
@@ -313,7 +333,8 @@ BEGIN {
     # this in 'non-locale regexes' mode.
 
     if ( $TWiki::cfg{UseLocale} ) {
-        # Set environment variables for grep 
+
+        # Set environment variables for grep
         $ENV{LC_CTYPE} = $TWiki::cfg{Site}{Locale};
 
         # Load POSIX for I18N support.
@@ -323,15 +344,18 @@ BEGIN {
         # SMELL: mod_perl compatibility note: If TWiki is running under Apache,
         # won't this play with the Apache process's locale settings too?
         # What effects would this have?
-        setlocale(&LC_CTYPE, $TWiki::cfg{Site}{Locale});
-        setlocale(&LC_COLLATE, $TWiki::cfg{Site}{Locale});
+        setlocale( &LC_CTYPE,   $TWiki::cfg{Site}{Locale} );
+        setlocale( &LC_COLLATE, $TWiki::cfg{Site}{Locale} );
     }
 
-    $functionTags{CHARSET}   = sub { $TWiki::cfg{Site}{CharSet} ||
-                                       'iso-8859-1' };
+    $functionTags{CHARSET} = sub {
+        $TWiki::cfg{Site}{CharSet}
+          || 'iso-8859-1';
+    };
 
-    $functionTags{LANG} = sub { 
-        $TWiki::cfg{Site}{Locale} =~ m/^([a-z]+_[a-z]+)/i ? $1 : 'en_US'; };
+    $functionTags{LANG} = sub {
+        $TWiki::cfg{Site}{Locale} =~ m/^([a-z]+_[a-z]+)/i ? $1 : 'en_US';
+    };
 
     # Set up pre-compiled regexes for use in rendering.  All regexes with
     # unchanging variables in match should use the '/o' option.
@@ -343,73 +367,84 @@ BEGIN {
     # Build up character class components for use in regexes.
     # Depends on locale mode and Perl version, and finally on
     # whether locale-based regexes are turned off.
-    if ( not $TWiki::cfg{UseLocale} or $] < 5.006
-         or not $TWiki::cfg{Site}{LocaleRegexes} ) {
+    if (   not $TWiki::cfg{UseLocale}
+        or $] < 5.006
+        or not $TWiki::cfg{Site}{LocaleRegexes} )
+    {
 
         # No locales needed/working, or Perl 5.005, so just use
         # any additional national characters defined in TWiki.cfg
-        $regex{upperAlpha} = 'A-Z'.$TWiki::cfg{UpperNational};
-        $regex{lowerAlpha} = 'a-z'.$TWiki::cfg{LowerNational};
+        $regex{upperAlpha} = 'A-Z' . $TWiki::cfg{UpperNational};
+        $regex{lowerAlpha} = 'a-z' . $TWiki::cfg{LowerNational};
         $regex{numeric}    = '\d';
-        $regex{mixedAlpha} = $regex{upperAlpha}.$regex{lowerAlpha};
-    } else {
+        $regex{mixedAlpha} = $regex{upperAlpha} . $regex{lowerAlpha};
+    }
+    else {
+
         # Perl 5.006 or higher with working locales
         $regex{upperAlpha} = '[:upper:]';
         $regex{lowerAlpha} = '[:lower:]';
         $regex{numeric}    = '[:digit:]';
         $regex{mixedAlpha} = '[:alpha:]';
     }
-    $regex{mixedAlphaNum} = $regex{mixedAlpha}.$regex{numeric};
-    $regex{lowerAlphaNum} = $regex{lowerAlpha}.$regex{numeric};
-    $regex{upperAlphaNum} = $regex{upperAlpha}.$regex{numeric};
+    $regex{mixedAlphaNum} = $regex{mixedAlpha} . $regex{numeric};
+    $regex{lowerAlphaNum} = $regex{lowerAlpha} . $regex{numeric};
+    $regex{upperAlphaNum} = $regex{upperAlpha} . $regex{numeric};
 
     # Compile regexes for efficiency and ease of use
     # Note: qr// locks in regex modes (i.e. '-xism' here) - see Friedl
-    # book at http://regex.info/. 
+    # book at http://regex.info/.
 
-    $regex{linkProtocolPattern} =
-      $TWiki::cfg{LinkProtocolPattern};
+    $regex{linkProtocolPattern} = $TWiki::cfg{LinkProtocolPattern};
 
     # Header patterns based on '+++'. The '###' are reserved for numbered
     # headers
     # '---++ Header', '---## Header'
     $regex{headerPatternDa} = qr/^---+(\++|\#+)(.*)$/m;
+
     # '<h6>Header</h6>
     $regex{headerPatternHt} = qr/^<h([1-6])>(.+?)<\/h\1>/mi;
+
     # '---++!! Header' or '---++ Header %NOTOC% ^top'
     $regex{headerPatternNoTOC} = '(\!\!+|%NOTOC%)';
 
     # TWiki concept regexes
-    $regex{wikiWordRegex} = qr/[$regex{upperAlpha}]+[$regex{lowerAlphaNum}]+[$regex{upperAlpha}]+[$regex{mixedAlphaNum}]*/o;
-    $regex{webNameBaseRegex} = qr/[$regex{upperAlpha}]+[$regex{mixedAlphaNum}_]*/o;
-    if ($TWiki::cfg{EnableHierarchicalWebs}) {
-        $regex{webNameRegex} = qr/$regex{webNameBaseRegex}(?:(?:[\.\/]$regex{webNameBaseRegex})+)*/o;
-    } else {
+    $regex{wikiWordRegex} =
+qr/[$regex{upperAlpha}]+[$regex{lowerAlphaNum}]+[$regex{upperAlpha}]+[$regex{mixedAlphaNum}]*/o;
+    $regex{webNameBaseRegex} =
+      qr/[$regex{upperAlpha}]+[$regex{mixedAlphaNum}_]*/o;
+    if ( $TWiki::cfg{EnableHierarchicalWebs} ) {
+        $regex{webNameRegex} =
+          qr/$regex{webNameBaseRegex}(?:(?:[\.\/]$regex{webNameBaseRegex})+)*/o;
+    }
+    else {
         $regex{webNameRegex} = $regex{webNameBaseRegex};
     }
     $regex{defaultWebNameRegex} = qr/_[$regex{mixedAlphaNum}_]+/o;
-    $regex{anchorRegex} = qr/\#[$regex{mixedAlphaNum}_]+/o;
-    $regex{abbrevRegex} = qr/[$regex{upperAlpha}]{3,}s?\b/o;
+    $regex{anchorRegex}         = qr/\#[$regex{mixedAlphaNum}_]+/o;
+    $regex{abbrevRegex}         = qr/[$regex{upperAlpha}]{3,}s?\b/o;
 
     # Simplistic email regex, e.g. for WebNotify processing - no i18n
     # characters allowed
     $regex{emailAddrRegex} = qr/([A-Za-z0-9\.\+\-\_]+\@[A-Za-z0-9\.\-]+)/;
 
-    # Filename regex to used to match invalid characters in attachments - allow
-    # alphanumeric characters, spaces, underscores, etc.
-    # TODO: Get this to work with I18N chars - currently used only with UseLocale off
+# Filename regex to used to match invalid characters in attachments - allow
+# alphanumeric characters, spaces, underscores, etc.
+# TODO: Get this to work with I18N chars - currently used only with UseLocale off
     $regex{filenameInvalidCharRegex} = qr/[^$regex{mixedAlphaNum}\. _-]/o;
 
     # Multi-character alpha-based regexes
     $regex{mixedAlphaNumRegex} = qr/[$regex{mixedAlphaNum}]*/o;
 
     # %TAG% name
-    $regex{tagNameRegex} = '['.$regex{mixedAlpha}.']['.$regex{mixedAlphaNum}.'_:]*';
+    $regex{tagNameRegex} =
+      '[' . $regex{mixedAlpha} . '][' . $regex{mixedAlphaNum} . '_:]*';
 
     # Set statement in a topic
     $regex{bulletRegex} = '^(?:\t|   )+\*';
-    $regex{setRegex} = $regex{bulletRegex}.'\s+(Set|Local)\s+';
-    $regex{setVarRegex} = $regex{setRegex}.'('.$regex{tagNameRegex}.')\s*=\s*(.*)$';
+    $regex{setRegex}    = $regex{bulletRegex} . '\s+(Set|Local)\s+';
+    $regex{setVarRegex} =
+      $regex{setRegex} . '(' . $regex{tagNameRegex} . ')\s*=\s*(.*)$';
 
     # Character encoding regexes
 
@@ -453,18 +488,18 @@ BEGIN {
                     [\x80-\xBF][\x80-\xBF]
                 }xo;
 
-    $regex{validUtf8StringRegex} =
-      qr/^ (?: $regex{validUtf8CharRegex} )+ $/xo;
+    $regex{validUtf8StringRegex} = qr/^ (?: $regex{validUtf8CharRegex} )+ $/xo;
 
     # Check for unsafe search regex mode (affects filtering in) - default
     # to safe mode
-    $TWiki::cfg{ForceUnsafeRegexes} = 0 unless defined $TWiki::cfg{ForceUnsafeRegexes};
+    $TWiki::cfg{ForceUnsafeRegexes} = 0
+      unless defined $TWiki::cfg{ForceUnsafeRegexes};
 
     # initialize lib directory early because of later 'cd's
     getTWikiLibDir();
 
     Monitor::MARK('Static configuration loaded');
-};
+}
 
 =pod
 
@@ -478,20 +513,21 @@ charset.
 sub UTF82SiteCharSet {
     my $text = shift;
 
-    return $text unless( defined $TWiki::cfg{Site}{CharSet} );
+    return $text unless ( defined $TWiki::cfg{Site}{CharSet} );
 
     # Detect character encoding of the full topic name from URL
-    return undef if( $text =~ $regex{validAsciiStringRegex} );
+    return undef if ( $text =~ $regex{validAsciiStringRegex} );
 
     # If not UTF-8 - assume in site character set, no conversion required
-    return undef unless( $text =~ $regex{validUtf8StringRegex} );
+    return undef unless ( $text =~ $regex{validUtf8StringRegex} );
 
     # If site charset is already UTF-8, there is no need to convert anything:
     if ( $TWiki::cfg{Site}{CharSet} =~ /^utf-?8$/i ) {
+
         # warn if using Perl older than 5.8
-        if( $] <  5.008 ) {
+        if ( $] < 5.008 ) {
             print STDERR 'UTF-8 not remotely supported on Perl ', $],
-              ' - use Perl 5.8 or higher..' ;
+              ' - use Perl 5.8 or higher..';
         }
 
         # We still don't have Codev.UnicodeSupport
@@ -503,49 +539,58 @@ sub UTF82SiteCharSet {
     # Convert into ISO-8859-1 if it is the site charset.  This conversion
     # is *not valid for ISO-8859-15*.
     if ( $TWiki::cfg{Site}{CharSet} =~ /^iso-?8859-?1$/i ) {
+
         # ISO-8859-1 maps onto first 256 codepoints of Unicode
         # (conversion from 'perldoc perluniintro')
         $text =~ s/ ([\xC2\xC3]) ([\x80-\xBF]) / 
           chr( ord($1) << 6 & 0xC0 | ord($2) & 0x3F )
             /egx;
-    } else {
+    }
+    else {
+
         # Convert from UTF-8 into some other site charset
-        if( $] >= 5.008 ) {
+        if ( $] >= 5.008 ) {
             require Encode;
             import Encode qw(:fallbacks);
+
             # Map $TWiki::cfg{Site}{CharSet} into real encoding name
             my $charEncoding =
               Encode::resolve_alias( $TWiki::cfg{Site}{CharSet} );
-            if( not $charEncoding ) {
-                print STDERR
-                  'Conversion to "',$TWiki::cfg{Site}{CharSet},
-                    '" not supported, or name not recognised - check ',
-                      '"perldoc Encode::Supported"';
-            } else {
+            if ( not $charEncoding ) {
+                print STDERR 'Conversion to "', $TWiki::cfg{Site}{CharSet},
+                  '" not supported, or name not recognised - check ',
+                  '"perldoc Encode::Supported"';
+            }
+            else {
+
                 # Convert text using Encode:
                 # - first, convert from UTF8 bytes into internal
                 # (UTF-8) characters
-                $text = Encode::decode('utf8', $text);    
+                $text = Encode::decode( 'utf8', $text );
+
                 # - then convert into site charset from internal UTF-8,
                 # inserting \x{NNNN} for characters that can't be converted
-                $text =
-                  Encode::encode( $charEncoding, $text,
-                                  &FB_PERLQQ() );
+                $text = Encode::encode( $charEncoding, $text, &FB_PERLQQ() );
             }
-        } else {
+        }
+        else {
             require Unicode::MapUTF8;    # Pre-5.8 Perl versions
             my $charEncoding = $TWiki::cfg{Site}{CharSet};
-            if( not Unicode::MapUTF8::utf8_supported_charset($charEncoding) ) {
-                print STDERR 'Conversion to "',$TWiki::cfg{Site}{CharSet},
+            if ( not Unicode::MapUTF8::utf8_supported_charset($charEncoding) ) {
+                print STDERR 'Conversion to "', $TWiki::cfg{Site}{CharSet},
                   '" not supported, or name not recognised - check ',
-                    '"perldoc Unicode::MapUTF8"';
-            } else {
+                  '"perldoc Unicode::MapUTF8"';
+            }
+            else {
+
                 # Convert text
-                $text =
-                  Unicode::MapUTF8::from_utf8({
-                                               -string => $text,
-                                               -charset => $charEncoding
-                                              });
+                $text = Unicode::MapUTF8::from_utf8(
+                    {
+                        -string  => $text,
+                        -charset => $charEncoding
+                    }
+                );
+
                 # FIXME: Check for failed conversion?
             }
         }
@@ -573,15 +618,15 @@ sub writeCompletePage {
     my ( $this, $text, $pageType, $contentType ) = @_;
     $contentType ||= 'text/html';
 
-    if( $contentType ne 'text/plain' ) {
+    if ( $contentType ne 'text/plain' ) {
+
         # Remove <nop> and <noautolink> tags
         $text =~ s/([\t ]?)[ \t]*<\/?(nop|noautolink)\/?>/$1/gis;
         $text .= "\n" unless $text =~ /\n$/s;
 
-        my $htmlHeader = join(
-            "\n",
-            map { '<!--'.$_.'-->'.$this->{_HTMLHEADERS}{$_} }
-              keys %{$this->{_HTMLHEADERS}} );
+        my $htmlHeader = join( "\n",
+            map { '<!--' . $_ . '-->' . $this->{_HTMLHEADERS}{$_} }
+              keys %{ $this->{_HTMLHEADERS} } );
         $text =~ s!(</head>)!$htmlHeader$1!i if $htmlHeader;
         chomp($text);
     }
@@ -589,23 +634,25 @@ sub writeCompletePage {
     my $hdr = $this->generateHTTPHeaders( undef, $pageType, $contentType );
 
     # Call final handler
-    $this->{plugins}->completePageHandler($text, $hdr);
+    $this->{plugins}->completePageHandler( $text, $hdr );
 
     # HTTP1.1 says a content-length should _not_ be specified unless
     # the length is known. There is a bug in Netscape such that it
     # interprets a 0 content-length as "download until disconnect"
     # but that is a bug. The correct way is to not set a content-length.
-    unless( $this->inContext('command_line') ) {
+    unless ( $this->inContext('command_line') ) {
+
         # FIXME: Defer next line until we have Codev.UnicodeSupport
         # - too 5.8 dependent
         # my $len = do { use bytes; length( $text ); };
         my $len = length($text);
         $hdr =~ s/\r\n$/Content-Length: $len\r\n\r\n/s if $len;
-    } else {
+    }
+    else {
         $hdr = '';
     }
 
-    print $hdr.$text;
+    print $hdr. $text;
 }
 
 =pod
@@ -629,52 +676,53 @@ Does *not* add a =Content-length= header.
 =cut
 
 sub generateHTTPHeaders {
-    my( $this, $query, $pageType, $contentType ) = @_;
+    my ( $this, $query, $pageType, $contentType ) = @_;
 
     $query = $this->{cgiQuery} unless $query;
 
     # Handle Edit pages - future versions will extend to caching
     # of other types of page, with expiry time driven by page type.
-    my( $pluginHeaders, $coreHeaders );
+    my ( $pluginHeaders, $coreHeaders );
 
     my $hopts = {};
 
-    if ($pageType && $pageType eq 'edit') {
+    if ( $pageType && $pageType eq 'edit' ) {
+
         # Get time now in HTTP header format
         require TWiki::Time;
         my $lastModifiedString =
-          TWiki::Time::formatTime(time, '$http', 'gmtime');
+          TWiki::Time::formatTime( time, '$http', 'gmtime' );
 
-        # Expiry time is set high to avoid any data loss.  Each instance of 
-        # Edit page has a unique URL with time-string suffix (fix for 
-        # RefreshEditPage), so this long expiry time simply means that the 
-        # browser Back button always works.  The next Edit on this page 
-        # will use another URL and therefore won't use any cached 
+        # Expiry time is set high to avoid any data loss.  Each instance of
+        # Edit page has a unique URL with time-string suffix (fix for
+        # RefreshEditPage), so this long expiry time simply means that the
+        # browser Back button always works.  The next Edit on this page
+        # will use another URL and therefore won't use any cached
         # version of this Edit page.
-        my $expireHours = 24;
+        my $expireHours   = 24;
         my $expireSeconds = $expireHours * 60 * 60;
 
-        # and cache control headers, to ensure edit page 
+        # and cache control headers, to ensure edit page
         # is cached until required expiry time.
         $hopts->{'last-modified'} = $lastModifiedString;
-        $hopts->{expires} = "+${expireHours}h";
+        $hopts->{expires}         = "+${expireHours}h";
         $hopts->{'cache-control'} = "max-age=$expireSeconds";
     }
 
     # DEPRECATED plugins header handler. Plugins should use
     # modifyHeaderHandler instead.
-    $pluginHeaders = $this->{plugins}->writeHeaderHandler( $query ) || '';
-    if( $pluginHeaders ) {
+    $pluginHeaders = $this->{plugins}->writeHeaderHandler($query) || '';
+    if ($pluginHeaders) {
         foreach ( split /\r?\n/, $pluginHeaders ) {
-            if ( m/^([\-a-z]+): (.*)$/i ) {
+            if (m/^([\-a-z]+): (.*)$/i) {
                 $hopts->{$1} = $2;
             }
         }
     }
 
     $contentType = 'text/html' unless $contentType;
-    if( defined( $TWiki::cfg{Site}{CharSet} )) {
-      $contentType .= '; charset='.$TWiki::cfg{Site}{CharSet};
+    if ( defined( $TWiki::cfg{Site}{CharSet} ) ) {
+        $contentType .= '; charset=' . $TWiki::cfg{Site}{CharSet};
     }
 
     # use our version of the content type
@@ -684,9 +732,9 @@ sub generateHTTPHeaders {
     $this->{plugins}->modifyHeaderHandler( $hopts, $this->{cgiQuery} );
 
     # add cookie(s)
-    $this->{users}->{loginManager}->modifyHeader( $hopts );
+    $this->{users}->{loginManager}->modifyHeader($hopts);
 
-    return CGI::header( $hopts );
+    return CGI::header($hopts);
 }
 
 =pod
@@ -699,51 +747,59 @@ tests if the $redirect is an external URL, returning false if AllowRedirectUrl i
 
 sub isRedirectSafe {
     my $redirect = shift;
-    
+
     #TODO: this should really use URI
-    if ((!$TWiki::cfg{AllowRedirectUrl}) && ( $redirect =~ m!^([^:]*://[^/]*)/*(.*)?$! )) {
+    if (   ( !$TWiki::cfg{AllowRedirectUrl} )
+        && ( $redirect =~ m!^([^:]*://[^/]*)/*(.*)?$! ) )
+    {
         my $host = $1;
+
         #remove trailing /'s to match
         $TWiki::cfg{DefaultUrlHost} =~ m!^([^:]*://[^/]*)/*(.*)?$!;
         my $expected = $1;
-        
-        if (defined($TWiki::cfg{PermittedRedirectHostUrls} ) && $TWiki::cfg{PermittedRedirectHostUrls}  ne '') {
+
+        if ( defined( $TWiki::cfg{PermittedRedirectHostUrls} )
+            && $TWiki::cfg{PermittedRedirectHostUrls} ne '' )
+        {
             my @permitted =
-                map { s!^([^:]*://[^/]*)/*(.*)?$!$1!; $1 }
-                        split(/,\s*/, $TWiki::cfg{PermittedRedirectHostUrls});
-            return 1 if ( grep ( { uc($host) eq uc($_) } @permitted));
+              map { s!^([^:]*://[^/]*)/*(.*)?$!$1!; $1 }
+              split( /,\s*/, $TWiki::cfg{PermittedRedirectHostUrls} );
+            return 1 if ( grep ( { uc($host) eq uc($_) } @permitted ) );
         }
-        return (uc($host) eq uc($expected));
+        return ( uc($host) eq uc($expected) );
     }
     return 1;
 }
 
 # _getRedirectUrl() => redirectURL set from the parameter
 # Reads a redirect url from CGI parameter 'redirectto'.
-# This function is used to get and test the 'redirectto' cgi parameter, 
+# This function is used to get and test the 'redirectto' cgi parameter,
 # and then the calling function can set its own reporting if there is a
 # problem.
 sub _getRedirectUrl {
     my $session = shift;
 
-    my $query = $session->{cgiQuery};
-    my $redirecturl = $query->param( 'redirectto' );
+    my $query       = $session->{cgiQuery};
+    my $redirecturl = $query->param('redirectto');
     return '' unless $redirecturl;
 
-    if( $redirecturl =~ m#^$regex{linkProtocolPattern}://#o ) {
+    if ( $redirecturl =~ m#^$regex{linkProtocolPattern}://#o ) {
+
         # assuming URL
-        if (isRedirectSafe($redirecturl)) {
+        if ( isRedirectSafe($redirecturl) ) {
             return $redirecturl;
-        } else {
+        }
+        else {
             return '';
         }
     }
+
     # assuming 'web.topic' or 'topic'
-    my ( $w, $t ) = $session->normalizeWebTopicName( $session->{webName}, $redirecturl );
+    my ( $w, $t ) =
+      $session->normalizeWebTopicName( $session->{webName}, $redirecturl );
     $redirecturl = $session->getScriptUrl( 1, 'view', $w, $t );
     return $redirecturl;
 }
-
 
 =pod
 
@@ -777,16 +833,17 @@ server.
 =cut
 
 sub redirect {
-    my( $this, $url, $passthru, $action_redirectto ) = @_;
+    my ( $this, $url, $passthru, $action_redirectto ) = @_;
 
     my $query = $this->{cgiQuery};
+
     # if we got here without a query, there's not much more we can do
     return unless $query;
 
     # SMELL: if noredirect is set, don't generate the redirect, throw an
     # exception instead. This is a HACK used to support TWikiDrawPlugin.
     # It is deprecated and must be replaced by REST handlers in the plugin.
-    if( $query->param( 'noredirect' )) {
+    if ( $query->param('noredirect') ) {
         die "ERROR: $url";
         return;
     }
@@ -796,25 +853,28 @@ sub redirect {
         $url = $redir if ($redir);
     }
 
-    if ($passthru && defined $ENV{REQUEST_METHOD}) {
+    if ( $passthru && defined $ENV{REQUEST_METHOD} ) {
         my $existing = '';
-        if ($url =~ s/\?(.*)$//) {
+        if ( $url =~ s/\?(.*)$// ) {
             $existing = $1;
         }
-        if ($ENV{REQUEST_METHOD} eq 'POST') {
+        if ( $ENV{REQUEST_METHOD} eq 'POST' ) {
+
             # Redirecting from a post to a get
             my $cache = $this->cacheQuery();
             if ($cache) {
                 $url .= "?$cache";
             }
-        } else {
-            if ($query->query_string()) {
-                $url .= '?'.$query->query_string();
+        }
+        else {
+            if ( $query->query_string() ) {
+                $url .= '?' . $query->query_string();
             }
             if ($existing) {
-                if ($url =~ /\?/) {
+                if ( $url =~ /\?/ ) {
                     $url .= ';';
-                } else {
+                }
+                else {
                     $url .= '?';
                 }
                 $url .= $existing;
@@ -825,27 +885,29 @@ sub redirect {
     # prevent phishing by only allowing redirect to configured host
     # do this check as late as possible to catch _any_ last minute hacks
     # TODO: this should really use URI
-    if (!isRedirectSafe($url)) {
-         # goto oops if URL is trying to take us somewhere dangerous
-         $url = $this->getScriptUrl(
-             1, 'oops',
-             $this->{web} || $TWiki::cfg{UsersWebName},
-             $this->{topic} || $TWiki::cfg{HomeTopicName},
-             template => 'oopsaccessdenied',
-             def => 'topic_access',
-             param1 => 'redirect',
-             param2 => 'unsafe redirect to '.$url.
-               ': host does not match {DefaultUrlHost} , and is not in {PermittedRedirectHostUrls}"'.
-                 $TWiki::cfg{DefaultUrlHost}.'"'
-            );
+    if ( !isRedirectSafe($url) ) {
+
+        # goto oops if URL is trying to take us somewhere dangerous
+        $url = $this->getScriptUrl(
+            1, 'oops',
+            $this->{web}   || $TWiki::cfg{UsersWebName},
+            $this->{topic} || $TWiki::cfg{HomeTopicName},
+            template => 'oopsaccessdenied',
+            def      => 'topic_access',
+            param1   => 'redirect',
+            param2   => 'unsafe redirect to ' 
+              . $url
+              . ': host does not match {DefaultUrlHost} , and is not in {PermittedRedirectHostUrls}"'
+              . $TWiki::cfg{DefaultUrlHost} . '"'
+        );
     }
 
-
-    return if( $this->{plugins}->redirectCgiQueryHandler( $query, $url ));
+    return if ( $this->{plugins}->redirectCgiQueryHandler( $query, $url ) );
 
     # SMELL: this is a bad breaking of encapsulation: the loginManager
     # should just modify the url, then the redirect should only happen here.
-    return if( $this->{users}->{loginManager}->redirectCgiQuery( $query, $url ) );
+    return
+      if ( $this->{users}->{loginManager}->redirectCgiQuery( $query, $url ) );
     die "Login manager returned 0 from redirectCgiQuery";
 }
 
@@ -864,26 +926,29 @@ redirect target is reached.
 =cut
 
 sub cacheQuery {
-    my $this = shift;
+    my $this  = shift;
     my $query = $this->{cgiQuery};
 
-    return '' unless (scalar($query->param()));
+    return '' unless ( scalar( $query->param() ) );
+
     # Don't double-cache
-    return '' if ($query->param('twiki_redirect_cache'));
+    return '' if ( $query->param('twiki_redirect_cache') );
 
     require Digest::MD5;
     my $md5 = new Digest::MD5();
-    $md5->add($$, time(), rand(time));
-    my $uid = $md5->hexdigest();
+    $md5->add( $$, time(), rand(time) );
+    my $uid              = $md5->hexdigest();
     my $passthruFilename = "$TWiki::cfg{WorkingDir}/tmp/passthru_$uid";
 
     use Fcntl;
-    #passthrough file is only written to once, so if it already exists, suspect a security hack (O_EXCL)
-    sysopen(F, "$passthruFilename", O_RDWR|O_EXCL|O_CREAT, 0600) ||
-      die "Unable to open $TWiki::cfg{WorkingDir}/tmp for write; check the setting of {WorkingDir} in configure, and check file permissions: $!";
-    $query->save(\*F);
+
+#passthrough file is only written to once, so if it already exists, suspect a security hack (O_EXCL)
+    sysopen( F, "$passthruFilename", O_RDWR | O_EXCL | O_CREAT, 0600 )
+      || die
+"Unable to open $TWiki::cfg{WorkingDir}/tmp for write; check the setting of {WorkingDir} in configure, and check file permissions: $!";
+    $query->save( \*F );
     close(F);
-    return 'twiki_redirect_cache='.$uid;
+    return 'twiki_redirect_cache=' . $uid;
 }
 
 =pod
@@ -895,8 +960,8 @@ Check for a valid WikiWord or WikiName
 =cut
 
 sub isValidWikiWord {
-    my $name  = shift || '';
-    return ( $name =~ m/^$regex{wikiWordRegex}$/o )
+    my $name = shift || '';
+    return ( $name =~ m/^$regex{wikiWordRegex}$/o );
 }
 
 =pod
@@ -908,9 +973,9 @@ Check for a valid topic name
 =cut
 
 sub isValidTopicName {
-    my( $name ) = @_;
+    my ($name) = @_;
 
-    return isValidWikiWord( @_ ) || isValidAbbrev( @_ );
+    return isValidWikiWord(@_) || isValidAbbrev(@_);
 }
 
 =pod
@@ -923,7 +988,7 @@ Check for a valid ABBREV (acronym)
 
 sub isValidAbbrev {
     my $name = shift || '';
-    return ( $name =~ m/^$regex{abbrevRegex}$/o )
+    return ( $name =~ m/^$regex{abbrevRegex}$/o );
 }
 
 =pod
@@ -943,7 +1008,7 @@ sub isValidWebName {
     my $name = shift || '';
     my $sys = shift;
     return 1 if ( $sys && $name =~ m/^$regex{defaultWebNameRegex}$/o );
-    return ( $name =~ m/^$regex{webNameRegex}$/o )
+    return ( $name =~ m/^$regex{webNameRegex}$/o );
 }
 
 =pod
@@ -958,27 +1023,31 @@ is returned in a quadruple:
 =cut
 
 sub readOnlyMirrorWeb {
-    my( $this, $theWeb ) = @_;
-
+    my ( $this, $theWeb ) = @_;
 
     my @mirrorInfo = ( '', '', '', '' );
-    if( $TWiki::cfg{SiteWebTopicName} ) {
+    if ( $TWiki::cfg{SiteWebTopicName} ) {
         my $mirrorSiteName =
           $this->{prefs}->getWebPreferencesValue( 'MIRRORSITENAME', $theWeb );
-        if( $mirrorSiteName && $mirrorSiteName ne $TWiki::cfg{SiteWebTopicName} ) {
-            my $mirrorViewURL  =
-              $this->{prefs}->getWebPreferencesValue( 'MIRRORVIEWURL', $theWeb );
-            my $mirrorLink = $this->templates->readTemplate( 'mirrorlink' );
+        if (   $mirrorSiteName
+            && $mirrorSiteName ne $TWiki::cfg{SiteWebTopicName} )
+        {
+            my $mirrorViewURL =
+              $this->{prefs}
+              ->getWebPreferencesValue( 'MIRRORVIEWURL', $theWeb );
+            my $mirrorLink = $this->templates->readTemplate('mirrorlink');
             $mirrorLink =~ s/%MIRRORSITENAME%/$mirrorSiteName/g;
             $mirrorLink =~ s/%MIRRORVIEWURL%/$mirrorViewURL/g;
             $mirrorLink =~ s/\s*$//g;
-            my $mirrorNote = $this->templates->readTemplate( 'mirrornote' );
+            my $mirrorNote = $this->templates->readTemplate('mirrornote');
             $mirrorNote =~ s/%MIRRORSITENAME%/$mirrorSiteName/g;
             $mirrorNote =~ s/%MIRRORVIEWURL%/$mirrorViewURL/g;
-            $mirrorNote = $this->renderer->getRenderedVersion
-              ( $mirrorNote, $theWeb, $TWiki::cfg{HomeTopic} );
+            $mirrorNote =
+              $this->renderer->getRenderedVersion( $mirrorNote, $theWeb,
+                $TWiki::cfg{HomeTopic} );
             $mirrorNote =~ s/\s*$//g;
-            @mirrorInfo = ( $mirrorSiteName, $mirrorViewURL, $mirrorLink, $mirrorNote );
+            @mirrorInfo =
+              ( $mirrorSiteName, $mirrorViewURL, $mirrorLink, $mirrorNote );
         }
     }
     return @mirrorInfo;
@@ -995,20 +1064,19 @@ Get the currently requested skin path
 sub getSkin {
     my $this = shift;
 
+    my $skinpath = $this->{prefs}->getPreferencesValue('SKIN') || '';
 
-    my $skinpath = $this->{prefs}->getPreferencesValue( 'SKIN' ) || '';
-
-    if( $this->{cgiQuery} ) {
-        my $resurface = $this->{cgiQuery}->param( 'skin' );
+    if ( $this->{cgiQuery} ) {
+        my $resurface = $this->{cgiQuery}->param('skin');
         $skinpath = $resurface if $resurface;
     }
 
-    my $epidermis = $this->{prefs}->getPreferencesValue( 'COVER' );
-    $skinpath = $epidermis.','.$skinpath if $epidermis;
+    my $epidermis = $this->{prefs}->getPreferencesValue('COVER');
+    $skinpath = $epidermis . ',' . $skinpath if $epidermis;
 
-    if( $this->{cgiQuery} ) {
-        $epidermis = $this->{cgiQuery}->param( 'cover' );
-        $skinpath = $epidermis.','.$skinpath if $epidermis;
+    if ( $this->{cgiQuery} ) {
+        $epidermis = $this->{cgiQuery}->param('cover');
+        $skinpath = $epidermis . ',' . $skinpath if $epidermis;
     }
 
     return $skinpath;
@@ -1040,68 +1108,71 @@ If either the web or the topic is defined, will generate a full url (including w
 =cut
 
 sub getScriptUrl {
-    my( $this, $absolute, $script, $web, $topic, @params ) = @_;
+    my ( $this, $absolute, $script, $web, $topic, @params ) = @_;
 
-    $absolute ||= ($this->inContext( 'command_line' ) ||
-                     $this->inContext( 'rss' ) ||
-                       $this->inContext( 'absolute_urls' ));
+    $absolute ||=
+      (      $this->inContext('command_line')
+          || $this->inContext('rss')
+          || $this->inContext('absolute_urls') );
 
     # SMELL: topics and webs that contain spaces?
 
     my $url;
-    if( defined $TWiki::cfg{ScriptUrlPaths} && $script) {
+    if ( defined $TWiki::cfg{ScriptUrlPaths} && $script ) {
         $url = $TWiki::cfg{ScriptUrlPaths}{$script};
     }
-    unless( defined( $url )) {
+    unless ( defined($url) ) {
         $url = $TWiki::cfg{ScriptUrlPath};
-        if( $script ) {
+        if ($script) {
             $url .= '/' unless $url =~ /\/$/;
             $url .= $script;
-            if ( rindex($url, $TWiki::cfg{ScriptSuffix}) !=
-                 ( length($url) - length($TWiki::cfg{ScriptSuffix}) )
-               ) {
+            if (
+                rindex( $url, $TWiki::cfg{ScriptSuffix} ) !=
+                ( length($url) - length( $TWiki::cfg{ScriptSuffix} ) ) )
+            {
                 $url .= $TWiki::cfg{ScriptSuffix} if $script;
             }
         }
     }
 
-    if( $absolute && $url !~ /^[a-z]+:/ ) {
+    if ( $absolute && $url !~ /^[a-z]+:/ ) {
+
         # See http://www.ietf.org/rfc/rfc2396.txt for the definition of
         # "absolute URI". TWiki bastardises this definition by assuming
         # that all relative URLs lack the <authority> component as well.
-        $url = $this->{urlHost}.$url;
+        $url = $this->{urlHost} . $url;
     }
 
-    if( $web || $topic ) {
-        ( $web, $topic ) =
-          $this->normalizeWebTopicName( $web, $topic );
+    if ( $web || $topic ) {
+        ( $web, $topic ) = $this->normalizeWebTopicName( $web, $topic );
 
-        $url .= urlEncode( '/'.$web.'/'.$topic );
+        $url .= urlEncode( '/' . $web . '/' . $topic );
 
-	$url .= _make_params(0, @params);
+        $url .= _make_params( 0, @params );
     }
 
     return $url;
 }
 
 sub _make_params {
-  my ( $notfirst, @args ) = @_;
-  my $url = '';
-  my $ps = '';
-  my $anchor = '';
-  while( my $p = shift @args ) {
-    if( $p eq '#' ) {
-      $anchor .= '#' . shift( @args );
-    } else {
-      $ps .= ';' . $p.'='.urlEncode(shift( @args )||'');
+    my ( $notfirst, @args ) = @_;
+    my $url    = '';
+    my $ps     = '';
+    my $anchor = '';
+    while ( my $p = shift @args ) {
+        if ( $p eq '#' ) {
+            $anchor .= '#' . shift(@args);
+        }
+        else {
+            $ps .= ';' . $p . '=' . urlEncode( shift(@args) || '' );
+        }
     }
-  }
-  if( $ps ) {
-    $ps =~ s/^;/?/ unless $notfirst;
-    $url .= $ps;
-  }
-  $url .= $anchor;
-  return $url;
+    if ($ps) {
+        $ps =~ s/^;/?/ unless $notfirst;
+        $url .= $ps;
+    }
+    $url .= $anchor;
+    return $url;
 }
 
 =pod
@@ -1119,33 +1190,36 @@ generated if one or all is not given.
 =cut
 
 sub getPubUrl {
-    my( $this, $absolute, $web, $topic, $attachment ) = @_;
+    my ( $this, $absolute, $web, $topic, $attachment ) = @_;
 
-    $absolute ||= ($this->inContext( 'command_line' ) ||
-                     $this->inContext( 'rss' ) ||
-                       $this->inContext( 'absolute_urls' ));
+    $absolute ||=
+      (      $this->inContext('command_line')
+          || $this->inContext('rss')
+          || $this->inContext('absolute_urls') );
 
     my $url = '';
     $url .= $TWiki::cfg{PubUrlPath};
-    if( $absolute && $url !~ /^[a-z]+:/ ) {
+    if ( $absolute && $url !~ /^[a-z]+:/ ) {
+
         # See http://www.ietf.org/rfc/rfc2396.txt for the definition of
         # "absolute URI". TWiki bastardises this definition by assuming
         # that all relative URLs lack the <authority> component as well.
-        $url = $this->{urlHost}.$url;
+        $url = $this->{urlHost} . $url;
     }
-    if( $web || $topic || $attachment ) {
-        ( $web, $topic ) =
-          $this->normalizeWebTopicName( $web, $topic );
+    if ( $web || $topic || $attachment ) {
+        ( $web, $topic ) = $this->normalizeWebTopicName( $web, $topic );
 
-        my $path = '/'.$web.'/'.$topic;
-	if( $attachment ) {
-	    $path .= '/'.$attachment;
-	    # Attachments are served directly by web server, need to handle
-	    # URL encoding specially
-	    $url .= urlEncodeAttachment ( $path );
-	} else {
-	    $url .= urlEncode( $path );
-	}
+        my $path = '/' . $web . '/' . $topic;
+        if ($attachment) {
+            $path .= '/' . $attachment;
+
+            # Attachments are served directly by web server, need to handle
+            # URL encoding specially
+            $url .= urlEncodeAttachment($path);
+        }
+        else {
+            $url .= urlEncode($path);
+        }
     }
 
     return $url;
@@ -1160,13 +1234,13 @@ Map an icon name to a URL path.
 =cut
 
 sub getIconUrl {
-    my( $this, $absolute, $iconName ) = @_;
+    my ( $this, $absolute, $iconName ) = @_;
 
-    my $iconTopic = $this->{prefs}->getPreferencesValue( 'ICONTOPIC' );
-    my( $web, $topic) = $this->normalizeWebTopicName(
-        $this->{webName}, $iconTopic );
+    my $iconTopic = $this->{prefs}->getPreferencesValue('ICONTOPIC');
+    my ( $web, $topic ) =
+      $this->normalizeWebTopicName( $this->{webName}, $iconTopic );
     $iconName =~ s/^.*\.(.*?)$/$1/;
-    return $this->getPubUrl( $absolute, $web, $topic, $iconName.'.gif' );
+    return $this->getPubUrl( $absolute, $web, $topic, $iconName . '.gif' );
 }
 
 =pod
@@ -1179,23 +1253,25 @@ file that contains the image for that file type.
 =cut
 
 sub mapToIconFileName {
-    my( $this, $fileName, $default ) = @_;
-	
+    my ( $this, $fileName, $default ) = @_;
+
     my @bits = ( split( /\./, $fileName ) );
     my $fileExt = lc $bits[$#bits];
 
-    unless( $this->{_ICONMAP} ) {
-        my $iconTopic = $this->{prefs}->getPreferencesValue( 'ICONTOPIC' );
-        my( $web, $topic) = $this->normalizeWebTopicName(
-            $this->{webName}, $iconTopic );
+    unless ( $this->{_ICONMAP} ) {
+        my $iconTopic = $this->{prefs}->getPreferencesValue('ICONTOPIC');
+        my ( $web, $topic ) =
+          $this->normalizeWebTopicName( $this->{webName}, $iconTopic );
         local $/ = undef;
         try {
-            my $icons = $this->{store}->getAttachmentStream(
-                undef, $web, $topic, '_filetypes.txt' );
-            %{$this->{_ICONMAP}} = split( /\s+/, <$icons> );
-            close( $icons );
-        } catch Error::Simple with {
-            %{$this->{_ICONMAP}} = ();
+            my $icons =
+              $this->{store}
+              ->getAttachmentStream( undef, $web, $topic, '_filetypes.txt' );
+            %{ $this->{_ICONMAP} } = split( /\s+/, <$icons> );
+            close($icons);
+        }
+        catch Error::Simple with {
+            %{ $this->{_ICONMAP} } = ();
         };
     }
 
@@ -1219,20 +1295,23 @@ name.
 =cut
 
 sub normalizeWebTopicName {
-    my( $this, $web, $topic ) = @_;
+    my ( $this, $web, $topic ) = @_;
 
-    ASSERT(defined $topic) if DEBUG;
+    ASSERT( defined $topic ) if DEBUG;
 
-    if( $topic =~ m|^(.*)[./](.*?)$| ) {
-        $web = $1;
+    if ( $topic =~ m|^(.*)[./](.*?)$| ) {
+        $web   = $1;
         $topic = $2;
     }
-    $web ||= $cfg{UsersWebName};
+    $web   ||= $cfg{UsersWebName};
     $topic ||= $cfg{HomeTopicName};
-    while( $web =~ s/%((MAIN|TWIKI|USERS|SYSTEM|DOC)WEB)%/_expandTagOnTopicRendering( $this,$1)||''/e ) {
+    while ( $web =~
+s/%((MAIN|TWIKI|USERS|SYSTEM|DOC)WEB)%/_expandTagOnTopicRendering( $this,$1)||''/e
+      )
+    {
     }
     $web =~ s#\.#/#go;
-    return( $web, $topic );
+    return ( $web, $topic );
 }
 
 =pod
@@ -1252,47 +1331,52 @@ Constructs a new TWiki object. Parameters are taken from the query object.
 =cut
 
 sub new {
-    my( $class, $login, $query, $initialContext ) = @_;
+    my ( $class, $login, $query, $initialContext ) = @_;
 
     Monitor::MARK("Static compilation complete");
 
     # Compatibility; not used except maybe in plugins
     $TWiki::cfg{TempfileDir} = "$TWiki::cfg{WorkingDir}/tmp"
-      unless defined($TWiki::cfg{TempfileDir});
+      unless defined( $TWiki::cfg{TempfileDir} );
 
     # Set command_line context if there is no query
-    $initialContext ||= defined( $query ) ? {} : { command_line => 1 };
+    $initialContext ||= defined($query) ? {} : { command_line => 1 };
 
     $query ||= new CGI( {} );
     my $this = bless( {}, $class );
 
     # Tell CGI.pm which charset we are using if not default
-    if( defined $TWiki::cfg{Site}{CharSet} &&
-          $TWiki::cfg{Site}{CharSet} !~ /^iso-?8859-?1$/io ) {
+    if ( defined $TWiki::cfg{Site}{CharSet}
+        && $TWiki::cfg{Site}{CharSet} !~ /^iso-?8859-?1$/io )
+    {
+
         # Item5710: A bug in CGI::charset means we cannot use $query->charset
         CGI::charset( $TWiki::cfg{Site}{CharSet} );
     }
 
     $this->{_HTMLHEADERS} = {};
-    $this->{context} = $initialContext;
+    $this->{context}      = $initialContext;
 
     # create the various sub-objects
     unless ($sandbox) {
+
         # "shared" between mod_perl instances
-        $sandbox = new TWiki::Sandbox(
-            $TWiki::cfg{OS}, $TWiki::cfg{DetailedOS} );
+        $sandbox =
+          new TWiki::Sandbox( $TWiki::cfg{OS}, $TWiki::cfg{DetailedOS} );
     }
     require TWiki::Plugins;
-    $this->{plugins} = new TWiki::Plugins( $this );
+    $this->{plugins} = new TWiki::Plugins($this);
     require TWiki::Store;
-    $this->{store} = new TWiki::Store( $this );
+    $this->{store} = new TWiki::Store($this);
+
     # cache CGI information in the session object
     $this->{cgiQuery} = $query;
 
-    $this->{remoteUser} = $login;	#use login as a default (set when running from cmd line)
+    $this->{remoteUser} =
+      $login;    #use login as a default (set when running from cmd line)
     require TWiki::Users;
-    $this->{users} = new TWiki::Users( $this );
-	$this->{remoteUser} = $this->{users}->{remoteUser};
+    $this->{users}      = new TWiki::Users($this);
+    $this->{remoteUser} = $this->{users}->{remoteUser};
 
     # Make %ENV safer, preventing hijack of the search path
     # SMELL: can this be done in a BEGIN block? Or is the environment
@@ -1300,26 +1384,30 @@ sub new {
     # Item4382: Default $ENV{PATH} must be untainted because TWiki runs
     # with use strict and calling external programs that writes on the disk
     # will fail unless Perl seens it as set to safe value.
-    if( $TWiki::cfg{SafeEnvPath} ) {
+    if ( $TWiki::cfg{SafeEnvPath} ) {
         $ENV{PATH} = $TWiki::cfg{SafeEnvPath};
-    } else {
+    }
+    else {
         $ENV{PATH} = TWiki::Sandbox::untaintUnchecked( $ENV{PATH} );
     }
-    delete @ENV{ qw( IFS CDPATH ENV BASH_ENV ) };
+    delete @ENV{qw( IFS CDPATH ENV BASH_ENV )};
 
     my $url = $query->url();
-    if( $url && $url =~ m{^([^:]*://[^/]*).*$} ) {
+    if ( $url && $url =~ m{^([^:]*://[^/]*).*$} ) {
         $this->{urlHost} = $1;
+
         # If the urlHost in the url is localhost, this is a lot less
         # useful than the default url host. This is because new CGI("")
         # assigns this host by default - it's a default setting, used
         # when there is nothing better available.
-        if( $this->{urlHost} eq 'http://localhost' ) {
+        if ( $this->{urlHost} eq 'http://localhost' ) {
             $this->{urlHost} = $TWiki::cfg{DefaultUrlHost};
-        } elsif( $TWiki::cfg{RemovePortNumber} ) {
+        }
+        elsif ( $TWiki::cfg{RemovePortNumber} ) {
             $this->{urlHost} =~ s/\:[0-9]+$//;
         }
-    } else {
+    }
+    else {
         $this->{urlHost} = $TWiki::cfg{DefaultUrlHost};
     }
     if (   $TWiki::cfg{GetScriptUrlFromCgi}
@@ -1334,25 +1422,33 @@ sub new {
         $this->{scriptUrlPath} = $1;
     }
 
-    my $web = '';
-    my $topic = $query->param( 'topic' );
-    if( $topic ) {
-        if( $topic =~ m#^$regex{linkProtocolPattern}://#o &&
-            $this->{cgiQuery} ) {
+    my $web   = '';
+    my $topic = $query->param('topic');
+    if ($topic) {
+        if (   $topic =~ m#^$regex{linkProtocolPattern}://#o
+            && $this->{cgiQuery} )
+        {
+
             # redirect to URI
-                print $this->redirect( $topic );
-                exit;   #we seriously don't want to go through normal TWiki operations if we're redirecting..
-        } elsif( $topic =~ /((?:.*[\.\/])+)(.*)/ ) {
+            print $this->redirect($topic);
+            exit
+              ; #we seriously don't want to go through normal TWiki operations if we're redirecting..
+        }
+        elsif ( $topic =~ /((?:.*[\.\/])+)(.*)/ ) {
+
             # is 'bin/script?topic=Webname.SomeTopic'
             $web   = $1;
             $topic = $2;
             $web =~ s/\./\//go;
             $web =~ s/\/$//o;
+
             # jump to WebHome if 'bin/script?topic=Webname.'
-            $topic = $TWiki::cfg{HomeTopicName} if( $web && ! $topic );
+            $topic = $TWiki::cfg{HomeTopicName} if ( $web && !$topic );
         }
+
         # otherwise assume 'bin/script/Webname?topic=SomeTopic'
-    } else {
+    }
+    else {
         $topic = '';
     }
 
@@ -1372,13 +1468,16 @@ sub new {
     $pathInfo =~ s!$cgiScriptName/!/!i;
 
     # Get the web and topic names from PATH_INFO
-    if( $pathInfo =~ /\/((?:.*[\.\/])+)(.*)/ ) {
+    if ( $pathInfo =~ /\/((?:.*[\.\/])+)(.*)/ ) {
+
         # is 'bin/script/Webname/SomeTopic' or 'bin/script/Webname/'
         $web   = $1 unless $web;
         $topic = $2 unless $topic;
         $web =~ s/\./\//go;
         $web =~ s/\/$//o;
-    } elsif( $pathInfo =~ /\/(.*)/ ) {
+    }
+    elsif ( $pathInfo =~ /\/(.*)/ ) {
+
         # is 'bin/script/Webname' or 'bin/script/'
         $web = $1 unless $web;
     }
@@ -1387,36 +1486,37 @@ sub new {
     $topic = $TWiki::cfg{HomeTopicName} if ( $topic =~ /\.\./ );
     $topic =~ s/$TWiki::cfg{NameFilter}//go;
     $topic = $TWiki::cfg{HomeTopicName} unless $topic;
-    $this->{topicName} = TWiki::Sandbox::untaintUnchecked( $topic );
+    $this->{topicName} = TWiki::Sandbox::untaintUnchecked($topic);
 
-    $web   =~ s/$TWiki::cfg{NameFilter}//go;
-    $this->{requestedWebName} = TWiki::Sandbox::untaintUnchecked( $web ); #can be an empty string
+    $web =~ s/$TWiki::cfg{NameFilter}//go;
+    $this->{requestedWebName} =
+      TWiki::Sandbox::untaintUnchecked($web);    #can be an empty string
     $web = $TWiki::cfg{UsersWebName} unless $web;
-    $this->{webName} = TWiki::Sandbox::untaintUnchecked( $web );
+    $this->{webName} = TWiki::Sandbox::untaintUnchecked($web);
 
-    # Convert UTF-8 web and topic name from URL into site charset if necessary 
-    # SMELL: merge these two cases, browsers just don't mix two encodings in one URL
-    # - can also simplify into 2 lines by making function return unprocessed text if no conversion
+# Convert UTF-8 web and topic name from URL into site charset if necessary
+# SMELL: merge these two cases, browsers just don't mix two encodings in one URL
+# - can also simplify into 2 lines by making function return unprocessed text if no conversion
     my $webNameTemp = UTF82SiteCharSet( $this->{webName} );
-    if ( $webNameTemp ) {
+    if ($webNameTemp) {
         $this->{webName} = $webNameTemp;
     }
 
     my $topicNameTemp = UTF82SiteCharSet( $this->{topicName} );
-    if ( $topicNameTemp ) {
+    if ($topicNameTemp) {
         $this->{topicName} = $topicNameTemp;
     }
 
     # Item3270 - here's the appropriate place to enforce TWiki spec:
     # All topic name sources are evaluated, site charset applied
     # SMELL: This untaint unchecked is duplicate of one just above
-    $this->{topicName}  =
-        TWiki::Sandbox::untaintUnchecked(ucfirst $this->{topicName});
+    $this->{topicName} =
+      TWiki::Sandbox::untaintUnchecked( ucfirst $this->{topicName} );
 
     $this->{scriptUrlPath} = $TWiki::cfg{ScriptUrlPath};
 
     require TWiki::Prefs;
-    my $prefs = new TWiki::Prefs( $this );
+    my $prefs = new TWiki::Prefs($this);
     $this->{prefs} = $prefs;
 
     # Form definition cache
@@ -1425,8 +1525,8 @@ sub new {
     # Push global preferences from TWiki.TWikiPreferences
     $prefs->pushGlobalPreferences();
 
-#TODO: what happens if we move this into the TWiki::User::new?
-    $this->{user} = $this->{users}->initialiseUser($this->{remoteUser});
+    #TODO: what happens if we move this into the TWiki::User::new?
+    $this->{user} = $this->{users}->initialiseUser( $this->{remoteUser} );
 
     # Static session variables that can be expanded in topics when they
     # are enclosed in % signs
@@ -1448,19 +1548,17 @@ sub new {
     # User preferences only available if we can get to a valid wikiname,
     # which depends on the user mapper.
     my $wn = $this->{users}->getWikiName( $this->{user} );
-    if( $wn ) {
-        $prefs->pushPreferences(
-            $TWiki::cfg{UsersWebName}, $wn,
+    if ($wn) {
+        $prefs->pushPreferences( $TWiki::cfg{UsersWebName}, $wn,
             'USER ' . $wn );
     }
 
     $prefs->pushWebPreferences( $this->{webName} );
 
-    $prefs->pushPreferences(
-        $this->{webName}, $this->{topicName}, 'TOPIC' );
+    $prefs->pushPreferences( $this->{webName}, $this->{topicName}, 'TOPIC' );
 
     $prefs->pushPreferenceValues( 'SESSION',
-                                  $this->{users}->{loginManager}->getSessionValues() );
+        $this->{users}->{loginManager}->getSessionValues() );
 
     # Finish plugin initialization - register handlers
     $this->{plugins}->enable();
@@ -1481,12 +1579,13 @@ needs the renderer.
 =cut
 
 sub renderer {
-    my( $this ) = @_;
+    my ($this) = @_;
 
-    unless( $this->{renderer} ) {
+    unless ( $this->{renderer} ) {
         require TWiki::Render;
+
         # requires preferences (such as LINKTOOLTIPINFO)
-        $this->{renderer} = new TWiki::Render( $this );
+        $this->{renderer} = new TWiki::Render($this);
     }
     return $this->{renderer};
 }
@@ -1500,11 +1599,11 @@ needs the attach.
 =cut
 
 sub attach {
-    my( $this ) = @_;
+    my ($this) = @_;
 
-    unless( $this->{attach} ) {
+    unless ( $this->{attach} ) {
         require TWiki::Attach;
-        $this->{attach} = new TWiki::Attach( $this );
+        $this->{attach} = new TWiki::Attach($this);
     }
     return $this->{attach};
 }
@@ -1518,11 +1617,11 @@ needs the templates.
 =cut
 
 sub templates {
-    my( $this ) = @_;
+    my ($this) = @_;
 
-    unless( $this->{templates} ) {
+    unless ( $this->{templates} ) {
         require TWiki::Templates;
-        $this->{templates} = new TWiki::Templates( $this );
+        $this->{templates} = new TWiki::Templates($this);
     }
     return $this->{templates};
 }
@@ -1536,13 +1635,14 @@ needs the i18ner.
 =cut
 
 sub i18n {
-    my( $this ) = @_;
+    my ($this) = @_;
 
-    unless( $this->{i18n} ) {
+    unless ( $this->{i18n} ) {
         require TWiki::I18N;
+
         # language information; must be loaded after
         # *all possible preferences sources* are available
-        $this->{i18n} = new TWiki::I18N( $this );
+        $this->{i18n} = new TWiki::I18N($this);
     }
     return $this->{i18n};
 }
@@ -1556,11 +1656,11 @@ needs the searcher.
 =cut
 
 sub search {
-    my( $this ) = @_;
+    my ($this) = @_;
 
-    unless( $this->{search} ) {
+    unless ( $this->{search} ) {
         require TWiki::Search;
-        $this->{search} = new TWiki::Search( $this );
+        $this->{search} = new TWiki::Search($this);
     }
     return $this->{search};
 }
@@ -1574,11 +1674,11 @@ needs the security.
 =cut
 
 sub security {
-    my( $this ) = @_;
+    my ($this) = @_;
 
-    unless( $this->{security} ) {
+    unless ( $this->{security} ) {
         require TWiki::Access;
-        $this->{security} = new TWiki::Access( $this );
+        $this->{security} = new TWiki::Access($this);
     }
     return $this->{security};
 }
@@ -1592,11 +1692,11 @@ needs the net.
 =cut
 
 sub net {
-    my( $this ) = @_;
+    my ($this) = @_;
 
-    unless( $this->{net} ) {
+    unless ( $this->{net} ) {
         require TWiki::Net;
-        $this->{net} = new TWiki::Net( $this );
+        $this->{net} = new TWiki::Net($this);
     }
     return $this->{net};
 }
@@ -1614,18 +1714,18 @@ Break circular references.
 sub finish {
     my $this = shift;
 
-    map { $_->finish() } values %{$this->{forms}};
-    $this->{plugins}->finish() if $this->{plugins};
-    $this->{users}->finish() if $this->{users};
-    $this->{prefs}->finish() if $this->{prefs};
+    map { $_->finish() } values %{ $this->{forms} };
+    $this->{plugins}->finish()   if $this->{plugins};
+    $this->{users}->finish()     if $this->{users};
+    $this->{prefs}->finish()     if $this->{prefs};
     $this->{templates}->finish() if $this->{templates};
-    $this->{renderer}->finish() if $this->{renderer};
-    $this->{net}->finish() if $this->{net};
-    $this->{store}->finish() if $this->{store};
-    $this->{search}->finish() if $this->{search};
-    $this->{attach}->finish() if $this->{attach};
-    $this->{security}->finish() if $this->{security};
-    $this->{i18n}->finish() if $this->{i18n};
+    $this->{renderer}->finish()  if $this->{renderer};
+    $this->{net}->finish()       if $this->{net};
+    $this->{store}->finish()     if $this->{store};
+    $this->{search}->finish()    if $this->{search};
+    $this->{attach}->finish()    if $this->{attach};
+    $this->{security}->finish()  if $this->{security};
+    $this->{i18n}->finish()      if $this->{i18n};
 
     undef $this->{_HTMLHEADERS};
     undef $this->{cgiQuery};
@@ -1637,7 +1737,7 @@ sub finish {
     undef $this->{_ICONMAP};
     undef $this->{context};
     undef $this->{remoteUser};
-    undef $this->{requestedWebName}; # Web name before renaming
+    undef $this->{requestedWebName};    # Web name before renaming
     undef $this->{scriptUrlPath};
     undef $this->{user};
     undef $this->{SESSION_TAGS};
@@ -1660,24 +1760,24 @@ Write the log for an event to the logfile
 sub writeLog {
     my $this = shift;
 
-    my $action = shift || '';
+    my $action   = shift || '';
     my $webTopic = shift || '';
-    my $extra = shift || '';
-    my $user = shift;
+    my $extra    = shift || '';
+    my $user     = shift;
 
     $user ||= $this->{user};
-    $user = ($this->{users}->getLoginName( $user ) || 'unknown')
-      if ($this->{users});
+    $user = ( $this->{users}->getLoginName($user) || 'unknown' )
+      if ( $this->{users} );
 
-    if( $user eq $cfg{DefaultUserLogin} ) {
-       my $cgiQuery = $this->{cgiQuery};
-       if( $cgiQuery ) {
-           my $agent = $cgiQuery->user_agent();
-           if( $agent ) {
-               $agent =~ m/([\w]+)/;
-               $extra .= ' '.$1;
-           }
-       }
+    if ( $user eq $cfg{DefaultUserLogin} ) {
+        my $cgiQuery = $this->{cgiQuery};
+        if ($cgiQuery) {
+            my $agent = $cgiQuery->user_agent();
+            if ($agent) {
+                $agent =~ m/([\w]+)/;
+                $extra .= ' ' . $1;
+            }
+        }
     }
 
     my $remoteAddr = $ENV{REMOTE_ADDR} || '';
@@ -1723,49 +1823,59 @@ sub writeDebug {
 sub _writeReport {
     my ( $this, $log, $message ) = @_;
 
-    if ( $log ) {
+    if ($log) {
         require TWiki::Time;
-        my $time =
-          TWiki::Time::formatTime( time(), '$year$mo', 'servertime');
+        my $time = TWiki::Time::formatTime( time(), '$year$mo', 'servertime' );
         $log =~ s/%DATE%/$time/go;
         $time = TWiki::Time::formatTime( time(), undef, 'servertime' );
 
-        if( open( FILE, ">>$log" ) ) {
+        if ( open( FILE, ">>$log" ) ) {
             print FILE "| $time | $message\n";
-            close( FILE );
-        } else {
-            print STDERR 'Could not write "'.$message.'" to '."$log: $!\n";
+            close(FILE);
+        }
+        else {
+            print STDERR 'Could not write "' . $message . '" to '
+              . "$log: $!\n";
         }
     }
 }
 
 sub _removeNewlines {
-    my( $theTag ) = @_;
+    my ($theTag) = @_;
     $theTag =~ s/[\r\n]+/ /gs;
     return $theTag;
 }
 
 # Convert relative URLs to absolute URIs
 sub _rewriteURLInInclude {
-    my( $theHost, $theAbsPath, $url ) = @_;
+    my ( $theHost, $theAbsPath, $url ) = @_;
 
     # leave out an eventual final non-directory component from the absolute path
     $theAbsPath =~ s/(.*?)[^\/]*$/$1/;
 
-    if( $url =~ /^\// ) {
+    if ( $url =~ /^\// ) {
+
         # fix absolute URL
-        $url = $theHost.$url;
-    } elsif( $url =~ /^\./ ) {
+        $url = $theHost . $url;
+    }
+    elsif ( $url =~ /^\./ ) {
+
         # fix relative URL
-        $url = $theHost.$theAbsPath.'/'.$url;
-    } elsif( $url =~ /^$regex{linkProtocolPattern}:/o ) {
+        $url = $theHost . $theAbsPath . '/' . $url;
+    }
+    elsif ( $url =~ /^$regex{linkProtocolPattern}:/o ) {
+
         # full qualified URL, do nothing
-    } elsif( $url =~ /^#/ ) {
+    }
+    elsif ( $url =~ /^#/ ) {
+
         # anchor. This needs to be left relative to the including topic
         # so do nothing
-    } elsif( $url ) {
+    }
+    elsif ($url) {
+
         # FIXME: is this test enough to detect relative URLs?
-        $url = $theHost.$theAbsPath.'/'.$url;
+        $url = $theHost . $theAbsPath . '/' . $url;
     }
 
     return $url;
@@ -1773,16 +1883,22 @@ sub _rewriteURLInInclude {
 
 # Add a web reference to a [[...][...]] link in an included topic
 sub _fixIncludeLink {
-    my( $web, $link, $label ) = @_;
+    my ( $web, $link, $label ) = @_;
 
     # Detect absolute and relative URLs and web-qualified wikinames
-    if( $link =~ m#^($regex{webNameRegex}\.|$regex{defaultWebNameRegex}\.|$regex{linkProtocolPattern}:|/)#o ) {
-        if( $label ) {
+    if ( $link =~
+m#^($regex{webNameRegex}\.|$regex{defaultWebNameRegex}\.|$regex{linkProtocolPattern}:|/)#o
+      )
+    {
+        if ($label) {
             return "[[$link][$label]]";
-        } else {
+        }
+        else {
             return "[[$link]]";
         }
-    } elsif( !$label ) {
+    }
+    elsif ( !$label ) {
+
         # Must be wikiword or spaced-out wikiword (or illegal link :-/)
         $label = $link;
     }
@@ -1792,13 +1908,15 @@ sub _fixIncludeLink {
 # Replace web references in a topic. Called from forEachLine, applying to
 # each non-verbatim and non-literal line.
 sub _fixupIncludedTopic {
-    my( $text, $options ) = @_;
+    my ( $text, $options ) = @_;
 
     my $fromWeb = $options->{web};
 
-    unless( $options->{in_noautolink} ) {
+    unless ( $options->{in_noautolink} ) {
+
         # 'TopicName' to 'Web.TopicName'
-        $text =~ s#(?:^|(?<=[\s(]))($regex{wikiWordRegex})(?=\s|\)|$)#$fromWeb.$1#go;
+        $text =~
+          s#(?:^|(?<=[\s(]))($regex{wikiWordRegex})(?=\s|\)|$)#$fromWeb.$1#go;
     }
 
     # Handle explicit [[]] everywhere
@@ -1811,23 +1929,25 @@ sub _fixupIncludedTopic {
 
 # Clean-up HTML text so that it can be shown embedded in a topic
 sub _cleanupIncludedHTML {
-    my( $text, $host, $path, $options ) = @_;
+    my ( $text, $host, $path, $options ) = @_;
 
     # FIXME: Make aware of <base> tag
 
     $text =~ s/^.*?<\/head>//is
-      unless ( $options->{disableremoveheaders} );   # remove all HEAD
+      unless ( $options->{disableremoveheaders} );    # remove all HEAD
     $text =~ s/<script.*?<\/script>//gis
-      unless ( $options->{disableremovescript} );    # remove all SCRIPTs
+      unless ( $options->{disableremovescript} );     # remove all SCRIPTs
     $text =~ s/^.*?<body[^>]*>//is
-      unless ( $options->{disableremovebody} );      # remove all to <BODY>
+      unless ( $options->{disableremovebody} );       # remove all to <BODY>
     $text =~ s/(?:\n)<\/body>.*//is
-      unless ( $options->{disableremovebody} );      # remove </BODY>
+      unless ( $options->{disableremovebody} );       # remove </BODY>
     $text =~ s/(?:\n)<\/html>.*//is
-      unless ( $options->{disableremoveheaders} );   # remove </HTML>
+      unless ( $options->{disableremoveheaders} );    # remove </HTML>
     $text =~ s/(<[^>]*>)/_removeNewlines($1)/ges
-      unless ( $options->{disablecompresstags} );    # replace newlines in html tags with space
-    $text =~ s/(\s(?:href|src|action)=(["']))(.*?)\2/$1._rewriteURLInInclude( $host, $path, $3 ).$2/geois
+      unless ( $options->{disablecompresstags} )
+      ;    # replace newlines in html tags with space
+    $text =~
+s/(\s(?:href|src|action)=(["']))(.*?)\2/$1._rewriteURLInInclude( $host, $path, $3 ).$2/geois
       unless ( $options->{disablerewriteurls} );
 
     return $text;
@@ -1842,47 +1962,64 @@ Apply a pattern on included text to extract a subset
 =cut
 
 sub applyPatternToIncludedText {
-    my( $theText, $thePattern ) = @_;
-    $thePattern =~ s/([^\\])([\$\@\%\&\#\'\`\/])/$1\\$2/g;  # escape some special chars
-    $thePattern = TWiki::Sandbox::untaintUnchecked( $thePattern );
-    $theText = '' unless( $theText =~ s/$thePattern/$1/is );
+    my ( $theText, $thePattern ) = @_;
+    $thePattern =~
+      s/([^\\])([\$\@\%\&\#\'\`\/])/$1\\$2/g;    # escape some special chars
+    $thePattern = TWiki::Sandbox::untaintUnchecked($thePattern);
+    $theText = '' unless ( $theText =~ s/$thePattern/$1/is );
     return $theText;
 }
 
 # Fetch content from a URL for inclusion by an INCLUDE
 sub _includeUrl {
-    my( $this, $url, $pattern, $web, $topic, $raw, $options, $warn ) = @_;
+    my ( $this, $url, $pattern, $web, $topic, $raw, $options, $warn ) = @_;
     my $text = '';
 
     # For speed, read file directly if URL matches an attachment directory
-    if( $url =~ /^$this->{urlHost}$TWiki::cfg{PubUrlPath}\/($regex{webNameRegex})\/([^\/\.]+)\/([^\/]+)$/ ) {
-        my $incWeb = $1;
+    if ( $url =~
+/^$this->{urlHost}$TWiki::cfg{PubUrlPath}\/($regex{webNameRegex})\/([^\/\.]+)\/([^\/]+)$/
+      )
+    {
+        my $incWeb   = $1;
         my $incTopic = $2;
-        my $incAtt = $3;
+        my $incAtt   = $3;
+
         # FIXME: Check for MIME type, not file suffix
-        if( $incAtt =~ m/\.(txt|html?)$/i ) {
-            unless( $this->{store}->attachmentExists(
-                $incWeb, $incTopic, $incAtt )) {
+        if ( $incAtt =~ m/\.(txt|html?)$/i ) {
+            unless (
+                $this->{store}->attachmentExists( $incWeb, $incTopic, $incAtt )
+              )
+            {
                 return _includeWarning( $this, $warn, 'bad_attachment', $url );
             }
-            if( $incWeb ne $web || $incTopic ne $topic ) {
+            if ( $incWeb ne $web || $incTopic ne $topic ) {
+
                 # CODE_SMELL: Does not account for not yet authenticated user
-                unless( $this->security->checkAccessPermission(
-                    'VIEW', $this->{user}, undef, undef, $incTopic, $incWeb ) ) {
+                unless (
+                    $this->security->checkAccessPermission(
+                        'VIEW',    $this->{user}, undef, undef,
+                        $incTopic, $incWeb
+                    )
+                  )
+                {
                     return _includeWarning( $this, $warn, 'access_denied',
-                                                   "$incWeb.$incTopic" );
+                        "$incWeb.$incTopic" );
                 }
             }
-            $text = $this->{store}->readAttachment( undef, $incWeb, $incTopic,
-                                                    $incAtt );
-            $text = _cleanupIncludedHTML( $text, $this->{urlHost},
-                                          $TWiki::cfg{PubUrlPath}, $options )
+            $text =
+              $this->{store}
+              ->readAttachment( undef, $incWeb, $incTopic, $incAtt );
+            $text =
+              _cleanupIncludedHTML( $text, $this->{urlHost},
+                $TWiki::cfg{PubUrlPath}, $options )
               unless $raw;
             $text = applyPatternToIncludedText( $text, $pattern )
-              if( $pattern );
-            $text = "<literal>\n" . $text . "\n</literal>" if ( $options->{literal} );
+              if ($pattern);
+            $text = "<literal>\n" . $text . "\n</literal>"
+              if ( $options->{literal} );
             return $text;
         }
+
         # fall through; try to include file over http based on MIME setting
     }
 
@@ -1891,31 +2028,37 @@ sub _includeUrl {
 
     # SMELL: should use the URI module from CPAN to parse the URL
     # SMELL: but additional CPAN adds to code bloat
-    unless ($url =~ m!^https?:!) {
+    unless ( $url =~ m!^https?:! ) {
         $text = _includeWarning( $this, $warn, 'bad_protocol', $url );
         return $text;
     }
 
-    my $response = $this->net->getExternalResource( $url );
-    if( !$response->is_error()) {
+    my $response = $this->net->getExternalResource($url);
+    if ( !$response->is_error() ) {
         my $contentType = $response->header('content-type');
         $text = $response->content();
-        if( $contentType =~ /^text\/html/ ) {
-            if (!$raw) {
+        if ( $contentType =~ /^text\/html/ ) {
+            if ( !$raw ) {
                 $url =~ m!^([a-z]+:/*[^/]*)(/[^#?]*)!;
                 $text = _cleanupIncludedHTML( $text, $1, $2, $options );
             }
-        } elsif( $contentType =~ /^text\/(plain|css)/ ) {
-            # do nothing
-        } else {
-            $text = _includeWarning(
-                $this, $warn, 'bad_content', $contentType );
         }
-        $text = applyPatternToIncludedText( $text, $pattern ) if( $pattern );
-        $text = "<literal>\n" . $text . "\n</literal>" if ( $options->{literal} );
-    } else {
-        $text = _includeWarning( $this, $warn, 'geturl_failed',
-                                 $url.' '.$response->message() );
+        elsif ( $contentType =~ /^text\/(plain|css)/ ) {
+
+            # do nothing
+        }
+        else {
+            $text =
+              _includeWarning( $this, $warn, 'bad_content', $contentType );
+        }
+        $text = applyPatternToIncludedText( $text, $pattern ) if ($pattern);
+        $text = "<literal>\n" . $text . "\n</literal>"
+          if ( $options->{literal} );
+    }
+    else {
+        $text =
+          _includeWarning( $this, $warn, 'geturl_failed',
+            $url . ' ' . $response->message() );
     }
 
     return $text;
@@ -1946,7 +2089,8 @@ sub _TOC {
 
     require TWiki::Attrs;
 
-    my $params = new TWiki::Attrs( $args );
+    my $params = new TWiki::Attrs($args);
+
     # get the topic name attribute
     my $topic = $params->{_DEFAULT} || $defaultTopic;
 
@@ -1954,54 +2098,62 @@ sub _TOC {
     $defaultWeb =~ s#/#.#g;
     my $web = $params->{web} || $defaultWeb;
 
-    my $isSameTopic = $web eq $defaultWeb  &&  $topic eq $defaultTopic;
+    my $isSameTopic = $web eq $defaultWeb && $topic eq $defaultTopic;
 
     $web =~ s#/#\.#g;
     my $webPath = $web;
     $webPath =~ s/\./\//g;
 
     # get the depth limit attribute
-    my $maxDepth = $params->{depth} || $this->{prefs}->getPreferencesValue('TOC_MAX_DEPTH') || 6;
+    my $maxDepth =
+         $params->{depth}
+      || $this->{prefs}->getPreferencesValue('TOC_MAX_DEPTH')
+      || 6;
     my $minDepth = $this->{prefs}->getPreferencesValue('TOC_MIN_DEPTH') || 1;
-    
-    # get the title attribute
-    my $title = $params->{title} || $this->{prefs}->getPreferencesValue('TOC_TITLE') || '';
-    $title = CGI::span( { class => 'twikiTocTitle' }, $title ) if( $title );
 
-    if( $web ne $defaultWeb || $topic ne $defaultTopic ) {
-        unless( $this->security->checkAccessPermission
-                ( 'VIEW', $this->{user}, undef, undef, $topic, $web ) ) {
-            return $this->inlineAlert( 'alerts', 'access_denied',
-                                       $web, $topic );
+    # get the title attribute
+    my $title =
+         $params->{title}
+      || $this->{prefs}->getPreferencesValue('TOC_TITLE')
+      || '';
+    $title = CGI::span( { class => 'twikiTocTitle' }, $title ) if ($title);
+
+    if ( $web ne $defaultWeb || $topic ne $defaultTopic ) {
+        unless (
+            $this->security->checkAccessPermission(
+                'VIEW', $this->{user}, undef, undef, $topic, $web
+            )
+          )
+        {
+            return $this->inlineAlert( 'alerts', 'access_denied', $web,
+                $topic );
         }
         my $meta;
         ( $meta, $text ) =
           $this->{store}->readTopic( $this->{user}, $web, $topic );
     }
 
-    my $insidePre = 0;
+    my $insidePre      = 0;
     my $insideVerbatim = 0;
-    my $highest = 99;
-    my $result  = '';
-    my $verbatim = {};
-    $text = $this->renderer->takeOutBlocks( $text, 'verbatim',
-                                               $verbatim);
-    $text = $this->renderer->takeOutBlocks( $text, 'pre',
-                                               $verbatim);
+    my $highest        = 99;
+    my $result         = '';
+    my $verbatim       = {};
+    $text = $this->renderer->takeOutBlocks( $text, 'verbatim', $verbatim );
+    $text = $this->renderer->takeOutBlocks( $text, 'pre',      $verbatim );
 
     # Find URL parameters
-    my $query = $this->{cgiQuery};
+    my $query   = $this->{cgiQuery};
     my @qparams = ();
     foreach my $name ( $query->param ) {
-      next if ($name eq 'keywords');
-      next if ($name eq 'topic');
-      next if ($name eq 'text');
-      push @qparams, $name => $query->param($name);
+        next if ( $name eq 'keywords' );
+        next if ( $name eq 'topic' );
+        next if ( $name eq 'text' );
+        push @qparams, $name => $query->param($name);
     }
 
-    # clear the set of unique anchornames in order to inhibit the 'relabeling' of
-    # anchor names if the same topic is processed more than once, cf. explanation
-    # in handleCommonTags()
+   # clear the set of unique anchornames in order to inhibit the 'relabeling' of
+   # anchor names if the same topic is processed more than once, cf. explanation
+   # in handleCommonTags()
     $this->renderer->_eraseAnchorNameMemory();
 
     # NB: While we're processing $text line by line here,
@@ -2009,76 +2161,101 @@ sub _TOC {
     # first replacing '#WikiWord', followed by regex{headerPatternHt} and
     # regex{headerPatternDa}. In order to stay in sync and not 'clutter'/slow
     # down the renderer code, we have to adhere to this order here as well
-    my @regexps = ('^(\#)('.$regex{wikiWordRegex}.')',
-                   $regex{headerPatternHt},
-                   $regex{headerPatternDa});
-    my @lines = split( /\r?\n/, $text );
-    my %anchors = ();
+    my @regexps = (
+        '^(\#)(' . $regex{wikiWordRegex} . ')',
+        $regex{headerPatternHt}, $regex{headerPatternDa}
+    );
+    my @lines    = split( /\r?\n/, $text );
+    my %anchors  = ();
     my %headings = ();
-    my %levels = ();
-    for my $i (0 .. $#regexps) {
+    my %levels   = ();
+    for my $i ( 0 .. $#regexps ) {
         my $lineno = 0;
+
         # SMELL: use forEachLine
         foreach my $line (@lines) {
             $lineno++;
-            if ($line =~ m/$regexps[$i]/) {
-                my ($level, $heading) = ($1, $2);
-                my $anchor = $this->renderer->makeUniqueAnchorName($web, $topic, $heading);
+            if ( $line =~ m/$regexps[$i]/ ) {
+                my ( $level, $heading ) = ( $1, $2 );
+                my $anchor =
+                  $this->renderer->makeUniqueAnchorName( $web, $topic,
+                    $heading );
 
-                if ($i > 0) {
-                    # SMELL: needed only because Render::_makeAnchorHeading uses it
-                    my $compatAnchor = $this->renderer->makeAnchorName($anchor, 1);
-                    $compatAnchor = $this->renderer->makeUniqueAnchorName($web, $topic, $anchor, 1)
-                        if ($compatAnchor ne $anchor);
+                if ( $i > 0 ) {
+
+                 # SMELL: needed only because Render::_makeAnchorHeading uses it
+                    my $compatAnchor =
+                      $this->renderer->makeAnchorName( $anchor, 1 );
+                    $compatAnchor =
+                      $this->renderer->makeUniqueAnchorName( $web, $topic,
+                        $anchor, 1 )
+                      if ( $compatAnchor ne $anchor );
 
                     $heading =~ s/\s*$regex{headerPatternNoTOC}.+$//go;
                     next unless $heading;
 
-                    $level = length $level if ($i == 2);
-                    if( ($level >= $minDepth) && ($level <= $maxDepth) ) {
-                        $anchors{$lineno} = $anchor;
+                    $level = length $level if ( $i == 2 );
+                    if ( ( $level >= $minDepth ) && ( $level <= $maxDepth ) ) {
+                        $anchors{$lineno}  = $anchor;
                         $headings{$lineno} = $heading;
-                        $levels{$lineno} = $level;
-		    }
-		}
-	    }
-	}
+                        $levels{$lineno}   = $level;
+                    }
+                }
+            }
+        }
     }
 
     # SMELL: this handling of <pre> is archaic.
-    foreach my $lineno (sort{$a <=> $b}(keys %headings)) {
-        my ($level, $line, $anchor) = ($levels{$lineno}, $headings{$lineno}, $anchors{$lineno});
-        $highest = $level if( $level < $highest );
+    foreach my $lineno ( sort { $a <=> $b } ( keys %headings ) ) {
+        my ( $level, $line, $anchor ) =
+          ( $levels{$lineno}, $headings{$lineno}, $anchors{$lineno} );
+        $highest = $level if ( $level < $highest );
         my $tabs = "\t" x $level;
+
         # Remove *bold*, _italic_ and =fixed= formatting
-        $line =~ s/(^|[\s\(])\*([^\s]+?|[^\s].*?[^\s])\*($|[\s\,\.\;\:\!\?\)])/$1$2$3/g;
-        $line =~ s/(^|[\s\(])_+([^\s]+?|[^\s].*?[^\s])_+($|[\s\,\.\;\:\!\?\)])/$1$2$3/g;
-        $line =~ s/(^|[\s\(])=+([^\s]+?|[^\s].*?[^\s])=+($|[\s\,\.\;\:\!\?\)])/$1$2$3/g;
+        $line =~
+s/(^|[\s\(])\*([^\s]+?|[^\s].*?[^\s])\*($|[\s\,\.\;\:\!\?\)])/$1$2$3/g;
+        $line =~
+s/(^|[\s\(])_+([^\s]+?|[^\s].*?[^\s])_+($|[\s\,\.\;\:\!\?\)])/$1$2$3/g;
+        $line =~
+s/(^|[\s\(])=+([^\s]+?|[^\s].*?[^\s])=+($|[\s\,\.\;\:\!\?\)])/$1$2$3/g;
+
         # Prevent WikiLinks
-        $line =~ s/\[\[.*?\]\[(.*?)\]\]/$1/g;  # '[[...][...]]'
-        $line =~ s/\[\[(.*?)\]\]/$1/ge;        # '[[...]]'
-        $line =~ s/([\s\(])($regex{webNameRegex})\.($regex{wikiWordRegex})/$1<nop>$3/go;  # 'Web.TopicName'
-        $line =~ s/([\s\(])($regex{wikiWordRegex})/$1<nop>$2/go;  # 'TopicName'
-        $line =~ s/([\s\(])($regex{abbrevRegex})/$1<nop>$2/go;    # 'TLA'
-        $line =~ s/([\s\-\*\(])([$regex{mixedAlphaNum}]+\:)/$1<nop>$2/go; # 'Site:page' Interwiki link
-        # Prevent manual links
+        $line =~ s/\[\[.*?\]\[(.*?)\]\]/$1/g;    # '[[...][...]]'
+        $line =~ s/\[\[(.*?)\]\]/$1/ge;          # '[[...]]'
+        $line =~
+          s/([\s\(])($regex{webNameRegex})\.($regex{wikiWordRegex})/$1<nop>$3/go
+          ;                                      # 'Web.TopicName'
+        $line =~ s/([\s\(])($regex{wikiWordRegex})/$1<nop>$2/go;   # 'TopicName'
+        $line =~ s/([\s\(])($regex{abbrevRegex})/$1<nop>$2/go;     # 'TLA'
+        $line =~ s/([\s\-\*\(])([$regex{mixedAlphaNum}]+\:)/$1<nop>$2/go
+          ;    # 'Site:page' Interwiki link
+               # Prevent manual links
         $line =~ s/<[\/]?a\b[^>]*>//gi;
+
         # create linked bullet item, using a relative link to anchor
-        my $target = $isSameTopic ?
-                     _make_params(0, '#'=>$anchor,@qparams) :
-                     $this->getScriptUrl(0,'view',$web,$topic,'#'=>$anchor,@qparams);
-        $line = $tabs.'* ' .  CGI::a({href=>$target},$line);
-        $result .= "\n".$line;
+        my $target =
+          $isSameTopic
+          ? _make_params( 0, '#' => $anchor, @qparams )
+          : $this->getScriptUrl(
+            0, 'view', $web, $topic,
+            '#' => $anchor,
+            @qparams
+          );
+        $line = $tabs . '* ' . CGI::a( { href => $target }, $line );
+        $result .= "\n" . $line;
     }
 
-    if( $result ) {
-        if( $highest > 1 ) {
+    if ($result) {
+        if ( $highest > 1 ) {
+
             # left shift TOC
             $highest--;
             $result =~ s/^\t{$highest}//gm;
         }
-        return CGI::div( { class=>'twikiToc' }, "$title$result\n" );
-    } else {
+        return CGI::div( { class => 'twikiToc' }, "$title$result\n" );
+    }
+    else {
         return '';
     }
 }
@@ -2094,28 +2271,35 @@ selected. The parameters (...) are used to populate %PARAM1%..%PARAMn%
 =cut
 
 sub inlineAlert {
-    my $this = shift;
+    my $this     = shift;
     my $template = shift;
-    my $def = shift;
+    my $def      = shift;
 
-    my $text = $this->templates->readTemplate( 'oops'.$template,
-                                                 $this->getSkin() );
-    if( $text ) {
-        my $blah = $this->templates->expandTemplate( $def );
+    my $text =
+      $this->templates->readTemplate( 'oops' . $template, $this->getSkin() );
+    if ($text) {
+        my $blah = $this->templates->expandTemplate($def);
         $text =~ s/%INSTANTIATE%/$blah/;
+
         # web and topic can be anything; they are not used
-        $text = $this->handleCommonTags( $text, $this->{webName},
-                                         $this->{topicName} );
+        $text =
+          $this->handleCommonTags( $text, $this->{webName},
+            $this->{topicName} );
         my $n = 1;
-        while( defined( my $param = shift )) {
+        while ( defined( my $param = shift ) ) {
             $text =~ s/%PARAM$n%/$param/g;
             $n++;
         }
 
-    } else {
-        $text = CGI::h1('TWiki Installation Error')
-          . 'Template "'.$template.'" not found.'.CGI::p()
-            . 'Check your configuration settings for {TemplateDir} and {TemplatePath}';
+    }
+    else {
+        $text =
+            CGI::h1('TWiki Installation Error')
+          . 'Template "'
+          . $template
+          . '" not found.'
+          . CGI::p()
+          . 'Check your configuration settings for {TemplateDir} and {TemplatePath}';
     }
 
     return $text;
@@ -2145,74 +2329,87 @@ round out the spec.
 =cut
 
 sub parseSections {
+
     #my( $text _ = @_;
     my %sections;
     my @list = ();
 
-    my $seq = 0;
-    my $ntext = '';
+    my $seq    = 0;
+    my $ntext  = '';
     my $offset = 0;
-    foreach my $bit (split(/(%(?:START|END)SECTION(?:{.*?})?%)/, $_[0] )) {
-        if( $bit =~ /^%STARTSECTION(?:{(.*)})?%$/) {
+    foreach my $bit ( split( /(%(?:START|END)SECTION(?:{.*?})?%)/, $_[0] ) ) {
+        if ( $bit =~ /^%STARTSECTION(?:{(.*)})?%$/ ) {
             require TWiki::Attrs;
-            my $attrs = new TWiki::Attrs( $1 );
+            my $attrs = new TWiki::Attrs($1);
             $attrs->{type} ||= 'section';
-            $attrs->{name} = $attrs->{_DEFAULT} || $attrs->{name} ||
-              '_SECTION'.$seq++;
+            $attrs->{name} =
+                 $attrs->{_DEFAULT}
+              || $attrs->{name}
+              || '_SECTION' . $seq++;
             delete $attrs->{_DEFAULT};
-            my $id = $attrs->{type}.':'.$attrs->{name};
-            if( $sections{$id} ) {
+            my $id = $attrs->{type} . ':' . $attrs->{name};
+            if ( $sections{$id} ) {
+
                 # error, this named section already defined, ignore
                 next;
             }
+
             # close open unnamed sections of the same type
-            foreach my $s ( @list ) {
-                if( $s->{end} < 0 && $s->{type} eq $attrs->{type} &&
-                      $s->{name} =~ /^_SECTION\d+$/ ) {
+            foreach my $s (@list) {
+                if (   $s->{end} < 0
+                    && $s->{type} eq $attrs->{type}
+                    && $s->{name} =~ /^_SECTION\d+$/ )
+                {
                     $s->{end} = $offset;
                 }
             }
             $attrs->{start} = $offset;
-            $attrs->{end} = -1; # open section
-            $sections{$id} = $attrs;
+            $attrs->{end}   = -1;        # open section
+            $sections{$id}  = $attrs;
             push( @list, $attrs );
-        } elsif( $bit =~ /^%ENDSECTION(?:{(.*)})?%$/ ) {
+        }
+        elsif ( $bit =~ /^%ENDSECTION(?:{(.*)})?%$/ ) {
             require TWiki::Attrs;
-            my $attrs = new TWiki::Attrs( $1 );
+            my $attrs = new TWiki::Attrs($1);
             $attrs->{type} ||= 'section';
             $attrs->{name} = $attrs->{_DEFAULT} || $attrs->{name} || '';
             delete $attrs->{_DEFAULT};
-            unless( $attrs->{name} ) {
+            unless ( $attrs->{name} ) {
+
                 # find the last open unnamed section of this type
                 foreach my $s ( reverse @list ) {
-                    if( $s->{end} == -1 &&
-                          $s->{type} eq $attrs->{type} &&
-                         $s->{name} =~ /^_SECTION\d+$/ ) {
+                    if (   $s->{end} == -1
+                        && $s->{type} eq $attrs->{type}
+                        && $s->{name} =~ /^_SECTION\d+$/ )
+                    {
                         $attrs->{name} = $s->{name};
                         last;
                     }
                 }
+
                 # ignore it if no matching START found
                 next unless $attrs->{name};
             }
-            my $id = $attrs->{type}.':'.$attrs->{name};
-            if( !$sections{$id} || $sections{$id}->{end} >= 0 ) {
+            my $id = $attrs->{type} . ':' . $attrs->{name};
+            if ( !$sections{$id} || $sections{$id}->{end} >= 0 ) {
+
                 # error, no such open section, ignore
                 next;
             }
             $sections{$id}->{end} = $offset;
-        } else {
+        }
+        else {
             $ntext .= $bit;
-            $offset = length( $ntext );
+            $offset = length($ntext);
         }
     }
 
     # close open sections
-    foreach my $s ( @list ) {
+    foreach my $s (@list) {
         $s->{end} = $offset if $s->{end} < 0;
     }
 
-    return( $ntext, \@list );
+    return ( $ntext, \@list );
 }
 
 =pod
@@ -2236,22 +2433,29 @@ sub expandVariablesOnTopicCreation {
     $user ||= $this->{user};
 
     # Chop out templateonly sections
-    my( $ntext, $sections ) = parseSections( $text );
-    if( scalar( @$sections )) {
-        # Note that if named templateonly sections overlap, the behaviour is undefined.
+    my ( $ntext, $sections ) = parseSections($text);
+    if ( scalar(@$sections) ) {
+
+ # Note that if named templateonly sections overlap, the behaviour is undefined.
         foreach my $s ( reverse @$sections ) {
-            if( $s->{type} eq 'templateonly' ) {
-                $ntext = substr($ntext, 0, $s->{start})
-                       . substr($ntext, $s->{end}, length($ntext));
-            } else {
+            if ( $s->{type} eq 'templateonly' ) {
+                $ntext =
+                    substr( $ntext, 0, $s->{start} )
+                  . substr( $ntext, $s->{end}, length($ntext) );
+            }
+            else {
+
                 # put back non-templateonly sections
                 my $start = $s->remove('start');
-                my $end = $s->remove('end');
-                $ntext = substr($ntext, 0, $start).
-                  '%STARTSECTION{'.$s->stringify().'}%'.
-                    substr($ntext, $start, $end - $start).
-                      '%ENDSECTION{'.$s->stringify().'}%'.
-                        substr($ntext, $end, length($ntext));
+                my $end   = $s->remove('end');
+                $ntext =
+                    substr( $ntext, 0, $start )
+                  . '%STARTSECTION{'
+                  . $s->stringify() . '}%'
+                  . substr( $ntext, $start, $end - $start )
+                  . '%ENDSECTION{'
+                  . $s->stringify() . '}%'
+                  . substr( $ntext, $end, length($ntext) );
             }
         }
         $text = $ntext;
@@ -2269,26 +2473,33 @@ sub expandVariablesOnTopicCreation {
     $text = _processTags( $this, $text, \&_expandTagOnTopicCreation, 16 );
 
     # expand all variables for type="expandvariables" sections
-    ( $ntext, $sections ) = parseSections( $text );
-    if( scalar( @$sections )) {
+    ( $ntext, $sections ) = parseSections($text);
+    if ( scalar(@$sections) ) {
         $theWeb   ||= $this->{session}->{webName};
         $theTopic ||= $this->{session}->{topicName};
         foreach my $s ( reverse @$sections ) {
-            if( $s->{type} eq 'expandvariables' ) {
-                my $etext = substr( $ntext, $s->{start}, $s->{end} - $s->{start} );
+            if ( $s->{type} eq 'expandvariables' ) {
+                my $etext =
+                  substr( $ntext, $s->{start}, $s->{end} - $s->{start} );
                 expandAllTags( $this, \$etext, $theTopic, $theWeb );
-                $ntext = substr( $ntext, 0, $s->{start})
-                       . $etext
-                       . substr( $ntext, $s->{end}, length($ntext) );
-            } else {
+                $ntext =
+                    substr( $ntext, 0, $s->{start} ) 
+                  . $etext
+                  . substr( $ntext, $s->{end}, length($ntext) );
+            }
+            else {
+
                 # put back non-expandvariables sections
                 my $start = $s->remove('start');
-                my $end = $s->remove('end');
-                $ntext = substr($ntext, 0, $start).
-                  '%STARTSECTION{'.$s->stringify().'}%'.
-                    substr($ntext, $start, $end - $start).
-                      '%ENDSECTION{'.$s->stringify().'}%'.
-                        substr($ntext, $end, length($ntext));
+                my $end   = $s->remove('end');
+                $ntext =
+                    substr( $ntext, 0, $start )
+                  . '%STARTSECTION{'
+                  . $s->stringify() . '}%'
+                  . substr( $ntext, $start, $end - $start )
+                  . '%ENDSECTION{'
+                  . $s->stringify() . '}%'
+                  . substr( $ntext, $end, length($ntext) );
             }
         }
         $text = $ntext;
@@ -2332,7 +2543,7 @@ containing the additional chars.
 =cut
 
 sub entityEncode {
-    my( $text, $extra) = @_;
+    my ( $text, $extra ) = @_;
     $extra ||= '';
 
     # encode all non-printable 7-bit chars (< \x1f),
@@ -2340,7 +2551,8 @@ sub entityEncode {
     # encode HTML special characters '>', '<', '&', ''' and '"'.
     # encode TML special characters '%', '|', '[', ']', '@', '_',
     # '*', and '='
-    $text =~ s/([[\x01-\x09\x0b\x0c\x0e-\x1f"%&'*<=>@[_\|$extra])/'&#'.ord($1).';'/ge;
+    $text =~
+      s/([[\x01-\x09\x0b\x0c\x0e-\x1f"%&'*<=>@[_\|$extra])/'&#'.ord($1).';'/ge;
     return $text;
 }
 
@@ -2387,19 +2599,26 @@ do anything since all URLs and attachment filenames are already in UTF-8.
 =cut
 
 sub urlEncodeAttachment {
-    my( $text ) = @_;
+    my ($text) = @_;
 
-    my $usingEBCDIC = ( 'A' eq chr(193) ); 	# Only true on EBCDIC mainframes
+    my $usingEBCDIC = ( 'A' eq chr(193) );    # Only true on EBCDIC mainframes
 
-    if( (defined($TWiki::cfg{Site}{CharSet}) and $TWiki::cfg{Site}{CharSet} =~ /^utf-?8$/i ) or $usingEBCDIC ) {
-	# Just let browser do UTF-8 URL encoding 
-	return $text;
+    if (
+        (
+            defined( $TWiki::cfg{Site}{CharSet} )
+            and $TWiki::cfg{Site}{CharSet} =~ /^utf-?8$/i
+        )
+        or $usingEBCDIC
+      )
+    {
+
+        # Just let browser do UTF-8 URL encoding
+        return $text;
     }
 
     # Freeze into site charset through URL encoding
-    return urlEncode( $text );
+    return urlEncode($text);
 }
-
 
 =pod
 
@@ -2469,17 +2688,17 @@ not specified it is taken as 0.
 =cut
 
 sub isTrue {
-    my( $value, $default ) = @_;
+    my ( $value, $default ) = @_;
 
     $default ||= 0;
 
-    return $default unless defined( $value );
+    return $default unless defined($value);
 
     $value =~ s/^\s*(.*?)\s*$/$1/gi;
     $value =~ s/off//gi;
     $value =~ s/no//gi;
     $value =~ s/false//gi;
-    return ( $value ) ? 1 : 0;
+    return ($value) ? 1 : 0;
 }
 
 =pod
@@ -2493,8 +2712,9 @@ With parameter $sep any string may be used as separator between the word compone
 
 sub spaceOutWikiWord {
     my $word = shift || '';
-    my $sep = shift || ' ';
-    $word =~ s/([$regex{lowerAlpha}])([$regex{upperAlpha}$regex{numeric}]+)/$1$sep$2/go;
+    my $sep  = shift || ' ';
+    $word =~
+s/([$regex{lowerAlpha}])([$regex{upperAlpha}$regex{numeric}]+)/$1$sep$2/go;
     $word =~ s/([$regex{numeric}])([$regex{upperAlpha}])/$1$sep$2/go;
     return $word;
 }
@@ -2520,7 +2740,7 @@ The rules for tag expansion are:
 
 sub expandAllTags {
     my $this = shift;
-    my $text = shift; # reference
+    my $text = shift;    # reference
     my ( $topic, $web, $meta ) = @_;
     $web =~ s#\.#/#go;
 
@@ -2528,8 +2748,8 @@ sub expandAllTags {
     my $memTopic = $this->{SESSION_TAGS}{TOPIC};
     my $memWeb   = $this->{SESSION_TAGS}{WEB};
 
-    $this->{SESSION_TAGS}{TOPIC}   = $topic;
-    $this->{SESSION_TAGS}{WEB}     = $web;
+    $this->{SESSION_TAGS}{TOPIC} = $topic;
+    $this->{SESSION_TAGS}{WEB}   = $web;
 
     # Escape ' !%VARIABLE%'
     $$text =~ s/(?<=\s)!%($regex{tagNameRegex})/&#37;$1/g;
@@ -2546,12 +2766,12 @@ sub expandAllTags {
     # when debugging. The default is set to 16
     # to match the original limit on search expansion, though this of
     # course applies to _all_ tags and not just search.
-    $$text = _processTags( $this, $$text, \&_expandTagOnTopicRendering,
-                                  16, @_ );
+    $$text =
+      _processTags( $this, $$text, \&_expandTagOnTopicRendering, 16, @_ );
 
     # restore previous context
-    $this->{SESSION_TAGS}{TOPIC}   = $memTopic;
-    $this->{SESSION_TAGS}{WEB}     = $memWeb;
+    $this->{SESSION_TAGS}{TOPIC} = $memTopic;
+    $this->{SESSION_TAGS}{WEB}   = $memWeb;
 }
 
 # Process TWiki %TAGS{}% by parsing the input tokenised into
@@ -2566,18 +2786,18 @@ sub _processTags {
     my $tagf = shift;
     my $tell = 0;
 
-    return '' if (
-        (!defined( $text )) || 
-        ($text eq ''));
+    return '' if ( ( !defined($text) )
+        || ( $text eq '' ) );
 
     #no tags to process
-    return $text unless ($text =~ /(%)/);
+    return $text unless ( $text =~ /(%)/ );
 
     my $depth = shift;
 
-    unless ( $depth ) {
+    unless ($depth) {
         my $mess = "Max recursive depth reached: $text";
-        $this->writeWarning( $mess );
+        $this->writeWarning($mess);
+
         # prevent recursive expansion that just has been detected
         # from happening in the error message
         $text =~ s/%(.*?)%/$1/go;
@@ -2585,25 +2805,26 @@ sub _processTags {
     }
 
     my $verbatim = {};
-    $text = $this->renderer->takeOutBlocks( $text, 'verbatim',
-                                               $verbatim);
+    $text = $this->renderer->takeOutBlocks( $text, 'verbatim', $verbatim );
 
     # See Item1442
     #my $percent = ($TranslationToken x 3).'%'.($TranslationToken x 3);
 
     my @queue = split( /(%)/, $text );
     my @stack;
-    my $stackTop = ''; # the top stack entry. Done this way instead of
-    # referring to the top of the stack for efficiency. This var
-    # should be considered to be $stack[$#stack]
+    my $stackTop = '';    # the top stack entry. Done this way instead of
+         # referring to the top of the stack for efficiency. This var
+         # should be considered to be $stack[$#stack]
 
-    while ( scalar( @queue )) {
-        my $token = shift( @queue );
+    while ( scalar(@queue) ) {
+        my $token = shift(@queue);
+
         #print STDERR ' ' x $tell,"PROCESSING $token \n";
 
         # each % sign either closes an existing stacked context, or
         # opens a new context.
         if ( $token eq '%' ) {
+
             #print STDERR ' ' x $tell,"CONSIDER $stackTop\n";
             # If this is a closing }%, try to rejoin the previous
             # tokens until we get to a valid tag construct. This is
@@ -2611,43 +2832,52 @@ sub _processTags {
             # way to do this without a full parse that takes % signs
             # in tag parameters into account.
             if ( $stackTop =~ /}$/s ) {
-                while ( scalar( @stack) &&
-                        $stackTop !~ /^%($regex{tagNameRegex}){.*}$/so ) {
+                while ( scalar(@stack)
+                    && $stackTop !~ /^%($regex{tagNameRegex}){.*}$/so )
+                {
                     my $top = $stackTop;
+
                     #print STDERR ' ' x $tell,"COLLAPSE $top \n";
-                    $stackTop = pop( @stack ) . $top;
+                    $stackTop = pop(@stack) . $top;
                 }
             }
+
             # /s so you can have newlines in parameters
             if ( $stackTop =~ m/^%(($regex{tagNameRegex})(?:{(.*)})?)$/so ) {
-                my( $expr, $tag, $args ) = ( $1, $2, $3 );
+                my ( $expr, $tag, $args ) = ( $1, $2, $3 );
+
                 #print STDERR ' ' x $tell,"POP $tag\n";
                 my $e = &$tagf( $this, $tag, $args, @_ );
 
-                if ( defined( $e )) {
+                if ( defined($e) ) {
+
                     #print STDERR ' ' x $tell--,"EXPANDED $tag -> $e\n";
-                    $stackTop = pop( @stack );
-                    unless ($e =~ /(%)/) {
-                        #SMELL: this is a profiler speedup found by Sven on the last day of 4.2.1
-                        #TODO: I don't think this parser should be in this section - re-analysis desired.
-                        #print STDERR "no tags to recurse\n";
+                    $stackTop = pop(@stack);
+                    unless ( $e =~ /(%)/ ) {
+
+#SMELL: this is a profiler speedup found by Sven on the last day of 4.2.1
+#TODO: I don't think this parser should be in this section - re-analysis desired.
+#print STDERR "no tags to recurse\n";
                         $stackTop .= $e;
                         next;
                     }
+
                     # Recursively expand tags in the expansion of $tag
-                    $stackTop .= _processTags($this, $e, $tagf, $depth-1, @_ );
-                } else { # expansion failed
-                    #print STDERR ' ' x $tell++,"EXPAND $tag FAILED\n";
-                    # To handle %NOP
-                    # correctly, we have to handle the %VAR% case differently
-                    # to the %VAR{}% case when a variable expansion fails.
-                    # This is so that recursively define variables e.g.
-                    # %A%B%D% expand correctly, but at the same time we ensure
-                    # that a mismatched }% can't accidentally close a context
-                    # that was left open when a tag expansion failed.
-                    # However Cairo didn't do this, so for compatibility
-                    # we have to accept that %NOP can never be fixed. if it
-                    # could, then we could uncomment the following:
+                    $stackTop .=
+                      _processTags( $this, $e, $tagf, $depth - 1, @_ );
+                }
+                else {    # expansion failed
+                      #print STDERR ' ' x $tell++,"EXPAND $tag FAILED\n";
+                      # To handle %NOP
+                      # correctly, we have to handle the %VAR% case differently
+                      # to the %VAR{}% case when a variable expansion fails.
+                      # This is so that recursively define variables e.g.
+                      # %A%B%D% expand correctly, but at the same time we ensure
+                      # that a mismatched }% can't accidentally close a context
+                      # that was left open when a tag expansion failed.
+                      # However Cairo didn't do this, so for compatibility
+                      # we have to accept that %NOP can never be fixed. if it
+                      # could, then we could uncomment the following:
 
                     #if( $stackTop =~ /}$/ ) {
                     #    # %VAR{...}% case
@@ -2657,29 +2887,32 @@ sub _processTags {
                     #    $stackTop = $percent.$expr.$percent;
                     #} else
                     {
+
                         # %VAR% case.
                         # In this case we *do* want to match the tag expression
                         # again, as an embedded %VAR% may have expanded to
                         # create a valid outer expression. This is directly
                         # at odds with the %VAR{...}% case.
                         push( @stack, $stackTop );
-                        $stackTop = '%'; # open new context
+                        $stackTop = '%';    # open new context
                     }
                 }
-            } else {
-                push( @stack, $stackTop );
-                $stackTop = '%'; # push a new context
-                #$tell++;
             }
-        } else {
+            else {
+                push( @stack, $stackTop );
+                $stackTop = '%';            # push a new context
+                                            #$tell++;
+            }
+        }
+        else {
             $stackTop .= $token;
         }
     }
 
     # Run out of input. Gather up everything in the stack.
-    while ( scalar( @stack )) {
+    while ( scalar(@stack) ) {
         my $expr = $stackTop;
-        $stackTop = pop( @stack );
+        $stackTop = pop(@stack);
         $stackTop .= $expr;
     }
 
@@ -2699,18 +2932,19 @@ sub _processTags {
 # session or constant tags
 sub _expandTagOnTopicRendering {
     my $this = shift;
-    my $tag = shift;
+    my $tag  = shift;
     my $args = shift;
+
     # my( $topic, $web, $meta ) = @_;
     require TWiki::Attrs;
 
-    my $e = $this->{prefs}->getPreferencesValue( $tag );
-    unless( defined( $e )) {
+    my $e = $this->{prefs}->getPreferencesValue($tag);
+    unless ( defined($e) ) {
         $e = $this->{SESSION_TAGS}{$tag};
-        if( !defined( $e ) && defined( $functionTags{$tag} )) {
-            $e = &{$functionTags{$tag}}
-              ( $this, new TWiki::Attrs(
-                  $args, $contextFreeSyntax{$tag} ), @_ );
+        if ( !defined($e) && defined( $functionTags{$tag} ) ) {
+            $e = &{ $functionTags{$tag} }(
+                $this, new TWiki::Attrs( $args, $contextFreeSyntax{$tag} ), @_
+            );
         }
     }
     return $e;
@@ -2721,6 +2955,7 @@ sub _expandTagOnTopicRendering {
 # tags, and we expand %NOP% differently.
 sub _expandTagOnTopicCreation {
     my $this = shift;
+
     # my( $tag, $args, $topic, $web ) = @_;
 
     # Required for Cairo compatibility. Ignore %NOP{...}%
@@ -2736,7 +2971,9 @@ sub _expandTagOnTopicCreation {
     # This is what we want to make sure new user templates are populated
     # correctly, but you need to think about this if you extend the set of
     # tags expanded here.
-    return undef unless $_[0] =~ /^(URLPARAM|DATE|(SERVER|GM)TIME|(USER|WIKI)NAME|WIKIUSERNAME|USERINFO)$/;
+    return undef
+      unless $_[0] =~
+/^(URLPARAM|DATE|(SERVER|GM)TIME|(USER|WIKI)NAME|WIKIUSERNAME|USERINFO)$/;
 
     return _expandTagOnTopicRendering( $this, @_ );
 }
@@ -2765,7 +3002,7 @@ use $session->inContext( $id ) to determine if a context is active.
 =cut
 
 sub enterContext {
-    my( $this, $id, $val ) = @_;
+    my ( $this, $id, $val ) = @_;
     $val ||= 1;
     $this->{context}->{$id} = $val;
 }
@@ -2780,7 +3017,7 @@ Remove the context id $id from the set of active contexts.
 =cut
 
 sub leaveContext {
-    my( $this, $id ) = @_;
+    my ( $this, $id ) = @_;
     my $res = $this->{context}->{$id};
     delete $this->{context}->{$id};
     return $res;
@@ -2796,7 +3033,7 @@ Return the value for the given context id
 =cut
 
 sub inContext {
-    my( $this, $id ) = @_;
+    my ( $this, $id ) = @_;
     return $this->{context}->{$id};
 }
 
@@ -2813,7 +3050,7 @@ STATIC Add a tag handler to the function tag handlers.
 sub registerTagHandler {
     my ( $tag, $fnref, $syntax ) = @_;
     $functionTags{$tag} = \&$fnref;
-    if( $syntax && $syntax eq 'context-free' ) {
+    if ( $syntax && $syntax eq 'context-free' ) {
         $contextFreeSyntax{$tag} = 1;
     }
 }
@@ -2843,8 +3080,8 @@ where:
 =cut=
 
 sub registerRESTHandler {
-   my ( $subject, $verb, $fnref) = @_;
-   $restDispatch{$subject}{$verb} = \&$fnref;
+    my ( $subject, $verb, $fnref ) = @_;
+    $restDispatch{$subject}{$verb} = \&$fnref;
 }
 
 =pod=
@@ -2859,13 +3096,14 @@ or undef if none is found.
 =cut=
 
 sub restDispatch {
-   my ( $subject, $verb) = @_;
-   my $s=$restDispatch{$subject};
-   if (defined($s)) {
-       return $restDispatch{$subject}{$verb};
-   } else {
-       return undef;
-   }
+    my ( $subject, $verb ) = @_;
+    my $s = $restDispatch{$subject};
+    if ( defined($s) ) {
+        return $restDispatch{$subject}{$verb};
+    }
+    else {
+        return undef;
+    }
 }
 
 =pod
@@ -2884,32 +3122,30 @@ at a time when meta isn't available.
 =cut
 
 sub handleCommonTags {
-    my( $this, $text, $theWeb, $theTopic, $meta ) = @_;
+    my ( $this, $text, $theWeb, $theTopic, $meta ) = @_;
 
-    ASSERT($theWeb) if DEBUG;
+    ASSERT($theWeb)   if DEBUG;
     ASSERT($theTopic) if DEBUG;
 
     return $text unless $text;
-    my $verbatim={};
-    # Plugin Hook (for cache Plugins only)
-    $this->{plugins}->beforeCommonTagsHandler(
-        $text, $theTopic, $theWeb, $meta );
+    my $verbatim = {};
 
-    #use a "global var", so included topics can extract and putback 
+    # Plugin Hook (for cache Plugins only)
+    $this->{plugins}
+      ->beforeCommonTagsHandler( $text, $theTopic, $theWeb, $meta );
+
+    #use a "global var", so included topics can extract and putback
     #their verbatim blocks safetly.
-    $text = $this->renderer->takeOutBlocks( $text, 'verbatim',
-                                              $verbatim);
+    $text = $this->renderer->takeOutBlocks( $text, 'verbatim', $verbatim );
 
     my $memW = $this->{SESSION_TAGS}{INCLUDINGWEB};
     my $memT = $this->{SESSION_TAGS}{INCLUDINGTOPIC};
-    $this->{SESSION_TAGS}{INCLUDINGWEB} = $theWeb;
+    $this->{SESSION_TAGS}{INCLUDINGWEB}   = $theWeb;
     $this->{SESSION_TAGS}{INCLUDINGTOPIC} = $theTopic;
 
     expandAllTags( $this, \$text, $theTopic, $theWeb, $meta );
 
-    $text = $this->renderer->takeOutBlocks( $text, 'verbatim',
-                                              $verbatim);
-
+    $text = $this->renderer->takeOutBlocks( $text, 'verbatim', $verbatim );
 
     # Plugin Hook
     $this->{plugins}->commonTagsHandler( $text, $theTopic, $theWeb, 0, $meta );
@@ -2917,19 +3153,19 @@ sub handleCommonTags {
     # process tags again because plugin hook may have added more in
     expandAllTags( $this, \$text, $theTopic, $theWeb, $meta );
 
-    $this->{SESSION_TAGS}{INCLUDINGWEB} = $memW;
+    $this->{SESSION_TAGS}{INCLUDINGWEB}   = $memW;
     $this->{SESSION_TAGS}{INCLUDINGTOPIC} = $memT;
 
     # 'Special plugin tag' TOC hack, must be done after all other expansions
     # are complete, and has to reprocess the entire topic.
 
-    # We need to keep track of the 'TOC topics' here in order to ensure that each 
-    # of these topics is only processed once (this is due to the fact that the
-    # renaming of ambiguous anchors has to work context-less and cannot recognize
-    # whether a particular heading has been converted before)--alternatively, we
-    # could just clear the 'anchorname memory' and keep reprocessing topics
-    # (the latter solution is slower if th same TOC is included multiple times)
-    # current solution: let _TOC() clear the hash which holds the anchornames
+   # We need to keep track of the 'TOC topics' here in order to ensure that each
+   # of these topics is only processed once (this is due to the fact that the
+   # renaming of ambiguous anchors has to work context-less and cannot recognize
+   # whether a particular heading has been converted before)--alternatively, we
+   # could just clear the 'anchorname memory' and keep reprocessing topics
+   # (the latter solution is slower if th same TOC is included multiple times)
+   # current solution: let _TOC() clear the hash which holds the anchornames
     $text =~ s/%TOC(?:{(.*?)})?%/$this->_TOC($text, $theTopic, $theWeb, $1)/ge;
 
     # Codev.FormattedSearchWithConditionalOutput: remove <nop> lines,
@@ -2941,8 +3177,8 @@ sub handleCommonTags {
     $this->renderer->putBackBlocks( \$text, $verbatim, 'verbatim' );
 
     # TWiki Plugin Hook (for cache Plugins only)
-    $this->{plugins}->afterCommonTagsHandler(
-        $text, $theTopic, $theWeb, $meta );
+    $this->{plugins}
+      ->afterCommonTagsHandler( $text, $theTopic, $theWeb, $meta );
 
     return $text;
 }
@@ -2962,12 +3198,12 @@ result in it being added many times.
 =cut
 
 sub addToHEAD {
-	my ($this, $tag, $header) = @_;
-	
-	$header = $this->handleCommonTags( $header, $this->{webName},
-                                       $this->{topicName} );
-	
-	$this->{_HTMLHEADERS}{$tag} = $header;
+    my ( $this, $tag, $header ) = @_;
+
+    $header =
+      $this->handleCommonTags( $header, $this->{webName}, $this->{topicName} );
+
+    $this->{_HTMLHEADERS}{$tag} = $header;
 }
 
 =pod
@@ -2989,28 +3225,32 @@ Note that $theUrl, if specified, must be identical to $query->url()
 sub initialize {
     my ( $pathInfo, $theRemoteUser, $topic, $theUrl, $query ) = @_;
 
-    if( !$query ) {
+    if ( !$query ) {
         $query = new CGI( {} );
     }
-    if( $query->path_info() ne $pathInfo ) {
-        $query->path_info( $pathInfo );
+    if ( $query->path_info() ne $pathInfo ) {
+        $query->path_info($pathInfo);
     }
-    if( $topic ) {
+    if ($topic) {
         $query->param( -name => 'topic', -value => '' );
     }
+
     # can't do much if $theUrl is specified and it is inconsistent with
     # the query. We are trying to get to all parameters passed in the
     # query.
-    if( $theUrl && $theUrl ne $query->url()) {
-        die 'Sorry, this version of TWiki does not support the url parameter to TWiki::initialize being different to the url in the query';
+    if ( $theUrl && $theUrl ne $query->url() ) {
+        die
+'Sorry, this version of TWiki does not support the url parameter to TWiki::initialize being different to the url in the query';
     }
     my $twiki = new TWiki( $theRemoteUser, $query );
 
     # Force the new session into the plugins context.
     $TWiki::Plugins::SESSION = $twiki;
 
-    return ( $twiki->{topicName}, $twiki->{webName}, $twiki->{scriptUrlPath},
-             $twiki->{userName}, $TWiki::cfg{DataDir} );
+    return (
+        $twiki->{topicName}, $twiki->{webName}, $twiki->{scriptUrlPath},
+        $twiki->{userName},  $TWiki::cfg{DataDir}
+    );
 }
 
 =pod
@@ -3031,8 +3271,8 @@ sub readFile {
     open( IN_FILE, "<$name" ) || return '';
     local $/ = undef;
     my $data = <IN_FILE>;
-    close( IN_FILE );
-    $data = '' unless( defined( $data ));
+    close(IN_FILE);
+    $data = '' unless ( defined($data) );
     return $data;
 }
 
@@ -3054,8 +3294,8 @@ are handled:
 
 sub expandStandardEscapes {
     my $text = shift;
-    $text =~ s/\$n\(\)/\n/gos;         # expand '$n()' to new line
-    $text =~ s/\$n([^$regex{mixedAlpha}]|$)/\n$1/gos; # expand '$n' to new line
+    $text =~ s/\$n\(\)/\n/gos;    # expand '$n()' to new line
+    $text =~ s/\$n([^$regex{mixedAlpha}]|$)/\n$1/gos;  # expand '$n' to new line
     $text =~ s/\$nop(\(\))?//gos;      # remove filler, useful for nested search
     $text =~ s/\$quot(\(\))?/\"/gos;   # expand double quote
     $text =~ s/\$percnt(\(\))?/\%/gos; # expand percent
@@ -3066,17 +3306,19 @@ sub expandStandardEscapes {
 # generate an include warning
 # SMELL: varying number of parameters idiotic to handle for customized $warn
 sub _includeWarning {
-    my $this = shift;
-    my $warn = shift;
+    my $this    = shift;
+    my $warn    = shift;
     my $message = shift;
 
-    if( $warn eq 'on' ) {
+    if ( $warn eq 'on' ) {
         return $this->inlineAlert( 'alerts', $message, @_ );
-    } elsif( isTrue( $warn )) {
+    }
+    elsif ( isTrue($warn) ) {
+
         # different inlineAlerts need different argument counts
         my $argument = '';
-        if ($message  eq  'topic_not_found') {
-            my ($web,$topic)  =  @_;
+        if ( $message eq 'topic_not_found' ) {
+            my ( $web, $topic ) = @_;
             $argument = "$web.$topic";
         }
         else {
@@ -3084,7 +3326,7 @@ sub _includeWarning {
         }
         $warn =~ s/\$topic/$argument/go if $argument;
         return $warn;
-    } # else fail silently
+    }    # else fail silently
     return '';
 }
 
@@ -3093,38 +3335,40 @@ sub _includeWarning {
 #-------------------------------------------------------------------
 
 sub FORMFIELD {
-    my ( $this, $params, $topic, $web ) = @_;	
+    my ( $this, $params, $topic, $web ) = @_;
     my $cgiQuery = $this->{cgiQuery};
-    my $cgiRev = $cgiQuery->param('rev') if( $cgiQuery );
+    my $cgiRev = $cgiQuery->param('rev') if ($cgiQuery);
     $params->{rev} = $cgiRev;
     return $this->renderer->renderFORMFIELD( $params, $topic, $web );
 }
 
 sub TMPLP {
-    my( $this, $params ) = @_;
-    return $this->templates->tmplP( $params );
+    my ( $this, $params ) = @_;
+    return $this->templates->tmplP($params);
 }
 
 sub VAR {
-    my( $this, $params, $topic, $inweb ) = @_;
+    my ( $this, $params, $topic, $inweb ) = @_;
     my $key = $params->{_DEFAULT};
     return '' unless $key;
     my $web = $params->{web} || $inweb;
+
     # handle %USERSWEB%-type cases
     ( $web, $topic ) = $this->normalizeWebTopicName( $web, $topic );
+
     # always return a value, even when the key isn't defined
     return $this->{prefs}->getWebPreferencesValue( $key, $web ) || '';
 }
 
 sub PLUGINVERSION {
-    my( $this, $params ) = @_;
+    my ( $this, $params ) = @_;
     $this->{plugins}->getPluginVersion( $params->{_DEFAULT} );
 }
 
 sub IF {
     my ( $this, $params, $topic, $web, $meta ) = @_;
 
-    unless( $ifParser ) {
+    unless ($ifParser) {
         require TWiki::If::Parser;
         $ifParser = new TWiki::If::Parser();
     }
@@ -3135,33 +3379,38 @@ sub IF {
 
     # Recursion block.
     $this->{evaluating_if} ||= {};
+
     # Block after 5 levels.
-    if ($this->{evaluating_if}->{$texpr} &&
-          $this->{evaluating_if}->{$texpr} > 5) {
+    if (   $this->{evaluating_if}->{$texpr}
+        && $this->{evaluating_if}->{$texpr} > 5 )
+    {
         delete $this->{evaluating_if}->{$texpr};
         return '';
     }
     $this->{evaluating_if}->{$texpr}++;
 
     try {
-        $expr = $ifParser->parse( $texpr );
-        unless( $meta ) {
+        $expr = $ifParser->parse($texpr);
+        unless ($meta) {
             require TWiki::Meta;
             $meta = new TWiki::Meta( $this, $web, $topic );
         }
-        if( $expr->evaluate( tom=>$meta, data=>$meta )) {
+        if ( $expr->evaluate( tom => $meta, data => $meta ) ) {
             $params->{then} = '' unless defined $params->{then};
             $result = expandStandardEscapes( $params->{then} );
-        } else {
+        }
+        else {
             $params->{else} = '' unless defined $params->{else};
             $result = expandStandardEscapes( $params->{else} );
         }
-    } catch TWiki::Infix::Error with {
+    }
+    catch TWiki::Infix::Error with {
         my $e = shift;
-        $result = $this->inlineAlert(
-            'alerts', 'generic', 'IF{', $params->stringify(), '}:',
-            $e->{-text} );
-    } finally {
+        $result =
+          $this->inlineAlert( 'alerts', 'generic', 'IF{', $params->stringify(),
+            '}:', $e->{-text} );
+    }
+    finally {
         delete $this->{evaluating_if}->{$texpr};
     };
     return $result;
@@ -3178,71 +3427,77 @@ sub INCLUDE {
     my $args = $params->stringify();
 
     # Remove params, so they don't get expanded in the included page
-    my $path = $params->remove('_DEFAULT') || '';
+    my $path    = $params->remove('_DEFAULT') || '';
     my $pattern = $params->remove('pattern');
-    my $rev = $params->remove('rev');
+    my $rev     = $params->remove('rev');
     my $section = $params->remove('section');
-    undef $section if (defined($section) && $section eq '');     #no sense in considering an empty string as an unfindable section
+    undef $section
+      if ( defined($section) && $section eq '' )
+      ;    #no sense in considering an empty string as an unfindable section
     my $raw = $params->remove('raw') || '';
     my $warn = $params->remove('warn')
-      || $this->{prefs}->getPreferencesValue( 'INCLUDEWARNING' );
+      || $this->{prefs}->getPreferencesValue('INCLUDEWARNING');
 
-    if( $path =~ /^https?\:/ ) {
+    if ( $path =~ /^https?\:/ ) {
+
         # include web page
-        return _includeUrl(
-            $this, $path, $pattern, $includingWeb, $includingTopic,
-            $raw, $params, $warn );
+        return _includeUrl( $this, $path, $pattern, $includingWeb,
+            $includingTopic, $raw, $params, $warn );
     }
 
     $path =~ s/$TWiki::cfg{NameFilter}//go;    # zap anything suspicious
-    if( $TWiki::cfg{DenyDotDotInclude} ) {
+    if ( $TWiki::cfg{DenyDotDotInclude} ) {
+
         # Filter out '..' from filename, this is to
         # prevent includes of '../../file'
         $path =~ s/\.+/\./g;
-    } else {
+    }
+    else {
+
         # danger, could include .htpasswd with relative path
-        $path =~ s/passwd//gi;    # filter out passwd filename
+        $path =~ s/passwd//gi;                 # filter out passwd filename
     }
 
     # make sure we have something to include. If we don't do this, then
     # normalizeWebTopicName will default to WebHome. Item2209.
-    unless( $path ) {
+    unless ($path) {
+
         # SMELL: could do with a different message here, but don't want to
         # add one right now because translators are already working
-        return _includeWarning( $this, $warn, 'topic_not_found', '""','""' );
+        return _includeWarning( $this, $warn, 'topic_not_found', '""', '""' );
     }
 
     my $text = '';
     my $meta = '';
     my $includedWeb;
     my $includedTopic = $path;
-    $includedTopic =~ s/\.txt$//; # strip optional (undocumented) .txt
+    $includedTopic =~ s/\.txt$//;    # strip optional (undocumented) .txt
 
-    ($includedWeb, $includedTopic) =
-      $this->normalizeWebTopicName($includingWeb, $includedTopic);
+    ( $includedWeb, $includedTopic ) =
+      $this->normalizeWebTopicName( $includingWeb, $includedTopic );
 
     # See Codev.FailedIncludeWarning for the history.
-    unless( $this->{store}->topicExists($includedWeb, $includedTopic)) {
-        return _includeWarning( $this, $warn, 'topic_not_found',
-                                       $includedWeb, $includedTopic );
+    unless ( $this->{store}->topicExists( $includedWeb, $includedTopic ) ) {
+        return _includeWarning( $this, $warn, 'topic_not_found', $includedWeb,
+            $includedTopic );
     }
 
     # prevent recursive includes. Note that the inclusion of a topic into
     # itself is not blocked; however subsequent attempts to include the
     # topic will fail. There is a hard block of 99 on any recursive include.
-    my $key = $includingWeb.'.'.$includingTopic;
-    my $count = grep( $key, keys %{$this->{_INCLUDES}});
+    my $key = $includingWeb . '.' . $includingTopic;
+    my $count = grep( $key, keys %{ $this->{_INCLUDES} } );
     $key .= $args;
-    if( $this->{_INCLUDES}->{$key} || $count > 99) {
+    if ( $this->{_INCLUDES}->{$key} || $count > 99 ) {
         return _includeWarning( $this, $warn, 'already_included',
-                                       "$includedWeb.$includedTopic", '' );
+            "$includedWeb.$includedTopic", '' );
     }
 
-    my %saveTags = %{$this->{SESSION_TAGS}};
+    my %saveTags  = %{ $this->{SESSION_TAGS} };
     my $prefsMark = $this->{prefs}->mark();
 
-    $this->{_INCLUDES}->{$key} = 1;
-    $this->{SESSION_TAGS}{INCLUDINGWEB} = $includingWeb;
+    $this->{_INCLUDES}->{$key}            = 1;
+    $this->{SESSION_TAGS}{INCLUDINGWEB}   = $includingWeb;
     $this->{SESSION_TAGS}{INCLUDINGTOPIC} = $includingTopic;
 
     # copy params into session tags
@@ -3258,101 +3513,118 @@ sub INCLUDE {
     $text =~ s/^[\r\n]+/\n/;
     $text =~ s/[\r\n]+$//;
 
-    unless( $this->security->checkAccessPermission(
-        'VIEW', $this->{user}, $text, $meta, $includedTopic, $includedWeb )) {
-        if( isTrue( $warn )) {
+    unless (
+        $this->security->checkAccessPermission(
+            'VIEW', $this->{user},  $text,
+            $meta,  $includedTopic, $includedWeb
+        )
+      )
+    {
+        if ( isTrue($warn) ) {
             return $this->inlineAlert( 'alerts', 'access_denied',
-                                       "[[$includedWeb.$includedTopic]]" );
-        } # else fail silently
+                "[[$includedWeb.$includedTopic]]" );
+        }    # else fail silently
         return '';
     }
 
     # remove everything before and after the default include block unless
     # a section is explicitly defined
-    if( !$section ) {
-       $text =~ s/.*?%STARTINCLUDE%//s;
-       $text =~ s/%STOPINCLUDE%.*//s;
+    if ( !$section ) {
+        $text =~ s/.*?%STARTINCLUDE%//s;
+        $text =~ s/%STOPINCLUDE%.*//s;
     }
 
     # handle sections
-    my( $ntext, $sections ) = parseSections( $text );
+    my ( $ntext, $sections ) = parseSections($text);
 
     my $interesting = ( defined $section );
-    if( $interesting || scalar( @$sections )) {
+    if ( $interesting || scalar(@$sections) ) {
+
         # Rebuild the text from the interesting sections
         $text = '';
-        foreach my $s ( @$sections ) {
-            if( $section && $s->{type} eq 'section' &&
-                  $s->{name} eq $section) {
-                $text .= substr( $ntext, $s->{start}, $s->{end}-$s->{start} );
+        foreach my $s (@$sections) {
+            if (   $section
+                && $s->{type} eq 'section'
+                && $s->{name} eq $section )
+            {
+                $text .= substr( $ntext, $s->{start}, $s->{end} - $s->{start} );
                 $interesting = 1;
                 last;
-            } elsif( $s->{type} eq 'include' && !$section ) {
-                $text .= substr( $ntext, $s->{start}, $s->{end}-$s->{start} );
+            }
+            elsif ( $s->{type} eq 'include' && !$section ) {
+                $text .= substr( $ntext, $s->{start}, $s->{end} - $s->{start} );
                 $interesting = 1;
             }
         }
     }
+
     # If there were no interesting sections, restore the whole text
     $text = $ntext unless $interesting;
 
-    $text = applyPatternToIncludedText( $text, $pattern ) if( $pattern );
+    $text = applyPatternToIncludedText( $text, $pattern ) if ($pattern);
 
     # Do not show TOC in included topic if TOC_HIDE_IF_INCLUDED
     # preference has been set
-    if( isTrue( $this->{prefs}->getPreferencesValue( 'TOC_HIDE_IF_INCLUDED' ))) {
+    if ( isTrue( $this->{prefs}->getPreferencesValue('TOC_HIDE_IF_INCLUDED') ) )
+    {
         $text =~ s/%TOC(?:{(.*?)})?%//g;
     }
 
     expandAllTags( $this, \$text, $includedTopic, $includedWeb, $meta );
 
     # 4th parameter tells plugin that its called for an included file
-    $this->{plugins}->commonTagsHandler( $text, $includedTopic,
-                                         $includedWeb, 1, $meta );
+    $this->{plugins}
+      ->commonTagsHandler( $text, $includedTopic, $includedWeb, 1, $meta );
 
-    # We have to expand tags again, because a plugin may have inserted additional
-    # tags.
+   # We have to expand tags again, because a plugin may have inserted additional
+   # tags.
     expandAllTags( $this, \$text, $includedTopic, $includedWeb, $meta );
 
     # If needed, fix all 'TopicNames' to 'Web.TopicNames' to get the
     # right context so that links continue to work properly
-    if( $includedWeb ne $includingWeb ) {
-	    my $removed = {};
+    if ( $includedWeb ne $includingWeb ) {
+        my $removed = {};
 
         $text = $this->renderer->forEachLine(
-            $text, \&_fixupIncludedTopic, { web => $includedWeb,
-                                            pre => 1,
-                                            noautolink => 1} );
+            $text,
+            \&_fixupIncludedTopic,
+            {
+                web        => $includedWeb,
+                pre        => 1,
+                noautolink => 1
+            }
+        );
+
         # handle tags again because of plugin hook
         expandAllTags( $this, \$text, $includedTopic, $includedWeb, $meta );
     }
 
     # restore the tags
     delete $this->{_INCLUDES}->{$key};
-    %{$this->{SESSION_TAGS}} = %saveTags;
+    %{ $this->{SESSION_TAGS} } = %saveTags;
 
-    $this->{prefs}->restore( $prefsMark );
+    $this->{prefs}->restore($prefsMark);
 
     return $text;
 }
 
 sub HTTP {
-    my( $this, $params ) = @_;
+    my ( $this, $params ) = @_;
     my $res;
-    if( $params->{_DEFAULT} ) {
+    if ( $params->{_DEFAULT} ) {
         $res = $this->{cgiQuery}->http( $params->{_DEFAULT} );
     }
-    $res = '' unless defined( $res );
+    $res = '' unless defined($res);
     return $res;
 }
 
 sub HTTPS {
-    my( $this, $params ) = @_;
+    my ( $this, $params ) = @_;
     my $res;
-    if( $params->{_DEFAULT} ) {
+    if ( $params->{_DEFAULT} ) {
         $res = $this->{cgiQuery}->https( $params->{_DEFAULT} );
     }
-    $res = '' unless defined( $res );
+    $res = '' unless defined($res);
     return $res;
 }
 
@@ -3385,29 +3657,39 @@ sub REMOTE_USER_deprecated {
 # the assumption that meta-data is stored embedded inside topic
 # text.
 sub METASEARCH {
-    my( $this, $params ) = @_;
+    my ( $this, $params ) = @_;
 
-    return $this->{store}->searchMetaData( $params );
+    return $this->{store}->searchMetaData($params);
 }
 
 sub DATE {
     my $this = shift;
-    return TWiki::Time::formatTime(time(), $TWiki::cfg{DefaultDateFormat}, $TWiki::cfg{DisplayTimeValues});
+    return TWiki::Time::formatTime(
+        time(),
+        $TWiki::cfg{DefaultDateFormat},
+        $TWiki::cfg{DisplayTimeValues}
+    );
 }
 
 sub GMTIME {
-    my( $this, $params ) = @_;
-    return TWiki::Time::formatTime( time(), $params->{_DEFAULT} || '', 'gmtime' );
+    my ( $this, $params ) = @_;
+    return TWiki::Time::formatTime( time(), $params->{_DEFAULT} || '',
+        'gmtime' );
 }
 
 sub SERVERTIME {
-    my( $this, $params ) = @_;
-    return TWiki::Time::formatTime( time(), $params->{_DEFAULT} || '', 'servertime' );
+    my ( $this, $params ) = @_;
+    return TWiki::Time::formatTime( time(), $params->{_DEFAULT} || '',
+        'servertime' );
 }
 
 sub DISPLAYTIME {
-    my( $this, $params ) = @_;
-    return TWiki::Time::formatTime( time(), $params->{_DEFAULT} || '', $TWiki::cfg{DisplayTimeValues} );
+    my ( $this, $params ) = @_;
+    return TWiki::Time::formatTime(
+        time(),
+        $params->{_DEFAULT} || '',
+        $TWiki::cfg{DisplayTimeValues}
+    );
 }
 
 #| $web | web and  |
@@ -3416,87 +3698,98 @@ sub DISPLAYTIME {
 sub REVINFO {
     my ( $this, $params, $theTopic, $theWeb ) = @_;
     my $format = $params->{_DEFAULT} || $params->{format};
-    my $web    = $params->{web} || $theWeb;
-    my $topic  = $params->{topic} || $theTopic;
+    my $web    = $params->{web}      || $theWeb;
+    my $topic  = $params->{topic}    || $theTopic;
     my $cgiQuery = $this->{cgiQuery};
-    my $cgiRev = '';
-    $cgiRev = $cgiQuery->param('rev') if( $cgiQuery );
+    my $cgiRev   = '';
+    $cgiRev = $cgiQuery->param('rev') if ($cgiQuery);
     my $rev = $params->{rev} || $cgiRev || '';
 
-    return $this->renderer->renderRevisionInfo( $web, $topic, undef,
-                                                  $rev, $format );
+    return $this->renderer->renderRevisionInfo( $web, $topic, undef, $rev,
+        $format );
 }
 
 sub REVTITLE {
     my ( $this, $params, $theTopic, $theWeb ) = @_;
     my $cgiQuery = $this->{cgiQuery};
-    my $out = '';
-    if( $cgiQuery ) {
+    my $out      = '';
+    if ($cgiQuery) {
         my $cgiRev = $cgiQuery->param('rev');
-        $out = '(r'.$cgiRev.')' if ($cgiRev);
+        $out = '(r' . $cgiRev . ')' if ($cgiRev);
     }
     return $out;
 }
+
 sub REVARG {
     my ( $this, $params, $theTopic, $theWeb ) = @_;
     my $cgiQuery = $this->{cgiQuery};
-    my $out = '';
-    if( $cgiQuery ) {
+    my $out      = '';
+    if ($cgiQuery) {
         my $cgiRev = $cgiQuery->param('rev');
-        $out = '&rev='.$cgiRev if ($cgiRev);
+        $out = '&rev=' . $cgiRev if ($cgiRev);
     }
     return $out;
 }
 
 sub ENCODE {
-    my( $this, $params ) = @_;
-    my $type = $params->{type} || 'url';
+    my ( $this, $params ) = @_;
+    my $type = $params->{type}     || 'url';
     my $text = $params->{_DEFAULT} || '';
-    return _encode($type, $text);
+    return _encode( $type, $text );
 }
 
 sub _encode {
-    my ($type, $text) = @_;
+    my ( $type, $text ) = @_;
 
     if ( $type =~ /^entit(y|ies)$/i ) {
-        return entityEncode( $text );
-    } elsif ( $type =~ /^html$/i ) {
+        return entityEncode($text);
+    }
+    elsif ( $type =~ /^html$/i ) {
         return entityEncode( $text, "\n\r" );
-    } elsif ( $type =~ /^quotes?$/i ) {
+    }
+    elsif ( $type =~ /^quotes?$/i ) {
+
         # escape quotes with backslash (Bugs:Item3383 fix)
         $text =~ s/\"/\\"/go;
         return $text;
-    } elsif ($type =~ /^url$/i) {
-        $text =~ s/\r*\n\r*/<br \/>/; # Legacy.
-        return urlEncode( $text );
+    }
+    elsif ( $type =~ /^url$/i ) {
+        $text =~ s/\r*\n\r*/<br \/>/;    # Legacy.
+        return urlEncode($text);
     }
 }
 
 sub ENV {
-    my ($this, $params) = @_;
+    my ( $this, $params ) = @_;
 
-    return '' unless $params->{_DEFAULT} &&
-      defined $TWiki::cfg{AccessibleENV} &&
-        $params->{_DEFAULT} =~ /$TWiki::cfg{AccessibleENV}/o;
-    my $val = $ENV{$params->{_DEFAULT}};
+    return ''
+      unless $params->{_DEFAULT}
+          && defined $TWiki::cfg{AccessibleENV}
+          && $params->{_DEFAULT} =~ /$TWiki::cfg{AccessibleENV}/o;
+    my $val = $ENV{ $params->{_DEFAULT} };
     return 'not set' unless defined $val;
     return $val;
 }
 
 sub SEARCH {
     my ( $this, $params, $topic, $web ) = @_;
+
     # pass on all attrs, and add some more
     #$params->{_callback} = undef;
-    $params->{inline} = 1;
-    $params->{baseweb} = $web;
+    $params->{inline}    = 1;
+    $params->{baseweb}   = $web;
     $params->{basetopic} = $topic;
-    $params->{search} = $params->{_DEFAULT} if( $params->{_DEFAULT} );
-    $params->{type} = $this->{prefs}->getPreferencesValue( 'SEARCHVARDEFAULTTYPE' ) unless( $params->{type} );
+    $params->{search}    = $params->{_DEFAULT} if ( $params->{_DEFAULT} );
+    $params->{type} =
+      $this->{prefs}->getPreferencesValue('SEARCHVARDEFAULTTYPE')
+      unless ( $params->{type} );
     my $s;
     try {
-        $s = $this->search->searchWeb( %$params );
-    } catch Error::Simple with {
+        $s = $this->search->searchWeb(%$params);
+    }
+    catch Error::Simple with {
         my $message = (DEBUG) ? shift->stringify() : shift->{-text};
+
         # Block recursions kicked off by the text being repeated in the
         # error message
         $message =~ s/%([A-Z]*[{%])/%<nop>$1/g;
@@ -3506,15 +3799,15 @@ sub SEARCH {
 }
 
 sub WEBLIST {
-    my( $this, $params ) = @_;
+    my ( $this, $params ) = @_;
     my $format = $params->{_DEFAULT} || $params->{'format'} || '$name';
     $format ||= '$name';
     my $separator = $params->{separator} || "\n";
     $separator =~ s/\$n/\n/;
-    my $web = $params->{web} || '';
-    my $webs = $params->{webs} || 'public';
+    my $web       = $params->{web}       || '';
+    my $webs      = $params->{webs}      || 'public';
     my $selection = $params->{selection} || '';
-    my $showWeb = $params->{subwebs} || '';
+    my $showWeb   = $params->{subwebs}   || '';
     $selection =~ s/\,/ /g;
     $selection = " $selection ";
     my $marker = $params->{marker} || 'selected="selected"';
@@ -3522,19 +3815,24 @@ sub WEBLIST {
 
     my @list = ();
     my @webslist = split( /,\s*/, $webs );
-    foreach my $aweb ( @webslist ) {
-        if( $aweb eq 'public' ) {
-            push( @list, $this->{store}->getListOfWebs( 'user,public,allowed', $showWeb ) );
-        } elsif( $aweb eq 'webtemplate' ) {
-            push( @list, $this->{store}->getListOfWebs( 'template,allowed', $showWeb ));
-        } else{
-            push( @list, $aweb ) if( $this->{store}->webExists( $aweb ) );
+    foreach my $aweb (@webslist) {
+        if ( $aweb eq 'public' ) {
+            push( @list,
+                $this->{store}->getListOfWebs( 'user,public,allowed', $showWeb )
+            );
+        }
+        elsif ( $aweb eq 'webtemplate' ) {
+            push( @list,
+                $this->{store}->getListOfWebs( 'template,allowed', $showWeb ) );
+        }
+        else {
+            push( @list, $aweb ) if ( $this->{store}->webExists($aweb) );
         }
     }
 
     my @items;
-    my $indent = CGI::span({class=>'twikiWebIndent'},'');
-    foreach my $item ( @list ) {
+    my $indent = CGI::span( { class => 'twikiWebIndent' }, '' );
+    foreach my $item (@list) {
         my $line = $format;
         $line =~ s/\$web\b/$web/g;
         $line =~ s/\$name\b/$item/g;
@@ -3542,43 +3840,43 @@ sub WEBLIST {
         my $indenteditem = $item;
         $indenteditem =~ s#/$##g;
         $indenteditem =~ s#\w+/#$indent#g;
-        $line =~ s/\$indentedname/$indenteditem/g;
+        $line         =~ s/\$indentedname/$indenteditem/g;
         my $mark = ( $selection =~ / \Q$item\E / ) ? $marker : '';
         $line =~ s/\$marker/$mark/g;
-        push(@items, $line);
+        push( @items, $line );
     }
-    return join( $separator, @items);
+    return join( $separator, @items );
 }
 
 sub TOPICLIST {
-    my( $this, $params ) = @_;
+    my ( $this, $params ) = @_;
     my $format = $params->{_DEFAULT} || $params->{'format'} || '$topic';
     my $separator = $params->{separator} || "\n";
     $separator =~ s/\$n/\n/;
-    my $web = $params->{web} || $this->{webName};
+    my $web       = $params->{web}       || $this->{webName};
     my $selection = $params->{selection} || '';
     $selection =~ s/\,/ /g;
     $selection = " $selection ";
     my $marker = $params->{marker} || 'selected="selected"';
     $web =~ s#\.#/#go;
 
-    return '' if
-      $web ne $this->{webName} &&
-      $this->{prefs}->getWebPreferencesValue( 'NOSEARCHALL', $web );
+    return ''
+      if $web ne $this->{webName}
+          && $this->{prefs}->getWebPreferencesValue( 'NOSEARCHALL', $web );
 
     my @items;
-    foreach my $item ( $this->{store}->getTopicNames( $web ) ) {
+    foreach my $item ( $this->{store}->getTopicNames($web) ) {
         my $line = $format;
         $line =~ s/\$web\b/$web/g;
         $line =~ s/\$topic\b/$item/g;
-        $line =~ s/\$name\b/$item/g; # Undocumented, DO NOT REMOVE
-        $line =~ s/\$qname/"$item"/g; # Undocumented, DO NOT REMOVE
+        $line =~ s/\$name\b/$item/g;     # Undocumented, DO NOT REMOVE
+        $line =~ s/\$qname/"$item"/g;    # Undocumented, DO NOT REMOVE
         my $mark = ( $selection =~ / \Q$item\E / ) ? $marker : '';
         $line =~ s/\$marker/$mark/g;
-        $line = expandStandardEscapes( $line );
+        $line = expandStandardEscapes($line);
         push( @items, $line );
     }
-    return join( $separator, @items);
+    return join( $separator, @items );
 }
 
 sub QUERYSTRING {
@@ -3589,73 +3887,82 @@ sub QUERYSTRING {
 sub QUERYPARAMS {
     my ( $this, $params ) = @_;
     return '' unless $this->{cgiQuery};
-    my $format = defined $params->{format} ? $params->{format} :
-      '$name=$value';
+    my $format =
+      defined $params->{format}
+      ? $params->{format}
+      : '$name=$value';
     my $separator = defined $params->{separator} ? $params->{separator} : "\n";
     my $encoding = $params->{encoding} || '';
 
     my @list;
     foreach my $name ( $this->{cgiQuery}->param() ) {
+
         # Issues multi-valued parameters as separate hiddens
-        my $value = $this->{cgiQuery}->param( $name );
+        my $value = $this->{cgiQuery}->param($name);
         if ($encoding) {
-            $value = _encode($encoding, $value);
+            $value = _encode( $encoding, $value );
         }
         my $entry = $format;
         $entry =~ s/\$name/$name/g;
         $entry =~ s/\$value/$value/;
-        push(@list, $entry);
+        push( @list, $entry );
     }
-    return expandStandardEscapes(join($separator, @list));
+    return expandStandardEscapes( join( $separator, @list ) );
 }
 
 sub URLPARAM {
-    my( $this, $params ) = @_;
+    my ( $this, $params ) = @_;
     my $param     = $params->{_DEFAULT} || '';
     my $newLine   = $params->{newline};
     my $encode    = $params->{encode};
     my $multiple  = $params->{multiple};
     my $separator = $params->{separator};
-    $separator="\n" unless (defined $separator);
+    $separator = "\n" unless ( defined $separator );
 
     my $value;
-    if( $this->{cgiQuery} ) {
-        if( TWiki::isTrue( $multiple )) {
-            my @valueArray = $this->{cgiQuery}->param( $param );
-            if( @valueArray ) {
+    if ( $this->{cgiQuery} ) {
+        if ( TWiki::isTrue($multiple) ) {
+            my @valueArray = $this->{cgiQuery}->param($param);
+            if (@valueArray) {
+
                 # join multiple values properly
-                unless( $multiple =~ m/^on$/i ) {
+                unless ( $multiple =~ m/^on$/i ) {
                     my $item = '';
                     @valueArray = map {
                         $item = $_;
-                        $_ = $multiple;
-                        $_ .= $item unless( s/\$item/$item/go );
+                        $_    = $multiple;
+                        $_ .= $item unless (s/\$item/$item/go);
                         $_
                     } @valueArray;
                 }
-                $value = join ( $separator, @valueArray );
+                $value = join( $separator, @valueArray );
             }
-        } else {
-            $value = $this->{cgiQuery}->param( $param );
+        }
+        else {
+            $value = $this->{cgiQuery}->param($param);
         }
     }
-    if( defined $value ) {
-        $value =~ s/\r?\n/$newLine/go if( defined $newLine );
-        if ( $encode ) {
+    if ( defined $value ) {
+        $value =~ s/\r?\n/$newLine/go if ( defined $newLine );
+        if ($encode) {
             if ( $encode =~ /^entit(y|ies)$/i ) {
-                $value = entityEncode( $value );
-            } elsif ( $encode =~ /^quotes?$/i ) {
-                $value =~ s/\"/\\"/go;    # escape quotes with backslash (Bugs:Item3383 fix)
-            } else {
-                $value =~ s/\r*\n\r*/<br \/>/; # Legacy
-                $value = urlEncode( $value );
+                $value = entityEncode($value);
+            }
+            elsif ( $encode =~ /^quotes?$/i ) {
+                $value =~ s/\"/\\"/go
+                  ;    # escape quotes with backslash (Bugs:Item3383 fix)
+            }
+            else {
+                $value =~ s/\r*\n\r*/<br \/>/;    # Legacy
+                $value = urlEncode($value);
             }
         }
     }
-    unless( defined $value ) {
+    unless ( defined $value ) {
         $value = $params->{default};
         $value = '' unless defined $value;
     }
+
     # Block expansion of %URLPARAM in the value to prevent recursion
     $value =~ s/%URLPARAM{/%<nop>URLPARAM{/g;
     return $value;
@@ -3666,7 +3973,8 @@ sub URLPARAM {
 # directly supported, but it is provided for backward compatibility with
 # skins that may still be using the deprecated %INTURLENCODE%.
 sub INTURLENCODE_deprecated {
-    my( $this, $params ) = @_;
+    my ( $this, $params ) = @_;
+
     # Just strip double quotes, no URL encoding - Mozilla UTF-8 URLs
     # directly supported now
     return $params->{_DEFAULT} || '';
@@ -3679,39 +3987,47 @@ sub INTURLENCODE_deprecated {
 # Move to compatibility module in TWiki5
 sub SPACEDTOPIC_deprecated {
     my ( $this, $params, $theTopic ) = @_;
-    my $topic = spaceOutWikiWord( $theTopic );
+    my $topic = spaceOutWikiWord($theTopic);
     $topic =~ s/ / */g;
-    return urlEncode( $topic );
+    return urlEncode($topic);
 }
 
 sub SPACEOUT {
     my ( $this, $params ) = @_;
     my $spaceOutTopic = $params->{_DEFAULT};
-    my $sep = $params->{'separator'};
+    my $sep           = $params->{'separator'};
     $spaceOutTopic = spaceOutWikiWord( $spaceOutTopic, $sep );
     return $spaceOutTopic;
 }
 
 sub ICON {
-    my( $this, $params ) = @_;
+    my ( $this, $params ) = @_;
     my $file = $params->{_DEFAULT} || '';
+
     # Try to map the file name to see if there is a matching filetype image
     # If no mapping could be found, use the file name that was passed
     my $iconFileName = $this->mapToIconFileName( $file, $file );
-    return CGI::img( { src => $this->getIconUrl( 0, $iconFileName ),
-                       width => 16, height=>16,
-                       align => 'top', alt => $iconFileName, border => 0 });
+    return CGI::img(
+        {
+            src    => $this->getIconUrl( 0, $iconFileName ),
+            width  => 16,
+            height => 16,
+            align  => 'top',
+            alt    => $iconFileName,
+            border => 0
+        }
+    );
 }
 
 sub ICONURL {
-    my( $this, $params ) = @_;
+    my ( $this, $params ) = @_;
     my $file = ( $params->{_DEFAULT} || '' );
 
     return $this->getIconUrl( 1, $file );
 }
 
 sub ICONURLPATH {
-    my( $this, $params ) = @_;
+    my ( $this, $params ) = @_;
     my $file = ( $params->{_DEFAULT} || '' );
 
     return $this->getIconUrl( 0, $file );
@@ -3724,13 +4040,17 @@ sub RELATIVETOPICPATH {
     return '' unless $topic;
 
     my $theRelativePath;
+
     # if there is no dot in $topic, no web has been specified
     if ( index( $topic, '.' ) == -1 ) {
+
         # add local web
         $theRelativePath = $web . '/' . $topic;
-    } else {
-        $theRelativePath = $topic; #including dot
     }
+    else {
+        $theRelativePath = $topic;    #including dot
+    }
+
     # replace dot by slash is not necessary; TWiki.MyTopic is a valid url
     # add ../ if not already present to make a relative file reference
     if ( $theRelativePath !~ m!^../! ) {
@@ -3741,12 +4061,12 @@ sub RELATIVETOPICPATH {
 
 sub ATTACHURLPATH {
     my ( $this, $params, $topic, $web ) = @_;
-    return $this->getPubUrl(0, $web, $topic);
+    return $this->getPubUrl( 0, $web, $topic );
 }
 
 sub ATTACHURL {
     my ( $this, $params, $topic, $web ) = @_;
-    return $this->getPubUrl(1, $web, $topic);
+    return $this->getPubUrl( 1, $web, $topic );
 }
 
 sub LANGUAGE {
@@ -3755,8 +4075,8 @@ sub LANGUAGE {
 }
 
 sub LANGUAGES {
-    my ( $this , $params ) = @_;
-    my $format = $params->{format} || "   * \$langname";
+    my ( $this, $params ) = @_;
+    my $format    = $params->{format}    || "   * \$langname";
     my $separator = $params->{separator} || "\n";
     $separator =~ s/\\n/\n/g;
     my $selection = $params->{selection} || '';
@@ -3767,27 +4087,27 @@ sub LANGUAGES {
     # $languages is a hash reference:
     my $languages = $this->i18n->enabled_languages();
 
-    my @tags = sort(keys(%{$languages}));
+    my @tags = sort( keys( %{$languages} ) );
 
     my $result = '';
-    my $i = 0; 
+    my $i      = 0;
     foreach my $lang (@tags) {
-         my $item = $format;
-         my $name = ${$languages}{$lang};
-         $item =~ s/\$langname/$name/g;
-         $item =~ s/\$langtag/$lang/g;
-         my $mark = ( $selection =~ / \Q$lang\E / ) ? $marker : '';
-         $item =~ s/\$marker/$mark/g;
-         $result .= $separator if $i;
-         $result .= $item;
-         $i++;
+        my $item = $format;
+        my $name = ${$languages}{$lang};
+        $item =~ s/\$langname/$name/g;
+        $item =~ s/\$langtag/$lang/g;
+        my $mark = ( $selection =~ / \Q$lang\E / ) ? $marker : '';
+        $item =~ s/\$marker/$mark/g;
+        $result .= $separator if $i;
+        $result .= $item;
+        $i++;
     }
 
     return $result;
 }
 
 sub MAKETEXT {
-    my( $this, $params ) = @_;
+    my ( $this, $params ) = @_;
 
     my $str = $params->{_DEFAULT} || $params->{string} || "";
     return "" unless $str;
@@ -3803,19 +4123,21 @@ sub MAKETEXT {
     # unescape parameters and calculate highest parameter number:
     my $max = 0;
     $str =~ s/~\[(\_(\d+))~\]/ $max = $2 if ($2 > $max); "[$1]"/ge;
-    $str =~ s/~\[(\*,\_(\d+),[^,]+(,([^,]+))?)~\]/ $max = $2 if ($2 > $max); "[$1]"/ge;
+    $str =~
+s/~\[(\*,\_(\d+),[^,]+(,([^,]+))?)~\]/ $max = $2 if ($2 > $max); "[$1]"/ge;
 
     # get the args to be interpolated.
     my $argsStr = $params->{args} || "";
 
-    my @args = split (/\s*,\s*/, $argsStr) ;
+    my @args = split( /\s*,\s*/, $argsStr );
+
     # fill omitted args with zeros
-    while ((scalar @args) < $max) {
-        push(@args, 0);
+    while ( ( scalar @args ) < $max ) {
+        push( @args, 0 );
     }
 
     # do the magic:
-    my $result = $this->i18n->maketext($str, @args);
+    my $result = $this->i18n->maketext( $str, @args );
 
     # replace accesskeys:
     $result =~ s#(^|[^&])&([a-zA-Z])#$1<span class='twikiAccessKey'>$2</span>#g;
@@ -3827,23 +4149,28 @@ sub MAKETEXT {
 }
 
 sub SCRIPTNAME {
+
     #my ( $this, $params, $theTopic, $theWeb ) = @_;
     # try SCRIPT_FILENAME
     my $value = $ENV{SCRIPT_FILENAME};
-    if( $value ) {
+    if ($value) {
         $value =~ s!.*/([^/]+)$!$1!o;
         return $value;
     }
+
     # try SCRIPT_URL (won't work with url rewriting)
     $value = $ENV{SCRIPT_URL};
-    if( $value ) {
+    if ($value) {
+
         # e.g. '/cgi-bin/view.cgi/TWiki/WebHome'
         # cut URL path to get 'view.cgi/TWiki/WebHome'
         $value =~ s|^$TWiki::cfg{ScriptUrlPath}/?||o;
+
         # cut extended path to get 'view.cgi'
         $value =~ s|/.*$||;
         return $value;
     }
+
     # no joy
     return '';
 }
@@ -3879,25 +4206,34 @@ sub ALLVARIABLES {
 sub META {
     my ( $this, $params, $topic, $web ) = @_;
 
-    my $meta  = $this->inContext( 'can_render_meta' );
+    my $meta = $this->inContext('can_render_meta');
 
     return '' unless $meta;
 
     my $option = $params->{_DEFAULT} || '';
     my $result = '';
 
-    if( $option eq 'form' ) {
+    if ( $option eq 'form' ) {
+
         # META:FORM and META:FIELD
         $result = $meta->renderFormForDisplay( $this->templates );
-    } elsif ( $option eq 'formfield' ) {
+    }
+    elsif ( $option eq 'formfield' ) {
+
         # a formfield from within topic text
-        $result = $meta->renderFormFieldForDisplay( $params->get('name'), '$value', $params );
-    } elsif( $option eq 'attachments' ) {
+        $result =
+          $meta->renderFormFieldForDisplay( $params->get('name'), '$value',
+            $params );
+    }
+    elsif ( $option eq 'attachments' ) {
+
         # renders attachment tables
         $result = $this->attach->renderMetaData( $web, $topic, $meta, $params );
-    } elsif( $option eq 'moved' ) {
+    }
+    elsif ( $option eq 'moved' ) {
         $result = $this->renderer->renderMoved( $web, $topic, $meta, $params );
-    } elsif( $option eq 'parent' ) {
+    }
+    elsif ( $option eq 'parent' ) {
         $result = $this->renderer->renderParent( $web, $topic, $meta, $params );
     }
 
@@ -3926,8 +4262,8 @@ sub SEP {
 sub WIKINAME_deprecated {
     my ( $this, $params ) = @_;
 
-    $params->{format} = $this->{prefs}->getPreferencesValue( 'WIKINAME' ) ||
-      '$wikiname';
+    $params->{format} = $this->{prefs}->getPreferencesValue('WIKINAME')
+      || '$wikiname';
 
     return $this->USERINFO($params);
 }
@@ -3937,8 +4273,8 @@ sub WIKINAME_deprecated {
 sub USERNAME_deprecated {
     my ( $this, $params ) = @_;
 
-    $params->{format} = $this->{prefs}->getPreferencesValue( 'USERNAME' ) ||
-      '$username';
+    $params->{format} = $this->{prefs}->getPreferencesValue('USERNAME')
+      || '$username';
 
     return $this->USERINFO($params);
 }
@@ -3948,9 +4284,8 @@ sub USERNAME_deprecated {
 sub WIKIUSERNAME_deprecated {
     my ( $this, $params ) = @_;
 
-    $params->{format} =
-      $this->{prefs}->getPreferencesValue( 'WIKIUSERNAME' ) ||
-        '$wikiusername';
+    $params->{format} = $this->{prefs}->getPreferencesValue('WIKIUSERNAME')
+      || '$wikiusername';
 
     return $this->USERINFO($params);
 }
@@ -3961,56 +4296,58 @@ sub USERINFO {
 
     my $user = $this->{user};
 
-    if( $params->{_DEFAULT} ) {
+    if ( $params->{_DEFAULT} ) {
         $user = $params->{_DEFAULT};
         return '' if !$user;
+
         # map wikiname to a login name
         $user = $this->{users}->getCanonicalUserID($user);
         return '' unless $user;
-        return '' if( $TWiki::cfg{AntiSpam}{HideUserDetails} &&
-                        !$this->{users}->isAdmin( $this->{user} ) &&
-                          $user ne $this->{user} );
+        return ''
+          if ( $TWiki::cfg{AntiSpam}{HideUserDetails}
+            && !$this->{users}->isAdmin( $this->{user} )
+            && $user ne $this->{user} );
     }
 
     return '' unless $user;
 
     my $info = $format;
 
-    if ($info =~ /\$username/) {
+    if ( $info =~ /\$username/ ) {
         my $username = $this->{users}->getLoginName($user);
         $username = 'unknown' unless defined $username;
         $info =~ s/\$username/$username/g;
     }
-    if ($info =~ /\$wikiname/) {
-        my $wikiname = $this->{users}->getWikiName( $user );
+    if ( $info =~ /\$wikiname/ ) {
+        my $wikiname = $this->{users}->getWikiName($user);
         $wikiname = 'UnknownUser' unless defined $wikiname;
         $info =~ s/\$wikiname/$wikiname/g;
     }
-    if ($info =~ /\$wikiusername/) {
+    if ( $info =~ /\$wikiusername/ ) {
         my $wikiusername = $this->{users}->webDotWikiName($user);
         $wikiusername = "$TWiki::cfg{UsersWebName}.UnknownUser"
           unless defined $wikiusername;
         $info =~ s/\$wikiusername/$wikiusername/g;
     }
-    if ($info =~ /\$emails/) {
-        my $emails = join(', ', $this->{users}->getEmails($user));
+    if ( $info =~ /\$emails/ ) {
+        my $emails = join( ', ', $this->{users}->getEmails($user) );
         $info =~ s/\$emails/$emails/g;
     }
-    if ($info =~ /\$groups/) {
+    if ( $info =~ /\$groups/ ) {
         my @groupNames;
-        my $it = $this->{users}->eachMembership( $user );
-        while( $it->hasNext()) {
+        my $it = $this->{users}->eachMembership($user);
+        while ( $it->hasNext() ) {
             my $group = $it->next();
-            push( @groupNames, $group);
+            push( @groupNames, $group );
         }
-        my $groups = join(', ', @groupNames);
+        my $groups = join( ', ', @groupNames );
         $info =~ s/\$groups/$groups/g;
     }
-    if ($info =~ /\$cUID/) {
+    if ( $info =~ /\$cUID/ ) {
         my $cUID = $user;
         $info =~ s/\$cUID/$cUID/g;
     }
-    if ($info =~ /\$admin/) {
+    if ( $info =~ /\$admin/ ) {
         my $admin = $this->{users}->isAdmin($user) ? 'true' : 'false';
         $info =~ s/\$admin/$admin/g;
     }
@@ -4023,28 +4360,32 @@ sub GROUPS {
 
     my $groups = $this->{users}->eachGroup();
     my @table;
-    while( $groups->hasNext() ) {
+    while ( $groups->hasNext() ) {
         my $group = $groups->next();
+
         # Nop it to prevent wikiname expansion unless the topic exists.
-		my $groupLink = "<nop>$group";
-		$groupLink = '[['.$TWiki::cfg{UsersWebName}.".$group][$group]]" if ($this->{store}->topicExists($TWiki::cfg{UsersWebName}, $group));
-        my $descr = "| $groupLink |";
-        my $it = $this->{users}->eachGroupMember( $group );
+        my $groupLink = "<nop>$group";
+        $groupLink = '[[' . $TWiki::cfg{UsersWebName} . ".$group][$group]]"
+          if (
+            $this->{store}->topicExists( $TWiki::cfg{UsersWebName}, $group ) );
+        my $descr        = "| $groupLink |";
+        my $it           = $this->{users}->eachGroupMember($group);
         my $limit_output = 32;
-        while( $it->hasNext() ) {
+        while ( $it->hasNext() ) {
             my $user = $it->next();
-            $descr .= ' [['.$this->{users}->webDotWikiName($user).']['.
-              $this->{users}->getWikiName( $user ).']]';
-           if ($limit_output == 0) {
-               $descr .= '<div>%MAKETEXT{"user list truncated"}%</div>';
-               last;
-           }
-           $limit_output--;
+            $descr .= ' [['
+              . $this->{users}->webDotWikiName($user) . ']['
+              . $this->{users}->getWikiName($user) . ']]';
+            if ( $limit_output == 0 ) {
+                $descr .= '<div>%MAKETEXT{"user list truncated"}%</div>';
+                last;
+            }
+            $limit_output--;
         }
-        push( @table, "$descr |");
+        push( @table, "$descr |" );
     }
 
-    return '| *Group* | *Members* |'."\n".join("\n", sort @table);
+    return '| *Group* | *Members* |' . "\n" . join( "\n", sort @table );
 }
 
 1;

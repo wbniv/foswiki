@@ -46,7 +46,6 @@ use base 'TWiki::LoginManager';
 use strict;
 use Assert;
 
-
 =pod
 
 ---++ ClassMethod new ($session)
@@ -56,11 +55,12 @@ Construct the ApacheLogin object
 =cut
 
 sub new {
-    my( $class, $session ) = @_;
+    my ( $class, $session ) = @_;
     my $this = $class->SUPER::new($session);
-    $session->enterContext( 'can_login' );
+    $session->enterContext('can_login');
+
     # Can't logout, though
-    TWiki::registerTagHandler('LOGOUT', sub { return '' });
+    TWiki::registerTagHandler( 'LOGOUT', sub { return '' } );
     return $this;
 }
 
@@ -74,7 +74,7 @@ Triggered on auth fail
 =cut
 
 sub forceAuthentication {
-    my $this = shift;
+    my $this  = shift;
     my $twiki = $this->{twiki};
     my $query = $twiki->{cgiQuery};
 
@@ -84,41 +84,50 @@ sub forceAuthentication {
     $script =~ s/^(.*\/)([^\/]+?)($TWiki::cfg{ScriptSuffix})?$/$1/o;
     my $scriptPath = $1;
     my $scriptName = $2;
-    $script = $scriptPath.$scriptName.'auth'.$TWiki::cfg{ScriptSuffix};
+    $script = $scriptPath . $scriptName . 'auth' . $TWiki::cfg{ScriptSuffix};
 
-    if( ! $query->remote_user() && -e $script ) {
+    if ( !$query->remote_user() && -e $script ) {
+
         # Assemble the new URL using the host, the changed script name,
         # the path info, and the query string.  All three query
         # variables are in the list of the canonical request meta
         # variables in CGI 1.1.
         my $url = $ENV{REQUEST_URI};
-        if( $url && $url =~ m!(.*/$scriptName)([^?]*)! ) {
+        if ( $url && $url =~ m!(.*/$scriptName)([^?]*)! ) {
+
             # $url should not contain query string as it gets appended
             # in TWiki::redirect. Script gets 'auth' appended.
             $url = "$twiki->{urlHost}${1}auth$2";
-        } else {
-            if( $ENV{SCRIPT_NAME} &&
-                   $ENV{SCRIPT_NAME} =~ s/\/$scriptName/\/${scriptName}auth/ ) {
-                $url = $twiki->{urlHost}.$ENV{SCRIPT_NAME};
-            } else {
+        }
+        else {
+            if (   $ENV{SCRIPT_NAME}
+                && $ENV{SCRIPT_NAME} =~ s/\/$scriptName/\/${scriptName}auth/ )
+            {
+                $url = $twiki->{urlHost} . $ENV{SCRIPT_NAME};
+            }
+            else {
+
                 # If SCRIPT_NAME does not contain the script name
                 # the last hope is to try building up the URL using
                 # the SCRIPT_FILENAME.
-                $url = $twiki->{urlHost}.$twiki->{scriptUrlPath}.'/'.
-                       $scriptName.'auth'.$TWiki::cfg{ScriptSuffix};
+                $url =
+                    $twiki->{urlHost}
+                  . $twiki->{scriptUrlPath} . '/'
+                  . $scriptName . 'auth'
+                  . $TWiki::cfg{ScriptSuffix};
             }
-            if ($ENV{PATH_INFO}) {
+            if ( $ENV{PATH_INFO} ) {
                 $url .= '/' unless $url =~ m#/$# || $ENV{PATH_INFO} =~ m#^/#;
                 $url .= $ENV{PATH_INFO};
             }
         }
+
         # Redirect with passthrough so we don't lose the original query params
         $twiki->redirect( $url, 1 );
         return 1;
     }
     return undef;
 }
-
 
 =pod
 
@@ -130,10 +139,10 @@ Content of a login link
 =cut
 
 sub loginUrl {
-    my $this = shift;
+    my $this  = shift;
     my $twiki = $this->{twiki};
     my $topic = $twiki->{topicName};
-    my $web = $twiki->{webName};
+    my $web   = $twiki->{webName};
     return $twiki->getScriptUrl( 0, 'logon', $web, $topic, @_ );
 }
 
@@ -148,17 +157,19 @@ if it needs to challenge the user
 =cut
 
 sub login {
-    my( $this, $query, $twikiSession ) = @_;
+    my ( $this, $query, $twikiSession ) = @_;
 
     my $url = $twikiSession->getScriptUrl(
-        0, 'viewauth', $twikiSession->{webName}, $twikiSession->{topicName},
-        t => time());
+        0, 'viewauth',
+        $twikiSession->{webName},
+        $twikiSession->{topicName},
+        t => time()
+    );
 
     $url .= ( ';' . $query->query_string() ) if $query->query_string();
 
     $twikiSession->redirect( $url, 1 );
 }
-
 
 =pod
 
@@ -173,10 +184,12 @@ sub getUser {
 
     my $query = $this->{twiki}->{cgiQuery};
     my $authUser;
+
     # Ignore remote user if we got here via an error
-    unless (($ENV{REDIRECT_STATUS} || 0) >= 400 ) {
+    unless ( ( $ENV{REDIRECT_STATUS} || 0 ) >= 400 ) {
         $authUser = $query->remote_user() if $query;
-        TWiki::LoginManager::_trace($this, "apache getUser says ".($authUser||'undef'));
+        TWiki::LoginManager::_trace( $this,
+            "apache getUser says " . ( $authUser || 'undef' ) );
     }
     return $authUser;
 }

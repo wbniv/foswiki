@@ -78,9 +78,10 @@ use Error qw( :try );
 require TWiki::Sandbox;
 
 BEGIN {
+
     # suppress stupid warning in CGI::Cookie
     if ( exists $ENV{MOD_PERL} ) {
-        if ( !defined( $ENV{MOD_PERL_API_VERSION} )) {
+        if ( !defined( $ENV{MOD_PERL_API_VERSION} ) ) {
             $ENV{MOD_PERL_API_VERSION} = 1;
         }
     }
@@ -103,51 +104,58 @@ for the given session.
 
 sub makeLoginManager {
     my $twiki = shift;
- 
-    ASSERT($twiki->isa( 'TWiki')) if DEBUG;
-    
+
+    ASSERT( $twiki->isa('TWiki') ) if DEBUG;
+
     #user is trying to sudo login - use BaseUserMapping
-    if ($twiki->{cgiQuery}->param('sudo')) {
+    if ( $twiki->{cgiQuery}->param('sudo') ) {
+
         #promote / login to internal twiki admin
         $twiki->enterContext('sudo_login');
     }
 
-    if( $TWiki::cfg{UseClientSessions} &&
-          !$twiki->inContext( 'command_line' )) {
+    if ( $TWiki::cfg{UseClientSessions}
+        && !$twiki->inContext('command_line') )
+    {
 
         my $use = 'use CGI::Session';
-        if( $TWiki::cfg{Sessions}{UseIPMatching} ) {
+        if ( $TWiki::cfg{Sessions}{UseIPMatching} ) {
             $use .= ' qw(-ip-match)';
         }
         $use .= '; use CGI::Cookie';
         eval $use;
-        throw Error::Simple( $@ ) if $@;
-        if( $CGI::Session::VERSION eq "4.10" ) {
+        throw Error::Simple($@) if $@;
+        if ( $CGI::Session::VERSION eq "4.10" ) {
+
             # 4.10 is broken; see Item1989
             $CGI::Session::NAME = 'TWIKISID';
-        } else {
-            CGI::Session->name( 'TWIKISID' );
+        }
+        else {
+            CGI::Session->name('TWIKISID');
         }
     }
 
     my $mgr;
-    if( $TWiki::cfg{LoginManager} eq 'none' ) {
+    if ( $TWiki::cfg{LoginManager} eq 'none' ) {
+
         # No login manager; just use default behaviours
-        $mgr = new TWiki::LoginManager( $twiki );
-    } else {
+        $mgr = new TWiki::LoginManager($twiki);
+    }
+    else {
+
         # Rename from old "Client" to new "LoginManager" - see Bugs:Item3375
         $TWiki::cfg{LoginManager} =~ s/::Client::/::LoginManager::/;
         my $loginManager = $TWiki::cfg{LoginManager};
-        if ($twiki->inContext('sudo_login')) {   #TODO: move selection into BaseUserMapper
+        if ( $twiki->inContext('sudo_login') )
+        {    #TODO: move selection into BaseUserMapper
             $loginManager = 'TWiki::LoginManager::TemplateLogin';
         }
         eval "require $loginManager";
         die $@ if $@;
-        $mgr = $loginManager->new( $twiki );
+        $mgr = $loginManager->new($twiki);
     }
     return $mgr;
 }
-
 
 =pod
 
@@ -162,19 +170,19 @@ sub new {
     my ( $class, $twiki ) = @_;
     my $this = bless( { twiki => $twiki }, $class );
 
-    $twiki->leaveContext( 'can_login' );
+    $twiki->leaveContext('can_login');
     $this->{_cookies} = [];
-    map{ $this->{_authScripts}{$_} = 1; }
+    map { $this->{_authScripts}{$_} = 1; }
       split( /[\s,]+/, $TWiki::cfg{AuthScripts} );
 
     # register tag handlers and values
-    TWiki::registerTagHandler('LOGINURL', \&_LOGINURL);
-    TWiki::registerTagHandler('LOGIN', \&_LOGIN);
-    TWiki::registerTagHandler('LOGOUT', \&_LOGOUT);
-    TWiki::registerTagHandler('LOGOUTURL', \&_LOGOUTURL);
-    TWiki::registerTagHandler('SESSION_VARIABLE', \&_SESSION_VARIABLE);
-    TWiki::registerTagHandler('AUTHENTICATED', \&_AUTHENTICATED);
-    TWiki::registerTagHandler('CANLOGIN', \&_CANLOGIN);
+    TWiki::registerTagHandler( 'LOGINURL',         \&_LOGINURL );
+    TWiki::registerTagHandler( 'LOGIN',            \&_LOGIN );
+    TWiki::registerTagHandler( 'LOGOUT',           \&_LOGOUT );
+    TWiki::registerTagHandler( 'LOGOUTURL',        \&_LOGOUTURL );
+    TWiki::registerTagHandler( 'SESSION_VARIABLE', \&_SESSION_VARIABLE );
+    TWiki::registerTagHandler( 'AUTHENTICATED',    \&_AUTHENTICATED );
+    TWiki::registerTagHandler( 'CANLOGIN',         \&_CANLOGIN );
 
     return $this;
 }
@@ -191,7 +199,7 @@ Break circular references.
 # documentation" of the live fields in the object.
 sub finish {
     my $this = shift;
-    $this->complete(); # call to flush the session if not already done
+    $this->complete();    # call to flush the session if not already done
     undef $this->{_cookies};
     undef $this->{_authScripts};
     undef $this->{_cgisession};
@@ -209,19 +217,19 @@ Construct the user management object
 =cut
 
 sub _real_trace {
-    my( $this, $mess ) = @_;
-    my $id = 'Session'.
-      ($this->{_cgisession} ? $this->{_cgisession}->id() : 'unknown');
+    my ( $this, $mess ) = @_;
+    my $id = 'Session'
+      . ( $this->{_cgisession} ? $this->{_cgisession}->id() : 'unknown' );
     $id .= '(c)' if $this->{_haveCookie};
     print STDERR "$id: $mess\n";
 }
 
-if( $TWiki::cfg{Trace}{LoginManager} ) {
+if ( $TWiki::cfg{Trace}{LoginManager} ) {
     *_trace = \&_real_trace;
-} else {
+}
+else {
     *_trace = sub { undef };
 }
-
 
 =pod
 
@@ -232,26 +240,30 @@ if( $TWiki::cfg{Trace}{LoginManager} ) {
 =cut
 
 sub _IP2SID {
-    my( $sid ) = @_;
+    my ($sid) = @_;
 
     my $ip = $ENV{'REMOTE_ADDR'};
 
-    return undef unless $ip; # no IP address, can't map
+    return undef unless $ip;    # no IP address, can't map
 
     my %ips;
-    if( open( IPMAP, '<', $TWiki::cfg{WorkingDir}.'/tmp/ip2sid' )) {
+    if ( open( IPMAP, '<', $TWiki::cfg{WorkingDir} . '/tmp/ip2sid' ) ) {
         local $/ = undef;
         %ips = map { split( /:/, $_ ) } split( /\r?\n/, <IPMAP> );
         close(IPMAP);
     }
-    if( $sid ) {
+    if ($sid) {
+
         # known SID, map the IP addr to it
         $ips{$ip} = $sid;
-        open( IPMAP, '>', $TWiki::cfg{WorkingDir}.'/tmp/ip2sid') ||
-          die "Failed to open ip2sid map for write. Ask your administrator to make sure that the {Sessions}{Dir} is writable by the webserver user.";
+        open( IPMAP, '>', $TWiki::cfg{WorkingDir} . '/tmp/ip2sid' )
+          || die
+"Failed to open ip2sid map for write. Ask your administrator to make sure that the {Sessions}{Dir} is writable by the webserver user.";
         print IPMAP map { "$_:$ips{$_}\n" } keys %ips;
         close(IPMAP);
-    } else {
+    }
+    else {
+
         # Return the SID for this IP address
         $sid = $ips{$ip};
     }
@@ -273,118 +285,136 @@ passed in here.
 =cut
 
 sub loadSession {
-    my ($this, $defaultUser) = @_;
+    my ( $this, $defaultUser ) = @_;
     my $twiki = $this->{twiki};
 
     # Try and get the user from the webserver
-    my $authUser = $this->getUser( $this ) || $defaultUser;
+    my $authUser = $this->getUser($this) || $defaultUser;
 
     #this allows the session to over-ride apache_auth (useful for sudo)
-    unless( $TWiki::cfg{UseClientSessions} ) {
-        $this->userLoggedIn( $authUser ) if $authUser;
+    unless ( $TWiki::cfg{UseClientSessions} ) {
+        $this->userLoggedIn($authUser) if $authUser;
         return $authUser;
     }
 
-    return $authUser if $twiki->inContext( 'command_line' );
+    return $authUser if $twiki->inContext('command_line');
 
     my $query = $twiki->{cgiQuery};
 
     $this->{_haveCookie} = $query->raw_cookie();
 
-    _trace($this, "URL ".$query->url());
-    if( $this->{_haveCookie} ) {
-        _trace($this, "Cookie ".$this->{_haveCookie});
-    } else {
-        _trace($this, "No cookie ");
+    _trace( $this, "URL " . $query->url() );
+    if ( $this->{_haveCookie} ) {
+        _trace( $this, "Cookie " . $this->{_haveCookie} );
+    }
+    else {
+        _trace( $this, "No cookie " );
     }
 
     # Item3568: CGI::Session from 4.0 already does the -d and creates the
     # sessions directory if it does not exist. For performance reasons we
     # only test for and create session file directory for older CGI::Session
-    if( $CGI::Session::VERSION < 4.0 ) {
+    if ( $CGI::Session::VERSION < 4.0 ) {
         unless ( -d "$TWiki::cfg{WorkingDir}/tmp" ) {
-            unless ( mkdir($TWiki::cfg{WorkingDir}) &&
-                       mkdir("$TWiki::cfg{WorkingDir}/tmp") ) {
-                die "Could not create $TWiki::cfg{WorkingDir}/tmp for session files";
+            unless ( mkdir( $TWiki::cfg{WorkingDir} )
+                && mkdir("$TWiki::cfg{WorkingDir}/tmp") )
+            {
+                die
+"Could not create $TWiki::cfg{WorkingDir}/tmp for session files";
             }
         }
     }
 
     # First, see if there is a cookied session, creating a new session
     # if necessary.
-    if( $TWiki::cfg{Sessions}{MapIP2SID} ) {
+    if ( $TWiki::cfg{Sessions}{MapIP2SID} ) {
+
         # map the end user IP address to SID
         my $sid = _IP2SID();
-        if( $sid ) {
-            $this->{_cgisession} = CGI::Session->new(
-                undef, $sid, { Directory => "$TWiki::cfg{WorkingDir}/tmp" } );
-        } else {
-            $this->{_cgisession} = CGI::Session->new(
-                undef, undef,
+        if ($sid) {
+            $this->{_cgisession} =
+              CGI::Session->new( undef, $sid,
                 { Directory => "$TWiki::cfg{WorkingDir}/tmp" } );
-            _trace($this, "New IP2SID session");
+        }
+        else {
+            $this->{_cgisession} =
+              CGI::Session->new( undef, undef,
+                { Directory => "$TWiki::cfg{WorkingDir}/tmp" } );
+            _trace( $this, "New IP2SID session" );
             _IP2SID( $this->{_cgisession}->id() );
         }
-    } else {
-        $this->{_cgisession} = CGI::Session->new(
-            undef, $query,
+    }
+    else {
+        $this->{_cgisession} =
+          CGI::Session->new( undef, $query,
             { Directory => "$TWiki::cfg{WorkingDir}/tmp" } );
     }
 
     die CGI::Session->errstr() unless $this->{_cgisession};
-    _trace($this, "Opened session");
+    _trace( $this, "Opened session" );
 
-    _trace($this, "Webserver says user is $authUser") if( $authUser );
-    
+    _trace( $this, "Webserver says user is $authUser" ) if ($authUser);
+
     my $sessionUser = TWiki::Sandbox::untaintUnchecked(
-            $this->{_cgisession}->param( 'AUTHUSER' ));
-    _trace($this, "session says user is ".($sessionUser||'undef'));
-    if ((!defined($authUser)) || ($sessionUser  && $sessionUser eq $TWiki::cfg{AdminUserLogin})) {
-    	$authUser = $sessionUser;
-	    #_trace($this, "session set to $authUser");
+        $this->{_cgisession}->param('AUTHUSER') );
+    _trace( $this, "session says user is " . ( $sessionUser || 'undef' ) );
+    if (   ( !defined($authUser) )
+        || ( $sessionUser && $sessionUser eq $TWiki::cfg{AdminUserLogin} ) )
+    {
+        $authUser = $sessionUser;
+
+        #_trace($this, "session set to $authUser");
     }
-    
+
     # if we couldn't get the login manager or the http session to tell
     # us who the user is, then let's use the CGI "remote user"
     # variable (which may have been set manually by a unit test,
     # or it might have come from Apache).
-    if( $authUser ) {
+    if ($authUser) {
         my $cUID = TWiki::Sandbox::untaintUnchecked(
-            $this->{_cgisession}->param( 'cUID' )) || '';    
-        _trace($this, "Session says user is $authUser - $cUID");
-    } else {
+            $this->{_cgisession}->param('cUID') )
+          || '';
+        _trace( $this, "Session says user is $authUser - $cUID" );
+    }
+    else {
+
         # Use remote user provided from "new TWiki" call. This is mainly
         # for testing.
         $authUser = $defaultUser;
-        _trace($this, "TWiki object says user is $authUser") if $authUser;
+        _trace( $this, "TWiki object says user is $authUser" ) if $authUser;
     }
 
     $authUser ||= $defaultUser;
 
     # is this a logout?
-    if (($authUser  && $authUser ne $TWiki::cfg{DefaultUserLogin}) &&
-    	( $query && $query->param( 'logout' ) )) {
+    if (   ( $authUser && $authUser ne $TWiki::cfg{DefaultUserLogin} )
+        && ( $query && $query->param('logout') ) )
+    {
         my $sudoUser = TWiki::Sandbox::untaintUnchecked(
-            $this->{_cgisession}->param( 'SUDOFROMAUTHUSER' ));
-       
+            $this->{_cgisession}->param('SUDOFROMAUTHUSER') );
+
         if ($sudoUser) {
-        	_trace($this, "User is logging out to $sudoUser");
-        	$twiki->writeLog( 'sudo logout', '', 'from '.($authUser ||''), $sudoUser );
-        	$this->{_cgisession}->clear( 'SUDOFROMAUTHUSER' );
-        	$authUser = $sudoUser;
-        } else {
-	        _trace($this, "User is logging out");
-	        my $origurl = $ENV{HTTP_REFERER} || $query->url().$query->path_info();
-	        #TODO: 
-	        $query->delete('logout');	#lets avoid infinite loops
-    	    $this->redirectCgiQuery( $query, $origurl );
-        	$authUser = undef;
+            _trace( $this, "User is logging out to $sudoUser" );
+            $twiki->writeLog( 'sudo logout', '', 'from ' . ( $authUser || '' ),
+                $sudoUser );
+            $this->{_cgisession}->clear('SUDOFROMAUTHUSER');
+            $authUser = $sudoUser;
+        }
+        else {
+            _trace( $this, "User is logging out" );
+            my $origurl = $ENV{HTTP_REFERER}
+              || $query->url() . $query->path_info();
+
+            #TODO:
+            $query->delete('logout');    #lets avoid infinite loops
+            $this->redirectCgiQuery( $query, $origurl );
+            $authUser = undef;
         }
     }
     $query->delete('logout');
-    $this->userLoggedIn( $authUser );
+    $this->userLoggedIn($authUser);
 
-    $twiki->{SESSION_TAGS}{SESSIONID} = $this->{_cgisession}->id();
+    $twiki->{SESSION_TAGS}{SESSIONID}  = $this->{_cgisession}->id();
     $twiki->{SESSION_TAGS}{SESSIONVAR} = $CGI::Session::NAME;
 
     return $authUser;
@@ -401,26 +431,25 @@ If not, throw an access control exception.
 
 sub checkAccess {
 
-    return unless( $TWiki::cfg{UseClientSessions} );
+    return unless ( $TWiki::cfg{UseClientSessions} );
 
-    my $this = shift;
+    my $this  = shift;
     my $twiki = $this->{twiki};
 
-    return undef if $twiki->inContext( 'command_line' );
+    return undef if $twiki->inContext('command_line');
 
-    unless( $twiki->inContext( 'authenticated' ) ||
-              $TWiki::cfg{LoginManager} eq 'none' ) {
+    unless ( $twiki->inContext('authenticated')
+        || $TWiki::cfg{LoginManager} eq 'none' )
+    {
         my $script = $ENV{'SCRIPT_NAME'} || $ENV{'SCRIPT_FILENAME'};
         $script =~ s@^.*/([^./]+)@$1@g if $script;
 
-        if( defined $script && $this->{_authScripts}{$script} ) {
+        if ( defined $script && $this->{_authScripts}{$script} ) {
             my $topic = $twiki->{topicName};
-            my $web = $twiki->{webName};
+            my $web   = $twiki->{webName};
             require TWiki::AccessControlException;
-            throw TWiki::AccessControlException(
-                $script, $twiki->{user},
-                $web, $topic,
-                'authentication required' );
+            throw TWiki::AccessControlException( $script, $twiki->{user}, $web,
+                $topic, 'authentication required' );
         }
     }
 }
@@ -437,14 +466,14 @@ to. Flush the user's session (if any) to disk.
 sub complete {
     my $this = shift;
 
-    if( $this->{_cgisession} ) {
+    if ( $this->{_cgisession} ) {
         $this->{_cgisession}->flush();
         die $this->{_cgisession}->errstr()
           if $this->{_cgisession}->errstr();
-        _trace($this, "Flushed");
+        _trace( $this, "Flushed" );
     }
 
-    return unless( $TWiki::cfg{Sessions}{ExpireAfter} > 0 );
+    return unless ( $TWiki::cfg{Sessions}{ExpireAfter} > 0 );
 
     expireDeadSessions();
 }
@@ -463,21 +492,23 @@ run from a session or from a cron job.
 
 sub expireDeadSessions {
     my $time = time() || 0;
-    my $exp = $TWiki::cfg{Sessions}{ExpireAfter} || 36000; # 10 hours
+    my $exp = $TWiki::cfg{Sessions}{ExpireAfter} || 36000;    # 10 hours
     $exp = -$exp if $exp < 0;
 
-    opendir(D, "$TWiki::cfg{WorkingDir}/tmp") || return;
-    foreach my $file ( grep { /^(passthru|cgisess)_[0-9a-f]{32}/ } readdir(D) ) {
-        $file = TWiki::Sandbox::untaintUnchecked(
-            "$TWiki::cfg{WorkingDir}/tmp/$file" );
-        my @stat = stat( $file );
-        # CGI::Session updates the session file each time a browser views a
-        # topic setting the access and expiry time as values in the file. This 
-        # also sets the mtime (modification time) for the file which is all we need.
-        # We know that the expiry time is mtime + $TWiki::cfg{Sessions}{ExpireAfter}
-        # so we do not need to waste execution time opening and reading the file.
-        # We just check the mtime. mtime is confirmed set in both Windows and Linux
-        # As a fallback we also check ctime. Files are deleted when they expire.
+    opendir( D, "$TWiki::cfg{WorkingDir}/tmp" ) || return;
+    foreach my $file ( grep { /^(passthru|cgisess)_[0-9a-f]{32}/ } readdir(D) )
+    {
+        $file =
+          TWiki::Sandbox::untaintUnchecked("$TWiki::cfg{WorkingDir}/tmp/$file");
+        my @stat = stat($file);
+
+    # CGI::Session updates the session file each time a browser views a
+    # topic setting the access and expiry time as values in the file. This
+    # also sets the mtime (modification time) for the file which is all we need.
+    # We know that the expiry time is mtime + $TWiki::cfg{Sessions}{ExpireAfter}
+    # so we do not need to waste execution time opening and reading the file.
+    # We just check the mtime. mtime is confirmed set in both Windows and Linux
+    # As a fallback we also check ctime. Files are deleted when they expire.
         my $lat = $stat[9] || $stat[10] || 0;
         unlink $file if ( $time - $lat >= $exp );
         next;
@@ -501,49 +532,60 @@ for instance,
 =cut
 
 sub userLoggedIn {
-    my( $this, $authUser, $wikiName ) = @_;
+    my ( $this, $authUser, $wikiName ) = @_;
 
     my $twiki = $this->{twiki};
-    return undef if $twiki->inContext( 'command_line' );
+    return undef if $twiki->inContext('command_line');
 
-    if( $TWiki::cfg{UseClientSessions} ) {
+    if ( $TWiki::cfg{UseClientSessions} ) {
+
         # create new session if necessary
-        unless( $this->{_cgisession} ) {
+        unless ( $this->{_cgisession} ) {
             $this->{_cgisession} =
-              CGI::Session->new(
-                  undef, $twiki->{cgiQuery},
-                  { Directory => "$TWiki::cfg{WorkingDir}/tmp" } );
+              CGI::Session->new( undef, $twiki->{cgiQuery},
+                { Directory => "$TWiki::cfg{WorkingDir}/tmp" } );
             die CGI::Session->errstr() unless $this->{_cgisession};
         }
     }
-    if( $authUser && $authUser ne $TWiki::cfg{DefaultUserLogin} ) {
-        _trace($this, "Session is authenticated");
-        _trace($this, 'converting from '.($twiki->{remoteUser}||'undef').' to '.$authUser);
-        #TODO: right now anyone that makes a template login url can log in multiple times - should i forbid it
-        if( $TWiki::cfg{UseClientSessions} ) {
-	        if (defined($twiki->{remoteUser}) && $twiki->inContext('sudo_login')) {
-        		$twiki->writeLog( 'sudo login', '', 'from '.($twiki->{remoteUser}||''), $authUser );
-          	    $this->{_cgisession}->param( 'SUDOFROMAUTHUSER', $twiki->{remoteUser} );
-        	}   
-        	#TODO: these are bare login's, so if and when there are multiple usermappings, this would need to include cUID..     
+    if ( $authUser && $authUser ne $TWiki::cfg{DefaultUserLogin} ) {
+        _trace( $this, "Session is authenticated" );
+        _trace( $this,
+                'converting from '
+              . ( $twiki->{remoteUser} || 'undef' ) . ' to '
+              . $authUser );
+
+#TODO: right now anyone that makes a template login url can log in multiple times - should i forbid it
+        if ( $TWiki::cfg{UseClientSessions} ) {
+            if ( defined( $twiki->{remoteUser} )
+                && $twiki->inContext('sudo_login') )
+            {
+                $twiki->writeLog( 'sudo login', '',
+                    'from ' . ( $twiki->{remoteUser} || '' ), $authUser );
+                $this->{_cgisession}
+                  ->param( 'SUDOFROMAUTHUSER', $twiki->{remoteUser} );
+            }
+
+#TODO: these are bare login's, so if and when there are multiple usermappings, this would need to include cUID..
             $this->{_cgisession}->param( 'AUTHUSER', $authUser );
         }
-        $twiki->enterContext( 'authenticated' );
-    } else {
-        _trace($this, "Session is NOT authenticated");
-        # if we are not authenticated, expire any existing session
-        $this->{_cgisession}->clear( [ 'AUTHUSER' ] )
-          if( $TWiki::cfg{UseClientSessions} );
-        $twiki->leaveContext( 'authenticated' );
+        $twiki->enterContext('authenticated');
     }
-    if( $TWiki::cfg{UseClientSessions} ) {
+    else {
+        _trace( $this, "Session is NOT authenticated" );
+
+        # if we are not authenticated, expire any existing session
+        $this->{_cgisession}->clear( ['AUTHUSER'] )
+          if ( $TWiki::cfg{UseClientSessions} );
+        $twiki->leaveContext('authenticated');
+    }
+    if ( $TWiki::cfg{UseClientSessions} ) {
+
         # flush the session, to try to fix Item1820 and Item2234
         $this->{_cgisession}->flush();
         die $this->{_cgisession}->errstr() if $this->{_cgisession}->errstr();
-        _trace($this, "Flushed");
+        _trace( $this, "Flushed" );
     }
 }
-
 
 =pod
 
@@ -558,23 +600,24 @@ sub _myScriptURLRE {
     my $this = shift;
 
     my $s = $this->{_MYSCRIPTURL};
-    unless( $s ) {
-        $s = quotemeta($this->{twiki}->getScriptUrl( 1, $M1, $M2, $M3 ));
+    unless ($s) {
+        $s = quotemeta( $this->{twiki}->getScriptUrl( 1, $M1, $M2, $M3 ) );
         $s =~ s@\\$M1@[^/]*?@go;
         $s =~ s@\\$M2@[^/]*?@go;
         $s =~ s@\\$M3@[^#\?/]*@go;
+
         # now add alternates for the various script-specific overrides
-        foreach my $v ( values %{$TWiki::cfg{ScriptUrlPaths}} ) {
+        foreach my $v ( values %{ $TWiki::cfg{ScriptUrlPaths} } ) {
             my $over = $v;
+
             # escape non-alphabetics
             $over =~ s/(\W)/\\$1/g;
-            $s .= '|'.$over;
+            $s .= '|' . $over;
         }
         $this->{_MYSCRIPTURL} = "($s)";
     }
     return $s;
 }
-
 
 =pod
 
@@ -585,7 +628,7 @@ sub _myScriptURLRE {
 
 # Rewrite a URL inserting the session id
 sub _rewriteURL {
-    my( $this, $url ) = @_;
+    my ( $this, $url ) = @_;
 
     return $url unless $url;
 
@@ -593,31 +636,30 @@ sub _rewriteURL {
     return $url unless $sessionId;
     return $url if $url =~ m/\?$CGI::Session::NAME=/;
 
-    my $s = _myScriptURLRE( $this );
+    my $s = _myScriptURLRE($this);
 
     # If the URL has no colon in it, or it matches the local script
     # URL, it must be an internal URL and therefore needs the session.
-    if( $url !~ /:/ || $url =~ /^$s/ ) {
+    if ( $url !~ /:/ || $url =~ /^$s/ ) {
 
         # strip off existing params
         my $params = "?$CGI::Session::NAME=$sessionId";
-        if( $url =~ s/\?(.*)$// ) {
-            $params .= ';'.$1;
+        if ( $url =~ s/\?(.*)$// ) {
+            $params .= ';' . $1;
         }
 
         # strip off the anchor
         my $anchor = '';
-        if( $url =~ s/(#.*)// ) {
+        if ( $url =~ s/(#.*)// ) {
             $anchor = $1;
         }
 
         # rebuild the URL
-        $url .= $anchor.$params;
-    } # otherwise leave it untouched
+        $url .= $anchor . $params;
+    }    # otherwise leave it untouched
 
     return $url;
 }
-
 
 =pod
 
@@ -632,17 +674,19 @@ sub _rewriteURL {
 # no target, or if its target matches a getScriptUrl URL.
 # '$rest' is the bit of the initial form tag up to the closing >
 sub _rewriteFORM {
-    my( $this, $url, $rest ) = @_;
+    my ( $this, $url, $rest ) = @_;
 
-    return $url.$rest unless $this->{_cgisession};
+    return $url . $rest unless $this->{_cgisession};
 
-    my $s = _myScriptURLRE( $this );
+    my $s = _myScriptURLRE($this);
 
-    if( $url !~ /:/ || $url =~ /^($s)/ ) {
-        $rest .= CGI::hidden( -name => $CGI::Session::NAME,
-                              -value => $this->{_cgisession}->id());
+    if ( $url !~ /:/ || $url =~ /^($s)/ ) {
+        $rest .= CGI::hidden(
+            -name  => $CGI::Session::NAME,
+            -value => $this->{_cgisession}->id()
+        );
     }
-    return $url.$rest;
+    return $url . $rest;
 }
 
 =pod
@@ -658,15 +702,16 @@ printed.
 =cut
 
 sub endRenderingHandler {
-    return unless( $TWiki::cfg{UseClientSessions} );
+    return unless ( $TWiki::cfg{UseClientSessions} );
 
     my $this = shift;
-    return undef if $this->{twiki}->inContext( 'command_line' );
+    return undef if $this->{twiki}->inContext('command_line');
 
     # If cookies are not turned on and transparent CGI session IDs are,
     # grab every URL that is an internal link and pass a CGI variable
     # with the session ID
-    unless( $this->{_haveCookie} || !$TWiki::cfg{Sessions}{IDsInURLs} ) {
+    unless ( $this->{_haveCookie} || !$TWiki::cfg{Sessions}{IDsInURLs} ) {
+
         # rewrite internal links to include the transparent session ID
         # Doesn't catch Javascript, because there are just so many ways
         # to generate links from JS.
@@ -675,19 +720,20 @@ sub endRenderingHandler {
         # rules to rewrite any relative URLs at that time.
 
         # a href= rewriting
-        $_[0] =~ s/(<a[^>]*(?<=\s)href=(["']))(.*?)(\2)/$1._rewriteURL( $this,$3).$4/geoi;
+        $_[0] =~
+s/(<a[^>]*(?<=\s)href=(["']))(.*?)(\2)/$1._rewriteURL( $this,$3).$4/geoi;
 
         # form action= rewriting
         # SMELL: Forms that have no target are also implicit internal
         # links, but are not handled. Does this matter>
-        $_[0] =~ s/(<form[^>]*(?<=\s)(?:action)=(["']))(.*?)(\2[^>]*>)/$1._rewriteFORM( $this,$3, $4)/geoi;
+        $_[0] =~
+s/(<form[^>]*(?<=\s)(?:action)=(["']))(.*?)(\2[^>]*>)/$1._rewriteFORM( $this,$3, $4)/geoi;
     }
 
     # And, finally, the logon stuff
     $_[0] =~ s/%SESSIONLOGON%/_dispLogon( $this )/geo;
     $_[0] =~ s/%SKINSELECT%/_skinSelect( $this )/geo;
 }
-
 
 =pod
 
@@ -700,25 +746,30 @@ sub endRenderingHandler {
 sub _pushCookie {
     my $this = shift;
 
-    my $cookie = CGI::Cookie->new( -name => $CGI::Session::NAME,
-                                   -value => $this->{_cgisession}->id(),
-                                   -path => '/' );
+    my $cookie = CGI::Cookie->new(
+        -name  => $CGI::Session::NAME,
+        -value => $this->{_cgisession}->id(),
+        -path  => '/'
+    );
+
     # An expiry time is only set if the session has the REMEMBER variable
     # in it. This is to prevent accidentally remembering cookies with
     # login managers where the authority is cached in the browser and
     # *not* in the session. Otherwise another user might be able to login
     # on the same machine and inherit the authorities of a prior user.
-    if ($TWiki::cfg{Sessions}{ExpireCookiesAfter} &&
-          $this->getSessionValue( 'REMEMBER' )) {
+    if (   $TWiki::cfg{Sessions}{ExpireCookiesAfter}
+        && $this->getSessionValue('REMEMBER') )
+    {
         require TWiki::Time;
         my $exp = TWiki::Time::formatTime(
             time() + $TWiki::cfg{Sessions}{ExpireCookiesAfter},
-            '$dow, $day-$month-$ye $hours:$minutes:$seconds GMT');
+            '$dow, $day-$month-$ye $hours:$minutes:$seconds GMT'
+        );
 
         $cookie->expires($exp);
     }
 
-    $this->addCookie( $cookie );
+    $this->addCookie($cookie);
 }
 
 =pod
@@ -731,13 +782,13 @@ Add a cookie to the list of cookies for this session.
 =cut
 
 sub addCookie {
-    return unless( $TWiki::cfg{UseClientSessions} );
+    return unless ( $TWiki::cfg{UseClientSessions} );
 
-    my( $this, $c ) = @_;
-    return undef if $this->{twiki}->inContext( 'command_line' );
-    ASSERT($c->isa('CGI::Cookie')) if DEBUG;
+    my ( $this, $c ) = @_;
+    return undef if $this->{twiki}->inContext('command_line');
+    ASSERT( $c->isa('CGI::Cookie') ) if DEBUG;
 
-    push( @{$this->{_cookies}}, $c );
+    push( @{ $this->{_cookies} }, $c );
 }
 
 =pod
@@ -750,13 +801,13 @@ Modify a HTTP header
 =cut
 
 sub modifyHeader {
-    my( $this, $hopts ) = @_;
+    my ( $this, $hopts ) = @_;
 
     return unless $this->{_cgisession};
     return if $TWiki::cfg{Sessions}{MapIP2SID};
 
     my $query = $this->{twiki}->{cgiQuery};
-    _pushCookie( $this );
+    _pushCookie($this);
     $hopts->{cookie} = $this->{_cookies};
 }
 
@@ -771,11 +822,11 @@ Generate an HTTP redirect on STDOUT, if you can. Return 1 if you did.
 
 sub redirectCgiQuery {
 
-    my( $this, $query, $url ) = @_;
+    my ( $this, $query, $url ) = @_;
 
-    if( $this->{_cgisession} ) {
+    if ( $this->{_cgisession} ) {
         $url = _rewriteURL( $this, $url )
-          unless( !$TWiki::cfg{Sessions}{IDsInURLs} || $this->{_haveCookie} );
+          unless ( !$TWiki::cfg{Sessions}{IDsInURLs} || $this->{_haveCookie} );
 
         # This usually won't be important, but just in case they haven't
         # yet received the cookie and happen to be redirecting, be sure
@@ -787,14 +838,15 @@ sub redirectCgiQuery {
         #
         # So this is just a big fat precaution, just like the rest of this
         # whole handler.
-        _pushCookie( $this );
+        _pushCookie($this);
     }
 
-    if( $TWiki::cfg{Sessions}{MapIP2SID} ) {
-        _trace($this, "Redirect to $url WITHOUT cookie");
+    if ( $TWiki::cfg{Sessions}{MapIP2SID} ) {
+        _trace( $this, "Redirect to $url WITHOUT cookie" );
         print $query->redirect( -url => $url );
-    } else {
-        _trace($this, "Redirect to $url with cookie");
+    }
+    else {
+        _trace( $this, "Redirect to $url with cookie" );
         print $query->redirect( -url => $url, -cookie => $this->{_cookies} );
     }
 
@@ -810,7 +862,7 @@ Get a name->value hash of all the defined session variables
 =cut
 
 sub getSessionValues {
-    my( $this ) = @_;
+    my ($this) = @_;
 
     return undef unless $this->{_cgisession};
 
@@ -826,10 +878,10 @@ Get the value of a session variable.
 =cut
 
 sub getSessionValue {
-    my( $this, $key ) = @_;
+    my ( $this, $key ) = @_;
     return undef unless $this->{_cgisession};
 
-    return $this->{_cgisession}->param( $key );
+    return $this->{_cgisession}->param($key);
 }
 
 =pod
@@ -842,12 +894,13 @@ We do not allow setting of AUTHUSER.
 =cut
 
 sub setSessionValue {
-    my( $this, $key, $value ) = @_;
+    my ( $this, $key, $value ) = @_;
 
     # We do not allow setting of AUTHUSER.
-    if( $this->{_cgisession} &&
-          $key ne 'AUTHUSER' &&
-            defined( $this->{_cgisession}->param( $key, $value ))) {
+    if (   $this->{_cgisession}
+        && $key ne 'AUTHUSER'
+        && defined( $this->{_cgisession}->param( $key, $value ) ) )
+    {
         return 1;
     }
 
@@ -864,12 +917,13 @@ We do not allow setting of AUTHUSER.
 =cut
 
 sub clearSessionValue {
-    my( $this, $key ) = @_;
+    my ( $this, $key ) = @_;
 
     # We do not allow clearing of AUTHUSER.
-    if( $this->{_cgisession} &&
-          $key ne 'AUTHUSER' &&
-            defined( $this->{_cgisession}->param( $key ))) {
+    if (   $this->{_cgisession}
+        && $key ne 'AUTHUSER'
+        && defined( $this->{_cgisession}->param($key) ) )
+    {
         $this->{_cgisession}->clear( [ $_[1] ] );
 
         return 1;
@@ -928,7 +982,6 @@ sub getUser {
     return undef;
 }
 
-
 =pod
 
 ---++ ObjectMethod _LOGIN ($thisl)
@@ -937,20 +990,20 @@ sub getUser {
 =cut
 
 sub _LOGIN {
+
     #my( $twiki, $params, $topic, $web ) = @_;
     my $twiki = shift;
-    my $this = $twiki->{users}->{loginManager};
+    my $this  = $twiki->{users}->{loginManager};
 
-    return '' if $twiki->inContext( 'authenticated' );
+    return '' if $twiki->inContext('authenticated');
 
     my $url = $this->loginUrl();
-    if( $url ) {
+    if ($url) {
         my $text = $twiki->templates->expandTemplate('LOG_IN');
-        return CGI::a( { href=>$url }, $text );
+        return CGI::a( { href => $url }, $text );
     }
     return '';
 }
-
 
 =pod
 
@@ -960,16 +1013,16 @@ sub _LOGIN {
 =cut
 
 sub _LOGOUTURL {
-    my( $twiki, $params, $topic, $web ) = @_;
+    my ( $twiki, $params, $topic, $web ) = @_;
     my $this = $twiki->{users}->{loginManager};
 
     return $twiki->getScriptUrl(
         0, 'view',
         $twiki->{SESSION_TAGS}{BASEWEB},
         $twiki->{SESSION_TAGS}{BASETOPIC},
-        'logout' => 1 );
+        'logout' => 1
+    );
 }
-
 
 =pod
 
@@ -979,19 +1032,18 @@ sub _LOGOUTURL {
 =cut
 
 sub _LOGOUT {
-    my( $twiki, $params, $topic, $web ) = @_;
+    my ( $twiki, $params, $topic, $web ) = @_;
     my $this = $twiki->{users}->{loginManager};
 
-    return '' unless $twiki->inContext( 'authenticated' );
+    return '' unless $twiki->inContext('authenticated');
 
-    my $url = _LOGOUTURL( @_ );
-    if( $url ) {
+    my $url = _LOGOUTURL(@_);
+    if ($url) {
         my $text = $twiki->templates->expandTemplate('LOG_OUT');
-        return CGI::a( {href=>$url }, $text );
+        return CGI::a( { href => $url }, $text );
     }
     return '';
 }
-
 
 =pod
 
@@ -1001,16 +1053,16 @@ sub _LOGOUT {
 =cut
 
 sub _AUTHENTICATED {
-    my( $twiki, $params ) = @_;
+    my ( $twiki, $params ) = @_;
     my $this = $twiki->{users}->{loginManager};
 
-    if( $twiki->inContext( 'authenticated' )) {
+    if ( $twiki->inContext('authenticated') ) {
         return $params->{then} || 1;
-    } else {
+    }
+    else {
         return $params->{else} || 0;
     }
 }
-
 
 =pod
 
@@ -1019,15 +1071,15 @@ sub _AUTHENTICATED {
 =cut
 
 sub _CANLOGIN {
-    my( $twiki, $params ) = @_;
+    my ( $twiki, $params ) = @_;
     my $this = $twiki->{users}->{loginManager};
-    if( $twiki->inContext( 'can_login' )) {
+    if ( $twiki->inContext('can_login') ) {
         return $params->{then} || 1;
-    } else {
+    }
+    else {
         return $params->{else} || 0;
     }
 }
-
 
 =pod
 
@@ -1036,21 +1088,22 @@ sub _CANLOGIN {
 =cut
 
 sub _SESSION_VARIABLE {
-    my( $twiki, $params ) = @_;
+    my ( $twiki, $params ) = @_;
     my $this = $twiki->{users}->{loginManager};
- 	my $name = $params->{_DEFAULT};
- 
-    if( defined( $params->{set} ) ) {
+    my $name = $params->{_DEFAULT};
+
+    if ( defined( $params->{set} ) ) {
         $this->setSessionValue( $name, $params->{set} );
         return '';
-    } elsif( defined( $params->{clear} )) {
-        $this->clearSessionValue( $name );
+    }
+    elsif ( defined( $params->{clear} ) ) {
+        $this->clearSessionValue($name);
         return '';
-    } else {
-        return $this->getSessionValue( $name ) || '';
+    }
+    else {
+        return $this->getSessionValue($name) || '';
     }
 }
-
 
 =pod
 
@@ -1060,11 +1113,10 @@ sub _SESSION_VARIABLE {
 =cut
 
 sub _LOGINURL {
-    my( $twiki, $params ) = @_;
+    my ( $twiki, $params ) = @_;
     my $this = $twiki->{users}->{loginManager};
     return $this->loginUrl();
 }
-
 
 =pod
 
@@ -1077,21 +1129,20 @@ sub _dispLogon {
 
     return '' unless $this->{_cgisession};
 
-    my $twiki = $this->{twiki};
-    my $topic = $twiki->{topicName};
-    my $web = $twiki->{webName};
+    my $twiki     = $this->{twiki};
+    my $topic     = $twiki->{topicName};
+    my $web       = $twiki->{webName};
     my $sessionId = $this->{_cgisession}->id();
 
     my $urlToUse = $this->loginUrl();
 
-    unless( $this->{_haveCookie} || !$TWiki::cfg{Sessions}{IDsInURLs} ) {
+    unless ( $this->{_haveCookie} || !$TWiki::cfg{Sessions}{IDsInURLs} ) {
         $urlToUse = _rewriteURL( $this, $urlToUse );
     }
 
     my $text = $twiki->templates->expandTemplate('LOG_IN');
-    return CGI::a({ class => 'twikiAlert', href => $urlToUse }, $text );
+    return CGI::a( { class => 'twikiAlert', href => $urlToUse }, $text );
 }
-
 
 =pod
 
@@ -1103,19 +1154,20 @@ TODO: what does it do?
 =cut
 
 sub _skinSelect {
-    my $this = shift;
+    my $this  = shift;
     my $twiki = $this->{twiki};
     my $skins = $twiki->{prefs}->getPreferencesValue('SKINS');
-    my $skin = $twiki->getSkin();
+    my $skin  = $twiki->getSkin();
     my @skins = split( /,/, $skins );
     unshift( @skins, 'default' );
     my $options = '';
-    foreach my $askin ( @skins ) {
+    foreach my $askin (@skins) {
         $askin =~ s/\s//go;
-        if( $askin eq $skin ) {
-            $options .= CGI::option(
-                { selected => 'selected', name => $askin }, $askin );
-        } else {
+        if ( $askin eq $skin ) {
+            $options .=
+              CGI::option( { selected => 'selected', name => $askin }, $askin );
+        }
+        else {
             $options .= CGI::option( { name => $askin }, $askin );
         }
     }

@@ -11,43 +11,44 @@ use TWiki::Contrib::JSCalendarContrib;
 
 sub new {
     my $class = shift;
-    my $this = $class->SUPER::new( @_ );
-    my $size = $this->{size} || '';
+    my $this  = $class->SUPER::new(@_);
+    my $size  = $this->{size} || '';
     $size =~ s/[^\d]//g;
-    $size = 20 if( !$size || $size < 1 ); # length(31st September 2007)=19
+    $size = 20 if ( !$size || $size < 1 );    # length(31st September 2007)=19
     $this->{size} = $size;
     return $this;
 }
 
 sub renderForEdit {
-    my( $this, $web, $topic, $value ) = @_;
+    my ( $this, $web, $topic, $value ) = @_;
 
     $value = CGI::textfield(
-        { name => $this->{name},
-          id => 'id'.$this->{name},
-          size=> $this->{size},
-          value => $value,
-          class => $this->can('cssClasses') ?
-            $this->cssClasses('twikiInputField', 'twikiEditFormDateField') :
-              'twikiInputField twikiEditFormDateField'});
-    my $ifFormat = $TWiki::cfg{JSCalendarContrib}{format} || '%e %b %Y';
-    TWiki::Contrib::JSCalendarContrib::addHEAD( 'twiki' );
-    my $button .= CGI::image_button(
-        -name => 'calendar',
-        -onclick =>
-          "return showCalendar('id$this->{name}','$ifFormat')",
-        -src=> $TWiki::cfg{PubUrlPath} . '/' .
-          $TWiki::cfg{SystemWebName} .
-            '/JSCalendarContrib/img.gif',
-        -alt => 'Calendar',
-        -class => 'twikiButton twikiEditFormCalendarButton' );
-    $value .= CGI::span(
-        { -class => 'twikiMakeVisible' },
-        '&nbsp;' . $button
+        {
+            name  => $this->{name},
+            id    => 'id' . $this->{name},
+            size  => $this->{size},
+            value => $value,
+            class => $this->can('cssClasses')
+            ? $this->cssClasses( 'twikiInputField', 'twikiEditFormDateField' )
+            : 'twikiInputField twikiEditFormDateField'
+        }
     );
+    my $ifFormat = $TWiki::cfg{JSCalendarContrib}{format} || '%e %b %Y';
+    TWiki::Contrib::JSCalendarContrib::addHEAD('twiki');
+    my $button .= CGI::image_button(
+        -name    => 'calendar',
+        -onclick => "return showCalendar('id$this->{name}','$ifFormat')",
+        -src     => $TWiki::cfg{PubUrlPath} . '/'
+          . $TWiki::cfg{SystemWebName}
+          . '/JSCalendarContrib/img.gif',
+        -alt   => 'Calendar',
+        -class => 'twikiButton twikiEditFormCalendarButton'
+    );
+    $value .= CGI::span( { -class => 'twikiMakeVisible' }, '&nbsp;' . $button );
     my $session = $this->{session};
-    $value = $session->renderer->getRenderedVersion(
-        $session->handleCommonTags( $value, $web, $topic ));
+    $value =
+      $session->renderer->getRenderedVersion(
+        $session->handleCommonTags( $value, $web, $topic ) );
 
     return ( '', $value );
 }

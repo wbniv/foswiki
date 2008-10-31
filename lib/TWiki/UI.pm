@@ -36,9 +36,10 @@ require TWiki::Sandbox;
 require TWiki::OopsException;
 
 sub TRACE_PASSTHRU {
+
     # Change to a 1 to trace passthrough
     0;
-};
+}
 
 =pod
 
@@ -64,7 +65,7 @@ sub run {
     # -------------- Only needed to work around an Apache 2.0 bug on Unix
     # OPTIONAL
     # If you are running TWiki on Apache 2.0 on Unix you might experience
-    # TWiki scripts hanging forever. This is a known Apache 2.0 bug. A fix is 
+    # TWiki scripts hanging forever. This is a known Apache 2.0 bug. A fix is
     # available at http://issues.apache.org/bugzilla/show_bug.cgi?id=22030.
     # You are recommended to patch your Apache installation.
     #
@@ -74,21 +75,23 @@ sub run {
     # Opening STDERR here and not in the BEGIN block as some perl accelerators
     # close STDERR after each request so that we need to reopen it here again
 
-    # open(STDERR, ">>/dev/null");      # throw away cgi script errors, or
-    # open(STDERR, ">>$TWiki::cfg{DataDir}/error.log"); # redirect errors to a log file
+# open(STDERR, ">>/dev/null");      # throw away cgi script errors, or
+# open(STDERR, ">>$TWiki::cfg{DataDir}/error.log"); # redirect errors to a log file
 
+    if ( DEBUG || $TWiki::cfg{WarningsAreErrors} ) {
 
-    if( DEBUG || $TWiki::cfg{WarningsAreErrors} ) {
         # For some mysterious reason if this handler is defined
         # in 'new TWiki' it gets lost again before we get here
         $SIG{__WARN__} = sub { die @_; };
     }
 
-    if( $ENV{'GATEWAY_INTERFACE'} ) {
+    if ( $ENV{'GATEWAY_INTERFACE'} ) {
+
         # script is called by browser
         $query = new CGI;
 
-        if( $TWiki::cfg{DrainStdin} ) {
+        if ( $TWiki::cfg{DrainStdin} ) {
+
             # drain STDIN.  This may be necessary if the script is called
             # due to a redirect and the original query was a POST. In this
             # case the web server is waiting to write the POST data to
@@ -100,52 +103,60 @@ sub run {
             # Some versions of apache seem to be more susceptible than others to
             # this.
             my $content_length =
-                defined($ENV{'CONTENT_LENGTH'}) ? $ENV{'CONTENT_LENGTH'} : 0;
-            read(STDIN, my $buf, $content_length, 0 ) if $content_length;
+              defined( $ENV{'CONTENT_LENGTH'} ) ? $ENV{'CONTENT_LENGTH'} : 0;
+            read( STDIN, my $buf, $content_length, 0 ) if $content_length;
         }
         my $cache = $query->param('twiki_redirect_cache');
-        # Never trust input data from a query. We will only accept an MD5 32 character string
-        if ($cache && $cache =~ /^([a-f0-9]{32})$/) {
+
+# Never trust input data from a query. We will only accept an MD5 32 character string
+        if ( $cache && $cache =~ /^([a-f0-9]{32})$/ ) {
             $cache = $1;
+
             # Read cached post parameters
-            my $passthruFilename = $TWiki::cfg{WorkingDir} . '/tmp/passthru_' . $cache;
-            if (open(F, '<'.$passthruFilename)) {
+            my $passthruFilename =
+              $TWiki::cfg{WorkingDir} . '/tmp/passthru_' . $cache;
+            if ( open( F, '<' . $passthruFilename ) ) {
                 local $/;
                 if (TRACE_PASSTHRU) {
                     print STDERR "Passthru: Loading cache for ",
-                      $query->url(),'?',$query->query_string(),"\n";
-                    print STDERR <F>,"\n";
+                      $query->url(), '?', $query->query_string(), "\n";
+                    print STDERR <F>, "\n";
                     close(F);
-                    open(F, '<'.$passthruFilename);
+                    open( F, '<' . $passthruFilename );
                 }
-                $query = new CGI(\*F);
+                $query = new CGI( \*F );
                 close(F);
                 unlink($passthruFilename);
                 print STDERR "Passthru: Loaded and unlinked $passthruFilename\n"
                   if TRACE_PASSTHRU;
-            } else {
+            }
+            else {
                 print STDERR "Passthru: Could not find $passthruFilename\n"
                   if TRACE_PASSTHRU;
             }
         }
-    } else {
+    }
+    else {
+
         # script is called by cron job or user
         $initialContext{command_line} = 1;
 
-        $user = $TWiki::cfg{SuperAdminGroup};
+        $user  = $TWiki::cfg{SuperAdminGroup};
         $query = new CGI();
-        while( scalar( @ARGV )) {
-            my $arg = shift( @ARGV );
+        while ( scalar(@ARGV) ) {
+            my $arg = shift(@ARGV);
             if ( $arg =~ /^-?([A-Za-z0-9_]+)$/o ) {
                 my $name = $1;
-                my $arg = TWiki::Sandbox::untaintUnchecked( shift( @ARGV ));
-                if( $name eq 'user' ) {
+                my $arg  = TWiki::Sandbox::untaintUnchecked( shift(@ARGV) );
+                if ( $name eq 'user' ) {
                     $user = $arg;
-                } else {
+                }
+                else {
                     $query->param( -name => $name, -value => $arg );
                 }
-            } else {
-                $query->path_info( TWiki::Sandbox::untaintUnchecked( $arg ));
+            }
+            else {
+                $query->path_info( TWiki::Sandbox::untaintUnchecked($arg) );
             }
         }
     }
@@ -156,42 +167,55 @@ sub run {
 
     try {
         $session->{users}->{loginManager}->checkAccess();
-        &$method( $session );
-    } catch TWiki::AccessControlException with {
+        &$method($session);
+    }
+    catch TWiki::AccessControlException with {
         my $e = shift;
-        unless( $session->{users}->{loginManager}->forceAuthentication() ) {
+        unless ( $session->{users}->{loginManager}->forceAuthentication() ) {
+
             # Login manager did not want to authenticate, perhaps because
             # we are already authenticated.
             my $exception = new TWiki::OopsException(
                 'accessdenied',
-                web => $e->{web}, topic => $e->{topic},
-                def => 'topic_access',
-                params => [ $e->{mode}, $e->{reason} ] );
+                web    => $e->{web},
+                topic  => $e->{topic},
+                def    => 'topic_access',
+                params => [ $e->{mode}, $e->{reason} ]
+            );
 
-            $exception->redirect( $session );
+            $exception->redirect($session);
         }
 
-    } catch TWiki::OopsException with {
-        shift->redirect( $session );
+    }
+    catch TWiki::OopsException with {
+        shift->redirect($session);
 
-    } catch Error::Simple with {
+    }
+    catch Error::Simple with {
         my $e = shift;
         print "Content-type: text/plain\n\n";
-        if( DEBUG ) {
+        if (DEBUG) {
+
             # output the full message and stacktrace to the browser
             print $e->stringify();
-        } else {
+        }
+        else {
             my $mess = $e->stringify();
             print STDERR $mess;
-            $session->writeWarning( $mess );
+            $session->writeWarning($mess);
+
             # tell the browser where to look for more help
-            print 'TWiki detected an internal error - please check your TWiki logs and webserver logs for more information.'."\n\n";
+            print
+'TWiki detected an internal error - please check your TWiki logs and webserver logs for more information.'
+              . "\n\n";
             $mess =~ s/ at .*$//s;
+
             # cut out pathnames from public announcement
             $mess =~ s#/[\w./]+#path#g;
             print $mess;
         }
-    } otherwise {
+    }
+    otherwise {
         print "Content-type: text/plain\n\n";
         print "Unspecified error";
     };
@@ -211,15 +235,16 @@ Check if the web exists. If it doesn't, will throw an oops exception.
 
 sub checkWebExists {
     my ( $session, $webName, $topic, $op ) = @_;
-    ASSERT($session->isa( 'TWiki')) if DEBUG;
+    ASSERT( $session->isa('TWiki') ) if DEBUG;
 
-    unless ( $session->{store}->webExists( $webName ) ) {
-        throw
-          TWiki::OopsException( 'accessdenied',
-                                def => 'no_such_web',
-                                web => $webName,
-                                topic => $topic,
-                                params => [ $op ] );
+    unless ( $session->{store}->webExists($webName) ) {
+        throw TWiki::OopsException(
+            'accessdenied',
+            def    => 'no_such_web',
+            web    => $webName,
+            topic  => $topic,
+            params => [$op]
+        );
     }
 }
 
@@ -234,14 +259,16 @@ if it doesn't. $op is the user operation being performed.
 
 sub checkTopicExists {
     my ( $session, $webName, $topic, $op ) = @_;
-    ASSERT($session->isa( 'TWiki')) if DEBUG;
+    ASSERT( $session->isa('TWiki') ) if DEBUG;
 
-    unless( $session->{store}->topicExists( $webName, $topic )) {
-        throw TWiki::OopsException( 'accessdenied',
-                                    def => 'no_such_topic',
-                                    web => $webName,
-                                    topic => $topic,
-                                    params => [ $op ] );
+    unless ( $session->{store}->topicExists( $webName, $topic ) ) {
+        throw TWiki::OopsException(
+            'accessdenied',
+            def    => 'no_such_topic',
+            web    => $webName,
+            topic  => $topic,
+            params => [$op]
+        );
     }
 }
 
@@ -256,15 +283,15 @@ if it is.
 
 sub checkMirror {
     my ( $session, $webName, $topic ) = @_;
-    ASSERT($session->isa( 'TWiki')) if DEBUG;
+    ASSERT( $session->isa('TWiki') ) if DEBUG;
 
-    my( $mirrorSiteName, $mirrorViewURL ) =
-      $session->readOnlyMirrorWeb( $webName );
+    my ( $mirrorSiteName, $mirrorViewURL ) =
+      $session->readOnlyMirrorWeb($webName);
 
-    return unless ( $mirrorSiteName );
+    return unless ($mirrorSiteName);
 
     throw Error::Simple(
-        "This is a mirror site $mirrorSiteName, $mirrorViewURL" );
+        "This is a mirror site $mirrorSiteName, $mirrorViewURL");
 }
 
 =pod twiki
@@ -278,17 +305,21 @@ web.topic is permissible, throwing a TWiki::OopsException if not.
 
 sub checkAccess {
     my ( $session, $web, $topic, $mode, $user ) = @_;
-    ASSERT($session->isa( 'TWiki')) if DEBUG;
+    ASSERT( $session->isa('TWiki') ) if DEBUG;
 
-    unless( $session->security->checkAccessPermission(
-        $mode, $user, undef, undef, $topic, $web )) {
-        throw TWiki::OopsException( 'accessdenied',
-                                    def => 'topic_access',
-                                    web => $web,
-                                    topic => $topic,
-                                    params =>
-                                      [ $mode,
-                                        $session->security->getReason()]);
+    unless (
+        $session->security->checkAccessPermission(
+            $mode, $user, undef, undef, $topic, $web
+        )
+      )
+    {
+        throw TWiki::OopsException(
+            'accessdenied',
+            def    => 'topic_access',
+            web    => $web,
+            topic  => $topic,
+            params => [ $mode, $session->security->getReason() ]
+        );
     }
 }
 
@@ -302,18 +333,20 @@ web.
 =cut
 
 sub readTemplateTopic {
-    my( $session, $theTopicName ) = @_;
-    ASSERT($session->isa( 'TWiki')) if DEBUG;
+    my ( $session, $theTopicName ) = @_;
+    ASSERT( $session->isa('TWiki') ) if DEBUG;
 
     $theTopicName =~ s/$TWiki::cfg{NameFilter}//go;
 
     my $web = $TWiki::cfg{SystemWebName};
-    if( $session->{store}->topicExists( $session->{webName}, $theTopicName )) {
+    if ( $session->{store}->topicExists( $session->{webName}, $theTopicName ) )
+    {
+
         # try to read from current web, if found
         $web = $session->{webName};
     }
-    return $session->{store}->readTopic(
-        $session->{user}, $web, $theTopicName, undef );
+    return $session->{store}
+      ->readTopic( $session->{user}, $web, $theTopicName, undef );
 }
 
 1;

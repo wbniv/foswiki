@@ -17,11 +17,11 @@ use strict;
 use Error qw( :try );
 
 BEGIN {
-    push( @INC, "$ENV{TWIKI_HOME}/lib" ) if defined($ENV{TWIKI_HOME});
-    unshift @INC, '../../bin'; # SMELL: dodgy
+    push( @INC, "$ENV{TWIKI_HOME}/lib" ) if defined( $ENV{TWIKI_HOME} );
+    unshift @INC, '../../bin';    # SMELL: dodgy
     require 'setlib.cfg';
     $SIG{__DIE__} = sub { Carp::confess $_[0] };
-};
+}
 
 our $didOnlyOnceChecks = 0;
 
@@ -29,11 +29,11 @@ our $didOnlyOnceChecks = 0;
 # Will be cleaned up after running the tests unless the environment
 # variable TWIKI_DEBUG_KEEP is true
 use File::Temp;
-my $cleanup  =  $ENV{TWIKI_DEBUG_KEEP} ? 0 : 1;
+my $cleanup = $ENV{TWIKI_DEBUG_KEEP} ? 0 : 1;
 
 sub new {
     my $class = shift;
-    my $self = $class->SUPER::new(@_);
+    my $self  = $class->SUPER::new(@_);
     return $self;
 }
 
@@ -44,46 +44,47 @@ sub onceOnlyChecks {
     # Make sure we can create directories in $TWiki::cfg{DataDir}, otherwise
     # the tests will mysteriously fail.
     my $t = "$TWiki::cfg{DataDir}/UnitTestCheckDir";
-    if (-e $t) {
+    if ( -e $t ) {
         rmdir($t) || die "Could not remove old $t: $!";
     }
     mkdir($t)
-      || die "Could not create $t: $!\nUser running tests ".
-        "has to be able to create directories in $TWiki::cfg{DataDir}";
+      || die "Could not create $t: $!\nUser running tests "
+      . "has to be able to create directories in $TWiki::cfg{DataDir}";
     rmdir($t) || die "Could not remove $t: $!";
 
     # Make sure we can disallow write permissions. TWiki tests should
     # always be run as a non-admin user, so that they can test scenarios
     # where access permissions are denied.
     $t = "$TWiki::cfg{DataDir}/UnitTestCheckFile";
-    if (-e $t) {
+    if ( -e $t ) {
         unlink($t)
           || die "Could not remove old $t: $!";
     }
-    open(F, '>', $t)
-      || die "Could not create $t: $!\nUser running tests ".
-        "has to be able to create files in $TWiki::cfg{DataDir}";
+    open( F, '>', $t )
+      || die "Could not create $t: $!\nUser running tests "
+      . "has to be able to create files in $TWiki::cfg{DataDir}";
     print F "Blah";
     close(F);
-    chmod(0444, $t)
-      || die "Failed to change permissions on $t: $!\n User running tests ".
-        "must be able to change permissions on files it creates.";
-    if (open(F, '>', $t)) {
+    chmod( 0444, $t )
+      || die "Failed to change permissions on $t: $!\n User running tests "
+      . "must be able to change permissions on files it creates.";
+    if ( open( F, '>', $t ) ) {
         close(F);
         unlink($t);
-        die "Failed to protect a $t for write\nUser running tests ".
-          "must be able to protect a file from write. ".
-            "Perhaps you are running as the superuser?";
+        die "Failed to protect a $t for write\nUser running tests "
+          . "must be able to protect a file from write. "
+          . "Perhaps you are running as the superuser?";
     }
-    chmod(0777, $t)
-      || die "Failed to change permissions on $t: $!\nUser running tests ".
-        "must be able to change permissions on files it creates.";
+    chmod( 0777, $t )
+      || die "Failed to change permissions on $t: $!\nUser running tests "
+      . "must be able to change permissions on files it creates.";
     unlink($t) || die "Could not remove $t: $!";
 
     $didOnlyOnceChecks = 1;
 }
 
 use Cwd;
+
 # Use this to save the TWiki cfg to a backing store during start_up
 # so it can be temporarily changed during tests.
 sub set_up {
@@ -99,8 +100,10 @@ sub set_up {
 
     # force a read of $TWiki::cfg
     my $tmp = new TWiki();
+
     # This needs to be a deep copy
-    $this->{__TWikiSafe} = Data::Dumper->Dump([\%TWiki::cfg], ['*TWiki::cfg']);
+    $this->{__TWikiSafe} =
+      Data::Dumper->Dump( [ \%TWiki::cfg ], ['*TWiki::cfg'] );
     $tmp->finish();
 
     $TWiki::cfg{WorkingDir} = File::Temp::tempdir( CLEANUP => $cleanup );
@@ -110,10 +113,11 @@ sub set_up {
 
     # Move logging into a temporary directory
     $TWiki::cfg{LogFileName} = "$TWiki::cfg{TempfileDir}/TWikiTestCase.log";
-    $TWiki::cfg{WarningFileName} = "$TWiki::cfg{TempfileDir}/TWikiTestCase.warn";
+    $TWiki::cfg{WarningFileName} =
+      "$TWiki::cfg{TempfileDir}/TWikiTestCase.warn";
     $TWiki::cfg{AdminUserWikiName} = 'AdminUser';
-    $TWiki::cfg{AdminUserLogin} = 'root';
-    $TWiki::cfg{SuperAdminGroup} = 'AdminGroup';
+    $TWiki::cfg{AdminUserLogin}    = 'root';
+    $TWiki::cfg{SuperAdminGroup}   = 'AdminGroup';
 
     onceOnlyChecks();
 
@@ -121,14 +125,16 @@ sub set_up {
     # in lib/MANIFEST) are enabled, but they are *all* enabled.
 
     # First disable all plugins
-    foreach my $k (keys %{$TWiki::cfg{Plugins}}) {
+    foreach my $k ( keys %{ $TWiki::cfg{Plugins} } ) {
         $TWiki::cfg{Plugins}{$k}{Enabled} = 0;
     }
+
     # then reenable only those listed in MANIFEST
-    if ($ENV{TWIKI_HOME} && -e "$ENV{TWIKI_HOME}/lib/MANIFEST") {
-        open(F, "$ENV{TWIKI_HOME}/lib/MANIFEST") || die $!;
-    } else {
-        open(F, "../../lib/MANIFEST") || die $!;
+    if ( $ENV{TWIKI_HOME} && -e "$ENV{TWIKI_HOME}/lib/MANIFEST" ) {
+        open( F, "$ENV{TWIKI_HOME}/lib/MANIFEST" ) || die $!;
+    }
+    else {
+        open( F, "../../lib/MANIFEST" ) || die $!;
     }
     local $/ = "\n";
     while (<F>) {
@@ -143,14 +149,13 @@ sub set_up {
 sub tear_down {
     my $this = shift;
     $this->{twiki}->finish() if $this->{twiki};
-    eval {
-	File::Path::rmtree($TWiki::cfg{WorkingDir});
-    };
+    eval { File::Path::rmtree( $TWiki::cfg{WorkingDir} ); };
     %TWiki::cfg = eval $this->{__TWikiSafe};
-    foreach my $sym (keys %ENV) {
-        unless( defined( $this->{__EnvSafe}->{$sym} )) {
+    foreach my $sym ( keys %ENV ) {
+        unless ( defined( $this->{__EnvSafe}->{$sym} ) ) {
             delete $ENV{$sym};
-        } else {
+        }
+        else {
             $ENV{$sym} = $this->{__EnvSafe}->{$sym};
         }
     }
@@ -159,27 +164,27 @@ sub tear_down {
 sub _copy {
     my $n = shift;
 
-    return undef unless defined( $n );
+    return undef unless defined($n);
 
-    if (UNIVERSAL::isa($n, 'ARRAY')) {
+    if ( UNIVERSAL::isa( $n, 'ARRAY' ) ) {
         my @new;
-        for ( 0..$#$n ) {
-            push(@new, _copy( $n->[$_] ));
+        for ( 0 .. $#$n ) {
+            push( @new, _copy( $n->[$_] ) );
         }
         return \@new;
     }
-    elsif (UNIVERSAL::isa($n, 'HASH')) {
+    elsif ( UNIVERSAL::isa( $n, 'HASH' ) ) {
         my %new;
         for ( keys %$n ) {
             $new{$_} = _copy( $n->{$_} );
         }
         return \%new;
     }
-    elsif (UNIVERSAL::isa($n, 'REF') || UNIVERSAL::isa($n, 'SCALAR')) {
+    elsif ( UNIVERSAL::isa( $n, 'REF' ) || UNIVERSAL::isa( $n, 'SCALAR' ) ) {
         $n = _copy($$n);
         return \$n;
     }
-    elsif (ref($n) eq 'Regexp') {
+    elsif ( ref($n) eq 'Regexp' ) {
         return qr/$n/;
     }
     else {
@@ -188,14 +193,15 @@ sub _copy {
 }
 
 sub removeWebFixture {
-    my( $this, $twiki, $web ) = @_;
+    my ( $this, $twiki, $web ) = @_;
 
     try {
-        $twiki->{store}->removeWeb($twiki->{user}, $web);
-    } otherwise {
+        $twiki->{store}->removeWeb( $twiki->{user}, $web );
+    }
+    otherwise {
         my $e = shift;
         print STDERR "Unexpected exception while removing web $web\n";
-        print STDERR $e->stringify(),"\n" if $e;
+        print STDERR $e->stringify(), "\n" if $e;
     };
 }
 

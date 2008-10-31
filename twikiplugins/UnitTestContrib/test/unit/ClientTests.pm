@@ -25,7 +25,7 @@ sub set_up {
     $this->SUPER::set_up();
     $this->{twiki}->{store}->saveTopic(
         $this->{twiki}->{user}, $this->{test_web},
-        $this->{test_topic}, <<CONSTRAINT);
+        $this->{test_topic},    <<CONSTRAINT);
    * Set ALLOWTOPICCHANGE = TWikiAdminGroup
 CONSTRAINT
 }
@@ -56,51 +56,57 @@ sub TWikiUserMapping {
 
 # See the pod doc in Unit::TestCase for details of how to use this
 sub fixture_groups {
-    return (
-        [ 'TemplateLoginManager', 'ApacheLoginManager', 'NoLoginManager' ],
+    return ( [ 'TemplateLoginManager', 'ApacheLoginManager', 'NoLoginManager' ],
         [ 'TWikiUserMapping', 'BaseUserMapping' ] );
 }
 
 sub set_up_for_verify {
+
     #print STDERR "\n------------- set_up -----------------\n";
     my $this = shift;
 
     $this->{twiki}->finish() if $this->{twiki};
     $this->{twiki} = new TWiki();
-    $this->assert($TWiki::cfg{TempfileDir} && -d $TWiki::cfg{TempfileDir});
-    $TWiki::cfg{UseClientSessions} = 1;
-    $TWiki::cfg{PasswordManager} = "TWiki::Users::HtPasswdUser";
+    $this->assert( $TWiki::cfg{TempfileDir} && -d $TWiki::cfg{TempfileDir} );
+    $TWiki::cfg{UseClientSessions}  = 1;
+    $TWiki::cfg{PasswordManager}    = "TWiki::Users::HtPasswdUser";
     $TWiki::cfg{Htpasswd}{FileName} = "$TWiki::cfg{TempfileDir}/htpasswd";
-    $TWiki::cfg{AuthScripts} = "edit";
+    $TWiki::cfg{AuthScripts}        = "edit";
     $TWiki::cfg{Register}{EnableNewUserRegistration} = 1;
     $TWiki::cfg{UsersWebName} = $this->{users_web};
 }
 
 sub set_up_user {
     my $this = shift;
-    if ($this->{twiki}->{users}->supportsRegistration()) {
-        $userLogin = 'joe';
+    if ( $this->{twiki}->{users}->supportsRegistration() ) {
+        $userLogin    = 'joe';
         $userWikiName = 'JoeDoe';
-	    $user_id = $this->{twiki}->{users}->addUser( $userLogin, $userWikiName, 'secrect_password', 'email@home.org.au');
-	    $this->annotate("create $userLogin user - cUID = $user_id\n");
-    } else {
-        $userLogin = $TWiki::cfg{AdminUserLogin};
-        $user_id = $this->{twiki}->{users}->getCanonicalUserID($userLogin);
-        $userWikiName = $this->{twiki}->{users}->getWikiName($user_id);
-	    $this->annotate("no registration support (using admin)\n");
+        $user_id =
+          $this->{twiki}->{users}
+          ->addUser( $userLogin, $userWikiName, 'secrect_password',
+            'email@home.org.au' );
+        $this->annotate("create $userLogin user - cUID = $user_id\n");
     }
+    else {
+        $userLogin    = $TWiki::cfg{AdminUserLogin};
+        $user_id      = $this->{twiki}->{users}->getCanonicalUserID($userLogin);
+        $userWikiName = $this->{twiki}->{users}->getWikiName($user_id);
+        $this->annotate("no registration support (using admin)\n");
+    }
+
 #print STDERR "\n------------- set_up_user (login: $userLogin) (cUID:$user_id) -----------------\n";
 }
 
 sub capture {
     my $this = shift;
-    my( $proc, $twiki ) = @_;
+    my ( $proc, $twiki ) = @_;
     $twiki->{users}->{loginManager}->checkAccess();
-    $this->SUPER::capture( @_ );
+    $this->SUPER::capture(@_);
 }
 
 sub verify_edit {
-#print STDERR "\n------------- verify_edit -----------------\n";
+
+    #print STDERR "\n------------- verify_edit -----------------\n";
 
     my $this = shift;
     my ( $query, $text );
@@ -108,8 +114,8 @@ sub verify_edit {
     #close this TWiki session - its using the wrong mapper and login
     $this->{twiki}->finish();
 
-    $query = new CGI({});
-    $query->path_info( "/$this->{test_web}/$this->{test_topic}" );
+    $query = new CGI( {} );
+    $query->path_info("/$this->{test_web}/$this->{test_topic}");
     $ENV{SCRIPT_NAME} = "edit";
     $this->{twiki} = new TWiki( undef, $query );
     delete $ENV{SCRIPT_NAME};
@@ -117,14 +123,16 @@ sub verify_edit {
     $this->set_up_user();
     try {
         $text = $this->capture( \&TWiki::UI::View::view, $this->{twiki} );
-    } catch TWiki::OopsException with {
-        $this->assert(0,shift->stringify());
-    } catch Error::Simple with {
-        $this->assert(0,shift->stringify());
+    }
+    catch TWiki::OopsException with {
+        $this->assert( 0, shift->stringify() );
+    }
+    catch Error::Simple with {
+        $this->assert( 0, shift->stringify() );
     };
 
-    $query = new CGI ({});
-    $query->path_info( "/$this->{test_web}/$this->{test_topic}?breaklock=1" );
+    $query = new CGI( {} );
+    $query->path_info("/$this->{test_web}/$this->{test_topic}?breaklock=1");
     $this->{twiki}->finish();
 
     $ENV{SCRIPT_NAME} = "edit";
@@ -133,18 +141,21 @@ sub verify_edit {
 
     try {
         $text = $this->capture( \&TWiki::UI::Edit::edit, $this->{twiki} );
-    } catch TWiki::AccessControlException with {
-    } catch Error::Simple with {
-        $this->assert(0,shift->stringify());
-    } otherwise {
-        unless( $TWiki::cfg{LoginManager} eq 'none' ) {
-            $this->assert(0, "expected an access control exception: ".
-                            $TWiki::cfg{LoginManager}."\n$text");
+    }
+    catch TWiki::AccessControlException with {} catch Error::Simple with {
+        $this->assert( 0, shift->stringify() );
+    }
+    otherwise {
+        unless ( $TWiki::cfg{LoginManager} eq 'none' ) {
+            $this->assert( 0,
+                    "expected an access control exception: "
+                  . $TWiki::cfg{LoginManager}
+                  . "\n$text" );
         }
     };
 
-    $query = new CGI ({});
-    $query->path_info( "/$this->{test_web}/$this->{test_topic}" );
+    $query = new CGI( {} );
+    $query->path_info("/$this->{test_web}/$this->{test_topic}");
     $this->{twiki}->finish();
 
     $this->annotate("new session using $userLogin\n");
@@ -153,37 +164,41 @@ sub verify_edit {
     $this->{twiki} = new TWiki( $userLogin, $query );
     delete $ENV{SCRIPT_NAME};
 
-    #clear the lease - one of the previous tests may have different usermapper & thus different user
-    TWiki::Func::setTopicEditLock($this->{test_web}, $this->{test_topic}, 0);
+#clear the lease - one of the previous tests may have different usermapper & thus different user
+    TWiki::Func::setTopicEditLock( $this->{test_web}, $this->{test_topic}, 0 );
 }
 
 sub verify_sudo_login {
     my $this = shift;
 
-    unless ($this->{twiki}->{users}->{loginManager}->can("login")) {
+    unless ( $this->{twiki}->{users}->{loginManager}->can("login") ) {
         return;
     }
     $this->{twiki}->finish();
     my $secret = "a big mole on my left buttock";
-    my $crypted = crypt($secret, "12");
+    my $crypted = crypt( $secret, "12" );
     $TWiki::cfg{Password} = $crypted;
 
-    my $query = new CGI({
-        username => [ $TWiki::cfg{AdminUserLogin} ],
-        password => [ $secret ],
-        Logon => [ 1 ],
-        skin => [ 'none' ],
-    });
-    $query->path_info( "/$this->{test_web}/$this->{test_topic}" );
+    my $query = new CGI(
+        {
+            username => [ $TWiki::cfg{AdminUserLogin} ],
+            password => [$secret],
+            Logon    => [1],
+            skin     => ['none'],
+        }
+    );
+    $query->path_info("/$this->{test_web}/$this->{test_topic}");
 
-    $this->{twiki} = new TWiki(undef, $query);
-    my ($text, $result) = $this->capture(
+    $this->{twiki} = new TWiki( undef, $query );
+    my ( $text, $result ) = $this->capture(
         sub {
             my $session = shift;
-            $session->{users}->{loginManager}->login(
-                $session->{cgiQuery}, $session);
-        }, $this->{twiki});
-    $this->assert($text =~ /Status: 302/);
+            $session->{users}->{loginManager}
+              ->login( $session->{cgiQuery}, $session );
+        },
+        $this->{twiki}
+    );
+    $this->assert( $text =~ /Status: 302/ );
 }
 
 1;

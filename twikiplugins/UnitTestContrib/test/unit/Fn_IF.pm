@@ -882,22 +882,38 @@ sub test_93 {
 
 sub test_93a {
     my $this = shift;
-    $this->simpleTest( test => "istopic fields[name='nonExistantField']", then => 0, else => 1 );
+    $this->simpleTest(
+        test => "istopic fields[name='nonExistantField']",
+        then => 0,
+        else => 1
+    );
 }
 
 sub test_93b {
     my $this = shift;
-    $this->simpleTest( test => "istopic fields[name='nonExistantField'].value", then => 0, else => 1 );
+    $this->simpleTest(
+        test => "istopic fields[name='nonExistantField'].value",
+        then => 0,
+        else => 1
+    );
 }
 
 sub test_93c {
     my $this = shift;
-    $this->simpleTest( test => "defined fields[name='nonExistantField']", then => 0, else => 1 );
+    $this->simpleTest(
+        test => "defined fields[name='nonExistantField']",
+        then => 0,
+        else => 1
+    );
 }
 
 sub test_93d {
     my $this = shift;
-    $this->simpleTest( test => "defined fields[name='nonExistantField'].value", then => 0, else => 1 );
+    $this->simpleTest(
+        test => "defined fields[name='nonExistantField'].value",
+        then => 0,
+        else => 1
+    );
 }
 
 sub test_94 {
@@ -939,12 +955,8 @@ sub set_up {
 
     # Create WebHome topic to trap existance errors related to
     # normalizeWebTopicName
-    $this->{twiki}->{store}->saveTopic(
-        $this->{twiki}->{user},
-        $this->{test_web},
-        "WebHome",
-        "Gormless gimboid\n"
-    );
+    $this->{twiki}->{store}->saveTopic( $this->{twiki}->{user},
+        $this->{test_web}, "WebHome", "Gormless gimboid\n" );
 }
 
 sub simpleTest {
@@ -965,6 +977,7 @@ sub simpleTest {
       $this->{twiki}
       ->handleCommonTags( $text, $this->{test_web}, $this->{test_topic},
         $meta );
+
     #print STDERR "$text => $result\n";
     $this->assert_equals( '1', $result, $text . " => " . $result );
 }
@@ -1218,28 +1231,31 @@ PONG
     $this->assert_str_equals( $ti->{version}, '1.1' );
     $this->assert_str_equals( $ti->{rev},     '1' );
     $this->assert(
-        $this->{twiki}->{store}->topicExists(
-            $this->{test_web}, $topicName ) );
+        $this->{twiki}->{store}->topicExists( $this->{test_web}, $topicName ) );
 
     my @tests;
 
-    push(@tests,
-         {
-             test => "info.version = '1.1'",
-             expect => "1",
-         });
-    push(@tests,
-         {
-             test => "info.rev = '1'",
-             expect => "1",
-         });
+    push(
+        @tests,
+        {
+            test   => "info.version = '1.1'",
+            expect => "1",
+        }
+    );
+    push(
+        @tests,
+        {
+            test   => "info.rev = '1'",
+            expect => "1",
+        }
+    );
 
     push(
         @tests,
         {
             test   => "'$this->{test_web}.$topicName'/info.version = '1.1'",
             expect => "1"
-           }
+        }
     );
     push(
         @tests,
@@ -1276,6 +1292,7 @@ PONG
         my $result =
           $this->{twiki}
           ->handleCommonTags( $text, $this->{test_web}, $topicName, $meta );
+
         #print STDERR "RUN $text => $result\n";
         $this->assert_str_equals( $test->{expect}, $result,
             "$text: '$result'" );
