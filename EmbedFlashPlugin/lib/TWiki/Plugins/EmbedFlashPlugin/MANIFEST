@@ -1,0 +1,17 @@
+data/TWiki/EmbedFlashPlugin.txt 0660
+lib/TWiki/Plugins/EmbedFlashPlugin.pm 0440
+pub/TWiki/EmbedFlashPlugin/sample.fla 0777
+pub/TWiki/EmbedFlashPlugin/sample.swf 0777
+pub/TWiki/EmbedFlashPlugin/img/thumbs/Agave.jpg 0777
+pub/TWiki/EmbedFlashPlugin/img/thumbs/Clown-Fish.jpg 0777
+pub/TWiki/EmbedFlashPlugin/img/thumbs/Daisies.jpg 0777
+pub/TWiki/EmbedFlashPlugin/img/thumbs/Dandelion-Seeds.jpg 0777
+pub/TWiki/EmbedFlashPlugin/img/thumbs/Dandelion.jpg 0777
+pub/TWiki/EmbedFlashPlugin/img/thumbs/Faux-Fur.jpg 0777
+pub/TWiki/EmbedFlashPlugin/img/big/Agave.jpg 0777
+pub/TWiki/EmbedFlashPlugin/img/big/Clown-Fish.jpg 0777
+pub/TWiki/EmbedFlashPlugin/img/big/Daisies.jpg 0777
+pub/TWiki/EmbedFlashPlugin/img/big/Dandelion-Seeds.jpg 0777
+pub/TWiki/EmbedFlashPlugin/img/big/Dandelion.jpg 0777
+pub/TWiki/EmbedFlashPlugin/img/big/Faux-Fur.jpg 0777
+pub/TWiki/EmbedFlashPlugin/swf/ThumbController.swf 0777

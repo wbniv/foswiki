@@ -1,0 +1,159 @@
+%META:TOPICINFO{author="TWikiContributor" date="1162498499" format="1.1" version="$Rev: 16753 $"}%
+---+!! <nop>%TOPIC%
+
+*Embeds an Adobe Flash file.*
+
+%TOC%
+
+---++ Example
+
+<verbatim>
+%EMBEDFLASH{"%ATTACHURL%/sample.swf" width="550" height="400"}%
+</verbatim>
+
+If this plugin is installed you will see a Flash movie displayed:
+
+%EMBEDFLASH{"%ATTACHURL%/sample.swf" width="550" height="400"}%
+
+---++ General syntax
+
+<verbatim>
+%EMBEDFLASH{"filepath" <optional attributes> }%
+</verbatim>
+
+---++ Flash attributes
+
+Pass Flash movie attributes within the =%<nop>EMBEDFLASH{...}%= accolades (all values within quotes). When a particular parameter is not specified, the default value will be used (see table below).
+
+<!-- %TABLE{sort="off" headeralign="left"}% -->
+| *Argument*   | *Comment*   | *Example*   | *Default value*   |
+| <strong>Required attributes</strong>  ||||
+| =filepath=     | Filepath of the movie; should have suffix =.swf= | =mypath/flashmovie.swf= |  |
+| <strong>General attributes</strong>  ||||
+| =width=  | Width of Flash movie in pixels, or a percentage. 100% means one hundred percent of the available width on the page. | ="50%"= or ="500px"= | ="100%"= |
+| =height=  | Height of Flash movie in pixels, or a percentage. 100% means one hundred percent of the available height on the page. | ="50%"= or ="500px"= | ="100%"= |
+| =bgcolor= | Background color of Flash movie in hex string. When omitted, no background color will be specified and the background color of the Flash movie will be used. | ="#cccccc"= | =""= |
+| =version=  | Flash Player (plugin) version needed to view movie | ="8"= | ="9"= |
+| <strong>Advanced attributes</strong>  ||||
+| =align= | Default centers the movie in the browser window and crops edges if the browser window is smaller than the movie. =l= (left), =r= (right), =t= (top), and =b= (bottom) align the movie along the corresponding edge of the browser window and crop the remaining three sides as needed. | ="l"=, ="r"=, ="t"=, ="b"= | =""= |
+| =salign= | =l=, =r=, =t=, and =b= align the movie along the left, right, top or bottom edge, respectively, of the browser window and crop the remaining three sides as needed. %BR% \
+=tl= and =tr= align the movie to the top left and top right corner, respectively, of the browser window and crop the bottom and remaining right or left side as needed. %BR% \
+=bl= and =br= align the movie to the bottom left and bottom right corner, respectively, of the browser window and crop the top and remaining right or left side as needed. | ="l"=, ="t"=, ="r"=, ="b"=, ="tl"=, ="tr"=, ="bl"=, ="br"= | =""= | 
+| =scale= | Scaling of Flash movie. | ="noborder"=, ="exactfit"=, ="noscale"=, ="showall"= | =""= |
+| =quality= | Playback quality. | ="best"=, ="high"=, ="medium"=, ="low"=, ="autohigh"=, ="autolow"= | ="high"= |
+| =menu= | Should right-click on Flash movie show a (default) menu? Note that with the Flash 7 player the menu cannot be removed. | ="true"= or ="false"= | ="true"= |
+| =id=     | ID of Flash movie; for general use not necessary to specify. | ="movie2"= | the filename without suffix, eg. =flashmovie= |
+| =wmode= | Sets the Window Mode property of the Flash movie for transparency, layering, and positioning in the browser. %BR% \
+=window= - movie plays in its own rectangular window on a web page. %BR% \
+=opaque= - the movie hides everything on the page behind it. %BR% \
+=transparent= - the background of the HTML page shows through all transparent portions of the movie, this may slow animation performance. | ="window"=, ="opaque"= or ="transparent"= | =""= | 
+| =play= | Specifies whether the movie begins playing immediately on loading in the browser. | ="true"= or ="false"= | ="true"= | 
+| =loop= | Specifies whether the movie repeats indefinitely or stops when it reaches the last frame. | ="true"= or ="false"= | ="true"= | 
+| =allowscriptaccess= | Controls the ability to perform outbound scripting from within a Flash SWF. %BR% \
+When allowScriptAccess is =never=, outbound scripting always fails. %BR% \
+When allowScriptAccess is =always=, outbound scripting always succeeds. %BR% \
+If allowScriptAccess is =sameDomain= (it is supported in SWFs from Flash Player 8), outbound scripting is allowed only if the SWF file resides in the same domain as the hosting web page. | ="sameDomain"=, ="always"= or ="never"= | ="sameDomain"= | 
+| =fullscreen= | Enabled scriptable fullscreen mode. An overlay dialog box will appear when the movie enters full-screen mode, instructing the user how to exit and return to normal mode. The dialog box appears for a few seconds and then fades out. | ="true"= or ="false"= | ="false"= | 
+| =base= | Specifies the base directory or URL used to resolve all relative path statements in the Flash Player movie. This attribute is helpful when your Flash Player movies are kept in a different directory from your other files. | any directory URL, or empty string =""= | ="%<nop>ATTACHURL%/"= |
+| =swliveconnect= | Specifies whether the browser should start Java when loading the Flash Player for the first time. | ="true"= or ="false"= | =""= |
+| =flashvars= | Variables to be passed to the Flash movie. Multiple variables are separated by =&amp;=. | =flashvars="x=50&y=100&url=%<nop>ATTACHURL%/picture.jpg"= | =""= |
+
+
+Note that this plugin writes =object= and =embed= tags using Javascript to prevent annoying popup windows. %BR%
+More information on  [[http://kb.adobe.com/selfservice/viewContent.do?externalId=tn_12701&sliceId=1][Flash OBJECT and EMBED tag attributes]] (Adobe !TechNote).
+
+---++ More examples
+
+---+++ Image folder
+The images are placed in separate folders. The Flash movie is also in its own folder. Adjust the filepath and =base= attribute to the Flash file:
+<verbatim>
+%EMBEDFLASH{
+"%ATTACHURL%/swf/ThumbController.swf"
+width="430"
+height="370"
+base="%ATTACHURL%/swf/"
+}%
+</verbatim>
+
+%EMBEDFLASH{
+"%ATTACHURL%/swf/ThumbController.swf"
+width="430"
+height="370"
+base="%ATTACHURL%/swf/"
+}%
+
+---+++ Yahoo Maps in Flash
+<verbatim>
+%EMBEDFLASH{
+"http://developer.yahoo.com/maps/flash/V3.5/asGS.01.swf" 
+base="http://developer.yahoo.com/maps/flash/V3.5/"
+width="600px"
+height="400px"
+}%
+</verbatim>
+
+%EMBEDFLASH{
+"http://developer.yahoo.com/maps/flash/V3.5/asGS.01.swf" 
+base="http://developer.yahoo.com/maps/flash/V3.5/"
+width="600px"
+height="400px"
+}%
+
+---+++ Digg Labs
+
+<verbatim>
+%EMBEDFLASH{
+"http://labs.digg.com/arc/main.swf" 
+base="http://labs.digg.com/arc/"
+width="600px"
+height="400px"
+}%
+</verbatim>
+
+%EMBEDFLASH{
+"http://labs.digg.com/arc/main.swf" 
+base="http://labs.digg.com/arc/"
+width="600px"
+height="400px"
+}%
+
+
+
+---++ Settings
+
+	* Set SHORTDESCRIPTION = Embeds an Adobe Flash file
+
+	* Debug plugin: (See output in =data/debug.txt=)
+	   * Set DEBUG = 0
+	
+---++ Installation Instructions
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your ($TWIKI_ROOT) directory. Content:
+	| *File:* | *Description:* |
+%$MANIFEST%
+	* Optionally, run ==%TOPIC%_installer== to automatically check and install other TWiki modules that this module depends on. You can also do this step manually.
+	* Alternatively, manually make sure the dependencies listed in the table below are resolved.
+	%$DEPENDENCIES%
+   * Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+   
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.ArthurClemens |
+|  Plugin Version: | 30 Apr 2008 (v1.2.1) |
+|  Change History: | &nbsp; |
+|  24 Mar 2008: | Version 1.2 - Added =flashvar= attributes. |
+|  25 Feb 2008: | Version 1.1 - Added attributes. Write HTML embed/object tags with Javascript to prevent popup windows. If no javascript is available the =noscript= tag is used. |
+|  02 Nov 2006: | Version 1.01 - Updated Flash sample, small changes to documentation. |
+|  28 Dec 2003: | Version 1.0 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+%META:FILEATTACHMENT{name="sample.fla" attr="" autoattached="1" comment="" date="1162495736" path="sample.fla" size="40448" user="UnknownUser" version=""}%
+%META:FILEATTACHMENT{name="sample.swf" attr="" autoattached="1" comment="" date="1162497279" path="sample.swf" size="1981" user="UnknownUser" version=""}%
+ 
