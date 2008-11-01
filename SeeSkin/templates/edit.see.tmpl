@@ -1,0 +1,102 @@
+%TMPL:INCLUDE{"twiki"}%
+%TMPL:P{"htmldoctype"}%
+<head>
+ %TMPL:P{"headedit"}%
+ %TMPL:P{"css"}%
+<script language="JavaScript">
+<!--HIDE
+function initForm() {
+  document.main.text.focus();
+}
+function checkAll( theButton, theButtonOffset, theNum, theCheck )
+{
+  // find button element index
+  var j = 0;
+  for( var i = 0; i <= document.main.length; i++ ) {
+    if( theButton == document.main.elements[i] ) {
+      j = i;
+      break;
+    }
+  }
+  // set/clear all checkboxes
+  var last = j+theButtonOffset+theNum;
+  for( i = last-theNum; i < last; i++ ) {
+    document.main.elements[i].checked = theCheck;
+  }
+}
+function launchWindow( theWeb, theTopic ) {
+  win = open( "%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/" + theWeb + "/" + theTopic + "?skin=plain",
+              theTopic, "titlebar=0,width=500,height=480,resizable,scrollbars");
+  if( win ) {
+    win.focus();
+  }
+  return false;
+}
+//STOP HIDING-->
+</script>
+</head>
+<body onLoad="initForm()">
+#PageTop
+<h1>%LOGOCHAR% <span class="deem">%TMPL:P{"titleaction"}%</span> %INTURLENCODE{"%TOPIC%"}%</h1>
+<form name="main" action="%SCRIPTURLPATH%/savemulti%SCRIPTSUFFIX%/%INTURLENCODE{"%WEB%/%TOPIC%"}%" method="post" id="editcont">
+<textarea name="text" wrap="virtual" rows="%EDITBOXHEIGHT%" cols="%EDITBOXWIDTH%" style="%EDITBOXSTYLE%">%TEXT%</textarea>
+<input type="hidden" name="originalrev" value="%ORIGINALREV%" />
+<input type="hidden" name="skin" value="%URLPARAM{"skin"}%" />
+<input type="hidden" name="cover" value="%URLPARAM{"cover"}%" />
+<input type="hidden" name="redirectto" value="%REDIRECTTO%" />
+<input type="hidden" name="formtemplate" value="%FORMTEMPLATE%" />
+<input type="hidden" name="templatetopic" value="%TEMPLATETOPIC%" />
+<input type="hidden" name="settingstopic" value="%SETTINGSTOPIC%" />
+<input type="hidden" name="topicparent" value="%TOPICPARENT%" />
+<input type="hidden" name="newtopic" value="%NEWTOPIC%" />
+<input type="hidden" name="forcenewrevision" value="%URLPARAM{"forcenewrevision"}%" />
+<input type="hidden" name="rev" value="%URLPARAM{"rev"}%" />
+<input type="hidden" name="cmd" value="%CMD%" />
+<br />
+Don't forget - if you change something, do it in
+<a target="GoodStyle" onClick="return launchWindow('%TWIKIWEB%','GoodStyle')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/GoodStyle">GoodStyle</a>
+and follow the
+<a target="TextFormattingRules" onClick="return launchWindow('%TWIKIWEB%','TextFormattingRules')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/TextFormattingRules">TextFormattingRules</a>.
+<br /> <strong>-- <nop>%WIKIUSERNAME% - %DATE%</strong> &nbsp;&nbsp;<code>&lt;==</code>
+This is your signature for easy copy &amp; paste operation
+%TMPL:P{"plainfooter"}%
+%FORMFIELDS%
+</form>
+%TMPL:P{"help"}%
+<div id="menu">
+	<dl>
+		<dd>(%TMPL:P}"titleaction"%)
+	</dl>
+</div>
+#PageBottom
+</body>
+</html>
+%TMPL:DEF{"sep"}%<dd>%TMPL:END%
+%TMPL:DEF{"titleaction"}%(editing)%TMPL:END%
+%TMPL:DEF{"titlehelp"}% %TMPL:END%
+%TMPL:DEF{"topicaction"}%
+<fieldset><legend><span class="deem"> [[Plugins.SeeSkinAccessKeys][AccessKeys]]: S = Save, Q = Quiet Save, K = Save and Continue, P = Preview, C = Cancel</span></legend>
+   <label accesskey="s" for="save">
+      <input type="submit" name="action" value="Save" id="save" />
+   </label>
+   <label accesskey="q" for="quietsave">
+      <input type="submit" name="action" value="QuietSave" id="quietsave" />
+   </label>
+   <label accesskey="k" for="checkpoint">
+      <input type="submit" name="action" value="Save and Continue" id="checkpoint" />
+   </label>
+   <label accesskey="p" for="preview">
+      <input type="submit" name="action" value="Preview" id="preview" />
+   </label>
+   <label accesskey="c" for="cancel">
+      <input type="submit" name="action" value="Cancel" id="cancel" />
+   </label>
+</fieldset>
+%TMPL:END%
+%TMPL:DEF{"help"}%
+   <dd><strong>Save:</strong> Save topic and return to normal view
+	<dd><strong>QuietSave:</strong> Save but will not trigger email notification to people monitoring the page (checks the "Minor changes" checkbox)
+	<dd><strong>Save and Continue:</strong> Save, and re-edit immediately
+	<dd><strong>Preview:</strong> Do not save yet, but show what the topic would look if saved
+	<dd><strong>Cancel:</strong> Discard changes and return to view mode, release lock
+	<dd><strong>Do not use BACK in your browser to cancel</strong> instead, or the topic will stay locked, preventing other people to edit it for one hour%TMPL:END%

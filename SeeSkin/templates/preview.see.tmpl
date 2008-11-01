@@ -1,0 +1,83 @@
+%TMPL:INCLUDE{"twiki"}%
+%TMPL:P{"htmldoctype"}%
+<head>
+ %TMPL:P{"headpreview"}%
+ %TMPL:P{"css"}%
+<script language="JavaScript">
+<!--HIDE
+function launchWindow( theWeb, theTopic ) {
+  win = open("%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/" + theWeb + "/" + theTopic + "?skin=plain", theTopic, "titlebar=0,width=500,height=480,resizable,scrollbars");
+  if( win ) {
+    win.focus();
+  }
+  return false;
+}
+//STOP HIDING-->
+</script>
+</head>
+<body>
+#PageTop
+<div id="topsection">
+	<h1 class="nocss">%LOGOCHAR% %INTURLENCODE{"%TOPIC%"}% %TMPL:P{"titleaction"}%</h1>
+</div>
+<div id="content" style="background-image:%PREVIEWBGIMAGE%;">%TEXT%
+	<div id="meta">
+		%META{"form"}% 
+		%META{"attachments"}%
+	</div>
+</div>
+<form name="main" action="%SCRIPTURLPATH%/save%SCRIPTSUFFIX%/%INTURLENCODE{"%WEB%/%TOPIC%"}%" method="post">
+<input type="hidden" name="originalrev" value="%URLPARAM{"originalrev"}%" />
+<input type="hidden" name="redirectto" value="%REDIRECTTO%" />
+<input type="hidden" name="text" value="%HIDDENTEXT%"/>
+<input type="hidden" name="templatetopic" value="%URLPARAM{"templatetopic"}%" />
+<input type="hidden" name="cmd" value="%CMD%" />
+<input type="hidden" name="rev" value="%URLPARAM{"rev"}%" />
+<input type="hidden" name="formtemplate" value="%FORMTEMPLATE%" />
+<input type="hidden" name="topicparent" value="%TOPICPARENT%" />
+%TMPL:P{"plainfooter"}%
+</form>
+%TMPL:P{"help"}%
+<hr class="nocss" />
+<div id="menu">
+	<dl>
+		<dd>(previewing) %TOPIC%
+	</dl>
+</div>
+
+<div id="bottsection">
+	<hr>
+	%WEBCOPYRIGHT%
+</div>
+#PageBottom
+</body>
+</html>
+%TMPL:DEF{"titleaction"}%(previewing)%TMPL:END%
+%TMPL:DEF{"help"}%
+<div class="help">
+<ul>
+  <li> To <strong>save</strong> changes: Press the <span title="Alt-S to save changes">[Save Changes]</span> button.
+  <li> To make <strong>more changes</strong>: Go back in your browser.
+  <li> To <strong>cancel</strong>: Go back twice.
+</ul>
+</div>%TMPL:END%
+%TMPL:DEF{"webaction"}%
+<br />
+<span class="warn">Note:</span>
+   This is a preview. <span class="warn">Do not forget</span> to save your changes. %TMPL:END%
+   %FORMFIELDS%
+</dl>%TMPL:END%
+%TMPL:DEF{"topicaction"}%
+<fieldset><legend><span class="deem"> [[Plugins.SeeSkinAccessKeys][AccessKeys]]
+: S = Save, K = Unlock, N = Don't Notify</span></legend>
+   <label accesskey="s" for="save">
+      <input type="submit" name="action" value="Save Changes" id="save">
+   </label>
+%FORMFIELDS%
+   <label accesskey="k" for="unlock">
+      <input id="unlock" type="checkbox" name="unlock" %RELEASEEDITLOCKCHECKBOX% accesskey="k" title="Alt-K to toggle" /> Release edit loc<span class="akey">k</span> (<a target="UnlockTopic" onClick="return launchWindow('%TWIKIWEB%','UnlockTopic')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/UnlockTopic">help</a>)
+   </label>
+   <label accesskey="n" for="dontnotify">
+      <input id="dontnotify" type="checkbox" name="dontnotify" %DONTNOTIFYCHECKBOX% accesskey="n" title="Alt-N to toggle" /> Minor changes, don't <span class="akey">n</span>otify (<a target="DontNotify" onClick="return launchWindow('%TWIKIWEB%','DontNotify')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/DontNotify">help</a>)
+   </label>
+</fieldset>%TMPL:END%
