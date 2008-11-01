@@ -1,0 +1,20 @@
+# Release manifest for RatingContrib
+data/TWiki/RatingContrib.txt 0644
+lib/TWiki/Contrib/RatingContrib.pm 0644
+lib/TWiki/Form/Rating.pm 0644
+pub/TWiki/RatingContrib/edit_example.gif 0644
+pub/TWiki/RatingContrib/example_stars.gif 0644
+pub/TWiki/RatingContrib/ie_pick_star.gif 0644
+pub/TWiki/RatingContrib/ie_pick_star_small.gif 0644
+pub/TWiki/RatingContrib/ie_star.gif 0644
+pub/TWiki/RatingContrib/ie_star_small.gif 0644
+pub/TWiki/RatingContrib/leftbar.gif 0755
+pub/TWiki/RatingContrib/mainbar.gif 0755
+pub/TWiki/RatingContrib/pick_star.gif 0644
+pub/TWiki/RatingContrib/pick_star_small.gif 0644
+pub/TWiki/RatingContrib/rating.css 0644
+pub/TWiki/RatingContrib/rating.js 0644
+pub/TWiki/RatingContrib/rightbar.gif 0755
+pub/TWiki/RatingContrib/star.gif 0644
+pub/TWiki/RatingContrib/star_small.gif 0644
+pub/TWiki/RatingContrib/stars.svg 0644
