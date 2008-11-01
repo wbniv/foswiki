@@ -1,0 +1,30 @@
+%META:TOPICINFO{author="TWikiContributor" date="1163536578" format="1.0" version="1.1"}%
+%META:TOPICPARENT{name="TagMePlugin"}%
+---+ Tag-me: Tag Search
+
+%STARTINCLUDE%
+<form name="tagmesearch" action="%SCRIPTURL{view}%/%WEB%/%TOPIC%" method="get">
+<table class="tagmeNavigation" border="0" cellpadding="3" cellspacing="0"><tr>
+<td>&nbsp; &nbsp;</td>
+<td bgcolor="#F6F4EB">&nbsp; [[TagMeViewAllTags][All Tags]] &nbsp;</td>
+<td>&nbsp;</td>
+<td bgcolor="#F6F4EB">&nbsp; [[%SCRIPTURL{viewauth}%/%WEB%/TagMeViewMyTags][My Tags]] &nbsp;</td>
+<td>&nbsp;</td>
+<td bgcolor="#EAE9DE">&nbsp; *Tag Search* &nbsp;</td>
+</tr></table>
+<table border="0" cellpadding="5" cellspacing="0" style="width:100%;">
+<tr bgcolor="#EAE9DE"><td style="width:100%;"></td></tr>
+<tr bgcolor="#F6F4EB"><td style="width:100%;">
+Show topics tagged with 
+<select class="twikiSelect" name="tag" multiple="multiple" size="4">
+%TAGME{ tpaction="showalltags" format="<option $marker>$tag</option>" separator="$n" selection="%URLPARAM{"tag" multiple="on" separator=","}%" }% </select>
+&nbsp; by
+<input type="radio" name="by" id="byall" value="all" %CALC{"$IF($EXACT(%URLPARAM{by}%,me), , checked=\"checked\")"}% /><label for="byall">all users</label> <input type="radio" name="by" id="byme" value="me" %CALC{"$IF($EXACT(%URLPARAM{by}%,me), checked=\"checked\")"}% /><label for="byme">me only</label> <input type="submit" class="twikiSubmit" value="Go" /> </td>
+</tr></table>
+</form>
+
+%TAGME{ tpaction="query" web="%URLPARAM{qweb}%" topic="%URLPARAM{qtopic}%" tag="%URLPARAM{"tag" multiple="on" separator=","}%" by="%URLPARAM{by}%" }%
+%STOPINCLUDE%
+
+%BR%
+<span class="twikiGrayText">Other tag options: [[TagMeCreateNewTag][Create new tag]], <a href="%SCRIPTURL{view}%/%TWIKIWEB%/TagMeRenameTag?renametagfrom=%URLPARAM{tag}%">Rename tag</a>, <a href="%SCRIPTURL{view}%/%TWIKIWEB%/TagMeDeleteTag?deletetag=%URLPARAM{tag}%">Delete tag</a></span>

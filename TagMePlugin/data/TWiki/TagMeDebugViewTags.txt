@@ -1,0 +1,21 @@
+%META:TOPICINFO{author="TWikiContributor" date="1142121665" format="1.0" version="1.1"}%
+---+ Tag-me: Debug View Tags
+
+<noautolink>
+<form action="%SCRIPTURL{view}%/%WEB%/%TOPIC%">
+|  by: | <input name="qby" value="%URLPARAM{ "qby" encode="entity" }%" size="80" /> |
+|  web: | <input name="qweb" value="%URLPARAM{ "qweb" encode="entity" }%" size="80" /> |
+|  topic: | <input name="qtopic" value="%URLPARAM{ "qtopic" encode="entity" }%" size="80" /> |
+|  exclude: | <input name="qexclude" value="%URLPARAM{ "qexclude" encode="entity" }%" size="80" /> |
+|  minsize: | <input name="qmin" value="%URLPARAM{ "qmin" encode="entity" }%" size="80" /> |
+|  maxsize: | <input name="qmax" value="%URLPARAM{ "qmax" encode="entity" }%" size="80" /> |
+|  format: | <input name="qformat" value="%URLPARAM{ "qformat" encode="entity" }%" size="80" />%BR% =&lt;a href=\"%<nop>SCRIPTURL{view}%/%<nop>WEB%/TagMeSearch?tag=$tag\" style=\"font-size:$size%\"&gt;$tag&lt;/a&gt;= |
+|  separator: | <input name="qseparator" value="%URLPARAM{ "qseparator" encode="entity" }%" size="80" /> |
+|	| <input type="submit" /> |
+</form>
+</noautolink>
+
+__Result:__
+%TAGME{ tpaction="showalltags" by="%URLPARAM{qby}%" web="%URLPARAM{qweb}%" topic="%URLPARAM{qtopic}%" exclude="%URLPARAM{qexclude}%" minsize="%URLPARAM{qmin}%" maxsize="%URLPARAM{qmax}%" format="%URLPARAM{qformat}%" separator="%URLPARAM{qseparator}%" }%
+
+__See also:__ TagMePlugin, TagMeViewAllTags, TagMeViewMyTags, TagMeSearch, TagMeDebugSearch

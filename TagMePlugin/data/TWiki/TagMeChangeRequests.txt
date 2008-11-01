@@ -1,0 +1,15 @@
+%META:TOPICINFO{author="TWikiContributor" date="1176923679" format="1.1" reprev="1.1" version="1.1"}%
+%META:TOPICPARENT{name="TagMePlugin"}%
+---+!! Tag-me: Change Requests
+
+%ICON{info}% __Note:__
+   * Renaming and deleting of tags is ususally done by users that have received permissions to do this. Permissions are set in [[TagMePlugin#PluginSettings][TagMePlugin's settings]]. 
+   * If renaming and deleting of tags is done by someone else than you, use the forms on the [[TagMeRenameTag][Rename]] and [[TagMeDeleteTag][Delete]] pages to automatically add your requests here.
+
+<!--
+When refactoring this topic, please keep the table header row
+-->
+
+| *Request for* | *Tag* | *New name* | *Requested by* | *Date* |
+
+%META:PREFERENCE{name="DENYTOPICCHANGE" title="DENYTOPICCHANGE" type="Set" value=""}%

@@ -1,0 +1,23 @@
+%META:TOPICINFO{author="TWikiContributor" date="1160871564" format="1.0" version="1.1"}%
+%META:TOPICPARENT{name="TagMePlugin"}%
+---+ Tag-me: View All Tags
+
+%STARTINCLUDE%
+<table class="tagmeNavigation" border="0" cellpadding="3" cellspacing="0"><tr>
+<td>&nbsp; &nbsp;</td>
+<td bgcolor="#EAE9DE">&nbsp; *All Tags* &nbsp;</td>
+<td>&nbsp;</td>
+<td bgcolor="#F6F4EB">&nbsp; [[%SCRIPTURL{viewauth}%/%WEB%/TagMeViewMyTags][My Tags]] &nbsp;</td>
+<td>&nbsp;</td>
+<td bgcolor="#F6F4EB">&nbsp; [[TagMeSearch][Tag Search]] &nbsp;</td>
+</tr></table>
+<table border="0" cellpadding="5" cellspacing="0" style="width:100%;">
+<tr bgcolor="#EAE9DE"><td style="width:100%;"></td></tr>
+</td></tr></table>
+
+<div class="tagmeTagCloud" style="line-height:2em;">
+%TAGME{ tpaction="showalltags" format="<a href=\"%SCRIPTURL{view}%/%WEB%/TagMeSearch?tag=$tag\" style=\"font-size:$size%\">$tag</a>" separator="&nbsp; " minsize="94" maxsize="220"}%
+</div>%STOPINCLUDE%
+
+%BR%
+<span class="twikiGrayText">Other tag options: [[TagMeCreateNewTag][Create new tag]], [[TagMeRenameTag][Rename tag]], [[TagMeDeleteTag][Delete tag]]</span>

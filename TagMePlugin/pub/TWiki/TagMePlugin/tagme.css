@@ -1,0 +1,80 @@
+.tagMeControl {
+	white-space:nowrap;
+	margin:0 .2em 0 0;
+}
+.tagMeControl input { 
+	border:0;
+}
+.tagMeControl select {
+}
+.tagMeControl img {
+	vertical-align:middle;
+}
+a.tagmeAction:hover {
+	background-color:transparent;
+}
+.tagMeNotification {
+	background-color:#ffc;
+	color:#000;
+	padding:0 .25em;
+	white-space:nowrap;
+}
+div.tagMeNotification {
+	padding:.5em 20px; /* side padding same as twikiFormStep (assuming PatternSkin) */
+	margin:1em 0;
+}
+.tagMeVoteCount {
+	margin:0 .25em;
+	color:#8E9195; /* use twikiGrayText color */
+}
+.tagmeNavigation a {
+	text-decoration:none;
+}
+.tagmeNavigation a:link,
+.tagmeNavigation a:visited {
+	color:#666;
+}
+.tagmeNavigation a:hover {
+	background-color:transparent;
+	border-bottom:1px solid #666;
+}
+.tagmeRelated {
+	font-weight:bold;
+}
+.tagmeTagCloud a {
+	white-space:nowrap;
+}
+
+/*
+TagMeSearch results table
+*/
+.tagmeResultsTable {
+	width:100%;
+}
+.tagmeResultsTableHeader td,
+.tagmeResultsTableHeader th {
+	padding:1px 5px;
+}
+.tagmeResultsTableHeader td,
+.tagmeResultsTableHeader th {
+	background-color:#F6F4EB;
+}
+.tagmeResultsTableHeader td.tagmeTopicTd {
+	width:50%;
+}
+.tagmeResultsTableHeader td.tagmeDateTd {
+	width:20%;
+}
+.tagmeResultsTableHeader td.tagmeAuthorTd {
+	width:30%;
+}
+.tagmeTopicTdWeb {
+	font-size:94%;
+	color:#666;
+}
+.tagmeResultsDetails {
+	font-size:94%;
+	color:#666;
+	margin:0 0 1em 0;
+	padding:.15em 0 0 1.5em;
+}
