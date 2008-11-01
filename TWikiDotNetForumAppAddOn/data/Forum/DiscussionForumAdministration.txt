@@ -1,0 +1,44 @@
+%META:TOPICINFO{author="PeterThoeny" date="1207960765" format="1.1" version="1.5"}%
+%META:TOPICPARENT{name="WebHome"}%
+---+ Discussion Forum Administration
+
+The DiscussionForum has forums, and each forum has a list of topics (discussion threads). Administrators can create new forums. Anybody can create new discussion topics and add comments to existing topics.
+
+---++ Create new forum
+
+<script><!--
+function fixString(sIn) {
+var sOut = ''; var chgUpper = true; for ( var i = 0; i < sIn.length; i++ ) { var ch = sIn.charAt( i ); var ch2 = ''; if((ch=='&#224;')||(ch=='&#225;')||(ch=='&#226;')||(ch=='&#227;')||(ch=='&#229;') ) { ch = 'a'; } if( (ch=='&#232;')||(ch=='&#233;')||(ch=='&#234;') ) { ch = 'e'; } if( ch=='&#231;') { ch = 'c'; } if( ch=='&#241;') { ch = 'n'; } if( (ch=='&#242;')||(ch=='&#243;')||(ch=='&#244;') ) { ch = 'o'; } if( ch=='&#228;') { ch = 'a'; ch2 = 'e'; } if( ch=='&#246;') { ch = 'o'; ch2 = 'e'; } if( (ch=='&#249;')||(ch=='&#250;')||(ch=='&#251;') ) { ch = 'o'; } if( ch=='&#252;') { ch = 'u'; ch2 = 'e'; } if( ch=='&#196;') { ch = 'A'; ch2 = 'e'; } if( ch=='&#214;') { ch = 'O'; ch2 = 'e'; } if( ch=='&#220;') { ch = 'U'; ch2 = 'e'; } if( ch=='&#223;') { ch = 's'; ch2 = 's'; } if( ((ch>='a')&&(ch<='z')) || ((ch>='A')&&(ch<='Z')) ) { if( chgUpper ) { ch = ch.toUpperCase(); chgUpper = false; } sOut+=ch; if( ch2!='') { sOut+=ch2; } } else { if( ch==' ' ) { chgUpper = true; } } } 
+return 'Forum' + sOut.substring(0,3);
+}
+//--></script>
+<form name="new" action="%SCRIPTURL{save}%/%WEB%/">
+|  Forum name: | <input type="text" name="Name" size="20" value="" onblur="form.topic.value=fixString(this.value);" /> (short name shown in breadcrumb; may contain spaces) |
+|  Topic name: | <input type="text" name="topic" size="20" value="" /> (short; in URL; no spaces; format: =ForumABC=) |
+|  Description: | <input type="text" name="Description" size="72" value="" /> |
+| &nbsp; | <input type="submit" class="twikiSubmit" value=" Create "/ > |
+<input type="hidden" name="onlywikiname" value="on" />
+<input type="hidden" name="onlynewtopic" value="on" />
+<input type="hidden" name="templatetopic" value="DiscussionForumTemplate" />
+<input type="hidden" name="topicparent" value="none" />
+</form>
+
+---++ Topics for maintenance
+   * Forums:
+      * DiscussionForum
+      * DiscussionForumForm
+      * DiscussionForumTemplate
+      * DiscussionForumBody
+   * Topics:
+      * DiscussionTopicForm
+      * DiscussionTopicTemplate
+      * DiscussionTopicHeader
+   * %TWIKIWEB%.TWikiDotNetForumAppAddOn documentation
+
+---++ Access Control
+
+   * Set ALLOWTOPICVIEW = %MAINWEB%.TWikiAdminGroup
+
+__Note:__ This Discussion Forum TWiki Application is &copy; 2007 [[http://www.twiki.net][TWIKI.NET]]
+
+-- TWiki:Main.PeterThoeny - 28 Jul 2007

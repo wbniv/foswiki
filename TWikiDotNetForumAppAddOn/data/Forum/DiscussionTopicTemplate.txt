@@ -1,0 +1,9 @@
+%META:TOPICINFO{author="PeterThoeny" date="1185609350" format="1.1" version="1.1"}%
+%META:TOPICPARENT{name="DiscussionTopicForm"}%
+%INCLUDE{DiscussionTopicHeader}%
+
+%COMMENT%
+
+%META:FORM{name="DiscussionTopicForm"}%
+%META:FIELD{name="Title" attributes="" title="Title" value=""}%
+%META:FIELD{name="Forum" attributes="" title="Forum" value=""}%

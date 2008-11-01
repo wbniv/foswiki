@@ -1,0 +1,10 @@
+%META:TOPICINFO{author="PeterThoeny" date="1207959907" format="1.1" version="1.2"}%
+%META:TOPICPARENT{name="DiscussionForumForm"}%
+%INCLUDE{DiscussionForumBody}%
+<!--
+   * Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
+-->
+
+%META:FORM{name="DiscussionForumForm"}%
+%META:FIELD{name="Name" attributes="" title="Name" value=""}%
+%META:FIELD{name="Description" attributes="" title="Description" value=""}%

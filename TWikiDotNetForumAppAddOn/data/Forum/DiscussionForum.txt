@@ -1,0 +1,13 @@
+%META:TOPICINFO{author="PeterThoeny" date="1207960706" format="1.1" version="1.4"}%
+---+ Discussion Forums
+%STARTINCLUDE%
+%TABLE{ sort="off" }%
+| *Forum* | *Topics* | *Last post* |
+%SEARCH{ "META:FORM.*[D]iscussionForumForm" type="regex" excludetopic="%TOPIC%, DiscussionForumTemplate" nonoise="on" format="| %ICONURL{persons}% [[$topic][$formfield(Name)]]%BR% $formfield(Description) $percntCALC{$SET(num, 0)}$percnt $percntSEARCH{ \"META:FORM.*[D]iscussionTopicForm;META:FIELD.*Forum.*value=.$topic\" type=\"regex\" topic=\"$topic*\" excludetopic=\"DiscussionTopicTemplate\" order=\"modified\" nonoise=\"on\" format=\"$dollarpercntCALC{$SET(user, $dollarwikiusername)$SET(date, $dollardate)$SETM(num, +1)}$dollarpercnt\" separator=\"<nop>\" }$percnt |  $percntCALC{$GET(num)}$percnt  | $percntCALC{$GET(date) by $GET(user)}$percnt |" }%
+
+---++ Recently Updated Topics
+%TABLE{ sort="off" }%
+| *Topic* | *Last post* |
+%SEARCH{ "META:FORM.*[D]iscussionTopicForm" type="regex" excludetopic="DiscussionTopicTemplate" order="modified" reverse="on" limit="16" nonoise="on" format="| %ICONURL{bubble}% <a href=\"%SCRIPTURL{view}%/$web/$topic\" title=\"$summary\">$formfield(Title)</a> <span style=\"font-size: 70%; color: #808080\"> in $percntCALC{$SUBSTITUTE($formfield(Forum), Forum, )}$percnt  by <nop>$createwikiname </span> | $date by $wikiusername |" }%
+
+__Note:__ This Discussion Forum TWiki Application is &copy; 2007-%SERVERTIME{$year}% [[http://www.twiki.net/][TWIKI.NET]]

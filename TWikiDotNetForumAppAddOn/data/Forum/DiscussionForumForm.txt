@@ -1,0 +1,11 @@
+%META:TOPICINFO{author="PeterThoeny" date="1185609052" format="1.1" version="1.1"}%
+%META:TOPICPARENT{name="DiscussionForumAdministration"}%
+---+ Discussion Forum Form
+
+| *Name* | *Type* | *Size* | *Values* | *Tooltip message* | *Attributes* |
+| Name | text | 20 | | Short name of discussion forum |   |
+| Description | text | 72 | | Description of discussion forum |   |
+
+__See also:__ DiscussionForumAdministration, DiscussionForumTemplate, DiscussionTopicForm
+
+-- TWiki:Main.PeterThoeny - 28 Jul 2007

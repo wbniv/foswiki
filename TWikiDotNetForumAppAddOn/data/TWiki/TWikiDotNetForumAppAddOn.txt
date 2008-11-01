@@ -1,0 +1,50 @@
+%META:TOPICINFO{author="PeterThoeny" date="1207975372" format="1.1" reprev="1.3" version="1.3"}%
+---+ TWIKI.NET Discussion Forum Application Add-On
+
+This discussion forum application is contributed by [[http://www.twiki.net/][<img src="%ATTACHURLPATH%/twikinet80x26d.png" alt="TWIKI.NET" width="80" height="26" border="0" />]], a company cultivating, nurturing and advancing TWiki as the leading open source enterprise wiki.
+
+   * The discussion forum application is hosted in a dedicated Forum.WebHome web
+   * Members of the %MAINWEB%.TWikiAdminGroup can create new forums
+   * Anyone can create a new discussion topic in a forum
+   * Anyone can add a new comment to an existing discussion topic
+
+<img src="%ATTACHURLPATH%/screen_forums_s.png" alt="Screenshot of forums table and forum topics table" title="Screenshot of forums table and forum topics table" width='466' height='233' />
+
+---++ Add-On Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this add-on. The following instructions are for the administrator who installs the add-on on the server where TWiki is running. 
+
+   * Download the ZIP file from the Add-on Home (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Add-on topic |
+     | ==pub/TWiki/%TOPIC%/*.png== | Documentation images |
+     | ==data/Forum/*.txt== | Forum web with discussion forum application |
+   * Test if the installation was successful:
+      * Go to the Forum.%HOMETOPIC% web and create a new discussion topic in the Sandbox forum
+
+---++ Add-On Info
+
+   * Set SHORTDESCRIPTION = TWIKI.NET discussion forum application
+
+|  Add-on Author: | TWiki:Main.PeterThoeny |
+|  Copyright: | &copy; 2007-2008, [[http://www.twiki.net/][TWIKI.NET]] |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) and [[http://twiki.net/licenses.html#TWikiDotNetSoftwareLicense][TWIKI.NET Software License]] (dual license) |
+|  Add-on Version: | 11 Apr 2008 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  11 Apr 2008: | Allow INCLUDE of forum in another web; minor UI tweaks |
+|  19 Oct 2007: | Validate Title field |
+|  15 Oct 2007: | Initial version |
+|  TWiki Dependency: | TWiki 4.0 |
+|  Other Dependencies: | none |
+|  Perl Version: | N/A |
+|  Add-on Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topic:__ %TWIKIWEB%.TWikiAddOns
+
+-- TWiki:Main/PeterThoeny - 11 Apr 2008
+
+%META:FILEATTACHMENT{name="screen_forums_s.png" attachment="screen_forums_s.png" attr="h" comment="Screenshot of forums table and forum topics table" date="1192413134" path="screen_forums_s.png" size="40090" stream="screen_forums_s.png" user="Main.PeterThoeny" version="1"}%
+%META:FILEATTACHMENT{name="twikinet80x26d.png" attachment="twikinet80x26d.png" attr="h" comment="" date="1207975024" path="twikinet80x26d.png" size="2858" stream="twikinet80x26d.png" user="Main.PeterThoeny" version="1"}%

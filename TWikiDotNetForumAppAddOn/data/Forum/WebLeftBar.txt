@@ -1,0 +1,13 @@
+%META:TOPICINFO{author="PeterThoeny" date="1185675410" format="1.1" version="1.6"}%
+%INCLUDE{"%IF{"context can_login" then="%TWIKIWEB%.WebLeftBarLogin" else="<nop>"}%" warn="off"}%
+   * <b>[[%INCLUDINGWEB%.%HOMETOPIC%][ %ICON{"home"}% <nop>%MAKETEXT{"[_1] Web" args="%INCLUDINGWEB%"}%]]</b>
+   * [[WebTopicList][ %ICON{"index"}% %MAKETEXT{"Index"}%]]
+   * [[%INCLUDINGWEB%.WebSearch][ %ICON{"searchtopic"}% %MAKETEXT{"Search"}%]]
+   * [[WebChanges][ %ICON{"changes"}% %MAKETEXT{"Changes"}%]]
+   * [[WebRss][ %ICON{"rss-small"}% %MAKETEXT{"RSS Feed"}%]]
+   * [[WebNotify][ %ICON{"notify"}% %MAKETEXT{"Notifications"}%]]
+   * [[WebStatistics][ %ICON{"statistics"}% %MAKETEXT{"Statistics"}%]]
+   * [[WebPreferences][ %ICON{"wrench"}% %MAKETEXT{"Preferences"}%]]
+
+---
+%INCLUDE{ "%TWIKIWEB%.WebLeftBarWebsList" }%
