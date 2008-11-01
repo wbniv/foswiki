@@ -1,0 +1,317 @@
+%META:TOPICINFO{author="TWikiContributor" date="1181956397" format="1.1" version="1.1"}%
+---+!! Autocomplete Add-on
+
+Autocomplete input field based on Yahoo's User Interface Library (available through TWiki:Plugins/YahooUserInterfaceContrib).
+
+<div class="twikiImage"><img src="%ATTACHURLPATH%/autocomplete_example.png" alt="autocomplete_example.png" width='606' height='283' /></div>
+     
+%TOC%
+
+---++ Usage
+Write the following =INCLUDE= in your topic:
+<verbatim>
+%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="autocomplete"}%
+</verbatim>
+This will put an input field in your topic, but without autocomplete suggestions. You also need to pass data parameters: see the following section.
+
+
+---+++ Parameters
+Parameters to pass to the =INCLUDE= variable, for example:
+<verbatim>
+%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="autocomplete" name="topics"}%
+</verbatim>
+
+| *Parameter*   | *Required* | *Description* | *Default* | *Example* |
+| =datatopic=   | required   | The topic with data. Should be formatted as comma-separated string, or as an array of arrays (see [[Sandbox.AutoCompleteTestData#usernames]] for an example). Use with =datasection=. | none | =datatopic="Sandbox.AutoCompleteTestData"= |
+| =datasection= | required   | The topic section with data. Use with =datatopic=. | none | =datasection="usernames"= |
+| =formweb=     |            | The web reference in the form action. | =%<nop>BASEWEB%= | =formweb="%<nop>MAINWEB%"= |
+| =formtopic=   |            | The topic reference in the form action. | =%<nop>BASETOPIC%= | =formtopic="%<nop>HOMETOPIC%"= |
+| =itemformat=  |            | The format of an item string in the autocomplete list. Use if the autocomplete list should display different names than the input field - for instance with full person names. The javascript input argument is =item= | =item= | =itemformat="item[0] + ' (' + item[1] + ')'"= |
+| =name=        |            | A unique name is only needed if more than one autocomplete form is on the page. | none | =name="topics"= |
+| =inputname=   |            | The name of the input field. | none | =inputname="username"= |
+| =charsize=    |            | The character width of the input field. | none | =charsize="40"= |
+| =size=        |            | The width of the input field in em or px. | =20em= | =sizse="20em"= or =size="200px"= |
+
+
+---+++ Customization
+The include section =autocomplete= writes the default parts: form, stylesheet and javascript. If you want to make changes to either one, include the sections separately and provide your own includes.
+
+---++++ Separate sections
+<verbatim>
+%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="form" name="my"}%
+%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="stylesheet" name="my"}%
+%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="javascript" name="my" datatopic="Myweb.MyDataTopic" datasection="mysection"}%
+</verbatim>
+
+---++++ Customized section example
+<verbatim>
+%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="form" name="my"}%
+%INCLUDE{"Myweb.MyTopic" section="stylesheet" name="my"}%
+%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="javascript" name="my" datatopic="Myweb.MyDataTopic" datasection="mysection"}%
+</verbatim>
+
+
+---++ Example
+<verbatim>
+%INCLUDE{
+"%TWIKIWEB%.AutoCompleteAddOn"
+section="autocomplete"
+name="example"
+inputname="topic"
+size="25em"
+datatopic="Sandbox.AutoCompleteTestData"
+datasection="topics"
+topicsweb="%TWIKIWEB%"
+}%
+</verbatim>
+
+<!-- usernames example for PersonalInfoAddOn
+%<nop>INCLUDE{
+"%TWIKIWEB%.AutoCompleteAddOn"
+section="autocomplete"
+name="example2"
+size="200px"
+datatopic="Sandbox.AutoCompleteTestData"
+datasection="usernames"
+topicsweb="%MAINWEB%"
+itemformat="item[0] + ' (' + item[1] + ')'"
+}%
+-->
+
+Generates:
+%INCLUDE{
+"%TWIKIWEB%.AutoCompleteAddOn"
+section="autocomplete"
+name="example"
+inputname="topic"
+size="25em"
+datatopic="Sandbox.AutoCompleteTestData"
+datasection="topics"
+topicsweb="%TWIKIWEB%"
+}%
+
+This topic uses TWiki:Plugins/VarCachePlugin to cache search results.
+%VARCACHE{}%
+
+---++ Using autocomplete in a template
+This is an customized login template (TWiki 4.2) to let users just enter their name to log in (the password is the same for everyone).
+
+This example shows where to place the INCLUDE sections
+
+<verbatim>
+%TMPL:INCLUDE{"login"}%
+
+%TMPL:DEF{"templatescript"}%
+<script type="text/javascript">
+//<![CDATA[
+	twiki.Event.addLoadEvent(initForm, true);
+	function initForm() {
+		document.loginform[0].focus();
+	}
+//]]>
+</script>
+%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="javascript" name="login" datatopic="Sandbox.AutoCompleteTestData" datasection="usernames" itemformat="item[0]"}%%TMPL:END%
+
+%TMPL:DEF{"templatestyle"}%%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="stylesheet" name="login"}%%TMPL:END%
+
+%TMPL:DEF{"LOG_IN_BANNER"}%%MAKETEXT{"Log in"}%%TMPL:END%
+%TMPL:DEF{"authrealm"}%%TMPL:END%
+
+%TMPL:DEF{"usernamestep"}%<div class="twikiFormStep">
+---+++ %MAKETEXT{"Please enter your name"}%
+
+%INCLUDE{
+"%TWIKIWEB%.AutoCompleteAddOn"
+section="input"
+name="login"
+inputname="username"
+charsize="40"
+datatopic="Sandbox.AutoCompleteTestData"
+datasection="usernames"
+topicsweb="%MAINWEB%"
+}%<input type="hidden" name="password" value="twiki" />
+</div><!-- /twikiFormStep-->%TMPL:END%
+
+%TMPL:DEF{"passwordstep"}%%TMPL:END%
+</verbatim>
+
+---++ Include sections
+
+---+++ Convenience include 'autocomplete'
+Includes form, stylesheet and javascript.
+
+Usage:
+<verbatim>
+%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="autocomplete"}%
+</verbatim>
+
+<verbatim>
+%STARTSECTION{"autocomplete"}%%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="form"}%
+%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="stylesheet"}%
+%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="javascript"}%%ENDSECTION{"autocomplete"}%
+</verbatim>
+
+---+++ Partial includes
+---++++ form, input
+Includes form only. This section includes a nested section named =input=.
+
+Usage:
+<verbatim>
+%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="form"}%
+</verbatim>
+
+To use the input field only (for instance when you have a custom form):
+<verbatim>
+%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="input"}%
+</verbatim>
+
+<verbatim>
+%STARTSECTION{"form"}%<form action="%SCRIPTURLPATH{"view"}%/%IF{"defined formweb" then="%formweb%" else="%BASEWEB%"}%/%IF{"defined formtopic" then="%formtopic%" else="%BASETOPIC%"}%" autocomplete="off">%STARTSECTION{"input"}%<div id="%IF{"defined name" then="%name%"}%autocompleteForm">
+<input id="%IF{"defined name" then="%name%"}%autocompleteInput" class="twikiInputField" type="text" name="%IF{"defined inputname" then="%inputname%"}%" autocomplete="off" %IF{"defined charsize" then="size=\"%charsize%\""}%></input>
+<div id="%IF{"defined name" then="%name%"}%autocompleteResults"></div>
+</div>%ENDSECTION{"input"}%</form>%ENDSECTION{"form"}%
+</verbatim>
+
+
+
+---++++ stylesheet
+Includes CSS stylesheet only.
+
+Usage:
+<verbatim>
+%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="stylesheet"}%
+</verbatim>
+
+<verbatim>
+%STARTSECTION{"stylesheet"}%<style type="text/css" media="all">
+#%IF{"defined name" then="%name%"}%autocompleteForm {
+	position:relative;
+}
+#%IF{"defined name" then="%name%"}%autocompleteInput {
+	width:%IF{"defined size" then="%size%" else="20em"}%;
+}
+#%IF{"defined name" then="%name%"}%autocompleteResults {
+	position:relative;
+	width:%IF{"defined size" then="%size%" else="20em"}%;
+}
+#%IF{"defined name" then="%name%"}%autocompleteResults .yui-ac-content {
+	position:absolute;
+	width:100%;
+	font-size:94%; /* mimic twikiInputField */
+	padding:0 .2em; /* mimic twikiInputField */
+	border-width:1px;
+	border-style:solid;
+	border-color:#ddd #888 #888 #ddd;
+	background:#fff;
+	overflow:hidden;
+	z-index:9050;
+}
+#%IF{"defined name" then="%name%"}%autocompleteResults .yui-ac-shadow {
+	display:none;
+	position:absolute;
+	margin:2px;
+	width:100%;
+	background:#ccc;
+	z-index:9049;
+}
+#%IF{"defined name" then="%name%"}%autocompleteResults ul {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+#%IF{"defined name" then="%name%"}%autocompleteResults li {
+	cursor:default;
+	white-space:nowrap;
+	margin:0 -.2em;
+	padding:.1em .2em; /* mimic twikiInputField */
+}
+#%IF{"defined name" then="%name%"}%autocompleteResults li.yui-ac-highlight,
+#%IF{"defined name" then="%name%"}%autocompleteResults li.yui-ac-prehighlight {
+	background:#06c; /* link blue */
+	color:#fff;
+}
+</style>%ENDSECTION{"stylesheet"}%
+</verbatim>
+
+
+---++++ javascript
+Includes javascript only.
+
+Usage:
+<verbatim>
+%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="javascript"}%
+</verbatim>
+
+<verbatim>
+%STARTSECTION{"javascript"}%%INCLUDE{"%TOPIC%" section="yahoo" datatopic="%datatopic%" datasection="%datasection%"}%
+<script type="text/javascript">
+// <![CDATA[
+twiki.Event.addLoadEvent(initAutoComplete, true);
+function initAutoComplete() {
+	var topics = [%INCLUDE{"%datatopic%" section="%datasection%"}%];
+	var oACDS = new YAHOO.widget.DS_JSArray(topics);
+	var topicAC = new YAHOO.widget.AutoComplete('%IF{"defined name" then="%name%"}%autocompleteInput', '%IF{"defined name" then="%name%"}%autocompleteResults', oACDS);
+	topicAC.queryDelay = 0;
+	topicAC.autoHighlight = true;
+	topicAC.useIFrame = false;
+	topicAC.prehighlightClassName = "yui-ac-prehighlight";
+	topicAC.typeAhead = false;
+	topicAC.allowBrowserAutocomplete = false;
+	topicAC.useShadow = false;
+	topicAC.formatResult = function(item, query) {
+		return %IF{"defined itemformat" then="%itemformat%" else="item"}%;
+	};
+}
+// ]]>
+</script>%ENDSECTION{"javascript"}%
+</verbatim>
+
+
+
+---++++ yahoo
+Includes Yahoo User Interface Library javascript only. This is already included by section =javascript=.
+
+Usage (only if you are using a customized =javascript= section):
+<verbatim>
+%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="javascript"}%
+</verbatim>
+
+<verbatim>
+%STARTSECTION{"yahoo"}%<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/YahooUserInterfaceContrib/build/yahoo/yahoo.js"></script>
+<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/YahooUserInterfaceContrib/build/autocomplete/autocomplete.js"></script>
+<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/YahooUserInterfaceContrib/build/event/event.js"></script>
+<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/YahooUserInterfaceContrib/build/dom/dom.js"></script>%ENDSECTION{"yahoo"}%
+</verbatim>
+
+
+---++ Settings
+
+   * Set SHORTDESCRIPTION = Autocomplete input field based on Yahoo's User Interface Library
+
+---++ Installation Instructions
+
+   * Download the ZIP file from the Plugin web (see below).
+   * Unzip ==%TOPIC%.zip== in your ($TWIKI_ROOT) directory.
+   * Optional plugins:
+      * TWiki:Plugins/VarCachePlugin to cache search results 
+   * Alternatively,
+      * Manually resolve the dependencies listed below.
+      %$DEPENDENCIES%
+
+---++ !AddOn Info
+
+| Authors: | TWiki:Main.ArthurClemens |
+| Copyright &copy;: | 2007 Arthur Clemens |
+| License: | [[http://www.gnu.org/copyleft/gpl.html][GPL]] |
+| Dependencies: | %$DEPENDENCIES% |
+| Add-on&nbsp;Version: | 23 Jun 2007 (version 1.0.1)  |
+| Change&nbsp;History: | <!-- versions below in reverse order -->&nbsp; |
+| 23 Jun 2007 | 1.0.1 Fixed CSS to work with Internet Explorer.  |
+| 16 Jun 2007 | 1.0 First release.  |
+| Demo url:  |   |
+| Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+| Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+| Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+
+%META:FILEATTACHMENT{name="autocomplete_example.png" attachment="autocomplete_example.png" attr="" comment="Autocomplete example screenshot" date="1181956396" path="autocomplete_example.png" size="19823" stream="autocomplete_example.png" tmpFilename="" user="TWikiContributor" version="1"}%
