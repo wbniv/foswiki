@@ -1,0 +1,61 @@
+%META:TOPICINFO{author="PeterAlbiez" date="1039616547" format="1.0" version="1.4"}%
+---++ Revision Recover Plugin
+
+This plugin enables the author of a TWiki page to specify a particular version of a topic to link to.
+
+---+++ Syntax Rules
+<verbatim>
+TopicName?rev=<revision_number>
+</verbatim>
+
+i.e.
+
+<UL>
+	=Rev<nop>RecoverPlugin<nop>?rev=1=
+</UL>
+
+gives
+
+<UL>
+	RevRecoverPlugin?rev=1
+</UL>
+
+---+++ Known Problems
+
+Use of this revision link syntax causes problems when used within "square bracket" links. The resulting links are corrupted.
+
+---+++ <nop>%TOPIC% Settings
+
+Plugin settings are stored as preferences variables. The following variables are used for this plugin.
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = This plugin enables linking to specific Topic revisions.
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---+++ Plugin Installation Instructions
+
+	* Unzip the =RevRecoverPlugin.zip= file into your TWiki installation.
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the installation was successful:
+		* %TOPIC%?rev=1
+		* %TOPIC%?rev=1.1
+		* %TWIKIWEB%.ATasteOfTWiki?rev=1
+		* %MAINWEB%.TWikiContributor?rev=1
+
+---+++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.CrawfordCurrie, TWiki:Main.PeterAlbiez |
+|  Plugin Version: | 10 Dec 2005 |
+|  Change History: |  |
+|  10 Dec 2005: | Updated to support Dakar-style revision numbers (TWiki:Main.WillNorris) |
+|  22 Apr 2002: | Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.0 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
