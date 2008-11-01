@@ -1,0 +1,67 @@
+%META:TOPICINFO{author="TWikiContributor" date="1111929255" format="1.0" version="8"}%
+---+ Signature Plugin
+
+This plugin supports a simple tag which appears as a button with the label given by the =SIGNATURELABEL= setting. When clicked, it is replaced by the text given in the =SIGNATUREFORMAT= setting (this is typically the name of the logged in user and the current date).
+
+
+---++ Syntax Rules
+
+Insert the tag %<nop>SIGNATURE% anywhere in the topic, as many times as you like. Each such tag will create a signature button.
+
+The following parameters are supported for the %<nop>SIGNATURE% tag.
+
+   | *Parameter:* | *Description:* | *Default:* |
+   | ="name"= | The wiki name of a user or group or a list of users/groups. Only these users or members of these groups are allowed to sign here. |  |
+   | ="format"= | The signature format for this particular signature. The syntax is the same as for the setting variable =SIGNATUREFORMAT=. |  |
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference
+a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>SIGNATUREPLUGIN_SHORTDESCRIPTION%==
+   * Format of the signature line. The variables =$wikiusername=, =$wikiname=, $username, and =$date= can be used, indicating the WikiName of the logged in user prefixed with the user web, the WikiName of the logged in user, the login name of the logged in user, and the date of signing, respectively.
+      * Set SIGNATUREFORMAT = $wikiusername - $date
+   * Label of the signature button
+      * Set SIGNATURELABEL = Sign
+
+   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = Supports electronic signatures
+
+   * Debug plugin: (See output in =data/debug.txt=)
+      * Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+	* This plugin works only with TWiki 4 and beyond.
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+| *File:* | *Description:* | 
+| ==data/TWiki/%TOPIC%.txt== | Plugin topic | 
+| ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module | 
+| ==lib/bin/digisign== | Support script |
+| ==templates/oopsgeneric.tmpl_twiki40== | Rename to ==templates/oopsgeneric.tmpl== if you are using a TWiki 4.0 installation |
+| ==templates/oopsgeneric.pattern.tmpl_twiki40== | Rename to ==templates/oopsgeneric.pattern.tmpl== if you are using a TWiki 4.0 installation |
+	* Ensure that the script =lib/bin/digisign= is executable and authorized as desired.
+	* If installed correctly you should see a button with the label indicated by the setting below.
+
+%SIGNATURE{name="TWikiAdminGroup"}%
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/ThomasWeigert |
+|  Copyright: | &copy; 2006, Motorola |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | 19 Nov 2006 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  19 Nov 2006: | Support user designation and user-specific format. |
+|  01 Aug 2006: | Initial release |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+
+-- Main.ThomasWeigert - 19 Nov 2006
