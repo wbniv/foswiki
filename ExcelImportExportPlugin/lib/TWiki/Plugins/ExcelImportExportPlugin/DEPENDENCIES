@@ -1,0 +1,4 @@
+Spreadsheet::ParseExcel,>=0,cpan,Required. Available from [[http://search.cpan.org][CPAN]].
+Spreadsheet::WriteExcel,>=0,cpan,Required. Available from [[http://search.cpan.org][CPAN]].
+Date::Manip,>=0,cpan,Required. Available from [[http://search.cpan.org][CPAN]].
+

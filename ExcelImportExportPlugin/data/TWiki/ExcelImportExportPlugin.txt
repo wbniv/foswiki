@@ -1,0 +1,154 @@
+%META:TOPICINFO{author="TWikiContributor" date="1111929255" format="1.0" version="8"}%
+---+ <nop>ExcelImportExportPlugin
+
+This plugin renders an attached Excel spreadsheet as a TWiki table, and vice versa. It also provides scripts to generate a set of topics from an Excel spreadsheet, and vice versa. In detail, the plugin supports the following use cases:
+   * Import from Excel
+      * Upload an Excel spreadsheet to TWiki and generate a table such that each row of the resultant table corresponds to a row in the spreadsheet.
+      * Upload an Excel spreadsheet to TWiki and generate a topic for each row in the spreadsheet such that each column corresponds to a form field.
+      * Attach an Excel spreadsheat to a TWiki topic and render its content as a TWiki table whenever the topic is viewed.
+   * Export to Excel
+      * Generate an Excel spreadsheet from a TWiki table, such that each row in the table corresponds to a row in the resultant spreadsheet.
+      * Generate an Excel spreadsheet from a table returned as the result of a TWiki.FormattedSearch, such that each row in the table corresponds to a row in the resultant spreadsheet.
+      * Generate an Excel spreadsheet from all topics that have an indicated form. Each topic results in a row of the spreadsheet, such that each form field is mapped to a column in the spreadsheet.
+
+The code of this plugin is based on the TWiki:Plugins.ExcelImportExportAddOn by TWiki:Main.ClausLanghans.
+
+---++ General comments
+
+This plugin establishes a correspondence between a spreadsheet and a TWiki table, or a set of TWiki topics. The spreadsheet must have a header row which defines the schema of the database represented by the spreadsheet. 
+
+The columns of the spreadsheet and the columns of the TWiki table are correlated via a TWiki form and/or a more detailed mapping table, see [[#ColumnMapping]].
+
+
+---++ Syntax Rules
+
+   * Syntax: =%<nop>EXCEL2TABLE{...}%=
+   * Synopsis: Renders the first worksheet of an Excel spreadsheet attached to the indicated topic as a table, formatted per the definition of the form given in the =template= parameter.
+   * Supported parameters:
+   | *Parameter:* | *Description:* | *Default:* |
+   | =topic="..."= | The topic at which the spreadsheet is attached | Current topic |
+   | =file="..."= | Default parameter: The name of the attached spreadsheet file (without the extension)  | Current topic |
+   | =template="..."= | A form definition (see TWiki.TWikiForms); it defines the columns of the table to be generated. Must match column headers of the attached spreadsheet. |  |
+
+
+   * Syntax: =%<nop>UPLOADEXCEL2TABLE{...}%=
+   * Synopsis: An Excel spreadsheet can be uploaded and a TWiki table will be generated such that each row of the table corresponds to a row in the uploaded spreadsheet.
+   * Supported parameters:
+   | *Parameter:* | *Description:* | *Default:* |
+   | =topic="..."= | Default Parameter: The topic where the resultant table will be inserted. The first table found in this topic will be replaced by the generated table. | Current topic |
+   | =template="..."= | A form definition (see TWiki.TWikiForms); it defines the columns of the table to be generated. Must match column headers of the attached spreadsheet. |  |
+
+
+   * Syntax: =%<nop>TABLE2EXCEL{...}%=
+   * Synopsis: Generates an Excel spreadsheet file from the first table found in this topic, such that each row in the table will result in a row of the generated spreadsheet. 
+   * Supported parameters:
+   | *Parameter:* | *Description:* | *Default:* |
+   | =topic="..."= | Default parameter: The topic at which the spreadsheet is attached | Current topic |
+   | =file="..."= | The name of the generated spreadsheet file (without the extension)  | Current topic |
+   | =template="..."= | A form definition (see TWiki.TWikiForms); it defines the columns of the table to be generated. Must match column headers of the attached spreadsheet. |  |
+   | =map="..."= | The topic which contains additional mapping information between the columns of the table and the columns in the generated Excel file. |  |
+
+
+   * Syntax: =%SCRIPTURL{"topics2excel"}%=
+   * Synopsis: Generates an Excel spreadsheet file from the topics which have the designated form, such that each topic will result in a row of the generated spreadsheet and where the fields of the form indicate the columns of the spreadsheet. 
+   * Supported parameters:
+   | *Parameter:* | *Description:* | *Default:* |
+   | =template="..."= | Default parameter: A form definition (see TWiki.TWikiForms); it defines the columns of the table to be generated. Must match column headers of the attached spreadsheet. |  |
+   | =map="..."= | The topic which contains additional mapping information between the columns of the table and the columns in the generated Excel file. |  |
+
+   * Syntax: =%SCRIPTURL{"excel2topics"}%=
+   * Synopsis: An Excel spreadsheet can be uploaded and a topic is created for each row of the spreadsheet, such that each column of the spreadsheet corresponds to a formfield in the generated topic, as defined in the designated form. Only those fields will be written, that are present in an already existing topic (which will be updated with data from the spreadsheet) or in the identified topic creation template.
+   * Supported parameters:
+   | *Parameter:* | *Description:* | *Default:* |
+   | =topic="..."= | The topic at which the spreadsheet is attached | Current topic |
+   | =file="..."= | Default parameter: The name of the attached spreadsheet file (without the extension)  | Current topic |
+   | =template="..."= | A form definition (see TWiki.TWikiForms); it defines the columns of the table to be generated. Must match column headers of the attached spreadsheet. |  |
+   | =topiccolumn="..."= | The column that defines the name of the generated topic. If not present, the name is constructed from =ExcelRow= and a sequence number. | =TOPIC= |
+   | =topictext="..."= | This column defines the text of the topic. As a safety precaution, it will only generate topic text, if the existing text is not empty. | =TEXT= |
+   | =newtopictemplate="..."= | The topic template defining a newly created topic derived from a spreadsheet row. |  |
+
+
+Please see the example in Sandbox.IssueExcelExportImport for more detail.
+
+---++ Mapping between Excel Spreadsheet and TWiki Table
+
+#ColumnMapping
+In its simplest form, the correspondence between the Excel spreadsheet and the TWiki table is established through a TWiki.TWikiForms template. This for corresponds to the header row in the spreadsheet: each field in the form is the same as a column field in the header row. All fields except date fields are assumed to be of type text.
+
+Note that the order of the fields need not be the same, nor do all the column fields have to be present. Missing fields will be omitted in the import or export operations.
+
+More details of the generated Excel spreadsheet can be defined in a mapping table, which is a table with the following layout:
+
+| *Field* | *Meaning* | *Default* |
+| Name | Name of the form field |  |
+| Short Name | Excel column header. The Short Name and Name need to be the same if you want to be able to import the exported files without changing the column headers |  |
+| Width | Width of the Excel column |  |
+| Orientation | Vertical orientation of the Excel column, either =h= (horizontal) or =v= (vertical) | =h= |
+| Data Type | empty, =text=, or =date= | =text= |
+
+The mapping table, if present, overrides the form definition. If neither form nor mapping table are given, the column headings are inferred from the header line in table or spreadsheet. (A header line must be present, if a form or mapping table is not given.)
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference
+a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>SMARTEDITPLUGIN_SHORTDESCRIPTION%==
+
+   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = Renders an attached Excel spreadsheet as TWiki table
+
+   * Debug plugin: (See output in =data/debug.txt=)
+      * Set DEBUG = 0
+
+_Note: Additional settings are available, but not yet documented._
+
+_Note: The parameters for the tags and scripts can also be defined in settings._
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this add-on. The following instructions are for the administrator who installs the add-on on the server where TWiki is running. 
+
+   * Download the archive from the Plugin Home (see below)
+   * Unpack the archive in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+   | ==lib/TWiki/Plugins/ExcelImportExportPlugin.pm== |  |
+   | ==lib/TWiki/Plugins/ExcelImportExportPlugin/Import.pm== |  |
+   | ==lib/TWiki/Plugins/ExcelImportExportPlugin/Export.pm== |  |
+   | ==data/TWiki/ExcelImportExportPlugin.txt== |  |
+   | ==bin/excel2topics== |  |
+   | ==bin/topics2excel== |  |
+   | ==bin/table2excel== |  |
+   | ==bin/uploadexcel== |  |
+   | ==data/Sandbox/ExcelExport1.txt== |  |
+   | ==data/Sandbox/ExcelImport1.txt== |  |
+   | ==data/Sandbox/IssueExcelExportImport.txt== |  |
+   | ==data/Sandbox/IssueTrackingForm.txt== |  |
+   | ==pub/Sandbox/IssueExcelExportImport/IssueExcelExportImport.xls== |  |
+
+   * Make sure that all files are readable by the web server user, that the scripts are executable, and that the scripts are given the proper access rights in your =.htaccess= file, if applicable.     
+
+Look at the example in Sandbox...
+
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.ThomasWeigert, based on code by TWiki:Main.ClausLanghans |
+|  Copyright: | &copy; 2001-2008, %TWIKIWEB%.TWikiContributor |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | July 2008 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  July 2008: | 4.2.x compatibility, 
+                Update Topic data from changed Form definition. - SvenDowideit@wikiring.com |
+|  04 Nov 2006: | Added abilty to upload spreadsheet. Rewritten for consistency and made more resilient. Enhanced documentation. |
+|  13 Aug 2006: | Initial version |
+|  TWiki Dependency: |  |
+|  CPAN Dependencies: | <table border="1"><tr><th>Name</th><th>Version</th><th>Description</th></tr><tr><td align="left">Spreadsheet::ParseExcel</td><td align="left">Required. Available from [[http://search.cpan.org][CPAN]].</td></tr><tr><td align="left">Spreadsheet::WriteExcel</td><td align="left">Required. Available from [[http://search.cpan.org][CPAN]].</td></tr><tr><td align="left">Date::Manip</td><td align="left">Required. Available from [[http://search.cpan.org][CPAN]].</td></tr></table> |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences, TWiki:Plugins.ExcelImportExportAddOn
+
+-- TWiki:Main.ThomasWeigert - 13 Aug 2006

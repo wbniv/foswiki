@@ -1,0 +1,9 @@
+%META:TOPICINFO{author="TWikiGuest" date="1155589527" format="1.1" version="1.2"}%
+%TABLE2EXCEL{ map="Sandbox.IssueExcelExportImport" file="ExcelImportExport" topic="%TOPIC%" }%
+|TopicClassification|STATUS|NUM|DATE_LOGGED|LOGGED_BY|REGION|REGION_AFFECTED|SERVICE|USERS_AFFECTED|SHORT_DESCRIPTION|SECONDLINE|PROBLEM_DETAILS|ACTION_OWNER|NEXT_STEPS|START|DURATION|SEVERITY|REOC|FIX_PRIORITY|NEXT_UPDATE|LOGS|RELEASE_RELATED|
+| |New|5|20060813|SupportPerson|NYK|NYK|Desktop|Dr. Brain|Blue screen of death during system startup| |Memory faulty| |Replace mem| | |3| |M|20060813| | |
+| |Closed|3|20060731|SupportPerson|NYK|NYK|Desktop|Mrs. Key|Keyboard-chair error| |The error is between the keyboard and the chair.| |Obvious|12:00|30min|5|10|TBD|20060731| | |
+| |New|1|20060731|SupportPerson|NYK|LDN|Desktop|Mr Foo|Bar problem| |Mr. Foo has the bar problem| |Fix the bar problem once and forever|11:00|2h|5|10|TBD|20060731| | |
+| |New|4|20060801|SupportPerson|LDN|LDN|OS|Mrs. Push|User can not find the on button| |It was stolen| | | | |5| |L|20060801| | |
+| |Closed|2|20060731|SupportPerson|NYK|NYK|Desktop|Mr Clueno|User has no clue how to use the system| |User xyz called. He needs assistance| |1) Educate the user on how to use function. 2) Update help text|9:00|1h|5|10|TBD|20060731| | |
+
