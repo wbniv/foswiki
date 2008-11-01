@@ -1,0 +1,7 @@
+data/TWiki/JSPopupPlugin.txt  Plugin doc page
+pub/TWiki/JSPopupPlugin/JSPopupPlugin.js
+pub/TWiki/JSPopupPlugin/json.js
+pub/TWiki/JSPopupPlugin/wikiringlogo20x20.png
+lib/TWiki/Plugins/JSPopupPlugin.pm  Plugin Perl module 
+templates/jspopupplugin.javascript.tmpl
+templates/twiki.popup.tmpl
