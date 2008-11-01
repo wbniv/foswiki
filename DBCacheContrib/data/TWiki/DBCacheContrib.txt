@@ -1,0 +1,179 @@
+---+!! %TOPIC%
+
+Reusable code that treats TWiki forms as if they were table rows in a database.
+
+<!--
+
+   PLEASE DO NOT EDIT THIS TOPIC
+
+   It is automatically generated from the subversion repository, and any
+   changes you make will simply be overwritten the next time a release is
+   generated.
+
+   Instead, you could check your fix in, raise a bug in the Bugs web, or
+   mail the author.
+-->
+
+---++ Summary of Contents
+
+This module supports structured queries over a database built on the fly from
+the forms in TWiki topics. It does not support any tags, as it is provided as a
+service for other plugins that want to treat a TWiki web as a simple database;
+for example, the TWiki:Plugins/FormQueryPlugin, which supports the display of
+query results.
+
+The plugin encapsulates code that was formerly in the "engine room" of the
+<nop>FormQueryPlugin. It has been abstracted out in the belief that it will be
+useful to anyone who wants to do simple search operations from a plugin.
+
+---+++ Features
+	* Perform complex queries on the TWiki database
+	* Cache TWiki topics for rapid queries
+
+---+++ How the database gets built
+You can think of the database as an array of all the topics in a web. Each
+array entry is a map (or hash in perl terms) that maps a set of field names to
+values.
+
+Each topic in the web automatically gets a number of standard fields, generated
+by reading the metadata from the topic (see %TWIKIWEB%.TWikiMetaData)
+	* =name=        - name of the topic
+	* =parent=      - name of parent topic
+	* =_up=         - _reference_ to the Map of the parent topic, if it exists
+	* =attachments= - array of Maps, each of which contains:
+		*  =_up= - _reference_ to the Map for the topic
+		*  =name= - attachment name
+		* =attr= - e.g hidden
+		* =comment= - attachment comment
+		* =path= - client path used to upload attachment
+		* =size= - size in Kb
+		* =user= - who uploaded the attachment
+		* =version= - e.g. 1.3
+	* =info= - Map containing:
+		* =_up= - reference to the Map for the topic
+		* =author= - most recent author
+		* =date= - date of last change
+		* =format= - topic format version
+		* =version= - topic version number
+	* =moved= - Map containing:
+		* =_up= - reference to the Map for the topic
+		* =by= - who moved it
+		* =date= - when they moved it
+		* =from= - where they moved it from
+		* =to= - where they moved it to
+	* =form= - form type
+	*  _form name_ - e.g. if a "My<nop>Form" is attached, this will be
+          =My<nop>Form=. This is a reference to a Map containing a key for each
+          field in the form. Each key maps to the value in the form data for
+          that key. The Map will also have an =_up= reference to the Map for
+          the topic.
+	* =text= - raw text of the topic)
+
+The sub-Maps created for =info=, _form name_, =moved=, and each row in
+=attachments= also have a _reference_ back to the topic Map, called  =_up=.
+
+Other fields may be added by subclasses. Refer to the documentation for the
+plugin that is using the DBCache for more details.
+
+---+++ The cache
+To achieve best perfomance the plugin caches the database read from the TWiki
+topics. The cache is stored in the work area for the DBCacheContrib (see
+={RCS}{WorkAreaDir}= in =configure=). If any topic changes in the web, this
+cache is automatically rebuilt. The cache file can be deleted at any point with
+no ill effects.
+
+---+++ Extending or customising
+Extension or customisation is welcome, as long as all extensions are described
+and code provided back to the author.
+
+The module is shipped with a perl build file, which should be used for
+installation and testing. Testing is done using CPAN:Test::Unit, and is invoked
+using the 'test' build target. Writing tests is a useful way of feeding back
+bugs as well. I can't encourage you enough to maintain and extend the tests!
+
+---++ Detailed Documentation
+Clients use the DBCache by defining a subclass of the
+=TWiki::Contrib::DBCacheContrib= class. The following POD documentation
+describes the methods of this class and the various other classes provided by
+the plugin..
+
+%$POD%
+
+<!--
+	* Set STUB = %$STUB%
+	* Set SHORTDESCRIPTION = Reusable code that treats TWiki forms as if they were table rows in a database
+-->
+
+---++ Installation Instructions
+<strong>
+WARNING: TWiki-4 only. If you want to use this extension with an earlier
+version of TWiki, please see
+[[http://twiki.org/cgi-bin/view/Plugins/%TOPIC%?rev=1.9][an earlier version of this topic]]
+</strong>
+
+<div class="twikiAlert">
+Note: if you are upgrading from a pre-13527 version, you __must__ run
+=configure= after you have installed. Specifically, the
+={DBCacheContrib}{Archivist}= configuration option must have a value, or you
+will get a "No {DBCacheContrib}{Archivist}" error.
+</div>
+
+---+++ {DBCache}{AlwaysUpdateCache}
+If  $TWiki::cfg{DBCache}{AlwaysUpdateCache}  is set to FALSE (defaults to TRUE
+for compatibility) then <nop>DBCacheContrib will avoid calling =_updateCache= unless
+requested. =_updateCache= accesses every topic file in the
+web, so its an unnecessary performance hit.  <nop>DBCacePlugin now only requests
+=_updateCache= from the afterSaveHandler and from the new REST updateCache
+handler.
+
+%$INSTALL_INSTRUCTIONS%
+
+---++ Contrib Info
+|  Author: | TWiki:Main/CrawfordCurrie |
+|  Copyright &copy;: | This code is based on an original development of Motorola Inc. and is protected by the following copyrights: <br>Copyright @copy 2002-2003 Motorola Inc. All Rights Reserved. <br>Portions copyright &copy; 2004. Crawford Currie http://www.c-dot.co.uk |
+|  License: | As required for the publication of all extensions to TWiki, this software is published under the terms of the GNU General Public License. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details, published at http://www.gnu.org/copyleft/gpl.html |
+|  Version: | %$VERSION% |
+|  Change History: | |
+|  16347 | remove META data from text hash; include META data in all hash. TWiki:Main.MichaelDaum |
+|  16346 | caching all topic elements to an =all= field to allow th search in all of the text and the formfields like \
+           the normal grep-based SEARCH does. TWiki:Main.MichaelDaum |
+|  15868 | fixed WITHIN_DAYS and EARLIER_THAN. TWiki:Main.MichaelDaum |
+|  15583 | made query parser pluggable so that other plugins can implement their own predicates. TWiki:Main.MichaelDaum |
+|  15019 | added {DBCache}{AlwaysUpdateCache} to remove the updateCache from every operation. TWiki:Main.SvenDowideit |
+|  13562 | Bugs:Item3985 - fixed failures with hierarchical webs |
+|  13527 | Moved the cache into the extensions work areas, instead of the web directory |
+|  12943 | Bugs:Item3659: added automatic conversion of integers to dates |
+|  12923 | added REF operator; \
+           added link to web object to hashes; \
+	   fixed parent relation to end in WebHome; \
+	   added "web" property to topic hashes; \
+           caching META:PREFERENCES now |
+|  11537 | Added lc and uc operators for case-insensitive searches |
+|  9303 | TWikibug:Item1844 - don't die on broken symlinks |
+|  8682 | TWikibug:Item1580 - one-char fix that makes the difference |
+|  8110 | TWikibug:Item663 - formatting and text fixes |
+|  7552 | TWikibug:Item997 - test update |
+|  7274 | TWikibug:Item719 - onReload() is not a static method. |
+|  7262 | TWikibug:Item719 - MichaelDaum's patch (almost) to correct parameters to onReload |
+|  7260 | TWikibug:Item727 - made it clean the form name using normaliseWebTopicName |
+|  6353 | TWikibug:Item380 - do as the man says; make all $/ local |
+|  5720 | Updated tests |
+|  5719 | Fix for correct handling of parent relations |
+|  5229 | Small improvement to the way it handles errors from Storable and Archive |
+|  5223 | Documentation fixes, adding gifs. |
+|  5048 | Cairo readiness |
+|  5036 | Split from SharedCode |
+|  5031 | Moving to new name |
+|  5030 | About to rename |
+|  5019 | Improved topic data model, cleaned up tests |
+|  5008 | Added extended access syntax, [?], [*] etc. |
+|  5006 | Doc fixes |
+|  5005 | Poddified documentation |
+|  5003 | Initial version |
+|  8 Jul 2004 | Initial version, split out from <nop>FormQueryPlugin |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Perl Version: | 5.0 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
