@@ -1,0 +1,4 @@
+1) Change from refcnts to record locking.
+2) Test lockall and lockkeys.
+3) Fix tdb_firstkey() (don't get dead record).
+4) Don't use dead bitfield (too hard to endian convert).
