@@ -1,0 +1,76 @@
+%META:TOPICINFO{author="tarzan" date="1077529065" format="1.0" version="1.7"}%
+%META:TOPICPARENT{name="TWikiPlugins"}%
+---++ %TOPIC%
+
+This plugin allows you to make links to Bugzilla or directly query Bugzilla for data and results could be formated. I take a vision from BugzillaLinkPlugin but it doesn't fulfil all needs of our company.
+<hr>
+<font color="red" size="+1">THIS VERSION OF PLUGIN WORKS FINE WITH BUGZILLA 2.16.x OR LATER!!</font>
+<hr>
+---+++ Syntax Rules
+<blockquote style="background-color:#f5f5f5">
+	* =%<nop>BGQ{"12"}%=
+	* =%<nop>BGQ{"12, 25, 200"}%=
+	* =%<nop>BGQ{data="on" bug_status="NEW, ASSIGNED, REOPENED" product="xxx" target_milestone="yyy"}%=
+</blockquote>
+
+---++++ Allowed attributes
+Attributes are named by columns in 'bugs' table in DB. It means you can use attributes "bug_id", "bug_status", "reporter", "target_milestone" etc. If you need to search by keywords then use attribute "keyword".
+
+There are these 'special' attributes:
+	* *data* - if set to "on" you get directly data from database
+	* *format* - you can specify the output
+
+---++++ Syntax and variables in 'format' attribute
+You can use the same naming conventions as for attributes and put before it the character '$'.
+<blockquote style="background-color:#f5f5f5">
+Examples:
+	* format="| $bug_id | $bug_status | $assigned_to |" 
+| 123 | NEW | an_user@bugzilla.com |
+| 234 | RESOLVED | another_user@bugzilla.com |
+	* format="Bug $bug_id is in status $bug_status and was assigned to $assigned_to"  
+Bug 123 is in status NEW and was assigned to an_user@bugzilla.com<br>
+Bug 234 is in status RESOLVED and was assigned to another_user@bugzilla.com<br>
+</blockquote>
+
+---+++ Examples
+	* %BGQ{"12"}%
+	* %BGQ[bug_id="12"]%
+	* %BGQ{"12, 25, 200"}%
+%BGQ{data="on" bugstatus="NEW, ASSIGNED, REOPENED" product="xxx" milestone="yyy"}%
+
+---+++ <nop>%TOPIC% Settings
+<blockquote style="background-color:#f5f5f5">
+		* Set URL = https://marvin.in.idoox.com/bugzilla/
+		* Set FORMAT = | $bug_id | $bug_severity | $priority | $bug_status | $resolution | $reporter | $product | $short_desc |
+		* Set SHORTDESCRIPTION = This plugin is useful to display links or data results from Bugzilla.
+		* Set SHOWBUGSCRIPT = show_bug.cgi
+		* Set BUGLISTSCRIPT = buglist.cgi
+		* Set BUGZILLA_DB_HOST =
+		* Set BUGZILLA_DB_PORT = 
+		* Set BUGZILLA_DB_NAME = bugs
+		* Set BUGZILLA_USER = guest
+		* Set BUGZILLA_PASSWD =
+		* Set DEBUG = 0
+</blockquote>
+
+---+++ Plugin Installation Instructions
+Extract <nop>BugzillaQueryPlugin.zip, edit the BugzillaQueryPlugin to your needs and have fun.
+
+---+++ Files
+	* ==lib/TWiki/Plugins/BugzillaQueryPlugin.pm==
+	* ==data/TWiki/BugzillaQueryPlugin.txt== 
+
+---+++ Plugin Info
+|  Plugin Author: | Main.RichardBaar |
+|  Plugin Version: | 1.03 |
+|  Change History: | 23 Feb 2004: Added keywords and remote machine support |
+|  CPAN Dependencies: | DBI |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.0 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- Main.RichardBaar - 23 Feb 2004
+
