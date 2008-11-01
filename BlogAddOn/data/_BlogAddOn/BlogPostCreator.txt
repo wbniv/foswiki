@@ -1,0 +1,70 @@
+%META:TOPICINFO{author="TWikiContributor" date="1165850723" format="1.1" version="1.1"}%
+---+!! %MAKETEXT{"Write a new blog post"}%
+
+<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/TWikiJavascripts/twikiString.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var didSwitchToJsField = false;
+	
+function canSubmit() {
+  var inputField = (didSwitchToJsField) ? document.forms.newTopicForm.jstopic : document.forms.newTopicForm.topic;
+  
+  var inputTitle = inputField.value;
+  if (!inputTitle) return false;
+
+  document.forms.newTopicForm.Title.value = inputTitle;
+  
+  inputTitle = inputTitle.replace(/^\s+|\s+$/g,""); // trim spaces at ends
+  //var topicName = "%GMTIME{"$year-$mo-$day"}%_" + inputTitle;
+  var topicName = inputTitle;
+  topicName = topicName.replace(/_/g, "BLOGPOSTADDONUNDERSCORE");
+  topicName = topicName.replace(/\./g, "BLOGPOSTADDONUNDERSCORE");
+  topicName = topicName.replace(/ /g, "BLOGPOSTADDONUNDERSCORE");
+  topicName = topicName.replace(/-/g, "BLOGPOSTADDONDASH");
+  topicName = twiki.String.capitalize(topicName);  
+  topicName = twiki.String.removeSpaces(topicName);
+  topicName = twiki.String.removePunctuation(topicName);
+  topicName = topicName.replace(/BLOGPOSTADDONUNDERSCORE/g, "_");
+  topicName = topicName.replace(/BLOGPOSTADDONDASH/g, "-");
+  
+  if (!topicName) return false;
+  
+  document.forms.newTopicForm.topic.value = topicName;
+  
+  /* no-js-fallback */
+  /* hide 'topic' field and show replacement field instead */
+  /* so field contents does not get suddenly wikiworded */
+  document.forms.newTopicForm.topic.style.display = 'none';
+  document.forms.newTopicForm.jstopic.style.display = 'inline';
+  document.forms.newTopicForm.jstopic.value = topicName;
+  didSwitchToJsField = true;
+  
+  return true;
+}
+/* ]]> */
+</script>
+
+<form name="newTopicForm" id="newTopicForm" action="%SCRIPTURLPATH{edit}%/%BASEWEB%/" onsubmit="return canSubmit();">
+<div class="twikiFormSteps">
+<div class="twikiFormStep">
+*%MAKETEXT{"Title of new blog post:"}%* %MAKETEXT{"(one or multiple words)"}% %BR%
+<input tabindex="1" type="text" class="twikiInputField" name="topic" id="topic" size="40" /><input style="display:none;" type="text" class="twikiInputField" name="jstopic" id="jstopic" size="40" value="HA" />
+</div>
+<div class="twikiFormStep">
+*%MAKETEXT{"Category:"}%* %MAKETEXT{"(you may choose later)"}% %BR%
+<select tabindex="2" name="Category" class="twikiSelect">
+<option>%MAKETEXT{"Select..."}%</option>
+%SEARCH{"   *\s*.*?" topic="BlogCategory" type="regex" multiple="on" casesensitive="on" nonoise="on" format="<option>$pattern(.*   \*\s*([^\n]*).*)</option>"}%
+</select> <span class="twikiSmallish">[[BlogCategory][%MAKETEXT{"Add categories..."}%]]</span>
+</div>
+<div class="twikiFormStep">
+<input type="hidden" name="Title" />
+<input type="hidden" name="nonwikiword" value="on" />
+<input type="hidden" name="onlywikiname" value="off" />
+<input type="hidden" name="onlynewtopic" value="on" />
+<input type="hidden" name="templatetopic" value="BlogPostTemplate" />
+<input type="hidden" name="topicparent" value="BlogPost" />
+<input tabindex="3" type="submit" class="twikiSubmit" value='%MAKETEXT{"Start writing"}%' />
+</div>
+</div>
+</form>

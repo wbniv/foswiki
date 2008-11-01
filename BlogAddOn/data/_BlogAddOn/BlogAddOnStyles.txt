@@ -1,0 +1,74 @@
+%META:TOPICINFO{author="TWikiContributor" date="1165927036" format="1.1" reprev="1.1" version="1.1"}%
+---+!! !BlogAddOn CSS styles
+
+<verbatim>
+%STARTINCLUDE%<style type="text/css" media="all">
+/* sort and filter options */
+.blogPostAddOnViewOptions {
+	font-size:94%;
+	border-bottom:1px solid #ddd;
+	margin:0 0 .5em 0;
+}
+.blogPostAddOnViewOptions a:link,
+.blogPostAddOnViewOptions a:visited {
+	font-weight:bold;
+}
+.blogPostAddOnViewOptions a:hover {
+}
+.blogPostAddOnViewOptions select,
+#noJsUpdateButton {
+	margin:0 .25em 0 0;
+}
+.blogPostViewOptionsFilter {
+	padding:0 0 0 .7em;
+}
+a.blogPostAddOnViewOptionsSubscribeLink:link,
+a.blogPostAddOnViewOptionsSubscribeLink:visited {
+	text-decoration:none;
+	font-weight:normal;
+}
+.blogPostAddOnViewOptionsDivider {
+	padding:0 0 .5em 0;
+}
+.blogPostAddOnLatestComment {
+	font-size:94%;
+	margin:.5em 0 0 0;
+}
+.blogPostAddOnLatestCommentCount {}
+/* list of posts */
+.blogPostAddOnOverview {}
+.blogPostAddOnOverview .blogPostAddOnHeaderInfo {
+	margin:0;
+}
+.blogPostAddOnItem {
+	padding:.5em 0 1.5em 0;
+	border-bottom:1px solid #eee;
+	height:1%; /* for IE */
+}
+.blogPostAddOnItem h3 {
+	padding:0 0 .1em 0;
+	margin:0 0 .1em 0;
+	border:none;
+}
+.blogPostAddOnItem h3 a:link,
+.blogPostAddOnItem h3 a:visited {
+	text-decoration:none;
+}
+.blogPostAddOnSummary {
+	margin:.5em 0 0 0;
+}
+.blogPostAddOnItem .twikiImage {
+	margin:.5em 1em .5em 0;
+}
+/* post */
+h1.blogAddOnTitle {
+	margin:0 0 .15em 0;
+}
+.blogPostAddOnHeaderInfo {
+	margin:0 0 1em 0;
+}
+.blogPostAddOnPicture {
+	margin:0 1em 1em 0;
+}
+</style>%STOPINCLUDE%
+</verbatim>

@@ -1,0 +1,44 @@
+%META:TOPICINFO{author="TWikiContributor" date="1165851072" format="1.1" version="1.1"}%
+%TMPL:INCLUDE{"view"}%
+
+
+<verbatim>
+%TMPL:DEF{"postinfo"}%%MAKETEXT{"[_1] by [_2] in [_3]" args="%REVINFO{rev="1" format="$date - $time"}%, %SEARCH{"%FORMFIELD{"Author"}%" web="%MAINWEB%" scope="topic" topic="%FORMFIELD{"Author"}%" nonoise="on" format="[[$web.$topic][$formfield(FirstName) $formfield(LastName)]]"}%, [[%SCRIPTURL{view}%/%BASEWEB%/BlogPost?category=%FORMFIELD{"Category"}%][%FORMFIELD{"Category"}%]]"}%%TMPL:END%
+
+
+%TMPL:DEF{"picture"}%<div class="twikiLeft twikiImage blogPostAddOnPicture">%INCLUDE{"%MAINWEB%.PersonalInfoLayoutModules" section="image" imgWeb="%MAINWEB%" imgTopic="%FORMFIELD{"Author"}%" 
+imgName="%FORMFIELD{"Picture" web="%MAINWEB%" topic="%FORMFIELD{"Author"}%"}%" imgWidth="80"}%</div><!--/twikiLeft twikiImage-->%TMPL:END%
+
+
+%TMPL:DEF{"content"}%%INCLUDE{"BlogAddOnStyles"}%
+<div class="patternTopic">%BROADCASTMESSAGE%
+%IF{"{Plugins}{BlogAddOn}{ShowPersonalInfoAddOnPictures}" then="$percntTMPL:P{picture}$percnt"}% <h1 class="blogAddOnTitle"> %FORMFIELD{"Title"}% </h1>
+<div class="twikiGrayText twikiSmallish blogPostAddOnHeaderInfo">%TMPL:P{"postinfo"}%</div><br class="twikiClear" />
+%TEXT%
+---++ %MAKETEXT{"Comments"}% <span style="font-size:60%"><a href="%SCRIPTURL{edit}%/%WEB%/%TOPIC%Comments?topicparent=%TOPIC%;t=%GMTIME{"$epoch"}%" style="text-decoration:none;">%MAKETEXT{"(edit)"}%</a></span>
+#BlogPostComments
+%INCLUDE{"%TOPIC%Comments" warn="off"}%
+
+%COMMENT{rows="6" cols="100" noform="on" type="blogpost" templatetopic="BlogPostCommentTemplate" target="%TOPIC%" button="%MAKETEXT{"Add comment"}%" }%
+</div>
+#BlogPostEnd
+%TMPL:END%
+
+
+
+%TMPL:DEF{"form"}%%TMPL:END%
+
+%TMPL:DEF{"breadcrumb:wikitoolname"}%[[%MAINWEB%.%HOMETOPIC%][Home]]%TMPL:END%
+
+%TMPL:DEF{"breadcrumb:currenttopic"}%%TMPL:P{"breadcrumb:separator"}%%TMPL:P{"breadcrumb:topic"}%%TMPL:P{"breadcrumb:annotation"}%%TMPL:END%
+
+%TMPL:DEF{"breadcrumb"}%%TMPL:P{"breadcrumb:title"}%%IF{"defined 'IS_HOME'" then="Home" else="%TMPL:P{"breadcrumb:wikitoolname"}%%TMPL:P{"breadcrumb:currentweb"}%%TMPL:P{"breadcrumb:parents"}%%TMPL:P{"breadcrumb:currenttopic"}%"}%%TMPL:END%
+
+%TMPL:DEF{"breadcrumb:subweblink"}%%TMPL:P{"breadcrumb:separator"}%<a href='%SCRIPTURLPATH{view}%/%WEB%/%HOMETOPIC%'>%IF{"defined 'WEBNAME'" then="%WEBNAME%" else="%WEB%"}%</a>%TMPL:END%
+
+%TMPL:DEF{"breadcrumb:currentweb"}%%IF{"'%TOPIC%'!='WebHome' and $WEB!='%MAINWEB%'" then="%TMPL:P{"breadcrumb:subweblink"}%"}%%TMPL:END%
+
+%TMPL:DEF{"toptoolbar:webname"}%
+---++!! [[%WEB%.%HOMETOPIC%][%IF{"defined WEBNAME" then="%WEBNAME%" else="%WEB%"}%]]
+%TMPL:END%
+</verbatim>

@@ -1,0 +1,70 @@
+%META:TOPICINFO{author="TWikiContributor" date="1165927211" format="1.1" reprev="1.1" version="1.1"}%
+---+!! Blog !AddOn
+
+*A simple weblog application.*
+
+See %TWIKIWEB%.BlogAddOn for an introduction and installation instructions. %BR%
+This topic is meant for administrators and serves as introduction springboard to !BlogAddOn topics. You may safely delete this topic.
+
+%TOC%
+
+---++ Start from here
+
+   * BlogPost - overview of all posts with filtering and sorting options
+   * BlogPostCreator - form to start new posts
+   * BlogCategory - editable list of blog categories
+   
+---++ Reference for administrators
+
+   * BlogPostForm - form definition with post data fields
+   * BlogPostTemplate - every new post gets settings from this topic
+   * BlogPostViewTemplate - every post is displayed through this view template
+   * BlogPostCommentTemplate - form template for comment box (see %TWIKIWEB%.CommentPlugin)
+   * BlogAddOnStyles - default css styles for BlogPost and blog posts (BlogPostViewTemplate)
+
+*Note:* Care must be taken when:
+   * Renaming post topics: the comment topic needs to be renamed as well
+      * The comment topic is created automatically when the first comment is submitted, using the syntax =topic name= + =Comment=.
+   * Renaming categories: the comment topics are not updated automatically
+   
+---++ Putting the blog post overview in a different topic
+
+To put the overview in a topic, write:
+
+<verbatim>
+%INCLUDE{"BlogPost"}%
+</verbatim>
+
+You may set display defaults, for example for category and sort field, using  additional parameters. Possible values are:
+
+%TABLE{sort="off"}%
+| *Parameter* | *Possible values* | *Default value* |
+| =category=   | =%SEARCH{"   *\s*.*?" topic="BlogCategory" type="regex" multiple="on" casesensitive="on" nonoise="on" separator="=, =" format="$pattern(.*   \*\s*([^\n]*).*)"}%= (categories can be defined in BlogCategory) | none |
+| =sort=     | =formfield(Title)=, =formfield(Category)=, =formfield(Author)=, =created=, =modified=  | none |
+| =limit=     | any number  | no limit |
+| =sortdirection=   | =ascending=, =descending=  | =ascending= |
+
+For example, to show latest 10 posts, sorted latest post on top, write:
+
+<verbatim>
+%INCLUDE{"BlogPost" sortdirection="descending" sort="created" limit="10"}%
+</verbatim>
+
+This will generate:
+
+%INCLUDE{"BlogPost" sortdirection="descending" sort="created" limit="10"}%
+
+---+++ Creating filter links
+
+You may want to have a list of links that lead to a filtered blogpost list. For instance, the link named "Interesting" would lead to a list of blog posts of that category.
+
+Here's how:
+<verbatim>
+*Categories:*
+<div class="twikiUnvisited">%SEARCH{"   *\s*.*?" topic="BlogCategory" web="%WEB%" type="regex" multiple="on" casesensitive="on" nonoise="on" format="<a href='%SCRIPTURL{view}%/%WEB%/BlogPost?sort=created;limit=10;sortdirection=descending;category=$pattern(.*   \*\s*([^\n]*).*)'>$pattern(.*   \*\s*([^\n]*).*)</a>"}%</div>
+</verbatim>
+
+This will generate:
+
+*Categories:*
+<div class="twikiUnvisited">%SEARCH{"   *\s*.*?" topic="BlogCategory" web="%WEB%" type="regex" multiple="on" casesensitive="on" nonoise="on" format="<a href='%SCRIPTURL{view}%/%WEB%/BlogPost?sort=created;limit=10;sortdirection=descending;category=$pattern(.*   \*\s*([^\n]*).*)'>$pattern(.*   \*\s*([^\n]*).*)</a>"}%</div>

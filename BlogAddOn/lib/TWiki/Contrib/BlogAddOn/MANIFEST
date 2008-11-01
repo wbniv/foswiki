@@ -1,0 +1,14 @@
+lib/TWiki/Contrib/BlogAddOn/Config.spec 0444 Spec file for =configure=
+data/TWiki/BlogAddOn.txt 0660
+data/_BlogAddOn/BlogAddOnHome.txt 0660
+data/_BlogAddOn/BlogAddOnStyles.txt 0660
+data/_BlogAddOn/BlogPostCommentTemplate.txt 0660
+data/_BlogAddOn/BlogCategory.txt 0660
+data/_BlogAddOn/BlogPost.txt 0660
+data/_BlogAddOn/BlogPostCreator.txt 0660
+data/_BlogAddOn/BlogPostExample.txt 0660
+data/_BlogAddOn/BlogPostForm.txt 0660
+data/_BlogAddOn/BlogPostTemplate.txt 0660
+data/_BlogAddOn/BlogPostViewTemplate.txt 0660
+pub/TWiki/BlogAddOn/screenshot_list.png 0660
+pub/TWiki/BlogAddOn/screenshot_post.png 0660

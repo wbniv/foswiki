@@ -1,0 +1,39 @@
+%META:TOPICINFO{author="TWikiContributor" date="1165870760" format="1.1" reprev="1.1" version="1.1"}%
+%META:TOPICPARENT{name="BlogPostHome"}%
+
+<verbatim>
+%TMPL:DEF{PROMPT:blogpost}%%TMPL:P{promptbox}%%TMPL:END%
+</verbatim>
+
+<verbatim>
+%TMPL:DEF{FORM:blogpost}%
+#BlogPostPrompt
+<form method="post" action="%SCRIPTURL{save}%/%BASEWEB%/%BASETOPIC%Comments" enctype="application/x-www-form-urlencoded" name="blogpostcomment" id="blogpostcomment">
+<input type="hidden" name="redirectto" value="%BASEWEB%.%BASETOPIC%" />
+<input type="hidden" name="topicparent" value="%TOPIC%" />
+%COMMENTPROMPT%
+</form>
+%TMPL:END%
+</verbatim>
+
+<verbatim>
+%TMPL:DEF{OUTPUT:blogpost}%%POS:BEFORE%%TMPL:P{OUTPUT:blogpostthreadmode}%%TMPL:END%
+</verbatim>
+
+<verbatim>
+%TMPL:DEF{OUTPUT:blogpostthreadmode}%%POS:BEFORE%
+%GMTIME{"#CommentDate$epoch"}%
+%WIKIUSERNAME% - %DATE%:
+
+%URLPARAM{"comment"}%
+
+--- 
+%TMPL:END%
+</verbatim>
+
+
+
+Include generic comment templates:
+<verbatim>
+%TMPL:INCLUDE{"%TWIKIWEB%.CommentPlugin"}%
+</verbatim>

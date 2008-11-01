@@ -1,0 +1,63 @@
+%META:TOPICINFO{author="TWikiContributor" date="1165927036" format="1.1" reprev="1.1" version="1.1"}%
+---+!! Blog posts
+<form method="get" action="%SCRIPTURL{view}%/%WEB%/BlogPostCreator">
+<input type="submit" class="twikiButton" value="%MAKETEXT{"Write a new blog post"}%" />
+</form>
+
+%STARTINCLUDE%%INCLUDE{"BlogAddOnStyles"}%
+#BlogPosts
+<div class="blogPostAddOnViewOptions">
+<!-- Sort options --><div class="twikiLeft">
+<strong>%MAKETEXT{"Sort by:"}%</strong>&nbsp;
+%IF{"$ sort='formfield(Title)'" then='<strong>%MAKETEXT{"Title"}%</strong>' else="[[%SCRIPTURL{"view"}%/%BASEWEB%/%BASETOPIC%?%IF{"defined category and $ category != ''" then="category=%URLPARAM{"category"}%;"}%%IF{"defined limit and $ limit != ''" then="limit=%URLPARAM{"limit"}%;"}%sort=formfield(Title);sortdirection=ascending#BlogPosts][%MAKETEXT{"Title"}%]]"}%
+&nbsp; %IF{"$ sort='formfield(Category)'" then='<strong>%MAKETEXT{"Category"}%</strong>' else="[[%SCRIPTURL{"view"}%/%BASEWEB%/%BASETOPIC%?%IF{"defined category and $ category != ''" then="category=%URLPARAM{"category"}%;"}%%IF{"defined limit and $ limit != ''" then="limit=%URLPARAM{"limit"}%;"}%sort=formfield(Category);sortdirection=ascending#BlogPosts][%MAKETEXT{"Category"}%]]"}%
+&nbsp; %IF{"$ sort='formfield(Author)'" then='<strong>%MAKETEXT{"Author"}%</strong>' else="[[%SCRIPTURL{"view"}%/%BASEWEB%/%BASETOPIC%?%IF{"defined category and $ category != ''" then="category=%URLPARAM{"category"}%;"}%%IF{"defined limit and $ limit != ''" then="limit=%URLPARAM{"limit"}%;"}%sort=formfield(Author);sortdirection=ascending#BlogPosts][%MAKETEXT{"Author"}%]]"}%
+&nbsp; %IF{"$ sort='created'" then='<strong>%MAKETEXT{"Date"}%</strong>' else="[[%SCRIPTURL{"view"}%/%BASEWEB%/%BASETOPIC%?%IF{"defined category and $ category != ''" then="category=%URLPARAM{"category"}%;"}%%IF{"defined limit and $ limit != ''" then="limit=%URLPARAM{"limit"}%;"}%sort=created;sortdirection=descending#BlogPosts][%MAKETEXT{"Date"}%]]"}%
+&nbsp; %IF{"$ sort='modified'" then='<strong>%MAKETEXT{"Last modified"}%</strong>' else="[[%SCRIPTURL{"view"}%/%BASEWEB%/%BASETOPIC%?%IF{"defined category and $ category != ''" then="category=%URLPARAM{"category"}%;"}%%IF{"defined limit and $ limit != ''" then="limit=%URLPARAM{"limit"}%;"}%sort=modified;sortdirection=descending#BlogPosts][%MAKETEXT{"Last modified"}%]]"}%
+</div><!--/twikiLeft-->
+<!-- Filter options --><form name="blogPostCategorySelection" action="%SCRIPTURL{"view"}%/%BASEWEB%/%BASETOPIC%#BlogPosts" method="get"><div id="noJsUpdateButton" class="twikiRight blogPostViewOptionsFilter">%BR%<input type="submit" class="twikiButton" value='%MAKETEXT{"Update"}%' /></div>
+<div class="twikiRight">%IF{"defined sort and $ sort != ''" then='<input type="hidden" name="sort" value="%URLPARAM{"sort" default="%sort%" encode="url"}%" />'}%<nop>
+%IF{"defined sortdirection and $ sortdirection != ''" then='<input type="hidden" name="sortdirection" value="%URLPARAM{"sortdirection" default="%sortdirection%" encode="url"}%" />'}%<nop>
+<div class="twikiLeft blogPostViewOptionsFilter">
+<strong>%MAKETEXT{"Limit to:"}%</strong>&nbsp;
+<select class="twikiSelect" name="limit" onchange="document.forms.blogPostCategorySelection.submit()">%IF{"defined limit and $ limit != '' and $ limit != 'no_limit'" then="<option selected>%URLPARAM{"limit" default="%limit%"}%</option><option disabled value=\"\">-----</option>"}%<option %IF{"defined limit and $ limit = ''" then="selected"}% value="no_limit">%MAKETEXT{"No limit"}%</option>
+<option>10</option>
+<option>25</option>
+<option>50</option>
+<option>100</option>
+</select>
+</div>
+<div class="twikiLeft blogPostViewOptionsFilter">
+<strong>%MAKETEXT{"Category:"}%</strong>&nbsp;
+<select class="twikiSelect" name="category" onchange="document.forms.blogPostCategorySelection.submit()">%IF{"defined category and $ category != ''" then='<option selected>%URLPARAM{"category" default="%category%"}%</option><option disabled value="">-----</option>'"}%
+<option %IF{"defined category and $ category = ''" then="selected=\"selected\""}% value="">%MAKETEXT{"All categories"}%</option>
+%SEARCH{"   *\s*.*?" topic="BlogCategory" type="regex" multiple="on" casesensitive="on" nonoise="on" format="<option>$pattern(.*   \*\s([^\n]*).*)</option>"}%
+</select>&nbsp;<noautolink><a class="blogPostAddOnViewOptionsSubscribeLink" title='%IF{"defined category and $ category != ''" then="%MAKETEXT{"RSS newsfeed: subscribe to blog posts in category [_1]" args="%URLPARAM{"category" encode="entity"}%"}%" else="%MAKETEXT{"RSS newsfeed: subscribe to blog posts in all categories"}%"}%' href='%SCRIPTURL{"view"}%/%BASEWEB%/WebRss?search=%ENCODE{"[T]opicType.*value\=.*(BlogPost);[C]ategory.*value\=.*(%URLPARAM{"category"}%)" type="url"}%;regex=on;casesensitive=on;excludetopic=BlogPostTemplate,BlogPost;limit=16;scope=text'>%MAKETEXT{"Subscribe"}%</a></noautolink>
+</div>
+<br class="twikiClear" />
+</div>
+</form>
+<br class="twikiClear" />
+<div class="blogPostAddOnViewOptionsDivider"></div>
+</div>
+<script type="text/javascript">
+/* <![CDATA[ */
+/* hide update button if javascript is available */ 
+document.getElementById("noJsUpdateButton").style.display = 'none';
+/* ]]> */
+</script>
+<div class="blogPostAddOnOverview">%STARTSECTION{"simple"}%
+%SEARCH{"[T]opicType.*value\=.*(BlogPost)%IF{"defined category and $ category != ''" then=";[C]ategory.*value\=.*(%URLPARAM{"category" encode="entity" default="%category%"}%)"}%" web="%WEB%" nonoise="on" excludetopic="*Template" type="regex" casesensitive="on" format="%INCLUDE{"%TOPIC%" section="blogPostAddOnItem"}%"  order="%IF{"defined sort" then="%URLPARAM{"sort" encode="url" default="%sort%"}%" else="created"}%" reverse="%IF{"defined sortdirection" then="%URLPARAM{"sortdirection" encode="url" default="%sortdirection%"}%" else=""}%" limit="%IF{"defined limit" then="%URLPARAM{"limit" encode="url" default="%limit%"}%" else="all"}%" "}%
+%ENDSECTION{"simple"}%</div>%STOPINCLUDE%
+
+<verbatim style="display:none;">
+%STARTSECTION{"blogPostAddOnItem"}%<div class=\"blogPostAddOnItem\">
+---+++!! [[$web.$topic][$formfield(Title)]]
+<div class=\"twikiGrayText twikiSmallish blogPostAddOnHeaderInfo\">%MAKETEXT{"[_1][_2] in [_3]" args="$createdate, 
+$percntSEARCH{$quot$formfield(Author)$quot scope=$quottopic$quot topic=$quot$formfield(Author)$quot web=$quot%MAINWEB%$quot nonoise=$quoton$quot format=$quot by [[$dollarweb.$dollartopic][$dollarformfield(FirstName) $dollarformfield(LastName)]]$quot}$percnt, <a href='%SCRIPTURL{view}%/%BASEWEB%/%BASETOPIC%?category=<nop>$formfield(Category);sort=<nop>%URLPARAM{"sort"}%;limit=%URLPARAM{"limit"}%#BlogPosts'><nop>$formfield(Category)</a>"}%</div>
+%IF{"{Plugins}{BlogAddOn}{ShowPersonalInfoAddOnPictures}" then="$percntINCLUDE{$quot$percntTOPIC$percnt$quot section=$quotblogPostAddOnItemPicture$quot}$percnt"}%<div class=\"blogPostAddOnSummary\">$summary(200)</div>$percnt$nopSEARCH{$quot$topicComments$quot scope=$quottopic$quot nonoise=$quoton$quot format=$quot<span class='blogPostAddOnLatestComment twikiGrayText'>Comments: $dollarcount(.*?(#CommentDate).*) - <a href='$percntSCRIPTURL{view}$percnt/$web/$topic?r=$dollarrev#BlogPostPrompt'>latest comment by $percntSPACEOUT{$quot<nop>$dollarwikiname$quot}$percnt</a> - $dollardate</span>$quot}$percnt
+<br class=\"twikiClear\" /></div><!--/blogPostAddOnItem-->%ENDSECTION{"blogPostAddOnItem"}%
+
+%STARTSECTION{"blogPostAddOnItemPicture"}%<div class=\"twikiLeft twikiImage\">$percntINCLUDE{$quot%MAINWEB%.PersonalInfoLayoutModules$quot section=$quotimage$quot imgWeb=$quot%MAINWEB%$quot imgTopic=$quot$formfield(Author)$quot
+imgName=$quot$percntFORMFIELD{$quotPicture$quot web=$quot$percntMAINWEB$percnt$quot topic=$quot$formfield(Author)$quot}$percnt$quot imgWidth=$quot40$quot}$percnt</div><!--/twikiLeft twikiImage-->%ENDSECTION{"blogPostAddOnItemPicture"}%
+</verbatim>

@@ -1,0 +1,7 @@
+%META:TOPICINFO{author="TWikiContributor" date="1165927272" format="1.1" reprev="1.1" version="1.1"}%
+---+!! %MAKETEXT{"Blog categories"}%
+
+%ICON{"info"}% %MAKETEXT{"Add new categories to the list below."}%
+
+   * Interesting
+%COMMENT{type="bulletabove" inputsize="25" button="%MAKETEXT{"Add category"}%"}%
