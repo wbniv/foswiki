@@ -1,0 +1,17 @@
+%META:TOPICINFO{author="TWikiContributor" date="1123661274" format="1.1" version="$Rev$"}%
+%TMPL:INCLUDE{"view"}%
+%TMPL:DEF{"active_form"}%
+<div style="float:right; margin:2px;">
+<a href="%SCRIPTURLPATH{"edit"}%/%WEB%/%TOPIC%?action=form&t=%GMTIME{$hour$min$sec}%">Edit</a>
+</div>
+%TMPL:END%
+%TMPL:DEF{"inactive_form"}% %TMPL:END%
+%TMPL:DEF{"form"}%
+%META{"form"}%%TMPL:P{context="inactive" then="inactive_form" else="active_form"}%
+%TMPL:END%
+%TMPL:DEF{"content"}%
+%TEXT%
+%TMPL:P{"form"}%
+%TMPL:P{"attachments"}%
+%TMPL:P{"topicinfo"}%
+%TMPL:END%

@@ -1,0 +1,56 @@
+%TMPL:INCLUDE{"page"}% 
+<!-- template: changeform.nat.tmpl -->
+<!-- -->%TMPL:INCLUDE{"changeformbody"}% 
+<!-- -->%TMPL:INCLUDE{"changeformtopicactions"}% 
+<!-- -->%TMPL:INCLUDE{"changeformsidebar"}% 
+<!-- -->%TMPL:INCLUDE{"changeformjavascript"}%
+<!-- -->%TMPL:INCLUDE{"changeformstyles"}%
+%TMPL:DEF{"bodyclass"}%natChangeFormBody%TMPL:END%
+%TMPL:DEF{"meta"}% <meta name="robots" content="noindex, nofollow" /> %TMPL:END%
+%TMPL:DEF{"title"}%%TOPICTITLE% (%MAKETEXT{"edit"}%) - %WIKITOOLNAME%%TMPL:END%
+%TMPL:DEF{"content"}% <!-- -->
+---+ %MAKETEXT{"Choose a new form for [_1]" args="[[%TOPIC%]]"}%
+<div class="twikiPageForm">
+<form name="EditForm" method="post" action="%SCRIPTURLPATH{"edit"}%/%WEB%/%TOPIC%?t=%GMTIME{"$year$mo$day$hours$minutes$seconds"}%">
+  <input type="hidden" name="topicparent" value="%TOPICPARENT%" />
+  <input type="hidden" name="redirectto" value="%REDIRECTTO%" />
+%TEXT%
+  <input type="hidden" name="skin" value="%URLPARAM{"skin"}%" />
+  <input type="hidden" name="cover" value="%URLPARAM{"cover"}%" />
+<noautolink>
+<table cellspacing="5" class="natChangeForm">
+%~~ NATFORMLIST{
+~~~   separator=" "
+~~~   format="
+~~~     <tr>
+~~~     <td>
+~~~       <input type=\"radio\" 
+~~~              name=\"formtemplate\" 
+~~~              id=\"formtemplateelem$index\"
+~~~              $checked
+~~~              value=\"$name\" />
+~~~     </td>
+~~~     <td style=\"padding-right:10px\">
+~~~       <label for=\"formtemplateelem$index\">
+~~~         <nop>$formTopic
+~~~       </label></td>
+~~~     <td>
+~~~     $percntIFDEFINEDTHEN{\"$name\" as=\"none\"}$percnt
+~~~       remove the current form (caution: possible data loss)
+~~~     $percntELSEDEFINED$percnt
+~~~       $percntFORMFIELD{\"Summary\" topic=\"$formWeb.$formTopic\"}$percnt
+~~~       (<a href=\"%SCRIPTURLPATH{"view"}%/$formWeb/$formTopic\" target=\"_blank\">?</a>)
+~~~     $percntFIDEFINED$percnt
+~~~     </td></tr>"
+~~~ }%
+<tr><td>&nbsp;</td>
+<td colspan="2">
+<p>
+  <input type="submit" class="natOkButton" name="submit" value='%MAKETEXT{"OK"}%' accesskey="o" />
+  <input type="button" class="natCancelButton" value='%MAKETEXT{"Cancel"}%' accesskey="c" onclick="history.back()">
+</td></tr>
+</table>
+</form>
+</div>
+</noautolink>
+%TMPL:END%

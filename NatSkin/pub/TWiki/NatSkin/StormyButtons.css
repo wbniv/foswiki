@@ -1,0 +1,39 @@
+/* variation to switch on the web buttons for stormy */
+@import url('BaseButtons.css');
+
+.natTopBar {
+  border-bottom:0px;
+}
+.natWebButtons {
+  border-bottom:1px solid #999999;
+  padding:5px 15px;
+}
+.natWebButtonsContents {
+  font-family:arial, sans-serif;
+}
+.natWebButtons ul li {
+  margin:0px;
+  padding:0px;
+}
+.natWebButtons ul a {
+  margin:0px;
+  padding:3px 9px;
+  color:white;
+  font-weight:bold;
+}
+.natWebButtons ul a:hover {
+  text-decoration: none;
+  color:#99ff66; 
+  background:#555555;
+}
+
+.natWebButtons ul a.current:hover {
+  color:#99ff66; 
+}
+.natWebButtons ul a.current {
+  text-decoration: none;
+  background:#555555;
+  color:#eeeeee;
+  border:0px;
+  margin:0px 2px;
+}

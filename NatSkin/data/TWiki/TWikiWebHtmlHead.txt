@@ -1,0 +1,23 @@
+%META:TOPICINFO{author="TWikiContributor" date="1147166156" format="1.1" reprev="1.5" version="$Rev$"}%
+---+ %TOPIC%
+Default <nop>WebHtmlHead component for your <nop>%WIKITOOLNAME% site.
+Create a <nop>WebHtmlHead topic in your web to override the content of this topic.
+
+<verbatim>
+%STARTINCLUDE%
+%STOPINCLUDE% <!-- remove this line 
+                   to enable the example settings below -->
+<style type="text/css">
+.natSearchBox input,
+.natHeaderArt {
+  background-color: %WEBBGCOLOR%;
+}
+
+/*
+.natBody {
+  background-color: ...
+}
+*/
+</style>
+%STOPINCLUDE% 
+</verbatim>

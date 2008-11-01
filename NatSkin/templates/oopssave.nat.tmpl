@@ -1,0 +1,15 @@
+%TMPL:INCLUDE{"oops"}%
+<!-- template: oopssave.nat.tmpl -->
+%TMPL:DEF{"heading"}%%MAKETEXT{"Improper use of the \"<code>save</code>\" script"}%%TMPL:END%
+%TMPL:DEF{"message"}%<!-- -->
+%MAKETEXT{"You cannot call this script directly, [_1] uses it internally.", args="<nop>%WIKITOOLNAME%"}%
+
+%MAKETEXT{"Some browser configurations occasionally send undefined data to the
+server. Don't worry, your changes are not lost. Just click the Back 
+button on your browser and then try Save again."}%
+
+%MAKETEXT{"The other possibility is an internal error in [_1]
+configuration, or that you did not have write access to the 
+directory or file that was being edited." args="<nop>%WIKITOOLNAME% "}%
+
+%TMPL:P{"goback"}% %TMPL:END%

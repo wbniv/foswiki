@@ -1,0 +1,463 @@
+/* gettysburg style */
+@import url("BaseStyle.css");
+
+/* html */
+.twikiEmulatedLink,
+a, a:link {
+  color:#003366;
+  text-decoration:none
+}
+
+a:hover, a:active {
+  color:#ffcc66;
+  text-decoration:underline;
+}
+
+hr {
+  border-bottom:1px solid #aaaaaa;
+}
+body, input, textarea, select, button {
+  font-size:14px;
+}
+
+html {
+  background:#eeeeee; 
+}
+.natBody {
+  margin:0;
+  padding:0;
+  background:#eeeeee; 
+}
+.natBodyContents {
+  font-family:georgia,serif;
+}
+
+/* page layout */
+.natMain,
+.natMainFooter,
+.natSideBar {
+  padding:20px;
+}
+
+.natTopRightContents,
+.natTopLeftContents {
+  margin:20px 20px 20px 20px;
+  font-family:arial,sans-serif;
+}
+
+.natSideBar {
+  width:220px;
+  min-width:220px;
+  max-width:220px;
+}
+.natSideBarRight,
+.natTopRight {
+  width:250px;
+  min-width:250px;
+  max-width:250px;
+}
+
+/* login */
+.natLoginBody .natMainHeaderContents {
+  display:none;
+}
+.natLoginBody .natLoginMessage {
+  margin:0px auto;
+  width:500px;
+}
+
+/* twiki table */
+.twikiTable,
+.twikiTable th,
+.twikiTable td {
+  border:1px #aaaaaa solid;
+  font-size:12px;
+  background:white;
+}
+
+.twikiTable th {
+  font-weight:bold;
+  text-align:left;
+  background: #eeeeee;
+  line-height:170%;
+  padding:0px 5px;
+}
+.twikiTable th,
+.twikiTable th span,
+.twikiTable th font,
+.twikiTable th a {
+  color:#003366;
+}
+.twikiTable th a:hover {
+  color:#ffcc66;
+}
+.twikiTable td {
+  line-height:170%;
+}
+.twikiDiffTable td {
+  border:0px;
+}
+.twikiTableEven td {
+  background:#eeeeee;
+}
+
+/* topic form */
+.natTopicForm table,
+.natTopicForm th,
+.natTopicForm td {
+  border:1px #aaaaaa solid;
+}
+
+.natTopicForm .natTopicFormFirstCol,
+.natTopicForm .twikiFirstCol,
+.natTopicForm th {
+  font-weight:bold;
+  background: #eeeeee;
+}
+.natTopicForm th a {
+  color:#003366;
+}
+.natTopicForm th a:hover {
+  color:#ffcc66;
+}
+.natTopicForm td {
+  line-height:170%;
+}
+
+/* edit form */
+.natTopicEditForm {
+  padding:2px;
+}
+.natTopicEditForm td {
+  border:0px;
+}
+
+/* twiki page form */
+.twikiPageForm {
+  padding:5px;
+  border:1px #aaaaaa solid;
+}
+.twikiPageForm table {
+  border-collapse:collapse;
+}
+
+.twikiPageForm th {
+  font-weight:bold;
+  background: #eeeeee;
+}
+.twikiPageForm th a {
+  color:#003366;
+}
+
+/* search */
+.natSearchTable {
+  border:1px #aaaaaa solid;
+  margin-top:1em;
+}
+.natSearchTable:first-child {
+  margin-top:0em;
+}
+.natSearchTableTitle {
+  border-bottom:1px #aaaaaa solid;
+  color:#444444;
+  background: #eeeeee;
+}
+.natSearchHit {
+  border:1px #aaaaaa solid;
+}
+.natSearchHit th {
+  padding-top:0.5em;
+  padding-left:0.5em;
+  padding-right:0.5em;
+  padding-bottom:0px;
+}
+.natSearchHit td {
+  padding-top:0px;
+  padding-left:0.5em;
+  padding-right:0.5em;
+  padding-bottom:0.5em;
+}
+.natSearchHitEven {
+  background: #eeeeee;
+}
+
+/* top */
+.natHeaderArt {
+  background:#003366;
+}
+.natTopBar {
+  border-bottom:1px solid white;
+  border-top:0px;
+  color:#ffffff;
+}
+
+.natWebTitle, .natWebTitle a {
+  color:#ffffff;
+  font-weight:bold;
+  font-family:"Century Schoolbook l", georgia, "Times New Roman", serif;
+}
+
+.natWebSlogan,
+.natWebSlogan a:hover,
+.natWebSlogan a {
+  font-family:verdana,arial,sans-serif;
+  font-size:12px;
+  color:#ffffff;
+}
+.natWebSlogan {
+  margin-left:3px;
+}
+.natTopRightContents {
+  font-size:12px;
+  margin-top:15px;
+}
+.natSearchBoxTop input {
+  font-size:12px;
+}
+
+.natTopRight {
+  color:#ffffff;
+}
+.natTopRight a {
+  color:#ffffff;
+  font-weight:normal;
+}
+.natTopRight a:hover {
+  color:#ffcc66;
+}
+.natTopicActions {
+  line-height:140%;
+}
+.natTopicActions a,
+.natTopicActions .natDisabledTopicAction {
+  padding:3px 5px;
+}
+.natTopicActions .natSep {
+  display:none;
+}
+.natTopicActions .natDisabledTopicAction {
+  color:#516B86;
+  color:#7289A2;
+}
+
+.natSearchBox input {
+  background:#003366;
+  color:white;
+  border:1px dotted white;
+  _border:1px solid white; /* IE only */
+}
+.natSearchBoxTop input {
+  width:150px;
+}
+.natSearchBoxPos1 input,
+.natSearchBoxPos2 input,
+.natSearchBoxPos3 input {
+  color:#333333;
+  background:#999999;
+  font-weight:bold;
+}
+
+.natSearchBoxPos1 {
+}
+.natSearchBoxPos1,
+.natSearchBoxPos2,
+.natSearchBoxPos3 {
+  padding:10px 0px;
+}
+
+/* sidebar */
+.natSideBar {
+  color:#333333;
+  background:#999999;
+}
+
+.natSideBar a:hover h3,
+.natSideBar a:hover {
+  text-decoration:underline;
+  color:#ffcc66;
+}
+.natSideBar a:hover h2,
+.natSideBar h2 a:hover {
+  text-decoration:none;
+  color:#ffcc66;
+}
+
+.natSideBar h2,
+.natSideBar h3 {
+  padding-left:0px;
+  font:bold 14px georgia,serif;
+  padding:0px;
+  color:#003366;
+}
+.natSideBar h2 {
+  border-bottom:1px dotted #ffffff;
+  _border-bottom:1px solid #ffffff; /* IE only */
+  color:#ffffff;
+  font:normal 20px georgia,serif;
+  letter-spacing:.1em;
+  margin:20px 0px 12px 0px;
+  padding: 0px 0px 2px 0px;
+  text-align:left;
+  color:white;
+}
+.natSideBar h2 a {
+  color:white;
+}
+.natSideBar h3 {
+  margin:12px 0px 6px 0px;
+}
+.natSideBar ul {
+  color:#003366;
+  padding-left:0px;
+  margin:0px 0px 10px 1.2em;
+}
+.natSideBar ul ul {
+  margin-left:0px;
+  padding-left:0px;
+  list-style-type:none;
+}
+.natSideBar ol {
+  padding-left:2em;
+}
+
+.natNotes {
+  padding-top:5px;
+}
+
+.natSideBar a.natFeedIcon {
+  margin:0px;
+}
+.natSideBar a:hover.natFeedIcon {
+  background-color:#999999;
+}
+
+/* main area */
+.natMain, .natMainFooter {
+  background:white;
+}
+.natMain {
+  border:1px solid #ffffff;
+}
+
+.natMainHeaderContents, 
+.natMainContents,
+.natMainFooterContents {
+  color:#444444;
+  font:normal 14px/140% georgia,serif
+}
+
+.natMain a,
+.natMain a:link {
+  text-decoration:none
+  color:#003366;
+}
+
+.natMain a:hover,
+.natMain a:active {
+  text-decoration:underline;
+  color:#888888;
+}
+
+.natMain .twikiEmulatedLink,
+.natMain h1, .natMain h2, .natMain h3, .natMain h4, .natMain h5, .natMain h6,
+.natMain h1 a, .natMain h2 a, .natMain h3 a, .natMain h4 a,
+.natMain h5 a, .natMain h6 a,
+.natMain h1 a:hover, .natMain h2 a:hover, .natMain h3 a:hover,
+.natMain h4 a:hover, .natMain h5 a:hover, .natMain h6 a:hover {
+  color:#003366;
+}
+
+.natMain h1 {
+  padding-bottom:5px;
+}
+
+/* bottom */
+.natBottomBarContents {
+  margin:20px;
+  font-size:90%;
+}
+.natBottomBarContents a:hover,
+.natBottomBarContents {
+  color:#666666;
+}
+.natSyndicate {
+  margin:20px 0px;
+}
+
+/* supported plugins */
+
+/* BibtexPlugin */
+.bibtex dt {
+  color:#003366;
+}
+
+.bibsearch {
+  border:1px dotted #aaaaaa;
+}
+.bibsearch th {
+  background:#eeeeee;
+  border:0px;
+  border-bottom:1px dotted #aaaaaa;
+}
+.bibtex {
+  background:#eeeeee;
+  border:1px dotted #aaaaaa;
+}
+
+/* RedDotPlugin */
+.natSideBar .redDot a {
+  color:darkred;
+}
+
+/* blogging */
+.natSideBar .blogAdminButtons,
+.natSideBar .blogAuthorButtons {
+  background:#888888;
+}
+.blogHeadline .blogCommentCount {
+  font-size:26px;
+  line-height:50%;
+  padding-top:3px;
+  vertical-align:top;
+}
+.blogSideBarHeader {
+  margin-bottom:5px;
+  border-bottom:1px dotted #ffffff;
+  _border-bottom:1px solid #ffffff; /* IE only */
+  color:#ffffff;
+  font:normal 20px georgia,serif !important;
+  letter-spacing:.1em;
+  padding-bottom:2px;
+  text-align:left;
+  color:white !important;
+}
+.blogSideBarSection h2 {
+  color:#ffffff;
+  font:normal 20px georgia,serif !important;
+  letter-spacing:.1em;
+  padding-bottom:2px;
+  text-align:left;
+  color:white !important;
+  margin:0px;
+  padding:0px;
+}
+.blogSideBarSection {
+  margin-bottom:1.5em;
+  line-height:1.5em;
+}
+.blogCommentOdd {
+  background: #eeeeee;
+}
+.blogSubComment {
+  padding-left:0px;
+  border-top:1px solid #aaaaaa;
+}
+.blogCommentNr {
+  color:#003366;
+}
+.blogInfo {
+  margin:1.0em 0em;
+}
+.blogEntry {
+  margin-bottom:1.0em;
+}

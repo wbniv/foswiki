@@ -1,0 +1,19 @@
+<!-- template: renamejavascript.nat.tmpl-->
+%TMPL:DEF{"renamejavascript"}%<script type="text/javascript">
+<!--
+function checkAll(form, theCheck) {
+  var j = 0;
+  for( var i = 0; i < document.forms[form].length; i++ ) {
+    var elem = document.forms[form].elements[i];
+    var name = elem.getAttribute('name');
+    if (elem.type == 'checkbox' && name != 'nonwikiword' && name != 'totrash') {
+      elem.checked = theCheck;
+    }
+  }
+}
+//-->
+</script>%TMPL:END%
+%TMPL:DEF{"javascript"}%
+%TMPL:P{"defaultjavascript"}% 
+%TMPL:P{"renamejavascript"}% 
+%TMPL:END%

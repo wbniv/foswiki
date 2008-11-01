@@ -1,0 +1,617 @@
+/* stormy style */
+@import url("BaseStyle.css");
+
+/* html */
+.twikiEmulatedLink,
+a { 
+  color:#99ccff;
+  text-decoration:none; 
+}
+a:hover, a:active {
+  color:#99ff66; 
+  text-decoration:underline
+}
+
+hr {
+  border-bottom:1px solid #999999;
+}
+h1 { font-size:190%; margin-top:0px;margin-bottom:5px;}
+h2 { font-size:130%; margin-top:15px;margin-bottom:7px;padding-bottom:2px}
+h3 { font-size:120%; margin-top:10px;margin-bottom:0px;}
+h4 { font-size:120%; margin-top:10px;margin-bottom:0px;}
+h5 { font-size:120%; margin-top:10px;margin-bottom:0px;}
+h6 { font-size:110%; margin-top:10px;margin-bottom:0px;}
+
+/* layout */
+html {
+  background:#6699cc;
+}
+button {
+  font-size:12px;
+}
+.natBody {
+  margin:0;
+  padding:0;
+  font-size:12px;
+  background-color:#6699cc !important;
+  background-image:url(BlueBack.gif) !important;
+  background-repeat:repeat-x !important;
+  background-attachment:fixed;
+  background-position:-1px 0px;
+}
+.natBodyContents {
+  font-family:arial,sans-serif;
+}
+
+.natTopLeftContents{
+  margin:20px 0px 20px 20px;
+}
+.natTopRightContents {
+  margin:0px 20px 0px 0px;
+  float:right;
+}
+.natMiddle {
+  padding:20px;
+}
+
+.natTopRight,
+.natSideBarRight {
+  width:250px;
+}
+.natSideBarLeft {
+  width:180px;
+}
+
+/* twiki styles */
+.twikiNewLink {
+  color:#99ff66;
+  background:#555555;
+}
+
+/* twiki table */
+.twikiTable td,
+.twikiTable th {
+  padding:5px 7px;
+  border-top:1px solid #333;
+}
+.twikiTable {
+  border-spacing:0px;
+  border:1px #aaaaaa solid;
+  padding:5px 7px;
+}
+
+.twikiTable th {
+  border-top:1px #aaaaaa solid;
+  text-align:left;
+  background:black;
+}
+.twikiTable th,
+.twikiTable th font,
+.twikiTable th span,
+.twikiTable th a {
+  font-weight:bold;
+  color:#99CCFF;
+}
+.twikiDiffTable td {
+  border:0px;
+}
+.twikiTableEven td {
+  background:#333;
+}
+.twikiTableOdd td {
+  background:#222;
+}
+
+/* twiki diff */
+.twikiDiffChangedHeader,
+.twikiDiffChangedMarker,
+.twikiDiffAddedHeader,
+.twikiDiffAddedMarker,
+.twikiDiffDeletedHeader,
+.twikiDiffDeletedMarker {
+  color:black;
+}
+.twikiDiffChangedText,
+.twikiDiffAddedText,
+.twikiDiffDeletedText {
+  background:#222222;
+}
+.twikiDiffUnchangedText {
+  background:#333333;
+}
+
+/* topic form */
+.natTopicForm {
+  border:1px #aaaaaa solid;
+  padding:0px;
+}
+.natTopicForm table,
+.natTopicForm td,
+.natTopicForm th {
+  border:0px;
+}
+
+.natTopicForm .natTopicFormFirstCol,
+.natTopicForm .twikiFirstCol,
+.natTopicForm th {
+  background:black;
+  background:#222;
+}
+.natTopicForm th,
+.natTopicForm th a {
+  font-weight:bold;
+  color:#cccccc;
+}
+/* twiki page form */
+.twikiPageForm {
+  margin:5px 0px;
+  padding:10px;
+  border:1px #aaaaaa solid;
+  background:#222;
+}
+
+.twikiPageForm th {
+  font-weight:bold;
+  background:#222;
+  color:#cccccc;
+  border:0px;
+}
+.twikiPageForm th a {
+  color:#cccccc;
+}
+.twikiPageForm td {
+  padding:5px 7px;
+  border:0px;
+}
+.twikiPageForm .twikiTable {
+  border:0px;
+}
+.natTopicEditForm .twikiTable th,
+.natTopicEditForm .twikiTable td {
+  border:0px;
+}
+.natMain .natEditBottomBar a {
+  color:black;
+}
+
+/* search tables */
+.natSearchForm {
+  margin-bottom:20px;
+  border-bottom:1px solid #999;
+}
+.natSearchSummary {
+  margin:0em;
+  line-height:normal;
+}
+.natSearchRevision {
+  margin:0em 0em 0.2em 0em;
+  color:#aaa;
+}
+.natSearchRevision a {
+  color:#aaa;
+}
+.natSearchTotal {
+  margin:0px 0px 10px 0px;
+}
+.natSearchTarget {
+  font-size:120%;
+}
+
+/* helper */
+.natMain .natNoteHeading {
+  color:#99ccff;
+}
+
+.natMain pre {
+  border-left:5px solid #555555;
+  color:#99ff66;
+  padding-left:5px;
+}
+
+
+/* top */
+.natHeaderArt {
+  background:#000000;
+}
+.natTopBar {
+  border-bottom:1px solid #999999;
+  border-top:3px dotted #999999;
+  color:#ffffff;
+  line-height:160%;
+  vertical-align:middle;
+  height:120px;
+}
+
+.natWebSlogan {
+  font-weight:bold;
+  color:#999999;
+  display:none;
+}
+
+.natTopRight {
+  color:#ffffff;
+}
+
+.natSearchBox {
+  font-weight:bold;
+  margin:0px;
+}
+.natSearchBox input {
+  padding:1px 2px;
+  border:1px solid #8E9195;
+}
+.natSearchBoxTop input {
+  color:white;
+  background:black;
+  width:160px;
+}
+.natSearchBox input:focus {
+  border:1px solid #99ccff;
+  background:#222;
+  color:white;
+}
+
+.natSearchBoxPos1 {
+  margin-bottom:20px;
+}
+.natSearchBoxPos2,
+.natSearchBoxPos3 {
+  margin:10px 0px;
+}
+.natSearchBox a {
+  display:block;
+  margin-left:0.3em;
+}
+.natSearchBox a:hover {
+  text-decoration:none;
+}
+.natTopicActions .natSep {
+  display:none;
+}
+
+.natTopicActions a,
+.natTopicActions .natDisabledTopicAction {
+  margin:0px -1px;
+  padding:3px 5px;
+  font-weight:bold;
+}
+.natTopicActions a:hover {
+  background:#555555;
+  color:#eeeeee;
+  color:#99ff66; 
+  text-decoration:none;
+}
+
+.natWebTitle {
+  text-transform:none;
+}
+
+/* login */
+.natLoginMessage {
+  background:#000000;
+  padding:20px 30px;
+  border-bottom:1px solid #999999;
+  border-top:1px solid #999999;
+  color:#ffffff;
+  width:30em;
+}
+
+/* sidebar */
+.natSideBarContents {
+  color:#99ccff;
+}
+
+.natSideBar h2 {
+  padding-left:0px;
+  font-size:14px;
+  font-family:verdana,arial,sans-serif;
+  font-weight:bold;
+  letter-spacing:0.2px;
+}
+.natSideBar h2 a,
+.natSideBar h2 {
+  color:#cccccc;
+}
+.natSideBar h2 a:hover,
+.natSideBar h3 a:hover {
+  text-decoration:none;
+  color:#99ff66;
+}
+.natSideBar h3 {
+  margin:0px;
+  font-size:100%;
+}
+.natSideBar ol,
+.natSideBar ul {
+  margin-top:0.2em;
+  margin-bottom:1.0em;
+}
+.natSideBar ul ul {
+  margin-left:0px;
+  padding-left:0px;
+  list-style-type:none;
+}
+
+.natNotes {
+  padding-left:0px;
+  padding-right:0px;
+}
+
+.natSideBar a.natFeedIcon {
+  color:#cccccc;
+}
+
+/* main */
+.natMiddle {
+  background:#333333;
+  color:#cccccc;
+}
+.natMainContents {
+  margin:0px;
+  padding:0px;
+}
+.natEditBody .natMainHeaderContents {
+  display:none;
+}
+.natMainFooterContents,
+.natMainContents,
+.natMainHeaderContents {
+  font-size:12px;
+}
+.natMain a {
+  color:#99ccff;
+  text-decoration:none; 
+}
+.natMainHeaderContents {
+  margin-bottom:10px;
+}
+.natMainHeaderContents,
+.natMainHeaderContents a {
+  color:#8E9195;
+}
+
+.natMain a:active {color:#99ff66}
+.natMain a:hover {
+  text-decoration:underline;
+  color:#99ff66;
+}
+.natMain ol,
+.natMain ul {
+  margin-top:0px;
+  margin-bottom:0px;
+}
+
+.natMain .twikiEmulatedLink,
+.natMain h1, .natMain h2, .natMain h3, .natMain h4, .natMain h5, .natMain h6,
+.natMain h1 a:hover, .natMain h2 a:hover, .natMain h3 a:hover,
+.natMain h4 a:hover, .natMain h5 a:hover, .natMain h6 a:hover,
+.natMain h1 a, .natMain h2 a, .natMain h3 a,
+.natMain h4 a, .natMain h5 a, .natMain h6 a {
+  color:#cccccc;
+}
+.natMain h2 {
+  border-bottom:1px solid #999999;
+}
+.natMiddle input,
+.natMiddle select,
+.natMiddle textarea {
+  background:#333333;
+  color:#cccccc;
+  font-size:12px;
+}
+.natMiddle input.twikiCancelButton,
+.natMiddle input.natCancelButton {
+  color:#ffaaff;
+  background:#555555;
+}
+.natMiddle input[type="submit"],
+.natMiddle .twikiSubmit,
+.natMiddle input.natOkButton {
+  color:#99ff66; 
+  background:#555555;
+}
+.natMiddle input.natAltButton {
+  color:white;
+  color:#99ccff;
+  background:#555555;
+}
+.natMiddle input[type="checkbox"] {
+  color:#333333;
+  background:#cccccc;
+}
+.natMiddle input[type="radio"] {
+  background:#333333;
+  color:red;
+}
+.natMiddle .twikiInputField,
+.natMiddle textarea {
+  border:1px inset #ccc;
+}
+.natMiddle .natEditTextArea {
+  background:#222;
+}
+
+/* bottom*/
+.natBottomBarContents {
+  margin-left:10px;
+  margin-right:10px;
+  padding:5px;
+  color:#8E9195;
+  line-height:140%;
+}
+
+/* TOC */
+.twikiToc {
+  margin-bottom:10px;
+}
+.twikiToc ul li {
+  line-height:130%;
+}
+.twikiToc ul {
+  margin:0px;
+  padding:0px;
+}
+.twikiToc ul ul {
+  padding-left:20px;
+}
+.twikiTocTitle {
+  font-size:16px;
+  font-weight:bold;
+  padding-bottom:3px;
+  margin-bottom:0px;
+}
+
+/* custom styles */
+.alt {
+  background:#555555;
+  border-top:1px solid #999999;
+  border-bottom:1px solid #999999;
+  color:#99ff66;
+}
+.border {
+  border:1px solid #999999;
+}
+
+/* supported plugins */
+
+/* BibtextPlugin */
+.bibtex,
+.bibsearch {
+  border:0px;
+  background:#333333;
+  color:#cccccc;
+}
+
+.bibsearch td {
+  background:#333333;
+  color:#cccccc;
+}
+.bibsearch th {
+  background:black;
+  border:0px;
+  border-bottom:0px;
+  color:#cccccc;
+}
+
+.bibsearch input {
+  background:#333333;
+  color:#cccccc;
+}
+
+.bibtex dt a,
+.bibtex dt {
+ color:#99ccff;
+}
+
+.bibsearch .submit {
+  background:#cccccc;
+}
+
+.bibsearch .reset {
+  background:#cccccc;
+}
+
+/* RedDotPlugin */
+.natBody .redDot a {
+  color:#99ff66;
+  font-weight:bold;
+}
+/* blogging */
+.blogAbout {
+  font-size:0.9em;
+}
+.blogSideBar {
+  color:#cccccc;
+}
+.blogSideBarSection {
+  margin-bottom:1.5em;
+}
+.blogSideBarSection ol {
+  padding-left:2em;
+}
+.blogSideBarSection ul {
+  margin:0px;
+}
+.blogSideBarCategories ul,
+.blogSideBarComments ul {
+}
+.blogSideBarComments li {
+  margin-bottom:0.5em;
+}
+.blogAdminButtons,
+.blogAuthorButtons {
+  background:#555555;
+  border:1px solid #cccccc;
+}
+.blogAdminButtons input[type="text"],
+.blogAuthorButtons input[type="text"] {
+  border:1px solid #555555;
+}
+.blogHeadline .blogCommentCount {
+  font-size:1.5em;
+}
+.blogEntry {
+  margin-bottom:1em;
+}
+.blogCommentOdd {
+  background:#555555;
+  border:1px solid #cccccc;
+}
+.blogSubComment {
+  border-left:2px solid #99ff66;
+}
+.blogComment h3 {
+  border-bottom:2px solid #cccccc;
+}
+.blogCommentOdd h3 {
+  border-bottom:2px solid black;
+}
+.blogSideBarHeader {
+  color:#cccccc;
+  letter-spacing:0.2px;
+  font-family:verdana,arial,sans-serif;
+  font-weight:bold;
+  font-size:14px;
+  text-transform:uppercase;
+}
+
+/* ClassificationPlugin */
+.natMainContents .fltMakeIndexWrapper ul {
+  list-style-type:none;
+  margin:5px 0px 10px 0px;
+  padding:0px;
+}
+.natMainContents .fltMakeIndexWrapper ul li {
+  padding:0px;
+  margin:0px 0px 2px 0px;
+  border:0px;
+}
+.clsTagCloud a:hover {
+  text-decoration:none;
+}
+.clsTopicInfo h1 {
+  margin-bottom:2px;
+}
+.clsTopicInfoSep {
+  margin:1px 0px 30px;
+}
+
+/* JQueryPlugin */
+.jqButton i, 
+.jqButton span {
+  background-image:url(JQStormyButton.png);
+}
+
+.jqTreeview a:hover {
+  color:#99ff66; 
+}
+ul.jqTabGroup li.current {
+  background-image: url('stormy_tab_right_on.gif') !important; 
+  background-color: white !important;
+}
+ul.jqTabGroup li.current a:active,
+ul.jqTabGroup li.current a:hover,
+ul.jqTabGroup li.current a {
+  background-image: url('stormy_tab_left_on.gif') !important;
+  color: #333;
+}

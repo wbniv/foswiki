@@ -1,0 +1,9 @@
+/* border variation for stormy */
+.natBody {
+  margin:30px 30px 30px 30px;
+  background:#6699cc;
+}
+.natBodyContents {
+  background:#333333;
+  border:1px solid #cccccc;
+}

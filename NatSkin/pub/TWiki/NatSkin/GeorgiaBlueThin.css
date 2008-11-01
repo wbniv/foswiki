@@ -1,0 +1,20 @@
+/* thin variant for georgia blue */
+@import url("BaseThin.css");
+
+.natWebButtons,
+.natTopLeft,
+.natMiddleLeft {
+  border-left:1px solid #aaaaaa;
+}
+.natWebButtons,
+.natTopRight, 
+.natMiddleRight {
+  border-right:1px solid #aaaaaa;
+}
+.natSideBar,
+.natMainFooter {
+  border-bottom:1px solid #aaaaaa;
+}
+.natBottomBarContents {
+  background:#efefef;
+}

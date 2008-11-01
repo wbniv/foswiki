@@ -1,0 +1,13 @@
+%TMPL:INCLUDE{"renamewebbase"}%
+<!-- template: renameweb.nat.tmpl -->
+%TMPL:DEF{"newsubweb"}%<input type="text" name="newsubweb" value="%NEW_SUBWEB%" size="36" />%TMPL:END%
+%TMPL:DEF{"newparentweb"}%<select name="newparentweb" onchange="
+~~~ if (document.renameweb.newparentweb.value == 'Trash') { 
+~~~   document.renameweb.totrash.checked = true;
+~~~ } else {
+~~~   document.renameweb.totrash.checked = false;
+~~~ }
+~~~ ">
+<option value=""></option>
+%FLEXWEBLIST{webs="%TRASHWEB%,public" exclude="%WEB%" format="<option$marker value=\"$web\">$web</option>" selection="%NEW_PARENTWEB%" marker=" selected=\"selected\"" separator="$n"}%
+</select>%TMPL:END%

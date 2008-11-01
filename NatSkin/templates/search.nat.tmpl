@@ -1,0 +1,59 @@
+%TMPL:INCLUDE{"searchbase"}%<!-- template: search.nat.tmpl -->
+%TMPL:DEF{"searchbox"}%%TMPL:END%
+%TMPL:DEF{"topictitle_dbcache"}%%TOPICTITLE{"%TOPICNAME%"}%%TMPL:END%
+%TMPL:DEF{"topictitle_nodbcache"}%%TOPICNAME%%TMPL:END%
+%TMPL:DEF{"topictitle"}%%TMPL:P{context="DBCachePluginEnabled" then="topictitle_dbcache" else="topictitle_nodbcache"}%%TMPL:END%
+%TMPL:DEF{"seealso"}%[[WebSearchAdvanced][%MAKETEXT{"Advanced Search"}%]]%TMPL:END%
+%TMPL:DEF{"searchhit"}%<!-- searchhit -->
+  <a class="natSearchTarget" href="%SCRIPTURLPATH{"view"}%/%WEB%/%TOPICNAME%">%TMPL:P{"topictitle"}%</a>
+  <span class="natSearchTargetWeb">in <nop>%WEBLINK{format="$web" web="%WEB%"}% </span>
+  <div class="natSearchSummary">%TEXTHEAD%</div>
+  <div class="natSearchRevision">
+    changed on <a href='%SCRIPTURLPATH{"rdiff"}%/%WEB%/%TOPICNAME%?type=last'>%TIME%</a> by <span class='natSearchAuthor'> %AUTHOR% </span>
+  </div>
+<!-- //searchit -->%TMPL:END%
+%TMPL:DEF{"content"}% <!-- content -->
+<h2>%MAKETEXT{"Search result for [_1]" args="<span class='natSearchString'>\"%URLPARAM{"search"}%\"</span>"}%</h2>
+%SPLIT%%TMPL:P{"searchform"}%%SPLIT% 
+%CALC{"$SET(incr, 0)"}% <!-- CALC incr = 0 -->
+<div class="natSearchResult">
+%REPEAT% %CALC{"$SETM(incr, +1)"}% <!-- CALC incr++ -->
+<div class="natSearchHit %CALC{"$IF($ODD($GET(incr)),natSearchHitOdd,natSearchHitEven)"}%">
+%TMPL:P{"searchhit"}%
+</div>
+%REPEAT%</div>%SPLIT%<div class="natSearchTotal">
+  %MAKETEXT{"<span>[_1]</span> topics found" args="%NTOPICS%"}% 
+</div>%SPLIT%
+<!-- //content -->%TMPL:END%
+%TMPL:DEF{"searchform"}%<!-- searchform -->
+%IFSKINSTATETHEN{action="natsearch"}%
+<div class="natSearchForm">
+<form name="searchform" action="%SCRIPTURLPATH{"natsearch"}%/%BASEWEB%/%BASETOPIC%" method="post">
+<input type="text" name="search" size="50" value="%URLPARAM{"search" encode="entity"}%" accesskey="f" /> 
+<input type="submit" value="%MAKETEXT{"Submit"}%" class="natOkButton" title="submit the query" />
+<input type="button" value="%MAKETEXT{"Cancel"}%" class="natCancelButton" onclick="window.location.href='%SCRIPTURLPATH{"view"}%/%BASEWEB%/%BASETOPIC%';" accesskey="c" title='%MAKETEXT{"go back to <nop>[_1]" args="%WEB%.%TOPIC%"}%'>
+&nbsp;&nbsp;
+%TMPL:P{"seealso"}%
+
+<label>
+  %MAKETEXT{"search in all webs"}%:
+  <input type="checkbox" class="twikiCheckbox" name="web" value="all" %IFDEFINED{"%URLPARAM{web}%" as="all" then=" checked"}%/>
+</label>
+&nbsp;
+<label>
+  %MAKETEXT{"maximum number of hits per web"}%:
+  <select name="limit">
+    <option %IFDEFINED{"%URLPARAM{"limit"}%" as="5" then=" selected"}%>5</option>
+    <option %IFDEFINED{"%URLPARAM{"limit"}%" as="10" then=" selected"}%>10</option>
+    <option %IFDEFINED{"%URLPARAM{"limit"}%" as="20" then=" selected"}%>20</option>
+    <option %IFDEFINED{"%URLPARAM{"limit"}%" as="30" then=" selected"}%>30</option>
+    <option %IFDEFINED{"%URLPARAM{"limit"}%" as="40" then=" selected"}%>40</option>
+    <option %IFDEFINED{"%URLPARAM{"limit"}%" as="50" then=" selected"}%>50</option>
+    <option %IFDEFINED{"%URLPARAM{"limit"}%" as="100" then=" selected"}%>100</option>
+    <option %IFDEFINED{"%URLPARAM{"limit" default="all"}%" as="all" then=" selected"}%>all</option>
+  </select>
+</label>
+</form>
+</div>
+%FISKINSTATE%
+<!-- //searchform -->%TMPL:END%

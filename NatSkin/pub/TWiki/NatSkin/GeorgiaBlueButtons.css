@@ -1,0 +1,32 @@
+/* variation to switch on the web buttons for georgia blue */
+@import url('BaseButtons.css');
+
+.natWebButtons {
+  padding:10px 20px 10px 20px;
+  background:#336699;
+}
+.natWebButtonsContents {
+  font-size:12px;
+  font-family:verdana,arial,sans-serif;
+  font-weight:bold;
+  padding-bottom:10px;
+}
+.natWebButtons ul li {
+  margin:0px 0px 5px 0px;
+}
+.natWebButtons ul a {
+  color:#99ccff;
+}
+.natWebButtons ul a.current:hover,
+.natWebButtons ul a:hover {
+  text-decoration: none;
+  border-bottom:5px solid #996666;
+  margin-bottom:-5px;
+}
+
+.natWebButtons ul a.current {
+  text-decoration: none;
+  border-bottom:5px solid #99cc66;
+  margin-bottom:-5px;
+}
+

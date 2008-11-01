@@ -1,0 +1,513 @@
+/* georgia blue style */
+@import url("BaseStyle.css");
+
+/* html elements */
+.twikiEmulatedLink,
+a, a:link {
+  color:#999966;
+}
+a:hover, a:active {
+  color:#99cc66
+}
+
+hr {
+  border-bottom:1px solid #aaaaaa;
+}
+
+/* page layout */
+html {
+  background:#efefef;
+}
+.natBody {
+  margin:0;
+  padding:0;
+  background:#efefef;
+  text-align: center;
+}
+.natMain,
+.natMainFooter {
+  padding:20px 20px 20px 10px;
+}
+.natMainHeaderContents {
+  margin-bottom:15px;
+}
+.natSideBar {
+  padding-top:20px;
+  padding-bottom:20px;
+}
+.natMiddle {
+  background:white;
+  padding-left:20px;
+  padding-right:20px;
+}
+.natTopRightContents,
+.natTopLeftContents {
+  margin:20px 20px;
+}
+
+
+/* top */
+.natHeaderArt {
+  background:#336699;
+}
+.natTopBar {
+  border-top:3px solid #99ccff;
+}
+.natWebTitle a {
+  color:#ffffff;
+}
+.natWebTitle {
+  font:bold 34px "Century Schoolbook l", georgia, "Times New Roman", serif;
+}
+
+.natWebSlogan,
+.natWebSlogan a:hover,
+.natWebSlogan a {
+  font:bold 12px verdana,arial,sans-serif;
+  color:#99ccff;
+}
+.natWebSlogan {
+  display:none;
+}
+
+.natTopRight, .natTopRight a {
+  color:#99ccff;
+}
+.natTopRight a:hover {
+  color:#bbeeff;
+}
+.natTopicActions a,
+.natTopicActions .natDisabledTopicAction {
+  padding:3px 5px;
+}
+.natTopicActions a:hover {
+  color:#f5f5f5;
+}
+.natTopicActions .natDisabledTopicAction {
+  color:#6F96B5;
+}
+
+.natSearchBox {
+  color:#99ccff;
+}
+.natSearchBoxTop {
+  margin-top:10px;
+}
+.natTopRightContents {
+  font-family:arial,sans-serif;
+}
+.natSearchBox input {
+  background:#336699;
+  color:#99ccff;
+  border:1px solid #aaaaaa;
+  width:150px;
+}
+
+/* twiki styles */
+.twikiNewLink {
+  color:#990099;
+  background:#eeeeee;
+}
+
+/* twiki table */
+.twikiTable td {
+  border-bottom:1px #aaaaaa solid;
+  border-right:1px #aaaaaa solid;
+  background:white;
+  padding:5px 7px;
+}
+.twikiTable {
+  border:2px solid white;
+}
+.natTopicAttachments .twikiTable {
+  border:1px #aaaaaa solid;
+}
+
+.twikiTable th {
+  padding:5px 7px;
+  border-right:1px #aaaaaa solid;
+  border-bottom:1px #aaaaaa solid;
+  background:#eeeeee;
+  font:bold 12px/140% verdana,arial,sans-serif;
+}
+.twikiPageForm th a,
+.natTopicForm th a,
+.twikiTable th,
+.twikiTable th span,
+.twikiTable th font,
+.twikiTable th a {
+  color:#336699;
+}
+.twikiDiffTable td {
+  border:0px;
+}
+.twikiTableEven td {
+  background:#f5f5f5;
+}
+
+/* forms */
+.natTopicForm table,
+.natTopicForm th,
+.natTopicForm td {
+  border:1px #aaaaaa solid;
+}
+
+.natTopicForm .natTopicFormFirstCol,
+.natTopicForm .twikiFirstCol,
+.natTopicForm th {
+  background:#eeeeee;
+  font:bold 12px/140% verdana,arial,sans-serif;
+}
+
+.natTopicEditForm .twikiTable td {
+  border:0px;
+}
+
+/* fix for disappearing borders */
+.natTopicForm {
+  border:1px solid white;
+  margin:1px;
+}
+.twikiTable {
+  margin:1px;
+}
+.natTopicForm .twikiTable {
+  margin:0px;
+}
+
+/* twiki page form */
+.twikiPageForm table {
+  border:1px #aaaaaa solid;
+}
+.twikiPageForm table th,
+.twikiPageForm table td {
+  padding:7px 5px;
+}
+.twikiPageForm th {
+  background:#eeeeee;
+  color:#336699;
+  font:bold 12px/140% verdana,arial,sans-serif;
+}
+
+/* sidebar */
+.natSideBarContents {
+  color:#999966;
+  font:normal 12px verdana,arial,sans-serif;
+}
+.natSearchBoxPos1 input,
+.natSearchBoxPos3 input {
+  background:#fafafa;
+  color:#999966;
+  border:1px solid #999999;
+  width:99%;
+}
+.natSearchBoxPos2 input {
+  background:#fafafa;
+  color:#999966;
+  padding:2px 5px;
+  font-weight:bold;
+  width:99%;
+}
+
+.natSearchBoxPos1 {
+  padding-bottom:10px;
+}
+.natSearchBoxPos2,
+.natSearchBoxPos3 {
+  width:auto;
+  padding:10px 0px;
+}
+
+.natMiddleLeft {
+  border-right:1px dotted #999999; 
+  _border-right:1px solid #cccccc;  /* IE only */
+}
+
+.natSideBar a:hover {
+  color:#99cc66;
+}
+
+.natSideBar h2 {
+  background-color:inherit;
+  border-bottom:1px dotted #999999;
+  _border-bottom:1px solid #cccccc; /* IE only */
+  text-align:left;
+  font:normal 14px verdana,arial,sans-serif;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  text-decoration:none;
+  color:#555;
+  padding:2px 5px 2px 15px;
+  margin:20px 0px 5px 0px;
+}
+.natSideBar h2 a,
+.natSideBarPersonal h2 a {
+  color:#555;
+  background:white;
+  font:normal 14px verdana,arial,sans-serif;
+  letter-spacing:.3em;
+}
+.natSideBar h2 a:hover {
+  text-decoration:none;
+}
+.natSideBar h3,
+.natSideBar h3 a {
+  background:#eeeeee;
+  color:#666;
+  text-transform:uppercase;
+  font:bold 12px verdana,arial,sans-serif;
+}
+.natSideBar h3 {
+  padding:2px 5px 2px 15px;
+  margin:5px 0px;
+}
+
+.natSideBar ol,
+.natSideBar ul {
+  font:normal 12px/150% verdana,arial,sans-serif;
+  padding-left:15px;
+}
+.natSideBar ul {
+  font-weight:bold;
+  text-align:left;
+  list-style-type:circle;
+  text-transform:none;
+  margin-left:0px;
+}
+.natSideBar ul ul {
+  margin-left:0px;
+  padding-left:0px;
+  list-style-type:none;
+}
+
+.natSubWebs .natWebLink a {
+  background:white;
+  text-transform:none;
+}
+
+/* main area */
+.natMain,
+.natMainFooter {
+  color:#444444;
+  font-family:arial,sans-serif;
+}
+
+.natMain a, 
+.natMain a:link, 
+.natMain a:visited, 
+.natMain a:active, 
+.natMain a:hover {
+  font-family:arial,sans-serif;
+}
+
+.natMain a:hover, 
+.natMain a:active {
+  color:#99cc66;
+}
+
+
+.natMain .twikiEmulatedLink,
+.natMain h1, .natMain h2, .natMain h3, .natMain h4, .natMain h5, .natMain h6,
+.natMain h1 a, .natMain h2 a, .natMain h3 a, .natMain h4 a, 
+.natMain h5 a, .natMain h6 a,
+.natMain h1 a:link, .natMain h2 a:link, .natMain h3 a:link,
+.natMain h4 a:link, .natMain h5 a:link, .natMain h6 a:link,
+.natMain h1 a:hover, .natMain h2 a:hover, .natMain h3 a:hover,
+.natMain h4 a:hover, .natMain h5 a:hover, .natMain h6 a:hover {
+  color:#336699;
+}
+
+button,
+.natMiddle input,
+.natMiddle select,
+.natMiddle textarea {
+  font-size:12px;
+}
+
+/* bottom */
+.natBottomBarContents {
+  background:white;
+  color:#666;
+  font-weight:normal;
+  font-size:10px;
+  font-family:arial,sans-serif;
+}
+
+/* search tables */
+.natSearchTable {
+  border:1px #aaaaaa solid;
+  font-size:95%;
+  margin-top:1em;
+}
+.natSearchTable:first-child {
+  margin-top:0em;
+}
+.natSearchTableTitle {
+  background:#f0f0f0;
+  color:#666;
+  font-weight:bold;
+  font-family:verdana,arial,sans-serif;
+  border-bottom:1px #aaaaaa solid;
+  font-size:95%;
+}
+.natSearchHit {
+  border:1px #aaaaaa solid;
+  font-size:95%;
+}
+.natSearchHit th {
+  padding-bottom:0px;
+}
+.natSearchHit td {
+  padding-top:0px;
+}
+.natSearchHitEven {
+  background:#f0f0f0;
+}
+
+/* TOC */
+.twikiTocTitle {
+  color:#336699;
+  font-weight:bold;
+}
+
+/* custom styles */
+.alt {
+  background:#f0f0f0;
+  border-top:1px dotted #999999;
+  border-bottom:1px dotted #999999;
+  _border-top:1px solid #cccccc; /* IE only */
+  _border-bottom:1px solid #cccccc; /* IE only */
+}
+.border {
+  border:1px dotted #999999;
+  _border:1px solid #cccccc; /* IE only */
+}
+
+/* supported plugins */
+
+/* BibtexPlugin */
+.bibsearch th {
+  color:#666;
+  font:bold 14px/140% verdana,arial,sans-serif;
+  text-align:center;
+  border-bottom:1px dotted #aaaaaa;
+  _border-bottom:1px dotted #aaaaaa; /* IE only */
+}
+
+.bibsearch,
+.bibtex {
+  border:1px dotted #aaaaaa; 
+  _border:1px dotted #aaaaaa;  /* IE only */
+}
+
+/* blogging */
+.blogSideBarHeader {
+  border-bottom:1px dotted #999999;
+  _border-bottom:1px solid #cccccc; /* IE only */
+  padding-left:15px;
+  text-align:left;
+  font:normal 14px verdana,arial,sans-serif !important;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  text-decoration:none;
+  color:#555;
+  background:white !important;
+}
+.blogSideBarHeader h2 {
+  display:inline;
+  background:white;
+  padding:0px;
+  font:normal 14px verdana,arial,sans-serif !important;
+  letter-spacing:.3em;
+}
+.blogSideBar {
+  color:#444444;
+}
+.blogSideBar a {
+  color:#336699;
+  font-weight:normal;
+}
+.blogSideBar a:hover {
+  color:#99cc66
+}
+.blogSideBar ul {
+  font-weight:normal;
+  margin-left:0px;
+  padding-left:15px;
+  list-style-type:none;
+}
+.blogSideBar ul li {
+}
+.blogInfo {
+  font-size:95%;
+}
+.blogText {
+  margin-top:5px;
+  padding:1px; /* fix for konqueror */
+}
+.blogCommentOdd {
+  background:#fafafa;
+  border-bottom:1px #aaaaaa solid;
+  border-top:1px #aaaaaa solid;
+}
+.blogComment .blogDate {
+  font-size:95%;
+  color:#666;
+  font-weight:normal;
+}
+.blogCommentNr {
+  color:#666;
+  margin-right:10px;
+}
+.blogCommentCount {
+  color:#666;
+  font-size:95%;
+  width:2em;
+  text-align:right;
+}
+.blogHeadline .blogCommentCount {
+  font-size:24px;
+}
+.blogSubComments {
+  padding:5px;
+}
+.blogSubComment {
+  border-left:1px solid #777;
+  padding-left:5px;
+}
+.blogAddComment textarea,
+.blogAddComment input {
+  font-family: Arial, Sans-Serif;
+  color:#444444;
+}
+.blogArchiveDescription {
+  margin-bottom:20px;
+  font-size:95%;
+}
+.blogSideBarSection {
+  margin-top:1em;
+  margin-bottom:1em;
+}
+.blogSideBarSection ul,
+.blogSideBarSection ol {
+  margin-top:0px;
+}
+.blogAuthorButtons,
+.blogAdminButtons {
+  border:1px #aaaaaa solid;
+  background:#fafafa;
+}
+.blogSideBarRelated ul,
+.blogSideBarLatest ul {
+}
+.blogSideBarRelated li,
+.blogSideBarLatest li {
+  padding-bottom:5px;
+  margin-bottom:5px;
+  border-bottom:1px solid #99ccff;
+}
+.natSideBar .blogAuthorButtons,
+.natSideBar .blogAdminButtons {
+  margin-left:15px;
+  width:auto;
+}

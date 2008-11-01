@@ -1,0 +1,491 @@
+/* rusty style */
+@import url("BaseStyle.css");
+
+/* html elements */
+.twikiEmulatedLink,
+a:link, a {
+  color:#9C3300;
+}
+a:hover, a:active {
+  color:#ffcc66 
+}
+
+hr {
+  border-bottom:1px solid #ff9831;
+}
+
+/* basics */
+html {
+  background:#6c6457;
+}
+.natBody {
+  background:#6c6457;
+  font-family:verdana,arial,sans-serif;
+  margin:0;
+  padding:0;
+  font-size:12px;
+}
+button {
+  font-size:12px;
+}
+
+.natMiddle {
+  border-bottom:1px dotted white;
+  border-left:1px dotted white;
+  border-right:1px dotted white;
+  _border-bottom:1px solid white; /* IE only */
+  _border-left:1px solid white; /* IE only */
+  _border-right:1px solid white; /* IE only */
+  padding:15px;
+}
+.natSideBar .natExternalLink:after {
+  display:none;
+}
+
+/* twiki table */
+.twikiTable {
+  font-size:95%;
+}
+.twikiTable th,
+.twikiTable td,
+.twikiTable {
+  border:1px #ff9831 solid;
+}
+.twikiTable th {
+  border-bottom:1px #ff9831 solid;
+  background:#ff9831;
+  font-weight:bold;
+  line-height:140%;
+}
+.twikiTable th,
+.twikiTable th span,
+.twikiTable th font,
+.twikiTable th a {
+  color:white;
+  font-weight:bold;
+}
+.twikiTable td,
+.twikiTable {
+  background:white;
+  padding:5px 7px;
+}
+.twikiTableEven td {
+  background:#ffefb9;
+}
+
+.twikiDiffTable td {
+  border:0px;
+}
+
+.natTopicEditForm td {
+  border:0px;
+}
+
+/* topic form */
+.natTopicForm th,
+.natTopicForm td,
+.natTopicForm table {
+  border:1px #ff9831 solid;
+}
+.natTopicForm th {
+  border-bottom:1px #ff9831 solid;
+  background:#ff9831;
+  color:white;
+  font-weight:bold;
+  line-height:140%;
+}
+.natTopicForm th a:hover,
+.natTopicForm th a {
+  color:white;
+  font-weight:bold;
+}
+
+/* twiki page form */
+.twikiPageForm {
+  border:1px #ff9831 solid;
+  padding:5px;
+}
+.twikiPageForm table {
+  border-collapse:collapse;
+}
+.twikiPageForm table table {
+  border:0px;
+}
+.twikiPageForm th,
+.twikiPageForm td {
+  padding:5px 7px;
+  border:0px;
+}
+.twikiPageForm th {
+  border-bottom:1px #ff9831 solid;
+  background:#ff9831;
+  color:white;
+  font-weight:bold;
+  line-height:140%;
+}
+.twikiPageForm th a:hover,
+.twikiPageForm th a {
+  color:white;
+  font-weight:bold;
+}
+
+
+/* search table */
+.natSearchTable {
+  border:1px #ff9831 solid;
+  font-size:0.9em;
+  margin-top:1.5em;
+}
+.natSearchTable:first-child {
+  margin-top:0em;
+}
+
+.natSearchTableTitle th {
+  background:#ff9831;
+  color:white;
+  font-weight:bold;
+  line-height:140%;
+}
+.natSearchHit {
+  border:1px #ff9831 solid;
+  font-size:0.9em;
+  line-height:140%;
+}
+.natSearchHit th {
+  padding:0.5em 0.5em 0em 0.5em;
+}
+.natSearchHit td {
+  padding:0em 0.5em 0.5em 0.5em;
+}
+
+.natSearchHitEven {
+  background:#ffefb9;
+}
+
+/* login */
+.natLoginMessage {
+  color:#9C3300;
+  padding:20px;
+}
+.natLoginBody .natLoginHeading {
+  color:#9C3300;
+}
+
+/* top */
+.natTopBar { 
+  border-top:1px solid white;
+}
+.natTopBar { 
+  border-top:1px dotted white;
+  _border-top:1px solid white; /* IE only */
+}
+.natWebButtons, 
+.natTopLeft {
+  border-left:1px dotted white;
+  _border-left:1px solid white; /* IE only */
+}
+.natWebButtons, 
+.natTopLeft {
+  border-left:1px dotted white;
+  _border-left:1px solid white; /* IE only */
+}
+.natWebButtons,
+.natTopRight{
+  border-right:1px dotted white;
+  _border-right:1px solid white; /* IE only */
+}
+.natTopLeftContents {
+  margin:20px 0px 20px 20px;
+}
+.natTopRightContents {
+  margin:20px 20px 20px 10px;
+}
+.natHeaderArt {
+  background:#9C3300;
+}
+
+.natTopRight a,
+.natTopRight {
+  color:white;
+}
+.natTopRight a:hover {
+  color:#ffcc66;
+}
+
+.natSearchBox input { 
+  width:170px;
+  border:1px dotted white;
+  _border:1px solid white; /* IE only */
+}
+.natSearchBoxTop {
+  margin-top:10px;
+}
+.natSearchBoxTop input {
+  background:#9C3300;
+  color:white;
+}
+.natSearchBoxPos1 input,
+.natSearchBoxPos2 input,
+.natSearchBoxPos3 input {
+  background:#ff9831;
+  color:#9C3300;
+  font-weight:bold;
+  width:99%;
+}
+.natSearchBoxPos1 {
+  margin-bottom:10px;
+}
+.natSearchBoxPos2,
+.natSearchBoxPos3 {
+  margin:10px 0px;
+}
+
+
+.natWebTitle a {
+  color:white;
+  font-family:"Century Schoolbook l", georgia, "Times New Roman", serif;
+  font-weight:bold;
+  font-size:36px;
+}
+
+.natWebTitle a:hover {
+  color:#ffcc66;
+  text-decoration:none;
+}
+
+.natWebSlogan a:hover,
+.natWebSlogan a,
+.natWebSlogan {
+  color:white;
+  text-transform:none
+}
+.natWebSlogan {
+  line-height:100%;
+  font-size:95%;
+}
+
+.natAction {
+  color:#ff9831;
+}
+
+.natTopicActions {
+  font-size:95%;
+  line-height:160%;
+}
+.natTopicActions .natSep {
+  display:none;
+  color:#ffcc66 
+}
+.natTopicActions .natDisabledTopicAction,
+.natTopicActions a {
+  margin-left:-4px;
+  padding:3px 7px;
+}
+.natTopicActions a:hover {
+  background:#ff9831;
+  color:white;
+  text-decoration:none;
+}
+.natTopicActions .natDisabledTopicAction {
+  color:#CFA492;
+}
+
+/* sidebar */
+.natTopRight,
+.natSideBarRight {
+  width:270px;
+}
+.natSideBar {
+  background:#ff9831;
+  color:#9C3300;
+}
+.natSideBarContents {
+  font-size:95%;
+}
+
+.natSideBar h2 {
+  font-size:12px;
+  padding:0px 5px;
+  margin:10px -5px 10px -5px;
+  color:white;
+  font-family:verdana,arial,sans-serif;
+  font-size:14px;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  border-bottom:1px dotted white;
+  _border-bottom:1px solid white; /* IE only */
+  text-align:center;
+}
+.natSideBar h2 a {
+  color:white;
+}
+h2.natSideBarTitle {
+  margin-top:0px;
+}
+
+.natSideBar ol {
+  margin-left:15px;
+  padding-left:20px;
+}
+
+.natSideBar ul {
+  margin-left:20px;
+  padding:0px;
+  list-style-type:square;
+}
+.natSideBar ul ul {
+  margin-left:0px;
+  padding-left:0px;
+  list-style-type:none;
+}
+.natNotes {
+  padding-left:10px;
+  padding-right:5px;
+}
+
+.natSideBar a.natFeedIcon {
+  color:white;
+}
+
+.natSubWebs .natWebLink a {
+  font-weight:normal;
+  font-size:1.0em;
+}
+
+
+
+/* main area */
+.natMainContents {
+  margin:15px 0px 0px 0px;
+}
+.natMain, .natMainFooter {
+  background:white;
+  color:#444444;
+  font-weight:normal;
+}
+
+.natMain .twikiEmulatedLink,
+.natMain h1, .natMain h2, .natMain h3, .natMain h4, 
+.natMain h5, .natMain h6, 
+.natMain h1 a, .natMain h2 a, .natMain h3 a, .natMain h4 a,
+.natMain h5 a, .natMain h6 a, .natMain h1 a:link,
+.natMain h2 a:link, .natMain h3 a:link, .natMain h4 a:link,
+.natMain h5 a:link, .natMain h6 a:link,
+.natMain h1 a:hover,
+.natMain h2 a:hover, .natMain h3 a:hover, .natMain h4 a:hover,
+.natMain h5 a:hover, .natMain h6 a:hover {
+  color:#444444;
+}
+
+.natMain h2 {
+  border-bottom:2px solid #ff9831;
+}
+
+.natMain a:hover {
+  color:#ff9831;
+}
+
+.natMain input,
+.natMain select,
+.natMain textarea {
+  font-size:12px;
+}
+
+/* bottom */
+.natBottomBar {
+  margin-bottom:20px;
+}
+.natBottomBarContents {
+  font-family:verdana,arial,sans-serif;
+  line-height:140%;
+  font-size:85%;
+  font-weight:bold;
+}
+.natBottomBarContents,
+.natBottomBarContents a {
+  color:#444444;
+}
+
+
+/* supported plugins */
+
+/* BibtexPlugin */
+.bibsearch th {
+  background:#ff9831;
+  color:white;
+}
+
+.bibsearch,
+.bibtex {
+  border:1px solid #ff9831; 
+  background:white;
+}
+.bibtex dt a,
+.bibtex dt {
+  color:#9C3300;
+}
+
+/* blogging */
+.blogSideBarHeader {
+  border-bottom:1px dotted white;
+  _border-bottom:1px solid white; /* IE only */
+  margin-bottom:5px;
+}
+.blogSideBarSection {
+  margin-bottom:1em;
+}
+.blogSideBarComments li {
+  margin-bottom:0.5em;
+}
+.blogAbout {
+  font-size:0.9em;
+}
+.blogHeadline h1,
+.blogHeadline a,
+.blogHeadline {
+}
+.blogHeadline .blogCommentCount {
+  font-size:1.8em;
+  vertical-align:top;
+}
+.blogEntry {
+  margin-bottom:1em;
+}
+.blogInfo {
+  font-size:0.9em;
+  line-height:1.3em;
+}
+.natSideBar .blogAdminButtons,
+.natSideBar .blogAuthorButtons {
+  border:0px;
+  background:#ff9831;
+}
+.natSideBar .blogSubmitButton {
+  background:#ffefb9;
+}
+.natSideBar .blogAdminButtons input[type="text"],
+.natSideBar .blogAuthorButtons input[type="text"] {
+  border:1px dotted #9C3300; /* non-IE */
+}
+.blogCommentOdd {
+  background:#ffefb9;
+  background:#efefef;
+}
+.blogSubComments {
+  padding:1px;
+}
+.blogSubComment {
+  border-left:2px solid #9C3300;
+}
+.blogSideBarHeader {
+  _border-bottom:1px solid white; /* IE only */
+  border-bottom:1px dotted white;
+  color:white;
+  font-family:verdana,arial,sans-serif;
+  font-size:14px;
+  letter-spacing:.1em;
+  margin:0px -5px 10px !important;
+  padding:0px 5px;
+  text-transform:uppercase;
+  text-align:center;
+}

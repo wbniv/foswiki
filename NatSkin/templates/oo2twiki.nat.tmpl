@@ -1,0 +1,54 @@
+%TMPL:INCLUDE{"attach"}%<!-- template: oo2twiki.nat.tmpl -->
+%TMPL:DEF{"title"}%%TOPIC% (import) - %WIKITOOLNAME%%TMPL:END%
+%TMPL:DEF{"attachaction"}% <!-- attachaction -->
+<input type="submit" class="natOkButton" title="Upload selected file" value='%MAKETEXT{"Upload file"}%' />
+<input type="button" class="natCancelButton" title="Cancel and return to topic" value='%MAKETEXT{"Cancel"}%' onclick="window.location.href = '%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%';">
+<!-- //attachaction -->%TMPL:END%
+%TMPL:DEF{"notes"}%<!-- notes -->
+<p>
+This will upload the given <nop>OpenOffice document to TWiki, converting and importing it
+to TWiki. Its content will be stored it into a new topic. 
+</p>
+<p>
+The original document will be attached to the newly
+created topic. 
+</p>
+<p>
+The name of the new topic will be derived from the filename of the uploaded document.
+</p>
+<p>
+%RED%Please note, that the conversion process may take awhile depending on the
+size and complexity of the uploaded document.%ENDCOLOR%
+</p>
+<!-- //notes-->%TMPL:END%
+%TMPL:DEF{"content"}%<!-- content -->
+<h2>%MAKETEXT{"Import <nop>OpenOffice Document"}%</h2>
+
+<div class="twikiPageForm">
+<form name="main" enctype="multipart/form-data" action="%SCRIPTURLPATH{"convert"}%/%WEB%/%TOPIC%" method="post">
+<input type="hidden" class="twikiCheckbox" name="hidefile" value="0" /> 
+<table>
+ <tr>
+  <th align="right">
+   %MAKETEXT{"File"}%:
+  </th><td>
+   <input type="hidden" name="filename" value="" />
+   <input type="file" name="filepath" value="" size="50"/>
+  </td>
+ </tr>
+ <tr>
+  <th align="right">
+   %MAKETEXT{"Comment"}%:
+  </th><td>
+   <input type="text" name="filecomment" value="" size="50"/>
+  </td>
+ </tr>
+<tr>
+<th>&nbsp;</th>
+<td class="natAttachAction">%TMPL:P{"attachaction"}%</td>
+</tr>
+</table>
+</form>
+</div>
+See also: %TWIKIWEB%.OpenOffice2TWikiAddOn
+<!-- //content-->%TMPL:END%

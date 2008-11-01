@@ -1,0 +1,7 @@
+%TMPL:INCLUDE{"searchbase"}%<!-- template: searchformat.nat.tmpl -->
+%TMPL:DEF{"content"}%<!-- content -->
+%SPLIT%<b>%MAKETEXT{"Search"}%</b>: <span class="natSearchString">%SEARCHSTRING%</span><br />
+%SPLIT%%REPEAT%%REPEAT%
+%SPLIT%<br /> <div class="natSearchTotal">%MAKETEXT{"Found <span>[_1]</span> topic(s)." args="%NTOPICS%"}%</div>
+%SPLIT% 
+<!-- //content -->%TMPL:END%

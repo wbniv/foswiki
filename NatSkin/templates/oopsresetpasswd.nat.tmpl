@@ -1,0 +1,22 @@
+%TMPL:INCLUDE{"oops"}%
+<!-- template: oopsresetpasswd.nat.tmpl -->
+%TMPL:DEF{"title"}%%TOPICTITLE% (%MAKETEXT{"note"}%) - %WIKITOOLNAME%%TMPL:END%
+%TMPL:DEF{"color"}%green%TMPL:END%
+%TMPL:DEF{"heading"}%%MAKETEXT{"Request to reset your TWiki password"}%%TMPL:END%
+%TMPL:DEF{"mailuri"}%"mailto:%WIKIWEBMASTER%?subject=%WIKITOOLNAME%&#32;-&#32;Sorry,&#32;please&#32;reset&#32;my&#32;password&amp;body=%PARAM1%"%TMPL:END%
+%TMPL:DEF{"message"}%<!-- -->
+%MAKETEXT{"The following is your encrypted password entry:"}% 
+
+<div style="padding:15px">
+<pre style="padding:5px 10px;display:inline;font-size:1.5em">
+<nop>%PARAM1%</pre>
+</div>
+
+%MAKETEXT{"Please copy this information into a friendly e-mail to [_1]"
+ args="<a href=%TMPL:P{\"mailuri\"}%>%WIKIWEBMASTER%</a>"}%
+
+<form name="ButtonBox" enctype="text/plain" method="post" action=%TMPL:P{"mailuri"}%>
+  <input type="hidden" name="Password" value="%PARAM1%" />
+  <input type="submit" class="natOkButton" value ='%MAKETEXT{"OK"}%'>&nbsp;
+  <input type="button" class="natCancelButton" value='%MAKETEXT{"Cancel"}%' onclick="history.back()">
+</form> %TMPL:END%

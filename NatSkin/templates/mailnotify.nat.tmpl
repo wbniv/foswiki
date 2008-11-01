@@ -1,0 +1,23 @@
+%TMPL:DEF{"MailNotifyBody"}%From: TWiki Administrator <%WIKIWEBMASTER%>
+To: %EMAILTO%
+Subject: %MAKETEXT{"[_1] - Automated notification of topic changes" args="%WIKITOOLNAME%.%WEB%"}%
+Content-Type: text/plain; charset=%CHARSET%
+Content-Transfer-Encoding: 8bit
+
+%MAKETEXT{"This is an automated email from [_1]." args="%WIKITOOLNAME%"}%
+
+%MAKETEXT{"Review recent changes in:"}%
+  %SCRIPTURL{"view"}%/%WEB%/WebChanges
+
+%MAKETEXT{"Subscribe / Unsubscribe in:"}%
+  %SCRIPTURL{"view"}%/%WEB%/%NOTIFYTOPIC%
+
+%MAKETEXT{"New or changed topics in the [_1] web, since [_2] GMT:" args="%WEB%,%LASTDATE%"}%
+
+%PLAIN_TEXT%
+%TMPL:END%
+%TMPL:DEF{PLAIN:middle}%- %AUTHOR%, %TIME%: 
+  %URL% 
+
+%TMPL:END%
+%TMPL:P{"MailNotifyBody"}%

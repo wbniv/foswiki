@@ -1,0 +1,165 @@
+%META:TOPICINFO{author="TWikiContributor" date="1125075424" format="1.0" version="$Rev$"}%
+%META:TOPICPARENT{name="NatSkin"}%
+---+!! %TOPIC%
+<!-- TODO: 
+ This docu only reflects the templates used on a beijing or cairo TWiki engine.
+ The extra templates used on a dakar engine aren't listed here yet.
+-->
+
+The template setup of the NatSkin differes completely from the standard templates that
+come with the TWiki folowing its own inner logic compared to the TWiki:Plugins/PatternSkin. The
+NatSkinTemplates have especially been designed to simplify subskins overwriting parts
+of the NatSkin. 
+
+Every template belongs to a group defined by their function:
+   * [[#SkinBaseTemplates]]: all templates build uppon these
+   * [[#AttachTemplates]]: render the attach pages
+   * [[#ChangesTemplates]]: render the changes (note, the changes cgi has been deprecated)
+   * [[#ChangeFormTemplates]]: render pages used to change a form of a topic
+   * [[#EditTemplates]]: render the edit pages
+   * [[#MoveAttachmentTemplates]]: render pages used to move an attachment
+   * [[#OopsTemplates]]: render oops messages
+      * [[#OopsMessagesTemplates]]: render notification messages
+      * [[#OopsAuthentificationTemplates]]: render authentification pages
+      * [[#OopsSystemErrorsTemplates]]: render error messages
+   * [[#PreviewTemplates]]: render preview page after an edit page
+   * [[#DiffTemplates]]: templates used to render differences of topic versions
+   * [[#RenameMoveTemplates]]: render pages used during topic renaming
+   * [[#SearchTemplates]]: render all sorts of search results
+   * [[#ViewTemplates]]: render the normal topic view
+
+Each group consists of one or more _entry templates_, e.g. attach group has
+three entry templates: attach, attachnew and attachagain, 
+If a template group has more than one entry template then these build upon
+and intercostal _base template_, named &lt;name>base template (where &lt;name is
+the short name for the template group). The base template might also be
+an entry template. The base suffix is then stripped from the template name. For
+example in the attach group there are two pure entry template, attachnew and attachagain,
+that base on the attach template which is an entry template also. Pure base templates are 
+for example the renamebase or the oopslogonbase templates. See below for more.
+
+The oops template group is a bit different from the others as it has subgroups of
+templates for authentification, notification and error messages.
+Some of these groups have an own base template shared among messages of the same type.
+All oops templates are finally using the central oops template.
+Ssee the INCLUDE hierary below.
+
+Every group uses three _fragment templates_:
+   * &lt;name>body: the html body
+   * &lt;name>sidebar: the sidebar next to the main area
+   * &lt;name>topicactions: the upper right fragment displaying possible 
+     actions for the current topic page
+So the fragment templates
+for the attach group are attachbody, attachsidebar and attachtopicactions
+(omitting the =nat.tmpl= extension). These can be used by subskins to implement a
+different look and feel per web with a minimal amount of code duplication.
+
+All groups finally call the page template that constructs the resulting html by
+inserting all TMPL macros. The page template itself only defines defaults for
+the standard fragments.
+
+This is the INCLUDE hierarchy of the templates in the NatSkin.
+Each indentation means, that the upper template INCLUDEs the lower template(s). 
+If a template name has already been defined, further indentations are pruned.
+So whenever a template INCLUDEs the page template all 
+default fragments are left out for clarity.
+
+   1 <a name="SkinBaseTemplates">Skin Base templates:</a>
+      * page
+         * javascript
+         * defaultbody
+         * defaultsidebar
+         * defaulttopicactions
+         * defaulttopbar
+      * searchbox
+   1 <a name="AttachTemplates">Attach templates:</a>
+      * attachagain, attachnew
+         * attach
+            * page
+            * attachbody
+            * attachsidebar
+            * attachtopicactions
+   1 <a name="ChangesTemplates">Changes templates:</a>
+      * changes
+         * page
+         * changesbody
+         * changessidebar
+         * changestopicactions
+   1 <a name="ChangeFormTemplates">Change Form templates:</a>
+      * changeform
+         * page
+         * changeformbody
+         * changeformsidebar
+         * changeformtopicactions
+   1 <a name="EditTemplates">Edit templates:</a>
+      * edit
+         * page 
+         * editsidebar
+         * edittopicactions
+   1 <a name="MoveAttachmentTemplates">Move Attachment templates:</a>
+      * moveattachment
+         * page
+         * moveattachmentbody
+         * moveattachmentsidebar
+         * moveattachmenttopicactions
+   1 <a name="OopsTemplates">Oops templates:</a>
+      * oops
+         * page
+         * oopsbody
+         * oopssidebar
+         * oopstopicactions
+      1 <a name="OopsMessagesTemplates">Messages:</a>
+         * oopsbadpwformat, oopschangepasswd, oopsempty, oopslocked,
+           oopslockedrename, oopsmanage, oopsmissing, oopsmngcreateweb,
+           oopsmore, oopsnoformdef, oopsnotwikiuser, oopsnoweb,
+           oopspreview, oopsregemail, oopsregexist, oopsregpasswd,
+           oopsregrequ, oopsregthanks, oopsregwiki, oopsrenamenotwikiword,
+           oopsresetpasswd, oopsrev, oopssave, oopstopicexists,
+           oopsupload
+            * oops
+      1 <a name="OopsAuthentificationTemplates">Authentication:</a>
+         * oopslogon, oopsaccesschange, oopsaccesscreateweb,
+           oopsaccessgroup, oopsaccessrename, oopsaccessview,
+           oopsaccessvote, oopsauth, oopswrongpassword
+            * oopslogonbase
+               * oops
+      1 <a name="OopsSystemErrorsTemplates">System Errors:</a>
+         * oopsmoveerr, oopsrenameerr, oopssaveerr,
+           oopssendmailerr, oopssoftwareerr
+            * oopserrbase
+               * oops
+   1 <a name="PreviewTemplates">Preview templates:</a>
+      * preview
+         * page
+         * previewbody
+         * previewsidebar
+         * previewtopicactions
+   1 <a name="DiffTemplates">Diff templates:</a>
+      * rdiff
+         * page
+         * rdiffbody
+         * rdiffsidebar
+         * rdifftopicactions
+   1 <a name="RenameMoveTemplates">Rename/Move templates:</a>
+      * rename, renameconfirm, renamerefs
+         * renamebase
+            * page
+            * renamebody
+            * renamesidebar
+            * renametopicactions
+   1 <a name="SearchTemplates">Search templates:</a>
+      * search, searchbookview, searchformat, searchrenameview
+         * searchbase
+            * page
+            * searchbody
+            * searchsidebar
+            * searchtopicactions
+               * searchbox
+   1 <a name="ViewTemplates">View templates:</a>
+      * view
+         * page
+         * viewbody
+         * viewsidebar
+         * viewtopicactions
+            * searchbox
+

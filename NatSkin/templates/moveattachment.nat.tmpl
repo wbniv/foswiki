@@ -1,0 +1,110 @@
+%TMPL:INCLUDE{"page"}% <!-- -->
+<!-- template: moveattachment.nat.tmpl -->
+%TMPL:INCLUDE{"moveattachmentbody"}%<!-- -->
+%TMPL:INCLUDE{"moveattachmentsidebar"}%<!-- -->
+%TMPL:INCLUDE{"moveattachmenttopicactions"}%<!-- -->
+%TMPL:INCLUDE{"moveattachmentjavascript"}%<!-- -->
+%TMPL:INCLUDE{"moveattachmentstyles"}%<!-- -->
+%TMPL:DEF{"bodyclass"}%natMoveAttachmentBody%TMPL:END%
+%TMPL:DEF{"title"}%%TOPICTITLE% (%MAKETEXT{"move attachment"}%) - %WIKITOOLNAME%%TMPL:END%
+%TMPL:DEF{"meta"}% <meta name="robots" content="noindex, nofollow" /> %TMPL:END%
+%TMPL:DEF{"onloadscript"}%document.rename.newtopic.focus();%TMPL:END%
+%TMPL:DEF{"content"}%<!-- -->
+<form name="rename" action="%SCRIPTURLPATH{"rename"}%/%WEB%/%TOPIC%">
+%IFDEFINEDTHEN{"%URLPARAM{"newweb"}%" as="Trash"}%
+---+ %MAKETEXT{"Delete attachment \"[_1]\"" args="<nop>%FILENAME%"}%
+%ELSEDEFINED%
+---+ %MAKETEXT{"Move attachment \"[_1]\"" args="<nop>%FILENAME%"}%
+%FIDEFINED%
+
+%IFDEFINEDTHEN{"%URLPARAM{"newweb"}%" as="Trash" glue="off"}%
+---+++ Are you sure?
+
+<input type="hidden" name="newweb" value="Trash" />
+<input type="hidden" name="newtopic" value="TrashAttachment" />
+<input type="submit" class="natOkButton" value='%MAKETEXT{"Yes"}%' />&nbsp;
+<input type="button" class="natCancelButton" value='%MAKETEXT{"No"}%' onclick="window.location.href='%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%'">
+%ELSEDEFINED%
+<div class="twikiPageForm">
+<table cellpadding="5px">
+<tr>
+  <th>%MAKETEXT{"From"}%:</th>
+  <td><span class="twikiAlert"><nop>%WEB%.%TOPIC%</span></td>
+</tr>
+<tr>
+  <th>%MAKETEXT{"To"}%:</th>
+  <td><select name="newweb" onchange="
+~~~ if (document.rename.newweb.value == 'Trash') { 
+~~~   document.rename.newtopic.value = 'TrashAttachment'; 
+~~~   document.rename.totrash.checked = true;
+~~~ } else {
+~~~   document.rename.totrash.checked = false;
+~~~ }
+~~~ "> 
+    %WEBLIST{"<option $marker value='$name'>$name</option>" webs="Trash,%NEW_WEB%,public" selection="%NEW_WEB%" separator=" "}% 
+    </select>&nbsp;<input type="text" name="newtopic" value="%TOPIC%" size="40"/>
+  </td>
+</tr>
+<tr>
+  <th>&nbsp;</th>
+  <td><table style="width:auto" border="0">
+    <tr>
+      <td align="right"><input type="checkbox" class="twikiCheckbox" name="totrash" id="totrash" 
+~~~ onclick="
+~~~ var elem = document.rename.newweb; 
+~~~ if (elem.value == 'Trash') { 
+~~~   elem.value = '%WEB%';
+~~~   document.rename.newtopic.value = '%TOPIC%';
+~~~   document.rename.totrash.checked = false;
+~~~ } else {
+~~~   elem.value = 'Trash';
+~~~   document.rename.newtopic.value = 'TrashAttachment'; 
+~~~   document.rename.totrash.checked = true;
+~~~ }
+~~~ "
+~~~   ></td>
+      <td><label for="totrash">%MAKETEXT{"Move to Trash"}%</label></td>
+    </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+  <th>&nbsp;</th>
+  <td>
+    <input type="submit" class="natOkButton" value='%MAKETEXT{"OK"}%' />&nbsp;
+    <input type="button" class="natCancelButton" value='%MAKETEXT{"Cancel"}%' onclick="window.location.href='%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%'">
+  </td>
+</tr>
+</table>
+%FIDEFINED%
+<input type="hidden" name="attachment" value="%FILENAME%" />
+<input type="hidden" name="changeRefs" value="0" />
+</div>
+</form>
+%TMPL:END%
+%TMPL:DEF{"notes"}% <!-- -->
+%IFDEFINEDTHEN{"%URLPARAM{"newweb"}%" as="Trash"}%
+<p>
+  %MAKETEXT{"When the file is deleted, it is moved to the Trash web and attached to the Trash.TrashAttachment topic."}%
+</p>
+<p> 
+  %MAKETEXT{"The attachment and its history will be moved as well."}%
+</p>
+%ELSEDEFINED%
+<p>
+  %MAKETEXT{"To delete an attachment move it to the [_1] topic." args="Trash.TrashAttachment"}%
+</p>
+<p> 
+  %MAKETEXT{"The attachment and its history will be moved to the new topic."}%
+</p>
+<p> 
+  %MAKETEXT{"An error page will be shown if either of the topics are locked by another user."}%
+</p>
+<p> 
+  %MAKETEXT{"The new topic chosen must already exist."}%
+</p>
+%FIDEFINED%
+<p> 
+  %MAKETEXT{"Note that any URLs that refer to the attachment will be broken after this move."}%
+</p>
+%TMPL:END%

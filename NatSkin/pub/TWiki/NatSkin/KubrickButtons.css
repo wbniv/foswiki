@@ -1,0 +1,36 @@
+/* variation to switch on the web buttons for kubrick */
+@import url('BaseButtons.css');
+
+.natWebButtonsContents {
+  padding:5px 10px 5px 10px;
+}
+
+.natWebButtons ul li {
+  margin-right:0px;
+}
+
+.natWebButtons ul a {
+  padding:5px 10px 5px;
+  font: 1em Verdana, Arial, Sans-Serif;
+  text-transform: lowercase;
+  color: white;
+  margin: 0;
+}
+
+.natWebButtons ul a:hover {
+  background: #333;
+  color: #eee;
+  text-decoration: none;
+}
+
+.natWebButtons ul a.current,
+.natWebButtons ul a.current:hover {
+  color: #333;
+  background: white;
+  text-decoration: none;
+  border-bottom:0px;
+}
+.natTopLeft,
+.natTopRight {
+  padding-bottom:15px;
+}

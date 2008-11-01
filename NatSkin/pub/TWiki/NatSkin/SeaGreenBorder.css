@@ -1,0 +1,8 @@
+/* border variation for sea green */
+@import url('BaseBorder.css');
+.natBody {
+  background: #6699CC;
+}
+.natEditBody {
+  background:white;
+}

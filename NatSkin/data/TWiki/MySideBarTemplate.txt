@@ -1,0 +1,57 @@
+%META:TOPICINFO{author="TWikiContributor" date="1133357180" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="MySideBar"}%
+---+ %MAKETEXT{"[_1]'s sidebar" args="%WIKIUSERNAME%"}%
+
+%STARTINCLUDE%<!-- mysidebar -->
+<h2 > [[%MAINWEB%.%WIKINAME%SideBar][MySideBar]]</h2>
+%TWISTY{
+   mode="div"
+   prefix="<div>"
+   link="<h3 >%MAKETEXT{"Link"}%</h3>"
+   suffix="</div>"
+   showicon="%ICONURLPATH{"toggleclose-mini"}%"
+   hideicon="%ICONURLPATH{"toggleopen-mini"}%"
+}%
+   * ...
+   * ...
+   * ...
+%ENDTWISTY%
+%TWISTY{
+   prefix="<div>"
+   link="<h3 >%MAKETEXT{"Documentation"}%</h3>"
+   suffix="</div>"
+   mode="div"
+   showicon="%ICONURLPATH{"toggleclose-mini"}%"
+   hideicon="%ICONURLPATH{"toggleopen-mini"}%"
+}%
+   * [[%TWIKIWEB%.WelcomeGuest][%MAKETEXT{"Welcome Guest"}%]] 
+   * [[%TWIKIWEB%.TWikiUsersGuide][%MAKETEXT{"User's Guide"}%]] 
+   * [[%TWIKIWEB%.TWikiReferenceManual][%MAKETEXT{"Reference Manual"}%]]
+   * [[%TWIKIWEB%.GoodStyle][%MAKETEXT{"Good Style"}%]] 
+   * [[%TWIKIWEB%.TWikiFAQ][%MAKETEXT{"FAQs"}%]] 
+   * [[%TWIKIWEB%.TWikiVariables][%MAKETEXT{"TWiki Variables"}%]] 
+   * [[%TWIKIWEB%.TWikiForms][%MAKETEXT{"TWiki Forms"}%]] 
+   * [[%TWIKIWEB%.FormattedSearch][%MAKETEXT{"Formatted Search"}%]]
+   * [[%TWIKIWEB%.FileAttachment][%MAKETEXT{"File Attachment"}%]] 
+%ENDTWISTY%
+%TWISTY{
+   prefix="<div>"
+   link="<h3 >%MAKETEXT{"Plugins"}%</h3>"
+   suffix="</div>"
+   mode="div"
+   showicon="%ICONURLPATH{"toggleclose-mini"}%"
+   hideicon="%ICONURLPATH{"toggleopen-mini"}%"
+}%
+%FORMATLIST{"%ACTIVATEDPLUGINS%" 
+  separator="$n" 
+  header="<ul>"
+  format="<li> $1 </li>" 
+  footer="</ul>"
+  sort="on"
+}%
+%ENDTWISTY%
+<h3 >[[%TWIKIWEB%.NatSkinStyleBrowser][Style Browser]]</h3>
+<!-- /mysidebar -->%STOPINCLUDE%
+<!--
+   * Set ALLOWTOPICCHANGE = %WIKIUSERNAME%
+-->

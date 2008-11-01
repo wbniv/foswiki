@@ -1,0 +1,37 @@
+%TMPL:INCLUDE{"searchbase"}% 
+<!-- template: searchrenameview.nat.tmpl -->
+%TMPL:DEF{"content"}%<!-- -->
+%SPLIT%<b>%MAKETEXT{"Search"}%</b>: <span class="natSearchString">%SEARCHSTRING%</span>
+<form>
+%SPLIT%<table class="natSearchTable" cellpadding="0" cellspacing="0">
+<tr>
+  <th width="10%">%MAKETEXT{"Update ref:"}%</th>
+  <th width="45%">%MAKETEXT{"[_1] web:" args="%WEB%"}% </th>
+  <th width="25%">%MAKETEXT{"Changed:"}%</th>
+  <th width="20%">%MAKETEXT{"By"}%:</th>
+</tr>
+</table> 
+<!-- debug: searchrenameview header end -->%REPEAT%<!-- debug: searchrenameview repeat start -->
+<table class="natSearchHit" border="0" cellspacing="0" cellpadding="0">
+<tr>
+  <th width="10%">
+    %SELECTION%<input type="checkbox" class="twikiCheckbox" name="RENAME%LABEL%%TOPIC_NUMBER%" checked="checked" />
+    <input type="hidden" name="TOPIC%LABEL%%TOPIC_NUMBER%" value="%WEB%.%TOPICNAME%" />%SELECTION%
+  </th><th width="45%">
+    <a href="%SCRIPTURLPATH{"view"}%/%WEB%/%TOPICNAME%">%TOPICNAME%</a> 
+  </th><th width="25%">
+    <a href="%SCRIPTURLPATH{"rdiff"}%/%WEB%/%TOPICNAME%?type=last">%TIME%</a> - %REVISION%
+  </th><th width="20%">
+    %AUTHOR%
+  </th>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td colspan="3" width="80%">%TEXTHEAD%</td>
+</tr></table>
+<!-- debug: searchrenameview repeat end -->%REPEAT%<!-- debug: searchrenameview footer start-->
+<p>
+%SPLIT% <div class="natSearchTotal">%MAKETEXT{"Found <span>[_1]</span> topic(s)." args="%NTOPICS%"}%</div>
+%SPLIT%
+</form>
+%TMPL:END%

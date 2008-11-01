@@ -1,0 +1,10 @@
+%META:TOPICINFO{author="TWikiContributor" date="1185741636" format="1.1" reprev="1.2" version="$Rev$"}%
+%META:TOPICPARENT{name="WebHome"}%
+%STARTINCLUDE%<!-- mysidebar -->
+<nop><h2><a name="mysidebar">MySideBar</a></h2>
+
+   * %MAKETEXT{"<a href='[_1]' title='[_2]'>Create your personalized sidebar.</a>"
+ args="%SCRIPTURLPATH{"save"}%/%MAINWEB%/%WIKINAME%SideBar?topicparent=%WIKINAME%;templatetopic=%TWIKIWEB%.MySideBarTemplate,<nop>%WIKINAME%SideBar"}%
+<!-- //mysidebar -->%STOPINCLUDE%
+
+%MAKETEXT{"See also:"}% NatSkin, NatSkinPlugin, MySideBarTemplate

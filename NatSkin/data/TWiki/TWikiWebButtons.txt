@@ -1,0 +1,12 @@
+%META:TOPICINFO{author="TWikiContributor" date="1185225753" format="1.1" version="$Rev$"}%
+%STARTINCLUDE% <noautolink> 
+<ul>
+%~~ FLEXWEBLIST{
+~~~   webs="%MAINWEB%,User,publiccurrent,%TWIKIWEB%"
+~~~   include="\w+|%BASEWEB%"
+~~~   exclude="TestCases|Trash|Attic"
+~~~   adminwebs="Applications"
+~~~   format="$percntWEBLINK{\"$web\" format=\"<li>$default</li>\"}$percnt"
+~~~ }%
+</ul>
+</noautolink> %STOPINCLUDE%

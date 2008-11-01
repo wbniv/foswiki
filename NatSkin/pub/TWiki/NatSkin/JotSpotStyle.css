@@ -1,0 +1,554 @@
+/* jotspot like style immitating the fresh design */
+
+@import url("../../TWiki/NatSkin/BaseStyle.css");
+
+html {
+  margin:0;
+  padding:0;
+}
+body{
+  font-family: "Lucida Grande", Arial, Helvetica, sans-serif;
+  margin: 0;
+  font-size:12px;
+}
+button {
+  font-size:12px;
+}
+
+a:link,
+a {
+  color:#0000C5;
+  text-decoration:underline;
+}
+a:hover {
+  text-decoration:none;
+}
+html,
+.natBody {
+  background:#eee;
+}
+
+/* top bar */
+.natHeaderArt {
+  background: #4F518D;
+}
+.natTopBar {
+  padding: 0;
+}       
+.natTopRight {
+  width:250px;
+}
+.natSideBarRight .natSideBarContents {
+  width:220px;
+}
+.natTopLeftContents,
+.natTopRightContents {
+  margin:0px 0px 15px 0px;
+  padding:15px;
+  height:40px;
+  color: #D4D1FF;
+}
+
+/* DISABLE the following to enable the normal webtitle+logo feature;
+ * if you still want to have the notspot logo then use this:
+ *   * Set NATWEBLOGONAME = <img src="%PUBURLPATH%/%TWIKIWEB%/NatSkin/notspot.gif" alt="NotSpot Wiki" onMouseOver="this.src='%PUBURLPATH%/%TWIKIWEB%/NatSkin/notspot_back.gif'" onMouseOut="this.src='%PUBURLPATH%/%TWIKIWEB%/NatSkin/notspot.gif'" />
+ */
+.natWebTitle {
+}
+.natWebTitle a {
+  display:block;
+  background-image:url("notspot.gif");
+  background-repeat: no-repeat;
+  background-position: top left;
+  width:165px;
+  height:40px;
+  padding:1px;
+}
+.natWebTitle a:hover {
+  background-image:url("notspot_back.gif");
+}
+.natWebLogo {
+  display:none;
+}
+/* /DISABLE */ 
+
+.natTopBar img{
+  border:0px;
+  margin:0px;
+  padding:0px;
+  vertical-align: top;
+}
+.natTopBarSizer {
+  height:auto;
+}
+.natWebSlogan {
+  display:none;
+}
+.natTopBar a {
+  color: #FFCE00;
+}
+
+.natTopicActions {
+  line-height:160%;
+}
+.natTopicActions a,
+.natTopicActions .natDisabledTopicAction {
+  padding:3px 5px;
+  text-decoration:none;
+}
+.natTopicActions .natSep {
+  display:none;
+}
+.natTopicActions .natDisabledTopicAction {
+  color:#8387AB;
+}
+.natTopicActions a:hover {
+  background:#9C9DCD;
+  color:#414483;
+}
+
+/* sidebar */
+.natSideBar {
+  width:185px;
+  padding:10px;
+}
+.natSideBarContents {
+  font-size:12px;
+  background: #FFFFFF;
+  overflow: hidden;
+  padding:0px 10px 10px 10px;
+  margin:0px;
+  border-right: 1px solid #B3BCC0;
+  border-bottom: 1px solid #B3BCC0;
+}
+.natSideBar h2,
+.natSideBar ul,
+.navCurrent,
+.navCurrent h2 {
+  padding:0px;
+  margin:0px;
+}
+.natSideBar h2 {
+  font-size:14px;
+  margin:5px 0px 5px 5px;
+}
+.natSideBar h2,
+.natSideBar h2 a {
+  color:black;
+  text-decoration:none;
+}
+.natSideBar h2 {
+  border-top:1px solid #CDDEF6;
+  margin:10px -10px 5px -10px;
+  padding:10px 10px 5px 10px;
+}
+h2.natSideBarTitle {
+  border:0px;
+  margin:0px;
+  padding:0px;
+}
+h2.natSideBarTitle a {
+  display:block;
+  padding:3px 10px 2px 10px;
+  margin:0px -10px 5px -10px;
+  border-bottom:1px solid #CDDEF6;
+}
+h2.natSideBarTitle a:hover {
+  background:#EEF6F6;
+  color:black;
+}
+.natSideBar h3 {
+  font-size:14px;
+  margin:0px;
+  color:black;
+}
+.natSideBar ol {
+  margin-bottom:5px;
+}
+.natSideBar h3 a {
+  color:black;
+  text-decoration:none;
+}
+
+.twbSideBarSection,
+.navCurrent ul {
+  background:#EEF6F6;
+  border:1px solid #CDDEF6;
+  list-style-type: none;
+  padding:5px;
+  margin:0px -10px;
+}
+.navCurrent .natSubWebs {
+  padding:0px;
+}
+.natSideBar ul li {
+  padding:2px 5px 2px 17px;
+  list-style-type: none;
+  text-indent:-12px;
+  _padding:2px 5px;
+  _text-indent:0px; /* not IE */
+}
+.natSideBar ul > li:before { /* does not compute on IE */
+  content: "\00BB \0020";
+  color:black;
+  font-size:14px;
+}
+.natSideBar ul ul > li:before {
+  content:"";
+}
+.natSideBar ul ul li {
+  padding-left:12px;
+}
+.natSideBar ul ul {
+  margin-left:0px;
+  padding-left:0px;
+  list-style-type:none;
+}
+.natSideBar li a {
+  color: #0076A3;
+}
+.natSearchBox a {
+  text-decoration:none;
+}
+.natSearchBoxTop {
+  padding:0px;
+}
+.natSearchBoxTop input {
+  border:1px solid  #4F518D;
+  background:#9C9DCD;
+}
+.natSearchBoxPos1 {
+  margin:5px;
+  width:145px;
+}
+.natSideBarRight .natSearchBoxPos1 {
+  width:215px;
+}
+.natSearchBox form {
+  margin:0px;
+}
+.natSearchBoxPos1 input {
+  border:1px solid #B3BCC0;
+}
+a:hover.natFeedIcon,
+a.natFeedIcon {
+  color:black;
+  background-color:#E6E9EB;
+}
+.natSideBar a:hover.natFeedIcon,
+.natSideBar a.natFeedIcon {
+  background-color:#EEF6F6;
+}
+.natSideBar .natSubWebs {
+  border:0px;
+}
+
+/* main */
+.natMiddle {
+  background: #E6E9EB;
+}
+.natMain, .natSideBar {
+  border-top:5px solid #7B7DBD;
+}
+.natMain {
+  margin:0px;
+  padding:10px 10px 0px 0px;
+}
+.natMainLeft {
+  padding:10px 0px 0px 10px;
+}
+.natMainHeaderContents {
+  background:#D5D6DE;
+  padding:3px 10px;
+  color:black;
+  margin:0px;
+  border-right: 1px solid #B3BCC0;
+}
+.natMainHeaderContents a {
+  color:black;
+}
+.natMainHeaderContents .twikiCurrentTopicLink {
+  text-decoration:none;
+}
+
+.natMainContents {
+  background:white;
+  margin:0px;
+  padding:20px;
+  font-size:14px;
+  border-right: 1px solid #B3BCC0;
+  _width:auto;
+}
+.natMain h1,
+.natMain h2 {
+  clear:both;
+}
+.natMain h1, .natMain h1 a,
+.natMain h2, .natMain h2 a,
+.natMain h3, .natMain h3 a,
+.natMain h4, .natMain h4 a,
+.natMain h5, .natMain h5 a,
+.natMain h6, .natMain h6 a {
+  text-decoration:none;
+  color:black;
+  font-weight:bold;
+}
+.natMain h1 a:hover,
+.natMain h2 a:hover,
+.natMain h3 a:hover,
+.natMain h4 a:hover,
+.natMain h5 a:hover,
+.natMain h6 a:hover {
+  font-weight:bold;
+}
+
+.natMain pre {
+  background:#DEDEDE;
+  border:1px dotted black;
+  margin:10px;
+  padding:5px;
+  width:93%;
+  _padding:0px; /* IE: you ... outch */
+  _width:97%;
+}
+.natMain pre pre {
+  border:0px;
+  width:100%;
+}
+.natMainBoth .natMainContents {
+  border:1px solid #B3BCC0;
+  min-height:0;
+}
+.natBodyOos .natMainBoth .natMainHeaderContents {
+  display:none;
+}
+/* footer */
+.natMainFooter {
+  margin:0px;
+  padding:0px;
+  padding-right:10px;
+  vertical-align:top;
+}
+.natMainFooterLeft {
+  padding-left:10px;
+  padding-right:0px;
+}
+.natMainFooterContents {
+  border-right: 1px solid #B3BCC0;
+  border-bottom: 1px solid #B3BCC0;
+  margin:0px;
+  padding:20px;
+  background:white;
+  margin-bottom:10px;
+}
+.natMainFooterBoth .natMainFooterContents {
+  display:none;
+}
+.natBottomBar {
+  padding:20px 30px 20px 200px;
+}
+.natBottomBar a {
+  color:#0079A4;
+}
+.natBottomBarLeft {
+  padding:20px 320px 20px 30px;
+}
+.natBottomBarBoth {
+  padding:20px 30px;
+}
+.natBottomBarBoth .natBottomBarContents {
+  width:80%;
+  margin-left:auto;
+  margin-right:auto;
+}
+.natSyndicate {
+  margin:10px;
+}
+/* attachments */
+.natTopicAttachments {
+  /*background:#D5D6DE;
+  border-top:1px solid #BDBEC5;
+  border-left:1px solid #BDBEC5;
+  */
+}
+.natTopicAttachments table {
+  border-collapse:separate;
+  margin:15px;
+  width:97%;
+  _width:95%;
+  border: 1px solid #BABCC0;
+  background:white;
+}
+.natTopicAttachments table td {
+  background:white;
+  padding:4px 7px;
+}
+.natTopicAttachments table th {
+  background:#BDBEC5;
+  padding:4px 7px;
+}
+.natTopicAttachments th,
+.natTopicAttachments th font,
+.natTopicAttachments th a {
+  color:#8B898B !important;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+/* forms */
+.natMainContents form,
+.twikiPageForm {
+  background:#EEF6F6;
+  border:1px solid #CDDEF6;
+  padding:5px;
+  overflow:auto;
+}
+.twikiPageForm table {
+  margin:0px;
+}
+.twikiPageForm .twikiFirstCol,
+.twikiPageForm th {
+  background:#D5EEB4;
+  color:#0000C5 !important;
+}
+
+/* toc */
+.natMainContents dl,
+.twikiToc {
+  background:#EEEEE6;
+  margin:10px 0px;
+  padding:10px;
+  display:block;
+  border: 1px solid #B3BCC0;
+}
+.twikiToc a {
+  color:black;
+  text-decoration:none;
+}
+.natMainContents dl a:hover,
+.twikiToc a:hover {
+  color: #0076A3;
+  text-decoration:underline;
+}
+.twikiTocTitle {
+  background:#9C9DCD;
+  display:block;
+  padding:3px;
+  color:#414483;
+  font-size:18px;
+  font-weight:bold;
+  font-family: Verdana, Arial, sans-serif;
+  text-align:center;
+  margin:-10px -10px 10px -10px;
+}
+.twikiToc ul {
+  margin:0px;
+  list-style:none;
+  padding:0px;
+  background:#EEEEE6;
+}
+.natMainContents dl dt a {
+  text-decoration:none;
+  color:black;
+}
+.natMainContents dl dt,
+.twikiToc li {
+  padding:0px 14px;
+  background:#EEEEE6;
+  background-image: url("icon-doc-small.gif");
+  background-repeat: no-repeat;
+  background-position: 0px 3px;
+  border-bottom: 1px dashed #D2D2CA;
+  margin-top:4px;
+  margin-bottom: 5px;
+}
+.twikiToc li li {
+  border-bottom:0px;
+}
+/* twiki table */
+.twikiTable {
+  _width:97%;
+  margin:10px 20px 10px 10px;
+  border: 1px solid #BABCC0;
+}
+.twikiTable th {
+  background:#D5EEB4;
+  padding:4px 7px;
+}
+.twikiTable th font,
+.twikiTable th strong,
+.twikiTable th,
+.twikiTable th a {
+  color:#0000C5 !important;
+  text-decoration:none;
+}
+.twikiTableEven td {
+  background:#E6E2E6;
+}
+.twikiTableOdd td {
+  background:#F6F2F6;
+}
+
+/* new wiki word */
+.twikiNewLink {
+  background:white;
+  border-bottom: 1px dotted;
+}
+a.twikiNewLink {
+  color:#c03;
+  text-decoration: none;
+}
+/* misc */
+.twikiAlert {
+  color:#c03;
+  font-weight:bold;
+}
+
+/* blog plugin */
+.blogAbout {
+  margin:5px;
+}
+.blogAbout h1 {
+  margin:0px;
+}
+.blogSideBarSection {
+  margin:5px -10px;
+  background:#EEF6F6;
+  border:1px solid #CDDEF6;
+  padding:10px;
+}
+a.imageHref {
+  text-decoration:none;
+}
+.blogSideBarSection a {
+  color: #0076A3;
+}
+.blogSideBarTechnorati .blogSideBarHeader {
+  margin:5px -10px;
+}
+.blogSideBarTechnorati {
+  padding-left:15px;
+}
+.blogSideBarHeader h1,
+.blogSideBarHeader {
+  margin:0px;
+}
+.blogCommentCount {
+  text-align:right;
+  padding-top:0px;
+}
+.blogCommentCount a {
+  text-decoration:none;
+}
+.blogSideBarSection .blogCommentCount {
+  padding-top:2px;
+  padding-left:5px;
+}
+.blogHeadline .blogCommentCount {
+  font-size:160%;
+  padding-top:4px;
+  _padding-top:10px;
+  vertical-align:top;
+}
+
+/* twiki workbench */

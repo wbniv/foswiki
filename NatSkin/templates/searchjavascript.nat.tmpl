@@ -1,0 +1,13 @@
+<!-- template: searchjavascript.nat.tmpl -->
+%TMPL:DEF{"searchjavascript"}%<script type="text/javascript">
+<!--
+function focusSearchBox () {
+  if (typeof document.SearchForm != 'undefined') {
+    document.SearchForm.search.focus();
+  }
+}
+//-->
+</script>%TMPL:END%
+%TMPL:DEF{"javascript"}%
+%TMPL:P{"defaultjavascript"}%
+%TMPL:P{"searchjavascript"}%%TMPL:END%

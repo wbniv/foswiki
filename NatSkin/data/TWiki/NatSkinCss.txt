@@ -1,0 +1,654 @@
+%META:TOPICINFO{author="TWikiContributor" date="1168359939" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="NatSkin"}%
+---+!! %TOPIC%
+
+This is a reference guide to all css classes used by NatSkin. These are all
+_classes_ and not _ids_, that is all classes below are applied to the html
+markup using =class="natXYZ"=.  All classes refering to html elements that are
+part of the NatSkin templates are named using the =nat= prefix in their name
+(example: =natBodyContents=, =natMain=, =natSideBar=, etc).
+
+NatSkin does not make use of positional css or floats. Instead the main layout
+is done using a html =&lt;table>= element classified =natLayoutTable= that uses
+a fixed table layout (means: not depending on the inner content).
+
+The reason for this is to provide a more reliable user experience on different
+browsers and a simplification of css code. So css means are used mainly for
+fonts, colors, spaces and margines but not for general page layouting on the client side. 
+Instead different layouts are emitted by the server using different html markup.
+
+The basic layout consists of a topbar (=natTopBar=), a middle part (=natMiddle=) 
+holding the sidebar(s) (=natSideBar=) as well as the main area (=natMain=) and a bottom bar
+(=natBottomBar=). Within these boundaries NatSkin provides a one, two or three columns layout
+in the middle area depending on the sidebar being switched off, on the left/right side or
+displayed on both sides respectively. Different html markup and classification is done
+on the serverside so that adequat css takes effect in different configurations. For example
+if the sidebar is configured to be on the left it can be addressed using =natSideBarLeft= in
+addition to the standard =natSideBar= class. Accordingly the topic area (=natMain=) will be
+located on the opposite side and will be named =natMainRight= if the sidebar is on the left.
+If the sidebars are both switched off the =natMain= area will be called =natMainRight= _and_
+=natMainLeft= at the same time. The same logic applies to the =natBottomBar= although it
+is not part of the =natMiddle=. Nevertheless it will be classified =natBottomBarLeft= or
+=natBottomBarRight= depending on the sidebar being on the right or left side respectively.
+This is usefull if the bottom bar is to be displayed under the =natMain= area. Additionally
+the =natBottomBar= will be classified as =natBottomBarBoth=.
+
+
+---++ Alphabetic list
+
+| *Class* | *Files* | *Description* |
+| =natAction= \
+| edittopicactions.nat.tmpl, %BR% \
+  previewtopicactions.nat.tmpl, %BR% \
+  settingstopicactions.nat.tmpl \
+| highlights current action |
+| =natAltButton= \
+| oopsleaseconflict.nat.tmpl, %BR% \
+  oopslocked.nat.tmpl, %BR% \
+  oopslockedrename.nat.tmpl, %BR% \
+  oopslogonbase.nat.tmpl, %BR% \
+  oopsmore.nat.tmpl, %BR% \
+  oopsnoformdef.nat.tmpl, %BR% \
+  oopsrev.nat.tmpl, %BR% \
+  renamebase.nat.tmpl, %BR% \
+  renamewebbase.nat.tmpl \
+| alternative submit action in skin forms, see also =natOkButton=, =natCancelButton= |
+| =natAttachBody= | attach.nat.tmpl | html body during attach action |
+| =natBody= \
+| page.nat.tmpl, %BR% \
+  view.plain.nat.tmpl, %BR% \
+  view.print.nat.tmpl \
+| html body, see also =natBodyPlain=, =natBodyPrint=, =nat...Body= |
+| =natBodyContents= \
+| defaultbody.nat.tmpl, %BR% \
+  view.plain.nat.tmpl, %BR% \
+  view.print.nat.tmpl \
+| contains all page content inside the =natPageBox= |
+| =natBodyPlain= \
+| view.plain.nat.tmpl \
+| html boy using the plain.nat skin, see also =natBody= |
+| =natBodyPrint= \
+| view.print.nat.tmpl \
+| using the print.nat skin, see also =natBody= |
+| =natBottomBar= \
+| defaultbody.nat.tmpl \
+| bottom element below the =natLayoutTable= |
+| =natBottomBarBoth= \
+| defaultbody.nat.tmpl \
+| =natBottomBarBoth= conditional classification: sidebar switched off |
+| =natBottomBarContents= \
+| defaultbody.nat.tmpl, %BR% \
+  view.plain.nat.tmpl \
+| contents container inside the =natBottomBar= |
+| =natBottomBarLeft= \
+| defaultbody.nat.tmpl \
+| =natBottomBarBoth= conditional classification: sidebar on the right |
+| =natBottomBarRight= \
+| defaultbody.nat.tmpl \
+| =natBottomBarBoth= conditional classification: sidebar on the left |
+| =natBottomTopicActions= \
+| edit.nat.tmpl, %BR% \
+  preview.nat.tmpl \
+| |
+| =natBoxBorderBottomLeft= \
+| defaultbody.nat.tmpl \
+| |
+| =natBoxBorderBottomRight= \
+| defaultbody.nat.tmpl \
+| |
+| =natBoxBorderLeft= \
+| defaultbody.nat.tmpl \
+| |
+| =natBoxBorderRight= \
+| defaultbody.nat.tmpl \
+| |
+| =natBoxBorderTopLeft= \
+| defaultbody.nat.tmpl \
+| |
+| =natBoxBorderTopRight= \
+| defaultbody.nat.tmpl \
+| |
+| =natBreadCrumbs= \
+| edit.nat.tmpl, %BR% \
+  preview.nat.tmpl, %BR% \
+  view.nat.tmpl \
+| |
+| =natCancelAction= \
+| edit.nat.tmpl, %BR% \
+  preview.nat.tmpl \
+| |
+| =natCancelButton= \
+| changeform.nat.tmpl, %BR% \
+  moveattachment.nat.tmpl, %BR% \
+  oops.nat.tmpl, %BR% \
+  oopsattention.nat.tmpl, %BR% \
+  oopsempty.nat.tmpl, %BR% \
+  oopserrbase.nat.tmpl, %BR% \
+  oopsleaseconflict.nat.tmpl, %BR% \
+  oopslocked.nat.tmpl, %BR% \
+  oopslockedrename.nat.tmpl, %BR% \
+  oopslogonbase.nat.tmpl, %BR% \
+  oopsmngcreateweb.nat.tmpl, %BR% \
+  oopsmore.nat.tmpl, %BR% \
+  oopsnoformdef.nat.tmpl, %BR% \
+  oopsresetpasswd.nat.tmpl, %BR% \
+  oopsrev.nat.tmpl, %BR% \
+  rename.nat.tmpl, %BR% \
+  renameconfirm.nat.tmpl, %BR% \
+  renamerefs.nat.tmpl, %BR% \
+  renamewebbase.nat.tmpl, %BR% \
+  renamewebconfirm.nat.tmpl \
+| |
+| =natChangeFormBody= | changeform.nat.tmpl | html body during changeform action |
+| =natChangesBody= | changes.nat.tmpl | html body during changes cgi action |
+| =natContact= \
+| oops.nat.tmpl \
+| |
+| =natCopyRight= \
+| defaultbody.nat.tmpl, %BR% \
+  view.plain.nat.tmpl \
+| |
+| =natCurrentAction= \
+| edit.nat.tmpl, %BR% \
+  preview.nat.tmpl \
+| |
+| =natDiffOptions= \
+| oopsrev.nat.tmpl \
+| |
+| =natDoneAction= \
+| edit.nat.tmpl, %BR% \
+  preview.nat.tmpl \
+| |
+| =natEdit= \
+| edit.nat.tmpl, %BR% \
+  editform.nat.tmpl, %BR% \
+  settings.nat.tmpl \
+| |
+| =natEditAction= \
+| edit.nat.tmpl, %BR% \
+  preview.nat.tmpl \
+| |
+| =natEditBody= | edit.nat.tmpl | html body during edit cgi action |
+| =natEditBoldButton= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditBoldButtonAction= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditButton= \
+| previewtoolbar.nat.tmpl \
+| |
+| =natEditCancelButton= \
+| edittoolbar.nat.tmpl, %BR% \
+  previewtoolbar.nat.tmpl \
+| |
+| =natEditCenterButton= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditCenterButtonAction= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditDoneButton= \
+| edittoolbar.nat.tmpl, %BR% \
+  previewtoolbar.nat.tmpl \
+| |
+| =natEditEditTools= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditExtButton= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditExtButtonAction= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditH1Button= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditH2Button= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditH3Button= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditH4Button= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditHeadlineButtonAction= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditHeadlineTools= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditHelpButton= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditHelpTools= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditImageButton= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditImageButtonAction= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditIntButton= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditIntButtonAction= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditItalicButton= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditItalicButtonAction= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditJustifyButton= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditJustifyButtonAction= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditLeftButton= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditLeftButtonAction= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditMathButton= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditMathButtonAction= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditObjectTools= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditParagraphTools= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditPreviewButton= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditRightButton= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditRightButtonAction= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditSaveButton= \
+| edittoolbar.nat.tmpl, %BR% \
+  previewtoolbar.nat.tmpl \
+| |
+| =natEditSignatureButton= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditSignatureButtonAction= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditStrikeButton= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditStrikeButtonAction= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditSubButton= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditSubButtonAction= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditSupButton= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditSupButtonAction= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditTextTools= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditToolBar= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditUnderlinedButton= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditUnderlinedButtonAction= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditUndoButton= \
+| edittoolbar.nat.tmpl, %BR% \
+  previewtoolbar.nat.tmpl \
+| |
+| =natEditVerbatimButton= \
+| edittoolbar.nat.tmpl \
+| |
+| =natEditVerbatimButtonAction= \
+| edittoolbar.nat.tmpl \
+| |
+| =natErrorMsg= \
+| oopsmngcreateweb.nat.tmpl, %BR% \
+  oopsmoveerr.nat.tmpl, %BR% \
+  oopsrenameerr.nat.tmpl, %BR% \
+  oopssaveerr.nat.tmpl, %BR% \
+  oopssendmailerr.nat.tmpl, %BR% \
+  oopssoftwareerr.nat.tmpl \
+| |
+| =natFeedIcon= \
+| defaultbody.nat.tmpl \
+| |
+| =natFormAction= \
+| edit.nat.tmpl, %BR% \
+  preview.nat.tmpl \
+| |
+| =natFormActionButton= \
+| attachagain.nat.tmpl \
+| |
+| =natFormCancelButton= \
+| attachagain.nat.tmpl, %BR% \
+  attachnew.nat.tmpl \
+| |
+| =natFormOkButton= \
+| attachagain.nat.tmpl, %BR% \
+  attachnew.nat.tmpl \
+| |
+| =natHeaderArt= \
+| defaultbody.nat.tmpl \
+| |
+| =natLayoutTable= \
+| defaultbody.nat.tmpl \
+| |
+| =natLogonForm= \
+| oopslogonbase.nat.tmpl \
+| |
+| =natLogonFormButtons= \
+| oopslogonbase.nat.tmpl \
+| |
+| =natLogonFormHolder= \
+| oopslogonbase.nat.tmpl \
+| |
+| =natLogonFormLogin= \
+| oopslogonbase.nat.tmpl \
+| |
+| =natLogonFormPassword= \
+| oopslogonbase.nat.tmpl \
+| |
+| =natMain= \
+| defaultbody.nat.tmpl, %BR% \
+  view.plain.nat.tmpl, %BR% \
+  view.print.nat.tmpl \
+| |
+| =natMainContents= \
+| defaultbody.nat.tmpl, %BR% \
+  view.plain.nat.tmpl, %BR% \
+  view.print.nat.tmpl \
+| |
+| =natMainFooter= \
+| defaultbody.nat.tmpl \
+| |
+| =natMainFooterContents= \
+| defaultbody.nat.tmpl, %BR% \
+  view.plain.nat.tmpl, %BR% \
+  view.print.nat.tmpl \
+| |
+| =natMainFooterLeft= \
+| defaultbody.nat.tmpl \
+| |
+| =natMainFooterRight= \
+| defaultbody.nat.tmpl \
+| |
+| =natMainHeaderContents= \
+| defaultbody.nat.tmpl \
+| |
+| =natMainLeft= \
+| defaultbody.nat.tmpl \
+| |
+| =natMainRight= \
+| defaultbody.nat.tmpl \
+| |
+| =natMiddle= \
+| defaultbody.nat.tmpl, %BR% \
+  view.plain.nat.tmpl, %BR% \
+  view.print.nat.tmpl \
+| |
+| =natMiddleLeft= \
+| defaultbody.nat.tmpl \
+| |
+| =natMiddleRight= \
+| defaultbody.nat.tmpl \
+| |
+| =natMoveAttachmentBody= | moveattachment.nat.tmpl | html body while moving attachments |
+| =natNotes= \
+| attachsidebar.nat.tmpl, %BR% \
+  changeformsidebar.nat.tmpl, %BR% \
+  moveattachmentsidebar.nat.tmpl, %BR% \
+  renamesidebar.nat.tmpl, %BR% \
+  renamewebsidebar.nat.tmpl \
+| |
+| =natOkButton= \
+| changeform.nat.tmpl, %BR% \
+  moveattachment.nat.tmpl, %BR% \
+  oops.nat.tmpl, %BR% \
+  oopsattention.nat.tmpl, %BR% \
+  oopschangepasswd.nat.tmpl, %BR% \
+  oopsempty.nat.tmpl, %BR% \
+  oopserrbase.nat.tmpl, %BR% \
+  oopslanguagechanged.nat.tmpl, %BR% \
+  oopsleaseconflict.nat.tmpl, %BR% \
+  oopslocked.nat.tmpl, %BR% \
+  oopslockedrename.nat.tmpl, %BR% \
+  oopslogonbase.nat.tmpl, %BR% \
+  oopsmngcreateweb.nat.tmpl, %BR% \
+  oopsmore.nat.tmpl, %BR% \
+  oopsnoformdef.nat.tmpl, %BR% \
+  oopsresetpasswd.nat.tmpl, %BR% \
+  oopsrev.nat.tmpl, %BR% \
+  rename.nat.tmpl, %BR% \
+  renameconfirm.nat.tmpl, %BR% \
+  renamerefs.nat.tmpl, %BR% \
+  renamewebbase.nat.tmpl, %BR% \
+  renamewebconfirm.nat.tmpl \
+| |
+| =natOops= \
+| oops.nat.tmpl \
+| |
+| =natOopsBody= | oops.nat.tmpl | html body in oops messages |
+| =natOopsButtons= \
+| oops.nat.tmpl, %BR% \
+  oopsattention.nat.tmpl, %BR% \
+  oopschangepasswd.nat.tmpl, %BR% \
+  oopsempty.nat.tmpl, %BR% \
+  oopslanguagechanged.nat.tmpl, %BR% \
+  oopsleaseconflict.nat.tmpl, %BR% \
+  oopslocked.nat.tmpl, %BR% \
+  oopslockedrename.nat.tmpl, %BR% \
+  oopsmngcreateweb.nat.tmpl, %BR% \
+  oopsnoformdef.nat.tmpl \
+| |
+| =natOopsMessage= \
+| oops.nat.tmpl \
+| |
+| =natPageBox= \
+| defaultbody.nat.tmpl \
+| |
+| =natPreviewAction= \
+| edit.nat.tmpl, %BR% \
+  preview.nat.tmpl \
+| |
+| =natPreviewBody= | preview.nat.tmpl | html body during preview action |
+| =natPreviewToolBar= \
+| previewtoolbar.nattmpl \
+| |
+| =natRdiffBody= | rdiff.nat.tmpl | html body during rdiff action |
+| =natRevision= \
+| rdiff.nat.tmpl, %BR% \
+  view.nat.tmpl \
+| |
+| =natRenameBody= | renamebase.nat.tmpl | html body in rename actions |
+| =natRenameWebBody= | renamewebbase.nat.tmpl | html body in rename web action |
+| =natSaveAction= \
+| edit.nat.tmpl, %BR% \
+  preview.nat.tmpl \
+| |
+| =natSearch= \
+| search.nat.tmpl \
+| |
+| =natSearchAuthor= \
+| search.nat.tmpl \
+| |
+| =natSearchBody= | searchbase.nat.tmpl | html body in search action |
+| =natSearchBox= \
+| defaultsidebar.nat.tmpl, %BR% \
+  defaulttopbar.nat.tmpl \
+| |
+| =natSearchBoxPos1= \
+| defaultsidebar.nat.tmpl \
+| |
+| =natSearchBoxPos3= \
+| defaultsidebar.nat.tmpl \
+| |
+| =natSearchBoxTop= \
+| defaulttopbar.nat.tmpl \
+| |
+| =natSearchHit= \
+| changes.nat.tmpl, %BR% \
+  search.nat.tmpl, %BR% \
+  searchrenameview.nat.tmpl \
+| |
+| =natSearchHitEven= \
+| search.nat.tmpl \
+| |
+| =natSearchHitOdd= \
+| search.nat.tmpl \
+| |
+| =natSearchRenameContents= \
+| renamebase.nat.tmpl, %BR% \
+  renamewebbase.nat.tmpl \
+| |
+| =natSearchRevision= \
+| search.nat.tmpl \
+| |
+| =natSearchString= \
+| search.nat.tmpl, %BR% \
+  searchformat.nat.tmpl, %BR% \
+  searchrenameview.nat.tmpl \
+| |
+| =natSearchTable= \
+| changes.nat.tmpl, %BR% \
+  search.nat.tmpl, %BR% \
+  searchrenameview.nat.tmpl \
+| |
+| =natSearchTableTitle= \
+| search.nat.tmpl \
+| |
+| =natSearchTarget= \
+| search.nat.tmpl \
+| |
+| =natSearchTotal= \
+| search.nat.tmpl, %BR% \
+  searchformat.nat.tmpl, %BR% \
+  searchrenameview.nat.tmpl \
+| |
+| =natSep= \
+| changes.nat.tmpl, %BR% \
+  defaulttopbar.nat.tmpl, %BR% \
+  edit.nat.tmpl, %BR% \
+  moveattachment.nat.tmpl, %BR% \
+  preview.nat.tmpl, %BR% \
+  renamebase.nat.tmpl, %BR% \
+  searchbase.nat.tmpl, %BR% \
+  settings.nat.tmpl, %BR% \
+  view.nat.tmpl \
+| |
+| =natSettingsBody= | settings.nat.tmpl | html body during settings action |
+| =natSideBar= \
+| defaultbody.nat.tmpl \
+| |
+| =natSideBarContents= \
+| defaultbody.nat.tmpl \
+| |
+| =natSideBarLeft= \
+| defaultbody.nat.tmpl \
+| |
+| =natSideBarRight= \
+| defaultbody.nat.tmpl \
+| |
+| =natSideBarSearch= \
+| searchbox.nat.tmpl \
+| |
+| =natSideBarTitle= \
+| defaultsidebar.nat.tmpl \
+| |
+| =natSubmitOptions= \
+| edit.nat.tmpl, %BR% \
+  edit.nattmpl, %BR% \
+  preview.nat.tmpl, %BR% \
+  preview.nat.tmpl \
+| |
+| =natSyndicate= \
+| defaultbody.nat.tmpl \
+| |
+| =natTopBar= \
+| defaulttopbar.nat.tmpl \
+| |
+| =natTopBarSizer= \
+| defaulttopbar.nat.tmpl \
+| |
+| =natTopLeft= \
+| defaulttopbar.nat.tmpl \
+| |
+| =natTopLeftContents= \
+| defaulttopbar.nat.tmpl \
+| |
+| =natTopRight= \
+| defaulttopbar.nat.tmpl \
+| |
+| =natTopRightContents= \
+| defaulttopbar.nat.tmpl \
+| |
+| =natTopicActions= \
+| defaulttopbar.nat.tmpl \
+| |
+| =natTopicAttachments= \
+| attach.nat.tmpl, %BR% \
+  attachagain.nat.tmpl, %BR% \
+  view.nat.tmpl, %BR% \
+  view.plain.nat.tmpl, %BR% \
+  view.print.nat.tmpl \
+| |
+| =natTopicEditForm= \
+| form.nat.tmpl \
+| |
+| =natTWikiTopic= \
+| formtables.nat.tmpl \
+| |
+| =natTopicFormFirstCol= \
+| form.nat.tmpl, %BR% \
+  formtables.nat.tmpl \
+| |
+| =natTopicFormLabel= \
+| form.nat.tmpl \
+| |
+| =natTopicFormTitle= \
+| form.nat.tmpl, %BR% \
+  formtables.nat.tmpl \
+| |
+| =natUndoAction= \
+| edit.nat.tmpl, %BR% \
+  preview.nat.tmpl \
+| |
+| =natViewBody= | view.nat.tmpl | html body for view action |
+| =natWebButtons= \
+| defaulttopbar.nat.tmpl \
+| |
+| =natWebButtonsContents= \
+| defaulttopbar.nat.tmpl \
+| |
+| =natWebSlogan= \
+| defaulttopbar.nat.tmpl \
+| |
+| =natWebTitle= \
+| defaulttopbar.nat.tmpl \
+| |
+
+<!-- extracted 157 classes in 63 files -->

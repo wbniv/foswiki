@@ -1,0 +1,12 @@
+%TMPL:INCLUDE{"oops"}%
+<!-- template: oopschangepasswd.nat.tmpl -->
+%TMPL:DEF{"title"}%%TOPICTITLE% (%MAKETEXT{"note"}%) - %WIKITOOLNAME%%TMPL:END%
+%TMPL:DEF{"heading"}%%MAKETEXT{"Password changed successfully!"}%%TMPL:END%
+%TMPL:DEF{"headingstyle"}%natNoteHeading%TMPL:END%
+%TMPL:DEF{"message"}%<!-- -->
+%MAKETEXT{"... for user [_1]." args="%PARAM1%"}%
+
+<form class="natOopsButtons" name="ButtonBox" action="%SCRIPTURLPATH{"view"}%/%MAINWEB%/%USERNAME%">
+  <input type="submit" class="natOkButton" value='%MAKETEXT{"OK"}%'>
+</form>
+%TMPL:END%

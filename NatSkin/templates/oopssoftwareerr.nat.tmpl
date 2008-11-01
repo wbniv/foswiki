@@ -1,0 +1,14 @@
+%TMPL:INCLUDE{"oopserrbase"}%
+<!-- template: oopssoftwareerr.tmpl -->
+%TMPL:DEF{"heading"}%%MAKETEXT{"Software Error"}%%TMPL:END%
+%TMPL:DEF{"errormessage"}%<!-- -->
+%MAKETEXT{"A software error occured in
+<pre>
+[_1]
+</pre>" args="%PARAM1%"}%
+<div class="natErrorMsg">%PARAM2%</div>
+%TMPL:END%
+%TMPL:DEF{"formvariables"}%<!-- -->
+<input type="hidden" name="Where" value="%PARAM1%" />
+<input type="hidden" name="Error" value="%PARAM2%" />
+%TMPL:END%

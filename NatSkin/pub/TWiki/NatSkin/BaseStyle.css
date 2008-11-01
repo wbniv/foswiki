@@ -1,0 +1,1127 @@
+/* Base Style */
+
+/* twiki base */
+.twikiMakeVisible,
+.twikiMakeVisibleInline,
+.twikiMakeVisibleBlock {
+  display:none;
+}
+
+.twikiLeft {
+  float:left;
+  position:relative;
+}
+.twikiRight {
+  position:relative;
+  float:right;
+  display:inline;
+  margin:0;
+}
+.twikiClear {
+  margin:0;
+  padding:0;
+  height:0;
+  line-height:0px;
+  clear:both;
+  display:block;
+}
+.twikiHidden {
+  display:none;
+}
+.twikiSmall {
+  font-size:90%; 
+}
+.twikiSmallish {
+  font-size:95%;
+}
+
+.twikiGrayText {
+  color:#8E9195 !important;
+}
+.twikiGrayText a {
+  color:#7B7E81 !important;
+}
+.twikiSmallish i,
+.twikiSmall i {
+  font-style:normal; /* no italics for fonts that are already small */
+}
+
+/* html elements */
+html {
+  background:white;
+}
+.twikiEmulatedLink,
+a {
+  text-decoration:none; 
+  color:#0065CD;
+}
+.twikiEmulatedLink:hover,
+a:hover { 
+  text-decoration:underline; 
+  color:#777;
+}
+
+a:active,
+a:focus { 
+  outline:0px;
+}
+
+hr {
+  border:0px;
+  border-bottom:1px solid black;
+  margin:0.7em 0px;
+}
+
+blockquote {
+  margin:1.0em 0em 1.0em 2em;
+}
+
+button,
+html {
+  font-size:12px; 
+}
+
+input, textarea, select, body { 
+  font-size:100%;
+  line-height:normal;
+}
+.twikiCheckbox {
+  margin:0px 3px 0px 0px;
+}
+h1 { font-size:180%;}
+h2 { font-size:160%;}
+h3 { font-size:130%; margin-top:10px;margin-bottom:0px;}
+h4 { font-size:120%; margin-top:10px;margin-bottom:0px;}
+h5 { font-size:110%; margin-top:10px;margin-bottom:0px;}
+h6 { font-size:110%; margin-top:10px;margin-bottom:0px;}
+h1, h2, h3, h4, h5, h6 {
+  line-height:normal;
+}
+
+p {
+  margin:1.0em 0em 0em 0em;
+}
+
+dt {
+  font-weight:bold;
+}
+
+pre, code,
+.natMain .twikiTextareaRawView,
+.natEditTextArea {
+  font-family:"Bitstream Vera Sans Mono", "Andale Mono", Courier, monospace;
+}
+
+/* extra divs */
+.natExtraDiv1,
+.natExtraDiv2,
+.natExtraDiv3,
+.natExtraDiv4 {
+  display:none;
+}
+
+/* debug
+.natPageBox,
+.natBody, .natBodyContents			{ border: 1px solid green }
+.natWebTitle, .natSearchBox,
+.natTopBar, .natTopBarContents, 
+.natTopLeft, .natTopRight, 
+.natTopLeftContents, .natTopRightContents, 
+.natWebButtons, .natWebButtonsContents
+
+						{ border: 1px solid blue }
+.natMiddle, 
+.natTopBarSizer,
+.natSideBar, natSideBarContents			{ border: 1px solid red }
+.natMain, .natMainContents, .natMainHeaderContents
+.natSideBar, .natSideBarContents,
+.natMainFooter, natMainFooterContents {
+  border:1px solid red;
+}
+*/
+
+.natIcon {
+  border:0;
+  vertical-align:baseline;
+}
+
+/* layout */
+.natBody {
+  text-align:center;
+}
+.natPrintBody {
+  width:21cm; 
+  margin:0px; 
+}
+.natMiddle {
+  background-color:white;
+}
+.natPrintBody,
+.natPrintBody .natMain,
+.natPrintBody .natMiddle {
+  background-color:white !important;
+  color:black !important;
+}
+.natBodyContents {
+  text-align:left;
+}
+.natOopsMoreBody table ul,
+.natOopsMoreBody table h2 {
+  margin-top:0px;
+  margin-bottom:0px;
+}
+.natOopsMoreBody table input {
+  width:100%;
+}
+.natOopsMoreBody .natSideBarContents,
+.natOopsBody .natSideBarContents {
+  display:none;
+}
+.natOopsBody .natMain h1, 
+.natOopsBody .natMain h2, 
+.natOopsBody .natMain h3, 
+.natOopsBody .natMain h4, 
+.natOopsBody .natMain h5, 
+.natOopsBody .natMain h6,
+.natOopsMoreBody .natMain h1, 
+.natOopsMoreBody .natMain h2, 
+.natOopsMoreBody .natMain h3, 
+.natOopsMoreBody .natMain h4, 
+.natOopsMoreBody .natMain h5, 
+.natOopsMoreBody .natMain h6 {
+  border-bottom:0px;
+}
+.natOopsBody .natWebButtons,
+.natOopsBody .natMainHeaderContents,
+.natOopsMoreBody .natWebButtons,
+.natOopsMoreBody .natMainHeaderContents {
+  display:none;
+}
+.natOopsMessage {
+  width:700px;
+  margin:0px auto;
+}
+
+.natLayoutTable {
+  table-layout:fixed;
+  width:100%;
+}
+.natBoxBorderRight,
+.natBoxBorderTopRight,
+.natBoxBorderBottomRight {
+  width:1px;
+}
+.natRevision {
+  margin-top:10px;
+}
+.natBottomBarContents {
+  text-align:center;
+  padding-top:5px;
+}
+.natSideBarLeft {
+  width:200px;
+  min-width:200px;
+}
+.natSideBarRight, .natTopRight {
+  width:280px;
+  min-width:280px;
+  max-width:280px;
+}
+.natTopLeft,
+.natTopRight {
+  vertical-align:bottom;
+}
+.natSideBar {
+  padding-bottom:5px;
+}
+.natMainFooter {
+  vertical-align:bottom;
+}
+.natSideBarContents {
+  min-height:50em;
+  overflow:hidden;
+}
+
+/* the main content topic is cropped using overflow:hidden
+ * that's because wide content like images will leap out
+ * of the layout. i.e. it will overlay the navigation bar
+ * if the sidebar is on the right 
+ *
+ * you may restrict overflow protection to layouts with
+ * the sidebar on the right using the following:
+ *
+ * .natMiddleLeft .natMainContents { overflow:hidden }
+ *
+ * for now I prefer the content to be cropped instead of the
+ * page layout fall appart ... sort of.
+ */
+.natMainContents {
+  min-height:50em;
+  overflow:hidden;
+}
+
+/* login */
+.natLoginBody natMainHeaderContents {
+  display:none;
+}
+.natLoginMessage {
+  margin:0px auto;
+  width:500px;
+}
+
+/* topbar */
+.natHeaderArt {
+  background-repeat:no-repeat;
+}
+
+.natTopRight form {
+  padding:0px;
+  margin:0px;
+  margin-bottom:5px;
+}
+
+.natWebTitle {
+  font-size:285%;
+  line-height:normal;
+  font-weight:bold;
+  margin:0px;
+  padding:0px;
+}
+
+/* search box */
+.natSearchBox {
+  font-weight:bold;
+}
+.natSearchBox a {
+  margin:0px 0px 0px 2px;
+  padding:0px 0px 0px 5px;
+  text-decoration:none;
+}
+.natSearchBoxTop a {
+  display:none;
+}
+.natSearchBox form {
+  margin:0px;
+}
+
+
+.natSearchBox {
+  margin:5px 0px;
+}
+
+.natSearchBoxPos1 input,
+.natSearchBoxPos2 input,
+.natSearchBoxPos3 input {
+  width:98%;
+}
+
+/* sidebar */
+.natSideBar h2.natSideBarTitle {
+  margin-top:0px;
+}
+.natSideBar h2 {
+  margin:5px 0px;
+}
+.natSideBar h3 {
+  margin:0px;
+}
+
+.natSideBar ul {
+  margin:0px;
+  padding:0px;
+  list-style-type:none;
+}
+.natSideBar ol {
+  margin:0px;
+  padding:0px;
+  padding-left:2.2em;
+}
+.natSideBar ol li {
+  list-style-type:decimal;
+  background-image:none;
+  padding-left:0px;
+}
+
+.natNotes a:hover,
+.natNotes a {
+  font-weight:bold;
+}
+.natNotes p {
+  margin-top:0px;
+}
+.natSideBar .twikiCurrentTopicLink {
+  color:red;
+}
+.natSideBar h1 .twikiCurrentTopicLink,
+.natSideBar h2 .twikiCurrentTopicLink,
+.natSideBar h3 .twikiCurrentTopicLink {
+  color:inherit;
+}
+.natSideBarWebs table {
+  padding:0px;
+  margin:0px;
+}
+
+/* main area */
+.natMiddleLeft {
+  padding-right:10px;
+}
+.natMainContents {
+  margin:10px 0px 0px 0px;
+  padding:1px;
+}
+.natMainFooterContents,
+.natMainHeaderContents {
+  padding:0px;
+  margin:0px;
+}
+.natMainContents pre {
+  padding-bottom:.25em;
+  overflow:auto;
+}
+*:first-child+html .natMainContents pre { /* IE7 fix */
+}
+.DISABLEDnatMainContents > pre { /* hide from IE */
+  /*\*/ overflow:auto !important; /* */ overflow:scroll; /* for Mac Safari */
+}
+
+
+/* login */
+.natLogonFormHolder {
+  padding:10px 0px 10px 0px;
+}
+.natLogonFormButtons td {
+  padding-top:1em;
+}
+.natRememberMe {
+  padding-bottom:1em;
+}
+
+/*
+.natMainContents a:visited:after {
+  content: "\00A0\221A";
+}
+*/
+
+/* edit */
+.natEditBody .natLayoutTable {
+  table-layout:auto; /* firefox fix to preven collapsing tables */
+}
+.natEditBody .natSideBarContents, 
+.natEditBody .natMainContents {
+  min-height:0px;
+}
+.natEditBody .natWebButtons,
+.natEditBody .natMainFooter,
+.natEditBody .natBottomBar,
+.natEditBody .natTopBar {
+  display:none;
+}
+.natEditBody h1 {
+  margin-bottom:1em;
+}
+.natEditTopicInfo {
+  margin:0.5em 0em 1em 0em;
+}
+.natEditTopicInfo table {
+  width:100%;
+}
+.natEditTopicInfo table th,
+.natEditTopicInfo table td {
+  padding:0px 0px 5px 0px;
+}
+.natEditBody table th.twikiFirstCol {
+  width:10em;
+}
+
+.natBottomTopicActions {
+  margin:10px 0px;
+}
+.natBottomTopicActions a:hover {
+  text-decoration:none;
+}
+.natSubmitOptions input {
+  margin:0px;
+}
+.natSignature {
+  white-space:nowrap;
+  float:right;
+}
+.natSignature, .natSubmitOptions {
+  padding-right:10px;
+  vertical-align:top;
+}
+.natSubmitOptions {
+  width:100%;
+  margin-bottom:1em;
+}
+.natSubmitOptions label,
+.natSubmitOptions input {
+  vertical-align:middle;
+}
+
+/* headings */
+.natMain h1 .twikiEmulatedLink,
+.natMain h2 .twikiEmulatedLink,
+.natMain h3 .twikiEmulatedLink,
+.natMain h4 .twikiEmulatedLink,
+.natMain h5 .twikiEmulatedLink,
+.natMain h1, .natMain h2, .natMain h3, .natMain h4, .natMain h5, .natMain h6,
+.natMain h1 a, .natMain h2 a, .natMain h3 a, .natMain h4 a,
+.natMain h5 a, .natMain h6 a,
+.natMain h1 a:hover, .natMain h2 a:hover, .natMain h3 a:hover,
+.natMain h4 a:hover, .natMain h5 a:hover, .natMain h6 a:hover {
+  text-decoration:none;
+}
+.natMainContents > h1,
+.natMainContents > h1,
+.natMainContents > h1,
+.natMainContents h1:first-child,
+.natMainContents h2:first-child,
+.natMainContents h3:first-child {
+  margin-top:0px;
+}
+
+/* search */
+.natSearchRenameContents {
+  width:100%;
+  padding:5px;
+}
+.natSearchRenameContents table {
+  width:100%;
+}
+.natSearchRenameContents .twikiTopRow {
+  white-space:pre;
+  text-align:left;
+  vertical-align:top;
+  padding:5px;
+}
+.natSearchRenameContents .twikiSummary {
+  padding:5px;
+  text-align:left;
+  vertical-align:top;
+}
+.natSearchHit {
+  margin:1.5em 0em;
+}
+.natSearchTotal span {
+  color:red;
+}
+.natSearchString {
+  font-weight:bold;
+  color:red;
+}
+.natSearch {
+  font-weight:bold;
+}
+.twikiNew {
+  text-transform:lowercase;
+}
+.twikiNew,
+.natSearchNewTopic {
+  color:red; 
+  font-style:italic;
+}
+
+/* diff */
+.natDiffTable {
+  width:100%;
+}
+
+/* oops styles */
+.natErrorMsg {
+  border:1px solid #aaaaaa;
+  padding:5px;
+  margin-top:2ex;
+  margin-bottom:2ex;
+  font-family:"Bitstream Vera Sans Mono", "Andale Mono", Courier, monospace;
+  color:red;
+}
+
+.natMain .natOopsHeading {
+  color:red;
+}
+
+.natLoginHeading,
+.natNoteHeading {
+  color:green;
+}
+.natMain .natContact {
+}
+.twikiSubmit,
+.natOkButton {
+  color:green;
+}
+.twikiButton,
+.natAltButton {
+  color:blue;
+}
+.twikiButtonCancel,
+.natCancelButton {
+  color:red;
+}
+
+.natButtonBox {
+  margin:1em;
+}
+
+
+/* helpers */
+.natSep {
+  margin-left:-0.2ex;
+  margin-right:-0.2ex;
+}
+.natTopicActions .natSep {
+  font-weight:bold;
+}
+.natAction {
+  color:red;
+  text-transform:capitalize;
+  font-weight:bold;
+}
+.natCurrentAction {
+  font-weight:bold;
+}
+.natCurrentAction,
+.natEditAction a,
+.natPreviewAction a,
+.natSaveAction a,
+.natDoneAction a,
+.natFormAction a,
+.natUndoAction a,
+.natCancelAction a {
+  border:1px solid #cccccc;
+  margin:2px 5px 2px 0;
+  padding:2px 5px;
+}
+
+.natTopicAttachments table {
+  width:100%;
+}
+.natAttachAction {
+  padding-top:20px;
+}
+
+.natSideBar .natSkinStyleBrowser ul,
+.natMain .natSkinStyleBrowser ul {
+  padding-left:0px;
+  margin:0px 0px 10px 0px;
+  padding-left:0px;
+  list-style: none;
+}
+.natSideBar .natSkinStyleBrowser ul li,
+.natMain .natSkinStyleBrowser ul li {
+  background-image:inherit;
+  list-style:none;
+  padding-left:0px;
+  margin-left:0px;
+}
+
+.natSkinStyleBrowser select { 
+  width:180px;
+}
+.natSkinStyleBrowser input[type=radio] {
+  border:0px; /* only IE puts borders on radio boxes */
+}
+
+.natSideBar a.natFeedIcon:hover,
+a.natFeedIcon:hover {
+  background:#eee url("feed-icon-12x12.png") 3px center no-repeat !important;
+  text-decoration:none !important;
+  color:#444 !important;
+}
+a.natFeedIcon {
+  background:url("feed-icon-12x12-gray.png") 3px center no-repeat !important;
+  text-decoration:none !important;
+  color:#444;
+  font-size:10px;
+  padding:1px 3px 0px 18px;
+  margin:0px;
+}
+.natSideBar a.natFeedIcon {
+  background:none;
+  padding:1px 3px 0px 18px;
+  color:#444;
+}
+
+/* twiki styles */
+.twikiNewLink {
+  color:blue;
+  background:#eeeeee;
+}
+
+.twikiAlert {
+  color:red;
+}
+.twikiBroadcastMessage {
+  background:yellow;
+  color:black;
+  border:2px solid orange;
+  padding:1px 5px 2px;
+}
+.twikiBroadcastMessage .twikiLink,
+.twikiBroadcastMessage a {
+  color:red;
+}
+.twikiBroadcastMessage .twikiLink:hover,
+.twikiBroadcastMessage a:hover {
+  color:black;
+  background:orange;
+}
+
+/* twiki tables */
+.twikiTable {
+  margin-top:1px;
+  empty-cells:show;
+  border:1px solid #d0d0d0;
+  border-spacing:0px;
+  border-collapse:collapse;
+}
+
+.twikiTable th, 
+.twikiTable td {
+  padding:2px 5px;
+  border:0px;
+}
+
+.twikiTable th {
+  font-weight:bold;
+  text-align:left;
+  background:#1875D5;
+}
+
+.twikiTable th img {
+  vertical-align:middle;
+  margin-left:2px;
+  margin:0px 2px;
+}
+
+.twikiDiffTable td {
+  border:0px;
+}
+.twikiTableEven td {
+  background:white;
+}
+.twikiTableOdd td {
+  /*background:#eee;*/
+  background:none;
+}
+
+.twikiTable ul {
+  margin:0px;
+  padding:0px;
+  padding-left:15px;
+}
+
+/* twiki forms */
+.natTopicForm {
+  overflow:auto;
+  padding:1px; /* konqueror fix */
+}
+.natTopicForm .twikiFirstCol,
+.natTopicFormFirstCol {
+  width:20%;
+  text-align:right;
+  font-weight:bold;
+  padding-left:5px;
+  padding-right:5px;
+}
+/* SMELL: 
+ *
+ * display:inline-block is implemented by Safari+Konqueror, but not by FF+IE.
+ * display:table is implemented by FF+Konqureor, but not by Safari+IE.
+ * display:compact is implemented by Konqueror only
+ * So you can't auto-shrink DIV elements to the size needed by their content reliably
+ * the same way as a TABLE element would do.
+ *
+ * See http://www.quirksmode.org/css/display.html
+ */
+.twikiPageForm {
+  /*
+  display:inline-block; 
+  display:table; 
+  display:compact; 
+  */
+}
+.twikiPageForm th,
+.twikiPageForm .twikiFirstCol {
+  font-weight:bold;
+}
+.natTopicEditForm .natTopicFormTitle,
+.natTopicForm .natTopicFormTitle {
+  text-align:center;
+}
+.natTopicEditForm {
+  clear:both;
+}
+.natTopicEditForm table,
+.twikiPageForm table,
+.natTopicForm table {
+  width:100%;
+  border-collapse:collapse;
+}
+.twikiPageForm form {
+  margin:0px;
+}
+.twikiPageForm table table {
+  border:0px;
+}
+
+.natTopicForm table table,
+.natTopicForm table table td {
+  border:0px;
+}
+.natTopicForm td,
+.natTopicForm th {
+  padding-left:3px;
+  padding-right:3px;
+}
+.natTopicFormLabel {
+  margin-top:3px;
+  margin-bottom:3px;
+}
+
+.twikiFormStep {
+  padding:0.5em 1em 0.75em;
+  margin:0em;
+}
+.natMain .twikiFormStep h2,
+.natMain .twikiFormStep h3,
+.natMain .twikiFormStep h4,
+.twikiFormStep h2,
+.twikiFormStep h3,
+.twikiFormStep h4 {
+  border:none;
+  margin:0em 0em 0.1em 0em;
+  padding:0px;
+  background:none;
+  font-size:100%;
+  font-weight:bold;
+}
+.twikiFormStep p {
+  margin:0.35em 0em;
+}
+
+/* twikiDiff */
+.twikiDiffTable { 
+  border:1px solid #ccc;
+  margin-bottom:2em;
+  width:100%;
+}
+.twikiDiffTable table {
+  border:0px;
+}
+
+.twikiDiffTable th {
+  background:#dddddd;
+}
+.twikiDiffLineNumberHeader th { 
+  background:#eeeeee;
+}
+
+td.twikiDiffChangedHeader,
+td.twikiDiffAddedHeader { 
+  background:#D0FFD0;
+  border-top:1px solid #ccc;
+  border-bottom:1px solid #ccc;
+}
+.twikiDiffAddedMarker { 
+  background:#aaaadd;
+}
+.twikiDiffAddedText { 
+  background:#ccccff;
+}
+.twikiDiffChangedMarker,
+.twikiDiffChangedText { 
+}
+
+.twikiDiffDeletedHeader { }
+.twikiDiffDeletedMarker { 
+  background:#dd7777;
+}
+.twikiDiffDeletedText { 
+ background:#ff9999;
+}
+
+td.twikiDiffChangedText {
+  color:red;
+}
+.twikiWebIndent {
+  margin:0 0 0 1em;
+}
+
+/* TOC */
+.twikiToc {
+  margin-top:5px;
+  margin-bottom:5px;
+  padding-top:5px;
+  padding-bottom:5px;
+}
+.twikiToc img {
+  display:none;
+}
+.twikiTocTitle {
+  font-size:130%;
+}
+.twikiToc ul {
+  margin:5px 0px;
+  padding-left:10px;
+  list-style:none;
+}
+
+/* see also page.nat.tmpl */
+.natMiddle .natExternalLink:after {
+  margin-left:3px;
+  margin-right:3px;
+  content:url("external.png");
+}
+
+
+/* custom styles */
+.alt {
+  background: #f8f8f8;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  margin: 0;
+  padding:10px;
+}
+.border {
+  border:1px solid #ddd;
+  padding:3px;
+}
+.overflow {
+  overflow:auto;
+  padding:1px;
+}
+
+.block {
+  display:block;
+}
+.center {
+  display: table;
+  margin-left:auto;
+  margin-right:auto;
+}
+img {
+  vertical-align:text-bottom;
+  border:0pt solid;
+}
+img.center {
+  margin-left:auto;
+  margin-right:auto;
+  display: block;
+  margin-top:3px;
+  margin-bottom:3px;
+}
+	
+img.alignright {
+  padding: 3px;
+  margin-left:7px;
+  float:right;
+}
+
+img.alignleft {
+  padding: 3px;
+  margin-right:7px;
+  float:left;
+}
+
+/* supported plugins and applications */
+
+/* BlackListPlugin */
+.blackList {
+  border:0px;
+  overflow:auto;
+  padding:5px;
+}
+.blackListComments {
+  padding-left:25px;
+}
+.comment {
+  padding-top:5px;
+  padding-bottom:5px;
+}
+.posted {
+  margin-top:5px;
+}
+.text {
+  padding-bottom:5px;
+}
+.banForm {
+  margin:5px;
+  margin-left:25px;
+  margin-top:10px;
+}
+.currentScore {
+  margin:10px;
+  margin-left:25px;
+}
+.blackListTitle {
+  padding:10px;
+  padding-left:25px;
+}
+.blackListToggle {
+  padding-left:25px;
+  padding-right:5px;
+  padding-bottom:5px;
+  text-transform:capitalize;
+}
+
+/* RedDotPlugin */
+.natBody .redDot a {
+  color:red;
+  font-weight:bold;
+  margin-left:2px;
+  margin-right:2px;
+  text-decoration:none;
+}
+
+/* HeadlinesPlugin */
+
+/* debug 
+.headlinesRss, .headlinesChannel, .headlinesDate,
+.headlinesRight, .headlinesDescription,
+.headlinesLogo, .headlinesArticle, .headlinesTitle,
+.headlinesCreator, .headlinesSubject, .headlinesTeaser {
+  border:1px solid red;
+}
+*/
+
+.headlinesRss {
+  margin-right:10px;
+}
+.headlinesChannel {
+  padding-bottom:5px;
+  margin-bottom:5px;
+}
+.headlinesChannel input {
+  display:none;
+}
+.headlinesChannel .headlinesDate {
+  margin:5px 0px;
+}
+.headlinesRight {
+  font-style:oblique;
+}
+.headlinesDescription {
+  font-size:110%;
+}
+.headlinesLogo {
+  float:right;
+  text-align:center;
+  overflow:hidden;
+  margin-left:5px;
+  margin-bottom:5px;
+}
+.headlinesLogo img {
+  border:0px;
+  margin:0px;
+  padding:0px;
+  margin-bottom:5px;
+}
+.headlinesArticle {
+  padding-top:5px;
+  padding-bottom:5px;
+  overflow:hidden;
+  margin-bottom:1.4em;
+}
+.headlinesArticle hr {
+  margin-top:2px;
+  margin-bottom:2px;
+}
+.headlinesArticle .headlinesTitle a {
+  font-size:140%;
+}
+.headlinesArticle .headlinesDate {
+  font-size:90%;
+  margin-left:0px;
+  white-space:nowrap;
+}
+.headlinesSubject,
+.headlinesCreator {
+  display:inline;
+  font-size:90%;
+}
+.headlinesTeaser {
+  margin-top:5px;
+  margin-left:30px;
+  text-align:justify;
+  overflow:hidden;
+}
+.headlinesTeaser img {
+  margin:5px;
+}
+.headlinesTeaser .natExternalLink:after {
+  content:"";
+  margin-left:0px;
+}
+
+/* twisty plugin */
+.twistyTrigger img {
+  padding:0px;
+  margin:0px;
+  vertical-align:middle;
+  position:relative;
+  bottom:2px;
+}
+.natMain .twistyTrigger a {
+  text-decoration:none;
+}
+
+/* image plugin */
+.imageFloat .natExternalLink:after,
+.imageFrame .natExternalLink:after,
+.imageFloat a:after,
+.imageFrame a:after {
+  content:"";
+  margin:0px;
+}
+.imageFloat .natExternalLink:hover,
+.imageFrame .natExternalLink:hover,
+.imageFloat a:hover,
+.imageFrame a:hover {
+  text-decoration:none !important;
+}
+
+/* math mode plugin */
+.mmpImage {
+  vertical-align:middle;
+}
+
+/* TWikiWorkbench basics */
+.twbPageNavigation {
+  margin:0.5em 0em;
+}
+.natMain .twbPageNavigation a {
+  font-weight:bold;
+}
+
+/* blogplugin support */
+.blogCommentText {
+  margin:0.5em 0px;
+}
+.blogEntryEditor td.current {
+  background:#eee;
+}
+
+/* classification plugin */
+.clsTopicInfo h1 {
+  border-bottom:0px;
+  margin-top:0px;
+  margin-bottom:5px;
+}
+.clsTopicInfo a {
+  text-decoration:none;
+  background-image:none;
+}
+.clsTopicInfo .twikiCurrentTopicLink {
+  color:inherit;
+}
+.clsTopicInfoSep {
+  margin-bottom:21px;
+}
+
+/* jquery treeview */
+.natSideBar .jqTreeview ul > li:before { 
+  content:"";
+}

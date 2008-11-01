@@ -1,0 +1,17 @@
+<!-- template: viewjavascript.nat.tmpl -->
+%TMPL:DEF{"viewjavascript"}%<!-- viewjavascript -->
+<script type="text/javascript">
+$(function() {
+  if (true) {
+    $(".natMainContents .twikiTable")
+      .not($(".twikiTable .twikiTable", this))
+      .wrap("<div class='overflow'></div>");
+  }
+});
+</script>
+<!-- //viewjavascript -->%TMPL:END%
+%TMPL:DEF{"javascript"}%<!-- javascript (view) -->
+%TMPL:P{"defaultjavascript"}%
+%TMPL:P{"templatejavascript"}%
+%TMPL:P{"viewjavascript"}%
+<!-- //javascript -->%TMPL:END%

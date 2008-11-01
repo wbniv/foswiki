@@ -1,0 +1,6 @@
+%META:TOPICINFO{author="TWikiContributor" date="1134493768" format="1.1" version="$Rev$"}%
+%STARTINCLUDE%
+%STOPINCLUDE%
+
+   * Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
+   * Set ALLOWTOPICVIEW = %MAINWEB%.TWikiGuest

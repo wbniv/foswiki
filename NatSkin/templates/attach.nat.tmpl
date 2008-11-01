@@ -1,0 +1,67 @@
+%TMPL:INCLUDE{"page"}%<!-- template: attach.nat.tmpl -->
+%TMPL:INCLUDE{"attachtopicactions"}%<!-- -->
+%TMPL:INCLUDE{"attachbody"}%<!-- -->
+%TMPL:INCLUDE{"attachsidebar"}%<!-- -->
+%TMPL:INCLUDE{"attachjavascript"}%<!-- -->
+%TMPL:INCLUDE{"attachstyles"}%<!-- -->
+%TMPL:DEF{"title"}%%TOPICTITLE% (attach) - %WIKITOOLNAME%%TMPL:END%
+%TMPL:DEF{"bodyclass"}%natAttachBody%TMPL:END%
+%TMPL:DEF{"meta"}%<meta name="robots" content="noindex, nofollow" />%TMPL:END%
+%TMPL:DEF{"onloadscript"}%document.main.filepath.focus();%TMPL:END%
+%TMPL:DEF{"content"}%<!-- -->
+%TMPL:P{"previousdetails"}%
+<div class="twikiPageForm">
+<form name="main" enctype="multipart/form-data" action="%SCRIPTURLPATH{"upload"}%/%WEB%/%TOPIC%" method="post">
+<table>
+ <tr>
+  <th align="right">
+   %MAKETEXT{"File"}%:
+  </th><td>
+   <input type="hidden" name="filename" value="%FILENAME%" />
+   <input type="file" name="filepath" value="%FILEPATH%" size="50"/>
+  </td>
+ </tr>
+ <tr>
+  <th align="right">
+   %MAKETEXT{"Comment"}%:
+  </th><td>
+   <input type="text" name="filecomment" value="%FILECOMMENT%" size="50"/>
+  </td>
+ </tr>
+ <tr>
+  <th align="right" style="padding-top:20px">
+   %MAKETEXT{"Link:"}%
+  </th><td style="padding-top:20px">
+   <input type="checkbox" class="twikiCheckbox" name="createlink" %ATTACHLINKBOX% /> 
+   %MAKETEXT{"Create a link to the attached file at the end of the topic."}%
+  </td>
+ </tr>
+ <tr>
+  <th align="right">
+   %MAKETEXT{"Hide file:"}%
+  </th><td>
+   <input type="checkbox" class="twikiCheckbox" name="hidefile" %HIDEFILE% /> 
+   %MAKETEXT{"Hide attachment in normal topic view."}%
+  </td>
+ </tr>
+ <tr style="%IF{ "context BatchUploadPluginEnabled" else='display:none'}%">
+  <th align="right">
+   %MAKETEXT{"Batch upload"}%
+  </th><td>
+    <input type="checkbox" class="twikiCheckbox" id="batchupload" name="batchupload" />
+    <span class="twikiGrayText">%MAKETEXT{"Extracts individual files in a zip archive."}%</span>
+  </td>
+ </tr>
+<tr>
+<th>&nbsp;</th>
+<td class="natAttachAction">%TMPL:P{"attachaction"}%</td>
+</tr>
+</table>
+</form>
+</div>
+%IFDEFINEDTHEN{"%URLPARAM{"manage"}%" as="on"}%
+%$nopIFDEFINEDTHEN{"$percntMETA{\"attachments\" all=\"on\"}$percnt"}%
+<div class="natTopicAttachments"> $test </div>
+%$nopFIDEFINED%
+%FIDEFINED%
+%TMPL:END%

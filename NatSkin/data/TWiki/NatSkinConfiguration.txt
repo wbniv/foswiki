@@ -1,0 +1,134 @@
+%META:TOPICINFO{author="TWikiContributor" date="1168359736" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="NatSkin"}%
+---+!! %TOPIC%
+%TOC%
+
+---++ Theme configuration
+The different NatSkin styles (themes) are controlled using TWiki preference
+variables and can be set 
+   * per user (on the user's home topic), 
+   * per web (in the WebPreferences),
+   * site wide (in the[[%TWIKIWEB%.TWikiPreferences]]) and
+   * on every request (using url parameters)
+
+Use the NatSkinStyleBrowser to preview the known styles and settings. Note,
+that the selection made there will only last for the current session. You
+need to add the respective preference variables to your [[%WIKIUSERNAME%][home topic]]
+or the WebPreferences or the %MAINWEB%.TWikiPreferences to make the selection
+persistent.
+
+This is the list of variables to configure the skin style:
+
+| *Name%BR%(url param)*  | *Values* | *Description* | *Default* |
+| SKINSTYLE (style) | <noautolink>%KNOWNSTYLES%</noautolink> \
+| select a predefined style | Clean |
+| STYLEVARIATION (stylevariation) | <noautolink>%KNOWNVARIATIONS%</noautolink> \
+| select a style variation | none |
+| STYLEBORDER (styleborder) | on, off, thin \
+| change the border decoration; thin enables a blog-like page layout | off |
+| STYLEBUTTONS (stylebuttons) | on, off \
+| switch on/of the tab buttons above the topic area | off |
+| STYLESIDEBAR (stylesidebar) | left, right, both, off \
+| configure where the sidebar is to be displayed | left |
+| STYLESEARCHBOX (stylesearchbox) | top, pos1, pos2, pos3, off \
+| configure where the searchbox is to be displayed: \
+  in the topbar (top), at the top of the sidebar (pos1), \
+  in the middle of the sidebar (pos2), \
+  at the bottom of the sidebar (pos3) or off | top |
+      
+There are a couple of special url parameters:
+   * =togglesidebar=: disable the sidebar for this request only. 
+   * =style=off=: switch off any styles (simulating a non-css browser)
+   * =style=reset=: switch back to the user and server settings by reverting any 
+     session preferences
+   * =switchstyle=next/prev=: switch to the next/previous known style
+   * =switchvariation=next/prev=: switch to the next/previous known style variation
+     
+*Example*: To emulate the Kubrick style on the old
+[[http://binarybonsai.com][BinaryBonsai]] (not the new K2 style) use
+<verbatim>
+  * Set SKINSTYLE = Kubrick
+  * Set STYLEBORDER = thin
+  * Set STYLEBUTTONS = on
+  * Set STYLESIDEBAR = right
+  * Set STYLEVARIATION = none
+  * Set STYLESEARCHBOX = pos1
+</verbatim>
+
+There are some constraints build into the NatSkin templates that try guarantee a pleasant appearance
+when combining the different skin states:
+   * If the styleborder is "thin" the sidebar will be disabled for the edit, manage, rdiff,
+     natsearch, changes and search topic actions. 
+   * The web buttons will alternate with the sidebar so that they will not be displayed
+     on the same side. 
+   * If the web buttons are enabled the default [[TWikiWebSideBar][WebSideBar]] will disable the redundant 
+     navigation to other webs.
+
+---++ Defining new Themes
+The NatSkin can be themed using cascading styles attached to the <nop>TWiki.NatSkin or any
+other topic defined in the STYLEPATH preference variable.
+This variable is a list of topics that are consulted for css attachments. The default value is
+<verbatim>
+  * Set STYLEPATH = TWiki.NatSkin
+</verbatim>
+
+Styles are collected in the order specified. This allows to insert style contributions that are
+not part of the NatSkin. For example given you uploaded NatSkin css definitions to a topic
+<nop>Main.NatSkinThemesContrib you can activate them by setting the STYLEPATH to
+
+<verbatim>
+  * Set STYLEPATH = Main.NatSkinThemesContrib, TWiki.NatSkin
+</verbatim>
+
+Css files must obey the following naming scheme to be recognized
+   * =&lt;name>Style.css=: basic style definitions for style &lt;name>
+   * =&lt;name>Buttons.css=: <nop>WebButton definitions for style &lt;name>
+   * =&lt;name>Border.css=: definitions for style &lt;name> displayed using =STYLEBORDER = on=
+   * =&lt;name>Thin.css=: definitions for style &lt;name> displayed using =STYLEBORDER = thin=
+   * =&lt;name>Thin.css=: definitions for style &lt;name> displayed using =STYLEBORDER = thin=
+   * =&lt;name>Variation.css=: style variations that can be applied to any base style; this
+     can be used to vary a base style, e.g. to add header art or change some fonts and colours
+
+---+++ Email Obfuscation
+The standard TWiki engine tries to obfuscate email addresses by adding a phrase to the email url (like NOSPAM)
+to fool collecting web crawlers. But that is not adequate enough today as crawlers are aware of that. The solution
+to that is to remove every trace of a pattern that could be an email address from the html source code and regenerate
+them using javascript. Most likely, web crawlers will only parse the html and don't run a javascript interpreter 
+beforehand. Nevertheless the obfuscation feature can be switched on and off by adding the =OBFUSCATEEMAIL= variable
+to your %TWIKIWEB%.TWikiPreferences like
+
+<verbatim>
+  * Set OBFUSCATEEMAIL = on
+</verbatim>
+
+---++ Misc preference variables
+There is a set of variables that can be used influence how NatSkin behaves or renders pages.
+
+| *Name* | *Description* |
+| =HTMLTITLE= | the &lt;title>...</title> of the html page; if no HTMLTITLE is defined the NatSkin \
+                will check for some formfields (Headlines, <nop>TopicDescription) to be used as a html page title \
+      and back off to the topic name |
+| =METAAUTHOR= | the value of this variable will be used to construct &lt;meta name="author" ... /> in the html head |
+| =METADESCRIPTION= | the value of this variable will be used to construct &lt;meta name="description" ... /> in the html head |
+| =METAKEYWORDS= | the value of this variable will be used to construct &lt;meta name="keywords" ... /> in the html head |
+| =WHITEBOARD= | possible values: on, off; if WHITEBOARD is set to only the topic form will be edited \
+                when clicking on "Edit"; note, that the textarea is still accessible and not hidden completely; \
+      this is flag is only there for convenience |
+
+Hint: Assign default meta data _per web_ by adding
+<verbatim>
+  * Set DEFAULT_METAKEYWORDS = keyword1, keyword2, keyword3
+  * Set METAKEYWORDS = %DEFAULT_METAKEYWORDS%
+</verbatim>
+to the WebPreferences and add extra keyword data _per topic_ like this
+<verbatim>
+  * Set METAKEYWORDS = %DEFAULT_METAKEYWORDS%, keyword4, keyword5, keyword6
+</verbatim>
+
+Caution: don't add meta data to your [[%WIKIUSERNAME%][home topic]] because it will override all
+other meta data preferences.
+
+
+-- Main.MichaelDaum - 25 Aug 2006
+
+%META:TOPICMOVED{by="MichaelDaum" date="1156530555" from="TWiki.NatSkinCustomization" to="TWiki.NatSkinConfiguration"}%

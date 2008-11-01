@@ -1,0 +1,12 @@
+%TMPL:INCLUDE{"oopserrbase"}%
+<!-- template: oopsrenameerr.nat.tmpl -->
+%TMPL:DEF{"heading"}%%MAKETEXT{"Move topic error"}%%TMPL:END%
+%TMPL:DEF{"errormessage"}%<!-- -->
+%MAKETEXT{"During rename of topic [_1] to [_2] an error was found." args="[[%WEB%.%TOPIC%]],[[%PARAM2%.%PARAM3%]]"}%
+<div class="natErrorMsg">%PARAM1%</div>
+%TMPL:END%
+%TMPL:DEF{"formvariables"}%<!-- -->
+<input type="hidden" name="Source" value="%WEB%.%TOPIC%" />
+<input type="hidden" name="Target" value="%PARAM2%.%PARAM3%" />
+<input type="hidden" name="Error" value="%PARAM1%" />
+%TMPL:END%

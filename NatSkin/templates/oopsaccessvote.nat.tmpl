@@ -1,0 +1,12 @@
+%TMPL:INCLUDE{"oopslogonbase"}%
+<!-- template: oopsaccessvote.nat.tmpl -->
+%TMPL:DEF{"action"}%view%TMPL:END%
+%TMPL:DEF{"heading"}%%MAKETEXT{"Vote Access Denied"}%%TMPL:END%
+%TMPL:DEF{"message"}%<!-- -->
+%MAKETEXT{"[_1] has no permission to vote on topic [[[_2]]]." args="%USERNAME%,%WEB%.%TOPIC%"}%
+
+%TMPL:P{"logon"}%
+
+%MAKETEXT{"See also:"}% %MAINWEB%.TWikiGroups, %TWIKIWEB%.TWikiAccessControl, %TWIKIREGISTRATION%
+%TMPL:END%
+ 

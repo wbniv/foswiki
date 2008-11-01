@@ -1,0 +1,15 @@
+%META:TOPICINFO{author="TWikiContributor" date="1197888740" format="1.1" reprev="1.10" version="$Rev$"}%
+%META:TOPICPARENT{name="TWikiPreferences"}%
+---+ %TOPIC%
+
+Standard links in sidebar navigation. 
+
+%STARTINCLUDE%<!-- twiki.twikiweblinks -->%IFDEFINEDTHEN{"%BASEWEB%" as="%TWIKIWEB%|%MAINWEB%" glue="off"}%%ELSEDEFINED%
+   * [[%BASEWEB%.WebTopicCreator][%MAKETEXT{"New Topic"}%]]%FIDEFINED%
+   * [[%BASEWEB%.WebTopicList][%MAKETEXT{"Index"}%]]
+   * [[%BASEWEB%.WebChanges][%MAKETEXT{"Changes"}%]]
+   * [[%BASEWEB%.WebNotify][%MAKETEXT{"Notifications"}%]]
+   * [[%BASEWEB%.WebStatistics][%MAKETEXT{"Statistics"}%]]
+%IFDEFINEDTHEN{"%IFACCESS{"%BASEWEB%.WebPreferences" type="change"}%" as="1"}%
+   * [[%BASEWEB%.WebPreferences][%MAKETEXT{"Preferences"}%]] %FIDEFINED%
+%STOPINCLUDE%

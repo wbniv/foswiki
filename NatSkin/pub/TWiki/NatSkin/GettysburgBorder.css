@@ -1,0 +1,21 @@
+/* border variation for gettysburg */
+@import url('BaseBorder.css');
+
+.natTopBar {
+  border-top:1px solid #cccccc;
+}
+
+.natWebButtons,
+.natTopLeft,
+.natMiddleLeft {
+  border-left:1px solid #cccccc;
+}
+.natWebButtons,
+.natTopRight,
+.natMiddleRight {
+  border-right:1px solid #cccccc;
+}
+.natSideBar,
+.natMainFooter {
+  border-bottom:1px solid #cccccc;
+}

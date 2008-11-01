@@ -1,0 +1,56 @@
+/* header art variation */
+.natHeaderArt {
+  border:1px solid white; /* IE fix */
+  background-color:inherit;
+  background-image:url(BlueTechCherryBar.jpg); 
+  background-repeat:no-repeat;
+  background-position:top center;
+}
+.natTopBar {
+  border-top:0px;
+}
+
+.natTopBar a,
+.natSearchBoxTop {
+  color:white;
+}
+.natSearchBoxTop input {
+  background:#2474BD;
+  color:white;
+  border:1px solid #1E5E9B;
+}
+.natWebButtons {
+  padding-bottom:10px;
+  padding-top:10px;
+  background-color:inherit;
+  background-image:url(opaque-25.png);
+  background-repeat:repeat-x;
+  background-position:top left;
+}
+.natWebButtons ul a {
+  border:0px;
+  margin:0px 5px 0px 0px;
+  padding:0px;
+}
+.natWebButtons ul a.current:hover,
+.natWebButtons ul a.current,
+.natWebButtons ul a:hover {
+  border:0px;
+  margin:0px 5px 0px 0px;
+  padding:0px;
+  background:inherit;
+  text-decoration:underline;
+}
+
+.natWebButtons ul a {
+  border:0px;
+  color:white;
+}
+.natWebSlogan,
+.natWebSlogan a {
+  color:white;
+  font-weight:normal;
+}
+.natMain, .natSideBar {
+  border-top:0px;
+}

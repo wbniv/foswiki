@@ -1,0 +1,93 @@
+/* header art variation */
+.natHeaderArt {
+  background:white;
+  background-image:url(OrangeTunnelBar.jpg); 
+  background-repeat:no-repeat;
+  background-position:top center;
+}
+.natWebTitle,
+.natWebTitle a {
+  color:black;
+}
+.natSearchBoxTop input {
+  background:#FEA700;
+  color:black;
+  border:0px;
+}
+.natWebSlogan {
+  display:none;
+}
+.natWebButtons,
+.natWebButtons a,
+.natSearchBoxTop,
+.natTopicActions a,
+.natTopicActions {
+  color:white !important;
+}
+.natWebButtons {
+  background:inherit;
+}
+.natTopBar {
+  border-top:0px;
+}
+
+.natAction {
+  color:#731C00;
+}
+
+.natWebButtons ul a {
+  padding:5px 10px 5px;
+  border:0px;
+}
+.natWebButtons ul a.current:hover {
+  color:#731C00;
+  border:0px;
+}
+.natWebButtons ul a.current {
+  background:white;
+  color:#731C00 !important;
+  border:0px;
+}
+.natWebButtons ul a:hover {
+  background:#FEA700;
+  color:#731C00 !important;
+  border:0px;
+}
+.natMain, .natSideBar {
+  border-top:0px;
+}
+
+/* twiki table variation */
+
+.natTopicForm,
+.twikiPageForm th,
+.natTopicForm td {
+  border-top:2px solid #06c;
+  border-bottom:2px solid #06c;
+  background:#ddd;
+}
+.natTopicForm table th a,
+.natTopicForm th {
+  background:#ddd;
+}
+.natTopicForm select,
+.twikiPageForm select,
+.twikiPageForm table textarea,
+.twikiPageForm table input,
+.natTopicForm table textarea,
+.natTopicForm table input {
+  border:0px;
+  border:1px solid #666666;
+}
+
+/* twiki toc variation */
+
+.twikiToc {
+  background:transparent;
+  border:0px;
+}
+.twikiToc li a:hover {
+  background:#FEA700;
+  background:#06c;
+  color:white;
+}

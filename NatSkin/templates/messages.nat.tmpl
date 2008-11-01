@@ -1,0 +1,362 @@
+%TMPL:INCLUDE{"messages"}%
+%TMPL:DEF{"remove_user_done"}%<!-- removes contact note -->
+---+++ %MAKETEXT{"User Account [_1] Deleted" args="<nop>%PARAM1%"}%
+%MAKETEXT{"Your user name has been removed from the Authentication System."}%
+
+%MAKETEXT{"Your [[[_1]][homepage]] has _not_ been removed yet." args="%MAINWEB%.%PARAM1%"}%
+
+%MAKETEXT{"Please email [_1] to request this."
+ args="<a href='mailto:%WIKIWEBMASTER%?subject=%ENCODE{"%WIKITOOLNAME% Delete User"}%&amp;body=%ENCODE{"%PARAM1%"}%'>%WIKIWEBMASTER%</a>"
+}%
+<style type="text/css">.natContact {display:none}</style>
+%TMPL:END%
+%TMPL:DEF{"missing_action"}%<!-- uses goback template -->
+---+++ %MAKETEXT{"Missing action command"}%
+%TMPL:P{"goback"}%
+%TMPL:END%
+%TMPL:DEF{"unrecognized_action"}%<!-- uses goback def -->
+---+++ %MAKETEXT{"Unrecognized action command [_1]" args="'%PARAM1%'"}%
+%TMPL:P{"goback"}%
+%TMPL:END%
+%TMPL:DEF{"notwikiuser"}%<!-- fixes duplicate definition of notwikiuser in messages.tmpl -->
+---+++ %MAKETEXT{"Can't find user \"[_1]\"." args="<nop>%PARAM1%"}%
+%MAKETEXT{"Please make sure you spelled the [_1] correctly and try again. If you get stuck, please mail [_2]."
+ args="%TWIKIWEB%.LoginName,%WIKIWEBMASTER%"}%
+
+%MAKETEXT{"See [_1] for a list of existing users or register as new user in [_2]."
+args="%MAINWEB%.TWikiUsers,%TWIKIREGISTRATION%"}%
+%TMPL:END%
+%TMPL:DEF{"topic_exists"}%<!-- uses goback def -->
+---+++ %MAKETEXT{"The [_1] topic already exists" args="\"%TOPIC%\""}%
+%MAKETEXT{"Cannot create [_1] because it already exists." args="%TOPIC%"}%
+
+%TMPL:P{"goback"}%
+%TMPL:END%
+%TMPL:DEF{"rename_topic_exists"}%<!-- uses goback def -->
+---+++ %MAKETEXT{"Rename failed"}%
+%MAKETEXT{"Cannot rename [_1] to [_2] because it already exists." args="%TOPIC%,<nop>%PARAM1%.<nop>%PARAM2%"}%
+
+%TMPL:P{"goback"}%
+%TMPL:END%
+%TMPL:DEF{"rename_web_exists"}%<!-- uses goback def -->
+---+++ %MAKETEXT{"Rename failed"}%
+%MAKETEXT{"Cannot rename [_1] to [_2] because it already exists." args="%WEB%,<nop>%PARAM1%"}%
+
+%TMPL:P{"goback"}%
+%TMPL:END%
+%TMPL:DEF{"rename_not_wikiword"}%<!-- uses goback def -->
+---+++ %MAKETEXT{"New topic name [_1] is not a [_2]" args="<nop>\"%PARAM1%\",%TWIKIWEB%.WikiWord"}%
+%MAKETEXT{"Chose a topic name that is a [_1] or check the allow non-Wiki Word box." args="%TWIKIWEB%.WikiWord"}%
+
+%TMPL:P{"goback"}%
+%TMPL:END%
+%TMPL:DEF{"rename_err"}%<!-- removes contact -->
+%MAKETEXT{"During rename of topic [_1] to [_2] an error ([_3]) was found."
+ args="<nop>%WEB%.<nop>%TOPIC%,<nop>%PARAM2%.<nop>%PARAM3%,%PARAM1%"}%
+
+%MAKETEXT{"Please notify your [_1] administrator [_2]" args="<nop>%WIKITOOLNAME%,%WIKIWEBMASTER%"}%.
+<style type="text/css">.natContact {display:none}</style>
+%TMPL:END%
+%TMPL:DEF{"rename_web_err"}%<!-- removes contact -->
+%MAKETEXT{"During rename of web [_1] to [_2] an error ([_3]) was found."
+ args="<nop>%WEB%,<nop>%PARAM2%,%PARAM1%"}%
+
+%MAKETEXT{"Please notify your [_1] administrator [_2]." args="<nop>%WIKITOOLNAME%,%WIKIWEBMASTER%"}%
+<style type="text/css">.natContact {display:none}</style>
+%TMPL:END%
+%TMPL:DEF{"wrong_password"}%<!-- uses goback def -->
+---+++ %MAKETEXT{"Incorrect Password"}%
+%MAKETEXT{"The password you entered in the *old password* field is incorrect."}%
+
+%TMPL:P{"goback"}%
+%TMPL:END%
+%TMPL:DEF{"web_missing"}%<!-- uses goback def -->
+---+++ %MAKETEXT{"Name of new web is missing"}%
+%TMPL:P{"goback"}%
+%TMPL:END%
+%TMPL:DEF{"invalid_web_name"}%<!-- uses goback def -->
+---+++ %MAKETEXT{"\"[_1]\" is an invalid name for a new web." args="%PARAM1%"}%
+%MAKETEXT{"You are recommended to choose short names, preferably less than 10 characters,
+starting with an upper-case alphabetic character and using only alphanumeric
+characters. If you want to create a template web (a web just used as a base
+to create new webs) choose a name that starts with an underscore and has only
+alphanumeric characters."}%
+
+%TMPL:P{"goback"}%
+%TMPL:END%
+%TMPL:DEF{"web_exists"}%<!-- uses goback def -->
+---+++ %MAKETEXT{"Cannot create web [_1] because it already exists" args="\"%PARAM1%\""}%
+%TMPL:P{"goback"}%
+%TMPL:END%
+%TMPL:DEF{"base_web_missing"}%<!-- uses goback def -->
+---+++ %MAKETEXT{"Base web [_1] is missing or does not exist" args="%PARAM1%"}%
+%TMPL:P{"goback"}%
+%TMPL:END%
+%TMPL:DEF{"invalid_web_color"}%<!-- uses goback def -->
+---+++ %MAKETEXT{"Color [_1] has an invalid format" args="='%PARAM1%'="}%
+%MAKETEXT{"A color starts with a # sign, followed by 6 hexadecimal
+numbers, e.g. =#FFFF00=."}%
+
+%MAKETEXT{"Pick one of the [_1]." args="%TWIKIWEB%.StandardColors"}%
+
+%MAKETEXT{"You can also use the names of the standard HTML colors"}% (black, silver, gray,
+white, maroon, red, purple, fuchsia, green, lime, olive, yellow, navy, blue, teal, or aqua)
+
+%TMPL:P{"goback"}%
+%TMPL:END%
+%TMPL:DEF{"password_changed"}%<!-- huh -->
+---+++ %MAKETEXT{"Password changed successfully!"}%
+
+<form action="%SCRIPTURLPATH{"view"}%/%MAINWEB%/%WIKINAME%">
+<input type="submit" class="natOkButton" value='%MAKETEXT{"OK"}%' />
+</form>
+%TMPL:END%
+%TMPL:DEF{"confirm"}%<!-- BlackListPlugin support -->
+---+++ %MAKETEXT{"Thank you for registering"}%
+%MAKETEXT{"Your activation code has been sent to [_1].  Either click on the
+link in your email or enter the code in the box below to activate your membership.
+(This code is of the form \"YourName.xxxxxxxxxx\")" args="%PARAM1%"}%
+
+<form action="%SCRIPTURLPATH{"register"}%" method="post">
+<!--input type="hidden" name="rx" value="%BLACKLISTPLUGIN{action="magic"}%" /-->
+<input type="hidden" name="action" value="verify" size="20" />
+<input type="text" name="code" size="20" />
+<input type="submit" value=' %MAKETEXT{"Submit"}% ' />
+</form>
+
+%TMPL:END%
+%TMPL:DEF{"missing_fields"}%<!-- better dialog, uses goback def -->
+---+++ %MAKETEXT{"Missing Fields =<span class=\"twikiAlert\">**</span>="}%
+<noautolink>
+%MAKETEXT{"The required field [_1] was not filled in." args="*%PARAM1%*"}%
+</noautolink>
+
+%TMPL:P{"goback"}%
+%TMPL:END%
+%TMPL:DEF{"password_mismatch"}%<!-- uses goback def -->
+---+++ %MAKETEXT{"Passwords do not match"}%
+%MAKETEXT{"The two passwords you entered do not match."}%
+
+%TMPL:P{"goback"}%
+%TMPL:END%
+%TMPL:DEF{"problem_adding"}%<!-- removes contact -->
+---+++ %MAKETEXT{"Error registering user [_1]" args="<nop>%PARAM1%"}%
+%MAKETEXT{"There has been a problem adding your user id to the Password system."}%
+%MAKETEXT{"Please notify your [_1] webmaster [_2]." args="<nop>%WIKITOOLNAME%,%WIKIWEBMASTER%"}%
+<style type="text/css">.natContact {display:none}</style>
+%TMPL:END%
+%TMPL:DEF{"send_mail_error"}%<!-- better dialog, removes contact -->
+---+++ %MAKETEXT{"Mail Error"}%
+%MAKETEXT{"An e-mail could not be delivered."}% 
+
+*%MAKETEXT{"Mail to"}%*:
+<pre>
+%PARAM1%
+</pre>
+
+*%MAKETEXT{"Errors"}%*: 
+<pre>
+%PARAM2%
+</pre>
+
+%MAKETEXT{"Please notify your [_1] administrator [_2]"
+ args="<nop>%WIKITOOLNAME%,<a href=\"mailto:%WIKIWEBMASTER%?subject=%ENCODE{"%WIKITOOLNAME% Send Mail Error"}%\">%WIKIWEBMASTER%</a>"}%
+<style type="text/css">.natContact {display:none}</style>
+%TMPL:END%
+%TMPL:DEF{"already_exists"}%<!-- only one contact message -->
+---+++ %MAKETEXT{"You are already registered"}%
+%MAKETEXT{"You cannot register twice, the name [_1] is already registered." args="'%PARAM1%'"}%
+
+%MAKETEXT{"Did you want to ~[~[[_1]~]~[reset [_2]'s password~]~]?" args="%SCRIPTURLPATH{"view"}%/TWiki.ResetPassword?username=%PARAM1%,%PARAM1%"}%
+
+%MAKETEXT{"Alternatively go <a href=\"javascript:history.back()\">back</a> in your browser and choose a different username."}%
+%TMPL:END%
+%TMPL:DEF{"bad_loginname"}%
+---+++ %MAKETEXT{"Incorrect [_1]" args="%SYSTEMWEB%.LoginName"}%
+%MAKETEXT{"'[_1]' is not a valid [_2] " args="%PARAM1%,%SYSTEMWEB%.LoginName"}%
+
+%TMPL:P{"goback"}%
+%TMPL:END%
+%TMPL:DEF{"bad_wikiname"}%<!-- uses goback def -->
+---+++ %MAKETEXT{"Incorrect [_1]" args="%TWIKIWEB%.WikiName"}%
+%MAKETEXT{"The [_1] field must be your first and lastname in [_2], e.g. your capitalized first and lastname with spaces removed."
+ args="%TWIKIWEB%.WikiName,%TWIKIWEB%.WikiNotation"}%
+
+| *%MAKETEXT{"Good examples:"}%* | *%MAKETEXT{"Incorrect [_1]" args="%TWIKIWEB%.WikiNames"}%:* |
+| =JohnSmith= | =John M. Smith= |
+| =RjMiller= | =RJ Miller= |
+| =RickO= | =Rick O= (%MAKETEXT{"single character last name"}%) |
+| =KellerF= | =FKeller= (%MAKETEXT{"single character first name"}%) |
+
+%TMPL:P{"goback"}%
+%TMPL:END%
+%TMPL:DEF{"bad_email"}%<!-- uses goback def -->
+---+++ %MAKETEXT{"Invalid e-mail address"}%
+%MAKETEXT{"The e-mail address for this account is not valid."}%
+
+%PARAM1%
+
+%TMPL:P{"goback"}%
+%TMPL:END%
+%TMPL:DEF{"bad_ver_code"}%<!-- BlackListPlugin support -->
+---+++ %MAKETEXT{"Invalid Activation Code"}%
+%MAKETEXT{"The activation code [_1] is invalid." args="==%PARAM1%=="}% %PARAM2%
+
+%MAKETEXT{"Please try again."}%
+
+<form action="%SCRIPTURLPATH{"register"}%" method="post">
+<!--input type="hidden" name="rx" value="%BLACKLISTPLUGIN{action="magic"}%" /-->
+<input type="hidden" name="action" value="verify" size="20" />
+<input type="text" name="code" size="20" />
+<input type="submit" value=" %MAKETEXT{"Submit"}% " />
+</form>
+%TMPL:END%
+%TMPL:DEF{"no_email_for"}%<!-- nach %2 umbenennenbetter dialog -->
+---+++ %MAKETEXT{"Can't get an email address for [_1]" args="%PARAM1%"}%
+%MAKETEXT{"An email address is required before a password can be reset."}%
+%TMPL:END%
+%TMPL:DEF{"mandatory_field"}%<!-- uses goback def, duplicate missing_fields -->
+---+++ %MAKETEXT{"Topic Save Error"}%
+%MAKETEXT{"Could not save [_1]." args="<nop>%WEB%.%TOPIC%"}%
+
+%MAKETEXT{"The required field =<span class=\"twikiAlert\">**</span>= *[_1]* was not filled in." args="%PARAM1%"}%
+
+%TMPL:P{"goback"}%
+%TMPL:END%
+%TMPL:DEF{"zero_size_upload"}%<!-- uses goback def -->
+---+++ %MAKETEXT{"Uploaded file \"<nop>[_1]\" does not exist or is empty." args="%PARAM1%"}%
+%TMPL:P{"goback"}%
+%TMPL:END%
+%TMPL:DEF{"save_error"}%<!-- better dialog -->
+---+++ %MAKETEXT{"Error saving topic"}%
+%MAKETEXT{"During save of [_1] an error was found by the version control system."
+ args="<nop>%WEB%.<nop>%TOPIC%"}%
+
+<pre>
+%PARAM1%
+</pre>
+
+%MAKETEXT{"Please notify your [_1] administrator [_2]." args="<nop>%WIKITOOLNAME%,%WIKIWEBMASTER%"}%
+
+%MAKETEXT{"Go <a href=\"javascript:history.back()\">back</a> in your browser and save your changes locally."}%
+<style type="text/css">.natContact {display:none}</style>
+%TMPL:END%
+%TMPL:DEF{"delete_err"}%<!-- better dialog, removes contact -->
+---+++ %MAKETEXT{"Attachment delete failed"}%
+%MAKETEXT{"During deletion of attachment =[_1]= an error was found." args="%URLPARAM{attachment}%"}% 
+
+<pre>
+%PARAM4%
+</pre>
+
+%MAKETEXT{"Please notify your [_1]" args="<nop>%WIKITOOLNAME%"}% 
+<a href="mailto:%WIKIWEBMASTER%?subject=%ENCODE{"%WIKITOOLNAME% Delete Error"}%&amp;body=%ENCODE{"%PARAM4%"}%">%WIKIWEBMASTER%</a>.
+<style type="text/css">.natContact {display:none}</style>
+%TMPL:END%
+%TMPL:DEF{"upload_name_changed"}%<!-- uses goback def -->
+---+++ %MAKETEXT{"File has been uploaded with different name"}%
+%MAKETEXT{"The file has been uploaded and attached properly to the [_1] topic.
+However, the filename has been changed from <b><code>[_2]</code></b> to
+<b><code>[_3]</code></b>. Please make a note of it." args="<nop>%TOPIC%,%PARAM1%,%PARAM2%"}%
+
+%MAKETEXT{"Note:"}%
+%MAKETEXT{"In some cases, TWiki changes the name of the uploaded file to make it safe and accessible across all platforms:
+   * Spaces are replaced by underscores
+   * \"A =.txt= extensiPartneron is appended to some filenames for security reasons\"
+   * Some characters such as =~=, =$=, =@=, =%= are removed\"
+You may be able to get your TWiki administrator to change the settings if they are inappropriate for your environment."}%
+
+<form action="%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%">
+<input type="submit" class="natOkButton" value='%MAKETEXT{"OK"}%' />
+</form>
+%TMPL:END%
+%TMPL:DEF{"rename_web_prerequisites"}%<!-- better buttons -->
+---+++ %MAKETEXT{"There are problems with renaming this web:"}%
+   %MAKETEXT{"1. You are denied access to the following topics in the web: %BR%
+   [_1]" args="%PARAM1%"}%
+   %MAKETEXT{"2. The following topics are locked for edit, and cannot be moved: %BR%
+   [_1]" args="%PARAM2%"}%
+   %MAKETEXT{"3. The following topics refer to topics in this web, but you are denied access to them: %BR%
+   [_1]" args="%PARAM3%"}%
+   %MAKETEXT{"4. The following topics refer to topics in this web, but are being edited: %BR%
+   [_1]" args="%PARAM4%"}%
+
+<div %PARAM5%>
+%MAKETEXT{"Continue and try to rename web?"}%
+
+
+<form class="natOopsButtons" name="ButtonBox" action="%SCRIPTURLPATH{"rename"}%/%WEB%/%HOMETOPIC%">
+  <input type="hidden" name="action" value="renameweb">
+  <input type="hidden" name="confirm" value="continue">
+  <input type="submit" class="natOkButton" value='%MAKETEXT{"OK"}%'>&nbsp;
+  <input type="button" class="natCancelButton" value='%MAKETEXT{"Cancel"}%' onclick="window.location.href='%SCRIPTURLPATH{"view"}%/%WEB%/%HOMETOPIC%'">
+</form> 
+</div>
+%TMPL:END%
+%TMPL:DEF{no_such_template}%<!-- better layout -->
+---+++ %MAKETEXT{"Could not find template =[_1]=" args="%PARAM1%"}%
+
+%MAKETEXT{"Check your configuration setting for {TemplateDir}. If that's not the problem,
+it may be because you have a setting of =[_1]= that is pointing to a
+template that doesn't exist." args="%PARAM2%"}%
+
+%MAKETEXT{"[_1] is currently set to [_2]" args="=%PARAM2%=,<code><nop>%PARAM1%</code>"}% 
+
+%MAKETEXT{"(don't forget to check your Topic Settings)"}%
+%TMPL:END%
+%TMPL:DEF{"topic_access"}% <!-- -->
+%MAKETEXT{"[_1] has no permission to [_2] [_3]." args="<nop>%SPACEOUT{"%WIKINAME%"}%,%PARAM1%,%TOPIC%"}%
+
+%TMPL:P{"logon"}%
+
+%MAKETEXT{"See also:"}% %MAINWEB%.TWikiGroups, %TWIKIWEB%.TWikiAccessControl,
+%TWIKIREGISTRATION%
+%TMPL:END%
+%TMPL:DEF{"only_group"}% <!-- -->
+%MAKETEXT{"Only members of the [_1] are allowed to perform this action." args="%PARAM1%"}%
+
+%TMPL:P{"logon"}%
+
+%MAKETEXT{"See also:"}% %MAINWEB%.TWikiGroups, %TWIKIWEB%.TWikiAccessControl,
+%TWIKIREGISTRATION%
+%TMPL:END%
+%TMPL:DEF{"no_such_web"}% <!-- -->
+---++ %MAKETEXT{"The [_1] web does not exist" args="\"%WEB%\""}%
+%MAKETEXT{"You are trying to '[_1]' a topic in a web that does not exist." args="%PARAM1%"}%
+
+%TMPL:P{"goback"}%
+%TMPL:END%
+%TMPL:DEF{"no_such_topic_message"}%
+---++ %MAKETEXT{"If you want to create the topic"}%
+[[%SCRIPTURLPATH{"edit"}%/%WEB%/%TOPIC%?t=%SERVERTIME{"$year$mo$day$min$sec"}%][%MAKETEXT{"Create the topic"}%]]
+
+%TMPL:END%
+%TMPL:DEF{"no_such_topic"}% <!-- -->
+---++ %MAKETEXT{"\"[_1]\" topic does not exist" args="%WEB%.%TOPIC%"}%
+%MAKETEXT{"You are trying to [_1] a topic that does not exist." args="%PARAM1%"}%
+
+%MAKETEXT{"If you want to create the topic then [[[_1]][click here]]." args="%SCRIPTURLPATH{\"edit\"}%/%WEB%/%TOPIC%?t=%SERVERTIME{\"$year$mo$day$min$sec\"}%"}%
+%TMPL:END%
+%TMPL:DEF{"no_such_topic_template"}%
+---++ %MAKETEXT{"Template [_1] does not exist" args="\"%WEB%.%TOPIC%\""}%
+%MAKETEXT{"You are trying to create a topic from a template that does not exist." args="%PARAM1%"}%
+
+%TMPL:P{"goback"}%
+%TMPL:END%
+%TMPL:DEF{"no_such_topic_rename"}%
+---++ %MAKETEXT{"[_1] topic does not exist" args="\"%WEB%.%TOPIC%\""}%
+%MAKETEXT{"You are trying to rename a topic that does not exist." args="%PARAM1%"}%
+
+%TMPL:P{"goback"}%
+%TMPL:END%
+%TMPL:DEF{"no_such_attachment"}% <!-- removed contact -->
+---++ %MAKETEXT{"Attachment '[_1]' does not exist" args="%PARAM2%"}%
+%MAKETEXT{"You are trying to [_1] an attachment that does not exist." args="%PARAM1%"}%
+
+%TMPL:END%
+%TMPL:DEF{"oversized_upload"}%
+---+++ %MAKETEXT{"Uploaded file is too big"}%
+%MAKETEXT{"Uploaded file [_1] exceeds limit of [_2] KB" args="<code>%PARAM1%</code>,%PARAM2%"}%
+
+%TMPL:P{"goback"}%
+%TMPL:END%

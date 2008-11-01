@@ -1,0 +1,99 @@
+%META:TOPICINFO{author="TWikiContributor" date="1162063414" format="1.1" version="$Rev$"}%
+<div class="natOopsMore">
+<table border="0" cellpadding="5">
+<form name="main" action="%SCRIPTURLPATH{"manage"}%/%BASEWEB%/%BASETOPIC%" method="post">
+<input type="hidden" name="action" value="editSettings" />
+<tr>
+<td colspan="2">
+---++ %MAKETEXT{"Topic preferences"}%
+</td></tr>
+<tr>
+  <td valign="top">
+    <ul><li>%MAKETEXT{"Edit preference settings for [_1]" args="[[%BASEWEB%.%BASETOPIC%]]"}%</li></ul>
+  </td>
+  <td><input type="submit" class="natOkButton" value='%MAKETEXT{"Edit"}%'>
+    <p />
+    <input type="button" class="natCancelButton" value='%MAKETEXT{"Cancel"}%' onclick="window.location.href = '%SCRIPTURLPATH{"view"}%/%BASEWEB%/%BASETOPIC%';">
+  </td>
+</tr>
+</form>
+<tr style='%IF{"context i18n_enabled" then="" else="display:none"}%'>
+<td colspan="2">
+---++ %MAKETEXT{"Change language"}%
+</td></tr>
+<tr style='%IF{"context i18n_enabled" then="" else="display:none"}%'>
+  <td style="padding-left:20px" valign="top">
+    <form name="%BASEWEB%%BASETOPIC%ChangeLanguage" action="%SCRIPTURLPATH{"oops"}%/%BASEWEB%/%BASETOPIC%" method="get">
+    <select name="language">
+    %LANGUAGES{format="<option $marker value=\"$langtag\">$langname</option>" selection="%LANGUAGE%" separator=" "}%
+    </select>
+    <input type="hidden" name="template" value="oopslanguagechanged" />
+    <input type="hidden" name="refresh" value="on" />
+  </td>
+  <td valign="top">
+    <input class="natOkButton" type="submit" value="%MAKETEXT{"OK"}%" />
+    </form><p />
+    <form name="%BASEWEB%%BASETOPIC%ChangeLanguage" action="%SCRIPTURLPATH{"oops"}%/%BASEWEB%/%BASETOPIC%" method="get">
+      <input type="hidden" name="template" value="oopslanguagechanged" />
+      <input type="hidden" name="language" value="default" />
+      <input class="natAltButton" type="submit" value="%MAKETEXT{"Reset"}%" />
+    </form>
+  </td>
+</tr>
+<tr>
+<td colspan="2">
+---++ %MAKETEXT{"Backlinks"}%
+</td></tr>
+<tr>
+  <td>
+    <ul><li>%MAKETEXT{"Find topics that link to [_1] ..." args="[[%BASEWEB%.%BASETOPIC%]]"}%</li></ul>
+  </td>
+  <td>
+    <input type="button" class="natAltButton" value='%MAKETEXT{"Find"}%' onclick="if (document.getElementById('searchall').checked) {window.location.href='%SCRIPTURLPATH{"oops"}%/%BASEWEB%/%BASETOPIC%?template=backlinksallwebs';} else {window.location.href='%SCRIPTURLPATH{"oops"}%/%BASEWEB%/%BASETOPIC%?template=backlinksweb';}">
+  </td>
+</tr>
+<tr>
+  <td>
+    <ul><li>%MAKETEXT{"Search in all public webs"}%</li></ul>
+  </td>
+  <td>
+    <input type="checkbox" id="searchall" name="web">
+  </td>
+</tr>     
+<tr>
+<td colspan="2">
+---++ %MAKETEXT{"Rename, move or delete this web:"}%
+</td></tr>
+<tr>
+<tr>
+  <td>
+    <ul>
+      <li>%MAKETEXT{"Rename the <nop>[_1] web" args="%BASEWEB%"}%</li>
+      <li>%MAKETEXT{"See also:"}% %TWIKIWEB%.ManagingWebs </li>
+    </ul>
+  </td>
+  <td>
+    <input type="button" class="natAltButton" onclick="window.location.href='%SCRIPTURLPATH{"rename"}%/%BASEWEB%/%BASETOPIC%?action=renameweb'" value="%MAKETEXT{"Rename"}%" />
+  </td>
+</tr>
+<tr>
+<td colspan="2">
+---++ %MAKETEXT{"Topic Caching"}%
+</td>
+</tr>
+<tr style="%IF{"not {Cache}{Enabled}" then="display:none"}%">
+<td>
+<ul>
+  <li>%MAKETEXT{"Get a fresh page of the topic [_1]" args="[[%BASEWEB%.%BASETOPIC%]]"}%&nbsp;</li>
+</ul>
+<td>
+  <input type="button" class="natAltButton" onclick="window.location.href='%SCRIPTURLPATH{"view"}%/%BASEWEB%/%BASETOPIC%?refresh=on'" value='%MAKETEXT{"Refresh"}%' />
+</td>
+</tr>
+<tr style="%IF{"not {Cache}{Enabled}" then="display:none"}%">
+<td colspan="2">
+%DISPLAYDEPENDENCIES{header="---++ %MAKETEXT{"Dependencies"}%$n"}%
+</td>
+</tr>
+</table>
+</div>

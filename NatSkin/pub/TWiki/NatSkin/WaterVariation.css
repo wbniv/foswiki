@@ -1,0 +1,115 @@
+/* water variation for natskin */
+
+.natHeaderArt {
+  background-image:url(WaterBar.jpg); 
+  background-repeat:no-repeat;
+  background-position:top left;
+}
+.natSearchBoxTop,
+.natTopicActions a,
+.natWebTitle,
+.natWebTitle a {
+  color:white;
+}
+
+.natSearchBoxTop {
+  color:black;
+}
+
+.natTopicActions:hover {
+  background:#ACDBEB;
+  color:black;
+}
+.natTopicActions a {
+  color:black;
+}
+.natSearchBoxTop input {
+  background:white;
+  color:black;
+  border:1px solid black;
+}
+
+.natTopicActions a:hover {
+  background:white;
+  text-decoration:none;
+}
+
+.natWebSlogan {
+  display:none;
+}
+.natWebButtons {
+  color:white;
+  background:inherit;
+}
+.natTopBar {
+  border-top:0px;
+}
+
+.natAction {
+  color:red;
+  font-weight:bold;
+}
+
+/* web buttons */
+.natWebButtons ul a {
+  padding:5px 10px 5px;
+  border:0px;
+  color:white;
+  margin-left:-10px;
+}
+.natWebButtons ul a.current:hover {
+  background:white;
+  color:black;
+  border:0px;
+}
+.natWebButtons ul a.current {
+  background:white;
+  color:black;
+  border:0px;
+}
+.natWebButtons ul a:hover {
+  background:#ACDBEB;
+  color:black;
+  border:0px;
+}
+
+/* twiki table variation */
+
+/*
+.natTopicForm table,
+.twikiPageForm th,
+.natTopicForm td {
+  border-top:2px solid #06c;
+  border-bottom:2px solid #06c;
+  background:#ddd;
+}
+.natTopicForm table th a,
+.natTopicForm th {
+  background:#ddd;
+}
+.natTopicForm select,
+.twikiPageForm select,
+.twikiPageForm table textarea,
+.twikiPageForm table input,
+.natTopicForm table textarea,
+.natTopicForm table input {
+  border:0px;
+  border:1px solid #666666;
+}
+*/
+
+/* twiki toc variation */
+
+.twikiToc {
+  background:transparent;
+  border:0px;
+}
+.twikiToc li a:hover {
+  background:#FEA700;
+  background:#06c;
+  color:white;
+}
+
+.natBody {
+  background:#99ccff;
+}

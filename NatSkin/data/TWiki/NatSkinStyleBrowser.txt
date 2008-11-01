@@ -1,0 +1,137 @@
+%META:TOPICINFO{author="TWikiContributor" date="1202840013" format="1.1" version="$Rev$"}%
+---+ Style Browser
+Explore the style variations of the %TWIKIWEB%.NatSkin by changing the base
+_style_ and a _variation_ of it. In general style variations are used to change
+the header art but also adapt colors to match the graphics. Various elements of
+the style can be relocated using style switches or even be switched off. Use
+the "reset" button whenever you want to revert your selection and come back to
+the site's default settings. Note that each web may have its own defaults build
+in. If you select different style options they have precedence over those.
+
+Register [[%TWIKIREGISTRATION%][here]] to make your settings persistent.
+See the TWiki.NatSkinPlugin documentation on how to use style settings in your personal
+<nop>%WIKITOOLNAME% account.
+
+%STARTINCLUDE%
+<table><tr><td>
+<div class="twikiPageForm">
+<div class="natSkinStyleBrowser">
+%IFSKINSTATETHEN{final="all"}%
+<!-- %RED%all styles and switches are final%ENDCOLOR% -->
+%ELSESKINSTATE%
+<form action="%SCRIPTURLPATH{"view"}%/%BASEWEB%/%BASETOPIC%" _method="post">
+<table border="0">
+%IFSKINSTATETHEN{final="style"}% %ELSESKINSTATE%
+<tr><td colspan="3"> *%MAKETEXT{"Style"}%:* </td></tr>
+<tr>
+<td><a href="?switchstyle=prev" title="%MAKETEXT{"Switch to previous style"}%"><img src="%PUBURLPATH%/%TWIKIWEB%/TWikiDocGraphics/arrowleft.gif" border="0" alt="%MAKETEXT{"prev"}%"/></a></td>
+<td>
+<select name="style">
+<noautolink>
+%FORMATLIST{"%KNOWNSTYLES%" pattern="\s*(.*)\s*" format="<option $percntIFSKINSTATE{style=\"$1\" then=\"selected=\\"selected\\"\"}$percnt>$1</option>" join="\n" separator=" "}%
+</noautolink>
+</select>
+</td>
+<td align="right"><a href="?switchstyle=next" title="%MAKETEXT{"Switch to next style"}%"><img src="%PUBURLPATH%/%TWIKIWEB%/TWikiDocGraphics/arrowright.gif" border="0" alt="%MAKETEXT{"next"}%"/></a></td>
+</tr>
+%FISKINSTATE%
+%IFSKINSTATETHEN{final="variation"}% %ELSESKINSTATE%
+<tr><td colspan="3"> *%MAKETEXT{"Variation"}%:* </td></tr>
+<tr><td><a href="?switchvariation=prev" title="%MAKETEXT{"Switch to previous variation"}%"><img src="%PUBURLPATH%/%TWIKIWEB%/TWikiDocGraphics/arrowleft.gif" border="0" alt="%MAKETEXT{"prev"}%"/></a></td>
+<td>
+<select name="stylevariation">
+<noautolink>
+%FORMATLIST{"none, %KNOWNVARIATIONS%" pattern="\s*(.*)\s*" format="<option $percntIFSKINSTATE{variation=\"$1\" then=\"selected=\\"selected\\"\"}$percnt>$1</option>" join="\n" separator=" "}%
+</noautolink>
+</select>
+</td>
+<td align="right"><a href="?switchvariation=next" title="%MAKETEXT{"Switch to next variation"}%"><img src="%PUBURLPATH%/%TWIKIWEB%/TWikiDocGraphics/arrowright.gif" border="0" alt="%MAKETEXT{"prev"}%"/></a></td>
+</tr>
+%FISKINSTATE%
+%IFSKINSTATETHEN{final="switches"}% %ELSESKINSTATE%
+<tr><td colspan="3"> <p /> *%MAKETEXT{"Layout"}%:* </td></tr>
+<tr>
+<td colspan="3">
+%IFSKINSTATETHEN{final="border"}% %ELSESKINSTATE%
+<ul>
+<li> <input type="radio" class="twikiRadiobox" id="borderon" name="styleborder" value="on" %IFSKINSTATE{border="on" then="checked=\"checked\""}% /><label for="borderon">%MAKETEXT{"Border On"}%</label></li>
+<li> <input type="radio" class="twikiRadiobox" id="borderoff" name="styleborder" value="off" %IFSKINSTATE{border="off" then="checked=\"checked\""}% /><label for="borderoff">%MAKETEXT{"Border Off"}%</label></li>
+<li> <input type="radio" class="twikiRadiobox" id="borderthin" name="styleborder" value="thin" %IFSKINSTATE{border="thin" then="checked=\"checked\""}% /><label for="borderthin">%MAKETEXT{"Thin Layout"}%</label></li>
+</ul>
+%FISKINSTATE%
+%IFSKINSTATETHEN{final="sidebar"}% %ELSESKINSTATE%
+<ul>
+<li> <input type="radio" class="twikiRadiobox" id="sidebarleft" name="stylesidebar" value="left" %IFSKINSTATE{sidebar="left" then="checked=\"checked\""}% /><label for="sidebarleft">%MAKETEXT{"Sidebar Left"}%</label></li>
+<li> <input type="radio" class="twikiRadiobox" id="sidebarright" name="stylesidebar" value="right" %IFSKINSTATE{sidebar="right" then="checked=\"checked\""}% /><label for="sidebarright">%MAKETEXT{"Sidebar Right"}%</label></li>
+<li> <input type="radio" class="twikiRadiobox" id="sidebarboth" name="stylesidebar" value="both" %IFSKINSTATE{sidebar="both" then="checked=\"checked\""}% /><label for="sidebarboth">%MAKETEXT{"Both sidebars"}%</label></li>
+<li> <input type="radio" class="twikiRadiobox" id="sidebaroff" name="stylesidebar" value="off" %IFSKINSTATE{sidebar="off" then="checked=\"checked\""}% /><label for="sidebaroff">%MAKETEXT{"Sidebar Off"}%</label></li>
+</ul>
+%FISKINSTATE%
+%IFSKINSTATETHEN{final="buttons"}% %ELSESKINSTATE%
+<ul>
+<li> <input type="radio" class="twikiRadiobox" id="buttonson" name="stylebuttons" value="on" %IFSKINSTATE{buttons="on" then="checked=\"checked\""}% /><label for="buttonson">%MAKETEXT{"Web Buttons On"}%</label></li>
+<li> <input type="radio" class="twikiRadiobox" id="buttonsoff" name="stylebuttons" value="off" %IFSKINSTATE{buttons="off" then="checked=\"checked\""}% /><label for="buttonsoff">%MAKETEXT{"Web Buttons Off"}%</label></li>
+</ul>
+%FISKINSTATE%
+%IFSKINSTATETHEN{final="searchbox"}% %ELSESKINSTATE%
+<ul>
+<li> <input type="radio" class="twikiRadiobox" id="searchboxtop" name="stylesearchbox" value="top" %IFSKINSTATE{searchbox="top" then="checked=\"checked\""}% /><label for="searchboxtop">%MAKETEXT{"Searchbox in topbar"}%</label></li>
+<li> <input type="radio" class="twikiRadiobox" id="searchboxpos1" name="stylesearchbox" value="pos1" %IFSKINSTATE{searchbox="pos1" then="checked=\"checked\""}% /><label for="searchboxpos1">%MAKETEXT{"Searchbox in pos. 1"}%</label></li>
+<li> <input type="radio" class="twikiRadiobox" id="searchboxpos2" name="stylesearchbox" value="pos2" %IFSKINSTATE{searchbox="pos2" then="checked=\"checked\""}% /><label for="searchboxpos2">%MAKETEXT{"Searchbox in pos. 2"}%</label></li>
+<li> <input type="radio" class="twikiRadiobox" id="searchboxpos3" name="stylesearchbox" value="pos3" %IFSKINSTATE{searchbox="pos3" then=" checked=\"checked\""}% /><label for="searchboxpos3">%MAKETEXT{"Searchbox in pos. 3"}%</label></li>
+<li> <input type="radio" class="twikiRadiobox" id="searchboxoff" name="stylesearchbox" value="off" %IFSKINSTATE{searchbox="off" then=" checked=\"checked\""}% /><label for="searchboxoff">%MAKETEXT{"Searchbox off"}%</label></li>
+</ul>
+%FISKINSTATE%
+</td></tr>
+%FISKINSTATE%
+<tr><td colspan="3"> *%MAKETEXT{"Presets"}%:* </td></tr>
+<tr><td colspan="3">
+   * <a href="%SCRIPTURLPATH{"view"}%/%BASEWEB%/%BASETOPIC%?
+*~~ style=JotSpot&
+*~~ stylevariation=none&
+*~~ styleborder=off&
+*~~ stylesidebar=left&
+*~~ stylesearchbox=pos1&
+*~~ stylebuttons=on">Jotspot</a>
+   * <a href="%SCRIPTURLPATH{"view"}%/%BASEWEB%/%BASETOPIC%?
+*~~ style=SeaGreen&
+*~~ stylevariation=none&
+*~~ styleborder=thin&
+*~~ stylesidebar=right&
+*~~ stylesearchbox=top&
+*~~ stylebuttons=on">MovableType</a>
+   * <a href="%SCRIPTURLPATH{"view"}%/%BASEWEB%/%BASETOPIC%?
+*~~ style=Pattern&
+*~~ stylevariation=none&
+*~~ styleborder=off&
+*~~ stylesidebar=left&
+*~~ stylesearchbox=top&
+*~~ stylebuttons=off">TWiki</a>
+   * <a href="%SCRIPTURLPATH{"view"}%/%BASEWEB%/%BASETOPIC%?
+*~~ style=Kubrick&
+*~~ stylevariation=none&
+*~~ styleborder=thin&
+*~~ stylesidebar=right&
+*~~ stylesearchbox=pos1&
+*~~ stylebuttons=on">Wordpress</a>
+</td></tr>
+<tr>
+<td colspan="3" align="center">
+<div style="white-space:nowrap">
+<input style="width:49%" type="submit" class="natOkButton" value="OK" title="%MAKETEXT{"Submit changes"}%"/>
+<input style="width:49%" type="button" class="natCancelButton" value="Reset" title="%MAKETEXT{"Reset to defaults"}%" 
+~~~ onclick="window.location.href='%SCRIPTURLPATH{"view"}%/%BASEWEB%/%BASETOPIC%?resetstyle=on';" />
+</div>
+</td>
+</tr>
+</table>
+</form>%ENDSECTION{"presets"}%
+</div>
+%FISKINSTATE%
+</div>
+</td></tr></table>
+%STOPINCLUDE%
+
+<!--
+   * Set SKIN = nat
+-->

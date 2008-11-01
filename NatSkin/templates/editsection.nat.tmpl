@@ -1,0 +1,32 @@
+%TMPL:INCLUDE{"edit"}% 
+<!-- template: editsection.nat.tmpl -->
+<!-- -->%TMPL:INCLUDE{"sidebar"}%
+%TMPL:DEF{"bodyclass"}%natEditBody natEditSectionBody%TMPL:END%
+%TMPL:DEF{"title"}%%TOPICTITLE% - (%MAKETEXT{"edit section"}%)%TMPL:END%
+%TMPL:DEF{"content"}% <!-- -->
+<div class="natEdit">
+<form name="EditForm" action="%SCRIPTURLPATH{"savesection"}%/%WEB%/%TOPIC%" method="post">
+  <input type="hidden" name="edit" value="editsection" />
+  <input type="hidden" name="action_preview" value="" />
+  <input type="hidden" name="action_save" value="" />
+  <input type="hidden" name="action_checkpoint" value="" />
+  <input type="hidden" name="action_addform" value="" />
+  <input type="hidden" name="action_replaceform" value="" />
+  <input type="hidden" name="action_cancel" value="" />
+  <input type="hidden" name="submitChangeForm" value="" />
+  <input type="hidden" name="formtemplate" value="%FORMTEMPLATE%" />
+  <input type="hidden" name="originalrev" value="%ORIGINALREV%" />
+  <input type="hidden" name="origurl" value="%URLPARAM{"origurl"}%" />
+  <input type="hidden" name="redirectto" value="%URLPARAM{"redirectto"}%" />
+  <input type="hidden" name="skin" value="%URLPARAM{"skin"}%" />
+  <input type="hidden" name="cover" value="%URLPARAM{"cover"}%" />
+  <input type="hidden" name="newtopic" value="%NEWTOPIC%" />
+  <input type="hidden" name="cmd" value="%CMD%" /> 
+  <input type="hidden" name="editparams" value="%EDITPARAMS%" />
+  <input type="hidden" name="pretxt" value="%PRETEXTFIELD%">
+  <input type="hidden" name="postxt" value="%POSTEXTFIELD%"> %TMPL:P{"edittoolbar"}%
+  <textarea id="natEditTextArea" name="text" wrap="virtual" rows="%SECTIONEDITBOXHEIGHT%" cols="%SECTIONEDITBOXWIDTH%" style="%SECTIONEDITBOXSTYLE%">%TEXT%</textarea>
+</div>
+%TMPL:P{"bottomtopicactions"}%
+%TMPL:P{"editoptions"}%
+</form> %TMPL:END%

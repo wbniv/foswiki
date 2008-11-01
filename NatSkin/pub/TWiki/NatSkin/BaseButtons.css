@@ -1,0 +1,21 @@
+/* variation to switch on the web buttons */
+.natWebButtons,
+.natWebButtonsContents {
+  margin:0;
+  padding:0;
+}
+.natWebButtons ul {
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+.natWebButtons ul li {
+  display:inline;
+  float:left;
+}
+.natWebButtons ul a {
+  text-decoration:none;
+  float:left;
+  padding:0px 3px;
+  margin:0px 6px 0px -3px;
+}

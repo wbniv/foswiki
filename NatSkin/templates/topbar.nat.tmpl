@@ -1,0 +1,38 @@
+<!-- template: topbar.nat.tmpl -->
+%TMPL:DEF{"defaulttopbar"}% <tr>
+      <td class="natTopBar natTopLeft %IFSKINSTATE{action="oops" then="natTopRight"}%" valign="top">
+	<div class="natTopBarSizer natTopLeftBarSizer" id="natTopLeftBarSizer">
+	  <div class="natTopLeftContents">
+	    <div class="natWebTitle"><!--
+      	      --><a href="%IFDEFINED{"%WEBLOGOURL%" then="%WEBLOGOURL%" else="%WIKILOGOURL%"}%" title="%WEBLOGOALT%" accesskey="h"><!--
+	      --><span>%NATWEBLOGO%</span><!--
+	      --></a><!--
+	    --></div>
+	    <div class="natWebSlogan">%SITEMAPWHAT%</div>
+	  </div>
+	</div>
+      </td>
+      <td class="natTopBar natTopRight" valign="top" style="%IFSKINSTATE{action="oops" then="display:none"}%" width="250px">
+	<div class="natTopBarSizer natTopRightBarSizer" id="natTopRightBarSizer">
+	  <div class="natTopRightContents">
+%IFSKINSTATETHEN{searchbox="top"}% 
+	    <div class="natSearchBox natSearchBoxTop">
+%$nopTMPL:P{"searchbox"}%
+	    </div>
+%FISKINSTATE%
+	    <div class="natTopicActions">
+%TMPL:P{"topicactions"}% 
+	    </div>
+	  </div>
+	</div>
+      </td>
+    </tr>
+%IFSKINSTATETHEN{buttons="on"}%
+    <tr>
+      <td class="natWebButtons" id="natWebButtons" style="%IFSKINSTATE{action="login|logon" then="display:none"}%" colspan="2">
+	<div class="natWebButtonsContents"> %$nopWEBCOMPONENT{"WebButtons"}% </div>
+      </td>
+    </tr>
+%FISKINSTATE%
+%TMPL:END%
+%TMPL:DEF{"topbar"}%%TMPL:P{"defaulttopbar"}%%TMPL:END%

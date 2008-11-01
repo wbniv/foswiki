@@ -1,0 +1,9 @@
+/* border variation for kubrick */
+@import url('BaseShadow.css');
+.natPageBox {
+  padding:50px;
+  width:100%;
+}
+.natEditBody .natPageBox {
+  padding:10px;
+}

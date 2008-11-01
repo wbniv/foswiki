@@ -1,0 +1,20 @@
+/* thin variant for clean */
+@import url("BaseThin.css");
+
+.natWebButtons,
+.natMiddleRight,
+.natTopRight {
+  border-right:1px #aaaaaa solid;
+}
+.natWebButtons,
+.natMiddleLeft,
+.natTopLeft {
+  border-left:1px #aaaaaa solid;
+}
+.natSideBar,
+.natMainFooter {
+  border-bottom:1px #aaaaaa solid;
+}
+.natBottomBar {
+  background:#e5e5e5;
+}

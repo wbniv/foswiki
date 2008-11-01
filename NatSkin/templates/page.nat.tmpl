@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="%LANG%" lang="%LANG%">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=%CHARSET%" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="generator" content="TWiki/NatSkin" /> %TMPL:P{"meta"}%
+<title>%TMPL:P{"title"}%</title>
+<base href="%SCRIPTURL{view}%/%WEB%/%TOPIC%%IFDEFINED{"%QUERYSTRING%" then="?$test"}%"></base>
+%IFDEFINEDTHEN{"%FAVICON%"}%
+<link rel="icon" href="%FAVICON%" type="image/x-icon" />
+<link rel="shortcut icon" href="%FAVICON%" type="image/x-icon" />
+%FIDEFINED%
+%GETSKINSTYLE%
+%TMPL:P{"styles"}%
+%TMPL:P{"javascript"}%
+%WEBCOMPONENT{"WebHtmlHead"}%
+</head>
+<body class="%TMPL:P{"defaultbodyclass"}% %TMPL:P{"bodyclass"}% %IFSKINSTATE{sidebar="left" then="natBodyLeft"}% %IFSKINSTATE{border="thin" then="natBodyThin"}% %IFSKINSTATE{border="on" then="natBodyBorder"}%">%TMPL:P{"body"}%</body>
+</html>
+%TMPL:INCLUDE{"strings"}%
+%TMPL:INCLUDE{"body"}%
+%TMPL:INCLUDE{"sidebar"}%
+%TMPL:INCLUDE{"topbar"}%
+%TMPL:INCLUDE{"styles"}%
+%TMPL:INCLUDE{"javascript"}%
+<!-- template: page.nat.tmpl -->

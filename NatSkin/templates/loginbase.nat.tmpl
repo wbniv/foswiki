@@ -1,0 +1,39 @@
+<!-- template: loginbase.tmpl -->
+%TMPL:DEF{"onloadscript"}%if (document.LogonForm) {document.LogonForm.username.focus();} %TMPL:END%
+%TMPL:DEF{"rememberbox"}%<div class="natRememberMe">
+<label>
+  <input name="remember" class="twikiCheckbox" type="checkbox" value="1" />
+  %MAKETEXT{"Remember me on this computer"}%
+</label>
+</div>%TMPL:END%
+%TMPL:DEF{"logon"}%<!-- -->
+<div class="natLogonFormHolder">
+<form name="LogonForm" action="%IFDEFINED{"%HTTPSLOGON%" as ="on" then="https" else="http"}%://%HTTP_HOST%%SCRIPTURLPATH{"login"}%/%WEB%/%TOPIC%" method="post">
+<table class="natLogonForm" border="0"> 
+<tr class="natLogonFormLogin"> 
+  <th class="twikiFirstCol"><b>%MAKETEXT{"Login"}%</b>: </th>
+  <td><input type="text" size="20" name="username" /> 
+      <span class="twikiAlert">**</span>
+  </td>
+</tr>
+<tr class="natLogonFormPassword"> 
+  <th class="twikiFirstCol"><b>%MAKETEXT{"Password"}%</b>: </th>
+  <td><input type="password" size="20" name="password" />
+      <span class="twikiAlert">**</span>
+  </td>
+</tr>
+<tr class="natLogonFormButtons">
+  <th class="twikiFirstCol">&nbsp;</th>
+  <td> %TMPL:P{context="can_remember_login" then="rememberbox"}%
+    <input type="submit" class="natOkButton" value='%MAKETEXT{"OK"}%' />
+    <input type="reset"  class="natAltButton" value='%MAKETEXT{"Clear"}%' />
+    <input type="button" class="natCancelButton" value='%MAKETEXT{"Cancel"}%' onclick="window.location.href='%WIKILOGOURL%'" /> 
+    <input type="hidden" name="web" value="%WEB%" />
+    <input type="hidden" name="topic" value="%TOPIC%" />
+    <input type="hidden" name="action" value="%TMPL:P{action}%"/>
+  </td>
+</tr>
+</table>
+<input type="hidden" name="origurl" value="%IFDEFINED{"%ORIGURL%"}%" />
+</form>
+</div>%TMPL:END%

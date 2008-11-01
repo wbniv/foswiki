@@ -1,0 +1,98 @@
+%TMPL:INCLUDE{"page"}% 
+<!-- template: renamewebbase.nat.tmpl-->
+%TMPL:INCLUDE{"renamewebbody"}%<!-- -->
+%TMPL:INCLUDE{"renamewebsidebar"}%<!-- -->
+%TMPL:INCLUDE{"renamewebtopicactions"}%<!-- -->
+%TMPL:INCLUDE{"renamewebjavascript"}%<!-- -->
+%TMPL:INCLUDE{"renamewebstyles"}%<!-- -->
+%TMPL:DEF{"bodyclass"}%natRenameWebBody%TMPL:END%
+%TMPL:DEF{"meta"}% <meta name="robots" content="noindex, nofollow" /> %TMPL:END%
+%TMPL:DEF{"title"}%%TOPICTITLE% (%MAKETEXT{"rename web"}%) - %WIKITOOLNAME%%TMPL:END%
+%TMPL:DEF{"webaction"}%%MAKETEXT{"Rename"}%%TMPL:END%
+%TMPL:DEF{"onloadscript"}%document.renameweb.newsubweb.focus();%TMPL:END%
+%TMPL:DEF{"buttons"}%
+  <input type="submit" class="natOkButton" value='%MAKETEXT{"OK"}%' />&nbsp;
+  <input type="button" class="natCancelButton" value='%MAKETEXT{"Cancel"}%' onclick="window.location.href='%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%'">
+%TMPL:END%
+%TMPL:DEF{"content"}%<!-- -->
+---+ %MAKETEXT{"Rename Web"}%
+<div class="twikiPageForm">
+<form method="post" name="renameweb" action="%SCRIPTURLPATH{"rename"}%/%WEB%/%TOPIC%">
+<input type="hidden" name="action" value="renameweb" />
+<input type="hidden" name="confirm" value="getlock" />
+<table>
+<tr>
+  <th>%MAKETEXT{"From:"}%</th>
+  <td><span class="twikiAlert"><nop>%WEB%</span></td>
+</tr>
+<tr>
+  <th>%MAKETEXT{"To:"}%</th>
+  <td>%TMPL:P{"newparentweb"}%&nbsp;%TMPL:P{"newsubweb"}%</td>
+</tr>
+<tr>
+  <th>&nbsp;</th>
+  <td>
+    <label>
+      <input type="checkbox" class="twikiCheckbox" name="totrash" id="totrash" onclick="document.renameweb.newparentweb.value = (this.checked)?'Trash':'';">&nbsp;
+        %MAKETEXT{"Move to Trash"}%
+    </label>
+  </td>
+</tr>
+<tr>
+  <th>&nbsp;</th>
+  <td>%TMPL:P{"buttons"}%</td>
+</tr>
+<tr><th>&nbsp;</th><td>&nbsp;</td></tr>
+<tr><th>&nbsp;</th><td>
+---++ %MAKETEXT{"Change backlinks"}%
+---+++ %MAKETEXT{"... in the '[_2]' web" args="<nop>%TOPIC%,<nop>%WEB%"}%
+<div class="natSearchRenameContents">
+%LOCAL_SEARCH%
+</div>
+%IFDEFINEDTHEN{"%URLPARAM{"currentwebonly"}%" as="on"}%
+%ELSEDEFINED%
+---+++ %MAKETEXT{"... in any web"}%
+<div class="natSearchRenameContents">
+%GLOBAL_SEARCH%
+</div>
+%FIDEFINED%
+
+<input type="button" class="natAltButton" value='%MAKETEXT{"Clear all"}%' onClick="checkAll('renameweb', false);"  title="%MAKETEXT{"Clear selection"}%"/>
+<input type="button" class="natAltButton" value='%MAKETEXT{"Set all"}%' onClick="checkAll('renameweb', true);" title="%MAKETEXT{"Select all topics"}%"/>
+%IFDEFINEDTHEN{"%URLPARAM{"currentwebonly"}%" as="on"}%
+    <input type="button" class="natCancelButton" value="%MAKETEXT{"Search all"}%" onclick="window.location.href='%SCRIPTURLPATH{"rename"}%/%WEB%/%TOPIC%?action=renameweb'" title="Search for backlinks in all webs" />
+%FIDEFINED%
+</td></tr>
+<tr><th>&nbsp;</th><td>&nbsp;</td></tr>
+<tr><th>&nbsp;</th><td>
+---++ %MAKETEXT{"Locked Topics"}%
+*%MAKETEXT{"No permission:"}%* 
+<div class="natSearchRenameContents">
+%REF_DENIED%
+</div>
+
+*%MAKETEXT{"Currently being edited:"}%* 
+<div class="natSearchRenameContents">
+%MOVE_LOCKED%
+</div>
+
+*%MAKETEXT{"Referring topics currently being edited:"}%* 
+<div class="natSearchRenameContents">
+%REF_LOCKED%
+</div>
+</table>
+</form>
+</div>%TMPL:END%
+%TMPL:DEF{"notes"}%
+%MAKETEXT{"Get help on
+<a target=\"_blank\" href=\"[_1]\" rel='nofollow'>Renaming and moving webs</a>." args="%SCRIPTURLPATH{"view"}%/%TWIKIWEB%/ManagingWebs"}%
+<p/>
+<p>
+%MAKETEXT{"Characters not allowed in topic names, such as spaces will automatically be removed."}%
+<p/>
+<p> %MAKETEXT{"Select the <a target='_blank' href='[_1]/[_2]/WebHome'>[_2]</a>
+    web to *delete* this web, that is
+    rename it to [_2]/[_3]. " args="%SCRIPTURLPATH{"view"}%,%TRASHWEB%,%WEB%"}%</p>
+<p> %MAKETEXT{"The checkmarked topics will be updated."}% </p>
+</td></tr>
+%TMPL:END%

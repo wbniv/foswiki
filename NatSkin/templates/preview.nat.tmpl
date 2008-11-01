@@ -1,0 +1,34 @@
+%TMPL:INCLUDE{"edit"}%<!-- template: preview.nat.tmpl -->
+%TMPL:INCLUDE{"previewbody"}%<!-- -->
+%TMPL:INCLUDE{"previewtopicactions"}%<!-- -->
+%TMPL:INCLUDE{"previewsidebar"}%<!-- -->
+%TMPL:INCLUDE{"previewjavascript"}%<!-- -->
+%TMPL:INCLUDE{"previewstyles"}%<!-- -->
+%TMPL:INCLUDE{"previewtoolbar.natedit"}%<!-- -->
+%TMPL:DEF{"bodyclass"}%natPreviewBody%TMPL:END%
+%TMPL:DEF{"meta"}% %HTTP_EQUIV_ON_PREVIEW% %TMPL:END%
+%TMPL:DEF{"title"}%%TOPICTITLE% (%MAKETEXT{"preview"}%) - %WIKITOOLNAME%%TMPL:END%
+%TMPL:DEF{"contentheader"}%<div class="natBreadCrumbs">%BREADCRUMBS{"%BASEWEB%.%BASETOPIC%" exclude="%BASETOPIC%" separator="<span class='natSep'>&nbsp;&#187; </span>" footer="<span class='natSep'>&#187;</span><nop>%BASETOPIC%"}%</div>%TMPL:END%
+%TMPL:DEF{"content"}%%TMPL:P{"previewtoolbar"}% 
+%TEXT%
+%META{"form"}%
+<form name="EditForm" method="post" action="%SCRIPTURLPATH{"save"}%/%WEB%/%TOPIC%">
+  <input type="hidden" name="action_addform" value="" />
+  <input type="hidden" name="action_checkpoint" value="" />
+  <input type="hidden" name="action_cancel" value="" />
+  <input type="hidden" name="action_preview" value="" />
+  <input type="hidden" name="action_replaceform" value="" />
+  <input type="hidden" name="action_save" value="" />
+  <input type="hidden" name="submitChangeForm" value="" />
+  %FORMFIELDS% 
+  <input type="hidden" name="formtemplate" value="%FORMTEMPLATE%" />
+  <input type="hidden" name="originalrev" value="%URLPARAM{"originalrev"}%" />
+  <input type="hidden" name="redirectto" value="%REDIRECTTO%" />
+  <input type="hidden" name="topicparent" value="%TOPICPARENT%" />
+  <input type="hidden" name="templatetopic" value="%URLPARAM{"templatetopic" default="%TEMPLATETOPIC%"}%" />
+  <input type="hidden" name="cover" value="%URLPARAM{"cover"}%" />
+  <input type="hidden" name="cmd" value="%CMD%" />
+  <input type="hidden" name="nowysiwyg" value="%URLPARAM{"nowysiwyg"}%" />
+  <input type="hidden" name="rev" value="%URLPARAM{"rev"}%" />
+  <input type="hidden" name="text" value="%HIDDENTEXT%" />
+</form> %TMPL:END%

@@ -1,0 +1,35 @@
+%TMPL:INCLUDE{"attach"}%<!-- -->
+<!-- template: attachnew.nat.tmpl -->
+%TMPL:DEF{"previousdetails"}%<h2>%MAKETEXT{"Attach file to <nop>[_1]" args="%TOPICTITLE%"}%</h2>%TMPL:END% 
+%TMPL:DEF{"attachaction"}% <!--
+--><input type="submit" class="natOkButton" title="Upload selected file" value='%MAKETEXT{"Upload file"}%' />
+%IFDEFINEDTHEN{"$percntMETA{\"attachments\" all=\"on\"}$percnt"}%
+%IFDEFINEDTHEN{"%URLPARAM{"manage"}%" as="on"}%
+<input type="button" class="twikiButton natAltButton" value="Hide all attachments" title="Hide list of existing attachments" onclick="window.location.href='%SCRIPTURLPATH{"attach"}%/%WEB%/%TOPIC%?manage=off'" />
+%ELSEDEFINED%
+<input type="button" class="twikiButton natAltButton" value="Show all attachments" title="Show all existing attachments" onclick="window.location.href='%SCRIPTURLPATH{"attach"}%/%WEB%/%TOPIC%?manage=on'" />
+%FIDEFINED%
+%FIDEFINED%
+<input type="button" class="natCancelButton" title="Cancel and return to topic" value='%MAKETEXT{"Cancel"}%' onclick="window.location.href = '%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%';"><!--
+-->%TMPL:END%
+%TMPL:DEF{"notes"}% <!-- -->
+<p> %MAKETEXT{"*Link checkbox*: In case the attached file is a JPG, GIF or PNG image and you check the box, 
+  it will create an inline image (e.g. show the image) at the end of the topic.  For other
+  file types a simple link will be created."}%
+</p>
+%IFDEFINEDTHEN{"%URLPARAM{"manage"}%" as="on"}%
+<p>
+  %MAKETEXT{"*Hide*: Click on _Hide all attachments_ to hide the list of existing attachments."}%
+</p>
+<p>
+  %MAKETEXT{"*Properties*: Click on _props_ of an existing attachment to change its properties."}%
+</p>
+<p>
+  %MAKETEXT{"*Move*: Click on _move_ of an existing attachment to attach it to a different topic."}%
+</p>
+%ELSEDEFINED%
+<p>
+  %MAKETEXT{"*Show*: Click on _Show all attachments_ to display a list of all existing attachments."}%
+</p>
+%FIDEFINED%
+%TMPL:END%

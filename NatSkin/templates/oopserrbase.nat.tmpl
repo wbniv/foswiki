@@ -1,0 +1,16 @@
+%TMPL:INCLUDE{"oops"}% 
+<!-- template: oopserrbase.nat.tmpl -->
+%TMPL:DEF{"message"}%<!-- -->
+%TMPL:P{"errormessage"}%
+%MAKETEXT{"Please notify your [_1] administrator and explain how to reproduce it:"
+ args="<nop>%WIKITOOLNAME%"}%
+
+<noautolink>
+<form enctype="text/plain" method="post" name="ErrorMail" action="mailto:%WIKIWEBMASTER%?subject=%ENCODE{"%WIKITOOLNAME%: %TMPL:P{"heading"}%"}%">
+%TMPL:P{"formvariables"}%
+<textarea name="How to reproduce" id="description" wrap="virtual" cols="60" rows="5">%MAKETEXT{"... don't know, it just happended."}%</textarea>'
+<input type="submit" class="natOkButton" value='%MAKETEXT{"OK"}%'>&nbsp;
+<input type="button" class="natCancelButton" value='%MAKETEXT{"Cancel"}%' onclick="history.back()">
+</form> 
+</noautolink>
+%TMPL:END%

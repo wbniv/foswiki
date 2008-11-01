@@ -1,0 +1,13 @@
+/* thin variation for kubrik */
+@import url("BaseThin.css");
+@import url("BaseShadow.css");
+
+/*
+.natLayoutTable {
+  width:845px;
+}
+*/
+.natPageBox {
+  margin:20px auto 30px auto;
+  width:880px;
+}

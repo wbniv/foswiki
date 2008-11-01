@@ -1,0 +1,756 @@
+/* PatternSkin emulation */
+@import url("BaseStyle.css");
+
+/* html */
+.natBody {
+  line-height:1.55em;
+  font-family:"Lucida Grande", verdana, lucida, arial, sans-serif;
+  background-color:#f8f8f8;
+  margin:0;
+  padding:0;
+  voice-family:inherit;
+  font-size:12px;
+}
+button {
+  font-size:12px;
+}
+
+p {
+  margin:1em 0 0 0;
+}
+table {
+  border-collapse:separate;
+}
+strong, b {
+  font-weight:bold;
+}
+hr {
+  color:#9E9E70;
+  background-color:#9E9E70;
+  height:1px;
+  border:none;
+}
+pre, code, tt {
+  font-size:100%;
+  line-height:1.4em;
+  color:#7A4707;
+}
+pre {
+  margin-top:1em;
+  margin-bottom:1em;
+}
+
+/* Text */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family:"Lucida Grande", arial, lucida, verdana, sans-serif;
+  line-height:104%;
+  padding:0;
+  /*margin:1em 0 0.1em 0;*/
+  font-weight:bold;
+}
+h1 {
+  font-size:210%;
+  color:#e24628;
+  margin:0 0 0.1em 0;
+}
+h2 {
+  font-size:145%;
+  display:block;
+  background-color:#F3EDE7;
+  color:#900;
+  padding:3px 7px 3px 7px;
+  margin:1em 0 0.15em 0;
+}
+h3 { font-size:140%; color:#900;}
+h4 { font-size:125%; color:#900;}
+h5 { font-size:110%; color:#900;}
+h6 { font-size:95%; color:#900;}
+
+h1 a,
+h1 a:visited,
+h1 a:link {
+  color:#e24628;
+}
+h2 a, h2 a:visited, h2 a:link, 
+h3 a, h3 a:visited, h3 a:link, 
+h4 a, h4 a:visited, h4 a:link, 
+h5 a, h5 a:visited, h5 a:link, 
+h6 a, h6 a:visited, h6 a:link {
+  color:#900;
+}
+
+/* Links */
+
+a,
+a:link:focus,
+a:visited:focus,
+a:link,
+a:visited,
+a:link:active,
+a:visited:active {
+  text-decoration:none;
+  color:#1e5bbd;
+  background-color:transparent;
+}
+a:link:hover,
+a:visited:hover {
+  /*text-decoration:underline;*/
+  background-color:#b4d5ff;
+  color:#1559B3;
+}
+a:link img,
+a:visited img,
+a:hover img,
+a:active img {
+  background-color:transparent;
+}
+th a:link,
+th a:visited {
+  font-weight:bold;
+}
+
+/* sorting of table columns */
+/* not yet finalized for tables in topic text */
+
+th.twikiSortedAscendingCol a:link,
+th.twikiSortedAscendingCol a:visited {
+  border-top:1px solid #999; /* a neutral color that should work on light and dark backgrounds */
+}
+th.twikiSortedAscendingCol a:hover,
+th.twikiSortedAscendingCol a:hover {
+  text-decoration:none;
+  border-top:0;
+  border-bottom:1px solid #999;
+}
+th.twikiSortedDescendingCol a:link,
+th.twikiSortedDescendingCol a:visited,
+th.twikiSortedDescendingCol a:link,
+th.twikiSortedDescendingCol a:visited {
+  border-bottom:1px solid #999;
+}
+th.twikiSortedDescendingCol a:hover,
+th.twikiSortedDescendingCol a:hover {
+  text-decoration:none;
+  border-bottom:0;
+  border-top:1px solid #999;
+}
+
+/* Forms */
+
+form { 
+  display:inline;
+  margin:0;
+  padding:0;
+}
+textarea {
+  font-family:monospace;
+  font-size:100%;
+  margin:0.25em 0;
+}
+input, select {
+  font-family:verdana,arial,sans-serif;
+  padding:1px;
+  /*background-color:#E8F1F9;*/
+}
+select {
+  padding:0;
+  font-size:100%;
+}
+fieldset {
+  border:1px solid #22638c;
+  padding-left:1em;
+}
+legend {
+  padding: 0.2em 1em;
+  color:#8490A1; /* .twikiGrayText value */
+  font-size:95%;
+  border:1px solid #8490A1; /* .twikiGrayText value */
+  background-color:#f8f8f8;
+}
+label {
+  margin-left:0.5em;
+  font-size:95%;
+  line-height:125%;
+}
+
+/* twiki styles */
+.twikiLeft {
+  float:left;
+  position:relative;
+}
+.twikiRight {
+  position:relative;
+  float:right;
+  display:inline;
+  margin:0;
+  text-align:right;
+}
+.twikiClear {
+  /* to clean up floats */
+  margin:0;
+  padding:0;
+  height:1px;
+  line-height:1%;
+  clear:both;
+  display:block;
+}
+.twikiHidden {
+  display:none;
+}
+
+/* main */
+
+.natMainFooter,
+.natMain {
+  padding:10px 20px 10px 15px;
+  background-color:white;
+  border-left:1px solid #ddd;
+  border-right:1px solid #ddd;
+}
+.natMain {
+  border-top:1px solid #ddd;
+}
+.natMainFooter {
+  border-bottom:1px solid #ddd;
+}
+.natMainFooterContents,
+.natMainContents {
+  padding:10px;
+}
+.natMainHeaderContents {
+  padding:0px 10px;
+}
+.natMainContents h2 {
+  margin-left:-7px;
+}
+.natMainContents select,
+.natMainContents input,
+.natMainContents textarea {
+  background-color:#FCFAF7;
+}
+.natMain .natNoteHeading {
+  color:#e24628;
+}
+.natSignature {
+  color:#8490A1; 
+}
+
+
+/* topbar */
+.natHeaderArt {
+  background-color:#F8F4F1;
+  background-color:#f8f8f8;
+}
+.natTopLeftContents {
+  margin:25px 5px 10px 20px
+}
+.natTopRightContents {
+  margin:25px 20px 10px 5px;
+  font-family:arial, sans-serif;
+  line-height:135%;
+}
+.natTopicActions {
+  line-height:160%;
+}
+.natTopicActions .natSep {
+  display:none;
+}
+.natTopicActions a,
+.natTopicActions .natDisabledTopicAction {
+  padding:3px 5px;
+}
+.natTopicActions .natDisabledTopicAction {
+  color:#C1BDC1;
+}
+.natSearchBox input {
+  border:1px solid #eee;
+}
+.natSearchBoxTop input {
+  line-height:1em;
+  font-family:arial, sans-serif;
+  width:150px;
+}
+.natSearchBoxTop {
+  margin-bottom:0.4em;
+}
+.natSideBar .natSearchBox a {
+  display:none;
+}
+.natSearchBoxPos1 input {
+  width:190px;
+  margin:20px 0px 10px;
+}
+.natWebSlogan {
+  font-size:95%;
+}
+.natWebTitle {
+  color:#1e5bbd;
+}
+.natWebTitle a,
+.natWebTitle a:hover,
+.natWebTitle a:link,
+.natWebTitle a:visited,
+.natWebTitle a:hover {
+  color:#1e5bbd;
+  color:#e24628;
+  background:transparent;
+}
+
+/* login */
+.natLoginBody .natTopBar {
+  display:none;
+}
+.natLoginBody .natMainContents {
+  margin-top:20px;
+}
+.natLoginMessage {
+  background-color:#F8F4F1;
+  border:1px solid #ddd;
+  color:#800;
+  padding:20px;
+}
+
+/* sidebar */
+.natTopRight {
+  width:250px;
+  min-width:250px;
+  max-width:250px;
+}
+.natSideBar {
+  width:223px;
+  padding:0px;
+}
+.natSideBarContents {
+  font-weight:normal;
+  margin:0;
+  padding:1em 1em 1.7em 1em;
+}
+
+.natSideBar {
+  background-color:#F8F4F1;
+  background-color:#f8f8f8;
+  border-top:1px solid #ddd;
+  color:#800;
+  line-height:1.3em;
+  padding:0px;
+}
+.natSideBar a:hover {
+  text-decoration:none;
+}
+.natSideBar h2 {
+  line-height:1.4em;
+  padding:2px 5px;
+  color:black;
+  margin-bottom:0.3em;
+}
+h2.natSideBarTitle {
+  margin:-1em -1em 1em -1em;
+  border-bottom:3px solid #22638C;
+  color:black;
+  text-align:center;
+  font-weight:bold;
+  font-family:"Lucida Grande", verdana, lucida, arial, sans-serif;
+  font-size:120%;
+  line-height:120%;
+  padding:0.5em 0;
+  color:black;
+  background:#FFD8AA;
+}
+.natSideBar h2 a {
+  color:black;
+  background:#efefef; 
+  display:block;
+  line-height:200%;
+}
+.natSideBar strong a:link,
+.natSideBar strong a:visited {
+  font-weight:bold;
+}
+.natSideBar ul {
+  padding:0;
+  margin:0;
+  list-style:none;
+}
+.natSideBar ul li ul li {
+  margin-left:1em;
+}
+.natSideBar li a {
+  display:block;
+  width:98%;
+  padding-right:2%;
+}
+html>body .natSideBar li a {
+  width:auto;
+}
+.natSideBarPersonal {
+  margin:1.5em -1em;
+  padding:0.25em 0 0.5em 1em;
+  background-color:#DFEDFD;
+  border-top:1px solid #ccc;
+  border-bottom:1px solid #ccc;
+}
+.natSideBarPersonal h2 {
+  font-family:"Lucida Grande", verdana, lucida, arial, sans-serif;
+  font-size:110%;
+  line-height:1.4em;
+  color:black;
+  text-align:center;
+  font-weight:bold;
+  border-bottom:3px solid #22638C;
+  margin-left:-1em;
+  padding-bottom:0.4em;
+  margin-bottom:0.4em;
+}
+.natSideBarPersonal h2 a,
+.natSideBarPersonal h2 a:visited,
+.natSideBarPersonal h2 a:link {
+  color:black;
+}
+.natSideBarPersonal .redDot a,
+.natSideBarPersonal .redDot a:visited,
+.natSideBarPersonal .redDot a:link {
+  color:red;
+}
+
+
+.natSideBarPersonal p {
+  margin:0.5em 0 0 0;
+}
+.natSideBarPersonal a:visited {
+  color:#666;
+}
+
+/* pattern skin sidebar */
+.natSideBar .patternFormHolder {
+  margin:.5em 0 1em 0;
+  display:none; /* superseeded by natsearch */
+}
+.natSideBar .patternFormHolder th.patternInputHolder {
+  width:100%;
+}
+.natSideBar input.patternFormField {
+  display:block;
+  height:12px;
+  border:1px solid #ddd;
+  font-size:85%; 
+  margin:0;
+  width:100%;
+  color:#7C8797;
+}
+.natSideBar hr {
+  color:#ccc;
+  background-color:#ccc;
+  height:1px;
+  border:none;
+  margin:1em -1em 1em 0;
+  padding:0px;
+}
+
+/* copyright */
+.natBottomBar {
+  padding-bottom:1em;
+}
+.natBottomBarContents {
+  padding:1.0em 1.0em;
+  font-size:90%;
+  line-height:140%;
+  color:#8490A1;
+}
+.natBottomBarRight {
+  padding-left:17em;
+}
+.natBottomBarLeft {
+  padding-right:17em;
+}
+.natCopyRight {
+  display:inline;
+}
+
+/* search */
+.natSearchTable {
+  margin-top:1em;
+}
+.natSearchTable:first-child {
+  margin-top:0em;
+}
+.natSearchTableTitle {
+  background:#F3EDE7;
+  border-bottom:1px solid #ccc;
+}
+.natSearchTableTitle th {
+  padding:0.2em 0.7em 0.2em 0.7em;
+}
+.natSearchTableTitle th.natSearchAuthor,
+.natSearchTableTitle th.natSearchRevision  {
+  color:#F3EDE7;
+}
+.natSearchHit {
+  font-size:0.9em;
+  margin-bottom:0.5em;
+}
+.natSearchHit th {
+  padding:0.5em 0.7em 0em 0.7em;
+  font-weight:bold;
+}
+.natSearchHit td {
+  padding:0em 0.7em 0.5em 0.7em;
+  color:#8490A1; /* .twikiGrayText value */
+}
+.natSearchHit .natSearchRevision a,
+.natSearchHit .natSearchAuthor a {
+  font-weight:normal;
+}
+
+.natSearchTotal {
+  font-weight:normal;
+  margin:0.5em 0.7em 2em 0.7em;
+}
+.natSearchHitEven {
+  background:#f0f0f0;
+  border-bottom:1px solid #ccc;
+}
+
+/* twiki table */
+.twikiTable {
+  border:1px #ccc solid;
+  font-weight:normal;
+  font-size:90%;
+}
+
+.twikiTable th {
+  border:1px solid #63A7FF;
+  text-align:left;
+  background:#b4d5ff;
+}
+.twikiTable th,
+.twikiTable th span,
+.twikiTable th font,
+.twikiTable th a {
+  color:#444444;
+  color:#1e5bbd;
+}
+.twikiTable th a:hover {
+  background-color:transparent;
+}
+.twikiTable th a {
+  text-decoration:none;
+  font-weight:bold;
+}
+.twikiTable td {
+  border:1px #ccc solid;
+}
+.twikiTableEven td {
+  background:#f0f0f0;
+}
+.twikiDiffTable td {
+  border:0px;
+}
+
+/* twiki forms */
+.natTopicEditForm,
+.natTopicForm {
+  margin:2em 0;
+  font-size:90%;
+  border-top:1px solid #ccc;
+  border-bottom:1px solid #ccc;
+  background:#f1f1f1;
+  padding:3em 1em;
+}
+.natTopicEditForm table,
+.natTopicForm table {
+  border-collapse:collapse;
+  padding:0px;
+  empty-cells:show;
+  color:#888e9c;
+  border:1px solid #ccc;
+}
+.natTopicEditForm th,
+.natTopicForm th {
+  padding:0.2em 0.6em;
+  height:2.5em;
+  border:1px solid #ccc;
+  background-color:white;
+  vertical-align:middle;
+}
+.natTopicEditForm table td,
+.natTopicForm table td {
+  background-color:white;
+  border-left:none;
+}
+td.natTopicFormFirstCol {
+  border-right:none;
+  padding-right:1em;
+}
+
+.natTopicEditForm .natTopicFormFirstCol,
+.natTopicEditForm th {
+  border-left:none;
+  background-color:#E0E9F7;
+  padding-left:1em;
+  color:black;
+}
+th.natTopicFormTitle {
+  text-align:center;
+}
+.natTopicEditForm table td {
+  border-left:1px solid #ddd;
+  padding-right:1em;
+  padding-left:0.5em;
+  background-color:#F5F7FD;
+  vertical-align:middle;
+}
+.natTopicEditForm input,
+.natTopicEditForm select {
+  font-size:100%;
+  background-color:#FCFAF7;
+}
+.natTopicEditForm textarea {
+  width:95%;
+  background-color:#FCFAF7;
+}
+.twikiEditFormTextField {
+  background-color:#FCFAF7;
+}
+
+/* toc */
+.twikiToc {
+  display:block;
+  font-size:95%;
+  line-height:1.6em;
+  margin:1em 0 2em 0;
+  padding:0.3em 0 0.6em 0;
+  border-top:1px solid;
+  border-bottom:1px solid;
+  border-color:#ddd;
+}
+
+.twikiToc ul {
+  list-style:outside;
+  padding:0 0 0 0.5em;
+  margin:0;
+  list-style-image:url(../PatternSkin/bullet-down.gif);
+}
+.twikiToc li {
+  margin-left:2em;
+}
+.twikiToc .twikiTocTitle {
+  margin:0;
+  padding:0;
+  font-weight:bold;
+  color:#666;
+}
+.twikiToc a:link,
+.twikiToc a:visited {
+  text-decoration:none;
+  color:#1e5bbd;
+  border:0;
+}
+.twikiToc a:hover {
+  text-decoration:underline;
+}
+.twikiToc li a {
+  display:block;	
+  width:100%;
+}
+html>body .twikiToc li a {
+  width:auto;
+}
+
+/* oops */
+.natOops h1 {
+  margin-bottom:20px;
+}
+
+/* plugin support */
+
+/* tip of the day */
+.tipsOfTheDay {
+  padding:0.25em 0 0.5em 1em;
+  background-color:#DFEDFD;
+  border-top:1px solid #ccc;
+  border-bottom:1px solid #ccc;
+}
+.tipsOfTheDayHeader {
+  display:block;
+  font-family:"Lucida Grande", verdana, lucida, arial, sans-serif;
+  font-size:110%;
+  line-height:1.4em;
+  color:black;
+  text-align:center;
+  font-weight:bold;
+  border-bottom:3px solid #22638C;
+  margin-left:-1em;
+  padding-bottom:0.4em;
+  margin-bottom:0.4em;
+}
+.tipsOfTheDayText {
+  margin-right:1em;
+}
+.tipsOfTheDayTitle {
+  font-weight:bold;
+}
+
+/* blogging */
+.blogSideBar li a {
+  display:inline;
+}
+.blogSideBarHeader h2,
+.blogSideBarHeader {
+  background-color:#DFEDFD;
+  padding:2px 5px;
+}
+.blogSideBarHeader h2 {
+  margin:0px;
+  padding:0px;
+}
+.blogCommentOdd {
+  background:#F8F4F1;
+}
+.blogCommentNr {
+  color:#959596;
+  color:#9E9E70;
+  margin-right:1em;
+  margin-left:0.3em;
+}
+.blogSubComments {
+  padding:1px;
+}
+.blogSubComment {
+  border-left:2px solid #ddd;
+}
+.blogHeadline h2 a:hover,
+.blogHeadline h2 a,
+.blogHeadline h2 {
+  line-height:100%;
+}
+.blogInfo {
+  font-size:0.9em;
+  line-height:130%;
+}
+.blogHeadline .blogCommentCount {
+  padding-top:5px;
+  vertical-align:top;
+  font-size:1.5em;
+}
+.blogAbout {
+  font-size:0.9em;
+  line-height:1.3em;
+}
+.blogSideBarSection {
+  margin-bottom:20px;
+}
+.blogSideBarRelated ul,
+.blogSideBarLatest ul {
+  padding-left:0.5em;
+  margin-left:1.0em;
+  list-style:outside;
+  list-style-image:url(../PatternSkin/bullet-down.gif);
+}
+.blogSideBarRelated ul li,
+.blogSideBarLatest ul li {
+  display:list-item;
+}
+.blogEntry {
+  margin-bottom:0.5em;
+}

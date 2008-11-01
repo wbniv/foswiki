@@ -1,0 +1,24 @@
+%TMPL:INCLUDE{"oops"}%
+<!-- template: oopslanguagechanged.nat.tmpl -->
+%TMPL:DEF{"title"}%%MAKETEXT{"Change language"}% - %WIKITOOLNAME%%TMPL:END%
+%TMPL:DEF{"heading"}%%MAKETEXT{"Change language"}%%TMPL:END%
+%TMPL:DEF{"headingstyle"}%natNoteHeading%TMPL:END%
+%TMPL:DEF{"message"}%
+%IFDEFINEDTHEN{"%URLPARAM{"language"}%" as="default" glue="off"}%
+%$nopSESSION_VARIABLE{"LANGUAGE" clear=" "}%
+%MAKETEXT{"Your language will be reset to the global default from the next screen on. You will be redirected to there right now. If you aren't, ~[~[[_1]~]~[click here~]~] to proceed." args="%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%"}%
+%ELSEDEFINED%
+%$nopSESSION_VARIABLE{"LANGUAGE" set="%URLPARAM{language}%"}%
+%MAKETEXT{"Your language will be changed to [_1] from the next screen. You will be redirected to there right now. If you aren't, ~[~[[_2]~]~[click here~]~] to proceed." args="*%URLPARAM{language}%*, %SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%"}%
+%FIDEFINED%
+
+<form class="natOopsButtons" name="ButtonBox" action="%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%">
+  <input type="submit" class="natOkButton" value='%MAKETEXT{"OK"}%'>
+</form>
+
+%TMPL:END%
+%TMPL:DEF{"javascript"}%%TMPL:P{"defaultjavascript"}%
+<script type="text/javascript">
+window.setTimeout("window.location.href = '%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%'",2000);
+</script>
+%TMPL:END%

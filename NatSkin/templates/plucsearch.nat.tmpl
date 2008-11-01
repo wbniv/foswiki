@@ -1,0 +1,75 @@
+%TMPL:INCLUDE{"searchbase"}%<!-- template: plucsearch.nat.tmpl -->
+%TMPL:DEF{"topicactions"}%%TMPL:END%
+%TMPL:DEF{"searchbox"}%%TMPL:END%
+%TMPL:DEF{"content"}%%SPLIT%%TMPL:P{"searchform"}%%SPLIT%<div class="natSearchTotal" style="margin:5px 0px">%MAKETEXT{"Found <span>[_1]</span> topics." args="%NTOPICS%"}%</div>
+%DBCALL{"Applications.RenderPageNavigation" SKIP="%URLPARAM{"skip" default="0"}%" LIMIT="%URLPARAM{"limit" default="100"}%" MAX="%NTOPICS%" HREF="%SCRIPTURLPATH{"plucsearch"}%/%BASEWEB%/%BASETOPIC%" PARAMS="search=%URLPARAM{"search"}%;web=%URLPARAM{"web"}%;attachments=%URLPARAM{"attachments"}%"}%
+%SPLIT%
+<table class="natSearchTable" width="100%" style="margin-top:0px">
+<tr class="natSearchTableTitle">
+  <th width="16px">Nr.</th>
+  <th width="16px">Type</th>
+  <th width="40%" class="natSearchTarget">%MAKETEXT{"Document"}%</th>
+  <th width="30%" class="natSearchRevision">%MAKETEXT{"Changed"}%</th>
+  <th width="20%" class="natSearchAuthor">%MAKETEXT{"By"}%</th>
+  <th width="50px" class="natSearchScore">%MAKETEXT{"Score"}%</th>
+</tr>
+</table> %REPEAT% 
+<table class="natSearchHit %CALC{"$IF($ODD(%INDEX%),natSearchHitOdd,natSearchHitEven)"}%" width="100%">
+  <tr>
+    <th width="16px">%INDEX%</th>
+    <th width="16px">%ICON%</th>
+    <th width="40%" class="natSearchTarget">%MATCH%</th>
+    <th width="30%" class="natSearchRevision">
+      <a style="white-space:pre" href="%SCRIPTURLPATH{"rdiff"}%/%WEB%/%TOPICNAME%?type=last">%TIME% - %REVISION%</a> %LOCKED%
+    </th>
+    <th width="20%" class="natSearchAuthor"> %USERINFO{"%AUTHOR%" format="$wikiusername"}% </th>
+    <th width="50px" class="natSearchScore">%SCORE%</th>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="4">%TEXTHEAD%<!-- guard--></td>
+  </tr> 
+</table>%REPEAT% %SPLIT%
+%DBCALL{"Applications.RenderPageNavigation" SKIP="%URLPARAM{"skip" default="0"}%" LIMIT="%URLPARAM{"limit" default="100"}%" MAX="%NTOPICS%" HREF="%SCRIPTURLPATH{"plucsearch"}%/%BASEWEB%/%BASETOPIC%" PARAMS="search=%URLPARAM{"search"}%;web=%URLPARAM{"web"}%;attachments=%URLPARAM{"attachments"}%"}%
+%IFDEFINEDTHEN{"%IFACCESS{"%MAINWEB%.TWikiAdminGroup" type="change"}%" as="1" glue="off"}%
+---++ Index toos
+%INCLUDE{"%TWIKIWEB%.SearchEnginePluceneAddOn" section="updateindex"}%
+%FIDEFINED%
+<table>
+<tr>
+  <th>Last updated:</th>
+  <td>%TIMESTAMP%</td>
+</tr>
+</table>
+%TMPL:END%
+%TMPL:DEF{"searchform"}%<!-- searchform -->
+<form name="searchform" action="%SCRIPTURLPATH{"plucsearch"}%/%BASEWEB%/%BASETOPIC%" method="post">
+<input type="hidden" name="nosummary" value="%URLPARAM{"nosummary" default="off"}%" />
+<input type="hidden" name="nototal" value="%URLPARAM{"nototal" default="off"}%" />
+<input type="hidden" name="noheader" value="%URLPARAM{"noheader" default="off"}%" />
+<input type="hidden" name="showlock" value="%URLPARAM{"showlock" default="on"}%" />
+<input type="hidden" name="limit" value="%URLPARAM{"limit" default="100"}%" />
+<table>
+<tr>
+  <th class="natSearch">%MAKETEXT{"Search"}%:</th>
+  <td>
+    <input type="text" name="search" size="50" value="%URLPARAM{"search"}%" accesskey="f" /> 
+    <input type="submit" value="%MAKETEXT{"Submit"}%" class="natOkButton" />
+    <input type="button" value="%MAKETEXT{"Cancel"}%" class="natCancelButton" onclick="window.location.href='%SCRIPTURLPATH{"view"}%/%BASEWEB%/%BASETOPIC%';" accesskey="c" title='%MAKETEXT{"go back to <nop>[_1]" args="%WEB%.%TOPIC%"}%'>
+  </td>
+</tr>
+<tr>
+  <th>&nbsp;</th>
+  <td>
+    <label>
+      <input type="checkbox" class="twikiCheckbox" name="attachments" value="on" %IF{"$'URLPARAM{attachments}'='on'" then="checked"}%/>attachments only
+    </label>
+    <label>
+      <input type="checkbox" class="twikiCheckbox" name="web" value="%BASEWEB%" %IF{"$'URLPARAM{web}'='%BASEWEB%'" then="checked"}%/>current web only
+    </label>
+  </td>
+</tr>
+</table>
+</form>
+<!-- //searchform -->%TMPL:END%

@@ -1,0 +1,11 @@
+%TMPL:INCLUDE{"oopslogonbase"}%
+<!-- template: oopsaccessrename.nat.tmpl -->
+%TMPL:DEF{"action"}%view%TMPL:END%
+%TMPL:DEF{"heading"}%%MAKETEXT{"Rename Access Denied"}%%TMPL:END%
+%TMPL:DEF{"message"}% <!-- -->
+%MAKETEXT{"[_1] has no permission to rename topic [[[_2]]]." args="%USERNAME%,%WEB%.%TOPIC%"}%
+
+%TMPL:P{"logon"}%
+
+%MAKETEXT{"See also:"}% %MAINWEB%.TWikiGroups, %TWIKIWEB%.TWikiAccessControl, %TWIKIREGISTRATION%
+%TMPL:END%

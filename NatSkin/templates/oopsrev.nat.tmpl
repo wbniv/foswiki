@@ -1,0 +1,92 @@
+%TMPL:INCLUDE{"oops"}%
+<!-- template: oopsrev.nat.tmpl -->
+%TMPL:DEF{"heading"}%%MAKETEXT{"Compare Revisions of [_1]" args="<nop>%WEB%.%TOPIC%"}%%TMPL:END%
+%TMPL:DEF{"message"}%<!-- -->
+<p>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td align="right"><b>%MAKETEXT{"Older revision"}%</b>:&nbsp;</td>
+<td>
+<form name="main" style="margin:0px" action="%SCRIPTURLPATH{"rdiff"}%/%WEB%/%TOPIC%">
+  <input type="text" name="rev2" size="6" value="%PARAM1%" />
+</td>
+<td rowspan="2" valign="top" style="padding-left:1em">
+<table border="0" class="natDiffOptions">
+  <tr>
+    <td align="center">
+      <label for="sequential">
+	<img src="%PUBURLPATH%/%TWIKIWEB%/NatSkin/oopsmore_diff_sequential.gif" alt='%MAKETEXT{"sequential"}%' width="80" height="80" />
+      </label>
+    </td>
+    <td align="center">
+      <label for="sidebyside">
+	<img src="%PUBURLPATH%/%TWIKIWEB%/NatSkin/oopsmore_diff_sidebyside.gif" alt='%MAKETEXT{"side by side"}%' width="80" height="80" />
+      </label>
+    </td>
+    <td align="center">
+      <label for="debug">
+	<img src="%PUBURLPATH%/%TWIKIWEB%/NatSkin/oopsmore_diff_debug.gif" alt='%MAKETEXT{"debug"}%' width="80" height="80" />
+      </label>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <input type="radio" class="twikiRadiobox" name="render" id="sequential" value="sequential" checked="checked" />
+      <label for="sequential">%MAKETEXT{"sequential"}%</label>
+      </td>
+    <td align="center">
+      <input type="radio" class="twikiRadiobox" name="render" id="sidebyside" value="sidebyside" />
+      <label for="sidebyside">%MAKETEXT{"side by side"}%</label>
+    </td>
+    <td align="center">
+      <input type="radio" class="twikiRadiobox" name="render" id="debug" value="debug" />
+      <label for="debug">%MAKETEXT{"debug"}%</label>
+    </td>
+  </tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="right"><b>%MAKETEXT{"Newer revision"}%</b>:&nbsp;</td>
+<td>
+  <input type="text" name="rev1" size="6" value="%PARAM2%" />
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td align="left" style="padding-left:1em">
+  <input type="submit" style="width:10em;margin-top:1em;" class="natAltButton" value='%MAKETEXT{"View difference"}%' />
+</form>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="padding-top:30px;">
+<h1 class="%TMPL:P{"headingstyle"}%">%MAKETEXT{"View Previous Topic Revision"}%</h1>
+</td>
+<tr>
+<td valign="top" align="right"><b>%MAKETEXT{"Revision"}%</b>:&nbsp;</td>
+<td>
+<form style="margin:0px" name="main" action="%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%">
+  <input type="text" name="rev" size="6" value="%PARAM1%" /> <br />
+  (1 ... %PARAM3%) </td>
+<td valign=top style="padding-left:1em"> %MAKETEXT{"in <input type=\"checkbox\" class=\"twikiCheckbox\" name=\"raw\"> raw text format."}%</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td align="left" style="padding-left:1em">
+  <input type="submit" style="width:10em" class="natAltButton" value='%MAKETEXT{"View revision"}%' />
+  </form>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td valign="top" align="left" style="padding-left:1em">
+  <form name="ButtonBox" action="%SCRIPTURLPATH{"rdiff"}%/%WEB%/%TOPIC%">
+    <input type="submit" style="width:10em" class="natOkButton" value='%MAKETEXT{"View all diffs"}%'><br />
+    <input type="button" style="width:10em" class="natCancelButton" value='%MAKETEXT{"Cancel"}%' onclick="javascript:history.back()">
+  </form> 
+</td></tr> 
+</table>%TMPL:END%

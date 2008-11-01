@@ -1,0 +1,8 @@
+/* thin variant for base */
+.natPageBox {
+  width:900px;
+  margin:1px auto 120px auto;
+}
+.natEditBody .natPageBox {
+  margin-bottom:0px;
+}

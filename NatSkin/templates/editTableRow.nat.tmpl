@@ -1,0 +1,28 @@
+%TMPL:INCLUDE{"edit"}%
+<!-- template: editTableRow.nat.tmpl -->
+%TMPL:DEF{"content"}%
+---+ %HEADERTEXT% in Table <nop>%TABLENAME% of %TOPIC%
+<div class="twikiFormHolder">
+<form name="main" enctype="multipart/form-data" action="%SCRIPTURLPATH{"uploadTableRow"}%/%WEB%/%TOPIC%" method="post">
+<input type="hidden" name="template" value="%TEMPLATE%">
+<input type="hidden" name="header" value="%HEADER%">
+<input type="hidden" name="format" value="%FORMAT%">
+<input type="hidden" name="tablename" value="%TABLENAME%">
+<input type="hidden" name="name" value="%ENTRY%">
+<table>
+<tr>
+<td>
+%TABLEFIELDS%
+</td>
+</tr>
+<tr>
+<td style="padding-top:2em">
+%ACTIONBUTTONS%
+<input class="twikiButton natCancelButton" type="button" id="cancel" onclick="window.location.href='%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%?unlock=on'" value="Cancel"/>
+</td>
+</tr>
+</table>
+%HELPTEXT%
+%SHOWTABLE%
+</form>
+</div>%TMPL:END%

@@ -1,0 +1,11 @@
+%TMPL:INCLUDE{"oopslogonbase"}%
+<!-- template: oopsaccesscreateweb.nat.tmpl -->
+%TMPL:DEF{"action"}%view%TMPL:END%
+%TMPL:DEF{"heading"}%%MAKETEXT{"Create Web Access Denied"}%%TMPL:END%
+%TMPL:DEF{"message"}% <!-- -->
+%MAKETEXT{"[_1] has no permission to create a new <nop><b>[_2] Web</b>." args="%USERNAME%,%WIKITOOLNAME%"}%
+
+%TMPL:P{"logon"}%
+
+%MAKETEXT{"See also:"}% %MAINWEB%.TWikiGroups, %TWIKIWEB%.TWikiAccessControl, %TWIKIREGISTRATION%
+%TMPL:END%

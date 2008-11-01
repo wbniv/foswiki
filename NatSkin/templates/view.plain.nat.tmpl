@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="%LANG%" lang="%LANG%">
+<head>
+<title>%TMPL:P{"title"}%</title>
+<base href="%SCRIPTURL{"view"}%/%WEB%/%TOPIC%"></base>
+<meta http-equiv="Content-Type" content="text/html; charset=%CHARSET%" />
+<meta http-equiv="Content-Style-Type" content="text/css" /> 
+<meta name="generator" content="TWiki/NatSkin" /> %TMPL:P{"meta"}%
+<link rel="icon" href="%FAVICON%" type="image/x-icon" /> 
+<link rel="shortcut icon" href="%FAVICON%" type="image/x-icon" />
+%GETSKINSTYLE%
+%TMPL:P{"styles"}%
+%TMPL:P{"javascript"}%
+%WEBCOMPONENT{"WebHtmlHead"}%
+</head>
+<body class="natBody natPlainBody %TMPL:P{"bodyclass"}%">
+<div class="natBodyContents">
+  <div class="natMiddle natMain">
+    <div class="natMainContents">
+%TMPL:P{"content"}%
+    </div>
+    <div class="natMainFooterContents">
+%IFDEFINED{"$percntMETA{\"attachments\"}$percnt" then="<div class=\"natTopicAttachments\"> $test </div>"}%
+    </div>
+  </div>
+  <div class="natBottomBarContents">
+    <div class="natCopyRight">%WEBCOPYRIGHT%</div>
+  </div>
+</div>
+</body>
+</html>
+<!-- template: view.plain.nat.tmpl -->
+%TMPL:DEF{"title"}%%HTMLTITLE%%TMPL:END%
+%TMPL:DEF{"content"}%%STARTALIASAREA%%TEXT% 
+%META{"form"}% 
+%STOPALIASAREA% %TMPL:END%
+%TMPL:INCLUDE{"styles"}%
+%TMPL:INCLUDE{"javascript"}%

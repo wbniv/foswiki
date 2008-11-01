@@ -1,0 +1,433 @@
+%META:TOPICINFO{author="TWikiContributor" date="1170346939" format="1.1" reprev="1.1" version="$Rev$"}%
+<!--
+
+   PLEASE DO NOT EDIT THIS TOPIC
+
+   It is automatically generated from the subversion repository, and any changes
+   you make will simply be overwritten the next time a release is generated.
+
+   Instead, you could check your fix in, raise a bug in the Bugs web, or mail the author(s).
+-->
+---+!! [[%TOPIC%][The Natural Skin]]
+%TOC%
+
+---++ Description
+<table style="float:right">
+<tr>
+  <td><img src="%ATTACHURLPATH%/wikiringlogo40x40.png"></td>
+  <td><a href="http://wikiring.de" title="Make your Wiki ring!" style="text-decoration:none;color:#0065CD">
+      Powered by <br /> <nop>WikiRing Consultants </a>
+  </td>
+</tr>
+</table>
+NatSkin is a skin driven by cascading stylesheets shipping 12 predefined styles
+(themes) and 11 variations that can be applied to each of it. Most of these are
+inspired by [[http://www.movabletype.org][MovableType]] and
+[[http://wordpress.org][WordPress]], among others a port of the Kubrick style by
+[[http://binarybonsai.com][Michael Heilemann]] and an immitation of <nop>JotSpot. 
+In addition, a PatternSkin
+style is provided that emulates the look&amp;feel of the PatternSkin as it is known from
+the TWiki/Cairo release. While offering a decent appearance NatSkin offers an increased
+TWiki usability and customizability in several respects to quickly accomplish a
+personalized wiki experience.
+
+NatSkin allows you to switch between several kinds of page layouts. All of the
+predefined themes come with support for a 1,2 and 3 columns designs.
+To get a first impression check out the NatSkinStyleBrowser:
+   * select one of the predefined styles
+   * alter the header art by selecting a style variation
+   * flip the sidebar from the left to the right
+   * select different page framing by switching on/off page borders or
+     enable a thin blog-like layout
+   * switch on/off navigations tabs above the main area, the so called <nop>WebButtons
+   * the position of the search box can be set to one of four predefined positions
+
+The screenshots below only display a limited set of all possible combinations.
+
+---++ Acknowledgement
+This is a rework of the 
+TWiki:Plugins/CopyCatSkin by TWiki:Main/MattWilkie. It is used at the 
+[[http://nats-www.informatik.uni-hamburg.de/Main/WebHome][Natural Language Systems Division]] 
+(NATS) of the University of Hamburg, Germany. 
+
+The NatSkinPlugin is inspired by the TWiki:Plugins/GnuSkin by
+TWiki:Main/JoachimNilsson. The TWiki:Plugins/PhotonSkin by
+TWiki:Main/EstebanManchado (<nop>PhotonSearch) renamed to =natsearch= .
+
+---++ Feature Overview
+*Conditional markup and skin states:* 
+
+The NatSkinPlugin maintaines an internal representation of different ways to
+render the NatSkin concerning
+   * the skin style,
+   * style variants,
+   * the sidebar location,
+   * the page border decoration,
+   * the web buttons in the topbar and
+   * the positioning of the search box
+and provides the infrastructure to get, set and display the skin style that
+is currently active as well as rendering different content depending on the skin state.
+This, for example, allows to switch the sidebar navigation from the left
+to the right with a single click.
+
+*Componentized templates:*
+
+The underlying templates that generate the TWiki pages are arranged in a flexible and
+manageable way to facilitate easy "skin mix-in", that is overriding specific parts of
+the templates by using the NatSkin as a base skin to create template modifications.
+
+*Customizing webs using <nop>WebComponents:*
+
+   * <nop>WebSideBar: a configurable navigation bar
+   * <nop>WebLinks: component used by the standard navigation scheme to plug in more
+     navigation links
+   * <nop>WebButtons: navigation tabs above the topic area
+   * <nop>MySideBar: every user can extend the sidebar with a personalized navigation
+   * <nop>WebHtmlHead: additional stuff to be put into the html head
+   * <nop>WebJavaScript: additional javascript code per web
+   * <nop>WebTopicActions: actions to manipulate TWiki topics
+   * <nop>WebMoreTopicActions: actions when clicking on "More"
+
+*Search &amp; GO* 
+
+NatSearch: a search+go box that combines advanced search with the GO feature of TWiki.
+Compared to the standard WebSearch <nop>NatSearch is trying to maximize usability
+and minimizing workflow disruption. In addition, <nop>NatSearch can be customized
+on an application level to specify the scope of search (using include/exclude rules)
+as well as the appearance of listed search hits.
+
+*Wikiwyg editor:* 
+
+javascript enabled wikiwyg editor
+
+*Email Obfuscation:* 
+
+Optionally, all email addresses can be obfuscated by use of javascript. Email
+links are still clickable while automatic email extraction is hampert.
+
+*External link detection:*
+
+All offsite links are marked and a nice icon is added. Clicking on them will
+allways open an extra window.
+
+---++ Documentation
+   * NatSkinTemplates
+   * NatSkinCss
+   * NatSearch
+   * NatSkinConfiguration
+   * NatSkinFAQ
+   * NatSkinPlugin
+
+---++ Installation Instructions
+   * Get the TWiki:Plugins/NatSkinPlugin supplementary package and install it.
+   * [[http://twiki.org/p/pub/Plugins/%TOPIC%/%TOPIC%.zip][Download]] the !NatSkin ZIP file
+   * Unzip it in your twiki installation directory. 
+   * Test if installed: [[%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%?skin=nat&style=Kubrick][click here]]
+
+---++ Skin Info
+<style type="text/css">
+.screenshotter {
+  overflow:hidden;
+  height:130px;
+}
+.screenshotter img {
+  width:600px;
+}
+</style>
+
+|  Skin Author: | TWiki:Main/MichaelDaum |
+|  Copyright &copy;: | 2003-2008, Michael Daum http://michaeldaumconsulting.com |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Skin Version: | v3.0-pre20 |
+|  Dependencies: | TWiki:Plugins/NatSkinPlugin |
+|  Description: | Driven by cascading stylesheets, Comes with 12 alternative styles, <nop>MoveableType and Wordpress Look-n-Feel |
+|  Base Name: | nat |
+|  Screenshot: | <div class="screenshotter"><a href="%ATTACHURL%/Clean.jpeg"><img src="%ATTACHURL%/Clean.jpeg" title="Clean"/></a></div> |
+|  More Screenshots: \
+| <div class="screenshotter"><a href="%ATTACHURL%/GeorgiaBlue.jpeg"><img src="%ATTACHURL%/GeorgiaBlue.jpeg" title="GeorgiaBlue"/></a></div>\
+  <div class="screenshotter"><a href="%ATTACHURL%/Gettysburg.jpeg"><img src="%ATTACHURL%/Gettysburg.jpeg" title="Gettysburg" /></a></div>\
+  <div class="screenshotter"><a href="%ATTACHURL%/IndependenceThin.jpeg"><img src="%ATTACHURL%/IndependenceThin.jpeg" title="IndependenceThin" /></a></div>\
+  <div class="screenshotter"><a href="%ATTACHURL%/Kubrick.jpeg"><img src="%ATTACHURL%/Kubrick.jpeg" title="Kubrick" /></a></div> \
+  <div class="screenshotter"><a href="%ATTACHURL%/PlainJane.jpeg"><img src="%ATTACHURL%/PlainJane.jpeg" title="PlainJane" /></a></div>\
+  <div class="screenshotter"><a href="%ATTACHURL%/SeaGreenThin.jpeg"><img src="%ATTACHURL%/SeaGreenThin.jpeg" title="SeaGreenThin" /></a></div>\
+  <div class="screenshotter"><a href="%ATTACHURL%/Rusty.jpeg"><img src="%ATTACHURL%/Rusty.jpeg" title="Rusty" /></a></div>\
+  <div class="screenshotter"><a href="%ATTACHURL%/SquashThin.jpeg"><img src="%ATTACHURL%/SquashThin.jpeg" title="SquashThin" /></a></div>\
+  <div class="screenshotter"><a href="%ATTACHURL%/StormyThin.jpeg"><img src="%ATTACHURL%/StormyThin.jpeg" title="StormyThin" /></a></div> |
+|  Change&nbsp;History: | <!-- specify latest version first -->&nbsp; |
+|  03 Jul 2008: | added support for TWiki:Plugins/OpenOffice2TWikiAddOn;\
+                  added support for TWiki:Plugins/EmployeePortalPlugin; \
+                  various improvements on all default themes; \
+                  improvements wrt latest release of TWiki:Plugins/NatEditContrib; \
+                  support for TOPICTITLE feature of TWiki:Plugins/DBCachePlugin ;\
+                  fixed oops errors showing html entities instead of readable error msg; \
+                  improved usability in error messages; \
+                  shrinking urls in attachments to prevent bloating the attachments table; \
+                  improved login screen; \
+                  added support for the new universal edit button's link relation; \
+                  improved help texts for user actions; \
+                  putting attachments comments in an extra line of the table to prevent \
+                  bloating it; \
+                  improved usability of natsearch dialog; \
+                  using a google-like SEARCH result; \
+                  added more body classes to indicate the skin state on the css level |
+|  13 Nov 2007: | reworking templates to use context instead of skin state, \
+                  fixed initialization if <nop>NatEdit toolbar, \
+                  improved usability of selecting a diff pair in <nop>HistoryPlugin, \
+                  improved usability of renaming/trashing topics and attachments, \
+                  also autoadding a overflow wrapper for <nop>MediaWikiTables, \
+                  improved usability of selecting/changing <nop>TWikiForms using the new NATFORMLIST tag, \
+                  woring around text not being hidden when editing the <nop>TWikiForm with <nop>TinyMCE |
+|  02 Oct 2007: | added support for <nop>HistoryPlugin, <nop>TinyMCEPlugin |
+|  21 Sep 2007: | removed own <nop>NatEdit implementation, \
+                  improved move/rename usability, \
+                  improved searching usability, \
+                  added suport for plucene addon, \
+                  improved sidebar navigation, \
+                  simplified templating, \
+                  reworked font sizing, \
+                  improved default theme (Clean), \
+                  removed workarounds for legacy TablePlugins, \
+                  fixed css for IE7, \
+                  fixed empty line in weblinks component, \
+                  fixed reparenting issue in edit dialog, \
+                  reworked javascript to use jquery instead, \
+                  numerous markup and css fixes, \
+                  better attachment table at bottom of topics |
+|  21 May 2007: | Bugs:Item3969 - 8bit email fix (TWiki:Main.WillNorris) |
+|  08 Mar 2007: | fixed sidebar navigation in IE; fixed twikiPageForms width for FF |
+|  06 Mar 2007: | fixed renameweb; nicened all rename dialogs; \
+                  don't stretch twikiTables to 100% width by default; \
+                  added some default TWiki styles (twikiLeft, twikiRight, etc); \
+                  some javascript fixes calculating the height of the edit textarea; \
+                  simplified topic actions using the new USERACTIONS tag |
+|  05 Feb 2007: | removed =...ForAdmins= components again; \
+                  natedit is now the default; \
+                  natedit detects the screen height and adusts the height of the \
+                  textarea automatically now; \
+                  edit is fullscreen now; \
+                  removed reparenting from oopsmore and integrated it to edit; \
+                  moved editsidebar content into a twisty under the textarea; \
+                  new templates to customize the login screen; \
+                  new <nop>JotSpot theme; \
+                  increased the skin's css priority for the <nop>TWikiTable layout \
+                  to counter newer versions of the <nop>TablePlugin that inlines css \
+                  by default; \
+                  repositoned broadcast area above the main area and \
+                  put it into a twisty ; \
+                  fixed sidebar navigation within hierarchical webs; \
+                  added presets to the <nop>NatSkinStyleBrowsers to switch the look&feel \
+                  to that of some well-known CMS systems; \
+                  added support for <nop>SectionalEditPlugin; \
+                  added support for redirectto urlparam of TWiki-4.1.1; \
+                  disabled css in print view as firefox can't print pages otherwise; \
+                  added support for the forthcomming TWiki::Cache; \
+                  fixed templates for renaming a web; \
+                  fixed lease conflict template's use of QUERYPARAMS; \
+                  new variable %<nop>TWIKIREGISTRAION% to make the registration form \
+                  customizable (should go into the core); \
+                  lots of css font and spacing improvements to default themes; \
+                  made oopsmore a WEBCOMPONENT |
+|  13 Oct 2006: | improved usability of natedit toolbar; \
+                  fixed broadcast message for IE; \
+                  improved subweb-parentweb navigation in sidebar; \
+                  more separation of admin from non-admin navigation; \
+                  added help text to edit screens; \
+                  added support to alter the topic parent during edit \
+                  and removed it from the oopsmore dialog |
+|  02 Oct 2006: | hide links for admins in the sidebar navigation;\
+                  don't include the <nop>WebSideBar twice;\
+                  added css classes to the &lt;body> to distinguish different cgi actions (view, edit, preview, ...) |
+|  18 Sep 2006: | removed private registerconfirm template which whas broken anyway; \
+                  fixed breadcrumbs on edit page; \
+                  some minor formtable cleanups |
+|  29 Aug 2006: | removed spaghetti template code for beijing and cairo; \
+                  removed NATSCRIPTURL; \
+                  fixed <nop>MySideBar localization;\
+                  adjusted usage of IFSKINSTATE due to its new evaluation priority |
+|  25 Aug 2006: | first release dropping beijing and cairo support; \
+                  major documentation rewrite; \
+                  added a default <nop>WebRightBar to exemplify 3 columns layout; \
+                  added 3 columns layout switch to <nop>NatSkinStyleBrowser; \
+                  fixed template messages used in oopsaccessdenied and oopsattention; \
+                  normalized some css class naming; \
+                  added <nop>ImagePlugin css support |
+|  21 Aug 2006: | complete rework of fonts in all styles not to rely on font preference settings in \
+                  browsers; enhanced twikiTable appearance; \
+                  added support for TWiki:Plugins.ImagePlugin in natedit; \
+                  fixed sidebar in !PatternStyle + searchbox in position 1; \
+                  fixed oopsmore's button style on different locales; \
+                  more IE hacks; more i18n fixes |
+|  15 Aug 2006: | interface internationalization (TWiki:Main.OliverKrueger, TWiki:Main.AndreUlrich); \
+                  adjusted css to cope waith possibly long strings in i18n; \
+                  added "Change Language" dialogue to oopsmore; \
+                  replaced most =em= based widths with =px= based ones to cope with different font presets; \
+                  removed *Right.css files and added =nat(<nop>SideBar,Main)(Left,Right)= classes instead; \
+                  reworked meta data creation: renamed KEYWORDS to METAKEYWORDS, added METAAUTHOR and \
+                  METADESCRIPTION; moved blog related stuff to <nop>BlogPlugin; \
+                  added =strings.nat.tmpl= template defining strings used in <nop>NatSkinPlugin; \
+                  lots of css and template fixes;\
+                  only load those javascript snippets that are really used |
+|   7 Aug 2006: | removed natTWikiInfo from the bottom bar containing the "Powered by" prose; \
+                  fixed USEWYSIWYG (again) |
+|   3 Aug 2006: | first 3 dot O prerelease, 3.0-final will be a TWiki V4 only skin; \
+                  addded <nop>NatEdit templates; \
+                  restructured edit and preview templates to allow <nop>NatEdit to "mix in" \
+                  its toolbar; \
+                  make use of the new NATSCRIPTURL variables to support short urls; \
+                  make use of new FLEXWEBLIST features; \
+                  added <nop>FireVariation |
+|  31 Jul 2006: | added renameweb templates; \
+                  rename topic usability improvements; \
+                  some css alignment corrections |
+|  28 Jul 2006: | improved navigation in hierarchical webs by using the new TWiki:Plugins/FlexWebListPlugin \
+                  and TWiki:Plugins/BreadCrumbPlugin; \
+                  dropped usage of the TWiki:Plugins/FilterPlugin as using =FORMATLIST{WEBLIST}= \
+                  has been superseeded by FLEXWEBLIST; \
+                  using the <nop>FlexWebListPlugin + <nop>GluePlugin to generate a better \
+                  sidebar navigation showing subwebs in a twisty; \
+                  dropped the natWebLocation thing in the headerbar (commented out for now) \
+                  in favour of a real breadcrumbs navigation;  \
+                  added a new template macro "contentheader" to contain the breadcrumbs by default; \
+                  increased flexibility in default <nop>WebTopicActions \
+                  using NATLOG(IN/OUT)URL instead of NATLOGON,NATLOGOUT tags; \
+                  removed leading space char in mailnotify.nat.tmpl which may bust mail servers not \
+                  sending out notifications; \
+                  added missing =feed-icon-12x12-gray.png= in package; \
+                  lots of css fixes to style the new breadcrumbs navigation |
+|  15 Jun 2006: | added =WEBTOOLNAME= to customize the name displayed in the header bar; \
+                  minor usability improvements in the <nop>NatSkinStyleBrowser |
+|  25 May 2006: | added advanced diff options available on twiki4; \
+                  improved diff dialogue; \
+                  added css classes for ok/cancel buttons on oops dialogues; \
+                  lots of css improvements, mostly diff related |
+|  24 May 2006: | spacing and font improvements; \
+                  added example <nop>TWikiWebCcss; \
+                  removed focusing the search box on every view; \
+                  if there's an WEBLOGOIMAGE then use it in the title bar instead of the WIKITOOLNAME; \
+                  fixed bug in save actions that could have caused data loss ; \
+                  added missing save parameters in editform.nat.tmpl |
+|   9 May 2006: | fixed error in preview template that triggered an internal server error on twiki4 |
+|   6 May 2006: | provide customised CSS support using <nop>WebComponent <nop>WebCss (WillNoris@WikiRing.com)|
+|   5 May 2006: | minor css cleanup;\
+                  display default <nop>WebLinks and <nop>WebButton for a current non-public web |
+|  19 Apr 2006: | added support for KEYWORDS per topic | 
+|  11 Apr 2006: | fixed oops dialogue leaping off the page; \
+                  be nicer to non-css browers |
+|   5 Apr 2006: | added support for dakar's <nop>TemplateLogin; \
+                  preventing an empty line in <nop>WebButtons in case there are no public webs; \
+                  added <nop>WebComponent <nop>WebTopicActions; \
+                  simplified topicactions templates; \
+                  simplified <nop>TemplateLogin templates to match natlogon |
+|  27 Mar 2006: | moved <nop>MySideBar templates from plugin into the skin; \
+                  fixed page layout of Kubrick style using borders for geckos; \
+                  added HTTPSLOGON variable to get around install hassle on non-ssl servers; \
+                  enabled edit and preview upper right topic actions again; \
+                  added support for three-column layout using STYLESIDEBAR = both; \
+                  fixed html error in topbar |
+|  20 Mar 2006: | several blog css fixes; \
+                  added bottom topic actions to edit and preview; \
+                  only display web.topic in the web locator no recursive parents anymore; \
+                  natsearch docu |
+|  13 Mar 2006: | fixed <nop>WebLinks components; \
+                  fixed atom feed link at the page bottom |
+|  11 Mar 2006: | reworked sidebar using the new WEBCOMPONET logic; \
+                  docu restructuring - more needed; \
+                  using messages.tmpl as far as possible |
+|   1 Mar 2006: | fixed <nop>TWikiForm not showing certain row values (uuh); \
+                  added more css for the most recent stuff added to the <nop>BlogPlugin; \
+                  removed html from mailnotification; \
+                  replaced SCRIPTURL{} with SCRIPTURL+SCRIPTSUFFIX again for legacy platforms; \
+                  minor css fixes |
+|  20 Feb 2006: | removed empty lines in templates; \
+                  css fixes for lists in the sidebar; \
+                  unified font size in attachment tables; \
+                  using percentage instead of em size for the thin page layout |
+|  14 Feb 2006: | added variable %<nop>WEBSYNDICATION%; \
+                  removed <nop>TablePlugin patch; \
+                  made <nop>BaseStyle usable; \
+                  added syndiation feeds; \
+                  don't use dotted lines on IE; \
+                  don't use transparent borders on IE; \
+                  added gif version for cite background for IE; \
+                  fixed content area of <nop>PatterStyle on IE; \
+                  don't use Lucida Grande in <nop>KubrickStyle; \
+                  added rss feed icons; \
+                  added plain view template |
+|   3 Feb 2006: | compute even/odd search hits for WebSearch using CALC so \
+                  that css-2.1 expressions aren't needed anymore; \
+                  lots of css font and size fixes, i.e. blog related |
+|  27 Jan 2006: | fixed blog css for all styles |
+|  26 Jan 2006: | lots of css fixes |
+|  23 Jan 2006: | added forgotten IE decorations; \
+                  fixed layout problems in the <nop>WebButtons; \
+                  replaced ICONPATH with ICONURL; \
+                  added email_changed oopsattention message |
+|   9 Jan 2006: | more IE fixes; \
+                  fixed search template: every hit must be a table of its own :(; \
+                  fontsize fixes |
+|  20 Dec 2005: | fixed collapsing tables in firefox &lt; 1.5 |
+|   5 Dec 2005: | componentized template system adding javascript and styles components; \
+                  removed inline-styles and -javascript and moved it to the respective components \
+                  being inserted into the html header properly now; \
+                  surpressing final skin state switches in the NatSkinStyleBrowser; \
+                  removed absolute urls; removed EDITURL; \
+                  fixed sidebar help for cairo and beijing; \
+                  fixed squeezed main page; \
+                  added the concept of <nop>WebComponents, that is the <nop>WebSideBar and the <nop>WebButtons; \
+                  the <nop>WebButtons are customizable the way the <nop>WebSideBar already is |
+|   1 Dec 2005:: | added transparent borders and corners to the Kubrick style; \
+                   improved <nop>PlasticLoveVariation; \
+                   added a custom "cite" style inside blog texts; \
+                   some minor IE fixes; \
+                   w3c validation fixes to the style browser; \
+                   more form fixes in the preview and editform pages; \
+                   replaced every launchWindow() javascript with a proper a href using \
+                   a _blank target;\
+                   added tooltips to topicactions |
+|  23 Nov 2005: | added nops in expensive IFSKINSTATETHEN, \
+                  i.e. to prevent the sidebar to be computed multiple times |
+|  22 Nov 2005: | moved basic blogging css to the <nop>BlogPlugin |
+|  16 Nov 2005: | added <nop>PatternStyle emulating cairo's <nop>PatternSkin |
+|  10 Nov 2005: | improved NatSkinStyleBrowser |
+|   8 Nov 2005: | firefox layout fixes |
+|   7 Nov 2005: | more safari fixes |
+|   2 Nov 2005: | fixed javascript problems combined with the TWiki:Plugins.TwistyPlugin; \
+                  trigger printing when clicking on "Print" |
+|  31 Oct 2005: | safari fixes where content leaps out of the main area |
+|  24 Oct 2005: | added <nop>UserView templates; standardised favicon handling |
+|  18 Oct 2005: | workaround crash due to recursive accessdenied-exceptions |
+|  13 Oct 2005: | preliminary css support for header art; added some default headers |
+|  10 Oct 2005: | added skin style cycling to the NatSkinStyleBrowser; \
+                  fixed way how the oops dialogues switch off the sidebar |
+|   9 Oct 2005: | new release NatSkin-2.51: \
+                  reinvention of the NatSkinStyleBrowser; \
+                  reworked the standard <nop>WebSideBar; \
+                  extensive usage of the new conditional content tags \
+                  interfacing the skin state machine, i.e. switch the \
+                  sidebar from the left to the right etc.; \
+                  removed hard-coded links to a _Support_ web; \
+                  lots of fixes to catch up with the evolving dakar engine; \
+                  support for the TWiki:Plugins.TwistyPlugin; \
+                  support for the TWiki:Plugins.AliasPlugin; \
+                  skin state support for the TWiki:Plugins.TablePlugin; \
+                  new webbuttons in the topbar; \
+                  componentized style sheets for different skin states; \
+                  improved css of forms and tables; \
+                  better support for the upcomming <nop>BlogPlugin in every skin style; \
+                  plus the usual small css fixes |
+|  30 Aug 2005: | lots of css fixes for IE and Opera; \
+                  fixed topicactions for IE; \
+                  different cancel actions per engine |
+|  26 Aug 2005: | final NatSkin-2.0 |
+|  12 Aug 2005: | first round of pre-releases numbered 1.91 upwards |
+|  24 Jul 2005: | rewritten the templates, renamed the CSS classes |
+|  25 Jun 2003: | Initial version |
+|  Skin Home: | TWiki:Plugins/NatSkin |
+|  Feedback: | TWiki:Plugins/NatSkinDev |
+|  Appraisal: | TWiki:Plugins/NatSkinAppraisal |
+
+__Note:__ The Description, Screenshot and Base Name rows are needed by the TWiki:TWiki/TWikiSkinBrowser
+
+-- TWiki:Main/MichaelDaum - 03 Jul 2008
+
+%META:FILEATTACHMENT{name="wikiringlogo40x40.png" attachment="wikiringlogo40x40.png" attr="h" comment="" date="1189787359" path="wikiringlogo40x40.png" size="2571" stream="wikiringlogo40x40.png" tmpFilename="" user="TWikiContributor" version="1"}%

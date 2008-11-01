@@ -1,0 +1,16 @@
+<!-- template: javascript.nat.tmpl -->
+%TMPL:DEF{"defaultjavascript"}%<!-- defaultjavascript -->
+%TMPL:P{"jqueryjavascript"}%
+<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/TWikiJavascripts/twiki.js"></script>
+<script type="text/javascript"> 
+$(function() { 
+  if (true) {
+    $("#natTopicAttachments .twikiTable a").shrinkUrls({size:25, trunc:'middle'});
+  }
+  %TMPL:P{"onloadscript"}% 
+}); 
+</script>
+<!-- //defaultjavascript -->%TMPL:END%
+%TMPL:DEF{"javascript"}%<!-- javascript -->
+%TMPL:P{"defaultjavascript"}%
+<!-- //javascript -->%TMPL:END%

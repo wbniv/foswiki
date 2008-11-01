@@ -1,0 +1,10 @@
+%TMPL:INCLUDE{"search"}%<!-- -->
+<!-- template: backlinksallwebs.nat.tmpl -->
+%TMPL:DEF{"title"}%%TOPICTITLE% - %MAKETEXT{"(backlinks)"}% - %WIKITOOLNAME%%TMPL:END%
+%TMPL:DEF{"content"}%
+---+ %MAKETEXT{"Backlinks to '[_1]' in all Webs" args="%TOPIC%"}%
+<input type="button" value="%MAKETEXT{"OK"}%" accesskey="o" class="natOkButton" onclick="window.location.href='%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%';" title="Return to <nop>%TOPIC%">
+<input type="button" value="%MAKETEXT{"Local" args="<nop>%WEB%"}%" accesskey="a" class="natAltButton" onclick="window.location.href='%SCRIPTURLPATH{"oops"}%/%WEB%/%TOPIC%?template=backlinksallwebs';" title="Search for backlinks in the '<nop>%WEB%' web only">
+%SEARCH{web="all" search="%WEB%.%TOPIC%([^A-Za-z0-9]|$)|%WEB%.%SPACEOUT{"%TOPIC%" separator=" *"}%([^A-Za-z0-9]|$)" type="regex" scope="text" nosearch="on" excludetopic="%TOPIC%"}%
+%TMPL:END%
+

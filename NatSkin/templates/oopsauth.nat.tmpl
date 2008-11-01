@@ -1,0 +1,20 @@
+%TMPL:INCLUDE{"oopslogonbase"}%
+<!-- template: oopsauth.nat.tmpl -->
+%TMPL:DEF{"action"}%view%TMPL:END%
+%TMPL:DEF{"heading"}%%MAKETEXT{"Either you need to register or the authentication failed"}%%TMPL:END%
+%TMPL:DEF{"message"}%<!-- -->
+%MAKETEXT{"To edit topics on this [_1] collaborative web, you must be registered as a user." args="<nop>%WIKITOOLNAME%"}%
+
+%TMPL:P{"logon"}%
+
+---+++ %MAKETEXT{"If you expected to be logged in at this point:"}%
+<ul>
+ <li> %MAKETEXT{"Did you type in your login name and password correctly? Remember, both are case sensitive."}% </li>
+ <li> %MAKETEXT{"Your login name is usually the [_1], like *<nop>TomSawyer* and _not_ Tom Sawyer or tom or sawyer." args="%TWIKIWEB%.WikiName"}% </li>
+ <li> %MAKETEXT{"Registered users can [[[_1]][change]] and [[[_2]][reset]] their passwords." args="%TWIKIWEB%.ChangePassword,%TWIKIWEB%.ResetPassword"}% </li>
+</ul>            
+---+++ %MAKETEXT{"To register as a new user:"}%
+<ul>
+  <li> %MAKETEXT{"Simply fill out the *[[[_1]][TWikiRegistration]]* form. It only takes a minute." args="%TWIKIREGISTRATION%"}% </li>
+</ul>
+%TMPL:END%

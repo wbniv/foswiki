@@ -1,0 +1,73 @@
+/* header art variation */
+.natHeaderArt {
+  background-color:#293C6A;
+  background-image:url(BlueFieldBar.jpg); 
+  background-repeat:no-repeat;
+  background-position:top left;
+}
+.natTopBar {
+  border-top:0px;
+}
+.natTopBar a {
+  color:white;
+}
+
+.natSearchBoxTop input {
+  background:#293768;
+  color:white;
+  border:1px solid white;
+}
+.natWebButtons {
+  background-color:inherit;
+  background-image:url(opaque-25.png);
+  background-repeat:repeat-x;
+  background-position:top left;
+  border-bottom:0px;
+}
+.natWebButtonsContents {
+  padding:0px;
+}
+.natMiddle {
+  border-top:0px;
+}
+.natWebButtons ul a {
+  border:0px;
+  color:#29386A;
+  margin:0px;
+  padding:3px 5px;
+}
+.natWebButtons ul a.current:hover,
+.natWebButtons ul a:hover {
+  background-color:inherit;
+  background-image:url(opaque-50.png);
+  background-repeat:repeat-x;
+  background-position:top left;
+  color:black;
+  border:0px;
+  padding:3px 5px;
+}
+.natWebButtons ul a.current {
+  background-color:inherit;
+  background-image:url(opaque-75.png);
+  background-repeat:repeat-x;
+  background-position:top left;
+  color:black;
+  border:0px;
+  padding:3px 5px;
+}
+.natWebSlogan {
+  color:white;
+}
+.natSideBar,
+.natMain {
+  background-image:url(bottom-shade.png);
+  background-repeat:repeat-x;
+}
+.natLoginBody .natSideBar,
+.natLoginBody .natMain,
+.natOopsBody .natSideBar,
+.natOopsBody .natSideBar,
+.natEditBody .natMain,
+.natEditBody .natMain {
+  background:inherit;
+}
