@@ -1,0 +1,10 @@
+%META:TOPICINFO{author="TWikiContributor" date="1181030023" format="1.1" reprev="1.1" version="1.1"}%
+%META:TOPICPARENT{name="ChecklistPlugin"}%
+#VarCLI
+---+++ CLI{attributes} -- add a checklist item to a topic
+   * The =%<nop>CLI%= variable is handled by the ChecklistPlugin.
+   * Syntax: =%<nop>CLI{attr1="value" attr2="value"}%=
+   * Examples:
+      * =%<nop>CLI%= adds a simple checklist item to a topic
+      * =%<nop>CLI{states="todo|doing|done" stateicons=":-(|:-I|:ok:"}%= adds a checklist item with states ( todo - :-( doing - :-I done - :ok: ) to a topic 
+   * Related: VarCHECKLIST, VarCHECKLISTSTART, VarCHECKLISTEND, ChecklistPlugin
