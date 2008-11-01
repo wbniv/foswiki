@@ -1,0 +1,36 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1170274802" format="1.1" version="1.5"}%
+%TOPICCRE%NOP%ATE{ topic="%TOPIC%Template" template="%TCAOWEB%/Installs.%TOPIC%Template" }%
+%TOPICCRE%NOP%ATE{ topic="%TOPIC%Form" template="%TCAOWEB%/Installs.BugItemForm" }%
+%TOPICCRE%NOP%ATE{ topic="%TOPIC%Header" template="%TCAOWEB%/Installs.%TOPIC%Header" }%
+<!-- Optional Topic Settings
+To enable any of these settings, replace the explanation with the value you want and remove the "#" before "Set". 
+   * Set CLASS_DESCRIPTION = Identify and track resolution of software application bugs.
+   * Set ADD_FILTER = %TCAOWEB%.RenderStandardFilter
+   * Set SEARCH_FORMAT = | [[$web.$topic][$topic]] | <noautolink>$formfield(Summary)</noautolink>  | $formfield(Status)  | $formfield(Priority)  | %MAINWEB%.$expand(info.author)  | $formatTime(info.date) | %BASEWEB%.$formfield(Application)  |
+   * Set HEADER_FORMAT = | *Item* | *Summary* | *Status* | *Priority* | *Modifed by* | *Date/Time* | *Application* |$n
+   * #Set FOOTER_FORMAT - Optional custom format for search results footer. Defaults to "Number of topics found = $count".
+   * #Set SEARCH_ORDER = Option for changing the default order for the search. Defaults to "name."
+   * #Set SEARCH_REVERSE = Option to reverse the search order. Defaults to "off."
+
+-->
+%COMMENT{type="removeable_help" remove="on"}%
+%INCLUDE{"%TCAOWEB%.RenderClassificationTopic" }%
+
+<div class="twikiHidden">
+You can modify the options for creating new topics of this type by changing the parameters to RenderTopicCreator. See that topic for more info.
+%STARTSECTION{name="new" type="section"}%
+%INCLUDE{"%TCAOWEB%.RenderTopicCreator"  NAME="auto" VALUE="Bug" TEMPLATE="%TOPIC%Template" FORM="BugItemForm" TYPE="%TOPIC%"  FACETS="%FORMFIELD{"Facets"}%" TOPICSUMMARY="Enter a short summary of the new BugItem." EXTRA="|  *Description of the observed problem:* | <textarea name=description cols=60 rows=4 ></textarea>%BR% <em>You can expand of this after the topic is created.</em>  |" }%
+%ENDSECTION{name="new" type="section"}%
+</div>
+
+<!-- Topic Permissions
+	* Set ALLOWTOPICCHANGE = %MAINWEB%.ModeratorGroup
+	* Set ALLOWTOPICRENAME = %MAINWEB%.ModeratorGroup
+-->
+ 
+
+%META:FORM{name="TopicClassForm"}%
+%META:FIELD{name="Classification" attributes="" title="Classification" value="TopicType"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Identify and track resolution of application bugs."}%
+%META:FIELD{name="Facets" attributes="" title="Facets" value="Application"}%
+%META:REVCOMMENT{ncomments="0"}%

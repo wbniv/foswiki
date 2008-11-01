@@ -1,0 +1,72 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1173482207" format="1.1" version="1.8"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+%TOPIC% is used to automatically generate the search string, including all user-selected options from RenderBarFilterWithSort.
+
+---+++++ Parameters
+   * FORSEARCH - Specifies search string is to be formatted for ==%<nop>SEARCH{}%== rather than the default ==%<nop>DBQUERY{}%== format.
+   * BASESEARCH - %RED%Required%ENDCOLOR% - Provides the base search, such as ==[T]opicType.*value\=.*%<nop>BASETOPIC%== (for SEARCH) or ==TopicType = '%<nop>BASETOPIC%'"== for DBQUERY
+   * FACETS - %RED%Required%ENDCOLOR% Specify what "facets" in include as filters. Defaults to the contents of "Facets" field in base topic.
+   * INITSORT -%RED%Required%ENDCOLOR%  Initial sort. set to either "created" or "modified"
+   * INITLIMIT - %RED%Required%ENDCOLOR%  Initial results # limit. Set to 10, 20, 50, 100, or all.
+   * Note: if you are using this in conjunction with RenderSearchString, you can simplify things by defining FACETS, INITSORT, and INITLIMIT within the base topic.
+
+
+---+++++ Css
+   * 
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%%IFDEFINEDTHEN{"%FORSEARCH%" glue="off"}%
+~~~  search="
+*~~    %BASESEARCH%;
+*~~   
+%~~    FORMATLIST{"%FACETS%" separator=";" 
+~~~          format="$percntIF{ \"$'URLPARAM{$1}'!=''\" then=\"$1.*value\=.*$percntURLPARAM{$1}$percnt\" }$percnt"
+~~~    }%" 
+~~~   %ELSEDEFINED%
+~~~   "%BASESEARCH% 
+*~~   
+%~~    FORMATLIST{"%FACETS%" separator=" " 
+~~~          format="$percntIF{ \"$'URLPARAM{$1}'!=''\" then=\" AND $1 =~ '$percntURLPARAM{$1}$percnt'\" }$percnt"
+~~~    }%" 
+~~~   %FIDEFINED%
+~~~    order="%URLPARAM{"sort" default="%INITSORT%"}%"  
+~~~    limit="%URLPARAM{"limit" default="%INITLIMIT%"}%" 
+~~~    %IFDEFINEDTHEN{"%URLPARAM{sort}%" glue="off"}%
+~~~       reverse="%IFDEFINED{"%URLPARAM{sort}%" as="modified|date" then="on" else="off" glue="off" }%"
+~~~    %ELSEDEFINED%
+~~~       reverse="%IFDEFINED{"%INITSORT%" as="modified|date" then="on" else="off" glue="off" }%"
+~~~    %FIDEFINED%
+~~~    %STOPINCLUDE%
+</verbatim>
+
+<!-- interrupt glue -->
+
+---++ Test
+<div class="alt">
+%DBCALL{"%TOPIC%" BASESEARCH="[T]opicType.*value\=.*%BASETOPIC%" FACETS="SubjectArea, TopicType" INITSORT="modified"}%
+</div>
+
+%DBCALL{"RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+(C) 2006 LynnwoodBrown@Skyloom.com
+
+%DBCALL{"GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+
+%META:FORM{name="TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="SubjectArea" attributes="" title="SubjectArea" value=""}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Generates a properly formatted searchstring for either SEARCH or DBQUERY"}%
+

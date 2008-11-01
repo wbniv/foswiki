@@ -1,0 +1,183 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1190225991" format="1.1" version="1.4"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="3"}%
+
+---++ Further Development
+   * Reduce decision steps:
+      * Make the "predefined" radio a drop down for selecting type and add name field after radio for "new".
+   * Disable create button unless a valid name is entered. Can take code from TWiki.WebTopicCreator.
+   * For new classification, pull in Facets from template topic.
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+%TOPIC% is INCLUDED in TopicClassification and provides interface for adding new classifications to a web where TopicClassificationApplication is used.
+
+Restrict view to %MAINWEB%.ModeratorGroup. This makes this form invisible for anyone not authorized to add TopicClassifications.
+   * Set ALLOWTOPICVIEW = %MAINWEB%.ModeratorGroup
+
+---+++++ Parameters
+   * TYPE = %RED% Required %ENDCOLOR% - type of Classification form is form
+
+---+++++ Css
+   * None
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%
+<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/TWikiJavascripts/twiki.js"></script>
+<script type="text/javascript" language="JavaScript"><!--
+// The following section create a list of Classification Summary fields from the templates.
+<noautolink>
+%DBQUERY{ "Classification='%TYPE%'" web="%TCAOWEB%/Installs" format="var $topic$nop_summary = \"$formfield(Summary)\";" }%
+</noautolink>
+
+// This variable just a placeholder until select_predefined is filled.
+var null_summary;
+null_summary = " ";
+
+// These variables are for holding the Summary value when switching back and forth between predefined and new.
+var newSummary;
+newSummary = " ";
+
+function selectNewOrPre(selectedItem) {
+   if (selectedItem == 'new' || selectedItem == 'none' ) {
+      //restore any previously entered new class name and summary
+      document.addType.topic.value=document.addType.new_type.value;
+      document.addType.Summary.value=newSummary;
+      // set default template for new class or over-ride by TEMPLATE value defined locally
+%IFDEFINEDTHEN{"%TEMPLATE%" glue="off"}%
+      document.addType.templatetopic.value="%TEMPLATE%";
+%ELSEDEFINED%
+      document.addType.templatetopic.value="%TCAOWEB%/Installs.%TYPE%Template";
+%FIDEFINED%
+      // switch user interface
+      document.getElementById("addNew").style.display = "block";
+   } else {
+     // Save any new Summary that may have been entered.
+      newSummary=document.addType.Summary.value; 
+      // Set in the topic name, template, and fill in summary field
+      document.addType.topic.value=selectedItem;
+      document.addType.templatetopic.value = ('%TCAOWEB%/Installs.' + selectedItem);
+      document.addType.Summary.value=eval(selectedItem + '_summary');
+      // switch user interface
+      document.getElementById("addNew").style.display = "none";
+   }
+}
+
+
+function nameNew() {
+   document.addType.topic.value=removeSpacesAndPunctuation(capitalize(document.addType.new_type.value));
+   document.addType.new_type.value=document.addType.topic.value;
+   insertHtml((document.addType.topic.value + "Template"), "newTemplateFeedback");
+   insertHtml((document.addType.topic.value + "Form"), "newFormFeedback");
+}
+
+function checkName() {
+   if (document.addType.topic.value == 0) {
+      alert("Please enter a new for your new <nop>%BASETOPIC%");
+      return false;
+   } else {
+      return true;
+   }
+}
+
+//--></script>
+
+---+++ Add New <nop>%TYPE% to the <nop>%BASEWEB% Web
+
+<form name="addType" action="%SCRIPTURLPATH%/save%SCRIPTSUFFIX%/%BASEWEB%/" onsubmit="return checkName()" >
+Add <select name="selectClass"  size="1"  
+~~~          onchange="selectNewOrPre(this.value);" > 
+~~~      <option value="new"> New <nop>%TYPE% </option>
+~~~      <option value="none"> Predefined <nop>%TYPE%s: </option>
+%~~     DBQUERY{ "Classification = '%TYPE%'" 
+~~~            web="%TCAOWEB%/Installs" 
+~~~           order="topic" 
+~~~           format="<option value=\"$topic\">- <nop>$topic</option>" 
+~~~           separator="" 
+~~~           remote="off"
+~~~           exclude="
+*~~           
+%~~              DBQUERY{ "Classification = '%TYPE%'" 
+~~~                 web="%BASEWEB%" 
+~~~                 order="topic" 
+~~~                 format="$topic" 
+~~~                 separator="|"
+~~~                 remote="off"
+~~~               }%
+*~~            " 
+~~~        }% 
+~~~   </select>
+</p>
+<div id="addNew" style="display:inline;"  >
+%TABLE{tablewidth="100%" columnwidths="14%,86%" }%
+|  *Name:* | <input type="text" name="new_type"  size="25" onblur="nameNew();" > 
+~~~     %IFDEFINEDTHEN{"%NEWEXTRA%" glue="off"}%
+~~~     %INCLUDE{"%TOPIC%" section="%NEWEXTRA%" TYPE="%TYPE%"}% 
+~~~     %FIDEFINED%
+~~~     |
+</div>
+%TABLE{tablewidth="100%" columnwidths="14%,86%" }%
+|  *Summary:* | <input type="text" name="Summary" size="40" value=' ' /> <br /> _Provide short summary of new <nop>%TYPE%_   |
+|  *Facets:* | <input type="text" name="Facets" size="40" />  <br /> _Optional: Identify classifications to cross reference._   | 
+%IFDEFINEDTHEN{"%ALLEXTRA%" glue="off"}%
+%INCLUDE{"%TOPIC%" section="%ALLEXTRA%" TYPE="%TYPE%"}% 
+%FIDEFINED%
+<input type="hidden" name="new_headline" value="Enter summary for your new <nop>%TYPE%..." />
+<input type="hidden" name="topic" size="20" value=" " />
+<input type="hidden" name="templatetopic" size="40" value="%TCAOWEB%/Installs.%TYPE%Template" />
+<input type="hidden" name="formtemplate" value="TopicClassForm" />
+<input type="hidden" name="Classification" value="%TYPE%" />
+<p /><input type="submit" id="submit" value=" Create New <nop>%TYPE%  " />
+</form>
+%STOPINCLUDE%
+</verbatim>
+
+---+++ noParent ALLEXTRA section
+Use this section for assigning no parent as is the default for !TopicTypes
+<verbatim>
+%STARTSECTION{name="noParent" type="section"}%
+<input type="hidden" name="topicparent" value="" />
+%ENDSECTION{"noParent"}%
+</verbatim>
+
+---+++ defaultTemplate NEWEXTRA section
+Use this section to create a new template topic based on the name of the new classification. Requires an accompanying CREATETOPIC tag in the template for the new class.
+<verbatim>
+%STARTSECTION{name="defaultTemplate" type="section"}% %BR% A new template topic called <span id="newTemplateFeedback" class="twikiInputFieldDisabled">...<!--generated name will be put here--></span> will automatically be created. %ENDSECTION{"defaultTemplate"}%
+</verbatim>
+
+---+++ selectClassParent ALLEXTRA section
+Use this section to add a select element for assigning parent topic that list topics _of the same class_ as the one being created.
+<verbatim>
+%STARTSECTION{name="selectClassParent" type="section"}%
+|  *Change Parent:* | <select name="topicparent"> <option>%BASETOPIC%</option> %DBQUERY{"Classification='%BASETOPIC%'" web="%BASEWEB%" format="<option>$topic</option>" separator=" "}%</select>   | _Optional_   |
+%ENDSECTION{"selectClassParent"}%
+</verbatim>
+
+
+---++ Test
+<div class="alt">
+%DBCALL{"%TOPIC%" TYPE="SubjectArea" }%
+</div>
+
+
+%DBCALL{"%APPLIB%.RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+(C) 2006 LynnwoodBrown@Skyloom.com
+
+%DBCALL{"%APPLIB%.GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+
+
+%META:FORM{name="TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="SubjectArea" attributes="" title="SubjectArea" value="TcaoAdmin"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Provides interface to adding new Classifications."}%

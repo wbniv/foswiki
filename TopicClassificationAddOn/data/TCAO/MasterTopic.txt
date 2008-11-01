@@ -1,0 +1,26 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1173335236" format="1.1" version="1.5"}%
+%META:TOPICPARENT{name="TopicType"}%
+<!-- Optional Topic Settings
+To enable any of these settings, replace the explanation with the value you want and remove the "#" before "Set". 
+   * Set CLASS_DESCRIPTION = %FORMFIELD{"Summary" topic="%BASETOPIC%"}% Also see TopicFunctions which are very similar but ususally include parameters.
+-->
+
+%DBCALL{"%TCAOWEB%.RenderClassificationTopic"  }%
+
+<div class="twikiHidden">
+%STARTSECTION{name="new" type="section"}%
+%DBCALL{"%TCAOWEB%.RenderTopicCreator"  TEMPLATE="%TOPIC%Template" TYPE="%TOPIC%"  FACETS="SubjectArea" TOPICSUMMARY="Summarize the content and purpose of this MasterTopic." }%
+%ENDSECTION{"new" type="section"}%
+</div>
+New %TOPIC% topics will use the %TOPIC%Template if there is one defined. 
+
+<!-- Topic Permissions
+   * Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
+   * Set ALLOWTOPICRENAME = %MAINWEB%.TWikiAdminGroup
+-->
+
+
+%META:FORM{name="TopicClassForm"}%
+%META:FIELD{name="Classification" attributes="" title="Classification" value="TopicType"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Topics and Topic elements that are reused across installation using INCLUDE variable. Modifying these topics immediately affect the entire installation."}%
+%META:FIELD{name="Facets" attributes="" title="Facets" value="SubjectArea"}%

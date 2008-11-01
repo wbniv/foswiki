@@ -1,0 +1,88 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1191523072" format="1.1" reprev="1.1" version="1.1"}%
+---++  TCAO %TWIKIWEB%.CommentPlugin Templates
+_This topic defines %TWIKIWEB%.CommentPlugin templates used by %TWIKIWEB%.TopicClassificationAddOn._
+
+---------------------------------------------------------------------------
+---+++ comment
+Simple comment box
+<verbatim>
+%TMPL:DEF{PROMPT:comment}%
+<div style="background: #f9f9f9;border-bottom: 1px solid #efefef;margin: 0 0 5px 0;clear: left;color: #333;padding: 5px;">
+<table border="0" cellpadding="0" cellspacing="0"><tr valign="middle"><td>%ICON{bubble}% <span style="margin: 0 0 10px 0;font-size: .9em;color: #666;padding: 3px 0;font-weight: normal;"> *%SPACEOUT{%WIKINAME%}% said...*  </span> %BR%<textarea %DISABLED% rows="%rows|7%" cols="%cols|80%" name="comment" class="twikiInputField" wrap="soft" onfocus="if(this.value=='%MESSAGE%')this.value=''" onblur="if(this.value=='')this.value='%MESSAGE%'">%MESSAGE%</textarea></td></tr><tr><td><input %DISABLED% type="submit" value="%button|Post this comment%" class="twikiButton" /></td></tr></table></div>
+%TMPL:END%
+</verbatim>
+<verbatim>
+%TMPL:DEF{OUTPUT:comment}%%POS:BEFORE% <div style="background: #f9f9f9;border-bottom: 1px solid #efefef;margin: 0 0 5px 0;clear: left;color: #333;padding: 5px;">
+<span style="margin: 0 0 10px 0;font-size: .9em;color: #666;padding: 3px 0;font-weight: normal;" > <!-- COMMENT_TAG --> %ICON{bubble}% %GMTIME{"$day $month $hour:$min"}% | *%SPACEOUT{%WIKINAME%}% said...* </span> <p />
+%URLPARAM{"comment" }%
+
+</div>
+%TMPL:END%
+</verbatim>
+---------------------------------------------------------------------------
+---+++ Removable help section 
+This template is used by %TWIKIWEB%.TopicClassificationAddOn to display instructions for new !TopicTypes. - TWiki:Main.LynnwoodBrown
+<verbatim>
+%TMPL:DEF{PROMPT:removeable_help}%
+<div style="background-color:%HELP_BACKGROUND_COLOR%;padding:1em;">
+%INCLUDE{"%TCAOWEB%.RenderNewTopicHelp" }%
+<input %DISABLED% type="submit" value="%button|Remove this help message%" />
+</div>
+%TMPL:END%
+%TMPL:DEF{OUTPUT:removeable_help}%
+%POS:BOTTOM%
+%TMPL:END%
+</verbatim>
+---------------------------------------------------------------------------
+---+++ logEntry
+Like tocDiscuss except posts immediately *below* the comment box for log-type entries (i.e. most recent at top)
+<verbatim>
+%TMPL:DEF{PROMPT:logEntry}%
+*Headline:* <span class="twikiSmall"> _Enter a short headline for your log entry._ </span><br />
+<input %DISABLED% type="text" size="60" name="comment_headline" /> <br /> *Comment:* <br />
+<textarea %DISABLED% 
+~~~    rows="%rows|5%" 
+~~~    cols="%cols|60%" 
+~~~    name="comment_text" 
+~~~    wrap="soft" 
+~~~    onfocus="if(this.value=='%MESSAGE%')this.value=''" 
+~~~    onblur="if(this.value=='')this.value='%MESSAGE%'">%MESSAGE%</textarea> <br /> 
+*~~
+%~~  IFDEFINED{"%FORMFIELD{"Status" topic="%BASEWEB%.%BASETOPIC%"}%" 
+~~~     then=" *Change Status:* <select name='Status'>
+~~~       <option value='%FORMFIELD{"Status" topic="%BASEWEB%.%BASETOPIC%"}%'>Leave</option>
+~~~        <option value='Pending'>Pending</option>
+~~~        <option value='0%'>0%</option>
+~~~        <option value='10%'>10%</option>
+~~~        <option value='20%'>20%</option>
+~~~        <option value='30%'>30%</option>
+~~~        <option value='40%'>40%</option>
+~~~        <option value='50%'>50%</option>
+~~~        <option value='60%'>60%</option>
+~~~        <option value='70%'>70%</option>
+~~~        <option value='80%'>80%</option>
+~~~        <option value='90%'>90%</option>
+~~~        <option value='Completed'>Completed</option>
+~~~        <option value='On Hold'>On Hold</option></select><br >"
+~~~     glue="off"
+~~~  }%
+~~~   <input %DISABLED% type="submit" value="%button|Post Log%" /> 
+%TMPL:END%
+</verbatim>
+<verbatim>
+%TMPL:DEF{OUTPUT:logEntry}%
+%POS:AFTER%---
+%POS:AFTER%---++++ %SERVERTIME{"$mo/$day/$ye"}% - %URLPARAM{"comment_headline"}% 
+%POS:AFTER% <span class="twikiSmall"> _Posted by %WIKIUSERNAME% on %DATE% at %SERVERTIME{"$hour:$min"}%._ </span> 
+
+%POS:AFTER%%URLPARAM{"comment_text" }%
+%POS:AFTER%
+%TMPL:END%
+</verbatim>
+---------------------------------------------------------------------------
+
+%META:FORM{name="TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="MasterTopic"}%
+%META:FIELD{name="SubjectArea" attributes="" title="SubjectArea" value="TcaoUse"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="%25TWIKIWEB%25.CommentPlugin templates"}%
+

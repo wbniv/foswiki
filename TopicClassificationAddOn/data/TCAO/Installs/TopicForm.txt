@@ -1,0 +1,19 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1167331728" format="1.1" version="1.5"}%
+---+ %TOPIC% for the %WEB% web
+
+| *Name:*| *Type:* | *Size:* | *Values:* | *Tooltip message:* | *Attributes:* |
+| TopicType | select | 1 | %DBQUERY{"Classification='TopicType'" format="$topic" separator=", "}%   | Classify a topic by function |  |
+| SubjectArea | checkbox | 3 | %DBQUERY{"Classification='SubjectArea'" format="$topic" separator=", "}%    | Classify a topic by subject |  |
+| Summary   | text   | 50  |   | Short summary or headline of topic  |  |
+
+Related Topic: TopicClassification, WebPreferences, %TWIKIWEB%.TWikiForms
+
+<!-- Topic Permissions
+   * Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
+   * Set ALLOWTOPICRENAME = %MAINWEB%.TWikiAdminGroup
+-->
+
+For more information about how you can use form to organize topics or create simple database applications, see TWiki.TWikiForms.
+
+
+%META:REVCOMMENT{ncomments="0"}%

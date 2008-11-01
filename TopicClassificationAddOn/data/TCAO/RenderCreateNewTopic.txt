@@ -1,0 +1,71 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1170190977" format="1.1" reprev="1.22" version="1.22"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{"documentation"}%
+%TOPIC% provides the user interface for creating new topics utilizing the TopicClassification scheme. It is INCLUDED in the CreateNewTopic in each web that utilizes TopicClassificationAddOn.
+
+After the !TopicType is selected, the "new" section of that !TopicType in the local web is INCLUDED, which in turn INCLUDES RenderTopicCreator and sets it's parameters. The purpose for this arrangement is to allow customization of the options for that !TopicType within the particular web.
+
+---+++++ Parameters
+   * none needed.
+
+---+++++ Css
+   * n/a
+%ENDSECTION{"documentation"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%
+<form name="selectType" action="%SCRIPTURL{view}%/%BASEWEB%/%BASETOPIC%" />
+<h3> Create A New 
+~~~    <select name="type" onchange="this.form.submit( )" >
+~~~    <option>Select<nop>TopicType...</option>
+~~~     <option %IFDEFINED{"%URLPARAM{"type"}%" as="Blank.*Topic" then="selected" glue="off"}% >Blank Topic</option>
+~~~
+%~~     DBQUERY{"Classification = 'TopicType'" 
+~~~         web="%BASEWEB%" 
+~~~         format="<option value=\"$topic\" 
+~~~               $percntIFDEFINED{\"%URLPARAM{type}%\" as=\"$topic\" then=\"selected\" glue=\"off\"}$percnt >
+*~~               $percntSPACEOUT{$topic}$percnt</option>" 
+~~~         separator=" " 
+~~~      }% 
+~~~      </select></span></h3>
+<input name="step" type="hidden" value="two">
+<input type="hidden" name="parent" value="<nop>%URLPARAM{parent}%" />
+</form>
+
+%IFDEFINEDTHEN{"%URLPARAM{step}%" as="two" glue="off"}%
+%INCLUDE{ %IFDEFINED{ "%URLPARAM{type}%" as="Blank Topic" then="\"%TCAOWEB%.RenderTopicCreator\" FORM=\"none\"" else="\"%BASEWEB%.%URLPARAM{type}%\" section=\"new\"" }% }%
+%FIDEFINED%
+
+%BR% _%ICON{help}% For more information about how topics are organized within the <nop>%BASEWEB% web, see %BASEWEB%.TopicClassification._
+
+%STOPINCLUDE%
+</verbatim>
+
+<!-- interrupt glue -->
+
+---++ Test
+<div class="alt">
+%DBCALL{"%TOPIC%"}%
+</div>
+
+%DBCALL{"RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+(C) 2006 LynnwoodBrown@Skyloom.com
+
+%DBCALL{"GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+%META:FORM{name="TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="SubjectArea" attributes="" title="SubjectArea" value="TcaoUse"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Provides interface for creating new classified topics"}%
+%META:REVCOMMENT{ncomments="0"}%

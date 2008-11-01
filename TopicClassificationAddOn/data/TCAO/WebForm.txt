@@ -1,0 +1,13 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1159892082" format="1.1" version="1.2"}%
+---+ %TOPIC% for the %WEB% web
+
+| *Name:*| *Type:* | *Size:* | *Values:* | *Tooltip message:* |
+| TopicType | select | 1 |  | Classify a topic by function |
+| SubjectArea | checkbox | 3 |  | Classify a topic by subject |
+| Summary   | text   | 50  |   | Short summary or headline of topic  |
+
+Related Topic: WebPreferences, WebTopicEditTemplate, %TWIKIWEB%.TWikiForms
+
+
+For more information about how you can use form to organize topics or create simple database applications, see TWiki.TWikiForms.
+

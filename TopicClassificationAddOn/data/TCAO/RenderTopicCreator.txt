@@ -1,0 +1,292 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1173983290" format="1.1" reprev="1.49" version="1.49"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+This !TopicFunction draws heavily on TWiki.WebTopicCreator, but adds additional form elements for classifying the topic.
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+This TopicFunction is for creating new topics. It is mostly called indirectly from RenderCreateNewTopic.
+---+++++ Parameters
+   * NAME: Determines topic naming option. If set to "auto", then the topic is automatically named and no imput box is provided. 
+   * TEXT: button text; defaults to BASETOPIC name
+   * VALUE: initial value of the text input field (optional)
+   * FORM: TWikiForm to be used when creating a topic, defaults to TopicForm
+   * TEMPLATE: TopicTemplate to be used (optional)
+   * TOPICSUMMARY: If defined, a Summary input box will be included and the value of this parameter will be listed as a "tip" below the input box.
+   * FACETS: List of classifications or TopicTypes for which to provide select elements. 
+   * TYPE: initial TopicType value 
+   * CLASS_NAME: Optional alternative class name. Defaults to !TopicType.
+   * EXTRA: additional =&lt;input ... />= . Note: items much be formatted as follows:
+      * quotes must be escaped with <em>double</em> backslashes ("\\").
+      * Each extra item must be formatted as a TWiki 2-column table row. E.g.: ==|  *Name of item:* |   <input type="text" ...etc > |==
+   * SAVE: Included "checkbox" option to directly save topic (skip "edit" screen"). If set to "checked" then checkbox will be checked by default. If set to "option" then the option will be provided but will not be checked.
+   * ALLOWNONWIKIWORD - If defined, will check option to allow non-wiki word.
+   * PARENT - If defined as "choice" then form will include section with choices for setting the parent. If defined as the same as one of the FACETS, then the parent will be set to the selection from that facet's dropdown. If set to any other value (a topic), the parent will be set to that topic. 
+
+%ENDSECTION{name="documentation" type="section"}%
+---+++++ Css
+%STARTSECTION{name="css" type="section"}%
+   * None
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%
+<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/TWikiJavascripts/twiki.js"></script>
+%INCLUDE{"%TWIKIWEB%.WebTopicCreator" section="javascriptfunctions" }%
+<script type="text/javascript">
+//<![CDATA[
+
+/**
+This section contains js code borrowed from 4.1.2 version of WebTopicCreator
+
+Checks if the entered topic name is a valid WikiWord.
+If so, enables the submit button, if not: enables the submit button if the user allows non-WikiWords as topic name; otherwise disables the submit button and returns 'false'.
+Automatically removes spaces from entered name.
+Automatically strips illegal characters.
+If non-WikiWords are not allowed, capitalizes words (separated by space).
+If non-WikiWords _are_ allowed, capitalizes sentence.
+The generated topic name is written to a 'feedback' field.
+@param inForm : pointer to the form
+@param inShouldConvertInput : true: a new name is created from the entered name
+@return True: submit is enabled and topic creation is allowed; false: submit is disabled and topic creation should be inhibited.
+*/
+function canSubmit(inForm, inShouldConvertInput) {
+	
+	var inputForTopicName = inForm.topic.value;
+	if (!inputForTopicName) return;
+
+	/* Topic names of zero length are not allowed */
+	if (inputForTopicName.length == 0) {
+		disableSubmit(inForm.submit);
+		/* Update feedback field */
+		insertHtml("", "webTopicCreatorFeedback");
+		return false;
+	}
+	
+	var hasNonWikiWordCheck = (inForm.nonwikiword != undefined);
+	var userAllowsNonWikiWord = true;
+	if (hasNonWikiWordCheck) {
+		userAllowsNonWikiWord = inForm.nonwikiword.checked;
+	}
+	
+	/* check if current input is a valid WikiWord */
+	var noSpaceName = removeSpacesAndPunctuation(inputForTopicName);
+
+	/*
+	if necessary, create a WikiWord from the input name
+	(when a non-WikiWord is not allowed)
+	*/
+	var wikiWordName = noSpaceName;
+	if (!userAllowsNonWikiWord) {
+		wikiWordName = removeSpacesAndPunctuation(capitalize(inputForTopicName));
+	}
+	if (userAllowsNonWikiWord) {
+		wikiWordName = removeSpacesAndPunctuation(capitalizeSentence(inputForTopicName));
+	}
+	
+	if (inShouldConvertInput) {
+		if (hasNonWikiWordCheck && userAllowsNonWikiWord) {
+			inForm.topic.value = noSpaceName;
+		} else {
+			inForm.topic.value = wikiWordName;
+		}
+	}
+
+	/* Update feedback field */
+	feedbackHeader = "<strong>%MAKETEXT{"Topic will be named: "}%</strong>";
+	feedbackText = feedbackHeader + wikiWordName;
+	insertHtml(feedbackText, "webTopicCreatorFeedback");
+
+	/*
+	Update hidden field value
+	Use the negative value of the checkbox. This is the ugly way but must be used until edit script parameter =allowsnonwikiword= is implemented.
+	*/
+	if (hasNonWikiWordCheck && userAllowsNonWikiWord) {
+		inForm.onlywikiname.value = userAllowsNonWikiWord ? "off" : "on";
+	}
+	if (isWikiWord(wikiWordName) || userAllowsNonWikiWord) {
+		enableSubmit(inForm.submit);
+		return true;
+	} else {
+		disableSubmit(inForm.submit);
+		return false;
+	}
+}
+function capitalizeSentence (inText) {
+	return inText.substr(0,1).toUpperCase() + inText.substr(1);
+}
+/**
+@param inState: true or false
+*/
+function setCheckBoxState (inCheckBox, inState) {
+if (! inCheckBox) return;
+	inCheckBox.checked = inState;
+}
+function enableSubmit(inButton) {
+if (!inButton) return;
+	removeClass(inButton, "twikiSubmitDisabled");
+	inButton.disabled = false;
+}
+function disableSubmit(inButton) {
+if (!inButton) return;
+	addClass(inButton, "twikiSubmitDisabled");
+	inButton.disabled = true;
+}
+
+
+
+/*
+This section contains js code added for TCAO
+*/
+%IFDEFINEDTHEN{"%SAVE%" glue="off"}%
+        // Incorporate "direct save" option - LB 11/15/06
+
+function toggleDirectSave(theForm) {
+        if (theForm.directSave.checked) { 
+           theForm.action = "%SCRIPTURLPATH{save}%/%BASEWEB%/";
+        } else {
+           theForm.action = "%SCRIPTURLPATH{edit}%/%BASEWEB%/";
+        }
+}
+%FIDEFINED% 
+
+function broadcastFacet( facet, value ) {
+    insertHtml(value, "insert"+facet);
+%IFDEFINEDTHEN{"%PARENT%" glue="off"}%
+    if (facet == "%PARENT%") {
+      document.newtopic.topicparent.value = value;
+    }
+%FIDEFINED%
+}
+
+function assignParent( form, parent ) {
+    for (var i = 0; i < form.topicparent.length; i++) {
+        if (form.topicparent[i].checked) {
+           break;
+         }
+     }
+    form.topicparent[i].checked = true;
+    form.topicparent[i].value = parent;
+}
+
+
+//]]>
+</script>
+<form name="newtopic" id="newtopic" action="%SCRIPTURLPATH{edit}%/%BASEWEB%/" onsubmit="return canSubmit(this,true);" method="post">
+<noautolink>
+<input type="hidden" name="templatetopic" value="%IFDEFINED{"%TEMPLATE%" then="%ENCODE{%TEMPLATE%}%" else=""}%" />
+<input type="hidden" name="formtemplate" value="%IFDEFINED{"%FORM%" then="%FORM%" else="TopicForm"}%" />
+<input type="hidden" name="%IFDEFINED{"%CLASS_NAME%" then="$test" else="TopicType" glue="off"}%" value="%IFDEFINED{"%TYPE%"}%" />
+%IFDEFINEDTHEN{"%PARENT%" as="choice" glue="on"}%
+%ELSIFDEFINED{"%PARENT%" glue="off"}%
+<input type="hidden" name="topicparent" value='%PARENT%' />
+%ELSEDEFINED%
+<input type="hidden" name="topicparent" value='%URLPARAM{parent}%' />
+%FIDEFINED%
+<div class="tcaoCreateNewTopic">
+%TABLE{ tablewidth="90%"  columnwidths="20%, 80%" dataalign="right, left"}%
+|   *Topic name:* |  
+~~~      %IFDEFINEDTHEN{ "%NAME%" as="auto" glue="off"}%  
+~~~           <input type="hidden" name="topic" value="%IFDEFINED{"%VALUE%" glue="off"}%AUTOINC0000"/>
+~~~           <em>Your %IFDEFINED{"%TYPE%" then=" %TYPE% "}% topic will be auto-named.</em>  
+*~~         %ELSEDEFINED% 
+~~~        <input type="text" class="twikiInputField" name="topic" id="topic" size="40" 
+~~~            value="%IFDEFINED{"%VALUE%" glue="off"}%"
+~~~            onkeyup="canSubmit(this.form,false);" 
+~~~            onchange="canSubmit(this.form,false);"  
+~~~            onblur="canSubmit(this.form,true);" /> 
+~~~        <input type="checkbox" class="twikiCheckbox" id="nonwikiword" 
+~~~               name="nonwikiword" %IFDEFINED{"%ALLOWNONWIKIWORD%" then="checked" glue="off"}%
+~~~               onchange="canSubmit(this.form,false);" 
+~~~               onmouseup="canSubmit(this.form,false);" />
+~~~              <label for="nonwikiword">%MAKETEXT{"Allow non <nop>WikiWord"}%</label>  %BR% 
+~~~      <span id="webTopicCreatorFeedback" class="twikiInputFieldDisabled"><!--generated name will be put here--></span>
+~~~     %FIDEFINED%    |
+*~~
+%IFDEFINEDTHEN{"%TOPICSUMMARY%" glue="off" }%
+|   *Topic Summary:* |
+~~~     <input type="text" name="Summary" size="40"  />  %BR%
+~~~        %ICON{help}% <em>%TOPICSUMMARY%</em>   
+~~~       | %FIDEFINED%    
+*~~ 
+%IFDEFINEDTHEN{"%FACETS%" glue="off"}%
+%~~       FORMATLIST{"%FACETS%" 
+~~~          format="|    *$1:* | <select name=\"$1\" id=\"$1\" onchange=\"broadcastFacet(this.id, this.value)\" > 
+~~~              <option value=$percntURLPARAM{$1}$percnt > $percntURLPARAM{\"$1\" default=\"Select...\" }$percnt </option> 
+~~~             $percntDBQUERY{
+~~~                  \"$percntDBQUERY{topic=\"$1\" web=\"$percntBASEWEB$percnt\" format=\"$formfield(Classification)\"}$percnt=~'$1'\" 
+~~~                  web=\"%BASEWEB%\" 
+~~~                  format=\"<option>$topic</option>\" 
+~~~                  separator=\" \" 
+~~~              }$percnt 
+~~~              </select> </noautolink>  | "
+~~~          split=", "
+~~~          separator="$n" 
+~~~          }%%FIDEFINED%
+*~~
+%IFDEFINEDTHEN{"%EXTRA%" glue="off"}%
+%EXTRA%%FIDEFINED%
+*~~
+%~~     IFDEFINEDTHEN{"%PARENT%"
+~~~         as="choice"
+~~~         glue="off"
+~~~     }%
+|    *%MAKETEXT{"Topic parent:"}%* |  
+~~~     <input type="radio" name="topicparent" checked value="%URLPARAM{\"parent\"}%" 
+~~~          onclick="this.form.topicparentList.disabled=true;" > <nop>%URLPARAM{"parent" default="no parent, orphaned topic"}%  
+~~~      %BR% %IFDEFINEDTHEN{"%FACETS%" as=".*SubjectArea"}% 
+~~~            <input type="radio" name="topicparent" onclick="this.value=this.form.SubjectArea.value;this.form.topicparentList.disabled=true;" value="" > 
+~~~            Selected !SubjectArea: <span id="insertSubjectArea" > </span> %BR% %FIDEFINED%
+~~~      <input type="radio" name="topicparent" value="" onclick="this.form.topicparentList.disabled=false"> Select topic parent: <select name="topicparentList" size="1"  diabled 
+~~~            onchange="assignParent(this.form, this.value);" ><option value="" > Select... </option><option value="">%MAKETEXT{"(no parent, orphaned topic)"}%</option>
+~~~            %TOPICLIST{"<option>$name</option>" separator=" " }% </select>
+~~~      <br />%ICON{help}% _Topic "parentage" defines the hierarchy in [[%BASEWEB%.TopicTree][TopicTree]]._   |%FIDEFINED%
+|| <input id="submit" type="submit" class="twikiSubmit" value='%MAKETEXT{"Create this topic"}%' />
+~~~        
+%~~        IFDEFINED{"%SAVE%" then="<input type=\"checkbox\" $variable name=\"directSave\" value=\"save\"> 
+~~~            _Directly save topic without editing._ " glue="off" 
+~~~        }%
+~~~        <input type="hidden" name="onlywikiname" />
+~~~        <input type="hidden" name="onlynewtopic" value="on" />   ||
+
+</div> <!-- tcaoCreateNewTopic -->
+</form>
+<script type="text/javascript">
+//<![CDATA[
+%IFDEFINED{"%SAVE%" then="toggleDirectSave(document.forms.newtopic);" glue="off"}%
+%IFDEFINEDTHEN{"%NAME%" as="auto" glue="off"}%
+%ELSEDEFINED%
+// start with a check
+canSubmit(document.forms.newtopic,false);
+// focus input field
+document.forms.newtopic.topic.focus();
+//]]>
+%FIDEFINED%
+</script>
+</noautolink>
+%STOPINCLUDE%
+</verbatim>
+
+---++ Test
+
+%DBCALL{"%TOPIC%" TEXT="Topic" TYPE="DiscussionTopic" VALUE="TWikiTopic" FACETS="TopicType, SubjectArea " SAVE="option" PARENT="topic" TOPICSUMMARY="Enter short summary statement about your new topic" }%
+
+
+%DBCALL{"RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+(C) 2006 LynnwoodBrown@Skyloom.com
+
+%DBCALL{"GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+%META:FORM{name="TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="SubjectArea" attributes="" title="SubjectArea" value="TcaoUse"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="TopicFunction to display a form to create a new classified topic"}%

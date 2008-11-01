@@ -1,0 +1,73 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1167776643" format="1.1" version="1.4"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+This topic function renders a right-hand sidebar.
+
+---+++++ Parameters
+   * CONTENT -  A comma-deliminated list topics to be be included in the site bar. Include the web reference for the topic - e.g. ==%<nop>BASEWEB%.The<nop>Topic==.  
+   * RECENT - Set to a number to display that number of recently changed topics. "5" is a good number to try out.
+   * CREATENEW - Set to "yes" to include a "Create New Topic" drop-down list of topic types.
+
+---+++++ Css
+   * 
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%
+<div style="position:relative;float:right;width:30%;background-color:white;border:2px dotted %WEBBGCOLOR%;padding:1em;margin:0.5em;display:inline;">
+%IFDEFINEDTHEN{"%CONTENT%" glue="off"}%
+%FORMATLIST{"%CONTENT%" separator="$dollarn" format="$percntINCLUDE{\"$1\" }$percnt" }%
+%FIDEFINED%
+%IFDEFINEDTHEN{"%RECENT%" glue="off"}%
+---+++++!! <font  FACE="arial,helvetica"> $test most recently changed topics: </font>
+<font size="-1">%SEARCH{".*" web="%BASEWEB%" format="&bull; $web.$topic - $date " separator="%BR%" regex="on" nonoise="on" order="modified" reverse="on" limit="%RECENT%" }%
+%BR% _See also: [[%BASEWEB%.WebChanges][Recent changes]]._ </font>
+%FIDEFINED%
+%IFDEFINEDTHEN{"%CREATENEW%" as="yes" glue="off" }%
+---+++++!! <font  FACE="arial,helvetica"> Create a new topic:</font>
+Create new:
+<form action="%SCRIPTURL{view}%/%BASEWEB%/CreateNewTopic">
+<select name="type" onchange="this.form.submit()">
+  <option>Select...</option><option value="" >blank topic</option>
+%$nopDBQUERY{ "Classification = 'TopicType'" web="%BASEWEB%" regex="on" order="topic" format= "<option>$topic</option>"}%</select> <br />
+<input type="hidden" name="step" value="two" />
+</form>
+%FIDEFINED%
+</div>
+%STOPINCLUDE%
+</verbatim>
+
+<!-- interrupt glue -->
+
+---++ Test
+<div class="alt">
+%DBCALL{"%TOPIC%" RECENT="5" CREATENEW="yes" }%
+</div>
+
+%DBCALL{"RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+(C) 2006 LynnwoodBrown@Skyloom.com
+
+%DBCALL{"GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+
+<!--
+   * Set SIDEBAR = TopicType
+   * Set SIDEBARARG = TopicFunction
+-->
+
+
+%META:FORM{name="TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Renders a sidebar on right side of page."}%
+%META:REVCOMMENT{comment_1=" " minor_1="1" ncomments="1" rev_1="3" t_1="1167757738"}%

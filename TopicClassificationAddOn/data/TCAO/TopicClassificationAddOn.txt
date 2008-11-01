@@ -1,0 +1,109 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1171040186" format="1.1" reprev="1.4" version="1.4"}%
+---+!! %TOPIC%
+%TOC%
+
+%RED% This is the stripped down, rough draft of version 2.0 of %TOPIC%. The final version will have more detailed description of features and usage.%ENDCOLOR%
+#AddOn
+---+ Topic Classification Add-On 
+
+<b> %TOPIC% (aka TCAO) helps you organize the content in your wiki by classifying topics according to their _function_ and/or _subject matter._ </b> It also provides a user-friendly interface for creating new topics that automatically incorporates this classification system. Together, these basic elements provide a platform that allow you to create any number of simple TWikiApplications.
+
+Some of the features of %TOPIC% include:
+   * See TCAO.TopicClassification for basic info.
+   * CreateNewTopic "wizard"
+   * Assigning parentage to new topics.
+   * Display SubjectAreas trees using TopicTree
+   * Ability to create completely alternative classification schemes.
+
+---++ Dependencies
+TopicClassificationAddOn makes fairly extensive use of TWiki plugins. These include:
+   * 
+   * TWiki:Plugins.DBCacheContrib
+   * TWiki:Plugins.DBCachePlugin
+   * TWiki:Plugins.TopicCreatePlugin
+   * TWiki:Plugins.TreePlugin
+   * TWiki:Plugins.IfDefinedPlugin
+   * TWiki:Plugins.FilterPlugin
+   * TWiki:Plugins.GluePlugin
+
+It also requires ={EnableHierarchicalWebs}= to be enabled under in =configure= (under "Store settings" tab). 
+
+---++ Add-On Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this add-on. The following instructions are for the administrator who installs the add-on on the server where TWiki is running.
+
+   1 Download the ZIP file from the Add-on Home (see below)
+   1 Unpack the Add-on archive in the root of your TWiki installation.
+   1 Add the following preference section to [[Main.TWikiPreferences]]:
+<verbatim>
+---++ TWiki.TopicClassificationAddOn Preferences 
+   * TCAOWEB variable for identifying which web holds %TOPIC% infrastructure.
+      * Set TCAOWEB = TCAO
+      * Set HELP_BACKGROUND_COLOR = #E0B9A6
+</verbatim>
+   4 Go to %MAINWEB%.TWikiGroups and create a new group called ==ModeratorGroup==. This group can add new classifications within webs where TCAO is enabled. 
+   5 Add the following TWiki.CommentPlugin templates definitions to TWiki.UserCommentsTemplate (create this topic if you have not already).
+<verbatim>
+---------------------------------------------------------------------------
+---+++ tocdiscuss
+Discussion with heading for Table of Content - People.LynnwoodBrown
+<verbatim>
+%TMPL:DEF{PROMPT:tocdiscuss}%
+*Headline:* <span class="twikiSmall"> _Enter a short headline for your comment._ </span><br />
+<input %DISABLED% type="text" size="60" name="comment_headline" /> <br /> *Comment:* <br />
+<textarea %DISABLED% rows="%rows|5%" cols="%cols|60%" name="comment_text" wrap="soft" onfocus="if(this.value=='%MESSAGE%')this.value=''" onblur="if(this.value=='')this.value='%MESSAGE%'">%MESSAGE%</textarea> <br /> <input %DISABLED% type="submit" value="%button|Add Comment%" /> 
+%TMPL:END%
+</verbatim>
+<verbatim>
+%TMPL:DEF{OUTPUT:tocdiscuss}%
+%POS:BEFORE%---++++ %URLPARAM{"comment_headline"}% 
+%POS:BEFORE% <span class="twikiSmall"> _Posted by %WIKIUSERNAME% on %DATE% at %SERVERTIME{"$hour:$min"}%._ </span> 
+
+%POS:BEFORE%%URLPARAM{"comment_text" }%
+%POS:BEFORE%
+%TMPL:END%
+</verbatim>
+---------------------------------------------------------------------------
+---+++ Removable help section 
+This template is used by %TWIKIWEB%.TopicClassificationAddOn
+<verbatim>
+%TMPL:DEF{PROMPT:removeable_help}%
+<div style="background-color:%HELP_BACKGROUND_COLOR%;padding:1em;">
+%INCLUDE{"%TCAOWEB%.RenderNewTopicHelp" }%
+<input %DISABLED% type="submit" value="%button|Remove this help message%" />
+</div>
+%TMPL:END%
+%TMPL:DEF{OUTPUT:removeable_help}%
+%POS:BOTTOM%
+%TMPL:END%
+</verbatim>
+---------------------------------------------------------------------------
+</verbatim>
+
+---+++ Enabling %TOPIC% in a particular web
+
+%TOPIC% is designed to organize content within individual webs. There are two options for enabling TopicClassificationAddOn in a particular web:
+      * Create a new Web using the =_defaultTCAO= template web.
+      * Use the TCAO installer form below to add the core TopicClassificationAddOn components to an existing web. (This won't show up until you've completed the above steps.)
+%INCLUDE{"%TCAOWEB%.RenderInstallTopicClassification" warm="off"}%
+
+---+++ Setting up Topic Classification within a web
+Once %TOPIC% is enabled within a web, you're ready to start defining *TopicTypes* and *SubjectAreas* to be used in that web. To do this, go to those respective topics (e.g. go to !TopicType to add new !TopicTypes) and use form at bottom that is only visible to members of !ModeratorGroup (or %MAINWEB%.TWikiAdminGroup, of course).
+
+---++ Add-On Info
+
+|  Add-on Author: | TWiki:Main/LynnwoodBrown |
+|  Add-on Version: | 09 Feb 2007 (v2.000) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  13 Oct 2004: | 1.0 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | see above |
+|  Perl Version: | 5.005 |
+|  License: | GPL |
+|  Add-on Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Demo url: | http://skyloom.com/Demo/TopicClassification |
+
+__Related Topic:__ %TWIKIWEB%.TWikiAddOns
+
+%META:REVCOMMENT{ncomments="0"}%

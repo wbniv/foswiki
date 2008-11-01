@@ -1,0 +1,15 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1191527922" format="1.1" reprev="1.1" version="1.1"}%
+---+ %TOPIC% for the [[Task]] topics
+
+| *Name:*| *Type:* | *Size:* | *Values:* | *Tooltip message:* |
+| TopicType | label | 1 | Task  | Classify the topic by function. |
+| SubjectArea  | checkbox | 3 | %DBQUERY{"Classification = 'SubjectArea'" format="$topic" separator=", "}%  | Focus of task.  |
+| Lead | text | 30 |  | Person responsible for completion. |
+| Due | date | 10 |   | Due date for completion. |
+| Status | select | 1 | Pending, 0%, 10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90%, Completed, On Hold  |   |
+| Priority | radio | 3 | Optional, Desired, Expected, Essential | How urgent. |
+| Summary	| text	| 50  |	| Short summary or headline for task.  |
+
+Related Topics: [[Task]]
+
+For more information on how this form is used to organize content within the <nop>%WEB% web, see TopicClassification.

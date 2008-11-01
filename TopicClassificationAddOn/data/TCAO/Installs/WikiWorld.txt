@@ -1,0 +1,25 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1160083627" format="1.1" version="1.4"}%
+%META:TOPICPARENT{name="SubjectArea"}%
+<!-- Optional Topic Settings
+To enable any of these settings, replace the explanation with the value you want and remove the "#" before "Set". 
+   * Set CLASS_DESCRIPTION = <b><i>%FORMFIELD{"Summary" topic="%BASEWEB%.%BASETOPIC%"}%</b></i>
+   * Set ADD_FILTER = %TCAOWEB%.RenderStandardFilter
+   * #Set SEARCH_FORMAT = Optional custom format for search results. Defaults to bulleted list with topic name and the !Summary formfield.
+   * #Set HEADER_FORMAT = Optional custom format for search results header. Defaults to empty header.
+   * #Set FOOTER_FORMAT = Optional custom format for search results footer. Defaults to "Number of topics found = $count".
+   * #Set SEARCH_ORDER = Option for changing the default order for the search. Defaults to "name."
+   * #Set SEARCH_REVERSE = Option to reverse the search order. Defaults to "off."
+-->
+%COMMENT{type="removeable_help" remove="on"}%
+%INCLUDE{"%TCAOWEB%.RenderClassificationTopic" }%
+
+<!-- Topic Permissions
+   * Set ALLOWTOPICCHANGE = %MAINWEB%.ModeratorGroup
+   * Set ALLOWTOPICRENAME = %MAINWEB%.ModeratorGroup
+-->
+
+
+%META:FORM{name="TopicClassForm"}%
+%META:FIELD{name="Classification" attributes="" title="Classification" value="SubjectArea"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Everything related to wiki development"}%
+%META:FIELD{name="Facets" attributes="" title="Facets" value="TopicType"}%

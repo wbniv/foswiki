@@ -1,0 +1,32 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1171041582" format="1.1" reprev="1.1" version="1.1"}%
+---+!! %SPACEOUT{%TOPIC%}%
+_This topic is displayed in TopicClassification after TCAO has been enabled within a specific web and outlines some next steps for getting the most use out of TCAO._
+
+%STARTINCLUDE%
+---+++ Enable forms used by %TWIKIWEB%.TopicClassificationAddOn
+
+To complete the installation process, you need to manually edit %BASEWEB%.WebPreferences and:
+   1 Copy and paste =TopicForm,= =TopicClassForm= to "Set WEBFORMS = " .
+
+---+++ Optional Setup Steps 
+   * Copy the following text and paste it into the %BASEWEB%.WebHome topic to provide a useful summary of your classification setup there: 
+<verbatim>
+%INCLUDE{%TCAOWEB%.TopicClassWebHomeIntro}%
+%INCLUDE{"%TCAOWEB%.RenderCreateNewTopicDropDown" }%
+</verbatim>
+   * Copy and paste the following text into the %BASEWEB%.WebLeftBar for quick access to features from all topics in the web:
+<verbatim>
+   * [[%SCRIPTURL{view}%/%BASEWEB%/TopicTree?root=%BASETOPIC%][%ICON{indexlist}% <nop>TopicTree]]
+   * [[%SCRIPTURL{view}%/%BASEWEB%/CreateNewTopic?parent=%BASETOPIC%][%ICON{"newtopic"}% <nop>Create New Topic]]
+</verbatim>
+
+---+++ _You're Ready to Start Adding TopicTypes and SubjectAreas!_
+Once these steps are completed, you can get started developing your classification setup. To understand the basic framework, read the information provided below. After that, proceed to %BASEWEB%.TopicTypes and %BASEWEB%.SubjectAreas to add new classifications.
+%STOPINCLUDE%
+
+
+
+%META:FORM{name="TCAO.TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="HelpTopic"}%
+%META:FIELD{name="SubjectArea" attributes="" title="SubjectArea" value="TcaoAdmin"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Help message displayed after TCAO is added to a web."}%

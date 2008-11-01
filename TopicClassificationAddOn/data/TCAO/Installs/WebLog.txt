@@ -1,0 +1,36 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1160083626" format="1.1" version="1.4"}%
+%META:TOPICPARENT{name=""}%
+
+%TOPICCRE%NOP%ATE{ topic="CreateNewWebLog" template="%TCAOWEB%/Installs.CreateNewWebLog" }%
+%TOPICCRE%NOP%ATE{ topic="WebLogForm" template="%TCAOWEB%/Installs.WebLogForm" }%
+%TOPICCRE%NOP%ATE{ topic="WebLogLinkList" template="%TCAOWEB%/Installs.WebLogLinkList" }%
+
+<!-- Optional Topic Settings
+To enable any of these settings, replace the explanation with the value you want and remove the "#" before "Set". 
+   * Set CLASS_DESCRIPTION = <b><i>Web log entries for the %BASEWEB% web.  </b></i>
+   * Set LISTFORMAT = %TCAOWEB%.RenderBlogList
+   * Set INITSORT = createdate
+   * Set INITLIMIT = 10
+   * Set TOPICTYPE = WebLog
+   * Set FACETS = %FORMFIELD{"Facets" topic="%BASEWEB%.%BASETOPIC%"}%
+   * Set HELPTOPIC = %TCAOWEB%.WebLogHelp
+-->
+
+%INCLUDE{"%TCAOWEB%.RenderClassificationTopic" remote="on" }%
+
+<div class="twikiHidden">
+You can modify the options for creating new topics of this type by changing the parameters to RenderTopicCreator. See that topic for more info.
+%STARTSECTION{name="new" type="section"}%
+%INCLUDE{"%TCAOWEB%.CreateNewWebLog" }%
+%ENDSECTION{name="new" type="section"}%
+</div>
+
+<!-- Topic Permissions
+	* Set ALLOWTOPICCHANGE = %MAINWEB%.ModeratorGroup
+	* Set ALLOWTOPICRENAME = %MAINWEB%.ModeratorGroup
+-->
+
+
+%META:FORM{name="TopicClassForm"}%
+%META:FIELD{name="Classification" attributes="" title="Classification" value="TopicType"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Web Logs"}%

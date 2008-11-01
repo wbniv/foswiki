@@ -1,0 +1,74 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1168436605" format="1.1" reprev="1.4" version="1.4"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Further Development
+   * Is there a way to filter out the webs that already have TCAO installed?
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+%FORMFIELD{"Summary"}%
+
+---+++++ Parameters
+   * None
+
+---+++++ Css
+   * None
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%
+---++ Install %TWIKIWEB%.TopicClassificationAddOn into a web
+
+Use the following form to install the core %TWIKIWEB%.TopicClassificationAddOn components to an existing web.
+
+<div class="twikiFormSteps">
+<div class="twikiFormStep">
+<script type="text/javascript">
+function setWeb(theWeb) {
+   document.installTCAO.topic.value = theWeb + ".TopicClassification";
+}
+</script>
+<form name="installTCAO" action="%SCRIPTURL{save}%/" >
+<input type="hidden" name="templatetopic" value="%TCAOWEB%/Installs.TopicClassification" />
+<input type="hidden" name="topic" value="TopicClassification" />
+*Select web to install !TopicClassification framework:* <select name="selectWeb" onchange="setWeb(this.value);" ><option> Select web... </option>%WEBLIST{"<option>$name</option>" separator=" " }% </select> %BR% 
+<input type="submit" value=" Install !TopicClassificationAddOn " /> <br /> _You will be sent immediately to the !TopicClassification topic in the choosen web and presented further instructions for setting up TCAO within the web._ 
+</form>
+</div><!--/twikiFormStep-->
+</div><!--/twikiFormSteps-->
+%STOPINCLUDE%
+</verbatim>
+
+<!-- interrupt glue -->
+
+---++ Test
+<div class="alt">
+%DBCALL{"%TOPIC%"}%
+</div>
+
+%DBCALL{"%APPLIB%.RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+(C) 2006 LynnwoodBrown@Skyloom.com
+
+%DBCALL{"%APPLIB%.GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+
+<!--
+   * Set SIDEBAR = TopicType
+   * Set SIDEBARARG = TopicFunction
+-->
+
+
+%META:FORM{name="TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="SubjectArea" attributes="" title="SubjectArea" value="TcaoAdmin"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Provides form for installing core TCAO infrastructure to a web."}%
+%META:REVCOMMENT{ncomments="0"}%

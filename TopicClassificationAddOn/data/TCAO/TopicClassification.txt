@@ -1,0 +1,23 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1171995736" format="1.1" version="1.6"}%
+%META:TOPICPARENT{}%
+_This topic provides the general overview of organizational framework provided by TopicClassificationAddOn. It is included in the %TOPIC% topic in each web where TCAO is installed._
+
+%STARTINCLUDE%
+---++ !TopicClassification in the <nop>%BASEWEB% Web
+
+Content within the <nop>%BASEWEB% web is organized using the following !TopicClassifications:
+%SEARCH{ "[C]lassification.*value\=.*\b[C]lassification\b" web="%BASEWEB%" type="regex" nonoise="on" order="topic" format="	* [[$web.$topic][$percntSPACEOUT{$topic}$percnt]] - <noautolink>$formfield(Summary) </noautolink>$n()$percntSEARCH{\"[C]lassification.*value\=.*\b$topic\b\" type=\"regex\" format=\"      * [[$dollarweb.$dollartopic][$dollarpercntSPACEOUT{$dollartopic}$dollarpercnt]] - <noautolink>$dollarformfield(Summary)</noautolink>\" nonoise=\"on\" separator=\"$dollarn\" }$nop%"}% 
+
+*Using TopicClassification:*  
+   * To _organize your topics_ using %BASEWEB%.TopicClassification, simply use the %BASEWEB%.CreateNewTopic "wizard."
+   * Visit %BASEWEB%.TopicTree to view a graphic presentation of the !TopicClassification framework.
+   
+%STOPINCLUDE%
+
+%META:FORM{name="TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="MasterTopic"}%
+%META:FIELD{name="SubjectArea" attributes="" title="SubjectArea" value=""}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="The basic overview of how TCAO organizes content within a web."}%
+%META:REVCOMMENT{ncomments="0"}%
+%META:PREFERENCE{name="ALLOWTOPICCHANGE" title="ALLOWTOPICCHANGE" type="Set" value="%25MAINWEB%25.TWikiAdminGroup"}%
+%META:PREFERENCE{name="ALLOWTOPICRENAME" title="ALLOWTOPICRENAME" type="Set" value="%25MAINWEB%25.TWikiAdminGroup"}%

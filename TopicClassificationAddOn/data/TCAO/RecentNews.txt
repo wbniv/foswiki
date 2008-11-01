@@ -1,0 +1,22 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1168444219" format="1.1" version="1.3"}%
+%META:TOPICPARENT{name="WebHome"}%
+---++ %SPACEOUT{%TOPIC%}% Master Topic
+%FORMFIELD{"Summary"}%
+
+%STARTINCLUDE%
+---++++ Recent %BASEWEB% Web News
+%SEARCH{"[T]opicType.*value\=.*[N]ewsItem" web="%BASEWEB%" regex="on" casesensitive="on" format="   * *<noautolink>$formfield(Summary)</noautolink>* <span class=\"twikiSmall\"> _(Modified by $wikiusername on $date)_ </span>- $summary(noheader) _[[$web.$topic][Read more...]]_ <br>" nosearch="on" nototal="on" order="created" reverse="on" limit="10" }%
+
+---++++ Recent news from other Webs
+
+%SEARCH{"[T]opicType.*value\=.*[N]ewsItem"}\%" web="all,-%BASEWEB%" regex="on" casesensitive="on" format="   * $web: *<noautolink>$formfield(Summary)* </noautolink> <span class=\"twikiSmall\"> _(Modified by $wikiusername on $date)_ </span> - $summary(noheader) _[[$web.$topic][Read more...]]_ <br>" nosearch="on" nototal="on" order="created" reverse="on" limit="10" }%
+
+See also: [[%BASEWEB%.NewsItem][All News for %BASEWEB%]] (includes filtering by %BASEWEB%.SubjectArea) and [[%BASEWEB%.AllNews][All News for %WIKITOOLNAME%]]
+
+_Click [[%SCRIPTURL%/view%SCRIPTSUFFIX%/%BASEWEB%/CreateNewTopic?type=NewsItem&step=two][here]] to create a new %BASEWEB%.NewsItem for %BASEWEB% web._
+%STOPINCLUDE%
+
+%META:FORM{name="TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="MasterTopic"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Used by !NewsItem TopicType, listing 5 most recent news topics in all webs."}%
+%META:REVCOMMENT{ncomments="0"}%

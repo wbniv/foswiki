@@ -1,0 +1,15 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1164173217" format="1.1" reprev="1.2" version="1.2"}%
+---+ %TOPIC% for the <nop>%WEB% web
+
+| *Name:*| *Type:* | *Size:* | *Values:* | *Tooltip message:* |
+| TopicType| label| 1 |   | Identifies the type of topic this is. |
+| Summary   | text   | 50  |   | Short summary of the BugItem.  |
+| Priority   | select | 1 | Normal, Enhancement, High, Urgent  | How pressing the item is.  |
+| Application | select  | 1 | %DBQUERY{"Classification = 'Application'" format="$topic" separator=", "}%   | The application this item refers to.  |
+| Version  | text  | 10 |   | Which version of an application this BugItem applies to.  |
+| Status  | select | 1 | New, Actioning, Waiting for feedback, Waiting for release, Closed, Discarded  | Current status of item.  |
+| Related topics | text  | 50 |   | Any related BugItems or other topics.    |
+
+Related Topic: TopicClassification, WebPreferences, %TWIKIWEB%.TWikiForms
+
+%META:REVCOMMENT{ncomments="0"}%

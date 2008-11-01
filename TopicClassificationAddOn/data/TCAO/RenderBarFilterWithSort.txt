@@ -1,0 +1,87 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1173339440" format="1.1" reprev="1.15" version="1.15"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+%RED%TODO%ENDCOLOR%
+
+---+++++ Parameters
+   * FACETS - %RED%Required%ENDCOLOR% Specify what "facets" in include as filters. Defaults to the contents of "Facets" field in base topic.
+   * INITSORT -%RED%Required%ENDCOLOR%  Initial sort. set to either "created" or "modified"
+   * INITLIMIT - %RED%Required%ENDCOLOR%  Initial results # limit. Set to 10, 20, 50, 100, or all.
+   * Note: if you are using this in conjunction with RenderSearchString, you can simplify things by defining these parameters within the base topic.
+
+---+++++ Css
+   * 
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%<noautolink>
+#FilterBar
+<form name="filterList" action="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%BASEWEB%/%BASETOPIC%#FilterBar" >
+~~~     <div style="padding:.5em .5em 2em .5em;color:#666;background-color:#FCF8EC;font-size:94%;margin:0 0 0 0;">
+~~~     <div class="twikiLeft">
+~~~     *Sort by:*  <select name="sort" onchange="submit();" > 
+*~~       <option value="modified" %IFDEFINED{"%URLPARAM{"sort" default="%INITSORT%"}%" as="modified" then="selected" glue="off"}% >
+*~~                Last Modified</option>
+*~~        <option value="name" %IFDEFINED{"%URLPARAM{"sort" default="%INITSORT%"}%" as="name" then="selected" glue="off"}% >
+*~~                Title</option>
+*~~       <option value="date" %IFDEFINED{"%URLPARAM{"sort" default="%INITSORT%"}%" as="date" then="selected" glue="off"}% >
+*~~                Date Created</option>
+*~~       <option value="author" %IFDEFINED{"%URLPARAM{"sort" default="%INITSORT%"}%" as="author" then="selected" glue="off"}% >
+*~~                Author</option>
+~~~      
+%~~     FORMATLIST{"%FACETS%" 
+~~~          separator=" "
+~~~          format="<option $percntIFDEFINED{\"%URLPARAM{"sort" default="%INITSORT%"}%\" as=\"$1\" then=\"selected\" glue=\"off\"}$percnt >
+*~~               $1</option>" 
+~~~      }%  
+*~~     </select>&nbsp;&nbsp;
+%~~   IFDEFINEDTHEN{"%FACETS%" glue="off"  }%  <b>Filter by:</b> 
+~~~  
+%~~     FORMATLIST{"%FACETS%"
+~~~         separator=" " 
+~~~       format="<select name=\"$1\" size=\"1\"  onchange=\"submit();\" > <option value=\"\">$percntIF{\"$'URLPARAM{$1}' != ''\" then=\"All $1s\" else=\"<nop>$1...\" }$percnt</option> 
+~~~           $percntDBQUERY{\"$percntFORMFIELD{\"Classification\" topic=\"%BASEWEB%.$1\" }$percnt='$1'\" web=\"%BASEWEB%\" 
+~~~              format=\"<option $dollarpercntIF{\\"$'URLPARAM{$1}'='$topic'\\" then=\\"selected\\" else=\\" \\"}$dollarpercnt>$topic</option>\" 
+~~~       separator=\" \" }$percnt</select>" 
+~~~      }%  
+~~~      %FIDEFINED%
+~~~     </div><!-- twikiLeft -->
+*~~     <div class="twikiRight">
+~~~     *Limit To:* <select name="limit" onchange="submit();" > 
+~~~         <option %IFDEFINED{"%URLPARAM{"limit" default="%INITLIMIT%"}%" as="10" then="selected" glue="off"}% >10</option>
+~~~         <option %IFDEFINED{"%URLPARAM{"limit" default="%INITLIMIT%"}%" as="20" then="selected" glue="off"}% >20</option>
+~~~         <option %IFDEFINED{"%URLPARAM{"limit" default="%INITLIMIT%"}%" as="50" then="selected" glue="off"}%>50</option>
+~~~         <option %IFDEFINED{"%URLPARAM{"limit" default="%INITLIMIT%"}%" as="100" then="selected" glue="off"}%>100</option>
+~~~         <option %IFDEFINED{"%URLPARAM{"limit" default="%INITLIMIT%"}%" as="all" then="selected" glue="off"}%>all</option>
+~~~    </select> </div> 
+*~~    </form></div><!-- bar styling --></noautolink><div class="twikiClear"></div>%STOPINCLUDE%
+</verbatim>
+
+<!-- interrupt glue -->
+
+---++ Test
+
+%INCLUDE{"%TOPIC%" FACETS="TopicType, SubjectArea" INITSORT="modified" }%
+
+<!-- interrupt glue -->
+%DBCALL{"RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+(C) 2006 LynnwoodBrown@Skyloom.com
+
+%DBCALL{"GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+
+%META:FORM{name="TCAO.TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="SubjectArea" attributes="" title="SubjectArea" value=""}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Bar with sort and filter options"}%

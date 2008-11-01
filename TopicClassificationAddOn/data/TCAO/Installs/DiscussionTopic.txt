@@ -1,0 +1,27 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1162916315" format="1.1" reprev="1.11" version="1.11"}%
+%META:TOPICPARENT{name="WebHome"}%
+%TOPICCRE%NOP%ATE{ topic="%TOPIC%Template" template="%TCAOWEB%/Installs.%TOPIC%Template" }%
+
+<!-- Optional Topic Settings
+To enable any of these settings, replace the explanation with the value you want and remove the "#" before "Set". 
+   * #Set CLASS_DESCRIPTION = Optional introductory information about the particular category.
+   * Set ADD_FILTER = %TCAOWEB%.RenderStandardFilter
+   * #Set SEARCH_FORMAT = Optional custom format for search results. Defaults to bulleted list with topic name and the !Summary formfield.
+   * #Set HEADER_FORMAT = Optional custom format for search results header. Defaults to empty header.
+   * #Set FOOTER_FORMAT = Optional custom format for search results footer. Defaults to "Number of topics found = $count".
+   * #Set SEARCH_ORDER = Option for changing the default order for the search. Defaults to "name."
+   * #Set SEARCH_REVERSE = Option to reverse the search order. Defaults to "off."
+-->
+%COMMENT{type="removeable_help" remove="on"}%
+%INCLUDE{"%TCAOWEB%.RenderClassificationTopic" }%
+
+<div class="twikiHidden">You can modify the options for creating new topics of this type by changing the parameters to RenderTopicCreator. See that topic for more info.%STARTSECTION{name="new" type="section"}%%DBCALL{"%TCAOWEB%.RenderTopicCreator"  TEMPLATE="%TOPIC%Template" TYPE="%TOPIC%"  FACETS="%FORMFIELD{Facets}%" TOPICSUMMARY="One-line summary/headline for question or proposition being discussed." EXTRA="| *Opening statement for discussion:* | <textarea name=statement cols=40 rows=4></textarea> %BR% <em>You can add expand of this after the topic is created.</em> |" }%%ENDSECTION{name="new" type="section"}%</div><!-- Topic Permissions
+	* Set ALLOWTOPICCHANGE = %MAINWEB%.ModeratorGroup
+	* Set ALLOWTOPICRENAME = %MAINWEB%.ModeratorGroup
+-->
+ 
+
+%META:FORM{name="TopicClassForm"}%
+%META:FIELD{name="Classification" attributes="" title="Classification" value="TopicType"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="General discussion topics related to the %25BASEWEB%25 web."}%
+%META:FIELD{name="Facets" attributes="" title="Facets" value="SubjectArea"}%

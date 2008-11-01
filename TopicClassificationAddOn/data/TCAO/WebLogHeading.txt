@@ -1,0 +1,16 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1168443043" format="1.1" version="1.4"}%
+---++ %SPACEOUT{%TOPIC%}%
+
+Provides formatting for heading of !WebLog topics.
+
+%STARTINCLUDE%
+---++!! %FORMFIELD{"Summary" topic="%BASEWEB%.%BASETOPIC%" }%
+<font face="arial,helvetica" size="1"><b>Posted on %REVINFO{format="$date by $wikiusername" web="%BASEWEB%" topic="%BASETOPIC%" rev="1.1"}%</b> </font> %BR%
+%STOPINCLUDE%
+
+%META:FORM{name="TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="MasterTopic"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Provides formatting for heading of !WebLog topics."}%
+%META:REVCOMMENT{comment_1=" " minor_1="1" ncomments="1" rev_1="3" t_1="1167174229"}%
+%META:PREFERENCE{name="ALLOWTOPICCHANGE" title="ALLOWTOPICCHANGE" type="Set" value="%2525MAINWEB%2525.TWikiAdminGroup"}%
+%META:PREFERENCE{name="ALLOWTOPICRENAME" title="ALLOWTOPICRENAME" type="Set" value="%2525MAINWEB%2525.TWikiAdminGroup"}%

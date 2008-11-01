@@ -1,0 +1,15 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1162916413" format="1.1" version="1.5"}%
+---++ %URLPA%NOP%RAM{"Summary"}%
+
+%URLPA%NOP%RAM{"statement"}%
+
+-- %WIKIUS%NOP%ERNAME% - %DA%NOP%TE%
+
+%DBCALL{"%TCAOWEB%.RenderCommentCountBar" warn="off"}% %COMMENT{type="comment"}%
+
+%STARTSECTION{type="templateonly"}% 
+<!-- Topic Permissions
+	* Set ALLOWTOPICCHANGE = %MAINWEB%.ModeratorGroup
+	* Set ALLOWTOPICRENAME = %MAINWEB%.ModeratorGroup
+-->
+%ENDSECTION{type="templateonly"}%

@@ -1,0 +1,30 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1171575696" format="1.1" reprev="1.6" version="1.6"}%
+%META:TOPICPARENT{name="TopicType"}%
+<!-- Optional Topic Settings
+To enable any of these settings, replace the explanation with the value you want and remove the "#" before "Set". 
+   * Set CLASS_DESCRIPTION = %FORMFIELD{"Summary" topic="%BASEWEB%.%BASETOPIC%"}%
+   * Set SEARCH_FORMAT = | [[$web.$topic][$percntSPACEOUT{$topic}$percnt]]  | <noautolink>$formfield(Summary)</noautolink>  |
+   * Set HEADER_FORMAT = | *<nop>TopicFunction* | *Description* |$n
+   * Set INITSORT = name
+-->
+
+%INCLUDE{"%TCAOWEB%.RenderClassificationTopic" }%
+
+See also: %TOPIC%Template
+
+<div class="twikiHidden">
+You can modify the options for creating new topics of this type by changing the parameters to RenderTopicCreator. See that topic for more info.
+%STARTSECTION{name="new" type="section"}%
+%DBCALL{"%TCAOWEB%.RenderTopicCreator"  TEMPLATE="%TOPIC%Template" TYPE="%TOPIC%"  VALUE="Render..." TOPICSUMMARY="Summarize what this TopicFunction does." }%
+%ENDSECTION{name="new" type="section"}%
+</div>
+<!-- Topic Permissions
+	* Set ALLOWTOPICCHANGE = %MAINWEB%.ModeratorGroup
+	* Set ALLOWTOPICRENAME = %MAINWEB%.ModeratorGroup
+-->
+
+%META:FORM{name="TopicClassForm"}%
+%META:FIELD{name="Classification" attributes="" title="Classification" value="TopicType"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="TopicType of topics to be called by a (parameterized) INCLUDE or DBCALL"}%
+%META:FIELD{name="Facets" attributes="" title="Facets" value=""}%
+%META:REVCOMMENT{ncomments="0"}%

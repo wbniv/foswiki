@@ -1,0 +1,68 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1167781771" format="1.1" reprev="1.2" version="1.2"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+%RED%TODO%ENDCOLOR%
+
+---+++++ Parameters
+   * DESCRIPTOR - Optional - Adds a adjective to "Comment." This is useful if you have more than one kind of comment in a topic.
+   * TARGET - Optional - Specify the target where comments are added. Defaults to the BASETOPIC. Use to add comments to a parallel "discuss" topic. 
+
+---+++++ Css
+   * 
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+---+++ Begin Comments section
+This section preceeds the comments.
+<verbatim>
+%STARTINCLUDE%
+---+++!! %IFDEFINED{"%DESCRIPTOR%" then="$test" glue="off"}% Comments
+
+%INCLUDE{"%TCAOWEB%.RenderCommentCountBar"  warn="off" DESCRIPTOR="%DESCRIPTOR%" }%
+%IFDEFINEDTHEN{"%RESTRICTCOMMENTS%" as="yes" glue="off"}%
+%~~    IFDEFINED{"%WIKINAME%" 
+~~~        as="TWikiGuest" 
+~~~        then=" _Please $percntLOGIN$percnt or [[$percntTWIKIWEB$percnt.TWikiRegistration][register]] to post comments._ " 
+~~~        else="$percntCOMMENT{type=\"comment\" 
+~~~             target=\"$percntIFDEFINED{\"%TARGET%\" then=\"$test\" else=\"%BASEWEB%.%BASETOPIC%#AddComment\" glue=\"off\" }$percnt }$percnt" 
+~~~    }%
+%ELSEDEFINED%
+%COMMENT{type="comment" target="%IFDEFINED{"%TARGET%" then="$test" else="%BASEWEB%.%BASETOPIC%#AddComment" glue="off" }%" }%
+%FIDEFINED%
+
+
+%STOPINCLUDE%
+
+</verbatim>
+<!-- interrupt glue -->
+
+---++ Test
+<div class="alt">
+%DBCALL{"%TOPIC%" DESCRIPTOR="User" }%
+</div>
+
+%DBCALL{"%APPLIB%.RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+(C) 2006 LynnwoodBrown@Skyloom.com
+
+%DBCALL{"%APPLIB%.GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+
+<!--
+   * Set SIDEBAR = TopicType
+   * Set SIDEBARARG = TopicFunction
+-->
+
+
+%META:FORM{name="TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Creates a section to add comments to a topic."}%

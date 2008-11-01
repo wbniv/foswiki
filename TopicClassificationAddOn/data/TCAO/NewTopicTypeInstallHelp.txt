@@ -1,0 +1,17 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1167771380" format="1.1" version="1.1"}%
+---+!! %SPACEOUT{%TOPIC%}%
+
+This topic the generic help message after new classifications have been added to a web.
+
+---++ Post-install help
+
+The following instructions are displayed when new Classification topics are added to a web unless a HELPTOPIC variable is defined in the specific Classification topic.
+
+%STARTINCLUDE%
+   * <a href="%SCRIPTURL{edit}%/%BASEWEB%.%BASETOPIC%Template?t=%GMTIME{"$epoch"}%" target="_blank" >Edit <nop>%BASETOPIC%Template</a>  (opens new window) and define default content for new <nop>%BASETOPIC% topics.
+%STOPINCLUDE%
+
+%META:FORM{name="TCAO.TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="HelpTopic"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Post-installation help for new TopicTypes."}%
+

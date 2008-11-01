@@ -1,0 +1,31 @@
+%META:TOPICINFO{author="TWikiContributor" date="1171687135" format="1.1" reprev="1.2" version="1.2"}%
+%META:TOPICPARENT{name="TopicClassification"}%
+%STARTINCLUDE%
+---++ <nop>%TOPIC% Using <nop>%URLPARAM{"root" default="(no root selected)"}% as Root
+
+<div class="twikiRight" style="width:30%;border:2px dotted %WEBBGCOLOR%;padding:1em;margin:0.5em;">
+<noautolink>
+*Select Other Roots* %BR%
+<form name="selectType" action="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%BASEWEB%/%BASETOPIC%" >
+<select name="root" size="1" onchange="submit();">
+<option value='#'><Nop>%URLPARAM{"root" default="Select..."}%</option>
+<option>WebHome</option>
+<option><Nop>TopicClassification</option>
+%~~   DBQUERY{"Classification = 'Classification'" web="%BASEWEB%" 
+~~~         format="<option>$topic</option> 
+~~~               $percntDBQUERY{\"Classification = '$topic'\" web=\"%BASEWEB%\" 
+~~~                    format=\"<option value=$dollartopic>- <nop>$dollartopic</option>\" }$nop%" 
+~~~    }%
+</select>
+</form>
+</noautolink>
+</div>
+%STOPINCLUDE%
+
+%TREEVIEW{topic="%URLPARAM{"root" default="WebHome"}%" web="%BASEWEB%" stoplevel="5" formatting="imageoutline:thread"}%
+
+
+%META:FORM{name="TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="MasterTopic"}%
+%META:FIELD{name="SubjectArea" attributes="" title="SubjectArea" value="TcaoUse"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Displays topic parent-child relationships as tree."}%

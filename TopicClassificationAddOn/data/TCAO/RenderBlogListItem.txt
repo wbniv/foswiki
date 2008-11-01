@@ -1,0 +1,50 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1167760385" format="1.1" reprev="1.4" version="1.4"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+
+---+++++ Parameters
+   * BLOGENTRY - Required - Specifies the !WebLog topic to be displayed. 
+   * BLOGWEB - SRequired -pecifies the web where the !WebLog topic is located.
+
+---+++++ Css
+   * None
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%
+<hr align="left">
+---++ <noautolink>[[%BLOGWEB%.%BLOGENTRY%][%FORMFIELD{"Summary" topic="%BLOGWEB%.%BLOGENTRY%"}%]] </noautolink>
+<span class="twikiGrayText twikiSmallish">Posted on %REVINFO{"$date by $wikiusername" rev="1.1" web="%BLOGWEB%" topic="%BLOGENTRY%"}% <noautolink>%FORMFIELD{"SubjectArea" topic="%BLOGWEB%.%BLOGENTRY%" format=" under $value"}%</noautolink> with %SEARCH{"%BLOGENTRY%" nonoise="on" scope="topic" web="%BLOGWEB%" format="$count(.*?([C]OMMENT_TAG) .*) [[%BLOGWEB%.%BLOGENTRY%#Comments_and_Discussion][comment(s)]]"}%. </span>  
+
+%INCLUDE{"%BLOGWEB%.%BLOGENTRY%" section="introtext"}% 
+_[[%BLOGWEB%.%BLOGENTRY%][Read more...]]_
+%STOPINCLUDE%
+</verbatim>
+
+<!-- interrupt glue -->
+
+---++ Test
+<div class="alt">
+%DBCALL{"%TOPIC%"}%
+</div>
+
+%DBCALL{"RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+(C) 2006 LynnwoodBrown@Skyloom.com
+
+%DBCALL{"GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+
+%META:FORM{name="TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="For rendering an individual !WebLog entry within RenderBlogList."}%

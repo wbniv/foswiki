@@ -1,0 +1,18 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1168438654" format="1.1" version="1.6"}%
+---+ %SPACEOUT{%TOPIC%}%
+__This master topic defines display of a list of all links referenced in !WebLog entries.__
+
+%STARTINCLUDE%
+---+!! <nop>%BASETOPIC%
+
+_This is an list of the weblinks recorded in WebLogs, grouped by SubjectArea. Clicking on the link title takes you directly to external web site._
+
+%DBCALL{"%TCAOWEB%.RenderTableOfContent" TOGGLE="show" }%
+
+%DBQUERY{"Classification = 'SubjectArea'" web="%BASEWEB%" format="---++ $web.$topic $n$percntDBQUERY{\"TopicType = 'WebLog' AND SubjectArea = '$topic'\" web=\"$percntBASEWEB$percnt\" format=\"---+++++!! [[$dollarformfield(Url)][$dollarformfield(Title)]] $dollarn $dollarexpand(_sectionintrotext) 
+~~~  _[[$dollarweb.$dollartopic][read more...]]_ \" }$percnt" }%
+%STOPINCLUDE%
+
+%META:FORM{name="TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="MasterTopic"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Used with <nop>WebLog TopicType"}%

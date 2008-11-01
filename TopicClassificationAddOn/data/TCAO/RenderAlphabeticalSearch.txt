@@ -1,0 +1,28 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1159892077" format="1.1" version="1.2"}%
+%META:TOPICPARENT{name="TcaoUse"}%
+---+!! %TOPIC%
+%FORMFIELD{"Summary"}%
+
+At some point, I anticipate adding the search results within this TopicFunction, but for now, it just provides the links.
+
+---++ Changelog
+   * %MAINWEB%.LynnwoodBrown - 17 Jun 2006: initial version
+
+---++ Parameters
+   * No parameters
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%
+<a href="%SCRIPTURLPATH{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?alpha=A.*">A</a><span class="twikiSeparator"> | </span><a href="%SCRIPTURLPATH{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?alpha=B.*">B</a><span class="twikiSeparator"> | </span><a href="%SCRIPTURLPATH{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?alpha=C.*">C</a><span class="twikiSeparator"> | </span><a href="%SCRIPTURLPATH{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?alpha=D.*">D</a><span class="twikiSeparator"> | </span><a href="%SCRIPTURLPATH{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?alpha=E.*">E</a><span class="twikiSeparator"> | </span><a href="%SCRIPTURLPATH{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?alpha=F.*">F</a><span class="twikiSeparator"> | </span><a href="%SCRIPTURLPATH{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?alpha=G.*">G</a><span class="twikiSeparator"> | </span><a href="%SCRIPTURLPATH{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?alpha=H.*">H</a><span class="twikiSeparator"> | </span><a href="%SCRIPTURLPATH{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?alpha=I.*">I</a><span class="twikiSeparator"> | </span><a href="%SCRIPTURLPATH{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?alpha=J.*">J</a><span class="twikiSeparator"> | </span><a href="%SCRIPTURLPATH{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?alpha=K.*">K</a><span class="twikiSeparator"> | </span><a href="%SCRIPTURLPATH{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?alpha=L.*">L</a><span class="twikiSeparator"> | </span><a href="%SCRIPTURLPATH{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?alpha=M.*">M</a><span class="twikiSeparator"> | </span><a href="%SCRIPTURLPATH{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?alpha=N.*">N</a><span class="twikiSeparator"> | </span><a href="%SCRIPTURLPATH{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?alpha=O.*">O</a><span class="twikiSeparator"> | </span><a href="%SCRIPTURLPATH{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?alpha=P.*">P</a><span class="twikiSeparator"> | </span><a href="%SCRIPTURLPATH{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?alpha=Q.*">Q</a><span class="twikiSeparator"> | </span><a href="%SCRIPTURLPATH{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?alpha=R.*">R</a><span class="twikiSeparator"> | </span><a href="%SCRIPTURLPATH{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?alpha=S.*">S</a><span class="twikiSeparator"> | </span><a href="%SCRIPTURLPATH{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?alpha=T.*">T</a><span class="twikiSeparator"> | </span><a href="%SCRIPTURLPATH{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?alpha=U.*">U</a><span class="twikiSeparator"> | </span><a href="%SCRIPTURLPATH{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?alpha=V.*">V</a><span class="twikiSeparator"> | </span><a href="%SCRIPTURLPATH{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?alpha=W.*">W</a><span class="twikiSeparator"> | </span><a href="%SCRIPTURLPATH{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?alpha=X.*">X</a><span class="twikiSeparator"> | </span><a href="%SCRIPTURLPATH{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?alpha=Y.*">Y</a><span class="twikiSeparator"> | </span><a href="%SCRIPTURLPATH{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?alpha=Z.*">Z</a><span class="twikiSeparator"> | </span><a href="%SCRIPTURLPATH{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?alpha=.*">View All</a>
+%STOPINCLUDE%
+</verbatim>
+
+---++ Test
+%DBCALL{"%TOPIC%"}%
+
+%META:FORM{name="TCAO.WebForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="SubjectArea" attributes="" title="SubjectArea" value="TcaoUse"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Provides A-Z links to generate alphabetical list."}%
+%META:REVCOMMENT{ncomments="0"}%

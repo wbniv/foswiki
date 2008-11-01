@@ -1,0 +1,58 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1171680857" format="1.1" version="1.2"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+%RED%TODO%ENDCOLOR%
+
+---+++++ Parameters
+
+
+---+++++ Css
+   * 
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%<h2 style="padding: 2px 4px;color: #fff;background: #888;font-size: .9em;border-bottom: 1px solid #666;margin: 0;">
+%IFDEFINEDTHEN{"%SEARCH{"%BASETOPIC%" scope="topic" web="%BASEWEB%" nonoise="on" format="$count(.*?([C]OMMENT_TAG) .*)"}%" as="[1]" glue="off" }%
+1 comment so far
+%ELSIFDEFINED{"%SEARCH{"%BASETOPIC%" scope="topic" web="%BASEWEB%" nonoise="on" format="$count(.*?([C]OMMENT_TAG) .*)"}%" as="[123456789].*" glue="off" }%
+$test comments so far.
+%ELSEDEFINED%
+Be the first to post a comment.
+%FIDEFINED%</h2>%STOPINCLUDE%
+</verbatim>
+
+<!-- interrupt glue -->
+
+---++ Test
+<div class="alt">
+%DBCALL{"%TOPIC%"}%
+</div>
+
+%DBCALL{"RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+(C) 2006 LynnwoodBrown@Skyloom.com
+
+%DBCALL{"GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+
+<!--
+   * Set SIDEBAR = TopicType
+   * Set SIDEBARARG = TopicFunction
+-->
+
+
+%META:FORM{name="TCAO.TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Counts comments in a topic by counting at special tag"}%
+%META:TOPICMOVED{by="LynnwoodBrown" date="1171680857" from="TCAO.RenderCommentCount" to="TCAO.RenderCommentCountBar"}%
+%META:REVCOMMENT{ncomments="0"}%

@@ -1,0 +1,18 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1164258737" format="1.1" reprev="1.3" version="1.3"}%
+%META:TOPICPARENT{name="BugItem"}%
+%INCLUDE{BugItemHeader}%
+
+%URLPA%NOP%RAM{description}%
+
+-- %WIKIUS%NOP%ERNAME% - %DA%NOP%TE%
+
+%COMMENT{type="discuss"}%
+
+%STARTSE%NOP%CTION{type="templateonly"}% 
+<!-- Topic Permissions
+	* Set ALLOWTOPICCHANGE = %MAINWEB%.ModeratorGroup
+	* Set ALLOWTOPICRENAME = %MAINWEB%.ModeratorGroup
+-->
+%ENDSEC%NOP%TION{type="templateonly"}%
+
+%META:REVCOMMENT{ncomments="0"}%

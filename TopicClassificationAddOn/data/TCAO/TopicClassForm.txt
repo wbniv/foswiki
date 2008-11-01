@@ -1,0 +1,17 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1167783863" format="1.1" version="1.4"}%
+---+ %TOPIC% for the <nop>%WEB% web
+
+| *Name:*| *Type:* | *Size:* | *Values:* | *Tooltip message:* |
+| Classification | label| 1 |   | Classification group this Category belongs to. |
+| Summary   | text   | 50  |   | Short summary or headline of topic.  |
+| Facets | text  | 50 |   | Classifications that cross-reference to this Classification.    |
+
+Related Topic: TopicClassification, WebPreferences, %TWIKIWEB%.TWikiForms
+
+<!-- Topic Permissions
+   * Set ALLOWTOPICCHANGE = %MAINWEB%.ModeratorGroup
+   * Set ALLOWTOPICRENAME = %MAINWEB%.ModeratorGroup
+-->
+
+%META:TOPICMOVED{by="LynnwoodBrown" date="1159852501" from="TCAO2.TopicTypeForm" to="TCAO2.TopicClassForm"}%
+%META:REVCOMMENT{ncomments="0"}%

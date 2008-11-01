@@ -1,0 +1,91 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1173332344" format="1.1" version="1.32"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+%TOPIC% is INCLUDED in Classification topics within the specific webs where TopicClassification is used. It includes a SEARCH to list all topics that have that classification as well as filtering by that classifications "facets."
+
+---+++++ Parameters
+
+The following parameters allow customization of how specific Classification topics are displayed. Most can be specified within the INCLUDE or DBCALL but in many cases, it is easier to define them within the base Classification topic. For convenience, all new Classification topics have these listed in a hidden section at the beginning of the topic.
+
+
+   * CLASS_DESCRIPTION - Optional introductory information about the particular category.
+   * CLASS_NAME - Optional designation of alternative reference for the Classification the current topic falls under. This provides for nested classifications.
+   * LISTFORMAT - Optional designation of topic that defines how the list of topics are displayed. Defaults to RenderTableSearchResults. RenderBlogList is an example of alternative format.
+   * INITSORT - Optionally set initial sort. Defaults to "modified".
+   * INITLIMIT - Optionally set initial limit to # of results. Defaults to "all".
+   * REVERSE - Optionally to reverse the search order. Defaults to "off."
+
+---+++++ Css
+   * None
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%
+<span class="twikiRight" style="margin:.25em 0 0 0;" /><form name="browseSubjects" action="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%BASEWEB%/" >
+<select name="subject" size="1" onchange="document.location=this.value;"> 
+<option>Jump to different <nop>%FORMFIELD{"%IFDEFINED{"%CLASS_NAME%" then="$test" else="Classification" glue="off"}%" topic="%BASEWEB%.%BASETOPIC%"}%...</option>
+~~~  
+%~~  DBQUERY{ "%IFDEFINED{"%CLASS_NAME%" then="$test" else="Classification" glue="off"}% 
+~~~           ='%FORMFIELD{"%IFDEFINED{"%CLASS_NAME%" then="$test" else="Classification" glue="off"}%" topic="%BASEWEB%.%BASETOPIC%"}%'" 
+~~~    web="%BASEWEB%"  
+~~~    exclude="%BASETOPIC%" 
+~~~    order="topic" 
+~~~    format= "<option>$topic</option>" 
+~~~  }% </select></form> </span>
+---++!! %SPACEOUT{%BASETOPIC%}%
+%IF{"defined CLASS_DESCRIPTION" then="%CLASS_DESCRIPTION%"}%
+%~~   IFDEFINED{"%FORMFIELD{"Classification" topic="%BASEWEB%.%BASETOPIC%"}%" 
+~~~         as="TopicType" 
+~~~         then="<p /><form method=\"link\" 
+~~~             action=\"$percntSCRIPTURL{view}$percnt/$percntBASEWEB$percnt/CreateNewTopic\">
+~~~             <input type=hidden name=type value=$percntBASETOPIC$percnt>
+~~~             <input type=hidden name=step value=two>
+~~~            <input type=hidden name=parent value=$percntBASETOPIC$percnt>
+~~~            <input type=\"submit\" class=\"twikiButton\" value=\"Create new <nop>$percntBASETOPIC$percnt \" />
+~~~            </form>" 
+~~~        glue="off"
+~~~    }%
+
+%IFDEFINEDTHEN{"%LISTFORMAT%" glue="off" }%
+%DBCALL{"%LISTFORMAT%" %IFDEFINED{"%FACET%" then="FACETS=\"$test\"" glue="off"}% remote="on"}%
+%ELSEDEFINED%
+%~~  DBCALL{"%TCAOWEB%.RenderTableSearchResults" 
+~~~       remote="on"
+~~~       FACETS="%FORMFIELD{"Facets" topic="%BASEWEB%.%BASETOPIC%"}%" 
+~~~       BASESEARCH="%IFDEFINED{"%CLASS_NAME%" 
+~~~               then="$test"
+~~~               else="%FORMFIELD{"Classification" topic="%BASEWEB%.%BASETOPIC%"}%"}%
+~~~             =~ '%BASETOPIC%'" 
+~~~  %FIDEFINED%
+_For more information on content organization within the *%BASEWEB%* web, see %BASEWEB%.TopicClassification._
+
+%STOPINCLUDE%
+</verbatim>
+
+<!-- interrupt glue -->
+
+---++ Test
+<div class="alt">
+%DBCALL{"%TOPIC%"}%
+</div>
+
+%DBCALL{"RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+(C) 2006 LynnwoodBrown@Skyloom.com
+
+%DBCALL{"GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+%META:FORM{name="TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="SubjectArea" attributes="" title="SubjectArea" value=""}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Renders general layout for !ClassificationTopics."}%

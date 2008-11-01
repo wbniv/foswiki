@@ -1,0 +1,12 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1161015272" format="1.1" version="1.4"}%
+%META:TOPICPARENT{name="TopicClassification"}%
+%INCLUDE{"%TCAOWEB%.RenderCreateNewTopic" }%
+
+<!-- Topic Permissions
+	* Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
+	* Set ALLOWTOPICRENAME = %MAINWEB%.TWikiAdminGroup
+-->
+
+
+%META:PREFERENCE{name="ALLOWTOPICCHANGE" title="ALLOWTOPICCHANGE" type="Set" value="%25MAINWEB%25.TWikiAdminGroup"}%
+%META:PREFERENCE{name="ALLOWTOPICRENAME" title="ALLOWTOPICRENAME" type="Set" value="%25MAINWEB%25.TWikiAdminGroup"}%

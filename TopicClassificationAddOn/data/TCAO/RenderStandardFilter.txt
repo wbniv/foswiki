@@ -1,0 +1,61 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1172273138" format="1.1" version="1.7"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+This TopicFunction renders a user interface for filtering a list of classified topics.
+
+---+++++ Parameters
+   * None
+
+---+++++ Css
+   * 
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%<div class=patternTopicAction>%TWISTY{id="topicfilters" showlink=" *Show list filters* " showimg="%ICONURLPATH{toggleopen-small}%"
+hidelink=" *Hide list filters* " hideimg="%ICONURLPATH{toggleclose-small}%" mode="div" remember="on"}%
+<noautolink>
+<form name="filterList" action="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%BASEWEB%/%BASETOPIC%" >
+%FORMATLIST{"%FORMFIELD{"Facets" topic="%BASEWEB%.%BASETOPIC%"}%" separator=" $n" format="|    Filter by $1: | <select name=\"$1\" size=\"1\"  > <option value=\"\">Select...</option> $percntDBQUERY{\"$percntFORMFIELD{\"Classification\" topic=\"%BASEWEB%.$1\" }$percnt='$1'\" web=\"%BASEWEB%\" format=\"<option $dollarpercntIF{\\"$'URLPARAM{$1}'='$topic'\\" then=\\"selected\\" else=\\" \\"}$dollarpercnt>$topic</option>\" separator=\" \" }$percnt</select>    | "}%
+|   Find word or phrase: | <input class="twikiInputField" type="text" name="string" value="%URLPARAM{"string"}%" size="35" />   |
+|   Number of results to display: | <select name="limit" size="1" > <option value='%URLPARAM{"limit" default="25" }%'>%URLPARAM{"limit" default="25" }%</option><option>50</option><option>100</option><option>200</option><option value="all">All</option></select>    |
+| <input type="submit" class="twikiSubmit" value='Apply Filter' >    ||
+</form>
+</noautolink>
+%ENDTWISTY%</div>%STOPINCLUDE%
+</verbatim>
+
+<!-- interrupt glue -->
+
+---++ Test
+<div class="alt">
+%DBCALL{"%TOPIC%"}%
+</div>
+
+%DBCALL{"RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+(C) 2006 LynnwoodBrown@Skyloom.com
+
+%DBCALL{"GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+
+<!--
+   * Set SIDEBAR = TopicType
+   * Set SIDEBARARG = TopicFunction
+-->
+
+
+%META:FORM{name="TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="SubjectArea" attributes="" title="SubjectArea" value=""}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Renders UI for filtering list of topics."}%
+%META:REVCOMMENT{comment_1=" " minor_1="1" ncomments="1" rev_1="4" t_1="1167671745"}%

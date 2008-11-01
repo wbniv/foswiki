@@ -1,0 +1,15 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1160083625" format="1.1" version="1.4"}%
+---+ %TOPIC% for the <nop>%WEB% web
+
+| *Name:*| *Type:* | *Size:* | *Values:* | *Tooltip message:* |
+| Classification | label| 1 |   | Classification group this Category belongs to. |
+| Summary   | text   | 50  |   | Short summary or headline of topic.  |
+| Facets | text  | 50 |   | Classifications that cross-reference to this Classification.    |
+
+Related Topic: TopicClassification, WebPreferences, %TWIKIWEB%.TWikiForms
+
+<!-- Topic Permissions
+   * Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
+   * Set ALLOWTOPICRENAME = %MAINWEB%.TWikiAdminGroup
+-->
+

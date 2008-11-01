@@ -1,0 +1,19 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1159892083" format="1.1" version="1.2"}%
+%DBCALL{"%TCAOWEB%.WebLogHeading" remote="on"}%
+[[%FORMFIELD{Url}%][%FORMFIELD{Title}%]]%BR%
+%STARTSECTION{"introtext"}%<!--start_introtext-->
+%URLPARAM{"entry"}%
+%ENDSECTION{"introtext"}%<!--end_introtext-->
+
+%STARTSECTION{"extendedtext"}%
+%URLPARAM{"extended"}%
+%STARTSECTION{"extendedtext"}%
+
+-- %WIKIUSERNAME% - %DATE%
+
+_Back to WebLog._
+
+%DBCALL{"%TCAOWEB%.RenderCommentCountBar" warn="off"}% 
+%COMMENT{type="comment"}%
+
+

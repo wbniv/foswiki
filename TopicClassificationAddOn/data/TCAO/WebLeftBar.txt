@@ -1,0 +1,14 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1169662767" format="1.1" version="1.3"}%
+%INCLUDE{"%IF{"context can_login" then="%TWIKIWEB%.WebLeftBarLogin"}%" warn="off"}%
+<div class="patternLeftBarContents">
+----
+   * <b>[[%INCLUDINGWEB%.%HOMETOPIC%][ %ICON{"home"}% <nop>%MAKETEXT{"[_1] Web" args="%INCLUDINGWEB%"}%]]</b>
+   * [[WebTopicList][ %ICON{"index"}% %MAKETEXT{"Index"}%]]
+   * [[%SCRIPTURL%/view/%WEB%/TopicTree?root=%BASETOPIC%][%ICON{indexlist}% TopicTree]]
+   * [[%SCRIPTURL%/view/%WEB%/CreateNewTopic?parent=%BASETOPIC%][%ICON{"newtopic"}% Create New Topic]]
+   * [[%INCLUDINGWEB%.WebSearch][ %ICON{"searchtopic"}% %MAKETEXT{"Search"}%]]
+   * [[WebChanges][ %ICON{"changes"}% %MAKETEXT{"Changes"}%]]
+   * [[WebPreferences][ %ICON{"wrench"}% %MAKETEXT{"Preferences"}%]]
+---
+%INCLUDE{ "%TWIKIWEB%.WebLeftBarWebsList" }%
+</div>

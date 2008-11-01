@@ -1,0 +1,38 @@
+%META:TOPICINFO{author="TWikiContributor" date="1191604623" format="1.1" reprev="1.2" version="1.2"}%
+---++ %SPACEOUT{%TOPIC%}%
+_This MasterTopic provide defines some sections of Task topics to minimize the amount of code use sees._
+
+---++ Task summary section
+This section defineds the top part of Task topics.
+%STARTSECTION{name="taskSummary" }%
+---++!! %SPACEOUT{%BASETOPIC%}%
+<blockquote style="background-color:#f8fbfc;width:500px;border-style:solid;border-width:0 0 0 3px;padding:.5em .5em;border-color:#D5E6F3;">
+%~~  DBQUERY{topic="%BASETOPIC%"
+~~~      format="<span style='font-size:1.2em;'><b>Summary: $formfield(Summary)</b></span> %BR%
+~~~          *Lead:* <nop>$formfield(Lead) %BR%
+~~~          *SubjectArea:* %BASEWEB%.$formfield(SubjectArea) %BR%
+~~~          *Priority:* $formfield(Priority) %BR%
+~~~          *Status:* $formfield(Status) %BR%
+~~~          *Due Date:* $formfield(Due) %BR%"
+~~~  }%
+</blockquote>
+%TWISTYSHOW{id="toc" link="Show Table of Contents" imgleft="%ICONURLPATH{toggleopen}%" }% %TWISTYHIDE{id="toc" link="Hide Table of Contents" imgleft="%ICONURLPATH{'toggleclose'}%"}% 
+%TWISTYTOGGLE{id="toc" mode="div" remember="on"}% 
+%TOC%
+%ENDTWISTYTOGGLE% 
+%ENDSECTION{name="taskSummary"}%
+
+---++ Log section
+This section defines the beginning of the "action log" section.
+%STARTSECTION{name="log"}%
+_Most recent logs listed at top._ %BR%
+%TWISTYSHOW{id="ActionLog" link="Post New Log" imgleft="%ICONURLPATH{toggleopen}%" }% %TWISTYHIDE{id="ActionLog" link="Hide" imgleft="%ICONURLPATH{'toggleclose'}%"}% 
+%TWISTYTOGGLE{id="ActionLog" mode="div" start="hide"}% 
+%COMMENT{type="logEntry" target="%BASEWEB%.%BASETOPIC%#InsertLog"}%
+%ENDTWISTYTOGGLE%
+%ENDSECTION{name="log"}%
+
+%META:FORM{name="TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="MasterTopic"}%
+%META:FIELD{name="SubjectArea" attributes="" title="SubjectArea" value="TcaoUse"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Defines common elements for Task topics."}%

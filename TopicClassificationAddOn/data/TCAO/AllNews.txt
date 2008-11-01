@@ -1,0 +1,19 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1168444301" format="1.1" reprev="1.3" version="1.3"}%
+%META:TOPICPARENT{name="NewsItem"}%
+---++ %SPACEOUT{%TOPIC%}% Master Topic
+%FORMFIELD{"Summary"}%
+
+%STARTINCLUDE%
+---++!! All news for %WIKITOOLNAME% 
+
+%SEARCH{"[T]opicType.*value\=.*[N]ewsItem"}" regex="on" web="all" casesensitive="on" nonoise="on" order="modified" format="---+++ <noautolink>$formfield(Summary)</noautolink> _($web web)_ $n() <span class=\"twikiSmall\"> _Posted $createdate by $createwikiusername | Modified $date by $wikiusername._ </span> $percntBR$percnt $summary(noheader) <span class=\"twikiSmall\"> _[[$web.$topic][Read more...]]_ </span> $n "  }%
+
+See also: %BASEWEB%.RecentNews, [[%BASEWEB%.NewsItem][News for %BASEWEB% web]] (with filter for %BASEWEB%.SubjectArea)
+
+_Click [[%SCRIPTURL%/view%SCRIPTSUFFIX%/%BASEWEB%/CreateNewTopic?type=NewsItem&step=two][here]] to create a new %BASEWEB%.NewsItem for the %BASEWEB% web ._
+%STOPINCLUDE%
+
+%META:FORM{name="TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="MasterTopic"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Used by !NewsItem TopicType, listing all news in all webs."}%
+%META:REVCOMMENT{ncomments="0"}%

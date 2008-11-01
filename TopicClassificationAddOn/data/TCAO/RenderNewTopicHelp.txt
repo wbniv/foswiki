@@ -1,0 +1,55 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1171040253" format="1.1" reprev="1.8" version="1.8"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+%TOPIC% displays a banner at the top of newly created classification topics using %TWIKIWEB%.UserCommentsTemplate#Removable_help_section. (See %TWIKIWEB%.TopicClassificationAddOn#Add_On_Installation_Instructions for notes on adding this required comment template.) 
+
+---+++++ Parameters
+   * HELPTOPIC - specify a HelpTopic to provide additional instructions related to the particular classification.
+---+++++ Css
+   * 
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%
+<div style="background-color:%HELP_BACKGROUND_COLOR%;">
+---+++ %Y% _Congradulations - <nop>%BASETOPIC% <nop>%FORMFIELD{"Classification" topic="%BASEWEB%.%BASETOPIC%" }% has been created!_
+
+Additional steps to complete installation of this <nop>%FORMFIELD{"Classification" topic="%BASEWEB%.%BASETOPIC%" }%:
+%INCLUDE{"%IFDEFINED{"%HELPTOPIC%" then="$variable" else="$percntTCAOWEB$percnt.GenericNewClassInstallHelp" glue="off"}%" }%
+
+__%ICON{help}% When you have completed the installation steps, click on the button below to remove this help message.__
+</div>
+%STOPINCLUDE%
+</verbatim>
+
+---++ Test
+
+<div class="alt">
+%DBCALL{"%TOPIC%"}%
+</div>
+
+%DBCALL{"RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+(C) 2006 LynnwoodBrown@Skyloom.com
+
+%DBCALL{"GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+
+
+
+%META:FORM{name="TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="SubjectArea" attributes="" title="SubjectArea" value=""}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Renders the help banner at the topic of new Classification topics"}%
+%META:TOPICMOVED{by="LynnwoodBrown" date="1160099393" from="TCAO2.RenderNewClassTopicHelp" to="TCAO2.RenderNewTopicHelp"}%
+%META:REVCOMMENT{comment_1=" " minor_1="1" ncomments="1" rev_1="7" t_1="1167766608"}%

@@ -1,0 +1,16 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1160518424" format="1.1" reprev="1.4" version="1.4"}%
+%META:TOPICPARENT{name="SubjectArea"}%
+%INCLUDE{%TCAOWEB%.RenderClassificationTopic}%
+
+<!-- Topic Permissions
+   * Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
+   * Set ALLOWTOPICRENAME = %MAINWEB%.TWikiAdminGroup
+-->
+
+
+%META:FORM{name="TopicClassForm"}%
+%META:FIELD{name="Classification" attributes="" title="Classification" value="SubjectArea"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Topics related to administrating the TCAO application."}%
+%META:FIELD{name="Facets" attributes="" title="Facets" value="TopicType"}%
+%META:PREFERENCE{name="ALLOWTOPICCHANGE" title="ALLOWTOPICCHANGE" type="Set" value="%2525MAINWEB%2525.TWikiAdminGroup"}%
+%META:PREFERENCE{name="ALLOWTOPICRENAME" title="ALLOWTOPICRENAME" type="Set" value="%2525MAINWEB%2525.TWikiAdminGroup"}%

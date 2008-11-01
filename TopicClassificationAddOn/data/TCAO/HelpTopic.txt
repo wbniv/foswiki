@@ -1,0 +1,21 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1173335267" format="1.1" version="1.7"}%
+%META:TOPICPARENT{name="TopicType"}%
+%INCLUDE{"%TCAOWEB%.RenderClassificationTopic" }%
+
+<div class="twikiHidden">
+You can modify the options for creating new topics of this type by changing the parameters to RenderTopicCreator. See that topic for more info.
+%STARTSECTION{"new" type="section"}%
+%DBCALL{"%TCAOWEB%.RenderTopicCreator"  TEMPLATE="%TOPIC%Template" TYPE="%TOPIC%"  FACETS="SubjectArea" TOPICSUMMARY="Summarize the content of this Help topic." }%
+%ENDSECTION{"new" type="section"}%
+</div>
+<!-- Topic Permissions
+	* Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
+	* Set ALLOWTOPICRENAME = %MAINWEB%.TWikiAdminGroup
+-->
+
+
+
+%META:FORM{name="TopicClassForm"}%
+%META:FIELD{name="Classification" attributes="" title="Classification" value="TopicType"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Help and how-tos related to TCAO."}%
+%META:FIELD{name="Facets" attributes="" title="Facets" value="SubjectArea"}%

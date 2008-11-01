@@ -1,0 +1,92 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1173485322" format="1.1" version="1.11"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+%RED%TODO%ENDCOLOR%
+
+---+++++ Parameters
+   * BASESEARCH - %RED% REQUIRED:%ENDCOLOR% Base search string (in %SYSTEMWEB%.DBCachePlugin DBQUERY format). For example: ==name = '.*'== - e.g. finds all topics.
+   * EXCLUDE - Option regex for results to exclude. Defaults to ==\bWeb*== - e.g. excludes topics starting with "Web".
+   * FACETS - Optional list of facets to use in the filter bar and search results.
+   * INITSORT - Optionally set initial sort. Defaults to "modified".
+   * INITLIMIT - Optionally set initial limit to # of results. Defaults to "all".
+   * SEARCH_FORMAT - Optional setting for different format for search results.
+   * HEADER_FORMAT - Optional setting for different format for search results header.
+   * FOOTER_FORMAT - Optional setting for different format for search results footer.
+
+---+++++ Css
+   * 
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%
+%~~  DBCALL{"%TCAOWEB%.RenderBarFilterWithSort"  
+~~~     INITSORT="%IFDEFINED{"%INITSORT%" 
+~~~          then="$percntINITSORT$percnt" else="modified" glue="off"}%" 
+~~~    INITLIMIT="%IFDEFINED{"%INITLIMIT%" 
+~~~          then="$percntINITLIMIT$percnt" else="all" glue="off"}%" 
+~~~    FACETS="%IFDEFINED{"%FACETS%" glue="off"}%"
+~~~   }%
+%TABLE{tablewidth="100%" columnwidths=",,,50px"}%
+%~~   DBQUERY{
+*~~       
+%~~       DBCALL{"%TCAOWEB%.RenderSearchString"  
+~~~           BASESEARCH="%IFDEFINED{"%BASESEARCH%" then="$test" else="name = '.*'" glue="off" }%" 
+~~~           INITSORT="%IFDEFINED{"%INITSORT%" then="$test" else="modified" glue="off"}%"
+~~~           INITLIMIT="%IFDEFINED{"%INITLIMIT%" then="$test" else="all" glue="off"}%" 
+~~~           FACETS="%IFDEFINED{"%FACETS%" glue="off"}%"
+~~~        }% 
+~~~        web="%BASEWEB%" 
+~~~        exclude="%IFDEFINED{"%EXCLUDE%" then="$test" else="\bWeb*" glue="off"}%" 
+~~~        header="$percntIFDEFINED{\"%HEADER_FORMAT%\" 
+~~~            then=\"%HEADER_FORMAT%\"
+~~~            else=\"| *Topic* | *Summary* | *Modified by* | *On* |$n\"
+~~~            glue=\"off\"}$percnt"
+~~~        footer="$percntIFDEFINED{\"%FOOTER_FORMAT%\" 
+~~~            then=\"%FOOTER_FORMAT%\"
+~~~            else=\"\"  glue=\"off\"}$percnt"
+~~~        format="
+*~~            $percntIFDEFINEDTHEN{\"%SEARCH_FORMAT%\" glue=\"off\"}$percnt
+~~~            %SEARCH_FORMAT%
+~~~            $percntELSEDEFINED$percnt
+*~~            | [[$web.$topic][$percntSPACEOUT{$topic}$percnt]] <span class=\"twikiSmall\" ><em>
+*~~                 $percntIFDEFINED{\"$expand(TopicType or Classification)\" 
+~~~                       then=\"<noautolink>$expand(TopicType or Classification)</noautolink>\" glue=\"off\"}$percnt</em></span>  |
+~~~                <noautolink>$formfield(Summary)</noautolink>   | 
+~~~                $percntUSERSWEB$percnt.$expand(info.author) | $formatTime(info.date, '$day $month') |
+~~~         $percntFIDEFINED$percnt"
+~~~     }%
+
+_[[%BASEWEB%.WebChanges][View more recent changes...]]_
+
+<!-- interrupt glue -->
+%STOPINCLUDE%
+</verbatim>
+
+<!-- interrupt glue -->
+
+---++ Test
+<div class="alt">
+%INCLUDE{"%TOPIC%"  FACETS="SubjectArea"}%
+</div>
+
+%DBCALL{"RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+(C) 2006 LynnwoodBrown@Skyloom.com
+
+%DBCALL{"GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+
+%META:FORM{name="TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="SubjectArea" attributes="" title="SubjectArea" value=""}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Generic table display for search results"}%

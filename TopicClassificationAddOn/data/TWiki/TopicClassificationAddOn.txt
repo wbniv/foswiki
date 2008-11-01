@@ -1,0 +1,73 @@
+---+!! %TOPIC%
+<!--
+One line description, required for extensions repository catalog.
+   * Set SHORTDESCRIPTION = Provides framework for organizing  content within a web according to different _types_ of topics (discussion, weblog, reference, etc) and hierarchical "categories". Includes sample topic types and categories. Provides basic framework to design and manage simple TWiki:Codev.TWikiApplications.
+-->
+%SHORTDESCRIPTION%
+
+%TOC%
+
+---+ Topic Classification Add-On 
+
+<b> %TOPIC% (aka TCAO) helps you organize the content in your wiki by classifying topics according to their _function_ and/or _subject matter._ </b> It also provides a user-friendly interface for creating new topics that automatically incorporates this classification system. Together, these basic elements provide a platform that allow you to create any number of simple TWiki:Codev.TWikiApplications.
+
+Some of the features of %TOPIC% include:
+   * Simple installation mechanism to add the TCAO framework to a web and install sample classifications.
+   * A "wizard" for creating new topics and apply classification scheme.
+   * Display Classification trees using TWiki:Plugins.TopicTreePlugin.
+   * Design your own  classification schemes.
+
+---++ Add-On Installation Instructions
+
+%$INSTALL_INSTRUCTIONS%
+
+---++ %TOPIC% Setup 
+After installing this add-on, there are a few additional steps needed before it will function properly:
+   * Make sure ={EnableHierarchicalWebs}= is enabled in =configure= (under "Store settings" tab). 
+   * Add the following preference section to [[Main.TWikiPreferences]]:
+<verbatim>
+---++ TWiki.TopicClassificationAddOn Preferences 
+   * TCAOWEB variable for identifying which web holds %TOPIC% infrastructure.
+      * Set TCAOWEB = TCAO
+      * Set HELP_BACKGROUND_COLOR = #E0B9A6
+</verbatim>
+   * Go to %MAINWEB%.TWikiGroups and create a new group called ==ModeratorGroup==. This group can add new classifications within webs where TCAO is enabled. 
+   * Add the following %TWIKIWEB%.CommentPlugin templates definitions to %TWIKIWEB%.UserCommentsTemplate (create this topic if you have not already).
+<verbatim>
+%TMPL:INCLUDE{"TCAO.TCAOComments"}%
+</verbatim>
+
+---+++ Enabling %TOPIC% in a particular web
+
+%TOPIC% is designed to organize content within individual webs.To install the TCAO framework within a web, use the form below.
+%INCLUDE{"%TCAOWEB%.RenderInstallTopicClassification" warm="Only displays if prior installation steps have been completed."}%
+
+---+++ Setting up Topic Classification within a web
+Once %TOPIC% is enabled within a web, you're ready to start defining *TopicTypes* and *SubjectAreas* to be used in that web. To do this, go to those respective topics (e.g. go to !TopicType to add new !TopicTypes) and use form at bottom that is only visible to members of !ModeratorGroup (or %MAINWEB%.TWikiAdminGroup, of course).
+
+---++ Add-On Info
+
+|  Add-on Author: | TWiki:Main.LynnwoodBrown |
+|  Add-on Version: | %$VERSION% |
+|  Copyright: | &copy; |
+|  License: | [[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License)]] |
+|  Change&nbsp;History: | <!-- versions below in reverse order -->&nbsp; |
+|  15431 | TWikibug:Item1715 - Fix TableSearchResults |
+|  15158 | TWikibug:Item1715 - Updated Weblog and added new Task Topic Type |
+|  15121 | TWikibug:Item1715 - Correcting some script names. |
+|  14840 | TWikibug:Item4497 - finishing modernise references to SYSTEMWEB and USERSWEB for remaining plugins |
+|  13643 | TWikibug:Item4025 - some scripts don't have their executable bit set |
+|  13160 | TWikibug:Item1715 - Fixing change in name of removeSpacesAndPunctuation function, and changing form for creation new classes to table. |
+|  13112 | TWikibug:Item1715 - Add new format for display of search results in table |
+|  13111 | TWikibug:Item1715 - Further improvements to TopicTypes and navigation |
+|  13058 | TWikibug:Item1715 - various fixes and improvements. Changed discussion topic format. |
+|  13047 | TWikibug:Item1715 - removing files not intended for distribution |
+|  12981 | TWikibug:Item1715 - Minor fixes |
+|  12980 | TWikibug:Item1715 - Further updates to ver 2.0 |
+|  12966 | TWikibug:Item1715 - Misc fixes to MANIFEST, the plugin topic, and some TopicTypes. |
+|  12965 | TWikibug:Item1715 - Clean up plugin topic. |
+|  12949 | TWikibug:Item1715 - Uploading Version 2.0 of TopicClassificationAddOn |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Add-on Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Demo url: |  |

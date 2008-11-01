@@ -1,0 +1,37 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1167331847" format="1.1" reprev="1.3" version="1.3"}%
+%META:TOPICPARENT{name="TopicType"}%
+---+ %TOPIC%
+%FORMFIELD{"Summary"}%
+
+---++ Documentation
+%STARTSECTION{"documentation"}%
+The TopicForm can be used for a wide range of TopicTypes that only need to be marked
+as being of a given TopicType.
+If you need more structure then you have to define a specific TWikiForm that 
+extends the TWikiFormAttributes of this form. That is the attributes defined here
+are a minimal set of attributes that all TWikiForms should have. 
+
+Every TopicType is used in combination with one TWikiForm, that is associated with it,
+either this generic TopicForm or a more specific one. 
+Multiple TopicTypes can share the same TWikiForm. In this case such a TWikiForm must allow to select from a set of TopicTypes to mark it properly. 
+Very often there is one TopicType for one TWikiForm.
+Note, that a topic can be of several TopicTypes which indicates that it fullfills several
+duties at once, that is the associated TWikiForm contains the attributes of a couple 
+of TWikiForms.
+%ENDSECTION{"documentation"}%
+
+---++ Definition
+
+| *Name:*| *Type:* | *Size:* | *Values:* | *Tooltip message:* | *Attributes:* |
+| TopicType | select | 1 | %DBQUERY{"Classification='TopicType'" format="$topic" separator=", "}%   | Classify a topic by function | |
+| SubjectArea | checkbox | 3 | %DBQUERY{"Classification='SubjectArea'" format="$topic" separator=", "}%    | Classify a topic by subject | |
+| Summary   | text   | 50  |   | Short summary or headline of topic  | |
+
+Related Topic: TopicClassification, WebPreferences, %TWIKIWEB%.TWikiForms
+
+<!-- Topic Permissions
+   * Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
+   * Set ALLOWTOPICRENAME = %MAINWEB%.TWikiAdminGroup
+-->
+
+%META:REVCOMMENT{ncomments="0"}%

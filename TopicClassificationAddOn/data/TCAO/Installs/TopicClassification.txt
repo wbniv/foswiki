@@ -1,0 +1,17 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1171039855" format="1.1" reprev="1.10" version="1.10"}%
+%TOPICCRE%NOP%ATE{ topic="TopicType" template="%TCAOWEB%/Installs.TopicType" }%
+%TOPICCRE%NOP%ATE{ topic="SubjectArea" template="%TCAOWEB%/Installs.SubjectArea" }%
+%TOPICCRE%NOP%ATE{ topic="TopicClassForm" template="%TCAOWEB%/Installs.TopicClassForm" }%
+%TOPICCRE%NOP%ATE{ topic="TopicForm" template="%TCAOWEB%/Installs.TopicForm" }%
+%TOPICCRE%NOP%ATE{ topic="CreateNewTopic" template="%TCAOWEB%/Installs.CreateNewTopic" }%
+%TOPICCRE%NOP%ATE{ topic="TopicTree" template="%TCAOWEB%/Installs.TopicTree" }%
+%COMMENT{type="removeable_help" remove="on"}%
+%INCLUDE{%TCAOWEB%.%TOPIC%}%
+%DBCALL{"%TCAOWEB%.RenderAddClassification" TYPE="Classification" warn="off"}%
+
+
+<!-- Topic Settings
+   * Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
+   * Set ALLOWTOPICRENAME = %MAINWEB%.TWikiAdminGroup
+   * Set HELPTOPIC = %TCAOWEB%.PostTCAOInstallHelp
+-->

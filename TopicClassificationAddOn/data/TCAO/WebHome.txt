@@ -1,0 +1,22 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1169684810" format="1.1" version="1.9"}%
+%META:TOPICPARENT{}%
+---+!! %MAKETEXT{"Welcome to the [_1] web" args="<nop>%WEB%"}%
+
+%DBCALL{"RenderInstallTopicClassification"}%
+
+---++ Important Entry Points for %TWIKIWEB%.TopicClassificationAddOn
+   * %TWIKIWEB%.TopicClassificationAddOn
+   * %WEB%/Installs.WebHome - Subweb of template files
+
+%INCLUDE{"TopicClassWebHomeIntro"}%
+
+<blockquote>
+<form action="%SCRIPTURLPATH%/search%SCRIPTSUFFIX%/%INTURLENCODE{"%WEB%"}%/">
+<input type="text" name="search" size="22" />
+<input type="submit" value='%MAKETEXT{"Search"}%' />
+<br/>
+([[WebSearchAdvanced][%MAKETEXT{"advanced search"}%]])
+</form>	
+</blockquote>
+
+%META:REVCOMMENT{ncomments="0"}%

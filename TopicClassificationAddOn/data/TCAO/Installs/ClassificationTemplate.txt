@@ -1,0 +1,24 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1166991176" format="1.1" version="1.3"}%
+%META:TOPICPARENT{}%
+%TOPICCRE%NOP%ATE{ topic="%TOPIC%Template" template="%TCAOWEB%/Installs.ClassificationGenericTemplate"}%
+<!-- Optional Topic Settings
+To enable any of these settings, replace the explanation with the value you want and remove the "#" before "Set". 
+   * Set CLASS_DESCRIPTION = <b><i>%FORMFIELD{"Summary" topic="%BASEWEB%.%BASETOPIC%"}%</b></i>
+   * Set ADD_FILTER = %TCAOWEB%.RenderStandardFilter
+   * #Set SEARCH_FORMAT = Optional custom format for search results. Defaults to bulleted list with topic name and the !Summary formfield.
+   * #Set HEADER_FORMAT = Optional custom format for search results header. Defaults to empty header.
+   * #Set FOOTER_FORMAT = Optional custom format for search results footer. Defaults to "Number of topics found = $count".
+   * #Set SEARCH_ORDER = Option for changing the default order for the search. Defaults to "name."
+   * #Set SEARCH_REVERSE = Option to reverse the search order. Defaults to "off."
+-->
+
+%DBCALL{"%TCAOWEB%.RenderClassificationTopic" }%
+
+%DBCALL{"%TCAOWEB%.RenderAddClassification" TYPE="%TOPIC%" TEMPLATE="%TOPIC%Template" ALLEXTRA="selectClassParent" }%
+
+<!-- Topic Permissions
+	* Set ALLOWTOPICCHANGE = %MAINWEB%.ModeratorGroup
+	* Set ALLOWTOPICRENAME = %MAINWEB%.ModeratorGroup
+-->
+
+%META:REVCOMMENT{ncomments="0"}%

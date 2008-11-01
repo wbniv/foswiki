@@ -1,0 +1,31 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1167332207" format="1.1" reprev="1.2" version="1.2"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+ Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+---++ Parameters
+NONE
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%
+---++ Calls to '%INCLUDINGTOPIC%'
+%~~ DBQUERY{"text=~'\b%INCLUDINGTOPIC%\b'"
+~~~   exclude="%INCLUDINGTOPIC%"
+~~~   web="%BASEWEB%"
+~~~   format="   * [[$web.$topic][$topic]]"
+~~~ }%
+*~~ 
+%STOPINCLUDE%
+</verbatim>
+
+%DBCALL{"%APPLIB%.RenderFunctionCallers"}%
+
+<!--
+   * Set SIDEBAR = TopicType
+-->
+
+%META:FORM{name="TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Render a list of topics that use a given TopicFunction"}%
+%META:REVCOMMENT{ncomments="0"}%

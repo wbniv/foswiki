@@ -1,0 +1,14 @@
+%META:TOPICINFO{author="TWikiCcontributor" date="1089354968" format="1.0" version="1.3"}%
+%META:TOPICPARENT{name=""}%
+---++ %FORMFIELD{Summary}%
+%URLPARAM{entry}%
+
+-- %WIKIUS%NOP%ERNAME% - %DAT%NOP%E%
+
+See also: Recent News, [[NewsItem][All News for %INCLUDINGWEB%]], [[AllNews][All News for %WIKITOOLNAME%]]
+
+---+++ Comments
+
+---+++ Comments
+%DBCALL{"%TCAOWEB%.RenderCommentCountBar" warn="off"}% 
+%COMMENT{type="comment"}%

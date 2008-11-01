@@ -1,0 +1,20 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1173338633" format="1.1" reprev="1.15" version="1.15"}%
+---+!! %SPACEOUT{%TOPIC%}%
+_This topic is intended to be included in WebHome topics to provide a quick overview of the TopicClassification setup in the web._
+
+%STARTINCLUDE%
+---++ Browse <nop>%BASEWEB% Web Content by %BASEWEB%.TopicClassification
+
+%TABLE{ dataalign="right,left" columnwidths="15%, 85%"}%
+|  *[[%BASEWEB%.TopicType][Topic Types]]:* | %DBQUERY{"Classification = 'TopicType'" web="%BASEWEB%" format="[[$web.$topic][$percntSPACEOUT{$topic}$percnts <span class=\"twikiSmall\">($percntDBQUERY{\"TopicType=~'$topic'\" web=\"$web\" format=\"none\" footer=\"$dollarcount\"}$percnt)</span>]]" separator=", "}%   |
+%DBQUERY{"Classification = 'Classification'" exclude="TopicType" web="%BASEWEB%" separator="$n" format="|  *[[$web.$topic][$percntSPACEOUT{$topic}$percnt]]:* | $percntDBQUERY{\"Classification = '$topic'\" format=\"[[$dollarweb.$dollartopic][$dollarpercntSPACEOUT{$dollartopic}$dollarpercnt <span class=\\"twikiSmall\\">($dollarpercntDBQUERY{\\"$topic =~ '$dollartopic'\\" web=\\"$dollarweb\\" format=\\"none\\" footer=\\"$dollardollarcount\\"}$dollarpercnt)</span>]]\" separator=\", \" }$percnt   |" }%
+
+---++ Recent Changes
+
+%DBCALL{"%TCAOWEB%.RenderTableSearchResults"  FACETS="%DBQUERY{"Classification = 'Classification'" format="$topic" separator="," web="%BASEWEB%" }%" INITSORT="modified" INITLIMIT="10"}%
+%STOPINCLUDE%
+
+%META:FORM{name="TopicForm"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="MasterTopic"}%
+%META:FIELD{name="SubjectArea" attributes="" title="SubjectArea" value="TcaoUse"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Provides basic browsing of TopicClassification setup suitable for including in WebHome."}%

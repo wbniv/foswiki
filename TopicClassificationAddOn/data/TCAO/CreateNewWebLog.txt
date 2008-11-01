@@ -1,0 +1,28 @@
+%META:TOPICINFO{author="LynnwoodBrown" date="1167306811" format="1.1" reprev="1.5" version="1.5"}%
+%META:TOPICPARENT{}%
+__This topic is the master topic for creating new !WebLog topics]. It is it's on file (instead of being hidden in the !WebLog topic) for use by  !JustBlogIt (see JustBlogItInstallation). It is included in the following topics in %WIKITOOLNAME%: %SEARCH{"INCLUDE\{.*?%TOPIC%\}" scope="text" casesenstive="on" type="regex" recurse="on" nonoise="on" web="all" separator=", " format="[[$web.$topic]]" }%.__
+---
+%STARTINCLUDE%
+---+++ Post a new !WebLog
+
+<form name="newWebLog" action="%SCRIPTURLPATH%/save%SCRIPTSUFFIX%/%BASEWEB%/" method="post">
+<input type="hidden" name="topic" id="topic" value="WebLogXXXXXXXXXXX" /> 
+<input type="hidden" name="TopicType" value="WebLog" />
+<input type="hidden" name="templatetopic" value="%TCAOWEB%/Installs.WebLogTemplate" />
+<input type="hidden" name="formtemplate" value="%BASEWEB%.WebLogForm" />
+|    *Log Headline:* | <input type="text" name="Summary" size="50" onchange="document.newWebLog.topic.value=removeSpacesAndPunctuation(capitalize(this.value));" />   | _This is displayed as the <nop>WebLog's title._     |
+|    *URL:* | <input type="text" name="Url" size="50" value="%URLPARAM{url}%"/>  | _Address of web page post refers to (if applicable)._    |
+|     *Page title:* | <input type="text" name="Title" size="50" value="%URLPARAM{title}%"/>  | _Name of web page post refers to (if applicable)._     |
+|     *SubjectArea:* | <select name="SubjectArea" size="1"><option value=" "> Select... </option>%DBQUERY{ "Classification = 'SubjectArea'" web="%BASEWEB%" regex="on" separator=" " format="<option>$topic</option>" }% </select> _Optional: select a subject area this post relates to._     ||
+|   *Lead paragraph:* | <textarea name="entry" cols="70" rows="5" ></textarea>    ||
+|   *Extended text %BR%(optional):* | <textarea name="extended" cols="70" rows="15">%URLPARAM{text}%</textarea>   ||
+| *&nbsp;* | <input type="submit" value=" &nbsp;Post !WebLog &nbsp; "> ||
+</form>
+%STOPINCLUDE%
+
+%META:FORM{name="TopicForm"}%
+%META:FIELD{name="TopicType" attributes="M" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Topic for creating new !WebLogs"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TopicClassification"}%
+%META:REVCOMMENT{comment_1=" " minor_1="1" ncomments="1" rev_1="5" t_1="1167306485"}%
+

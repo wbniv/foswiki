@@ -1,0 +1,57 @@
+%META:TOPICINFO{author="TWikiContributor" date="1155026036" format="1.1" version="1.1"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+ Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{"documentation"}%
+---++ Parameters
+   * ATTR: TWikiFormAttribute to search for, defaults to BASETOPIC
+   * THEWEB: web to examin, defaults to BASEWEB
+
+%ENDSECTION{"documentation"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%
+%~~ DBQUERY{
+~~~   "TopicType=~'\bTWikiForm\b' 
+~~~    AND text=~'\n\| *(..)?%IFDEFINED{"%ATTR%" then="%ATTR%" else="%BASETOPIC%"}% * \|'
+~~~   "
+~~~   header="
+*~~     ---++ <nop>TWikiForms 
+~~~     %IFDEFINED{"%THEWEB%" then=" in the %THEWEB% web" glue="off"}%
+~~~     that use the 
+~~~     '%IFDEFINED{"%ATTR%" then="%ATTR%" else="%BASETOPIC%"}%' attribute$n
+~~~     | *Name* | *Description* | *Application* |"
+~~~   web="%IFDEFINED{"%THEWEB%" then="%THEWEB%" else="%BASEWEB%"}%"
+~~~   hidenull="on"
+~~~   format="| [[$web.$topic][$topic]]
+~~~           | $flatten($formfield(Summary)) 
+~~~           | %APPLIB%.$formfield(TWikiApplication)
+~~~           |"
+~~~ }%
+%STOPINCLUDE%
+</verbatim>
+
+---++ Test
+<div class="alt">
+%DBCALL{"%APPLIB%.RenderTWikiFormList" ATTR="Headline"}%
+</div>
+<div class="alt">
+%DBCALL{"%APPLIB%.RenderTWikiFormList" ATTR="BaseRef"}%
+</div>
+
+%DBCALL{"%APPLIB%.RenderFunctionCallers"}%
+
+<!--
+   * Set SIDEBAR = TopicType
+-->
+
+
+%META:FORM{name="Applications.TopicForm"}%
+%META:FIELD{name="TopicType" attributes="M" title="TopicType" value="TopicFunction, DocuTopic"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Renders a list of TWikiForms that make use of the given TWikiFormAttribute"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

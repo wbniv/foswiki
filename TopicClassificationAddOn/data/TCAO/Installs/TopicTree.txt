@@ -1,0 +1,11 @@
+%META:TOPICINFO{author="TWikiContributor" date="1130441340" format="1.1" version="$rev$"}%
+%META:TOPICPARENT{name="TopicClassification"}%
+%INCLUDE{%TCAOWEB%.%TOPIC%}%
+%TREEVIEW{topic="%URLPARAM{"root" default="WebHome"}%" web="%BASEWEB%" stoplevel="5" formatting="imageoutline:thread"}%
+
+
+<!-- Topic Permissions
+	* Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
+	* Set ALLOWTOPICRENAME = %MAINWEB%.TWikiAdminGroup
+-->
+
