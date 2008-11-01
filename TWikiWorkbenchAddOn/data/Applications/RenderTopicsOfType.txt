@@ -1,0 +1,87 @@
+%META:TOPICINFO{author="TWikiContributor" date="1197297605" format="1.1" reprev="1.11" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{"documentation"}%
+---+++++ Parameters
+   * TYPE: the TopicType to be searched for, defaults to BASETOPIC
+   * FILTER: additional filter expression (optional)
+   * EXCLUDE: regular expression of topics to be excluded (optional)
+   * THEWEB: web to examin, defaults to BASEWEB
+   * HEADER: alternative table header 
+   * FORMAT: alternative row format of a table
+%ENDSECTION{"documentation"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE% <noautolink>
+~~~
+%~~ DBQUERY{"TopicType=~'\b%IFDEFINED{"%TYPE%" then="%TYPE%" else="%BASETOPIC%"}%\b'
+~~~     %IFDEFINED{"%FILTER%" then=" AND (%FILTER%)" glue="off"}%
+~~~   "
+~~~   %IFDEFINED{"%EXCLUDE%" then="exclude=\"%EXCLUDE%\"" glue="off"}%
+~~~   web="%IFDEFINED{"%THEWEB%" then="%THEWEB%" else="%BASEWEB%"}%"
+~~~   hidenull="on"
+~~~   header="
+~~~     <h2>Topics of type
+~~~       '<nop>%IFDEFINED{"%TYPE%" then="%TYPE%" else="%BASETOPIC%" glue="off"}%'
+~~~       %IFDEFINED{"%THEWEB%" then=" in the %THEWEB% web" glue="off"}%
+~~~     </h2>$n
+~~~     $percntTABLE{tablewidth=\"100%\"}$percnt$n
+*~~   %IFDEFINED{"%HEADER%" 
+~~~     then="$test" 
+~~~     else="| *Nr* | *Name* | *Summary* | *Application* |$n"
+~~~   }%"
+~~~   format="
+*~~     $percntIFDEFINEDTHEN{\"%FORMAT%\" glue=\"off\"}$percnt
+~~~       %FORMAT%
+~~~     $percntELSEDEFINED$percnt
+~~~           | $index 
+~~~           | [[$web.$topic][$expand(TopicTitle or topic)]]
+~~~           | $formfield(Summary)
+~~~           | $percntIFDEFINED{\"$formfield(TWikiApplication)\" 
+~~~               as=\"(none)?\"
+~~~               glue=\"off\"
+~~~               then=\"none\"
+~~~               else=\"
+*~~                 $dollarpercntIFDEFINED{\\"$formfield(TWikiApplication)\\"
+~~~                   as=\\"TWikiWorkbench\\"
+~~~                   glue=\\"off\\"
+~~~                   then=\\"[[Applications.WebHome][$formfield(TWikiApplication)]]\\"
+~~~                   else=\\"[[Applications.$formfield(TWikiApplication).WebHome][$formfield(TWikiApplication)]]\\"
+~~~                 }$dollarpercnt\"
+~~~             }$percnt
+~~~           |
+~~~     $percntFIDEFINED$percnt"
+~~~   footer="$n"
+~~~ }% </noautolink>
+~~~
+%STOPINCLUDE%
+</verbatim>
+
+---++ Test
+%DBCALL{"%TOPIC%" TYPE="TopicType"}%
+
+%DBCALL{"%TOPIC%" TYPE="TopicType" 
+  HEADER="| *Topic* | *Type* |$n"
+  FORMAT="| $topic | $formfield(TopicType) |"
+}%
+
+%DBCALL{"Applications.RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+&copy; 2006-2007 Michael Daum http://wikiring.de
+
+%DBCALL{"GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="DocuTopic, TopicFunction"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value=""}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Display a table of topcis of a given type"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

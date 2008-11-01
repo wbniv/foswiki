@@ -1,0 +1,28 @@
+%META:TOPICINFO{author="TWikiContributor" date="1194440164" format="1.1" reprev="1.14" version="$Rev$"}%
+---+!! Welcome to the %WEB% web
+
+This web contains a set of TWikiApplications that can be used in
+different parts of your <nop>%WIKITOOLNAME% wiki. It is used as a 
+library and repository as well as a development interface to write
+new applications. 
+
+---++ Installed TWikiApplications
+%~~ FORMATLIST{"%FLEXWEBLIST{subwebs="Applications" format="$web;$name" separator=", "}%" 
+~~~   pattern="(.*);(.*)"
+~~~   format="   1 [[$1.WebHome][$2]]: $percntVAR{\"SITEMAPWHAT\" web=\"$1\"}$percnt"
+~~~   separator="$n"
+~~~ }%
+
+---++ Create a new TWikiApplication
+%DBCALL{"TWikiApplicationFactory" section="factory"}%
+
+
+<!--
+   * Set VIEW_TEMPLATE = Applications.HiddenFormView
+-->
+
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="WebTool"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="%25SITEMAPWHAT%25"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

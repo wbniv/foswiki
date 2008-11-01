@@ -1,0 +1,70 @@
+%META:TOPICINFO{author="TWikiContributor" date="1173615244" format="1.1" reprev="1.8" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+ Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+---++ Documentation
+%STARTSECTION{"documentation"}%
+---+++++ Parameters
+   * TYPE: the name of the TopicType
+   * TITLE: title text of the section, defaults to TYPE
+   * THEWEB: web to examin, defaults to BASEWEB
+   * EXTRA: list of more links to be added to the list
+
+---+++++ Css
+   * natSideBarSection
+   * twbSideBarSection
+   * twbSideBarTopicType
+%ENDSECTION{"documentation"}%
+
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%
+%IFDEFINEDTHEN{"%TYPE%"}%
+*~~ <div class="natSideBarSection twbSideBarSection twbSideBarTopicType">
+~~~   <h2>%IFDEFINED{"%TITLE%" 
+~~~     then="%TITLE%"
+~~~     else="[[%BASEWEB%.%TYPE%][%TYPE%s]]"}%
+~~~   </h2>
+~~~     <ul>
+%~~     DBQUERY{"TopicType=~'\b%TYPE%\b'" 
+~~~       web="%IFDEFINED{"%THEWEB%" then="%THEWEB%" else="%BASEWEB%"}%"
+~~~       separator=" "
+~~~       format="<li><$nopnoautolink> 
+~~~         <a href=\"%SCRIPTURLPATH{"view"}%/$web/$topic\" 
+~~~            title=\"$formfield(Summary)\"
+~~~            style=\"
+*~~              $percntIFDEFINED{\"$web.$topic\" 
+~~~                as=\"%BASEWEB%.%BASETOPIC%\" then=\"color:red\"
+~~~              }$percnt\">
+~~~           $topic
+~~~         </a></$nopnoautolink></li>"
+~~~     }%
+%~~     FORMATLIST{"%EXTRA%" format="<li> $1 </li>" separator=" "}%
+~~~     </ul>
+~~~ </div>
+*~~
+%ELSEDEFINED%
+%~~ DBQUERY{"TopicType =~'.+'" topic="%BASETOPIC%" web="%BASEWEB%"
+~~~   format="
+*~~     $percntDBCALL{\"%WEB%.%TOPIC%\" 
+~~~       TYPE=\"$percntFORMATLIST{\"$formfield(TopicType)\" limit=\"1\"}$percnt\"
+~~~     }$percnt"
+~~~ }%
+%FIDEFINED%
+%STOPINCLUDE%
+</verbatim>
+
+---++ Test
+<div class="alt">
+%DBCALL{"%TOPIC%" TYPE="TopicFunction" EXTRA="WebPreferences, WebStatistics"}%
+</div>
+
+%DBCALL{"Applications.RenderFunctionCallers"}%
+
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value=""}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Render list of TopicTypes"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="none"}%

@@ -1,0 +1,45 @@
+%META:TOPICINFO{author="TWikiContributor" date="1197316744" format="1.1" reprev="1.16" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicType"}%
+---+!! %TOPIC%
+%FORMFIELD{"Summary"}%
+
+---++ Documentation
+%STARTSECTION{"documentation"}%
+%RED%TODO%ENDCOLOR%
+See also: TWikiApplicationTemplate
+%ENDSECTION{"documentation"}%
+
+---++ Installation
+%DBCALL{"RenderTopicInstaller" TEXT="Install '%TOPIC%' TopicType in" TYPE="TopicType" PARENT="TopicType"}%
+
+---++ Factory
+%STARTINCLUDE%
+%DBCALL{"Applications.RenderSimpleTopicCreator" 
+  TEXT="application topic" 
+  VALUE="...App"
+  TYPE="%TOPIC%"
+  TEMPLATE="Applications.TWikiApplicationTemplate"
+  FORM="Applications.TWikiApplication"
+}%
+
+%DBCALL{"Applications.RenderTopicsOfType" THEWEB="%URLPARAM{"web"}%"}%
+%STOPINCLUDE%
+
+---++ TWikiApplication form
+| *Name:*| *Type:* | *Size:* | *Values:* | *Tooltip message:* | *Attributes:* |
+| TopicType | checkbox | 3 |%DBCALL{"Applications.GetTopicTypes" remote="off"}%| Document type  | |
+| <nop>TopicTitle | text | 75 | | title of this topic | |
+| Summary | text | 75 | | short description of the role of this topic |  |
+| Version | text | 75 | | software release number/id/phase | |
+| Author | text | 75 | | Application author(s) | |
+| Copyright | text | 75 | | Application version |  |
+| License | select | 1 | %DBQUERY{"TopicType=~'\bApplicationLicense\b'" separator=", " web="Applications" }% | License of this application | |
+| Dependencies | text | 75 |  | | |
+
+
+%META:FORM{name="Applications.TopicType"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="DocuTopic, TopicType"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value=""}%
+%META:FIELD{name="Inheritance" attributes="" title="Inheritance" value="ApplicationTopic"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="TopicType of a TWikiApplication"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

@@ -1,0 +1,50 @@
+%META:TOPICINFO{author="TWikiContributor" date="1160857339" format="1.1" reprev="1.4" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! %TOPIC%
+%FORMFIELD{"Summary"}%
+
+---++ Parameters
+   * NAME: name of TWikiApplication, defaults to BASETOPIC
+   * THEWEB: web where the application is located, defaults to BASEWEB
+
+---++ Css
+%STARTSECTION{"css"}%
+   * twbManifestHolder
+%ENDSECTION{"css"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%
+<noautolink>
+<div class="twbManifestHolder">
+%~~ DBQUERY{"TWikiApplication='%IFDEFINED{"%NAME%" then="%NAME%" else="%BASETOPIC%"}%'"
+~~~   web="%IFDEFINED{"%THEWEB%" then="%THEWEB%" else="%BASEWEB%"}%"
+~~~   sort="name"
+~~~   header="| *Nr* | *Name* | *Type* |$n"
+~~~   format="| $index 
+~~~           | [[$web.$topic][<nop>$topic]] 
+~~~           | $formfield(TopicType) |$n
+~~~           | | $formfield(Summary) ||"
+~~~ }%
+</div>
+</noautolink>
+%STOPINCLUDE%
+</verbatim>
+
+---++ Test
+%DBCALL{"%TOPIC%" NAME="TWikiWorkbench" THEWEB="%WEB%"}%
+
+%DBCALL{"RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+<noautolink>
+&copy; 2006-2007 Michael Daum http://wikiring.de
+
+%DBCALL{"GnuGeneralPublicLicense" section="notice"}%
+</noautolink>
+</div>
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Render a list of all files making up a given application"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

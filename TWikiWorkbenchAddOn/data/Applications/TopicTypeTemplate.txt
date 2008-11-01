@@ -1,0 +1,44 @@
+%META:TOPICINFO{author="TWikiContributor" date="1213008418" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicTemplate"}%
+---+ %TOPIC%
+%FORMFIELD{"Summary"}%
+%STARTSECTION{type="templateonly"}%
+%RED%Note, this is only a template.%ENDCOLOR%
+
+See also: TopicType
+%ENDSECTION{type="templateonly"}%
+---++ Documentation
+%STARTSECTION{"documentation"}%
+%RED%TODO%ENDCOLOR%
+
+See also: %TOPIC%Template
+%ENDSECTION{"documentation"}%
+
+---++ Installation
+%DBCALL{"Applications.RenderTopicInstaller" TEXT="Install '%TOPIC%' TopicType in" TYPE="TopicType"}%
+
+---++ Factory
+%STARTINCLUDE%
+%DBCALL{"Applications.RenderSimpleTopicCreator" 
+  TEXT="%TOPIC%" 
+  VALUE="..."
+  TYPE="%TOPIC%"
+  FORM="%WEB%.%TOPIC%"  
+  DISABLED_TEMPLATE="%WEB%.%TOPIC%Template"  
+}%
+
+%DBCALL{"Applications.RenderTopicsOfType" THEWEB="%U%NOP%RLPARAM{"web"}%"}%
+%STOPINCLUDE%
+
+---++ %TOPIC% form
+| *Name:*| *Type:* | *Size:* | *Values:* | *Tooltip message:* | *Attributes:* |
+| TopicType | checkbox | 3 |%DBCALL{"Applications.GetTopicTypes" remote="off"}%| Document type  | |
+| <nop>TopicTitle | text | 75 | | title of this topic | |
+| Summary | text | 75 | | Short description of the role of this topic | |
+
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicTemplate"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value="TopicTypeTemplate"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Template to create TopicTypes"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

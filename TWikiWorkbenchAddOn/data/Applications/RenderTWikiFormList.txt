@@ -1,0 +1,57 @@
+%META:TOPICINFO{author="TWikiContributor" date="1185722841" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+ Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{"documentation"}%
+---+++++ Parameters
+   * ATTR: TWikiFormAttribute to search for, defaults to BASETOPIC
+   * THEWEB: web to examin, defaults to BASEWEB
+%ENDSECTION{"documentation"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%
+~~~ <noautolink>
+%~~ DBQUERY{
+~~~   "TopicType=~'\bTWikiForm\b' 
+~~~    AND text=~'\n\| *%IFDEFINED{"%ATTR%" then="%ATTR%" else="%BASETOPIC%" glue="off"}% *\|'
+~~~   "
+~~~   header="
+*~~     ---++ <nop>TWikiForms 
+~~~     %IFDEFINED{"%THEWEB%" then=" in the %THEWEB% web" glue="off"}%
+~~~     that use the 
+~~~     '%IFDEFINED{"%ATTR%" then="%ATTR%" else="%BASETOPIC%"}%' attribute$n
+~~~     | *Nr* | *Name* | *Summary* | *Application* |$n"
+~~~   web="%IFDEFINED{"%THEWEB%" then="%THEWEB%" else="%BASEWEB%"}%"
+~~~   hidenull="on"
+~~~   format="| $index
+~~~           | [[$web.$topic][$topic]]
+~~~           | $formfield(Summary)
+~~~           | [[$formfield(TWikiApplication)]]
+~~~           |"
+~~~  footer="$n"
+~~~ }%
+~~~ </noautolink>
+%STOPINCLUDE%
+</verbatim>
+
+
+---++ Test
+<div class="alt">
+%DBCALL{"Applications.RenderTWikiFormList" ATTR="Summary"}%
+</div>
+
+<div class="alt">
+%DBCALL{"Applications.RenderTWikiFormList" ATTR="BaseRef"}%
+</div>
+
+%DBCALL{"Applications.RenderFunctionCallers"}%
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="DocuTopic, TopicFunction"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Renders a list of TWikiForms that make use of the given TWikiFormAttribute"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

@@ -1,0 +1,76 @@
+%META:TOPICINFO{author="TWikiContributor" date="1182271631" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+This is a "getter" TopicFunction that returns a list of known TopicTypes
+in a given web. Use it to create a selection in TWikiForms for the !TopicType formfield.
+It adds the "none" type so that you can have (temporarily) un-typed topics. The 
+type "TopicType" is added _hardcoded_ so that you don't have to rely on that type
+being present in your web and to allow bootstrapping a type system in a web from
+scratch on as you will be able to create an initial !TopicType !TopicType this way.
+
+---+++++ Parameters
+   * WEBS: list of webs to search for TopicTypes, defaults to BASEWEB 
+   * EXCLUDE: expression to exclude types (optional)
+   * ADDITION: types that are listed additionally (optional)
+
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%
+~~~ none, 
+~~~ 
+%~~ FORMATLIST{"TopicType,
+~~~   %IFDEFINED{"%ADDITION%" then="%ADDITION%, " glue="off"}%
+~~~
+%~~   FORMATLIST{"%IFDEFINED{"%WEBS%" then="%WEBS%" else="%BASEWEB%"}%"
+~~~     format="$percntDBQUERY{\"TopicType=~'\bTopicType\b'\" 
+~~~       web=\"$1\"
+~~~       hidenull=\"on\"
+~~~       separator=\", \" 
+~~~       format=\"$dollartopic\"
+~~~     }$percnt"
+~~~   }%"
+~~~ %IFDEFINED{"%EXCLUDE%" then="exclude=\"%EXCLUDE%\"" glue="off"}%
+~~~ format="$1"
+~~~ separator=", "
+~~~ sort="on"
+~~~ unique="on"
+~~~ }%
+~~~
+%STOPINCLUDE%
+</verbatim>
+
+<!-- interrupt glue -->
+
+---++ Test
+<noautolink>
+<div class="alt">
+%DBCALL{"%TOPIC%" ADDITION="FooBar" EXCLUDE="Application.*"}%
+</div>
+
+<div class="alt">
+%DBCALL{"%TOPIC%" WEBS="Applications.ClassificationApp, %BASEWEB%"}%
+</div>
+</noautolink>
+
+%DBCALL{"Applications.RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+&copy; 2006-2007 Michael Daum http://wikiring.de
+
+%DBCALL{"Applications.GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="DocuTopic, TopicFunction"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="returns a list of TopicTypes known in the base web"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

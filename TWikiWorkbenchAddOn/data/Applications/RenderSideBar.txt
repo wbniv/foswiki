@@ -1,0 +1,96 @@
+%META:TOPICINFO{author="TWikiContributor" date="1212998861" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE% <!-- -->
+~~~ <noautolink> 
+~~~   <div class="twbSideBarSection">
+~~~   <div class="jqTreeview closed unique" style="white-space:nowrap">
+~~~     <ul>
+%~~   DBQUERY{"TopicType=~'\bWebTool\b'" web="%BASEWEB%"
+~~~     hidenull="on"
+~~~     header="<li>[[WebTools]]<ul>"
+~~~     format="<li>$index. 
+~~~       <a href='%SCRIPTURLPATH{"view"}%/$web/$topic' 
+~~~          title='$encode($expand(Summary))'>$expand(topictitle)</a>
+*~~       </li>"
+~~~     footer="</ul></li>"
+~~~   }%
+%~~   DBQUERY{"TopicType=~'\bTopicFunction\b'" web="%BASEWEB%"
+~~~     hidenull="on"
+~~~     header="<li>[[TopicFunctions]]<ul>"
+~~~     format="<li>$index. 
+~~~       <a href='%SCRIPTURLPATH{"view"}%/$web/$topic' 
+~~~          title='$encode($expand(Summary))'>$expand(topictitle)</a>
+*~~       </li>"
+~~~     footer="</ul></li>"
+~~~   }%
+~~~   
+%~~   DBQUERY{"TopicType=~'\bTopicTemplate\b'" web="%BASEWEB%"
+~~~     hidenull="on"
+~~~     header="<li>[[TopicTemplates]]<ul>"
+~~~     format="<li>$index. 
+~~~       <a href='%SCRIPTURLPATH{"view"}%/$web/$topic' 
+~~~          title='$encode($expand(Summary))'>$expand(topictitle)</a>
+*~~       </li>"
+~~~     footer="</ul></li>"
+~~~   }%
+~~~
+%~~   DBQUERY{"TopicType=~'\bTopicType\b'" web="%BASEWEB%"
+~~~     hidenull="on"
+~~~     header="<li>[[TopicTypes]]<ul>"
+~~~     format="<li>$index. 
+~~~       <a href='%SCRIPTURLPATH{"view"}%/$web/$topic' 
+~~~          title='$encode($expand(Summary))'>$expand(topictitle)</a>
+*~~       </li>"
+~~~     footer="</ul></li>"
+~~~   }%
+~~~
+%~~   DBQUERY{"TopicType=~'\bTopicView\b'" web="%BASEWEB%"
+~~~     hidenull="on"
+~~~     header="<li>[[TopicViews]]<ul>"
+~~~     format="<li>$index. 
+~~~       <a href='%SCRIPTURLPATH{"view"}%/$web/$topic' 
+~~~          title='$encode($expand(Summary))'>$expand(topictitle)</a>
+*~~       </li>"
+~~~     footer="</ul></li>"
+~~~   }%
+~~~
+%~~   DBQUERY{"TopicType=~'\bTWikiForm\b'" web="%BASEWEB%"
+~~~     hidenull="on"
+~~~     header="<li>[[TWikiForms]]<ul>"
+~~~     format="<li>$index. 
+~~~       <a href='%SCRIPTURLPATH{"view"}%/$web/$topic' 
+~~~          title='$encode($expand(Summary))'>$expand(topictitle)</a>
+*~~       </li>"
+~~~     footer="</ul></li>"
+~~~   }%
+%~~   DBQUERY{"TopicType=~'\bTWikiFormAttribute\b'" web="%BASEWEB%"
+~~~     hidenull="on"
+~~~     header="<li>[[TWikiFormAttributes]]<ul>"
+~~~     format="<li>$index. 
+~~~       <a href='%SCRIPTURLPATH{"view"}%/$web/$topic' 
+~~~          title='$encode($expand(Summary))'>$expand(topictitle)</a>
+*~~       </li>"
+~~~     footer="</ul></li>"
+~~~   }%
+~~~   </ul>
+~~~ </div>
+~~~ </div>
+~~~ </noautolink>
+~~~
+%STOPINCLUDE%
+</verbatim>
+
+%DBCALL{"Applications.RenderFunctionCallers"}%
+
+
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value="RenderSideBar"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Render the sidebar navigation for the TWikiWorkbench"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

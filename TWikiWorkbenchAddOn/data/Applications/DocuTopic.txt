@@ -1,0 +1,53 @@
+%META:TOPICINFO{author="TWikiContributor" date="1184013198" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicType"}%
+---+ %TOPIC%
+%FORMFIELD{"Summary"}%
+
+---++ Installation
+%DBCALL{"RenderTopicInstaller" TEXT="Install '%TOPIC%' TopicType in" TYPE="TopicType" PARENT="TopicType"}%
+
+---++ Factory
+%STARTINCLUDE%
+%DBCALL{"Applications.RenderSimpleTopicCreator" 
+  TEXT="%TOPIC%" 
+  VALUE="..."
+  TYPE="%TOPIC%"
+  FORM="Applications.ApplicationTopic"
+}%
+
+%DBCALL{"Applications.RenderTopicsOfType"}%
+%STOPINCLUDE%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+This is a pure "marker" type that is attached to topics that contain documentation.
+!DocuTopics have a ="documentation"= section marked using
+<verbatim>
+STARTSECTION{"documentation"}
+...
+ENDSECTION{"documentation"}
+</verbatim>
+These sections can be extracted dynamically using RenderApplicationDocumentation.
+In general documentation should be as "near" to the application component as possible,
+that is it should be embedded into the topic the component represents. 
+
+For example
+all TopicFunctions should be !DocuTopics too. The documentation of !TopicFunctions are
+then aggregated on a master !DocuTopic that contains calls to !RenderApplicationDocumentation
+for a set of components that are a kind of group, e.g. all types, forms, views and templates
+implementing a certain model. 
+
+TWikiApplications can contain documentation too. But if the documentation reaches a certain
+complexity  it should be moved to separate !DocuTopics that the !TWikiApplication topic
+links to.
+
+!DocuTopics, as all TopicTypes belong to a certain !TWikiApplication and can thus be grouped
+and distinguished.
+%ENDSECTION{name="documentation" type="section"}%
+
+
+%META:FORM{name="Applications.TopicType"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="DocuTopic, TopicType"}%
+%META:FIELD{name="Inheritance" attributes="" title="Inheritance" value="ApplicationTopic"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Topics that contain pure documentation."}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

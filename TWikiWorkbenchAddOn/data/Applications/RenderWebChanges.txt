@@ -1,0 +1,56 @@
+%META:TOPICINFO{author="TWikiContributor" date="1205936518" format="1.1" reprev="1.5" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+ Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+---++ Parameters
+   * SKIP: topic offset
+   * LIMIT: number of hits per page
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%
+*~~
+%~~ DBQUERY{
+~~~    web="%BASEWEB%"
+~~~    sort="modified" 
+~~~    limit="%IFDEFINED{"%LIMIT%" then="%LIMIT%" else="10"}%" 
+~~~    reverse="on" 
+~~~    skip="%SKIP%"
+~~~    header="<noautolink>$n
+~~~      $percntDBCALL{\"Applications.RenderPageNavigation\" 
+~~~         SKIP=\"%SKIP%\" 
+~~~         MAX=\"$count\"
+~~~         LIMIT=\"%IFDEFINED{"%LIMIT%" then="%LIMIT%" else="10"}%\"
+~~~      }$percnt$n
+~~~      | *Nr* | *Title* | *Changed* | *By* |$n
+~~~      $percntTABLE{tablewidth=\"100%\"}$percnt$n"
+~~~    format="
+~~~      | $index 
+~~~      | [[$web.$topic][$expand(TopicTitle or topic)]] 
+~~~      | <span style=\"white-space:nowrap\">$formatTime(info.date)</span>  |  [[%MAINWEB%.$expand(info.author)][$percntSPACEOUT{$expand(info.author)}$percnt]]  |$n
+~~~      | &nbsp; | <div style=\"margin:2px 10px 5px 0px;\">$flatten($expand(Teaser or Headline or Summary or Text or 'no description')) </div>|||"
+~~~    footer="$n
+~~~      $percntDBCALL{\"Applications.RenderPageNavigation\" 
+~~~         SKIP=\"%SKIP%\" 
+~~~         MAX=\"$count\"
+~~~         LIMIT=\"%IFDEFINED{"%LIMIT%" then="%LIMIT%" else="10"}%\"
+~~~      }$percnt
+~~~      </noautolink>"
+~~~ }%
+*~~
+%STOPINCLUDE%
+</verbatim>
+
+---++ Test
+<div class="alt">
+%DBCALL{"%TOPIC%" SKIP="%URLPARAM{"skip" default="0"}%" LIMIT="5"}%
+</div>
+
+%DBCALL{"Applications.RenderFunctionCallers"}%
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value=""}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Replacement for TWiki's default WebChanges"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

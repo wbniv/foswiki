@@ -1,0 +1,66 @@
+%META:TOPICINFO{author="TWikiContributor" date="1207042773" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+ Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+---++ Documentation
+%STARTSECTION{"documentation"}%
+---+++++ Parameters
+   * SKIP: initial offset
+   * LIMIT: number of items per page
+   * MAX: maximum number of items
+   * PARAMS: additional url parameters (optional)
+   * HREF: base of navigation url
+
+---+++++ Css
+   * twbPageNavigation
+   * twbNextPage
+   * twbPrevPage
+%ENDSECTION{"documentation"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%<!-- renderpagenavigation -->
+<!--
+<noautolink>
+%IFDEFINEDTHEN{"%SKIP%%LIMIT%"}%
+%CALC$nop{"$SET(theNextSkip,$EVAL(%SKIP%+%LIMIT%))$SET(thePrevSkip,$EVAL(%SKIP%-%LIMIT%))$IF($GET(thePrevSkip)<0,$SET(thePrevSkip,0))"}%
+%ELSEDEFINED%
+%CALC$nop{"$SET(thePrevSkip,0)$SET(theNextSkip,0)"}%
+%FIDEFINED%
+</noautolink>
+-->
+<div class="twbPageNavigation">
+<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+<td class="twbPrevPage" width="50%">
+~~~ <a style="%IFDEFINED{"%SKIP%" as="0|(%[S]KIP%)|" then="display:none"}%" 
+~~~    href="%IFDEFINED{"%HREF%"}%?skip=%CALC{"$GET(thePrevSkip)"}%;limit=%LIMIT%
+*~~    %IFDEFINED{"%PARAMS%" then=";%PARAMS%"}%">
+*~~    &#171;&nbsp;previous
+~~~ </a>
+</td>
+<td class="twbNextPage" width="50%" align="right">
+~~~ <a style="%CALC{"$IF($GET(theNextSkip)>=%MAX%,display:none)"}%" 
+~~~    href="%IFDEFINED{"%HREF%"}%?skip=%CALC{"$GET(theNextSkip)"}%;limit=%LIMIT%
+*~~    %IFDEFINED{"%PARAMS%" then=";%PARAMS%"}%">
+*~~    next&nbsp;&#187;
+~~~ </a>
+</td>
+</tr></table>
+</div>
+*~~
+<!-- //renderpagenavigation -->%STOPINCLUDE%
+</verbatim>
+
+---++ Test
+<div class="alt">
+%DBCALL{"%TOPIC%" SKIP="%URLPARAM{"skip" default="0"}%" LIMIT="10" MAX="200"}%
+</div>
+
+%DBCALL{"Applications.RenderFunctionCallers"}%
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value=""}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Render a navigation to previous/next blog entries on the front page"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

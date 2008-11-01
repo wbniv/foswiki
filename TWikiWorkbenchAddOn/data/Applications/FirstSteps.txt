@@ -1,0 +1,55 @@
+%META:TOPICINFO{author="TWikiContributor" date="1184013456" format="1.1" reprev="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="DocuTopic"}%
+---+!! %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC%
+
+%STARTINCLUDE%
+---++ How to proceed
+Each application has a master topic located in the application's subweb, which captures all information and 
+documentation for this application.
+
+---+++ Model
+When starting to write a new <nop>TWikiApplication, you may proceed by creating new TopicTypes, that are specific
+for it. TopicTypes will define the data model, and optionally an installer and a factory that help in deploying and 
+creating a new topic of the new type. 
+
+Now create a few instances of the new TopicType. For now, it only has a plain text and probably a TWikiForm attached
+to it. The TopicTypes are used to create a topic of that type, together with an optional TopicTemplate as a blueprint. 
+This blueprint shall have all the specific means pre-installed that are needed
+to properly display a topic of that type.
+
+---+++ View
+After you created the data model and a few topic instances of that type, you can start writing
+TopicFunctions to control this data. For example create a <nop>RenderMyNewTopicType that displays the data
+of one topic. Now create a TopicView that includes a call to this new TopicFunction. Then apply the TopicView to
+a topic by setting its VIEW_TEMPLATE property. Add this setting to the TopicTemplate so that each newly authored
+topic of that type will have the correct view applied to it.
+
+---+++ Control
+When you finished implementing the data model and the view you may proceed by creating reports and queries to
+list a set of topics of that type and display the appropriately.
+
+The further alley your application takes is very dependent on the kind of application you are about to implement.
+
+---+++ Deployment
+Finally, you will need a way to deploy the application in another web. This is done by implementing an ApplicationFactory. 
+An <nop>ApplicationFactory either creates a new full fledged web from a template web. Alternatively, the application can be added to an already
+existing web by installing the relevant TopicTypes in the target web. This is done by using TopicStubs that point
+back to the respective TopicTypes implemented in the application web. 
+
+If you add an application to an already existing web for the first time, you may also need to create the basic infrastructure
+of <nop>TopicTypes by creating a TopicStub for at least the TopicType in the target web.
+
+---+++ Documentation
+Each part of your application can come with its own documentation. Mark it to be of type DocuTopic so that its documentation
+will be extracted automatically in the master topic. For example each topic of type TopicType is also of type DocuTopic by default.
+Create pure DocuTopics that describe overall documentation about your application.
+
+Last not least delete this text and replace it with a meaningful description and introduction to your application.
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="ApplicationTopic, DocuTopic"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="What's next: first steps after creating a new workbench web"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

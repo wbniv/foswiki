@@ -1,0 +1,62 @@
+%META:TOPICINFO{author="TWikiContributor" date="1158766457" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+%RED%TODO%ENDCOLOR%
+
+---+++++ Parameters
+   * LIMIT: number of changes to list, defaults to 5
+
+---+++++ Css
+   * twbRecentChangesSection
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE% <!-- -->
+%~~ DBQUERY{
+~~~   limit="%IFDEFINED{"%LIMIT%" then="%LIMIT%" else="5"}%"
+~~~   web="%BASEWEB%"
+~~~   sort="modified" reverse="on"
+~~~   header="<div class=\"natSideBarSection twbSideBarSection twbRecentChangesSection\">
+~~~     <h2>Changes</h2>"
+~~~   format="<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"100%\">
+*~~       <tr>
+*~~       <td><ul style=\"margin:0px\"><li><a href='%SCRIPTURLPATH{"view"}%/$web/$topic'
+~~~          title='by <nop>$expand(info.author) at $formatTime(info.date)'>
+*~~          $topic</a></li></ul></td>
+*~~       <td align=\"right\"><a href='%SCRIPTURL{"rdiff"}%/$web/$topic?
+*~~           type=last&render=sequential&context=1000'
+~~~         title=\"<nop>$topic diff $expand(info.version)\" 
+~~~         style=\"color:red\">D</a></td>
+*~~       </tr></table>"
+~~~   footer="</div>"
+~~~ }%
+%STOPINCLUDE%
+</verbatim>
+
+---++ Test
+<div class="alt">
+%DBCALL{"%TOPIC%"}%
+</div>
+
+%DBCALL{"Applications.RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+&copy; 2006-2007 Michael Daum http://wikiring.de
+
+%DBCALL{"GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="M" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Display a list of recent changes for the sidebar"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

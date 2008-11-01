@@ -1,0 +1,41 @@
+%META:TOPICINFO{author="TWikiContributor" date="1212998693" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="WebHome"}%
+---+!! %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC%
+
+---++ Sidebar descriptions
+---+++ Default section 
+<verbatim>
+%STARTSECTION{"Default"}% 
+~~~
+This is the %WEB% TWikiWorkbench in the 
+[[%WEB%.WebHome][%WEB%]] web. 
+~~~
+%ENDSECTION{"Default"}%
+</verbatim>
+
+---+++ Admin section
+<verbatim>
+%STARTSECTION{"Admin"}%
+~~~ 
+You are in the administrative and implementation 
+section of the %WEB% application which the 
+[[%BASEWEB%.%BASETOPIC%][%BASETOPIC%]] topic is part of. 
+To explore this level you might start at the
+the [[Applications.TopicType][TopicTypes]].
+~~~
+%ENDSECTION{"Admin"}%
+</verbatim>
+
+---+++ Nosidebar section
+<verbatim>
+%STARTSECTION{"Nosidebar"}% %ENDSECTION{"Nosidebar"}%
+</verbatim>
+
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="M" title="TopicType" value="WebTool"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Help texts used in this application"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

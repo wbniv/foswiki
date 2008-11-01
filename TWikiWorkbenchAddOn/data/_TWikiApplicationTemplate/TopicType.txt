@@ -1,0 +1,17 @@
+%META:TOPICINFO{author="TWikiContributor" date="1194435242" format="1.1" version="$Rev$"}%
+---+!! %TOPIC%
+%FORMFIELD{"Summary"}%
+%DBCALL{"%FORMFIELD{"Target"}%" remote="on"}%
+<!--
+   * Set EDIT_TEMPLATE = Applications.FormEdit
+   * Set VIEW_TEMPLATE = Applications.HiddenFormView
+-->
+See also: [[%FORMFIELD{"Target"}%]]
+
+
+%META:FORM{name="Applications.TopicStub"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicStub, TopicType"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Tool to create a TopicType"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%
+%META:FIELD{name="Target" attributes="" title="Target" value="Applications.TopicType"}%
+%META:FIELD{name="Section" attributes="" title="Section" value=""}%

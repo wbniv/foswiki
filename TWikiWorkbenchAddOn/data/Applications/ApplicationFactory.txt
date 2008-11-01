@@ -1,0 +1,51 @@
+%META:TOPICINFO{author="TWikiContributor" date="1174410668" format="1.1" reprev="1.5" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicType"}%
+---+ %TOPIC%
+%FORMFIELD{"Summary"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+An ApplicationFactory is used to deploy an instance of a TWikiApplication. This is
+done by either copying a template web or copying one or more topics into a target web.
+
+The complete TWikiApplication comprises of the all the components of the application
+(its TopicFunctions, TWikiForms etc).  Think of it as "library" and the application _instance_
+the "executable" linked against it.  So there can be multiple instances of an application, 
+all using the same library. Example: there's one <nop>AddressbookApplication, and you
+can create multiple addressbooks using the <nop>AddressBookFactory.
+
+There are two types of creators for ApplicationFactories:
+   * WebFactoryTemplate: use this to build web-based factories, more or less customized on the base of the one in %TWIKIWEB%.ManagingWebs
+   * TopicFactoryTemplate: use this to build topic-based factories using the TWiki:Plugins.TopicCreatePlugin
+
+%RED%TODO:%ENDCOLOR% we might want unify these two approaches in the future to allow a mixture of both ways of deployment.
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Factory
+%STARTINCLUDE%
+%DBCALL{"Applications.RenderSimpleTopicCreator" 
+  TEXT="WebFactory" 
+  VALUE="...Factory"
+  TYPE="%TOPIC%, TopicStub"
+  TEMPLATE="Applications.WebFactoryTemplate"
+  FORM="Applications.ApplicationTopic"
+}%
+
+%DBCALL{"Applications.RenderSimpleTopicCreator" 
+  TEXT="TopicFactory" 
+  VALUE="...Factory"
+  TYPE="%TOPIC%, TopicStub"
+  TEMPLATE="Applications.TopicFactoryTemplate"  
+  FORM="Applications.ApplicationTopic"
+}%
+
+%DBCALL{"Applications.RenderTopicsOfType" THEWEB="%URLPARAM{"web"}%"}%
+%STOPINCLUDE%
+
+
+
+%META:FORM{name="Applications.TopicType"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="DocuTopic, TopicType"}%
+%META:FIELD{name="Inheritance" attributes="" title="Inheritance" value="ApplicationTopic"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Tool to create an application instance"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

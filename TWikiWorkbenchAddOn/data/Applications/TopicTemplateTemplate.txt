@@ -1,0 +1,23 @@
+%META:TOPICINFO{author="TWikiContributor" date="1177095864" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicTemplate"}%
+
+
+
+
+
+
+%ST%NOP%ARTSECTION{type="templateonly"}%
+%RED%Note, this is only a template.%ENDCOLOR%
+
+See also: TopicTemplate
+<!--
+   * Set VIEW_TEMPLATE = 
+   * Set EDIT_TEMPLATE = 
+-->
+%EN%NOP%DSECTION{type="templateonly"}%
+
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicTemplate"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Template to create a TopicTemplate"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

@@ -1,0 +1,50 @@
+%META:TOPICINFO{author="TWikiContributor" date="1130149189" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+ Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+---++ Parameters
+   * NAME: name of TopicType which we render a button for
+   * FORM: TWikiForm to be used when creating a topic
+   * TEMPLATE: TopicTemplate to be used 
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%
+~~~
+<div class="twikiPageForm blogAdminButtons">
+<form action="%SCRIPTURLPATH{"edit"}%/Applications" method="post">
+<input type="hidden" name="onlywikiname" value="on" />
+%IFDEFINEDTHEN{"%TEMPLATE%"}%
+<input type="hidden" name="templatetopic" value="%TEMPLATE%" />
+%FIDEFINED%
+%IFDEFINEDTHEN{"%FORM%"}%
+<input type="hidden" name="formtemplate" value="%FORM%" />
+%FIDEFINED%
+<input type="hidden" name="TopicType" value="%NAME%" />
+<input type="hidden" name="Summary" value="" />
+<input type="hidden" name="topicparent" value="%NAME%" />
+<input type="submit" value="New <nop>%NAME%" class="blogSubmitButton" />
+<input class="twikiInputField" type="text" name="topic" size="40" />
+</form> 
+</div>
+~~~
+%STOPINCLUDE%
+</verbatim>
+
+---++ Test
+<div class="alt">
+%DBCALL{"%TOPIC%" NAME="TopicType"}%
+</div>
+
+%DBCALL{"Applications.RenderFunctionCallers"}%
+
+<!--
+   * Set ALLOWTOPICVIEW = %MAINWEB%.BlogAdminGroup
+-->
+
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="M" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="Summary" attributes="M" title="Summary" value="Renders a form that allows generate a new topic of the given type"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiApplication"}%

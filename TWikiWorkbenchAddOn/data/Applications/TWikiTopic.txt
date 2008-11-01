@@ -1,0 +1,76 @@
+%META:TOPICINFO{author="TWikiContributor" date="1197297635" format="1.1" reprev="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicType"}%
+---+ %TOPIC%
+%FORMFIELD{"Summary"}%
+
+---++ Documentation
+%STARTSECTION{"documentation"}%
+The TWikiTopic form can be used for a wide range of TopicTypes that only need to be marked
+as being of a given TopicType.
+If you need more structure then you have to define a specific form that 
+extends the attributes of the TWikiTopic form. That is, the attributes defined here
+are a minimal set of attributes that all TWikiForms should share.
+
+Every TopicType is used in combination with one TWikiForm, that is associated with it,
+either this generic TWikiTopic form or a more specific one. 
+Multiple TopicTypes can share the same form. In this case such a form must allow to select from a _set_
+of TopicTypes to mark it properly. 
+A common case is where one TopicType uses one specific TWikiForm. 
+Note, that a topic can be of several TopicTypes which indicates that it fullfills several
+duties at once. So by marking a topic of being of types T<sub>a</sub> and type T<sub>b</sub>
+you indicate that the attached form contains all form attributes that are in form F<sub>a</sub> 
+and from F<sub>b</sub>, given that type T<sub>a</sub> comes with form F<sub>a</sub> and T<sub>b</sub> with
+F<sub>b</sub>.
+
+See also: WebTopicEditTemplate
+%ENDSECTION{"documentation"}%
+
+---++ Installation
+%DBCALL{"RenderTopicInstaller" TYPE="%TOPIC%" PARENT="TopicType"}%
+
+---++ Factory
+%STARTINCLUDE%
+%DBCALL{"Applications.RenderSimpleTopicCreator" 
+  TEXT="TWikiTopic" 
+  VALUE="..."
+  TYPE="TWikiTopic"
+  PARENT="WebHome"
+  FORM="Applications.TWikiTopic"
+}%
+%~~ DBQUERY{"TopicType=~'\bTWikiTopic\b'"
+~~~   web="%BASEWEB%"
+~~~   hidenull="on"
+~~~   header="
+~~~     <h2>Topics of type
+~~~       'TWikiTopic'
+~~~     </h2>$n
+~~~     $percntTABLE{tablewidth=\"100%\"}$percnt$n
+*~~   %IFDEFINED{"%HEADER%" 
+~~~     then="$test" 
+~~~     else="| *Nr* | *Name* | *Summary* |$n"
+~~~   }%"
+~~~   format="
+*~~   %IFDEFINED{"%FORMAT%"
+~~~     then="$test"
+~~~     else="| $index 
+~~~           | [[$web.$topic][$expand(TopicTitle or topic)]]
+~~~           | $formfield(Summary)
+~~~           |"
+~~~   }%"
+~~~   footer="$n"
+~~~ }% </noautolink>
+%STOPINCLUDE%
+
+---++ TWikiTopic form
+| *Name:*| *Type:* | *Size:* | *Values:* | *Tooltip message:* | *Attributes:* |
+| TopicType | checkbox | 3 |%DBCALL{"Applications.GetTopicTypes" remote="off"}%| Document type  | |
+| <nop>TopicTitle | text | 75 | | title | |
+| Summary | text | 75 | | short description of the role of this topic |  |
+
+
+%META:FORM{name="Applications.TopicType"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="DocuTopic, TopicType, TWikiForm"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value=""}%
+%META:FIELD{name="Inheritance" attributes="" title="Inheritance" value="none"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="A normal TWiki topic"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

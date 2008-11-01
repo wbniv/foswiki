@@ -1,0 +1,32 @@
+%META:TOPICINFO{author="TWikiContributor" date="1196967161" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+This will render the pagetitle of the BASETOPIC.
+
+---++ Parameters
+NONE
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%<noautolink>
+%TOPICTITLE% - %FORMATLIST{"%BASEWEB%" reverse="on" split="[./]" format="$1" separator=" - "}%
+</noautolink>%STOPINCLUDE%
+</verbatim>
+
+<!-- interrupt glue -->
+
+---++ Test
+<div class="alt">
+%DBCALL{"%TOPIC%"}%
+</div>
+
+%DBCALL{"Applications.RenderFunctionCallers"}%
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value=""}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Render the HTMLTITLE for items in this application"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%
+%META:TOPICMOVED{by="MichaelDaum" date="1158236935" from="Applications.RenderPageTitle" to="Applications.RenderHtmlTitle"}%

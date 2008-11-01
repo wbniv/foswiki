@@ -1,0 +1,65 @@
+%META:TOPICINFO{author="TWikiContributor" date="1175803824" format="1.1" reprev="1.7" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! %TOPIC%
+%FORMFIELD{"Summary"}%
+
+---++ Documentation
+%STARTSECTION{"documentation"}%
+---+++++ Parameters
+   * NAME: application name, defaults to BASETOPIC
+   * THEWEB: web to search for docu, defaults to BASEWEB
+   * TYPE: extract documentation of topics of the given type
+   * NOTTYPE: don't list topics of that type
+
+
+---+++++ Css
+   * twbDocuHolder
+   * twbDocuSectionHolder
+   * twbDocuSectionSummary
+   * twbDocuSectionText
+%ENDSECTION{"documentation"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%
+~~~
+%~~ DBQUERY{
+~~~   "TWikiApplication='\b%IFDEFINED{"%NAME%" then="%NAME%" else="%BASETOPIC%"}%\b'
+~~~    AND TopicType=~'\b%TYPE%\b' 
+~~~    %IFDEFINED{"%NOTTYPE%" then=" AND !(TopicType=~'\b%NOTTYPE%\b')"}%
+~~~   "
+~~~   web="%IFDEFINED{"%THEWEB%" then="%THEWEB%" else="%BASEWEB%"}%"
+~~~   hidenull="on"
+~~~   remote="off"
+~~~   header="
+~~~     <div class=\"twbDocuHolder\">$n
+*~~     ---+++ %TYPE%$n"
+~~~   format="<div class=\"twbDocuSectionHolder\">$n
+*~~     ---++++ [[$web.$topic][$topic]]$n
+~~~     <div class=\"twbDocuSectionSummary\">$formfield(Summary)</div>
+~~~     <div class=\"twbDocuSectionText\">$expand(_sectiondocumentation)</div>
+~~~     </div>"
+~~~   separator="$n"
+~~~   footer="</div>"
+~~~ }%
+%STOPINCLUDE%
+</verbatim>
+
+---++ Test
+%DBCALL{"%TOPIC%" NAME="TWikiWorkbench" TYPE="TopicFunction"}%
+
+%DBCALL{"RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+<noautolink>
+&copy; 2006-2007 Michael Daum http://wikiring.de
+
+%DBCALL{"GnuGeneralPublicLicense" section="notice"}%
+</noautolink>
+</div>
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Extracts the documentation section from all parts of a TWikiApplication"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

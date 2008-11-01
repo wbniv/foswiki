@@ -1,0 +1,35 @@
+%META:TOPICINFO{author="TWikiContributor" date="1184013593" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TWikiApplication"}%
+---+!! %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="4" title="Table of Contents"}%
+
+---++ Description
+<img align="right" src="%ATTACHURLPATH%/forge.gif" alt="forge.gif" width='160' style="margin:0px 10px 10px"/>
+
+The TWikiWorkbench is a standardized way to write and deploy TWikiApplications. It is TWikiApplication to write TWikiApplications. 
+ At its core it establishes a certain terminology (such as TopicTypes and TopicFunctions) that are common in non-web applications. A TWikiWorkbench implements a standard set of means to ease the administration of even large-scale TWikiApplication. TWikiApplications, i.e. its TopicFunctions ease the extraction of application documentation. Merging a set of applications obeying this framework into the same web grants a higher level of compatibility and re-usability.
+
+
+---++ Documentation
+%DBCALL{"RenderApplicationDocumentation" TYPE="TopicType"}%
+%DBCALL{"RenderApplicationDocumentation" TYPE="TWikiForm"}%
+%DBCALL{"RenderApplicationDocumentation" TYPE="TopicTemplate"}%
+%DBCALL{"RenderApplicationDocumentation" TYPE="TopicView"}%
+%DBCALL{"RenderApplicationDocumentation" TYPE="TopicFunction"}%
+
+---++ Installation
+...
+
+---++ Manifest
+%DBCALL{"RenderApplicationManifest"}%
+
+%META:FORM{name="Applications.TWikiApplication"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TWikiApplication"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="TWikiApplication to develop TWikiApplications"}%
+%META:FIELD{name="Version" attributes="" title="Version" value="0.03"}%
+%META:FIELD{name="Author" attributes="" title="Author" value="Michael Daum"}%
+%META:FIELD{name="Copyright" attributes="" title="Copyright" value="&copy; 2006-2007 Michael Daum http://wikiring.de"}%
+%META:FIELD{name="License" attributes="" title="License" value="GnuGeneralPublicLicense"}%
+%META:FIELD{name="Dependencies" attributes="" title="Dependencies" value=""}%

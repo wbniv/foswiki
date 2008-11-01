@@ -1,0 +1,44 @@
+/* docu */
+.twbDocuHolder h3 {
+  border-bottom:1px solid #eee;
+  margin-bottom:5px;
+}
+
+.twbDocuHolder {
+  margin-top:2em;
+}
+.twbDocuSectionSummary {
+  margin-bottom:0.5em;
+}
+
+/* sidebar  */
+.twbSideBarTools li {
+  white-space:nowrap;
+}
+
+/* recent changes */
+.twbRecendChangesHolder {}
+
+/* pagination */
+.twbPageNavigation {
+  font-size:95%;
+  margin-bottom:10px;
+  padding:0px;
+}
+.twbPageNavigation table {
+  width:100%;
+  line-height:110%;
+}
+.twbPrevPage {
+  text-align:left;
+  padding-left:2px;
+  padding-right:5px;
+  width:50%;
+}
+.twbNextPage {
+  text-align:right;
+  padding-left:5px;
+  padding-right:2px;
+  width:50%;
+}
+

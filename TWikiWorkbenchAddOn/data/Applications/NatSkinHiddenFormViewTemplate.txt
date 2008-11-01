@@ -1,0 +1,12 @@
+%META:TOPICINFO{author="TWikiContributor" date="1142931446" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicView"}%
+%TMPL:INCLUDE{"view"}%
+%TMPL:DEF{"content"}%
+%TEXT% 
+%TMPL:END%
+%TMPL:DEF{"contentfooter"}%<div class="natRevision"> %REVINFO% </div>%TMPL:END%
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="M" title="TopicType" value="TopicView"}%
+%META:FIELD{name="Summary" attributes="M" title="Summary" value="View to hide  %25TWIKIWEB%25.TWikiForms"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

@@ -1,0 +1,29 @@
+%META:TOPICINFO{author="TWikiContributor" date="1159623564" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{}%
+---+ Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+This TopicFunction is used to set the HTTP_EQUIV_ON_VIEW variable which is added
+to the html header section of a page in the <nop>%BASEWEB% web. 
+
+---++ Parameters
+NONE
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%
+%IFDEFINEDTHEN{"$percntFORMFIELD{\"Summary\"}$percnt" glue="off"}%
+<meta name="description" content="$test" />
+%FIDEFINED%
+<meta name="author" content="%REVINFO{"$wikiname"}%" />
+%STOPINCLUDE%
+</verbatim>
+
+<!-- interrupt glue -->
+
+%DBCALL{"Applications.RenderFunctionCallers"}%
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="M" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Render a set of links to alternative formats for the current html page"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

@@ -1,0 +1,20 @@
+%META:TOPICINFO{author="TWikiContributor" date="1212998694" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="WebHome"}%
+---++ Statistics for <nop>%BASEWEB% Web
+
+| *Month:* | *Topic <br /> views:* | *Topic <br /> saves:* | *File <br /> uploads:* | *Most popular <br /> topic views:* | *Top contributors for <br /> topic save and uploads:* |
+| <!--statDate--> | <!--statViews--> | <!--statSaves--> | <!--statUploads--> | <!--statTopViews--> | <!--statTopContributors--> |
+| Apr 2008 |  0 |  0 |  0 |  |  |
+| Mar 2008 |  75 |  8 |  0 | &nbsp;57 [[WebHome]]<br />&nbsp;10 [[RenderWebChanges]]<br />&nbsp;&nbsp;3 [[RenderPageNavigation]]<br />&nbsp;&nbsp;2 [[WebChanges]]<br />&nbsp;&nbsp;1 [[TopicFunction]]<br />&nbsp;&nbsp;1 [[TWikiTopic]]<br />&nbsp;&nbsp;1 [[RenderRecentChangesSection]] | &nbsp;&nbsp;8 Main.MichaelDaum |
+| Feb 2008 |  0 |  0 |  0 |  |  |
+| Jan 2008 |  0 |  0 |  0 |  |  |
+
+__Notes:__
+	* Do not edit this topic, it is updated automatically. (You can also <a href="%SCRIPTURLPATH{"statistics"}%/%BASEWEB%">force</a> an update)
+	* %TWIKIWEB%.TWikiDocumentation tells you how to enable the automatic updates of the statistics.
+	* Suggestion: You could archive this topic once a year and delete the previous year's statistics from the table.
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="M" title="TopicType" value="WebTool"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Statistics"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

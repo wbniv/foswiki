@@ -1,0 +1,52 @@
+%META:TOPICINFO{author="TWikiContributor" date="1197290965" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicType"}%
+---+ %TOPIC%
+%FORMFIELD{"Summary"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+This is a type of topics that has no own net data but includes all data from
+another topic. Thereby content from another web can be integrated into this
+web without reduplication. Every TopicStub has a rather rigid structure and
+varies only in its target topic (see TopicStub).
+
+This TopicType is similar to TopicFunctions but
+does not compute a specific function. Moreover it is useful to reduce
+redundancy of pure content, whereas TopicFunctions are part of a TWikiWorkbench
+library and thus reduce redundancy in TWikiApplications.
+
+See also: %TOPIC%Template
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Installation
+%DBCALL{"RenderTopicInstaller" TEXT="Install '%TOPIC%' TopicType in" TYPE="TopicType" PARENT="TopicType"}%
+
+---++ Factory
+%STARTINCLUDE%
+%DBCALL{"Applications.RenderSimpleTopicCreator" 
+  TEXT="%TOPIC%" 
+  VALUE="..."
+  TYPE="%TOPIC%"
+  TEMPLATE="Applications.%TOPIC%Template"  
+  FORM="Applications.%TOPIC%"
+  WHITEBOARD="off"
+}%
+
+%DBCALL{"Applications.RenderTopicsOfType" THEWEB="%URLPARAM{"web"}%"}%
+%STOPINCLUDE%
+
+---++ TopicStub form
+| *Name:*| *Type:* | *Size:* | *Values:* | *Tooltip message:* | *Attributes:* |
+| TopicType | checkbox | 3 |%DBCALL{"Applications.GetTopicTypes" remote="off"}%| Document type  | |
+| <nop>TopicTitle | text | 75 | | title of this topic | |
+| Summary | text | 75 | | Short description of the role of this topic | |
+| TWikiApplication| select | 1 |%FLEXWEBLIST{subwebs="Applications" header="none, " footer="TWikiWorkbench" format="$name, "}%| Application this topic belongs to | |
+| Target | text | 75 | | Target web-topic | |
+| Section | text | 75 | | section inside the target topic | |
+
+
+%META:FORM{name="Applications.TopicType"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="DocuTopic, TopicType, TWikiForm"}%
+%META:FIELD{name="Inheritance" attributes="" title="Inheritance" value="ApplicationTopic"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="A placeholder or redirect topic"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

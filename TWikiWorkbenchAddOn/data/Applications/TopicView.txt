@@ -1,0 +1,48 @@
+%META:TOPICINFO{author="TWikiContributor" date="1213620030" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicType"}%
+---+ %TOPIC%
+%FORMFIELD{"Summary"}%
+
+---++ Documentation
+%STARTSECTION{"documentation"}%
+A TopicView defines a view for a topic. By default TWikiTopics are displayed using the installed
+skin and the templates (don't confuse with TopicTemplate being a content blueprint for newly created topics).
+The view (compare with the 'view' term from the Model-View-Control school) computes the appearance
+of a TWikiTopic and its form data. A new view is assigned to a topic by setting the VIEW_TEMPLATE variable.
+
+For example the following will set th view to use the HiddenFormViewTemplate to hide the form table that 
+is normally displayed below the wiki content.
+<pre>
+   * Set <span></span>VIEW_TEMPLATE = HiddenFormView
+</pre>
+Note, that the =...Template= string is appended automatically by the TWiki engine.
+
+Note also, that we use the <nop>TopicView type to mark even those views that are used during _editting_ a
+twiki topic and is assigned using something like
+<pre>
+   * Set <span></span>EDIT_TEMPLATE = FormEdit
+</pre>
+As such the FormEditTemplate is not used during TWiki's view operation but during edit. The template
+is then used to render the _view on the editor_ to be used. Edit templates either augment the normal
+TWiki editor, or even implement a full substitute for its form data.
+%ENDSECTION{"documentation"}%
+
+%STARTINCLUDE%
+%DBCALL{"Applications.RenderSimpleTopicCreator" 
+  TEXT="%TOPIC%" 
+  VALUE="...ViewTemplate"
+  TYPE="%TOPIC%"
+  TEMPLATE="Applications.%TOPIC%Template"
+  FORM="Applications.ApplicationTopic"
+}%
+
+%DBCALL{"Applications.RenderTopicsOfType" THEWEB="%URLPARAM{"web"}%"}%
+%STOPINCLUDE%
+
+
+%META:FORM{name="Applications.TopicType"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="DocuTopic, TopicType"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value="TopicView"}%
+%META:FIELD{name="Inheritance" attributes="" title="Inheritance" value="ApplicationTopic"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="TopicType of topics that implement a TMPL template to view topics"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

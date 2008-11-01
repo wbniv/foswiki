@@ -1,0 +1,22 @@
+%META:TOPICINFO{author="TWikiContributor" date="1212999732" format="1.1" version="$Rev$"}%
+---+!! Welcome to the %WEB% web
+
+This a template web that contains a Applications.TWikiWorkbench to create a new Applications.TWikiApplication.
+%RED%Replace this text with an introduction to your application%ENDCOLOR%
+
+%TOC%
+
+%DBCALL{"Applications.FirstSteps"}%
+
+%DBCALL{"Applications.RenderTWikiApplicationWebHome" APP="%FLEXWEBLIST{webs="%WEB%" format="$name"}%"}%
+
+<!--
+   * Set VIEW_TEMPLATE = Applications.HiddenFormView
+-->
+
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="WebTool"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value="WebHome"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="%25SITEMAPWHAT%25"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

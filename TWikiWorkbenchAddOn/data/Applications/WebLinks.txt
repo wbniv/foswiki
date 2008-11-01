@@ -1,0 +1,11 @@
+%META:TOPICINFO{author="TWikiContributor" date="1212998694" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="WebTool"}%
+---+ %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%STARTINCLUDE%%DBCALL{"Applications.RenderSideBar"}%%STOPINCLUDE%
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="M" title="TopicType" value="WebTool"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Navigation for the NatSkin WebSideBar"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

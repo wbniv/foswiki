@@ -1,0 +1,20 @@
+%META:TOPICINFO{author="TWikiContributor" date="1158311730" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{}%
+---+ %TOPIC%
+%FORMFIELD{"Summary"}%
+
+
+
+
+-- %WIKIUSERNAME% - %DATE%
+
+%STARTSECTION{type="templateonly"}%
+%RED%Note, this is only a template.%ENDCOLOR%
+
+See also: ApplicationTopic, TWikiTopic
+%ENDSECTION{type="templateonly"}%
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="M" title="TopicType" value="TopicTemplate"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Generic template for topics"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

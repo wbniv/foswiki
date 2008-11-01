@@ -1,0 +1,40 @@
+%META:TOPICINFO{author="TWikiContributor" date="1171920634" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicTemplate"}%
+---+ %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%STARTSECTION{"factory"}%
+---+++!! Create a new Application
+<div class="twikiPageForm">
+<form name="admin" action="%SCRIPTURLPATH{manage}%/%WEB%/%TOPIC%" method="post">
+<input name="action" type="hidden" value="createweb" />
+<input type="hidden" name="baseweb" value="_default" /> <!-- CHANGE ME -->
+<input type="hidden" name="webbgcolor" value="#D0D0D0" size="16" /> 
+<input name="newtopic" type="hidden" value="" />
+<table>
+<tr>
+<td class="twikiFirstCol">Name:</td>
+<td><input class="twikiInputField" name="newweb" type="text" value="" size="50" /></td>
+</tr>
+<tr>
+<td class="twikiFirstCol">Description:</td>
+<td><input class="twikiInputField" type="text" name="sitemapwhat" value="" size="50" /></td>
+</tr>
+<tr>
+<td class="twikiFirstCol">&nbsp;</td>
+<td>
+   <input type="submit" class="twikiSubmit natOkButton" value="Submit" />
+    <input type="reset" class="natCancelButton" value="Reset" />
+ </td>
+</tr>
+</table>
+</form>
+</div>
+%ENDSECTION{"factory"}%
+
+
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicTemplate"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="TopicTemplate for web-based ApplicationFactories"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

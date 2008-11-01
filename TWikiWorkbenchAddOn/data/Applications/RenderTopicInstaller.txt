@@ -1,0 +1,87 @@
+%META:TOPICINFO{author="TWikiContributor" date="1185612231" format="1.1" reprev="1.12" version="$Rev$"}%
+%META:TOPICPARENT{}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+This is a tool to add a topic based application, or part of it to another web.
+This is done by creating a TopicStub that points back to the implementation.
+For example, to add a new TopicType to web, you create a TopicStub that points
+back to the implementation of that TopicType. This function is also used to
+create topic-based ApplicationFactory.
+
+The function will display a small input form to specify the web where the 
+TopicStub is to be created.
+
+---+++++ Parameters
+   * TEXT: label of the input field, defaults to "Install BASETOPIC in"
+   * NAME: name of the topic to be created, defaults to BASETOPIC
+   * SOURCE: used to specify the TopicStub's target to be created, defaults to BASEWEB.BASETOPIC
+   * PARENT: topicparent of the new topic, defaults to HOMETOPIC
+   * TEMPLATE: TopicTemplate used to create this topic, defaults to Applications.TopicStubTemplate
+   * FORM: TWikiForm used for this topic, defaults to Applications.TopicStub
+   * TYPE: type of the new topic, defaults to TopicStub
+   * EXTRA: extra stuff to be send during =save=
+
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE% <noautolink>
+<a name="factory"></a>
+<div class="twikiPageForm">
+<form action="%SCRIPTURLPATH{"save"}%/" method="post">
+<input type="hidden" name="onlynewtopic" value="on" />
+<input type="hidden" name="Summary" value="%FORMFIELD{"Summary" topic="%IFDEFINED{"%SOURCE%" then="%SOURCE%" else="%BASETOPIC%"}%"}%" />
+<input type="hidden" name="topicparent" value="%IFDEFINED{"%PARENT%" then="%PARENT%" else="%HOMETOPIC%"}%" />
+<input type="hidden" name="templatetopic" value="%IFDEFINED{"%TEMPLATE%" then="%TEMPLATE%" else="Applications.TopicStubTemplate"}%" />
+<input type="hidden" name="formtemplate" value="%IFDEFINED{"%FORM%" then="%FORM%" else="Applications.TopicStub"}%" />
+<input type="hidden" name="TopicType" value="%IFDEFINED{"%TYPE%" then="TopicStub, %TYPE%" else="TopicStub"}%" />
+<input type="hidden" name="Target" value="%IFDEFINED{"%SOURCE%" then="%SOURCE%" else="%BASEWEB%.%BASETOPIC%"}%" />
+%IFDEFINED{"%EXTRA%"}%
+<input type="hidden" name="topic" value="%IFDEFINED{"%NAME%" then="%NAME%" else="<nop>%BASETOPIC%"}%" />
+<table style="width:auto">
+<tr>
+<th>%IFDEFINED{"%TEXT%" then="%TEXT%" else="Install <nop>%BASETOPIC% in"}%</th>
+<td>
+<select name="newweb" class="twikiSelect"> 
+<option>Select ... </option>
+%~~ FLEXWEBLIST{
+~~~  format="<option value='$web'>$web</option>"
+~~~  webs="public,webtemplate" 
+~~~  separator=" " 
+~~~  exclude="Trash"
+~~~ }%
+</select>
+</td>
+<td><input type="button" value="Ok" class="twikiSubmitButton natOkButton" onclick="this.form.action='%SCRIPTURLPATH{"save"}%/'+this.form.elements.newweb.value+'/'+this.form.elements.topic.value;this.form.submit();" /></td>
+</tr>
+</table>
+</form> 
+</div></noautolink>%STOPINCLUDE%
+</verbatim>
+
+<!-- interrupt glue -->
+
+---++ Test
+<div class="alt">
+%DBCALL{"%TOPIC%"}%
+</div>
+
+%DBCALL{"Applications.RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+&copy; 2006-2007 Michael Daum http://wikiring.de
+
+%DBCALL{"Applications.GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="DocuTopic, TopicFunction"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Render a simple factory to deploy a topic in another web"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

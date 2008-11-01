@@ -1,0 +1,27 @@
+%META:TOPICINFO{author="TWikiContributor" date="1129746261" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+ Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+---++ Parameters
+NONE
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%
+---++ Calls to '%INCLUDINGTOPIC%'
+%~~ DBQUERY{"text=~'\b%INCLUDINGTOPIC%\b'"
+~~~   exclude="%INCLUDINGTOPIC%"
+~~~   web="%BASEWEB%"
+~~~   format="   * [[$web.$topic][$topic]]"
+~~~ }%
+*~~ 
+%STOPINCLUDE%
+</verbatim>
+
+%DBCALL{"Applications.RenderFunctionCallers"}%
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="M" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="Summary" attributes="M" title="Summary" value="Render a list of topics that use a given TopicFunction"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

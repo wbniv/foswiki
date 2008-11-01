@@ -1,0 +1,67 @@
+%META:TOPICINFO{author="TWikiContributor" date="1212998694" format="1.1" version="$Rev$"}%
+---+!! <nop>%WEB% Web Preferences
+
+%TOC%
+<br clear="all" />
+
+---+++ TWikiForms
+   * Set WEBFORMS = Applications.TWikiTopic, Applications.TopicStub, Applications.TWikiApplication, Applications.ApplicationTopic, Applications.TopicType
+
+---+++ Naming
+Text to be displayed on the sitemap and in the headerbar describing this web
+using a kind of tagline:
+   * Set SITEMAPWHAT = Applications Library
+   * Set SITEMAPUSETO = Applications Library
+
+Name of this blog displayed in the header if you are using the <nop>NatSkin:
+   * Set WEBTOOLNAME =
+
+Color to be displayed in the sitemap representing this web:
+   * Set WEBBGCOLOR = #E2DCC8
+
+Flag to enable/disable listing this web on the sitemap:
+   * Set SITEMAPLIST = on
+
+---+++ Skin
+Chose the skin to be used for this web:
+   * #Set SKIN = pattern
+
+<nop>NatSkin variables:
+   * #Set SKINSTYLE = Kubrick
+   * #Set STYLESIDEBAR = right
+   * #Set STYLEBORDER= thin
+   * #Set STYLEBUTTONS = on
+   * #Set STYLEVARIATION =
+   * #Set STYLESEARCHBOX = pos2
+
+---+++ Access rights
+   * Set #DENYWEBVIEW =
+   * Set #ALLOWWEBVIEW = 
+   * Set DENYWEBCHANGE = %MAINWEB%.TWikiGuest
+   * Set ALLOWWEBCHANGE = %MAINWEB%.TWikiAdminGroup
+   * Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
+
+---+++ Application Pointer
+<nop>DBCachePlugin settings registering the WebDB
+implementation for this web (don't change):
+   * Set WEBDB = TWiki::Plugins::DBCachePlugin::WebDB
+
+TopicFunctions to generate html page header information:
+<verbatim>
+   * Set HTTP_EQUIV_ON_VIEW = %DBCALL{"Applications.RenderHttpEquivs"}%
+   * Set HTMLTITLE = %DBCALL{"Applications.RenderHtmlTitle"}%
+   * Set DEFAULT_METAKEYWORDS = TWikiWorkbench
+   * Set METAKEYWORDS = %DEFAULT_METAKEYWORDS%
+   * #Set METAAUTHOR =
+   * #Set METADESCRIPTION =
+</verbatim>
+
+
+__Related Topics__:
+   * [[%LOCALSITEPREFS%]]
+   * [[%TWIKIWEB%.TWikiPreferences]]
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="WebTool"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Preferences of the <nop>%25WEB%25 web"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

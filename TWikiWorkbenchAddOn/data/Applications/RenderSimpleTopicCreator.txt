@@ -1,0 +1,73 @@
+%META:TOPICINFO{author="TWikiContributor" date="1187874729" format="1.1" reprev="1.15" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{"documentation"}%
+---+++++ Parameters
+   * TEXT: button text; defaults to BASETOPIC name
+   * VALUE: initial value of the text input field (optional)
+   * FORM: TWikiForm to be used when creating a topic, defaults to TWikiTopic
+   * TEMPLATE: TopicTemplate to be used (optional)
+   * TYPE: initial TopicType value (optional)
+   * PARENT: parent topic for the new topic, defaults to the BASETOPIC
+   * WHITEBOARD: switch on/off the whiteboard textarea
+   * EXTRA: additional =&lt;input ... />=
+   * ACTION: script to be used to create the topic, eg =save= or =edit=, defaults to =edit=
+
+---+++++ CSS
+   * twbTopicTypeTopicCreator
+   * twbTopicTypeNewLabel
+   * twbTopicTypeNewText
+   * twbTopicTypeNewButton
+%ENDSECTION{"documentation"}%
+
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%
+~~~
+<noautolink>
+<div class="twikiPageForm">
+<form action="%SCRIPTURLPATH{"%IFDEFINED{"%ACTION%" then="%ACTION%" else="edit"}%"}%/%BASEWEB%/" method="post">
+<input type="hidden" name="web" value="%BASEWEB%" />
+<input type="hidden" name="onlynewtopic" value="on" />
+<input type="hidden" name="action" value="%IFDEFINED{"%WHITEBOARD%" as="off" then="form"}%" />
+<input type="hidden" name="onlywikiname" value="off" />
+<input type="hidden" name="topicparent" value="%IFDEFINED{"%PARENT%" then="%PARENT%" else="%BASEWEB%.%BASETOPIC%"}%" />
+<input type="hidden" name="templatetopic" value="%IFDEFINED{"%TEMPLATE%"}%" />
+<input type="hidden" name="formtemplate" value="%IFDEFINED{"%FORM%" then="%FORM%" else="Applications.TWikiTopic"}%" />
+<input type="hidden" name="TopicType" value="%IFDEFINED{"%TYPE%"}%" />
+%IFDEFINED{"%EXTRA%"}%
+<input type="hidden" name="Summary" value="" />
+<table style="width:auto"><tr>
+<th>New <nop>%IFDEFINED{"%TEXT%" then="%TEXT%" else="%BASETOPIC%"}%</th>
+<td><input class="twikiInputField twbTopicTypeNewText" type="text" name="topic" size="40" value="%IFDEFINED{"%VALUE%"}%"/></td>
+<td><input type="submit" value="Ok" class="twikiSubmit twbTopicTypeNewButton natOkButton" /></td>
+</tr></table>
+</form> 
+</div>
+</noautolink>
+~~~
+%STOPINCLUDE%
+</verbatim>
+
+---++ Test
+%DBCALL{"%TOPIC%" TEXT="Topic" VALUE="TWikiTopicXXXXXXXXXX"}%
+
+%DBCALL{"RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+&copy; 2006-2007 Michael Daum http://wikiring.de
+
+%DBCALL{"GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicFunction"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="TopicFunction to display a simple form to create a new topic"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%
