@@ -1,0 +1,68 @@
+%META:TOPICINFO{author="PeterThoeny" date="1155231533" format="1.1" reprev="1.2" version="1.2"}%
+---+!! <nop>%TOPIC%
+
+This Plugin prevents automatic linking of selected [[%TWIKIWEB%.WikiWord][WikiWords]] such as <nop>LinuxWorld or <nop>MacDonald.
+
+%TOC%
+
+---++ Usage
+
+!WikiWords that should not be automatically linked are listed in a STOPWIKIWORDLINK preferences setting or Plugin setting. This is typically done in the [[%LOCALSITEPREFS%]], but can be done also in any web (in %WEBPREFSTOPIC%), or in a single topic. See sample entry in the Plugin settings.
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>STOPWIKIWORDLINKPLUGIN_SHORTDESCRIPTION%==
+
+   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = Prevents automatic linking of selected <nop>WikiWords
+
+   * Debug plugin: (See output in =data/debug.txt=)
+      * Set DEBUG = 0
+
+<noautolink>
+   * List of WikiWords excluded from auto-linking:
+      * Set STOPWIKIWORDLINK = LinuxWorld, MacDonald
+</noautolink>
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the TWiki server. 
+
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+   * Configure the Plugin:
+      * TWiki 4.0 and up: Run the [[%SCRIPTURL%/configure%SCRIPTSUFFIX%][configure]] script to enable the Plugin
+      * Add a STOPWIKIWORDLINK setting to the [[%LOCALSITEPREFS%]] topic, listing all !WikiWords to exclude from auto-linking. Example:
+         * =Set STOPWIKIWORDLINK = <nop>LinuxWorld, <nop>MacDonald=
+   * Test if the installation was successful. The following words should not be linked when above example is used:
+      * LinuxWorld, MacDonald
+
+---++ Limitations
+
+   * This Plugin is not internationalized, that is at this time only =A-Z=, =a-z=, and =0-9= are supported for !WikiWords
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.PeterThoeny |
+|  Copyright: | &copy; 2006-2007, Peter Thoeny, [[http://www.twiki.net/][TWIKI.NET]] |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | 10 Aug 2006 (V1.001) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  10 Aug 2006: | Fixed issue where !WikiWord at the beginning of line was still linked |
+|  09 Aug 2006: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle 100%, %TWIKIWEB%.FormattedSearch 100%, %TOPIC% 99% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+
+-- TWiki:Main.PeterThoeny - 10 Aug 2006
