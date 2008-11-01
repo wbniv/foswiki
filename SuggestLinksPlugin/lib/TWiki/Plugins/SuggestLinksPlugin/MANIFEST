@@ -1,0 +1,4 @@
+data/TWiki/SuggestLinksPlugin.txt NEW
+lib/TWiki/Plugins/SuggestLinksPlugin.pm NEW
+pub/TWiki/SuggestLinksPlugin/exclam.gif NEW
+templates/edit.suggest.tmpl NEW
