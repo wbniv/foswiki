@@ -1,0 +1,79 @@
+%META:TOPICINFO{author="AntonioTerceiro" date="1096991066" format="1.0" version="1.1"}%
+---+ !SvgPlugin
+
+!SvgPlugin displays SVG drawings attached in TWiki as PNG images,
+inline in your topics.
+
+!SvgPlugin uses the
+[[http://search.cpan.org/~tomson/Image-LibRSVG-0.04/][Image::LibRSVG]]
+Perl module (which uses [[http://librsvg.sourceforge.net][librsvg]]),
+to convert your SVG drawings into PNG pictures.
+
+---++ Syntax Rules
+
+	* %<nop/>SVG{"<code>drawing</code>" <em>parameters</em>}%
+	* where =drawing= is the filename of an attached SVG image.
+	* Parameters:
+     | *Parameter* | *Description* | *Defaul value* |
+     | =size= | the *maximum* size of the picture. The picture will be generated do fit in this size. !SvgPlugin will generate a picture the fits best in the given size, without distorting the image.  | =DEFAULTSIZE= setting below |
+     | =topic= | The topic to which the drawing is attached. Can be =TheTopic= or =Web.TheTopic= | current topic |
+
+---++ Examples
+
+| *You type:* | *You should get:* | *You get (if installed):* |
+| %<nop/>SVG{"TWikiBrasil.svg"}% | %ATTACHURL%/TWikiBrasil-320x200.png | %SVG{"TWikiBrasil.svg"}% |
+| %<nop/>SVG{"TWikiBrasil.svg" size="400x300"}% | %ATTACHURL%/TWikiBrasil-400x300.png | %SVG{"TWikiBrasil.svg" size="400x300"}% |
+| %<nop/>SVG{}% | <span style="background: #FFFFCC; color: red; text-decoration: underline;"><strong>SvgPlugin:</strong> you must specify a drawing to display!</span> | %SVG{}% |
+| %<nop/>SVG{"TWikiBrasil.svg" topic="Main.AntonioTerceiro"}% | <span style="background: #FFFFCC; color: red; text-decoration: underline;"><strong>SvgPlugin:</strong> can't find drawing !TWikiBrasil.svg attched at Main/AntonioTerceiro.</span> | %SVG{"TWikiBrasil.svg" topic="Main.AntonioTerceiro"}% |
+
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* Set SHORTDESCRIPTION = Shows SVG drawings as PNG pictures embeded in topics
+
+	* Debug plugin: (See output in =data/debug.txt=)
+	* Set DEBUG = 0
+
+	* My own setting:
+	* Set DEFAULTSIZE = 320x200
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Install the =Image::LibRSVG= Perl module.
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+     | ==pub/%WEB%/%TOPIC%/TWikiBrasil.svg== | Sample drawing |
+     | ==pub/%WEB%/%TOPIC%/TWikiBrasil-320-200.png== | Sample picture |
+     | ==pub/%WEB%/%TOPIC%/TWikiBrasil-400x300.png== | Sample picture |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the installation was successful:
+	* see examples above.
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/AntonioTerceiro |
+|  Plugin Version: | 05 Oct 2004 (V1.000) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  05 Oct 2004: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.000 |
+|  CPAN Dependencies: | [[http://search.cpan.org/~tomson/Image-LibRSVG-0.04/][Image::LibRSVG]] |
+|  Other Dependencies: | [[http://librsvg.sourceforge.net][librsvg]] headers, if needed to compile Image::LibRSVG, and [[http://librsvg.sourceforge.net][librsvg]] |
+|  Perl Version: | tested with 5.8.4 |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- TWiki:Main/AntonioTerceiro - 05 Oct 2004
+
+%META:FILEATTACHMENT{name="TWikiBrasil.svg" attr="" comment="[[http://twikibr.softwarelivre.org][TWikiBrasil]] logo by TWiki:Main/AurelioAHeckert" date="1096997119" path="TWikiBrasil.svg" size="17394" user="AntonioTerceiro" version="1.1"}%

@@ -1,0 +1,5 @@
+data/TWiki/SvgPlugin.txt NEW
+lib/TWiki/Plugins/SvgPlugin.pm NEW
+pub/TWiki/SvgPlugin/TWikiBrasil-320x200.png NEW
+pub/TWiki/SvgPlugin/TWikiBrasil-400x300.png NEW
+pub/TWiki/SvgPlugin/TWikiBrasil.svg NEW
