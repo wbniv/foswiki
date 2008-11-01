@@ -1,0 +1,8 @@
+# Release manifest for SafeWikiPlugin
+data/TWiki/SafeWikiPlugin.txt 0644 Documentation
+lib/TWiki/Plugins/SafeWikiPlugin.pm 0644 Perl module
+lib/TWiki/Plugins/SafeWikiPlugin/Config.spec 0444 Configuration parameters
+lib/TWiki/Plugins/SafeWikiPlugin/Parser.pm 0644 Perl module
+lib/TWiki/Plugins/SafeWikiPlugin/Node.pm 0644 Perl module
+pub/TWiki/SafeWikiPlugin/wikiringlogo20x20.png 0644
+pub/TWiki/SafeWikiPlugin/safewiki.png 0644
