@@ -1,0 +1,5 @@
+data/TWiki/MathModePlugin.txt 0644
+lib/TWiki/Plugins/MathModePlugin/Core.pm 0644
+lib/TWiki/Plugins/MathModePlugin.pm 0644
+pub/TWiki/MathModePlugin/latex2img 0644
+pub/TWiki/MathModePlugin/wikiringlogo40x40.png 0644

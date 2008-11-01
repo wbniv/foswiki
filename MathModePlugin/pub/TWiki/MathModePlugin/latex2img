@@ -1,0 +1,75 @@
+#!/bin/sh
+
+input="$1"
+shift
+bgcolor="$1"
+shift
+dvipngargs="$*"
+
+latex=/usr/bin/latex
+dvipng=/usr/bin/dvipng
+convert=/usr/bin/convert
+grep=/bin/grep
+origpwd=`pwd`
+stderr=`mktemp`
+
+convertargs="-trim -transparent $bgcolor"
+latexargs="-interaction=nonstopmode"
+
+trap cleanup 2 3 9 10 11 15
+
+cleanup() {
+  echo "INPUT:"
+  cat $input
+  echo "STDERR:"
+  cat $stderr
+  test -f $stderr && rm $stderr
+}
+
+test -z $input && {
+  echo ERROR: need input >&2
+  cleanup
+  exit 1
+}
+
+test -x $latex || {
+  echo "ERROR: can't find latex at $latex"
+  cleanup
+  exit 1
+}
+
+test -x $dvipng || {
+  echo "ERROR: can't find dvipng at $dvipng"
+  cleanup
+  exit 1
+}
+
+test -x $convert || {
+  echo "ERROR: can't find convert at $convert"
+  cleanup
+  exit 1
+}
+
+$latex $latexargs $input >$stderr 2>&1 || {
+  echo "ERROR: problems during latex"
+  cleanup
+  exit 1
+}
+
+set -x
+$dvipng $dvipngargs $input.dvi >$stderr 2>&1 >$stderr 2>&1 || {
+  echo "ERROR: converting dvi to image"
+  echo "       using $dvipng $dvipngargs $input.dvi"
+  cleanup
+  exit 1
+}
+
+for img in *.png; do
+  $convert $convertargs $img $img >$stderr 2>&1 || {
+    echo "ERROR: problems converting $img"
+    cleanup
+    exit 1
+  }
+done
+
+cleanup
