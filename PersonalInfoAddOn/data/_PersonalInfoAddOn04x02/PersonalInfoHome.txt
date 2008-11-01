@@ -1,0 +1,202 @@
+%META:TOPICINFO{author="TWikiContributor" date="1172605768" format="1.1" version="1.1"}%
+---+!! Personal Info !AddOn Documentation
+
+*User personalisation and reference tool.*
+
+See %TWIKIWEB%.PersonalInfoAddOn for an introduction and installation instructions. %BR%
+This topic is meant for administrators and serves as introduction springboard to !PersonalInfoAddOn topics. Keep this topic as reference.
+
+%TOC%
+
+---++ Reference for administrators
+Distribution files:
+   * [[PersonalInfoHome]] - (this topic) documentation
+   * [[PersonalInfoModules]] - modules (INCLUDE sections) used by the !AddOn application
+   * [[PersonalInfo]] - Customizations of [[PersonalInfoModules]]. When making changes always change PersonalInfo only so PersonalInfoModules can stay intact. This makes future upgrades a lot easier.
+   * [[PersonalInfoFaceBook]] - Quick search with user pictures
+   * [[PersonalInfoUserViewTemplate]] - template for the display of user homepages that will show the =personalInfo= block
+   * [[PersonalInfoPictureViewTemplate]] - template for the selection screen of user pictures
+   * [[PersonalInfoPictureDeleteViewTemplate]] - template for the deletion of a user picture
+   * [[PersonalInfoPictureUploadViewTemplate]] - template for the upload of a new user picture
+
+All these files need to reside in your user web (by default Main).
+
+---+++ Diagram of main pages
+<div class="twikiImage"><img src="%PUBURL%/%TWIKIWEB%/PersonalInfoAddOn/template_diagram.png" alt="Diagram of main pages" width='800' height='409' /></div>
+
+---++ Documentation of the INCLUDE sections in PersonalInfo.
+
+---+++ personalInfo
+*This block is intended as a quick introduction of the user (picture!) and to provide the most common information at hand. It makes it easy to edit the data "on the fly".*
+
+This block is included on every user page when PersonalInfoUserViewTemplate is set as view template:
+<div class="twikiHelp">
+*To set !PersonalInfoUserViewTemplate as view template, follow these steps:*
+   1 Include the personal info block in existing pages using either of these 2 methods:
+      * by editing files using the file system: add this line at the bottom: %BR%
+   <verbatim>
+   %META:PREFERENCE{name="VIEW_TEMPLATE" title="VIEW_TEMPLATE" type="Local" value="PersonalInfoUserView"}%
+</verbatim>
+   Make sure the topic ends with a newline.
+      * or by editing topics using a web interface: set the preference =* Local VIEW_TEMPLATE = <nop>PersonalInfoUserView=
+   1 To have this set automatically for new users, change the last line in <nop>%TWIKIWEB%.NewUserTemplate to %BR%
+   <verbatim>
+   %META:PREFERENCE{name="VIEW_TEMPLATE" title="VIEW_TEMPLATE" type="Local" value="PersonalInfoUserView"}%
+</verbatim>
+
+*To customize which fields are displayed, follow these steps:*
+   1 Add the custom fields and field formats to the table in [[%TWIKIWEB%.UserForm]].%BR%
+   Below is an example, so change the fields as you like, but keep the fields =Picture= and =WorkStatus= (including the value 'Current') (both fields are not displayed to the user in topic view). In the current setup the value for =WorkStatus= can be set when editing the topic. %BR%
+   <verbatim>
+| Picture | label | 1 |  |  | H |
+| <nop>WorkStatus | select | 1 | Current, Former |  | H |
+| <nop>WorkEmail | text | 40 |  |  | H |
+| <nop>WorkPhone | text | 40 |  |  | H |
+| <nop>WorkPhoneMobile | text | 40 |  |  | H |
+| <nop>WorkLocation | text | 40 |  |  | H |
+</verbatim>
+   1 Edit PersonalInfo and write the fields and field labels by editing the =INCLUDE= variables. The variable =fieldName= corresponds to the field names in %TWIKIWEB%.UserForm. The variable =label= can be any text you wish.
+   1 If you want to change the layout:
+      * The base style sheets are included from PersonalInfoLayoutModules
+      * The styles for =personalInfo= are included from PersonalInfo.
+      * The default picture [[%PUBURL%/%TWIKIWEB%/PersonalInfoAddOn/silhouette.gif][silhouette.gif]] is attached to %TWIKIWEB%.PersonalInfoAddOn.
+      * Pictures are 120 px wide and may vary in height. This is set in PersonalInfoLayoutModules.
+   
+*Some more indepth information what happens when the user saves her data:*
+   * When =AllowRedirectUrl= is enabled in configure, topic PersonalInfo will be saved as well. This setting is not advisable for public installations, but is ok for intranets.
+   * If TWiki:Plugins/AttachContentPlugin is enabled, on saving !PersonalInfo the javascript attachment for [[#directSearch][directSearch]] will be saved as well.
+   * The javascript file will make directSearch quite a bit faster. If !AttachContentPlugin is not installed, the search will fall back on TWiki's (slower) live search.
+   * The same idea may be used to create an XML file, this is turned off for performance. See [[#phone_ListXML][phoneListXML]].
+   * %ICON{warning}% On large intranets this will have a performance hit. Possibly a different timing of updating the javascript will be needed.
+</div>
+
+This include is written in PersonalInfoUserViewTemplate:
+<verbatim>
+%INCLUDE{"PersonalInfo" section="personalInfo"}%
+</verbatim>
+
+%ICON{hand}% Creates:
+
+%INCLUDE{"PersonalInfo" section="personalInfoStyle"}%
+%INCLUDE{"PersonalInfo" section="personalInfo"}%
+
+
+
+
+---+++ directSearch
+*Creates a search box to directly find users with their !WorkPhone number.*
+
+When !AttachContentPlugin is enabled, an updated javascript file attachment is created each time PersonalInfo is saved. This will make loading of the directSearch module a lot faster.
+
+To disable the auto-creation of the attachment, change PersonalInfo#createDirectSearchAttachment: change =%<nop>STARTATTACH{= to =%&lt;nop>STARTATTACH{=
+
+Usage:
+<verbatim>
+%INCLUDE{"PersonalInfo" section="directSearch" title="*Phone list*" maxresults="10"}%
+</verbatim>
+
+| *Parameter*  | *Description* | *Default value* |
+| =title=      | Title above the input box | no title |
+| =maxresults= | The number of users that are displayed; use =-1= to show all users | 12 |
+| =inputfieldsize= | The width of the input field | 12 |
+
+%ICON{hand}% Creates:
+
+%INCLUDE{"PersonalInfo" section="directSearch" title="*Phone list*" inputfieldsize="20"}%
+
+(try to find John Doe - the %MAINWEB%.PersonalInfoDemoUser - by either first or last name)
+
+
+
+---+++ phoneList
+*Creates a bullet list of users.* Listed users have a field =WorkPhone= and have the value =Current= at field =WorkStatus=.
+
+Usage:
+<verbatim>
+%INCLUDE{"PersonalInfo" section="phoneList"}%
+</verbatim>
+
+%ICON{hand}% <a href="%SCRIPTURL{view}%/%WEB%/PersonalInfo?section=phoneList;skin=text">View phoneList</a>
+
+
+
+
+---+++ phoneListXML
+*Creates a list of user data in XML format.* Listed users have a field =WorkPhone= and have the value =Current= at field =WorkStatus=.
+
+The auto-generation of an XML attachment is turned off for performance. To create the XML file, remove the =&lt;nop>= from the beginning of =STARTATTACH= at [[PersonalInfo#create_PhoneListXMLAttachment][PersonalInfo:createPhoneListXMLAttachment]].
+
+Usage:
+<verbatim>
+PersonalInfo?section=phoneListXML;skin=xml
+</verbatim>
+
+%ICON{hand}% <a href="%SCRIPTURL{view}%/%WEB%/PersonalInfo?section=phoneListXML;skin=xml">View phoneList XML</a>
+
+If the XML has been saved as file:
+<verbatim>
+%PUBURL%/%WEB%/PersonalInfo/phoneList.xml
+</verbatim>
+
+%ICON{hand}% [[%PUBURL%/%WEB%/PersonalInfo/phoneList.xml][PhoneList XML file]]
+
+
+
+
+---+++ personalSearch
+*Creates a bullet list of all users in an empty page.* This might be useful for live searches using AJAX.
+
+Call the topic with url:
+<verbatim>
+PersonalInfo?section=personalSearch;skin=text;q=
+</verbatim>
+... where the search characters come after the <code>q=</code> 
+
+%ICON{hand}% <a href="%SCRIPTURL{view}%/%WEB%/PersonalInfo?section=personalSearch;skin=text;q=a">View personalSearch with the letter 'a'</a>
+
+
+
+
+---+++ tableOfAllUsers
+*Creates a table of all users.*
+
+Usage: create a topic and write the line:
+<verbatim>
+%INCLUDE{"PersonalInfo" section="tableOfAllUsers"}%
+</verbatim>
+or use the url:
+<verbatim>
+PersonalInfo?section=tableOfAllUsers;template=viewplain
+</verbatim>
+
+%ICON{hand}% <a href="%SCRIPTURL{view}%/%WEB%/PersonalInfo?section=tableOfAllUsers;template=viewplain">Printable list</a>
+
+
+---+++ pictures
+*Creates a grid view of all user pictures.*
+
+Parameters:
+   * =imgHeight= - height of the pictures
+   
+Usage: create a topic and write the line:
+<verbatim>
+%INCLUDE{"PersonalInfo" section="pictures" title="Face book" imgHeight="100"}%
+</verbatim>
+or use the url:
+<verbatim>
+PersonalInfo?section=pictures;template=viewplain
+</verbatim>
+
+%ICON{hand}% See [[PersonalInfoFaceBook]]
+
+*Note:* for performance this topic uses TWiki:Plugins/VarCachePlugin if installed and enabled.
+
+---+++ pictureFilterSearch
+*Quickly sift through user pictures.*
+
+This module adds a search box to the picture grid.
+
+%ICON{hand}% See the example on [[PersonalInfoFaceBook]]
+
+
+

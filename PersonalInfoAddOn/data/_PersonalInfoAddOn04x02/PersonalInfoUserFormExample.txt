@@ -1,0 +1,30 @@
+%META:TOPICINFO{author="TWikiContributor" date="1111929255" format="1.0" version="1"}%
+---+ User Form
+
+This form defines the form of the home pages of registered TWiki users listed in [[%MAINWEB%.TWikiUsers][TWikiUsers]].
+
+| *Name* | *Type* | *Size* | *Values* | *Tooltip message* | *Attribute* |
+| <nop>FirstName | text | 40 | | | |
+| <nop>LastName | text | 40 | | | |
+| <nop>OrganisationName | text | 40 | | | |
+| <nop>OrganisationURL | text | 40 | | | |
+| Profession | text | 40 | | | |
+| Country | text | 40 | | | |
+| State | text | 40 | | | |
+| Address | text | 40 | | | |
+| Location | text | 40 | | | |
+| Telephone | text | 40 | | | |
+| <nop>VoIP | text | 40 | | | |
+| <nop>InstantMessaging (IM) | textarea | 60x6 | | (One account pr. line, if several) | |
+| Email | text | 40 | | | |
+| <nop>HomePage | text | 40 | | | |
+| Comment | textarea | 60x12 | | | |
+| Picture | label | 1 |  |  | H | |
+| <nop>WorkStatus | select | 1 | Current, Former |  | H |
+| <nop>WorkEmail | text | 40 |  |  | H |
+| <nop>WorkPhone | text | 40 |  |  | H |
+| <nop>WorkPhoneMobile | text | 40 |  |  | H |
+| <nop>WorkLocation | text | 40 |  |  | H |
+
+__Related topics:__ [[TWikiUsers]], [[%TWIKIWEB%.TWikiForms][TWikiForms]], [[%TWIKIWEB%.TWikiRegistration][TWikiRegistration]]
+

@@ -1,0 +1,29 @@
+%META:TOPICINFO{author="TWikiContributor" date="1166089765" format="1.1" version="1.1"}%
+%{"View template with a stripped down attach template from pattern skin to show the upload option only. Attachments will be automatically hidden. After uploading the user will be redirected to PersonalInfoPictureViewTemplate."}%
+%TMPL:INCLUDE{"PersonalInfoPictureView"}%
+
+
+%TMPL:DEF{"pagetitle"}%%MAKETEXT{"Delete picture"}%%TMPL:END%
+
+
+%TMPL:DEF{"titleaction"}%%MAKETEXT{"(delete picture)"}% %TMPL:END%
+
+
+%TMPL:DEF{"topicactionbuttons"}%<input type="submit" class="twikiSubmit" value=' %MAKETEXT{"Delete this picture"}% ' /> %MAKETEXT{"or"}% <a href="%SCRIPTURL{view}%/%WEB%/%TOPIC%?template=PersonalInfoPictureView">%MAKETEXT{"Cancel"}%</a>%TMPL:END%
+
+
+%TMPL:DEF{"formstart"}%<form method="post" name="rename" action="%SCRIPTURLPATH{"rename"}%/%WEB%/%TOPIC%">%TMPL:END%
+
+%TMPL:DEF{"formend"}%<input type="hidden" name="attachment" value="%FILENAME%" />
+<input type="hidden" name="newweb" value="Trash" />
+<input type="hidden" name="newtopic" value="TrashAttachment" />
+<input type="hidden" name="redirectto" value="%SCRIPTURL{view}%/%WEB%/%TOPIC%?template=PersonalInfoPictureView" />
+</form>%TMPL:END%
+
+
+%TMPL:DEF{"content"}%%TMPL:P{"formstart"}%<div class="twikiFormSteps">
+<div class="twikiFormStep pIPictures">
+<span class="twikiImage">%INCLUDE{"PersonalInfoLayoutModules" section="image" imgName="%FILENAME%" imgWeb="%BASEWEB%" imgTopic="%BASETOPIC%" imgWidth="120"}%</span><span class="twikiSmallish twikiGrayText userPictureActions">%FILENAME%</span>
+</div><!--/twikiFormStep--></div><!--/twikiFormSteps-->
+%TMPL:P{"topicaction"}%
+%TMPL:P{"formend"}%%TMPL:END%

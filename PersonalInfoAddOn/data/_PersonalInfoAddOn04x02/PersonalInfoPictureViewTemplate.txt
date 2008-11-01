@@ -1,0 +1,77 @@
+%META:TOPICINFO{author="TWikiContributor" date="1166089765" format="1.1" version="1.1"}%
+%TMPL:INCLUDE{"twiki"}%
+%TMPL:INCLUDE{"attachtables"}%
+
+%TMPL:DEF{"logo"}%%TMPL:END%
+%TMPL:DEF{"titleaction"}%%MAKETEXT{"(set personal picture)"}% %TMPL:END%
+
+
+%{ Header for topic attachment table }%
+%TMPL:DEF{ATTACH:files:header}%%TMPL:P{"formstart"}%
+<div class="pIPictures">
+<div class="twikiFormSteps">%TMPL:END%
+
+%{ Header for table at top of attach screen }%
+%TMPL:DEF{ATTACH:files:header:A}%%TMPL:P{ATTACH:files:header}%%TMPL:END%
+
+%{ Row for table at top of attach screen }%
+%TMPL:DEF{ATTACH:files:row:A}%%TMPL:P{ATTACH:files:row(basic)}%%TMPL:END%
+
+%{ Footer for table at top of attach screen }%
+%TMPL:DEF{ATTACH:files:footer:A}%%TMPL:P{ATTACH:files:footer}%%TMPL:END%
+
+%{ A basic row definition, for attachment table and attach screen }%
+%TMPL:DEF{ATTACH:files:row(basic)}%<div class="twikiFormStep genericFileType fileType%A_EXT%">
+<input type="radio" class="twikiRadioButton" id="<nop>Picture%A_FILE%" name="Picture" value="%A_FILE%" %IF{" '%FORMFIELD{"Picture" topic="%BASEWEB%.%BASETOPIC%"}%' = '%A_FILE%' " then="checked=\"checked\"" else=""}% />&nbsp;<span class="twikiImage">%INCLUDE{"PersonalInfoLayoutModules" section="image" imgName="%A_FILE%" imgWeb="%BASEWEB%" imgTopic="%BASETOPIC%" imgWidth="120"}%</span><span class="twikiSmallish twikiGrayText userPictureActions">%A_FILE% <a href="%SCRIPTURLPATH{"rename"}%/%WEB%/%TOPIC%?template=PersonalInfoPictureDeleteView&attachment=%ENCODE{"%A_FILE%"}%" rel='nofollow'>delete</a></span></div>%TMPL:END%
+
+%{ Footer for topic attachment table }%
+%TMPL:DEF{ATTACH:files:footer}%</div><!--/twikiFormSteps--></div><!--/pIPictures-->
+%TMPL:P{"topicaction"}%
+%TMPL:P{"formend"}%%TMPL:END%
+
+
+%TMPL:DEF{"topicactionbuttons"}%<input type="submit" class="twikiSubmit" value='%MAKETEXT{"Set selected as my picture"}%' /> %MAKETEXT{"or"}% %TMPL:P{"canceltopicaction"}%%TMPL:END%
+
+%TMPL:DEF{"pagetitle"}%%MAKETEXT{"Set your personal picture"}%%TMPL:END%
+
+%TMPL:DEF{"uploadnew"}%<div class="piUploadNew twikiUnvisited"><a href="%SCRIPTURL{view}%/%BASEWEB%/%BASETOPIC%?template=PersonalInfoPictureUploadView">%MAKETEXT{"Upload a new one"}%</a></div><!--/piUploadNew-->%TMPL:END%
+
+
+
+%TMPL:DEF{"picturelist"}%%TMPL:P{"uploadnew"}%%META{"attachments" all="on" template="%TEMPLATE%"}%%TMPL:END%
+
+
+
+%TMPL:DEF{"form"}%%TMPL:END%
+%TMPL:DEF{"attachments"}%%TMPL:END%
+
+
+
+%TMPL:DEF{"formstart"}%<form method="post" action="%SCRIPTURL{save}%/%BASEWEB%/%BASETOPIC%" enctype="application/x-www-form-urlencoded" name="userpicture" id="userpicture">
+<input type="hidden" name="action_quietsave" value="1" />
+<input type="hidden" name="template" value="%URLPARAM{"template"}%" />%TMPL:END%
+
+%TMPL:DEF{"formend"}%</form>%TMPL:END%
+
+
+
+%TMPL:DEF{"templatestyle"}%<style type="text/css" media="all">
+.pIPictures .genericFileType {display:none;}
+.pIPictures .fileTypepng,
+.pIPictures .fileTypePNG,
+.pIPictures .fileTypegif,
+.pIPictures .fileTypeGIF,
+.pIPictures .fileTypejpg,
+.pIPictures .fileTypeJPG,
+.pIPictures .fileTypejpeg,
+.pIPictures .fileTypeJPEG {display:block;}
+.pIPictures .userPictureActions {margin:0 0 0 1em;}
+.piUploadNew {margin:1em 0; text-align:center;}
+.piUploadNew a {font-weight:bold;}
+.twikiImage img {vertical-align:middle;}
+.imageFloat {display:inline;}
+</style>
+%INCLUDE{"PersonalInfoLayoutModules" section="imageStyle"}%%TMPL:END%
+
+
+%TMPL:DEF{"content"}%%TMPL:P{"picturelist"}%%TMPL:END%

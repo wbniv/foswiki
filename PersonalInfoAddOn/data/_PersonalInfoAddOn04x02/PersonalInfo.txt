@@ -1,0 +1,108 @@
+%META:TOPICINFO{author="TWikiContributor" date="1206906698" format="1.1" reprev="1.1" version="1.1"}%
+---+!! Personal Info !AddOn Custom Data
+
+*Admin topic for %TWIKIWEB%.PersonalInfoAddOn.* For a general overview see [[PersonalInfoHome]].
+
+This current topic and PersonalInfoModules work in tandem:
+   * PersonalInfoModules contains the core modules
+   * PersonalInfo contains customizations for your site
+
+<div class="twikiHelp">
+%IF{"context AttachContentPluginEnabled" then='If you are using =directSearch= you may *<a href="%SCRIPTURL{save}%/%WEB%/%TOPIC%?action_save=1">update the directSearch javascript file now</a>* (by saving this topic the [[%ATTACHURL%/directSearch.js][attachment]] will be updated)' else='!AttachContentPlugin is not enabled.%BR%To read javascript more efficiently in this section, please install and enable TWiki:Plugins/AttachContentPlugin.'}%
+</div>
+
+---++ How can I customize a section?
+   * To *replace* the default implementation: replace the =%<nop>INCLUDE{}%= variable by custom text.
+   * To *add to* the custom implementation: leave the =%<nop>INCLUDE{}%= variable in place and add text before or after
+
+---++ Customizable sections
+---+++ personalInfoFields
+<verbatim>
+%STARTSECTION{"personalInfoFields"}%<table cellspacing='0' cellpadding='0'>
+%INCLUDE{"PersonalInfo" section="personalInfoDataRow" fieldName="WorkPhone" label="Work phone"}%
+%INCLUDE{"PersonalInfo" section="personalInfoDataRow" fieldName="WorkPhoneMobile" label="Work phone mobile"}%
+%INCLUDE{"PersonalInfo" section="personalInfoDataRow" fieldName="WorkEmail" label="E-mail"}%
+%INCLUDE{"PersonalInfo" section="personalInfoDataRow" fieldName="WorkLocation" label="Location"}%
+</table>%ENDSECTION{"personalInfoFields"}%
+</verbatim>
+
+---+++ personalInfoDataRow
+<verbatim>
+To use a custom implementation: replace INCLUDE variable by custom text
+%STARTSECTION{"personalInfoDataRow" fieldName=%FIELDNAME% label=%LABEL%}%%INCLUDE{"PersonalInfoModules" section="personalInfoDataRow"}%%ENDSECTION{"personalInfoDataRow"}%
+</verbatim>
+
+---+++ personalInfoStyle
+<verbatim>
+%STARTSECTION{"personalInfoStyle"}%%INCLUDE{"PersonalInfoModules" section="personalInfoStyle"}%%ENDSECTION{"personalInfoStyle"}%
+</verbatim>
+
+---+++ personalInfo
+<verbatim>
+%STARTSECTION{"personalInfo"}%%INCLUDE{"PersonalInfoModules" section="personalInfo"}%%ENDSECTION{"personalInfo"}%
+</verbatim>
+
+---+++ phoneList
+<verbatim>
+%STARTSECTION{"phoneList"}%%INCLUDE{"PersonalInfoModules" section="phoneList"}%%ENDSECTION{"phoneList"}%
+</verbatim>
+
+---+++ createPhoneListXMLAttachment
+<verbatim>
+%<nop>STARTATTACH{"phoneList.xml"}%%INCLUDE{"%TOPIC%" section="phoneListXML"}%%ENDATTACH%
+</verbatim>
+
+---+++ phoneListXML
+<verbatim>
+%STARTSECTION{"phoneListXML"}%%INCLUDE{"PersonalInfoModules" section="phoneListXML"}%%ENDSECTION{"phoneListXML"}%
+</verbatim>
+
+---+++ personalSearch
+<verbatim>
+%STARTSECTION{"personalSearch"}%%INCLUDE{"PersonalInfoModules" section="personalSearch"}%%ENDSECTION{"personalSearch"}%
+</verbatim>
+
+---+++ vCard
+<verbatim>
+%STARTSECTION{"vCard"}%%INCLUDE{"PersonalInfoModules" section="vCard"}%%ENDSECTION{"vCard"}%
+</verbatim>
+
+---+++ createDirectSearchAttachment
+<verbatim>
+%STARTATTACH{"directSearch.js"}%%INCLUDE{"PersonalInfoModules" section="directSearchScriptCode"}%%ENDATTACH%
+</verbatim>
+
+---+++ directSearch
+<verbatim>
+%STARTSECTION{"directSearch"}%%INCLUDE{"PersonalInfoModules" section="directSearch"}%%ENDSECTION{"directSearch"}%
+</verbatim>
+
+---+++ directSearchScript
+<verbatim>
+%STARTSECTION{"directSearchScript"}%%INCLUDE{"PersonalInfoModules" section="directSearchScript"}%%ENDSECTION{"directSearchScript"}%
+</verbatim>
+
+---+++ directSearchScriptFile
+<verbatim>
+%STARTSECTION{"directSearchScriptFile"}%%INCLUDE{"PersonalInfoModules" section="directSearchScriptFile"}%%ENDSECTION{"directSearchScriptFile"}%
+</verbatim>
+
+---+++ directSearchData
+<verbatim>
+%STARTSECTION{"directSearchData"}%%INCLUDE{"PersonalInfoModules" section="directSearchData"}%%ENDSECTION{"directSearchData"}%
+</verbatim>
+
+---+++ tableOfAllUsers
+<verbatim>
+%STARTSECTION{"tableOfAllUsers"}%%INCLUDE{"PersonalInfoModules" section="tableOfAllUsers"}%%ENDSECTION{"tableOfAllUsers"}%
+</verbatim>
+
+---+++ pictures
+<verbatim>
+%STARTSECTION{"pictures"}%%INCLUDE{"PersonalInfoModules" section="pictures"}%%ENDSECTION{"pictures"}%
+</verbatim>
+
+---+++ pictureFilterSearch
+<verbatim>
+%STARTSECTION{"pictureFilterSearch"}%%INCLUDE{"PersonalInfoModules" section="pictureFilterSearch"}%%ENDSECTION{"pictureFilterSearch"}%
+</verbatim>

@@ -1,0 +1,70 @@
+%META:TOPICINFO{author="TWikiContributor" date="1172698757" format="1.1" reprev="1.1" version="1.1"}%
+---+!! Layout Modules
+
+<verbatim>
+%STARTSECTION{"paragraphWithImageLeft"}%<div class="pIparagraphWithImageLeft">
+<div class="pIparagraphWithImageLeftImage">
+<div class="twikiImage pIimage">%INCLUDE{"%TOPIC%" section="image"}%</div><!--/twikiImage-->
+</div><!--/pIparagraphWithImageLeftImage-->
+<div class="pIparagraphWithImageLeftText">
+%text%
+</div><!--/pIparagraphWithImageLeftText-->
+<br class="twikiClear" />
+</div><!--/pIparagraphWithImageLeft-->%ENDSECTION{"paragraphWithImageLeft"}%
+</verbatim>
+
+<verbatim>
+%STARTSECTION{"image"}%%INCLUDE{"%TOPIC%" section="%IF{"context ImagePluginEnabled" then="imagePluginImage" else="pubImage"}%"}%%ENDSECTION{"image"}%
+</verbatim>
+
+<verbatim>
+%STARTSECTION{"pubImage"}%%IF{"defined imgName and '%imgName%'!=''" then="%IF{"$imgType!='nolink'" then="<a href='%PUBURL%/%imgWeb%/%imgTopic%/%imgName%'>"}%<img src='%PUBURL%/%imgWeb%/%imgTopic%/%imgName%' alt='' title='%IF{"defined imgTitle" then="%imgTitle%" else="%MAKETEXT{"Enlarge"}%"}%' />%IF{"$imgType!='nolink'" then="</a>"}%" else="<img src='%PUBURL%/%TWIKIWEB%/PersonalInfoAddOn/silhouette.gif' alt='' title=%IF{"defined imgTitle" then='%imgTitle%' else='"%MAKETEXT{"Enlarge"}%"'}% />"}%%ENDSECTION{"pubImage"}%
+</verbatim>
+
+<verbatim>
+%STARTSECTION{"imagePluginImage"}%%IMAGE{"%IF{"defined imgName and '%imgName%'!=''" then="%imgName%" else="silhouette.gif"}%" warn="off" align="none" topic="%IF{"defined imgName and '%imgName%'!=''" then="%imgTopic%" else="PersonalInfoAddOn"}%" web="%IF{"defined imgName and '%imgName%'!=''" then="%imgWeb%" else="%TWIKIWEB%"}%" size="%IF{"defined imgWidth" then="%imgWidth%"}%x%IF{"defined imgHeight" then="%imgHeight%"}%" %IF{"$imgType='nolink'" then="format=\"<img border=\\"0\\" align=\\"middle\\" src=\\"$src\\" alt=\\"$alt\\" width=\\"$width\\" height=\\"$height\\" longdesc=\\"$desc\\" title=\\"$title\\" />\" "}% title="%IF{"defined imgTitle" then='%imgTitle%' else='"%MAKETEXT{"Enlarge"}%"'}%" }%%ENDSECTION{"imagePluginImage"}%
+</verbatim>
+
+<verbatim>
+%STARTSECTION{"paragraphWithImageLeftStyle"}%%INCLUDE{"%TOPIC%" section="imageStyle"}%
+<style type="text/css" media="all">
+.pIparagraphFrame {
+padding:1.1em 1.5em 1em 1.5em;
+background-color:#FEFCF6;
+}
+.pIparagraphWithImageLeft {
+margin:1em 0 0 0;
+}
+.pIparagraphWithImageLeftText {
+margin-left:%URLPARAM{"imgWidth" default="120"}%px;
+padding-left:25px;
+}
+.pIparagraphWithImageLeftImage {
+float:left;
+}
+</style>%ENDSECTION{"paragraphWithImageLeftStyle"}%
+</verbatim>
+
+<verbatim>
+%STARTSECTION{"imageStyle"}%<style type="text/css" media="all">
+/* Compatibility change TWiki 4.1 */
+/* twiki style for installations not up to date with the latest */
+.pIimage img {
+padding:3px;
+border-width:1px;
+border-style:solid;
+}
+.pIimage img {
+border-color:#eee;
+background-color:#fff;
+}
+.pIimage img {
+width:120px;
+vertical-align:middle;
+}
+/* END Compatibility change */
+.pIimage img {%IF{"defined imgWidth" then="width:%imgWidth%px;" else="width:120px;"}%%IF{"defined imgHeight" then="height:%imgHeight%px;"}%
+vertical-align:middle;
+}
+</style>%ENDSECTION{"imageStyle"}%
+</verbatim>

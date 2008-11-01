@@ -1,0 +1,372 @@
+%META:TOPICINFO{author="TWikiContributor" date="1173206530" format="1.1" reprev="1.1" version="1.1"}%
+---+!! Personal Info !AddOn Application Sections
+
+*Admin topic for %TWIKIWEB%.PersonalInfoAddOn.* %BR%
+This topic holds a number of modules (INCLUDE sections) to display and search user information. See also PersonalInfoHome for documentation and usage examples.
+
+*Leave this file intact - always make custom changes to PersonalInfo.*
+
+
+
+---++ personalInfo
+
+<verbatim>
+%STARTSECTION{"personalInfoFields"}% This block is only defined in PersonalInfo %ENDSECTION{"personalInfoFields"}%
+</verbatim>
+
+<verbatim>
+%STARTSECTION{"personalInfoDataRow" fieldName=%FIELDNAME% label=%LABEL%}%<tr>
+<th> %label% </th><td> %IF{"defined editUserData" then="<input type='text' name='%fieldName%' id='%fieldName%' $percntIF{$quot\'%editable%\'=\'no\'$quot then=$quotdisabled=\'disabled\'$quot}$percnt $percntIF{$quot\'%editable%\'=\'no\'$quot then=$quotclass=\'twikiInputFieldDisabled\'$quot else=$quotclass=\'twikiInputField\'$quot}$percnt size='40' value='%FORMFIELD{"%fieldName%" topic="%BASETOPIC%" format="$value"}%' />" else="%FORMFIELD{"%fieldName%" topic="%BASETOPIC%" format="$percntIF{$quot\'%link%\'=\'yes\'$quot then=$quot[[$value]]$quot else=$quot$value$quot}$percnt"}%" }% </td>
+</tr>%ENDSECTION{"personalInfoDataRow"}%
+</verbatim>
+
+---++ personalInfoStyle
+In view template PersonalInfoUserViewTemplate these styles are added to the HTML head. Other pages need to include the styles using =%<nop>INCLUDE{}%=.
+
+<verbatim>
+%STARTSECTION{"personalInfoStyle"}%<style type="text/css" media="all">
+.personalInfo {
+margin:0 0 1em 0;
+}
+.personalInfo .pIparagraphWithImageLeftText table {
+border-width:1px 0 0 0;
+border-collapse:collapse;
+}
+.personalInfo .pIparagraphWithImageLeftText th {
+font-weight:normal;
+text-align:left;
+color:#555;
+overflow:hidden;
+white-space:nowrap;
+}
+.personalInfo .pIparagraphWithImageLeftText td {
+width:100%;
+overflow:hidden;
+white-space:nowrap;
+}
+.personalInfo .pIparagraphWithImageLeftText td,
+.personalInfo .pIparagraphWithImageLeftText th {
+line-height:1.3em;
+border-width:0 0 1px 0;
+padding:.4em .8em;
+vertical-align:middle;
+}
+.personalInfo .pIparagraphWithImageLeftText table,
+.personalInfo .pIparagraphWithImageLeftText td,
+.personalInfo .pIparagraphWithImageLeftText th {
+border-style:solid;
+border-color:#e5e2db;
+}
+.personalInfoFormDataActions {
+margin:.5em 0 2em 0;
+padding:0 .8em; /* same as .pIparagraphWithImageLeftText td */
+}
+.personalInfoFormDataActions a {
+font-size:86%; /* same as .twikiSmall */
+}
+.personalInfoFormDataActions .twikiSeparator {
+color:#ccc;
+}
+</style>%ENDSECTION{"personalInfoStyle"}%
+</verbatim>
+
+<verbatim>
+%STARTSECTION{"personalInfo"}%<div class="pIparagraphFrame personalInfo%IF{"$'FORMFIELD{WorkStatus}'!='Current'" then=" pIFormer"}%">
+---+!! <nop>%FORMFIELD{"FirstName" topic="%BASETOPIC%"}% %FORMFIELD{"LastName" topic="%BASETOPIC%"}%
+%INCLUDE{"PersonalInfoLayoutModules" section="paragraphWithImageLeftStyle"}%
+<form name="main" action="%SCRIPTURLPATH{"save"}%/%BASEWEB%/%BASETOPIC%" method="post">
+<input type="hidden" name="editaction" value="form" />
+<!-- if !AllowRedirectUrl is enabled in configure, !PersonalInfo is updated to save the search data as javascript file -->
+%IF{"context AttachContentPluginEnabled" then='<input type="hidden" name="redirectto" value="%SCRIPTURL{save}%/%WEB%/PersonalInfo?redirectto=%BASETOPIC%" />'}%
+%INCLUDE{"PersonalInfoLayoutModules" section="paragraphWithImageLeft" imgName="%FORMFIELD{"Picture" topic="%BASEWEB%.%BASETOPIC%" format="$value" default="" alttext=""}%" imgWeb="%BASEWEB%" imgTopic="%BASETOPIC%" imgWidth="120" imgTitle="" text="%INCLUDE{"PersonalInfo" section="personalInfoFields"}%
+%IF{"not defined editUserData" then="<div class='personalInfoFormDataActions twikiUnvisited'>[[%SCRIPTURL{view}%/%BASEWEB%/%BASETOPIC%?editUserData=on][Edit data]] <span class='twikiSeparator'>|</span> [[%SCRIPTURL{view}%/%BASEWEB%/%BASETOPIC%?template=PersonalInfoPictureView][Change picture]]</div>" }% %IF{"defined editUserData" then="<div class='personalInfoFormDataActions'><input type='submit' class='twikiSubmit' name='action_save' id='save' value='Save' /> <input type='submit' class='twikiButton' name='action_cancel' id='cancel' value='Cancel' /></div>" }%" }% </form></div><!--/pIparagraphFrame-->%ENDSECTION{"personalInfo"}%
+</verbatim>
+
+
+
+---++ phoneList
+
+<verbatim>
+%STARTSECTION{"phoneList"}%%SEARCH{ "[W]orkPhone;[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation" format="   * [[$web.$topic][$topic]] $formfield(WorkPhone)"}%%ENDSECTION{"phoneList"}%
+</verbatim>
+
+
+
+---++ phoneListXML
+<verbatim>
+%STARTSECTION{"phoneListXML"}%<?xml version="1.0" encoding="ISO-8859-1"?>
+<users>
+%SEARCH{ "[F]irstName.*value=.*();[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation,TWikiContributor,TWikiGuest,UnknownUser" format="<user><firstname><![CDATA[$formfield(FirstName)]]></firstname><lastname><![CDATA[$formfield(LastName)]]></lastname><phone><![CDATA[$formfield(WorkPhone)]]></phone><url><![CDATA[%SCRIPTURL{view}%/%WEB%/$topic]]></url><imgname><![CDATA[$formfield(Picture)]]></imgname><imgurl><![CDATA[%PUBURL%/Main/$topic/]]></imgurl></user>" "}%
+</users>
+%ENDSECTION{"phoneListXML"}%
+</verbatim>
+
+
+
+---++ personalSearch
+
+<verbatim>
+%STARTSECTION{"personalSearch"}%%SEARCH{ "[F]irstName.*value=.*(%URLPARAM{"q"}%)|[L]astName.*value=.*(%URLPARAM{"q"}%)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation,TWikiContributor,TWikiGuest,UnknownUser" format="   * [[$web.$topic][$topic]] $formfield(WorkPhone)"}%%ENDSECTION{"personalSearch"}%
+</verbatim>
+
+
+
+---++ vCard
+
+<verbatim>
+%STARTSECTION{"vCard"}%%SEARCH{ "[F]irstName.*value=.*();[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation,TWikiContributor,TWikiGuest,UnknownUser" format="begin:vcard
+fn:$formfield(FirstName) $formfield(LastName)
+n:$formfield(LastName);$formfield(FirstName)
+tel;type=work:$formfield(WorkPhone)
+tel;type=cell:$formfield(WorkPhoneMobile)
+email;type=WORK:$formfield(WorkEmail)
+end:vcard"}%%ENDSECTION{"vCard"}%
+</verbatim>
+
+
+---++ directSearch
+
+<verbatim>
+%STARTSECTION{"directSearch" title="%title%" maxresults="%maxresults%" layout="%layout%" showpictures="%showpictures%" inputfieldsize="%inputfieldsize%" pictureheight="%PICTUREHEIGHT%"}% <div> %title% </div>
+<input type="text" class="twikiInputField" size="%IF{"defined inputfieldsize" then="%inputfieldsize%" else="12"}%" id="personalInfoSearchBox" name="personalInfoSearchBox" />
+<div id="personalInfoSearchResults"><!-- search results will be displayed here --></div>
+%IF{"context AttachContentPluginEnabled" then='%INCLUDE{"PersonalInfo" section="directSearchScriptFile"}%' else='%INCLUDE{"PersonalInfo" section="directSearchScript" raw="on" literal="on"}%'}%
+%INCLUDE{"PersonalInfoModules" section="initSearchBox" raw="on" literal="on"}%
+<style type="text/css" media="all">
+#personalInfoSearchResults td {
+	padding:.1em .5em .1em 0;
+	vertical-align:middle;
+	border-bottom:1px solid #eee;
+}
+</style>%ENDSECTION{"directSearch"}%
+</verbatim>
+
+<verbatim>
+%STARTSECTION{"initSearchBox"}%<script language="javascript" type="text/javascript">
+// <![CDATA[
+	function personalInfoHandleKeyUp() {
+		pISearch.showResults(this.value);
+		return false;
+	}
+	function initSearchBox() {
+		var box = document.getElementById('personalInfoSearchBox');
+		if (box) {
+			box.onkeyup = personalInfoHandleKeyUp;
+			box.focus();
+			pISearch.showResults(box.value);
+		}
+	}
+	twiki.Event.addLoadEvent(initSearchBox);
+// ]]>
+</script>%ENDSECTION{"initSearchBox"}%
+</verbatim>
+
+<verbatim>
+%STARTSECTION{"directSearchScript"}%<script language="javascript" type="text/javascript">
+// <![CDATA[
+var MAX_RESULTS=%IF{"defined maxresults" then="%maxresults%" else="12"}%;
+%INCLUDE{"PersonalInfoModules" section="directSearchScriptCode"}%
+// ]]>
+</script>%ENDSECTION{"directSearchScript"}%
+</verbatim>
+
+<verbatim>
+%STARTSECTION{"directSearchScriptFile"}%<script language="javascript" type="text/javascript" src="%PUBURL%/%WEB%/PersonalInfo/directSearch.js"></script>%ENDSECTION{"directSearchScriptFile"}%
+</verbatim>
+
+<verbatim>
+%STARTSECTION{"directSearchScriptCode"}%var pISearch = {};
+var userData = new Array(%INCLUDE{"PersonalInfo" section="directSearchData"}%);
+var MAX_RESULTS;
+if (MAX_RESULTS == undefined) MAX_RESULTS = 12;
+pISearch.initSearch = function() {}
+pISearch.startSearch = function() {}
+pISearch.endSearch = function(inOutput) {
+	var outputElem = document.getElementById("personalInfoSearchResults");
+	if (outputElem) outputElem.innerHTML = inOutput;
+}
+pISearch.processResult = function(inName, inUserData) {
+	var url = "%SCRIPTURL{view}%/" + inUserData.topic;
+	var phone = inUserData.phone;
+	var output = "";
+	output += "<tr>";
+	output += "<td><a href=\u0027" + url + "\u0027>" + inName + "</a></td>";
+	output += "<td>" + phone + "</td>";
+	output += "</tr>";
+	return output;
+}
+pISearch.processZeroResults = function() {}
+pISearch.withinBounds = function(inCount) {
+	if (MAX_RESULTS == -1) return true;
+	return inCount < MAX_RESULTS;
+}
+pISearch.outputHtmlStart = function() {
+	return "<table cellpadding=\u00270\u0027 cellspacing=\u00270\u0027>";
+}
+pISearch.outputHtmlEnd = function() {
+	return "</table>";
+}
+pISearch.showResults = function(inValue) {
+	var output = "";
+	var resultCount = 0;
+	var query = inValue.toLowerCase();
+	if (query.length != 0) {
+		var regex = new RegExp("\\b" + query, "gi");
+		pISearch.startSearch();
+		output = pISearch.outputHtmlStart();
+		var i = 0;
+		while ( i < userData.length && pISearch.withinBounds(resultCount)) {
+			var name = userData[i].name;
+			if (name.match(regex)) {
+				output += pISearch.processResult(name, userData[i]);
+				resultCount++;
+			}
+			i++;
+		}
+		output += pISearch.outputHtmlEnd();
+		
+	} else {
+		pISearch.processZeroResults();
+	}
+	if (query.length > 0 && resultCount == 0) {
+		output = "";
+	}
+	pISearch.endSearch(output);
+}%ENDSECTION{"directSearchScriptCode"}%
+</verbatim>
+
+
+---+++ directSearchData
+<verbatim>
+%STARTSECTION{"directSearchData"}%%SEARCH{ "[F]irstName.*value=.*();[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation,TWikiContributor,TWikiGuest,UnknownUser" format="{name:\"$formfield(FirstName) $formfield(LastName)\",phone:\"$formfield(WorkPhone)\",topic:\"$web/$topic\",pictureName:\"$formfield(Picture)\"}" separator=", "}%%ENDSECTION{"directSearchData"}%
+</verbatim>
+
+
+---+++ tableOfAllUsers
+
+<verbatim>
+%STARTSECTION{"tableOfAllUsers"}%<style type="text/css" media="all">
+#compact table {
+font-size:86%;
+}
+#compact td {
+padding-top:0;
+padding-bottom:0;
+margin:0;
+}
+#compact a:link,
+#compact a:visited {
+color:#000;
+text-decoration:none;
+}
+#compact a:hover {
+color:#fff;
+}
+</style>
+<div id="compact">
+| *Personal page* | *Phone* | *E-mail* | *Location* |
+%SEARCH{ "[F]irstName.*value=.*();[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation,TWikiContributor,TWikiGuest,UnknownUser" format="|[[%SCRIPTURL{view}%/$web/$topic][$formfield(FirstName) $formfield(LastName)]] |$formfield(WorkPhone) |$formfield(WorkEmail) |$formfield(WorkLocation) |" "}%
+</div>%ENDSECTION{"tableOfAllUsers"}%
+</verbatim>
+
+---+++ Pictures
+
+<verbatim>
+%STARTSECTION{"pictures"}%<style type="text/css" media="all">
+#pISearchResultsGrid {
+margin:1em 0;
+}
+#pISearchResultsGrid .twikiImage a img {
+border:none;
+margin:0 0 .35em 0;
+padding:0;
+}
+#pISearchResultsGrid a.pISearchResultsGridItem {
+display:block;
+float:left;
+text-align:center;
+border:1px solid #eee;
+text-decoration:none;
+margin:0 .5em 1em 0;
+padding:3px;
+overflow:hidden;
+width:auto;%IF{"defined gridWidth" then="width:%gridWidth%px;"}%
+height:100%;%IF{"defined gridHeight" then="height:%gridHeight%px;"}%
+}
+#pISearchResultsGrid a.pISearchResultsGridItem img {
+overflow:hidden;
+width:auto;%IF{"defined imgWidth and '%imgWidth%'!=''" then="width:%imgWidth%px;"}%
+}
+#pISearchResultsGrid .pISearchResultsGridInfo {
+display:block;
+font-size:94%;
+line-height:100%;
+overflow:hidden;
+}
+#pISearchResultsGrid a:link .pISearchResultsGridInfo,
+#pISearchResultsGrid a:visited .pISearchResultsGridInfo {
+text-decoration:none;
+color:#06c;
+}
+#pISearchResultsGrid .twikiImage a:hover {
+border:1px solid #06c;
+}
+#pISearchResultsGrid a:hover .pISearchResultsGridInfo {
+text-decoration:none;
+color:#06c;
+background:none;
+}
+</style>
+<div id="pISearchResultsGrid">%SEARCH{ "[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="PresentationForm,UserForm,PersonalInfo,PersonalInfoDocumentation,PersonalInfoFaceBook,TWikiContributor,TWikiGuest,UnknownUser%IF{'defined exclude' then=',%exclude%'}%" order="topic" format="<div class='twikiImage'><a href='%SCRIPTURL{view}%/$web/$topic' class='pISearchResultsGridItem' id='pISearch$topic' title='$formfield(FirstName) $formfield(LastName)'>$percntINCLUDE{$quotPersonalInfoLayoutModules$quot section=$quotimage$quot imgType=$quotnolink$quot imgWeb=$quot$web$quot imgTopic=$quot$topic$quot imgTitle=$quot$formfield(FirstName) $formfield(LastName)$quot imgName=$quot$percntFORMFIELD{$quotPicture$quot topic=$quot$web.$topic$quot format=$quot$value$quot default=$quot$quot alttext=$quot$quot}$percnt$quot}$percnt<span class='pISearchResultsGridInfo'>$formfield(FirstName) $formfield(LastName)</span></a></div>" "}%<br class="twikiClear" /></div>%ENDSECTION{"pictures"}%
+</verbatim>
+
+
+---+++ pictureFilterSearch
+
+<verbatim>
+%STARTSECTION{"pictureFilterSearch"}%%IF{"context AttachContentPluginEnabled" then='%INCLUDE{"PersonalInfo" section="directSearchScriptFile"}%' else='%INCLUDE{"PersonalInfo" section="directSearchScript" raw="on" literal="on"}%'}%<script language="javascript" type="text/javascript">
+// <![CDATA[
+var MAX_RESULTS=%IF{"defined maxresults" then="%maxresults%" else="12"}%;
+pISearch.pictureSet = {};
+pISearch.initSearch = function() {
+	MAX_RESULTS = -1;
+	var pictureElems = document.getElementById('pISearchResultsGrid').getElementsByTagName('a');
+	var i=0;
+	while ( i < userData.length) {
+		var name = userData[i].name;
+		var re = new RegExp(/(.*?)\//g);
+		var topic = userData[i].topic.replace(re, "");
+		pISearch.pictureSet[topic] = document.getElementById("pISearch" + topic);
+		i++;
+	}
+}
+pISearch.startSearch = function() {
+	if (pISearch.pictureSet == null) return;
+	for (var s in pISearch.pictureSet) {
+		if (pISearch.pictureSet[s] != null) {
+			pISearch.pictureSet[s].style.display = 'none';
+		}
+	}
+}
+pISearch.processZeroResults = function() {
+	if (pISearch.pictureSet == null) return;
+	for (var s in pISearch.pictureSet) {
+		if (pISearch.pictureSet[s] != null) {
+			pISearch.pictureSet[s].style.display = 'inline';
+		}
+	}
+}
+pISearch.endSearch = function() {}
+pISearch.processResult = function(inName, inUserData) {
+	if (pISearch.pictureSet == null) return;
+	var re = new RegExp(/(.*?)\//g);
+	var topic = inUserData.topic.replace(re, "");
+	if (pISearch.pictureSet[topic] != null) {
+		pISearch.pictureSet[topic].style.display = 'inline';
+	}
+}
+twiki.Event.addLoadEvent(pISearch.initSearch);
+// ]]>
+</script>
+%INCLUDE{"PersonalInfoModules" section="initSearchBox" raw="on" literal="on"}%%ENDSECTION{"pictureFilterSearch"}%
+</verbatim>

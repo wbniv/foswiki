@@ -1,0 +1,111 @@
+%META:TOPICINFO{author="TWikiContributor" date="1181684909" format="1.1" version="1.1"}%
+---+!! Personal Info !AddOn
+
+*User personalisation and user search tool.*
+
+A set of elements to enhance user information on the user homepage:
+   * User picture
+   * Quick overview of the most common user information
+   * Quickly edit user information
+
+Search tools to find users:
+   * Quick find phone list
+   * Quick find face book 
+
+When installed, see [[%MAINWEB%.PersonalInfoHome]] for additional details.
+
+%TOC{title="On this page:"}%
+
+---++ Examples
+
+---+++ User homepage
+The user homepage with user picture and most common information 'lifted' from the extended !UserForm. The information that is shown is configurable.
+
+<div class="twikiImage"><img src="%ATTACHURLPATH%/userpage.png" alt="Screenshot of personalInfo block" width='728' height='300' /></div>
+
+---+++ Edit mode of user information
+Foolproof editing of most common user data.
+
+<div class="twikiImage"><img src="%ATTACHURLPATH%/userpage_edit.png" alt="Screenshot of personalInfo: edit data" width='728' height='300' /></div>
+
+---+++ Choosing a personal picture
+Each user can have multiple pictures and select one of them.
+
+<div class="twikiImage"><img src="%ATTACHURLPATH%/userpage_select_picture.png" alt="Screenshot of personalInfo: set picture screen" width='879' height='534' /></div>
+
+If TWiki:Plugins.ImagePlugin is installed, pictures are scaled on the server so camera pictures can be safely uploaded without fear of network congestion.
+
+---+++ Quick search phone list
+When installed at our homepage this quickly became the killer app of our intranet twiki.
+
+If TWiki:Plugins/AttachContentPlugin is installed, data is read from a saved attachment file. Each time a user makes a change to the user topic this file is updated.
+
+<div class="twikiImage"><img src="%ATTACHURLPATH%/phonelist.png" alt="Screenshot of phone list quick search" width='314' height='236' /></div>
+
+---+++ Face book
+Similar to the phone list but with pictures.
+
+<div class="twikiImage"><img src="%ATTACHURLPATH%/facebook.png" alt="Screenshot of face book page" width='728' height='408' /></div>
+
+---++ Settings
+
+   * Set SHORTDESCRIPTION = User personalisation and user search tool
+
+---++ A note on upgrading
+If you are upgrading from a previous version of this add-on, please note that any customizations in !PersonalInfo will be overwritten. If you have made any customizations, copy them and re-add them to the new !PersonalInfo topic.
+
+---++ Installation Instructions
+
+   * Download the ZIP file from the Plugin web (see below).
+   * Unzip ==%TOPIC%.zip== in your ($TWIKI_ROOT) directory.
+   * Select the data files for your version of TWiki (you are currently running on *%WIKIVERSION%*)
+      * TWiki 4.1.x: use =/data/_PersonalInfoAddOn04x01=
+      * TWiki 4.2.x: use =/data/_PersonalInfoAddOn04x02= - this version is being maintained
+   * Copy the data files to your %MAINWEB% web.
+   * Optional plugins:
+      * TWiki:Plugins/AttachContentPlugin for a faster quick search module 
+      * TWiki:Plugins/ImagePlugin for server-side image rendering (strongly recommended)
+   * Alternatively,
+      * Manually resolve the dependencies listed below.
+      %$DEPENDENCIES%
+      
+---+++ Updating from TWiki 4.1 to 4.2
+If you are using !PersonalInfoAddon for TWiki 4.1, and need to update to the version for TWiki 4.2, copy these files from =/data/_PersonalInfoAddOn04x02= to your %MAINWEB% web:
+   * !PersonalInfoLayoutModules
+   * !PersonalInfoModules
+   * !PersonalInfoPictureDeleteViewTemplate
+   * !PersonalInfoPictureUploadViewTemplate
+   * !PersonalInfoPictureViewTemplate
+   * !PersonalInfoUserViewTemplate
+
+
+---++ !AddOn Info
+
+| Authors: | TWiki:Main.ArthurClemens |
+| Copyright &copy;: | 2007, 2008 Arthur Clemens |
+| License: | [[http://www.gnu.org/copyleft/gpl.html][GPL]] |
+| Dependencies: | %$DEPENDENCIES% |
+| Plugin Version: | 1.4 (06 Apr 2008)  |
+| 06 Apr 2008 | 1.4 Various formatting fixes (version TWiki 4.2 only). |
+| 30 Jan 2008 | 1.3.2 Fixes template bug in picture upload screen that caused images to be uploaded as FILENAME. |
+| 23 Aug 2007 | 1.3 Made this add-on work on TWiki 4.1 as well. Added vCard format and improved facebook display.  |
+| 12 Jun 2007 | 1.2 Update for TWiki 4.2 template refactoring (so the add-on will work with default skin as well); images can now be rendered using !ImagePlugin; added "table of all users" and face book. |
+| 07 Apr 2007 | 1.1.2 Update to match PatternSkin svn release number 13320. |
+| 07 Mar 2007 | 1.1.1 Fixed CSS bug on Win Explorer 6.  |
+| 06 Mar 2007 | 1.1 Modularized include sections to make these easier to override: all local overrides can now safely happen in the !PersonalInfo topic.  |
+| 06 Mar 2007 | 1.0.2 Added =phoneListXML= output.  |
+| 05 Mar 2007 | 1.0.1 Small documentation updates.  |
+| 04 Mar 2007 | 1.0 First release.  |
+| Demo url:  |   |
+| Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+| Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+| Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+
+%META:FILEATTACHMENT{name="userpage_edit.png" attr="" autoattached="1" comment="" date="1181684125" path="userpage_edit.png" size="59193" user="UnknownUser" version=""}%
+%META:FILEATTACHMENT{name="facebook.png" attr="" autoattached="1" comment="" date="1181684152" path="facebook.png" size="195158" user="UnknownUser" version=""}%
+%META:FILEATTACHMENT{name="userpage.png" attr="" autoattached="1" comment="" date="1181684046" path="userpage.png" size="59462" user="UnknownUser" version=""}%
+%META:FILEATTACHMENT{name="twikiEvent.js" attr="" autoattached="1" comment="" date="1181684152" path="twikiEvent.js" size="195158" user="UnknownUser" version="" comment="Javascript compatibility file for TWiki 4.1"}%
+%META:FILEATTACHMENT{name="userpage_select_picture.png" attr="" autoattached="1" comment="" date="1181684268" path="userpage_select_picture.png" size="104724" user="UnknownUser" version=""}%
+%META:FILEATTACHMENT{name="phonelist.png" attr="" autoattached="1" comment="" date="1181684188" path="phonelist.png" size="15764" user="UnknownUser" version=""}%
+%META:FILEATTACHMENT{name="silhouette.gif" attr="h" autoattached="1" comment="Default silhouette image" date="1180882660" path="silhouette.gif" size="1177" user="Main.TWikiContributor" version="1"}%

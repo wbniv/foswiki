@@ -1,0 +1,36 @@
+%META:TOPICINFO{author="TWikiContributor" date="1166089765" format="1.1" version="1.1"}%
+%{"View template with a stripped down attach template from pattern skin to show the upload option only. Attachments will be automatically hidden. After uploading the user will be redirected to PersonalInfoPictureViewTemplate."}%
+%{ Compatibility change TWiki 4.1: this template differs a lot from the TWiki 4.2 version}%
+%TMPL:INCLUDE{"attachnew.pattern"}%
+
+%TMPL:DEF{"actionheader"}%%TMPL:END%
+%TMPL:DEF{"toolbar"}%%TMPL:END%
+%TMPL:DEF{"pagehelp"}%%TMPL:END%
+%TMPL:DEF{"movedelete"}%%TMPL:END%
+%TMPL:DEF{"pagehelp_nojavascript"}%%TMPL:END%
+%TMPL:DEF{"versions"}%%TMPL:END%
+%TMPL:DEF{"existingattachments"}%%TMPL:END%
+
+
+
+%TMPL:DEF{"pagetitlecontents"}%%MAKETEXT{"Upload a new personal picture"}%%TMPL:END%
+
+
+
+%TMPL:DEF{"topicactionbuttons"}%<input type="submit" class="twikiSubmit" value='%MAKETEXT{"Upload file"}%' /> %MAKETEXT{"or"}% <a href="%SCRIPTURL{view}%/%WEB%/%TOPIC%?template=PersonalInfoPictureView">%MAKETEXT{"Cancel"}%</a>%TMPL:END%
+
+
+
+%TMPL:DEF{"attachform"}%<div class="twikiFormSteps">
+<div class="twikiFormStep twikiLast">
+---+++ %MAKETEXT{"Attach new file"}%
+
+%IF{"$ATTACHFILESIZELIMIT > 0" then="%MAKETEXT{"Upload up to [_1] KB." args="%ATTACHFILESIZELIMIT%"}%" else="%MAKETEXT{"There is no size limit for uploaded files."}%"}%
+
+<input class="twikiInputField" type="file" name="filepath" value="" size="30" />
+<input type="hidden" name="filecomment" value="" />
+<input type="hidden" name="createlink" value="" />
+<input type="hidden" name="hidefile" value="true" />
+<input type="hidden" name="redirectto" value="%SCRIPTURL{view}%/%WEB%/%TOPIC%?template=PersonalInfoPictureView" />
+</div><!-- /twikiFormStep-->
+</div><!-- /twikiFormSteps-->%TMPL:END%
