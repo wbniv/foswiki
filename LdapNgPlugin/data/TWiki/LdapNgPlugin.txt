@@ -1,0 +1,160 @@
+%META:TOPICINFO{author="TWikiContributor" date="1167752717" format="1.1" version="$Rev$"}%
+---+!! <nop>%TOPIC%
+<!--
+
+   PLEASE DO NOT EDIT THIS TOPIC
+
+   It is automatically generated from the subversion repository, and any changes
+   you make will simply be overwritten the next time a release is generated.
+
+   Instead, you could check your fix in, raise a bug in the Bugs web, or mail the author.
+-->
+%TOC%
+<table style="float:right">
+<tr>
+  <td><img src="%PUBURLPATH%/%TWIKIWEB%/LdapContrib/wikiringlogo40x40.png"></td>
+  <td><a href="http://wikiring.de" title="Make your Wiki ring!" style="text-decoration:none">
+      Powered by <br /> <nop>WikiRing Consultants </a>
+  </td>
+</tr>
+</table>
+This plugin provides an interface to query an LDAP directory and display the results in a TWiki topic.
+It is a complete rewrite of the TWiki:Plugins/LdapPlugin by TWiki:Main.GerardHickey to provide
+greater flexibility and performance based on the TWiki:Plugins/LdapContrib package.
+
+---++ Syntax Rules
+---+++ LDAP
+<verbatim>%LDAP{(filter=)"filter" ...}%</verbatim>
+Query an LDAP directrory.
+
+Parameters:
+   * =filter=: the LDAP query string
+   * =host=: host IP or name to connect to
+   * =port=: port to of the host
+   * =version=: protocol version; possible values: 2,3
+   * =ssl=: use ssl to bind to the server; possible values 0,1
+   * =base=: base dn of the (sub)tree to search in; 
+     if =base= is written in brackets (e.g. 'base="(ou=people)"') then it is prepended to the default
+     base of the LdapContrib
+   * =scope=: scope of search; possible values: sub, base, one
+   * =format=: format string used to display a database record
+   * =header=: header to prepend the output; default: '$dn'
+   * =footer=: footer to appended to the output
+   * =sep=: separator between database records; default: '$n'
+   * =sort=: name of attributes to sort the output
+   * =reverse=: reverse the result set; possible values: on, off; default: off
+   * =limit=: maximum number of records to return; default: 0 (unlimited)
+   * =skip=: number of records in the hit set to skip before displaying them; default: 0 
+   * =hidenull=: wether to hide any output on an empty hit set; possible values: on, off; default: off
+   * =clear=: comma separated list of attributes to be removed from the output if they are not resolved
+
+Cgi Parameters:
+   * =refresh=: refresh the cache of blobs (i.e. jpegPhotos); possible values: on, off; default: off;
+     (right now only the jpegPhoto attribute is recognized as a blob)
+
+The =header=, =format= and =footer= format strings may contain the following variables:
+   * $percnt: % sign
+   * $dollar: $ sign
+   * $n: newline
+   * $count: the number of hits
+   * $index: the record number
+   * $&lt;attr-name>: the value of the record attribute &lt;attr-name>
+
+---+++ LDAPUSERS
+<verbatim>%LDAPUSERS{...}%</verbatim>
+List all LDAP userinformation. Information is drawn from cache and not from
+the LDAP server. Use =?refreshldap=on= to update.
+
+Parameters:
+   * =format=: format string used to display a user record
+   * =header=: header to prepend the output
+   * =footer=: footer to appended to the output
+   * =sep=: separator between database records; default: '$n'
+   * =limit=: maximum number of records to return; default: 0 (unlimited)
+   * =skip=: number of records in the hit set to skip before displaying them; default: 0 
+   * =include=: regular expression a user's <nop>WikiName must match to be included in the output
+   * =exclude=: regular expression a user's <nop>WikiName must not match
+   * =hideunknown=: on/off, enable/disable filtering out users that did not log in yet and thus
+     have no hometopic (e.g. created by TWiki:Plugins/NewUsersPlugin), defaults to 'on'
+
+The =format= string may contain the following variables:
+   * $percnt: % sign
+   * $dollar: $ sign
+   * $n: newline
+   * $index: the record number
+   * $wikiName: the user's <nop>WikiName
+   * $loginName: the user's login name
+   * $displayName: a link pointing to the users hometopic in the %MAINWEB% web, if it exists, and
+     '&lt;nop&gt;$wikiName' otherwise
+   * $emails: the list of all known email addresses
+ 
+---++ Examples
+%LDAP{"(objectClass=posixAccount)" 
+  base="(ou=people)"
+  limit="10" 
+  header="| *Nr* | *Name* | *Mail* | *Photo* |$n" 
+  format="| $index | $cn | $mail | <img src=\"$jpegPhoto\" alt=\"$cn\" title=\"$cn\" width=\"100px\"> |" 
+  footer="$n<br/><font color='red'>$count users</font>" 
+  sort="cn"
+  clear="$mail,$jpegPhoto"
+}%
+
+%LDAP{"(objectClass=posixGroup)" 
+  base="(ou=group)" 
+  limit="10" 
+  header="| *Nr* | *Group* | *Members* |$n" 
+  format="| $index | $cn | $memberUid |" 
+  clear="$mail,$memberUid"
+  sort="cn"
+}%
+
+%LDAPUSERS{limit="10"}%
+
+---++ Plugin Settings
+<!-- provided for compatibility only
+   * Set SHORTDESCRIPTION = Query and display data from an LDAP directory
+-->
+
+The %TOPIC% will use the default configuration of the LdapContrib in your =LocalSite.cfg= file, that is
+   * $TWiki::cfg{Ldap}{Host} (overridable per query)
+   * $TWiki::cfg{Ldap}{Port} (overridable per query)
+   * $TWiki::cfg{Ldap}{Base} (overridable per query)
+   * $TWiki::cfg{Ldap}{Version} (overridable per query)
+   * $TWiki::cfg{Ldap}{SSL} (overridable per query)
+   * $TWiki::cfg{Ldap}{BindDN}
+   * $TWiki::cfg{Ldap}{BindPasswd}
+
+---++ Plugin Installation Instructions
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+%$MANIFEST%
+   * Optionally, run ==%TOPIC%_installer.pl== to automatically check and
+     install other TWiki modules that this module depends on. You can also do
+     this step manually.
+   * Alternatively, manually make sure the dependencies listed in the table
+     below are resolved.
+%$DEPENDENCIES%
+
+---++ Plugin Info
+This work was partly funded by Spanlink Communications.
+|  Plugin Author: | TWiki:Main.MichaelDaum |
+|  Copyright &copy;: | 2006-2007 Michael Daum http://wikiring.de |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | v2.01 |
+|  Change History: | &nbsp; |
+|  13 Nov 2007: | fixed $nop  |
+|  01 Oct 2007: | added LDAPUSERS, lined up to changes in <nop>LdapContrib-2.0 |
+|  04 June 2007: | don't convert from/to utf8 if the site charset is already utf8 |
+|  18 Dec 2006: | added support for addresses as specified in RFC4517 |
+|  04 Dec 2006: | map utf8 strings from LDAP to the site's encoding and vice versa |
+|  30 Nov 2006: | replaced commonTagsHandler with a properly registered LDAP tag |
+|  31 Aug 2006: | added NO_PREFS_IN_TOPIC |
+|  19 Jul 2006: | public release |
+|  25 April 2006: | Initial (internal) version |
+|  Perl Version: | 5.8 |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | TWiki:Plugins/%TOPIC% |
+|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
+
+-- TWiki:Main/MichaelDaum - 13 Nov 2007
