@@ -21,11 +21,11 @@ if ( grep('-sven', @ARGV) ) {
 
 
 
-my $twikiBranch = 'TWikiRelease04x02';
+my $twikiBranch = 'Release04x02';
 
 unless ( -e $twikiBranch ) {
    print STDERR "doing a fresh checkout\n";
-   `svn co http://svn.twiki.org/svn/twiki/branches/$twikiBranch > TWiki-svn.log`;
+   `svn co http://svn.nextwiki.org/branches/$twikiBranch > TWiki-svn.log`;
    chdir($twikiBranch);
 } else {
 #TODO: should really do an svn revert..
@@ -69,8 +69,8 @@ unless ($errorcode == 0) {
     
     chdir($twikihome);
     if ($SvensAutomatedBuilds) {
-    	`scp TWiki* distributedinformation\@distributedinformation.com:/home/distributedinformation/www/TWikiBuilds`;
-    	sendEmail('twiki-dev@lists.sourceforge.net', "Subject: TWiki $twikiBranch branch has Unit test FAILURES\n\n see http://distributedinformation.com/$twikiBranch/ for output files.\n".$unittestErrors);
+    	`scp TWiki* fosiki\@fosiki.com:/home/fosiki/www/TWikiBuilds`;
+    	sendEmail('nextwiki-svn@lists.sourceforge.net', "Subject: NextWiki $twikiBranch branch has Unit test FAILURES\n\n see http://fosiki.com/$twikiBranch/ for output files.\n".$unittestErrors);
     }
     die "\n\n$errorcode: unit test failures - need to fix them first\n" 
 }
@@ -107,12 +107,12 @@ chdir('lib');
 
 chdir($twikihome);
 if ($SvensAutomatedBuilds) {
-	#push the files to my server - http://distributedinformation.com/TWikiBuilds/
-	`scp TWiki* distributedinformation\@distributedinformation.com:/home/distributedinformation/www/$twikiBranch` ;
+	#push the files to my server - http://fosiki.com/TWikiBuilds/
+	`scp TWiki* fosiki\@fosiki.com:/home/fosiki/www/$twikiBranch` ;
 	my $buildOutput = `ls -alh *auto*`;
 	$buildOutput .= "\n";
 	$buildOutput .= `grep 'All tests passed' $twikihome/TWiki-UnitTests.log`;
-	sendEmail('Builds@distributedINFORMATION.com', "Subject: TWiki $twikiBranch built OK\n\n see http://distributedinformation.com/$twikiBranch/ for output files.\n".$buildOutput);
+	sendEmail('Builds@fosiki.com', "Subject: NextWiki $twikiBranch built OK\n\n see http://fosiki.com/$twikiBranch/ for output files.\n".$buildOutput);
 }
 
 
@@ -137,7 +137,7 @@ sub sendEmail {
     my $toAddress = shift;
     my $text = shift;
     use Net::SMTP;
-    my $twikiDev = 'twiki-dev@lists.sourceforge.net';
+    my $twikiDev = 'nextwiki-svn@lists.sourceforge.net';
 
     my $smtp = Net::SMTP->new('mail.iinet.net.au', Hello=>'sven.home.org.au', Debug=>0);
 
