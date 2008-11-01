@@ -1,0 +1,26 @@
+%META:TOPICINFO{author="TWikiContributor" date="1170220558" format="1.1" version="0"}%
+
+---+++ !MetaWorkflowPlugin Example
+
+This is an example of how to use the TWiki.MetaWorkflowPlugin to create a workflow based on the value of a [[TWiki.TWikiForms][form field]].
+
+This is what's displayed in the =%<nop>METAWORKFLOWCURRENT%=:%BR%
+| %METAWORKFLOWCURRENT% | 
+_Note: If you just see the plain variable, then the plugin is not enabled_
+
+Below is the Meta Workflow Definition table. This defines what the value of the form field must be before the workflow can continue to the next row. The =FINAL= row defines the message which is to be displayed after the workflow has been completed.
+
+The =%<nop>METAWORKFLOW{...}%= for this table is as follows:%BR%
+=%<nop>METAWORKFLOW{type="FIELD" name="Status" key="value"}%=
+
+%METAWORKFLOW{type="FIELD" name="Status" key="value"}%
+| *Topic* | *Value* | *Message* |
+| MetaWorkflowExamplePhaseOne | Complete | Currently in phase one |
+| MetaWorkflowExamplePhaseTwo | Complete | Currently in phase two |
+| MetaWorkflowExamplePhaseThree | Complete | Currently in phase three |
+| FINAL | | Completed all phases |
+
+This table could also have been stored in a separate topic, using the following setting (to use, you would need to remove the #):
+   * #Set METAWORKFLOWDEFINITION = MetaWorkflowDefinitionTable
+
+For more information on the plugin, go to [[TWiki.MetaWorkflowPlugin]].
