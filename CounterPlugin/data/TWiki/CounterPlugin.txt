@@ -1,0 +1,18 @@
+%META:TOPICINFO{author="RahulMundke" date="1069345440" format="1.0" version="1.1"}%
+<!--
+   * Set SHORTDESCRIPTION = This plugin maintains the Visitor Count for the site.
+-->
+%SHORTDESCRIPTION%
+
+<verbatim>
+Visitor Count is =%<nop>COUNTER_PLUGIN%=
+</verbatim>
+
+Visitor Count is %COUNTER_PLUGIN%
+
+Here are the settings for the plugin:
+
+		* Set DEBUG = 0
+
+-- TWiki:Main.RahulMundke - 20 Nov 2003
+
