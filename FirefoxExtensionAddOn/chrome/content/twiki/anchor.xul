@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin" type="text/css"?>
+<!DOCTYPE dialog SYSTEM "chrome://twiki/locale/twiki.dtd">
+<dialog id="twiki-table" title="&twiki.anchor.title;" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" buttons="accept,cancel" onload="onLoad(); sizeToContent();" ondialogaccept="return qnAccept();" ondialogcancel="onCancel();">
+	<script type="application/x-javascript"> <![CDATA[//
+////////////
+function onLoad()
+{
+	var params = window.arguments[1];
+	document.getElementById('anchor-target').value = params[0];
+	document.getElementById('anchor-label').value = params[1];
+	document.getElementById('anchor-headlevel').value = params[2];
+}
+
+function qnAccept()
+{
+	var ok = window.arguments[0];
+	var params = window.arguments[1];
+	params[0] = document.getElementById('anchor-target').value;
+	params[1] = document.getElementById('anchor-label').value;
+	params[2] = document.getElementById('anchor-headlevel').selectedIndex;
+	ok[0] = true;
+	return true;
+}
+function onCancel()
+{
+	var ok = window.arguments[0]; 
+	ok[0] = false;
+	return true;
+}
+////////////
+]]></script>
+	<grid flex="1">
+		<columns>
+			<column/>
+			<column flex="1"/>
+		</columns>
+		<rows>
+			<row>
+				<label value="&twiki.anchor.target;" control="anchor-target"/>
+				<textbox id="anchor-target" value=""/>
+			</row>
+			<row>
+				<label value="&twiki.anchor.label;" control="anchor-label"/>
+				<textbox id="anchor-label" value=""/>
+			</row>
+			<row>
+				<label value="&twiki.anchor.headlevel;" control="anchor-headlevel"/>
+				<menulist id="anchor-headlevel">
+					<menupopup>
+						<menuitem label="&twiki.anchor.headlevel.zero;" selected="true"/>
+						<menuitem label="&twiki.anchor.headlevel.one;"/>
+						<menuitem label="&twiki.anchor.headlevel.two;"/>
+						<menuitem label="&twiki.anchor.headlevel.three;"/>
+						<menuitem label="&twiki.anchor.headlevel.four;"/>
+						<menuitem label="&twiki.anchor.headlevel.five;"/>
+						<menuitem label="&twiki.anchor.headlevel.six;"/>
+					</menupopup>
+				</menulist>
+
+			</row>
+		</rows>
+	</grid>
+</dialog>

@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin" type="text/css"?>
+<?xml-stylesheet href="chrome://twiki/skin/twiki.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://twiki/locale/twiki.dtd">
+<page xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" headertitle="&twiki.settings.window;" id="twiki_settings" title="&twiki.settings.window;" onload="onLoad();">
+	<script type="application/x-javascript" src="chrome://twiki/content/twiki.js"/>
+	<script type="application/x-javascript"> <![CDATA[//
+////////////
+var option_activation_kind="activation.kind";
+var option_activation_condition="activation.condition";
+var stringBundle=null;
+var wbPrefs=null;
+function onLoad()
+{
+	stringBundle = document.getElementById("twikistrings");
+//	var prefService = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
+//	wbPrefs = prefService.getBranch("twiki."); // preferences twiki node
+	wbPrefs = getPreferences();
+	try{
+		try {
+			document.getElementById("twiki-activation-kind").selectedIndex = wbPrefs.getIntPref(option_activation_kind);
+		}
+		catch (e) {
+			wbPrefs.setIntPref(option_activation_kind,0);
+			document.getElementById("twiki-activation-kind").selectedIndex = wbPrefs.getIntPref(option_activation_kind);
+		}
+		try {
+			document.getElementById("twiki-activation-condition").value = wbPrefs.getCharPref(option_activation_condition);
+		}
+		catch (e) {
+			wbPrefs.setCharPref(option_activation_condition, "edit");
+			document.getElementById("twiki-activation-condition").value = wbPrefs.getCharPref(option_activation_condition);
+		}
+		document.getElementById("twiki-username").value = wbPrefs.getCharPref("username");
+	} catch (e){
+		var alertText = stringBundle.getString("twiki.settings.loaderr");
+		alert(alertText + e);
+	}           
+	if (parent.initPanel) {
+		parent.initPanel("chrome://twiki/content/twiki_settings.xul");
+	}
+}
+
+function twikiAccept()
+{
+	try{
+		wbPrefs.setIntPref(option_activation_kind,document.getElementById("twiki-activation-kind").selectedIndex);
+		wbPrefs.setCharPref(option_activation_condition,document.getElementById("twiki-activation-condition").value);
+		wbPrefs.setCharPref("username",document.getElementById("twiki-username").value);
+	} catch (e){
+		var alertText = stringBundle.getString("twiki.settings.saveerr");
+		alert(alertText + e);
+	}
+}
+////////////
+]]></script>
+	<stringbundleset id="stringbundleset">
+		<stringbundle src="chrome://twiki/locale/twikistrings.properties" id="twikistrings"/>
+	</stringbundleset>
+	<hbox>
+		<vbox>
+			<image src="chrome://twiki/skin/icon_twiki.png" width="32" height="32" />
+		</vbox>
+		<vbox>
+			<description style="font-weight: bold; font-size: large;">&twiki.settings.window;</description>
+		</vbox>
+	</hbox>
+	<spacer width="4"/>
+	<hbox>
+		<vbox>
+			<!-- Note: attributes are set in onLoad() -->
+			<groupbox flex="1" orient="vertical">
+				<caption label="&twiki.activation.title;"/>
+				<radiogroup id="twiki-activation-kind" oncommand="document.getElementById('twiki-activation-condition').disabled = !document.getElementById('twiki-activation-conditional').selected">
+					<radio id="twiki-activation-always" label="&twiki.activation.always;" selected="true"/>
+					<radio id="twiki-activation-conditional" label="&twiki.activation.conditional;"/>
+				</radiogroup>
+				<hbox>
+					<spacer width="22"/>
+					<textbox id="twiki-activation-condition" value="" disabled="true" flex="1"/>
+				</hbox>
+			</groupbox>
+			<groupbox flex="1">
+				<caption label="&twiki.settings.user;"/>
+				<grid>
+					<columns>
+						<column/>
+						<column flex="1"/>
+					</columns>
+					<rows>
+						<row>
+							<label value="&twiki.settings.username;" control="twiki-username"/>
+							<textbox id="twiki-username" value="" flex="1"/>
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+		</vbox>
+	</hbox>
+</page>

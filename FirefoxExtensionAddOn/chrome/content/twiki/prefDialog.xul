@@ -1,0 +1,21 @@
+<?xml version="1.0"?> 
+<?xml-stylesheet href="chrome://communicator/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://global/skin" type="text/css"?>
+<?xml-stylesheet href="chrome://twiki/skin/twiki.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://twiki/locale/twiki.dtd">
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      width="400" height="400"
+      autostretch="always"
+      persist="screenX screenY width height sizemode"
+      buttons="accept,cancel"
+      ondialogaccept="dialogAccept()"
+      title="&twiki.settings.window;">
+
+	  <iframe flex="1" src="chrome://twiki/content/twiki_settings.xul" id="twiki_settings_page"/>
+<script>
+function dialogAccept() {
+	document.getElementById('twiki_settings_page').contentDocument.defaultView.twikiAccept();
+	return true;
+}	
+</script>
+</dialog>
