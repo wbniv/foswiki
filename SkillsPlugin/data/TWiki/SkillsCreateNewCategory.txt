@@ -1,0 +1,53 @@
+%META:TOPICINFO{author="TWikiContributor" date="1176299717" format="1.1" version="0"}%
+%META:TOPICPARENT{name="SkillsPlugin"}%
+---+!! SkillsPlugin: Create New Category
+
+%STARTINCLUDE%
+<table class="skillNavigation" border="0" cellpadding="3" cellspacing="0"><tr>
+<td>&nbsp; &nbsp;</td>
+<td bgcolor="#F6F4EB">&nbsp; [[SkillsAdminIntroduction][Introduction]] &nbsp;</td>
+<td>&nbsp; &nbsp; &nbsp;</td>
+<td bgcolor="#F6F4EB">&nbsp; [[SkillsCreateNewSkill][Create Skill]] &nbsp;</td>
+<td>&nbsp;</td>
+<td bgcolor="#F6F4EB">&nbsp; [[SkillsRenameSkill][Rename Skill]] &nbsp;</td>
+<td>&nbsp;</td>
+<td bgcolor="#F6F4EB">&nbsp; [[SkillsMoveSkill][Move Skill]] &nbsp;</td>
+<td>&nbsp;</td>
+<td bgcolor="#F6F4EB">&nbsp; [[SkillsDeleteSkill][Delete Skill]] &nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td bgcolor="#EAE9DE">&nbsp; *Create New Category* &nbsp;</td>
+<td>&nbsp;</td>
+<td bgcolor="#F6F4EB">&nbsp; [[SkillsRenameCategory][Rename Category]] &nbsp;</td>
+<td>&nbsp;</td>
+<td bgcolor="#F6F4EB">&nbsp; [[SkillsDeleteCategory][Delete Category]] &nbsp;</td>
+</tr></table>
+<table border="0" cellpadding="5" cellspacing="0" style="width:100%;">
+<tr bgcolor="#EAE9DE"><td style="width:100%;"></td></tr>
+</table>
+%STARTSECTION{"createcategory"}%
+
+%IF{ "{Plugins}{SkillsPlugin}{Enabled}" then="%ADDSKILLSMESSAGE%" else="<table border='0' cellpadding='3' cellspacing='0' width='100%'><tr><td bgcolor='yellow'><font color='red'><strong>The Skills Plugin is not enabled on this site. The forms below are disabled.</strong></font></td></tr></table>" }%
+
+Create a new category.
+
+<form name="createcategory" action="%SCRIPTURL{view}%/%BASEWEB%/%BASETOPIC%" method="post">
+<div class="twikiFormSteps">
+<div class="twikiFormStep">
+Name of new category: %BR% <input name="category" type="text" class="twikiInputField" size="20" value="%URLPARAM{"createcategory"}%" /> (use only alphanumeric characters and underscore)
+</div>
+<div class="twikiFormStep twikiLast">
+<input name="createcategory" type="submit" class="twikiSubmit" value="%MAKETEXT{"Create"}%" />
+</div>
+</div>
+</form>
+%ENDSECTION{"createcategory"}%
+
+%STARTSECTION{"existingcategories"}%
+Existing categories: %SKILLS{action="showcategories"}%
+%ENDSECTION{"existingcategories"}%
+%STOPINCLUDE%
+
+%BR%
+<span class="twikiGrayText">Other skills options: [[SkillsBrowseAll][Browse All Skills]], [[SkillsEditMySkills][Edit My Skills]], [[SkillsSearch][Search Skills]]</span>

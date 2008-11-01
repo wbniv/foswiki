@@ -1,0 +1,32 @@
+%META:TOPICINFO{author="TWikiContributor" date="1176297285" format="1.1" version="0"}%
+%META:TOPICPARENT{name="SkillsPlugin"}%
+---++ Display Users Skills On Their Home Pages
+
+This topic will show you how to get the users skills displayed on their home page using the TWikiTemplates system. An example is shown in the screen shot below. This example uses the default PatternSkin, and using an unchanged Main.PatternSkinUserViewTemplate.
+
+<a href="%PUBURLPATH%/%WEB%/SkillsPlugin/skills_screenshot_full.png"><img src="%PUBURLPATH%/%WEB%/SkillsPlugin//skills_screenshot_thumb.png" alt="skills_screenshot_thumb.png" /></a>
+
+The topic you need to edit is [[%MAINWEB%.PatternSkinUserViewTemplate]].
+
+---+++ Step 1.
+
+Firstly, add the following line to %MAINWEB%.PatternSkinUserViewTemplate. This needs to be anywhere between =%TMPL:INCLUDE{"view"}%= and =%TMPL:DEF{"formattop"}%=:
+
+<verbatim>%TMPL:DEF{"skills"}%<div class="skills_UserHomePage">%SKILLS{action="userskills" user="%TOPIC%"}%</div>%TMPL:END%</verbatim>
+
+---+++ Step 2.
+
+Next, remove the line: 
+
+<verbatim>%TMPL:DEF{"formattop"}%%TMPL:P{"form"}%%TMPL:END%</verbatim> 
+
+and replace with the following:
+
+<verbatim>
+%TMPL:DEF{"formattop"}%<table width="100%" cellpadding="20px">
+<tr><td width="50%" valign="top">%TMPL:P{"form"}%</td>
+<td width="50%" valign="top" align="right" style="padding-right:50px;">%TMPL:P{"skills"}%</td></tr>
+</table>%TMPL:END%
+</verbatim>
+
+You should now be able to view the users skills on their home page!
