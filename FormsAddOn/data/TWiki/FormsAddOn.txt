@@ -1,0 +1,150 @@
+%META:TOPICINFO{author="guest" date="1108706751" format="1.0" version="1.1"}%
+---+ Forms AddOn
+
+This AddOnPackage provides enhancements to TWiki forms:
+	* Provide manual control over the appearance (layout and content)of the form.
+	* Allow field values to be supplied for select, radio, and checkbox fields through both a referenced topic or an embedded search.
+	* Allow the same field value definition to be referenced multiple times.
+	* Allow field names to be independent from the topic that defines their values.
+	* Fully support initialization of topics from forms.
+	* Support mandatory form fields.
+
+---++ Usage
+
+---+++ Manual control over the appearance of the form
+
+If there is a topic in the current web with the name of the form attached to a topic postfixed by "Template", the form will be rendered using that topic rather than constructed in the standard way. In other words...
+	* Assume your topic has a form =XXX= associated.
+	* Create a topic =XXXTemplate= that defines how the form should be laid out. The topic will be rendered where normally the form would be shown. This gives complete control over both the appearance of the form as well as the fields displayed. 
+	* Typically that template will contain a wiki or HTML table with the precise apprearance that is desired.
+	* All form fields are stored with the topic, but only those referenced through %<nop>META{"formfield=..."}% constructs will be shown.
+
+Example: Consider the following form definition:
+
+<table width="100%"><tr><td align=center><img src="%ATTACHURL%/form_def.jpg" width="85%"></td></tr></table>
+
+Given the template
+
+<verbatim>
+%META{"formfield" name="IssueDescription"}%
+<p />
+%TABLE{tableborder="0" cellpadding="1" cellspacing="3" headerbg="#000099" headercolor="#FFFFCC" databg="#C8CB8F"}%
+|*Office 1*|*<nop>OfficeSearch*|*Office 2*|*Office 3*|*Office 4*|
+|%META{"formfield" name="Office1"}%|%META{"formfield" name="OfficeSearch"}%|%META{"formfield" name="Office2"}%|%META{"formfield" name="Office3"}%|%META{"formfield" name="Office4"}%|
+|%META{"formfield" name="IssueDescription"}%|||||
+<p />
+</verbatim>
+
+the form will render as follows:
+<table width="100%"><tr><td align=center><img src="%ATTACHURL%/alternate_form.jpg" width="85%"></td></tr></table>
+
+Everything from "Offices of the ..." to the action bar is the form rendered as prescribed above.
+
+---+++ Definition of possible field values through referenced topic
+
+TWiki.TWikiForms allow the possible values for fields to be defined in a table on a referenced topic, in which case the name of the field must be the referenced topic. This AddOn allows the field name to be defined using the syntax for specific links =[<nop>[<nop>...][<nop>...]]=:
+	* The item in the first pair of brackets is a reference to another topic defining the possible field values for this field
+	* The item in the second pair of brackets is the field name
+
+Using this syntax, the user can choose a descriptive fieldname, where the name of the topic referenced might not be as appropriate. More importantly, where the field values are the same for several fields, the same defining topic can be referenced multiple times (by giving them different names).
+
+For example, the form above was defined as follows:
+<verbatim>
+| *Name* | *Type* | *Size* | *Values* | *Tooltip messages* | *Attributes* | 
+| Issue Name | text | 73 |  Sample text	| Illustrative name of issue | M | 
+| Issue Description | textarea | 55x5 | This is also some sample, but somewhat longer, text	 | Short description of issue |  | 
+| [[OfficeSearch][Office 1]] | select | 1 |  |  |  | 
+| OfficeSearch | select | 1 |  |  |  | 
+| Office 2 | select | 1 | , %SEARCH{"Office$" scope="topic" web="Main" nototal="on" nosummary="on" nosearch="on" regex="on" format="Main.$topic" separator=", " }%  |  |  | 
+| Office 3 | checkbox | 2 | %SEARCH{"Office$" scope="topic" web="Main" nototal="on" nosummary="on" nosearch="on" regex="on" format="Main.$topic" separator=", " }%  |  |  | 
+| [[OfficeSearch][Office 4]] | radio | 2 |  |  |  | 
+| State  | label | 10  | This is the initial, that is, first state. |  | |
+</verbatim>
+
+The possible values for the fields defined in rows 3, 4, and 7 are all given by reference to the topic =<nop>OfficeSearch=. However, when rendered, the fields will have the names =Office 1=, =OfficeSearch=, and =Office 4=, respectively.
+
+---+++ Definition of possible field values through searches
+
+The possible values for the fields of a form can also be given through a search, either by placing the search directly in the fourth column of the field definition, or by generating the rows of the referenced topic by a search.
+
+In the example above, the possible field values for rows 5 and 6 are both obtained by searching through the =Main= web for occurrences of topics ending in =Office=. Similarly, the =OfficeSearch= topic leveraged in the previous section can be defined by a search:
+
+<verbatim>
+| *Name*			 | *Type* | *Tooltip message* |
+|					  |		  |						 |
+%SEARCH{"Office$" regex="on" scope="topic" web="Main" nototal="on" nosummary="on" nosearch="on" format="| Main.$topic | option | |"}%
+</verbatim>
+
+
+---+++ Initialization of field values from the form definition
+
+All form fields can be initialized from the values given in the fourth column of the form template. 
+
+The initial values in the form for text and text area fields may contain commas; for other fields the individual values are separated by commas. Checkbox fields cannot be initialized. 
+
+Fields are initialized in the following order (note that the form definition is not used if the body text is passed as a query parameter (per TWiki spec):
+		* Field values passed as query parameters
+		* Field values in a template topic
+		* Field values in the form definition
+
+---+++ Mandatory fields in forms
+
+If the attribute column (the sixth column) in a form definition contains an =M= for a field, that field cannot be left blank. If the field is found empty during topic save, an error is raised and the user is redirected to an oops page.
+
+Mandatory fields are indicated by an asteriks next to the field name.
+
+In the example above, the first field (=Issue Name=) is mandatory and must always be provided.
+
+
+---+++ Other
+
+In order to improve the appearance of the form during editing, the field definitions are not linked, where the values are obtained from a referenced topic. Note that this topic is still accessible via the form definition, which is linked at the top of the form.
+
+The example form during edit renders as follows:
+<table width="100%"><tr><td align=center><img src="%ATTACHURL%/form_edit.jpg" width="85%"></td></tr></table>
+
+---++ Acknowledgement
+
+This AddOn leverages code contributions and ideas by TWiki:Main/PeterKlausner and TWiki:Main/SvenDowedit (see also TWiki:Codev/DynamicFormOptionDefinitions).
+
+
+---++ Add-On Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this add-on. The following instructions are for the administrator who installs the add-on on the server where TWiki is running. 
+
+	* Download the ZIP file from the Add-on Home (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Add-on topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Add-on topic repository |
+	  | ==templates/oopsfielderror.tmpl== | Error template |
+	  | ==bin/%TOPIC%.patch== | Patch |
+	  | ==data/Sandbox/SearchForm.txt== | Example form	 |
+	  | ==data/Sandbox/SearchFormTemplate.txt== | Template for example form	 |
+	  | ==data/Sandbox/OfficeSearch.txt== | Topic defining field values	 |
+	  | ==data/Sandbox/SearchFormTest.txt== | Example topic	 |
+	* Patch the following files with =bin/%TOPIC%.patch=: =lib/TWiki/Form.pm=, =lib/TWiki/UI/Preview.pm=, =lib/TWiki/UI/Save.pm=, =lib/TWiki/Render.pm=
+	* Test if the installation was successful:
+		* View Sandbox.FormSearchTest.
+
+---++ Add-On Info
+
+|  Add-on Author: | TWiki:Main/ThomasWeigert |
+|  Add-on Version: | 15 Feb 2005 (v1.000) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  15 Feb 2005: | Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  License: | GPL |
+|  Add-on Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topic:__ %TWIKIWEB%.TWikiAddOns
+
+-- TWiki:Main/ThomasWeigert - 15 Feb 2005
+
+%META:FILEATTACHMENT{name="form_def.jpg" attr="h" comment="" date="1108706349" path="E:\www\twiki-cairo\data\Test\form_def.jpg" size="63987" user="guest" version="1.1"}%
+%META:FILEATTACHMENT{name="alternate_form.jpg" attr="h" comment="" date="1108706393" path="E:\www\twiki-cairo\data\Test\alternate_form.jpg" size="87009" user="guest" version="1.1"}%
+%META:FILEATTACHMENT{name="form_edit.jpg" attr="h" comment="" date="1108706415" path="E:\www\twiki-cairo\data\Test\form_edit.jpg" size="85733" user="guest" version="1.1"}%
