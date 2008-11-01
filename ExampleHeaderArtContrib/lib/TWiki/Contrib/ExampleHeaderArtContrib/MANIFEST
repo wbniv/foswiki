@@ -1,0 +1,23 @@
+data/TWiki/ExampleHeaderArtContrib.txt  Plugin doc page
+lib/TWiki/Contrib/ExampleHeaderArtContrib.pm  Plugin Perl module 
+data/Sandbox/PluginTestExampleHeaderArtContrib.txt  Plugin examples
+pub/TWiki/ExampleHeaderArtContrib/AbandonedFactory.jpg
+pub/TWiki/ExampleHeaderArtContrib/bamboo.jpg
+pub/TWiki/ExampleHeaderArtContrib/birdseed.jpg
+pub/TWiki/ExampleHeaderArtContrib/BulgarianBureaucracy.jpg
+pub/TWiki/ExampleHeaderArtContrib/BulgarianMinistryOfFinance.jpg
+pub/TWiki/ExampleHeaderArtContrib/BulgarianMountainVillage.jpg
+pub/TWiki/ExampleHeaderArtContrib/BulgarianWall.jpg
+pub/TWiki/ExampleHeaderArtContrib/cobblestones.jpg
+pub/TWiki/ExampleHeaderArtContrib/ConcreteHole.jpg
+pub/TWiki/ExampleHeaderArtContrib/CrackedMud.jpg
+pub/TWiki/ExampleHeaderArtContrib/CrackedMud2.jpg
+pub/TWiki/ExampleHeaderArtContrib/eiffel.jpg
+pub/TWiki/ExampleHeaderArtContrib/FloridaGrass.jpg
+pub/TWiki/ExampleHeaderArtContrib/FloridaPines.jpg
+pub/TWiki/ExampleHeaderArtContrib/GermanCastle.png
+pub/TWiki/ExampleHeaderArtContrib/HagiaSofia.jpg
+pub/TWiki/ExampleHeaderArtContrib/IstanbulSunset.jpg
+pub/TWiki/ExampleHeaderArtContrib/MetalSwiss.jpg
+pub/TWiki/ExampleHeaderArtContrib/RumanianFlowers.jpg
+pub/TWiki/ExampleHeaderArtContrib/TurkishVase.jpg
