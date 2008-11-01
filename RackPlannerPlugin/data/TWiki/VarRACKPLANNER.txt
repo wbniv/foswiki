@@ -1,0 +1,11 @@
+%META:TOPICINFO{author="TWikiContributor" date="1181042151" format="1.1" reprev="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TWikiVariables"}%
+#VarRACKPLANNER
+---+++ RACKPLANNER{attributes} -- add a rack overview of computer, devices, etc. to a topic
+   * The =%<nop>RACKPLANNER%= variable is handled by the RackPlannerPlugin.
+   * Syntax: =%<nop>CHECKLIST{attr1="value" attr2="value"}%=
+   * Examples:
+      * =%<nop>RACKPLANNER%= adds a rack overview to a topic with rack definitions on the same topic
+      * =%<nop>RACKPLANNER{racks="Rack120"}%= adds a rack overview of rack <nop>Rack120 with rack definitions on the same topic
+      * =%<nop>RACKPLANNER{racks="Rack120,Rack220" autotopic="on"}%= adds a rack overview of racks <nop>Rack120 and <nop>Rack220 with rack definitions from <nop>Rack120 and <nop>Rack220 topics       
+   * Related: RackPlannerPlugin
