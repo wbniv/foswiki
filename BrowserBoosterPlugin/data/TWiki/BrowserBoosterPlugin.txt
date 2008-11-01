@@ -1,0 +1,55 @@
+---+!! !BrowserBoosterPlugin
+<!--
+One line description, required for extensions repository catalog.
+   * Set SHORTDESCRIPTION = Embeds js and css files into the page to reduce the number of http objects.
+-->
+%SHORTDESCRIPTION%
+
+%TOC%
+
+---++ Usage
+
+After the plugin is enabled in configure, you do not need to do anything further.
+
+---++ Why do I want to use this extension?
+
+There are at least to situations where this plugin helps you to boost the speed of your TWiki page loads.
+
+   1 Your client uses a Firefox2 browser
+   1 Your network has a high latency
+
+The Firefox2 browser handles web pages with many CSS and Javascript files very bad. Firefox renders a web page significantly faster, if all CSS and JS data is embedded within the webpage rather than spread over many external files/urls. This is a known bug and will be fixed in version 3.
+
+On a network with a high latency every additional css or js file costs you an additional http request (with all the overhead of (potentially) new connections. You can save that time by embedding the content into the main page.
+
+
+---++ Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the TWiki server.
+
+   * [[http://twiki.org/p/pub/Plugins/%TOPIC%/%TOPIC%.zip][Download]] the ZIP file
+   * Unzip it in your twiki installation directory.
+   * Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+   * %X% This plugin needs at least TWiki 4.2.0 (Freetown) to work.
+
+---++ Plugin Info
+
+Many thanks to the following contributors for supporting this work:
+   * TWiki:Main.AndreUlrich, [[http://www.kontextwork.de/][KontextWork]] for the idea and the collaboration on the first prototype
+   * TWiki:Main.MichaelDaum for bugfixes
+
+|  Plugin Author(s): | TWiki:Main.OliverKrueger |
+|  Copyright: | &copy; 2008, Wiki++, TWiki:Main.OliverKrueger |
+|  License: | [[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License)]] |
+|  Plugin Version: | %$VERSION% |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  05 Jul 2008: | fix Bugs:Item5590, better handling of import urls, patch by [[TWiki:Main.MichaelDaum][MD]] |
+|  07 Apr 2008: | initial version |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Plugin Home: | http://twiki.org/cgi-bin/view/Plugins/BrowserBoosterPlugin |
+|  Feedback: | http://twiki.org/cgi-bin/view/Plugins/BrowserBoosterPluginDev |
+|  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/BrowserBoosterPluginAppraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the feedback topic on twiki.org instead. -->
