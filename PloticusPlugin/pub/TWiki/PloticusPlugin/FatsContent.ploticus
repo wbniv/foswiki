@@ -1,0 +1,86 @@
+//  specify the data using proc getdata
+// Each value is an individual percentage.
+<p />
+#proc page
+  landscape: yes
+<p />
+#proc getdata
+//      oil     lin    alph    mono    sat
+data:	Canola 	 22	10	63	5
+	Flaxseed 17	46	29	8
+	Olive	 6 	2	80	12
+	Walnut	 62	8	20	10
+	Coconut	 3	0	20	77
+	Corn	 62	1	23	14
+	Safflower 78	0	12	10
+<p />
+//  define plotting area using proc areadef
+#proc areadef
+  title: Fats content of various oils
+  rectangle: 1 1 4 2.7
+  xrange: 0 100
+  yrange: 0 8
+<p />
+//  do y axis stubs (oil names) using proc yaxis
+#proc yaxis
+  stubs: datafields 1
+  grid: color=powderblue
+  axisline: none
+  tics: no
+<p />
+//  do x axis stubs (percents) using proc xaxis
+#proc xaxis
+  stubs: inc 20
+  stubformat: %3.0f%%
+<p />
+//  do light green bars using proc bars
+#proc bars
+  horizontalbars: yes
+  barwidth: 0.13
+  lenfield: 2
+  color: rgb(.6,.85,.8)
+  outline: no
+  legendlabel: Linolenic (omega-6)
+  #saveas: B
+<p />
+//  do dark green bars 
+// Use stackfields to position bars beyond the first set of bars
+#proc bars
+  #clone B
+  lenfield: 3
+  stackfields: 2
+  legendlabel: Alpha-Linolenic (omega-3)
+  color: teal
+<p />
+//  do pink bars 
+// Use stackfields to position bars beyond the first two sets of bars
+#proc bars
+  #clone B
+  lenfield: 4
+  stackfields: 2 3
+  legendlabel: Monounsaturated fats
+  color: pink
+<p />
+//  do red bars  
+// Use stackfields to position bars beyond the first three sets of bars
+#proc bars
+  #clone B
+  lenfield: 5
+  stackfields: 2 3 4
+  legendlabel: Saturated fats
+  color: red
+<p />
+//  do legend (1st column) using proc legend
+// the noclear attribute must be specified otherwise the entries are removed
+// we need to keep them for the 2nd invocation, below..
+#proc legend
+  location: min+0.2 min-0.3
+  noclear: yes
+  specifyorder: Lin
+	 	alpha
+<p />
+//  do legend (2nd column) using proc legend
+#proc legend
+  location: min+2.4 min-0.3
+  specifyorder: Mono
+	 	Satu

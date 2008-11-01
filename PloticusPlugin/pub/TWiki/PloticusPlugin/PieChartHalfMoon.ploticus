@@ -1,0 +1,24 @@
+//  specify data using proc getdata
+#proc getdata
+data:	Brazil 22
+	Columbia 17
+	"Costa Rica" 22
+	Guatemala 3
+	Honduras 12
+	Mexico 14
+	Nicaragua 28
+	Belize 9
+ 	"United States" 21
+	Canada 8
+
+//  render the pie graph using proc pie
+#proc pie
+datafield: 2
+labelfield: 1
+labelmode: line+label
+center: 4 3
+radius: 1
+colors: oceanblue
+outlinedetails: color=white
+labelfarout: 1.3
+total: 256

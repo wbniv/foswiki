@@ -1,0 +1,37 @@
+#proc page
+pagesize: 8.5 9.6
+#if @DEVICE in gif,png
+  scale: 0.8
+#endif
+<p />
+#proc getdata
+  delim: comma
+  file: sess03022000.dat
+<p />
+#proc areadef
+  title: ADSM Sessions 03/02
+  areaname: whole
+  xscaletype: time hh:mm:ss
+  xrange: 00:00 06:00
+  yscaletype: categories
+  ycategories: datafield 4
+//  frame: bevel
+<p />
+// #proc originaldata
+<p />
+#proc yaxis
+  stubs: categories
+  grid: color=powderblue
+<p />
+#proc xaxis
+  stubs: inc 30
+  stubformat: hh:mm
+  grid: color=orange style=2
+  label: Hour of Day
+<p />
+#proc bars
+  axis: x
+  locfield: 4
+  segmentfields: 2 3
+  barwidth: 0.035
+  tails: 0.05

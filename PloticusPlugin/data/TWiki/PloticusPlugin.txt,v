@@ -1,0 +1,1696 @@
+head	1.3;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.3
+date	2006.04.29.13.19.28;	author TWikiContributor;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2006.04.29.13.19.07;	author TWikiContributor;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2006.04.27.13.29.19;	author TWikiContributor;	state Exp;
+branches;
+next	;
+
+
+desc
+@none
+@
+
+
+1.3
+log
+@none
+@
+text
+@%META:TOPICINFO{author="TWikiContributor" date="1146316768" format="1.1" version="1.3"}%
+---+!! <nop>%TOPIC% 
+
+<nop>%TOPIC% allows for dynamic rendering and display of a Ploticus graph in a TWiki topic.
+
+This plugin is basically a rip off of TWiki:Plugins.GnuPlotPlugin - thanks [[TWiki:Main.AbieSwanepoel][Abie]]!
+
+%TOC%
+
+---++ Syntax Rules 
+
+	* Add =%<nop>PLOTICUSPLOT{"PlotName"}%= in a topic (where you want the plot to appear) and save the topic
+	* Multiple plots can be displayed within one topic
+	* Any CSV (Comma Seperated Variable) files attached to the topic can be used with the ploticus command (see examples)
+
+---++ Examples
+
+Below are a few pre-rendered examples of what plots produced with ploticus looks like - for more examples and full syntax documentation please visit Ploticus' homepage at http://ploticus.sourceforge.net/.
+
+---+++ Pie Chart, Simple
+
+Simple pie chart, only chart + legend.
+
+<table width="1700">
+<tr>
+<td>
+Pre-rendered sample (<nop>PieChartSimple):<br />
+<img src="%ATTACHURLPATH%/PieChartSimpleSample.png" alt="PieChartSimpleSample.png" width='303' height='184' />
+</td>
+<td>
+Plugin (<nop>PieChartSimple):<br />
+%PLOTICUSPLOT{"PieChartSimple"}%
+</td>
+<td>
+Verbatim (<nop>PieChartSimple):<br />
+<verbatim>
+%PLOTICUSPLOT{"PieChartSimple"}%
+
+Plot settings:
+#proc page
+#if @@DEVICE in gif,png
+  scale: 1.2
+#endif
+//  specify data using proc getdata
+#proc getdata
+data:
+ Brazil        22
+ Columbia      17
+ "Costa Rica"  22
+ Guatemala     19
+ Honduras      12
+
+//  render the pie graph using proc pie
+#proc pie
+datafield: 2
+labelfield: 1
+labelmode: legend
+outlinedetails: none
+center: 2 2
+radius: 0.6
+colors: dullyellow drabgreen pink powderblue lavender
+labelfarout: 1.3
+
+//  render the legend using entries made above, using proc legend
+#proc legend
+location: 3 2.6
+</verbatim>
+</td>
+</tr>
+</table>
+
+
+---+++ Pie Chart, Automatic Percentages
+
+Pie chart with automatic percentage values (taken from absoute data values).
+
+<table width="1700">
+<tr>
+<td>
+Pre-rendered sample (<nop>PieChartAutomaticPercent):<br />
+<img src="%ATTACHURLPATH%/PieChartAutomaticPercentSample.png" alt="PieChartAutomaticPercentSample.png" width='352' height='321' />
+</td>
+<td>
+Plugin (<nop>PieChartAutomaticPercent):<br />
+%PLOTICUSPLOT{"PieChartAutomaticPercent"}%
+</td>
+<td>
+Verbatim (<nop>PieChartAutomaticPercent):<br />
+<verbatim>
+%PLOTICUSPLOT{"PieChartAutomaticPercent"}%
+
+Plot settings:
+//  set the background to gray using proc page
+#proc page
+backgroundcolor: darkblue
+#if @@DEVICE in gif,png
+  scale: 1.0
+#endif
+
+//  specify data using proc getdata
+#proc getdata
+data:   
+12 SAV
+14 INS
+16 ENT
+18 AUT
+20 CLO
+25 FOO
+28 HOU
+
+//  render the pie graph using proc pie
+#proc pie
+firstslice: 330
+datafield: 1
+labelmode: labelonly
+center: 4 3
+radius: 1
+colors: drabgreen
+labelfarout: 1.3
+outlinedetails: color=white 
+textdetails: color=lightorange size=10
+pctformat: %.0f
+labels: 
+ Savings\n(@@@@PCT%)
+ Insurance\n(@@@@PCT%)
+ Entertainment\n(@@@@PCT%)
+ Auto\n(@@@@PCT%)
+ Clothing\n(@@@@PCT%)
+ Food\n(@@@@PCT%)
+ Housing\n(@@@@PCT%)
+</verbatim>
+</td>
+</tr>
+</table>
+
+
+---+++ Pie Chart, Exploded
+
+Pie chart with two slices exploded.
+
+<table width="1700">
+<tr>
+<td>
+Pre-rendered sample (<nop>PieChartExploded):<br />
+<img src="%ATTACHURLPATH%/PieChartExplodedSample.png" alt="PieChartExplodedSample.png" width='341' height='249' />
+</td>
+<td>
+Plugin (<nop>PieChartExploded):<br />
+%PLOTICUSPLOT{"PieChartExploded"}%
+</td>
+<td>
+Verbatim (<nop>PieChartExploded):<br />
+<verbatim>
+%PLOTICUSPLOT{"PieChartExploded"}%
+
+Plot settings:
+#proc page
+#if @@DEVICE in gif,png
+  scale: 0.5
+#endif
+
+//  specify data using proc getdata
+#proc getdata
+data:   
+ Brazil          22
+ Columbia        17
+ "Costa Rica"    22
+ Guatemala        3
+ Honduras        12
+ Mexico          14
+ Nicaragua       28
+ Belize           9
+ United\nStates  21
+ Canada           8
+
+//  render the pie graph using proc pie
+#proc pie
+clickmapurl: @@CGI?country=@@@@1&n=@@@@2
+firstslice: 90
+explode: .2 0 0 0 0  .2 0
+datafield: 2
+labelfield: 1
+labelmode: line+label
+center: 4 4
+radius: 2
+colors: yellow pink pink pink pink yellow pink
+labelfarout: 1.05
+</verbatim>
+</td>
+</tr>
+</table>
+
+---+++ Pie Chart, Half Moon Layout
+
+Pie chart, "half moon" layout.
+
+<table width="1700">
+<tr>
+<td>
+Pre-rendered sample (<nop>PieChartHalfMoon):<br />
+<img src="%ATTACHURLPATH%/PieChartHalfMoonSample.png" alt="PieChartHalfMoonSample.png" width='458' height='268' />
+</td>
+<td>
+Plugin (<nop>PieChartHalfMoon):<br />
+%PLOTICUSPLOT{"PieChartHalfMoon"}%
+</td>
+<td>
+Verbatim (<nop>PieChartHalfMoon):<br />
+<verbatim>
+%PLOTICUSPLOT{"PieChartHalfMoon"}%
+
+Plot settings:
+//  specify data using proc getdata
+#proc getdata
+data:   
+ Brazil           22
+ Columbia         17
+ "Costa Rica"     22
+ Guatemala         3
+ Honduras         12
+ Mexico           14
+ Nicaragua        28
+ Belize            9
+ "United States"  21
+ Canada            8
+
+//  render the pie graph using proc pie
+#proc pie
+datafield: 2
+labelfield: 1
+labelmode: line+label
+center: 4 3
+radius: 1
+colors: oceanblue
+outlinedetails: color=white
+labelfarout: 1.3
+total: 256
+</verbatim>
+</td>
+</tr>
+</table>
+
+---+++ Composition Percentages
+
+Example of intuitive display of oil component percentages.
+
+<table width="1700">
+<tr>
+<td>
+Pre-rendered sample (<nop>FatsContent):<br />
+<img src="%ATTACHURLPATH%/FatsContentSample.png" alt="FatsContentSample.png" width='467' height='289' />
+</td>
+<td>
+Plugin (<nop>FatsContent):<br />
+%PLOTICUSPLOT{"FatsContent"}%
+</td>
+<td>
+Verbatim (<nop>FatsContent):<br />
+<verbatim>
+%PLOTICUSPLOT{"FatsContent"}%
+
+Plot settings:
+// Specify the data using proc getdata
+// Each value is an individual percentage.
+
+#proc page
+  landscape: yes
+
+#proc getdata
+//oil      lin alph mono  sat
+data:   
+ Canola     22   10   63    5
+ Flaxseed   17   46   29    8
+ Olive       6    2   80   12
+ Walnut     62    8   20   10
+ Coconut     3    0   20   77
+ Corn       62    1   23   14
+ Safflower  78    0   12   10
+
+//  define plotting area using proc areadef
+#proc areadef
+  title: Fats content of various oils
+  rectangle: 1 1 4 2.7
+  xrange: 0 100
+  yrange: 0 8
+
+//  do y axis stubs (oil names) using proc yaxis
+#proc yaxis
+  stubs: datafields 1
+  grid: color=powderblue
+  axisline: none
+  tics: no
+
+//  do x axis stubs (percents) using proc xaxis
+#proc xaxis
+  stubs: inc 20
+  stubformat: %3.0f%%
+
+//  do light green bars using proc bars
+#proc bars
+  horizontalbars: yes
+  barwidth: 0.13
+  lenfield: 2
+  color: rgb(.6,.85,.8)
+  outline: no
+  legendlabel: Linolenic (omega-6)
+  #saveas: B
+
+//  do dark green bars 
+// Use stackfields to position bars beyond the first set of bars
+#proc bars
+  #clone B
+  lenfield: 3
+  stackfields: 2
+  legendlabel: Alpha-Linolenic (omega-3)
+  color: teal
+
+//  do pink bars 
+// Use stackfields to position bars beyond the first two sets of bars
+#proc bars
+  #clone B
+  lenfield: 4
+  stackfields: 2 3
+  legendlabel: Monounsaturated fats
+  color: pink
+
+// do red bars  
+// Use stackfields to position bars beyond the first three sets of bars
+#proc bars
+  #clone B
+  lenfield: 5
+  stackfields: 2 3 4
+  legendlabel: Saturated fats
+  color: red
+
+//  do legend (1st column) using proc legend
+// the noclear attribute must be specified otherwise the entries are removed
+// we need to keep them for the 2nd invocation, below..
+#proc legend
+  location: min+0.2 min-0.3
+  noclear: yes
+  specifyorder: Lin
+       alpha
+
+//  do legend (2nd column) using proc legend
+#proc legend
+  location: min+2.4 min-0.3
+  specifyorder: Mono
+       Satu
+</verbatim>
+</td>
+</tr>
+</table>
+
+---+++ Accrual Graph (Datafile based)
+
+Display of forecast and actual growth. Annotated.
+
+<table width="1700">
+<tr>
+<td>
+Pre-rendered sample (<nop>Accrual):<br />
+<img src="%ATTACHURLPATH%/AccrualSample.png" alt="AccrualSample.png" width='446' height='604' />
+</td>
+<td>
+Plugin (<nop>Accrual):<br />
+%PLOTICUSPLOT{"Accrual"}%
+</td>
+<td>
+Verbatim (<nop>Accrual):<br />
+<verbatim>
+%PLOTICUSPLOT{"Accrual"}%
+
+Plot settings:
+// patient accrual plot.
+// Usage pl accrual.p [CUTDATE=mmddyy]
+//
+// This will plot directly from the MMDDYY dates in field# 5 of accrual.dat
+//
+#setifnotgiven CUTDATE = 041500
+#set XMIN = "110198"
+#set XMAX = "033101"
+#set NICECUTDATE = $formatdate(@@CUTDATE,full)
+
+//
+// do page title..
+#proc page  
+pagesize: 8.5 11
+#if @@DEVICE in gif,png
+  scale: 0.6
+#endif
+title:      Cumulative Patient Enrollment by Month
+      @@NICECUTDATE
+
+//
+// read the data file..
+#proc getdata
+file:      accrual.dat
+select:      $daysdiff(@@@@5,040197) >= 0 && $daysdiff(@@@@5,@@CUTDATE) <= 0
+
+//
+// set up plotting area..
+#proc areadef
+rectangle:   1.5 1.5 7.5 9.2
+
+xrange:      @@XMIN @@XMAX
+xscaletype:     date
+xaxis.stubs:    incremental 1 month
+xaxis.stubformat: M
+
+yrange:      0 500
+yaxis.stubs:   incremental 50
+yaxis.label:   Cumulative Number of Patients Enrolled
+yaxis.labeldetails: adjust=-0.2,0 
+
+// do a second x axis to put in years
+#proc xaxis
+stubs:      incremental 12 months
+axisline:   none
+location:   min-0.3
+stubrange:   010199
+stubformat:   YYYY
+
+// =====================
+// do group A curve, using instancemode/groupmode to count instances,
+// and accum to accumulate..
+// Use the select attribute to get only group A 
+#proc lineplot
+xfield:      5
+accum:      y
+instancemode:   yes
+groupmode:   yes
+select:      @@@@4 == A && $daysdiff(@@@@5,040197) >= 0
+lastx:      @@CUTDATE
+#saveas:   L
+#endproc
+
+// calculate group A pct of goal (150) and format to NN..
+#set PCTOFGOAL = $arith(@@YFINAL/1.5)
+#set PCTOFGOAL = $formatfloat(@@PCTOFGOAL,%2.0f)
+
+// render line label with percentage
+#proc annotate
+  location: @@XFINAL(s) @@YFINAL(s)
+  textdetails: size=8 align=L
+  text: Group A = @@YFINAL (@@PCTOFGOAL% of goal)
+
+// =====================
+// do group B curve
+#proc lineplot
+#clone:      L
+linedetails: style=1 dashscale=3
+linerange:   9806
+select:      @@@@4 == B && $daysdiff(@@@@5,060198) >= 0
+#endproc
+
+// calculate group B pct of goal (500) and format to NN..
+#set PCTOFGOAL = $arith(@@YFINAL/5.0)
+#set PCTOFGOAL = $formatfloat(@@PCTOFGOAL,%2.0f)
+
+// render line label with percentage..
+#proc annotate
+  location: @@XFINAL(s) @@YFINAL(s)
+  textdetails: size=8 align=L
+  text: Group B = @@YFINAL (@@PCTOFGOAL% of goal)
+
+// =====================
+// do group C curve
+#proc Lineplot
+#clone:      L
+linedetails: style=2 dashscale=3
+select:      @@@@4 == C && $daysdiff(@@@@5,060198) >= 0
+#endproc
+
+// calculate group C pct of goal (220) and format to NN..
+#set PCTOFGOAL = $arith(@@YFINAL/2.2)
+#set PCTOFGOAL = $formatfloat(@@PCTOFGOAL,%2.0f)
+
+// render line label with percentage..
+#proc annotate
+  location: @@XFINAL(s) @@YFINAL(s)
+  textdetails: adjust=0.1,+0.1 size=8 align=L
+  text: Group C = @@YFINAL (@@PCTOFGOAL% of goal)
+
+// draw the goal lines...
+#proc drawcommands
+commands: 
+   textsize 8
+        linetype 1 0.2 4
+//
+   movs @@XMIN min
+   lins 090100 150
+//
+   movs @@XMIN min
+   lins 090100 500
+//
+   movs @@XMIN min
+   lins 090100 220
+
+// do the goal annotations
+#proc annotate
+  location:  1.7 150(s)
+  textdetails: align=L size=8
+  text: Group A Goal
+   150 by Sep 2000
+
+#proc annotate
+  location: 1.7 500(s)
+  textdetails: align=L size=8
+  text: Group B Goal
+   500 by Sep 2000
+
+#proc annotate
+  location: 1.7 220(s)
+  textdetails: align=L size=8
+  text: Group C Goal
+   220 by Sep 2000
+
+#proc annotate
+  location: 090100(s) 153(s)
+  text: A
+
+#proc annotate
+  location: 090100(s) 503(s)
+  text: B
+
+#proc annotate
+  location: 090100(s) 223(s)
+  text: C
+</verbatim>
+</td>
+</tr>
+</table>
+
+---+++ Chronological Flow (Datafile based)
+
+Display of session data extracted from logfile, Microsoft Project style.
+
+<table width="1700">
+<tr>
+<td>
+Pre-rendered sample (<nop>Sessions):<br />
+<img src="%ATTACHURLPATH%/SessionsSample.png" alt="SessionsSample.png" width='625' height='726' />
+</td>
+<td>
+Plugin (<nop>Sessions):<br />
+%PLOTICUSPLOT{"Sessions"}%
+</td>
+<td>
+Verbatim (<nop>Sessions):<br />
+<verbatim>
+%PLOTICUSPLOT{"Sessions"}%
+
+Plot settings:
+#proc page
+pagesize: 8.5 9.6
+#if @@DEVICE in gif,png
+  scale: 0.8
+#endif
+
+#proc getdata
+  delim: comma
+  file: sess03022000.dat
+
+#proc areadef
+  title: ADSM Sessions 03/02
+  areaname: whole
+  xscaletype: time hh:mm:ss
+  xrange: 00:00 06:00
+  yscaletype: categories
+  ycategories: datafield 4
+//  frame: bevel
+
+// #proc originaldata
+
+#proc yaxis
+  stubs: categories
+  grid: color=powderblue
+
+#proc xaxis
+  stubs: inc 30
+  stubformat: hh:mm
+  grid: color=orange style=2
+  label: Hour of Day
+
+#proc bars
+  axis: x
+  locfield: 4
+  segmentfields: 2 3
+  barwidth: 0.035
+  tails: 0.05
+</verbatim>
+</td>
+</tr>
+</table>
+
+---+++ Clustered Vertical Bars, Comparing Values
+
+Traditional display of past-present, before-after values.
+
+<table width="1700">
+<tr>
+<td>
+Pre-rendered sample (<nop>ClusteredVertBars):<br />
+<img src="%ATTACHURLPATH%/ClusteredVertBarsSample.png" alt="ClusteredVertBarsSample.png" width='376' height='329' />
+</td>
+<td>
+Plugin (<nop>ClusteredVertBars):<br />
+%PLOTICUSPLOT{"ClusteredVertBars"}%
+</td>
+<td>
+Verbatim (<nop>ClusteredVertBars):<br />
+<verbatim>
+%PLOTICUSPLOT{"ClusteredVertBars"}%
+
+Plot settings:
+//  Specify data using proc getdata
+#proc getdata
+data:
+// region            1985 1995
+  "Middle East"       17   8
+  "Eastern Europe"    12   8
+  "North Africa"     7.5   4
+  "Sub Saharan Africa" 3   1.5
+  "North America"    5.5   3.5
+  "Western Europe"     3   2.5
+  "South Asia"       3.7   2.2
+  "East Asia"        2.5   1.5
+  "South America"      2   1.6
+
+//  Define plotting area using proc areadef
+#proc areadef
+  title: Military Expenditure as percent of GDP
+  titledetails: adjust=-0.4,0 align=C
+  rectangle: 2 1 4 3.5
+  yrange: 0 10
+  xrange: 0 20
+
+//  Set up X axis using proc axis
+#proc xaxis
+  stubs: inc 5
+  stubformat: %3.0f%%
+  grid: color=gray(0.9)
+
+//  Do Y axis using proc axis
+#proc yaxis:
+  stubs: datafields 1
+  tics: none
+  axisline: none
+
+//  Do orange bars using proc bars
+#proc bars
+  horizontalbars: yes
+  color: redorange
+  lenfield: 2
+  cluster: 1 / 2
+  barwidth: 0.08
+  legendlabel: 1985
+
+//  Do blue bars using proc bars
+#proc bars
+  horizontalbars: yes
+  // color: powderblue
+  color: yellow
+  lenfield: 3
+  cluster: 2 / 2
+  barwidth: 0.08
+  legendlabel: 1995
+
+//  Do legend using proc legend
+#proc legend
+  location: max-0.6 min+0.5
+</verbatim>
+</td>
+</tr>
+</table>
+
+---+++ Vector Display, Wind Directions (Datafile based)
+
+Example: Wind directions in relation to altitude.
+
+<table width="1700">
+<tr>
+<td>
+Pre-rendered sample (<nop>WindDirection):<br />
+<img src="%ATTACHURLPATH%/WindDirectionSample.png" alt="WindDirectionSample.png" width='784' height='615' />
+</td>
+<td>
+Plugin (<nop>WindDirection):<br />
+%PLOTICUSPLOT{"WindDirection"}%
+</td>
+<td>
+Verbatim (<nop>WindDirection):<br />
+<verbatim>
+%PLOTICUSPLOT{"WindDirection"}%
+
+Plot settings:
+// Setup drawing area
+#proc page
+  pagesize: 8 6
+  landscape: yes
+
+#proc areadef
+  rectangle: 0.55 0.80 7.6 5.95
+  frame: color=grey(0.9)
+  xscaletype: datetime yyyy-mm-dd.hh:mm:ss
+  xrange: 2003-05-07.11:00:00 2003-05-09.12:00:00
+  yrange: 0 2500
+
+#proc xaxis
+  stubs: incremental 4 hour
+  stubformat: hh:mm
+  stubcull: yes
+  stubrange: 2003-05-07.11:00:00
+  minorticinc: 1 hour
+  grid: color=grey(0.9)
+  gridskip: min
+
+#proc xaxis
+  location: min-0.25
+  stubs: incremental 1 day
+  stubrange: 2003-05-07.24:00:00
+  stubformat: yyyy-mm-dd
+  minorticinc: 1 day
+  stubcull: yes
+  label: Time/Temp (min)
+
+#proc yaxis
+  stubs: incremental 200
+  minorticinc: 100
+  stubdetails: size=8
+  labeldetails: size=10
+  grid: color=grey(0.9) width=1
+  gridskip: min
+  label: Elevation/�l�vation (m)
+  minorticlen: 0.05
+
+// Wind data
+#proc getdata
+  delim: comma
+  file: wind.csv
+  fieldnameheader: yes
+  pf_fieldnames: legendId,windTimeStamp,windLevel,windSpeed,windDirection
+  filter: ##set newWindTimeStamp = $change(' ', '.', @@@@windTimeStamp)
+     ##print @@@@legendId,@@@@newWindTimeStamp,@@@@windLevel,@@@@windSpeed,@@@@windDirection
+
+// Wind legend entries
+#proc legendentry
+  label: Data 1
+  sampletype: line
+  details: color=blue
+  tag: 1
+
+#proc legendentry
+  label: Data 2
+  sampletype: line
+  details: color=red
+  tag: 2
+
+// Draw the windbarbs
+#proc vector
+  xfield: windTimeStamp
+  yfield: windLevel
+  linedetails: color=black
+  magfield: windSpeed
+  dirfield: windDirection
+  colorfield: legendId
+  type: barb
+  constantlen: 0.25
+
+// Draw dots at the points of the windbarbs
+#proc scatterplot
+  xfield: windTimeStamp
+  yfield: windLevel
+  symbol: shape=circle radius=0.005 style=fill fillcolor=black
+  cluster: no
+
+#proc legend
+  location: min+0.21 min-0.65
+  //details: size=12 color=black style=B
+  sep: 1
+  format: singleline 
+
+#proc legend
+  reset
+</verbatim>
+</td>
+</tr>
+</table>
+
+---+++ Heat Map
+
+When presenting this color grid Ploticus processes the raw data by 
+_counting occurances_ within ranges, then _mapping counts_ to colors by range.
+
+<table width="1700">
+<tr>
+<td>
+Pre-rendered sample (<nop>HeatMap):<br />
+<img src="%ATTACHURLPATH%/HeatMapSample.png" alt="HeatMapSample.png" width='698' height='281' />
+</td>
+<td>
+Plugin (<nop>HeatMap):<br />
+%PLOTICUSPLOT{"HeatMap"}%
+</td>
+<td>
+Verbatim (<nop>HeatMap):<br />
+<verbatim>
+%PLOTICUSPLOT{"HeatMap"}%
+
+Plot settings:
+#set SYM = "radius=0.08 shape=square style=filled"
+#setifnotgiven CGI = "http://ploticus.sourceforge.net/cgi-bin/showcgiargs"
+
+
+// read in the SNP map data file..
+#proc getdata
+file: snpmap.dat
+fieldnameheader: yes
+
+// group into bins 4 cM wide..
+filter:
+   ##set A = $numgroup( @@@@2, 4, mid )
+   @@@@1 @@@@A
+
+// set up the plotting area
+#proc areadef
+rectangle: 1 1 6 3
+areacolor: gray(0.2)
+yscaletype: categories
+clickmapurl: @@CGI?chrom=@@@@YVAL&cM=@@@@XVAL
+ycategories: 
+ 1
+ 2
+ 3 
+ 4
+ 5
+ 6
+ 7
+ X
+   
+yaxis.stubs: usecategories
+// yaxis.stubdetails: adjust=0.2,0
+//yaxis.stubslide: 0.08
+yaxis.label: chromosome
+yaxis.axisline: no
+yaxis.tics: no
+yaxis.clickmap: xygrid
+
+xrange: -3 120
+xaxis.label: position (cM)
+xaxis.axisline: no
+xaxis.tics: no
+xaxis.clickmap: xygrid
+xaxis.stubs: inc 10
+xaxis.stubrange: 0
+// xaxis.stubdetails: adjust=0,0.15
+
+
+// set up legend for color gradients..
+#proc legendentry
+sampletype: color
+details: yellow 
+label: >20
+tag: 21
+
+#proc legendentry
+sampletype: color
+details: orange 
+label: 11-20
+tag: 11 
+  
+#proc legendentry
+sampletype: color
+details: red 
+label: 6 - 10
+tag: 6
+
+#proc legendentry
+sampletype: color
+details: lightpurple 
+label: 1 - 5
+tag: 1
+
+#proc legendentry
+sampletype: color
+details: gray(0.2)
+label: 0
+tag: 0
+ 
+
+// use proc scatterplot to count # of instances and pick appropriate color from legend..
+#proc scatterplot
+yfield: chr
+xfield: cM
+cluster: yes
+dupsleg: yes
+rectangle: 4 1 outline
+  
+// display legend..
+#proc legend
+location: max+0.7 min+0.8
+textdetails: size=6
+</verbatim>
+</td>
+</tr>
+</table>
+
+---+++ Curve Fit
+
+Sliding averages, automatically generated.
+
+<table width="1700">
+<tr>
+<td>
+Pre-rendered sample (<nop>StockCurveFit):<br />
+<img src="%ATTACHURLPATH%/StockCurveFitSample.png" alt="StockCurveFitSample.png" width='398' height='305' />
+</td>
+<td>
+Plugin (<nop>StockCurveFit):<br />
+%PLOTICUSPLOT{"StockCurveFit"}%
+</td>
+<td>
+Verbatim (<nop>StockCurveFit):<br />
+<verbatim>
+%PLOTICUSPLOT{"StockCurveFit"}%
+
+Plot settings:
+#proc page
+#if @@DEVICE in gif,png
+  scale: 0.7
+#endif
+
+// read data file using proc getdata
+#proc getdata
+file: stock.csv
+delimit: comma
+//showresults: yes
+
+// reverse the record order, since the data is provided in reverse chronological
+// order, using proc processdata
+#proc processdata
+action: reverse
+
+// define top plotting area using proc areadef
+#proc areadef
+title: Trailer Tongue Technologies Corp.
+rectangle: 1 3 5 5
+xscaletype: date dd-mmm-yy
+xrange: 01-Jan-99 01-Jun-99
+yrange: 45 65
+yscaletype: log
+#saveas: A
+
+// set up X axis using proc xaxis
+#proc xaxis
+stubs: inc 1 month
+stubformat: Mmmyy
+grid: color=skyblue
+
+// set up Y axis using proc yaxis
+#proc yaxis
+stubs: inc 5
+grid: color=skyblue
+
+// draw hi low bars using proc bars
+#proc bars
+locfield: 1
+segmentfields: 3 4
+thinbarline: color=gray(0.8)
+
+// draw closing price curve using proc lineplot
+#proc lineplot
+xfield: 1
+yfield: 5
+linedetails: width=0.3 color=green
+
+// compute and render moving average curve using proc curvefit
+#proc curvefit
+xfield: 1
+yfield: 5
+order: 50
+legendlabel: 50 day\nmoving avg
+linedetails: color=orange
+
+// render legend proc legend
+#proc legend
+location: max-2 max
+
+// do volume
+
+// define bottom plotting area using proc areadef
+#proc areadef
+#clone: A
+rectangle: 1 1.6 5 2.6
+yrange: 0 30000000
+yscaletype: linear
+title:
+
+// set up X axis using proc xaxis
+#proc xaxis
+ticincrement: 1 month
+grid: color=skyblue
+label: Volume (1000s)
+labeldetails: adjust=0,0.2 size=8
+
+// set up Y axis using proc yaxis
+#proc yaxis
+stubs: inc 10000 1000
+grid: color=skyblue
+
+// render histogram using proc bars
+#proc bars
+barwidth: 0.001
+locfield: 1
+lenfield: 6
+thinbarline: color=green
+</verbatim>
+</td>
+</tr>
+</table>
+
+---+++ Multi Scatter Graphs
+
+Multiple scatter graphs in one png.
+
+<table width="1700">
+<tr>
+<td>
+Pre-rendered sample (<nop>MultiScat):<br />
+<img src="%ATTACHURLPATH%/MultiScatSample.png" alt="MultiScatSample.png" width='590' height='849' />
+</td>
+<td>
+Plugin (<nop>MultiScat):<br />
+%PLOTICUSPLOT{"MultiScat"}%
+</td>
+<td>
+Verbatim (<nop>MultiScat):<br />
+<verbatim>
+%PLOTICUSPLOT{"MultiScat"}%
+
+Plot settings:
+#proc page
+  pagesize: 8.5 11
+  #if @@DEVICE in gif,png
+    scale: 0.8 0.7
+  #endif
+  title: Correlation between test procedures
+    June, 1998
+
+#proc getdata
+ file: vf.dat
+
+#procdef areadef
+  box: 1.5 1.5
+  xrange: 0 120
+  yrange: 0 120
+  xaxis.stubs: inc 100
+  xaxis.axisline: none
+  yaxis.stubs: inc 100
+  yaxis.axisline: none
+  frame: width=0.5 style=1 
+  #saveas A
+
+///// start with upper right hand corner plot
+#proc areadef
+  #clone A
+  location: 1 8
+  title: Group 1, 30 day
+
+#proc line
+  linedetails: width=0.5 style=1 dashscale=3
+  points: min min max max
+  #saveas L
+
+#proc scatterplot
+  select: @@@@2 = 1
+  xfield: 5 
+  yfield: 6
+  labelfield: 3
+  #if @@DEVICE in gif,png
+  textdetails: color=blue
+  #endif
+  #saveas: S
+
+////////////////////////////
+#proc areadef
+  title: Group 2, 30 day
+  #clone A
+  location: 3.5 8
+
+#proc line
+  #clone L
+
+#proc scatterplot
+  #clone S
+  select: @@@@2 = 2 
+
+////////////////////////////
+#proc areadef
+  title: Group 3, 30 day
+  #clone A
+  location: 6 8
+
+#proc line
+  #clone L
+
+#proc scatterplot
+  #clone S
+  select: @@@@2 = 3
+
+////////////////////////////
+#proc areadef
+  title: Group 4, 30 day
+  #clone A
+  location: 1 5.5
+
+#proc line
+  #clone L
+
+#proc scatterplot
+  #clone S
+  select: @@@@2 = 4
+
+////////////////////////////
+#proc areadef
+  title: Group 5, 30 day
+  #clone A
+  location: 3.5 5.5
+
+#proc line
+  #clone L
+
+#proc scatterplot
+  #clone S
+  select: @@@@2 = 5
+
+////////////////////////////
+#proc areadef
+  title: Group 6, 30 day
+  #clone A
+  location: 6 5.5
+
+#proc line
+  #clone L
+
+#proc scatterplot
+  #clone S
+  select: @@@@2 = 6
+
+/////////////////////////////
+#proc areadef
+  title: Groups 1-4, 45 day
+  #clone A
+  location: 1 3
+
+#proc line
+  #clone L
+
+#proc scatterplot
+  select: @@@@2 in 1,2,3,4
+  xfield: 7
+  yfield: 8
+  labelfield: 3
+  #if @@DEVICE in gif,png
+  textdetails: color=blue
+  #endif
+  #saveas: S
+
+/////////////////////////////
+#proc areadef
+  title: Group 5, 45 day
+  #clone A
+  location: 3.5 3
+
+#proc line
+  #clone L
+
+#proc scatterplot
+  #clone S
+  select: @@@@2 = 5 
+
+/////////////////////////////
+#proc areadef
+  title: Group 6, 45 day
+  #clone A
+  location: 6 3
+
+#proc line
+  #clone L
+
+#proc scatterplot
+  #clone S
+  select: @@@@2 = 6
+
+/////////////////////////////
+#proc areadef
+  title: Groups 1-4, 60 day
+  #clone A
+  location: 1 0.5
+
+#proc line
+  #clone L
+
+#proc scatterplot
+  select: @@@@2 in 1,2,3,4
+  xfield: 10
+  yfield: 11
+  labelfield: 3
+  #if @@DEVICE in gif,png
+  textdetails: color=blue
+  #endif
+  #saveas: S
+
+/////////////////////////////
+#proc areadef
+  title: Group 5, 60 day
+  #clone A
+  location: 3.5 0.5
+
+#proc line
+  #clone L
+
+#proc scatterplot
+  select: @@@@2 = 5 
+  #clone: S
+
+/////////////////////////////
+#proc areadef
+  title: Group 6, 60 day
+  #clone A
+  location: 6 0.5
+
+#proc line
+  #clone L
+
+#proc scatterplot
+  select: @@@@2 = 6
+  #clone: S
+</verbatim>
+</td>
+</tr>
+</table>
+
+---+++ Drawing in Ploticus, Logo
+
+Ploticus supports simple drawing, useful for annotation needs (has support for simple connected lines, some shapes, etc).
+
+- I have a feeling there's something not entirely right about this logo, but can't really put my finger at it? :-)
+
+<table width="1700">
+<tr>
+<td>
+Pre-rendered sample (<nop>DrawingLogo):<br />
+<img src="%ATTACHURLPATH%/DrawingLogoSample.png" alt="DrawingLogoSample.png" width='241' height='175' />
+</td>
+<td>
+Plugin (<nop>DrawingLogo):<br />
+%PLOTICUSPLOT{"DrawingLogo"}%
+</td>
+<td>
+Verbatim (<nop>DrawingLogo):<br />
+<verbatim>
+%PLOTICUSPLOT{"DrawingLogo"}%
+
+Plot settings:
+#proc page
+pagesize: 8.5 11
+#if @@DEVICE in gif,png
+  scale: 0.5
+#endif
+
+#proc drawcommands
+commands: 
+  color blue
+  linetype 0 2 1
+  mov 1 9
+  lin 2 9
+  lin 1.5 10
+  lin 1 9
+  cblock 3 9 5 10 yelloworange 1
+  mark 2.4 9.5 sym9agreen .5
+  mov 1 9.5
+  lin 5 9.5
+
+#proc areadef
+  rectangle: 1 7 5 9
+  xrange: 0 30
+  yrange: 0 10
+
+#proc drawcommands
+file: logo.dcm
+</verbatim>
+</td>
+</tr>
+</table>
+
+
+---++ Plugin Settings 
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* Set SHORTDESCRIPTION = Allows users to plot data and functions using <nop>Ploticus
+
+	* Debug plugin: (See output in =data/debug.txt=)
+	* Set DEBUG = 0
+
+---++ Plugin Installation Instructions 
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. <br />
+	   Content:
+	   | *File:* | *Description:* |
+	   | =data/TWiki/PloticusPlugin.txt= | Plugin topic |
+	   | =data/TWiki/PloticusPlugin.txt,v= | Plugin topic repository |
+	   | =lib/TWiki/Plugins/PloticusPlugin.pm= | Plugin Perl module |
+	   | =lib/TWiki/Plugins/PloticusPlugin/Plot.pm= | Perl module responsible for rendering the plot area |
+	   | =lib/TWiki/Plugins/PloticusPlugin/PlotSettings.pm= | Perl module responsible for managing the settings |
+
+	* In =/lib/TWiki/Plugins/PloticusPlugin/Plot.pm= look for the following line and update the paths to fit your environment: %BR%
+	   =# Update $ploticusPath, $ploticusHelperPath and $execCmd to fit your environment= %BR%
+
+	* If your plugin is now correctly installed you should have fully interactive editable plots in the examples section
+
+---++ Plugin Info 
+
+| Plugin Author: | TWiki:Main.SteffenPoulsen (based on TWiki:Plugins.GnuPlotPlugin by TWiki:Main.AbieSwanepoel) |
+| Plugin Version: | 29 Apr 2006: (V1.100) |
+| Change History: ||
+| 29 Apr 2006: | (v1.100) - Added sandbox security mechanism |
+| 27 Apr 2006: | (v1.000) - Initial version |
+| TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+| CPAN Dependencies: | none |
+| Other Dependencies: | Ploticus (available from http://ploticus.sourceforge.net/) |
+| Perl Version: | 5.005 |
+| License: | GPL ( [[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+| [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle 99%, %TWIKIWEB%.FormattedSearch 99%, %TOPIC% 98% |
+| Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+| Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+| Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- TWiki:Main.SteffenPoulsen - 27 Apr 2006
+
+%META:FILEATTACHMENT{name="SessionsSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143761" path="SessionsSample.png" size="8535" user="Main.TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="PieChartSimpleSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143603" path="PieChartSimpleSample.png" size="1364" user="Main.TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="FatsContent.err" attr="h" autoattached="1" comment="" date="1146315734" path="FatsContent.err" size="0" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="PieChartHalfMoon.err" attr="h" autoattached="1" comment="" date="1146315734" path="PieChartHalfMoon.err" size="0" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="StockCurveFit.err" attr="h" autoattached="1" comment="" date="1146315735" path="StockCurveFit.err" size="0" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="PieChartAutomaticPercentSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143680" path="PieChartAutomaticPercentSample.png" size="2374" user="Main.TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="FatsContentSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143726" path="FatsContentSample.png" size="1689" user="Main.TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="PieChartHalfMoon.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="PieChartHalfMoon.ploticus" size="408" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="PieChartExploded.err" attr="h" autoattached="1" comment="" date="1146315734" path="PieChartExploded.err" size="0" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="MultiScatSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146315288" path="MultiScatSample.png" size="8199" user="Main.TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="DrawingLogo.ploticus" attr="h" autoattached="1" comment="" date="1146261324" path="DrawingLogo.ploticus" size="388" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="AccrualSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143744" path="AccrualSample.png" size="3677" user="Main.TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="WindDirection.png" attr="h" autoattached="1" comment="" date="1146315735" path="WindDirection.png" size="28955" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="MultiScat.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="MultiScat.ploticus" size="3207" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="Sessions.err" attr="h" autoattached="1" comment="" date="1146315734" path="Sessions.err" size="0" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="HeatMap.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="HeatMap.ploticus" size="1605" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="StockCurveFit.ploticus" attr="h" autoattached="1" comment="" date="1146315288" path="StockCurveFit.ploticus" size="1759" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="Accrual.png" attr="h" autoattached="1" comment="" date="1146315734" path="Accrual.png" size="3677" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="MultiScat.err" attr="h" autoattached="1" comment="" date="1146315735" path="MultiScat.err" size="0" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="logo.dcm" attr="h" autoattached="1" comment="Datafile for Ploticus Logo example" date="1146258989" path="logo.dcm" size="435" user="Main.TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="PieChartExplodedSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143698" path="PieChartExplodedSample.png" size="2506" user="Main.TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="ClusteredVertBars.png" attr="h" autoattached="1" comment="" date="1146315734" path="ClusteredVertBars.png" size="2327" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="PieChartAutomaticPercent.err" attr="h" autoattached="1" comment="" date="1146315734" path="PieChartAutomaticPercent.err" size="0" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="DrawingLogo.png" attr="h" autoattached="1" comment="" date="1146315735" path="DrawingLogo.png" size="947" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="Sessions.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="Sessions.ploticus" size="644" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="WindDirection.err" attr="h" autoattached="1" comment="" date="1146315734" path="WindDirection.err" size="0" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="PieChartExploded.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="PieChartExploded.ploticus" size="546" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="WindDirection.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="WindDirection.ploticus" size="1926" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="PieChartSimple.err" attr="h" autoattached="1" comment="" date="1146315734" path="PieChartSimple.err" size="0" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="HeatMapSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143813" path="HeatMapSample.png" size="1853" user="Main.TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="StockCurveFitSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146315288" path="StockCurveFitSample.png" size="2984" user="Main.TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="Sessions.png" attr="h" autoattached="1" comment="" date="1146315734" path="Sessions.png" size="8535" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="wind.csv" attr="h" autoattached="1" comment="Datafile for Ploticus <nop>WindDirection example" date="1146130848" path="wind.csv" size="48304" user="Main.TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="ClusteredVertBars.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="ClusteredVertBars.ploticus" size="1200" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="ClusteredVertBarsSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143777" path="ClusteredVertBarsSample.png" size="2327" user="Main.TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="PieChartHalfMoon.png" attr="h" autoattached="1" comment="" date="1146315734" path="PieChartHalfMoon.png" size="2224" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="vf.dat" attr="h" autoattached="1" comment="Datafile for Ploticus <nop>MultiScat example" date="1146130848" path="vf.dat" size="26233" user="Main.TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="ClusteredVertBars.err" attr="h" autoattached="1" comment="" date="1146315734" path="ClusteredVertBars.err" size="0" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="PieChartAutomaticPercent.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="PieChartAutomaticPercent.ploticus" size="657" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="HeatMap.err" attr="h" autoattached="1" comment="" date="1146315735" path="HeatMap.err" size="0" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="StockCurveFit.png" attr="h" autoattached="1" comment="" date="1146315735" path="StockCurveFit.png" size="2984" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="FatsContent.png" attr="h" autoattached="1" comment="" date="1146315734" path="FatsContent.png" size="1689" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="PieChartHalfMoonSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143714" path="PieChartHalfMoonSample.png" size="2224" user="Main.TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="PieChartExploded.png" attr="h" autoattached="1" comment="" date="1146315734" path="PieChartExploded.png" size="2506" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="DrawingLogoSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146316747" path="DrawingLogoSample.png" size="947" user="Main.TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="snpmap.dat" attr="h" autoattached="1" comment="Datafile for Ploticus <nop>HeatMap example" date="1146130848" path="snpmap.dat" size="69501" user="Main.TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="PieChartSimple.ploticus" attr="h" autoattached="1" comment="" date="1146315288" path="PieChartSimple.ploticus" size="521" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="stock.csv" attr="h" autoattached="1" comment="Datafile for Ploticus <nop>StockCurveFit example" date="1146130848" path="stock.csv" size="4236" user="Main.TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="PieChartAutomaticPercent.png" attr="h" autoattached="1" comment="" date="1146315734" path="PieChartAutomaticPercent.png" size="2374" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="MultiScat.png" attr="h" autoattached="1" comment="" date="1146315735" path="MultiScat.png" size="8199" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="Accrual.err" attr="h" autoattached="1" comment="" date="1146315734" path="Accrual.err" size="0" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="FatsContent.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="FatsContent.ploticus" size="1997" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="accrual.dat" attr="h" autoattached="1" comment="Datafile for Ploticus Accrual example" date="1146130848" path="accrual.dat" size="25806" user="Main.TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="PieChartSimple.png" attr="h" autoattached="1" comment="" date="1146315734" path="PieChartSimple.png" size="1364" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="sess03022000.dat" attr="h" autoattached="1" comment="Datafile for Ploticus Sessions example" date="1146130848" path="sess03022000.dat" size="3053" user="Main.TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="HeatMap.png" attr="h" autoattached="1" comment="" date="1146315735" path="HeatMap.png" size="1853" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="WindDirectionSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143797" path="WindDirectionSample.png" size="28955" user="Main.TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="DrawingLogo.err" attr="h" autoattached="1" comment="" date="1146315735" path="DrawingLogo.err" size="0" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="Accrual.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="Accrual.ploticus" size="3507" user="Main.TWikiContributor" version=""}%
+%META:REVCOMMENT{comment_1="Attached file !DrawingLogoSample.png" minor_1="0" ncomments="1" rev_1="2" t_1="Upload1146316747"}%
+@
+
+
+1.2
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="TWikiContributor" date="1146316747" format="1.1" reprev="1.2" version="1.2"}%
+d1255 1
+a1255 1
+<img src="%ATTACHURLPATH%/DrawingLogo.png" alt="DrawingLogo.png" width='241' height='175' />
+a1346 4
+
+   * Ploticus pre-rendered sample: <br />
+     <img src="%ATTACHURLPATH%/DrawingLogoSample.png" alt="DrawingLogoSample.png" width='241' height='175' />
+
+d1391 1
+d1406 1
+a1406 2
+%META:FILEATTACHMENT{name="DrawingLogoSample.png" attachment="DrawingLogoSample.png" attr="h" comment="Ploticus pre-rendered sample" date="1146316747" path="DrawingLogoSample.png" size="947" stream="DrawingLogoSample.png " tmpFilename="GLOB(0x8fc13c0)" user="Main.TWikiContributor" version="1"}%
+%META:REVCOMMENT{comment_1="Attached file !DrawingLogoSample.png" minor_1="0" ncomments="1" rev_1="" t_1="Upload1146316747"}%
+@
+
+
+1.1
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="TWikiContributor" date="1146144559" format="1.1" version="1.2"}%
+d12 3
+a14 3
+   * Add =%<nop>PLOTICUSPLOT{"PlotName"}%= in a topic (where you want the plot to appear) and save the topic
+   * Multiple plots can be displayed within one topic
+   * Any CSV (Comma Seperated Variable) files attached to the topic can be used with the ploticus command (see examples)
+d46 6
+a51 5
+data:   Brazil 22
+   Columbia 17
+   "Costa Rica" 22
+   Guatemala 19
+   Honduras 12
+d161 1
+a161 1
+<p />
+d164 12
+a175 11
+data:   Brazil 22
+   Columbia 17
+   "Costa Rica" 22
+   Guatemala 3
+   Honduras 12
+   Mexico 14
+   Nicaragua 28
+   Belize 9
+    United\nStates 21
+   Canada 8
+<p />
+d215 11
+a225 10
+data:   Brazil 22
+   Columbia 17
+   "Costa Rica" 22
+   Guatemala 3
+   Honduras 12
+   Mexico 14
+   Nicaragua 28
+   Belize 9
+    "United States" 21
+   Canada 8
+d560 1
+a560 1
+<p />
+d564 1
+a564 1
+<p />
+d573 1
+a573 1
+<p />
+d575 1
+a575 1
+<p />
+d579 1
+a579 1
+<p />
+d585 1
+a585 1
+<p />
+d620 2
+a621 2
+   // region         1985   1995
+  "Middle East"      17   8
+d623 8
+a630 8
+  "North Africa"   7.5   4
+  "Sub Saharan Africa"   3   1.5
+  "North America"   5.5   3.5
+  "Western Europe"   3   2.5
+  "South Asia"      3.7   2.2
+  "East Asia"      2.5   1.5
+  "South America"   2   1.6
+<p />
+d638 1
+a638 1
+<p />
+d644 1
+a644 1
+<p />
+d650 1
+a650 1
+<p />
+d659 1
+a659 1
+<p />
+d669 1
+a669 1
+<p />
+d833 8
+a840 8
+   1
+   2
+   3
+   4
+   5
+   6
+   7
+   X
+d1245 1
+a1245 1
+---++ Security considerations
+d1247 1
+a1247 1
+For now, you should only use <nop>%TOPIC% in a protected environment, i.e. in a trusted intranet.
+d1249 1
+a1249 1
+The ploticus script language has some potentially nasties, that are not filtered from entered Ploticus scripts in current release of the plugin:
+d1251 12
+d1264 29
+a1292 10
+#shell
+  .. shell stuff ..
+#endshell
+$shellrow
+#sql
+#load
+#write
+  .. write stuff ..
+#endwrite
+#cat
+d1294 3
+a1297 1
+The allowed use of these _procs_ means that you can use them for your benefit in your Ploticus scripts - if the execution of =ploticus= is not jailed or chroot'ed (by default not), people you don't trust could also use them for purposes not intended.
+d1301 2
+a1302 5
+   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+   * Set SHORTDESCRIPTION = Allows users to plot data and functions using <nop>Ploticus
+
+   * Debug plugin: (See output in =data/debug.txt=)
+   * Set DEBUG = 0
+d1304 2
+a1305 2
+   * Path to Ploticus executable:
+   * Set PLOTICUSPATH = /usr/bin/ploticus
+d1311 9
+a1319 9
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. <br />
+      Content:
+      | *File:* | *Description:* |
+      | =data/TWiki/PloticusPlugin.txt= | Plugin topic |
+      | =data/TWiki/PloticusPlugin.txt,v= | Plugin topic repository |
+      | =lib/TWiki/Plugins/PloticusPlugin.pm= | Plugin Perl module |
+      | =lib/TWiki/Plugins/PloticusPlugin/Plot.pm= | Perl module responsible for rendering the plot area |
+      | =lib/TWiki/Plugins/PloticusPlugin/PlotSettings.pm= | Perl module responsible for managing the settings |
+d1321 2
+a1322 1
+   * Edit the *PLOTICUSPATH* setting above to point to the Ploticus executable.
+d1324 1
+a1324 1
+   * If your plugin is correctly installed you should have fully interactive editable plots in the examples section
+d1329 1
+a1329 1
+| Plugin Version: | 27 Apr 2006: (V1.000) |
+d1331 1
+d1347 4
+d1353 3
+a1355 3
+%META:FILEATTACHMENT{name="FatsContent.err" attr="h" autoattached="1" comment="" date="1146144424" path="FatsContent.err" size="0" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="PieChartHalfMoon.err" attr="h" autoattached="1" comment="" date="1146144424" path="PieChartHalfMoon.err" size="0" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="StockCurveFit.err" attr="h" autoattached="1" comment="" date="1146144425" path="StockCurveFit.err" size="0" user="Main.TWikiContributor" version=""}%
+d1359 3
+a1361 2
+%META:FILEATTACHMENT{name="PieChartExploded.err" attr="h" autoattached="1" comment="" date="1146144424" path="PieChartExploded.err" size="0" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="MultiScatSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143842" path="MultiScatSample.png" size="8199" user="Main.TWikiContributor" version="1"}%
+d1363 1
+a1363 1
+%META:FILEATTACHMENT{name="WindDirection.png" attr="h" autoattached="1" comment="" date="1146144425" path="WindDirection.png" size="28955" user="Main.TWikiContributor" version=""}%
+d1365 1
+a1365 1
+%META:FILEATTACHMENT{name="Sessions.err" attr="h" autoattached="1" comment="" date="1146144424" path="Sessions.err" size="0" user="Main.TWikiContributor" version=""}%
+d1367 4
+a1370 3
+%META:FILEATTACHMENT{name="StockCurveFit.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="StockCurveFit.ploticus" size="1759" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="Accrual.png" attr="h" autoattached="1" comment="" date="1146144424" path="Accrual.png" size="3677" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="MultiScat.err" attr="h" autoattached="1" comment="" date="1146144425" path="MultiScat.err" size="0" user="Main.TWikiContributor" version=""}%
+d1372 3
+a1374 2
+%META:FILEATTACHMENT{name="ClusteredVertBars.png" attr="h" autoattached="1" comment="" date="1146144425" path="ClusteredVertBars.png" size="2327" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="PieChartAutomaticPercent.err" attr="h" autoattached="1" comment="" date="1146144424" path="PieChartAutomaticPercent.err" size="0" user="Main.TWikiContributor" version=""}%
+d1376 1
+a1376 1
+%META:FILEATTACHMENT{name="WindDirection.err" attr="h" autoattached="1" comment="" date="1146144425" path="WindDirection.err" size="0" user="Main.TWikiContributor" version=""}%
+d1379 1
+a1379 1
+%META:FILEATTACHMENT{name="PieChartSimple.err" attr="h" autoattached="1" comment="" date="1146144424" path="PieChartSimple.err" size="0" user="Main.TWikiContributor" version=""}%
+d1381 2
+a1382 2
+%META:FILEATTACHMENT{name="StockCurveFitSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143826" path="StockCurveFitSample.png" size="2984" user="Main.TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="Sessions.png" attr="h" autoattached="1" comment="" date="1146144425" path="Sessions.png" size="8535" user="Main.TWikiContributor" version=""}%
+d1386 1
+a1386 1
+%META:FILEATTACHMENT{name="PieChartHalfMoon.png" attr="h" autoattached="1" comment="" date="1146144424" path="PieChartHalfMoon.png" size="2224" user="Main.TWikiContributor" version=""}%
+d1388 1
+a1388 1
+%META:FILEATTACHMENT{name="ClusteredVertBars.err" attr="h" autoattached="1" comment="" date="1146144425" path="ClusteredVertBars.err" size="0" user="Main.TWikiContributor" version=""}%
+d1390 3
+a1392 3
+%META:FILEATTACHMENT{name="HeatMap.err" attr="h" autoattached="1" comment="" date="1146144425" path="HeatMap.err" size="0" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="StockCurveFit.png" attr="h" autoattached="1" comment="" date="1146144425" path="StockCurveFit.png" size="2984" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="FatsContent.png" attr="h" autoattached="1" comment="" date="1146144424" path="FatsContent.png" size="1689" user="Main.TWikiContributor" version=""}%
+d1394 1
+a1394 1
+%META:FILEATTACHMENT{name="PieChartExploded.png" attr="h" autoattached="1" comment="" date="1146144424" path="PieChartExploded.png" size="2506" user="Main.TWikiContributor" version=""}%
+d1396 1
+a1396 1
+%META:FILEATTACHMENT{name="PieChartSimple.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="PieChartSimple.ploticus" size="521" user="Main.TWikiContributor" version=""}%
+d1398 3
+a1400 3
+%META:FILEATTACHMENT{name="PieChartAutomaticPercent.png" attr="h" autoattached="1" comment="" date="1146144424" path="PieChartAutomaticPercent.png" size="2374" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="MultiScat.png" attr="h" autoattached="1" comment="" date="1146144425" path="MultiScat.png" size="8199" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="Accrual.err" attr="h" autoattached="1" comment="" date="1146144424" path="Accrual.err" size="0" user="Main.TWikiContributor" version=""}%
+d1403 1
+a1403 1
+%META:FILEATTACHMENT{name="PieChartSimple.png" attr="h" autoattached="1" comment="" date="1146144424" path="PieChartSimple.png" size="1364" user="Main.TWikiContributor" version=""}%
+d1405 1
+a1405 1
+%META:FILEATTACHMENT{name="HeatMap.png" attr="h" autoattached="1" comment="" date="1146144425" path="HeatMap.png" size="1853" user="Main.TWikiContributor" version=""}%
+d1407 1
+d1409 2
+a1410 1
+%META:REVCOMMENT{ncomments="0"}%
+@

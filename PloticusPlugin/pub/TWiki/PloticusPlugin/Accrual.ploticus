@@ -1,0 +1,165 @@
+// patient accrual plot.
+// Usage pl accrual.p [CUTDATE=mmddyy]
+//
+// This will plot directly from the MMDDYY dates in field# 5 of accrual.dat
+//
+#setifnotgiven CUTDATE = 041500
+#set XMIN = "110198"
+#set XMAX = "033101"
+#set NICECUTDATE = $formatdate(@CUTDATE,full)
+
+
+//
+// do page title..
+#proc page  
+pagesize: 8.5 11
+#if @DEVICE in gif,png
+  scale: 0.6
+#endif
+title:		Cumulative Patient Enrollment by Month
+		@NICECUTDATE
+
+
+//
+// read the data file..
+#proc getdata
+file:		accrual.dat
+select:		$daysdiff(@@5,040197) >= 0 && $daysdiff(@@5,@CUTDATE) <= 0
+
+
+//
+// set up plotting area..
+#proc areadef
+rectangle:	1.5 1.5 7.5 9.2
+
+xrange:		@XMIN @XMAX
+xscaletype:     date
+xaxis.stubs: 	incremental 1 month
+xaxis.stubformat: M
+
+yrange:		0 500
+yaxis.stubs:	incremental 50
+yaxis.label:	Cumulative Number of Patients Enrolled
+yaxis.labeldetails: adjust=-0.2,0 
+
+// do a second x axis to put in years
+#proc xaxis
+stubs:		incremental 12 months
+axisline:	none
+location:	min-0.3
+stubrange:	010199
+stubformat:	YYYY
+
+
+// =====================
+// do group A curve, using instancemode/groupmode to count instances,
+// and accum to accumulate..
+// Use the select attribute to get only group A 
+#proc lineplot
+xfield:		5
+accum:		y
+instancemode:	yes
+groupmode:	yes
+select:		@@4 == A && $daysdiff(@@5,040197) >= 0
+lastx:		@CUTDATE
+#saveas:	L
+#endproc
+
+// calculate group A pct of goal (150) and format to NN..
+#set PCTOFGOAL = $arith(@YFINAL/1.5)
+#set PCTOFGOAL = $formatfloat(@PCTOFGOAL,%2.0f)
+
+// render line label with percentage
+#proc annotate
+  location: @XFINAL(s) @YFINAL(s)
+  textdetails: size=8 align=L
+  text: Group A = @YFINAL (@PCTOFGOAL% of goal)
+
+
+
+// =====================
+// do group B curve
+#proc lineplot
+#clone:		L
+linedetails: style=1 dashscale=3
+linerange:	9806
+select:		@@4 == B && $daysdiff(@@5,060198) >= 0
+#endproc
+
+// calculate group B pct of goal (500) and format to NN..
+#set PCTOFGOAL = $arith(@YFINAL/5.0)
+#set PCTOFGOAL = $formatfloat(@PCTOFGOAL,%2.0f)
+
+// render line label with percentage..
+#proc annotate
+  location: @XFINAL(s) @YFINAL(s)
+  textdetails: size=8 align=L
+  text: Group B = @YFINAL (@PCTOFGOAL% of goal)
+
+
+
+// =====================
+// do group C curve
+#proc Lineplot
+#clone:		L
+linedetails: style=2 dashscale=3
+select:		@@4 == C && $daysdiff(@@5,060198) >= 0
+#endproc
+
+// calculate group C pct of goal (220) and format to NN..
+#set PCTOFGOAL = $arith(@YFINAL/2.2)
+#set PCTOFGOAL = $formatfloat(@PCTOFGOAL,%2.0f)
+
+// render line label with percentage..
+#proc annotate
+  location: @XFINAL(s) @YFINAL(s)
+  textdetails: adjust=0.1,+0.1 size=8 align=L
+  text: Group C = @YFINAL (@PCTOFGOAL% of goal)
+
+
+
+// draw the goal lines...
+#proc drawcommands
+commands: 
+	textsize 8
+        linetype 1 0.2 4
+//
+	movs @XMIN min
+	lins 090100 150
+//
+	movs @XMIN min
+	lins 090100 500
+//
+	movs @XMIN min
+	lins 090100 220
+
+// do the goal annotations
+#proc annotate
+  location:  1.7 150(s)
+  textdetails: align=L size=8
+  text: Group A Goal
+	150 by Sep 2000
+
+#proc annotate
+  location: 1.7 500(s)
+  textdetails: align=L size=8
+  text: Group B Goal
+	500 by Sep 2000
+
+#proc annotate
+  location: 1.7 220(s)
+  textdetails: align=L size=8
+  text: Group C Goal
+	220 by Sep 2000
+
+#proc annotate
+  location: 090100(s) 153(s)
+  text: A
+
+#proc annotate
+  location: 090100(s) 503(s)
+  text: B
+
+#proc annotate
+  location: 090100(s) 223(s)
+  text: C

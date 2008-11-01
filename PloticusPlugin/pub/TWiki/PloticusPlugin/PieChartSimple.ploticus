@@ -1,0 +1,26 @@
+#proc page
+#if @DEVICE in gif,png
+  scale: 1.2
+#endif
+//  specify data using proc getdata
+#proc getdata
+data:	Brazil 22
+	Columbia 17
+	"Costa Rica" 22
+	Guatemala 19
+	Honduras 12
+<p />
+//  render the pie graph using proc pie
+#proc pie
+datafield: 2
+labelfield: 1
+labelmode: legend
+outlinedetails: none
+center: 2 2
+radius: 0.6
+colors: dullyellow drabgreen pink powderblue lavender
+labelfarout: 1.3
+<p />
+//  render the legend using entries made above, using proc legend
+#proc legend
+location: 3 2.6
