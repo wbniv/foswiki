@@ -1,0 +1,219 @@
+%META:TOPICINFO{author="TWikiContributor" date="1069610959" format="1.0" version="1.1"}%
+---+ Quick Calendar Plugin
+
+Generates a monthly calendar and creates link anchors from each day and week to somewhere else.  A user can then place anchors further down in the page and the calendar date will link to them.  The generated anchors correspond to ISO 8601 standard.
+
+This plugin is one of the building blocks for a time management plugin I've written.  But it might be useful by itself.
+
+This plugin is kind of the "reverse" of the TWiki:Plugins/CalendarPlugin (which may also be of interest) which generates a custom calendar from wiki text.  This TWiki:Plugins/QuickCalendarPlugin generates a fixed calendar which links to wiki text.
+
+==New version: v1.300.== For recent changes, see TWiki:Plugins/QuickCalendarPluginDev.
+
+---++ Syntax Rules
+
+	* Use the variable %<nop>CAL% or with arguments, %<nop>CAL{settings}% where settings are listed below.
+		* Without settings, a linkified calendar of the current or specified month is displayed.
+	* Additional Settings (all are optional):
+		* =month="sep"= or =month="september"= or =month="9"=
+		* =year="yyyy"= (_must be a four digit year! "01" would be 01 C.E. !_)
+		* URL specification: =href="some url here"=
+			* Dates in calendar will link to =some url hereYYYYMMDD= or =some url hereYYYYWW=
+				* Default URL link in _anchor mode_ will be the current web.topic with #CalDateYYYYMMDD or #CalDateYYYYWW anchors
+				* Default URL link in _non anchor mode_ will be the wiki username with YYYYMMMDD or YYYYWW appended.
+		* =doy="on"= will display dates in day-of-the-year format (see example below).  _Default: off_
+	* Relative Arguments (all are optional):
+		* =month="+4"= or =month="-6"=
+		* =year="+2"= or =year="-1"=
+	* See examples below.  
+
+---++ Examples
+
+---+++ Example 1: Current Month
+
+By default the plugin displays the current month:
+<verbatim>
+You Type: %CAL%
+</verbatim>
+
+---+++ Example 2: Specific Month and/or Year
+
+<verbatim>
+You Type: %CAL{month="sep" year="2003"}%
+</verbatim>
+You Get (note "today" is highlighted):
+
+<style>
+	 .week	{ background:#ccc; }
+	 .day	 { background:#eee; }
+	 .today  { background:yellow; }
+</style>
+<table style="width:auto; border:0px;">
+<tr> <th colspan=8> September 2003 (9/2003) </th> </tr>
+<tr> <th>Week</th> <th> Sun </th> <th> Mon </th> <th> Tue </th> <th> Wed </th> <th> Thu </th> <th> Fri </th> <th> Sat </th> </tr>
+<tr><td class="week"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate200335">2003.35</a></td>
+<td> </td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030901">1</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030902">2</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030903">3</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030904">4</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030905">5</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030906">6</a></td>
+</tr><tr><td class="week"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate200336">2003.36</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030907">7</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030908">8</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030909">9</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030910">10</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030911">11</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030912">12</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030913">13</a></td>
+</tr><tr><td class="week"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate200337">2003.37</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030914">14</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030915">15</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030916">16</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030917">17</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030918">18</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030919">19</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030920">20</a></td>
+</tr><tr><td class="week"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate200338">2003.38</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030921">21</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030922">22</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030923">23</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030924">24</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030925">25</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030926">26</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030927">27</a></td>
+</tr><tr><td class="week"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate200339">2003.39</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030928">28</a></td>
+<td class="today"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030929">29</a></td>
+<td class="day"><a TARGET="_blank" href="QuickCalendarPlugin#CalDate20030930">30</a></td>
+</tr></table>
+
+---+++ Example 3: Day-of-Year mode
+
+If you like, you can specify ==doy="on"== as an argument, and get a calendar which uses days of the year.  This is handy for some things, like astronomy.  Type ==%CAL{doy="on"}%== to see:
+
+<!-- Calender rendered by TWiki Plugin: Quick Calendar --><style>
+	 .week	{ background:#ccc; }
+	 .day	 { background:#eee; }
+	 .today  { background:yellow; }
+</style>
+<table style="width:auto; border:0px;">
+<tr> <th colspan=8> October 2003 (10/2003) </th> </tr>
+<tr> <th>Week</th> <th> Sun </th> <th> Mon </th> <th> Tue </th> <th> Wed </th> <th> Thu </th> <th> Fri </th> <th> Sat </th> </tr>
+<tr><td class="week"><a TARGET="_blank" href="jcline#CalDate2003w40">2003w40</a></td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310274">274</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310275">275</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310276">276</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310277">277</a></td>
+</tr><tr><td class="week"><a TARGET="_blank" href="jcline#CalDate2003w41">2003w41</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310278">278</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310279">279</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310280">280</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310281">281</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310282">282</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310283">283</a></td>
+<td class="today"><a TARGET="_blank" href="jcline#CalDate200310284">284</a></td>
+</tr><tr><td class="week"><a TARGET="_blank" href="jcline#CalDate2003w42">2003w42</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310285">285</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310286">286</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310287">287</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310288">288</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310289">289</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310290">290</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310291">291</a></td>
+</tr><tr><td class="week"><a TARGET="_blank" href="jcline#CalDate2003w43">2003w43</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310292">292</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310293">293</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310294">294</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310295">295</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310296">296</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310297">297</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310298">298</a></td>
+</tr><tr><td class="week"><a TARGET="_blank" href="jcline#CalDate2003w44">2003w44</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310299">299</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310300">300</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310301">301</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310302">302</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310303">303</a></td>
+<td class="day"><a TARGET="_blank" href="jcline#CalDate200310304">304</a></td>
+</tr></table>
+
+
+
+
+---+++ Example 4: Anchoring
+
+	* Each month creates both day and week anchors (for =name="#anchor"=), either (a) within the current topic in _anchor mode_, (b) a topic of the user's wiki name in _non anchor mode_, or (c) the user specified href.
+		* The calendar days will link to the day anchors.  
+			* Click on the Sept 27th above to see the effect (anchor mode).
+		* The week column will link to the week anchors.
+			* Click on "2003.38" above to see the effect (anchor mode).
+	* Specify a custom url with the syntax: =href="link"=
+
+
+#CalDate200338 This line contains an anchor to "work week" 38 (in year 2003)
+	* This is a very simple example of text following the week 38 anchor.. 
+
+#CalDate20030927 This line contains an anchor to the date 09/27/2003
+	* This is a very simple example of text following the date anchor.. 
+
+---++ <nop>QuickCalendarPlugin Global Settings
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = An anchor linkified, internally generated, minimal calender.
+
+	* Debug plugin: 
+		* Set DEBUG = 0
+
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the .PM file from TWiki:Plugins/QuickCalendarPlugin (see below).
+	* "Edit" this topic and copy & paste the wiki text into your own site.
+	* Verify the created files exist in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* Test if the installation was successful:
+		* Currently active plugins are: %ACTIVATEDPLUGINS%
+		* Calendars should appear below.
+
+The following should display a calendar of Dec 2006
+%CAL{month="dec" year="2006"}%
+
+The following should display a small calendar of month+1 
+%CAL{month="+1"}% 
+
+The following should display a small calendar of month-14/year+1 (two months ago)
+%CAL{month="-14" year="+1"}% 
+
+The following should display a small calendar of month=12/year=2001
+%CAL{month="12" year="2001"}% 
+
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.JonathanCline |
+|  Plugin Version: | 10 Oct 2003 (V1.300) |
+|  Change History: |  |
+|  10 Oct 2003  | 1.300 add doy, add internal enhancements, fix ww numbering |
+|  08 Sep 2003  | 1.220 cosmetic upgrades & enhancements by TWiki:Main/WillNorris |
+|               | 1.210 bug fixes and specific date selection |
+|  23 Aug 2003  | 1.100 initial |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | POSIX package in Perl (should be standard) |
+|  Perl Version: | 5.005 |
+|  Plugin Home: | TWiki:Plugins/%TOPIC% |
+|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- TWiki:Main/JonathanCline - 23 Aug 2003 <br/>
+-- TWiki:Main/JonathanCline - 10 Sep 2003 <br/>
+-- TWiki:Main/JonathanCline - 29 Sep 2003 <br/>
+-- TWiki:Main/JonathanCline - 11 Oct 2003 <br/>
