@@ -1,0 +1,5 @@
+data/TWiki/DBCachePlugin.txt 0644
+lib/TWiki/Plugins/DBCachePlugin/Core.pm 0644
+lib/TWiki/Plugins/DBCachePlugin/WebDB.pm 0644
+lib/TWiki/Plugins/DBCachePlugin.pm 0644
+pub/TWiki/DBCachePlugin/wikiringlogo40x40.png 0644
