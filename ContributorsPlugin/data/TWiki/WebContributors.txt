@@ -1,0 +1,8 @@
+%META:TOPICINFO{author="Main.DuckySherwood" date="1103152906" format="1.0" version="1.2"}%
+<!-- You must use "page" in the URL query string because if you use "topic", the view will render that topic! -->
+<!-- You must use "revision=X" instead of "rev=X" because if you don't, bin/view will expand the Xth version of WebContributors instead of expanding the most recent version of WebContributors with the most recent edits for $web.$topic. -->
+
+---+ All contributors for %URLPARAM{"web" default="%INCLUDINGWEB%"}%.%URLPARAM{"page" default="%TOPIC%" }%:
+
+%CONTRIBUTORS{web="%URLPARAM{"web" default="%INCLUDINGWEB%" }%" topic="%URLPARAM{"page" default="%TOPIC%" }%" format="	* $author $n" nodups="on" last="%URLPARAM{"last"}%" rev="%URLPARAM{"revision"}%"}%
+
