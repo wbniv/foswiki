@@ -1,0 +1,11 @@
+# Release manifest for NativeSearchContrib
+data/TWiki/NativeSearchContrib.txt 0644 Documentation
+lib/TWiki/Contrib/NativeSearchContrib.pm 0444
+lib/TWiki/Store/SearchAlgorithms/Native.pm 0444
+tools/native_search/NativeTWikiSearch.pm 0555
+tools/native_search/cgrep.c 0555
+tools/native_search/Makefile.PL 0555
+tools/native_search/test.pl 0555
+tools/native_search/NativeTWikiSearch.xs 0555
+pub/TWiki/NativeSearchContrib/wikiringlogo20x20.png 0660
+pub/TWiki/NativeSearchContrib/logo.gif 0660
