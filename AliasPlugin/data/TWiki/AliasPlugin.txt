@@ -1,0 +1,190 @@
+%META:TOPICINFO{author="TWikiContributor" date="1189787359" format="1.1" version="$Rev: 16746 $"}%
+<!--
+
+   PLEASE DO NOT EDIT THIS TOPIC
+
+   It is automatically generated from the subversion repository, and any changes
+   you make will simply be overwritten the next time a release is generated.
+
+   Instead, you could check your fix in, raise a bug in the Bugs web, or mail the author.
+-->
+---+!! <nop>AliasPlugin
+%TOC%
+---++ Description
+<table style="float:right">
+<tr>
+  <td><img src="%ATTACHURLPATH%/wikiringlogo40x40.png"></td>
+  <td><a href="http://wikiring.de" title="Make your Wiki ring!" style="text-decoration:none">
+      Powered by <br /> <nop>WikiRing Consultants </a>
+  </td>
+</tr>
+</table>
+This plugin allows you to create arbitrary word aliases.
+If you write down a word that has a defined alias, it will then be replaced with 
+the given text string. If that string is a string of the format =&lt;web&gt;.&lt;topic&gt;=
+it will be replaced by an appropriate TWiki link. Aliases take only effect within the boundaries
+if _alias areas_ between %<nop>STARTALIASAREA% and %<nop>STOPALIASAREA% tags.  
+
+Aliases aren't replaced within html tags (=&lt;html tag ... <nop>TESTALIAS ... &gt;=), TWiki tags (=%<nop>INCLUDE... <nop>TESTALIAS ...%=) and TWiki links
+(=[<nop>[TWiki.WebHome][<nop>TESTALIAS]]=). A word can be prevented of being substituted by
+prefixing it with =&lt;nop&gt;=.
+
+---++ Configuration
+Configuration of this plugin is done by writing 
+your aliases into a specific topic, the <nop>WebAliases. This topic is looked up
+in three places: 
+   1 the current web
+   2 the %MAINWEB% web
+   3 if there's no <nop>WebAliases topic in the %MAINWEB% it will be looked up in the %TWIKIWEB% 
+The aliases defined in (1) are merged with those in (2) or (3). Thereby you can define
+site-wide aliases in <nop>%MAINWEB%.WebAliases and  web specific aliases in the current's web <nop>WebAliases
+topic.
+Aliases can also be defined within the current topic, that is they will only be taking
+effect on the current topic. Similarly, aliases can be disabled. See the
+Syntax section for more details.
+
+By default no alias substitution is applied to a page. You can configure all of your TWiki
+pages to get alias substitution by 
+   1 prepending =alias= to your =SKIN= variable in your <nop>TWikiPreferences/<nop>WebPreferences/topic preferenes
+     <verbatim>Set SKIN = alias, pattern</verbatim>
+   2 appending =?cover=alias= to an url or
+   3 by specifying so called "alias areas":
+     an alias area is specified using the =%<nop>STARTALIASAREA%= ... =%<nop>STOPALIASAREA%=
+     tags; these can occur multiple times on a page (note: nested alias areas aren't supported).
+
+---++ Syntax
+This is the list of TWiki tags defined by this plugin.
+| *Name* | *Description* | 
+| %<nop>ALIASES% | display all aliases | 
+| %<nop>ALIASES{regex="on"}% | display also the regular expression to match the alias | 
+| %<nop>ALIASES{"&lt;topic&gt;" merge="on,off"}% \
+| use aliases defined in &lt;topic&gt; by either merging or redefining the set of current aliases |
+| %<nop>ALIAS{name="..." value="..." [regex="..."]}% \
+  | defines an alias using =regex= to find it;\
+    if =regex= is not specified it defaults to the alias' name |
+| %<nop>STARTALIASAREA% | mark the beginning of an alias area |
+| %<nop>STOPALIASAREA% | mark the end of an alias area |
+| %<nop>UNALIAS% | delete all aliases |
+| %<nop>UNALIAS{name="..."}%,%<nop>UNALIAS{"..."}% | deletes one alias |
+
+The =regex= parameter in the %<nop>ALIAS{...}% tag might contain the two variables
+=$start= and =$stop= that help to match the boundaries of an alias consisting of 
+non-alphabetic characters. Textile example:
+
+<pre>
+%<nop>ALIAS{name="''" regex="$start''$stop" value="&amp;rdquo;"}%
+%<nop>ALIAS{name="``" regex="$start``$stop" value="&amp;ldquo;"}%
+%<nop>ALIAS{name="-" regex=" - " value=" &amp;ndash; "}%
+%<nop>ALIAS{name="--" regex=" -- " value=" &amp;mdash; "}%
+%<nop>ALIAS{name="(c)" regex="$start\(c\)$stop" value="&amp;copy;"}%
+%<nop>ALIAS{name="(r)" regex="$start\(r\)$stop" value="&amp;reg;"}%
+%<nop>ALIAS{name="(tm)" regex="$start\(tm\)$stop" value="&amp;trade;"}%
+%<nop>ALIAS{name="..." regex="$start\.\.\.$stop" value="&amp;hellip;"}%
+%<nop>ALIAS{name=",," regex="$start,,$stop" value="&amp;bdquo;"}%
+%<nop>ALIAS{name="1/2" regex="$start1/2$stop" value="&amp;frac12;"}%
+%<nop>ALIAS{name="1/4" regex="$start1/4$stop" value="&amp;frac14;"}%
+%<nop>ALIAS{name="3/4" regex="$start3/4$stop" value="&amp;frac34;"}%
+</pre>
+
+
+The aliases in the topic <nop>WebAliases topic can be either defined using the %<nop>ALIAS{}%
+macro or listed in the following way:
+<verbatim>
+   * <name1>: <value1>
+   * <name2>: <value2>
+   * <name3>: <value3>
+   ...
+</verbatim>
+
+---++ Defined Aliases
+%ALIAS{name="TESTLINK" value="%TWIKIWEB%.WebHome"}%
+%ALIAS{name="TESTALIAS" value="yes"}%
+%ALIAS{name="rtfm" value="read the fine manual"}%
+%ALIASES%
+
+---++ Plugin Installation Instructions
+
+   * [[%ATTACHURL%/AliasPlugin.zip][Download]] the ZIP file
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+%$MANIFEST%
+   * Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+   * Edit your %MAINWEB%.TWikiPreferences and prepend to your SKIN variable the =alias= identifier,
+     for example to
+     <verbatim>   * Set SKIN = alias,pattern</verbatim>
+     This surrounds the textarea with the STARTALIASAREA, STOPALIASAREA tags to mark the area where
+     aliases are inserted.
+
+---++ Test-Cases
+%STARTALIASAREA%
+| *&nbsp;* | *Test* | *Should be* | *Comment* | 
+|  1 | TESTLINK | [[%TWIKIWEB%.WebHome][TESTLINK]] | yes, substitute: this is a link to <nop>TWiki.WebHome | 
+|  2 | TESTALIAS | yes | yes | 
+|  3 | _TESTLINK | _TESTLINK | no substitution: =_= is no word boundary | 
+|  4 | TESTLINK_TESTLINK | TESTLINK_TESTLINK | no: =_= is no word boundary | 
+|  5 | <u>TESTLINK</u> | <u>[[%TWIKIWEB%.WebHome][TESTLINK]]</u> | yes | 
+|  6 | TESTLINKTESTLINK | TESTLINKTESTLINK | no: this is _one_ word not being aliases |
+|  7 | rtfm | read the fine manual | yes, but be more polite to your users |
+|  8 | <a href="%SCRIPTURL{"view"}%/TESTALIAS" title="TESTALIAS">TESTALIAS</a> | <a href="%SCRIPTURL{"view"}%/yes" title="yes">yes</a> | yes |
+|  9 | [[TWiki.WebHome][TESTALIAS]] | <a href="%SCRIPTURLPATH{"view"}%/%TWIKIWEB%.WebHome">T<nop>ESTALIAS</a> | no, don't substitute inside a TWiki tag | 
+|  10 | [[TESTALIAS]] | <a href="%SCRIPTURL{"edit"}%/%WEB%/TESTALIAS?topicparent=%WEB%.%TOPIC%" class="twikiNewLink" title="Create this topic">T<nop>ESTALIAS</a>| no, don't substitute inside a TWiki tag |
+|  11 | [<nop>[TESTALIAS]] | [<nop>[T<nop>ESTALIAS]] | no, not even inside a _nopped_ TWiki tag | 
+|  12 | <font color="red"> TESTALIAS </font> | <font color="red"> yes </font> | yes, ignores =red= |
+|  13 | %RED% %TESTALIAS% %ENDCOLOR%  | %RED% %T<nop>ESTALIAS% %ENDCOLOR% | no, inside two =%= |
+|  14 | %RED%%TESTALIAS%%ENDCOLOR%  | %RED%%T<nop>ESTALIAS%%ENDCOLOR% | no, this is inside two =%= | 
+|  15 | <font color="red"> %TESTALIAS% </font>  | <font color="red"> %T<nop>ESTALIAS% </font> | no, inside two =%= | 
+|  16 | <font color="red">%TESTALIAS%</font>  | <font color="red">%T<nop>ESTALIAS%</font> | no, inside two =%= |
+|  17 | %TESTALIAS | %yes | yes, no =perc= on the same line | 
+|  18 | %TESTALIAS | %yes | yes, with a second =%= here | 
+|  19 | %BLABLA TESTALIAS% | %BLABLA yes% | yes, this is no regular TWiki tag |
+|  20 | %BLABLA{TESTALIAS}% | %BLABLA{T<nop>ESTALIAS}% | no, this is a regular TWiki tag |
+|  21 | %<nop>BLABLA{TESTALIAS}% | %<nop>BLABLA{T<nop>ESTALIAS}% | no, albeit this is a _nopped_ TWiki tag |
+%STOPALIASAREA%
+
+---++ Plugin Info
+<!--
+   * Set SHORTDESCRIPTION = Define aliases which will be replaced with arbitrary strings automatically
+-->
+|  Plugin Author: | TWiki:Main/OthelloMaurer, TWiki:Main/MichaelDaum |
+|  Copyright &copy;: | 2003, Othello Maurer; 2003-2008, Michael Daum http://michaeldaumconsulting.com |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Version: | v2.31 |
+|  Change History: | &nbsp; |
+|  28 Apr 2008: | speed improvements |
+|  13 Nov 2007: | Item4959: disabled settings in plugin topic, \
+                  removed DEFAULT_ALIASES |
+|  14 Sep 2007: | added view.alias.tmpl |
+|  13 Sep 2007: | rewrite for modern TWiki engines |
+|  10 Feb 2006: | fixed use of uninitialized value (outch) |
+|  03 Feb 2006: | prevent nested alias expansion; \
+                  support convenience aliases for anchors on the same page |
+|  09 Dec 2005: | added expl icite regex parameter for ALIAS |
+|  06 Dec 2005: | fixed deprecation warning on a dakar install; \
+                 added support for non-alphabetical aliases; \
+       fixed use of uninitialized values due to special chars in alias patterns; \
+       the ALIAS tag in WebAliases can be used to define global aliases now |
+|  27 Apr 2005: | always read site aliases and then merge in web aliases |
+|  07 Apr 2005: | TWiki:Main/MichaelDaum: major rewrite |
+|  30 Mar 2005: | TWiki:Main/MichaelDaum: added alias area |
+| &nbsp; | added fix to honor order of alias/unalias commands in a topic |
+|  23 Mar 2005: | TWiki:Main/MichaelDaum: added list of test-cases |
+|  &nbsp; | rewrite of substitution code |
+|  &nbsp; | improved configurability |
+|  22 Mar 2005: | TWiki:Main/MichaelDaum: prevent substitutions within html tags, twiki tags and twiki links |
+|  21 Mar 2005: | TWiki:Main/MichaelDaum: allow arbitrary string substs |
+|  &nbsp; | configured via a list now (was tables) |
+|  &nbsp; | taking care not to replace inside html tags |
+|  1 Dec 2003: | TWiki:Main.NielsKoldso: Non TWiki.WikiWord aliases as an option | 
+|  &nbsp; | More alias prefixes allowed |
+|  16 Oct 2003: | Speedup |
+|  09 Oct 2003: | Initial Version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+-- TWiki:Main/OthelloMaurer - 09 Oct 2003 %BR%
+-- TWiki:Main/MichaelDaum - 28 Apr 2008
+
+%META:FILEATTACHMENT{name="wikiringlogo40x40.png" attachment="wikiringlogo40x40.png" attr="h" comment="" date="1189787359" path="wikiringlogo40x40.png" size="2571" stream="wikiringlogo40x40.png" tmpFilename="" user="TWikiContributor" version="1"}%
