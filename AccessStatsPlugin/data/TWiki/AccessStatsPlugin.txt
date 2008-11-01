@@ -1,0 +1,84 @@
+%META:TOPICINFO{author="StephaneLenclud" date="1176073441" format="1.1" reprev="1.8" version="1.8"}%
+---+!! <nop>%TOPIC%
+
+The !AccessStatsPlugin provide statistics by parsing the Apache access log files.
+It gives the hit count for attachments or topics. One can also use the default parameter to count the number of line matching a regexp in the access log files. This is most useful if you want to monitor access to your web server. 
+
+%TOC%
+
+---++ Syntax Rules
+
+Adds the following tag:
+   * %<nop>ACCESSSTATS% - displays the number of successful access to the current topic.
+
+Attributes:
+   * *default* - specify a regexp to search the access log file with
+   * *web* - specify web
+   * *topic* - specify topic 
+   * *attachment* - specify attachment
+
+---++ Examples
+
+   * %<nop>ACCESSSTATS{"GET\s.+\s200\s"}% - count the number of successful GET request.
+   * %<nop>ACCESSSTATS{web="MyWeb" topic="MyTopic"}% - count the numer of successful GET request for specified web abd topic.
+   * %<nop>ACCESSSTATS{web="MyWeb" topic="MyTopic" attachment="MyAttachment"}% - count the numer of successful GET request for specified attachment on specified web and topic.
+   * %<nop>ACCESSSTATS{attachment="MyAttachment"}% - count the number of successful GET request for specified attachment in current topic.
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference
+a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>EMPTYPLUGIN_SHORTDESCRIPTION%==
+
+   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = Provides statistics by parsing access log file, such as Apache access log
+
+   * Debug plugin: (See output in =data/debug.txt=)
+      * Set #DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the TWiki server. 
+
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+   * Configure the Plugin:
+      * TWiki 4.0 and up: Run the [[%SCRIPTURL%/configure%SCRIPTSUFFIX%][configure]] script to enable the Plugin
+      * Change the Plugin settings as needed
+      * In ==lib/TWiki/Plugins/%TOPIC%.pm== set ==$accessLogFileName== and ==$accessLogDirectory== according to your local settings. 
+   * Make sure the CGI user (www-data) has read permission to the log file.
+   * Test if the installation was successful:
+      * This page hit count: %ACCESSSTATS%
+
+---++ Plugin Release Instructions
+
+To release a new version from an installation on a linux machine just execute the following command from your twiki installation directory:%BR%
+==find . -name "AccessStatsPlugin.*" -print | zip !AccessStatsPlugin.zip -@==
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.StephaneLenclud |
+|  Copyright: | &copy; 2006-2007, TWiki:Main.StephaneLenclud |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | 9 Apr 2007 (V1.002) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  9 Apr 2007 | Fixing issue with unzipped files like =access.log.n= not being parsed. |
+|  21 Feb 2006: | Supports gz archived apache log file |
+|  20 Feb 2006: | Now supports web, topic and attachment parameter |
+|  18 Feb 2006: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+|  CPAN Dependencies: | Compress::Zlib |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences, PageStatsPlugin, CounterPlugin
+
+-- TWiki:Main.StephaneLenclud - 21 Feb 2006
+
