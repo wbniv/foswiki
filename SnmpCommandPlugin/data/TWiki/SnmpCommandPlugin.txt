@@ -1,0 +1,122 @@
+%META:TOPICINFO{author="pete" date="1120140717" format="1.0" version="1.1"}%
+---+!! <nop>%TOPIC%
+
+The SnmpCommandPlugin handles the tag %<nop>SNMPCOMMAND</nop>% that queries a network device for information.
+
+%TOC%
+
+The plugin uses the SNMP commands *snmpwalk*, *snmpget* or *snmptable* to collect and then display a network device's information. A quick and easy method to get device system status from your browser.
+
+---++ Syntax Rules
+Simple Network Management Protocol (SNMP) is a widely used protocol for monitoring network equipment (eg. routers), computer equipment and even devices like UPSs. The plugin uses commands from the NET-SNMP distribution, which is often shipped with Linux and the plugin retains the defaults from these commands. 
+
+If no attributes are given then the plugin will use *snmpwalk* to return information about the *system* tree on the *localhost* using snmp *v1* on port *161* and with the community string *public*. Note that a device's snmp often has to be configured before allowing access to much of the information and that it should be configured keeping security issues in mind. For more information refer to the NET-SNMP documenatation. The snmp daemon can return a huge amount of information about the current status of a device: network speeds, disk space, numbers of users, memory usage... The information that a device can return depends on how it has been configured and this is way beyong the scope of this small plugin. 
+
+*Users of this plugin should first understand what information a device can return before using this plugin.*
+
+The objects (OIDs) can be expressed as strings or as numbers.
+
+---++ Examples
+
+Example1: To walk thorugh the information from the system tree on the localhost
+<verbatim>
+	* %SNMPCOMMAND%
+</verbatim>
+Example2: To get the sysUpTime of the machine called myPC1 
+<verbatim>
+	* %SNMPCOMAMND{host="myPC1" method ="get" oid="sysUpTime.0"}% 
+</verbatim>
+Example3: To get the sysUpTime and sysContact of the machine called myPC1 using the OID number.
+<verbatim>
+	* %SNMPCOMAMND{host="myPC1" method = "get" oid=".1.3.6.1.2.1.1.3.0 .1.3.6.1.2.1.1.4.0"}%
+</verbatim>
+Example4: To display the network interface table for the machine called myPC2 using community string _bob_
+<verbatim>
+	* %SNMPCOMAMND{host="myPC2" method = "table" oid="ifTable" comm="bob"}%
+</verbatim>
+Example5: To display the storage information table for the machine called myPC2 using community string _bob_
+<verbatim>
+	* %SNMPCOMAMND{host="myPC2" method = "table" oid="ifTable" comm="bob"}%
+</verbatim>
+Example6: To display the UCD MIB tree information on the machine called myPC2.
+<verbatim>
+	* %SNMPCOMAMND{host="myPC2" method = "walk" oid="1.3.6.1.4.1.2021" }%
+</verbatim>
+
+ 
+
+---++ Attributes
+
+| *Attribute* | *Comment* | *Default / Example* |
+|cmdpath      | The location of the snmp commands.   | '/usr/local/bin'| 
+|method       | get, walk or table.    | 'walk'|           
+|host         | The name of the machine to poll.   | 'localhost'|      
+|oid          | The object name or number.   | '.1.3.6.1.2.1.1'| 
+|version      | The SNMP version to use 1, 2c or 3.   | 1|                
+|port         | The prot number of the remote snmp daemon.   | 161|              
+|comm         | The community string (passowrd).   | 'public'|         
+|outopts      | SNMP output options.   | 's'|              
+|tablecaption | A table is displayed with this caption.   | undef|            
+|cellpadding  | Table cellpadding.  | 1|                
+|cellspacing  | Table cellspacing.   | 0|                
+|border       | Does the tabel have a border?   | 1|                
+|topic        | The name of the current topic.   | "$web.$topic"|    
+|tableheadercolor | The colour of the table header.|  The current web colour|   
+|tablebgcolor     | The background colour of the table. | 'white'|         
+|tablecaptionalign | The alignement of the table caption.| 'top'|           
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* Set SHORTDESCRIPTION = A plugin to query network devices via the snmp protocol.
+   
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the installation was successful:
+
+     If you are the administrator of the machine serving TWiki, type in the following on the command line to test if snmp is available and has been configured.
+
+      *snmpwalk -v 1 -c public localhost system*
+
+     If this works then test the installation by adding the following line in a new topic.
+
+     %<nop>SNMPCOMMAND</nop>%
+
+     Otherwise you will have to test the snmpwalk command on other devices on your network. For example: 
+
+     *snmpwalk -v 1 -c public myPC1 system*
+
+     If this works then test the installation by adding the following line in a new topic.
+
+     %<nop>SNMPCOMMAND{host="myPC1"}</nop>%
+
+     If you are an administrator of a network device remember to configure the snmp daemon correctly. Read the NET-SNMP documentation for this. 
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.PeterJones |
+|  Plugin Version: | 29 Jun 2005 (V1.000) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  29 Jun 2005: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.024 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | http://net-snmp.sourceforge.net/ |
+|  Perl Version: | 5.005 |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
