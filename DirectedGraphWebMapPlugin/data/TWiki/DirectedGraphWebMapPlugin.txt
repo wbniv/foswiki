@@ -1,0 +1,104 @@
+%META:TOPICINFO{author="TWikiContributor" date="1145392875" format="1.1" version="1.1"}%
+---+!! <nop>%TOPIC%
+
+Extends the DirectedGraphPlugin and draws a map of a web, part of a web, or of the structure around a single topic.
+
+%TOC%
+
+---++ Example: Main Web
+
+This is a sample of a web drawn by <nop>%TOPIC% - the "Main" web in a default installation of TWiki.
+
+<map id="SampleMainWebMap" name="SampleMainWebMap"><area shape="rect" href="%SCRIPTURL%/view/%MAINWEB%/NobodyGroup" title="NobodyGroup" alt="" coords="633,7,714,34"><area shape="rect" href="%SCRIPTURL%/view/%MAINWEB%/TWikiAdminGroup" title="TWikiAdminGroup" alt="" coords="623,61,724,88"><area shape="rect" href="%SCRIPTURL%/view/%MAINWEB%/TWikiGroups" title="TWikiGroups" alt="" coords="1189,115,1266,142"><area shape="rect" href="%SCRIPTURL%/view/%MAINWEB%/TWikiUsers" title="TWikiUsers" alt="" coords="772,329,842,356"><area shape="rect" href="%SCRIPTURL%/view/%MAINWEB%/SteffenPoulsen" title="SteffenPoulsen" alt="" coords="705,383,787,410"><area shape="rect" href="%SCRIPTURL%/view/%MAINWEB%/TWikiContributor" title="TWikiContributor" alt="" coords="596,383,691,410"><area shape="rect" href="%SCRIPTURL%/view/%MAINWEB%/TWikiPreferences" title="TWikiPreferences" alt="" coords="626,115,721,142"><area shape="rect" href="%SCRIPTURL%/view/%MAINWEB%/TWikiGroupTemplate" title="TWikiGroupTemplate" alt="" coords="1238,168,1350,195"><area shape="rect" href="%SCRIPTURL%/view/%MAINWEB%/TWikiGuest" title="TWikiGuest" alt="" coords="511,383,583,410"><area shape="rect" href="%SCRIPTURL%/view/%MAINWEB%/TWikiRegistrationAgent" title="TWikiRegistrationAgent" alt="" coords="922,383,1044,410"><area shape="rect" href="%SCRIPTURL%/view/%MAINWEB%/UnknownUser" title="UnknownUser" alt="" coords="828,383,909,410"><area shape="rect" href="%SCRIPTURL%/view/%MAINWEB%/UserList" title="UserList" alt="" coords="1377,383,1433,410"><area shape="rect" href="%SCRIPTURL%/view/%MAINWEB%/PatternSkinUserViewTemplate" title="PatternSkinUserViewTemplate" alt="" coords="180,276,329,302"><area shape="rect" href="%SCRIPTURL%/view/%MAINWEB%/UserViewTemplate" title="UserViewTemplate" alt="" coords="299,329,401,356"><area shape="rect" href="%SCRIPTURL%/view/%MAINWEB%/UserForm" title="UserForm" alt="" coords="397,222,460,249"><area shape="rect" href="%SCRIPTURL%/view/%MAINWEB%/TWikiGuestLeftBar" title="TWikiGuestLeftBar" alt="" coords="7,329,110,356"><area shape="rect" href="%SCRIPTURL%/view/%MAINWEB%/UserListByDateJoined" title="UserListByDateJoined" alt="" coords="1397,544,1511,571"><area shape="rect" href="%SCRIPTURL%/view/%MAINWEB%/UserListByLocation" title="UserListByLocation" alt="" coords="1401,490,1507,517"><area shape="rect" href="%SCRIPTURL%/view/%MAINWEB%/UserListByPhotograph" title="UserListByPhotograph" alt="" coords="1476,436,1593,463"><area shape="rect" href="%SCRIPTURL%/view/%MAINWEB%/UserListHeader" title="UserListHeader" alt="" coords="1348,436,1435,463"><area shape="rect" href="%SCRIPTURL%/view/%MAINWEB%/UserHomepageHeader" title="UserHomepageHeader" alt="" coords="371,276,486,302"><area shape="rect" href="%SCRIPTURL%/view/%MAINWEB%/WebAtom" title="WebAtom" alt="" coords="828,276,892,302">
+</map>
+<img usemap="#SampleMainWebMap" src="%ATTACHURLPATH%/SampleMainWebMap.png">
+
+As you will notice, most topics are clickable when touched by the mouse, through clientside areamaps. (Only Web* system topics are not linked).
+
+------
+
+---++ Syntax Rules
+
+	* Place =%<nop>WEBMAP%= somewhere on the page to display a map of the entire web.
+	* =%<nop>WEBMAP{web="web" excludesystem="1" lr="1"}%= 
+		* _optional_ =web="web"= gives a map of the given web.  Default 'this web'.
+		* _optional_ =excludesystem="1"= ignore TWiki system topics (!WebNotify and friends).  Default OFF
+		* _optional_ =lr="1"= orient graph left to right.  Default orient graph top to bottom
+		* _optional_ =size="2,1"= maximum size of graph in _inches_ (92dpi). For i.e. a maximum of ~800x600 use "8.5,6.5"
+
+	* Place =%<nop>TOPICMAP%= somewhere on the page to display links for the given topic, to a given radius.
+	* =%<nop>TOPICMAP{web="web" topic="topic" links="2" backlinks="1" excludesystem="1" lr="1"}%=
+		* _optional_ =web="web"= gives a map of the given web.  Default 'this web'.
+		* _optional_ =topic="topic"= gives a map of the given topic.  Default 'this topic'.
+		* _optional_ =links="number"= set the length of chain linking FROM the given topic.  If not given, then take LINKS plugin setting, then 2.
+		* _optional_ =backlinks="number"= set the length of chain linking TO the given topic.  If not given then take =links= then BACKLINKS plugin setting, then LINKS plugin setting, then 1.
+		* _optional_ =excludesystem="1"= ignore TWiki system topics (!WebNotify and friends).  Default OFF
+		* _optional_ =lr="1"= orient graph left to right.  Default orient graph top to bottom
+		* _optional_ =size="2,1"= maximum size of graph in _inches_ (92dpi). For i.e. a maximum of ~800x600 use "8.5,6.5"
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Directed Graph of (part of) a web
+	* Default forward links to display (=2= if not set here)
+		* Set LINKS = 2
+	* Default backward links to display (=1= if not set here)
+		* Set BACKLINKS = 1
+	* Default maximum size of graph, in _inches_ (=8.5,6.5= if not set here, translates to ~800x600 pixels)
+		* Set SIZE = 8.5,6.5
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Make sure that TWiki:Plugins/DirectedGraphPlugin is installed and working properly
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==lib/TWiki/Plugins/%TOPIC%/sample.png== | Sample <nop>WebMap |
+	  | ==lib/TWiki/Plugins/%TOPIC%/SampleMainWebMap.png== | Sample <nop>WebMap |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the installation was successful:
+
+	* Verbatim: <br />\
+	  =%<nop>TOPICMAP{links="1"}%=
+
+	* Simulated: <br />\
+	  <map id="sample" name="sample"><area shape="rect" href="DirectedGraphWebMapPlugin" title="DirectedGraphWebMapPlugin" alt="" coords="272,7,509,50"><area shape="rect" href="DirectedGraphPlugin" title="DirectedGraphPlugin" alt="" coords="8,93,182,136"><area shape="rect" href="GoodStyle" title="GoodStyle" alt="" coords="204,93,307,136"><area shape="rect" href="TWikiPlugins" title="TWikiPlugins" alt="" coords="328,93,453,136"><area shape="rect" href="TWikiPreferences" title="TWikiPreferences" alt="" coords="474,93,627,136"><area shape="rect" href="TextFormattingRules" title="TextFormattingRules" alt="" coords="649,93,823,136">
+</map><img usemap="#sample" src="%ATTACHURLPATH%/sample.png">
+
+	* Plugin: <br />
+	  %TOPICMAP{links="1"}%
+
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.MagnusLewisSmith |
+|  Plugin Version: | 19 Apr 2006 (V1.020) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  19 Apr 2006: | Updated doc, enabled debug (now writes generated dot graph in verbatim if debug is enabled) (TWiki:Main.SteffenPoulsen) |
+|  16 Apr 2006: | Added max size parameter, updated doc (TWiki:Main.SteffenPoulsen) |
+|  04 Jul 2005: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.024 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | DirectedGraphPlugin |
+|  Perl Version: | 5.005 |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- TWiki:Main.MagnusLewisSmith - 04 Jul 2005
+
+%META:FILEATTACHMENT{name="sample.png" attr="" autoattached="1" comment="Sample of a !WebMap - this topic, limited linkdepth" date="1145214448" path="sample.png" size="4479" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="SampleMainWebMap.png" attr="" autoattached="1" comment="Sample of a !WebMap - the Main web" date="1145230439" path="SampleMainWebMap.png" size="27082" user="Main.TWikiContributor" version="1"}%
