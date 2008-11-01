@@ -1,0 +1,152 @@
+%{ Internationalisable Messages/constructs }%
+%TMPL:DEF{"sep"}%|%TMPL:END%
+%TMPL:DEF{"titlesep"}%&lt;%TMPL:END%
+%TMPL:DEF{"LOG_IN"}%Log In%TMPL:END%
+%TMPL:DEF{"LOG_OUT"}%Log Out%TMPL:END%
+
+
+%TMPL:DEF{"htmldoctype"}%
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="%LANG%" lang="%LANG%">%TMPL:END%
+
+
+%TMPL:DEF{"templatescript"}%%TMPL:END%
+
+
+%TMPL:DEF{"script"}%
+<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/TWikiJavascripts/twiki.js"></script>
+%IF{"context TwistyPluginEnabled" then="" else="<script type='text/javascript' src='%PUBURLPATH%/%TWIKIWEB%/TwistyContrib/twist.js'></script>"}%
+<script type="text/javascript">
+//<![CDATA[
+	function launchWindow(inWeb, inTopic) {
+		return launchTheWindow("%SCRIPTURLPATH{"view"}%/", inWeb, inTopic, "plain.quickmenu");
+	}
+//]]>
+</script> %TMPL:P{"templatescript"}% %TMPL:END%
+
+
+
+%TMPL:DEF{"windowtitle"}%<title>%TMPL:P{"titleaction"}%<nop>%TOPIC% &lt; %WEB% &lt; <nop>%WIKITOOLNAME%</title>%TMPL:END%
+
+
+
+%TMPL:DEF{"twikistyle"}%
+%TMPL:INCLUDE{"css.tmpl"}%
+<style type="text/css" media="all">%IF{ "context TwistyPluginEnabled" then="" else="
+	@import url('%PUBURLPATH%/%TWIKIWEB%/TwistyContrib/twist.css');"}%
+	@import url('%PUBURLPATH%/%TWIKIWEB%/QuickMenuSkin/qmenu.css');
+	@import url('%PUBURLPATH%/%TWIKIWEB%/QuickMenuSkin/style.css');
+	.twikiToc LI {
+		background: url("%PUBURLPATH%/%TWIKIWEB%/PatternSkin/bullet-down.gif") no-repeat 0 .5em;
+	}
+</style> %TMPL:END%
+
+
+%TMPL:DEF{"head"}%<head>
+%TMPL:P{"windowtitle"}%
+ <meta http-equiv="Content-Type" content="text/html; charset=%CHARSET%" />
+ <meta name="robots" content="noindex" />
+ %HTTP_EQUIV_ON_VIEW%
+ <link rel="icon" href="%FAVICON%" type="image/x-icon" />
+ <link rel="shortcut icon" href="%FAVICON%" type="image/x-icon" />
+ <base href="%SCRIPTURL{"view"}%/%WEB%/%TOPIC%" />
+ %TMPL:P{"script"}%
+ %TMPL:P{"twikistyle"}%
+</head>%TMPL:END%
+
+
+%TMPL:DEF{"titleaction"}% %TMPL:END%
+
+%TMPL:DEF{"webaction"}%%TMPL:END%
+
+%TMPL:DEF{"bodystart"}%<body bgcolor="#ffffff">
+#PageTop%TMPL:END%
+
+
+%TMPL:DEF{"attachments"}%%TMPL:END%
+
+
+%TMPL:DEF{"standardheader"}%<table class=PageHeader width=100%>
+<tr><td rowspan=2><noautolink><a href="%WEBLOGOURL%" rel='nofollow'><img src="%WEBLOGOIMG%" alt="%WEBLOGOALT%" border=0></a></noautolink></td>
+<td class=PageTitle><span class="HomePathTitle"><small>%MAKETEXT{"You are here:"}%</small>
+[[%WIKIHOMEURL%][%WIKITOOLNAME%]] <span class="twikiSeparator">&gt;</span>
+<a href="%SCRIPTURLPATH{view}%/%WEB%/%HOMETOPIC%"><img src="%ICONURLPATH{web-bg}%" border="0" alt="" hspace="1" style="background-color:%WEBBGCOLOR%;vertical-align:bottom" /> %MAKETEXT{"[_1] Web" args="<nop/>%WEB%"}%</a> %META{"parent" nowebhome="on" prefix=" &gt; " suffix=""}% <span class="twikiSeparator">&gt;</span></span> <span title="%WEB%.%TOPIC%"><nop>%TOPIC%</span> %TMPL:P{"titleaction"}%</td>
+<tr><td class="twikiRevInfo">%REVINFO% </td>
+</table>
+<div id="MenuBar" class="MenuBar"><div class="MenuBarRight"><table cellspacing="0" cellpadding="0"><tr id="MenuBarRightTR"><td style="padding: 1px 5px 0 2px"><form action="%SCRIPTURLPATH{"view"}%/%BASEWEB%/%BASETOPIC%"><input type="text" name="topic" value="%MAKETEXT{"Jump"}%" class="twikiInputBox twikiInputBoxDefault" size="15" onfocus="clearDefaultandCSS(this)" onblur="setDefaultandCSS(this)"></form></td>
+<td style="padding: 1px 5px 0 2px"><form action="%SCRIPTURLPATH{view}%/%INCLUDINGWEB%/WebSearch"><input type="text" name="search" value="%MAKETEXT{"Search"}%" class="twikiInputBox twikiInputBoxDefault" size="15" onfocus="clearDefaultandCSS(this)" onblur="setDefaultandCSS(this)"></form></td></tr></table></div><noscript><small style="float:left">Webs: %WEBLIST{format="[[$name]]" separator=", "}%</small><center style="color:#f00">QuickMenu is disabled! <a href="%SCRIPTURLPATH{view}%/%TWIKIWEB%/QuickMenuDisabled?skin=plain.quickmenu" style="font-weight:normal;font-size:80%;vertical-align:top">Why?</a></center></noscript></div>
+<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/QuickMenuSkin/qmenu.js"></script>
+<script type="text/javascript">
+QuickMenu.Set.ShowOnHover =%IF{"defined CLICKMENU and $ CLICKMENU" then=" 0" else=" 1"}%;
+function clearDefaultandCSS(el) {
+	if (!el.defaultValue) el.defaultValue = el.value;
+	if (el.defaultValue == el.value) el.value = "";
+	removeClass(el, "twikiInputBoxDefault");
+}
+function setDefaultandCSS(el) {
+	if (el.value == "" && el.defaultValue) el.value = el.defaultValue;
+	addClass(el, "twikiInputBoxDefault");
+}
+function QuickMenuInit() {
+	menuBar = document.getElementById("MenuBar");
+	langBar = menuBar.firstChild;
+	langBar.QuickMenuTR = document.getElementById("MenuBarRightTR");
+%TMPL:P{"webaction"}%
+%IF{"context i18n_enabled" then='%INCLUDE{"%TWIKIWEB%.QuickMenuBarLanguage" raw="on" warn="off"}%'}%
+}
+addLoadEvent(QuickMenuInit, false);
+</script>%TMPL:END%
+
+
+%TMPL:DEF{"simpleheader"}%
+<table class=PageHeader width=100%>
+<tr><td><noautolink><a href="%WEBLOGOURL%" rel='nofollow'><img src="%WEBLOGOIMG%" alt="%WEBLOGOALT%" border=0></a></noautolink></td>
+<td class=PageTitle><noautolink><small>%WIKITOOLNAME% <span class="twikiSeparator">&gt;</span>
+<nop>%WEB% <span class="twikiSeparator">&gt;</span></small>
+%TOPIC% %TMPL:P{"titleaction"}%</noautolink></td>
+</table>
+<div class="MenuBar"><center>%TMPL:P{"webaction"}%</center></div>%TMPL:P{"headerhelp"}%%TMPL:END%
+
+
+%TMPL:DEF{"copyright"}%
+<div class="TWikiCopyright">%WEBCOPYRIGHT%
+</div>%TMPL:END%
+
+%TMPL:DEF{"footernote"}% %TMPL:END%
+
+%TMPL:DEF{"standardfooter"}%
+#PageBottom %TMPL:END%
+
+
+%TMPL:DEF{"bodyend"}%</body></html>%TMPL:END%
+
+
+%TMPL:DEF{"main"}%%TMPL:P{"content"}%
+%TMPL:P{"standardfooter"}%%TMPL:END%
+
+
+
+%TMPL:DEF{"topicinfo"}%<div class=TopicAction> %TMPL:P{"topicaction"}%
+</div>%TMPL:P{"footernote"}%
+%TMPL:P{"copyright"}%%TMPL:END%
+
+%TMPL:DEF{"content"}%
+%TMPL:P{"simpleheader"}%
+<div class="twikiTopic">
+---+ %TMPL:P{"heading"}%
+%BR%
+%TMPL:P{"message"}%
+%BR%
+%TMPL:P{"topicinfo"}%
+</div>%TMPL:END%
+
+%TMPL:DEF{"revisions"}%<a href="%SCRIPTURLPATH{"rdiff"}%/%WEB%/%TOPIC%?type=history" title="%MAKETEXT{"View total topic history"}%" accesskey="H" rel="nofollow">%MAKETEXT{"&History"}%</a>: %REVISIONS% %TMPL:END%
+
+
+%TMPL:DEF{"oops"}%
+%TMPL:P{"htmldoctype"}%
+%TMPL:P{"head"}%
+%TMPL:P{"bodystart"}%
+%TMPL:P{"main"}%
+%TMPL:P{"bodyend"}%
+%TMPL:END%

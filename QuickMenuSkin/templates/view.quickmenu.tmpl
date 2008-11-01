@@ -1,0 +1,84 @@
+%TMPL:INCLUDE{"twiki"}%
+
+%TMPL:DEF{"titleaction"}% %REVTITLE% %TMPL:END%
+%TMPL:DEF{"form"}%
+%META{"form"}%%TMPL:END%
+
+%TMPL:DEF{"create_wysiwyg"}%
+pageMenu.Add("%MAKETEXT{"WYSIWYG"}%", "%SCRIPTURLPATH{"edit"}%/%WEB%/%TOPIC%?cover=%COMPOSER%&t=%GMTIME{"$epoch"}%","%ICONURLPATH{"newtopic"}%","%MAKETEXT{"Create this topic"}%");%TMPL:END%
+%TMPL:DEF{"edit_wysiwyg"}%
+pageMenu.Add("%MAKETEXT{"WYSIWYG"}%", "%SCRIPTURLPATH{"edit"}%/%WEB%/%TOPIC%?cover=%COMPOSER%&t=%GMTIME{"$epoch"}%","%ICONURLPATH{"edittopic"}%","%MAKETEXT{"Edit this topic text"}%");%TMPL:END%
+%TMPL:DEF{"create_menuitem"}%
+pageMenu.Add("%MAKETEXT{"Create"}%", "%SCRIPTURLPATH{"edit"}%/%WEB%/%TOPIC%?t=%GMTIME{"$epoch"}%","%ICONURLPATH{"newtopic"}%","%MAKETEXT{"Create this topic"}%");%TMPL:P{context="WysiwygPluginEnabled" then="create_wysiwyg"}%%TMPL:END%
+%TMPL:DEF{"edit_menuitem"}%
+pageMenu.Add("%MAKETEXT{"Edit"}%", "%SCRIPTURLPATH{"edit"}%/%WEB%/%TOPIC%?t=%GMTIME{"$epoch"}%","%ICONURLPATH{"edittopic"}%","%MAKETEXT{"Edit this topic text"}%");%TMPL:P{context="WysiwygPluginEnabled" then="edit_wysiwyg"}%%TMPL:END%
+%TMPL:DEF{"active_menuitem"}%%TMPL:P{context="new_topic" then="create_menuitem" else="edit_menuitem"}%%TMPL:END%
+%TMPL:DEF{"inactive_menuitem"}%
+pageMenu.Add("%MAKETEXT{"Edit"}%", "", "%ICONURLPATH{"edittopic"}%");%TMPL:END%
+%TMPL:DEF{"new_menuitem"}%
+pageMenu.Add();
+pageMenu.Add("%MAKETEXT{"New Topic"}%", "%SCRIPTURLPATH{"view"}%/%WEB%/WebTopicCreator?parent=%TOPIC%","%ICONURLPATH{"newtopic"}%","%MAKETEXT{"Create a new topic"}%");%TMPL:END%
+
+%TMPL:DEF{"webaction"}%<noautolink>
+%INCLUDE{"%IF{"defined QUICKMENUBAR and $ QUICKMENUBAR" then="%QUICKMENUBAR%" else="%TWIKIWEB%.QuickMenuBar"}%" raw="on" warn="off"}%
+
+	pageMenu = new QuickMenu.Menu(menuBar,"%MAKETEXT{"Options"}%","","","%MAKETEXT{"Page viewing and editing options"}%");
+	%TMPL:P{context="inactive" then="inactive_menuitem" else="active_menuitem"}%
+	pageMenu.Add("%MAKETEXT{"Attach"}%","%IF{"context inactive" then='","%ICONURLPATH{"attachfile"}%' else='%SCRIPTURLPATH{attach}%/%WEB%/%TOPIC%","%ICONURLPATH{"attachfile"}%","%MAKETEXT{"Attach an image or document to this topic"}%'}%");
+	pageMenu.Add("%MAKETEXT{"Printable"}%","%SCRIPTURLPATH{view}%/%WEB%/%TOPIC%?cover=print.quickmenu%REVARG%","%ICONURLPATH{"printtopic"}%","%MAKETEXT{"Printable version of this topic"}%");
+%IF{"defined raw" then='	pageMenu.Add("%MAKETEXT{"View Topic"}%","%SCRIPTURLPATH{view}%/%WEB%/%TOPIC%","%ICONURLPATH{"viewtopic"}%","%MAKETEXT{"View topic"}%");
+' else='	pageMenu.Add("%MAKETEXT{"Raw View"}%","%SCRIPTURLPATH{view}%/%WEB%/%TOPIC%?raw=on%REVARG%","%ICONURLPATH{"viewtopic"}%","%MAKETEXT{"View raw text without formatting"}%");
+'}%
+	%TMPL:P{context="new_topic" then="" else="new_menuitem"}%
+</noautolink>%TMPL:END%
+
+%TMPL:DEF{"attachments"}%
+%META{"attachments"}%%TMPL:END%
+
+%TMPL:DEF{"footernote"}%
+<div class="TWikiFooterNote">
+%META{"parent" prefix="Parents: "}%
+%META{"moved"}% </div>%TMPL:END%
+
+%TMPL:DEF{"main"}%<form name="main" action="%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%"> %BROADCASTMESSAGE%
+</form>
+%TMPL:P{"standardheader"}%
+%TMPL:P{"content"}%
+%TMPL:P{"standardfooter"}%%TMPL:END%
+
+%TMPL:DEF{"inactive_edit"}%<strike>%MAKETEXT{"Edit"}%</strike>%TMPL:END%
+%TMPL:DEF{"create_topic"}%%MAKETEXT{"Cr&eate"}%%TMPL:END%
+%TMPL:DEF{"edit_topic"}%%MAKETEXT{"&Edit"}%%TMPL:END%
+
+
+%TMPL:DEF{"active_edit"}%<a href='%SCRIPTURLPATH{"edit"}%/%WEB%/%TOPIC%?t=%GMTIME{"$epoch"}%' rel='nofollow' title='%MAKETEXT{"Edit this topic text"}%' accesskey='e'><b>%TMPL:P{context="new_topic" then="create_topic" else="edit_topic"}%</b></a> %TMPL:END%
+
+%TMPL:DEF{"active_wysiwyg"}% %TMPL:P{"sep"}% <a href='%SCRIPTURLPATH{"edit"}%/%WEB%/%TOPIC%?cover=%COMPOSER%&t=%GMTIME{"$epoch"}%' rel='nofollow' title='%MAKETEXT{"Edit this topic text"}%' accesskey='w'><b>%MAKETEXT{"&WYSIWYG"}%</b></a> %TMPL:END%
+
+%TMPL:DEF{"inactive_attach"}%<strike>Attach</strike>%TMPL:END%
+%TMPL:DEF{"active_attach"}%<a href="%SCRIPTURLPATH{"attach"}%/%WEB%/%TOPIC%" accesskey="A" title="%MAKETEXT{"Attach an image or document to this topic"}%" rel='nofollow'>%MAKETEXT{"&Attach"}%</a>%TMPL:END%
+
+%TMPL:DEF{"inactive_more"}%<strike>%MAKETEXT{"More topic actions..."}%</strike>%TMPL:END%
+%TMPL:DEF{"active_more"}%<a href="%SCRIPTURLPATH{"oops"}%/%WEB%/%TOPIC%?template=oopsmore&amp;param1=%MAXREV%&amp;param2=%CURRREV%" title='%MAKETEXT{"Delete or rename this topic; set parent topic; view and compare revisions"}%' accesskey="M" rel='nofollow'>%MAKETEXT{"&More topic actions"}%</a>%TMPL:END%
+
+
+%TMPL:DEF{"content"}%<div class="twikiTopic">
+%TEXT%
+#TopicEnd
+
+%BR% %TMPL:P{"form"}%%TMPL:P{"attachments"}%%TMPL:P{"topicinfo"}%
+</div>%TMPL:END%
+
+%TMPL:DEF{"topicaction"}%
+  %TMPL:P{context="inactive" then="inactive_edit" else="active_edit"}% %TMPL:P{context="WysiwygPluginEnabled" then="active_wysiwyg"}%
+  %TMPL:P{"sep"}% %TMPL:P{context="inactive" then="inactive_attach" else="active_attach"}%
+  %TMPL:P{"sep"}% %MAKETEXT{"Backlinks"}%: <a href="%SCRIPTURLPATH{"oops"}%/%WEB%/%TOPIC%?template=backlinksweb" title='%MAKETEXT{"Search the [_1] Web for topics that link to here" args="<nop>%WEB%"}%' accesskey="b">%MAKETEXT{"We&b"}%</a>, <a href="%SCRIPTURLPATH{"oops"}%/%WEB%/%TOPIC%?template=backlinksallwebs" title="%MAKETEXT{"Search all webs for topics that link to here"}%" accesskey="L">%MAKETEXT{"A&ll Webs"}%</a>
+  %TMPL:P{"sep"}% <a href="%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%?cover=print.quickmenu%REVARG%" title="%MAKETEXT{"Printable version of this topic"}%" accesskey="P" rel='nofollow'>%MAKETEXT{"&Printable"}%</a>
+  %TMPL:P{"sep"}% %TMPL:P{"revisions"}%
+  %TMPL:P{"sep"}% %TMPL:P{context="inactive" then="inactive_more" else="active_more"}%%TMPL:END%
+
+%TMPL:P{"htmldoctype"}%
+%TMPL:P{"head"}%
+%TMPL:P{"bodystart"}%
+%TMPL:P{"main"}%
+%TMPL:P{"bodyend"}% 

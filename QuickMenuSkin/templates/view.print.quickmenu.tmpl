@@ -1,0 +1,29 @@
+%TMPL:INCLUDE{"view.plain.quickmenu"}%
+
+%TMPL:DEF{"head"}%
+<head>
+	%TMPL:P{"windowtitle"}%
+	<meta http-equiv="Content-Type" content="text/html; charset=%CHARSET%" />
+	<meta name="robots" content="noindex" /> %HTTP_EQUIV_ON_VIEW%
+	<base href="%SCRIPTURL{"view"}%/%WEB%/%TOPIC%" />
+	%TMPL:P{"twikistyle"}%
+</head>%TMPL:END%
+
+%TMPL:DEF{"main"}%
+<table class=PageHeader width=100% style="border: solid #999;border-width: 0 0 1px 0">
+<tr><td rowspan=2><noautolink><img src="%WEBLOGOIMG%" alt="%WEBLOGOALT%" border=0><td class=PageTitle>%WIKITOOLNAME% <span class="twikiSeparator">&gt;</span> %MAKETEXT{"[_1] Web" args="%WEB%"}% <span class="twikiSeparator">&gt;</span> %TOPIC% %TMPL:P{"titleaction"}%</noautolink></tr>
+<tr><td class=twikiRevInfo>%REVINFO% </tr>
+</table>
+<div class=twikiTopic>
+%TMPL:P{"content"}%
+</div>
+%TMPL:END%
+
+%TMPL:DEF{"content"}%
+%TEXT%
+%META{"form"}%
+%META{"attachments"}%
+%BR%
+<p style="border: solid #666; border-width: 0 0 1px 0" />
+%TMPL:P{"copyright"}%
+%TMPL:END%

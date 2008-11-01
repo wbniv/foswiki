@@ -1,0 +1,11 @@
+%META:TOPICINFO{author="TWiki:Main/VernonLyon" date="1150821440" format="1.1" reprev="1.1" version="1.1"}%
+<pre>%STARTINCLUDE%<noautolink>
+authMenu = new QuickMenu.Menu(menuBar,"","","%ICONURLPATH{person}%","%MAKETEXT{"User Authentication"}%");
+%IF{"context authenticated" then='
+authMenu.Add("%SPACEOUT{%WIKINAME%}%","%SCRIPTURLPATH{view}%/%MAINWEB%/%WIKINAME%","%ICONURLPATH{"home"}%");
+authMenu.Add("%MAKETEXT{"Log Out"}%","%IF{"defined LOGOUTURL" then="%LOGOUTURL%" else="?logout=1"}%","%ICONURLPATH{"logout"}%");
+' else='
+authMenu.Add("%MAKETEXT{"Log In"}%","%LOGINURL%","%ICONURLPATH{"key"}%");
+authMenu.Add("%MAKETEXT{"Register"}%","%SCRIPTURLPATH{view}%/%TWIKIWEB%/TWikiRegistration","%ICONURLPATH{"pencil"}%");
+'}%
+</noautolink>%STOPINCLUDE%</pre>

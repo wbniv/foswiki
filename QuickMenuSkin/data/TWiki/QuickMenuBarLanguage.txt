@@ -1,0 +1,5 @@
+%META:TOPICINFO{author="TWiki:Main/VernonLyon" date="1153224078" format="1.1" version="1.1"}%
+<pre>%STARTINCLUDE%<noautolink>
+	langMenu = new QuickMenu.Menu(langBar, "", "", "%ICONURLPATH{bubble}%", "%MAKETEXT{Change language}%");
+%LANGUAGES{format="	langMenu.Add(\"$langname\" || \"$langtag\", \"%SCRIPTURLPATH{"oops"}%/%BASEWEB%/%BASETOPIC%?template=oopslanguagechanged&language=$langtag\"$marker);" selection="%LANGUAGE%" marker=", \"%ICONURLPATH{"choice-yes"}%\""}%
+</noautolink>%STOPINCLUDE%</pre>

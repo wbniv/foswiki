@@ -1,0 +1,80 @@
+%TMPL:INCLUDE{"twiki"}%
+
+%TMPL:DEF{"templatescript"}%
+<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/TWikiJavascripts/twiki_attach.js"></script>
+%TMPL:END%
+
+
+%TMPL:DEF{"existingattachments"}%</p>
+<span id="attachexistingshow" class="twistyMakeOpaque"><a href="#" class="twistyTrigger">%ICON{toggleopen-small}%<span class="twikiLinkLabel" id="attachmentsshowlink">%MAKETEXT{"Show existing attachments"}%</span></a></span><span id="attachexistinghide" class="twistyHidden twistyMakeOpaque"><a href="#" class="twistyTrigger">%ICON{toggleclose-small}%<span class="twikiLinkLabel" id="attachmentshidelink">%MAKETEXT{"Hide existing attachments"}%</span></a></span>
+<h2 class="twistyMakeHidden">%MAKETEXT{"Existing attachments"}%</h2>
+<div id="attachexistingtoggle" class="twistyMakeHidden twistyRememberSetting">
+%META{"attachments" all="on"}% <script type="text/javascript">
+//<![CDATA[
+	var attTable = document.getElementById("twikiAttachmentsTable");
+	if (attTable) {
+		var count = " (" + (attTable.getElementsByTagName("tr").length - 1) + ")";
+		document.getElementById('attachmentsshowlink').firstChild.data += count;
+		document.getElementById('attachmentshidelink').firstChild.data += count;
+	}
+//]]>
+</script></div>%TMPL:END%
+
+%TMPL:DEF{"content"}%
+%TMPL:P{"simpleheader"}%
+<div class=twikiTopic>
+---+ %MAKETEXT{"Attach image or document on [_1]" args="%TOPIC%"}%
+<span id="attachhelpshow" class="twistyMakeOpaque"><a href="#" class="twistyTrigger">%ICON{toggleopen-small}%<span class="twikiLinkLabel">%MAKETEXT{"Show help"}%</span></a></span><span id="attachhelphide" class="twistyHidden twistyMakeOpaque"><a href="#" class="twistyTrigger">%ICON{toggleclose-small}%<span class="twikiLinkLabel">%MAKETEXT{"Hide help"}%</span></a></span>
+<div id="attachhelptoggle" class="twikiHelp twistyHidden twistyRememberSetting">
+%TMPL:P{"notes"}%</div>
+<form name="main" enctype="multipart/form-data" action="%SCRIPTURLPATH{"upload"}%/%WEB%/%TOPIC%" method="post">
+%TMPL:P{"previousdetails"}%
+<table width="100%">
+   %TMPL:P{"previous"}%
+ <tr>
+  <td align="right">
+   Local file:
+  </td><td>
+   <input type="hidden" name="filename" value="%FILENAME%" />
+   <input type="file" name="filepath" value="%FILEPATH%" size="50" />
+  </td>
+ </tr>
+ <tr>
+  <td align="right">
+   Comment:
+  </td><td>
+   <input type="text" name="filecomment" value="%FILECOMMENT%" maxlength="256" size="50" />
+  </td>
+ </tr>
+ <tr>
+  <td align="right">
+   Link:
+  </td><td>
+   <input type="checkbox" name="createlink" %ATTACHLINKBOX% /> Create a link to the attached file at the end of the topic.
+  </td>
+ </tr>
+ <tr>
+  <td align="right">
+   Hide file:
+  </td><td>
+   <input type="checkbox" name="hidefile" %HIDEFILE% /> Hide attachment in normal topic view.
+  </td>
+ </tr>
+</table>
+%TMPL:P{"extranotes"}%
+%TMPL:P{"existingattachments"}%%TMPL:P{"topicinfo"}%</form></div>%TMPL:END%
+
+%TMPL:DEF{"notes"}%
+   * %MAKETEXT{"*Help:* Please see <a target='TWikiVariables' onclick=\"return launchWindow('[_1]','FileAttachment')\" href='' rel='nofollow'>FileAttachment</a> for more information about attaching files." args="%TWIKIWEB%"}%
+   * *File size:* %IF{"$ATTACHFILESIZELIMIT > 0" then="You can upload files up to %ATTACHFILESIZELIMIT% KB in size." else="There is no size limit for uploaded files."}%
+   * *Link checkbox:* If the attached file is a JPG, GIF or PNG image and you check the box, it will create an inline image (e.g. show the image) at the end of the topic.  For other file types a simple link will be created.
+   * %MAKETEXT{"*Bug:* Internet Explorer 4.0 or earlier: If you get an \"Internal Server Error\" message when you upload a file, you need to try again. It should work the second time."}%
+%TMPL:END%
+
+%TMPL:DEF{"attach"}%
+%TMPL:P{"htmldoctype"}%
+%TMPL:P{"head"}%
+%TMPL:P{"bodystart"}%
+%TMPL:P{"main"}%
+%TMPL:P{"bodyend"}%
+%TMPL:END%

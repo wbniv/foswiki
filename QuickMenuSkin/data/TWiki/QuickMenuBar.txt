@@ -1,0 +1,6 @@
+%META:TOPICINFO{author="TWiki:Main/VernonLyon" date="1150724798" format="1.1" version="1.1"}%
+<pre>%STARTINCLUDE%<noautolink>
+%IF{"context can_login" then='%INCLUDE{"%TWIKIWEB%.QuickMenuBarLogin" warn="off"}%'}%
+%INCLUDE{"%TWIKIWEB%.QuickMenuBarWebs" raw="on" warn="off"}%
+%INCLUDE{"%TWIKIWEB%.QuickMenuBarUtilities" raw="on" warn="off"}%
+</noautolink>%STOPINCLUDE%</pre>

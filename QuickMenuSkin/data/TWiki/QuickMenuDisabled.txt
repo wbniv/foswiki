@@ -1,0 +1,19 @@
+%META:TOPICINFO{author="TWiki:Main/VernonLyon" date="1164210519" format="1.1" version="1.1"}%
+---+ !QuickMenu is Disabled!
+
+---++ Why is the !QuickMenu disabled?
+
+The QuickMenuSkin requires a browser with Javascript enabled. Without Javascript the menu will not load and the usual links will not be accessible. This makes navigating through the TWiki difficult.
+
+---++ Solution
+
+You have 2 choices:
+
+   * Use a browser that has javascript enabled.
+   * Use a different TWiki skin like:
+     [[%SCRIPTURLPATH{"view"}%/%TWIKIWEB%/PatternSkin?skin=pattern][PatternSkin]]
+     or [[%SCRIPTURLPATH{"view"}%/%TWIKIWEB%/ClassicSkin?skin=classic][ClassicSkin]]
+ %BR% To activate a skin see: [[TWikiSkins#Activating_Skins][TWikiSkins]]
+
+%T% TWikiSkinBrowser lists all the skins installed on your server.
+

@@ -1,0 +1,117 @@
+.qm1-menubar {
+	font:13px/16px verdana;
+}
+.qm1-menubar .separator {
+	margin:1px 2px;
+	height:17px;
+	width:1px;
+	background:#888;
+}
+.qm1-button,
+.qm1-button-over,
+.qm1-button-click {
+	display:block;
+	text-decoration:none !important;
+	position:relative;
+	z-index:1;
+}
+.qm1-button IMG.icononly,
+.qm1-button-over IMG.icononly,
+.qm1-button-click IMG.icononly {
+	margin:0 !important;
+}
+.qm1-button IMG,
+.qm1-button-over IMG,
+.qm1-button-click IMG {
+	margin-right:4px;
+	vertical-align: top;
+	border:0;
+	height:16px;
+	width:auto;
+}
+.qm1-button {
+	padding:1px 6px 2px 6px;
+	color:#000 !important;
+}
+.qm1-button-over {
+	padding:0 5px 1px 5px;
+	border:1px solid #369;
+	background:url("menu_over.gif") repeat-x center;
+	color:#000 !important;
+}
+.qm1-button-click {
+	padding:0 5px 0 5px;
+	border:1px solid #369;
+	border-bottom:2px solid #fff;
+	background:url("menu_bg.gif") repeat-x center;
+	color:#fff;
+	z-index:3;
+}
+.qm1-menu {
+	position:absolute;
+	visibility:hidden;
+	z-index:2;
+}
+.qm1-menu-shadow {
+	background:#888;
+	position:absolute;
+	-moz-opacity:0.30;
+	top: 3px !important;
+	left: 3px !important;
+	top: 1px;
+	left: 1px;
+	-moz-border-radius: 3px;
+}
+.qm1-menulist {
+	margin:0;
+	padding:1px;
+	border:1px solid #369;
+	background:#fff url("menuitem_bg.gif") repeat-y left;
+	position:relative;
+	z-index:2;
+}
+.qm1-menulist A {
+	display:list-item;
+	list-style:none;
+	margin:0;
+	padding:2px;
+	text-decoration:none;
+	color:#000;
+	vertical-align:top;
+}
+.qm1-menulist A.over {
+	padding:1px;
+	color:#000;
+	border:1px solid #369;
+	background:url("menuitem_over.gif") repeat-x center;
+}
+.qm1-menulist A.disabled {
+	color:#777;
+}
+.qm1-menulist A.separator {
+	margin:1px 3px;
+	padding:0;
+}
+.qm1-menulist A.separator DIV {
+	border-top:1px solid #369;
+}
+.qm1-menulist IMG {
+	border:0;
+	vertical-align:top;
+	position:absolute;
+	width:16px;
+	height:16px;
+}
+.qm1-menuitem,
+.qm1-menuitem-arrow {
+	padding:0 19px;
+	position:relative;
+	font:13px/16px verdana;
+}
+.qm1-menuitem-arrow {
+	background:url("arrow.gif") no-repeat right;
+}
+.qm1-menuitem-separator {
+	height:1px;
+	background:#369;
+}

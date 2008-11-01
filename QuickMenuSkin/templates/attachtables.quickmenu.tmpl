@@ -1,0 +1,72 @@
+%{ These templates define the tables used to display attachments. }%
+
+
+%{ Top table row definition for topic attachments and top table in attach screen }%
+%TMPL:DEF{ATTACH:files:header(toprow)}%
+| *I* | *%MAKETEXT{"Attachment"}%* | *%MAKETEXT{"Action"}%* | *%MAKETEXT{"Size"}%* | *%MAKETEXT{"Date"}%* | *%MAKETEXT{"Who"}%* | *%MAKETEXT{"Comment"}%* |%TMPL:END%
+
+%{ Header definition for topic attachments and top table in attach screen }%
+%TMPL:DEF{ATTACH:files:header(basic)}%
+<div class="twikiAttachments"> %TABLE{tableborder="0" cellpadding="0" cellspacing="0" databg="#FFFFFF" id="twikiAttachmentsTable" summary="%MAKETEXT{"Topic attachments"}%" caption="%MAKETEXT{"Topic attachments"}%" }%
+%TMPL:P{ATTACH:files:header(toprow)}%%TMPL:END%
+
+%{ A basic row definition, for attachment table and attach screen }%
+%TMPL:DEF{ATTACH:files:row(basic)}%
+| %A_ICON%<span class="twikiHidden">%A_EXT%</span> | <a href="%A_URL%">%A_FILE%</a> | <a href="%SCRIPTURLPATH{"attach"}%/%WEB%/%TOPIC%?filename=%A_FILE%&revInfo=1" title='%MAKETEXT{"change, update, previous revisions, move, delete..."}%'rel='nofollow'>%MAKETEXT{"manage"}%</a> |  %A_SIZE% | %A_DATE% | %A_USER% | %A_COMMENT% |%TMPL:END%
+
+%{ Header for topic attachment table }%
+%TMPL:DEF{ATTACH:files:header}%
+<div class="twikiAttachments"> %TABLE{tableborder="0" cellpadding="0" cellspacing="0" databg="#FFFFFF" id="twikiAttachmentsTable" summary="%MAKETEXT{"Topic attachments"}%" caption="%MAKETEXT{"Topic attachments"}%" }% 
+<span id="attachmentsshow" class="twistyMakeOpaque"><a href="#" class="twistyTrigger">%ICON{toggleopen}%<span class="twikiLinkLabel" id="attachmentsshowlink">%MAKETEXT{"Show attachments"}%</span></a></span><span id="attachmentshide" class="twistyHidden twistyMakeOpaque"><a href="#" class="twistyTrigger">%ICON{toggleclose}%<span class="twikiLinkLabel" id="attachmentshidelink">%MAKETEXT{"Hide attachments"}%</span></a></span>
+<div id="attachmentstoggle" class="twistyMakeHidden twistyRememberSetting">
+%TMPL:P{ATTACH:files:header(toprow)}%
+%TMPL:END%
+
+%{ Row for topic attachment table }%
+%TMPL:DEF{ATTACH:files:row}%
+%TMPL:P{ATTACH:files:row(basic)}%
+%TMPL:END%
+
+%{ Footer for topic attachment table }%
+%TMPL:DEF{ATTACH:files:footer}%
+</div></div>
+<script type="text/javascript">
+//<![CDATA[
+	var attTable = document.getElementById("twikiAttachmentsTable");
+	if (attTable) {
+		var count = " (" + (attTable.getElementsByTagName("tr").length - 1) + ")";
+		document.getElementById('attachmentsshowlink').firstChild.data += count;
+		document.getElementById('attachmentshidelink').firstChild.data += count;
+	}
+//]]>
+</script>
+%TMPL:END%
+
+%{ Header for table at top of attach screen }%
+%TMPL:DEF{ATTACH:files:header:A}%
+%TMPL:P{ATTACH:files:header(basic)}% *[[%TWIKIWEB%.FileAttribute][%MAKETEXT{"Attribute"}%]]* |
+%TMPL:END%
+
+%{ Row for table at top of attach screen }%
+%TMPL:DEF{ATTACH:files:row:A}%
+%TMPL:P{ATTACH:files:row(basic)}% %A_ATTRS% |
+%TMPL:END%
+
+%{ Footer for table at top of attach screen }%
+%TMPL:DEF{ATTACH:files:footer:A}%
+</div>
+%TMPL:END%
+
+%{ Header for versions table in attach screen }%
+%TMPL:DEF{ATTACH:versions:header}%
+|  *%MAKETEXT{"Version"}%*  |  *%MAKETEXT{"Action"}%*   |  *%{"Size"}%*  |  *%MAKETEXT{"Date"}%*  |  *%MAKETEXT{"Who"}%*  |  *%MAKETEXT{"Comment"}%*  |
+%TMPL:END%
+
+%{ Row for versions table in attach screen }%
+%TMPL:DEF{ATTACH:versions:row}%
+| %A_REV%  | <a href="%A_URL%">%MAKETEXT{"view"}%</a> | %A_SIZE% | %A_DATE% | %A_USER% | %A_COMMENT% |
+%TMPL:END%
+
+%{ Footer for versions table in attach screen }%
+%TMPL:DEF{ATTACH:versions:footer}%
+%TMPL:END%

@@ -1,0 +1,67 @@
+%TMPL:INCLUDE{"twiki"}%
+%TMPL:DEF{"focus"}%
+try { document.main.text.focus(); } catch (er) {}
+%TMPL:END%
+%TMPL:DEF{"templatescript"}%
+<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/TWikiJavascripts/twiki_edit.js"></script>
+%TMPL:END%
+
+%TMPL:DEF{"footernote"}%%TMPL:END%
+
+
+%TMPL:DEF{"content"}%
+%TMPL:P{"simpleheader"}%
+<div class=twikiTopic>
+<span id="edithelpshow" class="twistyMakeVisible"><a href="#" class="twistyTrigger">%ICON{toggleopen-small}%<span class="twikiLinkLabel">%MAKETEXT{"Show formatting help"}%</span></a></span><span id="edithelphide" class="twistyHidden twistyMakeVisible"><a href="#" class="twistyTrigger">%ICON{toggleclose-small}%<span class="twikiLinkLabel">%MAKETEXT{"Hide formatting help"}%</span></a></span>
+<div id="edithelptoggle" class="twikiHelp twistyRememberSetting">%INCLUDE{"%TWIKIWEB%.WikiSyntaxSummary"}%</div>
+
+<div id="formHolder">
+<form name="main" action="%SCRIPTURLPATH{"save"}%/%WEB%/%TOPIC%" method="post">
+<div class="twikiEditTextarea">
+<textarea id='topic' name='text' wrap='virtual' rows='%EDITBOXHEIGHT%' cols='%EDITBOXWIDTH%' style='padding-left:.4em; %EDITBOXSTYLE%' onkeydown='handleKeyDown(event)'>%TEXT%</textarea><br />
+</div>
+<input type="hidden" name="originalrev" value="%ORIGINALREV%" />
+<input type="hidden" name="skin" value="%URLPARAM{"skin"}%" />
+<input type="hidden" name="cover" value="%URLPARAM{"cover"}%" />
+<input type="hidden" name="redirectto" value="%REDIRECTTO%" />
+<input type="hidden" name="formtemplate" value="%FORMTEMPLATE%" />
+<input type="hidden" name="templatetopic" value="%TEMPLATETOPIC%" />
+<input type="hidden" name="settingstopic" value="%SETTINGSTOPIC%" />
+<input type="hidden" name="topicparent" value="%TOPICPARENT%" />
+<input type="hidden" name="newtopic" value="%NEWTOPIC%" />
+<input type="hidden" name="forcenewrevision" value="%URLPARAM{"forcenewrevision"}%" />
+<input type="hidden" name="rev" value="%URLPARAM{"rev"}%" />
+<input type="hidden" name="cmd" value="%CMD%" />
+<div id=userSignature>
+<div style="float:right" class="twistyMakeVisible">
+<a href="#" class="twistyTrigger"><img width="16" alt="%MAKETEXT{"Use monospace font"}%" title="%MAKETEXT{"Use monospace font"}%" align="top" src="%PUBURLPATH%/%TWIKIWEB%/TWikiDocGraphics/monospace.gif" height="16" border="0" onclick="return setEditBoxFontStyle('mono');" /></a> <a href="#" class="twistyTrigger"><img width="16" alt="%MAKETEXT{"Use proportional spaced font"}%" title="%MAKETEXT{"Use proportional spaced font"}%" align="top" src="%PUBURLPATH%/%TWIKIWEB%/TWikiDocGraphics/proportional.gif" height="16" border="0" onclick="return setEditBoxFontStyle('proportional');" /></a>
+&nbsp;
+<a href="#" class="twistyTrigger"><img width="16" alt="%MAKETEXT{"Enlarge edit box"}%" title="%MAKETEXT{"Enlarge edit box"}%" align="top" src="%PUBURLPATH%/%TWIKIWEB%/TWikiDocGraphics/arrowdown.gif" height="16" border="0" onclick="return changeEditBox(1);" /></a> <a href="#" class="twistyTrigger"><img width="16" alt="%MAKETEXT{"Shrink edit box"}%" title="%MAKETEXT{"Shrink edit box"}%" align="top" src="%PUBURLPATH%/%TWIKIWEB%/TWikiDocGraphics/arrowup.gif" height="16" border="0" onclick="return changeEditBox(-1);" /></a>
+</div>
+%MAKETEXT{"Your signature to copy/paste:"}% <input size=40 name=sig id=sig type=text readonly title="%MAKETEXT{"Select, copy and paste your signature text to the bottom of your entry"}%" value="-- <nop>%WIKIUSERNAME% - %DATE%" />
+</div><div style="text-align:right;padding:0 5px">
+%FORMFIELDS%
+</div>%TMPL:P{"topicinfo"}%</form></div></div>%TMPL:END%
+
+ 
+%TMPL:DEF{"topicaction"}%
+<div style="padding-bottom:.5em"><input type="checkbox" name="forcenewrevision" %FORCENEWREVISIONCHECKBOX% /> %MAKETEXT{"Force new revision"}%
+<small>(<a href="#%MAKETEXT{"Opens page in new window"}%" target="ForceNewRevision" onclick="return launchWindow('%TWIKIWEB%','ForceNewRevision')" href="%SCRIPTURLPATH{"view"}%/%TWIKIWEB%/ForceNewRevision" title='%MAKETEXT{"Read new revision help text in new window"}%' rel='nofollow'>help</a>)</small></div>
+<input type="submit" class="twikiSubmit" name="action_save" %MAKETEXT{"value='Save' accesskey='s'"}% />
+%TMPL:P{"sep"}% 
+<input type="submit" class="twikiButton" name="action_quietsave" %MAKETEXT{"value='Quiet save' accesskey='q'"}% />
+%TMPL:P{"sep"}%
+<input type="submit" class="twikiButton" name="action_checkpoint" %MAKETEXT{"value='Save and Continue' accesskey='k'"}% /> %MAKETEXT{"or"}%
+<input type="submit" class="twikiButton" name="action_preview" %MAKETEXT{"value='Preview' accesskey='p'"}% /> %MAKETEXT{"or"}%
+<input type="submit" class="twikiButton" name="action_cancel" title='%MAKETEXT{"Cancel editing and discard changes"}%' %MAKETEXT{"value='Cancel' accesskey='c'"}% />
+<div class=AccessKeyInfo><a href="#%MAKETEXT{"Opens page in new window"}%" onclick="launchWindow('%TWIKIWEB%', 'AccessKeys'); return false;">%MAKETEXT{"Access keys"}%</a>: %MAKETEXT{"S = Save, Q = Quiet save, K = Save and Continue, P = Preview, C = Cancel"}%</div>%TMPL:END%
+
+%TMPL:DEF{"titleaction"}%(edit) %TMPL:END%
+%TMPL:DEF{"titlehelp"}%%TMPL:END%
+%TMPL:DEF{"webaction"}%Change topic%TMPL:END%
+
+%TMPL:P{"htmldoctype"}%
+%TMPL:P{"head"}%
+%TMPL:P{"bodystart"}%
+%TMPL:P{"main"}%
+%TMPL:P{"bodyend"}%

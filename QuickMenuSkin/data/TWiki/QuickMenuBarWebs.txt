@@ -1,0 +1,6 @@
+%META:TOPICINFO{author="TWiki:Main/VernonLyon" date="1150724840" format="1.1" version="1.1"}%
+<pre>%STARTINCLUDE%<noautolink>
+websMenu = new QuickMenu.Menu(menuBar,"%MAKETEXT{"Webs"}%","","","%MAKETEXT{"List of Webs"}%");
+%WEBLIST{"websMenu.Add($qname,"%SCRIPTURLPATH{"view"}%/$name/%HOMETOPIC%","%ICONURLPATH{"web-bg"}%");
+websMenu.Items[websMenu.Items.length - 1].Icon.style.background="%$markerVAR{"WEBBGCOLOR" web=$qname}$marker%";"}%
+</noautolink>%STOPINCLUDE%</pre>

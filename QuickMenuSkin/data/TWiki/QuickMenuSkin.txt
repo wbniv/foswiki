@@ -1,0 +1,122 @@
+%META:TOPICINFO{author="TWiki:Main/VernonLyon" date="1164210519" format="1.1" version="1.1"}%
+
+---+ Quick Menu Skin
+
+<!--
+   * Set SHORTDESCRIPTION = A functional skin that replaces the left bar with a customizable Javascript menu system.
+-->
+%SHORTDESCRIPTION%
+
+
+---++ Screen Shot
+
+%SEARCH{ "QuickMenuSkin" scope="topic" nosearch="on" nototal="on" format="$pattern(.*\| *Screenshot\:[^\|]*\|([^\|]*).*)" }%
+
+---++ Installation
+
+*Note:* You do not need to install anything on the browser to use this skin. The following instructions are for the administrator who installs the skin on the server where TWiki is running.
+
+   * Download the ZIP file from the Skin Home page (see below)
+   * Unzip ==QuickMenuSkin.zip== in your twiki installation directory
+   * Test if installed: %SCRIPTURL{"view"}%/%WEB%/%TOPIC%?skin=quickmenu
+   * For skin activation see %TWIKIWEB%.TWikiSkins
+
+---++ Settings
+
+The menu can behave in two ways. When =CLICKMENU= is set to 0 then the menu automatically shows when you hover the mouse over the menu. When it is set to 1 then the menu is activated by clicking on it. By default =CLICKMENU= is set to 0.
+
+To add different menus to the menubar you can set =QUICKMENUBAR= to the topic containing the javascript for your own custom menus. By default =QUICKMENUBAR= is set to =%%NOP%TWIKIWEB%.QuickMenuBar=, have a look at %TWIKIWEB%.QuickMenuBar to see how the menus are created.
+
+To change settings just add them to %MAINWEB%.TWikiPreferences, WebPreferences, or your personal page.%BR%
+Eg:
+<pre>
+   * %NOP%Set CLICKMENU = 1
+   * %NOP%Set QUICKMENUBAR = %%NOP%TWIKIWEB%.QuickMenuBar
+</pre>
+
+---++ Modifying Menus
+
+The menu bar is built by default from %TWIKIWEB%.QuickMenuBar, which in turn includes %TWIKIWEB%.QuickMenuBarLogin (if login is enabled) and %TWIKIWEB%.QuickMenuBarWebs and %TWIKIWEB%.QuickMenuBarUtilities. If internationalisation is enabled, then %TWIKIWEB%.QuickMenuBarLanguage is also included. These files contain javascript commands that are included by the skin's templates. You can edit these files to customize the menu, but be sure to avoid unwanted linking by enclosing your code in =&lt;noautolink&gt;= ... =&lt;/noautolink&gt;= tags.
+
+<noautolink>
+---+++ QuickMenu Javascript Reference
+
+   * *To create a new menu* %BR%
+   =mymenu = new QuickMenu.Menu(menuBar, "Menu Text", "", "/icons/icon.gif", "Menu Tip Information");= %BR%
+   or just a link:%BR%
+   =new QuickMenu.Menu(menuBar, "TWiki.org", "http://twiki.org/");= %BR%
+   or a javascript function:%BR%
+   =new QuickMenu.Menu(menuBar, "Say Hello", "js:alert('Hello')");=
+
+   * *Add items to the menu* %BR%
+   =mymenu.Add("Item Text", "%<nop>SCRIPTURLPATH{"view"}%/PageToView", "", "Item Tip");= %BR%
+   =mymenu.Add("Text Formatting", "%<nop>SCRIPTURLPATH{"view"}%/TextFormattingRules", "%<nop>ICONURLPATH{"help"}%", "More formatting help");= %BR%
+   =mymenu.Add("Disabled item");=
+
+   * *Add a submenu* %BR%
+   =mymenu.Add("Choose Colour", ":Colour");= %BR%
+   =mymenu.Colour.Add(...= %BR%
+   or%BR%
+   =submenu = mymenu.Add("Choose Colour", ":");= %BR%
+   =submenu.Add(...=
+
+---+++ QuickMenu Examples
+
+   * *A _cleaner_ interface* %N% %BR%
+   <small>You don't need to store each menu &amp; submenu in variables.</small> %BR%
+ =with (new QuickMenu.Menu(menuBar, "Menu")) { %BR%
+   Add("Item1", "url"); %BR%
+   Add(); // Separator %BR%
+   with (Add("SubMenu", ":")) { %BR%
+     Add("SubItem1", "url"); %BR%
+     Add("SubItem2", "url"); %BR%
+     Add(... %BR%
+   } %BR%
+ }=
+
+   * *An _edit_ button on the menubar* %BR%
+   =new QuickMenu.Menu(menuBar, "%%NOP%MAKETEXT{"Edit"}%", "%%NOP%SCRIPTURLPATH{"edit"}%/%%NOP%BASEWEB%/%%NOP%BASETOPIC%?t=%%NOP%GMTIME{"$epoch"}%", "%%NOP%ICONURLPATH{"edittopic"}%", "%%NOP%MAKETEXT{"Edit this topic text"}%");=
+
+   * *A _recent changes_ menu* <small>(Thanx to TWiki:Main/PeterHuisken) %BR%
+   Creates a list of the 10 most recently changed topics.</small> %BR%
+ =with (new QuickMenu.Menu(menuBar,"%%NOP%MAKETEXT{"Changes"}%","","","%%NOP%MAKETEXT{"Latest Changes"}%")) { %BR%
+   %%NOP%SEARCH{".*" web="%%NOP%BASEWEB%" regex="on" nosearch="on" nototal="on" order="modified" reverse="on" limit="10" format="  Add(\"$topic\", \"%%NOP%SCRIPTURLPATH{view}%/$web/$topic\",\"\");"}% %BR%
+ }=
+
+   * *A _main topics_ menu* %BR%
+   <small>Lists all the child topics of WebHome.</small> %BR%
+ =with (new QuickMenu.Menu(menuBar,"Web Topics")){ %BR%
+   Add("%%NOP%HOMETOPIC%", "%%NOP%SCRIPTURLPATH{view}%/%%NOP%BASEWEB%/%%NOP%HOMETOPIC%", "%%NOP%ICONURLPATH{"home"}%"); %BR%
+   Add(); %BR%
+  %%NOP%SEARCH{"\%META:TOPICPARENT\{name=\"%%NOP%HOMETOPIC%\"\}\%" type="regex" nonoise="on" format="  Add(\"$topic\", \"%%NOP%SCRIPTURLPATH{view}%/$web/$topic\");"}% %BR%
+ }=
+</noautolink>
+
+---++ Skin Info
+
+|  Description: | Functional skin that replaces the left bar with a customizable Javascript menu system |
+|  Screenshot: | <a href="%ATTACHURL%/fullscreen.gif"><img src="%ATTACHURL%/screenshot.gif" alt="Click for full screen image" width="600" height="130" /></a> |
+|  Preview: | [[%SCRIPTURL{"view"}%/%WEB%/%TOPIC%?skin=quickmenu][Preview with this topic]] |
+|  Base Name: | quickmenu |
+|  Skin Author: | TWiki:Main/VernonLyon |
+|  Skin Version: | 1 Feb 2007 (v1.07) |
+| Change&nbsp;History: | <!-- specify latest version first -->&nbsp; |
+|  1 Feb 2007: | Added a missing template for TWiki 4.1.0 (v1.07) |
+|  21 Nov 2006: | Added backlinks template, Fixed IE "select" bug, Menu items are actual links, Cleaner interface (v1.06) |
+|  13 Sep 2006: | Fixed IE bug (v1.05) |
+|  18 Jul 2006: | Added language support (v1.04) |
+|  13 Jul 2006: | Added support for icons in the menubar (v1.03) |
+|  4 Jul 2006: | Added =QUICKMENUBAR= setting (v1.02) |
+|  21 Jun 2006: | Added "Account" menu (v1.01) |
+|  13 Jun 2006: | Initial version (v1.00) |
+|  Dependencies: |  |
+|  Skin Home: | http://TWiki.org/cgi-bin/view/Plugins/QuickMenuSkin |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/QuickMenuSkinDev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/QuickMenuSkinAppraisal |
+
+__Related topic:__ %TWIKIWEB%.TWikiSkins, %TWIKIWEB%.TWikiSkinBrowser, %TWIKIWEB%.UserDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory
+
+-- TWiki:Main/VernonLyon - 13 Jun 2006
+
+%META:FILEATTACHMENT{name="screenshot.gif" attr="h" autoattached="1" comment="" date="1151935718" path="screenshot.gif" size="8839" user="TWiki:Main/VernonLyon" version=""}%
+%META:FILEATTACHMENT{name="fullscreen.gif" attr="h" autoattached="1" comment="" date="1151935718" path="fullscreen.gif" size="24979" user="TWiki:Main/VernonLyon" version=""}%
