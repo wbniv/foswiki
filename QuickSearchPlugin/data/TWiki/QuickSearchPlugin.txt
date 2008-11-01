@@ -1,0 +1,107 @@
+%META:TOPICINFO{author="DavidAlsup" date="1015952040" format="1.0" version="1.4"}%
+---++ %TOPIC%
+
+
+
+Provides a small subset of the functionality of <nop>%SEARCH% with an emphasis on speed.
+
+
+
+_Alpha release. Documentation will be revised. More features finalized._
+
+
+
+---+++ Syntax Rules
+
+
+
+Adds the following tags:
+
+	* %<nop>QUICKSEARCH% - displays either the names of topics matching the search or the total number of such topics.
+
+
+
+<blockquote>
+
+Attributes:
+
+	* *web* - specify web or webs to be searched (same syntax as <nop>%SEARCH%)
+
+	* *nototal* - disable the listing of totals at the end of the list
+
+	* *totalonly* - disable the listing of topic names, only return the number of matches
+
+	* *search* - _required_ string to search
+
+	* *regex* - treat search string as a regular expression
+
+	* *casesensitive* - perform case sensitive search
+</blockquote>
+
+Formatting is based on a template (quicksearch.tmpl) where the only fields updated are webname (<nop>%WEB%) and topic name (<nop>%TOPIC%). If the totalonly attribute is set (e.g. totalonly="on") then just the number of matched topics is returned, this allows you to put search totals in tables, etc.
+
+
+---+++ Plugin Installation Instructions
+
+
+<!--
+
+		* Set PLDIR = twiki/lib/TWiki/Plugins/
+
+-->
+
+
+
+	* Download the ZIP file from the Plugin web (see below). Contents:
+
+
+
+	| *File:* | *Description:* |
+	| ==data/Plugins/%TOPIC%.txt== | Plugin topic |
+	| ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	| ==twiki/templates/quicksearch.tmpl== | Template for generating topic lists mode |
+
+
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory.
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* If you see the count of topics in the plugin web here:
+
+
+
+%QUICKSEARCH{search="*"}%
+
+
+  then installation was successful
+
+
+<!---	* Add the following line to the "TWiki Plugins" section of %TWIKIWEB%.TextFormattingRules:
+
+		* Plugins.%TOPIC%: Quick searches
+
+-->
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Add quick and dirty search capability to topics. Implements small subset of regular =%<nop>SEARCH%= facility.
+
+
+
+---+++ Plugin Info
+
+
+
+|  One Line Description: | Fast, stripped-down search |
+|  Plugin Author: | Main.DaveAlsup |
+|  Plugin Version: | 0.1 |
+|  Change History: | 27 Feb 2002 Internal (0.1) release <br> 12 Mar 2002 Initial Release |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.0 _(only tested on 5.6.1 so far)_ |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+
+-- Main.DaveAlsup - 12 Mar 2002 <br>	
