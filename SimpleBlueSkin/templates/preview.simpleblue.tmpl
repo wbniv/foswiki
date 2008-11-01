@@ -1,0 +1,56 @@
+%TMPL:INCLUDE{"twiki"}%
+
+%TMPL:DEF{"script"}%
+<script type="text/javascript">
+<!--HIDE
+function initPage() { }
+function launchWindow( theWeb, theTopic ) {
+	var win = open("%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/" + theWeb + "/" + theTopic + "?skin=plain", theTopic, "titlebar=0,width=500,height=480,resizable,scrollbars");
+  if( win ) {
+    win.focus();
+  }
+  return false;
+}
+function submitForm()
+{
+    document.forms[0].submit()
+}
+//STOP HIDING-->
+</script>
+<style type="text/css" media="all">
+#simpleBlueContent {
+	background-image:url(%PREVIEWBGIMAGE%);
+}
+</style>%TMPL:END%
+
+%TMPL:DEF{"actionstring"}%Preview%TMPL:END%
+
+%TMPL:DEF{"editactions"}%
+<a href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%?unlock=on">Discard</a>&nbsp;%TMPL:P{"sep"}%&nbsp;<a href="javascript:submitForm();">Save Changes</a>%FORMFIELDS%<br>
+<input type="checkbox" name="unlock" %RELEASEEDITLOCKCHECKBOX% />Release edit lock<a target="UnlockTopic" onclick="return launchWindow('%TWIKIWEB%','UnlockTopic')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/UnlockTopic">&nbsp;help</a><br/><input type="checkbox" name="dontnotify" %DONTNOTIFYCHECKBOX% />Minor changes, don't notify<a target="DontNotify" onclick="return launchWindow('%TWIKIWEB%','DontNotify')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/DontNotify">&nbsp;help</a>
+%TMPL:END%
+
+%TMPL:DEF{"simpleBlueFormAction"}%<form name="main" action="%SCRIPTURLPATH%/save%SCRIPTSUFFIX%/%WEB%/%TOPIC%" method="post">%TMPL:END%
+
+%TMPL:DEF{"simpleBlueContentPane"}%
+%TEXT%
+%META{"form"}%
+%META{"attachments"}%
+<input type="hidden" name="text" value="%HIDDENTEXT%" />
+<input type="hidden" name="cmd" value="%CMD%" />
+<input type="hidden" name="formtemplate" value="%FORMTEMPLATE%" />
+<input type="hidden" name="topicparent" value="%TOPICPARENT%" />
+ <div id="simpleBlueSpacer10">&nbsp;</div>
+%TMPL:P{"actionbarbottomvariable"}%
+%TMPL:P{"contentnotes"}%%TMPL:END%
+
+%TMPL:DEF{"notes"}%
+<b>Do not forget</b> to save your changes.
+<ul>
+  <li> To <b>save</b> changes: Press the [Save Changes] button.</li>
+  <li> To make <b>more changes</b>: Go back in your browser.</li>
+  <li> To <b>cancel</b> and discard any changes: Press the [Discard] button.</li>
+</ul>%TMPL:END%
+
+
+%TMPL:P{"simpleBluePage"}%

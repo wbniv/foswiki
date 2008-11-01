@@ -1,0 +1,10 @@
+%TMPL:INCLUDE{"attach"}%
+
+%TMPL:DEF{"editactions"}%
+<input type="hidden" name="changeproperties" value=""/>
+<a href="%TOPIC%">Cancel</a>&nbsp;%TMPL:P{"sep"}%&nbsp;<a href="%SCRIPTURLPATH%/rename%SCRIPTSUFFIX%/%WEB%/%TOPIC%?attachment=%FILENAME%">Move&nbsp;attachment...</a>&nbsp;%TMPL:P{"sep"}%&nbsp;<a href="javascript:changeProperties();">Change Properties</a>&nbsp;%TMPL:P{"sep"}%&nbsp;<a href="javascript:uploadFile();">Upload</a>%TMPL:END%
+
+%TMPL:DEF{"attachHeading"}%
+---++ Update or Change Attachment %FILENAME%%TMPL:END%
+
+%TMPL:P{"attach"}%

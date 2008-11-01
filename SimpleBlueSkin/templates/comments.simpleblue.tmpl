@@ -1,0 +1,226 @@
+%META:TOPICINFO{author="PeterThoeny" date="1091934169" format="1.0" version="1.1"}%
+%META:TOPICPARENT{name="CommentPlugin"}%
+Templates for CommentPlugin - See %TWIKIWEB%.CommentPlugin#Customisation for help
+
+*WARNING: THIS FILE WILL BE OVERWRITTEN WHEN YOU UPGRADE THE COMMENT PLUGIN*
+
+Put your local templates into TWiki.UserTemplates.
+*LOCAL TEMPLATES WILL OVERRIDE TEMPLATES DEFINED IN THIS FILE*
+
+%TOC%
+
+---+ Template definitions
+---++ Templates used in rest of file
+Generic prompt box used by other templates
+<verbatim>
+%TMPL:DEF{promptbox}%
+---+++ Your comment
+<div id="simpleBlueTable">
+  <div id="simpleBlueTableRow">
+    <div id="simpleBlue2CTableColumn1">
+      <textarea %DISABLED% class="width430" rows="%rows|3%" name="comment" wrap="soft" onfocus="if(this.value=='%MESSAGE%')this.value=''" onblur="if(this.value=='')this.value='%MESSAGE%'">%MESSAGE%</textarea>
+    </div>
+    <div id="simpleBlue2CTableColumn2">
+      <input %DISABLED% type="submit" value="%button|Add comment%" />
+    </div>
+  </div>
+  <div id="simpleBlueClearTag">&nbsp;</div>
+</div>
+%TMPL:END%
+</verbatim>
+Standard comment, preserving formatting, signed and dated
+<verbatim>
+%TMPL:DEF{outputstandard}%
+
+%URLPARAM{"comment"}%
+
+-- %WIKIUSERNAME% - %DATE%
+%TMPL:END%
+</verbatim>
+Short comment, signed and dated
+<verbatim>
+%TMPL:DEF{outputoneliner}%	* %URLPARAM{"comment"}% -- %WIKIUSERNAME% - %DATE% %TIME%%TMPL:END%
+</verbatim>
+---------------------------------------------------------------------------
+---++ User templates
+---+++ top
+Comments, signed and dated, added at top of file
+<verbatim>
+%TMPL:DEF{PROMPT:top}%
+---++ Comments%TMPL:P{promptbox}%%TMPL:END%
+</verbatim>
+
+<verbatim>
+%TMPL:DEF{OUTPUT:top}%%TMPL:P{outputoneliner}%%POS:TOP%
+%TMPL:END%
+</verbatim>
+---------------------------------------------------------------------------
+---+++ bottom
+Comments, signed and dated, added at end of file
+<verbatim>
+%TMPL:DEF{PROMPT:bottom}%%TMPL:P{promptbox}%%TMPL:END%
+</verbatim>
+<verbatim>
+%TMPL:DEF{OUTPUT:bottom}%%POS:BOTTOM%%TMPL:P{outputoneliner}%%TMPL:END%
+</verbatim>
+---------------------------------------------------------------------------
+---+++ above
+Comments, signed and dated, added immediately before anchor
+<verbatim>
+%TMPL:DEF{PROMPT:above}%%TMPL:P{promptbox}%%TMPL:END%
+</verbatim>
+<verbatim>
+%TMPL:DEF{OUTPUT:above}%%POS:BEFORE%%TMPL:P{outputstandard}%
+%TMPL:END%
+</verbatim>
+---------------------------------------------------------------------------
+---+++ below
+Comments, signed and dated, added immediately below anchor
+<verbatim>
+%TMPL:DEF{PROMPT:below}%%TMPL:P{promptbox}%%TMPL:END%
+</verbatim>
+<verbatim>
+%TMPL:DEF{OUTPUT:below}%%POS:AFTER%%TMPL:P{outputstandard}%
+%TMPL:END%
+</verbatim>
+---------------------------------------------------------------------------
+---+++ tableprepend
+Comments, signed and dated, added at top of table below the
+anchor/location/COMMENT
+<verbatim>
+%TMPL:DEF{PROMPT:tableprepend}%%TMPL:P{promptbox}%%TMPL:END%
+</verbatim>
+<verbatim>
+%TMPL:DEF{OUTPUT:tableprepend}%%POS:AFTER%| %URLPARAM{"comment" newline="<br />"}% </td><td> %WIKIUSERNAME% </td><td> %DATE% %TIME% |
+%TMPL:END%
+</verbatim>
+---------------------------------------------------------------------------
+---+++ tableappend
+Comments, signed and dated, added at end of table above the anchor/location/COMMENT
+<verbatim>
+%TMPL:DEF{PROMPT:tableappend}%%TMPL:P{promptbox}%%TMPL:END%
+</verbatim>
+<verbatim>
+%TMPL:DEF{OUTPUT:tableappend}%%POS:BEFORE%| %URLPARAM{"comment" newline="<br />"}% | %WIKIUSERNAME% | %DATE% %TIME% |
+%TMPL:END%
+</verbatim>
+---------------------------------------------------------------------------
+---+++ after: Add before the comment box
+<verbatim>
+%TMPL:DEF{PROMPT:after}%%TMPL:P{promptbox}%%TMPL:END%
+</verbatim>
+<verbatim>
+%TMPL:DEF{OUTPUT:after}%%TMPL:P{outputoneliner}% %POS:BEFORE%%TMPL:END%
+</verbatim>
+----------------------------------------------------------------------------
+---+++ action
+Action added to action table directly above comment box
+<verbatim>
+%TMPL:DEF{PROMPT:action}%
+<table>
+ <tr>
+  <td align="right">Action for (TWiki.WikiName):</td>
+  <td><input name="who" type="text" size="50" value="%URLPARAM{"who"}%" /></td>
+ </tr>
+ <tr>
+  <td align="right">Due date:</td>
+  <td>
+	<input name="due" id="idDue" type="text" size="30" value="%URLPARAM{"due"}%" />
+  </td>
+ </tr>
+ <tr>
+  <td colspan="2">
+	<textarea %DISABLED% rows="5" cols="120" name="comment" wrap="soft"></textarea>
+  </td>
+ </tr>
+ <tr>
+  <td colspan=2 align=middle><input %DISABLED% type="submit" value="Add action" /></td>
+ </tr>
+</table>
+%TMPL:END%
+</verbatim>
+<verbatim>
+%TMPL:DEF{OUTPUT:action}%%POS:BEFORE%%ACTION{who="%URLPARAM{"who"}%" due="%URLPARAM{"due"}%"}% %URLPARAM{"comment" newline="<br />"}%<br />- Created by %WIKIUSERNAME%, %DATE% %TIME%
+%TMPL:END%
+</verbatim>
+----------------------------------------------------------------------------
+---+++ poll
+TWiki table that collects results from a poll on plugin usage
+<verbatim>
+%TMPL:DEF{PROMPT:poll}%
+<table valign="middle">
+ <tr>
+  <td align=right>Number of sites?</td>
+  <td align=left><input %DISABLED% type="text" name="sites" size="3" value="1"></td>
+  <td align=right>Plugin hacked?</td>
+  <td align=left>
+	<select %DISABLED% name="pluginhacked">
+	 <option>no</option>
+	 <option>yes</option>
+	</select>
+  </td>
+  <td align=right>TWiki hacked?</td>
+  <td align=left>
+	<select %DISABLED% name="twikihacked">
+	 <option>no</option>
+	 <option>yes</option>
+	</select>
+  </td>
+  <td align=right>Remarks</td>
+  <td align=left><input %DISABLED% type="text" name="remarks" size="30" value=""></td>
+  <td>
+	<input %DISABLED% type="submit" value="Yes, I use it" />
+  </td>
+ </tr>
+</table>
+%TMPL:END%
+</verbatim>
+<verbatim>
+%TMPL:DEF{OUTPUT:poll}%%POS:BEFORE%| %WIKIUSERNAME% | %URLPARAM{"sites"}% | %URLPARAM{"pluginhacked"}% | %URLPARAM{"twikihacked"}% | %URLPARAM{"remarks"}% |
+%TMPL:END%
+</verbatim>
+---------------------------------------------------------------------------
+---+++ table
+Tablerows adding on end - TWiki:Main/FranzJosefSilli
+<verbatim>
+%TMPL:DEF{PROMPT:table}%
+<hr width="60%"/> Date: <input %DISABLED% type="text" size="40" name="comment_date" /> <br /> City: <input %DISABLED% type="text" size="40" name="comment_city" value="" /> <input %DISABLED% type="submit" value="%button|Add%" /> entry <hr width="90%"/>
+%TMPL:END%
+</verbatim>
+<verbatim>
+%TMPL:DEF{OUTPUT:table}%
+%POS:BEFORE%| %URLPARAM{"comment_date"}% | %WIKIUSERNAME% | %URLPARAM{"comment_city" }% |
+%TMPL:END%
+</verbatim>
+---------------------------------------------------------------------------
+---+++ toctalk
+Talk using TOC adding on end - TWiki:Main/FranzJosefSilli
+<verbatim>
+%TMPL:DEF{PROMPT:toctalk}%
+<hr width="60%"/> Summary: <input %DISABLED% type="text" size="40" name="comment_summary" /> <br /> <textarea %DISABLED% rows="%rows|3%" cols="%cols|50%" name="comment_text" wrap="soft" onfocus="if(this.value=='%MESSAGE%')this.value=''" onblur="if(this.value=='')this.value='%MESSAGE%'">%MESSAGE%</textarea> <br /> <input %DISABLED% type="submit" value="%button|Add%" /> <hr width="90%"/>
+%TMPL:END%
+</verbatim>
+<verbatim>
+%TMPL:DEF{OUTPUT:toctalk}%
+%POS:BEFORE%---+++ %DATE% %TIME% %WIKIUSERNAME%: %URLPARAM{"comment_summary"}%
+%POS:BEFORE%%URLPARAM{"comment_text" }%
+%POS:BEFORE%
+%TMPL:END%
+</verbatim>
+---------------------------------------------------------------------------
+---+++ bookmark
+Talk using TOC adding on end - TWiki:Main/FranzJosefSilli
+<verbatim>
+%TMPL:DEF{PROMPT:bookmark}%
+<hr width="60%"/> URL: <input %DISABLED% type="text" size="40" name="comment_url" value="http://" /> <br /> Link: <input %DISABLED% type="text" size="40" name="comment_link" /> <br /> Text: <input %DISABLED% type="text" size="40" name="comment_text" value="%MESSAGE%" /> <input %DISABLED% type="submit" value="%button|Add%" />	bookmark <hr width="90%"/>
+%TMPL:END%
+</verbatim>
+<verbatim>
+%TMPL:DEF{OUTPUT:bookmark}%
+%POS:BEFORE%	* [[%URLPARAM{"comment_url"}%][%URLPARAM{"comment_link"}%]] - %URLPARAM{"comment_text" }%
+%TMPL:END%
+</verbatim>
+
+
+%TMPL:INCLUDE{"TWiki.UserTemplates"}% 
+

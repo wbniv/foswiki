@@ -1,0 +1,25 @@
+%TMPL:INCLUDE{"twiki"}%
+%TMPL:INCLUDE{"renamebase"}%
+
+
+
+%TMPL:DEF{"actionstring"}%Rename%TMPL:END%
+
+
+
+%TMPL:DEF{"webaction"}% Change references (post rename) %TMPL:END%
+
+
+%TMPL:DEF{"newweb"}%<input type="hidden" name="newweb" value="%NEW_WEB%" />%NEW_WEB%%TMPL:END%
+
+
+
+%TMPL:DEF{"hidden"}% <input type="hidden" name="changeRefs" value="on" /> %TMPL:END%
+
+
+%TMPL:DEF{"editactions"}%
+[[%WEB%.%TOPIC%][Cancel]]&nbsp;%TMPL:P{"sep"}%&nbsp;<a href='javascript:submitForm("submit");'>Change references</a>
+%TMPL:END%
+
+
+%TMPL:P{"renamebase"}%

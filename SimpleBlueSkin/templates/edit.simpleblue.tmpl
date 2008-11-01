@@ -1,0 +1,116 @@
+%TMPL:INCLUDE{"twiki"}%
+%TMPL:DEF{"script"}%
+<script type="text/javascript">
+<!--HIDE
+ns4 = (document.layers)? true:false;
+ie4 = (document.all)? true:false;
+dom = (document.getElementById)?true:false;
+
+toShow=new Array();
+toHide=new Array();
+
+function initForm() {
+  document.main.text.focus();
+  for (i = 0; i < toShow.length; i++) {
+     if(dom) {
+        document.getElementById(toShow[i]).style.display="inline";
+     } else if( ie4 ) {
+        document.all[toShow[i]].style.display="inline";
+     } else if( ns4 ) {
+        document.layers[toShow[i]].style.display="inline";
+     }
+  }
+  for ( i = 0; i < toHide.length; i++) {
+    if(dom) {
+        document.getElementById(toHide[i]).style.display="none";
+    } else if( ie4 ) {
+        document.all[toHide[i]].style.display="none";
+    } else if( ns4 ) {
+        document.layers[toHide[i]].style.display="none";
+    }
+  }
+}
+function checkAll( theButton, theButtonOffset, theNum, theCheck )
+{
+  // find button element index
+  var j = 0;
+  for( var i = 0; i <= document.main.length; i++ ) {
+    if( theButton == document.main.elements[i] ) {
+      j = i;
+      break;
+    }
+  }
+  // set/clear all checkboxes
+  var last = j+theButtonOffset+theNum;
+  for( i = last-theNum; i < last; i++ ) {
+    document.main.elements[i].checked = theCheck;
+  }
+}
+function launchWindow( theWeb, theTopic, theAnchor ) {
+  if( ! theAnchor ) {
+    theAnchor = "";
+  }
+  win = open( "%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/" + theWeb + "/" + theTopic + "?skin=plain" + theAnchor,
+              theTopic, "titlebar=0,width=500,height=480,resizable,scrollbars");
+  if( win ) {
+    win.focus();
+  }
+  return false;
+}
+
+function submitForm(id)
+{
+  var formid = document.forms.length-1;
+  if (id == "cancel") {
+    document.forms[formid].action.value="action_cancel";
+  }
+  else if (id == "checkpoint") {
+    document.forms[formid].action.value="action_checkpoint";
+  }
+  else if (id == "quietsave") {
+    document.forms[formid].action.value="action_quietsave";
+  }
+  else if (id == "save") {
+    document.forms[formid].action.value="action_save";
+  }
+  else if (id == "preview") {
+    document.forms[formid].action.value="action_preview";
+  }
+  document.forms[formid].submit()
+}
+
+//STOP HIDING-->
+</script>%TMPL:END%
+
+%TMPL:DEF{"notes"}%
+%INCLUDE{"%TWIKIWEB%.WikiSyntaxSummary"}%
+%TMPL:END%
+
+%TMPL:DEF{"editactions"}%
+<input type="hidden" name="action" id="" value=""/>
+<a href='javascript:submitForm("cancel");'>Cancel</a>&nbsp;%TMPL:P{"sep"}%&nbsp;<a href='javascript:submitForm("checkpoint");'>Save and Continue</a>&nbsp;%TMPL:P{"sep"}%&nbsp;<a href='javascript:submitForm("quietsave");'><nop>QuietSave</a>&nbsp;%TMPL:P{"sep"}%&nbsp;<a href='javascript:submitForm("save");'>Save</a>&nbsp;%TMPL:P{"sep"}%&nbsp;<a href='javascript:submitForm("preview");'>Preview</a><br>
+<input type="checkbox" name="unlock" %RELEASEEDITLOCKCHECKBOX% />Release edit lock<a target="UnlockTopic" onclick="return launchWindow('%TWIKIWEB%','UnlockTopic')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/UnlockTopic">&nbsp;help</a><br/><input type="checkbox" name="dontnotify" %DONTNOTIFYCHECKBOX% />Minor changes, don't notify<a target="DontNotify" onclick="return launchWindow('%TWIKIWEB%','DontNotify')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/DontNotify">&nbsp;help</a>
+%TMPL:END%
+
+%TMPL:DEF{"actionstring"}%Edit%TMPL:END%
+
+%TMPL:DEF{"simpleBlueFormAction"}%
+<form name="main" action="%SCRIPTURLPATH%/save%SCRIPTSUFFIX%/%WEB%/%TOPIC%" method="post" onSubmit="javascript:check();">
+%TMPL:END%
+
+%TMPL:DEF{"simpleBlueContentPane"}%
+%TMPL:P{"contentheadingvariable"}%
+See below for help in editing this page.<p/>
+<textarea name="text" wrap="virtual" rows="%EDITBOXHEIGHT%" cols="%EDITBOXWIDTH%" style="%EDITBOXSTYLE%" onkeydown="if(window.event.keyCode==27) return false;">%TEXT%</textarea><br />
+<input type="hidden" name="formtemplate" value="%FORMTEMPLATE%" />
+<input type="hidden" name="topicparent" value="%TOPICPARENT%" />
+<input type="hidden" name="cmd" value="%CMD%" />
+%FORMFIELDS%
+ <div id="simpleBlueSpacer10">&nbsp;</div>
+ %TMPL:P{"actionbarbottomvariable"}%
+ %TMPL:P{"contentnotes"}%
+%TMPL:END%
+
+%TMPL:P{"simpleBluePage"}%
+
+

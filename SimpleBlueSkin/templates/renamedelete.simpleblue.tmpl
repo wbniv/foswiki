@@ -1,0 +1,43 @@
+%TMPL:INCLUDE{"twiki"}%
+%TMPL:INCLUDE{"renamebase"}%
+
+
+
+%TMPL:DEF{"actionstring"}%Delete%TMPL:END%
+
+
+
+%TMPL:DEF{"webaction"}%Delete Topic <code>%TOPIC%</code>:%TMPL:END%
+
+
+
+%TMPL:DEF{"newtopic"}%<input name="newtopic" value="%NEW_TOPIC%" class="width200" />%TMPL:END%
+
+
+%TMPL:DEF{"notes"}%
+*Note:*
+   * Deleted topics will be moved to the Trash web.
+   * If this topic already exists in the Trash web you can specify a different name, e.g. <nop>%NEW_TOPIC%1234.
+   * Get help on
+     <a target="ManagingTopics" onclick="return launchWindow('%TWIKIWEB%','ManagingTopics')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/ManagingTopics">Renaming and moving topics</a>.
+   * Select the Trash Web to delete the topic.
+   * The checkmarked topics will be updated (another form will appear which will _eventually_ allow you to rename any topics that were locked)   
+%TMPL:END%
+
+
+%TMPL:DEF{"hidden"}% 
+<script type="text/javascript">
+<!-- hide
+checkAll(false)
+// stop hiding -->
+</script> %TMPL:END%
+
+
+
+%TMPL:DEF{"editactions"}%
+[[%WEB%.%TOPIC%][Cancel]]&nbsp;%TMPL:P{"sep"}%&nbsp;<a href='javascript:submitForm("submit");'>Delete</a>&nbsp;%TMPL:P{"sep"}%&nbsp;
+<a href='javascript:checkAll(true);'>Select all</a>&nbsp;%TMPL:P{"sep"}%&nbsp;<a href='javascript:checkAll(false);'>Clear all</a><input type="hidden" name="changeRefs" value="0" />
+%TMPL:END%
+
+
+%TMPL:P{"renamebase"}%

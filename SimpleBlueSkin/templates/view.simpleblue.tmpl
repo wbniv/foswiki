@@ -1,0 +1,13 @@
+%TMPL:INCLUDE{"twiki"}%
+
+%TMPL:DEF{"actionsBottomBar"}%%EDITTOPIC%&nbsp;%TMPL:P{"sep"}%&nbsp;<a href="%SCRIPTURLPATH%/attach%SCRIPTSUFFIX%/%WEB%/%TOPIC%">Attach image or document</a>&nbsp;%TMPL:P{"sep"}%&nbsp;<a href="%SCRIPTURLPATH%/oops%SCRIPTSUFFIX%/%WEB%/%TOPIC%?template=oopsmore&param1=%MAXREV%&param2=%CURRREV%">More topic actions</a>&nbsp;%TMPL:P{"sep"}%&nbsp;<a href="%SCRIPTURLPATH%/search%SCRIPTSUFFIX%/%WEB%/SearchResult?scope=text&amp;regex=on&amp;excludetopic=%TOPIC%&amp;search=%SPACEDTOPIC%%5B%5EA-Za-z0-9%5D">Backlinks</a>%TMPL:END%
+
+%TMPL:DEF{"simpleBlueFormAction"}%<form name="main" action="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%"> %BROADCASTMESSAGE%%TMPL:END%
+
+%TMPL:DEF{"simpleBlueContentPane"}%%TMPL:P{"actionbartop"}%%TEXT%%META{"attachments"}%
+%META{"form"}%
+<div id="simpeBlueSpacer10">&nbsp;</div>
+%TMPL:P{"actionbarbottom"}%
+%TMPL:END%
+
+%TMPL:P{"simpleBluePage"}%
