@@ -1,0 +1,47 @@
+%META:TOPICINFO{author="MeredithLesly" date="1149271755" format="1.1" reprev="1.2" version="1.2"}%
+---+ Fallback Plugin
+
+This plugin allows you to easily specify fallback topics and webs, which will be checked if the topic argument isn't found in the current web.
+
+---++ Syntax Rules
+
+| *Argument* | *Use* | *Default* |  *required* | 
+| =topic= | the topic you're looking for | none | yes, but can just specify topic in quotes |
+| =othertopics= | other topic names to look for if =topic= isn't found | none | no |
+| =otherwebs= | other webs to look in besides the current one | none | no |
+
+Returns =Web.Topic=, where =Web= is the Web it was found in, =Topic= the name of the topic that was found.
+
+%X% You really should provide either =othertopics= or =otherwebs=, or this tag is kinda useless. It will work, but what's the point?
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference
+a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>FALLBACKPLUGIN_SHORTDESCRIPTION%==
+
+   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = allows an easy way to specify fallback topics and webs to be checked if the topic argument isn't found in the current web.
+
+   * Debug plugin: (See output in =data/debug.txt=)
+      * Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+   * This plugin is currently only in SVN. It may or may not remain only there.
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.MeredithLesly |
+|  Copyright: | &copy; 2006, %MAINWEB%.MeredithLesly |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | 01 Feb 2006 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  02 Jun 2006: | Original version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.6 |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+
+-- %MAINWEB%.MeredithLesly - 01 Feb 2006
