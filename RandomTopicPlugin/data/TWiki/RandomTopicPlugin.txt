@@ -1,0 +1,79 @@
+---+ !! <nop>RandomTopicPlugin
+
+%TOC%
+
+Pick and display some random topic names/links.
+
+---++ Syntax Rules
+
+	* =%<nop>RANDOMTOPIC%= - inserts a single random topic name in its place.
+	* =%<nop>RANDOMTOPIC{<i>params</i>}%= - inserts potentially more than one random topic, with user formatting. Parameters:
+	* topics="5" - Number of topics requested. Default is 1 topic
+	* include="^Web" - Perl regular expression. Only topics that match this expression will _be shown_. Default is set by RANDOMTOPICPLUGIN_INCLUDE (see below).
+	* exclude="^Web" - Perl regular expression. Any topics that match this expression will _never be shown_. Default is set by RANDOMTOPICPLUGIN_EXCLUDE (see below).
+	* format="<i> format string </i>" . The format string accepts 3 quoted parameters:
+		* =$t= will be expanded to =\t= (necessary for bullet lists)
+		* =$n= will be expanded to =\n= (So that things appear on separate lines - again for bullet lists)
+		* =$topic= will be expanded to the randomly chosen name
+		* Default is a bullet list: ="$t* $topic$n"=
+
+---++ Examples
+
+	* =%<nop>RANDOMTOPIC{topics="5"}%= - 5 random topics as a bullet list
+        * =%<nop>RANDOMTOPIC{topics="5" format="| <nop>*<nop>$topic* | $topic |$n"}%=
+	* =%<nop>RANDOMTOPIC{topics="10" exclude="^Web"}%= - 10 random topics, excluding any that start with "Web".
+
+---++ <nop>%TOPIC% Global Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* Set SHORTDESCRIPTION = Pick a selection of Random Topics
+	* Perl regular expression matching topics to be selected from
+	* Set INCLUDETOPICS = 
+	* Perl regular expression matching topics to be excluded
+	* Set EXCLUDETOPICS = ^Web
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+      %$MANIFEST%
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the installation was successful:
+		* If you see a table below of 5 random topics then you have successfully installed this:
+----
+=%<nop>RANDOMTOPIC%=
+%RANDOMTOPIC%
+
+=%<nop>RANDOMTOPIC{ format="$topic" }%= <br />
+%RANDOMTOPIC{ format="$topic" }%
+
+=%<nop>RANDOMTOPIC{topics="5" format="| $topic |$n"}%=
+%RANDOMTOPIC{topics="5" format="| $topic |$n"}%
+
+=%<nop>RANDOMTOPIC{topics="5" format="| <nop>*$topic* | $topic |$n"}%=
+%RANDOMTOPIC{topics="5" format="| *$topic* | $topic |$n"}%
+----
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/MichaelSparks |
+|  Plugin Version: | %$VERSION% |
+| Change History: <!-- Most recent first --> ||
+|  27 Dec 2005 | 1.201 TWiki:Main.WillNorris - changed =INCLUDE= and =EXCLUDE= preferences (to =INCLUDETOPICS= and =EXCLUDETOPICS=) for Dakar compatability |
+|  15 Nov 2004 | 1.200 Crawford Currie - removed non-functional persist option, added exclude and include parameters, ported to Cairo & BuildContrib build system, add to CVS. |
+|  10 Jul 2003 | 1.010 Initial version |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Perl Version: | 5.005 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- TWiki:Main/MichaelSparks - 10 Jul 2003 <br />
+-- TWiki:Main/CrawfordCurrie - 15 Nov 2004 <br />
+-- TWiki:Main/WillNorris - 27 Dec 2005
