@@ -1,0 +1,4 @@
+# Release manifest for HttpsRedirectPlugin
+data/TWiki/HttpsRedirectPlugin.txt 0644 Documentation
+lib/TWiki/Plugins/HttpsRedirectPlugin.pm 0644 Perl module
+

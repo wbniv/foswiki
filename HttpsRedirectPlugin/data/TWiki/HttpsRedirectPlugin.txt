@@ -1,0 +1,38 @@
+%META:TOPICINFO{author="StephaneLenclud" date="1219703787" format="1.1" reprev="1.2" version="1.2"}%
+---+!! !HttpsRedirectPlugin
+<!--
+One line description, required for extensions repository catalog.
+   * Set SHORTDESCRIPTION = Redirect authenticated users to HTTPS URL.
+-->
+%SHORTDESCRIPTION%
+
+%TOC%
+
+---++ Usage
+
+The HTTPS redirect plug-in is designed to help you run a web site where guest users can access pages through HTTP and authenticated users will be forced to use HTTPS.
+This plug-in do not expose any TWiki =%TAG%=. Simply activate the plug-in from =configure= to take advantage of its functionality.
+Once enabled it will force authenticated users to use HTTPS by redirecting them to HTTPS URL if needed. Guests will be redirected to HTTPS only when accessing the login screen.
+
+---++ Installation Instructions
+
+%$INSTALL_INSTRUCTIONS%
+
+---++ Plugin Info
+
+Many thanks to the following sponsors for supporting this work:
+   * http://slion.net
+
+|  Plugin Author(s): | |
+|  Copyright: | &copy; |
+|  License: | [[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License)]] |
+|  Plugin Version: | %$VERSION% |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Plugin Home: | http://twiki.org/cgi-bin/view/Plugins/HttpsRedirectPlugin |
+|  Feedback: | http://twiki.org/cgi-bin/view/Plugins/HttpsRedirectPluginDev |
+|  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/HttpsRedirectPluginAppraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the feedback topic on twiki.org instead. -->
