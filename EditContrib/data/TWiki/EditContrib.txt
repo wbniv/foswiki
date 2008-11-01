@@ -1,0 +1,142 @@
+%META:TOPICINFO{author="TWikiGuest" date="1150177015" format="1.1" version="1.8"}%
+---+!! Edit Contrib Package
+
+Provides subroutines useful in writing plugins that edit and save parts of topics.
+
+%TOC%
+
+---++ Summary of Contents
+
+This contrib provides subroutines that come in handy when editing and saving parts of topics (refered to as sections).
+
+   * =init_edit= initializes editing of a topic
+   * =edit= sets up the section for editing
+   * =finalize_edit= completes the generation of the edit topic
+   * =bin/savesection= is an adaption of =bin/save=
+   * =bin/addsection= provides an interface to append sections to a topic
+   * =templates/editsection.pattern.tmpl= and =templates/editsection.tmpl= are templates supporting editing of sections.
+
+This contrib is used by TWiki:Plugins/SectionalEditPlugin, TWiki:Plugins/MultiEditPlugin, and TWiki:Plugins/ThreadedDiscussionPlugin. Examining these plugins will provide guidance of how to use these subroutines in implementing your own plugin.
+
+This contrib supports TWiki4 and onward. For a version of this contrib that works with the Cairo release, please download the appropriate version from twiki.org.
+
+---++ Detailed Documentation
+
+The use of this contrib follows closely the pattern used in TWiki core when editing a topic. A plugin implementing editing of a section of a topic has to
+   * Implement code called during view which would provide appropriate controls for edting a section, and identify the section to be edited by differentiating
+      * the part of the topic before the section to be edited,
+      * the section to be edited, and
+      * the part of the topic following that section.
+   * Pass this information into the edit script in URL variables (see below) upon invocation of the edit script
+   * Implement the edit script to obtain that information from the URL variables and render the edit topic. Implementing the edit script is straightforward:
+      * Obtain the topic text, template text, etc., by invoking =edit()=.
+      * Determine the text before the section to be edited, the section to be edited, and the text after that section, as well as the rendered versions (if desired) of the pre- and post-sections.
+      * Pass these to =finalize_edit()= to generate the edit topic.
+The contrib provides the rest of the plumbing (save script, edit templates).
+
+---+++ =edit ( $session ) -> ( $session, $text, $template )=
+
+Sets up a section of the topic for editing. This code is derived from =lib/TWiki/UI/Edit.pm=, but omits code related to topic creation (as the topic must exist for this function to be called).
+
+Returns the current session object, the topic text passed into the script, as well as the appropriate template rendered with the exception of application specific text (these template variables must be substituted for by the client function):
+
+|*Template&nbsp;variable*|*Purpose*|
+|=%TEXT%=|Text to be edited; shown in textarea  |
+|=%PRETEXT%=|Text preceding the edited section. Special characters be protected to avoid mangling by browsers (use =TWiki::Render::encodeSpecialChars=) |
+|=%POSTEXT%=|Text following the edited section. Special characters be protected to avoid mangling by browsers (use =TWiki::Render::encodeSpecialChars=) |
+|=%PRETEXTFIELD%=|Rendered text preceding the edited section, shown above the textarea  |
+|=%POSTEXTFIELD%=|Rendered text following the edited section, shown below the textarea  |
+|=%EDIT%=|URL to be invoked to edit the section (used when "Checkpoint" is selected)  |
+|=%EDITPARAMS%=|URL parameters to be passed when the section is edited  |
+
+---+++ =finalize_edit ( $session, $pretxt, $sectxt, $postxt, $pretxtRender, $postxtRender, $tmpl )=
+
+Sets up the final edit topic. 
+
+=$pretxt=, =$sectxt=, =$postxt=, are the text preceding the edited section, the section to be edited, and the text following that section, respectively. =$sectxt= will be shown in the textarea for editing, and upon save the obtained edited text will be combined with =$pretxt= and =$postxt=. These will be encoded to prevent mangling by browsers and substituted for =%<nop>PRETEXT%=, =%<nop>TEXT%=, and =%POSTEXT%=.
+
+=$postxtRender= and =$pretxtRender= will be rendered for edit and displayed above and below the text area, respectively. Pass an empty string if no such text should be displayed. These will be encoded for display and substituted for =%<nop>PRETEXTFIELD%= and =%<nop>POSTEXTFIELD%=, respectively.
+
+---+++ =bin/savesection=
+
+Works identical to =bin/save= except that it constructs the edit link (see above) from the URL parameters =edit= and =editparams=. The former has to be the edit script to be invoked when "Checkpoint" is selected, the latter determines any additional URL parameters to be passed to the edit script (must include the leading =&=).
+
+---+++ =bin/addsection=
+
+Presents the user with an editor for a section which is appended to the topic. The URL parameters =pretxt= and =postxt= define text that is added before and after that text. The URL parameter =mapping= consists of a set of tuples _name_=_parameter_. Upon saving, strings matching a _name_  in =pretxt= and =postxt= are replaced by the corresponding passed _parameter_. (This allows that form inputs are composed into the =pretxt= and =postxt= strings.) Any text in =%<nop>HTML{ ... }%= will be translated to =< ... >=.
+
+---+++ =templates/editsection.tmpl=, =templates/editsection.pattern.tmpl=
+
+Templates supporting the editing of a section. The =pretxt= and =postxt= URL parameters are generated by the two variables =%<nop>PRETEXTFIELD%= and =%<nop>POSTEXTFIELD%=. The size of the edit window is controlled by preference variables (see below).
+
+
+
+---++ Settings
+
+Settings are stored as preferences variables. To reference a setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, e.g. ==%<nop>JSCALENDARCONTRIB_STUB%==
+
+   * Name of the perl package
+      * Set STUB = TWiki::Contrib::EditContrib
+
+Set the variables conrolling the size and style of the textara for editing in the desired preference topic, for example:
+   * Edit Box Width, Height, Style (set to width: 99% for full width, auto to disable). 
+      * Set SECTIONEDITBOXWIDTH = 70 
+      * Set SECTIONEDITBOXHEIGHT = 27 
+      * Set SECTIONEDITBOXSTYLE = width: 99%; 
+
+   * One line description:
+      * Set SHORTDESCRIPTION = Provides subroutines useful in writing plugins that edit and save parts of topics.
+
+   * Name of the perl package
+      * Set STUB = TWiki::Contrib::EditContrib
+
+---++ Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this contrib package. The following instructions are for the administrator who installs the package on the server where TWiki is running.
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Contrib topic |
+     | ==data/TWiki/%TOPIC%.txt,v== | Contrib topic repository |
+     | ==lib/TWiki/Contrib/%TOPIC%.pm== | Contrib Perl module |
+     | ==bin/addsection== | add script |
+     | ==bin/savesection== | save script |
+     | ==templates/editsection.tmpl== |  |
+     | ==templates/editsection.pattern.tmpl== |  |
+   * Verify access and ownership settings for the new scripts.
+   * Edit your .htaccess file to require a valid user for the =savesection= script (if needed).
+   * Ensure that this plugin is enabled by running =bin/configure=.
+   * _TWiki 4.1 and later only:_ Set =$TWiki::cfg{AllowRedirectUrl} = 1;= in local configuration (in Security/Misc section of =bin/configure=).
+
+
+---++ Contrib Info
+
+|  Author: | TWiki:Main/ThomasWeigert |
+|  Copyright &copy;: |  |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Dependencies: | none  |
+|  Version: | 10 Apr 2007 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  10 Apr 2007: | Support =getCgiAction=  |
+|  08 Apr 2007: | Update by TWiki:Main.MichaelDaum: Move addsection into pm. |
+|  31 Dec 2006: | Support proper handling of embedded sections. In TWiki 4.1, also return to original page upon cancel. |
+|  19 Nov 2006: | Fix for incorrect rendering of pre and post text by TWiki:Main.ScottHoge. |
+|  20 Sep 2006: | Move cursor to textarea upon edit. |
+|  15 Aug 2006: | Remove deprecated functions from =savesection=. |
+|  14 Aug 2006: | Support adding of text to a topic. |
+|  04 Aug 2006: | Protect pre and post text passed from being corrupted by Firefox 1.5 |
+|  12 Jun 2006: | Removed some usage of "illegal" code |
+|  10 Jun 2006: | Rewrite to support Dakar release |
+|  04 Aug 2005: | Deal with certain browsers eating the leading newline in text areas  |
+|  07 Apr 2005: | Fix rendering of bullets etc. in pre and post text  |
+|  21 Mar 2005: | Provide =finalize_edit= function to further simplify developing client plugins |
+|  20 Mar 2005: | Resolved problems arising from inconsistencies how various browsers treat URL parameters  |
+|  12 Mar 2005: | Added subroutine setting up section for editing.  |
+|  11 Mar 2005: | Added templates for editing sections. |
+|  08 Mar 2005: | Initial version |
+|  Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ TWiki:Plugins/SectionalEditPlugin, TWiki:Plugins/MultiEditPlugin, TWiki:Plugins/ThreadedDiscussionPlugin, TWiki:Plugins/EditTablerowPlugin
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the Dev topic instead. -->
