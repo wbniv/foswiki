@@ -1,0 +1,63 @@
+%META:TOPICINFO{author="BruceDillahunty" date="1077719092" format="1.0" version="1.2"}%
+%META:TOPICPARENT{name="TestTopic3"}%
+---+ GUID Plugin
+
+This pluging is a blantant ripoff of TWiki:Plugins.UniqueIdPlugin by [[TWiki:Main.MichaelSparks][MS]] (THANKS!!!). I wanted a <nop>UniqueID generator that would generate standard GUID/UUID type IDs (guaranteed unique across machines, etc...)
+
+I found the nice CPAN module of CPAN:Data::UUID that takes care of all of this. This plugin is just a "wrapper" so that TWiki can call the perl module. You MUST have the perl module loaded first.
+
+---++ Syntax Rules
+
+| *You Type* | *You Get* | *Comment* |
+| %<nop>GUID_ID% | %GUID_ID% | default is string type |
+| %<nop>GUID_ID{type="str"}% | %GUID_ID{type="str"}% | string representation |
+| %<nop>GUID_ID{type="bin"}% | %GUID_ID{type="bin"}% | binary representation |
+| %<nop>GUID_ID{type="hex"}% | %UNIQUE_ID{type="hex"}% | hex |
+| %<nop>GUID_ID{type="b64"}% | %UNIQUE_ID{type="b64"}% | base64 |
+
+
+---++ <nop>%TOPIC% Global Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, for example, ==%<nop>GUIDPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* Set SHORTDESCRIPTION = Generates GUID unique ids
+
+	* Debug plugin: (See output in =data/debug.txt=)
+	* Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+<i>Like Michael, I'm leaving packaging up to somebody that really knows what they are doing, but this seems to work for me.</i>
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running.
+
+	* Download the files below
+	* Put them as follows
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* Test if the plugin is correctly installed:
+		* %<nop>GUID_ID%: %GUID_ID%
+		* %<nop>GUID_ID{type="str"}%: %GUID_ID{type="str"}%
+		* %<nop>GUID_ID{type="bin"}%: %GUID_ID{type="bin"}%
+		* %<nop>GUID_ID{type="hex"}%: %UNIQUE_ID{type="hex"}%
+		* %<nop>GUID_ID{type="b64"}%: %UNIQUE_ID{type="b64"}%
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.BruceDillahunty |
+|  Plugin Version: | 25 Feb 2004 (V1.000) |
+|  Change History: | <!-- specify latest version first -->&nbsp; |
+|  25 Feb 2004: | Initial version |
+|  CPAN Dependencies: | CPAN:Data::UUID |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- TWiki:Main.BruceDillahunty - 25 Feb 2004
+
