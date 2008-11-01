@@ -1,0 +1,33 @@
+%META:TOPICINFO{author="PeterThoeny" date="1121492664" format="1.0" version="1.1"}%
+%META:TOPICPARENT{name="NavBarAddOn"}%
+%STARTINCLUDE%
+%INCLUDE{NavBarAddOnStart}%
+%CALC{$SET(topic, NavBarAddOn)		  $SET(label, Nav-Bar Add-On) $EXEC($GET(tab))}%
+%CALC{$SET(topic, NavBarAddOnExample) $SET(label, %T% Example)	 $EXEC($GET(tab))}%
+%CALC{$SET(topic, NavBarAddOnStart)	$SET(label, Nav-Bar Start)  $EXEC($GET(tab))}%
+%CALC{$SET(topic, NavBarAddOnEnd)	  $SET(label, Nav-Bar End)	 $EXEC($GET(tab))}%
+%INCLUDE{NavBarAddOnEnd}%
+%STOPINCLUDE%
+---+ Navigation Bar Add-On Example
+
+This topic is part of the NavBarAddOn.
+
+Above navigation bar is defined as:
+<verbatim>
+%STARTINCLUDE%
+%INCLUDE{%TWIKIWEB%.NavBarAddOnStart}%
+%CALC{$SET(topic, NavBarAddOn)		  $SET(label, Nav-Bar Add-On) $EXEC($GET(tab))}%
+%CALC{$SET(topic, NavBarAddOnExample) $SET(label, %T% Example)	 $EXEC($GET(tab))}%
+%CALC{$SET(topic, NavBarAddOnStart)	$SET(label, Nav-Bar Start)  $EXEC($GET(tab))}%
+%CALC{$SET(topic, NavBarAddOnEnd)	  $SET(label, Nav-Bar End)	 $EXEC($GET(tab))}%
+%INCLUDE{%TWIKIWEB%.NavBarAddOnEnd}%
+%STOPINCLUDE%
+</verbatim>
+
+This navigation bar is defined once, then used by all referenced topics as follows:
+<verbatim>
+%INCLUDE{NavBarAddOnExample}%
+</verbatim>
+
+-- TWiki:Main.PeterThoeny - 15 Jul 2005
+
