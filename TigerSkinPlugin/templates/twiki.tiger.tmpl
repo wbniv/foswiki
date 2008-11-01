@@ -1,0 +1,134 @@
+%TMPL:DEF{"sep"}% &nbsp;&nbsp; | &nbsp;&nbsp; %TMPL:END%
+%TMPL:DEF{"htmldoctype"}%
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> %TMPL:END%
+
+%TMPL:DEF{"banner"}%
+<table border="0" cellpadding="0" cellspacing="0" height="43" width="100%">
+ <tbody>
+  <tr bgcolor=#ffffff>
+   <td bgcolor=#000000 rowspan=2 width=1><img height=1 src="%PUBURLPATH%/%TWIKIWEB%/TigerSkin/transp_black.gif" width=1></td>
+   <td bgcolor=#000000 height=1 width=800 type="block" spacer="spacer"><img height=1 src="%PUBURLPATH%/%TWIKIWEB%/TigerSkin/transp_black.gif" width=1></td>
+   <td bgcolor=#000000 rowspan=2 width=1><img height=1 src="%PUBURLPATH%/%TWIKIWEB%/TigerSkin/transp_black.gif" width=1></td>
+  </tr>
+  <tr bgcolor=#ffffff>
+   <td height=43 width="100%">
+      <img alt="" align="right" width="460" height="43" hspace="0" src="%PUBURLPATH%/%TWIKIWEB%/TigerSkin/topbit_twiki.jpg">
+      %LOGO%
+   </td>
+  </tr>
+ </tbody>
+</table> %TMPL:END%
+
+%TMPL:DEF{"outlineboxstart"}%
+<table bgcolor=#000000 border=0 cellpadding=1 cellspacing=0 width="100%">
+ <tbody>
+ <tr>
+  <td> %TMPL:END%
+
+%TMPL:DEF{"outlineboxend"}%
+  </td>
+ </tr>
+ </tbody>
+</table> %TMPL:END%
+
+%TMPL:DEF{"stripeboxstart"}%
+<table bgColor="#ffffff" border="0" cellPadding="0" cellSpacing="0" width="100%">
+ <tbody>
+  <tr align="center">
+   <td background="%PUBURLPATH%/%TWIKIWEB%/TigerSkin/line1.gif">
+    <br /> %TMPL:END%
+
+%TMPL:DEF{"stripeboxend"}%
+   </td>
+  </tr>
+ </tbody>
+</table>%TMPL:END%
+
+%TMPL:DEF{"curveboxstartcommon"}%
+ <tbody>
+  <tr>
+   <td colSpan="4"><img alt="" border="0" height="6" src="%PUBURLPATH%/%TWIKIWEB%/TigerSkin/top_curve.gif" width="100%"></td>
+  </tr>
+  <tr>
+   <td background="%PUBURLPATH%/%TWIKIWEB%/TigerSkin/transp_black.gif" width="1"><img alt="" border="0" height="1" src="%PUBURLPATH%/%TWIKIWEB%/TigerSkin/transp_black.gif" width="1"></td>
+   <td background="%PUBURLPATH%/%TWIKIWEB%/TigerSkin/transp.gif">&nbsp;</td>
+   <td background="%PUBURLPATH%/%TWIKIWEB%/TigerSkin/transp.gif">
+    <table %TMPL:P{"BACKGROUNDIMAGE"}% border="0" cellPadding="0" cellSpacing="0" class="netbg" width="100%">
+     <tbody>
+      <tr>
+       <td></td>
+      </tr>
+      <tr>
+       <td> %TMPL:END%
+
+%TMPL:DEF{"curveboxstart"}%
+<table border="0" cellPadding="0" cellSpacing="0" width="98%">
+%TMPL:P{"curveboxstartcommon"}%%TMPL:END%
+
+%TMPL:DEF{"curveboxend"}%
+       </td>
+       <td rowSpan="6" vAlign="top" width="10">&nbsp;</td>
+       <td rowSpan="6" vAlign="top">&nbsp;</td>
+      </tr>
+     </tbody>
+    </table>
+    <p><img alt="" border="0" height="1" src="%PUBURLPATH%/%TWIKIWEB%/TigerSkin/transp.gif" width="769"></p>
+   </td>
+   <td background="%PUBURLPATH%/%TWIKIWEB%/TigerSkin/transp_black.gif" width="1"> <img alt="" border="0" height="1" src="%PUBURLPATH%/%TWIKIWEB%/TigerSkin/transp_black.gif" width="1">
+   </td>
+  </tr>
+  <tr>
+   <td colSpan="4"><img alt="" border="0" height="6" src="%PUBURLPATH%/%TWIKIWEB%/TigerSkin/bottom_curve.gif" width="100%"></td>
+  </tr>
+ </tbody>
+</table> <br /> %TMPL:END%
+
+%TMPL:DEF{"metaboxstart"}%
+<table border="0" cellPadding="0" cellSpacing="0" width="50%">
+%TMPL:P{"curveboxstartcommon"}%%TMPL:END%
+
+%TMPL:DEF{"metaboxend"}%
+%TMPL:P{"curveboxend"}%%TMPL:END%
+
+%TMPL:DEF{"simpleheader"}%
+<link href="%PUBURLPATH%/%TWIKIWEB%/TigerSkin/twiki.css" rel=stylesheet type="text/css">
+%TMPL:P{"banner"}%
+%TMPL:P{"outlineboxstart"}%
+%TMPL:P{"stripeboxstart"}%
+%TMPL:P{"curveboxstart"}% %TMPL:END%
+
+%TMPL:DEF{"standardheader"}%
+<link href="/twiki/pub/%TWIKIWEB%/TigerSkin/twiki.css" rel=stylesheet type="text/css">
+%TMPL:P{"banner"}%
+%TMPL:P{"outlineboxstart"}%
+%TMPL:P{"stripeboxstart"}%
+%TMPL:P{"curveboxstart"}% %TMPL:END%
+
+%TMPL:DEF{"standardfooter"}% <TABLE width="100%" border="0" cellpadding="3" cellspacing="0">
+      <TR BGCOLOR="#e3f0e3">
+        <TD valign="top">
+           Topic <b>%TOPIC%</b> . { %TMPL:P{"topicaction"}% }
+        </TD>
+      </TR>
+    </TABLE>
+    %TMPL:P{"curveboxend"}%
+    %TMPL:P{"stripeboxend"}% </td>
+    %TMPL:P{"outlineboxend"}%
+%TMPL:END%
+
+%TMPL:DEF{"oops"}%
+%TMPL:P{"htmldoctype"}%
+<head>
+ <title> %WIKITOOLNAME% . %WEB% . %TOPIC% %TMPL:P{"titleaction"}%</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+ <meta name="robots" content="noindex" /> %HTTP_EQUIV_ON_VIEW%
+ <base href="%SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%" />
+</head>
+<body bgcolor="#cccccc" leftMargin=4 topMargin=1>
+%TMPL:P{"simpleheader"}%
+---++ %TMPL:P{"heading"}%
+%TMPL:P{"message"}%
+%TMPL:P{"standardfooter"}%
+</body>
+</html> %TMPL:END%

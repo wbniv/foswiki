@@ -1,0 +1,76 @@
+%META:TOPICINFO{author="JohnTalintyre" date="996232612" format="1.0beta2" version="1.1"}%
+---+++ Welcome to the TigerSkin
+
+
+
+So named because of the stripes in the background.
+
+
+
+This skin provides the following:
+
+
+
+	* An attractive design with the expectations of typical web users in mind (ie navbar on the left hand side, content on the right)
+
+	* A top menubar that highlights the main features of TWiki (edit and attach) and conceals the more complex features under a pop up (diffs, create, etc)
+
+	* A configurable left hand menu bar - the contents can be set in an editable WebMenu topic - one for the %TWIKIWEB% web and optionally one for other webs.  See WebMenuFormat for details.
+
+	* A top left hand icon that may change according to web selection - FIXME how
+
+	* Simple <nop>Web.TopicName location status
+
+	* A quick search box
+
+	* Username feedback with a click to personal topics (requires sessions)
+
+	* Cascading style sheet for structured style alterations (however, we do not constrain the font size of TWiki content - use View/Textsize in your browser for this)
+
+	* Javascript to open/close menu folders, etc.
+
+
+
+Installation:
+
+	* Unzip the skin and plugin into your TWiki installation
+
+	* Then edit WebMenu to set the contents of the menu bar, supplied one cover TWiki, Main and Test Webs
+
+	* Add the following line to %TWIKIWEB%.TWikiPreferences or to any WebPreferences topic
+
+<verbatim>
+
+		* Set SKIN = tiger
+
+</verbatim>
+
+
+
+The TigerSkin comes with a plugin - see TigerSkinPlugin - that inserts items such as the left hand menu. It uses the plugin to read the WebMenu topic, etc.
+
+
+
+The TigerSkin can be used (optionally) with the SessionPlugin - it then allows logon and session management.
+
+
+
+Please note:
+
+	* The TigerSkin is designed for use with IE 5.0 and 5.5 - not (yet) Netscape compatible.
+
+	* The TigerSkin purposely avoids using different colors for different webs - we think that this is desconcerting to novice users.
+
+	* The TigerSkin needs a TWiki beta release dated after 27 Jul 2001
+
+	* The TigerSkin uses the new http://twiki.org/cgi-bin/view/Codev/TWikiTemplatingSystem
+
+
+
+An example logo is attached to this page - just download and edit to make your own logo. It should be named logo.gif. The overall site logo lives as an attachment hereto, individual web logos should be placed in pub/webname/logo.gif. Please be sure to acknowledge TWiki.org appropriately.
+
+
+
+For help and advice, please email %MAINWEB%.SteveRoe or %MAINWEB%.JohnTalintyre
+
+%META:FILEATTACHMENT{name="logo.gif" attr="" comment="TigerSkin TWiki logo" date="996160619" path="C:\WINNT\Profiles\roes\Desktop\logo.gif" size="1393" user="StephenRoe" version="1.1"}%

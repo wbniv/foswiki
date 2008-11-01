@@ -1,0 +1,173 @@
+%TMPL:INCLUDE{"twiki"}%
+%TMPL:P{"htmldoctype"}%
+<html>
+<head>
+<meta content="text/html; charset=windows-1252" http-equiv="Content-Type">
+<link href="%PUBURLPATH%/%TWIKIWEB%/TigerSkin/twiki.css" rel="stylesheet" type="text/css">
+<title>%WIKITOOLNAME% . %WEB% . %TOPIC%</title>
+%HTTP_EQUIV_ON_VIEW%
+<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/TigerSkin/menuscript.js"></script>
+<style type="text/css">
+<!-- In page so that images are subjected to wiki var insertion -->
+.clsShowHideOuter {
+        LIST-STYLE-IMAGE: url(%PUBURLPATH%/%TWIKIWEB%/TigerSkin/greenfolder.gif);
+        CURSOR: hand
+}
+.clsShowHide {
+        LIST-STYLE-IMAGE: url(%PUBURLPATH%/%TWIKIWEB%/TigerSkin/greenfolder.gif);
+        CURSOR: hand
+}
+.clsNoExpand {
+        LIST-STYLE-IMAGE: url(%PUBURLPATH%/%TWIKIWEB%/TigerSkin/greenfolderno.gif);
+}
+.clsItemsShow {
+        LIST-STYLE-IMAGE: url(%PUBURLPATH%/%TWIKIWEB%/TigerSkin/green_arrow.gif)
+}
+.fullMenu {
+    DISPLAY: %SHOWALL%
+}
+.viewMenu {
+    DISPLAY: %SHOWVIEW%
+}
+</style>
+</head>
+
+<body bgColor="#cccccc" leftMargin="4" topMargin="1" background="%PUBURLPATH%/%TWIKIWEB%/TigerSkin/line1.gif">
+
+%TMPL:P{"banner"}%
+%TMPL:P{"outlineboxstart"}%
+%TMPL:P{"stripeboxstart"}%
+%TMPL:P{"curveboxstart"}%
+
+   <table background="%PUBURLPATH%/%TWIKIWEB%/TigerSkin/transp.gif" border="0" cellpadding="0" cellspacing="0" width="100%" height="600">
+    <tbody>
+     <tr>
+      <td valign="top" rowspan="6" valign="top" width="160">
+
+<!--FEATUREBOX START-->
+<!-- Featureborderbox start -->
+<table border="0" cellPadding="0" cellSpacing="2" width="165">
+ <tbody>
+  <tr>
+   <td bgColor="#000000" colSpan="2" valign="top">
+   <!-- Featureinnerbox start -->
+   <table border="0" cellPadding="1" cellSpacing="1" width="100%">
+    <tbody>
+     <tr>
+      <td class=topMenuSpacer><img alt="" align="absMiddle" border="0"  width="4" height="7" src="%PUBURLPATH%/%TWIKIWEB%/TigerSkin/green_arrow2.gif" />
+        %TIGERLOGON%
+      </td>
+     </tr>
+     <form action="%SCRIPTURL%/search%SCRIPTSUFFIX%/%WEB%/" method="post" name="form1">
+     <tr>
+      <td class=topMenuSpacer>Quick Search <img src="%PUBURLPATH%/%TWIKIWEB%/TigerSkin/question_mark.gif" title="Search all publics Webs" />
+       <input type="hidden" name="scope" value="text" />
+       <input type="hidden" name="web" value="on" />
+       <input type="hidden" name="noempty" value="on" />
+       <br />
+       <input type="text" name="search" size="18" />
+       <input class="go" name="Submit" type="submit" value="Go" />
+      </td>
+      </form>
+     </tr>
+     <tr>
+      <td class="topMenuSpacer"><img align="absMiddle" border="0" width="4" height="7" src="%PUBURLPATH%/%TWIKIWEB%/TigerSkin/green_arrow2.gif" />
+       <a class="leftMenu" href="/twiki/bin/view/%WEB%/WebSearch">Advanced Search</a>
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <!-- Featureinnerbox end -->
+  </td>
+ </tr>
+ <tr>
+  <td colSpan=2 height=3 vAlign=center></td>
+ </tr>
+ </tbody>
+</table>
+<!-- Featureouterbox end -->
+<!--FEATUREBOX END-->
+<!--LEFT MENU START-->
+%LEFTMENU%
+<!--LEFT MENU END-->
+</td>
+<td background="%PUBURLPATH%/%TWIKIWEB%/TigerSkin/dottedVR.gif" rowSpan="6" width="2"></td>
+<td rowSpan="6" vAlign="top" width="6"></td>
+<td rowSpan="6" vAlign="top" width="83%">
+<!--TOP MENU START-->
+<!-- Topmenustrip start -->
+<table border="0" cellPadding="0" cellSpacing="0" width="100%">
+ <tbody>
+  <tr>
+   <td class="topMenuSpacer" width="5"><img align="absMiddle" width="4" height="7" src="%PUBURLPATH%/%TWIKIWEB%/TigerSkin/green_arrow2.gif" /></td>
+   <td class="topMenuWeb" width="10">%WEB%</td>
+   <td class="topMenuTopic">.%TOPIC% %REVTITLE%</td>
+   <td class="topMenuSpacer" align="right">
+    <!-- Tags for the menu bar. -->
+    <div class="fullMenu">
+     <a class="menuButton" href="%SCRIPTURLPATH%/edit%SCRIPTSUFFIX%/%WEB%/%TOPIC%">Edit this page
+      <img alt="Edit this topic" align="absMiddle" border="0" width="20" height="18" src="%PUBURLPATH%/%TWIKIWEB%/TigerSkin/icon_pencil.gif"/>
+     </a> %TMPL:P{"sep"}%
+     <a class=menuButton href="%SCRIPTURLPATH%/attach%SCRIPTSUFFIX%/%WEB%/%TOPIC%">Attach file
+       <IMG align=absMiddle border=0 height=16 src="%PUBURLPATH%/%TWIKIWEB%/TigerSkin/editpage.gif" width=16>
+     </a> %TMPL:P{"sep"}%
+     <!--%PRLINK%--><!--%PRRATING%-->
+     <a class="menuButton" href="" onclick="return buttonClick(this, 'more');" onmouseover="buttonMouseover(this, 'more');">more&gt;&gt;</a>
+    </div>
+    <div class="viewMenu">
+      <a class="menuButton" href="" onclick="return buttonClick(this, 'more');" onmouseover="buttonMouseover(this, 'more');">Options&gt;&gt;</a>
+    </div>
+    <!-- Tags for the drop down menus. -->
+    <div id="more" class="menu">
+     <!-- Dropbox start -->
+     <table border="0" cellPadding="0" cellSpacing="0">
+      <tbody>
+       <span class="fullMenu">
+<noautolink>
+        <tr class="menuLine"><td colspan="2"><a class="menuItem" title="Change skin" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/SelectSkin?fromtopic=%TOPIC%&fromweb=%WEB%">Change skin</a></td></tr>
+        <tr class="menuLine"><td colspan="2"><a class="menuItem" title="Create a new page in %WEB% Web" href="%SCRIPTURLPATH%/createtopic%SCRIPTSUFFIX%/%WEB%/%TOPIC%">Create</a></td></tr>
+        <tr class="menuLine"><td colspan="2"><a class="menuItem" title="Move/rename this topic" href="%SCRIPTURLPATH%/rename%SCRIPTSUFFIX%/%WEB%/%TOPIC%">Rename</a></td></tr>
+        <tr class="menuLine"><td colspan="2"><a class="menuItem" title="Raw topic text, not rendered to html, what you get when you edit" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%?raw=on%REVARG%">Raw Text</a></td></tr>
+       </span>
+       <tr class="menuLine"><td colspan="2"><a class="menuItem" title="Find possible references to this topic" href="%SCRIPTURLPATH%/search%SCRIPTSUFFIX%/%WEB%/?scope=text&web=all&amp;regex=on&amp;search=%SPACEDTOPIC%%5B%5EA-Za-z%5D">Ref-By</a></td></tr>
+       <tr class="menuLine"><td colspan="2"><a class="menuItem" title="Show a more printable page" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%?skin=print%REVARG%">Print</a></td></tr>
+       <tr><td colspan=2><hr></td></tr>
+       <tr class="menuLine"><td colspan="2"><a class="menuItem" title="Differences between successive versions" href="%SCRIPTURLPATH%/rdiff%SCRIPTSUFFIX%/%WEB%/%TOPIC%">Diffs</a></td></tr>
+       <tr class="menuLine"><td>%TIGERREVS%</td></tr>
+</noautolink>
+      </tbody>
+     </table>
+     <!-- Dropbox end-->
+    </div>
+   </td>
+   <td class=topMenuSpacer width=5>&nbsp;</td>
+  </tr>
+ </tbody>
+</table>
+<!-- Topmenustrip end-->
+<!--TOP MENU BAR END-->
+<br />
+<br />
+Parent: %META{"parent"}% <br />
+%TEXT%
+<hr />
+%META{"form"}%
+%META{"attachments"}%
+</td>
+</tr>
+</tbody>
+</table>
+
+%TMPL:P{"curveboxend"}%
+
+<!--class metabox-->
+%TMPL:P{"metaboxstart"}%
+Revision %REVINFO%
+%META{"moved"}% %TMPL:P{"metaboxend"}%
+
+%WEBCOPYRIGHT%
+
+%TMPL:P{"stripeboxend"}%
+%TMPL:P{"outlineboxend"}%
+</body>
+</html>
