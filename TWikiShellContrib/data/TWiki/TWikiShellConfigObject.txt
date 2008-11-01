@@ -1,0 +1,22 @@
+%META:TOPICINFO{author="TWikiGuest" date="1099288894" format="1.0" version="1.3"}%
+---+ Config Object
+
+The config object provides a centralized place where CommandSet can store their settings. It's a blessed hash with the following published subs
+
+	* sub save : Save the configuration to the .twikishellrc file, using Data::Dumper
+	* sub saveAndDispose: Clean up the configuration and save it as per save sub.
+
+Also, the configuration will always have the following variables set:
+
+	* verbosity : Last verbosity set
+	* configFileName : The name of the config file
+	* debug : if debug is enabled or not.
+
+Also, unless the TWiki CommandSet is uninstalled, a hash containing the =lib=, =bin=, =pub=, and =root= directories for the installation is available under the key =TWIKI= (ie: =$config->{TWIKI}{root}= has the absolute path to the root of the twiki installation).
+
+
+Any CommandSet that wants to store a setting in the config object must call the =save= method. 
+
+It's recommended that CommandSets using the config object to store settings must create a namespace using a hash for the settings so they won't conflict with others. Example:
+
+The ==TWiki::Contrib::TWikiReleaseTrackerCommand== may store its settings in ==$config->{TWikiReleaseTrackerCommand}==, so its settings are accessed using ==$config->{TWikiReleaseTrackerCommand}{setting_name}==

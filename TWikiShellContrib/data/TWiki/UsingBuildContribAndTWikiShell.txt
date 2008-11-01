@@ -1,0 +1,290 @@
+%META:TOPICINFO{author="TWikiContributor" date="1128882089" format="1.1" version="1.2"}%
+---+!! Developing Extensions with [[TWiki:Plugins.BuildContrib][BuildContrib]] and [[TWiki:Plugins.TWikiShellContrib][TWikiShellContrib]]
+
+%TOC%
+
+
+[[TWiki:Plugins.BuildContrib][BuildContrib]] and [[TWiki:Plugins.TWikiShellContrib][TWikiShellContrib]] are two very useful [[TWiki:Codev.TWikiExtensions][TWikiExtensions]] that can simplify the life of TWiki developers (both Core and Plugins) by automating the boring stuff (copying file around, running tests, packaging and uploading).
+
+For the sake of simplicity, in this guide the term [[TWiki:Codev.TWikiExtensions][TWikiExtensions]] refers collectively (as defined by the community) to [[TWiki:Plugins.PluginPackage][Plugins]], [[TWiki:Plugins.AddOnPackage][Add-Ons]], [[TWiki:Plugins.ContribPackage][Code Contributions]] and [[TWiki:Plugins.SkinPackage][Skins]]
+
+---++ Overview
+
+Before detailing how these Contrib can be combined in an optimal way, let's first do an overview of both of them.
+
+---+++ [[TWiki:Plugins.BuildContrib][BuildContrib]]
+
+The =Build.pm= module can be used by developers to create a really simple build process for your plugin, addon or contrib module. The advantage of using this module is that it dictates a standard build procedure for plugins, so you won't get file names wrong or get the list of files in the plugin topic wrong either.
+
+The module also automatically generates an installer script that manages dependencies in the user installation. 
+
+The whole process is manifest-driven, that is, the operations are performed over a set of files as defined in a manifest file that must reside in a known place.
+
+For a complete documentation, check [[TWiki:Plugins.BuildContrib][Here]].
+
+---+++ [[TWiki:Plugins.TWikiShellContrib][TWikiShellContrib]]
+
+[[TWiki:Plugins.TWikiShellContrib][TWikiShellContrib]] is a shell that can be use to replace all twiki command line scripts with a single interface. Each command available in the twikishell is also available as a command line option using the =-e= switch.
+
+By itself, it does nothing. But by extending it using TWiki:Plugins.CommandSets, a lot of useful features can be made easily available from the command line.
+
+For a complete documentation, check [[TWiki:Plugins.TWikiShellContrib][Here]].
+
+---++ [[TWiki:Plugins.BuildContrib][BuildContrib]] Quick guide to develop [[TWiki:Codev.TWikiExtensions][TWikiExtensions]]
+
+On the surface, [[TWiki:Plugins.BuildContrib][BuildContrib]] can be somehow intimidating, but it's concept is pretty simple: By having three files (=MANIFEST=, =DEPENDENCIES= and build.pl) in a known place under the directory, most of the development lifecycle tasks can be automated.
+
+---+++ Preparing to work
+
+[[TWiki:Plugins.BuildContrib][BuildContrib]] makes some basic assumptions about the enviroment:
+
+   * The [[TWiki:Codev.TWikiExtensions][TWikiExtensions]] is not being developed your plugin in a live TWiki installation (which is usually a really bad idea), but are instead doing the sensible thing and developing in a separate directory tree, usually - but not always - a CVS checkout area. 
+   * The [[TWiki:Codev.TWikiExtensions][TWikiExtensions]] has a directory for itself outside the twiki root (ok, this is not an assumption, but if you try to generate a manifest for the [[TWiki:Codev.TWikiExtensions][TWikiExtensions]] from a twiki installation it'll end up with a lot of useless entries. Also, it's a good habit to acquire ;))
+   * The enviroment variable TWIKI_LIBS has a colon-separated path list that may point anywhere needed to satisfied any of the [[TWiki:Codev.TWikiExtensions][TWikiExtension]] external dependencies.
+   * The enviroment variable TWIKI_HOME point to the root of your test TWiki installation.
+   * The your module follows the standards for plugins and contribs i.e. that it
+      1. Has a topic in the data/TWiki directory 
+      1. Has a perl module in the lib/TWiki/Plugins or lib/TWiki/Contrib directory
+      1. Has a sub-directory alongside the perl module that contains the extra .pm files specific to the module 
+
+---+++ Normal Development Cycle 
+
+Let's illustrate how [[TWiki:Plugins.BuildContrib][BuildContrib]] fits in the development lifecycle, step by step.
+
+---++++ Create the Directory Structure
+The first step to create a [[TWiki:Codev.TWikiExtensions][TWikiExtension]] is create the new directory structure in the checkout area, to maintain the repository up-to-date with local changes.  
+
+The recommended directory layout & content for [[TWiki:Codev.TWikiExtensions][TWikiExtension]] development is:
+<verbatim>
+|- twikiroot
+|  |- twikiplugins
+|  |  |- TWikiExtensionName
+|  |  |  |- bin
+|  |  |  |- lib
+|  |  |  |  |- TWiki
+|  |  |  |  |  |- (Contrib|Plugins)
+|  |  |  |  |  |  |- TWikiExtensionName
+|  |  |  |  |  |  |  |- build.pl
+|  |  |  |  |  |  |  |- MANIFEST
+|  |  |  |  |  |  |  |- DEPENDENCIES 
+|  |  |  |  |  |  |- TWikiExtensionName.pm
+|  |  |  |- data
+|  |  |  |  |- TWiki
+|  |  |  |  |   |- TWikiExtensionName.txt
+|  |  |  |- pub
+|  |  |  |- tests
+|  |  |  |  |- unit
+|  |  |  |  |  |- TWikiExtensionNameSuite.pm
+|  |  |  |- templates
+</verbatim>
+
+Note: =twikiplugins= is the checkout area from the plugins repository (either from CVS or SVN)
+
+
+To build the =MANIFEST= file can be generated automatically by [[TWiki:Plugins.BuildContrib][BuildContrib]], by invoking:
+
+=perl build.pl manifest=
+
+A "tentative" =MANIFEST= file will be sent to STDOUT, so it can be copy/pasted or redirected to the =MANIFEST= file and edited as needed.
+
+The =MANIFEST= file should read (at least):
+<verbatim>
+lib/TWiki/(Contrib|Plugins)/TWikiExtensionName.pm
+data/TWiki/TWikiExtensionName.txt
+tests/unit/TWikiExtensionNameSuite.pm
+</verbatim>
+
+Note that none of the special files used by [[TWiki:Plugins.BuildContrib][BuildContrib]] is in the =MANIFEST=, because they are usually not distributed to end-users.
+
+For a complete description of the format of the =MANIFEST= and =DEPENDENCIES= files, check [[BuildContrib][Here]].
+
+---++++ "Installing" the TWikiExtension
+
+To test the [[TWiki:Codev.TWikiExtensions][TWikiExtension]], it must be "installed" into the twikiroot. There are two options to do it:
+
+   1. Make the change in the plugins checkout area, and deploy them to the test TWiki installation OR
+   1. Deploy the plugin to the test TWiki installation, make the changes "live", and then copy back the modifications to the checkout area
+
+[[TWiki:Plugins.BuildContrib][BuildContrib]] can help in the first case. Invoking
+
+=perl build.pl install=
+
+will "install" the plugin (along any unsatisfied dependency) in the twiki installation pointed by the enviroment variable =TWIKI_HOME=.
+
+---++++ Adding or Removing files
+
+Sometimes some utility methods appear in the main =.pm= file and are extracted to a separate module. Sometimes the plugin topic is not enough and additional topics are shipped with the plugin. Sometimes, old modules are deleted. Anyway, that means that sometimes files are added or removed from the distribution.
+
+In those cases, the =MANIFEST= file *must* be updated with the changes or [[TWiki:Plugins.BuildContrib][BuildContrib]] will not work properly.
+
+---++++ Running tests
+
+If =Test::Unit= is installed in the system, it's possible to run the unit test with [[TWiki:Plugins.BuildContrib][BuildContrib]]. Just Invoke:
+
+=perl build.pl test=
+
+And it will try to run automatically the =tests/unit/SamplePluginSuite.pm= module.
+
+---++++ Preparing the release package
+
+To package the extension for a release, invoke
+
+=perl build.pl release=
+
+and it will create a =.zip= and a  =.tar.gz= files based in the content of the =MANIFEST= file and an installer called =TWikiExtensionName_installer= (ie. =SamplePlugin_installer=). All these files will be created in the "root" of the plugin directory. (ie: under =twikiplugins/SamplePlugin=).
+As part of the release process, the [[TWiki:Codev.TWikiExtensions][TWikiExtension]] topic is processed an the following tags will be replaced:
+   * =%$MANIFEST%= - TWiki table of files in =MANIFEST= 
+   * =%$DEPENDENCIES%= - list of dependencies from =DEPENDENCIES= 
+   * =%$VERSION%= version from $VERSION in main .pm 
+   * =%$DATE%= - local date 
+   * =%$POD%= - expands to the POD documentation for the package, excluding test modules.
+
+
+---++++ Uploading the changes to TWiki.org
+As the last step of the development lifecycle, the released version must be uploaded to the proper topic in TWiki.org.
+To do this, invoke:
+
+=perl build.pl upload=
+
+and [[TWiki:Plugins.BuildContrib][BuildContrib]] will create the release package, and upload it automatically to the proper place in TWiki.org.
+
+---++ [[TWiki:Plugins.TWikiShellContrib][TWikiShellContrib]] Quick guide to develop [[TWiki:Codev.TWikiExtensions][TWikiExtensions]]
+
+The default [[TWiki:Plugins.CommandSet][CommandSets]] bundled with [[TWiki:Plugins.TWikiShellContrib][TWikiShellContrib]] can be used to simplify even more the development process, by complementing the operatios already performed by [[TWiki:Plugins.BuildContrib][BuildContrib]].
+
+
+---+++ Preparing to work
+
+[[TWiki:Plugins.TWikiShellContrib][TWikiShellContrib]] ask the user about the enviroment where it's running (where the twiki root is located, how the directories are configure, etc), but it makes two assuptions:
+   * The checkout area is called "twikiplugins" and sits under the twiki root
+   * =MANIFEST= and =DEPENDENCIES= are in the plugin "root"
+
+Note that no enviroment variables need to be set for [[TWiki:Plugins.TWikiShellContrib][TWikiShellContrib]] to work.
+
+---+++ Normal Development Cycle 
+
+To illustrate how [[TWiki:Plugins.TWikiShellContrib][TWikiShellContrib]] fits in the development lifecycle, let's follow the same process as with [[TWiki:Plugins.BuildContrib][BuildContrib]].
+
+---++++ Create the Directory Structure
+The first step to create a [[TWiki:Codev.TWikiExtensions][TWikiExtension]] is create the new directory structure in the checkout area, to maintain the repository up-to-date with local changes. 
+
+The directory structure is as follows:
+
+A typical directory layout & content for [[TWiki:Codev.TWikiExtensions][TWikiExtension]] development is:
+<verbatim>
+|- twikiroot
+|  |- twikiplugins
+|  |  |- TWikiExtensionName
+|  |  |  |- MANIFEST
+|  |  |  |- DEPENDENCIES 
+|  |  |  |- bin
+|  |  |  |- lib
+|  |  |  |  |- TWiki
+|  |  |  |  |  |- (Contrib|Plugins)
+|  |  |  |  |  |  |- TWikiExtensionName
+|  |  |  |  |  |  |  |- build.pl
+|  |  |  |  |  |  |- TWikiExtensionName.pm
+|  |  |  |- data
+|  |  |  |  |- TWiki
+|  |  |  |  |   |- TWikiExtensionName.txt
+|  |  |  |- pub
+|  |  |  |- tests
+|  |  |  |  |- unit
+|  |  |  |  |  |- TWikiExtensionNameSuite.pm
+|  |  |  |- templates
+</verbatim>
+
+Note: =twikiplugins= is the checkout area from the plugins repository (either from CVS or SVN)
+
+To create this structure, invoke:
+
+=perl twikishell plugin create !TWikiExtensionName=
+
+and [[TWiki:Plugins.TWikiShellContrib][TWikiShellContrib]] will create the directory structure with empty skeletons for all the files. The =MANIFEST= file is created automatically.
+
+The =MANIFEST= file should read:
+<verbatim>
+lib/TWiki/Plugins/TWikiExtensionName.pm
+data/TWiki/TWikiExtensionName.txt
+tests/unit/TWikiExtensionNameSuite.pm
+</verbatim>
+
+Note that none of the special files used by [[TWiki:Plugins.BuildContrib][BuildContrib]] is in the =MANIFEST=, because they are usually not distributed to end-users.
+
+---++++ "Installing" the [[TWiki:Codev.TWikiExtensions][TWikiExtension]]
+
+[[TWiki:Plugins.TWikiShellContrib][TWikiShellContrib]] follows the second option: Deploy the plugin to the test TWiki installation, make the changes "live", and then copy back the modifications to the checkout area.
+
+For that, invoke:
+
+=perl twikishell plugin develop !TWikiExtension=
+
+and it will copy all the content of the plugin directory intro the twiki installation. Also, two files called =TWikiExtensionName.MF= and =TWikiExtensionName.DEP= are created in the twiki root. =TWikiExtension.MF= will have a list of all the copied files, and should be identical to the =MANIFEST= file. Similary, the =TWikiExtension.DEP= should be identical to the =DEPENDENCIES= file.
+
+Now, all the changes can be made "live".
+
+After all the changes, invoke:
+
+=perl twikishell plugin putback !TWikiExtension=
+
+and it will copy all the files listed in =TWikiExtension.MF= back to the checkout area, updating the =MANIFEST= and =DEPENDENCIES= with the content of =TWikiExtension.MF= and =TWikiExtension.DEP= respectively.
+
+---++++ Adding or Removing files
+
+When adding or removing files from the package, the =TWikiExtension.MF= must be updated so the proper =MANIFEST= file can be generated later.
+
+---++++ Running tests
+
+If =Test::Unit= is installed in the system, invoking
+
+=perl twikishell runtest !TWikiExtensionSuite=
+
+will try to run automatically the =tests/unit/TWikiExtensionSuite.pm= module.
+
+---++++ Preparing the release package
+
+To release the package, [[TWiki:Plugins.TWikiShellContrib][TWikiShellContrib]] interfaces with [[TWiki:Plugins.BuildContrib][BuildContrib]] and let it do what it does best.
+
+So, to create the release file, invoke
+
+=perl twikishell build !TWikiExtension release=
+
+and it will call automatically the proper =build.pl= script with the =release= target
+
+---++++ Uploading the changes to TWiki.org
+
+In the same way as releasing the package, invoking
+
+=perl twikishell build !TWikiExtension upload=
+
+will call automatically the proper =build.pl= script with the =upload= target.
+
+---++++ Additional Operation: Packaging the development version
+
+If for some reason there is the need to package the whole development version of a !TWikiExtension (including the =MANIFEST=, =DEPENDENCIES=,etc), invoke:
+
+=perl twikishell package !TWikiExtension=
+
+and it'll create a =tar.gz= file with all the files in the plugin directory
+
+---++ Summary
+
+Combining [[TWiki:Plugins.TWikiShellContrib][TWikiShellContrib]] and [[TWiki:Plugins.BuildContrib][BuildContrib]] ease the development of [[TWiki:Codev.TWikiExtensions][TWikiExtensions]]. The lifecycle becomes:
+
+   * =perl twikishell plugin create !TWikiExtension=
+   * =perl twikishell plugin develop !TWikiExtension=
+   * =perl twikishell runtest !TWikiExtension= or  =perl twikishell build !TWikiExtension test=
+   * =perl twikishell plugin putback !TWikiExtension=
+   * (optionally) =perl twikishell build release !TWikiExtension=
+   * (optionally) =perl twikishell package !TWikiExtension=
+   * =perl twikishell build upload !TWikiExtension=
+
+This could be quite verbose, but creating the proper shellscripts (invoking =perl twikishell shorcuts=), they are abbreviated to:
+
+   * =plugin create !TWikiExtension=
+   * =plugin develop !TWikiExtension=
+   * =runtest !TWikiExtension= or  =build !TWikiExtension test=
+   * =plugin putback !TWikiExtension=
+   * (optionally) =build release !TWikiExtension=
+   * (optionally) =package !TWikiExtension=
+   * =build upload !TWikiExtension=

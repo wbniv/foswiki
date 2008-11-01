@@ -1,0 +1,2 @@
+Term::Shell,>=0.1,cpan,Required
+TWiki::Contrib::BuildContrib, >=1.000, perl, Required

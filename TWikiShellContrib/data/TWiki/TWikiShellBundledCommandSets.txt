@@ -1,0 +1,208 @@
+%META:TOPICINFO{author="RafaelAlvarez" date="1129148731" format="1.1" version="1.1"}%
+
+---+ Bundled CommandSets
+
+TWikiShellContrib is distributed with some CommandSets aimed at TWiki:Codev.TWikiExtension development.
+
+---++ TWiki::Contrib::CommandSet::Dump
+
+This is a sample CommandSet. Used to dump various debug informations:
+
+| *Command* | *Description* |
+| dump | Shows the help for the dump subcommands |
+| dump config  | Dumps the config |
+| dump handlers | Dumps the registered handlers |
+
+---++ TWiki::Contrib::CommandSet::Apache
+
+Used to manipulate the apache config file that needs to be modified to install twiki (usually the httpd.conf, but can be any file)
+
+| *Command* | *Description* |
+| apache | Shows the summary for the apache subcommands |
+| apache add  | Adds a TWiki configuration to Apache |
+| apache delete | Removes a TWiki configuration from Apache |
+
+---+++ =apache add=
+
+<verbatim>
+SYNOPSIS
+     apache add <basepath>
+
+DESCRIPTION
+      This command will install the current $TWIKI_ROOT
+     in the Apache config file specified during TWikiShell 
+     configuration. The installed TWiki will be under 
+     <basepath>
+      It scans the file for the =<IfModule mod_alias.c>= line
+     to determine where to put the install information.
+     This command creates a tipical *secured* twiki install,
+     that is, only bin and pub will be visible from the browser.
+
+EXAMPLE
+     twikishell apache add MyTWikiInstall
+
+        Will add the following lines to the Apache config file:
+
+        ##################################BEGIN MyTWikiInstall
+        alias /MyTWikiInstall/pub $TWIKI_ROOT/pub
+
+        <Directory "$TWIKI_ROOT/pub">
+             AllowOverride All
+             Allow From All
+        </Directory>
+
+        alias /MyTWikiInstall/bin $TWIKI_ROOT/bin
+
+        <Directory "$TWIKI_ROOT/bin">
+             AllowOverride All
+             Allow From All
+            Options ExecCGI
+            SetHandler cgi-script
+        </Directory>
+        #################################################
+
+        Thus installing $TWIKI_ROOT in the /MyTWikiInstall path
+
+</verbatim>
+
+---+++ =apache delete=
+
+<verbatim>
+SYNOPSIS
+     apache delete <basepath>
+
+DESCRIPTION
+     This command will delete from the Apache config file the install
+     created by =apache add= that is pointed by <basepath>.
+
+     It will look for the first line created by the =apache add= subcommand.
+     A backup of the original file is made before the changes are applied.
+
+EXAMPLE
+     twikishell apache delete MyTWikiInstall
+
+        Will look for the line
+            ##################################BEGIN MyTWikiInstall
+
+        and delete that installation.
+</verbatim>
+
+---++ TWiki::Contrib::CommandSet::TWiki
+
+This CommandSet doesn't have any commands. It exists only to discover all the information about the TWiki installation where TWikiShell resides, and make it available through the TWikiShellConfigObject.
+
+---++ TWiki::Contrib::CommandSet::Package
+
+Generates a tarball from all the files in the TWikiExtension directory. *ONLY WORKS ON LINUX*
+Use the TWiki::Contrib::CommandSet::Build package to do a proper packaging for release.
+
+| *Command* | *Description* |
+| package | Generates a tarball for the TWikiExtension|
+
+---+++ =package=
+
+<verbatim>
+SYNOPSIS
+     package <TWikiExtension>
+
+DESCRIPTION
+ Generates a tarball from all the files in the TWikiExtension directory.
+ 
+EXAMPLE
+    twikishell package TWikiShellContrib
+
+        Will package all the files under twikiplugins/TWikiShellContrib
+        in a tar file..
+
+</verbatim>
+
+---++ TWiki::Contrib::CommandSet::Plugin
+
+TWikiExtension Management CommandSet
+
+| *Command* | *Description* |
+| plugin create | Creates the suggested directory structure for a TWikiExtension |
+| plugin develop  | Prepares the file of a TWikiExtension for development |
+| plugin putback | Put back TWikiExtension files into their checkout area |
+
+---+++ =plugin create=
+<verbatim>
+SYNOPSIS
+     plugin create <TWikiExtension>
+
+DESCRIPTION
+     This command will creates the directory twikiplugins/<Plugin/Contrib>
+     with the following structure;
+      twikiplugins/
+         <TWikiExtension>/
+            data/
+               TWiki/
+                  <TWikiExtension>.txt
+            lib/
+               TWiki/
+                  [Plugin|Contrib]/
+                     <TWikiExtension>.pm
+                     <TWikiExtension>/
+                        build.pl
+            pub/
+               TWiki/
+                  <TWikiExtension>/
+
+     To create the files, this command uses the templates distributed
+     in lib/TWiki/Contrib/CommandSet/Plugin/Create and the EmptyPlugin.pm file.
+</verbatim>
+
+---+++ =plugin develop=
+SYNOPSIS
+     plugin develop <Plugin/Contrib>
+
+DESCRIPTION
+     This command will copy all the related files for a Plugin/Contrib
+     from the ${TWIKIROOT}/twikiplugins directory to the proper place
+     under the ${TWIKIROOT} directory, while creating a manifest file
+     in ${TWIKIROOT} with all the files copied.
+     This is an alternative to the =mklinks.sh -copy=  command.
+
+EXAMPLE
+     twikishell plugin develop TWikiShellContrib
+
+        Will copy all the files from twikiplugins/TWihiShellContrib to
+        their proper place and create the TWikiShellContrib.MF file
+        under ${TWIKIROOT}.
+
+
+---+++ =plugin putback=
+
+SYNOPSIS
+     plugin putback <Plugin/Contrib>
+
+DESCRIPTION
+     This command will copy the files listed in the <PLUGINNAME>.MF file
+     back to the twikiplugins/<PLUGINNAME> directory, to be able to
+     update the sources in the repository and/or run the build.pl
+     script from there.
+
+EXAMPLE
+     twikishell plugin putback TWikiShellContrib
+
+        Will copy all the files listed in TWikiShellContrib.MF to
+        the from twikiplugins/TWihiShellContrib directory.
+
+---++ TWiki::Contrib::CommandSet::Build
+
+---+++ =build=
+
+SYNOPSIS
+     build <TExtension> <target>  -
+        executes build.pl for the given plugin passing the specified <target>
+
+DESCRIPTION
+     This command provides an interface to the build.pl script. It assumes
+    that the script is somewhere along the following path:
+
+    ${TROOT}/twikiplugins/<TExtension>/lib/TWiki/[Plugin|Contrib]/<TExtension>
+
+    The parameter <target> can be any valid target for the build.pl script.
+
+
+

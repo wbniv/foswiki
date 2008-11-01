@@ -1,0 +1,150 @@
+%META:TOPICINFO{author="TWikiGuest" date="1099288894" format="1.0" version="1.3"}%
+---+ Services
+
+The "services" are sets of common functionality than can be reused across CommandSets.
+
+---++ TWiki::Contrib::TWikiShellContrib::Zip
+
+---+++ unzip($config,$sourceFile,$targetDir)
+
+Unzips $sourceFile to $targetDir. It uses CPAN:Archive::Zip if installed, or the configured unzip program othewise.
+
+---++ TWiki::Contrib::TWikiShellContrib::DirHandling
+
+Provides services to manipulate zip files.
+
+---+++ makepath($path)
+
+Creates the directory structure leading to $path. Examples:
+
+<verbatim>
+makepath("/lib/TWiki/Plugin/NewPlugin/NewPlugin.pm");
+</verbatim>
+
+will try to create the following directories if they don't exist:
+<verbatim>
+/lib
+/lib/TWiki
+/lib/TWiki/Plugin
+/lib/TWiki/Plugin/NewPlugin
+</verbatim>
+
+<verbatim>
+makepath("/pub/SomeDir/SomeSubDir");
+</verbatim>
+
+will try to create the following directories if they don't exist:
+
+<verbatim>
+/pub
+/pub/SomeDir
+</verbatim>
+
+---+++ cd($dir)
+  Change to the given directory
+
+---+++ dirEntries($dir) -> @entries
+   Returns the list of names for the entries in the given dir.
+
+
+---++ TWiki::Contrib::TWikiShellContrib::Common
+
+Useful fuctions to be used in CommandSets. All the functions in this package are exported.
+
+---+++ extractPackageFromSub($sub)-> $package
+
+Receives the fully qualified name of a sub (ie: TWiki::writeDebug) and returns only the package (ie: TWiki).
+
+---+++ askUser($value,$default,$prompt,\&checkOk,$allwaysAsk)->$userInput
+
+Ask the user for an input, providing a default value to be used if no input is received.
+The parameters are:
+   * $value: Value to be checked. If undef or empty, it'll be set to $default;
+   * $default: A default to be suggested to the user.
+   * $prompt: the message to be displayed to the user.
+   * \&checkOk: A function used to check if the user input is valid or not.
+   * $allwaysAsk: By default, askUser verifies if the provided $value (or $default) pass the \&checkOk test. If it pass, the user is not asked. By passing 1 in $allwaysAsk, this check is not performed and the user is always asked for an input.
+
+The result is a $userInput that satisfies the \&checkOk check.
+
+
+---+++ checkIfDir($dir)
+
+Convenience function that checks if the given parameter is a directory. Designed to be used with askUser
+
+---+++ sys_action($cmd)
+
+Perform a "system" command.
+
+---+++ findRelativeTo($startdir, $name) -> $path
+
+Look for $name starting in  $startdir, and moving up in the path until $name if found.
+
+Returns the path to $name or undef if not found.
+
+
+---++ TWiki::Contrib::TWikiShellContrib::Help
+
+---+++ assembleHelp(\%doco,@order) -> $helpText
+
+Assembles a help text from the provided hash.
+
+   * \%doco: A hash containing the help sections and their corresponding texts.
+   * @order: A list with the name of the sections, ordered in the way they should be displayed.
+   
+Example:
+
+Given the following hash (from =TWiki::Contrib::CommandSet::Plugin::Develop=):
+
+<verbatim>
+
+my $doco = {
+   "SYNOPSIS" =>" plugin develop <Plugin/Contrib> - Copies the files for the Plugin/Contrib into the twiki root for development",
+   "DESCRIPTION" =>
+" This command will copy all the related files for a Plugin/Contrib
+ from the \${TWIKIROOT}/twikiplugins directory to the proper place 
+ under the \${TWIKIROOT} directory, while creating a manifest file 
+ with all the files copied.
+ This is an alternative to the =mklinks -copy=  command, with the
+ added value that it creates a manifest file that can be used by 
+ the Package CommandSet or the BuildContrib-based =build.pl= 
+ script to create a release version.
+
+",
+   "EXAMPLE" =>
+" twikishell plugin develop TWikiShellContrib
+
+    Will copy all the files from twikiplugins/TWihiShellContrib to
+    their proper place and create the TWikiShellContrib.MF file 
+    under \${TWIKIROOT}.   
+"};
+
+</verbatim>
+
+the call =assembleHelp($doco,"SYNOPSIS","DESCRIPTION","EXAMPLE")= will produce:
+
+<verbatim>
+
+SYNOPSIS
+     plugin develop <Plugin/Contrib> - Copies the files for the Plugin/Contrib 
+into the twiki root for development
+
+DESCRIPTION
+     This command will copy all the related files for a Plugin/Contrib
+     from the ${TWIKIROOT}/twikiplugins directory to the proper place
+     under the ${TWIKIROOT} directory, while creating a manifest file
+     with all the files copied.
+     This is an alternative to the =mklinks -copy=  command, with the
+     added value that it creates a manifest file that can be used by
+     the Package CommandSet or the BuildContrib-based =build.pl=
+     script to create a release version.
+
+EXAMPLE
+     twikishell plugin develop TWikiShellContrib
+
+        Will copy all the files from twikiplugins/TWihiShellContrib to
+        their proper place and create the TWikiShellContrib.MF file
+        under ${TWIKIROOT}.
+</verbatim>
+
+The programmer is responsible of the formating of the text.
