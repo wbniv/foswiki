@@ -1,0 +1,68 @@
+%META:TOPICINFO{author="JustinHickman" date="1004396028" format="1.0" version="1.2"}%
+---++ %TOPIC%
+
+Adds to the functionality of the =%<nop>INCLUDE%= tag by allowing includes of revision #'s and revision Dates.
+
+For an example, my department has conference calls on Mon, Wed, and Fri of every week to update the rest of the group on the lastest developments of our projects.  We all use TWiki to have a meeting agenda (the Meetings web).
+
+I got tired of waiting for the lock to be released on the current meeting agenda page (we keep an archive of topics like MeetingNotes20011029, etc)  because everyone else was updating at the last minute also, so I decided to create a page on my own web and edit that, since I knew that I would be the only one that would update it.  
+
+For awhile, I was having to copy and paste my notes into the meeting page because of the archival notes were needed, so a normal INCLUDE would not work, since the notes for that meeting would disappear as soon as I changed that file.
+
+One day I realized that I can pull any revision by using the Web/TopicPage?rev=1.#.  Since I change the same file over and over again, it already had a history in rcs, so I decided to use that to my advantage by finding out a way to include it.  
+
+I understand that I can just put a link in MeetingAgenda20011029 to Web/TopicPage?rev=1.25 , but I'm more lazy than that.  I figure that since I have a date in the Topic name, I could use that to pull the correct revision, so I can put that into the Meetings web templatem, so i never have to modify the meetings page again.  ever. 
+
+I had to modify a couple of files in order to do this, but rcs already supports this feature, so why not have it in TWiki.
+
+Take a look at my diffs to see what was changed.
+
+I also created a MeetingDatePlugin that just takes the topic name and pulls the date out of it, which is used for my example above.
+
+---++ Syntax Rules
+
+	* <nop>%INCLUDEREV{Web.TopicPage,1.3} %
+	* <nop>%INCLUDEREV{Web.TopicPage,D2001-10-29T19:00Z%} %
+
+---++ %TOPIC% Settings
+
+Plugin settings are stored as preferences variables. To reference
+a plugin setting write ==%<plugin>_<setting>%==, i.e. ==%INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* Set SHORTDESCRIPTION = _(one line description)_
+
+	* Debug plugin: (See output in =data/debug.txt=)
+	* Set DEBUG = 0
+
+	* My own setting:
+	* Set HOWTO = got it!
+
+---+++ Plugin Installation Instructions
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Check this topic here if the installation was successful
+	* Test if the plugin is correctly installed:
+	* %INCLUDEREV{%TOPIC%,1.3}%
+
+---+++ Plugin Info
+
+|  Plugin Author: | Main.JustinHickman |
+|  Plugin Version: | 29 Oct 2001 |
+|  Change History: | ?? ??? 2001: Added... <br /> 29 Oct 2001: Initial version |
+|  CPAN Dependencies: |  |
+|  Other Dependencies: |  |
+|  Perl Version: | 5.0 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- Main.JustinHickman - 29 Oct 2001 <br>
+
