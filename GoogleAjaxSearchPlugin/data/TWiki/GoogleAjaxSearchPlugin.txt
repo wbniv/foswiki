@@ -1,0 +1,132 @@
+%META:TOPICINFO{author="TWikiContributor" date="1140597757" format="1.1" version="$Rev$"}%
+---+!! Google AJAX Search Plugin
+*Wrapper plugin for a dynamic search service provided by Google.*
+
+%TOC%
+
+---++ About Google AJAX Search
+The [[http://code.google.com/apis/ajaxsearch/][Google AJAX Search API]] is an experimental API that lets you integrate a dynamic Google search module into your web pages so your users can mash up Google search results with other content on your site or add search results clippings to their own content.
+
+Note that this service (as stated by Google themselves):
+   * Is in BETA
+   * Will likely change in the future, so the current implementation may break
+   * Future versions may contain ads
+
+If you want to put this service on your own site you need to [[http://code.google.com/apis/ajaxsearch/signup.html][obtain a (free) unique key]] from Google.
+
+*NOTE*: the Google key must be valid for the directory/directories you will be searching in. If you are going to search all webs, pass =http://yourdomain/twiki/bin/view/= as url.
+
+Set =GOOGLEKEY= below in [[%TOPIC%#Settings][Settings]].
+
+---++ Restricting search to a site or Web
+To obtain results from a particular website, set variable =GOOGLESEARCHSITE=.
+
+To get results from one TWiki Web only, set variable =GOOGLESEARCHWEB= in combination with =GOOGLESEARCHSITE=.
+
+For example:
+<verbatim>
+   * Set GOOGLESEARCHWEB = TWiki
+   * Set GOOGLESEARCHSITE = http://twiki.org/cgi-bin/view/
+</verbatim>
+Set the variables below in [[%TOPIC%#Settings][Settings]].
+
+---++ Putting a search box
+Start a search box with =%<nop>GOOGLEAJAXSEARCH%=.
+
+The !JavaScript code written by the plugin assumes a html container element exists with id =googleAjaxSearchControl=. The results will be written to this element.
+
+The input field should have the id =googleAjaxSearchInputElement=.
+
+*Current limitation:* there may only be one search box on a page.
+
+Example:
+<verbatim>
+%GOOGLEAJAXSEARCH%
+<div class="googleAjaxSearch">
+<strong>Search %GOOGLESEARCHWEB% </strong><input class="twikiInputField" size="55" id="googleAjaxSearchInputElement" value=""/>
+<span class="twikiGrayText twikiSmallish">(results by Google !AJAX - Beta)</span>
+<div id="googleAjaxSearchControl"></div>
+</div><!--//googleAjaxSearch-->
+</verbatim>
+
+An input field with id 'googleAjaxSearchWeb' may override =GOOGLESEARCHWEB=. For example:
+<verbatim>
+<input type="hidden" id="googleAjaxSearchWeb" value="Main" />
+</verbatim>
+
+An input field with id 'googleAjaxSearchLabel' may override =GOOGLESEARCHLABEL=. For example:
+<verbatim>
+<input type="hidden" id="googleAjaxSearchlabel" value="twiki.org TWiki Web" />
+</verbatim>
+
+---++ Re-use
+To show the search box in another topic, write this:
+
+<verbatim>
+%INCLUDE{"%TWIKIWEB%.GoogleAjaxSearchPlugin" section="default" query="" web="%BASEWEB%" label="%BASEWEB% Web (results by Google)"}%
+</verbatim>
+
+This will include the following section (leave as is, no need to copy this):
+
+<verbatim>
+%STARTSECTION{"default"}%%GOOGLEAJAXSEARCH%<div class="googleAjaxSearch"><strong>Search %BASEWEB% </strong><input class="twikiInputField" size="50" id="googleAjaxSearchInputElement" value="%query%" /><input type="hidden" id="googleAjaxSearchWeb" value="%BASEWEB%" /><input type="hidden" id="googleAjaxSearchlabel" value="%label%" />
+<div id="googleAjaxSearchControl"></div></div><!--//googleAjaxSearch-->%ENDSECTION{"default"}%
+</verbatim>
+
+---++ Start search automatically
+To start off with a search, pass a default search string to the input field.
+
+---++ Start search automatically by URL parameter
+Pass parameter =googleAjaxQuery= to the url to start off a default search. For example: =%SCRIPTURL{view}%/%WEB%/%TOPIC%?googleAjaxQuery=htaccess=
+
+Test this: %SCRIPTURL{view}%/%WEB%/%TOPIC%?googleAjaxQuery=htaccess
+
+A URL parameter will override a locally set search input value.
+
+---++ Customizing
+---+++ Setting a custom label
+You can set the label of the search results to a custom string by defining =GOOGLESEARCHLABEL= in [[%TOPIC%#Settings][Settings]].
+
+---++ Settings
+For an explanation of the following variables read above. These are example variable values:
+   * Set GOOGLEKEY = XXXXXXXXXXXXXXX-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-XXXXXXX
+   * Set GOOGLESEARCHWEB = 
+   * Set GOOGLESEARCHSITE = http://twiki.org/cgi-bin/view/
+   * Set GOOGLESEARCHLABEL = twiki.org
+   * Set SHORTDESCRIPTION = Dynamic Google AJAX search service for public TWiki sites
+   
+You can set these values in this topic, or in any other topic where =%<nop>GOOGLEAJAXSEARCH%= is written. Note that you will need to use the syntax GOOGLEAJAXSEARCHPLUGIN_MYVARIABLE if you set the variable in a different web.
+
+---++ Example
+To see it work (if installed and the right Google key is set):
+
+%INCLUDE{"%TWIKIWEB%.GoogleAjaxSearchPlugin" section="default" query="" web="TWiki" label="twiki.org TWiki Web"}%
+
+
+---++ Plugin Installation Instructions
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your root ($TWIKI_ROOT) directory. Content:
+   | *File:* | *Description:* |
+%$MANIFEST%
+	* Optionally, if it exists, run ==%TOPIC%_installer== to automatically check and install other TWiki modules that this module depends on. You can also do this step manually.
+	* Alternatively, manually make sure the dependencies listed in the table below are resolved.
+   %$DEPENDENCIES%
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	
+---++ Contrib Info
+
+| Authors: | TWiki:Main.ArthurClemens |
+| Copyright &copy;: | 2006, 2007 Arthur Clemens |
+| License: | [[http://www.gnu.org/copyleft/gpl.html][GPL]] |
+| Dependencies: | %$DEPENDENCIES% |
+|  25 Jan 2007 | 1.0.4 Doc fixes |
+|  22 Nov 2006 | 1.0.3 Settings can now be written in any topic |
+|  22 Jul 2006 | 1.0.2 Added Lazy loading |
+|  22 Jul 2006 | 1.0.1 Added =GOOGLESEARCHLABEL=; various bug fixes |
+|  20 Jul 2006 | 1.0.0 First Version |
+|  Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences
+ 
