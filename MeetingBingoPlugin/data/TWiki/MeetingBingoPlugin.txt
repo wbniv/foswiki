@@ -1,0 +1,78 @@
+---+!! !MeetingBingoPlugin
+<!--
+One line description, required for extensions repository catalog.
+   * Set SHORTDESCRIPTION = Meeting Bingo Plugin is a business game to enhance attention at meetings
+-->
+%SHORTDESCRIPTION% - especially the "longer" kind of meetings.
+
+%TOC%
+
+---++ Games rules.
+
+The game is simple. You create a TWiki topic with one or more lines with the TWiki variable %<nop>MEETINGBINGO%.
+
+The plugin then makes a table 5 rows by 5 columns with 25 of the MEETINGBINGOWORDS in a completely random order.
+
+Each participant prints out the topic on paper. Use the print view mode. Each time you refresh the page you get a new bingo card so you can produce many quite quickly. You can have more than one on each page. You can also bring a laptop to the meeting and pretend to read emails.
+
+During the meeting the participants listen carefully to what is said by the other participants. Each time a word is spoken that you have on your bingo card you mark it with a pen. If you have a computer available you can mark the words yellow by clicking on the table cell. When you have 5 in the same row, or 5 in the same column, or 5 on the diagonal, the person stands up and shout "Bingo!" and we have a winner.
+
+You can continue the game for two rows, or the entire card if you so wish and if the meeting is long enough.
+
+---++ Variations
+
+The name of this game was originally Bullshit Bingo. But to not provoke too much when managers see the list of installed plug-ins this plug-in has a more appropriate business name.
+
+The original rule is that the winner stands up and shout "Bullshit". If your manager or worse your CEO is in the meeting it may be a good idea that either he is also participating or you use an alternative winner word like "Hear Hear!" or "Bravo!" or "Banana!".
+
+---++ Syntax Rules
+
+   * %<nop>MEETINGBINGO% - creates a bingo card
+   * %<nop>MEETINGBINGOWORDS - are the words for bingo. Minimum 25 words comma separated
+   
+---++ Settings
+
+The plug-in has one setting. You need to give it minimum 25 words of the kind that people have a tendency to "over-use" at meetings. They are typically business trend words.
+
+The plug-in ships with a default list. You can add your own additional words. A word can be 2-3 words with spaces between. It is the comma that separates them from each other.
+
+Typical IT/Telecoms Business words
+   * Set MEETINGBINGOWORDS =  Below the Line, Above the Line, Closure, Verify, Validate, Test Coverage, Risk Assessment, Impact Analysis, Root Cause Analysis, Mitigating, Ship Acceptance, Solution Knockdown, Challenge, On Time, Flawless, Value Adding, Best Practice, Lessons Learned, Benchmark(ing),  Show Stopper, Proactive, Commitment(s), Scorecard, Empower, Cycle Time, Pass the Quality Gate, Checklist, Process Tailoring, Consolidate, Milestone, Out of the Box, Cost Effective, Streamline, Automated Test, Process, Conversion, Red Flag, Scope, Off-line, Out Source, Metric, Common Process, Follow Up, Action, Opportunity, Deliverable, Mission Critical, 24/7, No-Brainer, Win-Win, Think Outside The Box, Forecast Date, Bandwidth, Communicate, Critical Path, Rolled Out, Executing, Deployment, Global, Engage(d), Kick-off Meeting, Ramp Up, Standardize(d), Cross-functional, Readiness, Align(ment), Consistent, Timely, Best-in-class, Ownership, Solution, Efficiency, Standard, Legacy, Institutionalize, Performance, Energize(d), Measure, Drive, Leadership, Competitive, Road Map, Optimize, Excellence, Customer Focused, Cost of Quality, Cost of Poor Quality, Six Sigma, Defect Prevention, Integrated, Risk Management, Process Improvements, Critical Parameter, Virtual Zero, Synergy, Leverage, Lead(ing) 
+
+Typical Generic Business Words
+   * #Set MEETINGBINGOWORDS =  Leverage, Utilize, Synergy, Value Adding, Ethical, Best Practice, Lessons Learned, Benchmarking, Performance, Showstopper, Innovative, Creative, Proactive, Commitment, Scorecard, Optimize, Cost Reduction, Empower, Increase, Cycle time, Protect, Commodity, Work Ahead, Pass the Gate, Change Control, Maintenance, Next Release, Authorization, Enhance, Consolidate, Balanced, Milestone, Out of the Box, Cost Effective, Maximize, On The Same Page, Prioritize, Fault Tolerant, Skill Set, Automated, Market Leader, Process, Raising The Bar, Seamless, Conversion, Go Live, Red Flag, Critical Path, Streamline, Success, Integration, Workflow, End To End, Solution, Ownership, Portfolio, Revisit, Scope, Off-line, Ball Park, Low Hanging Fruit, Out Source, Metric, Action, Game Plan, Prototype, Optimization, Walk The Talk, Facilitate, Legacy, Business Plan, Opportunity, Patent, Scenarios, Deliverable, Mission Critical, Cutting Edge, Data Mining, 24/7, No-Brainer, Win-Win, Think Outside The Box, Off The Shelf, In A Nutshell, Ramp Up, Pipeline, Drop The Ball, Knowledge Base, Due Diligence, Fast Track, Basically, Policy, Forecast, Follow-up, Bandwidth, Expectations, Communicate, Gap Analysis, Team Player, Issue, Re-invent The Wheel, Measurement, Drill Down, Team Building, Time To Market, Paradigm, Off Site Meeting, Strategic, Bottom Line, At the end of the day
+
+Typical TWiki release meetings words
+   * #Set MEETINGBINGOWORDS = Backward Compatible, Performance, Next Release, Customer Focus, Process, Out of the Box, Sponsor, Low Hanging Fruit, Urgent, Action Item, Facilitate, Legacy, Show Stopper, No-Brainer, Plug-in, User Friendly, Georgetown, Freetown, Cairo, Dakar, Edinburgh, Realistic, Proposal, Customers Advocates, Priorities, Feature, TWiki Mission, Sponsorships, WYSIWYG, CPAN, Enhancement, Feature Freeze, Cache, Documentation, Scalability, Speed, Slow, Wikipedia, Wizard, AJAX, Use Cases, Minor, Major, Patch, Community, Database, Stable Code, Resources, Committed, Driver, Educational, Re-factor, Toolbox, Deprecate, Encourage, De Facto, Unit Test, Test Case, Descriptive, Upgrade, Newbie
+
+
+---++ Bingo Card
+
+If this plug-in is installed you should get a bingo card below
+
+%MEETINGBINGO%
+
+---++ Installation Instructions
+
+%$INSTALL_INSTRUCTIONS%
+
+---++ Plugin Info
+
+|  Plugin Author(s): | Main.KennethLavrsen |
+|  Copyright: | &copy; 2008, Kenneth Lavrsen |
+|  License: | [[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License)]] |
+|  Plugin Version: | 1.1 (30 Jan 2008) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  1.1 (30 Jan 2008) | Fixed lots of spelling errors |
+|  1.0 (29 Jan 2008) | Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.006 |
+|  TWiki:Plugins/Benchmark: | Plugin does not slow down TWiki measurably unless MEETINGBINGO tag is used |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the feedback topic on twiki.org instead. -->
