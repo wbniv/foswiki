@@ -1,0 +1,91 @@
+%META:TOPICINFO{author="TWikiContributor" date="1147820697" format="1.0" version="$Rev: 15566 $"}%
+---+ Revision Link Plugin
+
+This plugin enables the author of a TWiki page to specify a particular version of a topic to link to. You can use also negative numbers when specifying the revision number.
+
+Some examples of how the plugin works when installed.<br />
+
+=%<nop>REV{"WebHome" rev="1"}%= becomes [[%SCRIPTURL%/view/%WEB%/WebHome?rev=1][WebHome(1)]]
+
+=%<nop>REV{"WebHome" web="TWiki" rev="1.1" format="$web.$topic(rev=$rev)"}%= becomes [[%SCRIPTURL%/view/TWiki/WebHome?rev=1][WebHome(1.1)]]
+
+---++ Syntax Rules
+| =%<nop>REV{"1"}%= | Points to current topic in specified revision, TWiki4 revision syntax |
+| =%<nop>REV{"1.1"}%= | Points to current topic in specified revision, Cairo revision syntax |
+| =%<nop>REV{"-2"}%= | Points to current topic in revision which was two times back |
+| =%<nop>REV{"SomeTopic" rev="1.1"}%= | Points to specified topic in specified revision |
+| =%<nop>REV{rev='1.1' "SomeTopic"}%= | Same as above. Syntax is very flexible. |
+| =%<nop>REV{"SomeTopic" web="AWeb" rev="1"}%= | Points to specified topic in web |
+| =%<nop>REV{"SomeTopic" web="AWeb" rev="1" format="$web.$topic(rev=$rev)"}%= | Points to specified topic in web and formats the output |
+| =%<nop>REV['SomeTopic' web='AWeb' rev='1' format='$web.$topic(rev=$rev)'}%= | Same as above but using [] and '' syntax |
+
+You can specify also the topic by topic attribute, i.e. %<nop>REV{topic="ATopic" rev="1.1"}%
+
+If you want to add this plugin to metadata than you can use character *[ ]* instead of *{ }* and *' '* instead of *" "*. These characters should not be in conflict with the syntax of metadata. The plugin is is very forgiving with syntax and accepts a mix of "" and '' syntax for the attributes. Space is not allowed round the *=*.
+
+Revision can be either in TWiki4 format (1, 2, 3,...) or the old Cairo syntax (1.1, 1.2, 1.3, ...). In TWiki4 the revision is written the same way as you write it. In Cairo the 1.X format is always displayed.
+
+---+++ Syntax and variables in 'format' attribute
+You can use these variables: *$web*, *$topic*, *$rev*, *$date*, *$user*, *$comment*.
+
+As default the whole string is used as link to appropriate revision. If you write more complex format string and you don't want to link only part of the string encapsulate it with *!*. Ex. %<nop>REV{"ATopic" web="AWeb" rev="1.1" format="| $date | $user | !$web.$topic(rev=$rev)! | $comment |"}%.
+
+---++ Examples
+| %REV{1}% | Points to current topic in specified revision |
+| %REV{"1.1"}% | Points to current topic in specified revision |
+| %REV['-2']% | Points to current topic in revision which was two times back |
+| %REV{"CommentPlugin" rev="3"}% | Points to specified topic in specified revision |
+| %REV["CommentPlugin" rev="-2"]% | Points to specified topic in revision which was two times back |
+| %REV{"WebHome" web="TWiki" rev="1.1"}% | Points to specified topic in web |
+| %REV{"WebHome" web="TWiki" rev="1.1" format="$web.$topic(rev=$rev)"}% | Points to specified topic in web and formats the output |
+
+Example of more complex format attribute:<br>
+%REV{"WebHome" web="TWiki" rev="1" format="| $date | <nop>$user | !$web.$topic(rev=$rev)! | $comment |"}%
+
+---++ <nop>%TOPIC% Settings
+
+Plugin settings are stored as preferences variables. The following variables are used for this plugin.
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = This plugin enables linking to specific topic revisions.
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---+++ Plugin Installation Instructions
+*Note:* You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the TWiki server.
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	| *File:* | *Description:* |
+	| ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	| ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the installation was successful:
+		* %REV{"1.1"}%
+
+---+++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.RichardBaar, TWiki:Main.KennethLavrsen |
+|  Copyright: | &copy; 2003 TWiki:Main.RichardBaar, 2006 TWiki:Main.KennethLavrsen |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: |  2.1 (%$VERSION%)  |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  16 Feb 2007 (2.1)<br />SVN %$VERSION% | TWiki:Main.KennethLavrsen<br />Fixed bug when having more than one REV tag in same topic |
+|  18 May 2006 (2.0)<br />SVN 10228 | TWiki:Main.KennethLavrsen<br />updated plugin to Dakar while maintaining Cairo compatibility.<br />Enhanced the syntax robustness.<br />Fixed some rendering errors when plugin was used several times on same topic.<br />Fixed the plugin so only official API is used. |
+|  27 Aug 2003 (1.11) | Repaired link when "web" attribute specified |
+|  14 Aug 2003 (1.1) | You can specify revision only with one number (ex. %<nop>REV{"5"}%)<br>You can use negative numbers for revision (ex. %<nop>REV{"-2"}%)<br>Enhanced syntax (added characters *[* and *'*)<br>Added variables $date, $user and $comment to format attribute |
+|  05 Aug 2003 (1.0) | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.0 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 | |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | Author does not have test environment. Feel free to add them |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+This work was sponsored by [[http://www.systinet.com][Systinet Corp.]]
+
