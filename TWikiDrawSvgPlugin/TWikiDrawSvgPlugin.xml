@@ -1,0 +1,131 @@
+<!-- ANTfile for TWikiDrawSvgPlugin
+  Ant is at http://jakarta.apache.org
+  Four main targets are available:
+        test - runs unit tests on the package
+        release - runs tests and creates a zipped package
+        install - installs in the local TWiki
+        uninstall - inverse of install
+-->
+
+<project name="TWikiDrawSvgPlugin" default="build">
+
+    <property environment="ENV"/>
+    <property name="twiki" value="${ENV.TWIKI_HOME}"/>
+
+    <property name="lib.plugins" value="lib/TWiki/Plugins"/>
+    <property name="pub.plugins" value="pub/Plugins"/>
+    <property name="data.plugins" value="data/Plugins"/>
+
+    <property name="plugin.lib" value="${lib.plugins}/${ant.project.name}"/>
+    <property name="plugin.pub" value="${pub.plugins}/${ant.project.name}"/>
+    <property name="plugin.data" value="${data.plugins}/${ant.project.name}"/>
+
+    <property name="jar.file" value="${plugin.pub}/twikidrawsvg.jar"/>
+    <property name="source.zip" value="${plugin.lib}/source.zip"/>
+    <property name="release.zip" value="${ant.project.name}.zip" />
+    <property name="classes" value="${plugin.lib}/classes"/>
+
+    <!-- Files that get installed in the twiki -->
+    <patternset id="installed.files">
+	<include name="${ant.project.name}.xml"/>
+	<include name="templates/twikidraw.tmpl"/>
+	<include name="${plugin.lib}.pm"/>
+	<include name="${jar.file}"/>
+	<include name="${plugin.data}*.txt"/>
+	<include name="${plugin.pub}/*.gif"/>
+	<include name="${plugin.pub}/*.gif,v"/>
+	<include name="${plugin.pub}/*.draw"/>
+	<include name="${plugin.pub}/*.draw,v"/>
+	<include name="${source.zip}"/>
+    </patternset>
+
+    <!-- Files that make up the source zip -->
+    <patternset id="src.files">
+	<include name="packages/**/*.java"/>
+	<include name="src/**/*.java"/>
+    </patternset>
+
+<!-- Doesn't work
+    <uptodate property="jarBuild.notRequired" targetfile="${jar.file}" >
+	<srcfiles dir="${plugin.lib}">
+	    <patternset refid="src.files"/>
+	</srcfiles>
+    </uptodate>
+-->
+
+    <!-- Init target, defines the tag for this build -->
+    <target name="init">
+        <tstamp />
+    </target>
+
+    <target name="installBAD" unless="ENV.TWIKI_HOME">
+        <fail message="TWIKI_HOME must be set to install or uninstall!!"/>
+    </target>
+
+    <!-- Install in local TWiki -->
+    <target name="installOK" if="ENV.TWIKI_HOME" depends="test,src.zip">
+        <copy todir="${twiki}">
+            <fileset dir="${basedir}">
+                <patternset refid="installed.files"/>
+            </fileset>
+        </copy>
+
+        <chmod perm="ugoa+rwx" parallel="no">
+            <fileset dir="${twiki}">
+                <patternset refid="installed.files"/>
+            </fileset>
+        </chmod>
+    </target>
+
+    <target name="uninstallOK" if="ENV.TWIKI_HOME">
+        <delete>
+            <fileset dir="${twiki}">
+                <patternset refid="installed.files"/>
+            </fileset>
+        </delete>
+    </target>
+
+    <target name="src.zip">
+        <delete file="${source.zip}" />
+	<zip zipfile="${source.zip}">
+	    <zipfileset dir="${plugin.lib}">
+		<patternset refid="src.files"/>
+	    </zipfileset>
+	</zip>
+    </target>
+
+    <!--
+        MAIN TARGETS
+     -->
+
+    <!-- Build jar -->
+    <target name="build" unless="jarBuild.notRequired" depends="init,src.zip">
+        <mkdir dir="${classes}" />
+        <javac srcdir="${plugin.lib}"
+            destdir="${classes}"
+            target="1.1"
+            includes="**/*.java"
+        />
+        <jar jarfile="${jar.file}" basedir="${classes}" />
+    </target>
+
+    <target name="test" depends="build"
+	description="Build and run tests">
+	<!-- No tests! -->
+    </target>
+
+    <target description="Build from sources and package"
+            name="release" depends="test">
+        <delete file="${release.zip}" />
+        <zip zipfile="${release.zip}">
+            <zipfileset dir="${basedir}">
+                <patternset refid="installed.files"/>
+            </zipfileset>
+	</zip>
+    </target>
+
+    <target name="install" depends="installBAD,installOK"/>
+
+    <target name="uninstall" depends="installBAD,uninstallOK"/>
+
+</project>
