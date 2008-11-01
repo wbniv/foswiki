@@ -1,0 +1,4 @@
+DBI,>0,cpan,Required Available from [[http://search.cpan.org/~timb/DBI-1.607/DBI.pm][CPAN]]
+DBD::SQLite,>0,cpan,Required. Available from [[http://search.cpan.org/~msergeant/DBD-SQLite-1.14/lib/DBD/SQLite.pm][CPAN]]
+
+

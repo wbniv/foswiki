@@ -1,0 +1,119 @@
+%META:TOPICINFO{author="ThomasWeigert" date="1077529065" format="1.0" version="1.7"}%
+%META:TOPICPARENT{name="TWikiPlugins"}%
+---++ %TOPIC%
+
+This plugin allows you to query Trac for tickets and other data and format the returned results. This plugin was derived from TWiki:Plugins.BugzillaQueryPlugin, but as the two databases differ significantly, so do the details of these two plugins.
+
+---+++ Syntax Rules
+
+---++++ <code>%<nop>TRAC%</code>
+<code>%<nop>TRAC%</code> is the basic query into the trac database. A <code>%<nop>TRAC%</code> query applies to the whole database.
+
+| *Parameter* | *Description* | *Default value* |
+| (empty) | Comma separated list of table or tables to be queried. If one table is given, this table is retrieved. If more than one table is given, the additional tables are joined to the first table on their key (supported only for =milestone=, =component=, and =version= tables). | =ticket= |
+| =format= | Optional. Determines which attributes are shown in the result and how they are formatted. See below. |  |
+| =newline= | Used in format. Defines the text to be used when a newline character is encountered in a retrieved value. | =%<nop>BR%= |
+| =separator= | Used in format. Defines the text to be used to separate rows returned by the query | newline |
+| (any other) | Restricts the rows returned. The parameter must correspond to the name of an attribute of the selected table. Restrictions are written as =&lt;attribute&gt;="&lt;value&gt;"= or =&lt;attribute&gt;="&lt;value1&gt;&#124;&lt;value2&gt;&#124;..."=. The latter functions as an OR. Custom fields and attributes in joined tables cannot be restricted.  |  |
+
+By default, the 'ticket' table is queried, but the default parameter of the !%TRAC% tag can be used to select any table in the trac data base. The other parameters of the !%TRAC% tag refer to the columns in the selected table and can be used to narrow the data retrieved.
+
+<blockquote style="background-color:#f5f5f5">
+Examples:
+	* =%<nop>TRAC{"ticket"}%=
+	* =%<nop>TRAC{status = "new, assigned"}%=
+	* =%<nop>TRAC{"component" owner="%WIKINAME%"}%=
+	* =%<nop>TRAC{"ticket, milestone"}%=
+</blockquote>
+
+The first query above just retrieves all rows in the ticket table. The second query retrieves those rows in the ticket table, where the status column is either 'new' or 'assigned'. The third query searches the component table for rows where the owner is '%WIKINAME%'. The final query retrieves all rows in the ticket table, with the attributes of the milestone table joined and accessible for output.
+
+The trac data base scheme is described at [[http://trac.edgewall.org/wiki/TracDev/DatabaseSchema][trac db]].
+
+The output is formatted as specified in the =FORMAT= setting. The parameter =format= can be used to override that setting for a given query.
+
+---++++ Syntax and variables in =format= attribute
+The format attribute determines the rendering of a single row returned by the query. Columns in the table are referred to with the same naming conventions as for attributes, preceded by the '$' symbol. Custom fields defined in the trac database can be referenced by their name but need to be enabled through settings (see below). Attributes in joined tables are referenced by prefixing them with the name of the table, separated by a dot.
+
+<blockquote style="background-color:#f5f5f5">
+Examples:
+	* =%<nop>TRAC{ format="| $id | $status | $owner |" }%=
+	* =%<nop>TRAC{ "ticket, milestone" format="| $id | $status | $milestone.due |" }%=
+	* =%<nop>TRAC{ format="   * Bug $id is in status $status and was assigned to $owner" }%=
+</blockquote>
+
+
+---++++ <code>%<nop>TRACSUM%</code>, <code>%<nop>TRACMIN%</code>, <code>%<nop>TRACMAX%</code>, <code>%<nop>TRACCOUNT%</code>, <code>%<nop>TRACAVG%</code>
+
+Applies an aggregate function to a selected field of the ticket table. Supported are =SUM= (summation), =MAX= (maximum), =MIN= (minimum), =COUNT= (numbmer of matched rows), or =AVG= (average) of the values of the selected field across the matched rows.
+
+| *Parameter* | *Description* | *Default value* |
+| (empty) | Field the aggregate function is to be applied to. Must be a field in the ticket table. |  |
+| =&lt;field&gt;="&lt;value&gt;"= | Restriction on rows. Only one such parameter is allowed. |  |
+
+%X% The limit on restrictions will be removed in a later release.
+
+<blockquote style="background-color:#f5f5f5">
+Examples:
+	* =%<nop>TRACSUM{ "totalhours" milestone="Goal One" }%=
+</blockquote>
+
+---+++ Nested Queries
+
+Queries can be nested. For example, retrieve some rows and compute the sum of a field in a related table. The idea is to build the nested search string using a formatted search in the first search. Note that quotes must be escaped by preceding them with slash, the nested query must be protected from execution by using =$percnt= in the tag, and format fields can be prevented from early evaluation by substituting =$dollar= when needed.
+
+<blockquote style="background-color:#f5f5f5">
+Examples:
+<pre>
+%<nop>TRAC{ "milestone" format = "| $name | $percntTRACSUM{ \"totalhours\" milestone=\"$name\" }$percnt | $percntTRACSUM{ \"estimatedhours\" milestone=\"$name\" }$percnt | $due |" }%
+</pre>
+</blockquote>
+
+Retrieves the milestone table, and for each milestone, finds the sum of the totalhours and estimatedhours attribute, respectively (this custom field is applied by the trac estimation plugin).
+
+
+
+---+++ <nop>%TOPIC% Settings
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>TRACQUERYPLUGIN_&lt;setting&gt;%==, e.g., ==%<nop>TRACQUERYPLUGIN_SHORTDESCRIPTION%==
+
+<blockquote style="background-color:#f5f5f5">
+<!--		* Set URL = https://my.domain/trac/ -->
+   * Set SHORTDESCRIPTION = This plugin allows to query data from Trac data bases.
+   * Set FORMAT = | $id | $severity | $priority | $status | $resolution | $reporter | $component | $summary |
+      * The default format for queries. Can be overridden by the format attribute for a specific query.
+   * Set CUSTOM = totalhours, estimatedhours
+      * A comma-separated list of field names of trac custom ticket fields. If these are given, and the custom fields are defined, the query can also refer to the custom fields. Note that this query implies a number of join operations, as the custom fields are stored in a separate table.
+   * Set DEBUG = 0
+</blockquote>
+
+---+++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the Plugin on the TWiki server. 
+
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module. |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic. |
+     | ==lib/TWiki/Plugins/%TOPIC%/Config.spec== | Configuration specification file. |
+   * Configure and enable the Plugin:
+      * TWiki 4.0 and up: Run the [[%SCRIPTURL%/configure%SCRIPTSUFFIX%][configure]] script to enable the Plugin
+      * Configure the settings for the trac database. Select the type of data base (SQLite or !MySQL), and enter the appropriate settings. If your data base requires that a user is defined for access, configure =TRAC_USER= and =TRAC_PASSWD=. It might be best to give this user only read-only permissions, via the trac permission settings.
+   * Change the Plugin settings above, if required.
+
+---+++ Plugin Info
+|  Plugin Author: | TWiki:Main.ThomasWeigert |
+|  Plugin Version: | 1.02 |
+|  8 Aug 2008 | Added aggregate functions. Added joins to ticket table. Refactored queries so that this plugin could be leveraged from within other plugins. |
+|  TWiki Dependency: | none |
+|  CPAN Dependencies: | <table border="1"><tr><th>Name</th><th>Version</th><th>Description</th></tr><tr><td align="left">DBI</td><td align="left">&gt;=1.35</td><td align="left">Required</td></tr><tr><td align="left">DBD::SQLite</td><td align="left">&gt;=1.14</td><td align="left">Required</td></tr></table> |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.0 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ TWiki:Plugins.BugzillaQueryPlugin
+
+-- TWiki:Main.ThomasWeigert - 02 Aug 2008
+
