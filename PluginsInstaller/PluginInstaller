@@ -1,0 +1,259 @@
+#!/usr/bin/perl
+
+# Support functionality for the TWiki Collaboration Platform, http://TWiki.org/
+# 
+# Automatic Plugin installation and upgrade script
+
+# Oct 2004 - written by Rafael Alvarez, soronthar@flashmail.com
+#
+# Assumes that the user has enough privileges to perform the required operations.
+
+=begin twiki
+
+---+ PluginInstaller
+
+Create an upgraded twiki installation from an existing one
+and a new distribution.
+
+This script expects '.' to be the root of a TWiki distribution when it is called.
+<pre>
+perl PluginInstaller [<options>] <PluginName> [<web>] 
+</pre>
+
+where:
+ <PluginName> is the name of the plugin to install
+ <web> is the web where the plugin will be installed
+ <options> is any of the following:
+ 
+| -q | Be quiet |
+| -v | Be verbose (default)|
+| -vv | Be Very verbose |
+
+The options can appear anywere in the command line.
+=cut
+
+my $incomingDir;
+BEGIN {
+    $incomingDir="./incoming";
+    (-d $incomingDir) or 
+        die "I was expecting to see the $incomingDir directory. Make sure that:\n   * You're in the root of the twiki installation and\n   * You have the incoming directory with the plugins to be installed\n";
+}
+
+# Vars from PluginInstaller.cfg
+use vars qw {
+    $twikiConfigDir
+    $twikiLibPath
+    $twikiBinDir
+    $unzipPath
+    $useArchiveZip
+    $unzipParams
+};
+
+
+#My vars
+use vars qw {
+    $VERSION
+    $config;
+};
+    
+$VERSION = 1.00;
+
+my $NAME = "PluginInstaller";
+
+{
+package InstallConfig;
+    my %storeSettings;
+    sub new {
+        my $self=bless {};
+        
+        $self->{incomingDir}=$incomingDir;
+        $self->{uninstallDir}="uninstall";
+           
+        return  $self;
+    }
+    
+    sub putStoreSettings {
+        my $self=shift;
+        %storeSettings=@_;
+    }
+    
+    sub getStoreSettings {
+        return %storeSettings;
+    }
+}
+
+$config=new InstallConfig();
+
+_handleParams($config);
+_splash();
+
+_prepareEnviroment($config);
+
+my $installer=new TWiki::Contrib::PluginInstaller::Installer($config);
+$installer->install();
+
+#_cleanup();
+_writeInstallCfg($config);        
+
+#### END OF SCRIPT ####
+
+#######################################
+# Printing stuff
+#######################################
+
+sub printVerbose {
+    my $text=shift;    
+    print $text if (($config->{-v} || $config->{-vv}) && !$config->{-q});
+}
+
+sub printVeryVerbose{
+    my $text=shift;    
+    print $text if ($config->{-vv} && !$config->{-q});
+}
+
+sub printNotQuiet {
+    my $text=shift;    
+    print $text unless ($config->{-q});
+}
+
+
+#######################################
+# Handle CL params
+#######################################
+
+sub _handleParams {
+    my $config=shift;
+    my $n = 0;
+    my $paramWeb = 0;
+
+    while ($n <= $#ARGV) {
+        if ($ARGV[$n] =~ /^(-.+)/o) {
+            $config->{$1}=1;
+        } else {
+            if (!$paramWeb) {
+                $config->{pluginPackage} = $ARGV[$n];
+                $paramWeb=1;
+            } else {
+                $config->{web}= $ARGV[$n]
+            }
+        }
+        $n++;
+    }   
+}
+
+#######################################
+# Spash screen
+#######################################
+
+sub _splash() {
+    print "Automatic Plugin installation and upgrade script.\n";
+    print "Oct 2004 - written by Rafael Alvarez, soronthar\@flashmail.com\n\n";
+}
+
+#######################################
+# Prepare the enviroment
+#######################################
+
+sub _prepareEnviroment {
+    my $config=shift;
+    printNotQuiet "0. Setting the Enviroment\n";
+    
+    _loadConfigFileOrAskConfiguration();
+    $config->{twikiLibPath}=$twikiLibPath;
+    $config->{twikiBinDir}=$twikiBinDir;
+    _verifyTWikiModule();
+    printNotQuiet "\n";    
+    
+}
+
+sub _loadConfigFileOrAskConfiguration{
+    if (! -f "./PluginInstaller.cfg") {
+        _firstRun();
+    }  else {
+        do "PluginInstaller.cfg";
+        $config->{unzipPath}=$unzipPath;
+        $config->{unzipParams}=$unzipParams;
+
+        printVerbose "   * Loading Configuration .... OK\n" ;
+        _checkSetLibCfg($twikiBinDir);
+    }    
+    _addTwikiToPath();
+
+}
+
+sub _verifyTWikiModule {
+    printVerbose "   * Looking for PluginInstaller::Installer ..... ";
+    
+    eval "use TWiki::Contrib::PluginInstaller::Installer;";
+    if ($@) {
+        printVerbose "NOT FOUND\n" && die "Can't continue unless PluginInstaller::Installer is in the @INC path: $@";
+    } else {
+        printVerbose "FOUND\n";
+    }
+}
+
+sub _addTwikiToPath {
+    unshift @INC, $twikiLibPath;
+}
+
+#######################################
+# First Run Stuff
+#######################################
+
+sub _firstRun {
+    print "OK - This is a First Time run. \n\n";
+    print "I'll explore the system and try to figure out your configuration\n";
+    _checkSetLibCfg("./bin");
+}
+
+sub _checkSetLibCfg {
+    $twikiBinDir = shift;
+    printVerbose "   * Looking for setlib.cfg ..... ";
+
+    if (-d $twikiBinDir && -f "$twikiBinDir/setlib.cfg") {
+        printVerbose "FOUND ($twikiBinDir/setlib.cfg)\n";   
+    } else {
+        printVerbose "NOT FOUND\n";
+        $twikiBinDir=_findLibFile();
+    }
+    do "$twikiBinDir/setlib.cfg";
+}
+
+
+sub _findLibFile {
+    print "     Please tell me the path to setlib.cfg \n      ---> "; 
+    my $configPath;
+    do {
+        chomp ($configPath = <STDIN>) ;
+    } until ((-f "$configPath/setlib.cfg") ? 1 :
+       (print("     Hmmm - I can't see setlib.cfg at $configPath ... please check and try again\n      --->"), 0) 
+    );
+    return $configPath;
+}
+
+
+#######################################
+# Clean up
+#######################################
+
+sub _cleanup() {
+    printNotQuiet "3. Cleaning up\n";
+    printVerbose "   * Not Implemented Yet\n";
+    printNotQuiet "\n\n";        
+}
+
+#######################################
+# Write PluginInstaller configuration
+#######################################
+
+sub _writeInstallCfg {
+    my $config=shift;
+    printNotQuiet "4. Writing PluginInstaller.cfg  ..... ";
+    open CONFIG,">./PluginInstaller.cfg";
+    print CONFIG "\$twikiBinDir=\'".$config->{twikiBinDir}."\';\n";
+    print CONFIG "\$unzipPath=\'".$config->{unzipPath}."\';\n";
+    print CONFIG "\$unzipParams=\'".$config->{unzipParams}."\';\n";
+
+    close CONFIG;
+    printNotQuiet "DONE\n";
+}
