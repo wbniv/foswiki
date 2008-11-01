@@ -1,0 +1,40 @@
+
+
+%STARTINCLUDE%
+
+<font size="-1">
+<!--%<nop>TABLE{sort="on" footerrows="1" initsort="2" initdirection="down"}% -->
+%SEARCH{
+    "META:FIELD{name=\"CurrentState.*?value=.(%URLPARAM{"status" default="%STATUS%"}%);META:FIELD{name=\"Summary.*?value=.(%URLPARAM{"summary" default="%SUMMARY%"}%);META:FIELD{name=\"AppliesTo.*?value=\"(%URLPARAM{"class" default="%CLASS%"}%);META:FIELD{name=\"WaitingFor.*?value=\"[^\"]*(%URLPARAM{"waitingfor" default="%WAITINGFOR%"}%);META:FIELD{name=\"Priority.*?value=\"(%URLPARAM{"priority" default="%PRIORITY%"}%);META:FIELD{name=\"ReportedBy.*?value=\"[^\"]*(%URLPARAM{"reportedby" default="%REPORTEDBY%"}%)" web="%INCLUDINGWEB%"
+    excludetopic="ItemTemplate,ItemViewTemplate"
+    topic="Item*"
+    type="regex"
+    nosearch="on"
+    order="modified"
+    reverse="on"
+    limit="%URLPARAM{"limit" default="%LIMIT%"}%"
+    nototal="on"
+    header="| *Id* | *Summary* | *Applies&nbsp;To* | *Priority* | *Current&nbsp;State* | *Last&nbsp;Edit* | *Waiting&nbsp;For* |"
+    format="| [[$web.$topic][$topic]]  | $formfield(Summary) | $formfield(AppliesTo) $formfield(Component) | $formfield(Priority) | $formfield(CurrentState) | $date | $formfield(WaitingFor) |"
+}%
+| %IF{"%CALC{$ROW()}%='1'" then='<span style="background : #808080;"> %WHITE% No entries found matching your query %ENDCOLOR% </span>' else="Summary"}%  | | %IF{"%CALC{$ROW()}%='1'" then="" else="%CALC{"$COUNTITEMS( R2:C$COLUMN()..R$ROW(-1):C$COLUMN() )"}%"}% | %IF{"%CALC{$ROW()}%='1'" then="" else="%CALC{"$COUNTITEMS( R2:C$COLUMN()..R$ROW(-1):C$COLUMN() )"}%"}% | %IF{"%CALC{$ROW()}%='1'" then="" else="%CALC{"$COUNTITEMS( R2:C$COLUMN()..R$ROW(-1):C$COLUMN() )"}%"}% | | |
+</font>
+   * !CurrentState :  %URLPARAM{"status" default="%STATUS%"}%
+   * Summary : %URLPARAM{"summary" default="%SUMMARY%"}%
+   *  !AppliesTo : %URLPARAM{"class" default="%CLASS%"}%
+   * !WaitingFor : %URLPARAM{"waitingfor" default="%WAITINGFOR%"}%
+   *  Priority : %URLPARAM{"priority" default="%PRIORITY%"}%
+   *  !ReportedBy : %URLPARAM{"reportedby" default="%REPORTEDBY%"}%
+%STOPINCLUDE%
+
+-----
+
+---+++ Defaults
+   * Set STATUS=.*
+   * Set SUMMARY=.*
+   * Set DETAIL=.*
+   * Set PRIORITY=.*
+   * Set REPORTEDBY=.*
+   * Set LIMIT=
+   * Set CLASS = .*
+   * Set WAITINGFOR = .*

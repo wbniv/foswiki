@@ -1,0 +1,30 @@
+
+%INCLUDE{"%IF{"context can_login" then="%TWIKIWEB%.WebLeftBarLogin"}%" warn="off"}%
+
+   * *[[WebHome][%ICON{"home"}% %INCLUDINGWEB% Web <img src="%PUBURL%/%BASEWEB%/WebPreferences/logo.png" />]]*
+   * [[%SCRIPTURL{edit}%/%INCLUDINGWEB%/Item%NEWTOPICNAME%?templatetopic=WebTopicEditTemplate;formtemplate=ItemTemplate;_T=%SERVERTIME{$hou$min$sec}%][ %ICON{"newtopic"}% Create New Report]]
+   * *[[%SCRIPTURL{"view"}%/Bugs/AllOutStandingItems?class=.*&amp;amp=&amp;sortcol=3;table=1;up=1#sorted_table][%X% Items  by urgency]]*
+   * [[AllOutStandingItems][ %ICON{"wip"}% Open Reports]]
+   * [[MyItems][ %ICON{"arrowbright"}% My Reports]]
+   * [[RecentlyClosed][ %ICON{"choice-yes"}% Recently Closed]]
+   * [[WebChanges][ %ICON{"changes"}% Changes]] 
+      (<a href="%SCRIPTURLPATH{view}%/%WEB%/WebChanges?limit=50" rel=nofollow>50</a>,
+       <a href="%SCRIPTURLPATH{view}%/%WEB%/WebChanges?limit=100" rel=nofollow>100</a>)
+     [[%SCRIPTURL{view}%/%INCLUDINGWEB%/WebRss?skin=rss][ %PUBURL%/%TWIKIWEB%/TWikiDocGraphics/rss-small.gif ]]
+   * [[WebSearch][ %ICON{"searchtopic"}% Search]]
+
+   * *List by CurrentState*
+   * [[%SCRIPTURL{view}%/%INCLUDINGWEB%/CurrentState?state=New][%ICON{"viewtopic"}% New]]
+   * [[%SCRIPTURL{view}%/%INCLUDINGWEB%/CurrentState?state=Waiting+for+Feedback][%ICON{"rfc"}% Waiting for Feedback]]
+   * [[%SCRIPTURL{view}%/%INCLUDINGWEB%/CurrentState?state=Confirmed][%ICON{"viewtopic"}% Confirmed]]
+   * [[%SCRIPTURL{view}%/%INCLUDINGWEB%/CurrentState?state=Being+Worked+On][%ICON{"wip"}% Being Worked On]]
+   * [[%SCRIPTURL{view}%/%INCLUDINGWEB%/CurrentState?state=Waiting+For+Release][%ICON{"rfc"}% Waiting For Release]]
+   * [[%SCRIPTURL{view}%/%INCLUDINGWEB%/CurrentState?state=Closed][%ICON{"choice-yes"}% Closed]]
+   * [[%SCRIPTURL{view}%/%INCLUDINGWEB%/CurrentState?state=No+Action+Required][%ICON{"choice-cancel"}% No Action Required]]
+
+----
+   * [[WebAdmin][ %ICON{"wrench"}% Admin]]
+----
+%INCLUDE{ "%TWIKIWEB%.WebLeftBarWebsList" }%
+
+

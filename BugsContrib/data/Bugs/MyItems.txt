@@ -1,0 +1,25 @@
+
+%INCLUDE{"%TOPIC%" NAME="%URLPARAM{"name" default="%WIKINAME%"}%"}%
+
+<form action="%SCRIPTURL{"view"}%/%WEB%/%TOPIC%">
+*See bugs reported by:* <input type="text" size="30" class="twikiInputField" name="name" value="%URLPARAM{"name" default="%WIKINAME%"}%" />
+</form>
+
+See also: MyDetailedItems
+
+<!--
+<verbatim>
+%STARTINCLUDE%
+<h2>Bugs waiting for <nop>%NAME%</h2>
+%SEARCH{"META:FIELD{name=.CurrentState.*?value=.(New|Confirmed|Waiting for Feedback|Being Worked On);META:FIELD{name=.WaitingFor.*?value=\"[^\"]*%NAME%" web="%WEB%"  topic="Item*" regex="on" nosearch="on" order="modified" reverse="on"  header="| *Id* | *Summary* | *State* | *Last Edit* | *By* |" format="| [[$web.$topic][$topic]]  | $formfield(Summary) | $formfield(CurrentState) | $date | [[%SCRIPTURL{"view"}%/%WEB%/%TOPIC%?name=$wikiname][$wikiname]] |" }%
+
+<h2>Open bugs reported by <nop>%NAME%</h2>
+%SEARCH{"META:FIELD{name=.CurrentState.*?value=.(New|Confirmed|Waiting for Feedback|Being Worked On);META:FIELD{name=\"ReportedBy.*?value=\"[^\"]*%NAME%" web="%WEB%"  topic="Item*" regex="on" nosearch="on" order="modified" reverse="on"  header="| *Id* | *Summary* | *State* | *Last Edit* | *By* |" format="| [[$web.$topic][$topic]]  | $formfield(Summary) | $formfield(CurrentState) | $date | [[%SCRIPTURL{"view"}%/%WEB%/%TOPIC%?name=$wikiname][$wikiname]] |" }%
+
+<h2>Recently fixed or discarded bugs reports reported by <nop>%NAME%</h2>
+%SEARCH{"META:FIELD{name=.CurrentState.*?value=.(Waiting for Release|Closed|No Action Required);META:FIELD{name=.ReportedBy.*?value=\"[^\"]*%NAME%\"" web="%WEB%"  topic="Item*" regex="on" nosearch="on" order="modified" reverse="on" limit="25" header="| *Id* | *Summary* | *State* | *Last Edit* | *By* |" format="| [[$web.$topic][$topic]]  | $formfield(Summary) | $formfield(CurrentState) | $date | [[%SCRIPTURL{"view"}%/%WEB%/%TOPIC%?name=$wikiname][$wikiname]] |" }%
+%STOPINCLUDE%
+</verbatim>
+-->
+
+

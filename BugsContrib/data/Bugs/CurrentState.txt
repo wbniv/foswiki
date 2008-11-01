@@ -1,0 +1,68 @@
+<!--
+Interactive lookup
+
+   * Set STATE = %URLPARAM{"CurrentState" default=".*"}%
+-->
+<div class="twikiPageForm">
+<form name="chooser" action="%SCRIPTURL{"view"}%/%WEB%/%TOPIC%" method="get">
+<h3>%STARTSECTION{form_select}%Current State 
+<select name="CurrentState" onchange="chooser.submit()">
+%STARTSECTION{form_options}%
+<option %IF{"not defined $CurrentState" else="selected"}% >.*</option>
+%SEARCH{ 
+    "^\|[^\|]*\| *option *\|" 
+    topic="%TOPIC%" 
+    type="regex" 
+    multiple="on" 
+    nosearch="on" 
+    nototal="on" 
+    format="<option $percntIF{\"$CurrentState='$pattern(^\| *(.*?) *\|.*)'\" then=\"selected\"}$percnt >$pattern(^\| *(.*?) *\|.*)</option>" 
+}%
+%ENDSECTION{form_options}%
+</select>
+%ENDSECTION{form_select}%
+</h3>
+%INCLUDE{
+	"Bugs.Tabulator" 
+    STATUS="%STATE%"
+	SUMMARY=".*"
+	DETAIL=".*"
+	PRIORITY=".*"
+	CLASS=".*"
+	REPORTEDBY=".*"
+	WAITINGFOR=".*"
+	LIMIT=""
+	CODEBASE=".*"
+}%
+<input type="submit" class="twikiButton" name="%IF{"defined closed" then="other" else="closed"}%" value="%IF{"defined closed" then="Hide" else="Show"}% closed and discarded items" />
+</form>
+</div>
+
+
+---
+---++ Documentation for item editing
+%STARTINCLUDE%
+---+++ %SPACEOUT{%TOPIC%}%
+%SEARCH{ 
+    "^\|[^\|]*\| *option *\|" 
+    topic="%TOPIC%" 
+    type="regex" 
+    multiple="on" 
+    nosearch="on" 
+    nototal="on" 
+    format="   * *$pattern(^\| *(.*?) *\|.*)* - $pattern(^\|[^\|]*\| *option *\| *(.*?) *\|.*)" 
+}%
+
+   
+Please make sure there is an entry in the details explaining any state change.
+%STOPINCLUDE%
+---
+---++ %TOPIC% option definitions
+| *Name* | *Type* | *ToolTip* |
+| New | option | the issue has just been found, and hasn't been analysed yet, or there is new data about an existing issue. |
+| Waiting for Feedback | option | the report was insufficient to analyse the issue, and more feedback is needed from the person named in the "Waiting For" field. Once the reporter has added feedback they should flip the state back to "New". If feedback is not received within 30 days, the issue will be discarded. |
+| Confirmed | option | the issue has been analysed, and the priority has been confirmed (or changed) by a developer. The item can henceforth be classified regarding release blocking status etc. *Someone needs to pick it up and fix it.*  |
+| Being Worked On | option | the issue has been analysed, and is being worked on by the developer named inthe "Waiting For" field. |
+| Waiting for Release | option | the issue reported has been fixed and is queued for release. See the !TargetRelease field to see whether it is queued for the next patch, minor, or major release. If the reporter isn't satisfied with the fix, they should flip the state back to "New" and explain why. |
+| Closed | option | the issue has been fixed to the satisfaction of the fixer, and has been through the "Waiting for release" state, and is now released to end users. If the reporter isn't satisfied with the fix, they should flip the state back to "New" and explain why. Note that bugs reported against new code (code that has not been released yet) or Extensions (Plugins etc) may jump straight to "Closed" without going through "Waiting for Release" first. |
+| No Action Required | option | the issue was already fixed, or it's a duplicate, or a RTFM, or could not be reproduced and feedback was never received. |

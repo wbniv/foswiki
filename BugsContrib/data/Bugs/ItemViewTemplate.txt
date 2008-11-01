@@ -1,0 +1,20 @@
+%META:TOPICINFO{author="TWikiContributor" date="1176109287" format="1.1" reprev="1.1" version="1.1"}%
+%TMPL:INCLUDE{"view"}%
+
+
+%TMPL:DEF{"content"}%%TEXT%
+
+%COMMENT{topic="%BASETOPIC%"}%
+
+%TMPL:END%
+
+
+%TMPL:DEF{"formtop"}%
+---+ <span style="font-size:80%"><nop>%TOPIC%: %FORMFIELD{"Summary"}% </span>
+%TABLE{ sort="off" databg="#eeeeee" }%
+| *Priority:* | *<nop>CurrentState:* | *<nop>AppliesTo:* | *Component:* | *<nop>WaitingFor:* |
+| %FORMFIELD{"Priority"}% | %FORMFIELD{"CurrentState"}% | %FORMFIELD{"AppliesTo"}% | %FORMFIELD{"Component"}% | %FORMFIELD{"WaitingFor"}% |
+
+---++ Details
+
+%TMPL:END%

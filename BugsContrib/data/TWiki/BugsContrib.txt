@@ -1,0 +1,51 @@
+<img src="%PUBURL%/%WEB%/%TOPIC%/wikiring-bugscontrib.png" style="float:right;" />
+
+---+ Item Tracking system implemented as a TWiki Application
+
+<!--
+
+   PLEASE DO NOT EDIT THIS TOPIC
+
+   It is automatically generated from the subversion repository, and any changes
+   you make will simply be overwritten the next time a release is generated.
+
+   Instead, you could check your fix in, raise a bug in the Bugs web, or mail thge author.
+-->
+
+This is a Tracking System implemented using TWiki.TWikiForms. It has been implemented to be used in a web on its own, but could be intermingled with a discussion style !TWikiWeb.
+
+A customised version of it has been in use as TWiki's bug tracking and shakeout system since 2005 - See http://develop.twiki.org/~twiki4/cgi-bin/view/Bugs.
+
+The BugsContrib is a _TWikiApplication_ (an application that is implemented entirely in TWiki topics). It is designed to use the left bars supported by %TWIKIWEB%.PatternSkin and the TWiki:Plugins.MoveableTypeSkin, though could easily be converted to another skin. It's ideal for a small bug database (we have used it with over 4000 items with no problems) for a disciplined team.
+
+---++ Installation
+
+---+++ Installation Instructions
+
+	* First, check that you do no have an existing web called "Bugs". if you do, move it out of the way.
+	* Download the archive from the Plugins web (see below)
+	* Unpack it in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+%$MANIFEST%
+	* Make sure that all files are readable by the web server user
+	* Run =perl= ==%TOPIC%_installer.pl== =install= to automatically check and install other TWiki modules that this module depends on, that you may not have installed. This script also includes an =uninstall= option should you ever wish to remove the plugin from your installation, and an =upgrade= option that will automatically download and install the latest version.
+
+See the Bugs.WebHome topic in the new web for help in configuring the application to your needs.
+
+   * Set SHORTDESCRIPTION = Item Tracking system implemented as a TWiki Application
+
+|  Authors: | TWiki:Main.SvenDowideit of [[http://distributedINFORMATION.com][distributedINFORMATION.com]], %PUBURL%/%WEB%/%TOPIC%/wikiring.png http://wikiring.com partners & others |
+| Plasticbug logo | by [[http://liquisoft.com][Ryan Ford]] |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Version: | %$VERSION% |
+|  License: | GPL |
+|  Change History: | |
+|  15447  | 1 Nov 2007 - TWiki:Main.SvenDowideit - updated to fix bugs reported in the Dev topic (4.2 query release to come later) |
+|  12856 | 13 Feb 2007 - TWiki:Main.SvenDowideit - update with lessons learned from longer term use |
+|  9804 | TWiki:Main.CrawfordCurrie - packaged for Release |
+|  Home: | TWiki:Plugins/%TOPIC% |
+|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
+|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+
+%META:FILEATTACHMENT{name="wikiring-bugscontrib.png" attachment="wikiring-bugscontrib.png" attr="" comment="" date="" path="logo.png" user="TWikiContributor" version="2"}%
+%META:FILEATTACHMENT{name="wikiring.png" attachment="wikiring.png" attr="" comment="" date=""  user="TWikiContributor" version="4"}%
