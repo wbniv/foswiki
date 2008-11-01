@@ -1,0 +1,76 @@
+%META:TOPICINFO{author="MichaelGindonis" date="1121262472" format="1.0" version="1.2"}%
+---+!! SecurityPlugin
+
+The SecurityPlugin implements a [[TWikiVariables][TWikiVariable]] which will show weather the page being viewed needs authentication or not. Authorization is another issue. Hopefully this is easier and more intuitive than telling users to check whether the current URL has =view= or =viewauth= in it.
+
+The Plugin is quite simple, it uses ==TWiki::Func::isGuest== to check if the page is authenticated or not. This relies on the fact that URL linking to other topics use the =view= CGI and authenticated pages are referred from the =view= CGI to the =viewauth= CGI (if installed). Of course one could make a page appear authenticated by adding =auth= to the URL (or linking to a URL with viewauth) but this won't happen on the next page if the user acts normally and clicks on the links.
+
+%TOC%
+
+------
+
+---++ Syntax Rules
+
+	* Place a %<nop>SECURITY% variable in any page (Or WebLeftBar or WebTopBar), it will return the contents of %<nop>SECURITYLOCKED% or %<nop>SECURITYUNLOCKED% depending on whether the page being viewed is authenticated or not.
+
+
+---++ Examples
+
+| *You type* | *Simulated locked* | *Simulated unlocked* | *If installed* |
+| %<nop>SECURITY% | %SECURITYLOCKED% | %SECURITYUNLOCKED% | %SECURITY% |
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Shows if Authentication required to view this page or not
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+	* My own settings:
+		* Set SECURITYLOCKED = <image src=%PUBURLPATH%/%TWIKIWEB%/TWikiDocGraphics/lock.gif alt="viewable by authenticated user only according to authorization">
+		* Set SECURITYUNLOCKED = <img src=%PUBURLPATH%/%TWIKIWEB%/SecurityPlugin/unlocked.gif alt="viewable publicly">
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==pub/TWiki/SecurityPlugin/unlocked.gif== | Unlocked lock image |
+
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the installation was successful:
+		* %SECURITY% <- there should be a little picture of a lock (locked or unlocked)
+		* this of course depends on your settings for SECURITYLOCKED and SECURITYUNLOCKED and the rights required to read this page
+		* See also the Examples section above
+
+	* Customize the Variables if desired
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.MichaelGindonis |
+|  Plugin Version: | 13 Jul 2005 (V1.000) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  13 Jul 2005: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.022 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.TWikiUserAuthentication
+
+-- Main.MichaelGindonis - 13 Jul 2005
+
+%META:FILEATTACHMENT{name="unlocked.gif" attr="h" comment="picture of unlocked lock" date="1121266359" path="unlocked.gif" size="392" user="MichaelGindonis" version="1.1"}%
