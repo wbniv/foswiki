@@ -1,0 +1,171 @@
+%META:TOPICINFO{author="TWikiGuest" date="1160739585" format="1.1" reprev="1.14" version="1.14"}%
+%META:TOPICPARENT{name="TWikiPlugins"}%
+
+---+!! The Object Plugin
+
+%SHORTDESCRIPTION%
+
+Uses the =OBJECT= html tag to embed arbitrary content into a wiki page, with a particular bent towards media:
+common media formats are detected and some "agnostic best-guess" html is used (derived from that recommended by
+the plugin providers).
+However, any content at all can be embedded using the object tag: java, pdf, other html, svg,
+even images (although there is of course no reason to do so).
+The plugin uses generic syntax when it cannot detect the type of file being embedded.
+
+The plugin stores a range of default values (defined here on this page)
+which allow you to specify a bare minimum of info in your markup and still
+get acceptable results (see [[#Basic_Usage][Basic Usage]] below).
+These defaults can of course be overridden on a use-by-use basis.
+
+A =USEEMBED= flag should be left to "true" - I thought I could be clever before I fully understood the minefield that is browser plugin syntax.
+
+It also supports TWiki:Plugins.EmbedPlugin's =EMBED= syntax to enable it to superceed that plugin:
+   * %<nop>EMBED{filename="string" width="number" height="number"}%
+
+---++Basic Usage
+
+You *could* call the plugin as simply as:
+
+=%<nop>OBJECT{"SomeMovie.mov"}%=
+
+This will detect that the embedded file is a QuickTime and use "media-like" syntax (and pass the correct =CLASSID= to IE - why it can't work out which plugin to use is a little beyond me). However, unlike an IMG tag, plugins do not autosize to their content, and the movie would display at the default size. You could use media of only one size site-wide and specify the dimensions as defaults, but realistically the minimum markup you need to embed things into your wiki pages is:
+
+=%<nop>OBJECT{"SomeMovie.swf" width="320" height="180"}%=
+
+---++Advanced Usage
+
+A call to the ObjectPlugin could get as complicated as:
+
+=%<nop>OBJECT{src="SomeMovie.wmv" width="320" height="180" controller="FALSE" play="TRUE" useembed="TRUE" myparam1="3.1419" myparam2="edinburgh"}%=
+
+Once you start passing a ton of parameters, you aren't gaining much by using the plugin, and you may actually be reducing the portability of your code, so it may be best to do your own HTML.
+
+%H% Including a "mime-type" parameter may help your browser choose which browser plugin to use more efficiently
+
+---++Paramters
+
+ObjectPlugin supports arbitrary parameters. If you pass it =cowtype="Jersey"=, that is passed on to the browser, both as a =<<nop>PARAM>= tag and inside the optional =<<nop>EMBED>= tag.
+
+A few parameters are defined and get handled a little differently (they may be "translated" to a particular browser plugins syntax)
+
+|*Parameter*|*Value*|*Description*|*Notes**|
+|src|URI|the content to embed ("src=" is optional)||
+|width|std web measure (px, %, em)|with of box holding content||
+|height|std web measure (px, %, em)|height of box holding content||
+|controller|text boolean ("TRUE" or "FALSE")|whether to display controls|automatically added|
+|play|text boolean|whether to auto-play the content| automatically added for QT and Flash|
+|useembed| text boolean|whether to include a non-standard (but widely recommended) =EMBED= tag||
+
+---++Detection of media type/Recommended plugin syntax
+
+The plugin detects most media types and uses a hybrid of the html markup
+recommended by the browser plugin makers -
+in the hope of providing maximum compatibility.
+This is done simply by checking the extension of the filename.
+*Or, if the filename contains =youtube.com= it will automatically use flash*
+
+Originally, the plugin used (almost) the exact recommended HTML on a type-by-type basis,
+but I've abandoned this in favour of "one markup fits all" because you don't
+know which plugin will be handling what - the various ISO formats (MPEG1,2,4, MP3)
+will be taken by whatever plugin was installed last, and QuickTime now handles
+Windows Media on Macintosh systems (at Microsoft's recommendation!).
+
+While most of the HTML is as generic as possible, the =CLASSID= value and some
+other mime-type information is unique to a particular file-type, and for Flash,
+QuickTime and Windows Media the  Microsoft-sanctioned values are sent.
+I understand MSIE has to have this info or it totally burns ...
+
+I haven't bothered with Real.
+If there's huge demand, it wouldn't be hard to add -
+but it may also be handled quite well by the generic media syntax already.
+
+The sytax recommendations are found:
+
+   * [[http://developer.apple.com/documentation/QuickTime/Conceptual/QTScripting_HTML/QTScripting_HTML_Document/chapter_1000_section_2.html#//apple_ref/doc/uid/TP40001525-2-UsingtheltEMBEDgtandltOBJECTgtTags][QuickTime]]
+   * [[http://support.microsoft.com/default.aspx?scid=kb;en-us;Q285154][Windows Media]] (is it just me or is there almost no doco from Microsoft on this?)
+   * [[http://www.adobe.com/cfusion/knowledgebase/index.cfm?id=tn_4150][Flash]]
+
+From those startpoints, basically everything gets merged:
+all synonymous parameters get sent (e.g. QT's "AutoPlay",
+Flash's "Play" and WMV's "AutoStart") together, set to the same value.
+
+Then everything is smoodged onto one line, TWiki doesn't like html tags over line
+breaks, but I also noticed tables and Lists getting broken from line breaks
+added by the plugin, so one line for everything. 
+
+And (to keep the plugin reasonably simple) _all_ information passed inside
+=PARAM= tags is also put in the =EMBED= tag (and any special =EMBED= only parameters go first). 
+
+In other words, all parameters recommended by the plugin maker are sent, plus more, and in any old order.
+
+This is an interesting article on getting "pure" OBJECT tags to both a) validate and b) work with browsers:
+
+http://alistapart.com/articles/byebyeembed 
+
+This is sort-of what I was aiming for with =USEEMBED=. I assumed that you could just leave =EMBED= out,
+but that will break on everything but IE, as the other browsers (a little churlishly) ingore the entire tag if it has MS's custom params in it.
+
+---++ defining additional file formats
+The output of this plugin is paritally goverend by TWiki templates. the mov file output is defined in =templates/objectplugin_mov.tmpl=,
+which contains the classid's, codebase etc.
+<verbatim>
+%TMPL:DEF{objectHeader_mov}%classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" %TMPL:END%
+%TMPL:DEF{embedTag_mov}%TYPE="video/quicktime" PLUGINSPAGE="http://www.apple.com/quicktime/download/" %TMPL:END%
+%TMPL:DEF{controlerHeight_mov}%16%TMPL:END%
+</verbatim>
+To add other types add your own template using the same naming scheme (=objectplugin_ext.tmpl=).
+
+---++ <nop>%TOPIC% Global Settings
+
+Plugin settings are stored as preferences variables. To reference
+a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, for example, ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+   * One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+   * Set SHORTDESCRIPTION = Embed Multi-Media Objects into TWiki topics (replaces EmbedPlugin)
+
+   * Default parameters for plugin. These *must* be defined. (For booleans use "TRUE" for true, anything else for false)
+   * Set WIDTH = 320
+   * Set HEIGHT = 180
+   * Set CONTROLLER = TRUE
+   * Set PLAY = TRUE
+   * Set USEEMBED = TRUE
+
+---++ Installation Instructions
+
+%$INSTALL_INSTRUCTIONS%
+
+---+++ Validation:
+You should see something below:
+---++++ wmv
+%OBJECT{"http://support.microsoft.com/support/mediaplayer/wmptest/samples/new/mediaexample.wmv" height="240" width="320"}%
+---++++ mov
+%OBJECT{"%ATTACHURL%/sample.mov" height="180" width="320"}%
+---++++ swf
+%OBJECT{"%ATTACHURL%/Sample.swf" height="180" width="320"}%
+---++++ you-tube
+%OBJECT{"http://www.youtube.com/v/-dnL00TdmLY&hl=en&fs=1" width="425" height="344"}%
+---++++ html
+%OBJECT{"%ATTACHURL%/sample.html" arbitrary="plplpl"}%
+
+---++ Plugin Info
+
+|  Plugin Authors: | TWiki:Main.PiersGoodhew, TWiki:Main.SvenDowideit |
+|  Copyright: | &copy; 2006 TWiki:Main.PiersGoodhew, 2008 TWiki:Main.SvenDowideit |
+|  License: | [[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License)]] |
+|  Plugin Version: | %$VERSION% |
+|  20 Oct 2008 | modernise with TWiki:Plugins.BuildContrib, add EMBED Tag, remove WikiWord issues, templatise html output, add youtube supprt - TWiki:Main.SvenDowideit |
+|  16 Oct 2006 | initial version |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Plugin Home: | http://twiki.org/cgi-bin/view/Plugins/ObjectPlugin |
+|  Feedback: | http://twiki.org/cgi-bin/view/Plugins/ObjectPluginDev |
+|  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/ObjectPluginAppraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the feedback topic on twiki.org instead. -->
+
+
+%META:FILEATTACHMENT{name="sample.html" attr="" autoattached="1" comment="sample html file" date="1160707557" path="sample.html" size="110" user="Main.TWikiGuest" version="2"}%
+%META:FILEATTACHMENT{name="sample.mov" attr="" autoattached="1" comment="sample QT movie" date="1160739512" path="sample.mov" size="21681" user="Main.TWikiGuest" version="1"}%
+%META:FILEATTACHMENT{name="Sample.swf" attr="" autoattached="1" comment="" date="1160707933" path="Sample.swf" size="1831" user="Main.TWikiGuest" version="1"}%

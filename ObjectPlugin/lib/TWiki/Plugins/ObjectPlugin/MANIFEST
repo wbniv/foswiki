@@ -1,0 +1,12 @@
+# Release manifest for ObjectPlugin
+data/TWiki/ObjectPlugin.txt 0644 Documentation
+lib/TWiki/Plugins/ObjectPlugin.pm 0644 Perl module
+
+pub/TWiki/ObjectPlugin/Sample.swf
+pub/TWiki/ObjectPlugin/sample.mov
+pub/TWiki/ObjectPlugin/sample.html
+
+templates/objectplugin.tmpl
+templates/objectplugin_mov.tmpl
+templates/objectplugin_wmv.tmpl
+templates/objectplugin_swf.tmpl

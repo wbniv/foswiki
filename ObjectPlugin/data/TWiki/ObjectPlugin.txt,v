@@ -1,0 +1,561 @@
+head	1.14;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.14
+date	2006.10.13.11.39.45;	author TWikiGuest;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2006.10.13.02.55.43;	author TWikiGuest;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2006.10.05.11.45.35;	author TWikiGuest;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2006.10.05.02.04.29;	author TWikiGuest;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2006.10.05.00.56.07;	author TWikiGuest;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2006.10.04.12.27.23;	author TWikiGuest;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2006.10.04.03.20.21;	author TWikiGuest;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2006.10.03.12.37.34;	author TWikiGuest;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2006.10.03.02.28.31;	author TWikiGuest;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2006.10.03.00.23.52;	author TWikiGuest;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2006.10.02.12.36.27;	author TWikiGuest;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2006.09.30.07.01.51;	author TWikiGuest;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2006.09.29.22.40.17;	author TWikiGuest;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2006.09.29.12.09.51;	author TWikiGuest;	state Exp;
+branches;
+next	;
+
+
+desc
+@none
+@
+
+
+1.14
+log
+@none
+@
+text
+@%META:TOPICINFO{author="TWikiGuest" date="1160739585" format="1.1" reprev="1.14" version="1.14"}%
+%META:TOPICPARENT{name="TWikiPlugins"}%
+---+ The Object Plugin
+<noautolink>
+<!-- note well that I've turned off wikiwords between here and the "plugin info" section. I don't like 'em, and they play merry hell with all the "QuickTimes" -->
+
+%ICON{"wip"}% This plugin is in beta!
+
+placeholder doco for Object Plugin ...
+
+Uses the =OBJECT= html tag to embed arbitrary content into a wiki page, with a particular bent towards media: common media formats are detected and some "agnostic best-guess" html is used (derived from that recommended by the plugin providers). However, any content at all can be embedded using the object tag: java, pdf, other html, svg, even images (although there is of course no reason to do so). The plugin uses generic syntax when it cannot detect the type of file being embedded.
+
+The plugin stores a range of default values (defined here on this page) which allow you to specify a bare minimum of info in your markup and still get acceptable results (see [[#Basic_Usage][Basic Usage]] below). These defaults can of course be overridden on a use-by-use basis.
+
+A =USEEMBED= flag should be left to "true" - I thought I could be clever before I fully understood the minefield that is browser plugin syntax.
+
+---++Basic Usage
+
+You *could* call the plugin as simply as:
+
+=%<nop>OBJECT{"SomeMovie.mov"}%=
+
+This will detect that the embedded file is a QuickTime and use "media-like" syntax (and pass the correct =CLASSID= to IE - why it can't work out which plugin to use is a little beyond me). However, unlike an IMG tag, plugins do not autosize to their content, and the movie would display at the default size. You could use media of only one size site-wide and specify the dimensions as defaults, but realistically the minimum markup you need to embed things into your wiki pages is:
+
+=%<nop>OBJECT{"SomeMovie.swf" width="320" height="180"}%=
+
+---++Advanced Usage
+
+A call to the ObjectPlugin could get as complicated as:
+
+=%<nop>OBJECT{src="SomeMovie.wmv" width="320" height="180" controller="FALSE" play="TRUE" useembed="TRUE" myparam1="3.1419" myparam2="edinburgh"}%=
+
+Once you start passing a ton of parameters, you aren't gaining much by using the plugin, and you may actually be reducing the portability of your code, so it may be best to do your own HTML.
+
+%H% Including a "mime-type" parameter may help your browser choose which browser plugin to use more efficiently
+
+---++Paramters
+
+ObjectPlugin supports arbitrary parameters. If you pass it =cowtype="Jersey"=, that is passed on to the browser, both as a =<<nop>PARAM>= tag and inside the optional =<<nop>EMBED>= tag.
+
+A few parameters are defined and get handled a little differently (they may be "translated" to a particular browser plugins syntax)
+
+|*Parameter*|*Value*|*Description*|*Notes**|
+|src|URI|the content to embed ("src=" is optional)||
+|width|std web measure (px, %, em)|with of box holding content||
+|height|std web measure (px, %, em)|height of box holding content||
+|controller|text boolean ("TRUE" or "FALSE")|whether to display controls|automatically added for QT|
+|play|text boolean|whether to auto-play the content| automatically added for QT and Flash|
+|useembed| text boolean|whether to include a non-standard (but widely recommended) =EMBED= tag||
+
+---++Detection of media type/Recommended plugin syntax
+
+The plugin detects most media types and uses a hybrid of the html markup recommended by the browser plugin makers - in the hope of providing maximum compatibility. This is done simply by checking the extension of the filename.
+
+Originally, the plugin used (almost) the exact recommended HTML on a type-by-type basis, but I've abandoned this in favour of "one markup fits all" because you don't know which plugin will be handling what - the various ISO formats (MPEG1,2,4, MP3) will be taken by whatever plugin was installed last, and QuickTime now handles Windows Media on Macintosh systems (at Microsoft's recommendation!).
+
+While most of the HTML is as generic as possible, the =CLASSID= value and some other mime-type information is unique to a particular file-type, and for Flash, QuickTime and Windows Media the  Microsoft-sanctioned values are sent. I understand MSIE has to have this info or it totally burns ...
+
+I haven't bothered with Real. If there's huge demand, it wouldn't be hard to add - but it may also be handled quite well by the generic media syntax already.
+
+The sytax recommendations are found:
+
+   * [[http://developer.apple.com/documentation/QuickTime/Conceptual/QTScripting_HTML/QTScripting_HTML_Document/chapter_1000_section_2.html#//apple_ref/doc/uid/TP40001525-2-UsingtheltEMBEDgtandltOBJECTgtTags][QuickTime]]
+   * [[http://support.microsoft.com/default.aspx?scid=kb;en-us;Q285154][Windows Media]] (is it just me or is there almost no doco from Microsoft on this?)
+   * [[http://www.adobe.com/cfusion/knowledgebase/index.cfm?id=tn_4150][Flash]]
+
+From those startpoints, basically everything gets merged: all synonymous parameters get sent (e.g. QT's "AutoPlay", Flash's "Play" and WMV's "AutoStart") together, set to the same value.
+
+Then everything is smoodged onto one line, TWiki doesn't like tags over line breaks, but I also noticed tables and Lists getting broken from line breaks added by the plugin, so one line for everything. 
+
+And (to keep the plugin reasonably simple) _all_ information passed inside =PARAM= tags is also put in the =EMBED= tag (and any special =EMBED= only parameters go first). 
+
+In other words, all parameters recommended by the plugin maker are sent, plus more, and in any old order.
+
+This is an interesting article on getting "pure" OBJECT tags to both a) validate and b) work with browsers:
+
+http://alistapart.com/articles/byebyeembed 
+
+This is sort-of what I was aiming for with =USEEMBED=. I assumed that you could just leave =EMBED= out, but that will break on everything but IE, as the other browsers (a little churlishly) ingore the entire tag if it has MS's custom params in it.
+
+---++ <nop>%TOPIC% Global Settings
+
+Plugin settings are stored as preferences variables. To reference
+a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, for example, ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+   * One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+   * Set SHORTDESCRIPTION = Embed arbitrary content into twiki pages with not much work ...
+
+   * Default parameters for plugin. These *must* be defined. (For booleans use "TRUE" for true, anything else for false)
+   * Set WIDTH = 320
+   * Set HEIGHT = 180
+   * Set CONTROLLER = TRUE
+   * Set PLAY = TRUE
+   * Set USEEMBED = TRUE
+
+---++ Plugin Installation Instructions
+
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+   * (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+   * Test if the plugin is correctly installed:
+   * You should see something below: <br>  %OBJECT{"http://support.microsoft.com/support/mediaplayer/wmptest/samples/new/mediaexample.wmv" height="240" width="320"}%   %OBJECT{"%ATTACHURL%/sample.mov" height="180" width="320"}% <br> %OBJECT{"%ATTACHURL%/Sample.swf" height="180" width="320"}%  %OBJECT{"%ATTACHURL%/sample.html" arbitrary="plplpl"}%
+</noautolink>
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.PiersGoodhew |
+|  Plugin Version: | 0.001 |
+|  Change History: | <!-- specify latest version first -->&nbsp; |
+
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+
+
+
+
+
+
+-- Main.TWikiGuest - 29 Sep 2006
+
+%META:FILEATTACHMENT{name="sample.html" attr="" autoattached="1" comment="sample html file" date="1160707557" path="sample.html" size="110" user="Main.TWikiGuest" version="2"}%
+%META:FILEATTACHMENT{name="sample.mov" attr="" autoattached="1" comment="sample QT movie" date="1160739512" path="sample.mov" size="21681" user="Main.TWikiGuest" version="1"}%
+%META:FILEATTACHMENT{name="Sample.swf" attr="" autoattached="1" comment="" date="1160707933" path="Sample.swf" size="1831" user="Main.TWikiGuest" version="1"}%
+@
+
+
+1.13
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="TWikiGuest" date="1160708143" format="1.1" reprev="1.13" version="1.13"}%
+d106 1
+a106 1
+   * You should see something below: <br>  %OBJECT{"http://support.microsoft.com/support/mediaplayer/wmptest/samples/new/mediaexample.wmv" height="240" width="320"}%   %OBJECT{"%ATTACHURL%/actual.mov" height="240" width="320"}% <br> %OBJECT{"%ATTACHURL%/Sample.swf" height="180" width="320"}%  %OBJECT{"%ATTACHURL%/sample.html" arbitrary="plplpl"}%
+a125 1
+%META:FILEATTACHMENT{name="posterhelp.gif" attr="" autoattached="1" comment="" date="1159569508" path="posterhelp.gif" size="10193" user="Main.TWikiGuest" version="1"}%
+d127 1
+a127 1
+%META:FILEATTACHMENT{name="actual.mov" attr="" autoattached="1" comment="" date="1159531698" path="actual.mov" size="1621" user="Main.TWikiGuest" version="1"}%
+@
+
+
+1.12
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="TWikiGuest" date="1160048735" format="1.1" reprev="1.12" version="1.12"}%
+d106 1
+a106 1
+   * You should see something below: <br>  %OBJECT{"%ATTACHURL%/crawl.wmv" height="240" width="320"}%   %OBJECT{"%ATTACHURL%/actual.mov" height="240" width="320"}% <br> %OBJECT{"%ATTACHURL%/Glow_v2_Sample_Desktop.swf" height="240" width="320"}%  %OBJECT{"%ATTACHURL%/postermov.htm" arbitrary="plplpl"}%
+d126 2
+a127 1
+%META:FILEATTACHMENT{name="crawl.wmv" attr="" autoattached="1" comment="sample wmv file" date="1160007147" path="crawl.wmv" size="373650" user="Main.TWikiGuest" version="1"}%
+d129 1
+a129 3
+%META:FILEATTACHMENT{name="postermov.htm" attr="" autoattached="1" comment="" date="1159569540" path="postermov.htm" size="3327" user="Main.TWikiGuest" version="1"}%
+%META:FILEATTACHMENT{name="Glow_v2_Sample_Desktop.swf" attr="" autoattached="1" comment="a sample swf" date="1160046289" path="Glow_v2_Sample_Desktop.swf" size="6066" user="Main.TWikiGuest" version="1"}%
+%META:FILEATTACHMENT{name="posterhelp.gif" attr="" autoattached="1" comment="" date="1159569508" path="posterhelp.gif" size="10193" user="Main.TWikiGuest" version="1"}%
+@
+
+
+1.11
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="TWikiGuest" date="1160013869" format="1.1" version="1.11"}%
+d15 1
+a15 1
+A =USEEMBED= flag specifies whether to use the deprecated =EMBED= tag (which all plugin providers recommend). These tags provide compatibility with what are now fairly old browsers, but the tag (originated by Netscape) is not (and will not be) part of any W3C standard, so if you want more standard HTML (it may not validate still), set =USEEMBED= to =FALSE=. Using only the =OBJECT= tag works perfectly well on MSIE and any Mozilla.
+d31 1
+a31 1
+=%<nop>OBJECT{src="SomeMovie.wmv" width="320" height="180" controller="FALSE" play="TRUE" useembed="TRUE" myparam1="3.1412" myparam2="edinburgh"}%=
+d53 1
+a53 1
+The plugin detects the "big three" media types and uses a hybrid of the html markup recommended by the browser plugin makers - in the hope of providing maximum compatibility. This is done simply by checking the extension of the filename.
+d55 1
+a55 1
+Originally, the plugin used (almost) the exact recommended HTML on a type-by-type basis, but I've abandoned this in favour of "one markup fits all" because you don't know which plugin will be handling what - the various ISO formats (MPEG1,2,4, MP3) will be taken by whatever plugin was installed last, and QuickTime will handle Windows Media on Macintosh systems.
+d57 3
+a59 1
+I haven't bothered with Real. If there's huge demand, it wouldn't be hard to add - but it may also be handled quite well by the generic OBJECT syntax this plugin falls back to.
+d67 1
+a67 1
+From those startpoints, basically everything gets merged: all synonymous parameters get sent (e.g. QT's "AutoPlay", Flash's "Play" and WMV's "AutoStart") together set to the same value.
+d71 1
+a71 1
+And (to keep the plugin reasonably simple) all information passed inside =PARAM= tags is also put in the =EMBED= tag (and any special =EMBED=only parameters go at the start). 
+d75 3
+a77 1
+And, this is an interesting article on getting "pure" OBJECT tags to both a) validate and b) work with browsers:
+d79 1
+a79 1
+http://alistapart.com/articles/byebyeembed
+d92 2
+a93 2
+   * Set CONTROLLER = FALSE
+   * Set PLAY = FALSE
+a94 1
+   * This last param tells TWiki whether or not to use the deprecated <<nop>EMBED> tag. If false we're producing W3C compliant code which works well on Firefox at least (Safari 1.3 is NG, MSIE ??). If true, we're producing markup as specified by the various plugin providers, or generic if 
+d106 1
+a106 3
+   * You should see something below: <br>  %OBJECT{"%ATTACHURL%/crawl.wmv" height="240" width="320"}%
+
+%OBJECT{"%ATTACHURL%/postermov.htm" arbitrary="plplpl"}%
+d126 1
+d128 2
+a129 1
+%META:FILEATTACHMENT{name="crawl.wmv" attr="" autoattached="1" comment="sample wmv file" date="1160007147" path="crawl.wmv" size="373650" user="Main.TWikiGuest" version="1"}%
+a130 1
+%META:FILEATTACHMENT{name="postermov.htm" attr="" autoattached="1" comment="" date="1159569540" path="postermov.htm" size="3327" user="Main.TWikiGuest" version="1"}%
+@
+
+
+1.10
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="TWikiGuest" date="1160009767" format="1.1" reprev="1.10" version="1.10"}%
+d11 1
+a11 1
+Uses the =OBJECT= html tag to embed arbitrary content into a wiki page, with a particular bent towards media: common media formats are detected and html recommended by the plugin provider is used (slightly modified, the differences, and the reasons why, are explained below). However, any content at all can be embedded using the object tag: java, pdf, other html, svg, even images (although there is of course no reason to do so). The plugin uses generic syntax when it cannot detect the type of file being embedded
+d15 1
+a15 1
+A =USEEMBED= flag specifies whether to use the deprecated =EMBED= tag (which all plugin providers recommend). These tags provide compatibility with what are now fairly old browsers, but the tag (originated by Netscape) is not (and will not be) part of any W3C standard, so if you want the W3C tick, set =USEEMBED= to =FALSE=. Using only the =OBJECT= tag works perfectly well on MSIE and any Mozilla.
+d23 1
+a23 1
+This will detect that the embedded file is a QuickTime and use Apple's recommended syntax. However, unlike an IMG tag, plugins do not autosize to their content, and the movie would display at the default size. You could use media of only one size site-wide and specify the dimensions as defaults, but realistically the minimum markup you need to embed things into your wiki pages is:
+d44 1
+a44 1
+|src|URI|the content to embed ("src=" is optional||
+d53 3
+a55 1
+The plugin detects the "big three" media types and uses the html markup recommended by the browser plugin makers - in the hope of providing maximum compatibility. This is done simply by checking the extension of the filename.
+d65 3
+a67 1
+The recommended syntax has been varied a little: everything is smoodged onto one line, TWiki doesn't like tags over line breaks, but I also noticed tables and Lists getting broken from line breaks added by the plugin, so one line for everything. And (to keep the plugin reasonably simple) all information passed inside =PARAM= tags is also put in the =EMBED= tag (and any special =EMBED= parameters go at the start). And some browser plugin params which are synonymous (eg QuickTime's "AutoPlay" = WM's "AutoStart" = Flash's "play") may be sent together (all set to the same value) %X% This is something I want to asses during the beta phase: how rigorous you need to be in stripping out params that other plugins should ignore.
+d69 1
+a69 1
+Of course, if you set =USEEMBED= to false you're no longer using the "official" markup.
+d71 3
+a73 1
+And, this is an interesting article on getting OBJECT tags to both a) validate and b) work with browsers:
+d94 1
+a94 1
+This plugin is installed by default with a TWiki release. You should not need to install the plugin unless it is for an upgrade.
+a124 1
+%META:FILEATTACHMENT{name="postermov.htm" attr="" autoattached="1" comment="" date="1159569540" path="postermov.htm" size="3327" user="Main.TWikiGuest" version="1"}%
+d126 1
+d128 1
+a128 1
+%META:FILEATTACHMENT{name="crawl.wmv" attr="" autoattached="1" comment="sample wmv file" date="1160007147" path="crawl.wmv" size="373650" user="Main.TWikiGuest" version="1"}%
+@
+
+
+1.9
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="TWikiGuest" date="1159964843" format="1.1" reprev="1.9" version="1.9"}%
+d11 1
+a11 1
+Uses the =OBJECT= html tag to embed arbitrary content into a wiki page, with a particular bent towards media: common media formats are detected and html very similar to that recommended by the plugin provider is used (the differences, and the reasons why, are explained below). However, any content at all can be embedded using the object tag: java, pdf, other html, svg, even images (although there is of course no reason to do so). The plugin uses generic syntax when it cannot detect the type of file being embedded
+d55 2
+d60 1
+a60 1
+   * [[http://support.microsoft.com/default.aspx?scid=kb;en-us;Q285154][Windows Media]]
+d63 7
+a69 1
+The recommended syntax has been varied a little: Individual tags are on one line, as they have to be in TWiki; and (to keep the plugin reasonably simple) all information passed inside =PARAM= tags is also put in the =EMBED= tag (and any special =EMBED= parameters go at the start). Of course, if you set =USEEMBED+ to false you're no longer using the "official" markup.
+d97 1
+a97 1
+   * You should see something below: <br>  %OBJECT{"%ATTACHURL%/actual.mov" height="272" width="320"}%
+a118 1
+%META:FILEATTACHMENT{name="posterhelp.gif" attr="" autoattached="1" comment="" date="1159569508" path="posterhelp.gif" size="10193" user="Main.TWikiGuest" version="1"}%
+d121 2
+@
+
+
+1.8
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="TWikiGuest" date="1159932021" format="1.1" version="1.8"}%
+d4 4
+d13 1
+a13 1
+The plugin stores a range of default values (defined here on this page) which allow you to specify a bare minimum of info in your markup and still get acceptable results (see [[#Basic_Usage]] below). These defaults can of course be overridden on a use-by-use basis.
+d33 3
+a35 1
+However, once you start passing a ton of parameters, you aren't gaining much by using the plugin, and you may actually be reducing the portability of your code, so it may be best to do your own HTML.
+d61 1
+a61 1
+The recommended syntax has been varied from a little, however. Individual tags are on one line, as they have to be in TWiki; and (to keep the plugin reasonably simple) the information passed inside =PARAM= tags and as parameters to the =EMBED= tag is identical, so they basically get a few extra things they should just ignore.
+d92 1
+a92 1
+
+d111 1
+a112 1
+%META:FILEATTACHMENT{name="posterhelp.gif" attr="" autoattached="1" comment="" date="1159569508" path="posterhelp.gif" size="10193" user="Main.TWikiGuest" version="1"}%
+@
+
+
+1.7
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="TWikiGuest" date="1159879054" format="1.1" reprev="1.7" version="1.7"}%
+d70 1
+a70 1
+   * Set USEEMBED = FALSE
+a104 1
+%META:FILEATTACHMENT{name="actual.mov" attr="" autoattached="1" comment="" date="1159531698" path="actual.mov" size="1621" user="Main.TWikiGuest" version="1"}%
+d107 1
+@
+
+
+1.6
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="TWikiGuest" date="1159842511" format="1.1" reprev="1.6" version="1.6"}%
+d7 1
+a7 1
+Uses the =OBJECT= html tag to embed arbitrary content into a wiki page, with a particular bent towards media: file type is detected and the html markup recommended by the plugin provider is used. However, any content at all can be embedded using the object tag: java, pdf, other html, svg, even images (although there is of course no reason to do so). The plugin uses generic syntax when it cannot detect the type of file being embedded
+d9 1
+a9 1
+The plugin stores a range of default values (defined here on this page) which allow you to specify a bare minimum of info in your markup and still get acceptable results (see [[#usage notes]] below). These defaults can of course be overridden on a use-by-use basis.
+d19 37
+a55 1
+This will detect that the embedded file is a QuickTime and use Apple's recommended syntax. However, unlike an IMG tag, plugins do not autosize to their content, and the movie would display at the default size. You could use media of only one size site-wide and specify them as defaults
+d71 1
+a71 1
+   * This last param tells TWiki whether or not to use the deprecated <<nop>EMBED> tag. If false we're producing W3C compliant code which works well on Firefox at least (Safari 1.3 is NG, MSIE ??). If tru, we're producing markup as specified by the various plugin providers, or generic if 
+a104 1
+%META:FILEATTACHMENT{name="posterhelp.gif" attr="" autoattached="1" comment="" date="1159569508" path="posterhelp.gif" size="10193" user="Main.TWikiGuest" version="1"}%
+d107 1
+@
+
+
+1.5
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="TWikiGuest" date="1159835032" format="1.1" version="1.5"}%
+d7 14
+d70 1
+a71 1
+%META:FILEATTACHMENT{name="actual.mov" attr="" autoattached="1" comment="" date="1159531698" path="actual.mov" size="1621" user="Main.TWikiGuest" version="1"}%
+@
+
+
+1.4
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="TWikiGuest" date="1159792587" format="1.1" reprev="1.4" version="1.4"}%
+a14 3
+   * The name of the topic containig your Smilies. Default: ==%WEB%.SmiliesPlugin==
+   * #Set TOPIC = %TWIKIWEB%.SmiliesPlugin
+
+d18 1
+a18 1
+   * Set CONTROLLER = TRUE
+a22 5
+   * The way the _emoticon_ is displayed. You can use ==$emoticon== (e.g. =:<nop>D=), ==$url== (e.g. =%<nop>ATTACHURL%/biggrin.gif=) and ==$tooltip== (e.g. ="big grin"=). Default: ==&lt;img src="$url" alt="$tooltip" title="$tooltip" border="0" /&gt;==
+<verbatim>
+   * #Set FORMAT = <img src="$url" alt="$emoticon" title="$emoticon" border="0" />
+</verbatim>
+
+a30 1
+     | ==pub/TWiki/%TOPIC%/*.gif== | Plugin icon files |
+d55 1
+a56 1
+%META:FILEATTACHMENT{name="posterhelp.gif" attr="" autoattached="1" comment="" date="1159569508" path="posterhelp.gif" size="10193" user="Main.TWikiGuest" version="1"}%
+@
+
+
+1.3
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="TWikiGuest" date="1159599711" format="1.1" reprev="1.3" version="1.3"}%
+d21 1
+a21 1
+   * Set CONTROLLER = FALSE
+d23 1
+a23 1
+   * Set USEEMBED = TRUE
+d44 1
+a44 1
+%OBJECT{"%ATTACHURL%/postermov.htm"}%
+d64 2
+a66 2
+%META:FILEATTACHMENT{name="posterhelp.gif" attr="" autoattached="1" comment="" date="1159569508" path="posterhelp.gif" size="10193" user="Main.TWikiGuest" version="1"}%
+%META:FILEATTACHMENT{name="postermov.htm" attr="" autoattached="1" comment="" date="1159569540" path="postermov.htm" size="3327" user="Main.TWikiGuest" version="1"}%
+@
+
+
+1.2
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="TWikiGuest" date="1159569617" format="1.1" reprev="1.2" version="1.2"}%
+d3 1
+a3 1
+---+ The Smilies Plugin <nop>:-)
+d6 1
+d18 8
+d42 3
+a44 1
+   * You should see something below: <br> %OBJECT{"%ATTACHURL%/actual.mov"}% <br> %OBJECT{"%ATTACHURL%/moviehelp.gif"}%
+d64 1
+a65 1
+%META:FILEATTACHMENT{name="actual.mov" attr="" autoattached="1" comment="" date="1159531698" path="actual.mov" size="1621" user="Main.TWikiGuest" version="1"}%
+@
+
+
+1.1
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="TWikiGuest" date="1159531791" format="1.1" reprev="1.1" version="1.1"}%
+d33 1
+a33 1
+   * You should see something below: <br> %OBJECT{"%ATTACHURL%/actual.mov"}%
+d53 3
+a55 1
+%META:FILEATTACHMENT{name="actual.mov" attachment="actual.mov" attr="" comment="" date="1159531698" path="actual.mov" size="1621" stream="actual.mov" user="Main.TWikiGuest" version="1"}%
+@

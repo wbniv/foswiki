@@ -1,0 +1,50 @@
+head	1.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+expand	@o@;
+
+
+1.2
+date	2006.10.13.02.45.57;	author TWikiGuest;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2006.10.13.02.42.33;	author TWikiGuest;	state Exp;
+branches;
+next	;
+
+
+desc
+@none
+@
+
+
+1.2
+log
+@sample html file
+@
+text
+@<html>
+<body bgcolor="#AAAAAA">
+<center>
+<h1>Hello World!</h1><br>
+I'm just some html
+</center></body>
+</html>@
+
+
+1.1
+log
+@sample html file
+@
+text
+@d2 2
+a3 1
+<body>
+d6 1
+a6 1
+</body>
+@
