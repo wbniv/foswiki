@@ -2,18 +2,39 @@
 # See bottom of file for description
 
 require 5.006;
+use FindBin;
+use Cwd ();
+
+sub _findRelativeTo {
+    my ( $startdir, $name ) = @_;
+
+    my @path = split( /\/+/, $startdir );
+
+    while ( scalar(@path) > 0 ) {
+        my $found = join( '/', @path ) . '/' . $name;
+        return $found if -e $found;
+        pop(@path);
+    }
+    return undef;
+}
 
 BEGIN {
-    use Cwd 'abs_path';
-
+	$TWiki::cfg{Engine} = 'TWiki::Engine::CGI';
     # root the tree
-    my $here = Cwd::abs_path(Cwd::getcwd());
+    my $here = Cwd::abs_path;
 
-    # scoot up the tree looking for a bin dir that has setlib.cfg
-    my $root = $here;
-    while( !-e "$root/bin/setlib.cfg" ) {
-        $root =~ s#/[^/]*$##;
-    }
+    # Look for the TWiki installation that we are testing in context
+    # with. This will be defined by either by finding an installation
+    # on the path to the current dir, or by finding the first install
+    # in TWIKI_LIBS.
+
+    my $root = _findRelativeTo( $here, 'core/bin/setlib.cfg' )
+      || _findRelativeTo( $here, 'bin/setlib.cfg' );
+
+    die "Cannot locate bin/setlib.cfg" unless $root;
+
+    $root =~ s{/bin/setlib.cfg$}{};
+
     unshift @INC, "$root/test/unit";
     unshift @INC, "$root/bin";
     unshift @INC, "$root/lib";
@@ -24,7 +45,6 @@ BEGIN {
 use strict;
 use TWiki;   # If you take this out then TestRunner.pl will fail on IndigoPerl
 use Unit::TestRunner;
-use Cwd;
 
 my %options;
 while (scalar(@ARGV) && $ARGV[0] =~ /^-/) {

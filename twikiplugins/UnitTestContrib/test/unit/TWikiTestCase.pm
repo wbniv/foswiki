@@ -13,6 +13,8 @@ use base 'Unit::TestCase';
 use Data::Dumper;
 
 use TWiki;
+use Unit::Request;
+use Unit::Response;
 use strict;
 use Error qw( :try );
 
@@ -99,7 +101,8 @@ sub set_up {
     }
 
     # force a read of $TWiki::cfg
-    my $tmp = new TWiki();
+    my $query = new Unit::Request();
+    my $tmp = new TWiki( undef, $query );
 
     # This needs to be a deep copy
     $this->{__TWikiSafe} =

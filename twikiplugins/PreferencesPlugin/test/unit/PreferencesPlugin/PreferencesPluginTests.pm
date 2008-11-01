@@ -101,16 +101,24 @@ HERE
         $input );
 
     my $twiki = new TWiki( undef, $query );
+    my $response = new Unit::Response;
     $TWiki::Plugins::SESSION = $twiki;
 
     # This will attempt to redirect, so must capture
     my ( $result, $ecode ) = $this->capture(
         sub {
-            $twiki->{response}->body(
-                TWiki::Func::expandCommonVariables(
-                    $input, $this->{test_topic}, $this->{test_web}, undef
-                )
-            );
+            if ( $response->isa('TWiki::Response') ) {
+                $response->body(
+                    TWiki::Func::expandCommonVariables(
+                        $input,            $this->{test_topic},
+                        $this->{test_web}, undef
+                    )
+                );
+            }
+            else {
+                print TWiki::Func::expandCommonVariables( $input,
+                    $this->{test_topic}, $this->{test_web}, undef );
+            }
         }
     );
     $this->assert( $result =~ /Status: 302/ );

@@ -91,10 +91,11 @@ sub save_test {
     $query->param( text => $t );
 
     $TWiki::Plugins::SESSION = new TWiki( 'guest', $query );
+	my $response = new Unit::Response;
 
     # charset definition affects output, so it is a response method and
     # can only be adjusted after creating session object.
-    $TWiki::Plugins::SESSION->{response}->charset($charset) if $charset;
+    $response->charset($charset) if $charset;
 
     require TWiki::UI::Save;
     my ( $dummy, $result ) =
@@ -130,11 +131,12 @@ sub TML2HTML_test {
     );
 
     my $twiki = new TWiki( 'guest', $query );
-    $twiki->{response}->charset($charset) if $charset;
+	my $response = new Unit::Response();
+    $response->charset($charset) if $charset;
 
     my ( $out, $result ) =
       $this->capture( \&TWiki::Plugins::WysiwygPlugin::_restTML2HTML,
-        $twiki, undef, undef, $twiki->{response} );
+        $twiki, undef, undef, $response );
 
     $this->assert( !$result, $result );
 
@@ -177,11 +179,12 @@ sub HTML2TML_test {
     );
 
     my $twiki = new TWiki( 'guest', $query );
-    $twiki->{response}->charset($charset) if $charset;
+	my $response = new Unit::Response();
+    $response->charset($charset) if $charset;
 
     my ( $out, $result ) =
       $this->capture( \&TWiki::Plugins::WysiwygPlugin::_restHTML2TML,
-        $twiki, undef, undef, $twiki->{response} );
+        $twiki, undef, undef, $response );
 
     $this->assert( !$result, $result );
 

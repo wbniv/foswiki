@@ -1321,6 +1321,7 @@ sub verify_buildRegistrationEmail {
     my $expected = <<EOM;
 $this->{new_user_fullname} - $this->{new_user_wikiname} - $this->{new_user_email}
 
+   * LoginName: 
    * Name: $this->{new_user_fullname}
    * Email: $this->{new_user_email}
    * CompanyName: 
@@ -1328,7 +1329,6 @@ $this->{new_user_fullname} - $this->{new_user_wikiname} - $this->{new_user_email
    * Country: Saudi Arabia
    * Comment: 
    * Password: mypassword
-   * LoginName: 
 EOM
 
     $this->{twiki}->finish();

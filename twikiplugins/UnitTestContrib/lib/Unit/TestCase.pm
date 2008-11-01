@@ -290,9 +290,11 @@ sub capture {
     require File::Temp;
     my $tmpdir = File::Temp::tempdir( CLEANUP => 1 );
 
-    my $text   = undef;
-    my @params = @_;
+    my $text     = undef;
+    my $response = undef;
+    my @params   = @_;
     my $result;
+    my ($release) = $TWiki::RELEASE =~ /-(\d+)\.\d+\.\d+/;
 
     {
         local *STDOUT;
@@ -301,10 +303,29 @@ sub capture {
         $result = &$proc(@params);
     }
 
-    open( FH, "$tmpdir/data" );
-    local $/ = undef;
-    $text = <FH>;
-    close(FH);
+    if ( $release >= 5 ) {
+        $response =
+          UNIVERSAL::isa( $params[0], 'TWiki' )
+          ? $params[0]->{response}
+          : $TWiki::Plugins::SESSION->{response};
+
+        # Capture headers
+        TWiki::Engine->finalizeCookies($response);
+        foreach my $header ( keys %{ $response->headers } ) {
+            $text .= $header . ': ' . $_ . "\x0D\x0A"
+              foreach $response->getHeader($header);
+        }
+        $text .= "\x0D\x0A";
+
+        # Capture body
+        $text .= $response->body() if $response->body();
+    }
+    else {
+        open( FH, "$tmpdir/data" );
+        local $/ = undef;
+        $text = <FH>;
+        close(FH);
+    }
 
     return ( $text, $result );
 }
