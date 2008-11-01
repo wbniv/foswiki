@@ -1,0 +1,89 @@
+%META:TOPICINFO{author="TWikiContributor" date="1179177105" format="1.1" version="1.1"}%
+---+!! !DpSyntaxHighlighterPlugin
+
+This plugin provides client side syntax highlighting using the [[http://code.google.com/p/syntaxhighlighter/][dp.SyntaxHighlighter]] by Alex Gorbatchev. !JavaScript needs to be enabled on the clients web browser for this to work.
+
+%TOC%
+
+---++ Syntax Rules
+
+The code goes between the tags =%<nop>CODE{...}%= and =%ENDCODE%=.
+
+=%<nop>CODE{...}%= can have the following parameters:
+| *Parameter* | *Description* |
+| ="..."= or =lang="..."= | The programming language to be highlighted. See <a href="#Supported_Languages">Supported Languages</a>. |
+| =nogutter="on"= | Will not display the gutter. |
+| =nocontrols="on"= | Will not display controls at the top. |
+| =collapse="on"= | Will collapse the block by default. |
+| =firstline="value"= | Will begin line count at value. Default value is 1. |
+| =showcolumns="on"= | Will show row columns in the first line. |
+| =el="..."= | HTML element to display the code in. Can be =pre= or =textarea=. Default is =pre=. See [[#Pre_vs_Textarea]]. |
+| =rows="value"= %BR% =cols="value"= | Sets the rows and columns attributes. %BR% Recommend if using textarea so the code can be seen clearly when !JavaScript is not available. |
+
+---+++ Pre vs Textarea
+
+There are known problems when displaying XML (and HTML) in a =pre= element. See http://code.google.com/p/syntaxhighlighter/wiki/PreAndTextarea for more information.
+
+---++ Supported Languages
+
+The following languages are supported:
+
+   * as3, actionscript3
+   * css
+   * c#, c-sharp, csharp
+   * c, cpp, c++
+   * vb, vb.net
+   * delphi, pascal
+   * js, jscript, javascript
+   * php
+   * py, python
+   * ruby
+   * sql
+   * xml, xhtml, xslt, html, xhtml
+
+Any of these can be used in the =lang= parameter.
+
+---++ Examples
+
+Below is a screen shot of how the rendered code will look.
+
+<img src="%ATTACHURLPATH%/screenshot.png" alt="screenshot of plugin" width='592' height='422' />
+
+---++ Installation Instructions
+
+%$INSTALL_INSTRUCTIONS%
+
+If the plugin is installed correcty, the following should be rendered:
+
+%CODE{ lang="javascript" }%
+function hello () {
+    alert('hello // world');
+}
+%ENDCODE%
+
+#PluginSettings
+---++ Plugin Settings
+
+   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = Client side syntax highlighting using the [[http://code.google.com/p/syntaxhighlighter/][dp.SyntaxHighlighter]]
+
+---++ Plugin Info
+
+|  Plugin Author(s): | TWiki:Main.AndrewRJones |
+|  Plugin Version: | %$VERSION% |
+|  Dp Syntax Highlighter Version: | 1.5.2 (25 Mar 2008) |
+|  Copyright: | &copy; 2007 TWiki:Main.AndrewRJones |
+|  License: | [[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License)]] |
+|  Dp Syntax Highlighter License: | [[http://www.gnu.org/licenses/lgpl.html][LGPL (Gnu Lesser General Public License)]] |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  25 Mar 2008 | 1.5.2 -- Arthur Clemens: Added support for !ActionScript 3. Thanks to [[http://www.digitalflipbook.com/archives/2007/09/as3_syntax_high.php][Mark Walters]] (digitalflipbook.com). |
+|  14646 | Bugs:Item4460: Fixed adding JS into highlighted HTML (#3) |
+|  14642 | Bugs:Item4516: Upgrade highlighter to 1.5.1 |
+|  14046 | Bugs:Item4215: Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+|  Dp Syntax Highlighter Home | http://code.google.com/p/syntaxhighlighter |
+|  Plugin Home: | http://twiki.org/cgi-bin/view/Plugins/DpSyntaxHighlighterPlugin |
+|  Feedback: | http://twiki.org/cgi-bin/view/Plugins/DpSyntaxHighlighterPluginDev |
+|  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/DpSyntaxHighlighterPluginAppraisal |
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the Dev topic instead. -->
