@@ -1,0 +1,110 @@
+%META:TOPICINFO{author="TWikiContributor" date="1139390249" format="1.1" version="$Rev$"}%
+<!--
+
+   PLEASE DO NOT EDIT THIS TOPIC
+
+   It is automatically generated from the subversion repository, and any changes
+   you make will simply be overwritten the next time a release is generated.
+
+   Instead, you could check your fix in, raise a bug in the Bugs web, or mail the author.
+-->
+---+!! %TOPIC%
+
+This plugin is inspired by the <nop>WordPress <nop>TimeSince plugin.
+It which can be used to display a time difference in a human readable way, for instance to tell you that a topic has been published "2 days, 3 hours ago".
+
+There are some problems with the original [[http://binarybonsai.com/wordpress/time-since][TimeSince plugin for WordPress]]. For example, it was only able to display a time diff with at most two expressions: "1day, 2hours ago" or "1 week ago" but not "1 day, 2 hours and 3 minutes".
+It even displays only one time expression if the difference does not occure in two adjacent time units (time units are year, month, week, day, hour, minute). 
+If a time interval differs in week and hour the <nop>TimeSince WP plugin will only display the week difference and not the hours as week and hour are not adjacent. This is fixed in the TimeSincePlugin for TWiki. Several other parameters have been added
+to give a finer control of the format and the information displayed.
+
+%TOC%
+
+---++ Syntax Rules
+
+=%<nop>TIMESINCE%=,
+=%<nop>TIMESINCE{[[from]="..."] [to="..."]}%=
+
+Without arguments the time since the current topic has been created will be displayed.
+
+| *Argument* | *Description* |
+| =from="&lt;time-experssion>"= | the starting time point, if ommited the current time |
+| =to="&lt;time-expression>"= | the ending timepoint, if ommited the current time |
+| =units="1...7"= | number of time units to display, default 2; \
+  (example units="3": 2 months, 1 day and 3 minutes) |
+| =seconds="on,off"= | switch on/off second precision |
+| =null="&lt;format-string>"= | to be displayed if the tim difference is null; \
+   defaults to "about now" |
+| =format="&lt;format-string>"= | format of the output, \
+  defaults to "$time", other usefull settings =format="$time ago"=, \
+  =format="replied $time later"=, ="format="$time after the incident"= |
+| =negformat="&lt;format-string>"= | use this format string if the time difference is negative |
+
+Time expressions can be specified in any of the following format:
+   * 31 Dec 2001 - 23:59 (TWiki date)
+   * 31 Dec 2001
+   * 2001/12/31 23:59:59 (RCS date) %BR%
+     also =-=, =.= instead of =/= in date, also =.= instead =:= in time
+   * 2001/12/31 23:59
+   * 2001/12/31
+   * 2001-12-31T23:59:59Z (ISO date)
+   * 2001-12-31T23:59:59+01:00
+   * 2001-12-31T23:59Z
+   * 2001-12-31T23:59+01:00
+   * epoch seconds
+
+Format strings may contain the following:
+   * =$time= expands to the calculated time difference
+   * =$percnt$= expands to a =%= char
+   * =$dollar$= expands to a =$= char
+   * =$n= expands to a linefeed
+   * =$t= expands to a tab space
+   * =$nop= expands to the empty string
+
+---++ Examples
+| *You type* | *You get (simulated)* | *You get (if installed) *|
+| %<nop>TIMESINCE% | 1 day, 3 hours | %TIMESINCE% | 
+| %<nop>TIMESINCE{format="topic was created $time ago" null="topic has just now been saved" units="4" }% | topic was created 1 day, 3 hours, 8 minutes ago \
+| %TIMESINCE{format="topic was created $time ago" null="topic has just now been saved" units="4"}% |
+| %<nop>TIMESINCE{"11 Sep 2001 - 8:45" units="7" seconds="on"}% \
+| 4 years, 2 months, 2 days, 5 hours, 50 minutes, 16 seconds \
+| %TIMESINCE{"11 Sep 2001 - 8:45"  units="7" seconds="on"}% | 
+| %<nop>TIMESINCE{from="1955/04/18" to="1979-03-14" units="3"}% | 23 years, 11 months, 6 days \
+| %TIMESINCE{from="1955/04/18" to="1979-03-14" units="3"}% |
+
+
+---++ Plugin Installation Instructions
+
+   * [[http://twiki.org/p/pub/Plugins/%TOPIC%/%TOPIC%.zip][Download]] the ZIP file
+   * Unzip it in your twiki installation directory. Content: 
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | plugin topic |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | plugin perl module |
+     | ==lib/TWiki/Plugins/%TOPIC%/Core.pm== | plugin core |
+   * (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+
+---++ Plugin Info
+<!-- provided for compatibility only
+   * Set SHORTDESCRIPTION = Display time difference in a human readable way
+-->
+
+|  Plugin Author: | TWiki:Main.MichaelDaum |
+|  Copyright &copy;: | 2005-2008, Michael Daum http://michaeldaumconsulting.com |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | v1.10 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  03 Jan 2008: | improved parsing time formats |
+|  13 Oct 2006: | added =negformat= parameter |
+|  31 Aug 2006: | added NO_PREFS_IN_TOPIC |
+|  27 Apr 2006: | added lazy compilation |
+|  11 Nov 2005: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+|  CPAN Dependencies: | CPAN:Time::Local |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | TWiki:Plugins/%TOPIC% |
+|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
+|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+
+-- TWiki:Main.MichaelDaum - 03 Jan 2008
