@@ -1,0 +1,176 @@
+%META:TOPICINFO{author="TWikiContributor" date="1188308991" format="1.0" version="$Rev$"}%
+---+!! <nop>%TOPIC%
+
+This plugin helps you to create a checklist with tables. A HTML form for a quick add of new entries and a table editor are also available.
+
+<nop>%TOPIC% depends on the ChecklistPlugin if you use the =item= table cell format type.
+
+%TOC%
+*Example:* <br/>
+<img src="%ATTACHURLPATH%/example.png" alt="example.png" title="Example image" align="bottom" />
+---++ Features
+
+	* table based checklists with persistent item states: you can add or remove items without state lost
+	* table row editor: a simple way to add, insert or (re)move table entries (rows)
+	* various table cell formats are supported (item, text, textarea, date, ...) 
+	* automatic table format detection: simply put the =%<nop>CHECKLISTTABLE%= tag before an existing TWiki table to get a table editor
+
+---++ Syntax Rules
+
+Simply put a =%<nop>CHECKLISTTABLE%= tag to a topic. You get a HTML form to create a checklist table.
+
+You can use the =%<nop>CHECKLIST%= tag to customize the checklist states, icons ... (see ChecklistPlugin)
+
+
+---++ Usage Examples
+	1 a simple checklist table:
+	  <verbatim>
+%CHECKLISTTABLE%
+	  </verbatim>
+	1 a checklist table with your own table format:
+	  <verbatim>
+%CHECKLISTTABLE{format="|text,20|item|" header="|*Item*|*State*|"}%
+	  </verbatim>
+	1 a checklist table with special states and icons:
+	  <verbatim>
+%CHECKLIST{states="todo|doing|done" stateicons=":-(|:-I|%<nop>Y%"}%
+%CHECKLISTTABLE%
+	  </verbatim>
+	1 multiple checklist tables on the same topic with special states and icons:
+	  <br/>%X% attend to the name attribute:
+	  <verbatim>
+---++ Checklist Table ONE
+%CHECKLIST{name="checklist one" states="not ok|ok" stateicons=":-(|:ok:"}%
+%CHECKLISTTABLE{name="checklist one"}%
+
+---++ Checklist Table TWO
+%CHECKLIST{name="checklist two" states="todo|doing|done" stateicons=":-(|:-I|%<nop>Y%"}%
+%CHECKLISTTABLE{name="checklist two"}%
+		</verbatim>
+---++ Attributes
+*Syntax:* =%<nop>CHECKLISTTABLE{attribute1="value1" attribute2="value" ... }%=
+
+*Example:* =%<nop>CHECKLISTTABLE{name="test"}%=
+
+%TABLE{sort="off"}%
+| *Attribute* | *Description* | *Example/Default* |
+| allowmove | enables/disables buttons for move a entry (row) up or down | =allowmove="off"= |
+| buttonpos | defines the button position of the row actions (edit, insert, move up/down, delete), allowed values: left, right (default), both  | =buttonpos="right"= |
+| changerows | enables/disables row changes (add/insert/remove); allowed values: on, off, add (= allows only add not remove) | =changerows="on"= |
+| defaultcellformat | if the =format= attribute does not match with a given TWiki table the format of a table cell will be changed to this default | =defaultcellformat="textarea,3x30"= | 
+| format | table format (see Table Format section) | =format="&#124;item&#124;text,30&#124;textarea,3x30&#124;"= |
+| header | table header: a TWiki table like header or 'off' to disable header | =header="&#124;*State*&#124;*Item*&#124;*Comment*&#124;"= |
+| headerislabel | table headers are read-only (labels) if set to 'on' | =headerislabel="on"= |
+| initdirection | initial sorting direction for initsort, set to "up" or "down" | =initdirection="up"= |
+| initsort | column to sort initially ("1" to number of columns) | =initsort="1"= |
+| name | name of the checklist | =name="_default"= |
+| sort | switch table sort feature 'on' or 'off' | =sort="on"= |
+| template | use template configuration; see =template= attribute of ChecklistPlugin topic | =template="patchday"= |
+| quickadd | enables/disables the quick add formular below the table | =quickadd="on"= |
+| quickinsert | enables/disables the quick insert formular if the mouse is over the insert button (%ICON{plus}%) | =quickinsert="on"= |
+| quietsave | enables/disables Quiet Save button (Quiet Save disables email notification) | =quietsave="on"= |
+| *Icons* ||||
+| deleterowicon | delete icon (%ICON{choice-no}%) | =deleterowicon="%<nop>ICONURL{choice-no}%"= |
+| dummyicon | placeholder if a action is not available | =dummyicon="%<nop>ICONURL{empty}%"= |
+| editrowicon | edit row icon (%ICON{pencil}%) | =editrowicon="%<nop>ICONURL{pencil}%"= |
+| edittableicon | edit table icon (%ICON{edittopic}%) | =edittableicon="%<nop>ICONURL{edittopic}%"= |
+| insertrowicon | insert row icon (%ICON{plus}%) | =insertrowicon="%<nop>ICONURL{plus}%"= |
+| moverowdownicon | move row down icon (%ICON{down}%) | =moverowdownicon="%<nop>ICONURL{down}%"= |
+| moverowupicon | move row up icon (%ICON{up}%) | =moverowupicon="%<nop>ICONURL{up}%"= |
+
+
+---++ Table Format
+The table format syntax of <nop>%TOPIC% uses the EditTablePlugin syntax.
+
+*Attribute Syntax:* format="| _Type_ , _Parameter_ , _Default_ | ..."
+
+*Example:* =format="|label,0,#|row|item|text,20|textarea,2x20|select,1,0,1,2,3,4,5|radio,3,a,b,c,d,e,f|checkbox,3,A,B,C,D,E,F|date,20,,%Y/%d/%m|"=
+
+| *Format* ||| *Description* |
+| *Type* | *Paramter* | *Default* |^| 
+| checkbox | _size_ | item1, item2, ... | a checkbox group; _size_ indicates the number of checkboxes per line | 
+| date | _size_ | _default date_, _date format_ | a date |
+| item | 0 | _unused_ | a checklist item column; use the =%<nop>CHECKLIST%= tag of the ChecklistPlugin to customize the checklist |
+| label | 0 | _default text_ | unchangeable text | 
+| radio | _size_ | item1, item2, ... | radio buttons; _size_ indicates the number of buttons per line |
+| row | 0 | _unused_ | a label field with the row number | 
+| select | _size_ | item1, item2, ... | drop down box |
+| text | _size_ | _default text_ | a editable text | 
+| textarea | <i>rows</i><b>x</b><i>cols</i> | _default text_ | a editable text box |
+
+---++ Per Cell Format
+You can define a special edit field type if you place an =%<nop>EDITCELL{"type,paramer,default"}%= variable at the end of a cell content. 
+
+---++ Examples
+
+
+%CHECKLIST{name="test" states="todo|doing|done" stateicons=":-(|:-I|:ok:"}%
+
+%CHECKLISTTABLE{name="test"}%
+| %CLI{id="1187707107" name="test"}% | my first item | for test only |
+|%CLI{id="1188310293-000-001" name="test"}%|my second item|for test too|
+
+
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>CHECKLISTTABLEPLUGIN_SHORTDESCRIPTION%==
+
+*Hints:* 
+	* You can setup every attribute of the =%<nop>CHECKLISTTABLE%= tag. You only have to use capital letters, e.g: 
+	  <br/> ==&nbsp;&nbsp;&nbsp;*&nbsp;Set&nbsp;ALLOWMOVE&nbsp;=&nbsp;on==
+	* Please use your <nop>%MAINWEB%.TWikiPreferences or <nop>%TWIKIWEB%.TWikiPreferences to setup plugin defaults. 
+	  This prevents you from overwriting settings on plugin updates. E.g. put the following to your
+	  global preferences: 
+	  <br/> ==&nbsp;&nbsp;&nbsp;*&nbsp;Set&nbsp;CHECKLISTTABLEPLUGIN_ALLOWMOVE&nbsp;=&nbsp;on==
+
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Create a checklist table
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the TWiki server. 
+
+	* Install (or upgrade to) the latest TWiki:Plugins.ChecklistPlugin plugin 
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/VarCHECKLISTTABLE.txt== | Plugin tag documentation | 
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==lib/TWiki/Plugins/%TOPIC%/Core.pm== | Perl module |
+          | ==pub/TWiki/%TOPIC%/cltpinsertform.js== | <nop>JavaScript module |
+	  | ==pub/TWiki/%TOPIC%/example.png== | example image |
+	* Configure the Plugin:
+		* TWiki 4.0 and up: Run the [[%SCRIPTURL%/configure%SCRIPTSUFFIX%][configure]] script to enable the Plugin
+		* Change the Plugin settings as needed
+	* Test if the installation was successful:
+		* see Examples section
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.DanielRohde |
+|  Copyright: | &copy; 2007, TWiki:Main.DanielRohde |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | V1.004 (16 Jan 2008) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  V1.004 (16 Jan 2008) | TWiki:Main:DanielRohde:  added initsort and initdirection feature; fixed numeric eq error; fixed missing default value rendering of 'date' format type; |
+|  V1.003 (22 Oct 2007) | TWiki:Main.DanielRohde: added quick insert feature; added new attributes (quickadd, quickinsert, buttonpos); fixed typos; fixed whitespaces in format bug; fixed (forced) link in text(area) bug; |
+|  V1.002 (30 Aug 2007): | TWiki:Main.DanielRohde: fixed major pre/verbatim bug; fixed and added documentation; added sort feature; added changerows attribute; added EDITCELL feature; fixed Opera bug; fixed topic lock bug |
+|  V1.001 (28 Aug 2007): | TWiki:Main.DanielRohde Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 <br/> ChecklistPlugin, JSCalendarContrib |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle 97%, %TWIKIWEB%.FormattedSearch 99%, %TOPIC% 92% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ TWikiPlugins, ChecklistPlugin
+
+-- TWiki:Main.DanielRohde - 20 Aug 2007
