@@ -1,0 +1,40 @@
+# Release manifest for MicroformatsPlugin
+data/TWiki/MicroformatsPlugin.txt 0644 Documentation
+lib/TWiki/Plugins/MicroformatsPlugin.pm 0644 Perl module
+lib/TWiki/Plugins/MicroformatsPlugin/Config.spec
+
+templates/hcard.tmpl
+templates/hevent.tmpl
+templates/hcardcss.tmpl
+
+pub/TWiki/MicroformatsPlugin/expose-mf.css
+#http://code.google.com/p/js-hcalendar/
+pub/TWiki/MicroformatsPlugin/hcalendar.js
+pub/TWiki/MicroformatsPlugin/calendar.css
+pub/TWiki/MicroformatsPlugin/hcard.css
+pub/TWiki/MicroformatsPlugin/minicalendar.css
+
+
+pub/TWiki/MicroformatsPlugin/MicroID.png
+pub/TWiki/MicroformatsPlugin/icon-set.png
+pub/TWiki/MicroformatsPlugin/xfn-sweetheart-met.png
+pub/TWiki/MicroformatsPlugin/Vote_Template.psd
+pub/TWiki/MicroformatsPlugin/icon-xfn.png
+pub/TWiki/MicroformatsPlugin/vote_against.png
+pub/TWiki/MicroformatsPlugin/icon-hcard-add.png
+pub/TWiki/MicroformatsPlugin/xfn-colleague.png
+pub/TWiki/MicroformatsPlugin/wikiringlogo20x20.png
+pub/TWiki/MicroformatsPlugin/icon-hresume.png
+pub/TWiki/MicroformatsPlugin/icon-rel-tag.png
+pub/TWiki/MicroformatsPlugin/xfn-friend-met.png
+pub/TWiki/MicroformatsPlugin/vote_for.png
+pub/TWiki/MicroformatsPlugin/icon-hatom.png
+pub/TWiki/MicroformatsPlugin/xfn-friend.png
+pub/TWiki/MicroformatsPlugin/xfn-colleague-met.png
+pub/TWiki/MicroformatsPlugin/logo.gif
+pub/TWiki/MicroformatsPlugin/icon-hcard-download.png
+pub/TWiki/MicroformatsPlugin/xfn-sweetheart.png
+pub/TWiki/MicroformatsPlugin/xfn-me.png
+pub/TWiki/MicroformatsPlugin/vote_abstain.png
+pub/TWiki/MicroformatsPlugin/icon-hcalendar.png
+

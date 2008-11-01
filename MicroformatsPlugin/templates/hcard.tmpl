@@ -1,0 +1,19 @@
+<div id="hcard-%HCARDNAME%" class="vcard">
+ <a class="url fn n" href="http://fosiki.com">  
+  <span class="given-name">%FORMFIELD{"FirstName" topic="%USERSWEB%.%HCARDUSER%" format="$value"}%</span>
+  <span class="family-name">%FORMFIELD{"LastName" topic="%USERSWEB%.%HCARDUSER%" format="$value"}%</span>
+ </a>
+ <div class="org">%FORMFIELD{"OrganisationName" topic="%USERSWEB%.%HCARDUSER%" format="$value"}%</div>
+ <a rel="me" class="email" href="mailto:%USERINFO{"%HCARDUSER%" format="$emails"}%">%USERINFO{"%HCARDUSER%" format="$emails"}%</a>
+ <div class="adr">
+  <div class="street-address">%FORMFIELD{"Address" topic="%USERSWEB%.%HCARDUSER%" format="$value, "}%</div>
+  <span class="locality">%FORMFIELD{"City" topic="%USERSWEB%.%HCARDUSER%" format="$value, "}%</span> 
+  <span class="region">%FORMFIELD{"State" topic="%USERSWEB%.%HCARDUSER%" format="$value, "}%</span>
+  <span class="postal-code">%FORMFIELD{"PostalCode" topic="%USERSWEB%.%HCARDUSER%" format="$value"}%</span>
+  <span class="country-name">%FORMFIELD{"Country" topic="%USERSWEB%.%HCARDUSER%" format="$value"}%</span>
+ </div>
+ <div class="tel">%FORMFIELD{"Telephone" topic="%USERSWEB%.%HCARDUSER%" format="$value"}%</div>
+ <div class="tags">
+  <a rel="tag" href="http://kitchen.technorati.com/contacts/tag/twiki">twiki</a> 
+ </div>
+</div>
