@@ -1,0 +1,66 @@
+%META:TOPICINFO{author="rex" date="1056827760" format="1.0" version="1.3"}%
+---+ %TOPIC%
+
+This plugin allows some users to be immediately notified by mail each time a child of a given parent topic is modified.
+
+---++ Theory of operation
+
+If this plugin is activated each time a topic =WebTopic= with parent =WebParentTopic= is modified, the web is searched for a topic with name =WebParentTopicNotifyUsers=. If this topic exists an email is sent to each user listed into. The text of the email must be stored in the topic =WebParentTopicNotifyText= or =NotifyText=. If the default email headers do not suits you, it is possible to add the NotifyOnChildModificationForm to your =WebParentTopicNotifyText= or =NotifyText= topic and select other ones.
+Note that the new variable =%TOPICPARENT%= can be used in the =.*NotifyText= topics and are replaced with the name of the parent topic (i.e. =WebParentTopic= in the current example).
+
+---++ Example
+
+I used this plugin for a local set of forums implemented using %WIKITOOLNAME%. A forum is build of a main topic which list the entries (child topics of the main topic). The web hosts several forums and I wanted a mean for users to be noticed of entry modifications for a _given_ forum (and not for all forums as do the classical notification of %WIKITOOLNAME%). With the %TOPIC% one can setup a notification system for one forum (of main topic =ForumsMainGeneral=) :
+	* First create a topic =ForumsMainGeneralNotifyUsers= with the same syntax as WebNotify topic.
+	* Second create a topic with the text of the mail to be sent, in my case I wanted the same notification for all forums so I used the text below in =NotifyText= topic :
+<verbatim>
+Beloved TWiki user, 
+
+Some modification occured in %TOPICPARENT% forum, the description of this forum is :
+%SEARCH{"^%TOPICPARENT%$" scope="topic" regex="on" nosearch="on" nototal="on" noheader="on" format="'$formfield(ForumsFormMainTitle)'"}%
+
+The modified entry title is %SEARCH{"^%TOPIC%$" scope="topic" regex="on" nosearch="on" nototal="on" noheader="on" format="'$formfield(ForumsFormItemTitle)'"}%
+
+Your devoted TWiki system.
+</verbatim>
+Moreover I wanted to put a custom subject to these emails so I added the form NotifyOnChildModificationForm to the =NotifyText= topic and typed =Something new in forum %TOPICPARENT% != into =NotifyOnChildModificationFormSubject= field.
+
+---++ Thanks
+
+I borrowed most of the perl code from the plain %WIKITOOLNAME% notification system (cgi-bin script =notify=).
+
+---++ Bugs
+
+I'm a C/PHP/Bash programmer not a Perl one, so there is probably a lot of bugs :-) . Ha ! I forgot to tell that I'm not an english speaker so there must be also a lot of errors in my text, please let me know, I will correct them.
+
+---++ Plugin Installation Instructions
+
+	* Download the tarball file from the Plugin web (see below)
+	* Untar ==%TOPIC%.tgz== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/NotifyOnChildModificationForm*.txt== | Plugin form |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+
+---++ <nop>%TOPIC% Settings
+
+Plugin settings are stored as preferences variables. To reference
+a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>PHPPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Fine grain electronic mail notification.
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---++ Plugin Info
+
+|  Plugin Author | Main.rex |
+|  Plugin Version: | June 2003 (V1.010) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  June 2003: | Initial version |
+|  CPAN Dependencies: | none |
+|  Perl Version: | 5.005 |
+
+-- Main.XavierRedon - 28 Jun 2003
+%META:FILEATTACHMENT{name="NotifyOnChildModificationPlugin.tgz" attr="" comment="" date="1056829235" path="NotifyOnChildModificationPlugin.tgz" size="3851" user="rex" version="1.1"}%
