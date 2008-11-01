@@ -1,0 +1,39 @@
+%META:TOPICINFO{author="WillNorris" date="1068240078" format="1.0" version="1.1"}%
+%IRCLOG{ --> You are now talking on #twiki
+--- Topic for #twiki is logs on http://koala.ilog.fr/twikiirc/bin/irclogger_logs/twiki
+--- Topic for #twiki set by ColasNahaboo at Fri Oct 31 11:24:48
+--- You are now known as WillNorris
+<MartinCleaver> Trying to make the webs bar under the group bar only show the current web
+<MartinCleaver> so that if someone wants to see all webs in the group they click on the group leader
+<MartinCleaver> but when you are inside, you only see the one layer 
+<MartinCleaver> hmm
+<MartinCleaver> maybe this is the same thing as that feature you added for me a while back
+<ColasNahaboo> interesting feature
+<ColasNahaboo> I dont think it is possible now
+<ColasNahaboo> let's see
+<ColasNahaboo> on your http://mbawiki.com/bin/view/ClassNotes/WebHome
+<ColasNahaboo> hum
+<ColasNahaboo> let's see: http://koala.ilog.fr/wiki/bin/view/People/WebHome
+<ColasNahaboo> you would want to have all your webs ClassNotes like KS_Slim
+<ColasNahaboo> in the sub-sitemap
+<ColasNahaboo> but not in the navbar
+<MartinCleaver> url for KS_SLim?
+<ColasNahaboo> http://koala.ilog.fr/wiki/bin/view/People/WebHome
+* MartinCleaver clicks
+<MartinCleaver> hmm. interesting but not what I meant!
+<ColasNahaboo> it is done by HIDDEN
+<MartinCleaver> I meant if I click on  http://koala.ilog.fr/wiki/bin/view/Colas/WebHome I don't want TKormann or SHillion to show in the webs bar
+<MartinCleaver> I think you might have implemented this before, but for the life of me I can't fine it
+<MartinCleaver> s/fine/find
+<ColasNahaboo> then put HIDDEN to these webs (Tkormann & Shillion)
+<MartinCleaver> but I want them to show when I click on people in the group bar
+<ColasNahaboo> (sorry, phone)
+<MartinCleaver> ok
+<ColasNahaboo> back
+<ColasNahaboo> here what you can habe: use NOTAB all subwebs
+<ColasNahaboo> I did just this on Colas, Thierry, etc... subwebs of:
+<ColasNahaboo> http://koala.ilog.fr/wiki/bin/view/People/WebHome
+<ColasNahaboo> need to go, bye
+<-- MartinCleaver has quit (Read error: 110 (Connection timed out))
+--> colas_home (5244-ident@81.56.231.86) has joined #twiki
+<Vito`> I'm about now }%
