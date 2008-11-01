@@ -1,0 +1,12 @@
+%META:TOPICINFO{author="TWikiContributor" date="1181043197" format="1.1" reprev="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TWikiVariables"}%
+#VarTIMETABLE
+---+++ TIMETABLE -- add a timetable to a topic
+   * The =%<nop>TIMETABLE%= variable is handled by the TimeTablePlugin.
+   * Syntax: =%<nop>TIMETABLE{attr1="value" attr2="value"}%=
+   * Example:
+     <verbatim>
+%TIMETABLE%
+   * Mon - 12pm - 1pm - Lunch with Marry
+     </verbatim>
+   * Related: VarTTCM, VarTTTOPICSETUP, TimeTablePlugin, CalendarPlugin, HolidaylistPlugin

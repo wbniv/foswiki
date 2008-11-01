@@ -1,0 +1,313 @@
+%META:TOPICINFO{author="TWikiContributor" date="1179321536" format="1.0" version="$Rev$"}%
+---+!! <nop>%TOPIC%
+The <nop>%TOPIC% handles the tag =%<nop>TIMETABLE%= and creates a weekly timetable. 
+The timetable is rendered with HTML tables and should work with all modern web browsers. Please take a look at the [[#TimeTablePluginFeatures][feature list]] for more information.
+
+It also handles the tag =%<nop>TTCM%= (<nop>TimeTable Compatibilty Mode). The compatibility mode allows the usage of all TWiki:Plugins.CalendarPlugin event types. The =%<nop>TTCM%= tag should be placed into the description field of an event and must contain a time range and
+optional colors in a comma separated list (=&lt;time range&gt;[<nop>[','&lt;foreground color&gt;][','&lt;background color&gt;]]=), 
+e.g: 
+<br/> you type:
+<verbatim>
+   * 22 May 2006 - %TTCM{"7:00-1:00pm,white,black"}% Meeting
+   * 23 May 2006 - 24 May 2006 - %TTCM{"7am-4pm,yellow"}% Conference
+</verbatim>
+you get:
+   * 22 May 2006 - <span style="color:white;background-color:black">07:00am-01:00pm</span> Meeting
+   * 23 May 2006 - 24 May 2006 - <span style="background-color:yellow">07:00am-04:00pm</span> Conference
+
+The =%<nop>TTTOPICSETUP%= (!TimeTable Topic Setup) tag allows you 
+to define default foreground/background colors (eventfgcolor/eventbgcolor attributes) 
+and a time zone (timezone attribute) for all events on a topic. Please use it only once on a topic.
+
+
+
+*Examples: (png images):*
+
+<img src="%ATTACHURLPATH%/example.png" alt="timetable example 1" />
+
+<img src="%ATTACHURLPATH%/example2.png" alt="timetable example 2" />
+
+
+%TOC%
+#TimeTablePluginFeatures
+---++ Features
+The TimeTablePlugin supports
+   * two time formats: 12 and 24 hour format (attribute: =timeformat=)
+   * (self-defined) time zones (attributes: =timezone, timezoneabbr=)
+   * all HolidaylistPlugin and CalendarPlugin event types if the compatibility mode is enabled (=compatmode="on"=)
+   * navigation to other weeks (only if compatibility mode is enabled: =compatmode="on"=)
+   * own colors for every event (add the foreground/background colors to a event definition or use the =%<nop>TTCM%= tag of the compatibility mode)
+   * event definitions from other topics (attribute: =topic=) - including overwrite of the time zone (e.g. =topic="EvenTopic2:-3=)
+   * customization of 
+      * all text outputs and colors (attributes: =name, headerformat, ...=)
+      * the table rendering (attributes: =days, startdate, timeinterval, showtimeline, ...=)
+   * a default setup for foreground/background colors and time zone on a topic (=%<nop>TTTOPICSETUP%= tag)
+   * URL parameters: all attribute settings can be overwritten by URL parameters (=ttp_&lt;attribute&gt;=&lt;value&gt;=), e.g. [[%SCRIPTURL{"viewauth"}%/%WEB%/%TOPIC%?ttp_days=14;ttp_tableborder=10;ttp_descrlimit=7#TimeTablePluginExamples][%TOPIC%?ttp_days=14;ttp_tableborder=10;ttp_descrlimit=7]]
+   * ... 
+
+
+---++ Syntax Rules
+
+Events are defined with bullets. Following event types are supported to define entries for the timetable:
+
+| *Event Type* | *Syntax* | *Example(s)* |
+| <b>Single</b>   | ==&nbsp;* DDD - HH:MM - HH:MM - description== | ==&nbsp;* Mon - 09:00 - 11:00 - Meeting== |
+|^| ==&nbsp;* DDD - HH:MM - HH:MM - description - background color== | ==&nbsp;* Mon - 09:00 - 11:00 - Meeting - green== |
+|^| ==&nbsp;* DDD - HH:MM - HH:MM - description - foreground color, background color== | ==&nbsp;* Mon - 09:00 - 11:00 - Meeting - white,black== |
+| <b>List</b> | ==&nbsp;* DDD, DDD,... - HH:MM - HH:MM - description== | ==&nbsp;* Mon,Tue - 08:00 - 8:15 - Breakfast== | 
+|^| ==&nbsp;* DDD, DDD,... - HH:MM - HH:MM - description - background color== | ==&nbsp;* Mon,Tue - 08:00 - 8:15 - Breakfast - yellow== | 
+|^| ==&nbsp;* DDD, DDD,... - HH:MM - HH:MM - description - foreground color, background color== | ==&nbsp;* Mon,Tue - 08:00 - 8:15 - Breakfast - white,black== |
+| <b>Interval</b> | ==&nbsp;* DDD - DDD - HH:MM - HH:MM - description== | ==&nbsp;* Mon - Fri - 12:15 - 13:00 - Lunch== |
+|^| ==&nbsp;* DDD - DDD - HH:MM - HH:MM - description - background color== | ==&nbsp;* Mon - Fri - 12:15 - 13:00 - Lunch - green== |
+|^| ==&nbsp;* DDD - DDD - HH:MM - HH:MM - description - foreground color, background color== | ==&nbsp;* Mon - Fri - 12:15 - 13:00 - Lunch - white,black== |
+| <b>Duration</b> | instead of an end time (==HH:MM==) in a time range of a single/list/interval event you can define an event duration in days (==d==), hours (==h==) and/or minutes (==m==), e.g. one day: =1d= ; one day and two hours: =1:2d= ; one day, two hours and 30 minutes: =1:2:30d= ; two hours: =2h= ;  two yours and 30 minutes: =2:30h= ; 30 minutes: =30m= | ==&nbsp;* Mon - 10:00 - 2h - every Monday 2 hours at 10 o'clock== |
+
+If you enable the compatibility mode (see Attributes or Plugins Settings sections) you can also use all TWiki:Plugins.CalendarPlugin event types.
+Examples:
+<verbatim>
+%TIMETABLE{compatmode="1" startdate="12 Jun 2006"}%
+
+   * 12 Jun - %TTCM{"10am-5pm,yellow"}% Every 12th of June between 10am and 5pm
+   * E Wed - Every Wednesday (whole-time)
+   * 12 Jun 2006 - 19 Jun 2006 - %TTCM{"12:15pm-1pm,white,black"}% Lunch with Mary
+   * 13 Jun 2006 - 10:00-12:00 Meeting 
+   * 14 Jun 2006 - Meeting - 01pm-03pm,green
+</verbatim>
+*Notes:*
+   * The parameter of the %<nop>TTCM% tag *must not contain any whitespaces*.
+   * Time ranges in a description field *must not contain any whitespaces*.
+   * If no %<nop>TTCM% tag or no time range was specified in a description of a TWiki:Plugins.CalendarPlugin event the event gets a full-time event (12:01am-11:59pm o'clock, 0-24h).
+
+ 
+---++ Attributes
+Usage: %<nop>TIMETABLE{attribute1="value1" attribute2="value2" ...}% 
+
+Example: %<nop>TIMETABLE{lang="Deutsch" timeinterval="15" }%
+
+| *Attribute* | *Comment* | *Default/Example* |
+|  *Behavior:*  |||
+| clicktooltip | if enabled <nop>JavaScript tooltips are only shown with a mouse click to the table cell instead of 'mouse over' (related: clicktooltiptext) | clicktooltip="off" |
+| compatmode | if set to "1" all TWiki:Plugins.CalendarPlugin event types are supported (related: compatibility mode attributes); %X% the description field can contain a time range (without any whitespaces, e.g. 1pm-2pm) or a %<nop>TTCM%-Tag (e.g. ==%<nop>TTCM{"7:00-1:00pm,white,black"}%== ) with a time range and optional foreground and background color and *without* any *whitespaces* | compatmode="0" |
+| days    | days to show | days="7" |
+| endtime | a end time, e.g. 18:00, 6:00pm, ...  | endtime="8:00pm" |
+| lang | Language used for weekdays in the table header and for event entries (e.g: English, Deutsch, Français, Español, Nederlands, Dansk, suomi, ...) | lang="English" |
+| rotatetable | enables/disables table rotation | rotatetable="off" |
+| showweekend | show weekend if set to '1' | showweekend="1" |
+| starttime | a start time, e.g. 7:00, 8a.m., 9:15a.m. ... | starttime="7:00am" |
+| textwrapper | sets the text wrapper for the event entry text (default: =browser=); =plugin=: text is wrapped by the TimeTablePlugin (old behavior but stable); =browser=: text is wrapped by the web browser | textwrapper="plugin" |
+| timeformat | time format; allowed values: 12, 12am, 12p.m., 12a.m, 12p.m. and 24 | timeformat="24" |
+| timeinterval | interval steps in minutes for the timeline | timeinterval="30" |
+| timezone | a hour offset (allowed values: -12 ... 0 ... +12) for time correction or a time zone abbreviation (e.g. UTC, CET ...) | timezone="0" |
+| timezoneabbr | a comma separated list of time zone abbreviations with UTC offsets; the standard time zone abbreviations will be extended with this user defined abbreviations | timezoneabbr="CET:+1, MEST:+2" |
+| topic  | a comma separated list of source topics; you can add a time zone to any source topic name by adding a ':' and a hour offset (-12 ... +12) or a time zone abbreviation, e.g: =topic="MySourceTopic:-2"=  %X% this time zone feature overwrites the =timezone= attribute of a =%<nop>TTTOPICSETUP%= tag | topic="%<nop>TOPIC%" |
+| wholetimerow | enables/disables a whole-time event row (related attributes: wholetimerowtext, wholetimerowtitle) | wholetimerow="0" |
+| workingendtime | working hours end time | workingendtime="5:00pm" |
+| workingstarttime | working hours start time | workingstarttime="9:00am" |
+|  *Compatibility Mode: <br/>(%X% =compatmode="on"= is required %X%)*  |||
+| cmheaderformat | table header format of a day; a subset of strftime conversion specifiers is supported (only date not time specifiers; see manual page or TWiki:Codev.ConvergeDateTimeFormattingModels) | cmheaderformat="&lt;font&nbsp;title=\"%A - %d %b %Y\" size=\"-2\">%a&lt;br/&gt;%e&lt;/font&gt;" |
+| daynames | custom day names (a list separated by a '¦' and starting on Monday; overwrites lang attribute) | daynames="M¦T¦W¦T¦F¦S¦S" |
+| forcestartdate | if set to 1 the timetable starts with the given startdate ('0' means: the timetable view starts with Monday') | forcestartdate="0" |
+| month | set a month (e.g. Jan, Feb ... or 01, 02, ... 12 ) or a month offset (e.g. +0, +1, -2,...) | month="+1" |
+| monthnames | custom month names (a list separated by '¦' and starting on January; overwrites lang attribute) | monthnames="J¦F¦M¦A¦M¦J¦J¦A¦S¦O¦N¦D" |
+| navnext | navigation button to the next n days | navnext="&amp;gt;&amp;gt;" |
+| navnexttitle | title text (tooltip text) for the navigation button to the next n days | navnexttitle="Next %n day(s)" |
+| navprev | navigation button to the previous n days | navprev="&amp;lt;&amp;lt;" |
+| navprevtitle | title text (tooltip text) for the navigation button to the previous n days | navprevtitle="Previous %n day(s)" |
+| startdate | a start date (e.g. '1 Oct 2005') or a day offset (e.g. '10', '+30' or '-30') | startdate="+0" |
+| year | set a year (e.g. 2005, 2006 ...) or a year offset (e.g. +0, +1, -1, ...) | year="+0" |
+|  *Table formatting:*  |||
+| clicktooltiptext | tooltip text of table entries if =clicktooltip= is enabled | clicktooltiptext="Click me for more information" |
+| descrlimit | per line character limit for the description (%X% depends on the =textwrapper= attribute: if =textwrapper="plugin"= this limit is a character limit; if =textwrapper="browser"= the width of a event entry table cell is set to  =&lt;descrlimit&gt;em=) | descrlimit="10" | 
+| displaytime | display time in the event description of the timetable | displaytime="0" |
+| eventbgcolor | default background color of an event cell (you can overwrite this with an event entry) | eventbgcolor = "#AAAAAA" |
+| eventfgcolor | default text color of an event cell (you can overwrite this with an event entry) | eventfgcolor = "black" |
+| fontsize | default font size (see [[#TimeTablePluginKnownIssues][Known Issues and Bugs]]) | fontsize="xx-small" | 
+| headerformat | table header format of a day; a subset of strftime conversion specifiers is supported (only date not time specifiers; see manual page or TWiki:Codev.ConvergeDateTimeFormattingModels) | headerformat="&lt;font&nbsp;title=\"%A - %d %b %Y\" size=\"-2\">%a&lt;/font&gt;" |
+| monthheaderbgcolor | month header background color (default: tableheadercolor) | monthheaderbgcolor="%<nop>WEBBGCOLOR%" |
+| monthheaderfgcolor | month header text (foreground) color (default: black) | monthheaderfgcolor="black" |
+| monthheaderformat | month header format (related: =showmonthheader=) | monthheaderformat="%B" |
+| name | header content of the first column | name = "&amp;nbsp;" |
+| nowbgcolor | highlight current time in the timeline with a background color | nowbgcolor="black" | 
+| nowfgcolor | highlight current time in the timeline with a forgeround color | nowfgcolor="white" |
+| showmonthheader | enables/disables monthheader; if =compatmode=on= the montheader is shown by default | showmonthheader="off" |
+| showtimeline | show timeline =left=, =right=, or on =both= sides | showtimeline="both" |
+| tablebgcolor | table background color | tablebgcolor="white" |
+| tableborder | table border (default: undefined) | tableborder="1" |
+| tablecellpadding | table cell padding (default: 0) | tablecellpadding="5" |
+| tablecellspacing | table cell spacing (default: 1) | tablecellspacing="1" |
+| tablecaption | table caption shown above the timetable | tablecaption="Timetable" |
+| tablecolumnwidth | width of a table column (default: undefined) | tablecolumnwidth="80px" | 
+| tabledatacellwidth | width of an entry cell (default:undefined); %X% it has no effect if a tablecolumnwidth was set | tabledatacellwidth="80px" |
+| tableheadercolor | color of the table header | tableheadercolor="%<nop>WEBBGCOLOR%" |
+| tablewidth | table width (default: undefined) | tablewidth="100%" |
+| todaybgcolor | highlight today column with a background color | todaybgcolor="black" |
+| todayfgcolor | highlight today column with a foreground color | todayfgcolor="white" | 
+| tooltipdateformat| tooltip date format (for %<nop>DATE% substition of tooltipformat); a subset of strftime conversion specifiers is supported (only date not time specifiers; see manual page or TWiki:Codev.ConvergeDateTimeFormattingModels) | tooltipdateformat="%y/%d/%m" |
+| tooltipfixleft | positive or negative offset from the left to fix tooltip position | tooltipfixleft="-163" | 
+| tooltipfixtop | positive or negative offset from the top to fix tooltip position | tooltipfixtop="0" |
+| tooltipformat | format of a tooltip (substituted variables: %<nop>DATE% - date (see tooltipdateformat attribute), %<nop>TIMERANGE% - time range, %<nop>DESCRIPTION% - description field, %<nop>LONGDESCRIPTION% - complete entry) | tooltipformat="%<nop>DATE%&lt;br/&gt;%<nop>TIMERANGE%&lt;br/&gt; %<nop>DESCRIPTION% " |
+| weekendbgcolor | highlight weekends with a column background color | weekendbgcolor="%<nop>WEBBGCOLOR%" |
+| weekendfgcolor | highlight weekends with a column foreground color | weekendfgcolor="black" |
+| wholetimerowpos | whole-time event row position (default: top), allowed values: top, bottom, both | wholetimerowpos="top" |
+| wholetimerowtext | text in the time line of the whole-time event row | wholetimerowtext="24h"|
+| wholetimerowtitle | alternate text for the wholetimerowtext | wholetimerowtitle="whole-time events" |
+| workingbgcolor | highlight working hours in the timeline with a background color | workingbgcolor="white" |
+| workingfgcolor | highlight working hours in the timeline with a foreground color | workingfgcolor="black" |
+
+*Hints:*
+   * You can use TextFormattingRules for some attribute values: tablecaption, name, navnext, navprev, wholetimerowtext.
+   * Every attribute of %<nop>TIMETABLE% can also be used as plugin setting. You only have to use capital letters.
+   * Every attribute setting can be overwritten by URL parameters (=ttp_&lt;attribute&gt;=&lt;value&gt;=), e.g. if you add a =?ttp_days=30= to the topic URL the TimeTablePlugin shows 30 days.
+
+
+#TimeTablePluginExamples
+---++ Examples
+%TIMETABLE{compatmode="on" wholetimerow="on"}%
+%TIMETABLE{compatmode="1" startdate="12 Jun 2006" rotatetable="on" days="1" forcestartdate="on" timeinterval="60"}%
+   * Mon,Tue - 9 - 14 - MONTEST1 - green
+   * Mon - 9 - 11 - MONTEST2 - yellow
+   * Mon - 10 - 13 - MONTEST3 - white,black
+   * Mon - 12 - 15 - MONTEST4
+
+
+   * Tue - 9 - 9:30 - TUETEST1
+   * Tue - 9 - 10:00 - TUETEST2
+   * Tue - 10:00 - 11:00 - TUETESTFO
+   * Tue - 9 - 11:30 - TUETEST3
+   * Tue - 12 - 15 - TUETEST4
+   
+   * Wed - 7 - 9 - WEDTEST1
+   * Wed - 9 - 11 - WEDTEST2
+   * Wed - 11 - 13 - WEDTEST3
+   * Wed - 13 - 17 - WEDTEST4
+
+   * Thu - 7 - 20:30 - THUTEST1
+   * E Thu - THUTEST2 %TTCM{,green}%
+   
+   * Fri - 7 - 10 - FRITEST1
+   * Fri - 12 - 15 - FRITEST2
+   * E Fri - FRITEST3 %TTCM{10-10:30,cyan}%
+
+   * Sat - 5 - 10 - SATTEST1 - white,blue
+   * Sat - 6 - 21 - SATTEST2 - yellow
+   * Sat - 11 - 22 - SATTEST3 - green 
+
+   * Sun - 9:18 - 17:35 - SUNTEST1 - red
+   * Sun - 18:00 - 18:15 - SUNTEST2 - yellow
+
+
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>NEWPLUGIN_SHORTDESCRIPTION%==
+
+   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = Render a weekly timetable
+
+   * Debug plugin: (See output in =data/debug.txt=)
+      * Set DEBUG = 0
+
+   * Time format (default: 24, allowed: 12, 12pm, 12am, 12a.m.,12p.m., 12PM, 12AM, or 24):
+      * # Set TIMEFORMAT = 12
+
+   * Timetable start time (default: 7:00am):
+      * # Set STARTTIME = 7am
+
+   * Timetable end time (default: 8:00pm):
+      * # Set ENDTIME = 8pm
+
+   * Enable/Disable whole-time event row (default: disabled):
+      * # Set WHOLETIMEROW = 1
+      * # Set WHOLETIMEROWPOS = top
+      * # Set WHOLETIMEROWTEXT = 24h
+      * # Set WHOLETIMEROWTITLE = whole-time events
+
+   * Character limitation of a description in a table cell line (default: 10):
+      * # Set DESCRLIMIT = 15
+
+   * Show timeline on the =left=, =right= or =both= sides (default: both):
+      * # Set SHOWTIMELINE = left
+
+   * Language (default: English - see manual page of Date::Calc perl module, e.g: English, Deutsch, Français, Español, Nederlands, Dansk, suomi, ...): 
+      * # Set LANG = Deutsch
+
+   * Enable/Disable compatibility mode (default: off) to (dis)allow TWiki:Plugins.CalendarPlugin event types:
+      * # Set COMPATMODE = 1
+
+   * Set tooltip offsets (depends on your TWiki.TWikiSkins):
+      * # Set TOOLTIPFIXLEFT = -163
+      * # Set TOOLTIPFIXTOP = 0
+
+   * Set unknown parameter message (default: =%<nop>RED% Sorry, some parameters are unknown: %<nop>UNKNOWNPARAMSLIST% %<nop>ENDCOLOR% &lt;br/&gt; Allowed parameters are (see !TWiki.TimeTablePlugin topic for more details): %<nop>KNOWNPARAMSLIST%=)
+      * # Set UNKNOWNPARAMSMSG = %RED% Following parameter(s) is/are unknown: %UNKNOWNPARAMSLIST% %ENDCOLOR%
+
+
+*Note:* Every attribute of %<nop>TIMETABLE% can also be used as plugin setting. You only have to use capital letters.
+
+#TimeTablePluginKnownIssues
+---++ Known Issues and Bugs
+
+   * font sizes larger than default font size (=1em=) may cause non matching timelines (browser dependent); 
+     <br/>workaround: don't use =fontsizes= larger than =1em=; or use =px= units;  or set =textwrapper= to =plugin= (e.g. =%<nop>TIMETABLE{textwrapper="plugin" fontsize="18pt"}%=)
+   * some browsers (known: IE7) cut text lines of table cells with a row count equal 1 if =textwrapper="browser"= (default)
+     <br/>workaround: use =textwrapper="plugin"= attribute
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the TWiki server. 
+
+   * Download the ZIP file from the Plugin web (see below)
+   * Install the required Perl modules (Date::Calc and POSIX), e.g: perl -MCPAN -e "install Date::Calc"
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Do not forget to change file permissions. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==data/TWiki/VarTIMETABLE.txt== | Documentation |
+     | ==data/TWiki/VarTTCM.txt== | Documentation |
+     | ==data/TWiki/VarTTTOPICSETUP.txt== | Documentation |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+     | ==lib/TWiki/Plugins/%TOPIC%/TimeTable.pm== | Plugin Perl library |
+     | ==pub/TWiki/%TOPIC%/timetabletooltips.js== | <nop>JavaScript library |
+     | ==pub/TWiki/%TOPIC%/example.png== | example image 1 |
+     | ==pub/TWiki/%TOPIC%/example2.png== | example image 2 |
+   * Configure the Plugin:
+      * TWiki 4.0 and up: Run the [[%SCRIPTURL%/configure%SCRIPTSUFFIX%][configure]] script to enable the Plugin
+      * Change the Plugin settings as needed
+   * Test if the installation was successful:
+      * see Examples section
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.DanielRohde |
+|  Copyright: | &copy; 2006, TWiki:Main.DanielRohde |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | V1.016 (BETA) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  V1.016 (BETA) | TWiki:Main.DanielRohde: added overflow:auto style; fixed unknownparamsmsg bug; |
+|  V1.015 (29 Jul 2008) | TWiki:Main.DanielRohde: fixed rotated table bugs (tooltips, showweekend="off") |
+|  V1.014 (10 Jul 2008) | TWiki:Main.DanielRohde: added documentation requested by TWiki:Main.PeterThoeny; added rotated table feature requested by TWiki:Main.VickiBrown; fixed doc bug reported by TWiki:Main.JoeGainey |
+|  V1.013 (24 May 2007) | TWiki:Main.DanielRohde: fixed major time parsing bug reported by TWiki:Main.LarsEik; fixed major bug: events with a time range before start time should not be displayed; fixed major TTCM bug reported by TWiki:Main.ArthurClemens; added URL parameter feature; added new attributes (textwrapper, tableborder, tablewidth, tablecell...); added browser based text wrapping feature requested by TWiki:Main.ArthurClemens |
+|  V1.012 (14 May 2007) | TWiki:Main.DanielRohde: fixed readTopicText bug reported TWiki:Main.JoachimRahn; added month header feature (attributes: showmonthheader, monthheader...); added new tooltip feature (clicktooltip...) |
+|  V1.011 (1 Mar 2007) | TWiki:Main.DanielRohde: added fontsize attribute; fixed HTML bug (validation); |
+|  V1.010 (19 Feb 2007) | TWiki:Main.DanielRohde: added tablecolumnwidth and tabledatacellwidth attributes requested by TWiki:Main.VickiBrown;  added tooltip feature (tooltip... attributes); |
+|  V1.009 (7 Aug 2006) | TWiki:Main.DanielRohde: added duration feature; added time zone abbreviations; improved performance; fixed conflict rendering bug; fixed time zone bugs (whole-time event handling, topic include) |
+|  V1.008 (2 Aug 2006) | TWiki:Main.DanielRohde: added timezone feature requested by TWiki:Main.BenWatts; fixed major midday/midnight (12pm/12am) bug reported by TWiki:Main.BenWatts; fixed overlapping day bug; fixed periodic event bug; fixed minor bugs (stylesheet bug: annoying <nop>JavaScript errors; empty event row) |
+|  V1.007 (23 Jun 2006) | TWiki:Main.DanielRohde: fixed major bug (wholetimerow: empty column) |
+|  V1.006 (23 Jun 2006) | TWiki:Main.DanielRohde: fixed major mod_perl bug (paging in compatmode); added whole-time row feature; fixed minor bugs (empty column color; cutted text) |
+|  V1.005 (8 Jun 2006) | TWiki:Main.DanielRohde: fixed typos (documentation); added new features (compatmode only): inline time range feature and navigation; minor improvements (table header, ...) |
+|  V1.004 (31 May 2006) | TWiki:Main.DanielRohde: fixed typos (documentation, timeformat); added new attributes (days, forcestartdate, nowfgcolor, nowbgcolor); fixed minor bug (periodic repeater); added new event type (list) |
+|  V1.003 (24 May 2006) | TWiki:Main.DanielRohde: added compatibility mode (TWiki:Plugins.CalendarPlugin event types); added documentation and new attributes; fixed bugs (bgcolor bug; conflict rendering; documentation; error logs; warnings);|
+|  V1.002 (22 May 2006): | TWiki:Main.DanielRohde: fixed major bugs (conflict handling, preferences); added documentation; |
+|  V1.001 (19 May 2006): | TWiki:Main.DanielRohde: fixed some major bugs (conflict entries, parameter handling, long descriptions); added documentation; |
+|  V1.000 (16 May 2006): | TWiki:Main.DanielRohde: Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.021 |
+|  CPAN Dependencies: | CPAN:Date::Calc %BR% CPAN:POSIX |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle 92%, %TWIKIWEB%.FormattedSearch 98%, %TOPIC% 80% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+
+-- TWiki:Main.DanielRohde - 16 May 2006

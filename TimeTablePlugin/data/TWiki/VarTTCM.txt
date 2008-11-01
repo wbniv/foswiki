@@ -1,0 +1,9 @@
+%META:TOPICINFO{author="TWikiContributor" date="1181046049" format="1.1" reprev="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TWikiVariables"}%
+#VarTTCM
+---+++ TTCM{"time range,foreground color,backgroundcolor"} -- add a colorized time (range) to a topic
+   * The =%<nop>TTCM%= variable is handled by the TimeTablePlugin.
+   * Syntax: =%<nop>TTCM{"time range[,forground color,[background color]]"}%=
+   * Example:
+      * =%<nop>TTCM{"12pm-1pm,yellow,green"}%= adds a colorized time range to a topic, e.g. <span title="12:00pm-01:00pm / 12:00-13:00" style="color:yellow;background-color:green">12:00pm-01:00pm</span>
+   * Related: VarTIMETABLE, VarTTTOPICSETUP, TimeTablePlugin, CalendarPlugin, HolidaylistPlugin

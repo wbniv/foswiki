@@ -1,0 +1,10 @@
+%META:TOPICINFO{author="TWikiContributor" date="1181045933" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TWikiVariables"}%
+#VarTTTOPICSETUP
+---+++ TTTOPICSETUP -- add a default topic setup for the [[VarTIMETABLE][TIMETABLE]] variable to a topic
+   * The =%<nop>TTTOPICSETUP%= variable is handled by the TimeTablePlugin.
+   * Syntax: =%<nop>TTTOPICSETUP{attr1="value1" attr2="value2" ...}%=
+   * Example:
+      * =%<nop>TTTOPICSETUP{timezone="-1"}%= sets the time zone to '-1'
+      * =%<nop>TTTOPICSETUP{eventfgcolor="yellow" eventbgcolor="green"}%= sets the default event forground and background colors to yellow and green
+   * Related: VarTIMETABLE, VarTTCM, TimeTablePlugin, CalendarPlugin, HolidaylistPlugin

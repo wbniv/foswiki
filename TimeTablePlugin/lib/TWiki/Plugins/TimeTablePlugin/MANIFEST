@@ -1,0 +1,9 @@
+lib/TWiki/Plugins/TimeTablePlugin/TimeTable.pm 0644 Plugin module
+lib/TWiki/Plugins/TimeTablePlugin.pm 0644 Plugin module
+pub/TWiki/TimeTablePlugin/example.png 0644 Example image
+pub/TWiki/TimeTablePlugin/example2.png 0644 Example image
+pub/TWiki/TimeTablePlugin/timetabletooltips.js 0644 JavaScript module
+data/TWiki/TimeTablePlugin.txt 0644 Documentation
+data/TWiki/VarTIMETABLE.txt 0644 Documentation
+data/TWiki/VarTTCM.txt 0644 Documentation
+data/TWiki/VarTTTOPICSETUP.txt 0644 Documentation
