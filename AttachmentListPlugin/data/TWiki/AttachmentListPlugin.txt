@@ -1,0 +1,247 @@
+%META:TOPICINFO{author="TWikiContributor" date="1113307434" format="1.0" version="1.1"}%
+---+!! Attachment List Plugin
+
+*Displays a formattable list of topic attachments - from any topic - anywhere in a topic.*
+
+View permissions are honored: if the user is not allowed to view the referring topic, the attachments are not displayed.
+
+This plugin uses TWiki:Plugins/TopicDataHelperPlugin
+
+%TOC%
+
+---++ Syntax Rules
+
+   * =%<nop>ATTACHMENTLIST%= - default rendering of the attachment of the current topic
+   * =%<nop>ATTACHMENTLIST{parameters}%= - see list of parameters below
+
+---+++ Topics to search
+%TABLE{columnwidths="20%,30%,15%,40%"}%
+| *Parameter* | *Comment* | *Default value* | *Example* |
+| =topic=     | Topic name to show attachments of. Possible values: \
+%BB% one topic \
+%BB% a comma-separated list of topic names \
+%BB% a wildcard =*= to search in all topics in the web; exclude topics using =excludetopics= | the current topic | =topic="<nop>%TOPIC%"=, =topic="<nop>%TOPIC%, <nop>WebHome"=, =topic="*"= |
+| =excludetopic= | Comma-separated list of topic names to not show the attachments of | none | =excludetopic="<nop>WebPreferences, <nop>WebHome"= |
+| =web=       | Web name to show attachments of. Possible values: \
+%BB% one web \
+%BB% a comma-separated list of web names \
+%BB% a wildcard * to search in all webs; exclude topics using =excludeweb= | the current web | =web="<nop>%WEB%"=, =web="<nop>%WEB%, <nop>Main"=, =web="*"= |
+| =excludeweb= | Comma-separated list of web names to not show the attachments of | none | =web="*" excludeweb="TWiki"= |
+
+---+++ Attachments to include/exclude
+%TABLE{columnwidths="20%,30%,15%,40%"}%
+| *Parameter* | *Comment* | *Default value* | *Example* |
+| =limit=     | The maximum number of files to display. | no limit | =limit="10"= |
+| =file= | Comma-separated list of attachment file names to explicitly show, possibly generated from a search. The files should be attached to the topics passed in =topic=. Can be used to show just one or two attachments from a topic. | none | =file="ReadMe.txt"= |
+| =excludefile= | Comma-separated list of filenames to not show, possibly generated from a search | none | =excludefile="ReadMe.txt"= |
+| =includefilepattern= | Regular expression pattern to match filenames to show. For example: the pattern =^[A-Z]= will match files which filenames start with an uppercase letter; pattern =[0-9]= will find files that have a number in the filename. Use prefix =(?i)= for case insensitivity. | none | =includefilepattern="^(?i)[A]"= |
+| =excludefilepattern= | Regular expression pattern to match filenames to hide.  | none | =excludefilepattern="^(?i)[B]"= |
+| =extension=  | Comma-separated list of file extensions to be listed. To find files that do not have an extension, pass special name =NONE=. | none | =extension="gif, jpg, NONE"= |
+| =excludeextension=  | Comma-separated list of file extensions to not show | none | =excludeextension="htm"= |
+| =user=  | Comma-separated list of user names (that have attached an attachment) to be listed. To find attachments where no user is specified, use =UnknownUser=. | none | =user="TWikiContributor"= |
+| =excludeuser=  | Comma-separated list of user names (that have attached an attachment) to not show | none | =excludeuser="<nop>TWikiContributor, <nop>TWikiAdminUser, <nop>TWikiGuest, <nop>UnknownUser"= |
+| =hide=      | Set to "on" to show only non-hidden attachments | show all attachments | =hide="on"= |
+| =fromdate=, =todate=  | Date range filter: show attachments between =fromdate= and =todate=; dates are specified in format =yyyy/mm/dd= \
+%BB% =fromdate="" todate="2007/09/01"= selects all attachments up to 1 Sep 2007 \
+%BB% =fromdate="2007/12/01" todate=""= selects all attachments since 1 Dec 2007 | no date filter | =fromdate="2005/01/01"= =todate="2007/01/01"= |
+| =filter= (deprecated)   | Use =extension= or =includefilepattern= | | | 
+
+---+++ Sort options
+%TABLE{columnwidths="20%,30%,15%,40%"}%
+| *Parameter* | *Comment* | *Default value* | *Example* |
+| =sort=      | Sorts the retrieved attachments on: %BR%\
+name (=$fileName=) %BR%\
+size (=$fileSize=) %BR%\
+user (=$fileUser=) %BR%\
+date (=$fileDate=) %BR%\
+extension (=$fileExtension=) %BR%\
+containing topic (=$fileTopic=) %BR%\
+The sort order can be specified with parameter =sortorder=. | =$fileName= | =sort="$fileDate"= |
+| =sortorder= | Lists sorted attachments: ascending or descending. The default sort order depends on the =sort= type: %BR%\
+=descending=: default for =$fileDate= (latest file first) %BR%\
+=ascending=: default for =$fileName=, =$fileUser= and =$fileTopic= (alphabetically) | see left | =sortorder="ascending"= |
+
+---+++ Formatting parameters
+%TABLE{columnwidths="20%,30%,15%,40%"}%
+| *Parameter* | *Comment* | *Default value* | *Example* |
+| =format=    | Format string; use the format in the table below. To render images, use format parameter =$imgTag= (see also plugin setting =IMAGE_FORMAT=). | Plugin setting =FORMAT= or =IMAGE_FORMAT= | =format="   * [<nop>[$fileUrl][$fileName]]"= %BR% \
+To create a list of images, use: =extension="jpg,jpeg,gif" format="   * &lt;a href='$fileUrl'&gt;$imgTag&lt;/a&gt;"= |
+| =separator=    | String to separate listed entries | none | =separator=","= |
+| =header=    | A header text in case of hits | no header | =header="All files:"= |
+| =footer=    | A footer text in case of hits | no footer | =footer="Number of files: $fileCount"= |
+| =alt=       | Alternative text if nothing is found | none | =alt="No files found"= |
+
+---+++ Formatting variables
+These variables can be used in the =format= tag:
+
+| *Format variable* | *Comment* |
+| =$fileName=  | Name of the attachment |
+| =$fileSize= | Attachment size in bytes |
+| =$fileExtension= | Attachment extension |
+| =$fileIcon= | Icon image representing this attachment type (see %TWIKIWEB%.TWikiDocGraphics) (wraps %TWIKIWEB%.VarICON around =$fileExtension=) |
+| =$fileComment= | Attachment comment |
+| =$fileUser= | Who has attached |
+| =$fileDate= | When was attachment attached |
+| =$fileUrl=  | URL of the attachment, assumes =ATTACHURL= path |
+| =$fileTopic=  | Topic the attachment resides in |
+| =$fileWeb=  | Web the attachment resides in |
+| =$viewfileUrl= | Full path with =viewfile= as script name |
+| =$fileActionUrl= | Full path of management URL for this file (for changing properties etcetera) |
+| =$imgTag= | Render an image tag using =IMAGE_FORMAT=; see =format= parameter above |
+| =$imgHeight= | Height of image in pixels |
+| =$imgWidth= | Width of image in pixels |
+| =$hidden= | 'hidden' if the attachment is hidden, nothing otherwise |
+
+These substitution variables can be used in the =format=, =header= and =footer= tags:
+
+| *Format variable* | *Comment* |
+| =$n= or =$n()= | New line. Use =$n()= if followed by alphanumeric character, e.g. write =Foo$n()Bar= instead of =Foo$nBar= |
+| =$nop= or =$nop()= | Is a "no operation". |
+| =$quot= | Double quote (="=) |
+| =$percnt= | Percent sign (=%=) |
+| =$dollar= | Dollar sign (=$=) |
+| =$br= | =&lt;br /&gt;= tag |
+
+These variables can be used in the =header= and =footer= tags:
+
+| *Format variable* | *Comment* |
+| =$fileCount= | Number of listed files  |
+| =$fileExtensions= | Comma-separated list of extensions of listed files  |
+
+
+---++ Test
+
+<verbatim>
+%ATTACHMENTLIST{
+web="%TWIKIWEB%"
+topic="FileAttachment"
+format="| $fileIcon | [[$fileUrl][$fileName]] ($fileSize) | Submitted by $fileUser on $fileDate | $fileComment |<span class='twikiGrayText'>[[$fileActionUrl][manage]]</span> |"
+}%
+</verbatim>
+
+Output (if installed):
+
+%ATTACHMENTLIST{
+web="%TWIKIWEB%"
+topic="FileAttachment"
+format="| $fileIcon | [[$fileUrl][$fileName]] ($fileSize) | Submitted by $fileUser on $fileDate | $fileComment |<span class='twikiGrayText'>[[$fileActionUrl][manage]]</span> |"
+}%
+
+---+++ Image output
+
+<verbatim>
+%ATTACHMENTLIST{
+topic="WabiSabi"
+web="%TWIKIWEB%"
+extension="jpg,jpeg,gif,png"
+header="Images:"
+format="<div class='twikiImage'><a href='$fileUrl'>$imgTag</a></div>"
+separator="<hr />"
+footer="Number of images: $fileCount"
+}%
+</verbatim>
+
+Output (if installed):
+
+%ATTACHMENTLIST{
+topic="WabiSabi"
+web="%TWIKIWEB%"
+extension="jpg,jpeg,gif,png"
+header="Images:"
+format="<div class='twikiImage'><a href='$fileUrl'>$imgTag</a></div>"
+separator="<hr />"
+footer="Number of images: $fileCount"
+}%
+
+---+++ Regular expression filter
+
+List all files since 01 Jan 2007, starting with a letter 'a' or 'A'. Note the use of the prefix =(?i)= for case insensitivity.
+
+<verbatim>
+%ATTACHMENTLIST{
+web="%TWIKIWEB%"
+topic="*"
+header="Files since 01 Jan 2007, starting with a letter 'a' or 'A':"
+footer="Number of files: $fileCount"
+format="   * $percntICON{$fileExtension}$percnt [[$fileUrl][$fileName]] $fileComment"
+includefilepattern="(?i)^[A]"
+fromdate="2007/01/01"
+sort="$fileName"
+}%
+</verbatim>
+
+Output (if installed):
+
+%ATTACHMENTLIST{
+web="%TWIKIWEB%"
+topic="*"
+header="Files since 01 Jan 2007, starting with a letter 'a' or 'A':"
+footer="Number of files: $fileCount"
+format="   * $percntICON{$fileExtension}$percnt [[$fileUrl][$fileName]] $fileComment"
+includefilepattern="(?i)^[A]"
+fromdate="2007/01/01"
+sort="$fileName"
+}%
+
+---++ Plugin Settings
+
+	* Default format of rendering the attachments:
+<verbatim>
+		* Set FORMAT = \n   * [[$fileUrl][$fileName]] $fileComment
+</verbatim>
+	* Default format of rendering *image* attachments:
+<verbatim>
+		* Set IMAGE_FORMAT = <img src='$fileUrl' alt='$fileComment' title='$fileComment' />
+</verbatim>
+	* Specify image height and width parameters (switched off for performance; enable by removing the # sign):
+<verbatim>
+		* #Set IMAGE_FORMAT = <img src='$fileUrl' height='$imgHeight' width='$imgWidth' alt='$fileComment' title='$fileComment'  />
+</verbatim>
+   * Set SHORTDESCRIPTION = Displays a formattable list of topic attachments, anywhere in a topic.
+   * Set DEBUG = 0
+
+
+---++ Plugin Installation Instructions
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your root ($TWIKI_ROOT) directory. Content:
+   | *File:* | *Description:* |
+%$MANIFEST%
+   * Optionally, if it exists, run ==%TOPIC%_installer== to automatically check and install other TWiki modules that this module depends on. You can also do this step manually.
+   * Alternatively, manually make sure the dependencies listed in the table below are resolved.
+   %$DEPENDENCIES%
+   * Visit =configure= in your TWiki installation, and enable the plugin in the =Plugins= section.
+
+
+---++ Plugin Info
+
+| Authors: | TWiki:Main.VinodKulkarni, TWiki:Main.SopanShewale (2006), TWiki:Main.ArthurClemens (2006, 2007, 2008) |
+| Copyright &copy;: | TWiki:Main.VinodKulkarni, TWiki:Main.SopanShewale (2006), TWiki:Main.ArthurClemens (2006, 2007, 2008) |
+| License: | [[http://www.gnu.org/copyleft/gpl.html][GPL]] |
+| Dependencies: | %$DEPENDENCIES% |
+|  Plugin Version: | 24 Oct 2008 (V1.3)  |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+| 24 Oct 2008 - 1.3  | Arthur Clemens: Added sorting on =$fileTopic=. For performance, attachments are no longer sorted by default; you must explicitly pass the =$sort= parameter. Added param =file= to explicitly list attachments. Added special =extension= placeholder =NONE= to find attachments that do not have an extension. Major code refactoring. Created unit tests. Various small bug fixes. |
+| 17 Oct 2008 - 1.2.7  | Fixed bug with undefined =todate=. |
+| 20 Feb 2008 - v.1.2.1 - 1.2.3   | Arthur Clemens: Fixed error with format tokens on TWiki older than 4.2; by default sort files by name. |
+| 20 Feb 2008 - v.1.2   | Arthur Clemens: Added parameter =includefilepattern= and formatting parameter =$fileExtension=. When using parameter =sort= the files are now secondary sorted on filename. Added decoding of format tokens. |
+| 19 Feb 2008 - v.1.1.5   | Arthur Clemens: Fix display of header. |
+| 25 Jan 2008 - v.1.1.4   | Arthur Clemens: Removed redundant spacing when no header is defined. |
+| 04 Jan 2008 - v.1.1   | Arthur Clemens: Added filter parameters =user= and =excludeuser=; added format parameters =$fileTopic= and =$fileWeb=. |
+| 06 Dec 2007 - v.1.0   | Arthur Clemens: integrated sort options by TWiki:Main.RohanMoitra. Renamed !FileListPlugin to !AttachmentListPlugin; changed =FILELIST= (now deprecated) to =ATTACHMENTLIST=. |
+| 21 Nov 2007 - v.0.9.3 | Arthur Clemens: added rendering of images; added =$fileExtensions= and =limit=. |
+| 20 Nov 2007 - v.0.9.2 | Arthur Clemens: deprecated =filter= in favor of =extensions=; added more options. |
+| 18 Jun 2007 | TWiki:Main/AntonioTerceiro: added support for handling hidden attchments. |
+| 08 Apr 2007 - v.0.9 | TWiki:Main.OliverKrueger: added header, footer and alt params. |
+| 17 Dec 2006 - v.0.8 | TWiki:Main.ArthurClemens: reworked for TWiki 4.1 and optimized; activated =filter= parameter, added topic view permission check. |
+| 03 Mar 2006 - v.0.7 | TWiki:Main.SopanShewale: reworked for TWiki 4 |
+| 11 Apr 2005 - v.0.6 | TWiki:Main.VinodKulkarni: Initial version |
+| 21 Nov 2007 - v.0.9.3 | Arthur Clemens: added rendering of images; added =$fileExtensions= and =limit=. |
+| 20 Nov 2007 - v.0.9.2 | Arthur Clemens: deprecated =filter= in favor of =extensions=; added more options. |
+| 18 Jun 2007 | TWiki:Main/AntonioTerceiro: added support for handling hidden attchments. |
+| 08 Apr 2007 - v.0.9 | TWiki:Main.OliverKrueger: added header, footer and alt params. |
+| 17 Dec 2006 - v.0.8 | TWiki:Main.ArthurClemens: reworked for TWiki 4.1 and optimized; activated =filter= parameter, added topic view permission check. |
+| 03 Mar 2006 - v.0.7 | TWiki:Main.SopanShewale: reworked for TWiki 4 |
+| 11 Apr 2005 - v.0.6 | TWiki:Main.VinodKulkarni: Initial version |
+| Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+| Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+| Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
