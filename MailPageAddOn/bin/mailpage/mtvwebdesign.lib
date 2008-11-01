@@ -1,0 +1,564 @@
+#############################################################################
+# MTVWebdesign's  Library           Version 1.2
+# Copyright 1999 Maarten Veerman    webmaster@mtvwebdesign.hypermart.net
+# Created 02/21/99              Last Modified 4/4/99
+# Script Archive at:            http://mtvwebdesign.hypermart.net/scripts/
+#############################################################################
+# COPYRIGHT NOTICE
+# Copyright 1999 Maarten Veerman.  All Rights Reserved.
+#
+# MTVWebdesign's Library may be used (don't think you want to use it besides
+# the MTVWebdesign script though....:)) and modified free of charge by anyone so
+# long as this copyright notice and the comments above remain intact.  By
+# using this code you agree to indemnify Maarten Veerman from any
+# liability that might arise from it's use.
+#
+# Selling the code for this program without prior written consent is
+# expressly forbidden.  In other words, please ask first before you try and
+# make money off of my program.
+#
+# Obtain permission before redistributing this software over the Internet or
+# in any other medium.  In all cases copyright and header must remain intact.
+##########################################################
+$id = time * $$;
+$timenow = time;
+$time = time;
+##########################################################
+# This sub will place the inputs the script get from the filled out form
+# or the query string into an array called %FORM
+# It's taken from PerlBuilder 1.0
+##########################################################
+sub getinput {
+	(*fval) = @_ if @_ ;
+	local($how) = @_;
+	
+	local ($buf);
+	if ($ENV{'REQUEST_METHOD'} eq 'POST') {
+		read(STDIN,$buf,$ENV{'CONTENT_LENGTH'});
+	}
+	else {
+		$buf=$ENV{'QUERY_STRING'};
+	}
+	if ($buf eq "") {
+		return 0 ;
+	}
+	else {
+		@fval=split(/&/,$buf);
+		foreach $i (0 .. $#fval){
+			($name,$val)=split (/=/,$fval[$i],2);
+			$val=~tr/+/ /;
+			$val=~ s/%(..)/pack("c",hex($1))/ge;
+			$name=~tr/+/ /;
+			$name=~ s/%(..)/pack("c",hex($1))/ge;
+			
+			if (!defined($FORM{$name})) {
+				$FORM{$name}=$val;
+			}
+			else {
+				if ($how eq "\0") {
+					$FORM{$name} .= "\0$val";
+				}
+				else {
+					$FORM{$name} .= ",$val";
+				}
+			}
+			
+		}
+	}
+	
+	return 1;
+	
+}
+
+######################################################
+# Most of us are familier with the following sub. It's that sub which will
+# check the ENV_HTTPREFERER.
+# Found in a lot of scripts.
+######################################################
+sub check_url {
+	
+	# Localize the check_referer flag which determines if user is valid.
+	local($check_referer) = 0;
+	
+	# If a referring URL was specified, for each valid referer, make sure
+	# that a valid referring URL was passed to FormMail.
+	
+	if ($ENV{'HTTP_REFERER'}) {
+		foreach $referer (@referers) {
+			if ($ENV{'HTTP_REFERER'} =~ m|https?://([^/]*)$referer|i) {
+				$check_referer = 1;
+				last;
+			}
+		}
+	}
+	else {
+		$check_referer = 1;
+	}
+	
+	# If the HTTP_REFERER was invalid, send back an error.
+	if ($check_referer != 1) { &errors('bad_referer') }
+}
+
+
+sub pageheader {
+	local($pageheader) = @_;
+	
+	$token = '<!--TOKEN-->' unless $token;
+	
+	if ($usetoken eq '1') {
+		open(RESPONSE_FILE, "$tokenfile") || die "Cannot open $tokenfile";
+		@temptoken = <RESPONSE_FILE>;
+		close(RESPONSE_FILE);
+		foreach $line (@temptoken) {
+			$line =~ s/<\/body>//igs;
+			$line =~ s/<\/html>//igs;
+		}
+	}
+	
+	else {
+		print qq~
+		<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+		
+		<html>
+		<head>
+		<title>$pageheader</title>
+		<style type="text/css">
+		<!--
+		body { font-family : Arial,Helvetica; }
+		-->
+		</style>
+		</head>
+		~;
+		&body_attributes;
+		
+		@temptoken = "$token";
+	}
+	
+}
+
+sub body_attributes {
+	print "<body";
+	$FORM{'bgcolor'} = $bgcolor unless $FORM{'bgcolor'};
+	print " bgcolor=\"$FORM{'bgcolor'}\"" unless !$FORM{'bgcolor'};
+	
+	$FORM{'background'} = $background unless $FORM{'background'};
+	print " background=\"$FORM{'background'}\"" unless !$FORM{'background'};
+	
+	$FORM{'link_color'} = $link_color unless $FORM{'link_color'};
+	print " link=\"$FORM{'link_color'}\"" unless !$FORM{'link_color'};
+	
+	$FORM{'vlink_color'} = $vlink_color unless $FORM{'vlink_color'};
+	print " vlink=\"$FORM{'vlink_color'}\"" unless !$FORM{'vlink_color'};
+	
+	$FORM{'alink_color'} = $alink_color unless $FORM{'alink_color'};
+	print " alink=\"$FORM{'alink_color'}\"" unless !$FORM{'alink_color'};
+	
+	$FORM{'text_color'} = $text_color unless $FORM{'text_color'};
+	print " text=\"$FORM{'text_color'}\"" unless !$FORM{'text_color'};
+	print ">\n";
+}
+
+sub powered_by {
+	local($powered_by) = @_;
+	
+	print "<hr noshade>\n";
+	print "<P ALIGN=RIGHT>\n";
+	if ($servicename) {
+		print "<A HREF=\"$servicelocation\">\n<FONT SIZE=\"-4\" COLOR=\"#800000\">\nPowered by $servicename\n</FONT></A>\n";
+	}
+	print "\n<BR>\n";
+	print "<A HREF=\"http://mtvwebdesign.hypermart.net/scripts/\">\n<FONT SIZE=\"-4\" COLOR=\"#800000\">\nScript by MTVWebdesign\n</FONT></A>\n";
+	print "\n<BR>\n";
+	print "<a href=\"$script_location?action=logout&$id\" target=\"_top\"><FONT SIZE=\"-4\" COLOR=\"#800000\">Logout</FONT></a><br>\n" unless $powered_by eq 'nologout';
+	
+	if ($help_script) {
+		print "<a href=\"$help_script?main_page\" target=\"_top\"><FONT SIZE=\"-4\" COLOR=\"#800000\">Help!</FONT></a><br>\n";
+	}
+	
+	if ($powered_by ne 'nobanner') {
+		#Uncomment the following lines if you are a Hypermart Member.
+		
+		print qq~
+		<center><!--#echo banner=""--></center>
+		~;
+	}
+	
+	print qq~
+	</body>
+	</html>
+	~;
+	
+}
+
+#############################################################
+# The follow sub will print a date and expires line to make sure the
+# browser won't cache the page.
+# Works with Netscape. Don't know about MSIE.
+##############################################################
+sub expires_header {
+	local($expires_header) = @_;
+	print "Expires: " . &expires($expires_header,'http') . "\n";
+	print "Date: " . &expires(0, 'http') . "\n";
+}
+
+sub check_email {
+	local($check_email) = @_;
+	
+	if ( $check_email !~ /[\w-]+\@[\w-\.]+\.[\w-]+/ || $check_email =~ /\||\<|\>|\?|\(|\)|\*|\&|\^|\%|\$|\#|\!|\~|\`|\"|\'|\;|\:|\,|\/|\\/) {
+		$invalidmail = $check_email;
+		&errors ('with the email address you gave');
+	}
+	
+}
+############# Cookies!!!! #################
+# Taken from Matt's Cookielib.
+########################################
+
+@Cookie_Encode_Chars = ('\%', '\+', '\;', '\,', '\=', '\&', '\:\:', '\s');
+
+%Cookie_Encode_Chars = ('\%',   '%25',
+	'\+',   '%2B',
+	'\;',   '%3B',
+	'\,',   '%2C',
+	'\=',   '%3D',
+	'\&',   '%26',
+	'\:\:', '%3A%3A',
+'\s',   '+');
+
+@Cookie_Decode_Chars = ('\+', '\%3A\%3A', '\%26', '\%3D', '\%2C', '\%3B', '\%2B', '\%25');
+
+%Cookie_Decode_Chars = ('\+',       ' ',
+	'\%3A\%3A', '::',
+	'\%26',     '&',
+	'\%3D',     '=',
+	'\%2C',     ',',
+	'\%3B',     ';',
+	'\%2B',     '+',
+'\%25',     '%');
+
+##############################################################################
+
+
+# The routines SetCookies and GetCookies are based on Matt's Cookie Library
+# We are very thankfull to Matt.
+# But we didn't like the way the $Cookie_Exp_Date was set. So we copied a piece of code
+# from the CGI.pm file which comes with all Perl packages.
+# This will calculate the new Date. This means you can set you
+# $Cookie_Exp_Date to "+2m" which will mean your cookie will expire in 2 minutes.
+##############################################################################
+
+sub SetCookies {
+	
+	# Localize variables and read in cookies to be set.
+	
+	local(@cookies) = @_;
+	local($cookie,$value,$char);
+	
+	# While there is a cookie and a value to be set in @cookies, that hasn't
+	# yet been set, proceed with the loop.
+	
+	while( ($cookie,$value) = @cookies ) {
+		
+		# We must translate characters which are not allowed in cookies.
+		
+		foreach $char (@Cookie_Encode_Chars) {
+			$cookie =~ s/$char/$Cookie_Encode_Chars{$char}/g;
+			$value =~ s/$char/$Cookie_Encode_Chars{$char}/g;
+		}
+		
+		# Begin the printing of the Set-Cookie header with the cookie name
+		# and value, followed by semi-colon.
+		
+		print 'Set-Cookie: ' . $cookie . '=' . $value . ';';
+		
+		# If there is an Expiration Date set, add it to the header.
+		
+		if ($Cookie_Exp_Date) {
+			$time = $Cookie_Exp_Date;
+			$time = &expires($time,'cookie');
+			print ' expires=' . $time . ';';
+		}
+		
+		# If there is a path set, add it to the header.
+		
+		if ($Cookie_Path) {
+			print ' path=' . $Cookie_Path . ';';
+		}
+		
+		# If a domain has been set, add it to the header.
+		
+		if ($Cookie_Domain) {
+			print ' domain=' . $Cookie_Domain . ';';
+		}
+		
+		# If this cookie should be sent only over secure channels, add that
+		# to the header.
+		
+		if ($Secure_Cookie) {
+			print ' secure';
+		}
+		
+		# End this line of the header, setting the cookie.
+		
+		print "\n";
+		
+		# Remove the first two values of the @cookies array since we just
+		# used them.
+		
+		shift(@cookies); shift(@cookies);
+	}
+}
+
+sub expires {
+	my($time,$format) = @_;
+	$format ||= 'http';
+	
+	my(@MON)=qw/Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec/;
+	my(@WDAY) = qw/Sun Mon Tue Wed Thu Fri Sat/;
+	
+	# pass through preformatted dates for the sake of expire_calc()
+	$time = expire_calc($time);
+	return $time unless $time =~ /^\d+$/;
+	
+	# make HTTP/cookie date string from GMT'ed time
+	# (cookies use '-' as date separator, HTTP uses ' ')
+	my($sc) = ' ';
+	$sc = '-' if $format eq "cookie";
+	my($sec,$min,$hour,$mday,$mon,$year,$wday) = gmtime($time);
+	$year += 1900;
+	return sprintf("%s, %02d$sc%s$sc%04d %02d:%02d:%02d GMT",
+	$WDAY[$wday],$mday,$MON[$mon],$year,$hour,$min,$sec);
+}
+
+sub expire_calc {
+	my($time) = @_;
+	my(%mult) = ('s'=>1,
+		'm'=>60,
+		'h'=>60*60,
+		'd'=>60*60*24,
+		'M'=>60*60*24*30,
+	'y'=>60*60*24*365);
+	# format for time can be in any of the forms...
+	# "now" -- expire immediately
+	# "+180s" -- in 180 seconds
+	# "+2m" -- in 2 minutes
+	# "+12h" -- in 12 hours
+	# "+1d"  -- in 1 day
+	# "+3M"  -- in 3 months
+	# "+2y"  -- in 2 years
+	# "-3m"  -- 3 minutes ago(!)
+	# If you don't supply one of these forms, we assume you are
+	# specifying the date yourself
+	my($offset);
+	if (!$time || (lc($time) eq 'now')) {
+		$offset = 0;
+		} elsif ($time=~/^([+-]?(?:\d+|\d*\.\d*))([mhdMy]?)/) {
+		$offset = ($mult{$2} || 1)*$1;
+		} else {
+		return $time;
+	}
+	return (time+$offset);
+}
+
+sub GetCookies {
+	
+	# Localize the variables and read in the cookies they wish to have
+	# returned.
+	
+	local(@ReturnCookies) = @_;
+	local($cookie_flag) = 0;
+	local($cookie,$value);
+	
+	# If the HTTP_COOKIE environment variable has been set by the call to
+	# this script, meaning the browser sent some cookies to us, continue.
+	
+	if ($ENV{'HTTP_COOKIE'}) {
+		
+		# If specific cookies have have been requested, meaning the
+		# @ReturnCookies array is not empty, proceed.
+		
+		if ($ReturnCookies[0] ne '') {
+			
+			# For each cookie sent to us:
+			
+			foreach (split(/; /,$ENV{'HTTP_COOKIE'})) {
+				
+				# Split the cookie name and value pairs, separated by '='.
+				
+				($cookie,$value) = split(/=/);
+				
+				# Decode any URL encoding which was done when the compressed
+				# cookie was set.
+				
+				foreach $char (@Cookie_Decode_Chars) {
+					$cookie =~ s/$char/$Cookie_Decode_Chars{$char}/g;
+					$value =~ s/$char/$Cookie_Decode_Chars{$char}/g;
+				}
+				
+				# For each cookie to be returned in the @ReturnCookies array:
+				
+				foreach $ReturnCookie (@ReturnCookies) {
+					
+					# If the $ReturnCookie is equal to the current cookie we
+					# are analyzing, set the cookie name in the %Cookies
+					# associative array equal to the cookie value and set
+					# the cookie flag to a true value.
+					
+					if ($ReturnCookie eq $cookie) {
+						$Cookies{$cookie} = $value;
+						$cookie_flag = "1";
+					}
+				}
+			}
+			
+		}
+		
+		# Otherwise, if no specific cookies have been requested, obtain all
+		# cookied and place them in the %Cookies associative array.
+		
+		else {
+			
+			# For each cookie that was sent to us by the browser, split the
+			# cookie name and value pairs and set the cookie name key in the
+			# associative array %Cookies equal to the value of that cookie.
+			# Also set the coxokie flag to 1, since we set some cookies.
+			
+			foreach (split(/; /,$ENV{'HTTP_COOKIE'})) {
+				($cookie,$value) = split(/=/);
+				
+				# Decode any URL encoding which was done when the compressed
+				# cookie was set.
+				
+				foreach $char (@Cookie_Decode_Chars) {
+					$cookie =~ s/$char/$Cookie_Decode_Chars{$char}/g;
+					$value =~ s/$char/$Cookie_Decode_Chars{$char}/g;
+				}
+				
+				$Cookies{$cookie} = $value;
+			}
+			$cookie_flag = 1;
+		}
+	}
+	
+	# Return the value of the $cookie_flag, true or false, to indicate
+	# whether we succeded in reading in a cookie value or not.
+	
+	return $cookie_flag;
+}
+
+###############################################
+# This is a really neat subroutine which I wrote myself.
+# We all use cookies sometimes and we want people to
+# have a logout option. That is where this sub comes in.
+# Just use the following line:
+# &login('name,email');
+# &login will call this sub, and with
+# 'name,email' you specify the cookies you want to keep!
+# $Cookies{'name'} and $Cookies{'email'} will not be set to 0!
+#################################################
+sub logout {
+	
+	local(@logedout1) = @_;
+	@logedout = split(/,/,$logedout1[0]);
+	
+	&GetCookies;
+	print "Content-type: text/html\n";
+	&expires_header("now");
+	foreach $cookme (sort %Cookies) {
+		$cookiematch = 'none';
+		for($N=0;$logedout[$N] ne '';$N++) {
+			if ($cookme eq "$logedout[$N]" && $Cookies{$cookme} ne '') {
+				$cookiematch = 'true';
+			}
+		}
+		if ($cookiematch ne 'true' && $Cookies{$cookme} ne '') {
+			$Cookies_Exp_Date = "now";
+			&SetCookies($cookme,'');
+		}
+	}
+	print "\n";
+	
+	&pageheader('Logged out');
+	foreach $line (@temptoken) {
+		if ($line =~ m/$token/i) {
+			print qq~
+			<h2>You are logged out.</h2>
+			This means: Your cookie, containing your information, is set to &quot;0&quot;. Closing your browser sometimes has the same effect.
+			<p>
+			Thank you for using $servicename!<p>
+			~;
+		}
+		print "$line";
+	}
+	&powered_by;
+	exit;
+}
+
+# LOCKING DATABASES:
+# This is taken from the Perl documentation but I just made it into a subroutine.
+# How to use it:
+# use DB_File;
+# use Fcntl qw(:DEFAULT :flock) ;
+# $db = tie(%data, "DB_File", "$file_to_open", O_RDWR|O_CREAT, 0666);
+# &writelock; # since you want to write to it (O_RDWR);
+# #Do your thing here.....
+# &unlock;
+# untie %data;
+# Works only with DB_File.
+
+$use_dbflock = int $use_dbflock;
+
+sub readlock {
+	return;
+	# Unfortunately this readlock doesn't work
+	$fd = $db->fd;
+	open(DB_FH, "+<&=$fd") || die "dup $!";
+	unless (flock (DB_FH, LOCK_SH | LOCK_NB)) {
+		unless (flock (DB_FH, LOCK_SH)) { die "flock: $!" }
+	}
+}
+
+sub writelock {
+	return unless $use_dbflock;
+	
+	$fd = $db->fd;
+	open(DB_FH, "+<&=$fd") || die "dup $!";
+	unless (flock (DB_FH, LOCK_EX | LOCK_NB)) {
+		unless (flock (DB_FH, LOCK_EX)) { die "flock: $!" }
+	}
+	
+}
+
+sub unlock {
+	return unless $use_dbflock;
+	
+	$db->sync;  # to flush
+	if ($use_flock eq "1") {flock(DB_FH, LOCK_UN);}
+	undef $db;
+	close(DB_FH);
+}
+
+# Lock up the script:
+sub lockscript {
+	return unless $use_flock;
+	
+	local(@mtvfile) = @_;
+	
+	$mtvlockfile = $mtvfile[0] || $lockfile || "mtvlockfile.lock";
+	open(MTVLOCK, ">$mtvlockfile")       or die "Can't create lockfile to lock script: $!";
+	flock(MTVLOCK, 2)                                 or die "Can't lock script: $!";
+	print MTVLOCK "This file is used by $ENV{'SCRIPT_NAME'} to lock itself and insure better protection of your databases. It's safe to delete this file, since it'll be created automatically next time you run the script.";
+	
+}
+
+sub unlockscript {
+	return unless $use_flock;
+	close(MTVLOCK) or die "Can't close file: $!"; # Lock is released.
+	
+}
+
+# This statement must be left in so that when perl requires this script as a
+# library it will do so without errors.  This tells perl it has successfully
+# required the library.
+
+1;

@@ -1,0 +1,98 @@
+%TMPL:INCLUDE{"oops"}%
+
+
+
+%TMPL:DEF{"windowtitle"}%<title><nop>%TOPIC%: Send this topic as e-mail</title>%TMPL:END% 
+
+
+
+%TMPL:DEF{"heading"}%Send this topic as e-mail (<nop>%TOPIC%)%TMPL:END%
+
+
+
+%TMPL:DEF{"message"}%
+<form action="%SCRIPTURL{"mailpage"}%/mailpage.cgi" method="post">
+<div class="twikiFormSteps">
+<div class="twikiFormStep twikiLast">
+<input type="hidden" name="action" value="send" />
+<input type="hidden" name="url" value="%SCRIPTURL{"view"}%/%WEB%/%TOPIC%" />
+<p />
+<table width="550" align="center">
+ <tr>
+ <td>
+  <b>
+  <p align="center">
+  [[%WEB%/%TOPIC%]]
+  </b>
+  <blockquote>
+
+  If you have someone that you would like to recommend this page to,
+  or if you just want to send yourself a reminder, here is the easy
+  way to do it!
+  <br />
+  <br />
+  Simply fill in the e-mail address of the person(s) you wish to send a copy of
+  this page, plus your name and e-mail address (so they do
+  not think it is spam or reply to us with gracious thanks),
+  and click the <b>SEND</b> button.
+  If you want to, you can also enter a message that will be included
+  in the e-mail.
+  <br />
+  <br />
+  After sending the e-mail, you will be transported back to the
+  page you recommended!
+  <br /><font size="1"><a href="%SCRIPTURL{"mailpage"}%/mailpage.cgi?action=privacy" target="_new">Click here</a> to read our privacy policy</font>
+
+   <table border=0 cellpadding=1 cellspacing=0 >
+    <tr>
+    <td>&nbsp;</td>
+    <td align=left><b>Name</b></td>
+    <td align=left><b>E-Mail Address</b><td>
+    </tr>
+    <tr>
+    <td><b>You</b></td>
+    <td><input type="text" name="sendername" value="" /></td>
+    <td><input type="text" name="senderemail" value="" /></td>
+    </tr>
+    <tr>
+    <td><b>Friend </b></td>
+    <td><input type="text" name="recipient" /></td>
+    <td><input type="text" name="recipientemail" /></td>
+    </tr>
+   <tr>
+   <td colspan="3">&nbsp;<br /></td>
+   </tr>
+   <tr>
+   <td colspan="3"><b>Your Message</b><br />
+ <textarea name="message" wrap=virtual rows=5 cols=59>Hi,</textarea>
+   </td>
+   </tr>
+   <tr>
+   <td colspan="3">&nbsp;<br /></td>
+   </tr>
+   <tr>
+   <td colspan="3">
+   How would you like to send this page?
+    <br />
+    <select name="how"><option value="body">In the body of the email<option value="attachment">As attachment<option value="url">As an URL</select>
+   </td>
+   </tr>
+   <tr>
+   <td colspan="3">&nbsp;<br /></td>
+   </tr>
+   <tr>
+   <td colspan="3">
+   <input class="twikiSubmit" value="SEND" type="submit" />
+   </td>
+    </tr>
+  </table>
+  </blockquote>
+  </td>
+  </tr>
+  </table>
+</div><!-- /twikiFormStep-->
+</div><!-- /twikiFormSteps-->
+</form>
+%TMPL:END%
+
+%TMPL:DEF{"topicactionbuttons"}%<a href="%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%">%MAKETEXT{"Cancel"}%</a> %TMPL:END%

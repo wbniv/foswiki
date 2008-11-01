@@ -1,0 +1,67 @@
+%META:TOPICINFO{author="TWikiContributor" date="1144510970" format="1.1" version="1.1"}%
+---+ Mail Page Add-On
+<!--
+   * Set SHORTDESCRIPTION = Mail TWiki pages with various formatting options
+-->
+MailPageAddOn provides users several options for emailing %WIKITOOLNAME% topics to a friend including:
+
+   * Including the actual html topic text in the body of the email. (Actually sends the "print" view of the page.)
+   * Including the html topic as an attachment.
+   * Simply sending a link to the page.
+
+This feature request was discussed in TWiki:Codev.EmailThisPageLink. The add on is based on a OS, free script called Mailpage. This is the best script of it's kind that I've found because it offers the option to send page in body of email (in html), as attachment, or simply a link.
+
+Oddly enough, the home page for the script (http://mtvwebdesign.hypermart.net/) has been defunct for some time. However, the original script package can be downloaded from  http://www.evidence.info/general/mailpage.html.
+
+---++ Usage
+
+   * After installing the %TOPIC% as described below, the following link will invoke the Mail page dialog: ==<nop>%SCRIPTURL{"oops"}%/%BASEWEB%/%BASETOPIC%?template=mailpage== . 
+   * When a users clicks on the [[%SCRIPTURL{"oops"}%/%BASEWEB%/%BASETOPIC%?template=mailpage][Email this Page!]], they get a form that allows them to enter the name and email address of the receipient and sender, along with a note.
+   * If you want this feature available to all topics, you can add it to the "view" template of your favorite skin.
+
+---++ Add-On Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this add-on. The following instructions are for the administrator who installs the add-on on the server where TWiki is running. 
+
+   * Download the ZIP file from the Add-on Home (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Add-on topic |
+     | ==bin/mailpage/mailpage.cgi== | Add-on script (Modified - [[#ScriptModification][see note]]) |
+     | ==bin/mailpage/mailpage.conf== | Add-on script |
+     | ==bin/mailpage/mtvwebdesign.lib== | Script library |
+     | ==bin/mailpage/privacy.txt== | Privacy statement |
+     | ==bin/mailpage/readme.html== | Mailpage readme file |
+     | ==bin/mailpage/tokenfile.html== | Custom template for mailpage (unused) |
+     | ==templates/mailpage.pattern.tmpl== | %WIKITOOLNAME% mailpage template for <nop>PatternSkin (default) |
+     | ==templates/mailpage.tmpl== | %WIKITOOLNAME% mailpage fallback template for other skins |
+   * Edit the mailpage.conf file to match your site, as described in [[%SCRIPTURL%/mailpage/readme.html#gettingstarted][the readme file]].
+   * Test if the installation was successful:
+      * Click on [[%SCRIPTURL{"oops"}%/%BASEWEB%/%BASETOPIC%?template=mailpage][Email this Page!]] and you will be presented with a mailpage form. Fill in the form and click the "Send" button - and then check if the email was sent and were properly formatted. 
+
+---++ Add-On Info
+#ScriptModification
+%X% Note: This distribution includes a slightly modified version of the Mailpage.cgi script so that when you send the topic in the body of the email message, the "print" view of the topic is sent. Line 206 or mailpage.cgi has been edited to read as follows: <br>
+
+   * ==$req = new HTTP::Request 'GET' => $FORM{'url'}."?template=viewprint";== (Shipped default, TWiki:Codev.TWikiRelease04x00x02 and later)
+   * ==$req = new HTTP::Request 'GET' => $FORM{'url'}."?skin=print.pattern";== (Manually change the line into this for earlier releases)
+
+|  Add-on Author: | TWiki:Main/LynnwoodBrown |
+|  Add-on Version: | 21 May 2007 (v1.11) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  21 May 2007 | Bugs:Item3969 - 8bit email fix (TWiki:Main.WillNorris) |
+|   2 Aug 2006 | (v1.10): Templates never added to distribution archive correctly (TWiki:Main.SteffenPoulsen) |
+|   8 Apr 2006 | Minor update for TWiki:Codev.TWikiRelease04x00x02, TWiki oops templates added (TWiki:Main.SteffenPoulsen) |
+|  18 Jan 2005 | Initial version |
+|  CPAN Dependencies: | CPAN:LWP::UserAgent |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  License: | GPL |
+|  Add-on Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- TWiki:Main/LynnwoodBrown - 18 Jan 2005
+
