@@ -1,0 +1,185 @@
+%META:TOPICINFO{author="micha" date="1209401597" format="1.1" reprev="1.2" version="1.2"}%
+<!--
+
+   PLEASE DO NOT EDIT THIS TOPIC
+
+   It is automatically generated from the subversion repository, and any changes
+   you make will simply be overwritten the next time a release is generated.
+
+   Instead, you could check your fix in, raise a bug in the Bugs web, or mail the author.
+-->
+---+!! <nop>%TOPIC%
+%TOC%
+---++ Description
+This plugin helps you to locate where you are, and shows you how
+you can escape from there using breadcrumbs navigation.
+
+Two types of breadcrumb are supported; "location" breadcrumbs, which show you
+where you are in the site hierarchy, taking into account topic parent relationships, and "path" breadcrumbs, that simply show you where you have been, but without going in circles.
+
+In a way, location breadcrumbs have always been supported by TWiki using the
+=META{"parent"}= variable to display the list of parent topics. Since version
+4.x  TWiki also supports hierarchical subwebs, but the breadcrumbs support of
+TWiki does not allow the display of parent webs as part of of the location
+breadcrumbs.
+
+Path breadcrumbs show you which topics you visited to reach the current topic. If you revisit a topic you visited earlier, the path is trimmed back to that topic, so it gives you a sort of visual history of where you have been on the site. Path breadcrumbs require that you have session support enabled.
+
+The plugin also gives a great deal of flexibility in deciding which
+parts of the breadcrumbs should be rendered, and how each
+individual breadcrumb is displayed.
+
+---++ Configuration
+While most settings are given as part of the =BREADCRUMBS= tag, there are a few settings
+to improve rendering breadcrumbs.
+
+---+++ Enabling Path breadcrumbs
+To switch on recording the path breadcrumbs, set the =BREADCRUMBSPLUGIN_RECORDTRAIL= to =on=.
+Otherwise the click path of the user won't be recorded and the =type= setting to the
+BREADCRUMBS will result in an undefined behaviour.
+
+---+++ Displaying !TopicTitles
+!TopicTitles are a concept introduced by the TWiki:Plugins/DBCachePlugin. These are stored
+in a topic in the =TOPICTITLE= preference variable or in a formfield 'TopicTitle ' of a !TWikiForm attached to the topic. If a !TopicTitle is defined for a topicm, it will be displayed in the breadcrumbs instead of the normal !WikiWord topic name. For efficiency it is recommended to install the TWiki:Plugins/DBCachePlugin to determine the !TopicTitle.
+
+---++ Syntax
+=%<nop>BREADCRUMBS%, %<nop>BREADCRUMBS{"&lt;web>.&lt;topic>" ...}%=
+
+*Parameters*:
+   * =&lt;web>.&lt;topic>=: the location to which breadcrumbs should be generated (type="location" only, ignored if type="path")
+     defaults to the current topic
+   * =type=: "location" (the default) or "path"
+   * =header=: format string prepended to the output result
+   * =format=: format string to render one item on the breadcrumbs path
+     (defaults to '[<nop>[$webtopic][$name]]')
+   * =topicformat=: format string for any _topic_ items on the path; for example, parent topics. Defaults to the same as =format=.
+   * =footer=: format string appended to the output result
+   * =separator=: format string to be put between items
+     (defaults to one space char)
+   * =include=: regular expression that items must match to be part of the path
+   * =exclude=: regular expression that items must _not_ match to be part of the path
+   * =recurse=:  (type="location" only)can be one or more of the following values (comma separated) to
+     decide which parts of the breadcrumbs path should be included (defaults to 'on'):
+      * =on=: include all parent webs and all parent topics
+      * =off=: include only the current web and the current topic
+      * =weboff=: don't recurse on webs, include only the current web
+      * =topicoff=: don't recurse on topics, include only the current topic
+      * =webonce=: include the next parent web but not the parent web's parent web
+      * =topiconce=: include the next parent topic but not the parent topic's parent topic
+      * =once=: short formf of =webonce, topiconce=
+   * =spaceout=: space out !WikiWords inserting a separator (defaults to 'off')
+   * =spaceoutsep=: separator to be used when spacing out !WikiWords
+   * =maxlength=: maximum length of a breadcrumbs before inserting an ellipsis in the middle,
+     0 meaning disable this feature (defaults to 0)
+   * =ellipsis=: character sequence to be inserted when reducing the maxlength of the breadcrumbs
+     (defaults to ' ... ')
+
+*Pseudo-variables*: %BR%
+Each of the above format strings (format, header, footer,
+separator) may contain special variables:
+   * =$name=: the name of the breadcrumb, this is the topic name or the web name having its
+     parent web part being stripped off (that is =Bar= instead of =Sandbox/Foo/Bar=)
+   * =$webtopic=: the full =web.topic= of the breadcrumb (twiki syntax)
+   * =$target=: the full =web/topic= of the breadcrumb (url syntax)
+   * =$name=: name of the breadcrumbs item this is the !TopicTitle, spaced out or normal topic name
+     topic
+   * =$n=: replaced with a newline char (\n)
+   * =$percnt=: replaced with a percent char (%)
+   * =$dollar=: replaced with a dollar char ($)
+   * =$nop=: removed from the format string before expanding common TWiki variables
+
+---++ Examples
+---+++ default
+<verbatim>
+%BREADCRUMBS%
+</verbatim>
+%BREADCRUMBS%
+
+---+++ path
+<verbatim>
+%BREADCRUMBS{type="path"}%
+</verbatim>
+%BREADCRUMBS{type="path"}%
+
+---+++ breadcrumbs to a non-existent location
+<verbatim>
+%BREADCRUMBS{
+  "Web1/Web2/Web3.Topic"
+  format="$name"
+  separator=" &#187; "}%
+</verbatim>
+%BREADCRUMBS{"Web1/Web2/Web3.Topic" format="$name" separator=" &#187; "}%
+
+----+++ recurse="off"
+<verbatim>
+%BREADCRUMBS{
+  "Web1/Web2/Web3.Topic"
+  format="$name"
+  separator=" &#187; "
+  recurse="off"}%
+</verbatim>
+%BREADCRUMBS{"Web1/Web2/Web3.Topic" format="$name" separator=" &#187; " recurse="off"}%
+
+----+++ recurse="once"
+<verbatim>
+%BREADCRUMBS{"Web1/Web2/Web3.Topic"
+  format="$name"
+  separator=" &#187; "
+  recurse="once"}%
+</verbatim>
+%BREADCRUMBS{"Web1/Web2/Web3.Topic" format="$name" separator=" &#187; " recurse="once"}%
+
+---+++ include
+<verbatim>
+%BREADCRUMBS{"Web1/Web2/Web3.Topic"
+  format="$name"
+  separator=" &#187; "
+  include="Web(1|3).*"}%
+</verbatim>
+%BREADCRUMBS{"Web1/Web2/Web3.Topic" format="$name" separator=" &#187; " include=".*(1|3).*"}%
+
+---+++ exclude
+<verbatim>
+%BREADCRUMBS{"Web1/Web2/Web3.Topic"
+  format="$name"
+  separator=" &#187; "
+  exclude="Web2"}%
+</verbatim>
+%BREADCRUMBS{"Web1/Web2/Web3.Topic" format="$name" separator=" &#187; " exclude="Web2"}%
+
+
+---++ Plugin Installation Instructions
+%$INSTALL_INSTRUCTIONS%
+
+---++ Plugin Info
+<!-- provided for compatibility only
+   * Set SHORTDESCRIPTION = A flexible way to display breadcrumbs navigation
+   * Set TOPICTITLE = BreadCrumbsPlugin
+-->
+
+|  Plugin Author: | TWiki:Main.MichaelDaum |
+|  Copyright &copy;: | 2006-2008, Michael Daum http://michaeldaumconsulting.com |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | v2.01 (%$VERSION%) |
+|  Change History: | &nbsp; |
+|  01 Sep 2008: | TWiki:Main.OliverKrueger Bugs:Item5972 fixed: minor cosmetics |
+|  28 Apr 2008: | many new features for 2.0: topic titles, ellipsis, ... |
+|  08 May 2007: | respect HOMETOPIC setting, don't hardcoded '<nop>WebHome' |
+|  19 Apr 2007: | TWiki:Main.CrawfordCurrie added =topicformat= |
+|  20 Feb 2007: | TWiki:Main.CrawfordCurrie added path breadcrumbs |
+|  18 Dec 2006: | added $webtopic pseudo-parameter |
+|  31 Aug 2006: | added NO_PREFS_IN_TOPIC;\
+                  removed commonTagsHandler thus dropping cairo support |
+|  08 Aug 2006: | fixed topic parents not showing up; don't show non-existing topics |
+|  29 Jul 2006: | fixed infinit loop when a topic is its own parent topic |
+|  28 Jul 2006: | initial version; \
+                  don't add the topic parent '<nop>WebHome' to the path |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.8 |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | TWiki:Plugins/%TOPIC% |
+|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
+|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+
+-- TWiki:Main/MichaelDaum - 28 Apr 2008
