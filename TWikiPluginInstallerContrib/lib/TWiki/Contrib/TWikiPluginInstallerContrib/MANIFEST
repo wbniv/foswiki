@@ -1,0 +1,4 @@
+data/TWiki/TWikiPluginInstallerContrib.txt  Plugin doc page
+lib/TWiki/Contrib/TWikiPluginInstallerContrib.pm  Plugin Perl module 
+bin/install
+lib/TWiki/UI/Install.pm

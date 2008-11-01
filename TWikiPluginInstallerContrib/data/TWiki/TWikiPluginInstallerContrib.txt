@@ -1,0 +1,123 @@
+---+!! <nop>TWikiPluginInstallerContrib Contrib Package
+
+<table>
+<tr><td>
+Administrators can enable and disable plugins using [[%SCRIPTURLPATH{"configure"}%][%ICON{"wrench"}% configure]].
+</td>
+<td rowspan="3" valign="top">
+---++ Enabled Plugins
+%ACTIVATEDPLUGINS%
+
+---++ Contrib Modules
+%SEARCH{ ".+(Contrib|AddOn)$" type="regex" scope="topic" nonoise="on" format="[[$topic]]" separator=", " }%
+</td>
+</tr>
+<tr><td>
+<form action="%SCRIPTURL{install}%">
+%ICON{"gear"}% <input type="text" name="url" size="60" value="%URLPARAM{url}%" />
+  <input class="twikiSubmit" type="submit" value="Install" /><br />
+<small>Extension URL</small><br />
+</form>
+
+<form>
+<input type="hidden" name="url" value="%URLPARAM{url}%" />
+%ICON{"building"}% <input type="text" name="repository" size="60" value='%URLPARAM{ "repository" }%' />
+  <input class="twikiSubmit" type="submit" value="Change Repository" /><br />
+<small>Repository Listing</small><br />
+<span id="no_1show" class="twistyMakeVisible">
+	<a href="#" class="twistyTrigger">%ICON{toggleclose-small}%%ICON{building}% More repositories...</a>
+<div></div>
+</span>
+<span id="no_1hide" class="twistyHidden">
+	<a href="#" class="twistyTrigger">%ICON{toggleopen-small}% Hide repositories...</a>
+</span>
+<div id="no_1toggle" class="twistyMakeHidden">
+<!--
+   * Set REPOSITORIES = http://localhost/~twikibuilder/twiki/components/extension/, http://localhost/~twikibuilder/twiki/components/kernel/, http://TWikiFor.twiki.org/components/
+-->
+<style>
+#repositories li { list-style-image:url(%ICONURLPATH{"building"}%); }
+</style>
+<div id="repositories">
+   * %CALC{"$LISTJOIN($n   * ,$LISTMAP([[%SCRIPTURL{"view"}%/%WEB%/%TOPIC%?repository=$item][$item]],%REPOSITORIES%))"}%
+<div>
+</div>
+
+----
+</td>
+</tr>
+<tr>
+<td>
+<div id=directoryListing>
+%INCLUDE{ %URLPARAM{ "repository" default="http://localhost/~twikibuilder/twiki/components/extension/" }% }%
+</form>
+</div>
+</td>
+</tr>
+</table>
+
+
+----
+----
+----
+
+Add short description here of your TWikiPluginInstallerContrib contrib.
+
+%TOC%
+
+---++ Summary of Contents
+	* 
+	* 
+
+---++ Detailed Documentation
+<!-- use  when using with Build module to automatically extract documentation -->
+Repositories directory layout:
+   * twiki/
+      * twiki.org.zip
+      * components/
+         * extension/
+         * kernel/
+      * wikis/
+         * webName.wiki.tar
+
+---++ Settings
+
+Settings are stored as preferences variables. To reference a setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, e.g. ==%<nop>TWIKIPLUGININSTALLERCONTRIB_STUB%==
+
+	* One line description:
+		* Set SHORTDESCRIPTION = Install TWiki:Codev.TWikiExtensions into a running TWiki system from the web browser.
+
+	* Name of the perl package
+		* Set STUB = TWiki::Contrib::TWikiPluginInstallerContrib
+
+---++ Installation Instructions
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	| *File:* | *Description:* |
+	| ==data/TWiki/TWikiPluginInstallerContrib.txt== | Plugin doc page |
+	| ==lib/TWiki/Contrib/TWikiPluginInstallerContrib.pm== | Plugin Perl module  |
+	| ==TWikiPluginInstallerContrib_installer.pl== | Install script |
+
+	* Run ==%TOPIC%_installer== to automatically check and install other modules that this module depends on. You can also do this step manually. Dependencies:
+	None
+
+	* Test if the installation was successful:
+		* __enter sample here__
+		* see also [[Sandbox.PluginTest%TOPIC%]]
+
+---++ Contrib Info
+
+|  Author: | TWiki:Main/WillNorris |
+|  Copyright &copy;: | <!-- e.g. "2004, SlobSoft Gmbh, All Rights Reserved" --> |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Version: | %$VERSION% |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  %DATE%: | Initial version |
+|  Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences
+
+-- TWiki:Main/WillNorris - %DATE%
