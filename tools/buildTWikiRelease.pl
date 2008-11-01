@@ -69,7 +69,7 @@ unless ($errorcode == 0) {
     
     chdir($twikihome);
     if ($SvensAutomatedBuilds) {
-    	`scp TWiki* fosiki\@fosiki.com:/home/fosiki/www/TWikiBuilds`;
+    	`scp TWiki* fosiki\@fosiki.com:/home/distributedinformation/www/TWikiBuilds`;
     	sendEmail('nextwiki-svn@lists.sourceforge.net', "Subject: NextWiki $twikiBranch branch has Unit test FAILURES\n\n see http://fosiki.com/$twikiBranch/ for output files.\n".$unittestErrors);
     }
     die "\n\n$errorcode: unit test failures - need to fix them first\n" 
@@ -108,7 +108,7 @@ chdir('lib');
 chdir($twikihome);
 if ($SvensAutomatedBuilds) {
 	#push the files to my server - http://fosiki.com/TWikiBuilds/
-	`scp TWiki* fosiki\@fosiki.com:/home/fosiki/www/$twikiBranch` ;
+	`scp TWiki* fosiki\@fosiki.com:/home/distributedinformation/www/$twikiBranch` ;
 	my $buildOutput = `ls -alh *auto*`;
 	$buildOutput .= "\n";
 	$buildOutput .= `grep 'All tests passed' $twikihome/TWiki-UnitTests.log`;
