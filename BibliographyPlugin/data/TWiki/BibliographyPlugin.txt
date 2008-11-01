@@ -1,0 +1,125 @@
+%META:TOPICINFO{author="AntonioTerceiro" date="1125283434" format="1.1" version="1.2"}%
+---+ <nop/>%TOPIC%
+
+BibliographyPlugin manages citations inside a TWiki topic, and can generate an References List at the end of the topic. This should be every usefull for writing conference papers, journal articles, ellaborated news, etc.
+
+---++ Syntax Rules
+
+First of all, you must have a topic with a list of bibliography entries. Each entry must consist of a table rows with two columns: the first one contains a key, that will identify that entry (and __must__ be unique). The second column contains the bibliography reference for that entry.
+
+The bibliography list should look like this (from a <nop/>BibTex [[http://shelah.logic.at/eindex.html][example]] found with [[http://www.google.com][Google]]):
+
+| *Key* | *Description* |
+| big | Jass, Hugh. _A big paper_. The journal of big papers, 7991, volume MCMXCVII. |
+| small | Freely, I.P. _A small paper_. The journal of small papers, 1997. (to appear). |
+
+Then, in the topic where you want to reference and get a references list, you can use:
+
+	* =%<nop/>CITE{<em>theKey</em>}%= to reference the entry with key _theKey_.
+	* =%<nop/>CITEINLINE{<em>theKey</em>}%= to reference samething that is not in the references.
+     Useful to cite URL's, for example. =theKey= will be used both as key *and* text dislayed in
+     references listing. %BR%
+     __Warning:__ be sure to not use keys present in bibliography with
+     <code>%<nop/>CITEINLINE{}%</code>: this can have unpredicted results.
+	* =%<nop/>BIBLIOGRAPHY{...}%= to get a list of references. =%<nop/>BIBLIOGRAPHY{...}%= accepts the following arguments:
+     | *Argument* | *Description* | *Default value* |
+     | =header= | the header for the references list (like "References", "Refer�ncias" (in portuguese), and so on. | DEFAULTHEADER setting (see below). |
+     | =referencesTopic= | indicates the topic bibliography must be taken from. Can be a comma-separated list of topics. | DEFAULTBIBLIOGRAPHYTOPIC setting (see below). |
+     | =order= | in which order the references should appear. Accepted values are =citation= (references appear in citation order) and =alpha= (references appear in alphabetical order). | DEFAULTSORTING setting (see below). |
+     | *Usage example:* |||
+     | =%<nop/>BIBLIOGRAPHY{header="---++ Refer�ncias" referencesTopic="<nop/>MinhaBibliografia" order="citation"}%= %BR% The above usage tells BibliographyPlugin to use "Refer�ncias" (in portuguese) as the title of the references list, to take bibliography from a topic names <nop/>MinhaBibliografia and to list the references in citation order.  |||
+
+---++ Example
+
+<table border='1'>
+  <tr>
+    <th> You type ...
+    </th>
+    <th> ... and you get:
+    </th>
+  </tr>
+  <tr>
+    <td>
+<!-- you type: -->
+<pre>
+You start writing, and then cite a
+small paper %<nop/>CITE{small}%. Further,
+you reference a big paper %<nop/>CITE{big}%.
+You can even reference the small
+paper again %<nop/>CITE{small}%.
+
+With %<nop/>CITEINLINE% you can reference things
+that are not in your bibliography
+%<nop/>CITEINLINE{http://TWiki.org/cgi-bin/view/Plugins/BibliographyPlugin}%.
+
+%<nop/>BIBLIOGRAPHY{}%
+</pre>
+    </td>
+    <td>
+<!-- you get: -->
+You start writing, and then cite a
+small paper %CITE{small}%. Further,
+you reference a big paper %CITE{big}%.
+You can even reference the small paper
+again %CITE{small}%.
+
+With %<nop/>CITEINLINE% you can reference things
+that are not in your bibliography
+%CITEINLINE{http://TWiki.org/cgi-bin/view/Plugins/BibliographyPlugin}%.
+
+%BIBLIOGRAPHY{}%
+    </td>
+  </tr>
+</table>
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* Set SHORTDESCRIPTION = cite bibliography in one topic and get a references list automatically created.
+
+	* Debug plugin: (See output in =data/debug.txt=)
+	* Set DEBUG = 0
+
+	* Default topic to get references from:
+	* Set DEFAULTBIBLIOGRAPHYTOPIC = TWiki.BibliographyPlugin
+
+	* Default sorting for references:
+	* Set DEFAULTSORTING = alpha
+
+	* Default header for the references list:
+	* Set DEFAULTHEADER = ---++ References
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the installation was successful: see above at [[#Example]]
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/AntonioTerceiro |
+|  Plugin Version: | 23 Aug 2004  |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  28 Aug 2005: | =1.020=: Adhering to official handlers in TWiki:Codev/DakarRelease. Added <code>%<nop/>CITEINLINE{...}%</code>. |
+|  23 Aug 2004: | Added multiple references sources support |
+|  17 Jun 2004: | Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 97%, %TWIKIWEB%.FormattedSearch 99%, %TOPIC% 97% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- TWiki:Main/AntonioTerceiro - 17 Jun 2004
+
