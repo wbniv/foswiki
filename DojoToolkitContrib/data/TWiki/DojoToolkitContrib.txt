@@ -1,0 +1,79 @@
+---+!! DojoToolkitContrib Contrib Package
+
+%TOC%
+
+---++ Summary of Contents
+Contains an un-archived and ready for use copy of dojo toolkit 1.1.0 - see http://dojotoolkit.org/
+
+---++ Documentation
+see the [[http://dojotoolkit.org/book/dojo-book-1-0][The Dojo Book]]
+
+---++ Examples (you need to install the Dojo Contrib for them to work)
+   * [[%ATTACHURL%/dijit/demos/form.html]]
+   * [[%ATTACHURL%/dijit/demos/mail.html]]
+   * [[%ATTACHURL%/dojox/data/demos/demo_DataDemoTable.html]]
+   * [[%ATTACHURL%/dojox/data/demos/demo_FlickrStore.html]]
+   * [[%ATTACHURL%/dojox/data/demos/demo_MultiStores.html]]
+   * [[%ATTACHURL%/dojox/gfx/demos/butterfly.html]]
+   * [[%ATTACHURL%/dojox/gfx/demos/circles.html]]
+   * [[%ATTACHURL%/dojox/gfx/demos/clock.html]]
+   * [[%ATTACHURL%/dojox/gfx/demos/lion.html]]
+   * [[%ATTACHURL%/dojox/gfx/demos/tiger.html]]
+
+   
+---++ Usage
+This Contrib is a conveinience package, and should be used in conjunction with another TWiki Extension - such as TWiki:Plugins.RestPlugin.
+
+It contains one function =TWiki::Contrib::DojoToolkitContrib::requireJS(dojoModuleName), that will add the dojo.js script to the HTML header, and add the =dojo.require= calls in order.
+
+---++ Settings
+
+Settings are stored as preferences variables. To reference a setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, e.g. ==%<nop>DOJOTOOLKITCONTRIB_STUB%==
+
+   * One line description:
+      * Set SHORTDESCRIPTION = Adds Dojo Toolkit javascript to TWiki.
+
+   * Name of the perl package
+      * Set STUB = %$STUB%
+
+---++ Updating instructions
+If you're going to update the version of Dojo in the contrib, please use the oloowoing command in the %TOPIC%/pub/TWiki/%TOPIC/ directory
+   * =find . \! -regex '.*\.svn.*' -exec rm '{}' \;= (this will remove all the existing files from your checkout)
+   * =tar zxvf /Users/sven/Desktop/dojo-release-1.1.0.tar.gz=
+   * if the untar created a new directory :( move the contents up on, to overlay the original TWiki files
+   * svn rm the files that are missing (these have been removed from the latest release. (=svn stat | sed 's/!/svn rm/' | sh=)
+   * update the MANIFEST (=find pub ! -wholename '*.svn*' >> lib/TWiki/Contrib/DojoToolkitContrib/MANIFEST=)
+   * commit the new versions
+
+---++ Installation Instructions
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	| *File:* | *Description:* |
+%$MANIFEST%
+	* Run ==%TOPIC%_installer.pl== to automatically check and install other modules that this module depends on. You can also do this step manually. Dependencies:
+	%$DEPENDENCIES%
+
+   * Test if the installation was successful:
+      * __enter sample here__
+      * see also [[Sandbox.PluginTest%TOPIC%]]
+
+---++ Contrib Info
+
+|  Plugin Author: | TWiki:Main.SvenDowideit - SvenDowideit@DistributedINFORMATION.com [[http://DistributedINFORMATION.com][DistributedINFORMATION]] - a <img src="%ATTACHURLPATH%/wikiringlogo20x20.png" /> [[http://www.wikiring.com][WikiRing.com]] partner |
+|  Copyright &copy;: | Copyright (c) 2004-2008, The Dojo Foundation  |
+|  License: | Dojo is availble under *either* the terms of the modified BSD license *or* the Academic Free License version 2.1. |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Version: | %$VERSION% |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  15 Apr 2008: | fixes for dir names with spaces (calendar test data) |
+|  29 Mar 2008: | update to 1.1.0 |
+|  6 Nov 2007: | update to 1.0.0 |
+|  Sept 2007: | update to 0.9 |
+|  Apr 2006: | Initial packaging of dojo 0.2.2 |
+|  Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences
+
+-- TWiki:Main/SvenDowideit
