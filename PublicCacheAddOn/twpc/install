@@ -1,0 +1,279 @@
+#!/bin/bash
+# when setting version, change here, and end of .txt
+TWPC_VERSION=4.6
+cleargrace=1000
+cleargracemin=150
+USAGE="install [options] twiki-bin-dir
+options:
+  -u    update: reuse the same options as last install
+  -O    optimize: use C-compiled cache reader. faster, recommended.
+  -q    quiet: do not log views on cache hits in normal twiki logs. faster.
+  -tseconds time (default -t$cleargrace) after last edit to clear cache
+        -t0 means that the cache is cleared immediately on each save
+  -Tseconds but all authors must have stopped editing since at least this
+        (default -T$cleargracemin) to actually perform it
+  -eseconds default value for %PCACHEEXPTIME% (defaults to 3600)
+  -v    verbose: logs a lot of things in data/twpc-debug.txt
+  -wWebList  make pcad build menu and pcge default mode not rebuild these webs.
+        List is comma-separated. (defaults to -wMain,TWiki,Sandbox,Trash)"
+
+#dev only:
+#  -sf   for the C-compiled version, uses the sendfile(2) system call.
+#        Experimental, may not work. caution.
+
+options=
+nodebug='s/^D () .*/D () { :; }/'
+nolog='#'
+cflags=
+compile_pccr=false
+update=false
+pcge_exclude=Main,TWiki,Sandbox,Trash
+exptime=3600
+tmp=/tmp/twpc.$$
+while test "_${1#-}" != "_$1" -a "_${1//-/}" != "_";do options="$options $1"
+case "$1" in
+  -v) nodebug='#';cflags="$cflags -DDEBUG";;
+  -q) nolog='s/^L () .*/L () { :; }/';cflags="$cflags -DNOLOG";;
+  -O) compile_pccr=true;;
+  -u) update=true;;
+  -t*) let "cleargrace=${1#??} >= 0 ? ${1#??} : 0";;
+  -T*) let "cleargracemin=${1#??} >= 0 ? ${1#??} : 0";;
+  -e*) let "exptime=${1#??} >= 0 ? ${1#??} : 0";;
+  -sf) cflags="$cflags -DSENDFILE";;
+  -w*) pcge_exclude="${1#??}";;
+  *) echo "$USAGE"; exit 1;
+esac;shift; done; if test "_$1" = "_--";then shift; fi
+
+if let 'cleargracemin > cleargrace'; then cleargracemin=$cleargrace; fi
+if test $cleargrace = 0; then cflags="$cflags -DNO_CHANGERS"; fi
+
+err () { echo ERROR: "$*" >&2; exit 1; }
+
+case "$0" in */*) cd "${0%/*}";; esac  # must execute from same place
+if test ! -e pccr.c; then err "must execute from twpc dir";fi
+
+dest="${1%/}"
+if ! test -e "$dest/setlib.cfg"; then
+  if ! test -e "$dest/bin/setlib.cfg"; then
+    err "argument must be a TWiki bin/ directory
+$USAGE"
+  else dest="$dest/bin"
+fi; fi
+./make-pc-config "$dest" $TWPC_VERSION
+
+if $update; then
+  if test -e $dest/pc-options; then
+    echo "Using options `cat $dest/pc-options`"
+    exec ./install `cat $dest/pc-options` $dest
+  else err "could not find previous options to reuse. Aborting"
+fi; fi
+
+source $dest/pc-config
+pcge_exclude="${pcge_exclude//[^A-Za-z_0-9\/,]/}"
+vief_name="/vief$scriptsuffix"
+vief_nlen=${#vief_name}
+
+files="pccr pcbd pccl pcal pcad pccr.c pcge pc-kbashlib"
+
+inst () { 
+  instdir="$1";shift
+  for i in $*; do sed \
+    -e "s|XXXbinXXX|$bin|g" \
+    -e "s|XXXbinurlXXX|$binurl|g" \
+    -e "s|XXXcacheXXX|$cache|g" \
+    -e "s|XXXchangetimerXXX|$changetimer|g" \
+    -e "s|XXXdataXXX|$data|g" \
+    -e "s|XXXlogsXXX|$logs|g" \
+    -e "s|XXXhomewebXXX|$homeweb|g" \
+    -e "s|XXXhosturlXXX|$hosturl|g" \
+    -e "s|XXXlibXXX|$lib|g" \
+    -e "s|XXXcleargraceXXX|$cleargrace|g" \
+    -e "s|XXXcleargraceminXXX|$cleargracemin|g" \
+    -e "s|XXXviewXXX|$view|g" \
+    -e "s|XXXshorturlsXXX|$shorturls|g" \
+    -e "s|XXXwebhomeXXX|$webhome|g" \
+    -e "s|XXXwikibindirXXX|$wikibindir|g" \
+    -e "s|XXXworkXXX|$work|g" \
+    -e "s|XXXhgrevisionXXX|$hgrevision|g" \
+    -e "s|XXXexptimeXXX|$exptime|g" \
+    -e "s|XXXscriptsuffixXXX|$scriptsuffix|g" \
+    -e "s|XXXvief_nameXXX|$vief_name|g" \
+    -e "s|XXXvief_nlenXXX|$vief_nlen|g" \
+    -e "s|XXXpcge_excludeXXX|$pcge_exclude|g" \
+    -e "s|XXXTWPC_VERSIONXXX|$TWPC_VERSION|g" \
+    -e "$nodebug" \
+    -e "$nolog" \
+       <$i >"$instdir/$i"
+    if test -x "$i"; then chmod a+x "$instdir/$i"; fi
+    chmod a+rw "$instdir/$i"
+  done
+}
+
+is_twiki_view () { grep -qs 'use TWiki::' "$1"; }
+
+if cmp -s $dest/view $dest/pccr-installed
+then init=false;  echo "Updating twpc" # dest was running twpc
+else init=true; echo "Installing twnc" # non-twpc twiki
+fi
+if test -e HG_REVISION; then hgrevision=`cat HG_REVISION`
+elif test -d .hg; then hgrevision=`./make-hg-revision`
+else hgrevision=unknown
+fi
+
+inst $dest $files
+if $compile_pccr; then echo "Compiling pccr.c"
+  if ! cc $cflags -O -o "$dest/pccr.bin" "$dest/pccr.c"; then
+    echo "Compilation failed: we will use the sript version of pccr"
+    rm -f "$dest/pccr.bin"
+  fi
+else rm -f "$dest/pccr.bin"
+fi
+rm -f "$dest/pccr.c" # otherwise bin/configure wil complain
+
+# we must move TWiki's view to vief. be careful no to mess things
+if $init; then
+  if is_twiki_view $dest/view; then 
+    mv $dest/view $dest/vief; cp -p $dest/vief $dest/pc-view-backup
+  elif is_twiki_view $dest/vief; then : # seems OK, do nothing
+  elif is_twiki_view $dest/pc-view-backup; then 
+    mv $dest/pc-view-backup $dest/vief
+  else
+    err "$dest/view is not a TWiki file. please restore one!"
+  fi
+  if test -n "$scriptsuffix"; then ln -sf vief $dest/vief$scriptsuffix; fi
+fi
+  
+# install now the relevant pccr instead of TWiki's view
+if test -e $dest/pccr.bin; then pccr=pccr.bin; else pccr=pccr; fi
+cp -p $dest/$pccr $dest/view; cp -p $dest/$pccr $dest/pccr-installed
+
+crontab -l >$tmp
+if ! grep -qs $dest/pccl $tmp; then
+  echo "# TWiki public cache clean " >>$tmp
+  echo "*/3 * * * * test -x $dest/pccl && $dest/pccl" >>$tmp
+  echo "Adding to crontab:"
+  echo "*/3 * * * * test -x $dest/pccl && $dest/pccl"
+  crontab $tmp
+fi
+rm -f $tmp
+
+# rest cache & logs
+if wget -q -O /dev/null "$binurl/pcad?clear_install" &&
+   wget -q -O /dev/null "$binurl/pcad?reset" &&
+   wget -q -O /dev/null "$binurl/pcad?init"; then :
+else
+    echo "Warning: could not clear cache by calling $binurl/pcad?clear"
+    echo "Check that the binurl= line is correctly defined in $dest/pc-config"
+fi
+
+# install wiki Plugins & Addons
+if test -e "$lib"/LocalSite.cfg; then
+if ! grep -qs '^$TWiki::cfg{Plugins}{PublicCachePlugin}{Enabled} = ' "$lib"/LocalSite.cfg; then
+ ed -s $lib/LocalSite.cfg  >/dev/null <<EOF
+H
+/^1;$
+i
+\$TWiki::cfg{Plugins}{PublicCachePlugin}{Enabled} = 1;
+.
+wq
+EOF
+elif  grep -qs '^$TWiki::cfg{Plugins}{PublicCachePlugin}{Enabled} = 0' "$lib"/LocalSite.cfg; then
+  ed -s $lib/LocalSite.cfg  >/dev/null <<EOF
+H
+/^[\$]TWiki::cfg{Plugins}{PublicCachePlugin}{Enabled}
+c
+\$TWiki::cfg{Plugins}{PublicCachePlugin}{Enabled} = 1;
+.
+wq
+EOF
+fi
+fi
+
+if ! grep -qs '^$TWiki::cfg{Plugins}{PublicCachePlugin}{Enabled} = 1' "$lib"/LocalSite.cfg; then
+  echo "***WARNING*** Please enable the PublicCachePlugin in"
+  echo "***WARNING*** $binurl/configure"
+fi
+
+inst "$lib"/TWiki/Plugins PublicCachePlugin.pm
+inst "$data"/TWiki PublicCachePlugin.txt PublicCacheAddOn.txt 
+
+echo "$options" >$dest/pc-options
+
+# CPAN dependencies
+# on debian: sudo aptitude install libwww-perl perl-modules libfile-touch-perl
+for m in LWP::Simple File::Path; do
+  echo "require $m;" | if ! perl 2>/dev/null; then 
+    echo "### You must install the perl CPAN module $m"
+  fi
+done
+
+############################################ Patch to lib/TWiki.pm
+# legacy: detect old patch
+if grep -sq TWiki::Plugins::PublicCachePlugin::_PCACHEEXPTIME "$lib/TWiki.pm";
+then
+  echo "Old patch detected in TWiki.pm. Uninstalling and re-installing..."
+  echo "***WARNING*** be sure to replace in your pages all PCACHEEXPTIME"
+  echo "              * Set PUBLIC_CACHE_EXPIRE = 1  (see doc)"
+  ./uninstall "$dest"
+  ./install -u "$dest"
+  exit 0
+fi
+
+# patch TWiki.pm. works 4.x+
+if ! grep -sq '#TWikiPublicCacheAddOn_PatchInclude_START' "$lib/TWiki.pm"; then
+  ed -s "$lib/TWiki.pm" >/dev/null <<\EOF
+H
+/\(this->net->getExternalResource\|TWiki::Net::getUrl\|this->{net}->getUrl\)
+-1
+a
+    #TWikiPublicCacheAddOn_PatchInclude_START
+    if (!TWiki::Func::getPreferencesValue('PUBLIC_CACHE_EXPIRE') &&
+        defined &TWiki::Func::setPreferencesValue) {
+      TWiki::Func::setPreferencesValue('PUBLIC_CACHE_EXPIRE', 0);
+    }
+    #TWikiPublicCacheAddOn_PatchInclude_END
+.
+wq
+EOF
+fi
+
+############################################ Patch to lib/TWiki/UI/View.pm
+if ! grep -sq '#TWikiPublicCacheAddOn_PatchExpire_START' "$lib/TWiki/UI/View.pm"
+then
+  ed -s "$lib/TWiki/UI/View.pm" >/dev/null <<\EOF
+H
+/[$]session->writeCompletePage
+-1
+a
+    #TWikiPublicCacheAddOn_PatchExpire_START
+    TWiki::Plugins::PublicCachePlugin::beforeWriteCompletePage( $page,
+        $topicName, $webName, $contentType );
+    #TWikiPublicCacheAddOn_PatchExpire_END
+.
+wq
+EOF
+fi
+
+############################################ Patch to lib/TWiki/Func.pm
+if ! grep -sq '#TWikiPublicCacheAddOn_PatchFuncSaveFile_START' "$lib/TWiki/Func.pm"
+then
+  ed -s "$lib/TWiki/Func.pm" >/dev/null <<\EOF
+H
+/^sub saveFile [{]
+/^[}]
+i
+    #TWikiPublicCacheAddOn_PatchFuncSaveFile_START
+    TWiki::Plugins::PublicCachePlugin::afterSaveHandler($text, $name,
+        '_working', 0, '');
+    #TWikiPublicCacheAddOn_PatchFuncSaveFile_END
+.
+wq
+EOF
+fi
+
+echo "Install Ok. FYI admin page is at $binurl/pcad"
+
+### EMACS MODES
+### Local Variables: ***
+### mode:ksh ***
+### End: ***

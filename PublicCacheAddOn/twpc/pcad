@@ -1,0 +1,301 @@
+#!/bin/bash
+# Mercurial revision: XXXhgrevisionXXX
+# without ars: menu, which trigger commands via POST to avoid side-effects
+# by crawlers. But for convenience you can also call the functions as simple
+# query strings in get, as .../pcad?clear, .../pcad?build
+#
+. pc-kbashlib
+gzip=false;case "$HTTP_ACCEPT_ENCODING" in *gzip*)gzip=true;esac
+url=${PATH_INFO%/}
+bin=XXXbinXXX
+view=XXXviewXXX
+data=XXXdataXXX
+logs=XXXlogsXXX
+cache=XXXcacheXXX
+binurl=XXXbinurlXXX
+cleargrace=XXXcleargraceXXX
+
+#echo 'Content-Type: text/plain';echo; echo "dir=$PWD";set;exit 0
+L () { date +"| %d %b %Y - %H:%M | guest | view | ${2#.} | $1 | $REMOTE_ADDR |" >>$logs/`date +'log%Y%m.txt'`; }
+W () { echo `date '+%Y-%m-%d.%H:%M'` "$@" >>$logs/twpc-warnings.txt; }
+D () { echo `date '+%Y-%m-%d.%H:%M'` "$@" >>$logs/twpc-debug.txt; }
+
+menulink=" / <a href=pcad>[PCAD menu]</a>"
+hostlink="<a href='$binurl/view'>[TWiki site]</a>"
+
+html () { 
+   echo "Content-Type: text/html
+
+<html><head><title>$1</title><style type='text/css'>
+body{background-color:#f0f8ff;font-size:80%;color:#000;
+  font-family:verdana,arial,geneva,tahoma,helvetica,sans-serif}
+table{font-size:100%}
+p{line-height:1.2}
+code,kbd,tt,samp,pre{color:#024;
+  font-family: "Bitstream Vera Sans Mono",monaco,"andale mono","courier new",monospace}
+big,large{font-size:115%}
+small,sub,sup{font-size:85%}
+h1,h2,h3,h4{font-family:arial,geneva,helvetica,sans-serif;color:#048;}
+h1{font:bold 175%;margin-bottom:0.5em}
+h2{font:bold 144%;margin-bottom:0.2em}
+h3{font:bold 120%;margin-bottom:0.1em}
+h4{font:bold 100%;margin-bottom:0em}
+</style></head><body>$hostlink$menulink<h1>$1</h1>"
+   shift; echo $*
+}
+
+html_end () { 
+  echo "$1"
+  if test -n "$2"; then echo "$2"
+  else echo "<p>--<br>$hostlink$menulink<br><a href='$binurl/view/TWiki/PublicCacheAddOn'>PublicCacheAddOn</a> help page<br>Version: XXXTWPC_VERSIONXXX, Mercurial revision: XXXhgrevisionXXX"
+  if test -n "$FORM_redirectto"; then
+    echo "<script type='text/javascript'>window.location = '$FORM_redirectto'</script>"  
+  fi
+  if test -n "$FORM_gobackto"; then
+    echo "<ul><li>&lArr; <a href='$FORM_gobackto'>Go back</a></ul>"
+  fi
+  echo "</body></html>"
+  fi
+}
+
+cache_infos () { 
+  if test -d $cache; then 
+    echo "Cache disk size: `du -sh $cache|cut -d '	' -f 1` for `find $cache -type f -name \*.gz|wc -l|cut -d ' ' -f 1` pages"
+    echo "Uncacheable pages: `find $cache -type f -name \*.nc|wc -l|cut -d ' ' -f 1`"
+    if test -d $cache/_expire; then
+      echo "Pages with cache bound to expire: `find $cache/_expire -type f|wc -l|cut -d ' ' -f 1`"
+    fi
+  else echo "No cache dir exists yet."
+  fi
+}
+
+post_data=`cat`
+args="$post_data$QUERY_STRING"
+# security: sanitize
+args="${args//[^-A-Za-z0-9_.,=+;:/?@]/}"
+args="${args#action=}"
+
+D "PCAD args = $args"
+
+case "$args" in
+
+  topics*) ######################################### CLEAR SOME TOPICS
+    html 'PCAD clear cache of topics' '<pre>'
+    if test -d $cache; then
+      cd $cache
+      topics="$FORM_topiclist"
+      echo "Clearing cache of $topics :"
+      for topic in ${topics//[^-A-Za-z0-9_./]/ }; do
+        topicpath="${topic//.//}"
+	rm -fv $topicpath.* _expire/$topicpath
+      done
+      echo "Done."
+    else 
+      echo "No cache to clear"
+    fi
+    html_end '</pre>'
+    ;;
+
+  clear*) ############################################## CLEAR
+    html 'PCAD clear cache' '<pre>'
+    # we just move it out of the way to be deleted by pccl later
+    if test -d $cache; then
+       echo "clearing cache:"
+       touch $cache
+       mv $cache $cache.$$
+       if test -d "${cache}_bypassers"; then
+	 touch "${cache}_bypassers"
+	 mkdir -p $cache/_changers
+	 for i in "${cache}_bypassers"/*; do
+	   if test "$i" -nt "${cache}_bypassers"; then
+	     cp --preserve=timestamps "$i" $cache/_changers
+	   else
+	     rm -f "$i"
+	   fi
+	 done
+       fi
+       echo Done.
+       D "CACHE_CLEAR $post_data$QUERY_STRING"
+       if test -x pc-hook; then ./pc-hook clear; fi
+    else 
+      echo "No cache to clear"
+    fi
+    mkdir -p $cache/_changers
+    html_end '</pre>'
+    ;;
+
+  delete_old_caches*) ################################### delete all old caches
+    html "PCAD delete old caches" '<pre>'
+    now=`date +'%s'`
+    for c in $cache.[0-9]*; do
+      if test -e "$c"; then
+        dc=`date '+%s' -r "$c"`
+        let 'd=now-dc'
+        if let 'd>=120'
+        then echo "Deleting cache ${c##*/}"; rm -rf "$c"
+        else echo "Keeping cache ${c##*/} (too fresh, cleanable in $((120-d)) seconds)"
+        fi
+      fi
+    done
+    echo Done.
+    html_end '</pre>'
+    ;;
+
+  [0-9]*) ############################################## become BYPASSER
+    hours="${args%%_*}"
+    html "PCAD become bypasser for $hours hours"
+    let seconds='(hours*3600) - cleargrace'
+    mkdir -p "$cache/_changers" "${cache}_bypassers"
+    # do not touch date of changer file if it exists already
+    changer_file=
+    if test ! -e "$cache/_changers/$REMOTE_ADDR"; then
+      changer_file="$cache/_changers/$REMOTE_ADDR"
+    fi
+    touch -t `date '+%Y%m%d%H%M.%S' -d "$seconds seconds"` \
+      $changer_file "${cache}_bypassers/$REMOTE_ADDR" 
+    html_end ''
+    ;;
+
+   cancel_bypass*) ################################### cancel BYPASSER status
+    hours="${args%%_*}"
+    html "PCAD cancel bypasser status for $REMOTE_ADDR"
+    # clear changer if not touched since made by bypasser
+    if test -e "$cache/_changers/$REMOTE_ADDR" -a \
+        -e "${cache}_bypassers/$REMOTE_ADDR"; then
+	dc=`date '+%s' -r "$cache/_changers/$REMOTE_ADDR"`
+	db=`date '+%s' -r "${cache}_bypassers/$REMOTE_ADDR"`
+	if let 'db=dc'; then rm -f "$cache/_changers/$REMOTE_ADDR"; fi
+    fi
+    rm -f "${cache}_bypassers/$REMOTE_ADDR"
+    html_end ''
+    ;;
+
+  build_all*) ############################################## BUILD
+    html 'PCAD build all cache' '<pre>'
+    ./pcge -v -a
+    echo "Done."
+    cache_infos
+    html_end '</pre>'
+    ;;
+  build*)
+    html 'PCAD build cache' 'Building cache for all topics, except for the ones in webs XXXpcge_excludeXXX<pre>'
+    ./pcge -v
+    echo "Done."
+    cache_infos
+    html_end '</pre>'
+    ;;
+
+  stats*) ############################################## STATS
+    html 'PCAD stats' '<pre>'
+    ./pccl -n; echo
+
+    echo "twpc was installed with options: \"`cat pc-options`\""
+    if test "XXXcleargraceXXX" = 0; then 
+      echo "SYNCHRONOUS mode: cache is cleared immediately on each edit"
+    fi
+    echo
+    cache_infos; echo
+
+    if test -e $logs/twpc-warnings.txt; then
+      echo "============================================ DETECTED PROBLEMS:"
+      cat  $logs/twpc-warnings.txt
+    else
+      echo "No problems detected."
+    fi
+    echo
+    if test -e $logs/twpc-debug.txt; then
+      echo "============================================ DEBUG OUTPUT:"
+      cat  $logs/twpc-debug.txt
+    else
+      echo "No debug output available."
+    fi
+
+    html_end '</pre>'
+  ;;
+
+  reset*) ############################################## RESET LOG
+    html 'PCAD reset logs' "<pre>Existing logs `ls -l $data/twpc*.txt 2>&1`"
+    echo
+    rm -f $data/twpc*.txt 2>&1
+    html_end '</pre>'
+  ;;
+
+  tmp_clean*) ########################################## CLEAN cache_tmp
+    html 'PCAD clean stray temporary files' ""
+    # clean pcbd tmp leftovers
+    if test -d "${cache}_tmp"; then
+      find "${cache}_tmp" -type f -mmin +60 -exec rm -f {} \;
+    fi
+    html_end 'Done.'
+  ;;
+
+  uninstall*) ########################################## CLEAR ALL
+    html 'Uninstalling: clearing all cache files' ""
+    rm -rf "XXXworkXXX/public_cache"
+    html_end 'Done.'
+  ;;
+
+  init*) ########################################## INIT cache dir & log files
+    html 'INIT dirs & files' '<pre>'
+    mkdir -p $cache/_changers; touch $logs/twpc-{warnings,debug}.txt
+    chmod a+rw $logs/twpc-{warnings,debug}.txt 2>/dev/null
+    html_end '</pre>'
+  ;;
+
+  *) ############################################## MENU
+    menulink=
+    html 'PCAD (TWiki Public Cache ADmin)' '<ul>'
+    echo "
+      <li><form method=POST>
+          <b><a href='pcad?stats'>Show</a></b>  stats from log files and cache
+	  </form>
+      <li><form method=POST>
+          <b><input type=submit name=action value=clear></b> cache, resets all 
+          information such as changers list, non cacheable pages, ...
+	  </form>
+      <li><form method=POST>
+          <input type=submit name=action value=topics> Clear cache only of 
+          <input type=text name=topiclist size=80>
+	  <br>(space separated list of topics in Web.Topic or Web/Topic format)
+	  </form>
+      <li><form method=POST>
+          <b>Bypass</b> cache (become a \"bypasser\", i.e. a \"changer\" but
+	  surviving cache clears) from this IP ($REMOTE_ADDR) for
+          <input type=submit name=action value=1_hour>
+          <input type=submit name=action value=3_hours>
+          <input type=submit name=action value=6_hours>
+	  <input type=submit name=action value=12_hours>
+          <input type=submit name=action value=24_hours>.
+	  Useful to work on templates, server config, and other modifications
+          not involving editing topics, or see co-workers work instantly.
+          Cache will be cleared at the end of the delay, or you can 
+	  <input type=submit name=action value=cancel_bypass> now
+	  your status without clearing the cache.
+	  </form>
+      <li><form method=POST>
+          <input type=submit name=action value=build> cache for all pages, 
+          except for the ones in webs XXXpcge_excludeXXX
+	  </form>
+      <li><form method=POST>
+          <input type=submit name=action value=build_all> cache for all pages
+          in all webs
+	  </form>
+      <li><form method=POST>
+          <input type=submit name=action value=reset> stats, clears log file
+	  </form>
+      <li><form method=POST>
+          <input type=submit name=action value=delete_old_caches> garbage
+          collect caches, deleting old ones. Normally done by the pccl in 
+	  crontab.
+	  </form>
+    "
+    html_end '</ul></form>'
+    ;;
+esac
+
+exit 0
+
+### EMACS MODES
+### Local Variables: ***
+### mode:ksh ***
+### End: ***

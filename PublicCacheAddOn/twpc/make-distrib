@@ -1,0 +1,21 @@
+#!/bin/bash
+# make distrib from these files as ..
+# include in them the mercurial ID of the revision in file HG_REVISION
+# executes, if present and executable: .make-distrib-pre & .make-distrib-post
+
+oldpwd="$PWD"
+dirname=${PWD##*/}
+rm -f *~ \#*\#
+test -x .make-distrib-pre && .make-distrib-pre
+./make-hg-revision >HG_REVISION 2>/dev/null
+
+cd ..
+tar cf - $dirname/* | gzip -9 >/tmp/PublicCacheAddOn.tgz
+cd /tmp
+rm -f PublicCacheAddOn.zip; zip -9 -q PublicCacheAddOn.zip PublicCacheAddOn.tgz
+cd "$oldpwd"
+
+ls -l /tmp/PublicCacheAddOn.tgz /tmp/PublicCacheAddOn.zip
+echo "Mercurial changeset: `cat HG_REVISION`"
+rm -f HG_REVISION
+test -x .make-distrib-post && .make-distrib-post

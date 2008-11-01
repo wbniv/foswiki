@@ -1,0 +1,145 @@
+#!/bin/bash
+USAGE="pccl [options]
+PublicCacheAddOn maintenance script
+to be run in crontab, at regular intervals (shorter than cleargracemin)
+e.g.:
+*/3 * * * * test -x $dest/pccl && $dest/pccl
+options:
+    -n    do nothing, just prints the status of changers and bypassers
+    -s    sync: clear cache now if dirty (i.e. if there are changers)
+"
+
+bin=XXXbinXXX
+view=XXXviewXXX
+data=XXXdataXXX
+cache=XXXcacheXXX
+cleargrace=XXXcleargraceXXX
+cleargracemin=XXXcleargraceminXXX
+binurl=XXXbinurlXXX
+
+# Actually, we should not use these as we are not running under the web server
+# UID, to avoid permissiond enied errors. Use at yur own risks
+L () { date +"| %d %b %Y - %H:%M | guest | view | ${2#.} | $1 | $REMOTE_ADDR |" >>$logs/`date +'log%Y%m.txt'`; }
+W () { echo `date '+%Y-%m-%d.%H:%M'` "$@" >>$logs/twpc-warnings.txt; }
+D () { echo `date '+%Y-%m-%d.%H:%M'` "$@" >>$logs/twpc-debug.txt; }
+
+
+shopt -s nullglob
+stats=false
+sync=false
+dirty=false
+while test "_${1#-}" != "_$1" -a "_${1//-/}" != "_";do options="$options $1"
+case "$1" in
+  -n) stats=true;;
+  -s) sync=true;;
+  *) echo "$USAGE"; exit 1;
+esac;shift; done; if test "_$1" = "_--";then shift; fi
+
+# times since last edit
+max_d=0
+let 'min_d=1<<31'
+virgin=true
+now=`date +'%s'`
+
+# clean pcbd tmp leftovers
+wget -q -O /dev/null "$binurl/pcad?tmp_clean"
+
+for i in "$cache/_changers"/*; do
+  # check that timeout is not over
+  change=`date -r $i +'%s'`
+  # D "${i##*/} change=$change now=$now diff=`let 'd=now-change';echo $d`"
+  let 'd=now-change'
+  if let 'd>max_d'; then max_d=$d
+  elif let 'd<min_d'; then min_d=$d
+  fi
+  ip="${i##*/}"
+  if test -e ${cache}_bypassers/$ip; then
+    db=`date '+%s' -r "${cache}_bypassers/$ip"`
+    if let 'db!=change'; then dirty=true; fi
+    else dirty=true
+  fi
+  if $stats; then
+    ip="${i##*/}"
+    if host $ip >/dev/null 2>&1; then ipname="$ip (`host $ip|head -1 |sed -e 's/.* //'`)"
+    else ipname="$ip"
+    fi
+    if $virgin; then 
+      echo "Current changers (people having edited pages):"
+      virgin=false
+    fi
+    echo "  $ipname last edit ${d} s ago"
+  fi
+done
+
+if $stats; then # do nothing, print stats
+  if $dirty; then echo "Cache is dirty";else echo "Cache is clean"; fi
+  if $virgin; then
+    echo "No edits in progress."
+  else
+    echo "Cache \"cleargrace\" settings: -t$cleargrace -T$cleargracemin (seconds)"
+    echo -n "Time since last change: max = $max_d s"
+    if let "$min_d != 1<<31"; then echo ", min = $min_d s"; else echo; fi
+    if let 'max_d > cleargrace && min_d > cleargracemin' ; then
+      echo "Cache will be cleared at next run of the pccl daemon"
+    else
+      let 'ct_max=cleargrace-max_d'
+      let 'ct_min=cleargracemin-min_d'
+      if let 'ct_min>ct_max'; then ct_max="$ct_min"; fi
+      echo "Cache will be cleared at first run of the pccl daemon after ${ct_max} s from now"
+    fi
+  fi
+
+  virgin=true
+  for i in "${cache}_bypassers"/*; do
+    change=`date -r $i +'%s'`
+    if let 'now<change'; then
+      ip="${i##*/}"
+      if host $ip >/dev/null 2>&1; then ipname="$ip (`host $ip|head -1 |sed -e 's/.* //'`)"
+      else ipname="$ip"
+      fi
+      if $virgin; then 
+        echo "Current bypassers (people bypassing cache):"
+        virgin=false
+      fi
+      echo "  $ipname for still $((change-now)) s"
+    fi
+  done
+
+else # do the real job
+  # at least one changer had done nothing since cleargrace, and all the others
+  # till cleargracemin (to avoid resetting cache during edits)
+  if let 'max_d > cleargrace && min_d > cleargracemin' ; then
+    wget -q -O /dev/null "$binurl/pcad?clear_changer"
+    exit 0
+  else
+    if $sync; then if $dirty; then 
+      wget -q -O /dev/null "$binurl/pcad?clear_sync"
+      exit 0
+    fi; fi
+  fi
+  # expire timed caches by %PCACHEEXPTIME{...}% variable
+  # performs the remove via pcad, buffers the requests for efficiency
+  if cd "$cache/_expire" 2>/dev/null; then
+    find . -type f -size 0 -mmin +0 | sed -e 's|^[.]/||' | \
+    ( unset u;  while read i; do
+      if test -z "$u"; then u="XXXbinurlXXX/pcad?action=topics&topiclist=";fi
+      if let "(${#u}+${#i})>2000"; then 
+	wget -q -O /dev/null "$u"
+	u="XXXbinurlXXX/pcad?action=topics&topiclist="
+      fi
+      u="$u$i,"
+      done
+      if test -n "$u"; then wget -q -O /dev/null "${u%,}"; fi
+    )
+  fi
+  # call pcad to clean old caches, if at least one exist
+  for i in $cache.[0-9]*; do
+    wget -q -O /dev/null "XXXbinurlXXX/pcad?action=delete_old_caches"
+    break
+  done
+fi
+
+### EMACS MODES
+### Local Variables: ***
+### mode:ksh ***
+### End: ***

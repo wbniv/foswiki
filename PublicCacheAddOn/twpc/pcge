@@ -1,0 +1,60 @@
+#!/bin/bash
+USAGE="pcge
+regenerate page caches
+  -v    verbose mode. Default is quiet.
+  -wWebList  Do not rebuild the comma-separated web list,
+        e.g: -wMain,TWiki,Sandbox,Trash
+  -a    all webs. Default do not rebuild XXXpcge_excludeXXX"
+set -a 
+
+data=XXXdataXXX
+cache=XXXcacheXXX
+binurl=XXXbinurlXXX
+pcge_exclude=",XXXpcge_excludeXXX,"
+
+verbose=false
+while test "_${1#-}" != "_$1" -a "_${1//-/}" != "_";do 
+case "$1" in
+  -v) verbose=true;;
+  -a) pcge_exclude=;;
+  -w*) pcge_exclude="${1#??}";;
+  *) echo "$USAGE"; exit 1;
+esac;shift; done; if test "_$1" = "_--";then shift; fi
+
+pcge_exclude="${pcge_exclude//[^A-Za-z_0-9\/,]/}"
+
+err () { echo ERROR: "$*" >&2; exit 1; }
+
+if $verbose; then st=`date '+%s'`; fi
+# do not build on a dirty cache
+XXXwikibindirXXX/pccl -s
+
+cd $data
+find [A-Z]* -name \*.txt | (n=0; while read i; do
+  web="${i%/*}"; web="${web#/}"
+  case "$pcge_exclude" in
+    *,"$web",* ) continue;;
+  esac
+  url=/${i%.txt}
+  if test ! -e $cache$url.gz -a ! -e $cache$url.nc; then
+    if $verbose; then echo -n "$url "; fi
+    wget -q -O /dev/null "$binurl/view$url"
+    if $verbose; then
+       if test -e $cache$url.nc; then echo " - uncacheable page"
+       elif test -e "$cache/_expire$url"; then 
+         echo " - will auto expire in $((`date -r $cache/_expire$url +%s` - `date +%s`)) seconds"
+       else echo
+       fi
+    fi
+    let n++
+  fi
+done
+if $verbose; then 
+  echo "$n pages generated in $((`date '+%s'` - st)) seconds"
+fi
+)
+
+### EMACS MODES
+### Local Variables: ***
+### mode:ksh ***
+### End: ***

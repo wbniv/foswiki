@@ -1,0 +1,126 @@
+#!/bin/bash
+# will be called on install/update to create a bin/pc-config from TWiki's one
+# first arg must be bin/ dir
+# second arg is TWPC_VERSION
+
+wikibindir="$1"
+TWPC_VERSION="$2"
+if test -z "$2"; then verbose=true; else verbose=false; fi  # debug mode
+export quote="['"'"]'
+export cfg
+
+if test -r  "$1"/LocalLib.cfg; then # 4.x
+  lib=`grep '^[$]twikiLibPath = ' "$1"/LocalLib.cfg`
+  lib="${lib#*$quote}"; lib="${lib%$quote*}"
+elif test -r  "$1"/LocalLib.cfg.txt; then # 4.x default install
+  lib="${1%/*}/lib"
+elif test -r  "$1/setlib.cfg"; then
+  lib=`grep '^[$]twikiLibPath = ' "$1"/setlib.cfg`
+  lib="${lib#*$quote}"; lib="${lib%$quote*}"
+else
+  echo "ERROR: no LocalLib.cfg nor setlib.cfg in $1";exit 1
+fi
+shorturls=false
+if $verbose; then echo "lib=$lib"; fi
+
+# $1=key $2=default (- means mandatory), globals: $cfg
+value () { 
+  local res line=`grep '^[$]TWiki::cfg{'"$1"'}' $cfg`
+  if test -n "$line"; then
+    case "$line" in 
+      *$quote*) res="${line#*$quote}"; res="${res%$quote*}" ;;
+      *) res="${line#*=}"; res="${res//[ =;]/}";;
+    esac
+    if test x"$res" = x"${res//[$]/}"; then # no $vars in value, ok
+      echo "$res"
+    else
+      echo "ERROR: for key \"$1\" do not use \$-vars in \$cfg" >&2
+      echo "       $line" >&2
+      echo "$2"
+    fi
+  else
+    if test x"$2" = x-; then
+      echo "ERROR: could not find $1 key in $cfg" >&2
+    else
+      echo "$2"
+    fi
+  fi
+}
+
+# $1=key $2=default, globals: $cfg
+value_cairo () { 
+  local res line=`grep "^[$]$1[ 	]*=" $cfg`
+  if test -n "$line"; then
+    case "$line" in 
+      *$quote*) res="${line#*$quote}"; res="${res%$quote*}" ;;
+      *) res="${line#*=}"; res="${res//[ =;]/}";;
+    esac
+    # expand common defs
+    res="${res//[$]dataDir/$data}"
+    if test x"$res" = x"${res//[$]/}"; then # no $vars in value, ok
+      echo "$res"
+    else
+      echo "ERROR: for key \"$1\" do not use \$-vars in \$cfg" >&2
+      echo "       $line" >&2
+      echo "$2"
+    fi
+  else
+    if test x"$2" = x-; then
+      echo "ERROR: could not find $1 key in $cfg" >&2
+    else
+      echo "$2"
+    fi
+  fi
+}
+  
+if test -r "$lib/LocalSite.cfg"; then # 4.x
+  cfg="$lib/LocalSite.cfg"
+  bin=`value ScriptUrlPath -`
+  view=`value 'ScriptUrlPaths}{view' "$bin/view"`
+  data=`value DataDir -`
+  pub=`value PubDir -`
+  work=`value WorkingDir $pub`
+  cache="$work"/public_cache/cache
+  hosturl=`value DefaultUrlHost -`
+  binurl="$hosturl$bin"
+  scriptsuffix=`value ScriptSuffix`
+  webhome=`value HomeTopicName WebHome`
+  homeweb=`value HomeWebName Main`
+  logfile=`value LogFileName $data/logfile.txt`
+  logs="${logfile%/*}"
+  if test "`value ShortURLs`" = 1; then shorturls=true;fi
+elif test -r "$lib/TWiki.cfg"; then # Cairo
+  cfg="$lib/TWiki.cfg"
+  bin=`value_cairo scriptUrlPath -`
+  view=`value_cairo 'scriptUrlPaths}{view' "$bin/view"`
+  data=`value_cairo dataDir -`
+  pub=`value_cairo pubDir -`
+  work=`value_cairo WorkingDir $pub`
+  cache="$work"/public_cache/cache
+  hosturl=`value_cairo defaultUrlHost -`
+  binurl="$hosturl$bin"
+  scriptsuffix=`value_cairo ScriptSuffix`
+  webhome=`value_cairo mainTopicname WebHome`
+  homeweb=`value_cairo HomeWebName Main`
+  logs=`value_cairo logDir $data`
+  if test "`value_cairo ShortURLs`" = 1; then shorturls=true;fi
+else
+  echo "ERROR: no LocalSite.cfg nor TWiki.cfg in $lib";exit 1
+fi
+
+cat <<EOF >"$wikibindir/pc-config"
+TWPC_VERSION='$TWPC_VERSION'
+bin='$bin'
+binurl='$binurl'
+cache='$cache'
+data='$data'
+homeweb='$homeweb'
+hosturl='$hosturl'
+lib='$lib'
+logs='$logs'
+view='$view'
+webhome='$webhome'
+wikibindir='$wikibindir'
+work='$work'
+shorturls='$shorturls'
+EOF

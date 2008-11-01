@@ -1,0 +1,11 @@
+#!/bin/bash
+USAGE="pcal N TWiki_log_files...
+will estimate the gain of the cache"
+
+# log format:
+# | 12 Jan 2008 - 01:43 | guest | view | TWiki.WebHome | Wget | 10.0.0.1 |
+
+### EMACS MODES
+### Local Variables: ***
+### mode:ksh ***
+### End: ***

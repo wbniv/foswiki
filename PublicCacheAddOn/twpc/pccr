@@ -1,0 +1,63 @@
+#!/bin/bash
+# Algorithm revision: 2
+# See also the C version, pccr.c. 
+gzip=false;case "$HTTP_ACCEPT_ENCODING" in *gzip*)gzip=true;esac
+bin=XXXbinXXX
+view=XXXviewXXX
+cache=XXXcacheXXX
+data=XXXdataXXX
+logs=XXXlogsXXX
+webhome=XXXwebhomeXXX
+shorturls=XXXshorturlsXXX
+ss=XXXscriptsuffixXXX
+
+#echo 'Content-Type: text/plain';echo; echo "dir=$PWD";set;exit 0
+L () { date +"| %d %b %Y - %H:%M | guest | view | ${2#.} | $1 | $REMOTE_ADDR |" >>$logs/`date +'log%Y%m.txt'`; }
+W () { echo `date '+%Y-%m-%d.%H:%M'` "$@" >>$logs/twpc-warnings.txt; }
+D () { echo `date '+%Y-%m-%d.%H:%M'` "$@" >>$logs/twpc-debug.txt; }
+
+# do not cache if there is a query string
+if test -n "$QUERY_STRING"; then
+  D BYPASS_QS "$bin/vief${ss}$PATH_INFO?$QUERY_STRING"
+  echo "Location: $bin/vief${ss}$PATH_INFO?$QUERY_STRING"; echo; exit 0
+fi
+
+# normalize
+case "$PATH_INFO" in 
+  */) url="${PATH_INFO}$webhome";; 
+  *)  url="$PATH_INFO";;
+esac
+
+# if we are a changer, bypass cache
+if test -e "$cache/_changers"/$REMOTE_ADDR; then
+  D BYPASS_CHANGER_IP  "$bin/vief${ss}$url"
+  echo "Location: $bin/vief${ss}$url"; echo; exit 0
+fi
+
+if $gzip; then
+  if test -e "$cache$url.gz"; then 
+    L cached,gzip ${url//\//.}
+    cat "$cache$url.gz"
+    exit 0
+  fi
+else
+  if test -e "$cache$url.tx"; then 
+    L cached ${url//\//.}
+    cat "$cache$url.tx"
+    exit 0
+  fi
+fi
+# marked as never cached?
+if test -e "$cache$url.nc"; then 
+  D BYPASS_NC "$bin/vief${ss}$url"
+  echo "Location: $bin/vief${ss}$url"; echo; exit 0
+fi
+
+# Then, we must let the Cache Builder pcbd do its job
+exec ./pcbd "$url"
+
+### EMACS MODES
+### Local Variables: ***
+### mode:ksh ***
+### End: ***
+

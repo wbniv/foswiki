@@ -1,0 +1,107 @@
+#!/bin/bash
+
+#ignore options, except -p for -purge
+purge=false
+while test "_${1#-}" != "_$1" -a "_${1//-/}" != "_";do 
+case "$1" in
+  -p) purge=true;;
+  -*) : ;;
+esac;shift; done; if test "_$1" = "_--";then shift; fi
+
+dest="${1%/}"
+if ! test -e "$dest/setlib.cfg"; then
+  if ! test -e "$dest/bin/setlib.cfg"; then
+    echo "ERROR: argument must be a TWiki bin/ directory"; exit 1
+  else dest="$dest/bin"
+fi; fi
+
+files="pccr pcbd pccl pcal pced pcad pccr.c pccr.bin pc-view-backup pccr-installed vief pc-config pcge pc-kbashlib"
+
+is_twiki_view () { grep -qs 'use TWiki::' "$1"; }
+
+cd $dest
+
+if test -e pc-config; then
+  source pc-config
+  wget -q -O /dev/null "$binurl/pcad?uninstall"
+  wget -q -O /dev/null "$binurl/pcad?reset"
+else
+  lib=../lib; data=../data
+fi
+
+if is_twiki_view view; then
+  echo "twnc not active. Just cleaning possible left twnc files"
+elif is_twiki_view vief; then
+  echo "Uninstalling twnc: restoring TWiki bin/view and cleaning files"
+  mv vief view
+elif is_twiki_view pc-view-backup; then
+  echo "Uninstalling twnc: 
+Warning: The normal TWiki bin/view stored in bin/vief wasnt correct,
+restoring from bin/pc-view-backup. Please check that if everything works ok"
+  mv pc-view-backup view
+else
+  echo "ERROR: I cannot restore TWiki original bin/view!
+please restore it from a backup, and re-run this uninstaller"
+fi  
+
+rm -f $files $lib/TWiki/Plugins/PublicCachePlugin.pm \
+      $data/TWiki/PublicCachePlugin.txt $data/TWiki/PublicCacheAddOn.txt
+if test -n "$scriptsuffix"; then rm -f vief$scriptsuffix; fi
+
+if $purge; then rm -f pc-options; fi
+
+# disable plugin
+if  grep -qs '^$TWiki::cfg{Plugins}{PublicCachePlugin}{Enabled} = 1' "$lib"/LocalSite.cfg; then
+  ed -s $lib/LocalSite.cfg  >/dev/null <<EOF
+H
+/^[\$]TWiki::cfg{Plugins}{PublicCachePlugin}{Enabled}
+c
+\$TWiki::cfg{Plugins}{PublicCachePlugin}{Enabled} = 0;
+.
+wq
+EOF
+fi
+
+################################# remove TWiki.pm patch, old version
+if grep -sq '# TWikiPublicCache hook, if present' "$lib/TWiki.pm"; then
+  ed -s "$lib/TWiki.pm" >/dev/null <<\EOF
+H
+/# TWikiPublicCache hook, if present
+.,+5d
+wq
+EOF
+fi
+
+################################# remove TWiki.pm patch, new version
+if grep -sq '#TWikiPublicCacheAddOn_PatchInclude_START' "$lib/TWiki.pm"; then
+  ed -s "$lib/TWiki.pm" >/dev/null <<\EOF
+H
+/#TWikiPublicCacheAddOn_PatchInclude_START/,/#TWikiPublicCacheAddOn_PatchInclude_END/d
+wq
+EOF
+fi
+
+################################# remove View.pm patch
+if grep -sq '#TWikiPublicCacheAddOn_PatchExpire_START' "$lib/TWiki/UI/View.pm"; then
+  ed -s  "$lib/TWiki/UI/View.pm" >/dev/null <<\EOF
+H
+/#TWikiPublicCacheAddOn_PatchExpire_START/,/#TWikiPublicCacheAddOn_PatchExpire_END/d
+wq
+EOF
+fi
+
+################################# remove Func.pm patch
+if grep -sq '#TWikiPublicCacheAddOn_PatchFuncSaveFile_START' "$lib/TWiki/Func.pm"; then
+  ed -s  "$lib/TWiki/Func.pm" >/dev/null <<\EOF
+H
+/#TWikiPublicCacheAddOn_PatchFuncSaveFile_START/,/#TWikiPublicCacheAddOn_PatchFuncSaveFile_END/d
+wq
+EOF
+fi
+
+
+
+### EMACS MODES
+### Local Variables: ***
+### mode:ksh ***
+### End: ***

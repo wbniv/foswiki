@@ -1,0 +1,22 @@
+#!/bin/bash
+# $1=web $2=topic
+# client ID is in REMOTE_ADDR
+# we do this in shell to guard against caching effect in perl with mod_perl
+
+logs=XXXlogsXXX
+cache=XXXcacheXXX
+
+L () { date +"| %d %b %Y - %H:%M | guest | view | ${2#.} | $1 | $REMOTE_ADDR |" >>$logs/`date +'log%Y%m.txt'`; }
+W () { echo `date '+%Y-%m-%d.%H:%M'` "$@" >>$logs/twpc-warnings.txt; }
+D () { echo `date '+%Y-%m-%d.%H:%M'` "$@" >>$logs/twpc-debug.txt; }
+
+D "CHANGER $REMOTE_ADDR for $1/$2"
+
+mkdir -p "$cache/_changers"
+echo "$REMOTE_ADDR" >"$cache/_changers"/$REMOTE_ADDR
+
+
+### EMACS MODES
+### Local Variables: ***
+### mode:ksh ***
+### End: ***
