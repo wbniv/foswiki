@@ -1,0 +1,118 @@
+%META:TOPICINFO{author="PeterThoeny" date="1051855680" format="1.0" version="1.7"}%
+---+ Gauge Plugin
+
+This plugin can be used to build dashboards that contain graphical images of gauges like %ATTACHURL%/tambar1.gif (target measure gauge) and %ATTACHURL%/trendup.gif (trend icons).
+
+Two types of gauges are currently available, a target measure bar and a trend icon.
+
+| *Type of Gauge* | *Name* | *What it Does* | *Example* |
+| Target Measure Bar | =tambar= | Shows the actual state of a measure in a bar. The bar has two parts, the upper thick bar shows the actual value, the lower thin bar shows the scale of the gauge.  For example regions with a relative distribution of bad (red), acceptable (yellow) and good (green) values | <img src="%ATTACHURLPATH%/tambar1.gif" alt="Actual: 35" width="60" height="16" /> |
+| Trend Icon | =trend= | Shows the up trend, no change and down trend of a measure | <img src="%ATTACHURLPATH%/trendup.gif" alt="up trend" width="16" height="16" />, <img src="%ATTACHURLPATH%/trendeq.gif" alt="no change" width="16" height="16" />, <img src="%ATTACHURLPATH%/trenddn.gif" alt="down trend" width="16" height="16" /> |
+
+The Target Measure Bar has scale regions (the lower thin bar) like red, yellow and green. Each region has a start and end boundary, the end boundary of one region is the start of the next. The scale determines the boundaries, e.g. a scale of =0, 10, 20, 40= has a red region with range =0...10=, a yellow one with range =10...20= and a green one with range =20...40=. 
+
+The upper value region (the thick bar) has two colors, a dark color used for actual value and a light color for filling out the rest of the gauge with a lighter color.
+
+The =%<nop>GAUGE{...}%= variable gets expanded to an image representing the gauge. Parameters and global settings determine the type of gauge, dimensions, scale and values.
+
+---++ <nop>%TOPIC% Global Settings
+
+Plugin settings are stored as preferences variables. To reference
+a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, for example, ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Build dashboards that contain graphical images of gauges defined with =%<nop>GAUGE{}%= variables.
+
+	* Set DEBUG to 1 to get debug messages in =data/debug.txt=.  Default: =0=
+		* Set DEBUG = 0
+
+	* Default gauge used: =tambar=, =trend=. Default: =tambar=
+		* Set TYPE = tambar
+
+	* Default dimensions, scale and colors for Target Measure Bar. See details in the syntax rules.
+		* Set TAMBAR_WIDTH = 60
+		* Set TAMBAR_HEIGHT = 16
+		* Set TAMBAR_SCALE = 0, 33, 67, 100
+		* Set TAMBAR_COLORS = #FF0000, #FFCCCC, #FFFF00, #FFFFCC, #00FF00, #CCFFCC
+
+	* Default dimensions for Trend Icon
+		* Set TREND_WIDTH = 16
+		* Set TREND_HEIGHT = 16
+
+---++ Syntax Rules
+
+The =%<nop>GAUGE{...}%= variable gets expanded to an image representing the gauge. 
+
+| *%<nop>GAUGE% Parameter* | *Comment* | *Default* |
+| =type= | The type of gauge to be used, =tambar= or =trend= | Global =TYPE= setting |
+| =name= | Name to uniquely identify the gauge file that is auto-created. | None; is required for =tambar= (not required for =trend=)|
+| =value= | For =tambar=: The actual value of the gauge<br /> For =trend=: Positive = arrow up, 0 = arrow right, negative = arrow down | None. Show "no data" if missing |
+| =alt= | Alternate text for image | Value is =value= parameter |
+| =width= | Defines the width of the gauge in pixels. | Global =&lt;type&gt;_WIDTH= setting |
+| =height= | Defines the height of the gauge in pixels. | Global =&lt;type&gt;_HEIGHT= setting |
+| =scale= | For =tambar=: Defines the number and position of the scales.  For example a value of ="5, 12, 35, 57"= denotes that there are three regions on the bar gauge, ="5...12"=, ="12...35"= and ="35...57"=. <br /> For =trend=: N/A | Global =&lt;type&gt;_SCALE= setting |
+| =colors= | For =tambar=: List of colors, each region has two colors. For =trend=: N/A | Global =&lt;type&gt;_COLORS= setting |
+
+---++ Examples
+
+| *Type of gauge* | *You type* | *You should get...* | *...if installed* |
+| Target Measure Bar | =%<nop>GAUGE{ type="tambar" name="t1" scale="0, 10, 20, 40" value="27" }%= | <img src="%ATTACHURLPATH%/tambar1.gif" width="60" height="16" alt="27" /> | %GAUGE{ type="tambar" name="t1" scale="0, 10, 20, 40" value="27" }% |
+| Trend Icon | =%<nop>GAUGE{ type="trend" name="t2" value="-3" }%= | <img src="%ATTACHURLPATH%/trenddn.gif" alt="down trend" width="16" height="16" /> | %GAUGE{ type="trend" name="t2" value="-3" }% |
+
+The "if installed" column shows images instead of variables in case the plugin is installed correctly.
+
+---++ Output
+
+	* A PNG graphics file is created containing the gauge results.  The file is placed in =%<nop>PUBURLPATH%/%<nop>WEB%/%<nop>TOPIC%/_GaugePlugin_&lt;type&gt;_&lt;name&gt;.png=
+	* =%<nop>GAUGE{...}%= gets expanded to an =&lt;img ... /&gt;= image tag.
+
+---++ Error Handling
+
+If the required parameters are not defined, then an error message is returned or an &lt;img ... /&gt; image tag is returned pointing to a graphic containing the error message.
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on your browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==data/TWiki/GaugePluginTests.txt== | Test page containing many examples of the <nop>GaugePlugin in action.  Also shows various error conditions |
+	  | ==data/TWiki/GaugePluginTests.txt,v== | RCS file for above |
+	  | ==pub/TWiki/GaugePlugin/tambar1.gif== | Sample =tambar= image |
+	  | ==pub/TWiki/GaugePlugin/trenddn.gif== | =trend= down arrow |
+	  | ==pub/TWiki/GaugePlugin/trendeq.gif== | =trend= no change arrow |
+	  | ==pub/TWiki/GaugePlugin/trendup.gif== | =trend= up arrow |
+	  | ==pub/TWiki/GaugePlugin/trendnd.gif== | =trend= error message if =value= is not specified |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the plugin is correctly installed:
+		* Check above examples if the "if installed" column shows images instead of variables.
+		* Check GaugePluginTests for some more test
+
+---++ Plugin Info
+
+|  Plugin Author: | %TWIKIWEB%.PeterThoeny, TWiki:Main/TaitCyrus |
+|  Plugin Version: | 01 May 2003 |
+|  Change History: | <!-- specify latest version first -->&nbsp; |
+|  01 May 2003: | Added time stamp to image to prevent browser from caching images; ignore non-numerical chars in value parameter; fixed warnings (V1.002) |
+|  08 Sep 2002: | Added missing binmode (for Windows); pass parameters also to error image (V1.001) |
+|  23 May 2002: | Initial version (V1.0) |
+|  16 May 2002: | Initial spec (V1.0) |
+|  CPAN Dependencies: | GD from http://stein.cshl.org/WWW/software/GD |
+|  Other Dependencies: | gd library from http://www.boutell.com/gd (Tested with 1.8.4)<br /> PNG graphics library from http://www.libpng.org/pub/png |
+|  Perl Version: | 5.005 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- TWiki:Main/TaitCyrus - 23 May 2002 <br />
+-- %TWIKIWEB%.PeterThoeny - 01 May 2003
+%META:FILEATTACHMENT{name="tambar1.gif" attr="h" comment="Target Measure Bar, 60x16 example" date="1021945424" path="C:\Data\MyTWiki\Plugins\GaugePlugin\pub\Plugins\GaugePlugin\tambar1.gif" size="932" user="PeterThoeny" version="1.1"}%
+%META:FILEATTACHMENT{name="trendup.gif" attr="h" comment="Trend Up Icon 16x16" date="1021945466" path="C:\Data\MyTWiki\Plugins\GaugePlugin\pub\Plugins\GaugePlugin\trendup.gif" size="877" user="PeterThoeny" version="1.1"}%
+%META:FILEATTACHMENT{name="trenddn.gif" attr="h" comment="Trend Down Icon 16x16" date="1021945479" path="C:\Data\MyTWiki\Plugins\GaugePlugin\pub\Plugins\GaugePlugin\trenddn.gif" size="875" user="PeterThoeny" version="1.1"}%
+%META:FILEATTACHMENT{name="trendeq.gif" attr="h" comment="Trend Equal Icon 16x16" date="1021945497" path="C:\Data\MyTWiki\Plugins\GaugePlugin\pub\Plugins\GaugePlugin\trendeq.gif" size="869" user="PeterThoeny" version="1.1"}%
+%META:FILEATTACHMENT{name="trendnd.gif" attr="h" comment="Trend No Data Icon 16x16" date="1021945521" path="C:\Data\MyTWiki\Plugins\GaugePlugin\pub\Plugins\GaugePlugin\trendnd.gif" size="875" user="PeterThoeny" version="1.1"}%
