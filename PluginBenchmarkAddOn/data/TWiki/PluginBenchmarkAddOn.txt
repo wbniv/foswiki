@@ -1,0 +1,74 @@
+%META:TOPICINFO{author="TWikiContributor" date="1159213083" format="1.0" version="1.1"}%
+---+ Plugin Benchmark Add-On
+
+This is a small script to measure the performance of a Plugin. Plugin authors can use it to measure and document the TWiki:Plugins/Benchmark numbers.
+
+---++ Usage
+
+	* Specify Plugin name and other topics to benchmark. The first parameter is the Plugin name, followed by topic names. The TWiki web is assumed unless specified.
+
+*Notes:*
+	* Before running the benchmarks, disable mod_perl or <nop>SpeedyCGI in case used
+	* Run the script on the web server's shell where TWiki is installed
+	* Measure when there is no load on the server
+	* All Plugins are automatically disabled except for the <nop>DefaultPlugin and the specified Plugin. The 'default' TWiki skin is enabled.
+
+*Running the script:*
+	* Choose a topic that renders your plugin variables. That may be the plugin topic, or an example topic.
+	* Go to your =bin= directory and call (for instance):
+	* =% ./pluginbenchmark <nop>TablePlugin <nop>GoodStyle <nop>FormattedSearch <nop>Main.TWikiUsers=
+	
+---++ Example output
+
+<verbatim>
+% ./pluginbenchmark SpreadSheetPlugin FormattedSearch GoodStyle
+TWiki Plugin benchmark tool. Time::HiRes is used.
+Measuring, please be patient...
+Topic:								  Without:  With:	  Percent:
+------------------------------  --------  --------  --------
+TWiki.SpreadSheetPlugin				0.481	  0.506		 95%
+TWiki.FormattedSearch				  1.677	  1.694		 99%
+TWiki.GoodStyle						  0.301	  0.304		 99%
+</verbatim>
+
+---++ Add-On Installation Instructions
+
+Instructions for TWiki plugin authors:
+
+	* Download the ZIP file from the Add-on Home (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Add-on topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==bin/pluginbenchmark== | Benchmark utility script |
+	* Install CPAN:Time::HiRes if needed:
+		* Run the pluginbenchmark utility from the shell without parameters, it will tell you if Time::HiRes is installed or not.
+		* It is strongly recommended to run the utility only with Time::HiRes installed (it will work without the module, but it is very slow and the result is not accurate)
+	* Test if the installation was successful:
+		* Run the pluginbenchmark utility from your =bin= directory: %BR%
+		  =% ./pluginbenchmark <nop>TablePlugin <nop>GoodStyle=
+
+---++ Add-On Info
+
+	* Set SHORTDESCRIPTION = Measure the performance of a TWiki plugin
+
+|  Add-on Author: | TWiki:Main.PeterThoeny |
+|  Copyright: | &copy; 2006, TWiki:Main.PeterThoeny |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Add-on Version: | 25 Oct 2008 (v1.030) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  26 Oct 2008: | v.1.030 Arthur Clemens: Now uses default skin instead of classic. |
+|  25 Oct 2008: | v.1.021 Arthur Clemens: Changed hardcoded paths to variables read from =lib/LocalSite.cfg=. Changed call from =geturl= to =geturl.pl=. Updated documentation.  |
+|  11 Nov 2004: | Better accuracy, more flexible configuration |
+|  10 Nov 2004: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 (TWiki 4.0) |
+|  CPAN Dependencies: | Time::HiRes |
+|  Other Dependencies: | TWiki's =geturl.pl= utility |
+|  Perl Version: | 5.005 |
+|  Add-on Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topic:__ %TWIKIWEB%.TWikiAddOns
+
+

@@ -1,0 +1,178 @@
+#!/usr/bin/perl -w
+#
+# Simple utility to measure the performance of a TWiki Plugin
+# (Utility for TWiki Collaboration Platform, http://TWiki.org/)
+#
+# Copyright (C) 2004 Peter Thoeny, peter@thoeny.com
+#
+# For licensing info read license.txt file in the TWiki root.
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details, published at
+# http://www.gnu.org/copyleft/gpl.html
+
+# configuration
+# -------------
+
+# reads settings from LocalSite.cfg (managed by bin/configure)
+
+# Debug:
+my $debug = 0;
+
+# initialization
+# --------------
+my $VERSION = 1.030;
+my $version = "26 Oct 2008";
+
+
+my $libPath = '';
+open( LOCALLIB, "LocalLib.cfg" ) || die "couldn't open LocalLib.cfg!";
+while ( $line = <LOCALLIB> ) {
+    if ( $line =~ /^\$twikiLibPath\s*\=\s*[\"\'](.*)[\"\']\s*;\s*$/ ) {
+        $libPath = $1;
+        last;
+    }
+}
+close(LOCALLIB);
+
+my $DefaultUrlHost = '';
+my $ScriptUrlPath  = '';
+
+open( LOCALSITE, "$libPath/LocalSite.cfg" )
+  || die "couldn't open LocalSite.cfg!";
+while ( $line = <LOCALSITE> ) {
+
+    # DefaultUrlHost
+    if ( $line =~
+        /^\$TWiki::cfg{DefaultUrlHost}\s*\=\s*[\"\'](.*)[\"\']\s*;\s*$/ )
+    {
+        $DefaultUrlHost = $1;
+        $DefaultUrlHost =~ s/^http:\/\///;
+    }
+
+    # ScriptUrlPath
+    if ( $line =~
+        /^\$TWiki::cfg{ScriptUrlPath}\s*\=\s*[\"\'](.*)[\"\']\s*;\s*$/ )
+    {
+        $ScriptUrlPath = $1;
+    }
+}
+close(LOCALSITE);
+
+# Command to fetch a TWiki topic. %WEBTOPIC% indicates the Web/TopicName, %PARAMS% the parameters:
+my $cmd =
+  "../tools/geturl.pl $DefaultUrlHost $ScriptUrlPath/view/%WEBTOPIC%?%PARAMS%";
+
+my $highres = 0;
+eval {
+
+    # use Time::HiRes if installed.
+    $highres = require Time::HiRes;
+};
+my $repeats = 100;    # Time::HiRes is not installed (slow and unreliable)
+$repeats = 10 if ($highres);    # Time::HiRes is installed (fast)
+
+my $used =
+  $highres ? "installed and used" : "not installed/used (unreliable and slow)";
+print
+  "TWiki Plugin benchmark utility, version $version. (Time::HiRes is $used)\n";
+
+my @topics = @ARGV;
+if ( @topics && $topics[0] =~ /Plugin$/ ) {
+    my $plugin = $topics[0];
+    print "Measuring, please be patient...\n";
+    print "Topic:                          Without:  With:     Percent:\n";
+    print "------------------------------  --------  --------  --------\n";
+    foreach my $topic (@topics) {
+        compareTopic( $topic, $plugin );
+    }
+}
+else {
+    print "\n";
+    print
+"Usage:     Specify Plugin name and other topics to benchmark. First parameter is Plugin\n";
+    print
+"           name, followed by topic names. The TWiki web is assumed unless specified.\n\n";
+    print
+"Example:   \% ./pluginbenchmark FooBarPlugin GoodStyle FormattedSearch Main.TWikiUsers\n\n";
+    print
+"Notes:     - Before running the benchmarks, disable mod_perl or SpeedyCGI in case used.\n";
+    print "           - Run utility on web server.\n";
+    print "           - Measure when there is no load on the server.\n";
+    print
+"           - All Plugins are automatically disabled except for the DefaultPlugin\n";
+    print
+"             and the specified Plugin. The 'default' TWiki skin is enabled.\n\n";
+    print
+"Configure: - Edit the pluginbenchmark utility to configure before use.\n";
+    print
+"           - TWiki's geturl utility is assumed to exist in the current directory.\n";
+    print "           - Apply the Codev.DebugEnablePlugins patch before use.\n";
+    print
+"           - Install Time::HiRes from CPAN if missing (the benchmarks are slow and\n";
+    print "             unreliable without it.)\n\n";
+    print
+"Copyright: (C) 2004, Peter\@Thoeny.com. This utility is released under the GPL.\n";
+}
+exit;
+
+sub compareTopic {
+    my ( $theWebTopic, $thePlugin ) = @_;
+    $theWebTopic = "TWiki.$theWebTopic" unless ( $theWebTopic =~ /\./ );
+    my $str = sprintf( "%-30s", $theWebTopic );
+    print "$str  ";
+    my $unused = timeTopic( $theWebTopic, "DefaultPlugin", 2 );
+    my $timeWith =
+      timeTopic( $theWebTopic, "DefaultPlugin, $thePlugin", $repeats );
+    my $timeWout = timeTopic( $theWebTopic, "DefaultPlugin", $repeats );
+    my $percent = ( $timeWout / $timeWith ) * 100;
+    $percent = 100 if $percent > 100;    # measurement errors
+    $str = sprintf( "%8.3f  %8.3f  %7.0f%%", $timeWout, $timeWith, $percent );
+    print "$str\n";
+}
+
+sub timeTopic {
+    my ( $theWebTopic, $thePlugins, $theRepeats ) = @_;
+    $theWebTopic =~ s|\.|\/|g;
+    $thePlugins  =~ s/[\, ]+/\+/g;
+    my $tcmd = $cmd;
+    $tcmd =~ s/%WEBTOPIC%/$theWebTopic/;
+    $tcmd =~ s/%PARAMS%/skin=default\&debugenableplugins=$thePlugins/;
+    my $t1 = 0;
+    my $t2 = 0;
+    if ($highres) {
+        my @times = ();
+        for ( my $i = 0 ; $i < $theRepeats ; $i++ ) {
+            $t1 = Time::HiRes::gettimeofday();
+            print "\nDebug: $tcmd\n" if ($debug);
+            `$tcmd`;
+            $t2 = Time::HiRes::gettimeofday();
+            push( @times, ( $t2 - $t1 ) );
+        }
+        my @sorted = sort { $a <=> $b } @times;
+        $#sorted = $theRepeats / 2 - 1; # cut in half to remove the slow replies
+        $t1      = 0;
+        foreach $t2 (@sorted) {
+            $t1 += $t2;
+        }
+        return ( $t1 / ( $#sorted + 1 ) );
+
+    }
+    else {
+        $t1 = time();
+        for ( my $i = 0 ; $i < $theRepeats ; $i++ ) {
+            print "\nDebug: $tcmd\n" if ($debug);
+            `$tcmd`;
+        }
+        $t2 = time();
+        return ( ( $t2 - $t1 ) / $repeats );
+    }
+}
+
+# EOF
