@@ -1,0 +1,59 @@
+%META:TOPICINFO{author="EricScouten" date="1041914040" format="1.0" version="1.1"}%
+---+ <nop>TypographyPlugin
+
+This plugin can be used to improve the typography of TWiki-generated text.
+
+
+---++ Syntax Rules and Examples
+
+| *Syntax* | *Generates* | *Description* |
+|  &lt;<nop>&lt;  |  <font face="Webdings">&nbsp;</font>  | Non-breaking space |
+|  &gt;<nop>&gt;  |  <font face="Webdings">4</font>  | Little arrow |
+|  -<nop>-<nop>-  |  &mdash;  | Em dash* |
+|  -<nop>-  |  &ndash;  | En dash* |
+|  &lt;expand&gt;WikiWord(s)&lt;/expand&gt;  |  Wiki Words  | Expands wiki words <br> *Hint*: Use in navigation/title bars |
+
+Quotation marks (&quot;) and apostrophes (&apos;) are also converted to rounded quotes.
+
+(Em/en-dash and rounded quotation/apostrophes are only done if client browser is known to handle Unicode characters appropriately.)
+
+
+---++ <nop>TypographyPlugin Global Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = _Improves the typography of TWiki-generated text._
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/TypographyPlugin.txt== | Plugin topic |
+	  | ==data/TWiki/TypographyPlugin.txt,v== | Plugin topic repository |
+	  | ==lib/TWiki/Plugins/TypographyPlugin.pm== | Plugin Perl module |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the installation was successful:
+		* _enter samples here_
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/EricScouten |
+|  Plugin Version: | 07 Jan 2003 (V1.000) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  07 Jan 2003: | Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/TypographyPlugin |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/TypographyPluginDev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- TWiki:Main/EricScouten - 07 Jan 2003
