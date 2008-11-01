@@ -1,0 +1,12 @@
+# Release manifest for ApprovalPlugin
+lib/TWiki/Plugins/ApprovalPlugin.pm 0644 Perl module
+lib/TWiki/Plugins/ApprovalPlugin/Approval.pm 0644 Perl Module
+lib/TWiki/Plugins/ApprovalPlugin/State.pm 0644 Perl Module
+lib/TWiki/Plugins/ApprovalPlugin/Transition.pm 0644 Perl Module
+templates/approvalnotify.tmpl 0644 Notification template
+data/TWiki/ApprovalPlugin.txt 0644 Documentation
+data/Sandbox/ControlledTopicExample.txt 0644 Example controlled topic
+data/Sandbox/ApprovalDefinitionExample.txt 0644 Example definition topic
+pub/TWiki/ApprovalPlugin/ApprovalFlow.png 0644 Approval flow diagram
+tools/convert.pl 0644 Coverts topics from TWiki:Plugins.WorkflowPlugin to the ApprovalPlugin (see comments in script)
+lib/TWiki/Plugins/ApprovalPlugin/Config.spec 0444 Spec file for =configure=

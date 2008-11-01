@@ -1,0 +1,31 @@
+%META:TOPICPARENT{name="TWiki.ApprovalPlugin"}%
+This is the approval definition for the following topics:
+   * ControlledTopicExample
+
+---+++  State table 
+
+This is an example of the state table. For more information, see %TWIKIWEB%.ApprovalPlugin#The_State_Table.
+
+| *State* | *Allow Edit* | *Message* |
+| REJECTED | | This document is waiting to be sent to the Stage Reviewers for review. |
+| WAITINGFORREVIEW | | This document is waiting to be reviewed by the Stage Reviewers. |
+| REVIEWED | | This documented has been reviewed. It is now waiting to be sent to the Stage Approvers for approval. |
+| WAITINGFORAPPROVAL | | This document is waiting to be approved by the Stage Approvers. |
+| APPROVED | | This document has been approved! No more actions can be carried out on this document. |
+
+---+++ Transition table
+
+This is an example of the transition table, which defines the relationship between the states. For more information, see %TWIKIWEB%.ApprovalPlugin#The_Transition_Table.
+
+| *State* | *Action* | *Next State* | *Allowed* | *Notify* | *Sign Off's (%)* |
+| REJECTED | Send For Review | WAITINGFORREVIEW | | | |
+| WAITINGFORREVIEW | Reviewed | REVIEWED | | | 50% |
+| WAITINGFORREVIEW | Rejected | REJECTED | | | 0% |
+| REVIEWED| Send For Approval | WAITINGFORAPPROVAL | | | 50% |
+| WAITINGFORAPPROVAL | Approved | APPROVED | | | 50% |
+| WAITINGFORAPPROVAL | Rejected | REJECTED | | | 0% |
+
+---+++ Additional Preferences
+
+Below are additional preferences which can be displayed in any topic under approval control.
+   * Set MYPREF = My very own preference!
