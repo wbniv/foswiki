@@ -1,0 +1,43 @@
+---+!! !GetAWebPlugin
+<!--
+One line description, required for extensions repository catalog.
+   * Set SHORTDESCRIPTION = Create a tar-ed copy of a whole Web for backup or offline reading 
+-->
+%SHORTDESCRIPTION%
+
+%TOC%
+
+---++ Usage
+
+This Plugin can be used in a secure way to backup the contents of a web.
+It uses the TWiki rest api, so requires authorisation, and checks the =VIEW= permissions on the latest revision
+of the topic before adding the topic, its =,v= file and the attachments listed in each topic.
+
+| Web | Format | URI |
+| Webname | tar |  =%<nop>SCRIPTURL{rest}%/GetAWebPlugin/getaweb/Webname.tar= |
+
+
+---++ Demo
+
+%WEBLIST{ format="	* %SCRIPTURL{rest}%/GetAWebPlugin/getaweb/$name.tar" }%
+
+---++ Installation Instructions
+
+%$INSTALL_INSTRUCTIONS%
+
+---++ Plugin Info
+
+
+|  Plugin Author(s): | TWiki:Main.SvenDowideit |
+|  Copyright: | &copy; 2008 SvenDowideit@fosiki.com |
+|  License: | [[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License)]] |
+|  Plugin Version: | %$VERSION% |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Plugin Home: | http://twiki.org/cgi-bin/view/Plugins/GetAWebPlugin |
+|  Feedback: | http://twiki.org/cgi-bin/view/Plugins/GetAWebPluginDev |
+|  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/GetAWebPluginAppraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the feedback topic on twiki.org instead. -->

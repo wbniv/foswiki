@@ -1,0 +1,4 @@
+# Release manifest for GetAWebPlugin
+data/TWiki/GetAWebPlugin.txt 0644 Documentation
+lib/TWiki/Plugins/GetAWebPlugin.pm 0644 Perl module
+
