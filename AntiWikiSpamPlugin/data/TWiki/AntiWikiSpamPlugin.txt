@@ -1,0 +1,78 @@
+%META:TOPICINFO{author="SvenDowideit" date="1124819774" format="1.1" version="1.4"}%
+
+---+!! <nop>%TOPIC%
+
+This plugin attempts to reduce the instance of Wiki Spam by using the
+[[http://moinmoin.wikiwikiweb.de/][MoinMoin]]
+[[http://moinmoin.wikiwikiweb.de/AntiSpamGlobalSolution][AntiSpamGlobalSolution]]
+regex's.  Anytime it detects that a saved page contains a string in the regex
+list, it _only_ refuses to save it.
+
+*Major premise is not to create any unnecessary load on the server and not to use excess server resources by holding connections open.*
+
+All its processing is _only_ done on save, or on attach.
+(TWiki:Plugins/BlackListPlugin does alot of processing on _every_ twiki script,
+including view)
+
+It uses a timeout on save to check if the list has changed, so if there are no
+saves, there is no un-needed network traffic.
+
+To manually update the list, click [[%SCRIPTURLPATH{"rest"}%/%TOPIC%/forceUpdate][here]]
+
+%TOC%
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = prevents registered Wiki Spam from being saved
+
+   * where to get the regex list to check for
+      * Set ANTISPAMREGEXLISTURL = http://arch.thinkmo.de/cgi-bin/spam-merge
+
+   * time in minutes between attempts to get a new version of the list
+      * Set GETLISTTIMEOUT = 60
+
+   * Local spam list (checked before the larger shared one)
+      * Set LOCALANTISPAMREGEXLISTTOPIC = %TWIKIWEB%.LocalAntiWikiSpamPluginList
+ 
+   * to ensure that only <nop>TWikiAdmins can make changes here
+      * Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
+
+
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+   * (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+   * Test if the installation was successful:
+
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.SvenDowideit - http:///www.WikiRing.com|
+|  Plugin Version: | 4 Sept 2007 (V1.2) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  4 Sept 2007: | updated to 4.2 |
+|  22 Jul 2006: | resurected it for TWiki 4.0 due to demand for a low resource AntiSpam solution |
+|  22 Aug 2005: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.024 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
