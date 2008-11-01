@@ -1,0 +1,123 @@
+%META:TOPICINFO{author="ColeBeck" date="1104521672" format="1.0" version="1.1"}%
+---+ <nop>%TOPIC%
+This plugin allows the user to display the abstract for a given <nop>PubMed ID.  This is accomplished by either displaying the desired information on the current page or by displaying a link to the desired information on [[http://www.ncbi.nlm.nih.gov/entrez/query.fcgi][PubMed]].  The plugin utilizes EFetch, provided by Entrez.  For more information, visit [[http://eutils.ncbi.nlm.nih.gov/entrez/query/static/eutils_help.html][Entrez programming utilities]].
+
+---++ Syntax Rules
+
+	* There is one way to display the abstract for a given <nop>PubMed ID.  In the example "number" is the desired <nop>PubMed ID.
+		1 &#37;PMID{number}%
+	* There are three methods for calling the <nop>%TOPIC% plugin to display a link to <nop>PubMed.  In the following examples, "number" is the desired <nop>PubMed ID (an 8-digit number) and "link text" is the desired text to display for the link.
+		1 &#37;PMIDL{pmid="number" name="link text"}%
+		1 &#37;PMIDL{number}%
+		  %BR%This method defaults the link text to number.
+		1 &#37;PMIDC{number}%
+		  %BR%This method defaults the link text to the short citation provided by <nop>PubMed.
+
+---++ Examples
+	* &#37;PMID{15572332}%
+%PMID{15572332}%
+
+*What you will see if installed:*
+<pre>
+1: Am J Sports Med. 2004 Dec;32(8):1986-95. 
+
+Anterior cruciate ligament reconstruction autograft choice: bone-tendon-bone
+versus hamstring: does it really matter? A systematic review.
+
+Spindler KP, Kuhn JE, Freedman KB, Matthews CE, Dittus RS, Harrell FE Jr.
+
+Vanderbilt University Medical Center, Nashville, Tennessee, USA.
+kurt.spindler@vanderbilt.edu
+
+Anterior cruciate ligament graft choice is controversial, with no evidence-based
+consensus available to guide decision making. The study design was
+evidence-based medicine systematic review of randomized controlled trials
+evaluating patellar tendon versus hamstring tendon autografts. A literature
+review identified 9 randomized controlled trials comparing patellar tendon and
+hamstring tendon autografts. An evidence-based systematic review was performed.
+Objective and subjective outcomes of interest included surgical technique,
+rehabilitation, instrumented laxity, isokinetic strength, patellofemoral pain,
+return to preinjury activity, and Tegner, Lysholm, Cincinnati, and International
+Knee Documentation Committee-1991 scores. Additional surgery, graft failure, and
+complications were reviewed. Slight increased laxity on arthrometer testing was
+seen in the hamstring population in 3 of 7 studies. Pain with kneeling was
+greater for the patellar tendon population in 4 of 4 studies. Only 1 of 9
+studies showed increased anterior knee pain in the patellar tendon group.
+Frequency of additional surgery seemed to be related to the fixation method and
+not graft type. No study reported a significant difference in graft failure
+between patellar tendon and hamstring tendon autografts. Objective differences
+(range of motion, isokinetic strength, arthrometer testing) were not detected
+between groups in the majority of studies, suggesting that their sensitivity to
+detect clinical outcomes may be limited. Increased kneeling pain in the patellar
+tendon group was seen consistently in the studies evaluated. Subjective
+differences in anterior knee pain or return-to-activity level were not
+consistently observed in these studies. With numbers available, failure rates
+were not significantly different between groups. These findings suggest that
+graft type may not be the primary determinant for successful outcomes after
+anterior cruciate ligament surgery.
+
+PMID: 15572332 [PubMed - in process]
+</pre>
+	* &#37;PMIDL{pmid="15572332" name="Here's a link to the abstract"}%
+%PMIDL{pmid="15572332" name="Here's a link to the abstract"}%
+
+*What you will see if installed:*
+
+<a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=pubmed&amp;dopt=Abstract&amp;list_uids=15572332" target="_top">Here's a link to the abstract</a>
+
+	* &#37;PMIDL{15572332}%
+%PMIDL{15572332}%
+
+*What you will see if installed:*
+
+<a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=pubmed&amp;dopt=Abstract&amp;list_uids=15572332" target="_top">15572332</a>
+
+	* &#37;PMIDC{15572332}%
+%PMIDC{15572332}%
+
+*What you will see if installed:*
+
+Spindler KP, Kuhn JE, Freedman KB, Matthews CE, Dittus RS, Harrell FE Jr.&nbsp;&nbsp;<a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=pubmed&amp;dopt=Abstract&amp;list_uids=15572332" target="_top">Anterior cruciate ligament reconstruction autograft choice: bone-tendon-bone versus hamstring: does it really matter? A systematic review.</a>&nbsp;&nbsp;Am J Sports Med 2004 Dec;32(8):1986-95.
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = This plugin allows the user to interact with <nop>PubMed
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+__Note:__ The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+	* Install the Perl module LWP::Simple
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the installation was successful:
+		* Try one of the examples
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/ColeBeck |
+|  Plugin Version: | 31 Dec 2004 (V1.000) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  28 Dec 2004: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.024 |
+|  CPAN Dependencies: | LWP::Simple |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 100%, %TWIKIWEB%.FormattedSearch 100%, %TOPIC% 100% |
+|  Plugin Home: | http://twiki.org/cgi-bin/view/Plugins/EFetchPlugin |
+|  Feedback: | none |
+|  Appraisal: | none |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- TWiki:Main/ColeBeck - 31 Dec 2004
+
