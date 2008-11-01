@@ -1,0 +1,72 @@
+%META:TOPICINFO{author="EtherMage" date="1043186415" format="1.0" version="1.4"}%
+---+ RecursiveRenderPlugin
+
+This plugin adds the ability to tell the TWiki renderer to render a portion of a page as if it were a page all to itself.
+
+---++ Syntax Rules
+
+There are two ways to use this plugin.
+
+Syntax 1: <pre>&lt;render>Wiki Stuff&lt;/render></pre>
+This will render =Wiki Stuff= as if it were its own page, and render the rest of the page as if it were a single word.  So a =&lt;render&gt;= block is valid in a table cell, or in any other context, even if you normally could not put other wiki markup in that location.
+
+Syntax 2: 
+<verbatim>
+~macro
+This is a macro definition.
+	* This is a list inside the macro.
+	* For demonstration purposes.
+~~
+| This is a macro usage: <br /> ~macro |
+</verbatim>
+Produces:
+<table border="1" cellspacing="1" cellpadding="0">
+<tr><td> This is a macro usage: <br /> This is a macro definition.
+
+<ul>
+<li> This is a list inside the macro.
+</li>
+<li> For demonstration purposes.
+</li>
+</ul></td></tr>
+</table>
+
+---++ <nop>%TOPIC% Global Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, for example, ==%<nop>RECURSIVERENDERPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = This plugin adds =&lt;render&gt;= tags and =~macros=.
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running.
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the plugin is correctly installed:
+		* Place the above code for syntax 2 in a Sandbox topic and see if it produces the correct results.
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.WalterMundt |
+|  Plugin Version: | 01 May 2007 (V0.3) |
+|  Change History: | <!-- specify latest version first -->&nbsp; |
+|  01 May 2007  | 0.3 Validated TWiki4.x operation |
+|  21 Jan 2003: | 0.2: Bugfix release. |
+|  20 Jan 2003: | 0.1: Inital release. |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.6.1 (untested on earlier versions) |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+-- TWiki:Main.WalterMundt - 20 Jan 2003
