@@ -1,0 +1,14 @@
+This is page one of the NavPluginExample.
+
+Each page in the document set must have the DOCNAME variable defined.
+
+It can defined in an HTML comment so that it's not visible.
+
+The DOCNAME should be set to the base document name, such as "NavPlugin."  The plugin source code will automatically append "Index" to this name. 
+
+	* Set DOCNAME = NavPlugin
+
+<!--  also, it can be hidden
+	* Set DOCNAME = NavPlugin
+-->
+

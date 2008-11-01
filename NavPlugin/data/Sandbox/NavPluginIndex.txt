@@ -1,0 +1,15 @@
+This is the page that defines which pages make up the document set and their order.
+
+Any text can go outside of the <nop>IndexStart and <nop>IndexEnd tags.  
+
+The index page might be a part of the document set.  For example, if this were a presentation you put a title on the page called "Agenda"
+
+<!--IndexStart-->
+	* NavPluginPageOne
+	* NavPluginPageTwo
+	* NavPluginLastPage
+<!--IndexEnd-->
+
+<!--
+	* Set DOCNAME = NavPlugin
+-->
