@@ -1,0 +1,4 @@
+data/TWiki/SyntaxHighlightingPlugin.txt Plugin Topic
+lib/TWiki/Plugins/SyntaxHighlightingPlugin.pm Perl Module
+lib/TWiki/Plugins/SyntaxHighlightingPlugin/Config.spec
+tools/SyntaxHighlightingPlugin_covert.pl

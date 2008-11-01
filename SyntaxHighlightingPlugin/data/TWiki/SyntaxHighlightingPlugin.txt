@@ -1,0 +1,169 @@
+%META:TOPICINFO{author="tisser_n" date="1043231880" format="1.0" version="1.4"}%
+%META:TOPICPARENT{name="TWikiPreferences"}%
+<!--
+   * Set SHORTDESCRIPTION = This Plugin is used to emphasize the rendering of your wiki text according to several languages.
+-->
+
+---++ Syntax Highlighting Plugin
+
+The Syntax Highlighting Plugin is used to emphasize the rendering of your wiki text according to several languages.
+
+It currently uses =enscript= to render its output.
+
+It supports the following languages : 
+	* ada
+	* asm
+	* awk
+	* bash
+	* c
+	* changelog
+	* c++
+	* csh
+	* delphi
+	* diff
+	* diffs
+	* diffu
+	* elisp
+	* fortran
+	* fortran_pp
+	* haskell
+	* html
+	* idl
+	* inf
+	* java
+	* javascript
+	* ksh
+	* m4
+	* mail
+	* makefile
+	* maple
+	* matlab
+	* modula_2
+	* nested
+	* nroff
+	* objc
+	* outline
+	* pascal
+	* perl
+	* postscript
+	* python
+	* rfc
+	* scheme
+	* sh
+	* skill
+	* sql
+	* states
+	* synopsys
+	* tcl
+	* tcsh
+	* tex
+	* vba
+	* verilog
+	* vhdl
+	* vrml
+	* wmlscript
+	* zsh
+
+---+++ Syntax Rules
+
+To use this plugin, use the following syntax:
+
+<verbatim>
+%CODE{lang="..." [num="10"]}% 
+...code...
+%ENDCODE%
+</verbatim>
+
+The language can be any from the above list. The =num= setting is optional and
+will set the starting line number.
+
+----+++ Examples
+
+The following text :
+
+<verbatim> 
+%CODE{"c++"}%
+#include <iostream>
+int main()
+{
+  std::cout << "Hello, world." << std::endl;
+}
+%ENDCODE%
+</verbatim>
+
+gives (if installed):
+
+%CODE{"c++"}%
+#include <iostream>
+int main()
+{
+  std::cout << "Hello, world." << std::endl;
+}
+%ENDCODE%
+
+You can also output numbered lines starting at 10 with this text:
+
+<verbatim>
+%CODE{"sh" num="10"}% 
+#!/bin/sh
+languages=`enscript --help-highlight | grep 'Name:' | cut -d ' ' -f 2`
+for l in $languages; do
+	 cat << EOF
+	* $l
+EOF
+done
+%ENDCODE% 
+</verbatim>
+
+gives (if installed):
+
+%CODE{"sh" num="10"}%
+#!/bin/sh
+languages=`enscript --help-highlight | grep 'Name:' | cut -d ' ' -f 2`
+for l in $languages; do
+	 cat << EOF
+	* $l
+EOF
+done
+%ENDCODE%
+
+---+++ Plugin Settings
+
+Use configure to change the settings for this plugin.
+
+---+++ Change of Syntax
+
+This plugin used to use the following syntax:
+
+<verbatim>
+%begin sh%
+...code...
+%end%
+</verbatim>
+
+This has been changed to be more consistent with other twiki variables. There is a script included which will replace the old syntax with the new. To use it, copy it from the =tools= directory and into your =data= directory. When you run it, it will look through your webs and replace the syntax. Note that its not the best script in the world, so always test it on a copy of your data first!
+
+---+++ Plugin Installation Instructions
+
+%$INSTALL_INSTRUCTIONS%
+
+---+++ Plugin Files
+
+%$MANIFEST%
+
+---+++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.AndrewRJones |
+|  Previous Authors: | TWiki:Main.NicolasTisserand, TWiki:Main.NicolasBurrus, Perceval Anichini |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | %$VERSION% |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  11 Sep 2008 | Bugs:Item5995 - Rewritten to work on TWiki 4.2 |
+|  12 Jul 2002: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+|  Dependencies: | enscript, CPAN:IPC::Run |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
