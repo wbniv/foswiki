@@ -1,0 +1,20 @@
+%META:TOPICINFO{author="vinod" date="1091689465" format="1.0" version="1.6"}%
+This is new topic template.
+
+Variables received via URL: %URLPARAM{"param1"}%
+
+Attachment is here:
+%PUTATTACHMENTHERE%
+
+Values obtained from Form:
+	* virtualtopic= %URLPARAM{virtualtopic}%
+	* virtualweb= %URLPARAM{virtualweb}%
+	* web= %URLPARAM{web}%
+	* topic= %URLPARAM{topic}%
+
+%META:FORM{name="NamespaceManagerAttachedForm"}%
+%META:FIELD{name="Name" title="Name" value="Name1 "}%
+%META:FIELD{name="Age" title="Age" value="12"}%
+%META:FIELD{name="Date" title="Date" value=""}%
+%META:FIELD{name="Gender" title="Gender" value="Male"}%
+%META:TOPICMOVED{by="vinod" date="1091609442" from="TWiki.ExampleNETemplate" to="TWiki.NamespaceManagerExampleTemplate"}%

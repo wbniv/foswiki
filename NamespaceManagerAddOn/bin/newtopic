@@ -1,0 +1,246 @@
+#!/usr/bin/perl -wT
+#
+# TWiki Collaboration Platform, http://TWiki.org/
+#
+# Copyright (C) 1999-2004 Peter Thoeny, peter@thoeny.com
+#
+# For licensing info read license.txt file in the TWiki root.
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details, published at 
+# http://www.gnu.org/copyleft/gpl.html
+
+BEGIN {
+    # Set default current working directory
+    if( $ENV{"SCRIPT_FILENAME"} && $ENV{"SCRIPT_FILENAME"} =~ /^(.+)\/[^\/]+$/ ) {
+        chdir $1;
+    }
+    # Set library paths in @INC at compile time
+    unshift @INC, '.';
+    require 'setlib.cfg';
+}
+
+# Part of AddOn: NamespaceManagerAddOn.
+# Contact: vinod.kulkarni@gmail.com
+# Options
+#  topic: Name of new twiki topic. Will detect if the topic already exists, 
+#         with oops template.
+#  cmd: option to 'saveTopic' passed as is. Probably it gets ignored.
+#  Following variables have standard meaning as found in a usual Edit screen
+#  text:
+#  unlock:
+#  dontnotify:
+#  submitChangeForm: Not Implemented
+#  topicparent:
+#  formtemplate:
+#  templatetopic:
+#  filepath:
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+use CGI;
+use TWiki;
+use TWiki::UI::Upload;
+
+my $query = new CGI;
+
+my $thePathInfo = $query->path_info();
+my $theRemoteUser = $query->remote_user();
+my $theTopic = $query->param( 'topic' );
+my $theUrl = $query->url;
+
+my ( $topic, $webName, $dummy, $userName ) = 
+  TWiki::initialize( $thePathInfo, $theRemoteUser, $theTopic,
+                     $theUrl, $query );
+
+# Code to handle virtual namespace.
+
+# We use terms 'virtualtopic' and 'virtualweb' to denote the requested web and topic.
+my ($vWeb, $vTopic) = ($webName, $topic); # For convinience
+my ($vtAction, $vtArg1, $vtArg2, $vtArg3)=&_getVirtualTopicAction($vWeb, $vTopic, $thePathInfo);
+# These variables will be passed to all the redirected topics.
+$query->param("virtualtopic", $vTopic);
+$query->param("virtualweb", $vWeb);
+if ($vtAction eq 'usetemplate' ) {
+    my ($vtTWeb, $vtTTopic) = &_getWebAndTopic($vtArg1);
+    if ( ! TWiki::Store::topicExists($vtTWeb, $vtTTopic) ) 
+    {
+       TWiki::UI::oops($webName, $topic, "newtopic", "Suggested template for virtual topic is non-existent: $vtTWeb.$vtTTopic.");
+    }
+    $query->param("web", $vtTWeb);
+    $query->param("topic", $vtTTopic);
+    my $newurl= 
+	  TWiki::getViewUrl( TWiki::Store::normalizeWebTopicName($vtTWeb, $vtTTopic)). '?'.
+	  TWiki::handleUrlEncode("virtualweb=$vWeb").'&'.
+	  TWiki::handleUrlEncode("virtualtopic=$vTopic");
+    TWiki::redirect($query, $newurl);
+    return;
+} elsif ($vtAction eq 'edit') {
+    # No arguments. Also, don't pass virtualtopic, virtualweb parameters.
+    TWiki::redirect($query, TWiki::getScriptUrl($vWeb, $vTopic, 'edit'));
+    return;
+} elsif ($vtAction eq 'view') {
+    # No arguments. Also, don't pass virtualtopic, virtualweb parameters.
+    TWiki::redirect($query, TWiki::getScriptUrl($vWeb, $vTopic, 'view'));
+    return;
+} elsif ($vtAction eq 'oops') {
+    # Arg1: Warning String
+    TWiki::UI::oops($webName, $topic, "newtopic", "ERROR $vWeb"."."."$vTopic: $vtArg1");
+    return;
+# } elsif ($vtAction eq 'execute') {
+#     # Arg1: execute script already present in 'execute' directory. 
+#     if ( -x "$externalScriptDir/$vtArg1") {
+#     }
+    return;
+} elsif ($vtAction eq 'create') {
+    # Arg1: Template, Arg2: vtparam1, Arg3: vtparam2
+    # $query->param("topic") and  $query->param("web") are defined.
+    $query->param("templatetopic", $vtArg1); 
+    # TODO: Check if templates can be read from other webs.
+    $query->param("vtparam1", $vtArg2);
+    $query->param("vtparam2", $vtArg3);
+    # Leaving text param as is. 
+    # ---- 
+    # Fallback to default create action below.
+} else {
+   # Do we indeed want a new topic? Was this script called with that intention?
+   # Either =templatetopic= must be set, or =text= must be set. 
+   # Otherwise it will fall through to usual view template for non-existing topic. 
+   # Handle new topic as being created via form.
+}
+
+
+# Default action to emulate standard twiki edit action. 
+# If either a template is defined, or text is defined, we consider it as 'create'.
+if( ! ($query->param("templatetopic") || $query->param("text")) ) {
+   TWiki::redirect($query, TWiki::getScriptUrl($webName, $topic, 'edit'));
+   return;
+}
+
+# Check to see if a new topic already exists
+return unless TWiki::UI::webExists($webName, $topic);
+if ( TWiki::Store::topicExists($webName, $topic) ) {
+   TWiki::UI::oops($webName, $topic, "newtopic", "ERROR $webName.$topic already exists");
+}
+
+return if TWiki::UI::isMirror( $webName, $topic );
+
+# Create the new topic
+my $saveCmd = $query->param( "cmd" ) || "";
+my $text = $query->param( "text" );
+my $meta = "";
+
+my $unlock = $query->param( "unlock" ) || "";
+my $dontNotify = $query->param( "dontnotify" ) || "";
+my $changeform = $query->param( 'submitChangeForm' ) || "";
+my $theParent = $query->param( 'topicparent' ) || "";
+my $formTemplate = $query->param( "formtemplate" );
+
+my $wikiUserName = TWiki::userToWikiName( $userName );
+return unless TWiki::UI::isAccessPermitted( $webName, $topic,
+                                            "change", $wikiUserName );
+# A template was requested; read it, and expand URLPARAMs within the
+# template using our CGI record
+my $templatetopic = $query->param( "templatetopic");
+if ($templatetopic) {
+  ($meta, $text) = &TWiki::Store::readTopic( $webName, $templatetopic );
+  # If template topic is non-existent, the text will be blank (input will be ignored.)
+  $text = TWiki::expandVariablesOnTopicCreation( $text );
+}
+
+if ( ! $meta ) {
+   $meta = TWiki::Meta->new();
+}
+	
+# PTh 06 Nov 2000: check if proper use of save script
+if( ! ( defined $text ) ) { 
+  $text = "\n"; # Let us assume single line.
+} elsif( ! $text ) {
+  # Allow empty topic assuming that there is attachment.
+  $text = "\n";
+}
+$text = TWiki::Render::decodeSpecialChars( $text );
+$text =~ s/ {3}/\t/go;
+
+
+# parent setting
+if( $theParent ) {
+   $meta->put( "TOPICPARENT", ( "name" => $theParent ) );
+}
+if( $formTemplate ) {
+    $meta->put( "FORM", ( name => $formTemplate ) ) if( $formTemplate ne "none" );
+}
+
+# use TWiki::Form;
+# # CODE_SMELL: this fieldVars2Meta thing should be in UI, not Meta
+# # Expand field variables, unless this new page is templated
+# TWiki::Form::fieldVars2Meta( $webName, $query, $meta ) ;
+# # unless $templatetopic;
+# # What's the problem if ther is template?
+use TWiki::Prefs;
+$text = TWiki::Prefs::updateSetFromForm( $meta, $text );
+
+my $error = TWiki::Store::saveTopic( $webName, $topic, $text, $meta, $saveCmd, $unlock, $dontNotify );
+
+if( $error ) {
+  TWiki::UI::oops( $webName, $topic, "saveerr", $error );
+} 
+
+# Upload directs to topic view.
+my $filepath = $query->param( "filepath" ) || "";
+if ( $filepath ) {
+   TWiki::UI::Upload::upload( $webName, $topic, $userName, $query );
+} else {
+   TWiki::redirect( $query, TWiki::getViewUrl( TWiki::Store::normalizeWebTopicName($webName, $topic)) );
+   return;
+}
+
+
+#=============== Function definitions =========================
+# getVirtualTopicTemplate: Gets action and arguments that can serve this virtual topic.
+# TWiki.NoEditAddOn is scanned for a table with first column as 'Enabled' and 
+# exactly 6 columns.
+sub _getVirtualTopicAction
+{ 
+   my ($webName, $topic, $thePathInfo) = @_;
+   # thePathInfo not used for now.
+   my ($meta, $text) = &TWiki::Store::readTopic( "TWiki", "NamespaceManagerAddOn");
+   # Format of information: | Enabled | Match-regexp | Action | Arg1 | Arg2 | Arg3 | Remarks |
+   my $toMatch=$webName.'.'.$topic;
+
+   my @text = split "\n", $text;
+   foreach (@text) {
+      my ($regexp, $action, $arg1, $arg2, $arg3);
+      next if ! (($regexp, $action, $arg1, $arg2, $arg3) = /^\|\s*Enabled\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|\s*(.*?)\s*\|.*\|$/o ) ; 
+      if ( $toMatch =~ /$regexp/) {
+	 return ($action, $arg1, $arg2, $arg3);
+      }
+   }
+   return undef; 
+}
+
+# Given Web.Topic string, return web and topic separately. 
+# Args: String, default web, default topic.
+sub _getWebAndTopic
+{
+    my ($s, $w, $t) = @_;
+    if ($s =~ m/^([\w]+)\.([\w]+)$/) {
+        ($w, $t) = ($1, $2);
+    } elsif ($s =~ m/^([\w]+)\.$/) {
+         $w = $1;
+    } elsif ( $s =~ m/^([\w]+)$/ ) {
+         $t = $1;
+    } else {
+        ($w, $t) = (undef, undef);
+    }
+    return ($w, $t);
+}
+
+1;
+
