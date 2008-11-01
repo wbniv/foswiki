@@ -1,0 +1,86 @@
+%META:TOPICINFO{author="DonnyKurniawan" date="1061965440" format="1.0" version="1.2"}%
+---+ EmbedBibPlugin
+
+This is a plugin that you can use to embed <nop>BibTeX entries in TWiki webs. It uses [[http://lml.ls.fi.upm.es/manuales/bibtool/][BibTool]] and [[http://www-sop.inria.fr/epidaure/personnel/malandain/codes/bibtex2html.html][Bibtex2html]]
+
+---++ Syntax Rules
+
+	* %<nop>EMBEDBIB{webname="string" topic="string" style="string" bibfile="string" sort="string" select1="string (string)" select2=...}%
+		* EMBEDBIB uses the <nop>BibTeX file defined in _bibfile_
+		* The _bibfile_ must be attached in _topic_ in _webname_ web
+		* _style_ can be HTML formatted text (html) or raw text (bibtext)
+		* _webname_, _topic_, and _style_ can be omitted. The plugin will use the preferences variables defined in <nop>EmbedBibPlugin Global Settings
+		* If the _style_ is html, _sort_ can be used to sort the entries by year or by name. If the _style_ is bibtex, _sort_ is ignored
+		* _select1_, _select2_, _select3_, and _select4_ are used to select the <nop>BibTeX entries. _select1_ is mandatory while the others are optional.
+		* The format of _selects_ is: selectx="field_name (search_string)". Examples of field_name are author and year (more examples can be found in [[http://lml.ls.fi.upm.es/manuales/bibtool/][BibTool]] manual). Examples of search_strings are Einstein and 2003.
+		* Multiple _selects_ are used to provide the AND operation, e.g. %<nop>EMBEDBIB{... select1="author (Einstein)" select2="year (2003)"}% will find entries authored by Einstein AND authored in the year 2003.
+		* For OR operation, use | in the seach_string, e.g. %<nop>EMBEDBIB{... select1="author (Einstein|Fermi)"|% will find entries authored by Einstein or Fermi.
+
+---++ Examples
+	* %<nop>EMBEDBIB{webname="Sandbox" topic="BibTest" style="html" bibfile="cite.bib" select1="author (Einstein)"}%
+		* Use cite.bib which is attached in <nop>Sandbox under the topic <nop>BibTest as the <nop>BibTeX file
+		* Embeds all of the references from the <nop>BibTeX file which have Einstein in the author field
+		* Format the embedded text as html
+
+	* %<nop>EMBEDBIB{bibfile="cite.bib" select1="author (Einstein|Fermi)" select2="year (2003)"}
+		* Use cite.bib which is attached to the DEFAULTWEBNAME under the topic DEFAULTTOPICNAME as the <nop>BibTeX file
+		* Embeds all of the references from the <nop>BibTeX file which have Einstein or Fermi in the author field and 2003 in the year field
+		* Format the embedded text as DEFAULTSTYLE
+
+---++ <nop>%TOPIC% Global Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, for example, ==%<nop>EMBEDQTPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Embeds <nop>BibTeX entries in a TWiki page
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+	* Default web name for <nop>BibTeX files:
+		* Set DEFAULTWEBNAME = TWiki
+
+	* Default topic name for <nop>BibTeX files:
+		* Set DEFAULTTOPICNAME = EmbedBibPlugin
+
+	* Default style (bibtex or html):
+		* Set DEFAULTSTYLE = bibtex
+
+	* Default sorting method (year or name):
+		* Set DEFAULTSORT = year
+
+---++ Plugin Installation Instructions
+
+__Note:__ You need to install [[http://lml.ls.fi.upm.es/manuales/bibtool/][BibTool]] and [[http://www-sop.inria.fr/epidaure/personnel/malandain/codes/bibtex2html.html][Bibtex2html]] on the server. The commands bibtool and bibtex2html must be in the path of the process that runs the TWiki scripts. If they are not in the path, change *$bibtoolPath* and *$bibtex2htmlPath* in *lib/TWiki/Plugins/EmbedBibPlugin.pm* to point to the correct location. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==pub/TWiki/EmbedBibPlugin/sample.bib==| Plugin sample <nop>BibTeX file |
+	  | ==pub/TWiki/EmbedBibPlugin/sample.bib,v==| Plugin sample <nop>BibTeX file repository |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the plugin is correctly installed:
+		* A list of <nop>BibTeX entries: 
+
+%EMBEDBIB{bibfile="sample.bib" select1="author (Moresi)"}%
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/DonnyKurniawan |
+|  Plugin Version: | 24 Sep 2003 (V1.000) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  24 Sep 2003: | Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | [[http://lml.ls.fi.upm.es/manuales/bibtool/][BibTool]] and [[http://www-sop.inria.fr/epidaure/personnel/malandain/codes/bibtex2html.html][Bibtex2html]] |
+|  Perl Version: | 5.005 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+ 
+-- TWiki:Main/DonnyKurniawan - 24 Sep 2003
+
+%META:FILEATTACHMENT{name="sample.bib" attr="h" comment="A sample bib file" date="1064371674" path="sample.bib" size="1712" user="DonnyKurniawan" version="1.1"}%
