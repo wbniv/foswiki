@@ -1,0 +1,179 @@
+%META:TOPICINFO{author="guest" date="1054768421" format="1.0" version="1.1"}%
+This plugin generates an index of all the pages included from one master page.
+This allows you to put together one huge document for print out
+plus a lean index for online browsing without extra maintenance.
+
+%TOC%
+
+----------------++ Usage
+----------+++ Syntax Rules
+
+=%<nop>INCLUDEINDEX{"MasterPage" headers="<i>n</i>" format="<i>string</i>"}%=
+
+This discards everything from the included page,
+except:
+	0 Headlines up to given level, the default is 4.
+	1 %INLCUDEd pages, shown as defined by the format string.
+	  Default is "&nbsp;&nbsp;&nbsp;*&nbsp;", i.e. a bullet list.
+
+The format string accepts the same syntax as a TWiki.FormattedSearch.
+Use this to extract reports about your included pages.
+E.g. create a table of current revision information
+for all sub documents of a bigger manual:
+<br>
+=%<nop>INCLUDEINDEX("MyProjectManual" headers="0" format="|[<nop>[$page]] |$rev |$author |$date |"}%=
+
+
+----------+++ Include Strategy
+In theory, you can continue to write your pages as always
+and glue some of them to a bigger document via =%<nop>INCLUDE%=.
+<br>
+In practice, you might want to change your strategy a bit,
+to make it easier to re-use pages as building blocks for large docs.
+The following rules proved useful in bigger projects:
+
+	0 Don't put headlines into the topic pages, i.e.:
+	0 Concentrate headlines + includes in one master page
+	0 Title this according to your print-out needs
+	0 Create one index page using this plug-in,
+	  add links useful for online surfing,
+	  editorial hints etc.
+	0 Use TWiki:Main.ColasNahaboos savemulti Checkpoint function
+	  to save the master document without lengthy rendering
+	0 For really huge documents, where you want to print parts/chapters:
+		0 create master page per printable chapter
+		0 include master pages in global print page
+		0 %INCLUDEINDEXes of master pages in index page
+	
+
+---------++++ You write:
+<table><tr>
+<td> _MyProject:_ </td>
+<td> _MyProjectManual:_ </td>
+<td> _Topic pages:_ </td>
+</tr><tr>
+<td bgcolor=#ffffcc rowspan=4>
+--<nop>-+ My project	<br>
+%INCLUDEINDEX{...
+
+--<nop>-++ See also: <br>
+	1 &lt;a href=%SCRIPTURLPATH%/edit/MyProjectManual>edit structure&lt;/a><br>
+	2 &lt;a href=%SCRIPTURLPATH%/pdf/MyProjectManual>Print PDF&lt;/a><br>
+</td>
+<td bgcolor=#ffcccc rowspan=4>
+--<nop>-+ Foo Topic 1<br>
+%INCLUDE{Topic1...
+
+--<nop>-++ Bar Topic 2<br>
+%INCLUDE{Topic2...
+
+--<nop>-++ Three...
+
+--<nop>-+ Bar Topic X<br>
+%INCLUDE{TopicX...</td>
+<td bgcolor=#999999>Lorem ipsum dolet</td>
+</tr><tr>
+<td bgcolor=#999999>Lorem ipsum dolet</td>
+</tr><tr>
+<td bgcolor=#999999> . <br> . <br> . </td>
+</tr><tr>
+<td bgcolor=#999999>Lorem ipsum dolet</td>
+</tr><tr>
+<td>
+---------++++ You get:
+</td>
+</tr><tr>
+<td bgcolor=#ffffcc rowspan=4>
+<h2 >MyProject:</h2>
+	0 <a href=#>Foo Topic1</a>
+		0 <a href=#>Bar Topic2</a>
+		0 <a href=#>Three...</a>
+	0 <a href=#>Bar Topic X</a>
+<h3 >See also:</h3>
+	0 <a href=#>Edit structure</a>
+	0 <a href=#>Print PDF</a>
+</td>
+<td bgcolor=#ffcccc rowspan=4>
+<h2 >MyProjectManual</h2>
+<h3 >Foo Topic 1</h3>
+Lorem ipsum dolet
+<h4 >Foo Topic 2</h4>
+Lorem ipsum dolet
+<h4 >Three...</h4>
+Lorem ipsum dolet
+<h3 >Bar Topic X</h3>
+Lorem ipsum dolet
+</td>
+<td bgcolor=#999999>Lorem ipsum dolet</td>
+</tr><tr>
+<td bgcolor=#999999>Lorem ipsum dolet</td>
+</tr><tr>
+<td bgcolor=#999999> . <br> . <br> . </td>
+</tr><tr>
+<td bgcolor=#999999>Lorem ipsum dolet</td>
+</tr><tr>
+</table>
+
+---------+++ Compare to SectionalEditPlugin
+The SectionalEditPlugin addresses the same problem
+with a completely different approach:
+it keeps one (possibly huge) wiki page for your printed document.
+The wiki way is emulated by opening small sections for editing.
+
+Advantages of IncludeIndexPlugin:
+	* You can reference the sub-topics as plain wiki pages
+	* People can edit the sub-topics independently
+	* WebChanges etc. work as expected.
+	* Revision history of sub-documents is easy to track
+	* Need to render full document only when saving the master doc,
+	  but not for sub-topics
+Advantages of SectionalEditPlugin:
+	* More topics mean more names,
+	  mean more possiblities to screw up namespace
+	* Sometimes, it is more convenient to edit many topics in one go
+	* TWiki (shame!) doesn't support Wiki:WayBackMode (yet),
+	  It is _very_ hard to get a previous version of a composite doc
+			 other than storing printouts
+
+---++ <nop>%TOPIC% Global Settings
+
+	* There are no global settings necessary for this plugin, except
+		* Set SHORTDESCRIPTION = Generate an index of pages included from a master page.
+		* Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running.
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the plugin is correctly installed:
+	Between the following two horizontal rulers,
+	the list of topics in the TWikiDocumentation should show up:
+<dl><dt></dt><dd>
+-----
+%INCLUDEINDEX{"TWikiDocumentation" format="$n	0 $topic"}%
+-----
+</dl>
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/PeterKlausner |
+|  Plugin Version: | V1.000 |
+|  Change History: | <!-- specify latest version first -->&nbsp; |
+|  Apr 2003: | Posted for Feb2003 release |
+|  Jul 2002: | Initial version for Dec2001 release |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Source:	| CVSPlugins:InlcudeIndexPlugin |
+
+__Related Topics:__<br>
+SectionalEditPlugin, PdfPlugin,
+%TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
