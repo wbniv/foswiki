@@ -1,0 +1,70 @@
+%META:TOPICINFO{author="SvenDowideit" date="1166608631" format="1.1" version="1.4"}%
+This test shows that when doing a sectional save, the JS is responsible for keeping the leading =\n= on the section to maintain that section. 
+
+TODO: write test that shows the combination effect of removeing the =\n= (front and back...)
+
+Also, if you do not specify a sectionOrder, InlineSave will presume you are only changing existing sections inplace.
+
+TODO: add retentive tests for matching revisions (and later try to track last revision of that section..?)
+
+TODO: this test will fail until the reply contains the changed section, or that it is able to request the before Tml and modify it to compare..
+
+<script language="javascript" src="%PUBURL%/%TWIKIWEB%/JSUnitContrib/app/jsUnitCore.js"></script>
+<script language="javascript">
+var toSaveTML = "\n\nnew section2 - should be after bullets and before table\n";
+var stateJSON;
+function localAjaxSuccess(o) {
+    stateJSON = o.responseText;
+    setUpPageStatus = 'complete';  //tell JsUnit we've got the result.
+}
+function setUpPage() {
+// save new topic TML (non-sectional), then ask for that TML to make sure its what we saved..
+    var callback = { 
+	  success: localAjaxSuccess, 
+	  failure: function(o) {alert('Error!\nStatusText='+o.statusText+'\nContents='+o.responseText);}
+        ,argument: ['svenwashere'] 
+	};
+  //have to URI encode the data - to allow + signs in topic text..
+  var browserLogin = '';
+//
+  var inlineSection =
+  {
+    "topicSection": "2",
+    "value" : toSaveTML
+  }; 
+//
+  var postParams = 
+    'replywitherrors=1;'+
+    'dataType=JSON;'+
+//    'data='+inlineSection.toJSONString()+'#### '+';'+
+    'data='+encodeURIComponent(inlineSection.toJSONString()+'#### ')+';'+
+    'inlineeditsave=1;'+
+    'forcenewrevision=1;'+
+    'username='+browserLogin;
+  var saveUrl = TWikiScriptUrl + '/save/%WEB%/TestTopicSaveFullTopicText';
+  var transaction = YAHOO.util.Connect.asyncRequest('POST', saveUrl, callback, postParams); 
+  return transaction;
+}
+function testAjaxResult() {
+    debug('reply from server %WEB%.%TOPIC%', stateJSON);
+    assertNotUndefined('a response from requestTopicState', stateJSON);
+    var state= eval('('+stateJSON+')');
+    assertNotUndefined('a valid JSON response from requestTopicState', state);
+    assertTrue('returned rev higher than 0', (state.topicRev > 0));
+    assertUndefined('error - topic does not exist', state.error);
+    assertNotUndefined('tml sent back', state.theTml);
+    var theTml = unescape(state.theTml);
+    assertNotUndefined('tml sent back', theTml);
+    var topicText = theTml;
+    if (state.inlineMeta == 1) {
+        //TODO: remove meta.
+        var meta = RegExp('(%META:.*)\n');
+        topicText = topicText.replace(meta, '');      
+    }
+    assertEquals('topic text saved = topic text we asked to save', toSaveTML, topicText);
+}
+</script>
+
+*[[%PUBURL%/%TWIKIWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%WEB%/%TOPIC%][Run test with TestRuner]]*
+
+*[[%PUBURL%/%TWIKIWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%WEB%/JsTestSuite][Run JsTestSuite with TestRuner]]*

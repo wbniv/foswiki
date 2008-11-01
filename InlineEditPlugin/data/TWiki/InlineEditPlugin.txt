@@ -1,0 +1,86 @@
+%META:TOPICINFO{author="SvenDowideit" date="1148433470" format="1.1" version="1.2"}%
+---+!! <nop>%TOPIC% 
+
+The InlineEditPlugin provides a quick (zero server roundtrip) edit functionality from the TWiki view script.
+It has been architected to allow the definition and choice of Javascript editing component, using a TWiki template file.
+It is intended to be used in conjunction with ComponentEditPlugin to enable editing of TWikiVariables.
+
+This is an initial pre-release and is not intended to be used in production.
+Insufficient testing and feedback has happened - and Its known to have problems with TWikiVariables embeded in HTML attributes.
+
+*WARNING:* when you edit using InlineEditPlugin, it tries to create a topic lock or lease. In Cairo, this is done using the edit script, and in TWiki-4 via rest script. Unfortunatly, this means that they will only work if the respective scripts are authenticated, or a server side session is used.
+
+*WARNING:* tinymce tries to clean up html, so i fyou have any html inline in the topic text, it WILL get broken - I'm planning on using sectional editing to work around this, but thats also a complex issue
+
+&nbsp;
+---+++ Usage 
+If the InlineEditPlugin is installed and enabled, all you should need to edit a page, is to double click on the rendered topic text. TWikiVariables will be highlighted in Grey boxes, that you can click on to get a popup edit dialog driven by the ComponentEditPlugin.
+
+
+<img width="640" alt="InlineEditPlugin_tinyMCE.png" align="right" src="%ATTACHURLPATH%/InlineEditPlugin_tinyMCE.png" height="410">
+</img>
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+
+   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = adds double click to edit functionality to the TWiki view script
+
+   * Debug plugin: (See output in =data/debug.txt=)
+      * Set DEBUG = 0
+
+   * Select the editors, in order of preference (list the more specialised ones first)
+   * choose from (wikiwyg / tinymce / textarea)
+   * only textarea works in this release
+      * Set EDITORS = tableedit, textarea
+
+   * If defined, we use the WysiwygPlugin 's TML2HTML, while if undefined, we use the new and less tested javascript version
+   * don't set this unless you have alot of spare CPU on your server
+      * Set SENDHTML = 0
+
+   * set a minimum number of lines in a section, for sectional Edit - otherwise you get alot of single line edit boxes
+   * 0 means no sections (edit entire topic only)
+      * Set MINIMUMSECTIONLENGTH = 1
+
+   * this option restricts the InlineEditPlugin from adding its sections to only views using the specificed skins (it will otherwise break rss, kupu, etc)
+   * unset means the plugin is not present in view, but can still be used for sectional saving
+      * Set SKINS = zengarden, natedit, nat, pattern, classic, koala, smartedit, plain, webpermissions, simpleiso, default, simple
+      * the skins currently active = %SKIN%
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+&nbsp;
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content: <table cellspacing="1" cellpadding="0" border="1">       *File:*  *Description:*        ==data/TWiki/%TOPIC%.txt==  Plugin topic        ==data/TWiki/%TOPIC%.txt,v==  Plugin topic repository        ==lib/TWiki/Plugins/%TOPIC%.pm==  Plugin Perl module  </table>
+   * use the configure script to enable the WysiwygPlugin and InlineEditPlugin
+   * Test if the installation was successful:
+      * double click in a topic you have permission to edit.
+
+&nbsp;
+---++ Plugin Info 
+
+&nbsp;
+|  Plugin Author: | TWiki:Main.SvenDowideit - SvenDowideit@wikiring.com - <img src="%ATTACHURLPATH%/wikiringlogo20x20.png" /> [[http://www.wikiring.com][WikiRing.com]] |
+|  Copyright: | &copy; 2001-2006, SvenDowideit@wikiring.com |
+|  Plugin Version: | 30 April 2006 (V0.900) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  30 April 2006: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.024 |
+|  CPAN Dependencies: | CPAN:JSON |
+|  Other Dependencies: | TWiki:Plugins.WysiwygPlugin |
+|  Perl Version: | 5.005 |
+|  License: | GPL ( [[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | [[http://TWiki.org/cgi-bin/view/Plugins/%3Cspan%20id=%27TMLvariable10%27%20class=%27TMLvariable%27%20%3ETOPIC%3C/span%3E][http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%]] |
+|  Feedback: | [[http://TWiki.org/cgi-bin/view/Plugins/%3Cspan%20id=%27TMLvariable12%27%20class=%27TMLvariable%27%20%3ETOPIC%3C/span%3EDev][http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev]] |
+|  Appraisal: | [[http://TWiki.org/cgi-bin/view/Plugins/%3Cspan%20id=%27TMLvariable14%27%20class=%27TMLvariable%27%20%3ETOPIC%3C/span%3EAppraisal][http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal]] |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- TWiki:Main.SvenDowideit
+
+%META:FILEATTACHMENT{name="wikiringlogo20x20.png" attr="h" autoattached="1" comment="wikiringlogo20x20.png" date="1161609076" path="wikiringlogo20x20.png" size="1343" user="Main.SvenDowideit" version="1"}%

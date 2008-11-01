@@ -1,0 +1,78 @@
+head	1.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2006.12.18.14.11.07;	author SvenDowideit;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2006.12.18.10.20.19;	author SvenDowideit;	state Exp;
+branches;
+next	;
+
+
+desc
+@none
+@
+
+
+1.2
+log
+@none
+@
+text
+@%META:TOPICINFO{author="SvenDowideit" date="1166451067" format="1.1" reprev="1.2" version="1.2"}%
+<script language="javascript" src="%PUBURL%/%TWIKIWEB%/JSUnitContrib/app/jsUnitCore.js"></script>
+<script language="javascript">
+var stateJSON;
+function localAjaxSuccess(o) {
+    stateJSON = o.responseText;
+    setUpPageStatus = 'complete';  //tell JsUnit we've got the result.
+}
+function setUpPage() {
+    var cObj  = TWiki.InlineEditPlugin.requestTopicState('%WEB%.%TOPIC%', localAjaxSuccess);
+}
+function testAjaxResult() {
+    debug('reply from server %WEB%.%TOPIC%', stateJSON);
+    assertNotUndefined('a response from requestTopicState', stateJSON);
+    var state= eval('('+stateJSON+')');
+    assertNotUndefined('a valid JSON response from requestTopicState', state);
+    assertTrue('returned rev higher than 0', (state.topicRev > 0));
+}
+</script>
+
+*[[%PUBURL%/%TWIKIWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%WEB%/%TOPIC%][Run test with TestRuner]]*
+
+*[[%PUBURL%/%TWIKIWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%WEB%/JsTestSuite][Run JsTestSuite with TestRuner]]*
+
+%META:TOPICMOVED{by="SvenDowideit" date="1166450656" from="Sandbox.JsUnitTest" to="Sandbox.JsTestRequestTopicStateOK"}%
+@
+
+
+1.1
+log
+@none
+@
+text
+@d1 1
+a1 3
+%META:TOPICINFO{author="SvenDowideit" date="1166437219" format="1.1" reprev="1.1" version="1.1"}%
+---++ JsUnit tests for TWiki?
+
+a2 1
+<script language="javascript" src="%PUBURL%/%TWIKIWEB%/JSUnitContrib/sample_script_to_test.js"></script>
+d4 14
+a17 4
+function testGetTopicInfo() {
+    TWiki.InlineEditPlugin.requestTopicState('%WEB%.%TOPIC%');
+    assertEquals("2 times 3 plus 5 is 11", 11, multiplyAndAddFive(2, 3));
+    assertEquals("Should work with negative numbers", -15, multiplyAndAddFive(-4, 5));
+d23 3
+a25 1
+<a onclick="return testGetTopicInfo()">run test here</a>
+@

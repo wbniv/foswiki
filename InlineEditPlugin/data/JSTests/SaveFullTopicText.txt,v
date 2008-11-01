@@ -1,0 +1,136 @@
+head	1.4;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.4
+date	2006.12.20.04.38.54;	author SvenDowideit;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2006.12.20.01.21.24;	author SvenDowideit;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2006.12.19.09.10.11;	author SvenDowideit;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2006.12.18.22.43.42;	author SvenDowideit;	state Exp;
+branches;
+next	;
+
+
+desc
+@none
+@
+
+
+1.4
+log
+@none
+@
+text
+@%META:TOPICINFO{author="SvenDowideit" date="1166589534" format="1.1" reprev="1.4" version="1.4"}%
+<script language="javascript" src="%PUBURL%/%TWIKIWEB%/JSUnitContrib/app/jsUnitCore.js"></script>
+<script language="javascript">
+var toSaveTML = "\n---++ Topic Title\n   * bullet1\n   * bullet2\n\nsection 2 with a *little* bold text\n\n|q|w|e|\n|123|234|345|\n|987|987|876|\n\n";
+var stateJSON;
+function localAjaxSuccess(o) {
+    stateJSON = o.responseText;
+    setUpPageStatus = 'complete';  //tell JsUnit we've got the result.
+}
+function setUpPage() {
+// save new topic TML (non-sectional), then ask for that TML to make sure its what we saved..
+    var callback = { 
+	  success: localAjaxSuccess, 
+	  failure: function(o) {alert('Error!\nStatusText='+o.statusText+'\nContents='+o.responseText);}
+        ,argument: ['svenwashere'] 
+	};
+  //have to URI encode the data - to allow + signs in topic text..
+  var browserLogin = '';
+  var postParams = 
+    'replywitherrors=1;'+
+//    'dataType=JSON;'+
+    'text='+encodeURIComponent(toSaveTML)+';'+
+//    'inlineeditsave=1;'+
+    'forcenewrevision=1;'+
+    'username='+browserLogin;
+  var saveUrl = TWikiScriptUrl + '/save/%WEB%/TestTopicSaveFullTopicText';
+  var transaction = YAHOO.util.Connect.asyncRequest('POST', saveUrl, callback, postParams); 
+  return transaction;
+}
+function testAjaxResult() {
+    debug('reply from server %WEB%.%TOPIC%', stateJSON);
+    assertNotUndefined('a response from requestTopicState', stateJSON);
+    var state= eval('('+stateJSON+')');
+    assertNotUndefined('a valid JSON response from requestTopicState', state);
+    assertTrue('returned rev higher than 0', (state.topicRev > 0));
+    assertUndefined('error - topic does not exist', state.error);
+    var theTml = unescape(state.theTml);
+    assertNotUndefined('tml sent back', theTml);
+    var topicText = theTml;
+    if (state.inlineMeta == 1) {
+        //TODO: remove meta.
+        var meta = RegExp('(%META:.*)\n');
+        topicText = topicText.replace(meta, '');      
+    }
+    assertEquals('topic text saved = topic text we asked to save', toSaveTML, topicText);
+}
+</script>
+
+*[[%PUBURL%/%TWIKIWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%WEB%/%TOPIC%][Run test with TestRuner]]*
+
+*[[%PUBURL%/%TWIKIWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%WEB%/JsTestSuite][Run JsTestSuite with TestRuner]]*
+@
+
+
+1.3
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="SvenDowideit" date="1166577684" format="1.1" reprev="1.3" version="1.3"}%
+d4 2
+a5 1
+var toSaveTML = "\n---++ Topic Title\n   * bullet1\n   * bullet2\n\nsection 2 with a *little* bold text\n\n|q|w|e|\n|123|234|345|\n|987|987|876|\n\n";var stateJSON;
+d37 3
+a39 2
+    assertNotUndefined('tml sent back', state.theTml);
+    var topicText = state.theTml;
+@
+
+
+1.2
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="SvenDowideit" date="1166519410" format="1.1" version="1.2"}%
+d37 1
+d40 2
+d43 1
+a43 1
+    assertEquals('topic text saved = topic text we asked to save', toSaveTML, state.theTml);
+@
+
+
+1.1
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="SvenDowideit" date="1166481822" format="1.1" reprev="1.1" version="1.1"}%
+d37 3
+@

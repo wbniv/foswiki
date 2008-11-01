@@ -1,0 +1,12 @@
+
+
+.TMLvariable {
+  border: thin solid black;
+  background: Silver;
+}
+
+/*undo the weird css things that are done in pattern and nat skin - otherwise the wikiwyg edit html is centered :( */
+body {
+    text-align:left; /*** IE/Win (not IE/MAC) alignment of page ***/
+}
+

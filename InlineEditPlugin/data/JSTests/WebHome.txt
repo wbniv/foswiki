@@ -1,0 +1,27 @@
+%META:TOPICINFO{author="SvenDowideit" date="1166579067" format="1.1" version="1.3"}%
+---+!! %MAKETEXT{"Welcome to the [_1] web" args="<nop>%WEB%"}%
+
+---++ %MAKETEXT{"Available Information"}%
+   * *[[%PUBURL%/%TWIKIWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%WEB%/JsTestSuite][Run JsTestSuite with TestRuner]]*
+
+<form action='%SCRIPTURLPATH{"edit"}%/%WEB%/'> 
+%ICON{"newtopic"}% %MAKETEXT{"Create a new Test by name:"}% %MAKETEXT{"(Use a topic name in TWiki.WikiNotation)"}% <br /> 
+<input class="twikiInputField" type="text" name="topic" size="32" />&nbsp;<input type="submit" class="twikiSubmit" value='%MAKETEXT{"Create by Name"}%' />
+<input type="hidden" name="onlywikiname" value="on" />
+<input type="hidden" name="onlynewtopic" value="on" />
+<input type="hidden" name="templatetopic" value="%WEB%.TemplateJsTest" />
+</form>
+
+
+--- 
+---++ <nop>%WEB% Web Utilities
+<form action='%SCRIPTURLPATH{"search"}%/%WEB%/'>
+   * <input type="text" name="search" size="22" />&nbsp;<input type="submit" class="twikiSubmit" value="%MAKETEXT{"Search"}%" /> - [[WebSearchAdvanced][%MAKETEXT{"advanced search"}%]]
+   * WebTopicList - all topics in alphabetical order
+   * WebChanges - recent topic changes in this web
+   * WebNotify - subscribe to an e-mail alert sent when topics change
+   * WebRss, WebAtom - RSS and ATOM news feeds of topic changes
+   * WebStatistics - listing popular topics and top contributors
+   * WebPreferences - preferences of this web
+</form>
+

@@ -1,0 +1,25 @@
+%META:TOPICINFO{author="SvenDowideit" date="1166451067" format="1.1" reprev="1.2" version="1.2"}%
+<script language="javascript" src="%PUBURL%/%TWIKIWEB%/JSUnitContrib/app/jsUnitCore.js"></script>
+<script language="javascript">
+var stateJSON;
+function localAjaxSuccess(o) {
+    stateJSON = o.responseText;
+    setUpPageStatus = 'complete';  //tell JsUnit we've got the result.
+}
+function setUpPage() {
+    var cObj  = TWiki.InlineEditPlugin.requestTopicState('%WEB%.%TOPIC%', localAjaxSuccess);
+}
+function testAjaxResult() {
+    debug('reply from server %WEB%.%TOPIC%', stateJSON);
+    assertNotUndefined('a response from requestTopicState', stateJSON);
+    var state= eval('('+stateJSON+')');
+    assertNotUndefined('a valid JSON response from requestTopicState', state);
+    assertTrue('returned rev higher than 0', (state.topicRev > 0));
+}
+</script>
+
+*[[%PUBURL%/%TWIKIWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%WEB%/%TOPIC%][Run test with TestRuner]]*
+
+*[[%PUBURL%/%TWIKIWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%WEB%/JsTestSuite][Run JsTestSuite with TestRuner]]*
+
+%META:TOPICMOVED{by="SvenDowideit" date="1166450656" from="Sandbox.JsUnitTest" to="Sandbox.JsTestRequestTopicStateOK"}%

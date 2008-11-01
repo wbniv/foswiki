@@ -1,0 +1,11 @@
+%META:TOPICINFO{author="SvenDowideit" date="1166608658" format="1.1" version="1.56"}%
+
+---++ Topic Title
+   * bullet1
+   * bullet2
+
+new section2 - should be after bullets and before table
+
+|q|w|e|
+|123|234|345|
+|987|987|876|

@@ -1,0 +1,51 @@
+%META:TOPICINFO{author="SvenDowideit" date="1166589534" format="1.1" reprev="1.4" version="1.4"}%
+<script language="javascript" src="%PUBURL%/%TWIKIWEB%/JSUnitContrib/app/jsUnitCore.js"></script>
+<script language="javascript">
+var toSaveTML = "\n---++ Topic Title\n   * bullet1\n   * bullet2\n\nsection 2 with a *little* bold text\n\n|q|w|e|\n|123|234|345|\n|987|987|876|\n\n";
+var stateJSON;
+function localAjaxSuccess(o) {
+    stateJSON = o.responseText;
+    setUpPageStatus = 'complete';  //tell JsUnit we've got the result.
+}
+function setUpPage() {
+// save new topic TML (non-sectional), then ask for that TML to make sure its what we saved..
+    var callback = { 
+	  success: localAjaxSuccess, 
+	  failure: function(o) {alert('Error!\nStatusText='+o.statusText+'\nContents='+o.responseText);}
+        ,argument: ['svenwashere'] 
+	};
+  //have to URI encode the data - to allow + signs in topic text..
+  var browserLogin = '';
+  var postParams = 
+    'replywitherrors=1;'+
+//    'dataType=JSON;'+
+    'text='+encodeURIComponent(toSaveTML)+';'+
+//    'inlineeditsave=1;'+
+    'forcenewrevision=1;'+
+    'username='+browserLogin;
+  var saveUrl = TWikiScriptUrl + '/save/%WEB%/TestTopicSaveFullTopicText';
+  var transaction = YAHOO.util.Connect.asyncRequest('POST', saveUrl, callback, postParams); 
+  return transaction;
+}
+function testAjaxResult() {
+    debug('reply from server %WEB%.%TOPIC%', stateJSON);
+    assertNotUndefined('a response from requestTopicState', stateJSON);
+    var state= eval('('+stateJSON+')');
+    assertNotUndefined('a valid JSON response from requestTopicState', state);
+    assertTrue('returned rev higher than 0', (state.topicRev > 0));
+    assertUndefined('error - topic does not exist', state.error);
+    var theTml = unescape(state.theTml);
+    assertNotUndefined('tml sent back', theTml);
+    var topicText = theTml;
+    if (state.inlineMeta == 1) {
+        //TODO: remove meta.
+        var meta = RegExp('(%META:.*)\n');
+        topicText = topicText.replace(meta, '');      
+    }
+    assertEquals('topic text saved = topic text we asked to save', toSaveTML, topicText);
+}
+</script>
+
+*[[%PUBURL%/%TWIKIWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%WEB%/%TOPIC%][Run test with TestRuner]]*
+
+*[[%PUBURL%/%TWIKIWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%WEB%/JsTestSuite][Run JsTestSuite with TestRuner]]*

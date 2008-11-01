@@ -1,0 +1,3 @@
+TWiki::Plugins::JSPopupPlugin,>=0.01,perl,Required. Download from TWiki:Plugins.JSPopupPlugin and install.
+TWiki::Plugins::WysiwygPlugin,>=1.000,perl,Required. Download from TWiki:Plugins/WysiwygPlugin and install.
+JSON,>=1.00,CPAN,Required. install from CPAN
