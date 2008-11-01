@@ -1,0 +1,218 @@
+---+!! !KupuContrib
+<!--
+   * Set SHORTDESCRIPTION = Integration of the [[http://kupu.oscom.org/][OSCOM Kupu WYSIWYG editor]] with TWiki.
+-->
+%SHORTDESCRIPTION%
+
+%RED% *This Contrib is no longer supported for TWiki versions from 4.1.0. You are recommended to use the TWiki:Plugins.TinyMCEPlugin instead. If you require the KupuContrib supported, please contact TWiki:Main.CrawfordCurrie* %ENDCOLOR%
+
+%TOC%
+
+The integration uses the TWiki:Plugins.WysiwygPlugin to translate text to and from a format that Kupu can edit.
+
+*Caveat*: %TOPIC% is designed for editing TWiki topics, not as a general purpose HTML editor. It will work fine on topics that contain text, TML formatting, and most HTML. However, because of the complexity of transforming TML into HTML and back, complex TML, and mixing HTML and TML may not give the results you expect. You are recommended to use the standard browser textarea editor for editing existing topics that contain mixed HTML and TML, or complex %<nop>TML%-type variables.
+
+---++ How to use the editor
+Basic help for most of the functions in the toolbar is available by "hovering" the mouse over the button. 
+Some functions require a bit more explanation:
+	* "Insert No-Op" inserts a &lt;nop> region. Any TWiki syntax such as wikiwords or variables inside the region will be disabled in the rgeion. $lt;nop> regions may not extend over line breaks.
+	* The rightmost drop-down will give you a menu of TWiki variables that can be inserted. Any of these variables can be edited after they have been placed in the text, for example to add parameters.
+	* "Insert a WikiWord" will give you a menu of topics in the _current web_ that can be inserted. Topics are inserted as links, though typing wikiwords in plain text will work just as well.
+   * Watch out for the &lt;&gt; button on the right of the toolbar. It lets you switch into an HTML view, which can be very useful when you can't get your formatting right.
+   * In TWiki, a totally empty table cell causes the cell to be merged with the cell immediately to the left. To make this effect more transparent in the editor, these empty cells are shown with the text "%<nop>SPAN%" in them. In Kupu, if you add %<nop>SPAN% to a table cell, then all the rest of the content will be thrown away and the cell will be converted to an empty table cell. Note that this only applies to tables that are converted to TWiki syntax.
+
+---++ Kupu Notes
+The version of Kupu shipped with this plugin is an uncustomised basic Kupu release. All the TWikification is done as plugins and extensions to Kupu - the basic kupu code is shipped completely intact.
+
+---++ Installation Instructions
+
+%$INSTALL_INSTRUCTIONS%
+
+Kupu uses a special edit template (see TWiki.TWikiTemplates). 
+
+*Important* Set the name of the skin to use for WYSIWYG editing. This preference can be set in %MAINWEB%.<nop>TWikiPreferences, !WebPreferences or in individual topics. *If it is not set the editor is disabled*. For example,
+	* <nop>Set WYSWIYGPLUGIN_WYSIWYGSKIN = kupu
+
+If you are using TWiki-4.0.0 or later with =pattern= skin, the =%<nop>COMPOSER%= global TWiki variable is used to control the skin used for the WYSIWYG editor link. You can define this variable to the empty string to disable WYSIWYG editing on a site, per-web, per-user or per-topic basis. Set =COMPOSER= to =kupu= to enable this module.
+
+To add the editor to another skin, add the following link to the skin alongside or in place of the existing 'edit' link:<br /><code>&lt;a href="%<nop>SCRIPTURLPATH%/edit%<nop>SCRIPTSUFFIX%/%<nop>WEB%/%<nop>TOPIC%?skin=kupu"&gt;Kupu&lt;/a&gt;</code>
+
+As you can see this is just a standard edit link with the 'kupu' skin in place of the usual edit skin. Here it is for this topic: <a href="%SCRIPTURLPATH%/edit%SCRIPTSUFFIX%/%WEB%/%TOPIC%?skin=kupu">Kupu</a>. Try clicking on it, but _do not save_!
+
+---++ Other Settings
+%INCLUDE{"%TWIKIWEB%.WysiwygPluginSettings"}%
+
+The editor template includes a number of files that can be used for other settings. These files are *not* included in the distribution, so that you can easily create your own local content.
+
+---+++ %TWIKIWEB%.<nop>WysiwygPluginIcons
+You can define a list of icons that will be available in the Kupu editor when the %ATTACHURL%/smiley.png toolbar button is pressed. This topic has to contain a list of &lt;IMG&gt; tags. If present, the 'alt' text will be used in place of the &lt;IMG&gt; tag when translating from HTML to TML. Example:
+<verbatim>
+	<img src="%PUBURL%/TWiki/TWikiDocGraphics/tip.gif" />
+	<img src="%PUBURL%/TWiki/TWikiDocGraphics/warning.gif" />
+	<img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" />
+	<img src="%PUBURL%/TWiki/TWikiDocGraphics/choice-yes.gif" />
+	<img src="%PUBURL%/TWiki/TWikiDocGraphics/updated.gif" />
+	<img src="%PUBURL%/TWiki/TWikiDocGraphics/help.gif" />
+	<img src="%PUBURL%/TWiki/TWikiDocGraphics/new.gif" />
+	<img src="%PUBURL%/TWiki/TWikiDocGraphics/starred.gif" />
+	<img src="%PUBURL%/TWiki/TWikiDocGraphics/arrowright.gif" />
+</verbatim>
+
+---+++ %TWIKIWEB%.<nop>WysiwygPluginStrings
+You can also define a list of strings that will be available for insertion in topics using the %ATTACHURL%/strings.png toolbar button. This topic has to contain a list of HTML 'option' tags. Example:
+<verbatim>
+	<option value='-- <nop>%WIKIUSERNAME% - %DATE%'>Signature</option>
+	<option value="%<nop>WIKINAME%">Wiki name (variable)</option>
+	<option value='%<nop>SEARCH{"search for"}%'>Inline search (variable)</option>
+	<option value='%<nop>INCLUDE{"topic or url"}%'>Include (variable)</option>
+	<option value="%<nop>TOC%"> Table of Contents (variable)</option>
+	<option value="%<nop>TOPIC%">Topic (variable)</option>
+	<option value="%<nop>WEB%">Web (variable)</option>
+	<option value="%<nop>DATE%"> Date (variable)</option>
+</verbatim>
+The bit between the &gt; &lt; =value= defines text in the drop-down box in the editor, and the =value= defines the actual string inserted in the topic.			
+---+++ %TWIKIWEB%.<nop>WysiwygPluginLocalHelp
+If it exists, the contents of this topic will be included and shown on the edit screen below the status bar. It is intended to be used for site-specific quick help information.
+
+---++ Known problems
+---+++ Can't *undo* all functions (Kupu + browser)
+Due to limitations in the browser support for editing, not all functions can be undone. Also, the undo buffer can be cleared unexpectedly during editing, especially when using Internet Explorer.
+
+Because of limitations in the browsers, the editor does not support PRE blocks. All PRE blocks will be converted to TWiki verbatim blocks on save. This can cause some confusion, especially when editor formatting controls (such as "bold") have been used to format text in a PRE block. Users are advised to use only plain text in PRE (verbatim) blocks.
+
+---+++ No Safari support
+Kupu does not work on Safari.
+
+---++ Contrib Info
+
+This extension is brought to you by a [[http://wikiring.com][WikiRing <a href="http://wikiring.com"><img src="%PUBURLPATH%/%TWIKIWEB%/WysiwygPlugin/wikiringlogo20x20.png" title="WikiRing: Professional Wiki Innovation and Support" /></a>]] partner - working together to improve your wiki experience!
+
+|  Contrib Author: | TWiki:Main.CrawfordCurrie http://www.c-dot.co.uk (from original work by TWiki:Main.RomainRaugi, TWiki:Main.DamienMandrioli, TWiki:Main.FredericLuddeni, and TWiki:Main.ColasNahaboo)  |
+|  Copyright | &copy; ILOG 2005 http://www.ilog.fr |
+|  License | [[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License)]] |
+|  Contrib Version: | %$VERSION% |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  5 Aug 2008 | Bugs:Item5885 TWiki:Main.CrawfordCurrie dropped support for this contrib |
+|  14 Jun 2007 | Bugs:Item4116 fix to make it work with VIEW_TEMPLATE |
+|  12119 | Split out of WysiwygPlugin |
+|  11538 | Minor doc updates, minor fixes to spacing in lists, integrated Koen Marten's template topic patch |
+|  9671 | TWikibug:Item2025 - corrected handling of SPAN and FONT tags used for colour changes |
+|  9566 | TWikibug:Item1890 - doc update |
+|  9565 | TWikibug:Item1890 - <a rel='nofollow' href='http://develop.twiki.org/~develop/cgi-bin/view/Bugs/Item1041'>Item1041</a> <a rel='nofollow' href='http://develop.twiki.org/~develop/cgi-bin/view/Bugs/Item944'>Item944</a> Much more aggressive cleanup of HTML pasted in from external sources. Excessively verbose HTML (e.g. from Outlook) was causing apparent infinite looing behaviour. |
+|  8867 | TWikibug:Item1176 - commented out Cairo version of header handler |
+|  8780 | TWikibug:Item1625 - disable expansion of twiki variables in urls where there are other twiki variables that can't be expanded |
+|  8779 | TWikibug:Item1530 - support for templatetopic when editing new topics |
+|  8592 | TWikibug:Item1532 - WysiwygPlugin: Added two more do-not-edit-if-topic-contains parameters, pre+comments |
+|  8590 | TWikibug:Item1532 - WysiwygPlugin: Kenneths suggestion on proper handling of HTML comments (incl. change to kupu) |
+|  8572 | TWikibug:Item1529 - evil, evil. The XMLSerializer in IE isn't happy serializing the DOM. I have no idea why. Kupu manages to get away with this because it passes the DOM through the XML validator, which I had to disable because it strips comments. So, for now, the IE implementation will strip comments - but at least you can save again |
+|  8538 | TWikibug:Item1501 - table handling was a bit spazzy. Several problems fixed. |
+|  8535 | TWikibug:Item1518 - moved icon and string lists into topics, updated screenshot |
+|  8531 | TWikibug:Item1392 - reversed the sense of the navigate-away condition, again |
+|  8466 | TWikibug:Item1486 - added WYSIWYG_EXCLUDE to allow exclusion of 'uneditable' content |
+|  8463 | TWikibug:Item1486 - was stripping comments, wrongly. Had to disable the kupu filters completely, they just do too much damage. |
+|  8401 | TWikibug:Item1457 - corrected problem with bullet list at top of topic |
+|  8388 | TWikibug:Item1445 - fix for a javascript error, introduced by previous fix |
+|  8387 | TWikibug:Item1445 - small usability improvements |
+|  8334 | TWikibug:Item663 - TWiki.org doc merge: Fix incorrect link to kupu website |
+|  8327 | TWikibug:Item1411 - handle case of the result of a TWiki variable being nopped |
+|  8312 | TWikibug:Item1317 - wrong result returned from generation function when expanding HTML embedded in verbatim block |
+|  8301 | TWikibug:Item1397 - removed excess space after sqaub links |
+|  8300 | TWikibug:Item1231 - added %SPAN% to indicate a spanned-over cell in the editor. Improved handling of HTML in verbatim tags by inserting line breaks is the tag type calls for it, before removing the HTML. |
+|  8276 | TWikibug:Item1215 - added WYSIWYG_ICONS and WYSIWYG_TAGS to support user customisation of icon images and twiki variables that can be inserted |
+|  8274 | TWikibug:Item1314 - debugging in case the hang happens again; and made sure to default the editor just in case |
+|  8273 | TWikibug:Item1315 - short forms must be terminated by one of the same characters that terminate wikiwords |
+|  8272 | TWikibug:Item1391 - added special interpretation of IMG tags to expand selected TWiki variables within SRC attributes |
+|  8271 | TWikibug:Item1340 - refined handling of NOP to cover abbrevs |
+|  8270 | TWikibug:Item1311 - removed excess space inserted in headings |
+|  8269 | TWikibug:Item1339 - changed from using arbitrary attribute for notoc to a new CSS class. Arbitrary attributes are stripped by Kupu before save. |
+|  8268 | TWikibug:Item1344 - strip ^Ms inserted by Sarissa during serialisation on IE |
+|  8267 | TWikibug:Item1394 - still can't get text styles to work properly in IE; but I am now firmly of the opinion that the fault lies with the browser, and not with Kupu. |
+|  8232 | TWikibug:Item1341 - added appropriate CSS class |
+|  8152 | TWikibug:Item1313 - added caveat about editing complex HTML and mixed HTML-TML |
+|  8151 | TWikibug:Item1334 - headers not handled properly in Cairo version |
+|  8108 | TWikibug:Item1318 - corrected table/list parser for tables embedded in bulleted lists |
+|  8106 | TWikibug:Item1310 - support for &lt;nop/> |
+|  8105 | TWikibug:Item1317 - support for limited case of nopped variable |
+|  8104 | TWikibug:Item1320 - corrected interpretation of relative URL path in [[]] |
+|  8091 | TWikibug:Item1259 - changed comment handling; rather than trying to create HTML, which gets munged, create an HTML comment. This will only be editable by switching to source view, but hey, it's supposed to be WYSIWYG. Note that this also means that comments in pasted HTML should be retained now |
+|  8063 | TWikibug:Item1042 - spec of SCRIPTURL changed |
+|  7904 | TWikibug:Item1189 - reverting accidental checkin of experimental code |
+|  7903 | TWikibug:Item1189 - filter whitelist is not good enough; need to generate B and I nodes. templates/ pub/TWiki/WysiwygPlugin |
+|  7902 | TWikibug:Item1189 - it took bloody ages to track down, but finally discovered that bold and italic were being filtered out of spans by Kupu 1.3.2.... too smart for it's own good. So added them to the filter whitelist, and it works again. |
+|  7873 | TWikibug:Item1189 - added pre save filter to try and find where the attributes are disappearing to in FF |
+|  7872 | TWikibug:Item1187 - for lack of an s on an RE, the nation was lost (well, the multi-line comment actually). Thanks Kenneth! |
+|  7871 | TWikibug:Item859 - solved issue with non-display of inserted images. Was due to the use of an onSubmit handler to close the dialog, rather than an onLoad handler triggered when the IFRAME that contains the result is loaded. |
+|  7869 | TWikibug:Item1172 - had to rewrite big chunk of the table popup to get it working with 1.3.2 |
+|  7858 | TWikibug:Item1151 - rewrote link handlings stuff to leverage browser better |
+|  7854 | TWikibug:Item1175 - escape wikiwords within squabs |
+|  7815 | TWikibug:Item1158 - works for Cairo now as well |
+|  7814 | TWikibug:Item1158 - first implementation of AJAX interface to allow selectoin of topics from other webs |
+|  7812 | TWikibug:Item1154 - removed non-existent scull.gif |
+|  7811 | TWikibug:Item1155 - added extra recursion block, as Item1155 suggests it is needed |
+|  7801 | TWikibug:Item1042 - All sorts of clever tricks to handle expansion/compression of a subset of TWiki variables when they are used in URLs. Not a complete solution, but better than it was. |
+|  7799 | TWikibug:Item1024 - caught out by recursive call to beforeCommonTagsHandler in Cairo (nasty) |
+|  7798 | TWikibug:Item1042 - whoops, broke \t conversion in Cairo |
+|  7789 | TWikibug:Item1140 - testcase for 1140 |
+|  7788 | TWikibug:Item1140 - fix rewriting of img src urls (and updated MANIFEST for Kupu1.3.2) |
+|  7786 | TWikibug:Item1042 - extensive improvements to variable and URL recognition and conversion |
+|  7766 | TWikibug:Item856 - added doc on EDIT_SKIN to the plugin |
+|  7712 | TWikibug:Item1074 - upgrade to Kupu 1.3.2 complete (at last) |
+|  7710 | TWikibug:Item1074 - Fixed source edit mode |
+|  7709 | TWikibug:Item1074 - tidied up broken toolbar. There are still known issues |
+|  7700 | TWikibug:Item1074 - first pass at moving to Kupu 1.3.2. |
+|  7673 | TWikibug:Item1037 - insert wikiword only if selection is zero length |
+|  7672 | TWikibug:Item977 - changed to remove dangerous Cairo-based assumption, and use context ids instead |
+|  7630 | TWikibug:Item1025 - added 'escape clause' for old handlers implemented to support old TWiki releases without warnings |
+|  7506 | TWikibug:Item941 - Eliminated the last of the dynamic globals to try and solve saving problem. Can;t test with mod_perl, but is fine with speedycgi AFAICT |
+|  7456 | TWikibug:Item873 - minor issue; replace br with \n in pre |
+|  7455 | TWikibug:Item873 - obvious problem parsing closing pre tag on same line as open tag |
+|  7453 | TWikibug:Item710 - Handling HTML comments |
+|  7452 | TWikibug:Item876 - Item945: Item876: spacing around table cells, correct handling of variables. Had to compromise on handling [[]] but I think it's for the best. |
+|  7430 | TWikibug:Item871 - made sure that brackets are generated for non-wikiwords |
+|  7425 | TWikibug:Item928 - removed special interpretation of mailto links |
+|  7424 | TWikibug:Item866 - extended URL parsing to handle USERSWEB and SYSTEMWEB twiki variables, in the same hacky way as the core. |
+|  7416 | TWikibug:Item870 - a couple of corner-cases for correct handling of twiki variables |
+|  7401 | TWikibug:Item899 - changed list generation to use spaces instead of tabs |
+|  7265 | TWikibug:Item180 - removed pointless, outdated dependency check from DateFieldPlugin |
+|  6935 | TWikibug:Item622 - reverted 3 specs to tabs in Set lines in plugins topics for kompatterbility with Kigh-roe |
+|  6905 | TWikibug:Item622 - tabs -> 3 spacesto avoid confusing the users |
+|  6850 | TWikibug:Item638 - added instruction to run configure to all install docs (I hope) |
+|  6827 | TWikibug:Item569 - added default RELEASE to everything that had a version, and removed a load of dead code that was getting in the way |
+|  6758 | TWikibug:Item569 - computed version numbers for plugins from the repository rev they were built from. |
+|  6504 | TWikibug:Item436 - incremented vernos of all changed plugins |
+|  6485 | TWikibug:Item429 - trying to make access controls clearer |
+|  6401 | TWikibug:Item340 - re-initialisation bug found by ColasNahaboo when using mod_perl; fixed by correctly re-initialising the parse stack for each run of the convertor |
+|  6284 | TWikibug:Item340 - Release 0.16 of WysiwygPlugin |
+|  6279 | TWikibug:Item340 - bugfixes for release 0.16 of WysiwygPlugin |
+|  6261 | TWikibug:Item335 - Switched PNGs to indexed mode, as transparency doesn't work on IE for RGB images |
+|  6238 | TWikibug:Item332 - Added context identifier to WysiwygPlugin, and a button to the pattern view template. If WysiwygPlugin is enabled, then the button will appear. Neat, huh? |
+|  6195 | TWikibug:Item196 - getting plugin test suites to pass. Doesn't mean the plugins actually work, just that the test suites run (which is a good indicator) |
+|  6174 | TWikibug:Item168 - checkpoint checking for 0.16 |
+|  6151 | TWikibug:Item186 - more minor updates |
+|  6150 | TWikibug:Item168 - new icons, and a couple of bugfixes, to WysiwygPlugin |
+|  6092 | TWikibug:Item196 - more plugin and contrib fixes for develop; mainly just moving tests around and making sure they all pass. |
+|  6067 | TWikibug:Item138 - had to change to using beforeCommonTagsHandler and also escape % signs to prevent TWiki from rendering internal tags (as reported by Colas) |
+|  5979 | TWikibug:Item168 - corrected stupid error on IE; added screenshot |
+|  5977 | TWikibug:Item168 - release 0.13 |
+|  5948 | TWikibug:Item168 - nearly ready for 0.13 |
+|  5937 | TWikibug:Item168 - corrected images, twikified all images |
+|  5936 | TWikibug:Item168 - the import from cvs has screwed images |
+|  5934 | TWikibug:Item168 - twikified icon images, and renamed some images to be more intention-revealing |
+|  5739 | 0.12 beta release |
+|  5730 | V0.11 |
+|  5714 | Tidied up installer, documentation. Release 0.10 |
+|  5712 | pre-release 0.06 |
+|  5706 | Version 0.05 |
+|  5705 | Checkpoint checking - version 0.03 |
+|  5702 | cvsrmtee old files |
+|  5701 | Check in for prototype release |
+|  5700 | Check in for prototype release |
+|  5699 | Checkpoint |
+|  5698 | Most of the toolboxes are working again |
+|  5693 | Initial commit; doesn't do much except run tests |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Contrib Home: | http://twiki.org/cgi-bin/view/Plugins/KupuContrib |
+|  Feedback: | http://twiki.org/cgi-bin/view/Plugins/KupuContribDev |
+|  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/KupuContribAppraisal |
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the Dev topic instead. -->
