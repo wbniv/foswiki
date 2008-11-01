@@ -1,0 +1,20 @@
+%TMPL:INCLUDE{"edit"}%<!-- -->
+%TMPL:INCLUDE{"editjavascript"}%<!-- -->
+%TMPL:DEF{"textarea"}%<!-- template: edit.paragraph.tmpl -->
+<textarea id="topic" name="paragraph" class="twikiTextarea twikiEditboxStyleProportional" rows="%EDITBOXHEIGHT%" cols="%EDITBOXWIDTH%" style='%EDITBOXSTYLE%' wrap="virtual">%EXTRACTCHAPTER{from="%URLPARAM{"from" default="0"}%" to="%URLPARAM{"to"}%" encode="on" id="1"}%</textarea>
+<textarea id="beforetext" name="beforetext" style="display:none" >%EXTRACTCHAPTER{before="%URLPARAM{"from" default="0"}%" encode="on" id="2"}%</textarea>
+<textarea id="aftertext"  name="aftertext" style="display:none">%EXTRACTCHAPTER{after="%URLPARAM{"to"}%" encode="on" id="3"}%</textarea>
+<textarea id="text" name="text" style="display:none" ></textarea>
+<input type="hidden" name="from" value="%URLPARAM{"from" default="0"}%" />
+<input type="hidden" name="to" value="%URLPARAM{"to"}%" /><!-- //template: edit.paragraph.tmpl -->
+<script type="text/javascript">
+/* to hook into patternskin */
+$(function() {
+  $(".patternActionButtons input").click(function() {
+    beforeSubmitHandler();
+  });
+});
+</script>%TMPL:END%
+%TMPL:DEF{"titleaction"}%(section)%TMPL:END%
+%TMPL:DEF{"pagetitle"}%<h1 class="patternTemplateTitle"><nop>%TOPIC% %MAKETEXT{"(section)"}%</h1>%TMPL:END%
+%TMPL:DEF{"action_buttons"}%%TMPL:P{"button_save"}%&nbsp;%TMPL:P{"button_quietsave"}% %MAKETEXT{"or"}% %TMPL:P{"button_cancel"}%%TMPL:END%

@@ -1,0 +1,10 @@
+data/TWiki/EditChapterPlugin.txt 0644
+lib/TWiki/Plugins/EditChapterPlugin/Core.pm 0644
+lib/TWiki/Plugins/EditChapterPlugin.pm 0644
+pub/TWiki/EditChapterPlugin/ecpjavascript.js 0644
+pub/TWiki/EditChapterPlugin/ecpstyles.css 0644
+pub/TWiki/EditChapterPlugin/ueb.png 0644
+pub/TWiki/EditChapterPlugin/uweb-g.gif 0644
+pub/TWiki/EditChapterPlugin/wikiringlogo40x40.png 0644
+templates/edit.chapter.tmpl 0644
+templates/edittoolbar.chapter.tmpl 0644
