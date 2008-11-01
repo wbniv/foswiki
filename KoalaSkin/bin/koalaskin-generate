@@ -1,0 +1,1844 @@
+#!/bin/bash
+VERSION=3.2
+#set -x
+#TODO: ATTRIBUTE=Accountable:Main.CatherineChat   ATTRIBUTE=Scope:Optim
+#      for  http://wiki.ilog.fr/wiki/bin/view/RND/CollaborationAreaHome
+
+#set -a # do not enable this: it triggers a bash bug, see:
+        # http://www.geocrawler.com/archives/3/342/1998/9/0/1936831/
+
+# restart script to get 8bits identifiers if needed
+if test -z "$LANG" -o "$LANG" = C; then export LANG=en_US;exec "$0" "$@"; fi
+
+#------------ Configuration of koalaskin-generate: Start ---------------------
+# if you want tu customize this, just copy this section into a file named
+# koalaskin-generate.cfg that you will install in the same dir as
+# koalaskin-generate (in the bin/ of the TWiki install), and customize.
+# Where is the wiki dir. You must change this, or execute this script from
+# wiki dir if data and templates dirs are subdirs.
+if test ! -d data; then export DIR=/var/www/htdocs/wiki
+else DIR="$PWD"
+fi
+# Change below only for non-standard installs
+# Where are the data files (used to find TWiki/KoalaSkinWebList.txt )
+export data=$DIR/data
+# Where are the perl TWiki files (used to probe code/addons )
+export lib=$DIR/lib
+# Where are the template files
+export templates=$DIR/templates
+# wehere are the pub files
+export pub=$DIR/pub
+# name of the web where you put the KoalaSkinWebList topic
+# was Main (%MAINWEB% / $mainWebname in TWiki config) in 2.14 and before, 
+# then TWiki (%TWIKIWEB% / $twikiWebname) afterwards
+export wlw=TWiki
+# name of Home topic in web if you renamed it (%HOMETOPIC% in config)
+export webhome=WebHome
+# path of GNU utilities for Unixes other than linux, cygwin, freebsd, ...
+# export grep=/usr/gnu/bin/grep
+export grep=grep
+# export cc=/usr/gnu/bin/gcc
+export cc; if [ "$OSTYPE" = cygwin ]; then cc=gcc; else cc=cc; fi
+# export grep=/usr/gnu/bin/grep
+export sed=sed
+# name of the view script (without suffix)
+export view=view
+# a directory where you can execute code, if you cannot in /tmp
+export exectmp=/tmp
+#------------ Configuration of koalaskin-generate: End -----------------------
+
+# load configuration file
+# note: the _XXX vars & functions are loaded from templates/ks_config
+export config=
+case "$0" in */* ) config="$0".cfg;;
+  *) OIFS="$IFS";IFS=":";for p in $PATH; do if [ -x $p/koalaskin-generate ]
+    then config="$p/koalaskin-generate".cfg;fi;done;IFS="$OIFS" ;;
+esac
+if [ -e "$config" ]; then source "$config"; fi
+
+# usage:
+# without arguments: generates the templates
+# -d: generate a distrib in /tmp
+# -c: generate a config file
+# -i: outputs a template for TWiki.KoalaSkinWebList
+# -r: removes koalaskin files
+# -o: offsite, do not check dir presences
+# -x: debug mode, traces shell instructions
+# -ccg: creates WebChangesGroup topics (do it once)
+
+# lists of hierarchical webs: bullet list in topic TWiki.KoalaSkinWebList
+# Format: space-separated items
+#   1 level one bullet / web group / hue [ options] [ / comments ]
+#     hue is a 2-digit hex
+#     background is the optional hex of the color (without #-prefix)
+#     options can be: 
+#       EMPTY means that the group is empty and has only a list of sub-webs
+#             as its web home and no topic list
+#       NOTAB this web do not appear in navigation tabs nor sitemap
+#       HIDDEN this web do not appear in navigation tabs
+#       FORM_LM, FORM_TL, FORM_TO, FORM_TR, FORM_BL, FORM_BR position of the form
+#       NOMARGIN for getting rid of the left margin menu
+#   2 level two bullet / web name [ / comments ]
+#   3 other colors are set in TWiki�Preferences:  KSCOLORBG, KSCOLORHEADER, KCCOLORUNSEL
+# comments can be on following lines after a web, but indented
+
+# doc of the skin in $DIR/data/KoalaSkin.txt
+
+# ___________________________________________________________DOCUMENTATION 
+# Webs are numbered as they are encountered, from 0 (index name is #web)
+# Groups are numbered as they are encountered, from 0 (index name is #group)
+# 
+# Variables:
+#   Arrays:
+#     group:  group names, #group-indexed
+#     groupnum: their nweb number, #group-indexed
+#     isgroup: non-nil (ngroup) if it is a group, #web-indexed
+#     subwebs:  subgroups (space-separated list), #group-indexed
+#     colors: hues (xx or xxxxxx) #group-indexed
+#     webnames: names of webs, #web-indexed
+#     comments: comments of webs, #web-indexed
+#     colors1, colors2, colors3: standard computed colors (RGB), #web-indexed
+#     colors4
+#     emptygroup: non-nulstring if group is empty #group-indexed
+#     notab: do not show tab if non-nil, #web-indexed
+#     noshow: list (,-separated) of other webs not to show #web-indexed
+#     ishidden: non-nil if hidden (implies notab), #web-indexed
+#     nosearch: non-nil if NOSEARCHALL twiki var is set, #web-indexed
+#     searchgroup: searchable webs in group, #web-indexed
+#     tabnames: name of web to be displayed in navbar tab, #web-indexed
+#     urls: if defined for a web or group this web do not exist in wiki, and
+#         the tab only directs to this URL #web-indexed
+#     attributes: space-separated list of attributes name:values
+#         (unordered) #web-indexed
+#   Scalar:
+#     nwebs: total number of webs
+#     ngroups: total number of groups
+#     attribute_names: space-separated list of additional attributes
+#	  (columns in the sitemap)
+#     attribute_count: total number of attributes
+# 
+# For each group name Xxx, the numeric variables:
+#     num_Xxx holds its #web index
+#     numg_Xxx is #group index
+#
+# For each template file "TTT.koala.tmpl", TC_TTT contains its contents
+# (in TTT name, nonalpha are replaced by _), with \ and & replaced by
+# the control chars  and 
+# ___________________________________________________________DOCUMENTATION
+
+############################################################ Definitions
+
+if [ ${BASH_VERSINFO[0]} = 1 ]; then
+  echo bash 1.x is too old. Please use at least bash 2.x. Aborting.
+  exit 1
+fi
+# enables extended globbing: ?(...) +(...) *(...) @(...) !(...)
+shopt -s extglob
+shopt -s nullglob
+export weblist=$data/$wlw/KoalaSkinWebList.txt
+export verbose=true
+# the following char is 0xA0, not space
+export nbsp=`printf '\xa0'`
+export weblistsep='|'
+export ctrlm=`printf '\r'`
+# define the following to "$nbsp" if you want empty groups to have its
+# empty subweb bar be the same height as usual.
+export emptybar=''
+# hack for handling arrays in bash: ${N[num_$webname]} to get index...
+# initialize to max value handled by N with the following function
+N_init () {
+  local i=0
+  while let "i<=$1"; do N[i]=$i; let i=i+1
+  done
+}
+export s='[ 	]'
+export nots='[^ 	]'
+export KSCOLORBG='#FFFFFF'
+export KSCOLORUNSEL='#e0e0c0'
+export KSCOLORSEL='#ffddaa'
+export KSICON='<img src="%WIKILOGOIMG%" border=0 class=ks_icon>'
+export KSTITLE=
+export KSHELP="%SCRIPTURLPATH%/$view%SCRIPTSUFFIX%/TWiki/WelcomeGuest"
+export KSLMARGIN=110
+export KSTABWIDTH=80
+export margin="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+export KSNOEXPAND=false
+export KSLEFTTOPICS='%TMPL:INCLUDE{"ks_lefttopics"}%'
+export KSNOLEFTTOPICS='%TMPL:INCLUDE{"ks_nolefttopics"}%'
+export KSNOWEBSBAR=
+export KSWEBSRELATEDBAR=
+export KSWEBMAP=
+export KSWEBMAPTOPIC=
+export KSWEBMAPLEGEND=
+export NOACCESS=
+export noaccess_sed1=
+export noaccess_sed2=
+export FILEPERMS=
+export FORM_POS=
+export CSS=
+export SITECSS=
+export FAVICON=
+export favicon_sed=
+export NOMARGIN=
+export nomarginsed=
+export onsite=true
+export breakafterwebs=
+export grouphasbreak=
+export nosearchall_webs=" "
+export stylesheet=
+export KSTHEME=
+export attribute_names
+export attribute_count=0
+export last_css=
+export cairo_fixes=
+# arrays
+declare -ax N nomargin nosearch searchgroup tabnames ishidden notab noshow
+declare -ax colors1 colors2 colors3 colors4 forms nowebsbar theme charset
+declare -ax websrelatedbar urls attributes bgcolor
+N[0]=0
+nosearch[0]=false
+# forms: view must be expansed into %META{"form"}%, vars:
+# FORM_LM, FORM_TL, FORM_TO, FORM_TR, FORM_BL, FORM_BR
+
+
+# templates
+list_koala_templates () {
+  (cd $templates; for i in *.koala.tmpl; do 
+   case "$i" in *-*) :;; *) echo -n " ${i%.koala.tmpl}";; esac;done )
+}
+export expansed_files="`list_koala_templates`"
+export KSTEMPLATES="$expansed_files"
+
+# vars to be declared in site prefs (spaces before and after needed)
+export needed_vars='SKIN TOPICS TOPICSTOP EDITBOXSTYLE CSS PRINTCSS KSBUTTONS RELATEDWEBS BROADCASTMESSAGE'
+export nwebs=
+export ngroups=
+export to_declare=
+export template_expand_sed=
+
+. $templates/ks_config
+
+# internal use
+export stripimages do_weblist_template do_generate_distrib do_remove_files
+export onsite do_nothing do_create_changes_group
+needed_vars=" $needed_vars "
+
+# versions (true/false)
+export v_cairo=false
+
+############################################################ options, init
+
+parse_options () {
+  echo "Koala Skin generator, v$VERSION"
+  stripimages=cat
+  while test -z "${1##-*}" -a -n "$1";do 
+    case "$1" in
+      -i) do_weblist_template=true;;
+      -d) do_generate_distrib=true;;
+      -c) do_generate_config=true;;
+      -r) do_remove_files=true;;
+      -n) do_nothing=true;;
+      -o) onsite=false;;
+      -x) set -x;;
+      -ccg) do_create_changes_group=true;;
+      *) echo "See: http://twiki.org/cgi-bin/view/Plugins/KoalaSkin"; exit;;
+    esac
+    shift
+  done  
+  if test -d "$DIR";then cd "$DIR"
+  fi
+}
+
+check_weblist () {  
+  if test ! -d $templates; then error "Could not find templates as $templates"
+  elif test ! -d $data; then error "Could not find data as $data"
+  elif test ! -e $data/$wlw/KoalaSkinWebList.txt; then
+    if test -e $data/Main/WebList.txt; then
+      echo "*** You were using the old weblist at Main.WebList (pre-2.14)."
+      echo "*** Trying to rename into the new TWiki.KoalaSkinWebList..."
+      if mv $data/Main/WebList.txt $data/$wlw/KoalaSkinWebList.txt; then
+	echo OK
+      else
+	error "Could not do it. Please move it yourself and restart!"
+      fi
+    else
+      error "I could not find the topic $wlw.KoalaSkinWebList. Did you create one?
+      Run this script with -i to generate a sample one, as:
+        ./bin/koalaskin-generate -i >$data/$wlw/KoalaSkinWebList.txt
+	chmod a+rwx /$data/$wlw/KoalaSkinWebList.txt
+      (or edit in TWiki and copy and paste)
+      If you did, I cannot find its file at data/$wlw/KoalaSkinWebList.txt
+      Please check and edit the variables at the top of the 
+      bin/koalaskin-generate script: DIR, data, templates, main...
+      Or execute the script from your wiki install dir!"
+    fi
+  fi
+  if test ! -e bin/.htaccess; then echo 'SetHandler cgi-script
+Options +ExecCGI' >bin/.htaccess
+  fi
+  if test ! -e $data/TWiki/WebChangesGroup.txt; then create_changes_groups; fi
+  if test ! -d $pub/_ks; then mkdir -p $pub/_ks; chmod a+rwx $pub/_ks; fi
+}
+
+check_wiki_version () {
+  if fgrep -qs '$saveaction eq "checkpoint"' $lib/TWiki/UI/Save.pm; then
+    v_cairo=true
+    # save action are now lowercase in cairo
+    for r in Save.save QuietSave.quietsave Checkpoint.checkpoint \
+      Preview.preview Cancel.cancel;do
+      cairo_fixes="$cairofixes;s/input type=submit name=action value=${r%.*}/input type=submit name=action value=${r#*.}/g"
+    done
+    cairo_fixes="${cairofixes#;}"
+  fi
+}
+ 
+# warning: while reading this, we have not yet set the theme-specific
+# customizations (functions such as _KSLEFTBOX_link, etc...)
+ 
+init () {
+  if [ -n "$PATH_INFO" ]; then # we are called from the web, output HTTP header
+    echo 'Contents-type: text/us-ascii';echo
+  fi
+
+  generate_rgb2hsvhex; generate_hsv2rgbhex
+  nweb=0;ngroup=-1
+  IFS="$IFS$ctrlm"
+  comment=
+  sed -e 's/<br[ \/]*>/ |/g' < $templates/ks_lefttopics.koala.tmpl > \
+    $templates/ks_nolefttopics.koala.tmpl
+  chmod -f a+rw $templates/ks_nolefttopics.koala.tmpl
+  while read bullet web color rest; do
+    if [ "$bullet" = '==*' -a "$web" = "Set" -a "${color:0:2}" = "KS" ]; then
+      # Set VAR = Value
+      case "$color" in
+	KSCOLORBG) KSCOLORBG="${rest#= }";;
+	KSCOLORUNSEL) KSCOLORUNSEL="${rest#= }";;
+	KSCOLORSEL) KSCOLORSEL="${rest#= }";;
+	KSICON) KSICON="${rest#= }";;
+        KSTITLE) KSTITLE="${rest#= }";;
+	KSHELP) KSHELP="${rest#= }";;
+	KSLMARGIN) KSLMARGIN="${rest#= }";;
+	KSTABWIDTH) KSTABWIDTH="${rest#= }";;
+	KSNOICONS) KSNOICONS="${rest#= }";;
+	KSNOEXPAND) KSNOEXPAND="${rest#= }"
+		    if [ "z$KSNOEXPAND" != "zfalse" ]; then KSNOEXPAND=true;fi
+		    ;;
+	KSFILEPERMS) FILEPERMS="${rest#= }";;
+	KSFORM_POS) FORM_POS="${rest#= }";;
+	KSCSS) CSS="${rest#= }";;
+	KSNOACCESS) NOACCESS="${rest#= }";;
+	KSNOMARGIN) NOMARGIN="${rest#= }";;
+	KSLEFTTOPICS) KSLEFTTOPICS="${rest#= }";;
+	KSNOLEFTTOPICS) KSNOLEFTTOPICS="${rest#= }";;
+	KSNOWEBSBAR) KSNOWEBSBAR="${rest#= }";;
+	KSWEBSRELATEDBAR) KSWEBSRELATEDBAR="${rest#= }";;
+	KSTHEME) KSTHEME="${rest#= }";KSTHEME="${KSTHEME//,/ }";;
+	KSWEBMAP) KSWEBMAPTOPIC="${rest#= }"
+		  if test -z "$KSWEBMAPTOPIC";then KSWEBMAPTOPIC=WebTree;fi;;
+        # other KS* vars are just exported in the env, may be used by themes
+	KS*) declare -x "$color=${rest#= }";;
+      esac      
+      store_comments $nweb "$comment"
+    else
+      case "$web" in
+	'#'*) store_comments $nweb "$comment";;
+        *) case "$bullet" in
+        # subweb
+        ==[*]) if let 'ngroup<0';then 
+	         error "line: \"   ${bullet#==} $web $color $rest\" : 
+A group must precede a subweb! \
+This error can happen if you have bulleted items in KoalaSkinWebList that are not \
+web descriptions or KS-variable declarations. Put these as bullets of level \
+3 or more, or use HTML: <ul><li>..."
+               fi
+         if test -n "$web"; then
+	   web="${web//<nop>}"
+	   subwebs[ngroup]="${subwebs[ngroup]} $web"
+	   webnames[nweb]="$web";store_comments $nweb "$comment"
+	   comment="$color $rest"
+	   lastwebname="${group[ngroup]}.$web"
+	   colors1[nweb]=$color1; colors2[nweb]=$color2; colors3[nweb]=$color3
+	   colors4[nweb]=$color4
+	   to_declare="$to_declare num_$web=$nweb"
+	   nosearch[nweb]=`nosearchall_flag $web`
+	   let nweb=nweb+1
+         else 
+	   breakafterwebs="$breakafterwebs|$lastwebname"
+	   grouphasbreak="$grouphasbreak|${group[ngroup]}"
+	 fi
+         ;;
+        # web group
+        =[*]) 
+	 if test -n "$web"; then
+	   web="${web//<nop>}"
+	   let ngroup=ngroup+1;group[ngroup]=$web
+	   subwebs[ngroup]='';colors[ngroup]="$color"
+	   groupnum[ngroup]=$nweb
+	   isgroup[nweb]=$ngroup
+	   webnames[nweb]="$web"
+	   store_comments $nweb "$comment"
+	   comment="$rest"
+	   nosearch[nweb]=`nosearchall_flag $web`
+	   color1=`color1 $color`;color2=`color2 $color`;color3=`color3 $color`
+	   color4=`color4 $color`
+	   colors1[nweb]=$color1
+	   colors2[nweb]=$color2
+	   colors3[nweb]=$color3
+	   colors4[nweb]=$color4
+	   to_declare="$to_declare num_$web=$nweb numg_$web=$ngroup"
+	   let nweb=nweb+1
+	 fi
+         ;;
+        # comment
+        =*) while test "$bullet" != "${bullet#=}"; do bullet="${bullet#=}";done
+	  comment="$comment ${bullet##=} $web $color $rest"
+	 ;;
+        # rest
+        *) store_comments $nweb "$comment"
+      esac
+      ;;
+    esac
+    fi
+  done 
+  nwebs=$nweb
+  lastgroup=$ngroup; let ngroup=ngroup+1; ngroups=$ngroup
+  N_init $nwebs
+}
+
+process_options () {
+  local n web
+  store_comments $nweb "$comment"
+  parse_web_options
+
+  if test -n "$KSNOICONS";then stripimages=strip_images;fi
+  n=0
+  V "Webs: $nwebs in $ngroups groups:"
+  while let 'n<ngroups';do 
+    V "  [$n] ${group[n]} (${colors[n]})${emptygroup[n]}: ${subwebs[n]}"
+    let n=n+1
+  done
+
+  # clean stuff from previous versions
+  for oldfile in leftbar.koala.tmpl;do
+    if test -e $oldfile;then rm -f $oldfile */$oldfile; fi
+  done
+  case "$FORM_POS" in
+    FORM_LM|FORM_TL|FORM_TO|FORM_TR|FORM_BL|FORM_BR) : ;;
+    *) FORM_POS=FORM_BL;;
+  esac
+  if [ -n "$CSS" ]; then
+    SITECSS="<link rel='stylesheet' type='text/css' href='$CSS'>"
+  fi
+  if [ -z "$NOACCESS" ]; then noaccess_sed1='#';noaccess_sed2='#'
+    else noaccess_sed1='s/accesskey=[a-zA-Z0-9]//g'
+      noaccess_sed2="s/title=\(['\"]\)[[]Alt-.[]] */title=\1/g"
+  fi
+  if test -f $pub/$wlw/KoalaSkinWebList/favicon.ico; then
+    FAVICON='s|%FAVICON%|<link rel="SHORTCUT ICON" href="%PUBURLPATH%/'$wlw'/KoalaSkinWebList/favicon.ico">|'
+  else
+    FAVICON="/ *%FAVICON% */d"
+  fi
+  # compute searchgroup
+  n=0
+  local searchwebgroup
+  while let 'n<ngroups';do 
+    searchwebgroup=
+    for web in ${group[n]} ${subwebs[n]}; do
+      nweb="${N[num_$web]}"
+      if "${nosearch[nweb]}"; then :
+      else searchwebgroup="$searchwebgroup $web"
+      fi
+    done
+    for web in ${group[n]} ${subwebs[n]}; do
+      nweb="${N[num_$web]}"
+      if "${nosearch[nweb]}"
+      then searchgroup[nweb]="$web $searchwebgroup"
+      else searchgroup[nweb]="$searchwebgroup"
+      fi
+    done
+    let n=n+1
+  done
+}
+
+# generate common (non web-specific) data
+generate_common () {
+  sed -e 's/background:[^;}]*;*//g' \
+   < $templates/style.koala.tmpl | expand_global_vars | expand_colors > \
+     $pub/_ks/style.css
+  chmod -f a+rw $pub/_ks/style.css
+}
+
+# $1 = webnum, $2 = comment
+store_comments () {
+  local nweb1
+  if let "$1>0"; then
+    let nweb1="$1-1"
+    if test -z "${comments[nweb1]}"; then comments[nweb1]="$2"
+    fi
+  fi
+}
+
+# $1 = last webnum + 1
+# checks for options: EMPTY HIDDEN NOMARGIN FORM_* ...
+parse_web_options () {
+  shopt -s extglob
+  local n=0 check_options comment ngroup option tgroup localtheme=false
+  while let 'n<nwebs'; do
+    check_options=true
+    nowebsbar[$n]="$KSNOWEBSBAR"
+    websrelatedbar[$n]="$KSWEBSRELATEDBAR"
+    bgcolor[$n]="$KSCOLORBG"
+    theme[n]=""
+    while $check_options; do
+      comment="${comments[n]##+([ 	])}"
+      # add space in case no descriptions
+      case "$comment " in
+	EMPTY$s*) ngroup="${isgroup[n]}"
+		  if test -n "$ngroup"
+		  then emptygroup[$ngroup]='[EMPTY]'
+		  else W "EMPTY option on a subweb ([$n] ${webnames[n]}) , only valid on groups"
+		  fi
+		  comments[n]="${comment#*[ 	]}" 
+		  ;;
+	HIDDEN$s*) ishidden[$n]='[HIDDEN]';notab[$n]='[NOTAB]'
+		   comments[n]="${comment#*[ 	]}" 
+		   ;;
+	NOTAB$s*) notab[$n]='[NOTAB]'
+		   comments[n]="${comment#*[ 	]}" 
+		   ;;
+	NOSHOW=+($nots)$s*) option="${comment%%[ 	]*}"
+			    noshow[n]=",${option#*=},"
+			    comments[n]="${comment#*[ 	]}"
+			    ;;
+	NOWEBSBAR$s*) nowebsbar[$n]=true
+		   comments[n]="${comment#*[ 	]}" 
+		   ;;
+	WEBSBAR$s*) nowebsbar[$n]=
+		   comments[n]="${comment#*[ 	]}" 
+		   ;;
+	WEBSRELATEDBAR$s*) websrelatedbar[$n]=true
+		   comments[n]="${comment#*[ 	]}" 
+		   ;;
+	NOSEARCH$s*) nosearchall_webs="$nosearchall_webs ${webnames[n]} "
+		   comments[n]="${comment#*[ 	]}" 
+		   ;;
+	NOMARGIN$s*) nomargin[$n]='[NOMARGIN]'
+		     comments[n]="${comment#*[ 	]}" 
+		     ;;
+        FORM_@(LM|TL|TO|TR|BL|BR)$s*) forms[n]="${forms[n]} ${comment%%[ 	]*}"
+				  comments[n]="${comment#*[ 	]}" 
+				  ;;  
+	TABNAME=+($nots)$s*) option="${comment%%[ 	]*}"
+			     tabnames[n]="${option#*=}"
+			     comments[n]="${comment#*[ 	]}"
+			     ;;
+	THEME=+($nots)$s*) option="${comment%%[ 	]*}"
+			   theme[n]="${option#*=}"
+			   theme[n]="${theme[n]//,/ }"
+			   comments[n]="${comment#*[ 	]}"
+			   localtheme=true
+			   ;;
+	URL=+($nots)$s*) option="${comment%%[ 	]*}"
+			 urls[n]="${option#*=}"
+			 comments[n]="${comment#*[ 	]}"
+			 ;;
+	ATTRIBUTE=+($nots)$s*) option="${comment%%[ 	]*}"
+			 declare_attribute $n "${option#*=}"
+			 comments[n]="${comment#*[ 	]}"
+			 ;;
+	@(BGCOLOR|COLORBG)=+($nots)$s*) option="${comment%%[   ]*}" 
+                         bgcolor[n]="${option#*=}" 
+                         comments[n]="${comment#*[      ]}" 
+                         ;; 
+	*) check_options=false;;
+      esac
+    done
+    # options post-processing
+    if [ -z "${tabnames[n]}" ]; then tabnames[n]="${webnames[n]}"; fi
+    ngroup="${isgroup[n]}"
+    if ! $localtheme; then theme[n]=SUPER; fi # no THEME= ? ==> inherit
+    if test -n "$ngroup"; then
+      theme[n]="${theme[n]//SUPER/$KSTHEME}"
+    else
+      tgroup="${theme[ngroup]}"
+      theme[n]="${theme[n]//SUPER/$tgroup}"
+    fi
+
+    let n=n+1
+  done
+}
+
+# looks into the TWiki site prefs to see if user has set the needed vars
+check_ks_variables () {
+  local tp v
+  if $onsite; then
+    for tp in $data/*/TWikiPreferences.txt; do
+      for v in `egrep '^	+[*] +Set +[A-Z_]+ +=' $tp | sed -e 's/^[	 *]*Set  *\([A-Z_][A-Z_]*\) .*/\1/'`; do
+	needed_vars="${needed_vars/ $v / +$v }"
+      done
+    done
+    for v in $needed_vars; do
+      case "$v" in
+	+*) : ;; # ok, found
+	*) W You must define the TWiki variable \"$v\" in TWiki.TWikiPreferences, e.g.:
+	   echo "      * Set $v ="
+	   ;;
+      esac
+    done
+  fi
+  if [ -n "$KSWEBMAP" ]; then 
+    KSWEBMAPLEGEND=", on map icon (<img src='%PUBURLPATH%/_ks/sitemap.gif' width=16 height=16 border=0 alt='sitemap icon'>) to see its map, and on \"what's new?\" icon (<img src='%PUBURLPATH%/%TWIKIWEB%/TWikiDocGraphics/changes.gif' width=16 height=16 border=0 alt=\"what's new icon\">) to see the latest changed topics in the web"
+  fi
+}
+
+# return non-nil if NOSEARCHALL twiki var is set in prefs of webname ($1)
+# except if SEARCHINGROUP is set
+nosearchall_flag () {
+  if [ -n "$nosearchall_webs" ]; then
+    case "$nosearchall_webs" in
+      " $1 ") echo true;;
+      *) echo false;;
+    esac
+  else
+    if grep -q '^		*[*] Set NOSEARCHALL = *[^ 	'"$ctrlm]" \
+     $data/$1/WebPreferences.txt
+    then 
+      if grep -q '^		*[*] Set SEARCHINGROUP = *[^ 	'"$ctrlm]" \
+       $data/$1/WebPreferences.txt
+      then echo false
+      else echo true
+      fi
+    else echo false
+    fi
+  fi
+}
+
+########################################################## Template Generation
+generate_sitemaps () {
+  local nweb
+  generate_sitemap | $stripimages > $templates/sitemapwebs.koala.tmpl
+  cp $templates/sitemapwebs.koala.tmpl $data/TWiki/WebSiteMap.txt
+  chmod_rw $data/TWiki/WebSiteMap.txt
+  local nwebdir=0 webdir
+  VC;VC "Sitemaps: "
+  while test -n "${webnames[nwebdir]}"; do
+    webdir="${webnames[nwebdir]}"
+    nweb="${N[num_$webdir]}"
+    if [ -z "${urls[nweb]}" ]; then
+      VC " $webdir"
+      generate_sitemap "$webdir" | $stripimages > $templates/$webdir/sitemapwebs.koala.tmpl
+    fi
+    let nwebdir=nwebdir+1
+  done
+  VC
+}
+
+# $1 = web
+generate_sitemap () {
+  local nweb=0 web class ingroup tooltip awn maplink maplings url
+  width=$KSTABWIDTH
+  if [ "$KSWEBMAP" ]; then
+    echo "$_KSWEBMAP"
+    maplinks="$_KSWEBMAP_maplinks"
+  else
+    echo "$_KSWEBMAP_maplinks_none"
+  fi
+  echo "<!-- START -->"
+  while test -n "${webnames[nweb]}"; do
+    web="${webnames[nweb]}"
+    if [ -n "${ishidden[nweb]}" ]; then let nweb=nweb+1;continue
+    fi
+    if test "$1" = "$web"; then class=selectedWeb; else class=web
+    fi
+    if [ "$KSWEBMAP" ]; then
+      if [ -z "${urls[nweb]}" ]; then
+	_KSWEBMAP_maplink
+      else
+	_KSWEBMAP_maplink_none
+      fi
+    fi
+    if test -n "${isgroup[nweb]}"; then # we start a new group
+      ingroup=true
+      echo "<!-- # $web # -->"
+      _KSWEBMAP_newgroup
+    else # we are in a subweb
+      if $ingroup; then	ingroup=false
+	echo "<!-- subwebs -->"
+      fi
+      echo -n "<!-- + $web + -->" 
+      _KSWEBMAP_newweb
+    fi
+    if [ "${tabnames[nweb]}" = $web ]; then awn=
+      else _KSWEBMAP_awn
+    fi
+    tooltip=`quote_attval "${comments[nweb]}"`
+    if [ -z "${urls[nweb]}" ]; then
+      url="%SCRIPTURL%/$view%SCRIPTSUFFIX%/$web/%HOMETOPIC%"
+    else
+      url="${urls[nweb]}"
+    fi
+    _KSWEBMAP_entry "$url" "${tabnames[nweb]}" "$class" "$tooltip" "$maplink"
+    let nweb=nweb+1
+  done
+  echo "<!-- END -->"
+  echo "$_KSWEBMAP_end"
+}
+
+# groupmap is a subset of the sitemap reduced to the group
+generate_groupmaps () {
+  local curgroup=0
+  while let 'curgroup<ngroups'; do
+#    if [ -n "${emptygroup[curgroup]}" ]; then
+    nweb=${groupnum[curgroup]}
+    if [ -z "${urls[nweb]}" ]; then
+      local gn=${groupnum[curgroup]}
+      _KSGROUP_legend > $templates/${group[curgroup]}/groupmap.koala.tmpl
+      sed -e '/^<!-- START -->$/,/^<!-- ##* '"${group[curgroup]}"' ##* -->$/d' \
+       -e '/^<!-- ##* [A-Za-z0-9_]* ##* -->$/,/^<!-- END -->$/d' \
+       -e '/^<tr>/,/<!-- subwebs -->/d' \
+       < $templates/${group[curgroup]}/sitemapwebs.koala.tmpl \
+       >$data/TWiki/WebSiteMap_${group[curgroup]}.txt
+      chmod_rw $data/TWiki/WebSiteMap_${group[curgroup]}.txt
+      cat $data/TWiki/WebSiteMap_${group[curgroup]}.txt \
+       >> $templates/${group[curgroup]}/groupmap.koala.tmpl
+    fi
+#    fi
+    let curgroup=curgroup+1
+  done
+}
+
+# $1= nweb $2=Attname:value
+declare_attribute () {
+  local var val
+  nweb=$1
+  var="${2%%:*}"; val="${2#*:}"
+  case " $attribute_names " in 
+    *" $var "*) ;; 
+    *) attribute_names="$attribute_names $var"
+       let attribute_count=attribute_count+1;;
+  esac
+  attributes[nweb]="${attributes[nweb]} $2"
+}
+
+# add a CSS style for color of each web to all stylesheets
+# $1 = web
+add_style_colors () {
+  local nweb=0 web
+  while test -n "${webnames[nweb]}"; do
+    web="${webnames[nweb]}"
+    (echo ".bg1-${web}{background:#${colors1[nweb]};color:white;}"
+    echo ".bg2-${web}{background:#${colors2[nweb]};color:white;}") \
+     >> $templates/$1/style.koala.tmpl
+    let nweb=nweb+1
+  done
+}
+
+# $1 = group, $2 = webs, $3 = hue
+# globals: curgroup, lastgroup (indexes)
+generate_group_skin () {
+  local web empty_flag nweb
+  KSCOLORWEB=`color1 $3`
+  KSCOLORWEBFILL=`color2 $3`
+  KSCOLORWEBFILL2=`color4 $3`
+  KSCOLORWEBFG=`color3 $3`
+  KSCOLORWEBUNSEL=$KSCOLORWEB
+  
+  # Create the per-web CSS stylesheets style.koala.tmpl 
+  # and menu bars websbar.koala.tmpl
+  for web in $1 $2;do
+    local curtheme
+    nweb="${N[num_$web]}"
+    . $templates/ks_config
+    for curtheme in ${theme[nweb]}; do
+      if [ -e $templates/_koalathemes/$curtheme/ks_config ]; then
+	. $templates/_koalathemes/$curtheme/ks_config
+      elif [ -e $templates/ks_config-$curtheme ]; then
+	. $templates/ks_config-$curtheme
+      fi
+    done
+    set_theme_vars $web
+    empty_flag=
+    if [ -z "${urls[nweb]}" ]; then 
+      VC " $web"
+      check_dir $web
+      KSWEBSEARCH="`generate_search_options $web $1 \"$2\"`"
+      if [ "$web" = "$1" -a -n "${emptygroup[curgroup]}" ];then empty_flag=true
+      fi
+      generate_group_css $web $1 "$2" "$empty_flag" $nweb
+      update_css_link $web
+      generate_websbar $web "$1" "$2" $nweb | $stripimages \
+       >$templates/$web/websbar.koala.tmpl
+    fi
+  done
+}
+
+# $1=web
+check_dir () {
+  if $onsite; then
+    if test ! -d $data/$1; then error "Could not find Web $1"
+    fi
+  fi
+  if test ! -d $templates/$1;then 
+    mkdir $templates/$1;chmod a+rwx $templates/$1
+  fi
+}
+
+# if FILEPERMS defined, chmod the generated files so that other users
+# can run the script
+check_perms () {
+  case "$FILEPERMS" in
+    ALL) (cd $templates
+	 chmod -f -R a+rw ${webnames[@]} sitemapwebs.koala.tmpl 2>/dev/null) ;;
+    '') ;;
+    *) (cd $templates
+       chgrp -f -R "$FILEPERMS" ${webnames[@]} sitemapwebs.koala.tmpl 2>/dev/null
+       chmod -f -R g+rw ${webnames[@]} sitemapwebs.koala.tmpl 2>/dev/null);;
+  esac
+}
+
+# group CSSes are created in pub/_ks/
+# returns the actual name (reuse the previous web one if it is the same)
+generate_group_css () { # $1=web $2=group $3=subwebs $4=emptyflag $5=nweb
+  local t st curtheme lc
+  if test -n "${nomargin[$5]}" -o -n "$NOMARGIN"; then
+    nomarginsed='s/[{]"ks_leftbar"[}]/{"ks_noleftbar"}/g'
+  else
+    nomarginsed="#"
+  fi
+  if test -f $pub/$1/$webhome/favicon.ico; then
+    favicon_sed='s|%FAVICON%|<link rel="SHORTCUT ICON" href="%PUBURLPATH%/$1/$webhome/favicon.ico">|'
+  else
+    favicon_sed="$FAVICON"
+  fi
+  for t in $KSTEMPLATES
+  do
+    if [ -n "$4" ];then 
+      empty=remove_empty
+      EMPTYGROUPHEADER="$_KSGROUP_empty_header"
+    else
+      empty=cat
+      EMPTYGROUPHEADER="$_KSGROUP_nonempty_header"
+    fi
+    st=$t.koala.tmpl
+    for curtheme in ${theme[$5]}; do
+      if [ -e $templates/_koalathemes/$curtheme/$t.tmpl ]; then
+	st=_koalathemes/$curtheme/$t.tmpl
+	break
+      elif [ -e $templates/$t-$curtheme.koala.tmpl ]; then
+	st=$t-$curtheme.koala.tmpl
+	break
+      fi
+    done
+    expand_vars "$1" "$2" "$3" $templates $t.koala.tmpl "${searchgroup[$5]##+( )}" "$st" $5
+  done
+  expand_vars "$1" "$2" "$3" $templates view.koalaprint.tmpl "${searchgroup[$5]##+( )}" "view.koalaprint.tmpl" $5
+  add_style_colors $1
+
+  #factorize CSSes into minimal pub/_ks/Web_$1.css files
+  if test -n "$last_css"; then
+    if cmp -s $pub/_ks/$last_css $templates/$1/style.koala.tmpl; then
+      rm -f $templates/$1/style.koala.tmpl; return
+  fi; fi
+  last_css="Web_$1.css"
+  mv $templates/$1/style.koala.tmpl $pub/_ks/$last_css
+  date >$pub/_ks/$last_css.new
+}
+
+# $1 = web
+update_css_link () {
+  local f
+  grep -l '%WEBCSS%' templates/$1/*.koala.tmpl | while read f; do
+    mv $f $f.bak; sed -e "s/%WEBCSS%/$last_css/g" <$f.bak >$f
+    rm -f $f.bak
+  done
+}
+
+################################################## Variants
+generate_variants () {
+  VC;VC "Variants:"
+  local nweb=0 web curtheme v 
+  export variants
+  while test -n "${webnames[nweb]}"; do
+    if [ -z "${urls[nweb]}" ]; then
+      web="${webnames[nweb]}"
+      variants=
+      . $templates/ks_variants
+	for curtheme in ${theme[nweb]}; do
+	  if [ -e $templates/_koalathemes/$curtheme/ks_variants ]; then
+	    . $templates/_koalathemes/$curtheme/ks_variants
+	  elif [ -e $templates/ks_variants-$curtheme ]; then
+	    . $templates/ks_variants-$curtheme
+	  fi
+	done
+	if test -n "$variants"; then
+	  VC " $web"
+	  cd $templates/$web
+	  for v in $variants; do $v; done
+	    cd $DIR
+	fi
+    fi
+    let nweb=nweb+1
+  done
+  VC
+}
+
+# code useful for variant coders to make a full skin from a variant
+# to be called before the variant generation to remove remnants from previous
+# versions
+clean_variant () { rm -f *.koala_$1.tmpl; }
+
+# to be called in template web dir after generation of the variant-specific 
+# templates, with argument the variant name (without the koala_ prefix)
+fill_variant () {
+  local f
+  for f in *.koala.tmpl; do 
+    if [ ! -e ${f%.tmpl}_$1.tmpl ]; then
+      ln -s $f ${f%.tmpl}_$1.tmpl
+    fi
+  done
+}
+
+################################################## Template expansion
+
+expand_templates () {
+  if $KSNOEXPAND;then :
+  else
+    VC;VC "Expansing:"
+    local nweb=0 web
+    while test -n "${webnames[nweb]}"; do
+      web="${webnames[nweb]}"
+      VC " $web"
+      expand_template_includes $templates $web
+      let nweb=nweb+1
+    done
+    VC
+  fi
+}
+
+#-----------------------------------------------------------------------------
+
+#   .expand_cache/XXX cache of expanded final file, 
+#             with \, &, nl, replaced by controls: ,,
+
+# $1=template dir, $2=web
+expand_template_includes () {
+  local dirty included_tmpls b file i ifile toexp exp expd bn name commons
+  export cachedir=$1/.expand_cache commons
+  rm -rf $cachedir; mkdir $cachedir
+  # files to expand
+  toexp=" "$(grep -l '%TMPL:INCLUDE{\"' $1/$2/*.koala.tmpl|tr '\n' ' ')
+  # files already expanded
+  for i in $1/$2/*.koala.tmpl; do
+    bn=$(base_name $i)
+    if not_in "$toexp" "$i"; then 
+    tr '\\&\n' '' <$i >$cachedir/$bn
+    fi
+  done
+  for file in $1/$2/*.koala.tmpl; do
+    bn=$(base_name $file)
+    expand_template_includes_in_file $1 $2 $file $bn
+    tr '' '\\&\n' <$cachedir/$bn >$file
+  done
+  rm -rf $cachedir
+}
+
+# $1=template dir, $2=web, $3=file $4=file_basename 
+# cache expansed contents with \&\n quoted
+expand_template_includes_in_file () {
+  local iname idata  n=0 ext= src= oext=none
+  if [ ! -e $cachedir/$4 ];then	# not yet cached, expand the %TMPL:INCLUDE
+    for iname in $(sed -e 's/%TMPL:INCLUDE[{]"\([^"]*\)"[}]%/\1/g' <$3 \
+     |tr '' '\n' |grep '^'|sort|uniq); do
+      oext=
+      iname="${iname#?}"
+      if test -e $1/$2/$iname.koala.tmpl;then # file local to web
+	ifile=$1/$2/$iname.koala.tmpl
+      elif test -e $1/$iname.koala.tmpl; then # file common to all webs
+	ifile=$1/$iname.koala.tmpl
+	commons="$commons $iname"
+      else
+	W "template $1/$iname.koala.tmpl not found!"
+	ifile=/dev/null
+      fi
+      expand_template_includes_in_file $1 $2 $ifile $iname
+      idata="$(<$cachedir/$iname)"
+      if [ -z "$src" ] ;then
+	tr '\\&\n' '' <$3 | \
+	 sed -e "s%TMPL:INCLUDE{\"$iname\"}%${idata%}g" \
+	 >$cachedir/$4$ext
+      else
+	sed -e "s%TMPL:INCLUDE{\"$iname\"}%${idata%}g" \
+	 <$src >$cachedir/$4$ext
+      fi
+      src=$cachedir/$4$ext
+      let n=n+1; oext="$ext"; ext=",$n"
+    done
+    # file is now final, move last copy to normal position
+    if [ -n "$oext" ]; then 
+      if [ "$oext" = none ]; then # no inclusion was done at all
+	tr '\\&\n' '' <$3 >$cachedir/$4
+      else
+	mv $cachedir/$4$oext $cachedir/$4
+      fi
+    fi
+    # special case for ks_nolefttopics
+    if [ "$4" = ks_nolefttopics ]; then
+      sed -e 's/<br[ \/]*>/ |/g' <$cachedir/$4 >$cachedir/$4.new
+      mv $cachedir/$4.new $cachedir/$4
+    fi
+  fi
+}
+
+# tests if a word is in a list (blank-started and separated word list)
+function is_in(){ case "$1" in *" $2"*)return 0;;*)return 1;; esac }
+function not_in(){ case "$1" in *" $2"*)return 1;;*)return 0;; esac }
+function base_name(){ local n="${1##*/}";echo "${n%%.*}"; }
+
+#-----------------------------------------------------------------------------
+
+# $1=web $2=group $3=subwebs $4=templatesdir $5=templatesfile $6=searchgroup
+# $7=sourcetemplatefile $8=nweb
+expand_vars () {
+  if test "$1" = "$2"; then #we are in a group
+    CHANGESGROUPLINK='%TMPL:INCLUDE{"ks_changesgroup"}%'
+  else
+    CHANGESGROUPLINK=
+  fi
+    sed -e "s/%KSCOLORWEB%/#$KSCOLORWEB/g" \
+        -e "s/%KSCOLORWEBFILL%/#$KSCOLORWEBFILL/g" \
+        -e "s/%KSCOLORWEBFILL2%/#$KSCOLORWEBFILL2/g" \
+        -e "s/%KSCOLORWEBFG%/#$KSCOLORWEBFG/g" \
+	-e "s/%KSCOLORWEBUNSEL%/#$KSCOLORWEBUNSEL/g" \
+	-e "s|%KSWEBSEARCH%|$KSWEBSEARCH|"g \
+        -e "s/%WEB%/$1/g" -e "s/%WEBGROUP%/${6// /$weblistsep}/g" \
+        -e "s/%WEBGROUPURL%/${6// /%20}/g" \
+        -e "s/%CHANGESGROUPLINK%/$CHANGESGROUPLINK/g" \
+        -e "s/%<WEB>%/%WEB%/g" \
+        -e "s/%WEBGROUPLEADER%/$2/g" \
+        -e "s/%KSCOLORUNSEL%/$KSCOLORUNSEL/g" \
+        -e "s/%KSLMARGIN%/$KSLMARGIN/g" \
+        -e "s/%KSTABWIDTH%/$KSTABWIDTH/g" \
+        -e "s/%KSCOLORSEL%/$KSCOLORSEL/g" \
+        -e "s/%KSCOLORBG%/${bgcolor[$8]}/g" \
+        -e "s/%EMPTYGROUPHEADER%/$EMPTYGROUPHEADER/g" \
+        -e "s|%KSICON%|${KSICON//&/\&}|g" \
+        -e "s|%KSTITLE%|${KSTITLE//&/\&}|g" \
+        -e "s|%KSHELP%|${KSHELP//&/\&}|g" \
+        -e "s|%FORM_LM%|$FORM_LM|g" \
+        -e "s|%FORM_TL%|$FORM_TL|g" \
+        -e "s|%FORM_TO%|$FORM_TO|g" \
+        -e "s|%FORM_TR%|$FORM_TR|g" \
+        -e "s|%FORM_BL%|$FORM_BL|g" \
+        -e "s|%FORM_BR%|$FORM_BR|g" \
+        -e "s|%FORMEDIT_T%|$FORMEDIT_T|g" \
+        -e "s|%FORMEDIT_B%|$FORMEDIT_B|g" \
+        -e "s|%SITECSS%|${SITECSS//&/\&}|g" \
+        -e "s|%KSLEFTTOPICS%|${KSLEFTTOPICS//&/\&}|g" \
+        -e "s|%KSNOLEFTTOPICS%|${KSNOLEFTTOPICS//&/\&}|g" \
+        -e "s|%KSWEBMAP%|${KSWEBMAP}|g" \
+        -e "s|%KSWEBMAPLEGEND%|${KSWEBMAPLEGEND}|g" \
+        -e "s/%VIEW%/$view/g" \
+        -e "$template_expand_sed" \
+        -e "$nomarginsed" \
+        -e "$noaccess_sed1" \
+        -e "$noaccess_sed2" \
+        -e "$favicon_sed" \
+        -e "$cairo_fixes" \
+ < "$4/$7" | $stripimages | $empty > "$4/$1/$5"
+}
+
+#version used instead for common, non web-specific templates
+expand_global_vars () {
+    sed -e "s/%KSCOLORUNSEL%/$KSCOLORUNSEL/g" \
+        -e "s/%KSCOLORSEL%/$KSCOLORSEL/g" \
+        -e "s/%KSCOLORBG%/$KSCOLORBG/g" \
+        -e "s/%KSLMARGIN%/$KSLMARGIN/g" \
+        -e "s/%KSTABWIDTH%/$KSTABWIDTH/g" \
+        -e "s|%KSICON%|${KSICON//&/\&}|g" \
+        -e "s|%KSTITLE%|${KSTITLE//&/\&}|g" \
+        -e "s|%FORM_LM%|$FORM_LM|g" \
+        -e "s|%FORM_TL%|$FORM_TL|g" \
+        -e "s|%FORM_TO%|$FORM_TO|g" \
+        -e "s|%FORM_TR%|$FORM_TR|g" \
+        -e "s|%FORM_BL%|$FORM_BL|g" \
+        -e "s|%FORM_BR%|$FORM_BR|g" \
+        -e "s/%VIEW%/$view/g" \
+        -e "s|%KSHELP%|${KSHELP//&/\&}|g"
+}
+
+expand_colors () {
+    sed -e "s/%KSCOLORBG%/$KSCOLORBG/g" \
+        -e "s/%KSCOLORWEBFILL%/$KSCOLORBG/g" \
+        -e "s/%KSCOLORWEBFILL2%/$KSCOLORBG/g" \
+        -e "s/%KSCOLORWEBFG%/$KSCOLORSEL/g" \
+        -e "s/%KSCOLORWEB%/$KSCOLORUNSEL/g" \
+	-e "s/%KSCOLORWEBUNSEL%/$KSCOLORWEBUNSEL/g" 
+}
+
+remove_empty () {
+  sed -e '/^<!-- NONEMPTY-S -->$/,/^<!-- NONEMPTY-E -->$/d'
+}
+
+generate_search_options () { # $1=web $2=group $3=subwebs
+  local groupsel websel
+  if test "$1" = "$2"; then groupsel='selected'; websel=''
+  else groupsel=''; websel='selected'
+  fi
+  _KSSEARCH_option
+}
+
+#global: curgroup
+generate_websbar () { # $1=web $2=group $3=webs $4=nweb
+  local i curgroup_prev curgroup_next tab sel curweb web lastweb j
+  local visible_webs tabn nweb visible_groups lastgroupname url
+  if [ -n "${nowebsbar[$4]}" ]; then _KSBARgroup_empty; return
+  fi
+  if [ -n "${websrelatedbar[$4]}" ]; then
+    if [ "$2" = "$1" ]; then # group: do not prefix by group name
+      _KSBAR_related_group "$@"
+      else
+      i="${N[num_$2]}"
+      _KSBAR_related "$@"
+    fi
+    return
+  fi
+  # group row
+  let curgroup_prev=curgroup-1; let curgroup_next=curgroup+1
+  echo "$group_start"
+  i=0
+  while let 'i<ngroups'; do
+    tab=${group[i]}
+    nweb="${N[num_$tab]}"
+    if test -z "${notab[nweb]}" -o "$2" = "$tab"; then
+      case "${noshow[$4]}" in *,"$tab",*): ;;
+	*)visible_groups="$visible_groups $tab";;
+      esac
+    fi
+    lastgroupname="${visible_groups##* }"
+    let i=i+1
+  done
+  for tab in $visible_groups; do
+    i="${N[numg_$tab]}"
+    if [ $2 = $tab ]; then 
+      if [ $1 = $tab ]; then sel=selected; else sel=unselected
+      fi
+      else sel=''
+    fi
+    nweb=${N[num_$tab]}
+    if [ -z "${urls[nweb]}" ]; then
+      url="%SCRIPTURL%/$view%SCRIPTSUFFIX%/$tab/%HOMETOPIC%"
+    else
+      url="${urls[nweb]}"
+    fi
+    group_tab "$url" "${tabnames[nweb]}" "$sel" \
+     "title=\"`quote_attval \"${comments[nweb]}\"`\""
+    if [ $curgroup = $i -o $curgroup_prev = $i -o $lastgroupname = $tab ]; then :
+    else echo "$group_sep"
+    fi
+  done
+  echo "$group_end"
+  # webs row
+  local ws_printed=false ws_print
+  case $2 in 
+    ${grouphasbreak#|}) ws_print="$webs_start_break";;
+    *) ws_print="$webs_start";;
+  esac
+  unset web;j=0;curweb=-100
+  for tab in $3; do 
+    web[j]=$tab
+    if [ $tab = $1 ]; then curweb=$j;fi
+    let j=j+1
+  done  
+  let curwev_prev=curweb-1
+  visible_webs=''
+  for tab in $3; do
+    tabn=${N[num_$tab]}
+    if test -z "${notab[tabn]}"; then
+      case "${noshow[$4]}" in *,"$tab",*): ;;
+	*) visible_webs="$visible_webs $tab"
+      esac
+    fi
+  done
+  lastweb="${visible_webs##* }"
+  for tab in $visible_webs; do
+    if [ $1 = $tab ]; then sel=selected;else sel=''
+    fi
+    nweb=${N[num_$tab]}
+    if $ws_printed;then :; else echo "$ws_print";ws_printed=true;fi
+    if [ -z "${urls[nweb]}" ]; then
+      url="%SCRIPTURL%/$view%SCRIPTSUFFIX%/$tab/%HOMETOPIC%"
+    else
+      url="${urls[nweb]}"
+    fi
+    webs_tab "$url" "${tabnames[nweb]}" "$sel" \
+     "title=\"`quote_attval \"${comments[nweb]}\"`\""
+    if [ $lastweb = $tab ]; then :
+    else 
+      case $2.$tab in
+	${breakafterwebs#|}) echo "$webs_break";;
+	*) echo "$webs_sep";;
+      esac
+    fi
+  done
+  if $ws_printed; then echo "$webs_end"; else _KSBAR_empty; fi
+}
+
+check_forgotten_dirs () {
+  local d notfound w
+  if $onsite; then
+    for d in $data/[A-Z]*;do
+      if test -d "$d"; then
+	notfound=true
+	for w in ${webnames[@]}; do
+	  if test "${d##*/}" = "${w}"; then
+	    notfound=false; break
+	  fi
+	done
+	if $notfound; then 
+	  echo "*** WARNING: web ${d##*/} is not described"
+	fi
+      fi
+    done
+  fi
+  for d in $pub/_ks/Web_*.css; do
+    if test ! -e $d.new; then rm -f $d; fi
+  done
+  rm -f $pub/_ks/Web_*.css.new
+}
+
+# check for various needed settings
+check_settings () {
+  if $onsite; then
+    if grep -q '^		[*] Set TOPICS =' $data/TWiki/TWikiPreferences.txt
+    then :; else W "You must set the TOPICS variable in Wiki prefs like this:
+      * Set TOPICS ="
+    fi
+    if grep -q '^		[*] Set SKIN = koala' $data/TWiki/TWikiPreferences.txt
+    then :; else W "You must set the SKIN variable in Wiki prefs like this:
+      * Set SKIN = koala"
+    fi
+    if grep -q '^		[*] Set EDITBOXSTYLE =' $data/TWiki/TWikiPreferences.txt
+    then :; else W "You must set the EDITBOXSTYLE variable in Wiki prefs like this:
+      * Set EDITBOXSTYLE = width: 99%"
+    fi
+    if [ -n "$KSWEBMAP" -a ! -e $pub/TWiki/TWikiDocGraphics/changes.gif ]; then
+      W "You must copy the icon:
+      http://twiki.org/p/pub/TWiki/TWikiDocGraphics/changes.gif
+into: $pub/TWiki/TWikiDocGraphics/ "
+    fi
+  fi
+  if grep -sq '^[ 	]*SetHandler[ 	]*cgi-script' bin/.htaccess; then :
+    else add_file_sh
+  fi
+  if grep -sq '^[ 	]*SetHandler[ 	]*cgi-script' bin/.htaccess; then :
+  else
+    echo 'please add in  bin/.htaccess the following 3 lines before the <Files "edit"> line:'
+    echo '<Files "*.sh">
+	SetHandler cgi-script
+</Files>'
+  fi
+}
+
+# remove <img ...> tags, filter
+strip_images () {
+  sed -e s'|<img [^>]*KoalaSkin[^>]*>||g'
+}
+
+# compat function to add SetHandler cgi-script to .htaccess
+add_file_sh () {
+  ed -s bin/.htaccess >/dev/null 2>&1 << \EOF
+/<Files "edit">
+-
+i
+<Files "*.sh">
+        SetHandler cgi-script
+</Files>
+.
+w
+q
+EOF
+}
+
+# quote attribute values
+quote_attval () {
+  local r="${1//[[][[]*([^]])[]][[]/}"
+  r="${r//<\/?[^ ]*([^>])>/}"
+  r="${r//.WebHome/}"
+  echo "${r//[^-a-zA-Z0-9\!@#\$%^()_=+;:,.?\' 	]/}"| \
+   sed -e 's/\([A-Z]*\)\([a-z]*\)\([A-Z]*\)\([A-Za-z0-9]*\)/\1\2 \3 \4/g' -e 's/   / /g'
+}
+
+# add templates to list to be generated
+_KSDECLARE_TEMPLATES () {
+  local tn
+  for tn in $*; do
+    case " $KSTEMPLATES " in
+      *\ $tn.koala.tmpl\ *) :;;
+      *) KSTEMPLATES="$KSTEMPLATES $tn";;
+    esac
+  done
+}
+
+################################################################### BARS DEFS
+# see templates/ks_config
+
+###################################################################### FORMS
+# set the shell vars for expansion. $1 is web name
+# forms[nweb] contains: FORM_LM, FORM_TL, FORM_TO, FORM_TR, FORM_BL, FORM_BR
+set_theme_vars () {
+  ###################### forms
+  local nweb="${N[num_$1]}"
+  FORM_LM=;FORM_TL=;FORM_TO=;FORM_TR=;FORM_BL=;FORM_BR=
+  if test -z "${forms[nweb]}"; then forms[nweb]=$FORM_POS
+  fi
+
+  if test "${forms[nweb]}" != "${forms[nweb]/FORM_LM/}"; then
+    FORM_LM="$FORM_LM_ON"
+    FORMEDIT_B="$FORMEDIT_ON";FORMEDIT_T=
+  fi
+  if test "${forms[nweb]}" != "${forms[nweb]/FORM_TL/}"; then
+    FORM_TL="$FORM_TL_ON"
+    FORMEDIT_T="$FORMEDIT_ON";FORMEDIT_B=
+  fi
+  if test "${forms[nweb]}" != "${forms[nweb]/FORM_TR/}"; then
+    FORM_TR="$FORM_TR_ON"
+    FORMEDIT_T="$FORMEDIT_ON";FORMEDIT_B=
+  fi
+  if test "${forms[nweb]}" != "${forms[nweb]/FORM_TO/}"; then
+    FORM_TO="$FORM_TO_ON"
+    FORMEDIT_T="$FORMEDIT_ON";FORMEDIT_B=
+  fi
+  if test "${forms[nweb]}" != "${forms[nweb]/FORM_BL/}"; then
+    FORM_BL="$FORM_BL_ON"
+    FORMEDIT_B="$FORMEDIT_ON";FORMEDIT_T=
+  fi
+  if test "${forms[nweb]}" != "${forms[nweb]/FORM_BR/}"; then
+    FORM_BR="$FORM_BR_ON"
+    FORMEDIT_B="$FORMEDIT_ON";FORMEDIT_T=
+  fi
+  ###################### WebTreeMaps
+  if test -n "$KSWEBMAPTOPIC"; then
+    KSWEBMAP=`_KSLEFTBOX_link "[[$KSWEBMAPTOPIC][Web Map]]"`
+  else
+    KSWEBMAP=
+  fi
+}
+
+###################################################################### INITS
+weblist_template () {
+echo 'Create a Topic named KoalaSkinWebList in web TWiki, and edit it to paste this:
+-----------------------------------------------------------------------------
+
+---+ List of all Webs
+
+For the TWiki.KoalaSkin
+
+__Note__ If you change this page, dont forget to run 
+=INSTALL/bin/koalaskin-generate= afterwards for your settings to take effect
+
+---++ Guidelines
+Format: space-separated items
+   1 _3 spaces_ * webgroupname hue [options][comments]
+     <br> hue can be 2 hex digits, or the 6 hex digits for the RGB value
+     <br> options can be: <ul>
+        <li> EMPTY the group is not to be used per se, only its sub-webs
+     </ul>
+   1 _6 spaces_ * webname [options][comments]
+     <br> comments can be continued on the following lines.
+     If no webname, starts a new row of tabs (useful for webs too numerous
+     to fit on a line)
+     <br> options can be: <ul>
+       <li> HIDDEN the group will not be listed in the navigation bar to save
+	   space, but will be still accessible and listed in the sitemap.
+     </ul>
+   1 other colors are set in the TWiki syntax:
+     <br> _6 spaces_ * Set *VARIABLE* = _value_
+     <br> Possible variables being: <ul>
+        <li> KSCOLORBG the color of the page background 
+        <li> KSCOLORUNSEL color of tabs of unselected web groups
+        <li> KSCOLORSEL color of the text of the selected tab
+        <li> KSICON upper-left wiki icon IMG tag, with dims
+        <li> KSTITLE optional html to put after the KSICON
+        <li> KSHELP url of the help page (for the help icon)
+        <li> KSNOICONS set to true to disable icons for buttons on the upper 
+           right: Home/Edit/Attach/Sitemap/Help           
+        <li> KSLMARGIN left margin (default 150)
+        <li> KSTABWIDTH minimum width of web tabs (default 80)
+        <li> KSNOEXPAND if not equal to "false", do not expand template 
+           includes to save space but consume CPU.
+        <li> KSFILEPERMS if set to ALL will change permissions of generated
+           templates so that other people can re-generate the templates.
+        <li> KSFORM_POS is the default position value of TWiki.TWikiForms. Must be
+           one of: FORM_LM, FORM_TL, FORM_TO, FORM_TR, FORM_BL, FORM_BR.
+        <li> KSCSS is the URL of an additionnal site-level CSS stylesheet
+        <li> KSNOMARGIN if non empty, put search menu at top not in margin
+    </ul>
+---
+---++ Settings of Variables
+      * Set KSCOLORBG = #FFFEE4
+      * Set KSCOLORUNSEL = #e0e0c0
+      * Set KSCOLORSEL = #ffff80
+      * Set KSICON = <img src="%WIKILOGOIMG%" border=0 alt="click on the %WIKITOOLNAME% logo to go to homepage" align=center>
+---
+---++ Webs hierarchy
+Here is a braindead suggestion for your existing site structure. 
+Edit to suit your needs. Move webs as subwebs by indenting the item more
+and removing the 2-digit hex number (hue of the color).
+'|sed -e 's/   /	/'g
+
+local web nwebs=0 delta hue=0
+for web in data/[A-Z]*; do if [ -d "$web" ]; then let nwebs=nwebs+1;fi;done
+let delta=256/nwebs
+
+for web in data/[A-Z]*; do
+  if [ -d "$web" ]; then
+    web="${web##*/}"
+    echo "	* $web ${hex[hue]}"
+    echo "	  _Put a description for $web here_"
+    let hue=hue+delta
+  fi
+done
+}
+
+# $1=generation dir (or /tmp)
+generate_distrib () {
+IE=`grep -n '^[ 	]*[ ][ 	]*[^ 	]' data/TWiki/KoalaSkin.txt|grep -v '^[0-9][0-9]*:		*  [^ 	]'| sed -e 's/ /_/g'`
+if test -n "$IE"
+then echo "### ERROR: the following lines are indented via spaces, not tabs, fix them!"
+  echo "$IE"
+  exit -1
+fi
+FILES='
+  bin/searchmulti
+  bin/savemulti
+  bin/koalaskin-generate
+  bin/ks_lastchanges.sh
+  templates/sitemap.koala.tmpl
+  templates/style.koala.tmpl
+  templates/twiki.koala.tmpl
+  templates/view.koala.tmpl
+  templates/edit.koala.tmpl
+  templates/preview.koala.tmpl
+  templates/attach.koala.tmpl
+  templates/changeform.koala.tmpl
+  templates/moveattachment.koala.tmpl
+  templates/oopsmore.koala.tmpl
+  templates/oopscreate.koala.tmpl
+  templates/renamebase.koala.tmpl
+  templates/rdiff.koala.tmpl
+  templates/search.koala.tmpl
+  templates/searchbookview.koala.tmpl
+  templates/searchformat.koala.tmpl
+  templates/searchmeta.koala.tmpl
+  templates/searchrenameview.koala.tmpl
+  templates/view.koalaprint.tmpl
+  templates/changes.koala.tmpl
+  templates/ks_leftbar.koala.tmpl
+  templates/ks_leftbar_end.koala.tmpl
+  templates/ks_leftbar-css2.koala.tmpl
+  templates/ks_leftbar_end-css2.koala.tmpl
+  templates/ks_noleftbar.koala.tmpl
+  templates/ks_header.koala.tmpl
+  templates/ks_bottombuttons.koala.tmpl
+  templates/ks_topbuttons.koala.tmpl
+  templates/ks_homebutton.koala.tmpl
+  templates/ks_leftsearch.koala.tmpl
+  templates/ks_boxes.koala.txt
+  templates/ks_lefttopics.koala.tmpl
+  templates/ks_otherindexes.koala.tmpl
+  templates/ks_sitemap_footer.koala.tmpl
+  templates/ks_sitemap_header.koala.tmpl
+  templates/ks_sitemap_header-lastchanges.koala.tmpl
+  templates/edit-slim.koala.tmpl
+  templates/ks_header-slim.koala.tmpl
+  templates/ks_leftbar-slim.koala.tmpl
+  templates/ks_topbuttons-slim.koala.tmpl
+  templates/ks_title.koala.tmpl
+  templates/ks_title-spacedtopic.koala.tmpl
+  templates/ks_changesgroup.koala.tmpl
+  templates/ks_changesgroup-lastchanges.koala.tmpl
+  templates/sitemap-slim.koala.tmpl
+  templates/view-slim.koala.tmpl
+  templates/ks_lefttopbox.koala.tmpl
+  templates/ks_config
+  templates/ks_variants
+  pub/_ks/fonts.css
+  pub/_ks/home.gif
+  pub/_ks/edit.gif
+  pub/_ks/new.gif
+  pub/_ks/attach.gif
+  pub/_ks/help.gif
+  pub/_ks/print.gif
+  pub/_ks/sitemap.gif
+  data/TWiki/KoalaSkin.txt
+'
+  tar cf - $FILES | gzip -9 > ${1:-/tmp}/TWikiKoalaSkin.tgz
+  echo "$FILES" | sed -e 's/ //g' -e '/^$/d' >FILES
+  sed -e 's|^|../|' <FILES >bin/FILES
+  sed -e 's/	/   /g' <data/TWiki/KoalaSkin.txt \
+   >${1:-/tmp}/KoalaSkin.txt
+
+echo "generated ${1:-/tmp}/TWikiKoalaSkin.tgz and pastable ${1:-/tmp}/KoalaSkin.txt"
+}
+
+remove_files () {
+  rm -f templates/*koala.tmpl templates/*koala.txt templates/*/*koala.tmpl templates/*/*koala.txt 
+  rm -rf pub/Plugins/KoalaSkin pub/_ks data/TWiki/KoalaSkin.txt
+  rm -f bin/searchmulti bin/savemulti bin/koalaskin-generate \
+        bin/ks_lastchanges.sh
+}
+
+generate_config () {
+  if [ -z "$config" ]; then
+    echo "*** ERROR: could not find koalaskin-generate"; exit 1
+  fi
+  if [ -e "$config" ]; then
+    echo "*** WARNING: A configuration file $config already exists"
+    echo "    Refusing to overwrite it blindly. Please delete it manually"
+    echo "    and re-run with -c to generate a new one."
+  else
+    sed -n -e '/^#-* Configuration of koalaskin-generate: Start -*$/,/^#-* Configuration of koalaskin-generate: End -*$/p' < "${config%.cfg}" > "$config"
+    echo "$config generated. Please edit if needed".
+  fi
+}
+
+###################################################################### COLORS
+
+color1 () {
+  case $1 in 
+    ??) hsv2rgb "${1}ffa0";; # hue
+    ??????) echo "$1";; # rgb-color
+  esac
+}
+
+color2 () {
+  case $1 in 
+    ??) hsv2rgb "${1}30f0";; # hue
+    ??????) hue=`rgb2hsv $1`; hsv2rgb "${hue%????}30f0";; # rgb-color
+  esac
+}
+
+color3 () {
+  case $1 in 
+    ??) hsv2rgb "${1}ff60";; # hue
+    ??????) hue=`rgb2hsv $1`; hsv2rgb "${hue%????}ff60";; # rgb-color
+  esac
+}
+
+color4 () {
+  case $1 in 
+    ??) hsv2rgb "${1}20f0";; # hue
+    ??????) hue=`rgb2hsv $1`; hsv2rgb "${hue%????}20f0";; # rgb-color
+  esac
+}
+
+rgb2hsv=$exectmp/rgb2hsvhex
+hsv2rgb=$exectmp/hsv2rgbhex
+rgb2hsv () {
+  $rgb2hsv "$@"
+}
+hsv2rgb () {
+  $hsv2rgb "$@"
+}
+
+colorname2rgb () {
+  grep -i "^[ 	]*[0-9][0-9]*[ 	][ 	]*[0-9][0-9]*[ 	][ 	]*[0-9][0-9]*[ 	][ 	]*$1\$" /usr/X11R6/lib/X11/rgb.txt | ( read R G B rest; 
+  echo "${hex[$R]}${hex[$G]}${hex[$B]}"
+  if [ -z "$B" ]; then echo "Error: colorname not found: $1" >&2; exit 1; fi
+  if $verbose; then echo "$1: ($R,$G,$B): ${hex[$R]}${hex[$G]}${hex[$B]}" 1>&2; fi
+  )
+}
+
+tolower () {
+  echo "$1" | tr '[A-Z]' '[a-z]'
+}
+
+hex=(00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10 11 12 13 14 15 16 17 18 19 1A 1B 1C 1D 1E 1F 20 21 22 23 24 25 26 27 28 29 2A 2B 2C 2D 2E 2F 30 31 32 33 34 35 36 37 38 39 3A 3B 3C 3D 3E 3F 40 41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54 55 56 57 58 59 5A 5B 5C 5D 5E 5F 60 61 62 63 64 65 66 67 68 69 6A 6B 6C 6D 6E 6F 70 71 72 73 74 75 76 77 78 79 7A 7B 7C 7D 7E 7F 80 81 82 83 84 85 86 87 88 89 8A 8B 8C 8D 8E 8F 90 91 92 93 94 95 96 97 98 99 9A 9B 9C 9D 9E 9F A0 A1 A2 A3 A4 A5 A6 A7 A8 A9 AA AB AC AD AE AF B0 B1 B2 B3 B4 B5 B6 B7 B8 B9 BA BB BC BD BE BF C0 C1 C2 C3 C4 C5 C6 C7 C8 C9 CA CB CC CD CE CF D0 D1 D2 D3 D4 D5 D6 D7 D8 D9 DA DB DC DD DE DF E0 E1 E2 E3 E4 E5 E6 E7 E8 E9 EA EB EC ED EE EF F0 F1 F2 F3 F4 F5 F6 F7 F8 F9 FA FB FC FD FE FF)
+
+generate_rgb2hsvhex () {
+    if [ -x $rgb2hsv ]; then :
+    else
+      rm -rf $rgb2hsv ${rgb2hsv}.c
+      cat > ${rgb2hsv}.c << \EOF
+/* code stolen from GTK */
+#include <math.h>
+
+#define MIN(a,b) (a<b?a:b)
+#define MAX(a,b) (a>b?a:b)
+#define NO_HUE   -1
+
+/* Input:   r, g, b as hex-webstring
+   Outputs: h, s, v as hex-webstring
+*/
+gtk_color_selection_rgb_to_hsv (double  r, double  g, double  b,
+				double *h, double *s, double *v)
+{
+  double max, min, delta;
+
+  max = r;
+  if (g > max)
+    max = g;
+  if (b > max)
+    max = b;
+
+  min = r;
+  if (g < min)
+    min = g;
+  if (b < min)
+    min = b;
+
+  *v = max;
+
+  if (max != 0.0)
+    *s = (max - min) / max;
+  else
+    *s = 0.0;
+
+  if (*s == 0.0)
+    *h = -1.0;
+  else
+    {
+      delta = max - min;
+
+      if (r == max)
+	*h = (g - b) / delta;
+      else if (g == max)
+	*h = 2.0 + (b - r) / delta;
+      else if (b == max)
+	*h = 4.0 + (r - g) / delta;
+
+      *h = *h * 60.0;
+
+      if (*h < 0.0)
+	*h = *h + 360;
+    }
+}
+
+int main (int argc, char **argv)
+{
+    int ri, gi, bi, hi, si, vi;
+    double r, g, b, h, s, v;
+
+    if (argc == 2) {
+	sscanf(argv[1], "%2x%2x%2x", &ri, &gi, &bi);
+	r = ri; r /= 255;
+	g = gi; g /= 255;
+	b = bi; b /= 255;
+	gtk_color_selection_rgb_to_hsv(r, g, b, &h, &s, &v);
+	hi = (h/360)*255;
+	si = s*255;
+	vi = v*255;
+	printf("%02x%02x%02x\n", hi,si, vi);
+	return 0;
+    } else
+	return 1;
+}
+EOF
+      $cc -O -o $rgb2hsv ${rgb2hsv}.c
+      if [ "$OSTYPE" = cygwin ]; then chmod a+x $rgb2hsv; fi
+      rm -f ${rgb2hsv}.c
+    fi
+    if [ "`$exectmp/rgb2hsvhex 123456`" != 94c956 ]; then
+      error "$exectmp/rgb2hsvhex incorrectly compiled!"
+    fi
+}
+
+generate_hsv2rgbhex () {
+    if [ -x $hsv2rgb ]; then :
+    else
+      rm -rf $hsv2rgb ${hsv2rgb}.c
+      cat > ${hsv2rgb}.c << \EOF
+/* code stolen from GTK */
+#include <math.h>
+
+#define MIN(a,b) (a<b?a:b)
+#define MAX(a,b) (a>b?a:b)
+#define NO_HUE   -1
+
+/* Input:   r, g, b as hex-webstring
+   Outputs: h, s, v as hex-webstring
+*/
+void
+gtk_color_selection_hsv_to_rgb (double  h, double  s, double  v,
+				double *r, double *g, double *b) {
+  int i;
+  double f, w, q, t;
+
+  if (s == 0.0)
+    s = 0.000001;
+
+  if (h == -1.0) {
+      *r = v; *g = v; *b = v;
+    } else {
+      if (h == 360.0) h = 0.0;
+      h = h / 60.0;
+      i = (int) h;
+      f = h - i;
+      w = v * (1.0 - s);
+      q = v * (1.0 - (s * f));
+      t = v * (1.0 - (s * (1.0 - f)));
+
+      switch (i) {
+	case 0: *r = v; *g = t; *b = w; break;
+	case 1: *r = q; *g = v; *b = w; break;
+	case 2: *r = w; *g = v; *b = t; break;
+	case 3: *r = w; *g = q; *b = v; break;
+	case 4: *r = t; *g = w; *b = v; break;
+	case 5: *r = v; *g = w; *b = q; break;
+	}
+    }
+}
+
+int main (int argc, char **argv)
+{
+    int ri, gi, bi, hi, si, vi;
+    double r, g, b, h, s, v;
+
+    if (argc == 2) {
+	sscanf(argv[1], "%2x%2x%2x", &hi, &si, &vi);
+	h = hi * 360; h /= 255;
+	s = si; s /= 255;
+	v = vi; v /= 255;
+	gtk_color_selection_hsv_to_rgb(h, s, v, &r, &g, &b);
+	ri = r*255;
+	gi = g*255;
+	bi = b*255;
+	printf("%02x%02x%02x\n", ri, gi, bi);
+	return 0;
+    } else
+	return 1;
+}
+EOF
+      $cc -O -o $hsv2rgb ${hsv2rgb}.c
+      if [ "$OSTYPE" = cygwin ]; then chmod a+x $hsv2rgb; fi
+      rm -f ${hsv2rgb}.c
+    fi
+    if [ "`$exectmp/hsv2rgbhex 123456`" != 564b44 ]; then
+      error "$exectmp/hsv2rgbhex incorrectly compiled!"
+    fi
+}
+
+############################################################ Misc utils
+
+error () {
+  echo "ERROR: $*" >&2; exit -1
+}
+V () {
+  if $verbose;then echo "$@" >&2;fi
+}
+# for debug, easy to spot to remove
+D () {
+  echo "### $@ ###" >&2
+}
+W () {
+  echo "*** WARNING: $@"
+}
+PV () {
+  local __v
+  for __v in "$@";do 
+    case "$__v" in _*)echo -n " ${__v#_} " >/dev/tty;;
+      *) echo -n " [$__v=${!__v}] " >/dev/tty;;
+    esac
+  done
+  echo >/dev/tty
+}
+
+# pretty-printing list of items. Init a list without args
+Ccur=0
+Cmax=80
+Cdirty=false
+Cmargin=" "
+VC () {
+  local s
+  if test -z "$@"; then 
+    if $Cdirty; then echo
+      Cdirty=false
+    fi
+    Ccur=0
+  else
+    s="$@"
+    if let "(Ccur+${#s}) >= Cmax"; then 
+      echo; echo -n "$Cmargin"; Ccur="${Cmargin}"
+    fi
+    echo -n "$s"; let "Ccur=Ccur+${#s}"; Cdirty=true
+  fi
+}
+
+###################################################################### MAIN
+
+main () {
+  init
+  if [ -n "$to_declare" ]; then
+    declare -x $to_declare # do it at outmost scope to be seen everywhere
+  fi
+  check_ks_variables
+  process_options
+  generate_common
+  curgroup=0
+  VC;VC "Templates:"
+  while let 'curgroup<ngroups'; do
+    generate_group_skin ${group[curgroup]} "${subwebs[curgroup]}" \
+     "${colors[curgroup]}"
+    let curgroup=curgroup+1
+  done
+  VC
+  generate_sitemaps
+  generate_groupmaps
+  expand_templates
+  generate_variants
+  check_forgotten_dirs
+  check_perms
+  check_settings
+}
+
+backup () {
+  generate_distrib koalaskin >/dev/null
+  cd koalaskin
+  rm -f TWikiKoalaSkin.txt; gunzip <TWikiKoalaSkin.tgz >TWikiKoalaSkin.tar
+  if [ ! -e TWikiKoalaSkin.tar,v ]; then rcs -q -i -t-. TWikiKoalaSkin.tar; fi
+  rcs -q -l TWikiKoalaSkin.tar;ci -q -m. -t-. TWikiKoalaSkin.tar
+}
+
+create_changes_groups () {
+  local wc
+  ocd="$PWD"; cd "$data"
+  for wc in */WebChanges.txt; do if test ! -e ${wc%.txt}Group.txt; then
+    cat >${wc%.txt}Group.txt <<EOF
+Pages most recently changed in this group of webs:
+%SEARCH{".*" regex="on" nosearch="on" nototal="on" order="modified" reverse="on" limit="50" web="%URLPARAM{"web"}%"}%
+EOF
+  chmod a+rw $wc
+  fi; done
+}
+
+chmod_rw () {
+  local i
+  for i in "$@"; do
+    case `ls -l "$i"` in -rw[-x]rw[-x]rw[-x]*) : ;;
+      *) chmod a+rw "$i" ;;
+    esac
+  done
+}
+
+#----------------------------------------------------------------------------
+parse_options "$@"
+if test -e koalaskin -a -w koalaskin/TWikiKoalaSkin.tgz; then ( backup )& fi # auto backups in production envs
+if [ -n "$do_weblist_template" ]; then weblist_template
+elif [ -n "$do_generate_distrib" ]; then generate_distrib
+elif [ -n "$do_remove_files" ]; then remove_files
+elif [ -n "$do_generate_config" ]; then generate_config
+elif [ -n "$do_create_changes_group" ]; then create_changes_groups
+elif [ -n "$do_nothing" ]; then exit 0
+else 
+  check_weblist
+  check_wiki_version
+  egrep -v '^	+[*] Set ([A-JL-Z]S|K[A-RT-Z0-9_]|[A-JL-Z][A-RT-Z0-9_])[A-Z0-9_]*[ 	]+=' < $weblist | \
+   sed -e 's/	/=/g' -e "s/$ctrlm//g" -e 's/^=[*] [[][[][%]ATTACHURL[%].*//' \
+   | main 
+fi
+exit 0
+
+### EMACS MODES
+### Local Variables: ***
+### mode:ksh ***
+### End: ***

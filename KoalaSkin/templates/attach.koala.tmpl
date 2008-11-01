@@ -1,0 +1,95 @@
+%TMPL:INCLUDE{"twiki"}%
+%TMPL:DEF{"attach"}%
+%TMPL:DEF{"heading"}%Attachments to topic %TOPIC%%TMPL:END%
+%TMPL:P{"htmldoctype"}%
+<head>
+ <title> %WIKITOOLNAME% . %WEB% . %TOPIC% %TMPL:P{"titleaction"}%</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=%CHARSET%">
+ <meta name="robots" content="noindex">
+ %HTTP_EQUIV_ON_VIEW%
+ <base href='%SCRIPTURL%/%VIEW%%SCRIPTSUFFIX%/%INTURLENCODE{"%WEB%/%TOPIC%"}%'>
+ <link href='%PUBURL%/_ks/%WEBCSS%' rel="stylesheet" type="text/css" title="koalaskin" >%SITECSS%%CSS%
+</head>
+<script language="JavaScript">
+<!--HIDE
+function initForm() {
+   document.main.filepath.focus();
+}
+function launchWindow( theWeb, theTopic ) {
+  win = open("%SCRIPTURLPATH%/%VIEW%%SCRIPTSUFFIX%/" + theWeb + "/" + theTopic + "?skin=plain", theTopic, "titlebar=0,width=500,height=480,resizable,scrollbars");
+  if( win ) {
+    win.focus();
+  }
+  return false;
+}
+//STOP HIDING-->
+</script>
+<body onLoad="initForm()" >
+#PageTop
+<form enctype="multipart/form-data" action='%SCRIPTURLPATH%/upload%SCRIPTSUFFIX%/%INTURLENCODE{"%WEB%/%TOPIC%"}%' method="post" name=main>
+%TMPL:P{"simpleheader"}%
+---++ Existing attachments for <nop>%TOPIC%
+%META{"attachments" all="on"}%
+---++ Move, and delete attachment <tt>%FILENAME%</tt>
+Go to the <a href="%SCRIPTURLPATH%/rename%SCRIPTSUFFIX%/%WEB%/%TOPIC%?attachment=%FILENAME%">Move/delete attachment</a> page
+%TMPL:P{"previousdetails"}%
+<table width="100%">
+   %TMPL:P{"previous"}%
+ <tr>
+  <td align="right">
+   Local file:
+  </td><td>
+   <input type="hidden" name="filename" value="%FILENAME%" />
+   <input type="file" name="filepath" value="%FILEPATH%" size="50" />
+  </td>
+ </tr>
+ <tr>
+  <td align="right">
+   Comment:
+  </td><td>
+   <input type="text" name="filecomment" value="%FILECOMMENT%" maxlength="128" size="50" />
+  </td>
+ </tr>
+ <tr>
+  <td align="right" valign=top>
+   Link:
+  </td><td>
+   <label title='[Alt-L] Create in the page a link to the attached file'><input accesskey=l type="checkbox" name="createlink" %ATTACHLINKBOX% /> Create in the page a link to the attached file at the end of the topic that you can edit afterwards. <br> If it is an image, that will include it in the page.</label>
+  </td>
+ </tr>
+ <tr>
+  <td align="right" valign=top>
+   Hide file:
+  </td><td>
+   <label title='[Alt-H]  Hide attachment in normal topic view'><input accesskey=h type="checkbox" name="hidefile" %HIDEFILE% /> Hide attachment in normal topic view. </label>
+  </td>
+ </tr>
+</table>
+
+__Notes:__
+
+   * *Link checkbox:* In case the attached file is a JPG, GIF or PNG image and you check the box, 
+     it will create an inline image (e.g. show the image) at the end of the topic.  For other
+     file types a simple link will be created.
+   * *Bug:* There is a bug with Internet Explorer. In case you get an "Internal Server Error"
+     message when you upload a file, you need to try again. It works the second time.
+%TMPL:P{"extranotes"}%
+
+%TMPL:P{"standardfooter"}%
+<table width="100%" border="0" cellpadding="3" cellspacing="0">
+ <tr>
+  <td valign="top">
+   &nbsp;
+  </td>
+  <td width="50%" valign="top">
+   %WEBCOPYRIGHT%
+  </td>
+ </tr>
+ <tr>
+  <td colspan="2"> %META{"moved"}% </td>
+ </tr>
+</table>
+</form>
+#PageBottom
+</body>
+</html> %TMPL:END%

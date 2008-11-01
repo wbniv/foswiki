@@ -1,0 +1,1348 @@
+---
+---+ Koala Skin Version 3.2 - Instructions
+
+By Colas Nahaboo. http://colas.nahaboo.net
+	* Graphical design by Thierry Kormann, http://koala.ilog.fr/tkormann
+	* Koala Skin Distribution: 
+	  http://twiki.org/cgi-bin/view/Plugins/KoalaSkin
+	  (Download at the end of the topic)
+	* Discussion, support: 
+		* http://twiki.org/cgi-bin/view/Plugins/KoalaSkinDev
+		* koalaskin@koala.ilog.fr is the mailing list for people 
+		  wanting to follow closely discussions on TWiki:Plugins/KoalaSkinDev
+		  Topics discussed on the list will be summarized on the wiki
+		  topic, and new developments on the topic will be announced 
+		  there.
+		  See: http://koala.ilog.fr/mailman/listinfo/koalaskin
+		* koalaskin-announce@koala.ilog.fr is where announces (and 
+		  nothing else) of new koalaskin version will be posted. If
+		  you use koalaskin, *please susbcribe to this list!*.
+		  See: http://koala.ilog.fr/mailman/listinfo/koalaskin-announce
+	* Exemple of public sites using it: 
+		* http://koala.ilog.fr/wiki
+		* http://www-sop.inria.fr/wiki/bin/view
+		* http://wiki.enst.fr/
+
+*Contents:*
+%TOC{depth="3"}%
+
+---++ Skin Info
+
+|  Description: | To provide a look and feel close to well known web sites, but not hiding too much the Wiki-ness of it. We wanted also to do it in clean HTML+CSS code, with as little images as possible |
+|  Screenshot: | <a href="http://twiki.org/p/pub/Plugins/KoalaSkin/koalaskin-shot-view.png"><img src="http://twiki.org/p/pub/Plugins/KoalaSkin/koalaskin-thumb-view.png" alt="Click for full screen image" /></a> |
+|  Base Name: | koalaskin |
+|  Skin Author: | [[http://colas.nahaboo.net][Colas Nahaboo]] |
+|  Skin Version: | see TWiki:Plugins/KoalaSkin  |
+|  Skin CVS Infos: | $Revision: 1.5 $, $Date: 2006/08/27 11:25:31 $ |
+|  Change History: | see  TWiki:Plugins/KoalaSkin#History_of_revisions |
+|  Dependencies: |  |
+|  Skin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+---++ Design goals
+
+This skin has been designed to be able to use TWiki to replace an internal web
+site, with potentially a large number of webs (one site of 62 webs, and one of
+38 now) and users (200+). The goal was to provide a look and feel close to
+well known web sites, but not hiding too much the Wiki-ness of it. We wanted
+also to do it in clean HTML+CSS code, with as little images as possible.
+
+It should be both simple to the novice and close enough to traditional wikis
+for the expert. We emphasized the coherence of the look and the runtime
+efficiency over ease of modification by anyone from the web.  Note that it is
+a full replacement of the whole TWiki templates... the 23 of them, this is not
+just a quick hack.
+
+Although this is freeware code, and there is no formal support, as this skin
+is in use daily at vital sites for our company, it will be maintained
+actively, incorporating enhancements of the main TWiki tree, and try to
+retrofit its goodies to the main tree (the save/quietsave/checkpoint/preview
+system for instance). Expect an easily installable release per month.
+
+This implementation also keeps a lot of the templates structure of the
+original TWiki templates. 
+	* A wiki page TWiki.KoalaSkinWebList is written to describe the web 
+	  pseudo-hierarchy.
+	* A shell (bash 2.x) script generates the TWiki templates from this 
+	  description. This script can be called offline or from TWiki.
+	* This is developped on unix only, 
+	  but it works on windows with cygwin (with the gcc devel package 
+	  installed) since version 1.8.
+	  Note that templates can also be generated on a unix machines (on each
+	  new web creation), and then uploaded to a non-unix web server
+	  running the TWiki system.
+	<br> Warning: on cygwin, do *not* use winzip, which is quite buggy
+	  and can corrupt files. Use cygwin's =tar xfz= .
+
+---+++ Features of the skin:
+	* a navigation bar on top with tabs for web names provides a
+	  pseudo-hierarchy and allows handling many webs. All the webs are 
+	  still in a flat space, so that adjusting the hierarchy do no break
+	  the URLs.
+	* there is one level of hierarchy: a web can have sub-webs
+	  (the system could be expansed easily for any depth, though)
+	* only top level webs ("group webs") can have specific colors. This is
+	  to reduce the "rainbow effect" plaguing big TWikis. Subwebs use the
+	  same color scheme as their group leader
+	* user only give the hue of the webs and common page background color,
+	  rest of color scheme is deduced
+	* hierarchy is flexible: it is changed by editing just one central
+	  wiki page, no actual file or directory moving takes place.
+	* editing saves directly without going through preview. Note that 
+	  convenient buttons are provided to also from the edit view, in 
+	  one click:
+		* *Save* Save topic and return to normal view
+		* *QuietSave* Save but will not trigger email notification 
+		  to people monitoring the page (same as checking the 
+		  "Minor changes" checkbox) 
+		* *Checkpoint* Save, and re-edit immediately
+		* *Preview* The old behavior: Do not save yet, but show 
+		  what the topic would look if saved
+		* *Cancel* Discard changes and return to view mode, release
+		  lock
+	  Note that these buttons are also available from the Preview view,
+	  with a convenient *Back* button to get back to the Edit view.
+	* a search menu in the left margin provides a quick familliar central
+	  point to search in the site, web group, web, or topic names.
+	  This can also be put in the top bar to free the margin.
+	* a convenient familliar "New topic" icon to create a topic, 
+	  listing existing topics as a guide, optionally using the current
+	  page as a template, and allowing to set its parent from a menu.
+	* nearly nothing is used from the web preferences, for ease of 
+	  management of a big number of webs. 
+	  Everything is defined in a single wiki topic
+	  TWiki.KoalaSkinWebList. A script then generates (compiles) templates 
+	  from this information, lowering runtime overhead.
+	  Note that this will generate about 500k of templates per web.
+	* As the templates are "compiled" from a description, it is possible
+	  to have some fancy customisations that would be too costly to
+	  implement at runtime.
+	* We tried to use CSS for defining the looks, rather than the
+	  =%<nop>XXX%= twiki variables, but staying within a subset of CSS 
+	  understood by most browsers. Additional per site and per web CSS
+	  can be added. 
+	* New WebPreferences variables:
+		* =%<nop>TOPICS%= can hold a web-specific list of interesting 
+		  topics for the web, to place in a box in the left margin.
+	* a site map (similar to the <nop>WikiWebTable) is generated.
+	* TWiki.TWikiForms position is settable globally and per-web.
+	* Uses access keys: alt-e edits, alt-s saves...
+	* Uses favicons, so tabs/bookmarks can have a differnt icon per web
+	* Incorporates useful fixes: As TWiki releases tend to be more sparse,
+	  I tend to incorporate useful fixes in releases of KoalaSkin (approx.
+	  once per month), so that people keeping up to date with KoalaSkin
+	  releases will get the most important TWiki fixes this way.
+	* skin is easily upgradable: just untar a new Koala Skin distrib in
+	  the wiki dir, and re-run the generating script!
+	  Distributed files should not be customized: customization happens
+	  in other files for which the distributed script can generate an 
+	  initial form. For instance this file is distributed as an
+	  attachement that is included in the locally-modified topic. Thus 
+	  upgrading will overwrite the attachement but not the local text.
+
+---+++ Known Problems
+	* Normal use works on Netscape 4.x. Bugs in this browser will show
+	  easily for some user constructs due to the use of nested tables.
+	  (blockquotes with long lines)
+	  I provide an ugly hack for this, FixForNS4Blockquote.patch 
+	  on TWiki:Plugins/KoalaSkinDev
+
+---++ Installing
+
+For the impatient, here is what to do to use it:
+
+---+++ New installation HOWTO
+
+	1 Go into your wiki dir. You must have the last 01 Feb 2003 TWiki
+	  release. If you may have applied additional patches, it should not
+	  cause major problems however. The wiki dir is the one under which
+	  you find a directory =bin= with scripts view, edit, etc...
+	2 Uncompress the Koala Skin distrib there. You must have write access
+	  to the templates, bin, pub and data directory, adn subdirectories of
+	  data.
+	3 If the data, templates, and pub TWiki dirs are not directly where
+	  you will run the script, either:
+		1 (preferred) Use symbolic links to have links to the
+		  relevant places in the current dir for:
+		  <br> =data templates pub=
+		2 Generate a configuration file by running
+		  <br> =bin/koalaskin-generate -c=
+		  <br> and edit it to set its variables. Note that you will
+		  need to do this if your Web Home topics are not named WebHome.
+	  </ol>If needed, create a =bin/koalaskin-generate.cfg=
+	  file to hold customisations of the bin/koalaskin-generate script,
+	  see sample at the start of the script itself. You can set in
+	  it:
+		* these directory paths
+		* the path to the GNU utilities grep, sed and gcc if they
+		are not by default in you PATH (no need to on unix and cygwin)
+		Tradition versions of Sun, HP, etc,... will not work
+	  <ol>
+	4 Set in your global web preferences TWiki.TWikiPreferences:
+	  <br> _6 spaces_ * Set SKIN = koala
+	  <br> _6 spaces_ * Set TOPICS = 
+	  <br> _6 spaces_ * Set TOPICSTOP = 
+	  <br> _6 spaces_ * Set EDITBOXSTYLE = width: 99%
+	  <br> _6 spaces_ * Set CSS =
+	  <br> _6 spaces_ * Set PRINTCSS =
+	  <br> _6 spaces_ * Set KSBUTTONS =
+	  <br> _6 spaces_ * Set RELATEDWEBS =
+	  <br>(otherwise some %<nop>XXX% strings will show in the pages)
+	5 Apply the following fixes if they are not already on your system:
+	  (apply a patch for instance by: =patch -p0 -E -s < PATCH_FILE= ).
+	  Patches marqued [optional] are not needed for operation of the
+	  KoalaSkin, but are recommended in general.
+	  <br>For CAIRO version (use the versions labeled for Cairo)
+		1 TWiki:Codev/TerserSignature
+		2 TWiki:Codev/ViewUseCssInKoala
+		3 TWiki:Codev/DiffsFunctionDoesNotAuthenticateProperly
+		4 TWiki:Codev/TopicMovedMessageTooVisible
+		5 TWiki:Codev/SecurityAlertExecuteCommandsWithSearch (you
+		  *should* already have this one applied)
+		6 Copy the image 
+		  http://twiki.org/p/pub/TWiki/TWikiDocGraphics/changes.gif
+		  into =TWiki/TWikiDocGraphics/= in your =pub/=dir
+	  <br>For BEIJING version:
+		1 [not needed] <strike>TWiki:Codev/ViewMetadataPatch</strike>
+		2 TWiki:Codev/TerserSignature
+		  (ignore the warnings)
+		3 TWiki:Codev/ViewUseCssInKoala (2nd one, for Feb 2003
+		  release)
+		4 [optional] TWiki:Codev/LinksToWebHomeShowWebName
+		5 [optional] TWiki:Codev/ExtraneousLineInHttpHeader 
+		6 [optional] TWiki:Codev/DiffsFunctionDoesNotAuthenticateProperly 
+		7 [optional] TWiki:Codev/AttachmentActionLinkBadName
+		8 TWiki:Codev/TopicMovedMessageTooVisible
+		9 Copy the image 
+		  http://twiki.org/p/pub/TWiki/TWikiDocGraphics/changes.gif
+		  into =TWiki/TWikiDocGraphics/= in your =pub/=dir
+	6 In bin/.htaccess, say that savemulti and searchmulti needs
+	  valid-user, i.e. add:
+		<br> =&lt;Files "savemulti">=
+		<br> &nbsp;&nbsp; =require valid-user=
+		<br> =&lt;/Files>=
+		<br> =&lt;Files "searchmulti">=
+		<br> &nbsp;&nbsp; =require valid-user=
+		<br> =&lt;/Files>=
+	7 Create a topic TWiki.KoalaSkinWebList
+		* Fill it with the output of the script 
+		  =bin/koalaskin-generate -i=
+		  This will give you help on usage.
+		* Edit and Complete it by the list of your webs. 
+		  See for instance:
+		  http://koala.ilog.fr/wiki/bin/view/TWiki/KoalaSkinWebList
+	8 Execute the shell (bash 2.x) script =bin/koalaskin-generate=
+	  You must have write access to the templates/ subdirectory
+	9 Execute the shell (bash 2.x) script =bin/koalaskin-generate -ccg=
+	  (you only need to do it once) to create additional topics in webs.
+	10 Subscribe to koalaskin-announce@koala.ilog.fr, 
+	  See: http://koala.ilog.fr/mailman/listinfo/koalaskin-announce
+	  to be kept informed of new versions
+For uninstallation, see the -r option below.
+
+---+++ Troubleshooting
+Some common mistakes to check if it does not work:
+	* Check that the scripts in =bin/= dir
+	  (koalaskin-generate, savemulti, searchmulti) are executable
+	* Check that the first line of the distributed scripts
+	  savemulti and searchmulti are correct for your system, for
+	  instance on cygwin it may be:
+	  <br> =#!c:/cygwin/bin/perl -wT=
+	* Check that you have not trailing spaces after the "* Set XXX ="
+	  declarations (TWiki bug). Especially the line
+	  "   * Set SKIN = koala " will not apply the koala skin if there is
+	  a space at the end.
+
+---+++ Upgrading a previous <nop>KoalaSkin install
+Upgrading an existing Koala Skin installation is *much* simpler.
+	1 Go into your wiki dir, and uncompress the Koala Skin distrib there.
+	2 check history at the end for new features, things to do,
+	  patches to apply since the previous version.
+	  <br> *items prefixed by %X%* indicates actions you *must* perform
+	  manually at this step, generally patches to TWiki or variables to 
+	  set.
+	3 re-generate templates by running =bin/koalaskin-generate=
+That's all!
+
+---+++ Changing web hierarchy
+To change the web hierarchy, colors, web descriptions, web options...
+	1 edit TWiki.KoalaSkinWebList under TWiki
+	2 re-run =bin/koalaskin-generate= 
+
+---+++ Optional components
+You may want to also install plugins that the KoalaSkin is designed to provide
+facilities for:
+	* TWiki:Plugins/TreePlugin
+	<br> If installed, with *also* the <nop>TreePlugin.topics-v1.tar.gz
+	on TWiki:Plugins/TreePluginDev, its support from the skin can be
+	enabled by the KSWEBMAP variable
+
+---+++ Options of the =bin/koalaskin-generate= script
+	* <b>-i</b> only outputs a template of what should be the KoalaSkinWebList
+	  topic, ready to cut and paste, with description of the available
+	  options.
+	* <b>-c</b> creates a new configuration file for you to edit,
+	  =bin/koalaskin-generate.cfg=. Will not clobber an existing file.
+	* <b>-d</b> only generates a tar/gzip distribution in /tmp
+	* <b>-r</b> only removes Koala Skin installation: distributed files
+	  and generated templates. Leaves the local customizations 
+	  (<nop>KoalaSkinWebList topic) untouched. You need also to change or remove
+	  the  <tt>* Set SKIN = koala</tt> in TWiki.TWikiPreferences
+	  to complete the uninstallation.
+
+---++ Customizations
+
+If you change the distributed templates, please provide feed back so we can
+see if we can change the skin to get your changes as configuration tweaks in
+TWiki.KoalaSkinWebList, to ease your future upgrades. The goal is to provide variables
+in TWiki.KoalaSkinWebList to specify your customizations, so you only have to call the
+generate script without remembering to add options or patch things afterwards.
+
+---+++ TWiki preferences variables
+Moreover, users can at any time define the following TWiki vars in the
+WebPreferences topics of each web:
+	* *Set TOPICS =* _list of links_
+	<br> defines a set of favorite links to appear in the "Topics" box in
+	the left margin. Usually topics separated by &lt;br>.
+	* *Set TOPICSTOP =* _list of links_
+	<br> defines a set of favorite links to appear in the "Topics" row
+	at the top for webs using the NOMARGIN. Same as above, but 
+	layouted differently: separated by |, and prefixed optionally by a
+	<br> &lt;hr noshade size=1 width="90%">
+	* *Set CSS =* &lt;link  rel="stylesheet" type="text/css" href="XXX"&gt;
+	<br> Where XXX is the URL of a stylesheet local to the current web.
+	(that you have attached to a page, for instance).
+	<br> Note that you can also directly include some CSS code in it, e.g:
+	<br> =Set CSS = &lt;style type="text/css">body {background:blue}&lt;/style>=
+	<br> Warning: just setting it to the URL of an external stylesheet 
+	will not work, you will have to include it in the above "link" tag.
+	This is done to allow direct inclusion of inline CSS code for small
+	modifications, this is not the same as the TWiki.KoalaSkinWebList variable KSCSS
+	which must be an URL.
+	* *Set PRINTCSS =* _css code_
+	<br> optional CSS code to add to the print view
+	* *Set KSBUTTONS =* _html code..._
+	<br> Allow to place per-web customization (links, buttons) on the
+	top right of the page under the top-right buttons (home,
+	edit,...). It will be right-aligned just above the webs bar.
+	* *Set RELATEDWEBS =* Web1.<nop>WebHome | Web2.<nop>WebHome | ...
+	<br> If the web has the WEBSRELATEDBAR option set in its entry in the
+	TWiki.KoalaSkinWebList topic, no other web will be shown in the web bar, except
+	the contents of this var will be expansed in the web tab bar, so you
+	should put there links to other webs related to the current one
+	(or any kind of other links).
+	For simple webs, the group web will also be shown left to the 
+	current web, and only the web tab if the web is a group.
+Note that you can set up new variables yourself to add customisations per web
+and possibly per user (if your set up forces people to authentify for just
+browsing). For instance, if you want to allow people to define topics that
+will be seen in all the site, and that local web topics are appended to these
+but do not override them (as is the case if you redefine TOPICS in a web),
+define in your site prefs TWiki.TWikiPreferences:
+	* *Set TOPICS =* _some globally visible topics..._ %<nop>TOPICS_WEB%
+	* *Set TOPICS_WEB =* 
+Then, in your webs local prefs, you can redefine TOPICS_WEB and not TOPICS...
+
+*Note:* The following standard TWiki variable have no effect when the
+KoalaSkin is used and can be ignored:
+	* WEBTOPICLIST
+	* WEBBGCOLOR
+	* SITEMAPLIST, SITEMAPWHAT, SITEMAPUSETO
+ 
+---+++ Adding per-web specific topics in left box
+(to the Topic menu on the left), define the
+TOPICS variable in the web WebPreferences topic, as a list of topics
+separated by &lt;br> (line breaks) 
+
+---+++ <nop>KoalaSkinWebList global variable
+You may want to allow for redefining some of the globally-defined
+variables in the <nop>KoalaSkinWebList topic such as:
+	* KSCOLORBG the color of the page background 
+	* KSCOLORUNSEL color of tabs of unselected web groups
+	* KSCOLORSEL color of the text of the selected tab
+	* KSICON upper-left wiki icon IMG tag, with dims. If you want it 
+	  to appear in mailed changes, do:
+		* use full URLs, like %<nop>PUBURL% 
+		* put two spaces between =img= and =src= in the tag to fool
+		  the image-removal code of TWiki
+	* KSTITLE html code to put after the icon. Defaults to nothing
+	* KSLMARGIN left margin (default 150)
+	* KSTABWIDTH minimum width of web tabs (default 80)
+	* KSNOICONS if set to true (actually any non-empty string)
+	  generates templates not using any images for the row of
+	  buttons on the upper right: Home/Edit/Attach/Sitemap/Help
+	* KSHELP the url the user gets to when clicking the Help icon
+	  defaults to: %SCRIPTURLPATH%/view%SCRIPTSUFFIX%/TWiki/WelcomeGuest
+	* KSNOEXPAND if set to something else than "false", will not
+	  expanse templates at generation time, saving space (for a 18-web
+	  wiki, makes templates dir use 2.3M instead of 5.7M, compared to
+	  0.4M without KoalaSkin). Expansion saves disk access on each 
+	  web request, though.
+	* KSWEBBAR=topic
+	  If present, will add links in the left box to a special topic
+	  to show a map of the current web with the TWiki:Plugins/TreePlugin
+	  that should be already install, as well as the 
+	  <nop>TreePlugin.topics-v1.tar.gz from TWiki:Plugins/TreePluginDev
+	  Will also add links to maps from the global site map.
+	  The link will point to the topic given as a value, or to
+	  <nop>WebTreeBars if value is "on" or any non-empty, non-topic word.
+	* KSNOWEBSBAR if set to non-empty, does not show the navbar with all
+	  the webs in the template.
+	  Useful for sites wanting a simpler look, or for webs dealing with
+	  very different topics where users of one web do not care to see
+	  other webs. This variable sets the default for the site, that can be
+	  overriden per-web with the NOWEBSBAR and WEBSBAR options below.
+	* KSWEBSRELATEDBAR if set to non-empty, does not show the navbar
+	  with all
+	  the webs in the template, use just the name of the web (if in a
+	  groupe preceded by the name of the group). Each web can then add
+	  webs related to it as links in the right part of the bar in the
+	  TWiki variable RELATEDWEBS in its WebPreferences topic.
+	* KSFILEPERMS if set to ALL will change permissions of generated
+	  templates so that other people can re-generate the templates
+	  afterwards. If set to some other string "xxx", will make the files
+	  writables by the group "xxx".
+	* KSFORM_POS is the default position value of TWiki.TWikiForms. Must be
+	  one of: FORM_LM, FORM_TL, FORM_TO, FORM_TR, FORM_BL, FORM_BR. 
+	  Defaults to FORM_BL
+	* KSCSS can be set to the URL of an external CSS stylesheet to further
+	  customize the site. 
+	* KSNOMARGIN if non empty, puts the main topics of webs and search box
+	  are at the top of the page rather in the left margin, allowing for a
+	  greater usable width for text.
+	* KSNOACCESS if non empty, will disable use of Access Keys, in order
+	  not to conflict withe the browser ones.
+	* KSLEFTTOPICS=text...
+	  If defined, will be used as default contents for the "Topics"
+	  box present in all the left margin of non-empty webs. Default is to
+	  include the contents of ks_lefttopics template.
+	* KSNOLEFTTOPICS=text...
+	  Same as KSLEFTTOPICS, but will be used for webs in the
+	  "no-leftmargin" form (see the NOMARGIN option). default is to
+	  include the contents of the ks_nolefttopics (generated from
+	  ks_lefttopics).
+	* KSTHEME=themes,... 
+	  Can be used to redefine any KoalaSkin template, see Theming.
+To do this, set in TWiki.KoalaSkinWebList the variable to a %-var, that you will
+have to define the default in the site preferences in TWiki.TWikiPreferences,
+that then can be used to define things per web. For instance, in
+TWiki.KoalaSkinWebList, with the following declaration you will be able to use
+%=%<nop>TOPICON%= to redefine the upper left icon per web.
+		* =Set KSICON = %<nop>TOPICON%=
+
+---+++ Per-web options
+Must be found at the start of the descriptions, blank-separated
+	* EMPTY means for groups the web should not be used, only its
+	  sub-webs. Thus only the search box is generated in the left margin
+	  and a table of subwebs is shown in its front page.
+	  Note: you can also %INCLUDE the table of subwebs, search 
+	  <nop>WebSiteMap in this page.
+	* HIDDEN means that the web is not listed in the navigation bar to
+	  save space, nor listed in the sitemap but will be still be
+	  accessible, searchable, and decorated with the Koala Skin features.
+	* NOTAB means that the web is not listed in the navigation bar to
+	  save space, but is listed in the sitemap.
+	* NOSHOW=XXX where XXX is a comma-separated list of webs (without 
+	  spaces) lists the webs whose tabs will not appear in the current
+	  web view. This is useful to remove group tabs from some particular
+	  webs, but not for all. It is like a local NOTAB.
+	* COLORBG=XXX where XXX is the background color of pages in the
+	  current web, overriding locally KSCOLORBG. For HTML users, it can
+	  also be written BGCOLOR.
+	* FORM_LM, FORM_TL, FORM_TO, FORM_TR, FORM_BL, FORM_BR
+	  indicates that you want
+	  the optional TWiki.TWikiForms in the topic at different places,
+	  not just at the bottom left. You can set more than one option,
+	  howevere for editing the edit form will be just at top or bottom,
+	  depending of the last option seen. The default value is set by the
+	  value of the FORM_POS global variable.
+		* FORM_LM: in the bottom left margin. Will messes the layout
+		  if the form is too wide, use with caution
+		* FORM_TL: top left of the text, text will flow on right
+		* FORM_TO: top left of the text, text will begin under it
+		* FORM_TR: top right of the text
+		* FORM_BL: bottom left of the text (default)
+		* FORM_BR: bottom right of the text
+	* NOMARGIN means that the main topics of this web and search box are
+	  to be presented at the top of the page rather in the left margin,
+	  allowing for a greater usable width for text.
+	* NOSEARCH means do no search this web when searching its group. Has
+	  the same effect that using NOSEARCHALL in the web preference topic,
+	  but can be used when generating offsite, with just the KoalaSkinWebList topic
+	  as input but no access to the wiki site itself.
+	* TABNAME=XXX means that the name that will be shown in the navigation
+	  bar tabs will be XXX. useful to give a shorter form for webs with
+	  long names. The real name will be mentioned also in the sitemap.
+	  This is especially useful if using extended web names, see
+	  TWiki:Support/WebNameAsWikiName .
+	  If the name has spaces, please use the "&<nop>nbsp;"
+	  form to represent them, e.g: 
+		* Quality_Assurance TABNAME=Q&<nop>nbsp;A Q A web
+	* URL=url means that the tab will not refer to an existing web, but
+	  instead will redirect to an external URL
+	* NOWEBSBAR removes the navigation bar on top with all the webs.
+	  Similar to KSNOWEBSBAR, but only for the current web
+	* WEBSRELATEDBAR removes the navigation bar on top with all the webs
+	  to show only the current web name and a per-web list of related
+	  webs. Similar to the global KSWEBSRELATEDBAR variable.
+	* WEBSBAR allow to see the webs bar in the current web even if it
+	  was disabled by default with KSNOWEBSBAR
+	* THEME=XXX can be used to redefine templates, see Theming.
+	  Note that the XXX themes are not appended to the global theme list
+	  defined by KSTHEME, unless you explicitely say so by including
+	  SUPER as in: THEME=SUPER,big_fonts,blue.
+	  SUPER means the list of themes used in the web group leader, of the
+	  global KSTHEME for groups.
+
+---+++ Boxes
+If you insert in your TWiki.TWikiPreferences site-wide preferences
+the contents of the provided file =templates/ks_boxes.koala.txt=
+you will have %-macros to create colored boxes of text in the colors scheme
+of the current web, see http://koala.ilog.fr/wiki/bin/view/Test/TestBoxes .
+See examples at http://koala.ilog.fr/wiki .
+You can have:
+	* %<nop>BOXHEAD% title %<nop>BOXBODY% body %<nop>BOXEND%
+	* %<nop>BOXSTART% body %<nop>BOXEND%
+	* %<nop>BOXLEFT% title %<nop>BOXBODY% body %<nop>BOXEND%
+	* %<nop>BOXRIGHT% title %<nop>BOXBODY% body %<nop>BOXEND%
+	* And, to use in the left margin (in the TOPICS var in the prefs):
+	<br> %<nop>MBOXHEAD% title %<nop>MBOXBODY% body %<nop>MBOXEND%
+	<br> (See the "Public Webs" box in the margin at:
+	http://koala.ilog.fr/wiki )
+
+---+++ Theming
+
+In order to customize further the KoalaSkin look, you can redefine any of the
+provided template files ( =templates/*.koala.tmpl= ), via theming. Choose a
+name for theme, say XXX, then copy the template you want to change,
+for instance =templates/ks_header.koala.tmpl=, into 
+=templates/ks_header-XXX.koala.tmpl= and modify it.
+
+Then you can make all the site use this template via, in the <nop>KoalaSkinWebList
+topic the KSTHEME global variable, or the use of per-web THEME=themes option,
+in our example:
+	* *Set KSTHEME=XXX*
+or
+	* Webname *THEME=XXX* description...
+
+Theme value can be a theme name or a list of themes (comma-separated). If more
+than one theme is given, it is a priority list: for each template, if a
+"themed" copy exists with first theme, use it, else fall back on the second,
+etc... If no file is present the default koala file is used.
+
+So, if you want to adapt the provided templates to your use, but it is not yet
+in a properly separated ks_.. file:
+	1 cut out the part you want to modify from template XXX.koala.tmpl
+	  to create the new file ks_YYY.koala.tmpl
+	2 replace it by a %<nop>TMPL:INCLUDE{"ks_YYY"}% in the file 
+	  XXX.koala.tmpl
+	3 Copy ks_YYY.koala.tmpl to ks_YYY-ZZZ.koala.tmpl where ZZZ is your
+	  theme name. 
+	4 Edit ks_YYY-ZZZ.koala.tmpl to suit your need.
+	5 Mail me (or post on wiki) the modified XXX.koala.tmpl and
+	  ks_YYY.koala.tmpl so that I can modify the main distrib accordingly
+	  so that you will have nothing to do manually on next upgrade.
+
+---++++ Distributed themes
+The distrib includes some small themes:
+	* *slim* simple look contributed by TWiki:Main/NilsBoysen
+	* *css2* uses css positionining for the left bar
+	* *lastchanges* adds a link to a lastchange script in sitemap giving
+	  a merged list of changes in all webs (or a subpart) in an efficient
+	  way (do not search files, just uses the logs). This theme adds 
+	  a button in the sitemap and make the "Group Changes" links use it
+	  instead of the regulat WebChangesGroup topic
+	* *spacedtopic* uses spaced topic names in window title
+	  (e.g; Koala Skin instead of KoalaSkin) for better indexing by
+	  search engines.
+	  For this, you *need* to install:
+		* TWiki:Plugins/SpacedWikiWordPlugin
+		* TWiki:Plugins/SpacedWikiWordPluginDev#SPACEDTOPICP_patch
+
+---+++ Favicons
+
+If the generation script finds attached "favicon.ico" files, it uses it as
+favicons, depending to which topic they are attached:
+	* TWiki.KoalaSkinWebList: uses it as default favicon for the site
+	* WebHome of a web, uses it only for topics in this web
+If you add or remove a favicon somewhere, the script must be re-run. No need
+to re-runafter modifying an existing one.
+To generate a favicon.ico in unix from a favicon.gif, see ppmtowinicon. e.g:
+<br> =giftopnm favicon.gif | ppmtowinicon > favicon.ico=
+
+---+++ Advanced
+	* Quoting =%<nop>WEB%= in templates is done by: =%<nop>&lt;WEB>%= 
+	  (for search templates, which use the =%<nop>REPEAT%= construct)
+
+---+++ CSS
+The Koala Skin defines style for some selctors, that you can thus use in your 
+contents:
+	* The colors of webs are defined as CSS classes:
+		* bg1-%<nop>WEB% for the darker color
+		* bg2-%<nop>WEB% for the lighter color
+	* Classes:
+		* =footer small xsmall= : smaller text
+		* =buttonBar= : small bold text
+		* =title= : topic title font
+		* =headline= : biggest font
+	* Tables of class =topic= will be styled like the "Topics" boxes
+	  in left margin (use =th= and =td= )
+	  See examples at http://koala.ilog.fr/wiki/bin/view/Koala
+	* HTML elements =b=, =i=, and =q= are rendered with a colored ink. Use
+	  =strong= and =em= if you do not want color.
+	  <br>Class =color= can be used to use the current web color for text.
+	* =blockquote= are rendered in colored frames. Use =blockquote= inside
+	  =pre= tags to get examples inside colored boxes.
+	* definition lists are rendered in a nicer way: tag outdented and in
+	  bold, no newline after tag
+	* misc usable classes - on which tags
+		* ks_icon: default site icon - img & a)
+		* ks_form: formfield (view mode) - table)
+		* s_sitemap: site map - table 
+
+---++ Advanced use
+---+++ Enabling generation of templates via the web
+
+You must allow the UID under which runs the web server (nobody, www-data...)
+able to modify, if they exist already:
+	* templates
+	* pub/_ks/ and files in it
+	* templates/sitemapwebs.koala.tmpl
+	* templates/*/*.koala.tmpl
+You can do for instance (once will suffice) a:
+<pre>
+	chmod a+rw templates pub/_ks pub/_ks/* \
+	  templates/sitemapwebs.koala.tmpl templates/*/*.koala.tmpl
+</pre>
+
+Then, add to the <nop>KoalaSkinWebList topic the following HTML code:
+<pre>
+After editing this topic, you must click on this link:
+&lt;a href=%<nop>SCRIPTURL%/koalaskin-generate>Regenerate templates&lt;/a>
+to commit your changes.
+</pre>
+
+Then, after editing the topic, clicking on the above link will re-generate the
+templates. But once you do this, you may not be able to re-generate from the
+shell from a non-root account.
+
+---++ Usage
+
+---+++ Access Keys:
+<br>In the main view, pressing ALT and a key does:
+	* *t* Top, goes t(o the root home page of the site
+	* *e* Edit, edits the page
+	* *a* Attach, attach a document
+	* *n* New, create a new topic
+	* *s* Sitemap, go to the site map
+	* *h* Home, goes to the WebHome of current web
+	* *c* Changes, goes to the changes pages
+	* *i* Index, goes to the index (lits of topics, alphabetical)
+	* *f* Find, goes to the search page
+	* *p* Printable, switch to printable skin
+	* *r* Raw, switch to Raw view
+	* *d* Diffs, see diffs
+	* *m* More, goes to the More page (move/rename/delete/reparent...)
+In edit and preview view:
+	* *s* Saves
+	* *q* Quietsaves
+	* *c* Checkpoints
+	* *p* Preview mode (in preview, goes back to edit mode)
+	* *z* (undo) Cancels 
+	* *r* toggles Release edit lock checkbox
+	* *m* toggles Minor changes checkbox
+In other pages:
+	* *z* Cancels
+You can disable them by KSNOACCESS if it conflicts with browser keyboard
+shortcuts often used by your users.
+
+---
+---++ Implementation
+
+---+++ Files in distribution
+
+	* =data/TWiki/KoalaSkin.txt=
+	  This Wiki page, documentation for the skin.
+	* =bin/searchmulti=
+	  CGI script to implement the multipurpose search menu.
+	* =bin/savemulti=
+	  CGI script to implement save/checkpoint/cancel/preview choices 
+	  in edit templates. 
+	* =bin/koalaskin-generate=
+	  Shell script to compile per-web templates from the main ones.
+	* =templates/sitemap.koala.tmpl=
+	  Stub template for the site map of all webs.
+	* =templates/style.koala.tmpl=
+	  Stub CSS stylesheet.
+	* =templates/twiki.koala.tmpl=
+	  Main template definitions
+	* =templates/view.koala.tmp=, 
+	  =templates/edit.koala.tmpl=, ... main templates per scripts
+	* =templates/changes.koala.tmpl= 
+	  Emailed template on WebNotify
+	* =templates/ks_*.koala.tmpl=
+	  Template modules, prefixed by ks_ to differentiate from full
+	  standalone templates
+	* =pub/_ks/home.gif=
+	  =pub/_ks/edit.gif=
+	  =pub/_ks/attach.gif=
+	  =pub/_ks/help.gif=
+	  =pub/_ks/print.gif=
+	  =pub/_ks/sitemap.gif=
+	  Icons used in the view templates.
+
+---+++ Generated files by shell script
+For each web =Foo=, the script create a template dir =templates/Foo= and 
+generates in it the files:
+	* =attach.koala.tmpl=
+	* =changeform.koala.tmpl=
+	* =edit.koala.tmpl=
+	* =moveattachment.koala.tmpl=
+	* =oopsmove.koala.tmpl=
+	* =oopscreate.koala.tmpl=
+	* =rdiff.koala.tmpl=
+	* =renamebase.koala.tmpl=
+	* =search.koala.tmpl=
+	* =searchbookview.koala.tmpl=
+	* =searchformat.koala.tmpl=
+	* =searchmeta.koala.tmpl=
+	* =searchrenameview.koala.tmpl=
+	* =sitemap.koala.tmpl= General outline of the sitemap pages
+	* =sitemapwebs.koala.tmpl= The actual sitemap seen from this web
+	  (current web is higlighted for a "you are here" effect)
+	* =style.koala.tmpl= The CSS definitions for this web
+	* =twiki.koala.tmpl= Definitions used in other templates
+	* =view.koala.tmpl= The most used template: viewing pages
+	* =websbar.koala.tmpl=
+	  The navigation bar on top of page with web names in tabs
+
+Generates also the common templates dir:
+	* =pub/_ks/style.css=
+	  The common part of the CSS style (without per-web colors) to use
+	  for the sitemap
+	* =templates/sitemapwebs.koala.tmpl=
+	  The template stub for the actual per-web sitemap templates
+
+The following topics are also created in webs:
+	* In web TWiki, to be included like e.g. 
+	  %<nop>INCLUDE{TWiki.WebSiteMap_Foo}% to import the site 
+	  map for the group of webs of parent Foo:
+		* <nop>WebSiteMap a site map as a wiki topic that you can
+		  %INCLUDE anywhere
+		* <nop>WebSiteMap_GROUP for each web group, a subset of the 
+		  site map limited to the group that you can %INCLUDE anywhere
+
+The skin maintains additional generated data in the =pub/_ks/= directory
+(css files)
+
+---+++ Templates changes from standard TWiki ones
+Most templates changes consist in adding 
+	* a CSS style: 
+	  =&lt;style type="text/css">%<nop>TMPL:INCLUDE{"style"}%&lt;/style>=
+	* optional inclusion of an external site-specific CSS, plus
+	  web-specific style
+	* a header definition =%<nop>TMPL:DEF{"heading"}%...%<nop>TMPL:END%=
+
+---++ TODO
+May be be done for next (or future) version:
+May be done in the future, no guarantee.
+	* group changes must be themable. Should use also ks_lastchanges
+	  and RELATEDWEBS
+	* obey http://TWiki.org/cgi-bin/view/Plugins/SkinPackageHowTo
+	* robot exclusion with metas, see wikini
+	* http://www.twiki.org/cgi-bin/view/Codev/ShorterURLs
+	* CSS for twiki table (header and even/odd rows) on the web color 
+	  scheme
+	* (javascript) to size edit area vertically to window
+	* make templates for the TWiki:Codev/SimpleTableEntryUsingForms
+	* Edit/Attach... be buttons in the main view
+	* rewrite in a more standard language (ruby, perl?)
+	* use a better/simpler templating system than the TWiki one
+	* Themes to do:
+		* simple skin 
+		* http://twiki.med.yale.edu/twiki2/bin/view/CGIapp/WebHome
+	* be able to have a gray (not possible with just hues)
+	* test: Codev/OptimizePreferencesHandling
+	* finish the ATTRIBUTES= web options for extra sitemap columns
+	* http://twiki.org/cgi-bin/view/Plugins/QuickMenuSkin
+
+---
+---++ History of revisions
+*Warning:* 
+*%X%* denotes actions you MUST perform when upgrading from previous version
+
+Versions 3.x supports the Cairo (Sep 2004) and Beijing (Feb 2003) releases.
+	* *3.2* _18 Aug 2006_ Fixes
+		* fix: left margin search box wasnt working (redirected to
+		  the WebSearch page) in the default theme
+		* fix: search for titles always searched the web group
+		* New per-web variable COLORBG to set the page background
+		  per web. Can also be spelled BGCOLOR for html likeness.
+		  e.g.: COLORBG=white
+		* printable view now include forms, at their web-sepcific
+		  position (top/bottom left/right)
+		  the print skin is thus now distributed as 
+		  templates/view.koalaprint.tmpl and expansed in each web
+		* skin description metadata for twiki.org gallery provided 
+		  by Soraya Arias 
+		* some mention of NAVBAR in some templates removed
+		* for theme writers: new functions: _KSLEFTBOX_link, 
+		  clean_variant
+		* ks_lastchanges.sh was outputting tons of
+		  "grep: writing output: Broken pipe"
+	* *3.1* _04 Feb 2005_ Fixes
+		* *%X%* THEMEINHERIT option was not working properly, removed
+		  in favor of using KSTHEME in THEME= values to explicitely
+		  indicate inheritance of themes. So if you have in your
+		  definitions: KSTHEME=x and in webs things as 
+		  THEMEINHERIT THEME=y, you should change to THEME=SUPER,y 
+		  to keep the same behavior.
+		* NAVBAR support removed
+		* corrections to this documentation: 
+		  <nop>WebList -> <nop>KoalaSkinWebList, removed offsite 
+		  generation
+		* search in left column now searches both in titles and body
+		* fix for Cairo braindead behavior of leaving the topic 
+		  locked on quietsave
+	* *3.0* _12 Jan 2005_ Cairo support
+		* new PRINTCSS twiki var
+		* *%X%* you must add a <tt>* Set PRINTCSS =</tt> to your
+		  site global prefs, in TWiki.TWikiPreferences
+		* new NOSHOW option
+		* =bin/koalaskin-generate= config: new lib var
+		* Beijing: *%X%* you must add a 
+		  <tt>* Set BROADCASTMESSAGE =</tt> to 
+		  your site global prefs, in TWiki.TWikiPreferences
+		  Cairo users do not need it.
+		* the topic list is now <nop>TWiki.KoalaSkinWebList, not
+		  <nop>Main.WebList anymore. The generate script will rename
+		  the topic on the first run
+		* fix for TWiki.WikiWords in web descriptions by Benoit Hamet
+		  (see 22 Dec 2004 entry in TWiki:Plugins/KoalaSkinDev )
+		* patch to apply #1 not needed anymore
+		* various fixes for Cairo
+		* everything should be functional, but with the same looks
+		  of the previous KoalaSkin. We will incorporate pattern skin
+		  enhancements in future releases.
+
+Versions 2.x support only the Beijing (Feb 2003) Stable TWiki release.
+	* *2.14* _12 Aug 2004_ bugfix
+		* *Warning* KoalaSkin is still untested on Cairo. The first
+		  KoalaSkin to work with Cairo will be labelled 3.0. In the
+		  meantime, I try to gather the fixed for Beijing in the 2.x 
+		  series. Expect a 3.0 in mid-september. Also 3.x may
+		  not support obsolete browsers like Netscape 4.x.
+		  Also I will be in vacations till end of August, so in case
+		  of problem, just revert back to 2.13 until I get back.
+		* KoalaSkin files migrated out of Plugins and into TWiki web 
+		* A new topic must be created: WebChangesGroup in each 
+		  web. run *once* =bin/koalaskin-generate -ccg= to create
+		  them. This is linked by a new entry named "Group Changes"
+		  above "Changes" in the left margin. Can be redefined via
+		  the ks_changesgroup.koala.tmpl template.
+		  Actually the first generation will try to do it but you may
+		  not have the write permission in the data dirs in this case.
+		  Do it by hand with the relevant rights if you get an error
+		  trying to create the WebChangesGroup.txt files.
+		* Theme XXX files can also be in a dir, like
+		  =templates/_koalathemes/XXX/foo.tmpl=
+		  instead of only as files
+		  =templates/foo-XXX.koala.tmpl=
+		* made the generator script put CSS classes in all outputted
+		  html, and have html themselves redefinable: outputted
+		  strings moved to =templates/ks_config=, that is loaded
+		  then all =templates/_koalathemes/XXX/ks_config=
+		  or =templates/ks_config-XXX=
+		  for all used XXX themes in each web
+		* Variants: theme writers can define "variants", such as
+		  "YYY", that is just (bash) code defined in functions
+		  in a ks_variants file that will be executed after creation
+		  of templates for the theme (but before their expansion of 
+		  includes), that should perform postprocessing of generated
+		  files to create a new skin in the webs templates dirs
+		  named koala_YYY that users can use in their web or topics
+		  with a 'Set SKIN =" declaration, while keeping the
+		  efficiency of fully compiled/expansed skins.
+		  In each web, a $variants var is defined, then
+		  the main ks_variants and all the ks_variants for the themes
+		  in use in the web are loaded, and all the function names
+		  (blank-separated) listed afterwards in $variants are
+		  executed (this allows overriding a standard variant)
+		* unknown KS... global vars are just exported as shell vars
+		  to be used by themes
+		* <nop>WebSiteMap generated topics in TWiki webs for inclusion
+		  e.g. %<nop>INCLUDE{TWiki.WebSiteMap_Foo}% imports the site 
+		  map for the group of webs of parent Foo
+		* new web option URL=url, allows to have "fake" navigation 
+		  tabs towards external urls, not only actual local webs
+		* bugfix: link to text formatting rules help in edit view
+		  was broken on sites with non-standard bin/dir
+		  reported & fixed by Beat Doebeli
+		* new  shell scripts in bin/. first one is
+		  ks_lastchanges.sh used by the lastchanges theme
+		  <br> if using mod_perl or mod_speedycgi (but it does
+		  no harm to add them anyways)
+		  you should add to your bin/.htaccess the 3 lines:
+		  <br><tt>&lt;Files "*.sh"&gt;
+		  <br>	SetHandler cgi-script
+		  <br>&lt;/Files&gt;</tt>
+		  <br>Normally the script will do it for you.
+		* auxillary files (icons, css) migrated into a pub/_ks dir
+		  instead of the attachement dir of the KoalaSkin topic
+		  in Plugins.
+		* CSS is no more included in topics but linked to a css file
+		  in pub/_ks/ to save bandwidth (identical csses are shared)
+		  and disk space
+		* new THEMEINHERIT web option to inherit current themes
+		* the name of the bin/view script is now a configuration 
+		  variable, =view= (request from Beat Doebeli) in
+		  =bin/koalaskin-generate.cfg=
+		  for: TWiki:Codev/ShorterURLs
+		* some hosted installs forbids you to execute code in /tmp
+		  (symptom: ./koalaskin-generate: line 1: /tmp/rgb2hsvhex: Permission denied )
+		  now you can specify a directory where you cane xecute things
+		  as the =exectmp= var in =bin/koalaskin-generate.cfg=
+		  (thanks to Martin Cleaver)
+		* bugfix: in savemulti: TWiki::redirect without web name,
+		  fix by Stephan Pulver and Joachim Blum
+		* bugfix: some seds seemed to not like newlines (macintosh)
+		  should be better now (for Xiu Bao, Roopesh Chander, ...)
+	* *2.13* _15 Jan 2004_
+		* allowed size for attach comments increased 50->128
+		* new template to put things above the search box in left
+		  margin:  templates/ks_lefttopbox.koala.tmpl .
+		  Empty for default skin, but you can redefine it in your 
+		  themes. Unused in NOMARGIN modes.
+		* if an included template do not exist, issue a warning
+		  but do not abort anymore
+		* fonts: websbar is in arial (less wide), rather than verdana
+		* searchmulti updated to work with the new search from 
+		  beta 18 Dec 2003 (fix by Nathan Neulinger). Automatically
+		  use old code on 01 Feb 2003 release.
+		* documented that searchmulti should also be set for
+		  authentication via "valid user" in =bin/.htaccess=
+		  (otherwise search in read-protected web/topics will not
+		  work)
+		* bugfix: 'Z' accesskey for cancel in preview view was broken
+		* bugfix: Cancel in edit/preview and existing topic was
+		  returning to WebHome, not the topic
+		* documented that we must use the GNU versions of grep, sed
+		  and cc. Can be setted in config file (Alexander Shugayev)
+	* *2.12* _19 Dec 2003_
+		* added edit help text a la TWiki:Codev/HelpTextInEditPage,
+		  with triple-clickable signatures
+		* CSS fonts: to have working-anywhere fonts we use
+		  http://www.richinstyle.com/masterclass/fonts.html
+		* New "Realated webs" feature: you can have a simplified
+		  navigation webs bar with only current web and user-choosen
+		  related ones. Suggestion by Martin Cleaver.
+		  See KSWEBSRELATED, WEBSRELATEDBAR, RELATEDWEBS
+		  <br> *%X%* You *must* add a line:
+		  <br> _3 spaces_ * Set RELATEDWEBS =
+		  <br> to your TWiki.<nop>TWikiPreferences topic
+		* bugfix: the script searchmulti ignored the templatetopic
+		  parameter (searchmulti can be used to create topics, with
+		  the parameter type=create, so it must supports all
+		  parameters of the edit script). This is not needed in normal
+		  operation, however.
+		* troubleshooting hint for cygwin (1rst line of bin/ scripts)
+		* fixed some chars that did not work in UTF-8 in templates
+		* bugfix: icons to web maps in sitemap linked to the current
+		  web only
+		* new value FORM_TO
+		* new CSS class: "topic" for tables, allowing to replace the
+		  use of %BOX... vars
+		* New section CSS to document CSS tags
+		* better CSS for definition lists
+		* HTML page Title is now "topic in web @ site" for easier 
+		  managing of browser tabs which show only the title start
+		* new templates/ks_title.koala.tmpl subtemplate for the title
+		  to be theme-settable, with new default beign to be topic
+		  first, then web
+		* new "slim" theme by Nils Boysen. Use by KSTHEME=slim
+		* theme spacedtopic to have the window title use the spaced
+		  topic, needs patch 
+		  TWiki:Plugins/SpacedWikiWordPluginDev#SPACEDTOPICP_patch 
+		* bugfix: (by Hans Pype) forms in preview views:
+			* was appearing twice
+			* save from preview cleared the fields
+		* bugfix: new could create topic with spaces
+		  (SearchMultiCreateNoSpaces.patch)
+		* bugfix: searchmulti in create mode now preserves the
+		  formtemplate parameter
+		* bugfix: cancelling an initial edit of a being created topic
+		  was triggering an error page. Now it comes back to previous 
+		  topic
+		* When creating a topic by "new", one can create now
+		  a topic only exists in another web - Req. by Martin Cleaver
+		* bugfix: groupmaps would be messed up with group names with
+		  underscores in them
+		* bugfix: with KSNOMARGIN, KSWEBMAP would induce a line break
+		  (reported by Edward Plumer)
+	* *2.11* _14 Aug 2003_ Web Maps
+		* new KSWEBMAP option to make use of the 
+		  TWiki:Plugins/TreePlugin, see its doc.
+		* With KSWEBMAP defined, site map points to web maps,
+		  (and changes for each web)
+		* *%X%* you *must*, to use KSWEBMAP, install the icon
+		  http://twiki.org/p/pub/TWiki/TWikiDocGraphics/changes.gif
+		  into =TWiki/TWikiDocGraphics/= in your =pub/=dir
+		* some fixes to theme expansion, on the inheritance of themes
+		* new template: ks_otherindexes 
+	* *2.10* _08 Aug 2003_ performance fix
+		* this fixes the performance bug of 2.9. 2.10 is only 15%
+		  slower in generating templates now than 2.8, 
+		  (2.9 was more than 50 times slower - 30mn for 20 webs!!!)
+		  <br>Nothing else is changed for this update, (I wanted to
+		  fix this bug ASAP), so I recommend you upgrade all to 2.10.
+	* *2.9* _25 Jun 2003_ bugfix
+		* This version fixes a bug where a newline is always added
+		  when including subtemplates, which bothers people testing
+		  the theme feature when beginning to do lots of small 
+		  template elements.
+		  <br> *however*, the generation is now *much* slower than 
+		  before, so if this bug do not affect you, I advise you not
+		  to upgrade. I will be away for 3 weeks and will try to
+		  fix this performance bug afterwards.
+	* *2.8* _12 Jun 2003_ Theming
+		* Now can use a configuration file
+		  =bin/koalaskin-generate.cfg= to store local settings.
+		  No need to edit the script on each update.
+		  New "-c" option to create a configuration file.
+		* *%X%* If you had to re-edit the =bin/koalaskin-generate=
+		  script on each new upgrade, then generate *once* a config
+		  file to edit by running =bin/koalaskin-generate -c=
+		* "New" proposes to set the parent of new topic (default being
+		  the current one).  Suggestion by Martin Cleaver.
+		* Theming. You can now cleanly and per-web redefine any 
+		  distributed template file. I began to split the provided
+		  templates into smaller ones for easier customization, but
+		  more work is needed, especially on how handling templates
+		  generated by code (the web navigation bar for instance).
+		  <br> For instance to customize bottombuttons, copy 
+		  ks_bottombuttons.koala.tmpl to ks_bottombuttons-xx.koala.tmpl
+		  edit the copy, and set the KSTHEME variable in <nop>WebList
+		  to xx.
+		  <br> New sub templates in this release:
+			* ks_bottombuttons: the links inside the bottom bar
+			* ks_topbuttons: the links at top right
+			* ks_leftsearch: the search box in left margin
+	* *2.7* _06 Jun 2003_
+		* Final bugfix for macintoshes (by Jon Reid)
+		* *%X%* new variable KSBUTTONS. You *must* declare it
+		  in your TWiki.TWikiPreferences as a:
+		  <br> * Set KSBUTTONS =
+		* *%X%* Apply patch TWiki:Codev/TopicMovedMessageTooVisible
+		  The skin is modified to show moved info only in More...
+		  screen.
+		* New variables KSNOWEBSBAR, and options NOWEBSBAR and
+		  WEBSBAR to have a simpler look without all the webs.
+		  (request by Martin Cleaver).
+		* New option both in More... and in New, to create a new
+		  page as a copy of the current page, see:
+		  TWiki:Codev/CloneTopicLinkUnderMore
+		* bugfix: "New" immediately displayed the "not a wiki word"
+		  warning.
+		* bugfix: non closed "a" tag in view template
+		* New explicit entries in templates to delete topics
+		  and attachements, separate from move/rename
+		* recommended optional patch: 
+		  TWiki:Codev/AttachementActionLinkBadName
+		* default CSS class is now "headline" for KSTITLE
+	* *2.6* _16 May 2003_ bugfix for macintosh
+		* No more use of control chars (^A, ^B) for internal 
+		  delimiting, it seemed to break on macintoshes.
+		  ("unterminated substitute pattern" bug)
+	* *2.5* _13 May 2003_ Topics customization
+		* new vars KSLEFTTOPICS & KSNOLEFTTOPICS
+		  (for Martin Roberts)
+		* looks for data TWiki dir in current dir before the value of
+		  DIR in the script
+	* *2.4* _07 May 2003_ bash bug workarounds, work on cygwin 
+		* bugfix:
+		  http://www.geocrawler.com/archives/3/342/1998/9/0/1936831/
+			* works on all linux distribs
+			* works again with cygwin !!!
+		* colored style for BLOCKQUOTE and Q elements
+		* bugfix: & in KSICON and other was badly rendered
+		* new global variable: KSTITLE
+		* NOTAB did not work for groups. works now.
+		* new CSS class "headline" for big titles
+		* bugfix: skin works with TWiki:Codev/WebNameAsWikiName
+	* *2.3* _29 Apr 2003_ offsite generation
+		* facilities for offsite generation: see
+		  *Offsite generation* to be able to generate the templates
+		  even if you are not able to run the script natively.
+			* KSNAVBAR option to force generating templates 
+			working with the Navbar plugin.
+			* NOSEARCH web option since we cannot read the
+			web preferences
+		* no more embedded control chars in the script.
+	* *2.2* _09 Apr 2003_ bugfix
+		* TABNAME=xxx option to set a (shorter) web name to show
+		  in the top navigation bar.
+		* better -i option, thanks to  Peter Morch and its
+		  TWiki:Plugins/KoalaSkinGeneratePatch .
+		* recommended patches ExtraneousLineInHttpHeader &
+		  DiffsFunctionDoesNotAuthenticateProperly added.
+		* generation added some whitespace to templates, fixed.
+		* help to delete topics in More screen.
+		* update of templates to Beijing release functionalities:
+		  rename (checkbox to allow non-wikiwords)
+		* new option NOTAB (like HIDDEN but appears in sitemap)
+		* Still no fix for cygwin and the @(... bug on some linuxes
+	* *2.1* _04 Mar 2003_ bugfix
+		* update of templates to Beijing release functionalities:
+		  oopsmore
+		* TWiki:Codev/ViewUseCssInKoala patch fixed (on TWiki.org)
+		* bugfix: impossible to create a topic in a non-wikiname,
+		  new "forcecreate" command for bin/searchmulti.
+		* koalaskin-generate -i was broken
+		* *%X%* new version of =ks_boxes.koala.txt= , update your
+		  TWiki.TWikiPreferences with it (MBOXHEAD, MBOXBODY, MBOXEND)
+		* *%X%* New recommended patch 
+		  TWiki:Codev/LinksToWebHomeShowWebName
+		* script checks that we are running in a bash 2.x, not 1.x
+		* bugfix: NOSEARCHALL correctly detected
+		* detects the WebPreferences SEARCHINGROUP setting
+		* bugfix: ignores * Set VAR = declarations in Main.WebList
+		  for vars not beginning with KS (ALLOWTOPICCHANGE...)
+		* Documentation on how to set up a TOPICS_WEB var 
+	* *2.0* _25 Feb 2003_ Migration to 01 Feb 2003 Beijing TWiki release
+		* Adaptation to the new release, 
+		  TWiki:/Codev/TWikiRelease01Feb2003
+		  Previous stable (01 Dec 2001)
+		  TWiki version is no more supported. You should re-install
+		  the KoalaSkin v2.x after you have migrated your site to 
+		  the new TWiki stable release
+		  (see TWiki:TWiki/TWikiUpgradeGuide). 
+		  Be sure to re-apply the needed (3 for now) patches.
+		* This is a first pass. Things now work, I will now in
+		  detail see all enhancements to the standard templates, and
+		  add them to the KoalaSkin ones in a next release.
+		* hidden webs now do not appear in sitemap anymore
+		* if NOSEARCHALL is set in a WebPreferences of a web,
+		  do not include it in group searches, unless the variable
+		  SEARCHINGROUP is also set (to on) in the same
+		  WebPreferences. This setting NOSEARCHALL and SEARCHINGROUP
+		  will make the web not searched when searching the whole
+		  site, but searched when searching its web group.
+		* some html bug fixes in ks_leftbar template
+		* typo fixed in the doc: TOPIC instead of TOPICS
+		  found by Nathan Neulinger
+		* default CSS: class "compact" can be used in ul and table
+		  tags to set left margin of bulleted list to none
+		* still does not work on cygwin, but hints by Beat Doebeli
+		  indicate that there should be hope.
+
+Versions 1.x support only the Athens (Dec 2001) Stable TWiki release.
+	* *1.23* _21 Dec 2002_ accesskeys in tooltips
+		* *WARNING* does not work on cygwin. please use 1.22 on cygwin
+		  (it triggers a bug in cygwin: "cannot fork"...)
+		* doc: all accesskeys documented in tooltips ([Alt-E]...)
+	* *1.22* _21 Dec 2002_ bugfixes
+		* bugfix: Wiki Words in web description messed up tabs
+		* bugfix: some wrong title colors in search results pages
+		* hidden webs are indented a bit more in sitemaps
+	* *1.21* _17 Dec 2002_
+		* *%X%* You should apply the Patch 
+		  TWiki:Codev/ViewUseCssInKoala
+		* tooltips to all the tabs and links in view mode
+		* bugfix: background color for sitemap was omitted.
+		* docfix: TOPICSTOP was not documented
+		* script now checks that the needed variables are defined in
+		  TWiki.TWikiPreferences, and issue warnings on missing ones
+		* default css for html tags &lt;b> and &lt;i>, and twiki __
+		  constructs are rendered in a colored ink. Note that this is
+		  not the case for the twiki * and _ constructs as they are
+		  mapped to strong and em tags
+		* Access keys supported, on mnemotechnic letters. Disablable
+		  via the KSNOACCESS variable
+		* favicon.ico supported
+	* *1.20* _11 Dec 2002_
+		* *%X%* Apply the patches  <nop>NoWebHome.patch and
+		  <nop>NoWebHome2.patch from:
+		  TWiki:Codev/SettingParentTopicToNone
+		  (it is only cosmetics, will not break if not applied)
+		* *%X%* define the variable *%<nop>CSS%* in the
+		  TWiki.TWikiPreferences to nothing.
+		* *%X%* define the variable *%<nop>TOPICSTOP%* in the
+		  TWiki.TWikiPreferences to nothing.
+		* New %<nop>CSS% TWiki var to override CSS per web
+		* New global Koala Skin KSCSS var to define an additional
+		  external style sheet local to the site
+		* New layout:
+			* left margin is smaller
+			* left margin do not depend anymore on web/topic names
+			  (long names could ruin the layout before)
+			* "breadcrumbs trail" to give the hierarchy at the 
+			  top instead of the left margin
+		* New global variable KSNOMARGIN, and per-web option NOMARGIN
+		  to specify a different layout with no left margin for webs
+		  having wide contents.
+		* New option KSFILEPERMS (= ALL for all users, or unix group
+		  name) at Martin request.
+		* New options to set position of TWiki.TWikiForms per web:
+		  FORM_LM, FORM_TL, FORM_TO, FORM_TR, FORM_BL, FORM_BR, and 
+		  global variable KSFORM_POS for the default.
+		* checkbox labels are clickable, see 
+		  TWiki:Codev/FormsUseLabelTags
+		* New link to directly create a new topic, via new template
+		  oopscreate
+		* Cleaner layout (skin) for printing.
+		* textarea {width: "90%";height: "60%";} removed from style
+		  (bug in IE 5)
+		* fix: quoting of "%TOPICPARENT%" in savemulti by 
+		  Esteban Manchado
+		* -r option to script to uninstall
+		* reorganisation of the code, it should be easier to add
+		  features now.
+	* *1.19* _18 Sep 2002_
+		* Support for Navbar Plugin: See KSNONAVBAR variable
+		  To enable Navbar support, install the plugin, and
+		  re-generate
+		* some macros in templates/ks_boxes.koala.txt to do text boxes
+		  in the color scheme of the web
+		* bugfix: lock remained when previewing before save 
+		  with mod_perl
+		* new feature: option HIDDEN possible on sub-webs to save
+		  navigation bar space. (contributed by Fabio Spreafico
+		  and Wenzel Kalus, Biomax)
+	* *1.18* _23 Aug 2002_
+		* bugfix: navigation bar was badly generated in some cases
+	* *1.17* _21 Aug 2002_
+		* *%X%* add the line to your Site Prefs
+		  (TWiki.TWikiPreferences), to be forward-compatible with the
+		  upcoming TWiki release.
+		  <br> _6 spaces_ * Set EDITBOXSTYLE = width: 99%
+		* bugfix: names like WebHome have been replaced by their
+		  "meta" name, (e.g.: %<nop>HOMETOPIC%)
+		* bugfix: sitemaps were broken in 1.16 (bad html comment
+		  syntax: -- is forbidden in comments, but browsers didnt mind
+		  before...)
+		* bugfix: search result pages header colors were broken since
+		  1.14  
+	* *1.16* _09 Aug 2002_
+		* bugfix: CSS was misplaced on some views (search, diff...)
+		  (bug introduced in 1.14 found by Jon Reid)
+		* bugfix: some garbage could be seen in some views in the
+		  parents field on some pages.
+		* bugfix: cleaning pass on html to pass W3C validator
+		  http://validator.w3.org/ .
+		  Tested: view, diffs, changes.
+		  Work remains to do for other scripts (edit), but may imply
+		  more fixes to TWiki itself.
+		* for validation, you may want to apply also this patch:
+		  http://twiki.org/cgi-bin/view/Codev/InvalidHtmlFixRdiff
+	* *1.15* _08 Aug 2002_
+		* new option variable KSNOEXPAND for space-tight people, to
+		  use the same template/ space as 1.14 and before.
+		  (no need to upgrade if you do not need this option)
+	* *1.14* _07 Aug 2002_
+		* *%X%* bugfix: when saving with the bottom save button from
+		  the preview view, parent field was overwritten by garbage
+		  with %TOPICPARENT%. You must repair the damage done to
+		  some pages, see:
+		  http://twiki.org/cgi-bin/view/Plugins/KoalaSkinDev#topicparent
+		  You can either:
+			* edit by hand the pages showing %TOPICPARENT%
+			  strings, if some exist on your site.
+			* use the automatic shell script:
+			  http://twiki.org/p/pub/Plugins/KoalaSkinDev/repair-topicparent
+		* mail template redesigned. 
+		* Hints for writing KSICON
+		* Tests /tmp/hsv2rgbhex & /tmp/rgb2hsvhex before using them
+		* new %KSHELP% variable
+		* %TMPL:INCLUDES are now expansed at generation time. Much
+		  slower at generation, but cuts disks access at runtime.
+	* *1.13* _18 Jun 2002_
+		* *%X%* you may want to apply the patch to Dec 2001 version:
+		  TWiki:Codev/SkinParamOnAllTemplateReads
+		  (but nothing serious will happen if you dont)
+		* A way to re-generate templates from the web added
+		* bugfix: the WebList template outputted with -i was buggy
+		  (the * EMPTY line was mistaken for a web declaration)
+		* bugfix: when previewing a page containing html forms
+		  (such as the registration page), save buttons were inoperant
+		  Bug found by Samuel Tardieu.
+		* bugfix: Internet Explorer rendered badly the sitemaps,
+		  workaround for this IE bug.
+		* doc: which patches to apply are more explicit
+		* announcements of the koalaskin@koala.ilog.fr and 
+		  koalaskin-announce@koala.ilog.fr mailing lists
+	* *1.12* _05 Jun 2002_
+		* *%X%* Terser signature patch used, but you *must* apply
+		  the TWiki:Codev/TerserSignature
+		  patch to bin/edit
+		* empty groups by declaration. Suggestion of  Matt Wilkie.
+		  Put the word EMPTY at the start of the Web description.
+		* cosmetic: attachements table left-aligned in view mode
+		* %<nop>USERSWEB% everywhere, instead of Main.
+		  variable main settable in the script also. 
+		* Wiki Name syntax is checked on create topic by menu
+		* CSS declarations trimmed (and bugfixed) to be smaller.
+		  Simple pages went from 50k to 13k.
+		* new KSNOICONS variable for the Web List topic
+		* non-clickable links are now not white to differentiate
+		  them visually from clickable web tabs
+	* *1.11* _11 Apr 2002_
+		* bugfix: was not working well if your directory structure
+		  differred from the distribution.
+		<br> *Note:* No need to upgrade if you had no problem
+		  installing the 1.10 version 
+	* *1.10* _28 Mar 2002_
+		* bugfix: editing failed (javascript error) on old versions
+		  (5.0) of IE. 
+	* *1.9* _18 Mar 2002_
+		* *%X%* Forgot to mention that the <nop>RefreshEditPage patch 
+		  should be applied. Apply it if you didnt already!
+		* Minor bug fix: QuietSave would not remove lock
+		  (change to bin/savemulti)
+	* *1.8* _12 Mar 2002_
+		* Some fixes to the script to make it run on windows under
+		  cygwin.
+	* *1.7* _10 Mar 2002_
+		* *%X%* Name of install topic changed from <nop>KoalaSkinPlugin
+		  to just <nop>KoalaSkin. You *must* rename the topic
+		  <nop>Plugins.KoalaSkinPlugin if you have one!
+		* This readme is now fully in TWiki syntax. You should create
+		  the topic Plugins.KoalaSkin to include it (it is
+		  installed as an attachement), see new install instructions.
+		* script can be run from twiki dir without setting DIR
+		* Created the official distribution page on TWiki:
+		  TWiki:Plugins/KoalaSkin
+	* *1.6* _8 Mar 2002_ 
+		* fixes to colors in search results in bookview mode, and in
+		  rename topic (result of search for pages refering to page to
+		  be moved)
+	* *1.5* _4 Mar 2002_ 
+		* *%X%* *NOTE:* if you already applied the fix
+		TWiki:Codev/PostfixArgToParentMeta
+		you need to change all 5 occurences of postfix to suffix in
+		lib/TWiki.pm
+		* -d option to bin/koalaskin-generate to generate a distrib
+		* Note that the <nop>RefreshEditPage fix is not needed anymore
+		(but is not harmful)
+		* Use of the ?time=nnnn hack in edit pages
+	* *1.4* _28 Feb 2002_ 
+		* *%X%* patches to apply: #3				 
+		* new script bin/savemulti (needs a similar entry to save
+		in bin/.htaccess), to provide in edit template 4 buttons: 
+		Save, Checkpoint, Preview, and Cancel
+		* Raw view with metadata option in More...
+		(new koala templates for oopsmore & preview)
+		* understands the new var =%<nop>EDITBOXCSS%=
+		* uses the new version of the <nop>PostfixToArgParentMeta
+	* *1.3* _24 Feb 2002_ 
+		* Checkpoint save
+	* *1.2* _23 Feb 2002_ 
+		* everything works (but with patches to distrib).
+		* Announced on TWiki.org
+	* *1.1* _20 Feb 2002_ 
+		* First functional internal release.
+	* _Nov 2001_ First sketches in HTML+CSS by Thierry Kormann
+
+---+ Download
+Get the attached <nop>TWikiKoalaSkin.tgz file.
+This whole topic is included in it as the file 
+=data/TWiki/KoalaSkin.txt=

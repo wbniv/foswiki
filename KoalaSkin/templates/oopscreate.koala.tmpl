@@ -1,0 +1,79 @@
+%TMPL:INCLUDE{"twiki"}%
+%TMPL:DEF{"titleaction"}%(Create new topic) %TMPL:END%
+%TMPL:DEF{"webaction"}% *Topic Creation* %TMPL:END%
+%TMPL:DEF{"heading"}%Create new topic%TMPL:END%
+%TMPL:DEF{"message"}%
+<form action='%SCRIPTURL%/searchmulti%SCRIPTSUFFIX%/%INTURLENCODE{"%WEB%"}%' method="post" name=create>
+Create new topic (web page) named:
+<input type=hidden name=type value=create>
+<input size="32" type="text" name=search value="%PARAM1%">
+<input type=submit name=Go value="Create" accesskey=c title='[Alt-C] Create new topic'>
+<br>With new topic parent: (default is current one)
+<select name="topicparent"><option value="%TOPIC%">%TOPIC%</option>
+<option value="%HOMETOPIC%">%HOMETOPIC%</option>
+%TOPICLIST{"<option value=$qname>$name</option>" separator=" "}%
+</select>
+</form>
+<div class=%PARAM2%>
+<b>Warning! The proposed topic name is not in TWiki.WikiWord notation! </b>
+
+<form action='%SCRIPTURL%/searchmulti%SCRIPTSUFFIX%/%INTURLENCODE{"%WEB%"}%' method="post" name=forcecreate>If you <b>really</b> (read help below) want to do this, you can
+<input type=submit name=Go value="ForceCreate" accesskey=f title='[Alt-F] Force Creation of a new topic, even if not a Wiki Name'> a topic named "<tt>%PARAM1%</tt>",
+although you should try to choose a Wiki Name instead.
+<input type=hidden name=type value=forcecreate>
+<input type=hidden name=search value="%PARAM1%">
+<br>With new topic parent: 
+<select name="topicparent"><option value="%TOPIC%">%TOPIC%</option>
+<option value="%HOMETOPIC%">%HOMETOPIC%</option>
+%TOPICLIST{"<option value=$qname>$name</option>" separator=" "}%
+</select>
+</form>
+</div>
+---
+<form action="%SCRIPTURLPATH%/edit%SCRIPTSUFFIX%/%WEB%">
+Or, create a new page by copying the current one as a template:
+   1 Type the new name: <input type=text name=topic value=%TOPIC%>
+   2 Select the topic to use as a template: (default is current one)
+     <select name="templatetopic"><option value="%WEB%.%TOPIC%">%TOPIC%</option>
+     <option value="%WEB%.%HOMETOPIC%">%HOMETOPIC%</option>
+     %TOPICLIST{"<option value='$web.$name'>$name</option>" separator=" "}%
+     </select>
+   3 Then, click <input type=submit value="Create">, edit and and save the new
+   page
+*Note:* the new name (1) can be in another web (form Web<nop>.NewName), 
+but then do not select another topic than the current one in step (2)
+</form>
+---
+  <table border=0 cellspacing=0 cellpadding=0>
+   <tr>
+    <td class="topicTableOutline">
+      <table border=0 cellspacing=1 cellpadding=1>
+        <tr>
+          <td class="topicTitleCell"><span class="topicTitle">Help</span></td>
+        <tr>
+          <td class="topicItemCell">
+            <div class="headerHelp">
+   * Topics names should be in TWiki.WikiWord notation (Capitalized words
+     joined together), such as <nop>MeetingMinutes22Oct2002, <nop>Version18Dot2
+   * You can force them to have a non TWiki.WikiWord name,
+     but it is *strongly* discouraged,
+     as you can always refer to them anyways by a more meaningful name with 
+     the <tt>[<nop>[topic_actual_name][displayed_name]]</tt> construct, such as: 
+     <br>&nbsp;&nbsp;<tt>[<nop>[MeetingMinutes22Oct2002][Minutes: 10/22/02]]</tt>, or
+     <br>&nbsp;&nbsp;<tt>[<nop>[Version18Dot2][v18.2]]</tt>
+   * Do not forget to link this page from elsewhere afterwards, by writing its
+     name in another Topic. The recommended way to create a page is rather to
+     write its intended name in another parent TWiki page, than click on the
+     question mark *?* appended to it to create the topic.
+   * You can set the parent of the newly created page afterwards via the 
+     *More...* link at the bottom right of the page (as well as renaming it)
+            </div>
+      </table>
+  </table>
+---
+*Existing topic names in this web:*
+%TOPICLIST{"	1 <a href='$name' ><nop>$name</a>"}%
+
+%TMPL:END%
+%TMPL:DEF{"topicaction"}% <a title='[Alt-Z] Cancels' accesskey=z href='%SCRIPTURLPATH%/%VIEW%%SCRIPTSUFFIX%/%INTURLENCODE{"%WEB%/%TOPIC%"}%'>Cancel</a> %TMPL:END%
+%TMPL:P{"oops"}%

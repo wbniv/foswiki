@@ -1,0 +1,27 @@
+<table border=0 cellspacing=0 cellpadding=0 width=%KSLMARGIN%>
+<tr>
+<td class="topicTableOutline">
+<!-- ### Search ###-->
+<table border=0 cellspacing=1 cellpadding=1 width=%KSLMARGIN%>
+<tr>
+<td class="topicTitleCell"><span class="topicTitle">Search</span></td>
+<tr>
+<td class="topicItemCell">
+<form action='%SCRIPTURL%/searchmulti%SCRIPTSUFFIX%/%INTURLENCODE{"%WEB%"}%' method="post" name=main>
+<input type=hidden name=web value="%WEB%">
+<input type=hidden name=group value="%WEBGROUP%">
+<input type=hidden name=groupleader value="%WEBGROUPLEADER%">
+<input type=hidden name=scope value=all>
+<div class="topicItem" style="margin-left:0; margin-right:0">
+<input size="12" type="text" name=search class=small>
+<select name="type" class=small>
+<option value=all>all webs</option>
+%KSWEBSEARCH%
+<option value=topicname>topic names</option>
+</select>
+<input type=submit name=Go value="Search" class=small>
+<br><i><a href="WebSearch" class=xsmall title="[Alt-F] Search page with many more options" accesskey=f>Advanced search...</a></i>
+</div>
+</form>
+</table>
+</table>
