@@ -129,6 +129,15 @@ Need a magical WebWidgets topic that can add widgets to the list for a web - sim
    </div>
 </div>%ENDSECTION{"widget-topicactions"}%
 
+---+++ widget-history
+%STARTSECTION{"widget-history"}%<div class="widget-history widget" style="margin-left:15%;width:70%;background:lightgray;border:1px solid gray;">
+   <div class="widget-content">
+         <ul class="widget-list">
+            %REVINFO%
+      </ul>
+   </div>
+</div>%ENDSECTION{"widget-history"}%
+
 ---+++ widget-powered
 %STARTSECTION{"widget-powered"}%<div class="widget-powered widget">
    <div class="widget-content">

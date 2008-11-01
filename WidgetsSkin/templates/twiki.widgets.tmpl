@@ -83,6 +83,7 @@ widgetscolumns = %TMPL:P{"widgetscolumns"}%
 	</span><!-- twiki_text -->
   </div>%INCLUDE{"%TMPL:P{widgetstext}%" section="endsectionwrapper-main"}%
                </div>%TMPL:P{thin-columns}%      </div>
+               %TMPL:P{footer-widgets}%
          </div>
 %TMPL:END%
 %{ ******************************************* }%
@@ -101,5 +102,9 @@ widgetscolumns = %TMPL:P{"widgetscolumns"}%
 %TMPL:DEF{"two-columns"}%               <div id="beta" >%INCLUDE{"%TMPL:P{widgetstext}%" section="startsectionwrapper-left-three-column"}%
 <div id='beta-inner' class='pkg'> %INCLUDE{"%TMPL:P{widgetstext}%" section="column-one" warn="off"}% </div>
 %INCLUDE{"%TMPL:P{widgetstext}%" section="endsectionwrapper-left-three-column"}%</div>           %TMPL:END%
+%{ ******************************************* }%
+%TMPL:DEF{footer-widgets}%               <div id="footer-widgets" >
+            %INCLUDE{"%TMPL:P{widgetstext}%" section="footer-widgets"}%
+            </div>%TMPL:END%
 
 

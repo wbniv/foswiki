@@ -32,7 +32,11 @@ Copy and paste the following section to your %MAINWEB%.TWikiPreferences topic (o
 %INCLUDE{"%TWIKIWEB%.DefaultWidgets" section="widget-webchanges" warn="on"}%
 %INCLUDE{"%TWIKIWEB%.DefaultWidgets" section="widget-powered" warn="on"}%
 %ENDSECTION{"column-two"}%
-      
+
+---+++ footer
+%STARTSECTION{"footer-widgets"}%
+%INCLUDE{"%TWIKIWEB%.DefaultWidgets" section="widget-history" warn="on"}%
+%ENDSECTION{"footer-widgets"}%
 
 
 %META:FILEATTACHMENT{name="base-weblog.css" attachment="base-weblog.css" attr="" comment="" date="1174054380" path="base-weblog.css" size=""  user="SvenDowideit" version="1"}%
