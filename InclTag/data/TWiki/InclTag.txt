@@ -1,0 +1,45 @@
+%META:TOPICINFO{author="MeredithLesly" date="1146332192" format="1.1" version="1.2"}%
+---+ !InclTag
+
+A lighter weight version of =INCLUDE= that only includes from the current TWiki.  It does, however, have one added optional parameter, =fallback=, which allows you to give a list of webs to look in for the topic.
+
+---++ Syntax Rules
+
+<verbatim>
+%INCL{topic="topic"}%
+%INCL{topic="web.topic"}%
+%INCL{topic="topic" fallback="Main,TWiki"}%
+</verbatim>
+
+
+---++ Tag Settings
+
+Tag settings are stored as preferences variables. To reference
+a tag setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INCLTAG_SHORTDESCRIPTION%==
+
+   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = A lighter include
+
+ ---++ Tag Installation Instructions
+
+
+---++ Tag Info
+
+|  Tag Author: | TWiki:Main.MeredithLesly |
+|  Copyright: | &copy; 2001-2006, Meredith Lesly |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Tag Version: | 01 Feb 2006 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  20 Apr 2006: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 99%, %TWIKIWEB%.FormattedSearch 99%, %TOPIC% 99% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiTags, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- %TWIKIWEB%.TWikiContributor - 01 Feb 2006
