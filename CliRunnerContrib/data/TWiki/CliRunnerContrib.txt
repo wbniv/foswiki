@@ -1,0 +1,88 @@
+---+!! CliRunnerContrib Contrib Package
+
+%X% The previous discussion has been moved to CliRunnerContribDev.
+
+This is a Contrib targeted at TWiki developers.  It allows to run
+independent TWiki scripts from your TWiki code (mostly unit tests).
+
+%X%%X% This Contrib requires the yet-to-be released TWiki version 4.1!
+
+Note that the detailed documentation has been generated automatically
+by the TWiki:Plugins.BuildContrib, and would need care to be
+comprehensible.  For use cases and examples, see the test cases file
+provided with this contrib, which are not in the distribution, but
+available from SVN.
+
+%TOC%
+
+---++ Summary of Contents
+
+This contrib describes a =$runner= object which allows to run TWiki
+scripts from your TWiki code in an independent process.  The object
+methods allow to change the options, configuration, and module
+environment for the single request performed by the independent
+process.  All other simultaneous TWiki operations remain unaffected.
+
+---++ Use Cases
+
+The most important use cases for this contrib are "special" unit
+tests - tests which can neither be performed with TWiki's usual test
+case mechanisms, nor with LWP or browser tests:
+
+   1 Test cases where you want to change the set of available CPAN
+     modules:  This can't be done from conventional test cases because
+     they all "see" the same Perl libraries, and once a module has
+     been compiled it can't be removed.  And it can't be done with
+     browser tests because the browser has no access to your
+     libraries.  You _could_, of course, rename your CPAN library
+     temporarily, but this may affect other users, or other services
+     on the same computer.
+   1 Test cases where you need to run all checks and capture the
+     complete output.  Such tests could be done by capturing the
+     output of e.g. =do view;= - but this would splatter the
+     namespaces and global variables of the testing environment.
+     That property is interesting for =mod_perl= like tests, but
+     not for "usual" CGI simulation where every request runs in its
+     own process.
+
+---++ Detailed Documentation
+%$POD%
+
+---++ Settings
+
+Settings are stored as preferences variables. To reference a setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, e.g. ==%<nop>CLIRUNNERCONTRIB_STUB%==
+
+   * One line description:
+      * Set SHORTDESCRIPTION = Run independent TWiki scripts from your TWiki code (mostly unit tests)
+
+   * Name of the perl package
+      * Set STUB = %$STUB%
+
+---++ Installation Instructions
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	| *File:* | *Description:* |
+%$MANIFEST%
+	* Run ==%TOPIC%_installer.pl== to automatically check and install other modules that this module depends on. You can also do this step manually. Dependencies:
+	%$DEPENDENCIES%
+
+   * Test if the installation was successful:
+      * Run =WebTestCasesAutoTests.pm= in the =test/unit= directory.
+        If the installation was successful, you see a couple of tests.
+        The tests may not succeed, but this is another matter....
+
+
+---++ Contrib Info
+
+|  Author: | TWiki:Main/HaraldJoerg |
+|  Copyright &copy;: | Harald Joerg, 2006 |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Dependencies: | Just some core Perl modules |
+|  Version: | %$VERSION% |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  %DATE%: | Initial version |
+|  Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+-- TWiki:Main/HaraldJoerg - %DATE%

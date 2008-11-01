@@ -1,0 +1,6 @@
+data/TWiki/CliRunnerContrib.txt  Plugin doc page
+lib/TWiki/Contrib/CliRunnerContrib.pm  Plugin Perl module
+lib/TWiki/Contrib/CliRunnerContrib/HideModule.pm Module to pseudo-hide packages
+lib/TWiki/Contrib/CliRunnerContrib/TWikiCfg.pm Module to change TWiki configuration
+lib/TWiki/Contrib/CliRunnerContrib/Config.spec Define configurable options
+
