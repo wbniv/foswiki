@@ -1,0 +1,6 @@
+Authen::SASL,>=2.00,cpan,Optional
+DB_File,>=1.00,cpan,Required
+Digest::MD5,>=2.36,cpan,Required
+Net::LDAP,>=0.33,cpan,Required
+IO::Socket::SSL,>=1.0,cpan,Optional
+Unicode::MapUTF8,>=1.11,cpan,Required

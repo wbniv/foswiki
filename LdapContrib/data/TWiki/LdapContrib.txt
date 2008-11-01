@@ -1,0 +1,507 @@
+%META:TOPICINFO{author="TWikiContributor" date="1195737941" format="1.1" reprev="1.1" version="$Rev$"}%
+---+!! %TOPIC%
+<!--
+
+   PLEASE DO NOT EDIT THIS TOPIC
+
+   It is automatically generated from the subversion repository, and any changes
+   you make will simply be overwritten the next time a release is generated.
+
+   Instead, you could check your fix in, raise a bug in the Bugs web, or mail the author.
+-->
+%TOC{title="On this page"}%
+<table style="float:right">
+<tr>
+  <td><img src="%ATTACHURLPATH%/wikiringlogo40x40.png"></td>
+  <td><a href="http://wikiring.de" title="Make your Wiki ring!" style="text-decoration:none">
+      Powered by <br /> <nop>WikiRing Consultants </a>
+  </td>
+</tr>
+</table>
+<br clear="both" />
+This package offers basic LDAP services for TWiki and offers authentication of
+TWiki users by binding to an LDAP server as well as incorporate LDAP user
+groups into TWiki's access control. Note, however that you need at least
+TWiki-4.0.3 for that.
+Optionally, if you need an interface to query your LDAP directory and display
+the results in a TWiki topic install the TWiki:Plugins/LdapNgPlugin
+which will make use of the <nop>LdapContrib services. 
+This work is a rewrite of the TWiki:Plugins/LdapPlugin by
+TWiki:Main/GerardHickey while bringing authentication, user management and
+other LDAP applications onto a common base.
+
+%RED%<b>Note</b>%ENDCOLOR%: 
+This package downloads all relevant records from your LDAP server into a local cache the first
+time you use it. This can take a noticeable period of time depending on the size of your LDAP database.
+This cache will be refreshed on a configurable interval (defaults to once a day).
+You can also disable automatic refreshing and refresh the <nop>LdapContrib's cache manually using
+the "Refresh Cache" button below. Read the documentation of the =MaxCacheAge= variable in the section
+"[[#Performance_settings][Performance Settings]]" below on how to configure the refesh intervals.
+
+<center>%STARTINCLUDE%<form action="%SCRIPTURLPATH{"view"}%/%BASEWEB%/%BASETOPIC%">
+<input type="hidden" name="refreshldap" value="on" />
+<input type="hidden" name="refresh" value="on" />
+<input type="submit" value="Refresh Cache" style="color:red" />
+</form>%STOPINCLUDE%
+</center>
+
+Tip: You can add this button on any page by adding
+<verbatim>
+%INCLUDE{"%TWIKIWEB%.LdapContrib"}%
+</verbatim>
+to it.
+
+---++ LDAP questionary
+Before you can further configure TWiki's LDAP connection you will have to answer
+a set of basic questions about your LDAP server. These are:
+
+   1 What's the host name (or IP address) of the LDAP server (e.g. ldap.my.domain.com)?
+   1 What port does it listen to LDAP requests (e.g. 389)?
+   1 Does your LDAP Server use SASL to authenticate connections? If so which 
+     authentication mechanism does it use (EXTERNAL, DIGEST-MD5, ...)?
+   1 Do you have a kind of "proxy" user that TWiki can use to perform the initial connection?
+     You need its DN and credentials. Advice: don't use the LDAP admin account, you
+     only need a simple user that has read access to all of the directory (or the relevant
+     parts); it does not need any write access.
+   1 What is the "base dn" of the directory (e.g. =dc=my,dc=domain,dc=com= )?
+   1 What is the common root/branch for all users? For example, Are they all found
+     under =ou=people,dc=my,dc=domain,dc=com= or are they are
+     scattered all over the place?
+   1 What is the common root/branch where all groups are defined
+     (e.g. ou=group,dc=my,dc=domain,dc=com)?
+   1 What object class do user records have (e.g. =objectClass=organizationalPerson= )?
+   1 What object class do group records have (e.g. =objectClass=group= )?
+   1 Which attribute of a user record should be used to log in (must be unique)?
+   1 Which attribute(s) of a user record do you want to use to construct a <nop>WikiName
+     (used to display them in TWiki, pointing to their homepage)?
+   1 What's the name attribute of a group?
+   1 Which attribute in a group record defines its members (e.g. member or memberUid)?
+     Note, that if the member attribute of a group is a DN you need to enable
+     "member indirection" (see [[#Membership]]).
+
+Collect the answers to these questions either yourself using your favorit LDAP
+browser, or ask your friendly LDAP admin. 
+
+---++ Authentication
+To make use of authentication of TWiki users using your LDAP server you
+you have to register the <nop>LdapUser class as the so called
+<nop>PasswordManager.  This is done by adding the following lines in the
+=lib/LocalSite.cfg= configuration file (or by using the =configure= tool alternatively):
+<verbatim>$TWiki::cfg{PasswordManager} = 'TWiki::Users::LdapUser';</verbatim>
+
+There is a further option to fallback to TWiki's normal authentication mechanism
+by defining a secondary password manager. This allows you to create native TWiki
+accounts, e.g. a <nop>TWikiAdmin account and authenticate him without LDAP.
+Use the following setting to fallback to a htpasswd based authentication.
+<verbatim>$TWiki::cfg{Ldap}{SecondaryPasswordManager} = 'TWiki::Users::HtPasswdUser';</verbatim>
+So whenever authentication against LDAP fails, this second password manager will
+be used. 
+
+---++ User Groups
+LDAP group records can be used in TWiki's access control by registering a
+<nop>UserMappingManager implementation. This is done by adding the following 
+to your =lib/LocalSite.cfg= configuration file (or by using the =configure= tool alternatively):
+<verbatim>$TWiki::cfg{UserMappingManager} = 'TWiki::Users::LdapUserMapping';</verbatim>
+
+In addition you can decide if you want to _add_ the LDAP groups to TWiki or use
+LDAP groups solely. This is controled by the <nop>TWikiGroupsBackoff flag.  If
+switched on then LDAP groups will be added. If there's a name clash LDAP groups
+take precedence. If switched off <nop>TWikiGroups are ignored.
+
+You might decide in not using your LDAP groups in TWiki but still map login names
+to <nop>WikiNames. Both, LDAP user groups _and_ name mapping is done by the
+<nop>UserMappingManager. So to make use of name mapping but _not_ its group
+feature,
+register the
+<nop>LdapUserMapping implementation for the <nop>UserMappingManager but
+disable the <nop>MapGroups setting.
+
+---++ Membership
+LDAP servers follow different schemata to define "membership". They store the
+information either using a set of unique ids in
+the group object (posixGroup) or the full DNs of the user objects
+(groupOfNames). In the latter case the user objects' unique ids have to be
+fetched separately based on their distinguished name. This mode has to be switched on 
+using the =MemberIndirection= setting. 
+
+Note, that the reverse relation where the _user objects_ store in
+which group they participate (for example using a =memberOf= attribute) is
+maintained by some LDAP servers automatically. Those that encode membership this
+way _only_ are not supported by the <nop>LdapContrib yet.
+
+Furthermore, user objects may have a _primary_ group attribute (posixAccount).
+This is a simple value (vs. multi-value) and stores the id of a default group
+that user is member of. This information is _not_ used by the <nop>LdapContrib. 
+
+In short, the <nop>LdapContrib reads membership information as they are stored
+in the group objects only, and may map the member object indirectly to the
+login name.
+
+
+---++ Normalization of login, wiki and group names
+<nop>LdapContrib reads three kinds of names from your LDAP server and reuses these to
+identify the related entities in TWiki. These are the login names - used to log in -,
+the <nop>WikiNames - used to display users online -, and the group names - used in
+access control lists.
+
+The <nop>WikiName can be generated by 
+setting the two parameters =WikiUserNameAttribute= and =NormalizeWikiName=.
+=WikiUserNameAttribute= can be a comma separated list of LDAP attributes that are then
+assembled to form the <nop>WikiName. If the =NormalizeWikiName= flag is set 
+a couple of extra operations are performed to generate a proper <nop>WikiName, i.e.
+removing illegal characters.
+Given the setting
+<verbatim>
+$TWiki::cfg{Ldap}{WikiNameAttribute} = 'givenName,sn';
+$TWiki::cfg{Ldap}{NormalizeWikiNames} = 1;
+</verbatim>
+The =givenName= and =sn= (surname) LDAP attributes will be fetched and concatenated
+to form a <nop>WikiName, so that "givenName=Hans-Peter,sn=Leuth�user-Schnarrenberg" will
+result in the <nop>WikiName "<nop>HansPeterLeuthaeuserSchnarrenberg".
+If one of the <nop>WikiNameAttributes is 'mail' the =@mydomain.com= part will be removed
+all together.
+
+The login name can be normalized by enabling the
+<verbatim>$TWiki::cfg{Ldap}{NormalizeLoginNames} = 1;</verbatim>
+setting. However the normalized result will not be forced to be a cammel case <nop>WikiName.
+
+Similar to the <nop>WikiName of a user, group names can be normalized using
+<verbatim>$TWiki::cfg{Ldap}{NormalizeGroupNames} = 1;</verbatim>
+
+If a user in your LDAP directory changed his name, e.g. because of a mariage,
+this use can be mapped to his/her old account using an alias that points back
+from the old !WikiName to the new one. This is done using a setting like this:
+<verbatim>$TWiki::cfg{Ldap}{WikiNameAliases} = 'MaryMalone=MaryForrester, ...'</verbatim>
+The parameter takes a comma separated list of =FromWikiName=ToWikiName=. Whenever
+this account is still used in a TWiki access control list, its rights will be
+inheritted by the targeted =ToWikiName= account.
+
+
+---++ SSO and <nop>LdapContrib
+First of all, <nop>LdapContrib does not provide any SSO solution. Nor does LDAP
+per se. However, LDAP directories might come with SSO facilities that they
+provide via kerberos or similar. Unfortunately, nowaday browsers themselves are
+not kerberized.  They depend on talking to the webserver using HTTP means,
+which then decides which tickets are valid for the remote user by talking to
+the acutal authority.  That is, authentication is implemented using an
+approriate apache module.
+
+<nop>LdapContrib can then be used to complete an LDAP integration of TWiki by
+providing the mapping to <nop>WikiNames as well as email information and group
+definitions drawn from the LDAP directory directly.
+
+The remaining problem is that, when a new user has been added to your LDAP
+directory recently, and he/she then dashes off to sign on to TWiki right away,
+<nop>LdapContrib's cache most probably is outdated. This situation is different
+from one where users were authenticated by TWiki's own <nop>TemplateLogin
+mechanism. The user would then not be able to login until the cache has been
+refreshed manually or automatically.
+
+So when the new user is authenticated using SSO and then hits TWiki, it might
+fail to compute the proper <nop>WikiName. The solution to this problem is to
+use the <nop>LdapApacheLogin login manager as a drop in replacement to the
+standard <nop>ApacheLogin that would have been used in this situation. The
+<nop>LdapApacheLogin will then take care that the remote user is known to the
+cache and add this single record if it is missing.
+
+Bottomline: whenever you are using apache to authenticate to TWiki, do use the
+<nop>LdapApacheLogin manager. Or in other words, whenever you configured TWiki
+to use the standard <nop>ApacheLogin manager, and you now install
+<nop>LdapContrib, change it to <nop>LdapApacheLogin to assure
+<nop>LdapContrib's cache is up to date.
+
+
+---++ Simple Example 
+For the sake of this documentation we assume that users accounts in your
+database are at leat of the type =posixAccount= and optionally also of type
+=inetOrgPerson= storing email addresses. Moreover users are stored in a subtree
+=ou=people= and groups are defined in =ou=group=. Here are some example LDAP
+records:
+<verbatim>
+dn: uid=testuser1,ou=people,dc=my,dc=domain,dc=com
+objectClass: inetOrgPerson
+objectClass: posixAccount
+cn: Test User1
+uid: testuser1
+uidNumber: 1024
+gidNumber: 100
+homeDirectory: /home/testuser1
+loginShell: /bin/bash
+mail: testuser1@my.domain.com
+
+dn: uid=testuser2,ou=people,dc=my,dc=domain,dc=com
+objectClass: inetOrgPerson
+objectClass: posixAccount
+cn: Test User2
+uid: testuser2
+uidNumber: 1024
+gidNumber: 100
+homeDirectory: /home/testuser2
+loginShell: /bin/bash
+mail: testuser2@my.domain.com
+mail: testuser2@gmx.com
+
+# users, Group, nats.informatik.uni-hamburg.de
+dn: cn=users,ou=group,dc=my,dc=domain,dc=com
+objectClass: posixGroup
+cn: users
+gidNumber: 100
+memberUid: testuser1
+memberUid: testuser2
+</verbatim>
+
+Please have a look at your LDAP manual on how to set up an LDAP server
+and populate it with user account records. Have a look at the 
+[[http://www.openldap.org/doc/admin23/quickstart.html][Quick-Start Guide]] on
+how to install [[http://www.openldap.org/][OpenLdap]].
+
+Use the following settings for the above example:
+<verbatim>
+$TWiki::cfg{Ldap}{Host} = 'ldap.my.domain.com';
+$TWiki::cfg{Ldap}{Port} = 389; 
+$TWiki::cfg{Ldap}{UserBase} = 'ou=people,dc=my,dc=domain,dc=com'; 
+$TWiki::cfg{Ldap}{LoginFilter} = 'objectClass=posixAccount';
+$TWiki::cfg{Ldap}{LoginAttribute} = 'uid';
+$TWiki::cfg{Ldap}{WikiNameAttribute} = 'cn';
+$TWiki::cfg{Ldap}{NormalizeWikiNames} = 1; 
+$TWiki::cfg{Ldap}{GroupBase} = 'ou=group,dc=my,dc=domain,dc=com';
+$TWiki::cfg{Ldap}{GroupFilter} = 'objectClass=posixGroup';
+$TWiki::cfg{Ldap}{GroupAttribute} = 'cn';
+$TWiki::cfg{Ldap}{MemberAttribute} = 'memberUid';
+$TWiki::cfg{Ldap}{MemberIndirection} = 0;
+$TWiki::cfg{Ldap}{MapGroups} = 1;
+</verbatim>
+
+
+---++ Configuration
+The <nop>LdapContrib package is configured using a set of variables that need
+to be added to the =lib/LocalSite.cfg= configuration file. 
+Use the <a href="%SCRIPTURLPATH{"configure"}%">configure</a> tool (at least 
+once) after you installed this package. Have a lookg at your =lib/LocalSite.cfg=
+file afterwards. You might also make your changes therein directly to
+accomodate your TWiki installation to your specifc LDAP installation and user
+accounting.
+
+---+++ Connection settings
+IP address (or hostname) of the LDAP server:
+<verbatim>$TWiki::cfg{Ldap}{Host} = 'ldap.my.domain.com';</verbatim>
+
+Port used when binding to the LDAP server:
+<verbatim>$TWiki::cfg{Ldap}{Port} = 389; </verbatim>
+
+LDAP protocol version to use when querying the server; Possible values are: 2, 3
+<verbatim>$TWiki::cfg{Ldap}{Version} = '3'; </verbatim>
+
+Base DN to use in searches:
+<verbatim>$TWiki::cfg{Ldap}{Base} = 'dc=my,dc=domain,dc=com'; </verbatim>
+
+The DN to use when binding to the LDAP server; if undefined anonymous binding
+will be used. Example 'cn=proxyuser,dc=my,dc=domain,dc=com'
+<verbatim>$TWiki::cfg{Ldap}{BindDN} = 'cn=proxyuser,dc=my,dc=domain,dc=com'; </verbatim>
+
+The password used when binding to the LDAP server using the <nop>BindDN account:
+<verbatim>$TWiki::cfg{Ldap}{BindPassword} = 'secret'; </verbatim>
+
+Use SASL authentication when binding to the server; Note, when using SASL the 
+<nop>BindDN and <nop>BindPassword setting are used to configure the SASL access.
+<verbatim>$TWiki::cfg{Ldap}{UseSASL} = 0; </verbatim>
+
+List of SASL authentication mechanism to try (defaults to ='PLAIN CRAM-MD5 EXTERNAL ANONYMOUS'=):
+<verbatim>$TWiki::cfg{Ldap}{SASLMechanism} = 'PLAIN CRAM-MD5 EXTERNAL ANONYMOUS';</verbatim>
+
+---+++ User settings
+The options below configure how TWiki will extract account records from LDAP.
+
+Define the DN of the users tree (defaults to =$TWiki::cfg{Ldap}{Base}=):
+<verbatim>$TWiki::cfg{Ldap}{UserBase} = 'ou=people,dc=my,dc=domain,dc=com'; </verbatim>
+
+Filter to be used to find login accounts:
+<verbatim>$TWiki::cfg{Ldap}{LoginFilter} = 'objectClass=posixAccount'; </verbatim>
+
+Define the user login name attribute (must contain a unique value for each user):
+<verbatim>$TWiki::cfg{Ldap}{LoginAttribute} = 'uid'; </verbatim>
+
+Define the <nop>WikiUserName attribute(s):
+<verbatim>$TWiki::cfg{Ldap}{WikiNameAttribute} = 'cn'; </verbatim>
+
+Enable/disable normalization of <nop>WikiUserNames as they come from LDAP:
+<verbatim>$TWiki::cfg{Ldap}{NormalizeWikiNames} = 1; </verbatim>
+
+Enable/disable normalization of login names as they come from LDAP:
+<verbatim>$TWiki::cfg{Ldap}{NormalizeLoginNames} = 1; </verbatim>
+
+Alias old !WikiNames to new account. This is a comma separated list of
+"OldName=NewName" values.
+<verbatim>$TWiki::cfg{Ldap}{WikiNameAliases} = '';</verbatim>
+
+Allow/disallow changing the LDAP password using TWiki's %TWIKIWEB%.ChangePassword feature
+<verbatim>$TWiki::cfg{Ldap}{AllowChangePassword} = 0; </verbatim>
+
+Define a secondary password manager used to authenticate users that are 
+registered to TWiki natively. Note, that <b>this must not be TWiki::Users::LdapUser again!</b>
+<verbatim>$TWiki::cfg{Ldap}{SecondaryPasswordManager} = 'none';</verbatim>
+
+---+++ Group settings
+The settings below configures the mapping and processing of login names and <nop>WikiNames as
+well as the use of LDAP groups in TWiki. 
+
+Define the DN of the groups tree (defaults to =$TWiki::cfg{Ldap}{Base}=)
+<verbatim>$TWiki::cfg{Ldap}{GroupBase} = 'ou=group,dc=my,dc=domain,dc=com'; </verbatim>
+
+Filter to be used to find groups:
+<verbatim>$TWiki::cfg{Ldap}{GroupFilter} = 'objectClass=posixGroup'; </verbatim>
+
+Define the group name:
+<verbatim>$TWiki::cfg{Ldap}{GroupAttribute} = 'cn'; </verbatim>
+
+Define the attribute of a group that defines its members:
+<verbatim>$TWiki::cfg{Ldap}{MemberAttribute} = 'memberUid'; </verbatim>
+
+Flag to indicate wether the member attribute of a group stores a DN:
+<verbatim>$TWiki::cfg{Ldap}{MemberIndirection} = 1; </verbatim>
+
+Enable/disable reusage of groups defined in TWiki natively:
+<verbatim>$TWiki::cfg{Ldap}{TWikiGroupsBackoff} = 1; </verbatim>
+
+Enable/disable normalization of group names as they come from LDAP:
+<verbatim>$TWiki::cfg{Ldap}{NormalizeGroupNames} = 1; </verbatim>
+
+Enable/disable mapping LDAP groups; you might decide to set this to
+=0= and still use the =LdapUserMapping= implementation to construct proper
+<nop>WikiNames from login names with its help.
+<verbatim>$TWiki::cfg{Ldap}{MapGroups} = 1; </verbatim>
+
+---+++ Performance settings
+Maximum time a cache is kept; default is 86400 seconds;
+<verbatim>$TWiki::cfg{Ldap}{MaxCacheAge} = 86400; </verbatim>
+
+Maximum size of the result set that the server can return; set it to
+0 for unrestricted results:
+<verbatim>$TWiki::cfg{Ldap}{PageSize} = 500; </verbatim>
+
+Prevent certain names from being looked up in LDAP:
+<verbatim>$TWiki::cfg{Ldap}{Exclude} = 'TWikiGuest, TWikiContributor, TWikiRegistrationAgent, TWikiAdminGroup, NobodyGroup'; </verbatim>
+
+---++ Updating the LDAP cache using a cronjob
+In some environments, updating the internal LDAP cache of the <nop>LdapContrib might
+take considerable time. The intervals the cache data is thought to be "expired" is
+configured using the =MaxCacheAge= setting. This setting defaults to updating the
+cache every 24 hours. The refresh procedure will then be triggered by the first request
+that hits TWiki when this period expired. 
+
+To remove this burden from the "first visitor in the morning", the automatic refresh procedure can
+be disabled by setting 
+<verbatim>$TWiki::cfg{Ldap}{MaxCacheAge} = 0; </verbatim>
+This means that the age of the cached data will not be checked _automatically_ anymore. The 
+responsibility that the data is updated is now up to you, that is you have to update the 
+cache _explicitly_. This can be done by either hitting the red "Refresh Cache" button above,
+or by setting up an appropriate cronjob on the machine running your TWiki server.
+
+To trigger an explicit update of the cache on 5 past midnight every day use a
+cronjob similar to:
+<verbatim>
+5 0 * * * cd <twiki-install-path>/bin && ./view refreshldap=on Main/WebHome >/dev/null
+</verbatim>
+This will call TWiki on the commandline and provide the necessary query parameters so
+that the <nop>LdapContrib will force an update of the cache data.
+
+
+---++ Implementation documentation
+%$POD%
+
+---++ Installation Instructions
+
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your TWiki installation directory. Content: 
+   | *File:* | *Description:* |
+%$MANIFEST%
+   * Optionally, run ==%TOPIC%_installer== to automatically check and install other 
+     TWiki modules that this module depends on. You can also do this step manually.
+   * Alternatively, manually make sure the dependencies listed in the table below 
+     are resolved.
+     %$DEPENDENCIES%
+   * Read the the above documentation, i.e. the [[#Configuration][Configuration]] section.
+   * Use <a href="%SCRIPTURLPATH{"configure"}%">configure</a> to set the LDAP settings.
+   * There's [[%ATTACHURL%/TWikiDotPm-4.1.2.patch][a patch for TWiki-4.1.2]] 
+     that backports the fixes to the =%<nop>GROUPS%= tag to
+     suppress "new topic links" in the produced table. Apply it using 
+     <verbatim>cd <twiki-root>/lib; patch < ../pub/TWiki/LdapContrib/TWikiDotPm-4.1.2.patch</verbatim>
+
+---++ Contrib Info
+<!--
+   * Set SHORTDESCRIPTION = LDAP services for TWiki
+-->
+
+|  Author: | TWiki:Main/MichaelDaum |
+|  Copyright &copy;: | 2006-2007 Michael Daum http://michaeldaumconsulting.com %BR% \
+   This work was partly funded by [[http://www.spanlink.com][Spanlink Communications]] and \
+   [[http://www.trivadis.com][Trivadis]] |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Version: | v2.99.5 |
+|  Change History: | |
+|  25 May 2008: | added alias feature, \
+                  fixed normalization error, \
+                  fixed cache update issue\
+                  added login manager for 4.2 |
+|  05 May 2008: | implemented !WikiNamesAliases |
+|  14 Feb 2008: | allow to disable cache aging setting <nop>MaxCacheAge to zero |
+|  01 Feb 2008: | distinguish groups clashing with user names by appending a suffix |
+|  30 Jan 2008: | first beta towards TWiki-4.2 |
+|  07 Jan 2008: | fixed initializing the cache |
+|  21 Dec 2007: | added <nop>LdapApacheLogin, \
+                  made updating the cache quasi atomic |
+|  22 Nov 2007: | fixed recognition of <nop>TWikiGroups in a mixed setting |
+|  05 Oct 2007: | enabled native user registration using the secondary password manager;\
+                  added support to change a user's LDAP password from within TWiki; \
+                  added patch for =TWiki.pm= that backports some of the fixes from TWiki-4.2 \
+                  to TWiki-4.1.2 |
+|  05 Sep 2007: | added SASL support, \
+                  added normalization of login and group names, \
+                  added secondary password manager |
+|  31 Aug 2007: | rewrite of the cache |
+|  08 June 2007: | don't use the store object during TWiki's destructore; \
+                   don't lookup login names of groups |
+|  04 June 2007: | don't be casesensitive for login names; \
+                   fixed several utf8 issues; \
+                   fixed crash when no groups where found;\
+                   caching mapping privately; added <nop>MaxCacheAge; \
+                   added support for nested LDAP groups |
+|  30 Apr 2007: | fixed return value on illegal lookup calls |
+|  24 Apr 2007: | be robust against the lookup-API being called with the wrong parameters; \
+                  added =Debug= flag; \
+                  fixed/improved group loading; \
+                  deprecating =BasePasswd= in favor of =UserBase=; \
+                  deprecating =BaseGroup= in favor of =GroupBase= |
+|  04 Apr 2007: | fixed group mapping on &gt;4.1.2; \
+                  renamed <nop>BasePasswd config parameter to <nop>UserBase; \
+                  renamed <nop>BaseGroup config parameter to <nop>GroupBase; \
+                  working around broken =configure= in 4.1.x |
+|  12 Jan 2007: | enhanced normalization of <nop>WikiNames so that they are proper <nop>WikiWords;\
+                  <nop>WikiNames can be constructed from a list of \
+                  LDAP attributes now |
+|  18 Dec 2006: | various performance improvements; \
+                  fixed usage of =limit= argument; \
+                  renamed configuration option "<nop>WikiNameRemoveWhiteSpace" to "<nop>NormalizeWikiName"; \
+                  support for large databases using paged LDAP search results; \
+                  new configuration option "Exclude" to exclude standard TWiki user accounts, e.g. <nop>TWikiRegistrationAgent, \
+                  from being looked up in LDAP; \
+                  added support for faster API implementing =isMemberOf=;\
+                  added Config.spec file to integrate the <nop>LadpContrib into Twiki's "configure" tool; \
+                  added support for <nop>WikiNames derived from mail attributes |
+|  03 Nov 2006: | fixed binding to the server by first searching the full dn instead of assuming a fixed one \
+                  (issue found by Cederic Weber); \
+                  added new feature <nop>MapGroup to be able to switch off group mapping and have ;\
+                  login-to-wikiname conversion only |
+|  02 Aug 2006: | added a user accounts in memory cache |
+|  19 July 2006: | public release |
+|  24 May 2006: | api adjustments, improved wikiname generation |
+|  28 Apr 2006: | Initial version |
+|  Home: | TWiki:Plugins/%TOPIC% |
+|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
+|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+
+
+-- TWiki:Main/MichaelDaum - 25 May 2008
+
+%META:FILEATTACHMENT{name="TWikiDotPm-4.1.2.patch" attr="" autoattached="0" comment="" date="1191603621" path="TWikiDotPm-4.1.2.patch" size="1538" user="TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="wikiringlogo40x40.png" attr="h" autoattached="0" comment="" date="1190996093" path="wikiringlogo40x40.png" size="2571" user="TWikiContributor" version="1"}%
