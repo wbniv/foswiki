@@ -1,0 +1,51 @@
+.formPluginNotification {
+	background-color:#FFF8E7;
+	color:#EE3312;
+	padding:0 .25em;
+	white-space:nowrap;
+}
+div.formPluginNotification {
+	padding:.6em 20px; /* side padding same as twikiFormStep (assuming PatternSkin) */
+	margin:1em 0;
+	border:1px solid #EE3312;
+}
+div.formPluginNotification ul {
+	margin-bottom:.25em;
+	list-style:none;
+}
+div.formPluginNotification ul a:link,
+div.formPluginNotification ul a:visited {
+	color:#EE3312;
+}
+div.formPluginNotification ul a:hover {
+	color:#FBF7E8;
+	background-color:#D6000F;
+}
+fieldset.formPluginGroup {
+	display:inline;
+	vertical-align:middle;
+	border:none;
+	padding:0 3em 0 0;
+	margin:0;
+}
+fieldset.formPluginGroupWithHint {
+	border-right:1px solid #ccc;
+}
+.formPluginError input,
+.formPluginError .formPluginGroup {
+	border:1px solid #EE3312;
+}
+.formPluginError .formPluginTitle {
+	font-weight:bold;
+	background-color:#EE3312;
+	padding:.1em .2em;
+	color:#fff;
+}
+.formPluginHint {
+	color:#777;
+	margin:0 0 0 .2em;
+}
+.formPluginMandatory {
+	color:#EE3312;
+	margin:0 0 0 .2em;
+}

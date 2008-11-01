@@ -1,0 +1,8 @@
+data/TWiki/FormPlugin.txt 0644 Documentation
+data/Sandbox/FormPluginExamples.txt 0644 Documentation examples
+lib/TWiki/Plugins/FormPlugin.pm 0644 Perl module
+lib/TWiki/Plugins/FormPlugin/Validate.pm 0644 Perl module
+pub/TWiki/FormPlugin/formplugin.css 0644 CSS styles
+pub/TWiki/FormPlugin/form_on_submit_diagram.png 0644 Illustration
+pub/TWiki/FormPlugin/error.gif 0644 Icon
+pub/TWiki/FormPlugin/screenshot_validation_example.png 0644 Example screenshot
