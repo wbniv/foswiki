@@ -1,0 +1,24 @@
+%META:TOPICINFO{author="TWikiGuest" date="1092833628" format="1.0" version="1.2"}%
+%META:TOPICPARENT{name="TWikiReleaseTrackerPlugin"}%
+<form action="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%"> 
+
+|*From: <select name="from" size="1" default="localInstallation"> <option>%URLPARAM{"from"}%</option><option>localInstallation</option>%DIFFWIKIINDEX{distributions format="<option>$name</option>"}%</select>*| *To: <select name="to" size="1" default="%WIKIVERSIONASDISTNAME{%WIKIVERSION%}%"> <option>%URLPARAM{"to" default=%WIKIVERSIONASDISTNAME{%WIKIVERSION%}}%<option>all</option><option>localInstallation</option>%DIFFWIKIINDEX{distributions format="<option>$name</option>"}%</select>*|*Status: <select name="statusFilter" size="1"> <option>%URLPARAM{"statusFilter" default="FSCD"}%</option> <option value=FSCS>Filename Same, Content Same</option> <option value=FSCD>Filename Same, Content Different</option> <option value=FSCM>Filename Same, Content Matches</option><option value=FDCS>Filename Different, Content Same</option> <option value=FDCD>Filename Different, Content Different</option> <option>all</option></select>*| <input type="submit" value="Go" /></nobr> | <input type=checkbox name="debug" default=%URLPARAM{"debug"}%> |
+	* <A HREF="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%?from=localInstallation;to=%WIKIVERSIONASDISTNAME{%WIKIVERSION%}%;sortcol=0;table=2;up=0">Reset parameters to compare from localInstallation...</A> to WIKIVERSION ='%WIKIVERSION%' (%WIKIVERSIONASDISTNAME{%WIKIVERSION%}%) 
+	* <A HREF='%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%?from=%URLPARAM{"to"}%&to=%URLPARAM{"from"}%'>Swap</A> 
+	* <A HREF='%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%?mode=indexLocalInstallation'>Re-index</A> 
+</form>
+
+----
+
+%DIFFWIKI{}%
+
+----
+
+Notes:
+	* "From" is usually set to 'localInstallation"
+	* "To" is usually set to correspond to your TWiki version. 
+	* The Status filter is most usefully set to "File Same, Content Different" 
+	* The checkbox turns on copious debug information
+
+-- TWiki.MartinCleaver - 29 Jul 2004
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the Dev topic instead. -->
