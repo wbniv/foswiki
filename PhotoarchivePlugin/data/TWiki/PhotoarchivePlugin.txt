@@ -1,0 +1,169 @@
+%META:TOPICINFO{author="MarkusKolb" date="1095697454" format="1.0" version="1.2"}%
+---+ <nop>%TOPIC%
+
+PhotoarchivePlugin is a nice plugin to show your photo archive or album in
+different views. You can add a description to each picture and define the
+picture size for individual views.
+
+   * Future releases will get something like templates to have full control over the layout.
+   * Now a multiplatform offline Photoarchive application is in work. 
+     It will become the user interface for simple storing, describing and uploading to your TWiki Photoarchive. But it needs time.
+   * I thought it is clear that *only trusted* users should be allowed to edit the Plugin settings. Warwick Allison sent me a mail that he thinks using the netpbm-tools variables is a security problem. So be sure that untrusted users can not change the variable values. You can change the code in lib/TWiki/Plugins/PhotoarchivePlugin.pm at lines 81 to 84. Remove the TWiki::Func::getPluginPreferencesValue( "ANYTOPNM" ) function calls and set constants. 
+
+
+---++ Syntax Rules
+
+These are the rules to add a Photoarchive to your twiki web.
+
+   * Add ==%<nop>PHOTOARCHIVEPLUGIN%== to a twiki topic
+     or
+   * ... add ==%<nop>PHOTOARCHIVEPLUGINRANDOM%== for single random image including.
+   * Create a new topic with name &lt;TOPICNAME&gt;Photoarchive
+   * Attach your pictures to &lt;TOPICNAME&gt;Photoarchive
+   * Add your picture definitions in the following form to this topic:
+
+     &lt;PA_IMAGE&gt;%BR%
+    IMAGEFILENAME%BR%
+    &lt;/PA_IMAGE&gt;%BR%
+    &lt;PA_HEADER&gt;%BR%
+    SHORT IMAGE DESCRIPTION%BR%
+    &lt;/PA_HEADER&gt;%BR%
+    &lt;PA_DESCRIPTION&gt;%BR%
+    LONGER DESCRIPTION FOR THIS IMAGE%BR%
+    &lt;/PA_DESCRIPTION&gt;%BR%
+    &lt;PA_IMAGE&gt;%BR%
+    NEXT IMAGEFILENAME%BR%
+    &lt;/PA_IMAGE&gt;%BR%
+    ... etc.%BR%
+
+   * Each tag must start at the beginning of the line (no spaces) and end with a newline!
+   * You can overwrite the preferences for images and layout in the topic where you add
+     the ==%<nop>PHOTOARCHIVEPLUGIN%== or ==%<nop>PHOTOARCHIVEPLUGINRANDOM%== placeholder.
+     To use overwriting from topics you have to add ==%TOPIC%_== in front of each settingname.
+     E.g. instead ==RANDOMWIDTH== you have to use ==%TOPIC%_RANDOMWIDTH==
+
+---++ Examples
+
+   * This is a sample entry for &lt;TOPICNAME&gt;Photoarchive
+   
+     &lt;PA_IMAGE&gt;%BR%
+     image_001.jpg%BR%
+     &lt;/PA_IMAGE&gt;%BR%
+     &lt;PA_HEADER&gt;%BR%
+     My first image in Photoarchive%BR%
+     &lt;/PA_HEADER&gt;%BR%
+     &lt;PA_DESCRIPTION&gt;%BR%
+     This is my first image which is shown by PhotoarchivePlugin.%BR%
+    It has no special purpose but you can see how it works.%BR%
+     &lt;/PA_DESCRIPTION&gt;%BR%
+
+   * If you want to see a working example please visit%BR%
+     my homepage at http://www.tower-net.de/cgi-bin/twiki/view/Main/NepalBilder
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = PhotoarchivePlugin creates nice image galleries
+
+   * Debug plugin: (See output in =data/debug.txt=)
+      * Set DEBUG = 
+
+   * The default view is the view which is shown without any parameters:%BR%
+      There is a thumbs, detailed and descripted view.
+      * Set DEFAULTVIEW = thumbs
+
+   * A few programs of netpbm software package are required to resize images.%BR%
+      The default entries are /usr/bin/{anytopnm, pnmscale, pnmtopng, pnmtojpeg}.
+      * Set ANYTOPNM = /usr/bin/anytopnm
+      * Set PNMSCALE = /usr/bin/pnmscale
+      * Set PNMTOPNG = /usr/bin/pnmtopng
+      * Set PNMTOJPEG = /usr/bin/pnmtojpeg
+
+   * The number of images in row and column for thumbs view
+      * Set THUMBSROW = 4
+      * Set THUMBSCOL = 3
+
+   * The thumbnail image width and height. If you set both values the images
+      will change their width-height-ratio.
+      * Set THUMBSWIDTH = 
+      * Set THUMBSHEIGHT = 120
+
+   * The pixel space around thumbnail images.
+      * Set THUMBSSPACE = 5
+
+   * The descripted images width and height. If you set both values the image
+      will change its width-height-ratio.
+      * Set DESCRIPTEDWIDTH = 250
+      * Set DESCRIPTEDHEIGHT =
+
+   * The pixel space around the header and images descripted view.
+      * Set DESCRIPTEDSPACE = 5
+
+   * The number of images per page in descripted view.
+      * Set DESCRIPTEDIMAGES = 5
+
+   * The detailed image width and height. If you set both values the image
+      will change its width-height-ratio.
+      * Set DETAILEDWIDTH = 600
+      * Set DETAILEDHEIGHT =
+
+   * The pixel space around the header, image and description in detailed view.
+      * Set DETAILEDSPACE = 5
+
+   * The default width and height for random images.
+     If you specify both values the image has a new side ratio.
+      * Set RANDOMWIDTH = 
+      * Set RANDOMHEIGHT = 120
+
+   * For randomly choosed images you can specify the web and topic where the image archive
+     can be found. The topic with the attached images must end with Photoarchive.
+     You must remove "Photoarchive" at the RANDOMTOPIC setting.
+      * Set RANDOMWEB =
+      * Set RANDOMTOPIC =
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==data/TWiki/%TOPIC%Photoarchive.txt== | Plugin test photoarchive topic |
+     | ==data/TWiki/%TOPIC%Photoarchive.txt,v== | Plugin test photoarchive topic repository |
+     | ==data/TWiki/%TOPIC%Photoarchive/testimage.jpg== | Attached test image |
+     | ==data/TWiki/%TOPIC%Photoarchive/testimage.jpg,v== | Attached test image repository |
+     | ==pub/TWiki/%TOPIC%== | Directory for future plugin internal data (empty) |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+   * (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+   * Test if the installation was successful:
+      * You see here a sample image included with ==%<nop>PHOTOARCHIVEPLUGINRANDOM%==
+      
+      * %PHOTOARCHIVEPLUGINRANDOM%
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/MarkusKolb |
+|  Plugin Version: | 31 Oct 2006 (V1.004) |
+|  Plugin Id: | $Id: PhotoarchivePlugin.txt 15566 2007-11-12 16:18:30Z AndreUlrich $ |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  31 Oct 2006: | V1.004 updated this plugin info for new version |
+|  31 Oct 2006: | V1.003 fix quote image filename bug (Thanks to Michael Okincha for bug report) |
+|  30 Sep 2004: | V1.002 overwriting of plugin preferences in topic now possible |
+|  29 Sep 2004: | V1.001 patch against Internet Explorer &lt;img&gt;-tag incompatibility |
+|  29 Sep 2004: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.024 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | netpbm |
+|  Perl Version: | 5.005 |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 98%, %TWIKIWEB%.FormattedSearch 96%, %TOPIC% 96% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | mailto:twiki-photoarchive@tower-netREMOVE_BEFORE_SEND.de |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- Main.MarkusKolb - 31 Oct 2006
+

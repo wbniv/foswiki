@@ -1,0 +1,19 @@
+%META:TOPICINFO{author="MarkusKolb" date="1096474002" format="1.0" version="1.1"}%
+%BR%
+In this topic you can find the testimage definition for PhotoarchivePlugin
+
+<!--
+<PA_IMAGE>
+testimage.jpg
+</PA_IMAGE>
+<PA_HEADER>
+This is the testimage which you should see after installation
+</PA_HEADER>
+<PA_DESCRIPTION>
+Because the testimage is included as random image we don't need a description
+</PA_DESCRIPTION>
+//-->
+
+-- Main.MarkusKolb - 29 Sep 2004
+
+%META:FILEATTACHMENT{name="testimage.jpg" attr="" comment="testimage That is Timmy" date="1096474759" path="testimage.jpg" size="136262" user="MarkusKolb" version="1.1"}%
