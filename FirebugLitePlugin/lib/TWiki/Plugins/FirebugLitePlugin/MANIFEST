@@ -1,0 +1,12 @@
+# Release manifest for FirebugLitePlugin
+data/TWiki/FirebugLitePlugin.txt 0644 Documentation
+lib/TWiki/Plugins/FirebugLitePlugin.pm 0644 Perl module
+
+templates/firebugliteplugin.tmpl
+pub/TWiki/FirebugLitePlugin/firebug-web-development.png
+pub/TWiki/FirebugLitePlugin/firebug-lite-compressed.js
+pub/TWiki/FirebugLitePlugin/wikiringlogo20x20.png
+pub/TWiki/FirebugLitePlugin/firebug-lite.css
+pub/TWiki/FirebugLitePlugin/pi.js
+pub/TWiki/FirebugLitePlugin/firebug-lite.js
+
