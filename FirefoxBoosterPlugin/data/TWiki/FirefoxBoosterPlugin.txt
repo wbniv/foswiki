@@ -1,0 +1,54 @@
+%META:TOPICINFO{author="TWikiContributor" date="1111929255" format="1.0" version="$Rev: 14751 $"}%
+---+ Firefox Booster Plugin
+<!--
+
+   PLEASE DO NOT EDIT THIS TOPIC
+
+   It is automatically generated from the subversion repository, and any changes
+   you make will simply be overwritten the next time a release is generated.
+
+   Instead, you could check your fix in, raise a bug in the Bugs web, or mail thge author.
+-->
+<div style="float:right">
+
+<a href="http://www.kontextwork.de/leistungen/wiki-systeme/" title="">
+<img border="0" align="texttop" style="margin-right:3px" src="%ATTACHURL%/kw-logo.png" title="KontextWork: We boost your communication." />
+</a>
+</div>
+
+This Plugin is written in the hope it will be useless at some point of time.
+
+The (current) Firefox 2.0 browser handles web pages with many CSS and Javascript files very bad. Firefox
+renders a web page significantly faster, if all CSS and JS data is embedded within the webpage rather than spread
+over many external files/urls.
+
+When TWiki delivers a page this plugin detects the browser on the clients side. In case of Firefox 2.0
+all CSS and JS data gets embedded.
+
+---++ Plugin Installation Instructions
+
+   * [[http://twiki.org/p/pub/Plugins/%TOPIC%/%TOPIC%.zip][Download]] the ZIP file
+   * Unzip it in your twiki installation directory.
+   * Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+   * %X% This plugin needs at least TWiki 4.2.0 (Freetown) to work.
+
+---++ Plugin Info
+This plugin is brought to you by <img border="0" align="texttop" style="margin-right:3px" src="%ATTACHURL%/kw-arrow.png" title="KontextWork: We boost your communication." />
+<a style="text-decoration:none;font-weight:bold;color:#444444;border-bottom: thin solid #ff6906;" href="http://www.kontextwork.de/leistungen/wiki-systeme/" title="">KontextWork</a> - We boost your communication.
+
+|  Plugin Author: | TWiki:Main.OliverKrueger |
+|  Copyright: | &copy; 2007, !KontextWork, TWiki:Main.OliverKrueger |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | %$VERSION% |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  09 Nov 2007: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.2 |
+|  Dependencies: | %$DEPENDENCIES% |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 99%, %TWIKIWEB%.FormattedSearch 99%, %TOPIC% 99% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__
+
+-- %TWIKIWEB%.TWikiContributor - 09 Nov 2007

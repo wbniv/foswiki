@@ -1,0 +1,4 @@
+data/TWiki/FirefoxBoosterPlugin.txt 0644 Plugin doc page
+pub/TWiki/FirefoxBoosterPlugin/kw-logo.png 0444 KontextWork logo
+pub/TWiki/FirefoxBoosterPlugin/kw-arrow.png 0444 KontextWork arrows (logo)
+lib/TWiki/Plugins/FirefoxBoosterPlugin.pm 0444 Plugin Perl module
