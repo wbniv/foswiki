@@ -1,0 +1,3 @@
+data/TWiki/PerforcePlugin.txt 0644 Plugin doc page
+lib/TWiki/Plugins/PerforcePlugin.pm 0444 Plugin Perl module
+data/Sandbox/PluginTestPerforcePlugin.txt 0644 Plugin examples

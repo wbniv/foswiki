@@ -1,0 +1,135 @@
+%META:TOPICINFO{author="BaseUserMapping_666" date="1204213132" format="1.1" reprev="1.9" version="1.9"}%
+%META:TOPICPARENT{name="WebHome"}%
+---+!! TWiki.PerforcePlugin examples
+
+%TOC%
+
+
+---++ No format
+
+<verbatim>
+%P4CHANGES{"-m 10"}%
+</verbatim>
+
+%P4CHANGES{"-m 10"}%
+
+---++ Basic format
+
+<verbatim>
+%P4CHANGES{"-m 10" format="| $changelist | $date | $description | $user | $status | $n"}%
+</verbatim>
+
+| *Changelist* | *Date* | *Description* | *User* | *Status* |
+%P4CHANGES{"-m 10" format="| $changelist | $date | $description | $user | $status | $n"}%
+
+---++ Long description
+
+<verbatim>
+%P4CHANGES{"-L -m 10"  format="| $changelist | $date | $description | $user | $status | $n"}%
+</verbatim>
+
+| *Changelist* | *Date* | *Description* | *User* | *Status* |
+%P4CHANGES{"-L -m 10"  format="| $changelist | $date | $description | $user | $status | $n"}%
+
+---++ All description
+
+<verbatim>
+%P4CHANGES{"-l -m 10" format="| $changelist | $date | $description | $user | $status | $n"}%
+</verbatim>
+
+| *Changelist* | *Date* | *Description* | *User* | *Status* |
+%P4CHANGES{"-l -m 10" format="| $changelist | $date | $description | $user | $status | $n"}%
+
+---++ Time support
+
+<verbatim>
+%P4CHANGES{"-t -m 10" format="| $changelist | $date | $description | $user | $status | $n"}%
+</verbatim>
+
+| *Changelist* | *Date* | *Description* | *User* | *Status* |
+%P4CHANGES{"-t -m 10" format="| $changelist | $date | $description | $user | $status | $n"}%
+
+---++ Status support
+
+<verbatim>
+%P4CHANGES{"-s pending -m 10" format="| $changelist | $date | $description | $user | $status | $n"}%
+</verbatim>
+
+| *Changelist* | *Date* | *Description* | *User* | *Status* |
+%P4CHANGES{"-s pending -m 10" format="| $changelist | $date | $description | $user | $status | $n"}%
+
+---++ Status with full text
+
+<verbatim>
+%P4CHANGES{"-l -s pending -m 10" format="| $changelist | $date | $description | $user | $status | $n"}%
+</verbatim>
+
+| *Changelist* | *Date* | *Description* | *User* | *Status* |
+%P4CHANGES{"-l -s pending -m 10" format="| $changelist | $date | $description | $user | $status | $n"}%
+
+---++ REST
+
+<verbatim>
+%SCRIPTURLPATH%/rest/PerforcePlugin/p4changes?topic=%WEB%.%TOPIC%&_DEFAULT=-m 10&format=| $changelist | $date | $description | $user | $status | $n
+</verbatim>
+
+[[%SCRIPTURLPATH%/rest/PerforcePlugin/p4changes?topic=%WEB%.%TOPIC%&_DEFAULT=-m 10&format=| $changelist | $date | $description | $user | $status | $n][Get changes through REST]]
+
+---++ REST and TWiki:Plugins.JQueryPlugin
+
+<!--
+Include the jQuery javascript we need
+-->
+%JQTHEME{"ogray"}%
+%JQSCRIPT{"jquery.js"}%
+%JQSCRIPT{"jquery.spinner.js"}%
+
+<verbatim>
+<input type="button" value="Fetch perforce changes" onclick="$('#loaddiv').load('%SCRIPTURLPATH%/rest/PerforcePlugin/p4changes',  {_DEFAULT: '-m 10', format: '| $changelist | $date | $description | $user | $status | $n' }, function(){$('#loaddiv').toggle('slow');})"/>
+
+<div style="display: none" id="loaddiv"> empty </div>
+</verbatim>
+
+<input type="button" value="Fetch perforce changes" onclick="$('#loaddiv').load('%SCRIPTURLPATH%/rest/PerforcePlugin/p4changes',  {_DEFAULT: '-m 10', format: '| $changelist | $date | $description | $user | $status | $n' }, function(){$('#loaddiv').toggle('slow');})"/>
+
+<div style="display: none" id="loaddiv"> empty </div>
+
+---++ TWiki:Plugins.JQueryPlugin the easy way
+
+<verbatim>
+%P4CHANGES{"-l -m 10" format="| $changelist | $date | $description | $user | $status | $n" ajax="ajaxdivid" label="Show my changes"}%
+</verbatim>
+
+%P4CHANGES{"-l -m 10" format="| $changelist | $date | $description | $user | $status | $n" ajax="ajaxdivid" label="Show my changes"}%
+
+---++ TWiki:Plugins.JQueryPlugin with header
+
+<verbatim>
+%P4CHANGES{"-l -m 10" format="| $changelist | $date | $description | $user | $status | $n" header="| *Changelist* | *Date* | *Description* | *User* | *Status* |$n" ajax="ajaxdivid1" label="Show my changes"}%
+</verbatim>
+
+%P4CHANGES{"-l -m 10" format="| $changelist | $date | $description | $user | $status | $n" header="| *Changelist* | *Date* | *Description* | *User* | *Status* |$n" ajax="ajaxdivid1" label="Show my changes"}%
+
+---++ Changes pending for integration
+
+<verbatim>
+%P4CHANGESPI{"mybranch" ajax="ajaxdivid2" reverse="on" description="full" format="| $changelist | $date | $description | $user | $status | $n" header="| *Changelist* | *Date* | *Description* | *User* | *Status* |$n"}%
+</verbatim>
+
+<verbatim>
+%P4CHANGESPI{"mybranch" reverse="on" description="full" format="| $changelist | $date | $description | $user | $status | $n" header="| *Changelist* | *Date* | *Description* | *User* | *Status* |$n"}%
+</verbatim>
+
+In the following example you will need to change the branch name and values to something relevant for you Perforce depot.
+
+<select id="branchSelect" name="branch">
+<option value="my_first_branch">My first branch</option>
+<option value="my_second_branch">My second branch</option>
+</select>
+
+<input id="reverseCheckbox" type="checkbox" name="reverse" value="on">Reverse </input>
+
+<input type="button" value="Show changes" onclick="$('#spinner').show().spinner({frames:31, image: '%JQIMAGESURLPATH%/linux_spinner.png'}); var branch=$('#branchSelect option:selected').val(); var reverse=($('#reverseCheckbox').is(':checked')?'on':'off'); $('#p4changes').hide().load('%SCRIPTURLPATH%/rest/PerforcePlugin/p4changespi',  {_DEFAULT: branch, format: '| $changelist | $date | $description | $user | $status | $n', header: '| *Changelist* | *Date* | *Description* | *User* | *Status* | $n', reverse: reverse, description: 'full' }, function(){$('#spinner').hide().spinner('stop');$('#p4changes').show('slow');})"/>
+
+<div style="display: none" id=spinner></div>
+<div class="ogray" title="P4 Changes" style="display: none" id="p4changes"> empty </div>

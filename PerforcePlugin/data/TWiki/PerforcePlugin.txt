@@ -1,0 +1,194 @@
+---+!! Perforce plug-in
+
+<div style="background-color: #CCFF66; padding: 5px">
+*%X% NOTE:* This plug-in has a server side dependency on the Perforce command line =p4.exe=
+</div>
+
+Provide access to information from a Perforce server. [[http://www.perforce.com][Perforce]] is a well known software configuration management system.
+
+%TOC%
+
+<!--
+SHORTDESCRIPTION is used in various places such as the InstalledPlugins page or the extension downloader in configure.
+
+   * Set SHORTDESCRIPTION = Provide access to informations from a Perforce SCM server.              
+-->
+
+---++ Syntax Rules
+
+---+++ TWiki plug-in variables
+
+---++++ =P4CHANGES=
+
+Simply gives you the output of the [[http://www.perforce.com/perforce/doc.073/manuals/cmdref/changes.html][p4 changes]] command. 
+
+<verbatim>
+%P4CHANGES{"p4changesoptions" format="format" header="header" footer="footer" ajax="ajax" label="label"}%
+</verbatim>
+
+| *Parameter* | *description* | *example* | *default value* |
+| _p4changesoptions_ | This must be some valid [[http://www.perforce.com/perforce/doc.073/manuals/cmdref/changes.html][p4 changes]] options | =-m 10= | none |
+| _format_ | A template string used to format each change record. See below for the supported variables. If none specified the output of the command is returned with HTML =br= element append to each line.  |  <verbatim>| $changelist | $description |</verbatim> | none |
+| _header_ | Specify a header for the formatted output. | <verbatim> | *Parameter* | *description* | *default value* | </verbatim>  | none |
+| _footer_ | Specify a footer for the formatted output. | =nice footer= | none |
+| _ajax_ | Tell the plug-in to delay running of the p4 command. Instead of the command output it displays a button that will allow the user to fetch the information from Perforce on demand. The given value defines the id of the =div= element to be loaded upon ajax request completion. | =ajaxdivid1= | none |
+| _label_ | Used only in ajax mode. It defines the label of the ajax button. | =Fetch changes= | =Fetch Perforce changes= |
+| _method_ | Used only in ajax mode. Do not use that parameter unless you know what you are doing. Although both modes work fine on TWiki 4.2 we could not get =GET= to function on 4.1.2. Can be =POST= or =GET=.  | =GET= | =POST= |
+
+---++++ =P4CHANGESPI=
+
+Gives you the changes pending for integration for a specified branch specification. It is achieved by parsing the output of a single [[http://www.perforce.com/perforce/doc.073/manuals/cmdref/integrate.html][p4 integrate -n]] command and gathering the corresponding changes by running n times the relevant =p4 changes= commands.
+
+<verbatim>
+%P4CHANGESPI{"branch" format="format" header="header" footer="footer" description="description" reverse="reverse" ajax="ajax" label="label" }%
+</verbatim>
+
+| *Parameter* | *description* | *example* | *default value* |
+| _branch_ | The name of the branch used for integration | =mybranchname= | none |
+| _format_ | A template string used to format each change record. See below for the supported variables. If none specified the output of the command is returned with HTML =br= element append to each line.  |  <verbatim>| $changelist | $description |</verbatim> | none |
+| _header_ | Specify a header for the formatted output. | <verbatim> | *Parameter* | *description* | *default value* | </verbatim>  | none |
+| _footer_ | Specify a footer for the formatted output. | =nice footer= | none |
+| _description_ | Can be =long= ( use =p4 changes -L= flag ) or =full= ( use =p4 changes -l= flag ).  | =full= | none |
+| _reverse_ | Set to =on= to perform a reverse integration. ( use =p4 integrate= =-r= flag ) | =on= | none |
+| _ajax_ | Tell the plug-in to delay running of the p4 command. Instead of the command output it displays a button that will allow the user to fetch the information from Perforce on demand. The given value defines the id of the =div= element to be loaded upon ajax request completion. | =ajaxdivid1= | none |
+| _label_ | Used only in ajax mode. It defines the label of the ajax button. | =Fetch changes= | =Fetch Perforce changes= |
+| _method_ | Used only in ajax mode. Do not use that parameter unless you know what you are doing. Although both modes work fine on TWiki 4.2 we could not get =GET= to function on 4.1.2. Can be =POST= or =GET=.  | =GET= | =POST= |
+
+---+++ REST interface
+
+---++++ =p4changes=
+
+<verbatim>
+%SCRIPTURLPATH%/rest/PerforcePlugin/p4changes?topic=%WEB%.%TOPIC%&_DEFAULT=p4changesoptions&format=format&header=header&footer=footer
+</verbatim>
+
+_p4changesoptions_, _format_, _header_ and _footer_ parameters are the same as for the TWiki plug-in variable. Parameters _ajax_ and _label_ are not supported.
+
+---++++ =p4changespi=
+
+<verbatim>
+%SCRIPTURLPATH%/rest/PerforcePlugin/p4changespi?topic=%WEB%.%TOPIC%&_DEFAULT=branch&format=format&header=header&footer=footer&description=description&reverse=reverse
+</verbatim>
+
+_branch_, _format_, _header_, _footer_, _description_ and _reverse_ parameters are the same as for the TWiki plug-in variable. Parameters _ajax_ and _label_ are not supported.
+
+
+---+++ Format variable substitution
+
+The following symbols specified in the _format_ parameter are substituted with the record information.
+
+| *Variable* | *description* | *example* |
+| =$changelist= | Perforce change list number | 12345 |
+| =$year= | Changelist year as defined by Perforce | 2008 |
+| =$month= | Changelist month as defined by Perforce | 02 |
+| =$day= | Changelist day as defined by Perforce | 28 |
+| =$date= | Changelist date as defined by Perforce | 2008/02/28 |
+| =$user= | Perforce user to which the changelist belong to  | myperforceuser |
+| =$client= | Perforce client to which the changelist belong to | myperforceclient |
+| =$status= | Changelist status. Can be _submitted_ or _pending_ | pending |
+| =$description= | Perforce change description | I fixed Bug:123 |
+
+---+++ Format, header and footer variable substitution
+
+| *Variable* | *description* | *example* |
+| =$nop= | Replaced with nothing. | |
+| =$quot= | Replaced with a double quote | ="= |
+| =$percnt= | Replaced with a percent | =%= |
+| =$pipe= | Replaced with a pipe. <br /> Useful when embedded in TWiki table | <verbatim>|</verbatim> |
+| =$dollar= | Replaced with a dollar | =$= |
+| =$n= | New line character | =\n= |
+
+---++ Examples
+
+See Sandbox.PluginTestPerforcePlugin.
+
+---+++ Get the last ten change list
+
+<verbatim>
+%P4CHANGES{" -m 10" format="| $changelist | $date | $description | $user | $status | $n"}%
+</verbatim>
+
+---+++ Get the last ten change lists on a branch
+
+<verbatim>
+%P4CHANGES{" -m 10  //depot/branches/rel_1_0_1/..." format="| $changelist | $date | $description | $user | $status | $n"}%
+</verbatim>
+
+---+++ Get change lists on a branch between change 100 and change 200
+
+<verbatim>
+%P4CHANGES{" //depot/branches/rel_1_0_1/...@100,200" format="| $changelist | $date | $description | $user | $status | $n"}%
+</verbatim>
+
+---++ Usage recommendations
+
+Keep in mind that this plug-in runs potentially time consuming commands on your web server. %BR%
+When using =P4CHANGES= always limit the number of results by either:
+   * Using the =-m= Perforce option.
+   * Restricting the scope of your =p4 changes= command to a specific Perforce depot path or file.
+   * Restricting the scope of your =p4 changes= command to a range of changes.
+
+For best user experience we recommend you make use of the REST interfaces through AJAX. Novice web programmer will find the =ajax= parameter useful. Experienced web programmer can make use of the =jquery.spinner.js= provided with TWiki:Plugins.JQueryDevPlugin and soon also available in TWiki:Plugins.JQueryPlugin. Be aware that notably the =P4CHANGESPI= request can take a significant amount of time to complete and goes much smoother when displaying an animation such as a spinner.
+
+
+---++ Plug-in Settings
+
+As per the new plug-in development guidelines this plug-in do not make use of preferences variables for settings and configuration. Instead settings are stored in =/lib/LocalSite.cfg=. See the installations instructions below.
+
+---++ Plug-in Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plug-in. The following instructions are for the administrator who installs the plug-in on the TWiki server.
+
+   * Download the ZIP file from the Plug-in Home (see below) 
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content: 
+| *File:* | *Description:* |
+| ==data/TWiki/%TOPIC%.txt== | Plug-in topic |
+| ==data/Sandbox/PluginTest%TOPIC%.txt== | Plug-in examples |
+| ==lib/TWiki/Plugins/%TOPIC%.pm== | Plug-in Perl module |
+   * Configure the Plug-in: 
+      * TWiki 4.0 and up: Run the [[%SCRIPTURL%/configure%SCRIPTSUFFIX%][configure]] script to enable the Plug-in 
+      * Change the Plug-in settings as needed 
+      * Edit =/lib/LocalSite.cfg= and define the following values according to your Perforce environment: 
+
+<verbatim>
+$TWiki::cfg{Plugins}{PerforcePlugin}{p4port} = "perforce-srv:1666" ;
+$TWiki::cfg{Plugins}{PerforcePlugin}{p4client} = "myp4clientname" ;
+$TWiki::cfg{Plugins}{PerforcePlugin}{p4user} = "mylogin";
+$TWiki::cfg{Plugins}{PerforcePlugin}{p4password} = "mypassword";
+</verbatim>
+
+NOTE: It turns out that you don't even need to specify an existing =p4client= to run =p4 changes= commands.
+
+   * If the installation was successful you should get valid information in the table below: 
+
+| *Changelist* | *Date* | *Description* | *User* | *Status* |
+%P4CHANGES{"-m 10" format="| $changelist | $date | $description | $user | $status | $n"}%
+
+---++ Plug-in Info
+
+|  Plug-in Author: | TWiki:Main.StephaneLenclud |
+|  Copyright: | © 2008, TWiki:Main.StephaneLenclud |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plug-in Version: | 16 Apr 2008 (V0.8) |
+|  Change History: | <!-- versions below in reverse order --> |
+|  16 Apr 2008: | Adding =-d= flag to integrate command. Fixing integrate command line parser.  |
+|  02 Mar 2008: | Adding usage recommendations. Fixed documentation following TWiki:Main.PeterThoeny review.  |
+|  28 Feb 2008: | Adding =P4CHANGESPI= and its REST interface. |
+|  27 Feb 2008: | Adding =$pipe= variable. |
+|  26 Feb 2008: | Removing some =\n= from =ajax= mode output. Other minor fix. |
+|  21 Feb 2008: | Support _method_ parameter in AJAX mode. Default AJAX method is now =POST=. URL encoding parameters value in =GET= mode. Now encoding HTML entities in description field. |
+|  20 Feb 2008: | Fixing bug preventing TWiki:InterWikiPlugin to auto link at beginning and at the end of changes description lines <br /> Fixing missing last changes entry in long description mode ( =-l= and =-L= options ) |
+|  15 Feb 2008: | Documentation, more parameters, ajax/jquery support |
+|  14 Feb 2008: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | [[http://www.perforce.com][Perforce]] command line =p4.exe= <br /> TWiki:Plugins.JQueryPlugin or TWiki:Plugins.JQueryDevPlugin optional. Only for AJAX functionality |
+|  Perl Version: | 5.005 |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plug-in Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+
+
