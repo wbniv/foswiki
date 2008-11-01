@@ -58,7 +58,7 @@ close(LS);
 #run unit tests
 #TODO: testrunner should exit == 0 if no errors?
 chdir('test/unit');
-my $unitTests = "export TWIKI_LIBS=; export TWIKI_HOME=$twikihome;perl ../bin/TestRunner.pl -clean TWikiSuite.pm 2>&1 > $twikihome/TWiki-UnitTests.log";
+my $unitTests = "export TWIKI_LIBS=; export TWIKI_HOME=$twikihome;perl ../bin/TestRunner.pl -clean TWikiSuite.pm > $twikihome/TWiki-UnitTests.log 2>&1";
 my $return = `$unitTests`;
 my $errorcode = $? >> 8;
 unless ($errorcode == 0) {
@@ -77,9 +77,9 @@ unless ($errorcode == 0) {
 
 chdir($twikihome);
 #TODO: add a performance BM & compare to something golden.
-`perl tools/MemoryCycleTests.pl 2>&1 > $twikihome/TWiki-MemoryCycleTests.log`;
-`perlcritic --severity 5 --statistics --top 20 lib/  2>&1 > $twikihome/TWiki-PerlCritic.log`;
-`perlcritic --severity 5 --statistics --top 20 bin/ 2>&1 >> $twikihome/TWiki-PerlCritic.log`;
+`perl tools/MemoryCycleTests.pl > $twikihome/TWiki-MemoryCycleTests.log 2>&1`;
+`perlcritic --severity 5 --statistics --top 20 lib/  > $twikihome/TWiki-PerlCritic.log 2>&1`;
+`perlcritic --severity 5 --statistics --top 20 bin/ >> $twikihome/TWiki-PerlCritic.log 2>&1`;
 #`cd tools; perl check_manifest.pl`;
 #`cd data; grep '%META:TOPICINFO{' */*.txt | grep -v TestCases | grep -v 'author="TWikiContributor".*version="\$Rev'`;
 
@@ -103,7 +103,7 @@ print "\n\n ready to build release\n";
 #      * Note: if you specify a release name the script will attempt to commit to svn 
 `perl pseudo-install.pl BuildContrib`;
 chdir('lib');
-`perl ../tools/build.pl release -auto 2>&1 > $twikihome/TWiki-build.log`;
+`perl ../tools/build.pl release -auto > $twikihome/TWiki-build.log 2>&1`;
 
 chdir($twikihome);
 if ($SvensAutomatedBuilds) {
