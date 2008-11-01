@@ -1,0 +1,24 @@
+%TMPL:INCLUDE{"view"}%
+
+%TMPL:DEF{"talktopic__"}%Talk%TMPL:END%
+%TMPL:DEF{"talktopic"}%%IF{"defined TALKSUFFIX" then="%TALKSUFFIX%" else="Talk"}%%TMPL:END%
+%TMPL:DEF{talktopiccreatetemplate}%?topicparent=%WEB%.%TOPIC%;onlynewtopic=1%IF{"defined TALKTOPICTEMPLATE" then=";templatetopic=%TALKTOPICTEMPLATE%"}%%IF{"defined TALKTOPICFORMTEMPLATE" then=";formtemplate=%TALKTOPICFORMTEMPLATE%"}%%TMPL:END%
+
+
+%{ create the talk topic if its not there already }%
+%TMPL:DEF{"talktopicactioncreatelink"}%<span><a href='%SCRIPTURLPATH{"edit"}%/%WEB%/%TOPIC%%TMPL:P{talktopic}%%TMPL:P{talktopiccreatetemplate}%' rel='nofollow' %MAKETEXT{"title='New Discuss Topic' >New Discuss Topic"}%</a></span>%TMPL:END%
+%TMPL:DEF{"talktopicactioncreate"}%%TMPL:P{talktopicactioncreatelink}%%TMPL:END%
+%TMPL:DEF{"talktopicactioncreate___"}%%IF{"'%WEB%.%TOPIC%%TMPL:P{talktopic}%' allows 'change'" then="%TMPL:P{talktopicactioncreatelink}%" else="not able to change"}%%TMPL:END%
+%TMPL:DEF{"talktopicactionview"}%<span><a href='%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%%TMPL:P{"talktopic"}%' rel='nofollow' %MAKETEXT{"title='Discuss Topic' >Discuss Topic"}%</a></span>%TMPL:END%
+%TMPL:DEF{"talktopicactionbutton"}%%IF{"istopic '%WEB%.%TOPIC%%TMPL:P{talktopic}%'" then="%TMPL:P{talktopicactionview}%" else="%TMPL:P{talktopicactioncreate}%"}%%TMPL:END%
+
+%TMPL:DEF{viewtopicactionbutton}%<span><a href='%SCRIPTURLPATH{"view"}%/%WEB%/%CALC{"$REPLACE(%TOPIC%,$EVAL(1+$LENGTH(%TOPIC%)-$LENGTH(%TMPL:P{talktopic}%)),$LENGTH(%TMPL:P{talktopic}%))"}%' rel='nofollow' %MAKETEXT{"title='Back to Topic' >Back to Topic"}%</a></span>%TMPL:END%
+
+%{ link back to the topic itself }%
+%TMPL:DEF{"talktopicaction"}%%IF{"$TOPIC ~ '*%TMPL:P{talktopic}%'" then="%TMPL:P{viewtopicactionbutton}%" else="%TMPL:P{talktopicactionbutton}%"}%%TMPL:END%
+
+
+%TMPL:DEF{"top:toolbarbuttons"}%%TMPL:P{"talktopicaction"}%%TMPL:P{"activatable_edit_or_create"}%%TMPL:P{"activatable_attach"}%%TMPL:END%
+
+%TMPL:DEF{"topicactionbuttons"}%%TMPL:P{"talktopicaction"}%%TMPL:P{sep}%%TMPL:P{"action_activatable_edit_or_create"}%%TMPL:P{"action_activatable_attach"}%%TMPL:P{"action_printable"}%%TMPL:P{"action_revisions"}%%TMPL:P{"action_backlinks_simple"}%%TMPL:P{"action_raw_or_view"}%%TMPL:P{"action_activatable_raw_edit"}%%TMPL:P{"activatable_more"}%%TMPL:END%
+

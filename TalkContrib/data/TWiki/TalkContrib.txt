@@ -1,0 +1,88 @@
+%META:TOPICINFO{author="BaseUserMapping_333" date="1207727057" format="1.1" reprev="1.2" version="1.2"}%
+---+!! !TalkContrib
+<!--
+One line description, required for extensions repository catalog.
+   * Set SHORTDESCRIPTION = Add Talk pages for TWiki
+-->
+%SHORTDESCRIPTION%
+
+%TOC%
+
+---++ Usage
+<nop> TalkContrib adds a wikipedia like _Discuss_ Button to the PatternSkin edit&attach buttons, and to the topic action bar of the Classic, default and TWiki:Plugins.MoveveableTypeSkin. 
+
+When the user initially clicks on the 'Discuss topic' button, it will create a new topic by appending =Talk= to the original topic. 
+From then on, you can switch between the topic and its Discussion topic using that button.
+
+This Contrib was inspired by a discussion I had with some Sun engineers on the dtrace mailing list about using Wikis to discuss external documentation, 
+TWiki:Codev.TalkPagesForTWiki and its Discussion topic TWiki:Codev.TalkPagesForTWikiTalk
+and by TWiki:Codev.TalkTalk and its Discussion topic TWiki:Codev.TalkTalkTalk - both of which currently use a 4.1.2 VIEW_TEMPLATE version of this Contrib.
+
+---++ Installation and Configuration Instructions
+---+++ 'Talk' topics in created in the same web as the topic, with 'Talk' Suffix
+<img src="%ATTACHURLPATH%/TalkSuffix.jpg" alt="TalkSuffix.jpg" width='320' height='200' style="float:right;margin:10px;border:1px solid black;"/>
+
+To enable Talk Topics, add the =talk= skin to the SKIN path in %MAINWEB%.TWikiPreferences or the <nop>WebPreferences topic of whatever web you want to enable Talk topics in (eg, if you're using PatternSkin):
+<verbatim>
+      * Set <nop>SKIN = talk,pattern
+</verbatim>
+_OR_ by setting the COVER setting to =talk= _OR_ by putting the contents of =templates/view.talk.tmpl= into a topic, and setting VIEW_TEMPLATE to reference that topic (ok, rather advanced usage)
+
+
+You can over-ride the suffix (defaults to =Talk=) that is appended to a topic to create its Talk topic by setting =TALKSUFFIX= in %MAINWEB%.TWikiPreferences
+<verbatim>
+      * Set <nop>TALKSUFFIX = Talk
+</verbatim>
+
+You can over-ride the Topic template that is used when creating a new Talk topic by setting =TALKTOPICTEMPLATE= in %MAINWEB%.TWikiPreferences
+<verbatim>
+      * Set <nop>TALKTOPICTEMPLATE = TWiki.MyTalkTemplate
+</verbatim>
+You can over-ride the Topic formtemplate that is used when creating a new Talk topic by setting =TALKTOPICFORMTEMPLATE= in %MAINWEB%.TWikiPreferences
+<verbatim>
+      * Set <nop>TALKTOPICFORMTEMPLATE = TWiki.MyTalkFormTemplate
+</verbatim>
+
+
+
+I have tested TalkContrib using TWiki 4.2.0 with the default skin (used as a building block for other skins), ClassicSkin, PatternSkin and TWiki:Plugins.MoveveableTypeSkin.
+---++ Limitations
+There are 2 known limitations at this time
+   1 any topic containing the TALKSUFFIX will be considered a Talk topic - this is due to a bug in %TWIKIWEB%.VarIF string matching
+   2 you cannot create Talk topics for topics in webs you do not have change permission. This will not be solved in the Talk Suffix mode.
+
+---++ Discussion and future ideas
+
+There are many approaches to storing Talk discussions:
+   1 append a 'Talk' suffix to the name of the topic, and link to that (as seen on TWiki.org)
+      * Talk topics are normal topics that conform to a naming scheme, thus are listed in WebChanges seperatly from their parent topics
+   2 convert the web and topic name to some reversible but otherwise unlikely combination, and store in a seperate Talk web
+   3 use Subwebs with common topic names
+   4 use a formfield in the topic to store the Talk
+   5 use a META:PREF in the topic to store the Talk
+   
+This <nop>TWikiApplication implements the first using either a SKIN or COVER setting or using VIEW_TEMPLATE. The other modes will be examined over time.
+
+---+++ Package installation
+
+%$INSTALL_INSTRUCTIONS%
+
+---++ Contrib Info
+
+|  Contrib Author: | TWiki:Main.SvenDowideit - SvenDowideit@DistributedINFORMATION.com [[http://DistributedINFORMATION.com][DistributedINFORMATION]] - a <img src="%ATTACHURLPATH%/wikiringlogo20x20.png" /> [[http://www.wikiring.com][WikiRing.com]] partner |
+|  Copyright &copy;: | TWiki:Main.SvenDowideit - SvenDowideit@DistributedINFORMATION.com |
+|  License: | [[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License)]] |
+|  Contrib Version: | %$VERSION% |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Contrib Home: | http://twiki.org/cgi-bin/view/Plugins/TalkContrib |
+|  Feedback: | http://twiki.org/cgi-bin/view/Plugins/TalkContribDev |
+|  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/TalkContribAppraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiContribs, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the feedback topic on twiki.org instead. -->
+
+
+%META:FILEATTACHMENT{name="TalkSuffix.jpg" attachment="TalkSuffix.jpg" attr="" comment="Talk Suffix mode" date="1207726981" path="TalkSuffix.jpg" size="11500" stream="TalkSuffix.jpg" tmpFilename="/var/tmp/CGItemp14091" user="BaseUserMapping_333" version="1"}%
+%META:FILEATTACHMENT{name="wikiringlogo20x20.png" attachment="wikiringlogo20x20.png" attr="h" comment="WikiRing.com" date="1207727056" path="wikiringlogo20x20.png" size="1343" stream="wikiringlogo20x20.png" tmpFilename="/var/tmp/CGItemp14195" user="BaseUserMapping_333" version="1"}%

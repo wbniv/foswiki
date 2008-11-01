@@ -1,0 +1,8 @@
+# Release manifest for TalkContrib
+data/TWiki/TalkContrib.txt 0644 Documentation
+lib/TWiki/Contrib/TalkContrib.pm 0644 Perl module
+
+
+templates/view.talk.tmpl
+pub/TWiki/TalkContrib/TalkSuffix.jpg
+pub/TWiki/TalkContrib/wikiringlogo20x20.png
