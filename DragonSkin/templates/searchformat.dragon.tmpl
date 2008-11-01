@@ -1,0 +1,23 @@
+%TMPL:INCLUDE{"twiki"}%
+%TMPL:P{"htmldoctype"}%
+<head>
+ <title>(search result) %WEB% &lt; %WIKITOOLNAME%</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=%CHARSET%" />
+ <meta name="robots" content="noindex" /> %HTTP_EQUIV_ON_VIEW%
+ <base href="%SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%" />
+ %TMPL:P{"dragoncss"}%
+</head>
+%TMPL:DEF{"titleaction"}%(search result) %TMPL:END%
+%TMPL:DEF{"webaction"}% %Search: <b> %SEARCHSTRING% </b> %TMPL:END%
+<body>%SPLIT%%TMPL:P{"simpleheader"}%
+<div class="ds-nmcontent">
+#PageTop
+%SPLIT%%REPEAT%%REPEAT%
+%SPLIT%Number of topics: <b>%NTOPICS%</b><p />
+%SPLIT%
+</div>%TMPL:DEF{"topicaction"}% %TMPL:END%
+%TMPL:P{"standardfooter"}%
+#PageBottom
+</div>
+</body>
+</html>

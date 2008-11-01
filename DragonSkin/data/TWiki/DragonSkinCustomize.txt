@@ -1,0 +1,70 @@
+%META:TOPICINFO{author="cbs" date="1090930288" format="1.0" version="1.15"}%
+---+  <nop>DragonSkin customization
+This topic contains information on how to change user-configurable look-and-feel aspects of !Dragonskin. See DragonSkinInstall for installation instructions, and DragonSkin for some general information about the skin.
+
+%TOC%
+
+
+---++ TWiki variables used by !DragonSkin
+The following TWiki.TWikiVariables are specific to !DragonSkin and control various look and feel aspects of the skin:
+
+	$ DS_BODYFONTSIZE: CSS font size for the overall body of the page.
+	$ DS_LEFTMENUFONTSIZE: CSS font size for the left menu (relative size values will compound with the body font size).
+	$ DS_EDITBARFONTSIZE: CSS font size for the edit/attach/etc menubar on the top of each view page (relative size values will compound with the body font size).
+	$ DS_FONTFAMILY: CSS font family.  Applies to all pages.
+	$ DS_QUICKLINKSDISPLAY: Set this variable to &quot;none&quot; to turn off display of the quicklinks menu.
+	$ DS_QUICKLINKSHEADING: String to use for the quicklinks submenu heading.
+	$ DS_QUICKLINKS: HTML unordered list containing the quicklinks menu items.
+	$ DS_TOPICCSS: CSS statements that will get embedded in every view page (meant for adding short bits of style to a specific topic).  These CSS statements are *only* included in view pages, not in edit, preview or oops pages. See the section below on &quot;Recovering from a bad DS_TOPICCSS setting&quot; for reasons why.  Surround a  topic-specific CSS setting with HTML comments to hide the CSS statements. Set the variable to a blank value on your wiki home page to disable seeing custom css styles.
+	$ DS_THEME: Lets one chose between various look and feels.  Supported themes at this time are "gray" (the default), "monochrome", and "tabstyle".
+
+You can test out settings on one page (such as a [[Sandbox.WebHome][Sandbox]] page) using variables set within that topic.
+
+The colored bands on the top and bottom of each page is set via the standard TWiki WEBBGCOLOR variable.  This is usually set on a per-web basis, in order to provide a consistent indication of which web a page is in.
+
+---++ Built-in CSS styles
+The following CSS styles are included with Dragonskin as a convenience.  Your local administrator may add additional classes:
+	$ ds-draft: Text within a div of class ds-draft will be displayed with a tiled background containing light gray images with the word "DRAFT".
+	$ ds-kbd: Text within a div of class ds-kbd will be displayed in monospaced type w/in an	 indented light-gray box.
+	$ ds-note: Text within a div of class ds-note will be displayed as a yellow "Post-it" style note on the right-side of the page.
+
+To use these classes, enclose your text in a div of that class.  For example:<br />
+&lt;div class=&quot;ds-note&quot;&gt;<br />
+Your text goes here.<br />
+&lt;/div&gt;
+ 
+---+++ Hiding forms
+The following DS_TOPICCSS setting:
+	* Set DS_TOPICCSS = .ds-topicform {display:none;}
+will hide a topic's form when viewing it.
+
+---++ How to configure the quicklinks submenu
+To remove the quicklinks menu entirely, set DS_QUICKLINKSDISPLAY to &quot;none&quot;.
+
+The heading can be configured just by setting DS_QUICKLINKSHEADING to the string of your choice (keep in mind that it should be relatively short to fit in one line).
+
+The menu items are configured by setting DS_QUICKLINKS to an html unordered list containing the menu links you need:
+For example:
+<verbatim>
+<ul><li>[[TWiki.DragonSkin][Change me]]</li></ul>
+</verbatim>
+will have one link with the link text &quot;Change me&quot; that points to this page.
+
+---++ Access key(s)
+At this time, only 1 access key is supported:  Access key 3 will bring up an edit window for the current topic. On most browsers, Alt-3 will active this access key.
+
+---++ Guidelines for setting font sizes
+*Note:* it is possible to set font sizes so small as to be unreadable. If that
+happens, you can use your browser font controls (ctrl + mouse wheel) to increase the font size so that you can edit your preference page, or (if you have just saved your changes), hit the back button on your browser a few times and re-edit your preferences). Also, access key 3 (usually bound to Alt-3 in your browser) will bring up a edit window for the topic you are currently viewing. 
+DS_BODYFONTSIZE controls the base font size for the page.  To adjust the size, you can set it to one of the font-size keywords: xx-small, x-small, small, medium, large, x-large.  Alternatively (and this is much more flexible), set it to a particular percentage (but you probably don't want to go underneath 76%).  Once  you've adjusted the base font size, you can set DS_LEFTMENUFONTSIZE and DS_EDITBARFONTSIZE using ems. For example, <nop>Set DS_LEFTMENUFONTSIZE = .9em.
+
+---++ Recovering from a bad DS_TOPICCSS setting
+It is possible to set a DS_TOPICCSS variable in such a way as to make it difficult to view pages (e.g. setting it to &quot;body {display: none}&quot;).  If that happens, you can always recover by following these steps:
+	1. Type the URL of your wiki home page (or go directly to the page with the setting that is causing the problem) into your browser to go to that page.
+	2. Edit the page by using access key 3 (usually bound to Alt-3 in your browser).
+	3. On that page, set DS_TOPICCSS to a blank value (or any other safe value).
+	4. Preview and save that page.
+
+
+
+%META:TOPICMOVED{by="cbs" date="1090945787" from="TWiki.DragonSkin" to="TWiki.DragonSkinCustomize"}%

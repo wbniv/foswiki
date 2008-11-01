@@ -1,0 +1,367 @@
+/*********** see typography.css for fonts and content margins **************/
+body {
+background-color: white;
+color: black;
+padding: 0px;
+margin: 0;
+}
+
+
+#ds-vnavcell {
+background-color: white;
+padding: 0;
+}
+
+/********* top edit bar *************/
+ 
+.ds-topeditbar {
+border-bottom: 1px solid #aaa;
+margin-top: .5em;
+white-space: nowrap;
+}
+ 
+.ds-topeditbar ul, .ds-topeditbar li {
+display: inline;
+list-style-type: none;
+margin: 0;
+padding: 0;
+}
+  
+.ds-topeditbar ul a:link, .ds-topeditbar ul a:visited {
+background-color: #EBEDF5;
+border: 1px solid #aaa;
+color: black;
+float: right;
+margin-left: .3em;
+text-decoration: none;
+padding: .25em .5em .25em .5em;
+}
+     
+.ds-topeditbar ul li a:hover {
+color: black;
+background-color: #D2D7E4;
+}
+
+/********* end of topeditbar attributes  *************/
+
+
+
+/********* left menu (vnav) and logo attributes  *************/
+
+.ds-quicklinks {
+margin: 0;
+padding: 0;
+}
+
+
+
+.ds-vnav {
+padding: 0;
+margin: 0;
+width: 200px;
+}
+
+.ds-vnav h2 {
+font-size: 100%;
+margin: 0 0 0 10px;
+color: black;
+padding: 0 .3em  0 .3em;
+border-top: 1px solid #aaa;
+border-left: 1px solid #aaa;
+border-right: 1px solid #aaa;
+display: inline; 
+width: auto;
+background-color: #D2D7E4;
+}
+
+.ds-vnav p {
+border: 1px solid #aaa;
+background-color:  #EBEDF5;
+margin: 0 5px 1.6em 10px;
+padding: .5em 5px .6em 1em;
+}
+
+
+.ds-vnavlogoarea {
+width: 200px;
+padding-bottom: .5em;
+padding-top: .5em;
+margin-bottom: 1em;
+background-color: white;
+}
+
+.ds-vnavlogoarea .ds-logo {
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+
+.ds-logosearch {
+border: 1px solid #aaa;
+padding: .7em .5em .5em .7em;
+margin: 0 5px 1.6em 10px;
+text-align: center;
+background-color: #EBEDF5;
+}
+
+.ds-logosearch form {
+margin: 0;
+padding: 0;
+}
+
+.ds-logosearch input {
+margin: 0;
+padding: 0;
+width: 160px;
+
+}
+
+
+.ds-logosearchlabel {
+margin: 0;
+padding: 0;
+text-align: center;
+font-size: x-small;
+}
+
+.ds-logosearchlabel a:link, .ds-logosearchlabel a:visited {
+color: black;
+}
+
+
+
+.ds-vnav ul {
+background-color: #EBEDF5;
+margin: 0 5px 1.6em 10px;
+padding: .5em 0 .6em 1em;
+list-style-type: none;
+border: 1px solid #aaa;
+}
+
+.ds-vnav li {
+padding: .1em 0 0 0;
+}
+
+
+.ds-vnav li a {
+
+}
+
+.ds-vnav li a:link, .ds-vnav li a:visited  {
+text-decoration: none;
+color: black;
+}
+ 
+.ds-vnav li a:hover  {
+text-decoration: underline;
+}
+
+
+
+/********* end of left menu (vnav) and logo attributes  *************/
+
+/******************** footer attributes ********************/
+
+.ds-footer {
+margin: 0;
+position: relative;
+padding: .5em;
+border-top: 1px solid #aaa;
+background-color: white;
+}
+
+
+.ds-footereditbar {
+float: right;
+text-align: right;
+padding: 0;
+width: auto;
+position: relative;   /* to make IE happy */
+}
+
+.ds-footerleft {
+  padding-left: .5em;
+}
+
+.ds-footerrevisions {
+margin-top: .5em;
+padding-top: .5em;
+padding-bottom: .6em;
+margin-bottom: .5em;
+padding-left: .5em;
+background-color:  #EBEDF5;
+}
+
+.ds-footerlogininfo {
+text-align: right;
+font-size: x-small;
+
+}
+
+/******************** end of footer ********************/
+
+
+/******* misc  **********/
+
+.ds-logo {
+border: 0;
+}
+
+.ds-clearer {
+clear: both;
+height: 0;
+line-height: 0;
+}
+
+.ds-clear {
+clear: both;
+}
+
+.ds-hide {
+display: none;
+}
+
+.ds-larger {
+font-size: larger;
+}
+
+.ds-bold {
+font-weight: bold;
+}
+
+.ds-largerbold {
+font-size: larger;
+font-weight: bold;
+}
+
+
+/* the stuff below is specific to various templates */
+
+/******************** no-menu presentation ********************
+ * 
+ * these definitions are used for no-menu templates (oops, etc)
+ * they are prefixed with a "nm"
+ *
+ */
+
+
+.ds-nmwrapper {
+margin: 0;
+padding: 0;
+}
+
+.ds-nmlogowrapper {
+margin: 0;
+padding: 0;
+float: left;
+width: auto;
+}
+
+
+.ds-nmheaderhelp {
+margin: 0;
+padding: 0;
+float: right;
+width: auto;
+}
+
+.ds-nmheaderwrapper {
+margin: 0;
+padding: 1em 2em 0 2em;
+height: 100%;   /*  it's either this or use a Holly hack */
+
+}
+
+.ds-nmtitlemessage {
+clear: both; 
+text-align: center;
+padding: .2em 0 .2em 0;
+margin: 0;
+font-size: larger;
+}
+
+.ds-nmwebaction {
+border-top: 1px solid #ccc;
+border-bottom: 1px solid #ccc;
+text-align: center;
+padding-top: .5em;
+padding-bottom: .5em;
+margin: 0;
+}
+
+.ds-nmcontent {
+padding: 0 2em 1em 2em;
+}
+
+.ds-nmtopicaction {
+border-top: 1px solid #ccc;
+border-bottom: 1px solid #ccc;
+padding: .5em 2em .5em 2em;
+}
+
+/*************************************************/
+
+/*****  search book view *****/
+
+.ds-searchbookcontainer {
+padding-top: 1em;
+padding-bottom: 1em;
+margin-top: .5em;
+margin-bottom: 1em;
+border-bottom: 5px solid black;
+border-top: 1px solid black;
+}
+
+.ds-searchbookviewtitle {
+font-weight: bold;
+font-size: large;
+}
+
+
+.ds-previewsave {
+margin: 0;
+padding: 2px 1em 2px 1em;
+font-size: x-small;
+clear: both;
+text-align: right;
+background-color:  #EBEDF5;
+}
+
+.ds-previewsave form {
+margin: 0;
+}
+
+/***** edit *****/
+
+.ds-editformattinghelp {
+margin-top: .5em;
+padding: 0 2em 1em 2em;
+font-size: x-small;
+border: 1px solid #aaa;
+background-color:  #EBEDF5;
+}
+
+
+/* Edit.pm hard-codes a table for presentation of the
+ * "add form" button.  This element constantly gets in the way when
+ * hitting preview.  Easiest fix is to edit Edit.pm and have FORMFIELDS
+ * aligned left
+ */
+
+.ds-editformfieldscontainer {
+margin-bottom: 5px;
+border: 0;
+padding-right: 1em;
+}
+
+
+/* search results
+ * color uses %WEBBGCOLOR% and is embedded in the template
+ *
+ */
+
+.ds-searchresultsheading {
+font-size: larger;
+padding: .1em; 
+margin-bottom: 2px;
+}

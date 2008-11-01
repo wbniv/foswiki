@@ -1,0 +1,426 @@
+/*** Color settings have been moved to the top ***/
+
+body {
+background-color: white;
+color: black;
+}
+
+/*** top edit bar colors ***/
+
+.ds-topeditbar {
+background-color: white;
+}
+
+.ds-topeditbar ul li a {
+background-color: white;
+border-left-color: #ccc;
+color: black;
+}
+
+.ds-topeditbar ul li a:hover {
+background-color: black;
+color: white;
+}
+
+
+/*** left menu colors ***/
+
+
+#ds-vnavcell {
+background-color: white;
+border-right: 1px solid black;
+}
+
+/* where the logo is located */
+.ds-vnavlogoarea {
+background-color: white;
+border-bottom: 1px solid #ccc;
+}
+
+/* pre-hover menu color and "bullet" color */
+.ds-vnav li a:link, .ds-vnav li a:visited  {
+border-left: .5em solid #ccc;
+color: black;
+}
+
+/* hover menu color */
+.ds-vnav li a:hover  {
+border-left: .5em solid black;
+color: black;
+}
+
+/*** footer ***/
+
+.ds-footer {
+border-top: 1px solid black;
+background-color: white;
+}
+
+.ds-footerrevisions {
+border-top: 1px solid #ccc;
+border-bottom: 1px solid #ccc;
+}
+
+/*** the background for the save buttons on the preview page ***/
+.ds-previewsave {
+border-top: 1px solid #ccc;
+border-bottom: 1px solid #ccc;
+}
+
+/*** the background for the edit format tips on the edit page ***/
+.ds-editformattinghelp {
+border: 1px solid #ccc;
+}
+
+/*** end of color selection ***/
+
+/*********** see typography.css for fonts and content margins **************/
+
+body {
+padding: 0px;
+margin: 0;
+}
+
+/********* breadcrumb *************/
+
+
+/********* top edit bar *************/
+ 
+
+.ds-topeditbar {
+margin-top: .5em;
+padding: 0;
+width: 100%;
+float: left;
+white-space : nowrap;
+border-top: 1px solid #ccc;
+border-bottom: 1px solid #ccc;
+}
+
+.ds-topeditbar ul {
+margin: 0;
+padding: 0;   
+}
+
+.ds-topeditbar ul li {
+display: inline;
+}
+
+.ds-topeditbar ul li a {
+font-weight: bold;
+padding-left: 1em;
+padding-right: 1em;
+padding-top: .3em;
+padding-bottom: .3em;
+float: right;   
+text-decoration: none;
+border-left-style: solid;
+border-left-width: 1px;
+width: auto;
+}
+
+/********* end of topeditbar attributes  *************/
+
+
+
+/********* left menu (vnav) and logo attributes  *************/
+
+.ds-quicklinks {
+margin: 0;
+padding: 0;
+}
+
+
+
+.ds-vnav {
+padding: 0;
+margin: 0;
+width: 200px;
+}
+
+.ds-vnav h2 {
+padding: 0 0 0 .5em;
+margin: 0;
+font-size: 100%;
+font-weight: bold;
+}
+
+.ds-vnav p {
+padding: .5em 1em .5em 1em;
+margin: 0;
+}
+
+
+.ds-vnavlogoarea {
+width: 200px;
+padding-bottom: .5em;
+padding-top: .5em;
+margin-bottom: 1em;
+}
+
+.ds-vnavlogoarea .ds-logo {
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+
+.ds-logosearch form {
+margin: 0;
+padding: 0;
+}
+
+.ds-logosearch input {
+margin-top: .4em;
+width: 170px;
+margin-left: 1em;
+margin-bottom: 0;
+padding-top: 0;
+padding-bottom: 0;
+}
+
+
+.ds-logosearchlabel {
+text-align: center;
+font-size: x-small;
+margin-bottom: 1.3em;
+}
+
+.ds-vnavheading {
+font-weight: bold;
+border: 0;
+display: block;
+padding-top: 1px;
+padding-bottom: 1px;
+padding-left: .5em;
+margin-right: 1px;
+margin-bottom: 1px;
+
+}
+
+
+.ds-vnav ul {
+margin-top: .7em;
+margin-bottom: 1.2em;
+margin-left: 0;
+margin-right: 0;
+padding: 0;
+list-style-type: none;
+}
+
+.ds-vnav li {
+display: block;
+margin-top: 2px;
+margin-left: 1em;
+}
+
+.ds-vnav li a:link, .ds-vnav li a:visited  {
+text-decoration: none;
+padding-left: .5em;
+padding-right: 1em;
+}
+ 
+.ds-vnav li a:hover  {
+text-decoration: none;
+}
+ 
+ 
+/********* end of left menu (vnav) and logo attributes  *************/
+
+/******************** footer attributes ********************/
+
+.ds-footer {
+margin: 0;
+position: relative;
+padding: .5em;
+}
+
+.ds-footereditbar {
+float: right;
+text-align: right;
+padding: 0;
+width: auto;
+position: relative;   /* to make IE happy */
+}
+
+.ds-footerleft {
+  padding-left: .5em;
+}
+
+.ds-footerrevisions {
+margin-top: .5em;
+padding-top: .5em;
+padding-bottom: .6em;
+margin-bottom: .5em;
+padding-left: .5em;
+}
+
+.ds-footerlogininfo {
+text-align: right;
+font-size: smaller;
+
+}
+
+/******************** end of footer ********************/
+
+
+/******* misc  **********/
+
+.ds-logo {
+border: 0;
+}
+
+.ds-clearer {
+clear: both;
+height: 0;
+line-height: 0;
+}
+
+.ds-clear {
+clear: both;
+}
+
+.ds-hide {
+display: none;
+}
+
+.ds-larger {
+font-size: larger;
+}
+
+.ds-bold {
+font-weight: bold;
+}
+
+.ds-largerbold {
+font-size: larger;
+font-weight: bold;
+}
+
+
+/* the stuff below is specific to various templates */
+
+/******************** no-menu presentation ********************
+ * 
+ * these definitions are used for no-menu templates (oops, etc)
+ * they are prefixed with a "nm"
+ *
+ */
+
+
+.ds-nmwrapper {
+margin: 0;
+padding: 0;
+}
+
+.ds-nmlogowrapper {
+margin: 0;
+padding: 0;
+float: left;
+width: auto;
+}
+
+
+.ds-nmheaderhelp {
+margin: 0;
+padding: 0;
+float: right;
+width: auto;
+}
+
+.ds-nmheaderwrapper {
+margin: 0;
+padding: 1em 2em 0 2em;
+height: 100%;   /*  it's either this or use a Holly hack */
+
+}
+
+.ds-nmtitlemessage {
+clear: both; 
+text-align: center;
+padding: .2em 0 .2em 0;
+margin: 0;
+font-size: larger;
+}
+
+.ds-nmwebaction {
+border-top: 1px solid #ccc;
+border-bottom: 1px solid #ccc;
+text-align: center;
+padding-top: .5em;
+padding-bottom: .5em;
+margin: 0;
+}
+
+.ds-nmcontent {
+padding: 0 2em 1em 2em;
+}
+
+.ds-nmtopicaction {
+border-top: 1px solid #ccc;
+border-bottom: 1px solid #ccc;
+padding: .5em 2em .5em 2em;
+}
+
+/*************************************************/
+
+/*****  search book view *****/
+
+.ds-searchbookcontainer {
+padding-top: 1em;
+padding-bottom: 1em;
+margin-top: .5em;
+margin-bottom: 1em;
+border-bottom: 5px solid black;
+border-top: 1px solid black;
+}
+
+.ds-searchbookviewtitle {
+font-weight: bold;
+font-size: large;
+}
+
+/***** preview *****/
+
+
+.ds-previewsave {
+margin: 0;
+padding: 2px 1em 2px 1em;
+font-size: smaller;
+clear: both;
+text-align: right;
+}
+
+.ds-previewsave form {
+margin: 0;
+}
+
+/***** edit *****/
+
+.ds-editformattinghelp {
+margin-top: .5em;
+padding: 0 2em 1em 2em;
+font-size: smaller;
+}
+
+
+/* Edit.pm hard-codes a table for presentation of the
+ * "add form" button. 
+ */
+
+.ds-editformfieldscontainer {
+margin-bottom: 5px;
+border: 0;
+padding-right: 1em;
+}
+
+
+/* search results
+ * color uses %WEBBGCOLOR% and is embedded in the template
+ *
+ */
+
+.ds-searchresultsheading {
+font-size: large;
+padding: .1em; 
+margin-bottom: 2px;
+}
