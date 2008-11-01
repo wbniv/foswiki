@@ -1,0 +1,79 @@
+%META:TOPICINFO{author="JasonTromm" date="1056758962" format="1.0" version="1.8"}%
+---+ <nop>%TOPIC%
+
+I use both MovableType and TWiki on my website and I'm building this plugin to allow trommWiki to access [[http://mt.trommetter.com/ MovableType]] data.
+
+---++ Syntax Rules
+
+The =%<nop>MOVABLETYPE{...}%= variable gets expanded to the content pulled from a MovableType installation. 
+
+%TABLE{ sort="on" headerrows="1" }% 
+| *%<nop>MOVABLETYPE% Parameter* | *Explanation* | *Default* |
+| =blog_id= | id of the blog | %<nop>MOVABLETYPEPLUGIN_BLOG_ID%, Set in TWikiPreferences or WebPreferences.  Currently set to %MOVABLETYPEPLUGIN_BLOG_ID%. |
+| =category= | blog category label | none |
+| =format= | Format of one item. Can include variables in the table below. | none |
+| =view_template= | Name of a MovableType template to be used for formatting category output%BR%See mt-view.cgi | none |
+| =search_template= | Name of a MovableType template to be used for formatting search output%BR%See mt-search.cgi | none |
+| =search= | Search string | none |
+
+%TABLE{ sort="on" headerrows="1" }% 
+| *Format $variables* | *Description* |
+| $cat_id | Numeric category id |
+| $category | Category label |
+| $version | MovableType version number |
+| $blog_name | Name of the blog identified by the current blog_id |
+
+---++ Examples
+
+	* %<nop>MOVABLETYPE{ format=" $version " }% = %MOVABLETYPE{ format=" $version " }%
+	* %<nop>MOVABLETYPE{ blog_id="1" category="MovableType" format=" $cat_id " }% = %MOVABLETYPE{ blog_id="1" category="MovableType" format=" $cat_id " }%
+	* [[http://wiki.trommetter.com/Twiki/MoreMovableTypeExamples MoreMovableTypeExamples]]
+
+---++ <nop>%TOPIC% Global Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>MOVABLETYPEPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = a plugin for accessing MovableType data
+
+	* MovableTypePlugin settings:
+		* MOVABLETYPEPLUGIN_DIR is the directory you installed mt in, i.e. /home/user/public_html/mt/
+			* Set MOVABLETYPEPLUGIN_DIR = /home/trommett/public_html/cgi-bin/
+		* MOVABLETYPEPLUGIN_BLOG_ID is the default blog id number
+			* Set MOVABLETYPEPLUGIN_BLOG_ID = 4
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the installation was successful:
+		* If the Plugin is installed successfully, you'll see the MovableType Version here: %MOVABLETYPE{ format=" $version " }%
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/%USERNAME% |
+|  Plugin Version: | %DATE% (V0.001) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  23 Jun 2003: | Started development |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | TopicVarsPlugin, [[http://www.movabletype.org MovableType]] 2.64 or higher |
+|  Perl Version: | Tested on 5.6.1, may not work with earlier versions. |
+|  Plugin Home: | http://wiki.trommetter.com/TWiki/%TOPIC% |
+|  Feedback: | http://wiki.trommetter.com/TWiki/%TOPIC%Dev |
+
+__Related Topics:__ [[%TWIKIWEB%.TWikiPreferences]], [[%TWIKIWEB%.TWikiPlugins]]
+
+-----
+
+	* [[Main.JasonTromm]] - 23 Jun 2003
+%META:FILEATTACHMENT{name="MovableTypePlugin.zip" attr="" comment="" date="1056594428" path="MovableTypePlugin.zip" size="6656" user="JasonTromm" version="1.1"}%
