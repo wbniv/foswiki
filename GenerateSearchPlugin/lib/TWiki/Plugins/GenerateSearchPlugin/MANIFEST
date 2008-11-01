@@ -1,0 +1,5 @@
+data/TWiki/GenerateSearchPlugin.txt
+lib/TWiki/Plugins/GenerateSearchPlugin.pm
+pub/TWiki/GenerateSearchPlugin/search.jpg
+bin/gensearch
+templates/oopsgensearch.tmpl

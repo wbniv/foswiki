@@ -1,0 +1,109 @@
+%META:TOPICINFO{author="guest" date="1116017641" format="1.0" version="1.5"}%
+---+ Generate Search Plugin
+
+This plugin creates a form-driven search over the topics of a selected web.
+
+TWiki:Main/TWikiInstallation demonstrates a widely used TWiki application: A search where the search results can be filtered based on parameters entered by the user in a form.
+
+This plugin generates such searches automatically from the field values defined in a TWiki.TWikiForms. The user is presented with a table of possible fields and can select whether the field should be shown as the result of the search, and whether it should be possible to filter on that field.
+
+---++ Syntax Rules
+
+
+	* Syntax: =%<nop>GENERATESEARCH{"topic" ...}%=
+	* Supported parameters:
+	| *Parameter:* | *Description:* | *Default:* |
+	| ="topicregex"= | A regular expression determining the topics to be searched | required |
+	| =form="..."= | The topic defining the field values  | Current topic |
+	| =web="..."= | The webs that will be searched, separated by commas. If there is more than one web, a select is presented to the user that allows to search any single one or all of the indicated webs | Current web  |
+	| =all="..."= | If =off=, generates a select menu to choose among the possible webs to be searched; if =on=, all webs (see above) are searched.  | =on=  |
+	| =title="..."= | The heading for the search page generated |  |
+	| =message="..."= | Additional explanatory text to be added before the filter block |  |
+	| =initial="..."= | Determines whether the initial rendering of the search form also executes the search. Possible values are =on=, =off=  | =on= |
+	| =inline="..."= |  Puts the results of the generated search inline in the topic. Possible values are =on=, =off=  | =off= |
+	| =show="..."= | A comma seperated list of columns that you want to show. If its not defined, then we show all fields    | undefined |
+	| =filter="..."= | A comma seperated list of columns that you want to filter by. If its not defined, then we filter all fields    | undefined |
+
+
+
+---++ Example
+
+Below is an example form from TWiki.TWikiForms:
+| *Name* | *Type* | *Size* | *Values* | *Tooltip message* |
+| <nop>TopicClassification | select | 1 | !NoDisclosure, !PublicSupported, !PublicFAQ | blah blah... |
+| <nop>OperatingSystem | checkbox | 3 | !OsHPUX, !OsLinux, !OsSolaris, !OsWin | blah blah... |
+| <nop>OsVersion | text | 16 | | blah blah... |
+
+If this plugins is installed, the variable
+<verbatim>
+%GENERATESEARCH{topic="Web.*" title="Search knowledge base" initial="off" message="(may use regular expressions)" }%
+</verbatim>
+
+will expand as follows:
+<table border="0"><tr><td> *Output* </td><td>&nbsp;&nbsp;&nbsp;</td><td> *Expected* </tr>
+<tr><td><form action="/cairotwiki/bin/oops/%WEB%/%TOPIC%">
+<table border="0">
+<tr><td>Field</td><td>Show</td><td>Filter</td></tr>
+<tr><td>TopicClassification</td><td><input type="checkbox" name="shownopTopicClassification" value="1" ></td><td><input type="checkbox" name="filternopTopicClassification" value="1"  /></td></tr>
+<tr><td>OperatingSystem</td><td><input type="checkbox" name="shownopOperatingSystem" value="1" ></td><td><input type="checkbox" name="filternopOperatingSystem" value="1"  /></td></tr>
+<tr><td>OsVersion</td><td><input type="checkbox" name="shownopOsVersion" value="1" ></td><td><input type="checkbox" name="filternopOsVersion" value="1"  /></td></tr>
+<tr><td>Select all</td><td><input type="checkbox" name="showall" value="1" ></td><td><input type="checkbox" name="filterall" value="1" ></td></tr>
+</table><input type="submit" value="Query"></form></td>
+<td>&nbsp;&nbsp;&nbsp;</td><td>%GENERATESEARCH{topic="Web.*" title="Search knowledge base" initial="off" message="(may use regular expressions)" }%</td></tr></table>
+
+Selecting "Show" for a field will display this field for search results. Selecting "Filter" for a field will allow to filter search results by specific values. If the user were to select all fields (for which the "Select all" short cut can be used), the following query page would be generated:
+
+%ATTACHURL%/search.jpg
+
+As can be seen, fields with defined values yield a drop down menu to select the possible values (this works for select, radio, and checkbox fields), while all other fields have a text box to enter values. The search result is filtered such that the form fields contain the filter values. Note that this search uses regular expression, and thus, regular expressions may also be entered as filters. (Note that "Filter" implies "Show".)
+
+
+---++ Plugin Settings
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = This plugin generates a form-driven search based on a TWiki.TWikiForms.
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==pub/TWiki/%TOPIC%/search.jpg== | Attached graphic |
+	  | ==pub/TWiki/%TOPIC%/search.jpg,v== | Attached graphic repository |
+	  | ==bin/gensearch== | cgi script (deprecated - can use restHandler instead) |
+	  | ==templates/oopsgensearch.tmpl== | Template defining the appearance of the search page |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the installation was successful:
+		* See if above example rendered correctly
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/ThomasWeigert |
+|  Plugin Version: | 13 Apr 2005 (V1.000) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  23 Feb 2006: | TWiki:Main.SvenDowideit: update to Dakar (rest&registerHandler), added inline param, made filter display conditional on there being a filter specified |
+|  13 Apr 2005: | Added the ability to search through multiple webs  |
+|  25 Feb 2005: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.024 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ TWiki.TWikiForms
+
+-- TWiki:Main/ThomasWeigert - 13 Apr 2005
+
+%META:FILEATTACHMENT{name="search.jpg" attr="h" comment="" date="1109303670" path="E:\www\twiki-cairo\data\Test\search.jpg" size="26573" user="guest" version="1.1"}%
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the Dev topic instead. -->
