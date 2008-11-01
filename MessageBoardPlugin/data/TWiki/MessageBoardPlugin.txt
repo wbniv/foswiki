@@ -1,0 +1,107 @@
+%META:TOPICINFO{author="lcampos" date="1087408800" format="1.0" version="1.9"}%
+---+ Message Board Plugin
+
+This is a database based message board plugin for the <nop>TWiki system. Users can post and read messages from a database as if it was a message board fixed on the wall.
+
+---++ Syntax Rules
+
+Use the TWiki Tag =%<nop>MESSAGE_BOARD%= with options:
+
+| *Option Name* | *Value Range* | *Description* |
+| =displayOnly= | ='0'= or ='1'= | When set to =1= causes Message Board to just display messages, not allowing users to post new messages. When set to =0= will display posted messages and allow users to post new messages. Defaults to =0=. |
+| =messageOrder= | ='ASC'=, ='DESC'= | Chooses the order of messages, =ASC= meaning newer messages showing first, =DESC= meaning older messages showing first. Defaults to =ASC=. |
+
+---++ <nop>%TOPIC% Global Settings
+
+	* One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Database-Based message board plugin.
+
+	* Color Settings
+		* Set TABLE_HEAD_COLOR = %WEBCOLOR%
+
+	* Icons and Image Settings
+		* Set TRASH_CAN_ICON_LINK = <img src="%PUBURL%/%TWIKIWEB%/MessageBoardPlugin/trashcan.png" alt="Remove" border="0" />
+		* Set PENCIL_ICON_LINK = <img src="%PUBURL%/%TWIKIWEB%/MessageBoardPlugin/editicon.png" alt="Edit" border="0" />
+
+	* Database Settings
+		* Set DB_DRIVER = mysql
+		* Set DB_SERVER = _IP or hostname here_
+		* Set DB_SERVER_PORT = 3306
+		* Set DB_DATABASE = message_board
+		* Set DB_TABLE = message
+		* Set DB_USER = board
+		* Set DB_PASSWORD = _password_
+
+	* Plugin Messages (so you can internationalize them):
+	* Error opening connection to the database
+		* Set MSG_DB_CONNECT_ERROR = %X% %RED% Error connecting to the database%ENDCOLOR%
+	* Error closing connection to the database
+		* Set MSG_DB_CLOSE_ERROR = %X% %RED% Error closing the database connection%ENDCOLOR%
+	* Error during query preparation
+		* Set MSG_DB_PREPARE_ERROR = %X% %RED% Error preparing query%ENDCOLOR%
+	* Error during data fetch
+		* Set MSG_DB_FETCH_ERROR = %X% %RED% Error fetching data from database%ENDCOLOR%
+	* Error during query execution
+		* Set MSG_DB_EXECUTE_ERROR = %X% %RED% Error executing query%ENDCOLOR%
+	* No data found error
+		* Set MSG_DB_NO_DATA_ERROR = %X% %RED% No data found%ENDCOLOR%
+	* Update error message
+		* Set MSG_DB_UPDATE_ERROR = %X% %RED% Error updating data%ENDCOLOR%
+	* Insert error message 
+		* Set MSG_DB_INSERT_ERROR = %X% %RED% Error inserting data%ENDCOLOR%
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running.
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==pub/TWiki/MessageBoardPlugin/trashcan.png== | Trash Can Icon |
+	  | ==pub/TWiki/MessageBoardPlugin/editicon.png== | Pencil and Paper Icon |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Create a table into your database using (this is mysql SQL, the only DB supported at the moment)
+<pre>
+         CREATE DATABASE message_board;
+
+	 CREATE TABLE message(
+		id INT PRIMARY KEY AUTO_INCREMENT,
+		author VARCHAR(50) NOT NULL,
+		due DATETIME NOT NULL,
+		posted DATETIME NOT NULL,
+		msg TEXT NOT NULL,
+		dropped ENUM( 'Y', 'N' ) NOT NULL DEFAULT 'N'
+	 )
+</pre>
+	* Create a new user and give it appropriated permissions:
+<pre>
+		GRANT SELECT, INSERT, UPDATE, DELETE
+		  ON messsage_board.message
+		  TO board IDENTIFIED BY 'b0aRd'
+</pre>
+	* Test if the plugin is correctly installed:
+		* Open a Sandbox.MessageBoardTestArea and insert <code>%<nop>MESSAGE_BOARD{ messageOrder="DESC" }%</code> into the topic. Preview, save and try to post a message.
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.LuisCamposDeCarvalho |
+|  Plugin Version: | 15/06/2004 (V1.000) |
+|  Change History: | <!-- specify latest version first -->&nbsp; |
+|  15 Jun 2004: | Initial version |
+|  CPAN Dependencies: | [[http://search.cpan.org/author/TIMB/DBI-1.42/DBI.pm][DBI]] [[http://search.cpan.org/author/LDS/CGI.pm-3.05/CGI.pm][CGI]] |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.6.1 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- TWiki:Main.LuisCamposDeCarvalho - 15 Jun 2004
+%META:FILEATTACHMENT{name="trashcan.png" attr="" comment="" date="1087408473" path="C:\Documents and Settings\lcampos\Desktop\trashcan.png" size="779" user="lcampos" version="1.4"}%
+%META:FILEATTACHMENT{name="editicon.png" attr="" comment="" date="1087408517" path="C:\Documents and Settings\lcampos\Desktop\editicon.png" size="2017" user="lcampos" version="1.2"}%
