@@ -1,0 +1,66 @@
+%META:TOPICINFO{author="TWikiContributor" date="1153955845" format="1.1" reprev="1.2" version="1.2"}%
+---+ Immediate Notify Plugin
+
+%RED%Please read TWiki:Codev.ConsolidateNotification and TWiki:Plugins.MailerContrib%ENDCOLOR%.
+
+This is a plugin that allows users to be immediately notified when topics or webs are modified.
+
+---++ Syntax Rules
+
+Once the plugin is installed, users can register for notification in the Web<nop>ImmediateNotify topics by including their username as an entry in a list.  In order to recieve notifications, they must also configure their desired notification method.  Since SMTP and Jabber are currently the only available methods, this consists of:
+   * Adding a line ="      * Set IMMEDIATENOTIFYMETHOD = Jabber"= (or "SMTP", respectively) to their topic.
+   * Adding a line ="Jabber: jabber_user@jabber_server.org"= to their topic for notification per Jabber (no configuration is needed for SMTP).
+
+---++ <nop>%TOPIC% Global Settings
+
+   * One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = Allows immediate notification of topic changes through SMTP or Jabber
+
+   * Notification method configuration:
+      * Set METHODS = SMTP
+   * Jabber method configuration:
+      * Set JABBER_USERNAME = 
+      * Set JABBER_PASSWORD = 
+      * Set JABBER_SERVER = 
+
+   * Debug plugin: (See output in =data/debug.txt=)
+      * Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running.
+
+   * Download the ZIP/TGZ file from the Plugin web (see below)
+   * Unzip =%TOPIC%.zip= in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+%$MANIFEST%
+   * Set up notification methods (default is SMTP)
+      * Currently the only available methods are via SMTP and Jabber.
+         * SMTP
+            * The site's configuration is used - no additional configuration is needed.
+         * Jabber
+            * Set up a Jabber account for the wiki with a standard client.
+            * Set JABBER_USERNAME, JABBER_PASSWORD, and JABBER_SERVER in the plugin topic.
+	* Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Create a =Web<nop>ImmediateNotify= topic in each web for users to list their names in for notification.
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/WalterMundt & TWiki:Main/JuergenPabel |
+|  Plugin Version: | v0.3 (26 Jul 2006) |
+|  Change History: | <!-- specify latest version first -->&nbsp; |
+|  21 May 2007 | Bugs:Item3969 - 8bit email fix (TWiki:Main.WillNorris) |
+|  26 Jul 2006: | (v0.3) - TWiki:Main.SteffenPoulsen: Ported to TWiki-4 / Dakar |
+|  16 Mar 2003: | Added support for groups and SMTP |
+|  03 Feb 2003: | Initial version |
+|  CPAN Dependencies: | CPAN:XML::Stream, CPAN:Net::Jabber (2.0) (Only for Jabber notifications, SMTP notifications will work without these CPAN modules) |
+|  Other Dependencies: | none |
+|  Perl Version: | &gt; 5.6.1 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins, DefaultPlugin
+
+-- TWiki:Main/WalterMundt - 04 Feb 2003 <br />
+-- TWiki:Main/JuergenPabel - 16 Mar 2003
+
