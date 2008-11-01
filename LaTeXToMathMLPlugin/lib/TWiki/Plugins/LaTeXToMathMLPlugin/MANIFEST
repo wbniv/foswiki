@@ -1,0 +1,3 @@
+data/TWiki/LaTeXToMathMLPlugin.txt NEW
+lib/TWiki/Plugins/LaTeXToMathMLPlugin.pm NEW
+pub/TWiki/LaTeXToMathMLPlugin/xhtml-math11-f.dtd NEW
