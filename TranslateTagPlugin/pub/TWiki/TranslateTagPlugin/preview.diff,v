@@ -1,0 +1,50 @@
+head	1.1;
+access;
+symbols;
+locks
+	root:1.1; strict;
+comment	@# @;
+expand	@b@;
+
+
+1.1
+date	2002.05.05.21.15.21;	author guest;	state Exp;
+branches;
+next	;
+
+
+desc
+@none
+@
+
+
+1.1
+log
+@afterEditHandler patch
+@
+text
+@--- preview	Mon Apr  8 22:18:31 2002
++++ preview.old	Sat May  4 14:01:34 2002
+@@@@ -116,13 +116,20 @@@@
+             print $query->redirect( $url );
+             return;
+         }
+-        $ptext = $text;
++
++#AS added hook for plugins that want to do heavy stuff
++    &TWiki::Plugins::afterEditHandler( $text, $topic, $webName );
++#/AS
++        $ptext = "$text";
+         
+ 	if( $meta->count( "FORM" ) ) {
+ 	   $formFields = &TWiki::Form::getFieldParams( $meta );
+ 	}
+     } else {
+         $text = $query->param( "text" ); # text to save
++#AS added hook for plugins that want to do heavy stuff
++    &TWiki::Plugins::afterEditHandler( $text, $topic, $webName );
++#/AS
+         ( $meta, $ptext ) = &TWiki::Store::_extractMetaData( $webName, $topic, $text );
+         $text =~ s/%_(.)_%/%__$1__%/go;
+     }
+@
