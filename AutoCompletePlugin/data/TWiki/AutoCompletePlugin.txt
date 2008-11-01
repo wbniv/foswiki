@@ -1,0 +1,107 @@
+---+!! !AutoCompletePlugin
+<!--
+One line description, required for extensions repository catalog.
+    * Set SHORTDESCRIPTION = Provides an Autocomplete input field based on Yahoo's User Interface Library
+-->
+This plugin allows you to create an autocomplete input field based on Yahoo's User Interface Library.
+
+All this plugin does is implement Arthur Clemens' TWiki:Plugins/AutoCompleteAddOn as a plugin, which allows users to provide an autocomplete text box using the =%<nop>AUTOCOMPLETE%= syntax, and also in %TWIKIWEB%.TWikiForms (shown below).
+
+<img src="%ATTACHURLPATH%/AutoCompletePluginScreenshot.png" alt="screenshot.png" />
+
+%TOC%
+
+---++ Usage
+
+Before you can use this plugin, you need to set up some data for the autocomplete. Examples can be found at Sandbox.AutoCompletePluginTestData.
+
+---+++ In Topics and Templates
+
+This plugin expands the =%<nop>AUTOCOMPLETE{...}%= variable, which takes the parameters described in %TOPIC%#Parameters.
+
+---+++ In !TWikiForms
+
+To use this plugin in %TWIKIWEB%.TWikiForms, create a form template as descibed in %TWIKIWEB%.TWikiForms#Defining_a_Form. This plugin adds the =autocomplete= type of field. To pass the parameters required by the plugin, place them in the =Values= column. An example is shown below:
+
+| *Name* | *Type* | *Size* | *Values* | *Tooltip message* | *Attributes* |
+| Username | autocomplete | 25em | datatopic="Sandbox.AutoCompletePluginTestData" datasection="usernames" delimchar="," itemformat="item[0] + ' (' + item[1] + ')'" | |  | 
+
+You can use many of same attributes as you would in topics, except the following:
+   * =name=
+   * =size=
+   * =value=
+   * =class=
+   * =formname=
+
+---+++ Parameters
+
+| *Parameter* | *Comment* | *Default* | *Example* |
+| =name= | A unique name for the textfield | required | =name="users"= |
+| =datatopic= | The topic with data. Should be formatted as comma-separated string, or as an array of arrays (see Sandbox.AutoCompletePluginTestData#usernames for an example). Use with =datasection=. | required | =datatopic="Sandbox.AutoCompletePluginTestData"= |
+| =datasection= | The topic section with data. Use with =datatopic=. | required | =datasection="usernames"= |
+| =size= | The width of the input field in em or px. | =20em= | =size="20em" or size="200px"= |
+| =value= | Default value of the input field | none | =value="%TOPIC%"= |
+| =tabindex= | The tabindex of the textfield | none | =tabindex="2"= |
+| =class= | Name of css class to add to the input field | none | =class="twikiInputField"= |
+| =formname= | Name of the form which the input field is part of | none | =form="userlist"= |
+| =itemformat= | The format of an item string in the autocomplete list. Use if the autocomplete list should display different names than the input field - for instance with full person names. The javascript input argument is =item=. | =item= | =itemformat="item[0] + ' (' + item[1] + ')'"= |
+| =delimchar= | Used to accept multiple delimeted queries. | none | =delimchar=","= |
+| =onblur=, =onfocus=, =onchange=, =onselect=, =onmouseover=, =onmouseout= | Javascript parameters for the textfield. | none | =onfocus="twiki.Form.clearBeforeFocusText(this);"= |
+| =itemselecthandler= | Defines a javascript function to be executed when an item is selected. See http://developer.yahoo.com/yui/autocomplete/#customevents. | none | =itemselecthandler="submitJumpForm"= |
+
+---+++ Example
+
+If installed, the following should create an jump box (TWiki 4.2):
+
+__Source:__
+<verbatim>
+<script type="text/javascript">
+var SubmitJump = function(sType, aArgs) {
+    document.myJumpForm.submit();
+}
+</script>
+<form name="myJumpForm" action="%SCRIPTURLPATH{"view"}%/%BASEWEB%/%BASETOPIC%">%AUTOCOMPLETE{name="topic" datatopic="Sandbox.AutoCompletePluginTestData" onfocus="twiki.Form.clearBeforeFocusText(this);" onblur="twiki.Form.restoreBeforeFocusText(this);" datasection="topiclist" value="Jump" formname="myJumpForm" class="twikiInputField twikiInputFieldBeforeFocus"  itemselecthandler="SubmitJump" size="128px" }%</form>
+</verbatim>
+
+__Rendered:__
+<script type="text/javascript">
+var SubmitJump = function(sType, aArgs) {
+    document.myJumpForm.submit();
+}
+</script>
+<form name="myJumpForm" action="%SCRIPTURLPATH{"view"}%/%BASEWEB%/%BASETOPIC%">%AUTOCOMPLETE{name="topic" datatopic="Sandbox.AutoCompletePluginTestData" onfocus="twiki.Form.clearBeforeFocusText(this);" onblur="twiki.Form.restoreBeforeFocusText(this);" datasection="topiclist" value="Jump" formname="myJumpForm" class="twikiInputField twikiInputFieldBeforeFocus"  itemselecthandler="SubmitJump" size="128px" }%</form>
+
+---++ Installation Instructions
+
+%$INSTALL_INSTRUCTIONS%
+
+---++ Plugin Files
+
+   | *File:* | *Description:* |
+%$MANIFEST%
+
+---++ Plugin Info
+
+|  Plugin Author(s): | TWiki:Main.AndrewRJones |
+|  Copyright: | &copy; 2007 - 2008, TWiki:Main.AndrewRJones |
+|  License: | [[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License)]] |
+|  Plugin Version: | %$VERSION% |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  12 Sept 2008 | Bugs:Item5745 - Updated to use latest YUI (2.5.2); Fixed forms for 4.2; Fixed Jump Form example for 4.2 |
+|  14585 | Bugs:Item4469 - Removed extra self-closing div-tag tail; Fixed Jump Form example |
+|  14413 | Bugs:Item4369 - Allow users to define their own item select handler |
+|  14391 | Bugs:Item4356 - Class names not being added |
+|  14382 | Bugs:Item4346 - Added Javascript parameters (=onblur=, =onfocus=, etc) |
+|  14381 | Bugs:Item4345 - Was adding 'null' after input if =delimchar= not set |
+|  14379 | Bugs:Item4342 - Only sets correct size for one texfield in topic |
+|  14290 | Bugs:Item4304 - Various bug fixes and enhancements |
+|  14277 | Bugs:Item4301 - Initial release |
+|  Dependencies: | %$DEPENDENCIES% |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, AutoCompletePlugin nn% |
+|  Plugin Home: | http://twiki.org/cgi-bin/view/Plugins/AutoCompletePlugin |
+|  Feedback: | http://twiki.org/cgi-bin/view/Plugins/AutoCompletePluginDev |
+|  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/AutoCompletePluginAppraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the feedback topic on twiki.org instead. -->

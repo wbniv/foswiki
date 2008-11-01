@@ -1,0 +1,5 @@
+# Dependencies for AutoCompletePlugin
+# Example:
+# Time::ParseDate,>=2003.0211,cpan,Required.
+# TWiki::Plugins,>=1.15,perl,TWiki 4.1 release.
+TWiki::Contrib::YahooUserInterfaceContrib, >1.0, perl, Optional. If not found, will use files served from Yahoo! servers. See http://developer.yahoo.com/yui/articles/hosting/.
