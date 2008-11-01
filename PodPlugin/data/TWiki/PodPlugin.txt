@@ -1,0 +1,70 @@
+---+!! !PodPlugin
+<!--
+One line description, required for extensions repository catalog.
+   * Set SHORTDESCRIPTION = %$SHORTDESCRIPTION%
+-->
+%SHORTDESCRIPTION%
+
+%TOC%
+
+---++ Usage
+
+Just install the plugin and it will look for PODs to convert. (A POD is generally recognized by a =<nop>head1 tag)
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference
+a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>PODPLUGIN_SHORTDESCRIPTION%==
+
+   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = Extract Perl documentation (POD) online. Write TWiki topics in POD.
+
+   * Debug plugin: (See output in =data/debug.txt=)
+      * Set DEBUG = 0
+
+   * Non-zero to put an index at the top of the file:
+      * Set DO_INDEX = 1
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the TWiki server.
+
+   * Download the ZIP file from the Plugin Home (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+   | *File:* | *Description:* |
+%$MANIFEST%
+   * Configure the Plugin:
+      * TWiki 4.0 and up: Run the [[%SCRIPTURL%/configure%SCRIPTSUFFIX%][configure]] script to enable the Plugin
+      * Change the Plugin settings as needed
+   * Test if the installation was successful:
+      * Create a topic with the content above and check if result is rendered in HTML:
+<code>
+
+=head1 NAME
+
+Test podplugin - testing podplugin
+
+=cut
+
+</code>
+
+---++ Plugin Info
+
+|  Plugin Author(s): | TWiki:Main.JoenioCosta, TWiki:Main.NelsonFerraz, TWiki:Main.AndreaSterbini |
+|  Plugin Version: | %$VERSION% |
+|  Copyright: | &copy; 2007, TWiki:Main.JoenioCosta |
+|  License: | [[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License)]] |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  28 Mai 2008: | First public version |
+|  22 Mai 2008: | resuming development of the plugin |
+|  21 Mar 2004: | Added afterSaveHandler |
+|  14 Jul 2001: | Changed to plug&amp;play |
+|  27 Feb 2001: | Initial version |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Perl Version: | 5.005 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://twiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the feedback topic on twiki.org instead. -->
