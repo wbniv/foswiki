@@ -1,0 +1,7 @@
+data/TWiki/AnyWikiDrawPlugin.txt 0644 Plugin doc page
+lib/TWiki/Plugins/AnyWikiDrawPlugin.pm 0444 Plugin Perl module
+bin/pack200 0555 Plugin Perl CGI
+templates/anywikidraw.tmpl 0444 Template
+templates/anywikidraw.pattern.tmpl 0444 Template
+pub/TWiki/AnyWikiDrawPlugin/AnyWikiDrawForTWiki.jar 0444 Java applet
+
