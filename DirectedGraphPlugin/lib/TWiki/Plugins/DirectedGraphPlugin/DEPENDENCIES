@@ -1,0 +1,6 @@
+Digest::MD5,>=0,cpan,May be required for lib/TWiki/Plugins/DirectedGraphPlugin.pm
+File::Copy,>=0,cpan,May be required for lib/TWiki/Plugins/DirectedGraphPlugin.pm
+File::Path,>=0,cpan,May be required for lib/TWiki/Plugins/DirectedGraphPlugin.pm
+File::Temp,>=0,cpan,May be required for lib/TWiki/Plugins/DirectedGraphPlugin.pm
+File::Spec,>=0,cpan,May be required for lib/TWiki/Plugins/DirectedGraphPlugin.pm
+Storable,>=0,cpan,May be required for lib/TWiki/Plugins/DirectedGraphPlugin.pm

@@ -1,0 +1,10 @@
+<map id="ladder" name="ladder">
+<area shape="poly" href="http://twiki.org/" title="S1" alt="" coords="29,117 97,117 97,121 29,121"/>
+<area shape="rect" href="http://twiki.org/" title="S1" alt="" coords="26,116,32,122"/>
+<area shape="rect" href="http://twiki.org/" title="S1" alt="" coords="103,116,109,122"/>
+<area shape="rect" href="http://twiki.org/" title="S1" alt="" coords="63,110,72,119"/>
+<area shape="poly" href="#EndNote" title="S2" alt="" coords="109,137 148,137 148,140 109,140"/>
+<area shape="rect" href="#EndNote" title="S2" alt="" coords="107,136,112,141"/>
+<area shape="rect" href="#EndNote" title="S2" alt="" coords="154,136,159,141"/>
+<area shape="rect" href="#EndNote" title="S2" alt="" coords="128,129,138,139"/>
+</map>
