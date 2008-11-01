@@ -1,0 +1,64 @@
+%META:TOPICINFO{author="BaseUserMapping_333" date="1216579270" format="1.1" version="1.10"}%
+%META:TOPICPARENT{name="WebHome"}%
+%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+
+---+ Introducción básica a Taquigrafía TWiki
+
+Si sabe digitar texto, está listo para usar TWiki. Con unas reglas sencillas e intuitivas de CómoFormatearTexto, va a ser posible crear artículos o páginas instantaneamente. A continuación una guía rápida de como generar texto...
+
+%STARTINCLUDE%
+
+   * Separe cada *párafo* con una linea vacía.
+
+   * Para mostrar una palabra o frase en negrita, enciérrela en asteriscos: ==negrita==.
+
+   * Para mostrar una palabra o frase en cursiva, enciérrela en lineas bajas: <span class="WYSIWYG_TT">_cursiva_</span>.
+
+   * Para mostrar una palabra o frase en negrita y cursiva, enciérrela en dos lineas bajas: <span class="WYSIWYG_TT">__negrita y cursiva__</span>.
+
+   * Para crear un enlace a otra página, digite la PalabraWiki de esta página. Para crear un enlace a una página que está en otra red, digite el nombre de la red, un punto y después la PalabraWiki: =Sandbox.<nop>%HOMETOPIC%=.
+
+   * Si digita una PalabraWiki de una página que no existe, aparecerá con un signo de pregunta al final, esperando que usted (o alguien más) genere este documento, tocando el *?* con el mouse - NewTopic (toque el *?*, pero no guarde el documento nuevo para mantener este ejemplo!).
+
+   * Cuando digite firmas - como <nop>%USERNAME% - incluye "%MAINWEB%." como prefijo porque todos los miembros de TWiki están listados en la red %MAINWEB%: =%MAINWEB%.SuUsuario=.
+
+   * Para un enlace externo, digite la dirección completa de internet: =http://twiki.org/=.
+
+   * Para evitar que una <nop>PalabraWiki se convierte a un enlace, digite <span class="WYSIWYG_TT"><nop></span> o un signo de exclamación primero: <strong><span class="WYSIWYG_TT"><nop>FavorNoGenerarEnlace</span></strong> o ==!FavorNoGenerarEnlace==.
+
+   * Para generar una lista con viñetas, digite =[space][space][space][asterisk][space]=. 
+      * Utilice multiples de 3 espacios para generar *listas con sub-puntos*. 
+         * Serían 3-6-9-... espacios
+
+   * Para generar listas enumeradas: 
+      1 Inicie cada ítem de una lista enumerada con =[space][space][space][1][space]=.
+      1 El "1" (o *cualquier otro número*) será reeplazado con el número correspondiente.
+      1 Para agregar un párafo nuevo sin interumpir la lista, utilice la variable %<nop>BR%, como abajo:%BR% El texto se agrega en un párafo nuevo.
+      1 y continua la enumeración.
+
+   * Siempre empiece *contando* espacios para viñetas desde el inicio de una linea nueva.
+
+   * Para incluir una imagen, digite su dirección electrónica. También puede adjuntar una imagen a una página y mostrar su contenido con el siguiente texto:<br /> =%<nop>ATTACHURL%/NombreDelArchivoDeLaImagen.jpg=
+
+   * Para mostrar una palabra o frase con =ESPACIADO FIJO=, encierrelo en signos de igual: =<nop>=como este==. <br />Utilice =<nop>=<nop>=dos=== para negrita: ==espaciado fijo en negrita==.
+
+   * Utilice =&lt;verbatim&gt;= para mostrar extractos de código, nombres de archivo y otro texto sin formato:%BR% 
+      =<b>&lt;verbatim&gt;</b>= %BR%
+      =texto sin formato!= %BR%
+      =<b>&lt;/verbatim&gt;</b>= %BR%%BR%
+      __%X% NOTA:__ VARIABLES pueden estar dentro de estos comandos, pero no serán deshabilitados.
+
+   * Utilice ==&lt;verbatim&gt;== para mostrar todo que no debe ser modificado por TWiki bajo ninguna circunstancia, por ejemplo código HTML que está metido dentro de una página.
+
+   * Siga las recomendaciones de BuenEstilo cuando edite páginas.
+
+   * Revise CómoFormatearTexto para obtener un listado completo de reglas de como formatear.
+
+%STOPINCLUDE%
+
+-- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 08 Dec 2007
+
+%META:FORM{name="TWiki.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.WikiSyntax"}%
+%META:FIELD{name="Revision" attributes="" title="Revision" value="20"}%
+%META:FIELD{name="Language" attributes="" title="Language" value="es"}%

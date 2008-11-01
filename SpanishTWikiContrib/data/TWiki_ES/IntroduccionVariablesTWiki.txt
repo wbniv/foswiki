@@ -1,0 +1,25 @@
+%META:TOPICINFO{author="BaseUserMapping_333" date="1216579648" format="1.1" reprev="1.11" version="1.11"}%
+%META:TOPICPARENT{name="WebHome"}%
+%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+
+---++ Introducción a variables TWiki
+
+%STARTINCLUDE%
+
+Variables TWiki son palabras que están encerradas en signos de porcentaje que serán interpretadas en el momento cuando se muestra la página. Por ejemplo, =%<nop>TOPIC%= se convierte en %TOPIC%. Algunas variables pueden tener argumentos adicionales en paréntesis tipo llave - por ejemplo =%<nop>INCLUDE{"OtherTopic" ARG="arg"}%=.
+
+Muchas variables vienen con el sistema, otras serán predefinidas de acuerdo a sus necesidades. También puede definir sus propias variables TWiki para todo el sitio, individualmente para cada web o para cada página. Para más información, revise TWiki.TWikiVariables %FLAGGB%.
+
+Variables TWiki serán interpretadas _antes_ de que se aplique cualquier regla para formatear texto.
+
+*Imágenes predeterminadas:* Hay muchas imágenes predeterminadas disponibles para el uso dentro de sus páginas. Utilice =%<nop>ICON{"help"}%=, =%<nop>ICON{"tip"}%= y =%<nop>ICON{"warning"}%= para obtener: %H%, %T%, and %X%. TWiki.TWikiDocGraphics %FLAGGB% contiene una lista completa de todas las imágenes.
+
+%ICON{"tip"}% Para impedir la interpretación de variables, ponga un signo de exclamación delante de la variable. Escriba: =!%<nop>ALGUNAVARIABLE%= para obtener !%ALGUNAVARIABLE%. 
+%STOPINCLUDE%
+
+-- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 23 Apr 2008
+
+%META:FORM{name="TWiki.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.TWikiVariablesQuickStart"}%
+%META:FIELD{name="Revision" attributes="" title="Revision" value="3"}%
+%META:FIELD{name="Language" attributes="" title="Language" value="es"}%

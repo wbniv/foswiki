@@ -1,0 +1,89 @@
+%META:TOPICINFO{author="BaseUserMapping_333" date="1216580029" format="1.1" reprev="1.14" version="1.14"}%
+%META:TOPICPARENT{name="WebHome"}%
+%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+
+%STARTINCLUDE%
+---+ Tutorial acerca de TWiki de 20 minutos
+
+Este tutorial le lleva paso por paso y le enseña todos los básicos de este SitioTWiki, en solamente _unos pocos minutos_...
+
+%TOC%
+
+---++ 1. Prepárese...
+ Abra dos ventanas de su navegador, para que pueda seguir los pasos en una ventana mientras esté probando en la otra.
+
+---++ 2. Un tour rápido...
+ Un SitioTWiki está dividido en webs; cada una generalmente representa un área de colaboración. Puede navigar las varias webs desde la esquina superior derecha de cada página. 
+   * Cada web tiene páginas enlazadas que se muestran como páginas común y corrientes en su navegador.
+   * La página inicial en cada web es la página %HOMETOPIC%.
+   * Para navegar en la web TWiki, toque cualquier enlace. Estos enlaces se llaman [[PalabraWiki][PalabrasWiki]] y consisten de dos o más palabras, cada una iniciando con una letra mayúscula y las palabras pegadas.
+   * Siga el enlace PalabraWiki para comprender de qué se trate.
+   * Si conoce el nombre de una página, puede saltar directamente a esta misma página, escribiendo su nombre en el campo *Saltar* en la parte superior de cada página. Digite =Sandbox.WebSearch= para saltar a la página de búsqueda. __Aviso:__ No confunda el campo *Saltar* con el campo de búsqueda.
+   * Puede buscar en cada una de las webs del TWiki. Digite el texto de búsqueda en la página %HOMETOPIC% o de la página Sandbox.WebSearch %FLAGGB% que es accesible a través del campo =Buscar= que se encuentra en cada página. TWiki busca aciertos exactos; opcionalmente, puede utilizar también [[TWiki.RegularExpressions][expresiones regulares]] %FLAGGB%.
+
+---++ 3. Abra su propia cuenta...
+ Para editar páginas, necesita su propia cuenta. 
+   * Utilice la página TWikiRegistration para crear su cuenta TWiki. Llene varias líneas y ya está list@!
+
+---++ 4. Revise los usuarios y grupos del TWiki.
+   * Vaya a la página %USERSWEB%.%WIKIUSERSTOPIC% %FLAGGB%; contiene una lista de todos los usuarios del TWiki. Su nombre aparecerá en esta lista después de haberse registrado.
+   * Vaya a la página %USERSWEB%.TWikiGroups %FLAGGB% en la web %USERSWEB%; contiene una lista de grupos que se utilizan para definir más detalladamente el [[TWiki.TWikiAccessControl][control de acceso]] %FLAGGB% en el TWiki.
+
+---++ 5. Pruebe los controles de página...
+ Las franjas de control coloradas al inicio y/o final de la página contienen una colección de enlaces de acción. Dependiendo de la configuración de la apariencia del TWiki, los enlaces pueden ser diferentes, pero en la mayoría de los casos van a ser los siguientes: 
+   * ==Editar== - agregue o modifique la página (se discutirá a continuación)
+   * ==Ver código== - muestra el código de la página y no permite edición
+   * ==Adjuntar== - agregue archivos a una página (se discutirá a continuación)
+   * ==Retroceso== - identifique las páginas que contienen enlaces a la página que está viendo (enlace reverso)
+   * ==Vista de impresión== - muestra una versión reducida de la página, ideal para impresión
+   * ==Historial== - existe un sistema de control de revisión para las páginas - =Historial= le muestra el historial completo de una página, por ejemplo quién modificó qué y cuándo.
+   * ==r3 > r2 > r1== - vea una versión anterior de la página o las diferencias entre dos versiones
+   * ==Más== - controles adicionales, como borrar/mover, control de versión y definición del pariente de una página.
+
+---++ 6. Modifique un página, y crée una nueva...
+ Vaya al [[Sandbox.%HOMETOPIC%][Sandbox]]. Esta web es como una caja de arena, donde puede realizar modificaciones y probar las cosas que quiera hacer. 
+   * Toque el enlace ==Editar==. Ahora está en el modo de edición y puede ver el código de la página. (Vaya a una página como Sandbox.%WIKINAME%Sandbox en caso que vea una advertencia que diga que otro usuario está editando la página en este momento.)
+   * Revise como se muestra el texto en modo de edición y compárelo con la apariencia de la página final (utilice atrás y adelante en su navegador.)
+   * __%T% Consejo:__ Cuando quiere solamente ver el código de una página, toque el enlace ==Ver código==.
+   * Revise cómo una PalabraWiki se convierte automáticamente en un enlace; cuando revisa el código en modo de edición, no hay ningún enlace.
+   * Ahora, crée una página nueva - su propia página de prueba: 
+      1 En modo de edición, digite un texto nuevo con alguna PalabraWiki, por ejemplo: <br /> =Esto es <nop>%WIKINAME%Sandbox topic.=
+      1 Revise la vista previa y guarde la página. El nombre aparecerá, marcado, con un sigo de pregunta al final. Eso significa que la página todavía no existe.
+      1 Toque el signo de pregunta. Ahora está en el modo de edición de la página nueva.
+      1 Digite algún texto, basicamente igual como escribiría un correo electrónico.
+      1 Una firma con su nombre aparecerá ya en la página por estándar. __NOTA:__ La palabra =%USERSWEB%.= antes de su nombre significa que se generará un enlace desde la web actual a su página personal que se encuentra en la web %USERSWEB%.
+      1 Revise la vista previa y guarde la página...
+   * Aprenda como formatear texto. Puede digitar texto en !TaquigrafíaTWiki, un lenguaje de marcado sencillo. Siga el enlace de TaquigrafíaTWiki para ver como funciona, después: 
+      1 Regrese a su página que creó en la caja de arena y modifíquela.
+      1 Digite algún texto en TaquigrafíaTWiki: texto en *negrita*, texto en _cursiva_, texto en __negrita y cursiva__, una lista con viñetas, tablas, párrafos, etc. __Consejo:__ Si necesita ayuda, toque el enlace de ComoFormatearTexto que está debajo del campo de texto en el modo de edición.
+      1 Revise la vista previa y guarde la página.
+
+---++ 7. Utilice su navegador para subir archivos como archivos adjuntos a la página...
+ Puede adjuntar _cualquier_ tipo de archivo a una página - documentos, imágenes, programaes, lo que sea - donde uno los puede abrir, ver o bajar. 
+   * Adjuntar un archivo es igual que incluir un archivo a un correo electrónico. 
+      1 Regrese a su página en el sandbox y toque el enlace ==[Adjuntar]== al final de la página.
+      1 Toque ==[Examinar]== para localizar el archivo que quiere subir en su CPU; agregue un comentario opcional, deje los otros campos sin marcar.
+      1 Toque ==[Subir archivo]==, después vaya al final de la página para ver el nuevo archivo en la lista de archivos adjuntos.
+   * Repítalo otra vez - esta vez, suba un archivo de imagen tipo GIF, JPG o PNG. 
+      * Marque el campo ==[Enlace:]== para _Crear un enlace al archivo adjunto_ al final de la página. Se puede ver la imagen al final de la página.
+      * Para mover la imagen, modifique la página y reubique la última línea (que contiene =%<nop>ATTACHURL%=) en algún lado de la página.
+   * Si tiene una imagen tipo GIF, JPF o PNG de su mism@, su gato, su residencia familiar... por qué no la sube ahora para personalizar su página de cuenta %WIKIUSERNAME%?
+
+---++ 8. Reciba una notificación por correo cuando página serán modificadas...
+%NOTIFYTOPIC% es un servicio de suscripción que l@ notifica automáticamente por correo electrónico cuando se modifiquen páginas en alguna web del TWiki. Esto es un servicio de comonidad - para mucha gente es más fácil revisar correos que revisar una página internet. 
+   * Si utiliza el TWiki para colaborar en un proyecto, es importante que sepa cuando cualquier miembro de su equipo actualice una página. Si da seguimiento a una discusión específica, es conveniente estar informado cuando haya información nueva.
+   * Notificaciones serán enviadas como enlaces a páginas individuales que se cambiaron dentro de un período definido: un día, una hora, depende cómo está configurado el sistema.
+   * Se recomienda probar el servicio de notificación suscribiéndose a cada web del TWiki que es importante para uno. Puede suscribirse y renunciar la suscripción inmediatamente, para cada web, utilizando %NOTIFYTOPIC%.
+
+Eso es! Ahora está list@ con las herramientas básicas del TWiki. Está list@ para empezar.
+
+__NOTA:__ Cuando utiliza el TWiki por primera vez, seguramente le parecerá extraño que pueda modificar lo que otra gente escribió - normalmente estamos acostumbrados a _separar_ mensajes individuales, en correos, carteleros, plataformas de colaboración que no sean de tipo Wiki. __No se preocupe.__ No puede eliminar elementos importantes por error - siempre puede revisar versiones anteriores de una página y copiar y pegar de ellos en caso que quiera recuperar algún cambio. Después de poco tiempo, la comunicación tipo TWiki se convertirá en costumbre. Usted la esperará en todo lado!
+
+__Páginas relacionadas:__ TWiki.UserDocumentationCategory %FLAGGB%
+
+-- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 21 Apr 2008
+
+%META:FORM{name="TWiki.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.TWikiTutorial"}%
+%META:FIELD{name="Revision" attributes="" title="Revision" value="17"}%
+%META:FIELD{name="Language" attributes="" title="Language" value="es"}%

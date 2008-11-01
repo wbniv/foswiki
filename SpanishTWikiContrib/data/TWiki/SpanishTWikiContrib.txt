@@ -1,0 +1,74 @@
+%META:TOPICINFO{author="BaseUserMapping_333" date="1217259935" format="1.1" reprev="1.2" version="1.2"}%
+---+!! !SpanishTWikiContrib
+<!--
+One line description, required for extensions repository catalog.
+   * Set SHORTDESCRIPTION = Spanish translation of TWiki Web
+-->
+%SHORTDESCRIPTION%
+
+%TOC%
+
+---++ Documentation
+This contrib provides a spanish translation of the most important documents provided in the %TWIKIWEB% Web. Therefore, a new web called TWiki_ES is added which is structured the same way the original %TWIKIWEB% Web is. Where necesary, references to the original (english) documentation are included. 
+
+In the most recent version, the following documents are included:
+
+| *Translation* | *Original topic* | *Revision* | *Comment* |
+| TWiki_ES.ArchivosAdjuntos | TWiki:TWiki04x02.FileAttachments | 17 |  |
+| TranslationNote | NA | NA | general note indicating that the shown document is a translation from another document and linking the source |
+| TWiki_ES.BienvenidoHuesped | TWiki:TWiki04x02.WelcomeGuest | 26 |  |
+| TWiki_ES.BuenEstilo | TWiki:TWiki04x02.GoodStyle | 13 |  |
+| TWiki_ES.ComoFormatearTexto | TWiki:TWiki04x02.TextFormattingRules | 50 |  |
+| TWiki_ES.CulturaWiki | TWiki:TWiki04x02.WikiCulture | 12 |  |
+| TWiki_ES.FormulariosTWiki | TWiki:TWiki04x02.TWikiForms | 24 |  |
+| TWiki_ES.GlosarioTWiki | TWiki:TWiki04x02.TWikiGlossary | 5 |  |
+| TWiki_ES.GuiaDeUsuarioTWiki | TWiki:TWiki04x02.TWikiUsersGuide | 2 |  |
+| TWiki_ES.IntroduccionVariablesTWiki | TWiki:TWiki04x02.TWikiVariablesQuickStart | 3 |  |
+| TWiki_ES.MailerContrib | TWiki:TWiki04x02.MailerContrib | 5 |  |
+| TWiki_ES.NombreWiki | TWiki:TWiki04x02.WikiName | 5 |  |
+| TWiki_ES.NotificacionDeCambios | TWiki:TWiki04x02.WebChangesAlert | 17 |  |
+| TWiki_ES.TemasTWiki | TWiki:TWiki04x02.TWikiTopics | 21 |  |
+| TWiki_ES.PalabraWiki | TWiki:TWiki04x02.WikiWord | 8 |  |
+| TWiki_ES.PreguntasFrecuentes | TWiki:TWiki04x02.TWikiFAQ | 17 |  |
+| TWiki_ES.PreguntasSobreFormatearTexto | TWiki:TWiki04x02.TextFormattingFAQ | 20 |  |
+| TWiki_ES.ReferenciasWiki | TWiki:TWiki04x02.WikiReferences | 7 |  |
+| TWiki_ES.SintaxisWiki | TWiki:TWiki04x02.WikiSyntax | 20 |  |
+| TWiki_ES.SitioTWiki | TWiki:TWiki04x02.TWikiSite | 26 |  |
+| TWiki_ES.TaquigrafiaTWiki | TWiki:TWiki04x02.TWikiEditingShorthand | 3 |  |
+| TWiki_ES.TutorialTWiki | TWiki:TWiki04x02.TWikiTutorial | 17 |  |
+| [[TWiki_ES.WebHome][<nop>WebHome]] | TWiki:TWiki04x02.WebHome | 90 |  |
+| TWiki_ES.WebLeftBar | TWiki:TWiki04x02.WebLeftBar | 0 |  |
+| TWiki_ES.UnaAplicacionConFormulariosWiki | TWiki:TWiki04x02.AnApplicationWithWikiForm | 4 |  |
+| TWiki_ES.UnPocoSobreTWiki | TWiki:TWiki04x02.ATasteOfTWiki | 7 |  |
+| TWiki_ES.UtilizandoHTML | TWiki:TWiki04x02.UsingHTML | 2 |  |
+
+---++ Roadmap
+| *Version* | *Objective* |
+| 0.9 beta | Confirmation that implementation of Contrib works without any errors on other TWiki Platforms; inclusion of installer script |
+| 1.0 | Elimination of main spelling and grammar mistakes; inclusion of additional topics |
+
+---++ Installation Instructions
+Presently, this Contrib is not shipped with an automatic installer. So, for installation, please do the following:
+   1 Download one of the =.zip= or =.tgz= archives
+   1 Unpack the archive in the root directory of your TWiki installation.
+   1 If necesarry, run =chown -R www-data:www-data .= in the root directory of your TWiki installation to guarantee that the ownership of your TWiki tree is set to the correct webserver user. %BR% =www-data:www-data= must be substituted by the corresponding webserver user as it varies from distributions. Examples for major distributions:
+      * !RedHat, Fedora, !CentOS, Gentoo, Mandriva : =chown -R apache:apache /path/to/twiki=
+      * debian/Ubuntu/Kubuntu : =chown -R www-data:www-data /path/to/twiki=
+      * Suse : =chown -R wwwrun:www /path/to/twiki=
+
+---++ Contrib Info
+
+|  Contrib Author(s): | TWiki:Main.SebastianKlus |
+|  Copyright: | &copy; 2008 Sebastian Klus |
+|  License: | [[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License)]] |
+|  Contrib Version: | 0.8 beta (2008-07-28) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  0.8 beta (2008-07-28) | Initial release |
+|  Dependencies: | -none- |
+|  Contrib Home: | http://twiki.org/cgi-bin/view/Plugins/SpanishTWikiContrib |
+|  Feedback: | http://twiki.org/cgi-bin/view/Plugins/SpanishTWikiContribDev |
+|  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/SpanishTWikiContribAppraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiContribs, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the feedback topic on twiki.org instead. -->

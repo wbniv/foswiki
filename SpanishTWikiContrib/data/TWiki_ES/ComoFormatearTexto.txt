@@ -1,0 +1,67 @@
+%META:TOPICINFO{author="BaseUserMapping_333" date="1216579521" format="1.1" reprev="1.17" version="1.17"}%
+%META:TOPICPARENT{name="WebHome"}%
+%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+
+%TOC{depth="4"}% 
+%STARTINCLUDE%
+---+ Formatear texto en TWiki
+
+Trabajar en TWiki es igual de fácil que digitar un texto. No tiene que conocer HTML, aunque puede utilizarlo si prefiere. Los enlaces a otros temas serán creados automáticamente cuando se utiliza una PalabraWiki. Y TWiki shorthand permite utilizar las posibilidades de HTML por medio de un sistema sencillo de codificación que no necesita mucho tiempo para aprenderse. Se lo explicamos a continuación.
+
+#TWikiShorthand
+---++ Taquigrafía TWiki para manipular documentos
+
+%INCLUDE{"TaquigrafiaTWiki"}%
+
+---++ Utilizando HTML
+
+%INCLUDE{"UtilizandoHTML"}%
+
+---++ Hipervínculos
+
+Tener la oportunidad de crear enlaces sin algún tipo de formato especial es una característica clave de TWiki. Los enlaces se realizan por medio de [[PalabraWiki][PalabrasWiki]] y URLs metidos dentro del texto.
+
+---+++ Enlaces internos
+
+   * BuenEstilo es una PalabraWiki que enlaza al tema <nop>BuenEstilo ubicada en la web actual.
+
+   * NotExistingYet es un tema que está esperando a ser redactado. Puede crear el tema tocando el *?*. (Pruebe tocarlo, pero después toque "Cancel" - crear el tema echaría a perder este ejemplo!)
+
+---+++ Enlaces externos
+
+   * =http://...=, =https://...=, =ftp://...=, =gopher://...=, =news://...=, =file://...=, =telnet://...= and =mailto:...@...= serán convertidos a enlaces automaticamente.
+
+   * Direcciones de correo electrónico como =name@domain.com= serán convertidas a enlaces automáticamente.
+
+   * =[<nop>[Utilizando corchetes]]= se le permite crear facilmente [[#SquareBrackets][enlaces que no sean WikiWords]]. 
+      * También puede escribir =[<nop>[http://yahoo.com Yahoo home page]]= como una forma más sencilla de crear enlaces externos con algún texto descriptivo, como por ejemplo [[http://yahoo.com/ Yahoo home page]].
+
+---++ Variables de TWiki
+
+%INCLUDE{"IntroducciónVariablesTWiki"}%
+
+---++ Extensiones (!TWikiPlugins) para formatear
+
+Plugins amplian la funcionalidad de TWiki en muchos campos diferentes. Hay una gran cantidad de TWiki plugins que está disponible en la red [[http://twiki.org/cgi-bin/view/Plugins][Plugins]] en TWiki.org.
+
+Actualmente se encuentran las siguientes extensiones instaladas en este sistema, listadas por =%<nop>PLUGINDESCRIPTIONS%=: 
+%PLUGINDESCRIPTIONS%
+
+Revise el estado de estas extensiones y su configuración en TWiki.TWikiPreferences %FLAGGB%.
+
+---++ Errores comunes de edición
+
+Las reglas para formatear TWiki son bastante fáciles de aplicar y rápidos de digitar. Sin embargo, hay algunas cosillas que hay que tomar en consideración, que también están incluidas en la lista de preguntas frecuentes TWiki.TextFormattingFAQ %FLAGGB%:
+
+   * *P:* Texto encerrado en los signos mayor o menor que como por ejemplo <span class="WYSIWYG_TT"><nombre de archivo></span> no se muestran. Cómo hago para que se muestren tal como están? 
+      * *R:* Los signos ='<'= y ='>'= tienen un significado especial en el idioma de programación HTML; definen etiquetas de HTML. Tiene que protegerlos, quiere decir que tiene que escribir ='&lt;'= en lugar de ='<'= y ='&gt;'= en lugar de ='>'=. <br /> Ejemplo: ='prog &lt;nombre del archivo&gt;'= para que se muestre como ='prog <nombre del archivo>'=.
+
+   * *P:* Por qué a veces no se muestra el signo ='&'=? 
+      * *R:* El signo ='&'= tiene un significado especial en HTML; inicializa una expresión especial. Por ejemplo ='&copy;'= es el signo de copyright =©=. Tiene que proteger ='&'= para poder verlo como tal, quiere decir que tiene que digitar ='&amp;'= en lugar de ='&'=. <br /> Ejemplo: Digite ='Eso &amp; lo otro'= para obtener ='Eso & lo otro'=.
+
+-- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 08 Dec 2007
+
+%META:FORM{name="TWiki.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.TextFormattingRules"}%
+%META:FIELD{name="Revision" attributes="" title="Revision" value="50"}%
+%META:FIELD{name="Language" attributes="" title="Language" value="es"}%

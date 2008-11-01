@@ -1,0 +1,30 @@
+%META:TOPICINFO{author="BaseUserMapping_333" date="1216579571" format="1.1" reprev="1.13" version="1.13"}%
+%META:TOPICPARENT{name="WebHome"}%
+%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+
+---++ Consulta:
+
+Cualquier persona puede modificar una página. Parece peligroso: eso no resulta en caos?
+
+---++ Respuesta:
+
+TWiki es uno de muchos TWiki.WikiWikiClones %FLAGGB%; el primero fue programado por Ward Cunningham. Colaborar de manera Wiki es diferente de otras herramientas de colaboración como el Usenet. Una __Cultura Wiki__ distinta se forma alrededor de estas herramientas:
+
+   * Cualquiera y toda la información puede ser eliminada por cualquier persona. Las páginas Wiki representan solamente discusiones y acuerdos porque es mucho más fácil eliminar desvíos, basura e información trivial que introducirlos. Lo que se mantiene automáticamente tiene significado.
+
+   * Todos pueden jugar. Eso suena como una receta para baja calidad - y por supuesto wiki es afectado por mucha gente que tienen malas intenciones, al igual que cualquier otro sitio. Pero para poder generar cualquier tipo de impacto en el wiki uno tiene que tener la habilidad de generar contenido. Así, todos pueden jugar, pero solamente los jugadores buenos van a tener la ambición de seguir jugando.
+
+   * Wiki no es "Lo que ves es lo que vas a ver al final". Contrario a las formas de programación de bajo nivel, ser capaz de editar una página wiki es en cierto modo un test de inteligencia. No se necesita trabajar en la NASA, pero tampoco es atractivo para los aficionados a la televisión. Si no les atrae, no participan, lo cual hace que quedemos solamente quienes leemos y escribimos para continuar con un discurso racional.
+
+   * Wiki está lejos del tiempo real. La gente tiene tiempo para pensar, a veces días o semanas, antes de actualizar alguna página wiki. Así lo que escribe la gente está bien pensado.
+
+(citado de _WhyWikiWorks_ en Ward's original Wiki system, the Portland Pattern Repository, Wiki:WhyWikiWorks %FLAGGB%)
+
+__Temas relacionados:__ SitioTWiki, BienvenidoHuesped, BuenEstilo, SintaxisWiki, PreguntasFrecuentes, TWiki.WhatIsWikiWiki %FLAGGB%, TWiki.WabiSabi %FLAGGB%, TWiki.TWikiAccessControl %FLAGGB%
+
+-- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 08 Dec 2007
+
+%META:FORM{name="TWiki.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.WikiCulture"}%
+%META:FIELD{name="Revision" attributes="" title="Revision" value="12"}%
+%META:FIELD{name="Language" attributes="" title="Language" value="es"}%

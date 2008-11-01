@@ -1,0 +1,58 @@
+%META:TOPICINFO{author="BaseUserMapping_333" date="1217710550" format="1.1" reprev="1.3" version="1.3"}%
+%META:TOPICPARENT{name="WebHome"}%
+---+!! <nop>%WEB% Web Preferences
+
+Las configuraciones a continuación son __preferencias de web__ de la web [[%WEB%.%HOMETOPIC%][%WEB%]]. Estas preferencias sobrescriben las __preferencias del sitio__ en [[%SYSTEMWEB%.%WIKIPREFSTOPIC%]] y [[%LOCALSITEPREFS%]], y pueden ser sobrescritos por __preferencias de usuarios__ (su tema personal, por ejemplo: %USERSWEB%.%WIKINAME% en la web [[%USERSWEB%.%HOMETOPIC%][%USERSWEB%]]).
+
+%TOC%
+
+---++ Configuración de preferencias de web
+Estas configuraciones sobrescriben los valores estándares solamente para esta web. Ver [[%SYSTEMWEB%.TWikiPreferences#DefaultWebPreferences][lista completa de valores estándares con explicación]].
+
+   * Configuraciones de web:
+      * Set WEBTOPICLIST = [[BienvenidoHuesped][Bienvenido]] %SEP% [[TWiki.TWikiRegistration][Registro]] %SEP% [[WebChanges][Cambios]] %SEP% [[WebTopicList][Temas]] %SEP% [[WebIndex][Indice]] %SEP% [[WebSearch][Búsqueda]] %SEP% Ir a <input type="text" name="topic" size="16" />
+      * Set WEBBGCOLOR = #99CC99
+      * Set WEBHEADERART = %PUBURLPATH%/%SYSTEMWEB%/%WEBPREFSTOPIC%/Dakar.gif
+      * Set SITEMAPLIST = on
+      * Set SITEMAPWHAT = Traducción de documentación TWiki
+      * Set SITEMAPUSETO = ...proveer documentación en español para aprender cómo manipular el TWiki
+      * Ocultar tabla de contenido si tema está incluido
+         * Set TOC_HIDE_IF_INCLUDED = on
+      * Definir título estándar de tablas de contenido
+         * Set TOC_TITLE = En esta página:
+      * El primer nivel de títulos a aparecer en la tabla de contenido:
+         * Set TOC_MIN_DEPTH = 2
+
+   * Plantilla estándar para *temas nuevos* de esta web:
+      * WebTopicEditTemplate: Site-level default topic template
+
+   * Lista de *formularios* separados por como que pueden ser añadidos a temas de esta web. Ver %SYSTEMWEB%.TWikiForms para más información.
+      * Set WEBFORMS = %SYSTEMWEB%.TranslationForm
+
+   * Nota de derechos reservados para la web TWiki.
+      * Set WEBCOPYRIGHT = <span class="twikiRight"> <a href="http://twiki.org/"><img src="%PUBURLPATH%/%SYSTEMWEB%/TWikiLogos/T-badge-88x31.gif" alt="This site is powered by the TWiki collaboration platform" width="88" height="31" title="This site is powered by the TWiki collaboration platform" border="0" /></a></span>%MAKETEXT{"Copyright &&copy; by the contributing authors. All material on this collaboration platform is the property of the contributing authors." args="1999-%GMTIME{$year}%"}% <br /> %MAKETEXT{"Ideas, requests, problems regarding [_1]? <a href='[_2]'>Send feedback</a>" args="<nop>%WIKITOOLNAME%,mailto:%WIKIWEBMASTER%?subject=%WIKITOOLNAME%%20Feedback%20on%20%BASEWEB%.%BASETOPIC%"}% %IF{"$ WEB= $ SYSTEMWEB" then="<br /> __Note:__ Please contribute updates to this topic on TWiki.org at TWiki:TWiki.%BASETOPIC%"}%
+
+   * Logotipos utilizados para efectos de traducción en esta web:
+      * Set FLAGGB = %PUBURL%/%WEB%/WebPreferences/gb.png
+         * Fuente: TWiki:Plugins.FamFamFamContrib
+         * Copyright: &copy; Mark James http://www.famfamfam.com
+         * Licencia: [[http://creativecommons.org/licenses/by/2.5/][Creative Commons Attribution 2.5 License]]
+      * #Set FAVICON = %PUBURL%/%WEB%/WebPreferences/favicon.ico
+         * Fuente: TWiki:Plugins.FamFamFamContrib
+         * Copyright: &copy; Mark James http://www.famfamfam.com
+         * Licencia: [[http://creativecommons.org/licenses/by/2.5/][Creative Commons Attribution 2.5 License]]
+
+   * Usuarios o grupos quienes __no tienen__ / __tienen__ permiso de __ver__ / __modificar__ / __renombrar__ temas en la web <nop>%WEB%: (Ver %SYSTEMWEB%.TWikiAccessControl).
+      * Set ALLOWWEBCHANGE = %USERSWEB%.TWikiAdminGroup
+      * Set ALLOWWEBRENAME = %USERSWEB%.TWikiAdminGroup
+
+   * Usuarios o grupos quienes tienen permiso de modificar o renombrar este tema <nop>%TOPIC%: (e.g., %USERSWEB%.WebAdministratorsGroup)
+      * Set ALLOWTOPICCHANGE = %USERSWEB%.TWikiAdminGroup
+
+   * Preferencias de web que *no* pueden ser sobrescritos por preferencias de usuarios o temas:
+      * Set FINALPREFERENCES = NOSEARCHALL, ATTACHFILESIZELIMIT, WIKIWEBMASTER, WEBCOPYRIGHT, WEBTOPICLIST, DENYWEBVIEW, ALLOWWEBVIEW, DENYWEBCHANGE, ALLOWWEBCHANGE, ALLOWWEBRENAME, DENYWEBRENAME
+
+%INCLUDE{%WEB%.WebPreferencesHelp}%
+
+%META:FILEATTACHMENT{name="favicon.ico" attachment="favicon.ico" attr="" comment="favicon; famfamfam Flag Icons (Spain)" date="1217702480" path="favicon.ico" size="1406" stream="IO::File=GLOB(0x159e150)" tmpFilename="" user="BaseUserMapping_333" version="2"}%
+%META:FILEATTACHMENT{name="gb.png" attachment="gb.png" attr="" comment="famfamfam Flag Icons (Great Britain)" date="1210972260" path="gb.png" size="599" stream="gb.png" tmpFilename="C:\temp\CGItemp41423" user="SebastianKlus" version="1"}%

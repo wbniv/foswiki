@@ -1,0 +1,142 @@
+%META:TOPICINFO{author="BaseUserMapping_333" date="1217597435" format="1.1" reprev="1.2" version="1.2"}%
+%META:TOPICPARENT{name="WebHome"}%
+%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+
+%STARTINCLUDE%
+---+ Archivos adjuntos
+_Cada tema puede tener uno o más archivos adjuntos de cualquier tipo utilizando el botón Adjuntar para subir (o bajar) archivos de su computadora local. Archivos adjuntos serán administrados con un control de revisión: archivos que son subidos serán respaldados automáticamente; versiones anteriores de un archivo modificado pueden ser recuperadas._
+
+%TOC%
+
+---++ Cuál es el propósito de archivos adjuntos?
+
+Se puede utilizar archivos adjuntos para archivar información o para crear soluciones poderosas de groupware personalizada, como por ejemplo sistemas de administración de archivos compartidos o documentos y publicación rápida de páginas web.
+
+---+++ Sistema de administración de documentos
+
+   * Puede utilizar archivos adjuntos para guardar y encontrar documentos (en cualquier formato, con imágenes asociados y otros archivos de media); adjuntar archivos a temas específicos; colaborar en documentos con un control de revisión completo; distribuir documentos en base a [[#AttachmentAccess][necesito-saber-algo]] utilizando control de acceso a webs y temas; crear una biblioteca centralizada de referencia que es fácil de compartir con un grupo de usuarios repartido en todo el mundo.
+
+---+++ Compartir archivos
+
+   * Para compartir archivos, ArchivosAdjuntos en una serie de páginas pueden ser utilizados para crear fácilmente un centro de descarga electrónica bien documentado y categorizado para todos los tipos de archivos: documentos; imágenes y otros medios; drivers y parches; aplicaciones; cualquier cosa que pueda subir sin comprometer la seguridad!
+
+---+++ Publicación de páginas Web
+
+   * A través de su navegador, puede subir fácilmente imágenes (o archivos de sonido, o cualquier otra cosa que quiere incluir en una página) y ubicarlas en una sola página, utilizarlas en toda la web, o en todo el sitio.
+      * __NOTA:__ Puede también agregar imágenes - u otros archivos - directamente, por ejemplo subiéndolos por FTP. Es requiere un acceso FTP y puede ser más conveniente si tiene que subir una gran cantidad de archivos. Archivos subidos por FTP no pueden ser administrados por los constroles de acceso basados en el navegador. Puede utilizar su navegador para crear accesos directos tipo TWiki.TWikiVariables %FLAGGB%, por ejemplo %<nop>H% = %H%.
+
+---++ Subir archivos
+
+   * Haga click en el enlace ==Adjuntar== al final de la página. La pantalla de =Adjuntar= le permite buscar un archivo, agregar un comentario y subirlo. El archivo subido aparecerá en la [[#FileAttachmentTable][Tabla de archivos adjuntos]].
+      * __NOTA:__ El tema tiene que existir previamente. Se requiere dos pasos por aparte si quiere adjuntar un archivo a un tema que todavía no existe; primero crée el tema, después agregue el archivo.
+      * Se puede subir cualquier tipo de archivo. Algunos archivos que puedan comprometer la seguridad del sistema serán renombrados, por ejemplo: archivos =*.php= serán renombrados a =*.php.txt= con el fin de que nadie puede incluir código en el archivo que pueda ser ejecutado en el momento de leer el archivo .php.
+      * Se mantendrá la ruta del archivo que se adjuntó anteriormente para su conveniencia. En caso que haga modificaciones al archivo local y quiere volver a subirlo, puede copiar la ruta nuevamente al campo de Archivo local.
+      * TWiki puede limitar el tamaño de archivos. Esto está definido en la variable =%<nop>ATTACHFILESIZELIMIT%= de las TWiki.TWikiPreferences %FLAGGB%; el límite actual son %ATTACHFILESIZELIMIT% kB.
+         * %X% No se recomienda subir archivos que tengan más que algunos cien kB de tamaño a través del navegador. Archivos grandes se suben extremadamente despacio y muchas veces causan una extralimitación de tiempo. Utilice un acceso FTP para subir archivos grandes.
+   * Archivos adjuntos automáticos:
+      * Si está habilitado, todos los archivos que se encuentran en el directorio de archivos adjuntos de un tema serán mostradas como archivos adjuntos al tema - aún si fueron copiados directamente al directorio y no adjuntados por medio del enlace 'Adjuntar'. Esto es una manera cómoda de "adjuntar" fácilmente archivos a un tema sin tener que subirlos uno por uno; pero tiene la desventaja que se pierde el rastreo y control de versiones.
+      * Para habilitar esta característica, active la opción de configuración {AutoAttachPubDir}.
+      * __NOTA:__ La característica de adjuntar archivos automáticamente solamente puede ser utilizada por un administrador que tenga acceso al sistema de archivos del servidor.
+   
+---++ Descargar archivos
+
+   * Haga click en el archivo en la [[#FileAttachmentTable][tabla de archivos adjuntos]].
+#AttachmentAccess
+
+   * %X% _NOTA:_ No existe control de acceso para archivos adjuntos individuales. Si necesita controlar el acceso a un archivo individual, cree un tema separado para cada uno de los archivos y configure [[TWiki.TWikiDocumentation#TWikiAccessControl][restricciones de acceso]] %FLAGGB% para cada una de los temas.
+
+---++ Mover archivos adjuntos
+
+Un archivo puede ser movido de un tema a otro.
+   * Haga click en ==Administrar== del archivo que debe ser movido.
+   * En la pantalla de revisión, seleccione la nueva web y/o el nuevo tema.
+   * Haga click en ==Mover==. El archivo y su historial serán movidos. Su ubicación original será guardada como [[TWiki.TWikiDocumentation#Meta_Data_Definition][Meta Data del tema]] %FLAGGB%.
+
+---++ Borrar archivos adjuntos
+
+Mueva archivos adjuntos que no requiere más a la web =Trash=, tema =TrashAttachment=.
+
+---++ Enlazar a archivos adjuntos
+
+   * Una vez que se adjuntó un archivo, se puede crear enlaces a este archivo desde el tema correspondiente. Ejemplo:
+      1. ==Adjuntar== archivo: =Sample.txt=
+      1. ==Editar== el tema y digitar: =%<nop>ATTACHURL%/Sample.txt=
+      1. ==Vista previa==: El texto =%<nop>ATTACHURL%/Sample.txt= aparece como: %PUBURLPATH%/%WEB%/%TOPIC%/Sample.txt, un enlace al archivo de texto.
+
+   * Para crear un enlace a un archivo adjunto que está ubicado en otro tema, digite:
+      * =%<nop>PUBURLPATH%/%<nop>WEB%/OtherTopic/Sample.txt= (si está dentro de la misma web)
+      * =%<nop>PUBURLPATH%/Otherweb/OtherTopic/Sample.txt= (si está en otra web)
+
+   * El contenido de archivos adjuntos tipo HTML o archivos de texto puede ser incluido en un tema. Ejemplo:
+      1. ==Adjuntar== archivo: =Sample.txt=
+      1. ==Editar== el tema y escribir: =%<nop>INCLUDE{"%<nop>ATTACHURL%/Sample.txt"}%=
+         * El contenido del archivo adjunto será mostrado en la página.
+         * Si quiere saber más acerca de INCLUDE, puede leer [[TWiki.VarINCLUDE][TWiki<nop>Variables]] %FLAGGB%
+
+   * Imágenes tipo GIF, JPG y PNG pueden ser adjuntadas y mostradas en un tema. Ejemplo:
+      1. ==Adjuntar== archivo: =Smile.gif=
+      1. ==Editar== tema y escribir: =%<nop>ATTACHURL%/Smile.gif=
+      1. ==Vista previa==: el texto aparece como %PUBURLPATH%/%WEB%/%TOPIC%/Smile.gif, una imágen.
+
+#FileAttachmentTable
+---++ Tabla de contenido de archivos adjuntos
+
+Archivos adjuntados a un tema serán mostradas en una tabla de contenido que se encuentra al final de una página, o opcinalmente, ocultados. En el segundo caso se pueden acceder haciendo click en *Adjuntar*.
+
+<div class="twikiAttachments">
+<table summary="Topic attachments" style="border-width:1px;" cellspacing="0" id="twikiAttachmentsTable" cellpadding="0" class="twikiTable" rules="rows" border="1"><caption>Topic attachments</caption><tr class="twikiTableEven"><th bgcolor="#ffffff" align="center" valign="middle" style="text-align:center;vertical-align:middle;" class="twikiFirstCol"> <a rel="nofollow" href="%TOPIC%?sortcol=0;table=1;up=0#sorted_table" style="color:#0066cc" title="Sort by this column">I</a> </th><th bgcolor="#ffffff" align="center" valign="middle" style="text-align:center;vertical-align:middle;"> <a rel="nofollow" href="%TOPIC%?sortcol=1;table=1;up=0#sorted_table" style="color:#0066cc" title="Sort by this column">Archivo adjunto</a> </th><th bgcolor="#ffffff" align="center" valign="middle" style="text-align:center;vertical-align:middle;"> <a rel="nofollow" href="%TOPIC%?sortcol=2;table=1;up=0#sorted_table" style="color:#0066cc" title="Sort by this column">Acción</a> </th><th bgcolor="#ffffff" align="center" valign="middle" style="text-align:center;vertical-align:middle;"> <a rel="nofollow" href="%TOPIC%?sortcol=3;table=1;up=0#sorted_table" style="color:#0066cc" title="Sort by this column">Tamaño</a> </th><th bgcolor="#ffffff" align="center" valign="middle" style="text-align:center;vertical-align:middle;"> <a rel="nofollow" href="%TOPIC%?sortcol=4;table=1;up=0#sorted_table" style="color:#0066cc" title="Sort by this column">Fecha</a> </th><th bgcolor="#ffffff" align="center" valign="middle" style="text-align:center;vertical-align:middle;"> <a rel="nofollow" href="%TOPIC%?sortcol=5;table=1;up=0#sorted_table" style="color:#0066cc" title="Sort by this column">Quién</a> </th><th bgcolor="#ffffff" align="center" valign="middle" style="text-align:center;vertical-align:middle;"> <a rel="nofollow" href="%TOPIC%?sortcol=6;table=1;up=0#sorted_table" style="color:#0066cc" title="Sort by this column">Comentario</a> </th></tr>
+<tr class="twikiTableOdd"><td bgcolor="#ffffff" align="center" valign="top" style="text-align:center;vertical-align:top;" class="twikiFirstCol"> <img width="16" alt="txt" align="top" src="%PUBURL%/%SYSTEMWEB%/TWikiDocGraphics/txt.gif" height="16" border="0" /><span class="twikiHidden">txt</span> </td><td bgcolor="#ffffff" align="left" valign="top" style="text-align:left;vertical-align:top;"> <a href="/twiki4/MAIN/bin/viewfile/TWiki/FileAttachment?rev=;filename=Sample.txt">Sample.txt</a> </td><td bgcolor="#ffffff" align="left" valign="top" style="text-align:left;vertical-align:top;"> <a href="/twiki4/MAIN/bin/attach/TWiki/FileAttachment?filename=Sample.txt&amp;revInfo=1" title='change, update, previous revisions, move, delete...'rel='nofollow'>administrar</a> </td><td bgcolor="#ffffff" align="right" valign="top" style="text-align:right;vertical-align:top;"> 0.1&nbsp;K </td><td bgcolor="#ffffff" align="left" valign="top" style="text-align:left;vertical-align:top;"> 22 Jul 2000 - 19:37 </td><td bgcolor="#ffffff" align="left" valign="top" style="text-align:left;vertical-align:top;"> <a href="TWikiContributor" class="twikiLink">TWikiContributor</a> </td><td bgcolor="#ffffff" align="left" valign="top" style="text-align:left;vertical-align:top;"> Just a sample </td></tr>
+<tr class="twikiTableEven"><td bgcolor="#ffffff" align="center" valign="top" style="text-align:center;vertical-align:top;" class="twikiFirstCol twikiLast"> <img width="16" alt="gif" align="top" src="%PUBURL%/%SYSTEMWEB%/TWikiDocGraphics/gif.gif" height="16" border="0" /><span class="twikiHidden">gif</span> </td><td bgcolor="#ffffff" align="left" valign="top" style="text-align:left;vertical-align:top;" class="twikiLast"> <a href="/twiki4/MAIN/bin/viewfile/TWiki/FileAttachment?rev=;filename=Smile.gif">Smile.gif</a> </td><td bgcolor="#ffffff" align="left" valign="top" style="text-align:left;vertical-align:top;" class="twikiLast"> <a href="/twiki4/MAIN/bin/attach/TWiki/FileAttachment?filename=Smile.gif&amp;revInfo=1" title='change, update, previous revisions, move, delete...'rel='nofollow'>administrar</a> </td><td bgcolor="#ffffff" align="right" valign="top" style="text-align:right;vertical-align:top;" class="twikiLast"> 0.1&nbsp;K </td><td bgcolor="#ffffff" align="left" valign="top" style="text-align:left;vertical-align:top;" class="twikiLast"> 22 Jul 2000 - 19:38 </td><td bgcolor="#ffffff" align="left" valign="top" style="text-align:left;vertical-align:top;" class="twikiLast"> <a href="TWikiContributor" class="twikiLink">TWikiContributor</a> </td><td bgcolor="#ffffff" align="left" valign="top" style="text-align:left;vertical-align:top;" class="twikiLast"> Smiley face </td></tr>
+</table></div><!--//twikiAttachments-->
+
+---++ Controles de archivos adjuntos
+
+Haciendo click en un enlace de ==administrar== le lleva a una página nueva que se parece un poco a esta (depende de la [[TWiki.TWikiSkins][apariencia]] %FLAGGB% que está configurada):
+
+<div class="twikiFormSteps">
+<div class="twikiFormStep">
+<h3><a name="Attach_new_file"></a> Adjuntar archivo nuevo </h3>
+<p />
+Subir hasta 10000 KB.
+<p />
+<input class="twikiInputField" type="file" name="filepath" value="Sample.txt" size="30" /><input type="hidden" name="filename" value="Sample.txt" />
+</div><!-- /twikiFormStep-->
+<div class="twikiFormStep">
+<h3><a name="Comment"></a> Comentario </h3>
+<p />
+Describa el archivo, de manera que otros sepan que es.
+<p />
+<input class="twikiInputField" type="text" name="filecomment" value="Solamente un ejemplo" maxlength="256" size="50" />
+</div><!-- /twikiFormStep-->
+<div class="twikiFormStep">
+<h3><a name="Properties"></a> Propiedades </h3>
+<p />
+<input type="checkbox" class="twikiCheckbox" id="createlink" name="createlink"  /><label for="createlink">Crear un enlace al archivo adjunto</label> <span class="twikiGrayText">Imágenes serán mostradas, para otros archivos adjuntos un enlace será creado.</span>
+<p />
+<input type="checkbox" class="twikiCheckbox" id="hidefile" name="hidefile"  /><label for="hidefile">No mostrar archivos adjuntos en la tabla </label> <span class="twikiGrayText">Los archivos adjuntos no se mostrarán en la vista normal del tema.</span>
+</div><!-- /twikiFormStep--><div class="twikiFormStep twikiLast"><input type="submit" class="twikiButton" name="changeproperties" value='Cambiar únicamente comentarios y propiedades' /></div><!-- /twikiFormStep-->
+</div><!-- /twikiFormSteps-->
+<a name="topic-actions"> </a><div class="patternTopicActions"><div class="patternTopicAction" style="margin-top:-1px;"><span class="patternActionButtons"> <input type="submit" class="twikiSubmit" value='Subir archivo' /> or <a href="#" title='Back to topic' accesskey='c' rel='nofollow'><span class='twikiAccessKey'>C</span>ancelar</a></span></div></div><!--/patternTopicActions-->
+
+
+   * La primera tabla es un listado de todos los archivos adjuntos, incluyendo sus atributos. La =h= significa el archivo adjunto está ocultado, no se mostrará en la tabla cuando uno ve el tema.
+
+   * La segunda tabla muestra todas las versiones de un archivo adjunto. Haga click en *Ver* para ver esa versión. Si es la versión más reciente, usted será redireccionad@ a la URL que siempre muestra la última versión, cosa que generalmente es lo que uno quiere.
+      * *Para cambiar el comentario* de un archivo adjunto, digite el comentario nuevo y después haga click en *Cambiar propiedades*. Tome en consideración que el comentario en la lista a la par de la versión específica no cambiará, pero que el comentario que se ve en el tema sí cambiará.
+      * *Para ocultar/no ocultar* un archivo adjunto, habilite la casilla ==No mostrar archivos adjuntos en la tabla==, después haga click en ==Cambiar propiedades==.
+
+---++ Problemas conocidos
+
+   * Al contrario a temas, archivos adjuntos no están bloqueados durante su edición. Como solución provisional, puede cambiar el comentario indicando que se está trabajando con el archivo - el comentario de la versión específica no se pierde, se mantiene cuando ve el listado de todas las versiones del archivo.
+   * Archivos adjuntos no están protegidos. Cualquier persona puede leerlos si conoce el nombre de la web, del tema y del archivo adjunto.
+   
+%STOPINCLUDE%
+
+__Temas relacionados:__ TWiki.UserDocumentationCategory %FLAGGB%
+
+-- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 16 May 2008, TWiki:Main.JuanLussich
+
+%META:FORM{name="TWiki.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.FileAttachment"}%
+%META:FIELD{name="Revision" attributes="" title="Revision" value="17"}%
+%META:FIELD{name="Language" attributes="" title="Language" value="es"}%

@@ -1,0 +1,46 @@
+# Release manifest for SpanishTWikiContrib
+data/TWiki/SpanishTWikiContrib.txt 0644 Documentation
+lib/TWiki/Contrib/SpanishTWikiContrib.pm 0644 Perl module
+data/TWiki/TranslationForm.txt 0644 Standard form for translation topics
+data/TWiki/TranslationNote.txt 0644 Standard note indicating origin and revision of translation
+pub/TWiki_ES/WebPreferences/gp.png 0644 English flag (Logo)
+data/TWiki_ES/ArchivosAdjuntos.txt 0644 Translation - TWiki.FileAttachment
+data/TWiki_ES/BienvenidoHuesped.txt 0644 Translation - TWiki.WelcomeGuest
+data/TWiki_ES/BuenEstilo.txt 0644 Translation - TWiki.GoodStyle
+data/TWiki_ES/ComoFormatearTexto.txt 0644 Translation - TWiki.TextFormattingRules
+data/TWiki_ES/CulturaWiki.txt 0644 Translation - TWiki.WikiCulture
+data/TWiki_ES/FormulariosTWiki.txt 0644 Translation - TWiki.TWikiForms
+data/TWiki_ES/GlosarioTWiki.txt 0644 Translation - TWiki.TWikiGlossary
+data/TWiki_ES/GuiaDeUsuarioTWiki.txt 0644 Translation - TWiki.TWikiUsersGuide
+data/TWiki_ES/IntroduccionVariablesTWiki.txt 0644 Translation - TWiki.TWikiVariablesQuickStart
+data/TWiki_ES/MailerContrib.txt 0644 Translation - TWiki.MailerContrib
+data/TWiki_ES/NombreWiki.txt 0644 Translation - TWiki.WikiName
+data/TWiki_ES/NotificacionDeCambios.txt 0644 Translation - TWiki.WebChangesAlert
+data/TWiki_ES/PalabraWiki.txt 0644 Translation - TWiki.WikiWord
+data/TWiki_ES/PreguntasFrecuentes.txt 0644 Translation - TWiki.TWikiFAQ
+data/TWiki_ES/PreguntasSobreFormatearTexto.txt 0644 Translation - TWiki.TextFormattingFAQ
+data/TWiki_ES/PuntosDeInicio.txt 0644 Translation - TWiki.StartingPoints
+data/TWiki_ES/ReferenciasWiki.txt 0644 Translation - TWiki.WikiReferences
+data/TWiki_ES/SintaxisWiki.txt 0644 Translation - TWiki.WikiSyntax
+data/TWiki_ES/SitioTWiki.txt 0644 Translation - TWiki.TWikiSite
+data/TWiki_ES/TWikiFaqTemplate.txt 0644 Translation - TWiki.TWikiFaqTemplate
+data/TWiki_ES/TaquigrafiaTWiki.txt 0644 Translation - TWiki.TWikiEditingShorthand
+data/TWiki_ES/TemasTWiki.txt 0644 Translation - TWiki.TWikiTopics
+data/TWiki_ES/TutorialTWiki.txt 0644 Translation - TWiki.TWikiTutorial
+data/TWiki_ES/UnaAplicacionConFormulariosWiki.txt 0644 Translation - TWiki.AnApplicationWithWikiForm
+data/TWiki_ES/UnPocoSobreTWiki.txt 0644 Translation - TWiki.ATasteOfTWiki
+data/TWiki_ES/UtilizandoHTML.txt 0644 Translation - TWiki.UsingHTML
+data/TWiki_ES/WebAtom.txt 0644 WebAtom (not translated; standard web component)
+data/TWiki_ES/WebChanges.txt 0644 WebChanges (not translated; standard web component)
+data/TWiki_ES/WebCreateNewTopic.txt 0644 WebCreateNewTopic (not translated; standard web component)
+data/TWiki_ES/WebHome.txt 0644 Translation - TWiki.WebHome
+data/TWiki_ES/WebIndex.txt 0644 WebIndex (not translated; standard web component)
+data/TWiki_ES/WebLeftBar.txt 0644 WebLeftBar (not translated; standard web component)
+data/TWiki_ES/WebNotify.txt 0644 WebNotify (not translated; standard web component)
+data/TWiki_ES/WebPreferences.txt 0644 WebPreferences (not translated; standard web component)
+data/TWiki_ES/WebRss.txt 0644 WebRss (not translated; standard web component)
+data/TWiki_ES/WebSearch.txt 0644 WebSearch (not translated; standard web component)
+data/TWiki_ES/WebSearchAdvanced.txt 0644 WebSearchAdvanced (not translated; standard web component)
+data/TWiki_ES/WebStatistics.txt 0644 WebStatistics (not translated; standard web component)
+data/TWiki_ES/WebTopicEditTemplate.txt 0644 WebTopicEditTemplate (standard web component; adjusted to translation requirements)
+data/TWiki_ES/WebTopicList.txt 0644 WebTopicList (not translated; standard web component)

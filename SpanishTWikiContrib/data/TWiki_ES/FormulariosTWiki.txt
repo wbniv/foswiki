@@ -1,0 +1,237 @@
+%META:TOPICINFO{author="BaseUserMapping_333" date="1216579588" format="1.1" reprev="1.8" version="1.8"}%
+%META:TOPICPARENT{name="WebHome"}%
+%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+
+%STARTINCLUDE%
+---+ Formularios TWiki
+
+_Estructure el contenido por medio de formularios adjuntos a temas TWiki. Formularios TWiki (con campos de formularios) y la búsqueda formateada son la base para elaborar aplicaciones de base de datos._
+
+%TOC%
+
+---++ Visión general
+
+Agregando datos de entrada basados en formularios a contenido libre, le permite estructurar temas por medio de categorías no limitadas que sean fáciles de revisar. Un formulario se habilita para una web y puede agregarse a un tema. Los datos del formulario serán presentados en un formato de tabla cuando se mira el tema y pueden ser modificados en el modo de edición utilizando campos de edición, campos multivalor excluyente, casillas de selección y listas de opciones. Se pueden definir muchos tipos diferentes de formularios en una web, aúnque a un tema se le puede adjuntar solamente un formulario a la vez.
+
+Pasos típicos para generar una aplicación en base a formularios TWiki:
+   1. Definir una plantilla del formulario
+   1. Habilitar el formulario para la web
+   1. Agregar el formulario a una [[TWiki.TWikiTemplates#Template_Topics][plantilla de página]] %FLAGGB%
+   1. Generar un formulario HTML para crear temas nuevos en base a plantilla de página
+   1. Generar una [[TWiki.FormattedSearch][búsqueda formateada]] %FLAGGB% para listar los temas que comparten el mismo formulario
+
+---++ Definir un formulario
+Una plantilla de formulario especifica los compos de un formulario. Una plantilla de formulario es simplemente una página conteniendo una tabla TWiki, donde cada línea de la tabla especifica un campo del formulario
+   1. Cree un nuev tema con el nombre de su formulario: ==<nop>SuFormulario==, ==<nop>FormularioRegistroDeGastos==, ==<nop>FormularioCategoríaDeInformación==, ==<nop>FormularioRevisiónDeRegistro==, cualquier nombre que necesita.
+   1. Cree una tabla TWiki, con cada columna representando un elemento de un campo de ingreso (en inglés): ==Name==, ==Type==, ==Size==, ==Values==, ==Tooltip message==, and ==Attributes== _(ver ejemplo abajo)_.
+   1. Para cada campo, agregue una nueva línea; para el tipo de campo, seleccione de la lista.
+   1. Guarde el tema _(puede definir más tarde si quiere [[#EnablingForms][habilitar/deshabilitar]] formularios individuales_.
+
+<blockquote>
+*Ejemplo:* %BR%
+=| <nop>*Name* | <nop>*Type* | <nop>*Size* | <nop>*Values* | <nop>*Tooltip message* | <nop>*Attributes* |= %BR%
+=| !TopicClassification | select | 1 | !NoDisclosure, !PublicSupported, !PublicFAQ | blah blah... | &nbsp; |= %BR%
+=| !OperatingSystem | checkbox | 3 | !OsHPUX, !OsLinux, !OsSolaris, !OsWin | blah blah... | &nbsp; |= %BR%
+=| !OsVersion | text | 16 | | blah blah... | &nbsp; |=
+
+| *Name* | *Type* | *Size* | *Values* | *Tooltip message* | *Attributes* |
+| <a href="%SCRIPTURLPATH{"view"}%/Sandbox/TopicClassification"><nop>TopicClassification</a> | select |  1  | <a href="%SCRIPTURLPATH{"view"}%/Sandbox/NoDisclosure"><nop>NoDisclosure</a>, <a href="%SCRIPTURLPATH{"view"}%/Sandbox/PublicSupported"><nop>PublicSupported</a>, <a href="%SCRIPTURLPATH{"view"}%/Sandbox/PublicFAQ"><nop>PublicFAQ</a> | blah blah... | &nbsp; |
+| <a href="%SCRIPTURLPATH{"view"}%/Sandbox/OperatingSystem"><nop>OperatingSystem</a> | checkbox |  3  | <a href="%SCRIPTURLPATH{"view"}%/Sandbox/OsHPUX"><nop>OsHPUX</a>, <a href="%SCRIPTURLPATH{"view"}%/Sandbox/OsLinux"><nop>OsLinux</a>, <a href="%SCRIPTURLPATH{"view"}%/Sandbox/OsSolaris"><nop>OsSolaris</a>, <a href="%SCRIPTURLPATH{"view"}%/Sandbox/OsWin"><nop>OsWin</a> | blah blah... | &nbsp; |
+| <a href="%SCRIPTURLPATH{"view"}%/Sandbox/OsVersion"><nop>OsVersion</a> | text |  16  | | blah blah... | &nbsp; |
+</blockquote>
+
+Ver [[#FormStructure][estructura de formularios]] para obtener todos los detalles de tipos disponibles y qué significan las columnas diferentes.
+
+También puede obtener valores posibles para los tipos =select=, =checkbox= o =radio= de otros temas:
+
+<blockquote>
+*Ejemplo:*
+
+   * En el tema <nop>WebForm, defina el formulario:
+     <br />
+     | *Name* | *Type* | *Size* | *Values*  | *Tooltip message* | *Attributes* |
+     | <nop>TopicClassification | select | 1 |    | blah blah... | &nbsp; |
+     | <nop>OperatingSystem | checkbox | 3 |    | blah blah... | &nbsp; |
+     | <nop>OsVersion | text | 16 |    | blah blah... | &nbsp; |
+     <br />
+     %X% Deje los campos ==Values== *en blanco*.
+
+   * Después en el tema <nop>TopicClassification, defina los valores posibles:
+     <br />
+     =| <nop>*Name*            |= %BR%
+     =| <nop>NoDisclosure      |= %BR%
+     =| Public Supported  |= %BR%
+     =| Public FAQ        |= %BR%
+     | *Name* |
+     | <nop>NoDisclosure |
+     | Public Supported |
+     | Public FAQ |
+</blockquote>
+
+Valores de campos también pueden ser definidos como el resultado de la interpretación de variables TWiki. Por ejemplo,
+
+<blockquote>
+=%<nop>SEARCH{"Office$" scope="topic" web="%<nop>USERSWEB%" nonoise="on" type="regex" format="$web.$topic" separator=", " }%=
+</blockquote>
+
+Cuando se utiliza en el campo value de la definición del formulario, esto encontrará todos los nombres de temas en la web Main que terminan en "Office" y los utilizará como valores permitidos en el campo.
+
+#EnablingForms
+---++ Habilitar formularios por web
+
+Formularios tiene que habilitarse individualmente por cada web. La variable ==WEBFORMS== en WebPreferences %FLAGGB% es opcional y define una lista posible de plantillas.
+<blockquote>
+*Ejemplo:*
+   * <nop>Set WEBFORMS = <nop>BugForm, <nop>FeatureForm, Books.<nop>BookLoanForm
+</blockquote>
+   * Con la variable ==WEBFORMS== habilitada, se agrega un botón adicional en el modo de edición. Si el tema no tiene ningún formulario asignado, aparece el botón *Agregar formulario* al final del tema. Si hay un formulario, el botón *Reemplazar formulario* aparece en la primera línea del formulario.  Los botones abren una pantalla que le permite escoger un formulario especificado en =WEBFORMS= o la opción *none* para ningún formulario.
+   * Tiene que listar los temas de formularios disponibles explícitamente. No puede utilizar la función =SEARCH= para definir =WEBFORMS=.
+
+---++ Adjuntar un formulario a un tema
+
+   * Edite el tema y siga el botón "Adjuntar formulario" para adjuntar un formulario. Normalmente se adjunta un formulario a una [[TWiki.TWikiTemplates#TemplateTopic][plantilla de página]] %FLAGGB%, sea a la plantilla estándar de la web llamada =WebTopicEditTemplate= o a otro tema nuevo que funcione como plantilla de una aplicación especial. Valores iniciales del formulario también pueden definirse en este momento.
+
+   * Adicionalmente, se puede adjuntar un formulario a un tema nuevo utilizando el parametro =formtemplate= en la URL (cuando se edita o guarda). Valores iniciales pueden incorporarse en la URL o como valores resultantes de un formulario.
+      * cuando no son casillas: ==name==, ex: ==?BugPriority=1==
+      * casillas: ==namevalue=1==, ex: ==?ColorRed=1==. <br />
+        Casillas marcadas tienen que ser especificadas.
+      * Ejemplo: El ejemplo a continuación mostrará un campo de texto para el tema nuevo más un botón de "Crear". Cuando se toque el botón, la pantalla de edición se abrirá con el formulario "MiFormulario" ya adjuntado al tema nuevo.
+       <verbatim>
+    <form name="newtopic" action="%SCRIPTURLPATH{"edit"}%/%WEB%/">
+       <input type="hidden" name="formtemplate" value="MiFormulario" />
+       Nuevo nombre del tema <input type="text" name="topic" size="40" />
+       <input type="submit" class="twikiSubmit" value="Create" />
+    </form>
+       </verbatim>
+   * __%T% Consejo:__ Para aplicaciones TWiki puede [[TWiki.TWikiTemplates#AutomaticallyGeneratedTopicname][generar automáticamente nombres únicos de temas]] %FLAGGB%.
+
+   * __%X% Nota:__ Valores iniciales no serán incorporados en el formulario de un tema nuevo si _solamente_ utiliza el parametro formtemplate.
+
+---++ Cambiar un formulario
+   * Puede cambiar la definición de un formulario y el TWiki tratará de asegurar que no se pierda ningún dato en los temas que están utilizando este formulario.
+
+   * Si cambia la definición de un formulario, los cambios no se efectuarán en un tema que está utilizando este formulario hasta que se edite y guarde.
+
+   * Si agrega un cambio nuevo al formulario, aparecerá en el momento cuando edite el tema que está utilizando este formulario.
+
+   * Si elimina un campo de un formulario, o cambia el nombre de un campo, entonces su información no se verá cuando edite el tema (se utilizará la definición del formulario modificado). *Si guarda el tema, el dato anterior se perderá* (aún gracias al control de revisión, siempre lo podrá ver en las versiones anteriores del tema)
+
+   * Si dos personas a la vez están editando el mismo tema conteniendo un formulario al mismo tiempo y ambas editan campos en formularios, el TWiki intentará de unir los cambios para que no se pierda la información.
+
+#FormStructure
+---++ Estructura de una plantilla de formulario
+
+Una plantilla de formulario especifica los campos de un formulario. Una plantilla de formulario es simplemente una página que contiene una tabla TWiki donde cada línea especifica un campo de formulario.
+
+Cada *columna* de la tabla es un elemento de un campo de ingreso: ==Name== _ (nombre)_, ==Type== _ (tipo)_, ==Size== _ (tamaño)_, ==Values== _ (valores)_, ==Tooltip message== _ (mensaje tooltip)_ y ==Attributes== _(atributos)_.
+
+Las columnas =Name=, =Type= y =Size= son obligatorias. Otras columnas son opcionales. El formulario *tiene que* tener una línea de título (e.g. =| <nop>*Name* | <nop>*Type* | <nop>*Size* |=).
+
+==Name== es el nombre del campo de formulario.
+
+Los campos ==Type==, ==Size== y ==Value== describen los valores permitidos para este campo y cómo presentarlos.
+   * ==Type== =checkbos= especifica una o más casillas. El campo =Size= especifica cuantas casillas serán mostradas en cada línea. El campo =Value= deber contener una lista de items separados por coma de la rotulación de las casillas.
+      * ==Type== =checkbox+buttons= agregará los botones *Definir* y *Borrar* al tipo basico de =checkbox=.
+   * ==Type== =radio= es similar a =checkbox= excepto que estos campos son de multivalor excluyente; solamente un campo puede ser seleccionado.
+   * ==Type== =label= especifica texto de rotulación de solo lectura. El campo =Value= debe contener el texto de la rotulación.
+   * ==Type== =select= especifica un campo de selección. El campo =Value= debe contener una lista de opciones separadas por coma para este campo. El campo =Size= puede especificar un tamaño fijo para el campo (e.g. =1= o un rango e.g. =3..10=. Si especifica un rango, entonces el campo nunca será más pequeño que 3 items, nunca más grande que 10 y será de 5 items en caso que haya solamente 5 opciones.
+      * Hay dos modificadores que pueden aplicarse para el tipo =select=:
+         * =select+multi= permite selecciones multiples, para marcar (o demarcar) varios items con Shift+Click y Ctrl+Click.
+         * =select+values= permite la definición de valores diferentes al texto mostrado. Por ejemplo:
+         <pre>| Campo 9 | select+values | 5 | Uno, Dos=2, Tres=III, Cuatro | Diferentes formatos de valores |</pre> muestra <select size="2"><option>Uno</option><option>Dos</option><option>Tres</option><option>Cuatro</option></select> pero los valores o opciones =Dos= y =Tres= son =2= y =III=.<br />
+      Puede combinar estos modificadores e.g. =select+multi+values=
+   * ==Type== =text= especifica un texto de campo de una línea. =Size= especifica el ancho del campo de texto en números de caracteres. =Value= es el valor inicial (estándar) is the initial (default) cuando se crea un nuevo tema con esta plantilla de formulario.
+   * ==Type== =textarea= especifica un campo de texto de varias líneas. El campo =Size= debe especificar columnas x líneas, e.g. =80x6=; tamaño estándar es 40x5. Igual que en =text=, el campo =Value= especifica el texto inicial.
+   * ==Type== =date= especifica un campo de una sola línea y un botón a la par; haciendo click en el botón mostrará un calendario de lo cual el usuario puede escoger una fecha. La fecha puede digitarse en el campo de texto también. =Size= especifica el ancho del campo de texto en caracteres. Igual que en =text=, el campo =Value= especifica el texto inicial.
+
+==Tooltip message== es un mensaje que se mostrará cuando el cursor se encuentra encima de un campo en modo de =editar=.
+
+==Attributes== especifica atributos especiales para un compo. Se puede incluir varios atributos seperados por espacio.
+   * El atributo =H= indica que el campo no debe mostrarse en el modo normal de la página. Sin embargo, el campo está disponible para ediciones y para guardar informaciones.
+   * El atributo =M= indica que el campo es obligatorio. No se puede guardar el tema a menos que se digite un valor para este campo. Si el campo se encuentra vacío cuando se guarda el tema, se generará un error y el usuario será redireccionado a una página =oops=. Campos obligatorios son marcados con un asterisco a la par del nombre del campo.
+
+Por ejemplo, un formulario sencilla con solamente un campo para un nombre y una fecha se vería así:
+
+<verbatim>
+| *Name* | *Type* | *Size* |
+| Nombre   | text   | 80     |
+| Fecha   | date   | 30     |
+</verbatim>
+*Notas acerca de nombres de campos:*
+   * Nombres de campos tienen que se únicos.
+   * Hay unos pocos nombres de campos que son reservados. Si intenta de utilizar uno de estos nombres, el TWiki agragará automáticamente una línea baja al nombre cuando se utiliza el formulario.
+   * Puede incluir espacios dentro del nombre del campo y sin embargo se identificará el tema correspondiente e.g. =Aeroplane Manufacturers= es equivalente a =AeroplaneManufacturers=.
+   * Si un campo tipo =label= no tiene nombre, *no* será mostrado en el momento que se *muestra* el formulario, solamente cuando se *edita*.
+   * En teoría nombres de campos pueden incluir cualquier texto, pero se recomienda limitarse a caracteres alfanuméricos. Si quiere utilizar una palabra que no es una PalabraWiki para los campos tipo =select=, =checkbox= o =radio=, y quiere obtener los valores de otro tema, puede utilizar enlaces tipo ==[<nop>[...]]==. Esta anotación también puede utilizarse cuando se hace referencia a otro tema para obtener valores de campos pero se requiere un nombre diferente al tema para el nombre del campo.
+   * Espacios al inicio y al final *no* se considerarán.
+*Notas acerca de valores de campos:*
+   * El valor del campo se utilizará para inicializar un campo en el momento cuando se crea un formulario, a menos que valores específicos sean suministrados por la plantilla de página o parametros de consulta. El primer ítem en la lista para campos tipo select o radio es el ítem estándar. Para campos tipos =label=, =text= y =textarea= el valor puede contener comas. Campos tipo =checkbox= no pueden ser inicializados por la plantilla del formulario.
+   * Valores de campo también pueden ser generados por medio de una [[%SYSTEMWEB%.FormattedSearch][búsqueda formateada]] que resultará en una tabla como resultado.
+   * Variables como valores iniciales de un formulario serán interpretadas en el momento que se carga la definición del formulario.
+      * Si quiere utilizar el caracter =|= como valor inicial de un campo, tiene que anteponer una barra invertida =\|=.
+      * Puede utilizar =&lt;nop>= para evitar que se interpreten variables TWiki.
+      * Puede utilizar [[TWiki.FormatTokens][marcas de formato]] %FLAGGB% para evitar que se interpreten otros caracteres.
+*Notas generales:*
+   * Cuando se ve un tema, no se leerá la definición correspondiente.
+   * Temas que definan formularios pueden ser protegidos de manera normal, utilizando TWiki.TWikiAccessControl %FLAGGB% para restringir quien puede cambiar la plantilla de un formulario y/o la lista individual de valores. Tome en consideración que se requiere permiso de ver el tema para poder editar los temas que utilizan la definición del formulario, aúnque _no_ se requiere permiso de ver a la definición del formulario para ver un tema donde se utilizó el formulario.
+
+---+++ Valores en otros temas
+Como se mencionó anteriormente, también puede obtener valores posibles para campos tipo select, checkbox o radio desde otros temas. Por ejemplo, si tiene una línea definida así:
+<verbatim>
+| *Name*                 | *Type* | *Size* |
+| AeroplaneManufacturers | select |        |
+</verbatim>
+el TWiki buscará el tema !AeroplaneManufacturers para obtener los valores posibles para el campo tipo =select=.
+
+El tema !AeroplaneManufacturers tiene que contener una tabla donde cada línea de la tabla describe un posible valor. La tabla necesita solamente una columna, ==Name==. Otras columnas pueden estar, pero serán ignoradas.
+
+Por ejemplo:
+<verbatim>
+| *Name* |
+| Routan |
+| Focke-Wulf |
+| De Havilland |
+</verbatim>
+
+*Notas:*
+   * La columna ==Values== *tiene que estar vacía* en la definición del formulario correspondiente.
+ 
+---++ Ampliar el rango de tipos de datos para formularios
+Puede ampliar el rango de tipos de datos aceptados por formularios utilizando TWiki.TWikiPlugins %FLAGGB%. Todos estos tipos de datos ampliados solamente pueden tener un valor con las siguientes excepciones:
+   * cualquier nombre de tipo empezando con =checkbox=
+   * cualquier nombre de tipo conteniendo =+multi= en cualquier parte del nombre
+Tipos con nombres como estos pueden recibir varios valores.
+
+---++ Avisos and recomendaciones
+---+++ Genere un formulario HTML para crear nuevos temas basados en formularios
+   * Nuevos temas con un formulario se generan a través de un formulario HTML sencillo solicitando un nombre de tema. Por ejemplo, puede tener el tema =<nop>InformeGastosReembolsables= para crear informes nuevos de gastos reembolsables, el tema =<nop>SolicitudDeVacaciones= y así. Estos temas pueden especificar la plantilla de página requerida con el formulario asociado.
+[[TWiki.TWikiTemplates#TemplateTopics][Plantillas de página]] %FLAGGB% contiene más detalles.
+Una plantilla de formulario especifica los campos de un formulario. Una plantilla de formulario es simplemente una página conteniendo una tabla TWiki, donde cada línea de la tabla especifica un campo del formulario.
+#UsingFormData
+---+++ Busque por datos de formularios
+Formularios TWiki aceptan datos de ingreso del usuario que se guarda como TWiki.TWikiMetaData %FLAGGB%. Meta data también contiene información generada por el sistema acerca de cambios, archivos adjuntos, etc. Para encontrar, formatear y mostrar datos de formularios y otro tipo de meta data, ver TWiki.TWikiMetaData %FLAGGB%, las variables ==FORMFIELD==, ==SEARCH== y ==METASEARCH== en TWiki.TWikiVariables %FLAGGB% y [[TWiki.FormattedSearch][Búsqueda formateada TWiki]].
+
+<blockquote>
+*Ejemplo* %BR%
+Usuarios TWiki muchas veces quieren saber a cuáles temas contribuyeron. Con el parámetro ==$formfield== es fácil de mostrar el valor de un campo de clasificación a la par de un enlace al tema:
+<verbatim>
+| *Topic* | *Classification* |
+%SEARCH{"%USERSWEB%.UserName" scope="text" nosearch="on" nototal="on" order="modified" reverse="on"
+format="|<b>[[$web.$topic][$topic]]</b> |<nop>$formfield(TopicClassification) |" web="Sandbox"}%
+</verbatim>
+</blockquote> 
+
+Buscando formularios de esta manera es obviamente bastante poco eficiente, pero fácil de realizar. Si requiere mayor eficaz, revise algunas de las extensiones estructuradas wiki que apoyan búsquedas de mayor eficaz, e.g. TWiki:Plugins.DBCachePlugin %FLAGGB%.
+---+++ OJO!
+   * Algunos navegadores posiblemente eliminen cambios de línea en campos tipo =text= cuando se guarda el tema. Si requiere cambios de línea en un campo, asegure que es de tipo =textarea=.
+
+%STOPINCLUDE%
+
+__Temas relacionados:__ TWiki.UserDocumentationCategory %FLAGGB%, TWiki.TWikiTemplates %FLAGGB%
+
+-- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 23 May 2008
+
+%META:FORM{name="TWiki.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.TWikiForms"}%
+%META:FIELD{name="Revision" attributes="" title="Revision" value="24"}%
+%META:FIELD{name="Language" attributes="" title="Language" value="es"}%

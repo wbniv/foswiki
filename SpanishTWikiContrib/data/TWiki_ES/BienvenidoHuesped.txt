@@ -1,0 +1,52 @@
+%META:TOPICINFO{author="BaseUserMapping_333" date="1217597545" format="1.1" version="1.2"}%
+%META:TOPICPARENT{name="WebHome"}%
+%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+
+---+!! Bienvenid@, %WIKIUSERNAME%!
+
+Bienvenid@ al <nop>%WIKITOOLNAME%! Esto es un SitioTWiki (se pronuncia _sitio-tvi-ki_), un sitio de colaboración para trabajar en asuntos de interés común. Cualquier persona puede contribuir algo, utilizando cualquier navegador de internet. <nop>%WIKITOOLNAME% parece a un sitio normal de internet... solamente que estimula la contribución y *edición* de páginas, consultas, respuestas, comentarios y actualizaciones.
+
+Sistemas "Wiki" son fundamentalmente páginas editables de internet. Es una forma interesante y útil de comunicar asincrónicamente a través de la red para muchos sitios públicos existentes de intranet y internet. TWiki es fácil de aprender y utilizar. Su meta es ponerle a su disposición una forma sencilla para publicar e intercambiar sus ideas y compartirlas con otras personas a través de la red.
+
+%TOC%
+
+---++ Qué hay en un TWiki?
+
+   * *Webs:* Un SitioTWiki se divide en varias redes o webs, de las cuales cada una representa un área de colaboración. Este sitio contiene las siguientes webs: %WEBLIST{ format="[[$name.%HOMETOPIC%][$name]]" separator=", " }%
+   * *Temas:* Cada web consiste de [[TemasTWiki][temas]] enlazados que aparecen en su navegador.
+
+---++ Las cosas que hay que hacer
+
+   * *Surfear.* Esto es un sitio igual a cualquier otro. Lee y siga enlaces interesantes.
+   * *Escribir.* Exprésese! Desde su navegador puede cambiar o agregar todo lo que puede ver en un tema TWiki. Utilice texto normal o TaquigrafíaTWiki.
+   * *Experimentar.* Edite su página personal o visite la web Sandbox.%HOMETOPIC%.
+   * *Organizar.* Puede aprender a utilizar FormulariosTWiki y BúsquedaFormateada para incluir información sobre un tema - por ejemplo, clasifique páginas por asunto, estado o fecha.
+   * *Aprender más.* Algunos lugares buenos para empezar: 
+      * TutorialTWiki es un tour de 20 minutos que le explique las funciones básicas del TWiki.
+      * UnPocoSobreTWiki es un curso corto de introducción para enseñarles a principiantes.
+      * ReferenciasWiki enlaza a una selección de artículos y libros sobre la tecnología wiki y colaboración en línea.
+      * SintaxisWiki - una sintaxis sencilla para editar páginas.
+      * BuenEstilo - recommendaciones para modificaciones en páginas.
+
+---++ Asuntos básicos
+
+---+++ Editar una página
+   * haga click ==%MAKETEXT{"Edit"}%== al final de cualquier tema y realice sus cambios
+   * haga click ==[ Vista previa ]== al final de la página para verificar las modificaciones (utilice el botón de ==Página anterior== de su navegador si es necesario)
+   * haga click ==[ Guardar ]== Ya modificó el tema exitosamente!
+
+---+++ Crear una página
+ Puede ver un enlace con un signo de pregunta "<u>?</u>" detrás de una !PalabraWiki? Esto significa que aún no existe un tema para esta PalabraWiki. Si quiere crear el tema para esta !PalabraWiki, solamente haga click en el signo de pregunta. Se creará el tema y de una vez estará en el modo de edición.
+
+---+++ Ver el historial de un tema
+ Haga click ==Historial== al final del tema
+
+---+++ Adjuntar archivos
+ Haga click ==%MAKETEXT{"Attach"}%== para subir y adjuntar cualquier tipo de archivo.
+
+-- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 18 Apr 2008
+
+%META:FORM{name="TWiki.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.WelcomeGuest"}%
+%META:FIELD{name="Revision" attributes="" title="Revision" value="26"}%
+%META:FIELD{name="Language" attributes="" title="Language" value="es"}%

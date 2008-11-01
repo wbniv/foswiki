@@ -1,0 +1,47 @@
+%META:TOPICINFO{author="SebastianKlus" date="1209738758" format="1.1" reprev="1.4" version="1.4"}%
+%META:TOPICPARENT{name="WebHome"}%
+---+ !TranslationNote
+%TOC%
+
+---++ DE - German / Deutsch
+%STARTSECTION{"de"}%
+<sticky>
+<div style='background-color:#CCFF66; padding:5px;'>
+%ICON{"info"}% *HINWEIS:* Das nachfolgende Dokument ist eine Übersetzung des entsprechenden Originals mit dem Namen [[%SCRIPTURL{"view"}%/%ORIGINWEB%/%ORIGINTOPIC%?rev=%REVISION%][%ORIGINTOPIC%]] (rev. %REVISION%) der internen TWiki-4.2.0 Distribution. Das Originaldokument ist in deutscher Sprache verfasst. 
+</div>
+</sticky>
+%ENDSECTION{"de"}%
+
+---++ ES - Spanish / Español
+%STARTSECTION{"es"}%
+<sticky>
+<div style='background-color:#CCFF66; padding:5px;'>
+%ICON{"info"}% *NOTA:* El documento a continuación es una traducción del documento original [[%SCRIPTURL{"view"}%/%ORIGINWEB%/%ORIGINTOPIC%?rev=%REVISION%][%ORIGINTOPIC%]] (rev. %REVISION%) de la documentación interna distribuida con TWiki-4.2.0. El documento original está en inglés.
+</div>
+</sticky>
+%ENDSECTION{"es"}%
+
+---++ Translation for non-spanish speaking users:
+%ICON{"info"}% *NOTE:* The following document is a translation of the original document [[%SCRIPTURL{"view"}%/%ORIGINWEB%/%ORIGINTOPIC%?rev=%REVISION%][%ORIGINTOPIC%]] (rev. %REVISION%) of the internal documentation shipped with TWiki-4.2.0. The original document is written in English.
+
+---++ Technical background:
+---+++ Syntax
+<verbatim>
+%ICON{"info"}% *NOTE:* The following document is a translation of the original document [[%SCRIPTURL{"view"}%/%ORIGINWEB%/%ORIGINTOPIC%?rev=%REVISION%][%ORIGINTOPIC%]] (rev. %REVISION%) of the internal documentation shipped with TWiki-4.2.0. The original document is written in English.
+</verbatim>
+
+---+++ Explanation
+Each translated topic shall include data related to the original document (generally from the english source documentation) that is stored in the TranslationForm attached to the translated topic. This TranslationForm includes three core elements (fields), based on a the concept developed on TWiki:Codev.TranslationSupport:
+   * Origin: The original, not translated topic, including the web-reference, e.g. =TWiki.TWikiUsersGuide=
+   * Revision: The revision number of the original topic at the moment of translation
+   * Language: Two-character ISO language code representing the language of the translated topic, e.g. =es= for spanish or =en= for english
+Based on the information of that form, the text of TranslationNote is generated automatically by an
+<verbatim>
+%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+</verbatim>
+at the beginning of each translated topic, refering to the original topic (form field _Origin_) in its corresponding revision version (form field _Revision_).
+
+In addition to that, the TranslationNote shall be shown in the language of the translated topic, indicated in the form field _Language_.
+
+__Contributores:__ %BR%
+-- Main.SebastianKlus - 30 Apr 2008

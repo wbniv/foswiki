@@ -1,0 +1,32 @@
+%META:TOPICINFO{author="BaseUserMapping_333" date="1217710416" format="1.1" reprev="1.1" version="1.1"}%
+%META:TOPICPARENT{name="WebHome"}%
+%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+
+%STARTINCLUDE%
+---++ Ayuda acerca de preferencias
+   * La definición de preferencias se establece por: <br /> =3 o 6 espacios * Set NOMBRE = valor= <br /> Ejemplo:
+      * S<nop>et WEBBGCOLOR = #FFFFC0
+   * La definición de una preferencia puede ser deshabilitado por medio del signo #. Remueve el signo # para habilitar una configuración personalizada local. Ejemplo:%BR%
+      * #Set DENYWEBCHANGE = %USERSWEB%.UnknownUser
+   * Preferencias serán utilizadas como [[%SYSTEMWEB%.TWikiVariables][TWikiVariables]] %FLAGGB%, encerrando el nombre en signos de porcentaje. Ejemplo:
+      * Cuando escriba la variable =%WEB<nop>BGCOLOR%= , será interpretada como =%WEBBGCOLOR%=
+   * El orden secuencial de la definición de preferencias es significante. Defina preferencias que utilizan otras preferencias primero, p.e. defina =<nop>WEBCOPYRIGHT= antes de =<nop>WIKIWEBMASTER= porque =%<nop>WEBCOPYRIGHT%= utiliza la variable =%<nop>WIKIWEBMASTER%=.
+   * Usted puede implementar sus propias variables de preferencia y utilizarlas en sus temas y plantillas.
+
+---++ Temas relacionados
+   * [[%SYSTEMWEB%.%WIKIPREFSTOPIC%]] %FLAGGB%, [[%LOCALSITEPREFS%]] %FLAGGB% - preferencias de sitio
+   * [[%USERSWEB%.%WIKIUSERSTOPIC%][%WIKIUSERSTOPIC%]] %FLAGGB% - lista de temas de usuario. Temas de usuario pueden contener preferencias personalizadas opcionales
+   * [[%SYSTEMWEB%.TWikiVariables][TWikiVariables]] %FLAGGB% - lista de =%<nop>VARIABLES%= comunes
+   * [[%SYSTEMWEB%.TWikiAccessControl][TWikiAccessControl]] %FLAGGB% - le explica como restringir acceso por medio de usuarios o grupos
+
+---++ Herramientas
+%INCLUDE{"%SYSTEMWEB%.RenameWeb"}%
+
+%STOPINCLUDE%
+
+-- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 02 Aug 2008
+
+%META:FORM{name="TWiki.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.WebPreferencesHelp"}%
+%META:FIELD{name="Revision" attributes="" title="Revision" value="1"}%
+%META:FIELD{name="Language" attributes="" title="Language" value="es"}%

@@ -1,0 +1,13 @@
+%META:TOPICINFO{author="TWikiAdminGroup" date="1211952604" format="1.1" version="1.34"}%
+%META:TOPICPARENT{name="WebHome"}%
+---++ Statistics for <nop>%WEB% Web
+
+| *Month:* | *Topic <br /> views:* | *Topic <br /> saves:* | *File <br /> uploads:* | *Most popular <br /> topic views:* | *Top contributors for <br /> topic save and uploads:* |
+| <!--statDate--> | <!--statViews--> | <!--statSaves--> | <!--statUploads--> | <!--statTopViews--> | <!--statTopContributors--> |
+| May 2008 |  575 |  214 |  1 | &nbsp;95 [[WebHome]]<br />&nbsp;30 [[WebSearch]]<br />&nbsp;29 [[ArchivosAdjuntos]]<br />&nbsp;28 [[PreguntasFrecuentes]]<br />&nbsp;27 [[TaquigrafíaTWiki]]<br />&nbsp;26 [[FormulariosTWiki]]<br />&nbsp;25 [[CómoFormatearTexto]]<br />&nbsp;22 [[CulturaWiki]]<br />&nbsp;20 [[SitioTWiki]]<br />&nbsp;17 [[TutorialTWiki]]<br />&nbsp;17 [[PreguntasSobreFormatearTexto]] | 215 Main.SebastianKlus |
+| Apr 2008 |  186 |  60 |  0 | &nbsp;66 [[WebHome]]<br />&nbsp;44 [[TutorialTWiki]]<br />&nbsp;39 [[BienvenidoHuésped]]<br />&nbsp;19 [[GuíaDeUsuarioTWiki]]<br />&nbsp;12 [[WebPreferences]]<br />&nbsp;&nbsp;3 [[WebTopicEditTemplate]]<br />&nbsp;&nbsp;1 [[WebTopicList]]<br />&nbsp;&nbsp;1 [[WebCreateNewTopic]]<br />&nbsp;&nbsp;1 [[WebIndex]] | &nbsp;60 Main.SebastianKlus |
+
+__Notes:__
+   * Do not edit this topic, it is updated automatically. (You can also <a href="%SCRIPTURLPATH{statistics}%/%WEB%">force</a> an update)
+   * %SYSTEMWEB%.TWikiDocumentation tells you how to enable the automatic updates of the statistics.
+   * Suggestion: You could archive this topic once a year and delete the previous year's statistics from the table.

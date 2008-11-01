@@ -1,0 +1,51 @@
+%META:TOPICINFO{author="BaseUserMapping_333" date="1216579394" format="1.1" version="1.4"}%
+%META:TOPICPARENT{name="WebHome"}%
+%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+
+---++ Pregunta:
+Cómo puedo crear una aplicación sencilla basada en FormulariosTWiki?
+
+
+---++ Respuesta:
+
+   1 Cree un formulario TWiki y defina campos (ver FormulariosTWiki para más detalles)
+   1 Agregue el formulario a la lista de formularios de la web. Definir la variable WEBFORMS en WebPreferences %FLAGGB%
+   1 Cree una plantilla de página
+   1 En modo de edición, agregue el [[FormulariosTWiki][formulario TWiki]] que definió para la plantilla de página utilizando el botón "Agregar formulario"
+   1 Cree un formulario HTML con los campos necesarios
+   1 Defina la función =SEARCH= para listar los items (ver TWiki.VarSEARCH para más detalles)
+
+Para más información siga los enlaces...
+
+A continuación el código de PreguntasFrecuentes:
+
+<verbatim>
+<form action="%SCRIPTURL{"edit"}%/%WEB%/">
+Nueva página de preguntas frecuentes: &nbsp; (Utilice una PalabraWiki como nombre) <br />
+<input type="text" name="topic" size="32" /> &nbsp; <input type="submit" class="twikiSubmit" value="Crear página" />
+<input type="hidden" name="onlywikiname" value="on" />
+<input type="hidden" name="templatetopic" value="PlantillaTWikiFaq" />
+<input type="hidden" name="topicparent" value="%TOPIC%" />
+</form>
+</verbatim>
+
+----
+
+Y la función de =SEARCH=:
+<verbatim>
+%SEARCH{ "Regresar a\:__ PreguntasFrecuentes" casesensitive="on" type="regex" nosearch="on" nototal="on" format="}%
+</verbatim>
+
+
+__Regresar a:__ PreguntasFrecuentes
+
+__Páginas relacionadas:__ TWiki.UserDocumentationCategory %FLAGGB%
+
+-- __Colaboradores:__ TWiki:Main.MiyokoTakushima - 18 Oct 2004
+
+-- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 23 May 2008
+
+%META:FORM{name="TWiki.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.AnApplicationWithWikiForm"}%
+%META:FIELD{name="Revision" attributes="" title="Revision" value="4"}%
+%META:FIELD{name="Language" attributes="" title="Language" value="es"}%

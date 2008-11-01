@@ -1,0 +1,43 @@
+%META:TOPICINFO{author="BaseUserMapping_333" date="1216579634" format="1.1" reprev="1.11" version="1.11"}%
+%META:TOPICPARENT{name="WebHome"}%
+%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+
+---+ Guía de usuario TWiki
+
+_Documentación para usuarios TWiki._
+
+   * *Introducción al TWiki* 
+      * BienvenidoHuesped: Una introducción rápida que cubre todos los básicos
+      * UnPocoSobreTWiki: Un entrenamiento introductorio corto para principiantes
+      * TWiki.TWikiRegistration %FLAGGB%: Regístrese para poder modificar páginas y escoger opciones
+
+   * *Introducciones de una página* 
+      * SitioTWiki: Introducción ultra-compacta de 2 minutos acerca del TWiki
+      * TutorialTWiki: Introducción compacta de 20 minutos acerca del TWiki<p> </p>
+      * TemasTWiki: Personalizar, renombrar, mover o eliminar páginas TWiki
+      * TWiki.SearchHelp %FLAGGB%: Consejos y ayuda acerca de búsqueda
+      * BuenEstilo: Consejos de trabajo para una plataforma de colaboración
+      * TaquigrafiaTWiki: Todos los básicos de la taquigrafía TWiki
+      * ComoFormatearTexto: Revise todas las reglas acerca de cómo formatear texto en una sola página
+      * TWiki.TWikiVariables: %FLAGGB% Cómo puede incorporar facilmente texto, imágenes y contenido dinámico
+      * ArchivosAdjuntos: Suba archivos para distribuir o mostrarlos a través del navegador
+      * NotificacionDeCambios: Reciba notificaciones con enlaces a páginas modificadas por correo electrónico
+      * GlosarioTWiki: Un glosario sencillo de términos TWiki
+
+   * *Preguntas frecuentes del TWiki* 
+      * PreguntasFrecuentes: Las cosas que toda la gente consultan acerca del TWiki
+      * PreguntasSobreFormatearTexto: Consultas comunes acerca de cómo preparar documentos para el TWiki
+      * Usuarios avanzados también deben revisar el [[TWiki.TWikiReferenceManual][Manual de referencia]] %FLAGGB% completo!
+
+   * *Ayuda acerca de [[TWiki.InstalledPlugins][Plugins instalados]] %FLAGGB%*
+
+<blockquote>
+%PLUGINDESCRIPTIONS%
+</blockquote>
+
+-- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 25 Apr 2008
+
+%META:FORM{name="TWiki.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.TWikiUsersGuide"}%
+%META:FIELD{name="Revision" attributes="" title="Revision" value="2"}%
+%META:FIELD{name="Language" attributes="" title="Language" value="es"}%

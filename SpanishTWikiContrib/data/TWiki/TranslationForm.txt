@@ -1,0 +1,14 @@
+%META:TOPICINFO{author="SebastianKlus" date="1209578708" format="1.1" reprev="1.1" version="1.1"}%
+---+ !TranslationForm
+Form where translation information is stored.
+
+%STARTINCLUDE%
+| *Name* | *Type* | *Size* | *Values* | *Tooltip message* |
+| Origin | text | 50 | | Web . Topic (of the original topic) |
+| Revision | text | 10 | | Revision of original topic (point in time of translation) |
+| Language | text | 2 | | Language (of this topic) |
+%STOPINCLUDE%
+
+-- Main.SebastianKlus - 30 Apr 2008
+
+%META:TOPICMOVED{by="SebastianKlus" date="1209578708" from="TWikiES.TranslationForm" to="TWiki.TranslationForm"}%

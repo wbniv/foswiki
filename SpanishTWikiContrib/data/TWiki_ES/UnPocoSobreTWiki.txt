@@ -1,0 +1,351 @@
+%META:TOPICINFO{author="BaseUserMapping_333" date="1217475235" format="1.1" version="1.2"}%
+%META:TOPICPARENT{name="WebLeftBar"}%
+%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+
+Esto es un entrenamiento introductorio corto para prinicipiantes TWiki.
+
+%SLIDESHOWSTART%
+
+---++ Un poco sobre TWiki
+<img src="%PUBURL%/TWiki/ATasteOfTWiki/hula.gif" alt="Hula girl"  width="113" height="111" align="right" />
+La función básica del TWiki es un Wiki (si esto ayuda!)
+
+Un Wiki es como un sitio web, excepto que puede editar el contenido en su navegador
+
+   * "Wiki" es la abreviación para "wiki wiki", la palabra havaiana para "rápido"
+   * La idea tiene su origen en [[http://www.hyperdictionary.com/computing/hypercard][Macintosh Hypercard]], via [[http://www.c2.com/cgi/wiki?WardCunningham][Ward Cunningham]]
+   * Según Ward, Wiki es _"the simplest online database that could possibly work" ("la base de datos en línea más sencilla que posiblemente puede funcionar")_
+   * Basicamente un Wiki es una pizarra compartida, en línea y persistente
+
+---++ TWiki Wiki
+<img src="%PUBURL%/TWiki/ATasteOfTWiki/whiteboard.gif" alt="Whiteboard" width="240" height="160" align="right" />
+TWiki implementa la idea básica Wiki de una pizarra compartida
+
+   * Cualquier persona puede agregar contenido<br />... o cambiar lo escrito<br />... o combiar la organización del contenido
+   * Cualquier cosa que escriba será<br />... presentada en forma bonita<br />...recordada... y nunca olvidada
+
+TWiki también actua como una "plataforma de aplicación" para integrar algunas otras funciones.
+
+TWiki es un desarrollo de Contenido-Abierto en [[http://twiki.org/][TWiki.org]]
+   * liderado por TWiki:Main.PeterThoeny
+   * con más de 100 colaboradores permanentes en muchos otros países
+
+---++ ¿Dónde se utiliza?
+TWiki se utiliza principalmente en entornos comerciales, muchas veces en intranets corporativas
+   * Ejemplos: Disney, British Telecom, SAP, Wind River, Motorola, <a href="http://udn.epicgames.com/Main/WebHome">Epic Games</a><br />
+     <sticky><table cellspacing="20"><tr>
+     <td><img src="%PUBURL%/TWiki/ATasteOfTWiki/Disney_logo.gif" alt="Disney logo"  width="80" height="31" /></td>
+     <td><img src="%PUBURL%/TWiki/ATasteOfTWiki/BT_logo.gif" alt="British Telecom logo"  width="80" height="41" /></td>
+     <td><img src="%PUBURL%/TWiki/ATasteOfTWiki/SAP_logo.gif" alt="SAP logo"  width="80" height="40" /></td>
+     <td><img src="%PUBURL%/TWiki/ATasteOfTWiki/Motorola_logo.gif" alt="Motorola logo"  width="80" height="65" /></td>
+     <td><img src="%PUBURL%/TWiki/ATasteOfTWiki/EpicGames_logo.gif" alt="Epic Games logo"  width="80" height="65" /></td>
+     </tr></table></sticky>
+
+Algunos sitios Wiki públicos también utilizan TWiki
+   * Ejemplos: <br /> https://twiki.cern.ch/twiki/bin/view/ <br /> http://csci.mrs.umn.edu/twiki/view
+
+---++ Características del TWiki
+TWiki se basa en el concepto Wiki original y agrega algunas características que lo hacen muy útil en un entorno comercial.
+   * Páginas TWiki llevan un control de revisión completo, así que se mantiene un registro de cualquier cambio en cualquier página <sticky><table border="0" cellpadding="3" cellspacing="0"><tr><td bgcolor="#D0D0D0"><font color="black" size="-1">r6 <a>&lt;</a> r5 <a>&lt;</a> r4</font></td></tr></table></sticky>
+   * Se puede configurar la apariencia de manera flexible, utilizando plantillas
+<sticky><table width="100%"><tr><td valign="top">
+   * Un interfaz "plugins" facilita
+      * personalización
+      * ampliación
+      * integración de aplicaciones
+</td><td align="right"><img src="%PUBURL%/TWiki/ATasteOfTWiki/lego.gif" alt="" /></td></tr></table></sticky>
+
+---++ Aplicaciones del TWiki básico
+El TWiki básico puede utilizarse como
+   * Una pizarra
+   * Un archivo de documentos
+   * Un entorno de redacciones de colaboración
+   * Un bloc de notas
+   * Un área de chatear
+
+---++ Aplicaciones extendidas
+Se ha utilizado un TWiki con extenciones como:
+   * Un sistema de administración de contenido para sitios web
+   * Una herramienta para el desarrollo de presentaciones
+   * Un blog
+   * Una base de datos
+   * Un sistema de administración de proyectos
+   * Una herramienta de rastreo
+   * (_¡La verdad es, que realmente no conocemos sus límites!_)
+
+---++ Estructura de una página TWiki
+Páginas TWiki generalmente se componen de tres elementos:
+   * Un encabezado de página
+   * Un cuerpo
+   * Un pie de página
+
+   * El encabezado y pie de página son gerenados por el sistema
+   * El cuerpo contiene el texto de la página, como usted lo digitó
+
+Se puede configurar el TWiki bastante y la apariencia puede cambiar. Sin embargo, los elementos esenciales siempre van a a estar en la página (¡en algún lugar!)
+
+---++ El encabezado de página
+El encabezado de una página TWiki generalmente está marcado con algún color y normalmente muestra un ícono que le da una indicación en donde se encuentra, p.e. el logo de la companía.
+<sticky><table width="90%" border="0" cellpadding="3" cellspacing="0" bgcolor="white">
+ <tr>
+  <td bgcolor="#D0D0D0" rowspan="2" valign="top" width="1%">
+    <img src="%PUBURL%/TWiki/ATasteOfTWiki/myco.gif" width="62" height="63" border="0" alt="TWiki home" />
+   </td><td>
+   <font size="+0"> My<nop>Co.My<nop>Topic </font>
+  </td><td align="right">
+    <font size="-1" color="black">Webs:<br /> <a href="non">Myco</a> | <a href="non">Main</a> | <a href="non">TWiki</a> | <a href="non">Sandbox</a></font>
+  </td>
+ </tr>
+ <tr bgcolor="#D0D0D0">
+  <td colspan="2">
+    <font size="-1" color="black">[[WebChanges][Cambios]] | [[WebIndex][Indice]] | [[WebSearch][Búsqueda]] | Ir a <input type="text" name="topic" size="16" /></font>
+  </td>
+ </tr>
+</table></sticky>
+También normalmente se ven ciertos 'enlaces' que puede tocar. Generalmente va a ver:
+   * [[WebChanges][Cambios]] - muestra una lista de cambios recientes
+   * [[WebIndex][Indice]] - muestra el índice completo
+   * [[WebSearch][Búsqueda]] - lo llava a una página de búsqueda donde puede buscar por todo el texto
+   * Ir a <input type="text" name="topic" size="16" /> - le permite digitar el nombre de una página que ya conoce
+
+---++ El encabezado de página ... continuación
+<sticky><table width="90%" border="0" cellpadding="3" cellspacing="0" bgcolor="white">
+ <tr>
+  <td bgcolor="#D0D0D0" rowspan="2" valign="top" width="1%">
+    <img src="%PUBURL%/TWiki/ATasteOfTWiki/myco.gif" width="62" height="63" border="0" alt="TWiki home" />
+   </td><td>
+    <font size="+0"> My<nop>Co.My<nop>Topic </font>
+  </td><td align="right">
+    <font size="-1" color="black">Webs:<br /> <a href="non">Myco</a> | <a href="non">Main</a> | <a href="non">TWiki</a> | <a href="non">Sandbox</a></font>
+  </td>
+ </tr>
+ <tr bgcolor="#D0D0D0">
+  <td colspan="2">
+    <font size="-1" color="black">[[WebChanges][Cambios]] | [[WebIndex][Indice]] | [[WebSearch][Búsqueda]] | Ir a <input type="text" name="topic" size="16" /></font>
+  </td>
+ </tr>
+</table></sticky>
+En el encabezado de página también se ven una lista de "webs" TWiki (normalmente en la esquina superior derecha). Una web es una colección de página que están relacionadas a un tema
+   * Por ejemplo, podríamos tener una web "Enemigos" donde guardamos todo lo que sabemos de nuestros enemigos y otra web que se llama "Amigos"
+   * Normalmente hay una web para probar y jugar que se llama como "Sandbox" _(caja de arena)_ o "Scratch" _(borrador)_ donde puede crear página solamente para probar cosas y experimentar
+   * Y algunas áreas administrativas como "%USERSWEB%" y "%SYSTEMWEB%"
+
+---++ El pié de página
+El pié de página también está marcado con algún color y en este se encuentran generalmente los enlaces que le permiten modificar el contenido
+<sticky><table bgcolor="white" width="90%" border="0" cellpadding="3" cellspacing="0">
+ <tr bgcolor="#D0D0D0">
+  <td valign="top" colspan="2">
+    <font size="-1" color="black"> <a href="none"><b>Edit</b></a>
+    |  <a href="none">Adjuntar</a>
+    |  <a href="none">Historial</a>  | r2 <a href="none">&gt;</a> r1
+    |  <a href="none">Más</a> </font>
+  </td>
+ </tr>
+ <tr>
+  <td valign="top">
+    <font size="-1" color="black">Revision r1.2 - 13 Feb 2004 - 09:09 GMT - <a href="none">TWikiPresenter</a> </font>
+  </td>
+  <td width="40%" valign="top">
+   <font size="-2">%WEBCOPYRIGHT% </font>
+  </td>
+ </tr>
+</table></sticky>
+   * El enlace <a>Editar</a> lleva a uno a una página interactiva donde puede cambiar el contenido de la página
+   * El enlace <a>Adjuntar</a> le permite adjuntar archivos
+   * Otros enlaces implicar otras funciones más complejas, principalmente para rastrear las revisiones - puede ignorarlos por el momento
+
+---++ Editar páginas
+   * ¡Usted leyó una página y absolutamente no está de acuerdo! Dice: <br /> _Todos_ *sabemos* que =el mundo= es un <font color="blue"><u>EsferoideOblato</u></font><br />Pero usted sabe que de echo es plano! ;-)
+   * Hizo clique en el enlace editar y una página de edición apareció. ¡Pero no se parece mucho a lo que vió en la página anterior - está lleno de jerogríficos extraños!
+<code>_Todos_ <nop>*sabemos* que <nop>=el mundo= es un Esferoide<nop>Oblato</code>
+   * ¿Ahora qué?
+
+---++ Lo que hay en una página
+   * Los jeroglíficos son lo que se conoce como "Marcación TWiki" o "Formateo TWiki"
+   * Es una manera sencilla de avisarle al navegador como quiere que se vea una página
+   * No tiene que utilizarlo
+      * TWiki entiende páginas de texto sencillo perfectamente. <br /><br /> <code>Esto es completamente y absolutamente sencillo</code><br /><br /> aparece como <br /><br /> Esto es completamente y absolutamente sencillo
+
+---++ Formatear hace que las páginas se ven más bonitas
+... y más fáciles para leer<br /><br />
+<code>_Esto_ es <nop>*completamente* y <nop>__absolutamente__ sencillo</code><br /><br /> aparece como <br /><br /> _Esto_ es *completamente* y __absolutamente__ sencillo
+   * Se encuentra una descripción completa de todo el formateo en ComoFormatearTexto y PreguntasSobreFormatearTexto
+   * Lo mejor que uno puede hacer es simplemente digitar hasta que uno se quede pegado
+      * después siga el enlace desde la página de editar a la página de ayuda.
+
+---++ Formatos utilizados frecuentemente
+TWiki interpreta páginas con texto sencillo perfectamente, pero puede $RED% __mejorarlas__ %ENDCOLOR%%GREEN% _un_ %ENDCOLOR%%BLUE% *poco* %ENDCOLOR% utilizando algunas abreviaciones de formato. A continuación encontrará las más usadas:
+   * <nop>---+ indica un título. Agregue más + para títulos secundarios.
+    | *Usted digita* | *Usted ve* |
+    | %BLACK%<code>---+ Esto es un título</code>%ENDCOLOR% | <h1>%BLACK%Esto es un título%ENDCOLOR%</h1> |
+    | %BLACK%<code>---++ Y esto también</code>%ENDCOLOR% | <h2>%BLACK%Y esto también%ENDCOLOR%</h2> |
+   * %<nop>TOC% insertará una tabla de contenido<br />
+
+---++ Más formatos comunes
+   * Una línea vacía genera un nuevo párafo<br />
+   * <nop>--- solo en una línea genera una línea horizontal
+   * Texto entre asteriscos <nop>*como esto* se ve *como esto* <br />
+   * Texto entre líneas bajas <nop>_como esto_ se ve _como esto_ <br />
+   * Texto entre signos de igual <nop>=como esto= se ve =como esto= <br />
+   * Se generan listas con viñetas utilizando tres espacios seguidos por un asterisco (<tt>*</tt>) al inicio de una línea
+      * El nivel de las viñetas se define por medio de la cantidad de espacios, en multiples de tres
+| *Usted digita* | *Usted ve* |
+| <font color="black"><code>&nbsp;&nbsp;&nbsp;* Viñeta</code><br /><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Segundo nivel</code></font> | <ul><li><font color="black">Viñeta</font><ul><li><font color="black">Segundo nivel</font></li></ul></li></ul> |
+   * Listas enumeradas utilizan un número en lugar del <tt>*</tt>. La enumeración se genera automáticamente, así que puede digitar solamente =1=
+
+---++ Aún más.....
+   * Puede crear una tabla utilizando líneas verticales:
+<verbatim>
+     | Gato | Feline |
+     | Oso | Ursine |
+     | Lobo | Lupine |
+</verbatim>
+   * aparece como
+     | <font color="black">Gato</font> | <font color="black">Feline</font> |
+     | <font color="black">Oso</font> | <font color="black">Ursine</font> |
+     | <font color="black">Lobo</font> | <font color="black">Lupine</font> |
+   * %<nop>RED% .... %<nop>ENDCOLOR% cambiará el color del texto encerrado. Hay muchos colores disponibles (%RED%%<nop>RED%%ENDCOLOR%, %GREEN%%<nop>GREEN%%ENDCOLOR%, %BLUE%%<nop>BLUE%%ENDCOLOR% etc)
+
+---++ !PalabrasWiki
+   * Un jeroglífo especial que es *muy importante* es una PalabraWiki
+      * una palabra que empieza con una letra mayúscula, después algo en minúscula y despúes algo más en mayúscula (en inglés conodico como <nop>CamelCase)
+   * Esto tiene un significado especial para el TWiki; si coincide con el nombre de otro tema, TWiki generará automáticamente un enlace a esta página.   
+   * Si la página no existe, se marcará la palabra y se agrega un signo de pregunta al final de la palabra, ComoEste
+   * Si toca el signo de pregunta TWiki lo invitará a crear esta página.
+
+   * Esto le permite digitar nombres de página que _piensa_ que deben existir, pero aún no existen
+      * Usted o alguien más puede revisar la página más tarde y tocar el signo de pregunta!
+
+---++ Referenciar otras páginas y URLs
+   * [[PalabraWiki][PalabrasWiki]] automáticamente enlazan a la página a lo cual se refiere
+      * Puede facilitar la lectura de los enlaces utilizando corchetes:
+         * <code>[<nop>[PalabraWiki][palabras pegadas]] aparece como [[PalabraWiki][palabras pegadas]]</code>
+   * Una dirección URL normal incorporada en el texto aparecerá como enlace - http://www.google.com
+      * También puede hacer ver más bonito las URLs utilizando corchetes:
+         * <code>[<nop>[http://www.google.com/][Google]]</code> aparece como [[http://www.google.com/][Google]]
+   * Utilice %<nop>SEARCH. Es un interfaz a un sistema sofisticado de búsqueda que incluye el resultado de una búsqueda en su página. Ver %SYSTEMWEB%.TWikiVariables %FLAGGB% para la lista completa de detalles.
+
+---++ Más formatos
+   * Hay *muchas* variables más para formatear, ver ComoFormatearTexto y PreguntasSobreFormatearTexto
+   * _Si usted es un masoquista verdadero, aún puede digitar código HTML!_
+   * *Importante* Para _deshabilitar_ formatos no requeridos, utilice =&lt;nop&gt;=
+      * <code>&lt;nop&gt;_word_</code> aparece como <nop>_word_
+
+---++ Crear páginas nuevas
+   * Formas alternativas:
+      * Haga click en el signo de pregunta después de una PalabraWiki
+      * Digite el nombre del tema en el campo "Ir a:"
+      * Digite el nombre del tema en la URL
+   * Cada vez cuando trata de ingresar a una página que no existe, el TWiki l@ invitará a crearla.
+   * Asegúrese que los nombres de temas siempres serán [[PalabraWiki][PalabrasWiki]].
+
+---++ Archivos adjuntos
+   * Archivos adjuntos son archivos que fueron subidos y adjuntados a una página TWiki utilizando la función 'Adjuntar' en el pié de página.
+<sticky><table border="0" cellspacing="2" cellpadding="1" bgcolor="white">
+ <tr>
+  <th align="center" valign="top" bgcolor="#0c2577"><a href="none"><font color="#FFFF99">Attachment</font> <img src="http://TWiki.org/p/pub/TWiki/TablePlugin/diamond.gif" border="0" alt="sort" /></a></th>
+  <th align="center" valign="top" bgcolor="#0c2577"><a href="none"><font color="#FFFF99"> Acción</font></a> </th>
+  <th align="center" valign="top" bgcolor="#0c2577"><a href="none"><font color="#FFFF99"> Tamaño</font></a> </th>
+  <th align="center" valign="top" bgcolor="#0c2577"><a href="none"><font color="#FFFF99"> Fecha</font></a> </th>
+  <th align="center" valign="top" bgcolor="#0c2577"><a href="none"><font color="#FFFF99"> Quién</font></a> </th>
+  <th align="center" valign="top" bgcolor="#0c2577"><a href="none"><font color="#FFFF99"> Comentario</font></a> </th>
+ </tr>
+ <tr>
+  <td valign="top" bgcolor="#F8F8F8">
+   <img src="http://TWiki.org/p/pub/icn/zip.gif" width="16" height="16" align="top" alt="" border="0" />
+   <font color="black"><a href="none">myco.gif</a></font>
+  </td>
+  <td align="center" valign="top" bgcolor="#F8F8F8">
+   <font color="black"><a href="none">administrar</a></font>
+  </td>
+  <td align="right" valign="top" bgcolor="#F8F8F8"><font color="black"> 9.6&nbsp;K </font></td>
+  <td valign="top" bgcolor="#F8F8F8"> <font color="black"> 13 Feb 2004 - 18:41 </font></td>
+  <td valign="top" bgcolor="#F8F8F8"> <font color="black"> <a href="none">MushroomMagicMan</a> </font></td>
+  <td valign="top" bgcolor="#F8F8F8"> <font color="black">Archivo de imagen adjunto </font></td></tr>
+</table></sticky>
+   * Archivos adjuntos son simplemente archivos en el formato que usted quiere
+   * TWiki reconoce algunos formatos de archivos, sobre todo archivos de imágen (.gif)
+      * Digite =%<nop>ATTACHURL%/myco.gif= para ver esto: %PUBURL%/TWiki/ATasteOfTWiki/myco.gif
+
+---++ Cultura Wiki
+Suficiente de la mecánica; ¿cómo se _utiliza_ wiki verdaderamente? Bueno, esto depende realmente de usted, pero hay ciertas recomendaciones que desarrolló la comunidad wiki para publicaciones de colaboración que funcionan bastante bien:
+   * Qué puedo editar?
+      * Todo. Pero es buena nota si firma sus contribuciones
+      * Si alguien no quiere que se modifique su página, él tiene que avisarle, claramente, en la página
+   * ¿Pero si a alguien no le gustan mis modificaciones?
+      * En el TWiki, siempre se puede recuperar revisiones anteriores y reinstalarlas si realmente quiere
+      * Además, sus modificaciones deberían considerarse como oportunidad de iniciar una discusión
+   * Páginas en wiki (generalmente) pertenecen a uno de tres "modos"
+      * !ModoDocumento
+      * !ModoDiscusión
+      * !ModoEstructurado
+TWiki no diferencia automáticamente entre esto modos; son meramente semánticos.
+
+---++ !ModoDocumento
+   * Una página en !ModoDocumento normalmente consiste de una contribución que está escrita en tercera persón y no tiene firma.
+   * El texto es propiedad de la comunidad
+      * Tal vez tenga varios autores que cambien durante su actualización para reflejar el acuerdo de la comunidad.
+
+---++ !ModoDiscusión
+   * El modo de discusión es una discusión donde la comunidad basicamente conversa
+   * La discusión normalmente inicia con una declaración, al inicio de la página, que se discute posteriormente
+   * Tal vez se "reacomoda" (modifica) la página periódicamente para remover algunos de los comentarios
+      * Mientras el comentario que reemplace el anterior refleje bien el contenido original, normalmente a nadie le molesta.
+      * Recuerde sin embargo siempre mantener una lista completa de los contribuyentes!
+Tal vez vea un campo de comentario en una página que esté en !ModoDiscusión que le facilita agregar sus observaciones de una forma fácil y rápida. Digitando un comentario y agregándolo a una página de esta manera se conoce también como "blogging" ;-)
+   * !ModoDiscusión es casi como la discusión en un correo electrónico
+      * Solamente que nuevos comentarios generalmente se agregan al final
+   * Páginas en !ModoDiscusión muchas veces se convierten en páginas en !ModoDocumento
+
+---++ !ModoEstructurado
+   * Una página en !ModoEstructurado sigue una estructura predefinida, por ejemplo
+      * Una agenda
+      * Un juego de minutas de reunión
+      * Una descripción de solicitudes
+   * Páginas en !ModoEstructurado generalmente tendrán reglas que controlan la edición de este tipo de páginas.
+
+---++ Otros consejos Wiki - Categorías
+   * Un consejo Wiki para agrupar páginas
+   * Ejemplo: para agrupar un juego de páginas relacionadas al tiempo:
+      1 Cree una página que se llama '!CategoríaTiempo'
+      1 Agregue la función SEARCH que incluye la palabra '!CategoríaTiempo'
+         * <code>%<nop>SEARCH{"Categoría<nop>Tiempo" nosearch="on" nosummary="on"}%</code>
+      1 Incluya la PalabraWiki !CategoríaTiempo en todas las páginas relacionadas al tiempo <br/ >(normalmente al final, debajo de una línea horizontal)
+
+---++ Características contribuidas
+El TWiki básico trae muchas características, pero está enrequicido mucho más agragéndole módulos opcionales (plugins) que pueden (o no!) instalarse en su sistema. Estos se clasifican como __máscaras (skins)__ (módulos que cambien la apariencia) y __plugins__ (módulos que aumenten la funcionalidad).
+
+A continuación una descripción breve de algunas de muchos plugins, junto con los comandos que podría ver en los temas, en caso que se utilicen. Puede averiguar más visitando las páginas de plugins.
+   * !ActionTrackerPlugin: Permite *etiquetas de seguimientos* en temas, con *notificación automática* del estatus <code>%ACTION...</code>
+   * !CalenderPlugin: Muestra un *calendario mensual* con eventos marcados <code>%CALENDAR...%</code>
+   * !CommentPlugin: Permite *ingreso rápido de comentarios cortos* (también conocido como <b>blogging</b>) <code>%COMMENT...</code>
+   * !ChartPlugin: Cree PNG o GIF *gráficos para visualizar datos en tablas TWiki* <code>%CHART...</code>
+   * !EditTablePlugin: Edite tablas TWiki utilizando *campos de edición y listas de selección* <code>%EDITTABLE...</code>
+   * !InterwikiPlugin: Defina *accesos directos* para enlaces a *sitios externos comunes*
+
+---++ Más plugins
+   * !RenderListPlugin: Genere *listas de viñetas en una variedad de formatos* <code>%RENDERLIST...</code>
+   * !SlideShowPlugin: *Cree presentaciones basadas en la web* en base a temas con títulos <code>%SLIDESHOWSTART...</code>
+   * !SpreadSheetPlugin: Agregue *fórmulas de hoja de cálculo* como "$SUM( $ABOVE() )" para tablas ubicadas en temas TWiki <code>%CALC...</code>
+   * !TablePlugin: Controle *presentación y orden de tablas* <code>%TABLE...</code>
+   * !TWikiDrawPlugin: Agregue *croquis rápidos* a páginas <code>%DRAWING...</code>
+Los plugins a continuación están instalados en este TWiki: %ACTIVATEDPLUGINS%
+
+Hay muchos plugins más, ver http://TWiki.org/cgi-bin/view/Plugins
+
+---++ Créditos y reconocimientos
+   * Este entrenamiento fue desarrollado por TWiki:Main.CrawfordCurrie en nombre de [[http://www.oxamer.com/][Oxamer]], una de las companias del grupo [[http://www.ogt.co.uk/][Oxford Gene Technology]].
+   * Contribuciones valiosas también fueron recibidos del TWiki Open Source community; menciones especiales van dirigidas a:
+      * TWiki:Main.WalterMundt
+      * TWiki:Main.SvenDowideit
+   * La útima versión de esta presentación está disponible en TWiki:TWiki.ATasteOfTWiki, donde también puede dar su retroalimentación
+%SLIDESHOWEND%
+
+__Temas relacionados:__ BienvenidoHuesped, TutorialTWiki, TWiki:TWiki.ATasteOfTWikiTemplate %FLAGGB%  
+
+-- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 05 Jun 2008
+
+%META:FORM{name="TWiki.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.ATasteOfTWiki"}%
+%META:FIELD{name="Revision" attributes="" title="Revision" value="7"}%
+%META:FIELD{name="Language" attributes="" title="Language" value="es"}%

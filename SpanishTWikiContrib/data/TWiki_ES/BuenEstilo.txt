@@ -1,0 +1,47 @@
+%META:TOPICINFO{author="BaseUserMapping_333" date="1216579509" format="1.1" reprev="1.11" version="1.11"}%
+%META:TOPICPARENT{name="WebHome"}%
+%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+
+---+ <nop>Recomendaciones para !BuenEstilo
+
+   * TWiki permite de una manera fácil *[[SintaxisWiki][modificar y formatear texto]]*. De todos modos, no hay mucho de equivocarse si simplemente: 
+      * empiece cada linea sin espacios
+      * separe párafos con una linea en blanco
+
+   * Una palabras empezando con una letra en mayúscula para crear *[[PalabraWiki][PalabrasWiki]]:* 
+      * Una PalabraWiki aparece automáticamente como enlace
+      * cree una PalabraWiki corta, pero que tiene un significado claro - puede ser un reto
+      * La página PalabraWiki contiene alguna recomendaciones que puedan ayudar
+
+#SignAndDate
+   * Cuando haya una *discusión*: 
+      * separe cada observación o argumento por una linea blanca
+      * agregue su nombre (usuario) y fecha al final. Por ejemplo:%BR% =-- <nop>%WIKIUSERNAME% - %SERVERTIME{$day $mon $year}%=
+      * O, como alternativa, agregue su comentario donde piensa que sea más apropiado: 
+         * tal vez quiera insertarlo con una viñeta o _ponerlo en cursive_ para que aparezca a primera vista (siempre con firma y fecha)
+      * si prefiere utilizar sus iniciales, utilice un enlace con etiqueta. Ejemplo:%BR% =-- [<nop>[%WIKIUSERNAME%][ZXQ]] - %SERVERTIME{$day $mon $year}%=
+
+   * Una buena forma para un *tema nuevo* es introducir una discusión al final de la página: 
+      * empiece con una introducción corta y precisa, seguida por dos lineas horizontales
+      * deje que la discusión empiece
+
+   * Cuando una discusión está al punte de terminarse y la página se vuelve estar menos dinámica, no dude en *resumir sin piedad*: 
+      * sin miedo reduzca la discución a sus argumentos claves
+      * reduzca el "ruido" sin perder los hechos
+      * cuando resuma o elimina párafos de otras personas, indique los autores originales como =Contribuyentes:= al final de la página
+      * _Eso es como el contenido del TWiki madura y aumenta su valor en el transcurso del tiempo._
+
+   * Para *enlaces a otros sitios web*, puede digitar la dirección directamente en el texto - =http://etcete.ra/...= - así es obvio que tocando el enlace se le lleva a uno a otro lado.
+
+   * La intención de TWiki es de ser utilizado en todo el mundo y por eso se prefiere la aplicación de un formato de fecha internacional como ==01 Sep 2003== o ==2003/09/01==. Es más claro que el formato xx/xx/xx, donde una fecha como 9/1/01 puede significar Enero o Septiembre, dependiendo de las convenciones locales de la persona leyendo la página. Para meses, es mejor utilizar las primeras tres letras (en inglés): Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dez.
+
+   * *Recomendación:* Revise el código si quiere averiguar como alguna cosa fue formateada: toque ==Ver código== al final de la página. Para ver versiones anteriores, toque ==Historial==. Un poco de programación HTML no lo va a matar, pero se va a dar cuenta muy pronto que tan poco necesario es cuando uno utiliza la TaquigrafíaTWiki.
+
+__Temas relacionados:__ TWiki.UserDocumentationCategory %FLAGGB%
+
+-- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 08 Dec 2007
+
+%META:FORM{name="TWiki.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.GoodStyle"}%
+%META:FIELD{name="Revision" attributes="" title="Revision" value="13"}%
+%META:FIELD{name="Language" attributes="" title="Language" value="es"}%

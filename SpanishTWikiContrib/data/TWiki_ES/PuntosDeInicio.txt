@@ -1,0 +1,35 @@
+%META:TOPICINFO{author="BaseUserMapping_333" date="1216579240" format="1.1" version="1.2"}%
+%META:TOPICPARENT{name="WebPreferences"}%
+%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+
+Bienvedid@ al <nop>%WIKITOOLNAME%. Esta página asume que es un usuario nuevo al <nop>%WIKITOOLNAME% y que nunca ha escuchado algo de Wiki antes. A continuación encontrará las páginas más importantes a conocer para que sepa que es Wiki y cómo utilizarlo. Siga cualquier de los enlaces abajo que le interesan y utilice el botón Atrás de su navegador para regresar a esta página si necesita.
+
+Que no se asuste por la documentación - al final todo se reduca a: wiki significa "rápico" en Hawayano, y usted puede colaborar en todas las páginas haciendo click en el botón *Editar*. Esto es todo, de verdad. :)
+
+   * BienvenidoHuesped: Una introducción breve para visitantes que lleguen por primera vez
+   * *[[TutorialTWiki]]*: Una introducción compacta de 20 minutos
+   * %HOMETOPIC%: Punto de ingreso para esta web TWiki.
+   * SitioTWiki: Le explica qué es un sitio TWiki
+   * WebChanges: Los últimos cambios de temas en la web <nop>%WEB%
+   * PreguntasFrecuentes: Preguntas frecuentes acerca del uso de TWiki
+
+   * TemasTWiki: Personalizar, renombrar, mover o eliminar temas TWiki
+   * BuenEstilo: Cosas que debe considerar cuando cambie un texto
+   * TaquigrafiaTWiki: Reglas fáciles de aprender para editar textos
+   * ComoFormatearTexto: El juego completo de reglas para formatear texto
+   * PreguntasSobreFormatearTexto: Preguntas comunes tipo "Cómo hago para..." sobre publicaciones en TWiki
+
+   * TWiki.TWikiVariables %FLAGGB%: Cómo se agrega fácilmente texto, gráficos y contenido dinámico
+
+   * TWiki.MainFeatures %FLAGGB%: Las características principales de una plataforma de colaboración TWiki
+   * ArchivosAdjuntos: Subir archivos para efectos de distribución o presentación
+   * NotificacionDeCambios: Reciba correos de notificación con enlaces a las páginas recién cambiadas
+
+__Temas relacionados:__ TWiki.UserDocumentationCategory %FLAGGB%
+
+-- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 28 Jun 2008
+
+%META:FORM{name="TWiki.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.StartingPoints"}%
+%META:FIELD{name="Revision" attributes="" title="Revision" value="7"}%
+%META:FIELD{name="Language" attributes="" title="Language" value="es"}%

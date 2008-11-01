@@ -1,0 +1,40 @@
+%META:TOPICINFO{author="BaseUserMapping_333" date="1217709200" format="1.1" version="1.2"}%
+%INCLUDE{"%IF{"context can_login" then="%TWIKIWEB%.WebLeftBarLogin" else="<nop>"}%" warn="off"}%
+
+   * <b>[[%INCLUDINGWEB%.%HOMETOPIC%][ %ICON{"home"}% <nop>%MAKETEXT{"[_1] Web" args="%INCLUDINGWEB%"}%]]</b>
+   * %IF{"istopic '%MAINWEB%.TWikiUsers'" else=" $percntICON{\"person\"}$percnt $percntMAKETEXT{\"Users\"}$percnt" then="[[$percntMAINWEB$percnt.TWikiUsers][ $percntICON{\"person\"}$percnt $percntMAKETEXT{\"Users\"}$percnt]]"}%
+   * [[%MAINWEB%.TWikiGroups][ %ICON{"group"}% %MAKETEXT{"Groups"}%]]
+   * [[WebTopicList][ %ICON{"index"}% %MAKETEXT{"Index"}%]]
+   * [[%INCLUDINGWEB%.WebSearch][ %ICON{"searchtopic"}% %MAKETEXT{"Search"}%]]
+   * [[WebChanges][ %ICON{"changes"}% %MAKETEXT{"Changes"}%]]
+   * [[WebNotify][ %ICON{"notify"}% %MAKETEXT{"Notifications"}%]]
+   * [[WebRss][ %ICON{"feed"}% %MAKETEXT{"RSS Feed"}%]]
+   * [[WebStatistics][ %ICON{"statistics"}% %MAKETEXT{"Statistics"}%]]
+   * [[WebPreferences][ %ICON{"wrench"}% %MAKETEXT{"Preferences"}%]]
+
+   * <b>%MAKETEXT{"User Reference"}%</b>
+   * UnPocoSobreTWiki
+   * ComoFormatearTexto
+   * TWiki.TWikiVariables %FLAGGB%
+   * TWiki.FormattedSearch %FLAGGB%
+   * TWiki.TWikiDocGraphics %FLAGGB%
+   * TWiki.TWikiSkinBrowser %FLAGGB%
+   * TWiki.InstalledPlugins %FLAGGB%
+
+   * <b>%MAKETEXT{"Admin Maintenance"}%</b>
+   * [[TWiki.TWikiReferenceManual][Reference Manual]] %FLAGGB%
+   * TWiki.AdminToolsCategory %FLAGGB%
+   * TWiki.InterWikis %FLAGGB%
+   * TWiki.ManagingWebs %FLAGGB%
+   * TWiki.TWikiSiteTools %FLAGGB%
+   * TWiki.%WIKIPREFSTOPIC% %FLAGGB%
+   * %WEBPREFSTOPIC%
+
+   * <b>%MAKETEXT{"Categories"}%</b>
+   * [[TWiki.AdminDocumentationCategory][Admin Documentation]] %FLAGGB%
+   * [[TWiki.AdminToolsCategory][Admin Tools]] %FLAGGB%
+   * [[TWiki.DeveloperDocumentationCategory][Developer Doc]] %FLAGGB%
+   * [[TWiki.UserDocumentationCategory][User Documentation]] %FLAGGB%
+   * [[TWiki.UserToolsCategory][User Tools]] %FLAGGB%
+
+%INCLUDE{ "%TWIKIWEB%.WebLeftBarWebsList" }%

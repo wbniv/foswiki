@@ -1,0 +1,34 @@
+%META:TOPICINFO{author="BaseUserMapping_333" date="1216579411" format="1.1" reprev="1.9" version="1.9"}%
+%META:TOPICPARENT{name="WebHome"}%
+%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+
+---++ Utilizando HTML
+
+%STARTINCLUDE% Puede utilizar las etiquetas (inglés: tags) de HTML sin ningún problema. Puede agregar HTML si en TWiki no hay ningún comando correspondiente. Por ejemplo, escriba
+<sticky>=&lt;strike&gt;texto tachado&lt;/strike&gt;=</sticky> para obtener <strike>texto tachado</strike>.
+
+%X% Hay unas consideraciones técnicas y con respecto al uso que se deben tomar en consideración:
+   * En páginas donde aporta varia gente, es mejor *no* utilizar HTML, sino [[#TWikiShorthand][Taquigrafía TWiki]] - eso mantiene limpio el código de la página y facilita su lectura.
+   * Si utliza HTML, refiérese a la sintaxis [[http://www.w3.org/TR/xhtml1/][XHTML 1.0 Transitional]].
+   * Utilice las etiquetas <sticky>=&lt;literal&gt;..&lt;/literal&gt;=</sticky> alrededor de bloques de HTML para evitar que la [[#TaquigrafiaTWiki][Taquigrafía TWiki]] sea interpretada casualmente dentro de HTML.
+   * %X% Comandos de programación pueden ser bloqueados, dependiendo de la configuración del sistema.
+
+Recomendaciones cuando inserte HTML de otras fuentes:
+   * Copie solamente texto que está entre las etiquetas <sticky>=&lt;body&gt;=</sticky> y <sticky>=&lt;/body&gt;=</sticky>
+   * Remueve todas las lineas vacías. TWiki generará etiquetas de párafo <sticky> =&lt;p /&gt;=</sticky> en lineas vacías que puedan causar problemas si están entre etiquetas que lo no permiten, como por ejemplo entre etiquetas de tabla.
+   * Remueve espacios que están al principio de lineas. TWiki podría interpretarlas como listas.
+   * No fraccione etiquetas en varias lineas. TWiki requiere que las paréntesis de apertura y de cierre - <sticky>==&lt;...&gt;==</sticky> - de las etiquetas HTML están en la misma linea. Si no, la etiqueta no va a funcionar.
+   * En su editor de HTML, guarde sin saltos de lineas forzados cuando utiliza ajustes de texto.
+
+%T% TWiki convierte la notación en taquigrafía a HTML para efectos de presentación de la página. Para copiar el código completo de una página, simplemente revise el código fuente de la página en su navegador y guarde el contenido. Si necesita guardar el código fuente frequentemente, tal vez quiera revisar TWiki:Plugins/PublishAddOn.
+
+%STOPINCLUDE%
+
+*%MAKETEXT{"Related Topics"}%:* ComoFormatearTexto
+
+-- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 08 Dec 2007
+
+%META:FORM{name="TWiki.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.UsingHTML"}%
+%META:FIELD{name="Revision" attributes="" title="Revision" value="2"}%
+%META:FIELD{name="Language" attributes="" title="Language" value="es"}%

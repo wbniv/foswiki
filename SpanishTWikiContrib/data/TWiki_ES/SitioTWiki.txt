@@ -1,0 +1,62 @@
+%META:TOPICINFO{author="BaseUserMapping_333" date="1216579285" format="1.1" version="1.6"}%
+%META:TOPICPARENT{name="WebHome"}%
+%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+
+---++ TWiki es una plataforma de colaboración basada en el internet
+   * Un sitio TWiki es un ambiente de comunicaciones abiertas, completamente equipado y fácil de utilizar:
+      * personas pueden encontrarse a través del internet o una intranet
+      * texto formateado, imágenes y multimedias en línea pueden compartirse fácilmente
+      * documentos y otros archivos pueden ser subidos o bajados
+      * todo lo que necesita es un navegador y una conección disponible a la red
+
+---++ TWiki es una plataforma de colaboración basada en el internet POCO COMÚN
+   * No hay duda que, para la mayoría de la gente, el TWiki de primera impresión parece casi el contrario a cómo la internet y comunicaciones en línea "normalmente" funcionan. Por qué?
+      * TWiki opera como cartelera para el Internet - permite que usted y cualquier otro usuario escribe, mete imágenes y manda enlaces en cualquier parte de una página.
+      * Y no solo esto - cualquier persona puede MODIFICAR cualquier cosa en cualquier lado de una página.
+      * Al principio, esto puede parecer "demasiado" abierto - pronto se convertirá en segunda naturaleza, permitiéndole la libertad de modificar y actualizar de tal manera como usted la requiere.
+
+---++ TWiki es un enriquecimiento poderoso para el Internet...
+   * El nucleo de programación del TWiki está escrito en Perl. Lee un archivo de texto y convierte la taquigrafía TWiki a código HTML normal, instantáneamente. Esto con el objetivo de:
+      * facilitar la completación y modificación de texto _(Qué tan fácil? Toque el enlace *Editar* al final de la página...)_
+      * permitir que encuentra información _rápidamente_ ([[WebSearch][WebSearch]] %FLAGGB%)
+
+   * TWiki ofrece a la gente una manera intuitiva para encontrarse y colaborar, que aspira los ideales de Zen conocidos como TWiki.WabiSabi %FLAGGB%. Encuentra belleza en el imperfecto y en la evolución fugitiva y constante. (Al final, esto será lo que necesita.)
+
+   * TWiki en uno de los muchos TWiki.WikiWikiClones %FLAGGB%, basados en la [[http://c2.com/][Wiki Wiki Web]] original de Ward Cunningham.
+
+---++ "TWiki" significa...
+
+   * _Wiki wiki_ significa "rápido" en hawaiano. El servicio shuttle en el aeropuerto de Honolulu se llama _wiki wiki_, que es de donde la web Wiki original obtuvo su nombre.
+   * _TWiki_ es la abreviación para _TakeFive Wiki_, el nombre de la companía donde trabajó su fundador Peter Thoeny. (Después se discubrió que _Twiki_ también es el nombre un rotot de inteligencia artificial que participó en la película y la serie de televisión de <a href="http://www.buck-rogers.com/" target="_blank"><i>Buck Rogers</i></a> en 1979.)
+
+---++ Página TWiki seleccionadas...
+
+   * BienvenidoHuésped es una introducción rápida al TWiki
+   * SitioTWiki le ofrece una visión general de la plataforma TWiki
+   * TemasTWiki es una vista rápida y enfocada el núcleo TWiki
+   * TWiki.TWikiPlannedFeatures %FLAGGB% es una lista de complementos aprobados para futuras versiones TWiki.
+   * TWiki.TWikiEnhancementRequests %FLAGGB% es el lugar para anotar solicitudes para nuevos implementos.
+   * [[%HOMETOPIC%][Documentación TWiki]]: Una guía de usuario compacta y un manual de referencia detallado.
+   * TWiki.TWikiHistory %FLAGGB% muestra el desarrollo del TWiki como cronograma
+   * CulturaWiki analiza el tipo de colaboración único que ofrecen sistemas Wiki.
+   * ReferenciasWiki enlace a artículos y libros acerca de colaboración y tecnología Wiki.
+
+<blockquote> %X% Si tiene que registrarse para utilizar TWiki, por ejemplo si TWiki está funcionando en una intranet, automáticamente firma las páginas que usted modifique o cree con su NombreWiki. Si su instalación de TWiki no requiere que se registre, TWiki asigna a todos los usuarios el mismo nombre de usuario: %USERSWEB%.TWikiGuest.</blockquote>
+
+---++ Aviso legal
+
+   * TWiki&trade;, el logo TWiki y la línea "Collaborate with TWiki" son marcar registradas por TWiki:Main.PeterThoeny - fundador del TWiki.
+   * TWiki está desarrollado como Software Libre bajo la [[TWiki.GnuGeneralPublicLicense][GNU/GPL]] %FLAGGB%
+   * TWiki tiene sus orígenes en el GPLed <nop>JosWiki. Muchas gracias a Markus Peter and Dave Harris por crear <nop>JosWiki!
+   * La dirección principal de TWiki es http://twiki.org/
+   * Puede obtener la última versión de TWiki de http://twiki.org/download.html
+   * Este sitio está utilizando la versión *%WIKIVERSION%*
+
+__Páginas relacionadas:__ TWiki.UserDocumentationCategory %FLAGGB%
+
+-- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 02 May 2008
+
+%META:FORM{name="TWiki.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.TWikiSite"}%
+%META:FIELD{name="Revision" attributes="" title="Revision" value="26"}%
+%META:FIELD{name="Language" attributes="" title="Language" value="es"}%

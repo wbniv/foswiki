@@ -1,0 +1,21 @@
+%META:TOPICINFO{author="BaseUserMapping_333" date="1216579686" format="1.1" reprev="1.5" version="1.5"}%
+%META:TOPICPARENT{name="WebHome"}%
+%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+
+%STARTINCLUDE%
+---+++ Servicio de notificación de cambios
+
+Cada web del TWiki cuenta con un servicio automático de notificación por correo electrónico que le manda un correo con las enlaces a las páginas que fueron modificadas desde la última notificación.
+
+%INCLUDE{"MailerContrib"}%
+
+__Aviso para Administradores del Sistema:__ La notificación ser realiza por medio de un elemento adicional al kernel del TWiki que se llama !MailerContrib. Ver página MailerContrib para detalles acerca de cómo configurar este servicio.
+
+__Nota:__ Si prefiere un news feed, dirige su navegador a %INCLUDINGWEB%.WebRss (para RSS 1.0 feeds) o %INCLUDINGWEB%.WebAtom (para ATOM 1.0 feeds). Estudie más en %SYSTEMWEB%.WebRssBase y %SYSTEMWEB%.WebAtomBase.
+
+-- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 08 May 2008
+
+%META:FORM{name="TWiki.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.WebChangesAlert"}%
+%META:FIELD{name="Revision" attributes="" title="Revision" value="17"}%
+%META:FIELD{name="Language" attributes="" title="Language" value="es"}%

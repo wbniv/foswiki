@@ -1,0 +1,462 @@
+%META:TOPICINFO{author="BaseUserMapping_333" date="1217597573" format="1.1" version="1.2"}%
+%META:TOPICPARENT{name="WebHome"}%
+%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+
+---++ Taquigrafía TWiki
+
+%STARTINCLUDE%
+
+%TABLE{}%
+<table class="twikiTable" border="1" cellpadding="3" bgcolor="#ffffff">
+<tr bgcolor="#ffffff">
+<th width="50%">
+Comando para formatear:
+</th>
+<th width="25%">
+Usted escribe:
+</th>
+<th width="25%">
+Se ve:
+</th>
+</tr>
+<tr valign="top">
+<td>
+ *Párafos:* %BR%
+ Lineas vacías crearán párafos nuevos.
+</td><td>
+<verbatim>
+Primer párafo
+
+Segundo párafo
+</verbatim>
+</td><td>
+Primer párafo
+
+Segundo párafo
+</td>
+</tr>
+<tr valign="top">
+<td>
+ *Títulos:* %BR%
+Tres o más guiones al principio de una linea, seguidos por el símbolo más y el texto del título. Un más creará un título de primer nivel, dos más uno de segundo nivel, etc. Se puede introducir máximo 6 niveles de títulos.
+
+Puede crear un índice con la variable [[TWiki.VarTOC][%<nop>TOC%]]. Si quiere *excluir* un título del índice, digite =!!= después de =---+=.
+
+%X% Se permite títulos vacíos, pero no aparecerán en el índice.
+</td><td>
+<verbatim>
+---++ Sushi
+---+++ Maguro
+---+++!! No estará en índice
+</verbatim>
+</td><td>
+<nop><h2>Sushi</h2>
+<nop><h3>Maguro</h3>
+<nop><h3>No estará en índice</h3>
+</td>
+</tr>
+<tr valign="top">
+<td>
+ *Texto en negrita:* %BR%
+ Palabras se mostrarán en *negrita* cuando uno las encierre en =*= asteriscos.
+</td><td>
+<verbatim>
+*Negrita*
+</verbatim>
+</td><td>
+
+*Negrita*
+</td>
+</tr>
+<tr valign="top">
+<td>
+ *Texto en cursiva:* %BR%
+ Palabras se mostrarán en _cursiva_ cuando uno las encierre en =_= guiones abajo.
+</td><td>
+<verbatim>
+_Cursiva_
+</verbatim>
+</td><td>
+
+_Cursiva_
+</td>
+</tr>
+<tr valign="top">
+<td>
+ *Negrita y cursiva:* %BR%
+ Palabras se mostrarán en _negrita y cursiva_ cuando uno las encierre en =__= dos guiones abajo.
+</td><td>
+<verbatim>
+__Negrita y cursiva__
+</verbatim>
+</td><td>
+
+__Negrita y cursiva__
+</td>
+</tr>
+<tr valign="top">
+<td>
+ *Fuentes de espaciado fijo:* %BR%
+ Palabras se mostrarán con =espaciado fijo= cuando uno las encierre en =<nop>=<nop>= el símbolo igual.
+</td><td>
+<verbatim>
+=Fuentes de espaciado fijo=
+</verbatim>
+</td><td>
+
+=Fuentes de espaciado fijo=
+
+</td>
+</tr>
+<tr valign="top">
+<td>
+ *Fuentes de espaciado fijo en negrita:* %BR%
+  Palabras se mostrarán con =espaciado fijo y en negrita= cuando uno las encierre en ==<nop>== dos símbolos igual.
+</td><td>
+<verbatim>
+==Espaciado fijo en negrita==
+</verbatim>
+</td><td>
+
+==Espaciado fijo en negrita==
+</td>
+</tr>
+<tr valign="top">
+<td>
+%T% Después del segundo indicador para negrita, cursiva, etc. (=* _ __ = ===) puede
+continuar con la punctuación normal, como comas o puntos.
+
+%X% Asegúrese que no haya ningun espacio entre el texto y el indicador.
+</td><td>
+<verbatim>
+_Eso funciona_,
+_eso no funciona _
+</verbatim>
+</td><td>
+
+_Eso funciona_,%BR%
+_eso no funciona _
+</td>
+</tr>
+<tr valign="top">
+<td>
+ *Texto literal:* %BR%
+ Encierre extractos de código y otro tipo de texto con los comandos =&lt;verbatim&gt;= y =&lt;/verbatim&gt;=.%BR%
+%T% El comando =verbatim= deshabilita el código HTML. Si requiere la interpretación del código HTML dentro del texto encerrado, use los comandos =&lt;pre&gt;= y =&lt;/pre&gt;= en lugar del comando anterior.%BR%
+__%X% NOTE:__ Variables predeterminadas (* Set NOMBRE = valor) se encierran en determinadores de texto literal.
+</td><td>
+<verbatim>
+<verbatim>
+class CatAnimal {
+  void purr() {
+    <code here>
+  }
+}
+</verbatim>
+</verbatim>
+</td><td>
+<verbatim>
+class CatAnimal {
+  void purr() {
+    <code here>
+  }
+}
+</verbatim>
+</td>
+</tr>
+<tr valign="top">
+<td>
+ *Separador horizontal Rule:* %BR%
+Tres o más guiones al principio de una linea.
+</td><td>
+<verbatim>
+-------
+</verbatim>
+</td><td>
+
+-------
+</td>
+</tr>
+<tr valign="top">
+<td>
+ *Listas con viñetas:* %BR%
+Multiples de tres espacios, un asterisco y otro espacio.%BR%
+%H% En todos los tipos de listas, se puede fraccionar cada item en varias lineas por sangrar las lineas después de la primera por *mínimo tres espacios*.
+</td><td>
+<verbatim>
+   * nivel 1
+      * nivel 2
+   * regresando a nivel 1
+   * Un ítem
+     fraccionado en
+     tres lineas
+   * último ítem
+</verbatim>
+</td><td>
+
+   * nivel 1
+      * nivel 2
+   * regresando a nivel 1
+   * Un ítem
+     fraccionado en
+     tres lineas
+   * último ítem
+</td>
+</tr>
+<tr valign="top">
+<td>
+*Listas enumeradas:* %BR%
+Multiples de tres espacios, una letra indicando el tipo de enumeracón, un punto y otro espacio. Aparte de número, otros tipos de lista están disponibles:
+| *Tipo* | *Estilo generado* | *Ejemplo de secuencia* |
+| 1. | Números árabes | 1, 2, 3, 4... |
+| A. | Mayúscula | A, B, C, D... |
+| a. | Minúscula | a, b, c, d... |
+| I. | Números romanos en mayúscula | I, II, III, IV... |
+| i. | Números romanos en minúscula | i, ii, iii, iv... |
+</td><td>
+<verbatim>
+   1. Sushi
+   1. Dim Sum
+   1. Fondue
+
+   A. Sushi
+   A. Dim Sum
+   A. Fondue
+
+   i. Sushi
+   i. Dim Sum
+   i. Fondue
+</verbatim>
+</td><td>
+
+   1. Sushi
+   1. Dim Sum
+   1. Fondue
+
+   A. Sushi
+   A. Dim Sum
+   A. Fondue
+
+   i. Sushi
+   i. Dim Sum
+   i. Fondue
+</td>
+</tr>
+<tr valign="top">
+<td>
+ *Listas de definición:* %BR%
+ Tres espacios, el símbolo dolar, el término a definir, dos puntos, un espacio y después la definición.
+</td><td>
+<verbatim>
+   $ Sushi: Japan
+   $ Dim Sum: S.F.
+</verbatim>
+</td><td>
+
+   $ Sushi: Japan
+   $ Dim Sum: S.F.
+</td>
+</tr>
+<tr valign="top">
+<td>
+ *Tablas:* %BR%
+Cada fila de una tabla en una linea que contenga una o más celdas. Cada celda empieza y termina con una linea vertical '|'. Espacios al inicio de una linea serán ignorados.
+   * =| <nop>*bold*<nop> |= celda de título con texto encerrado en asteriscos
+   * =|   celda centrada   |= celda con mínimo dos, y una cantidad igual de espacios en ambos lados
+   * =|      alineada a la derecha |= celda con más espacios en el lado izquierdo
+   * =| 2 celdas unidas ||= y varias celdas unidas horizontalmente con varias lineas verticales una a la par de la otra
+   * =|^|= celda con acento circunflejo indica la unión de celdas verticales
+   * Se puede fraccionar filas en varias lineas utilizando la barra invertida ='\'= al final de cada linea
+   * El contenido de las celdas de una tabla se ajusta automáticamente al tamaño determinado por el navegador
+   * Use =&amp;#124;= o =%<nop>VBAR%= para agregar símbolos del tipo =&#124;= en tablas.
+</td><td>
+<verbatim>
+| *L* | *C* | *R* |
+| A2 |  B2  |  C2 |
+| A3 |  B3  |  C3 |
+| columnas unidas |||
+| A5-7 |  5  |  5 |
+|^| six | six |
+|^| seven | seven |
+| fraccionado\
+  | en\
+  | 3 lineas |
+| A9 |  B9  |  C9 |
+</verbatim>
+</td><td>
+
+| *L* | *C* | *R* |
+| A2 |  B2  |  C2 |
+| A3 |  B3  |  C3 |
+| columnas unidas |||
+| A5-7 |  5  |  5 |
+|^| six | six |
+|^| seven | seven |
+| fraccionado\
+  | en\
+  | 3 lineas |
+| A9 |  B9  |  C9 |
+</td>
+</tr>
+<tr valign="top">
+<td>
+ *<nop>Enlaces de tipo PalabraWiki:* %BR%
+ <nop>PalabrasPegadasConMayusculas (o [[PalabraWiki][PalabrasWiki]]) generarán automáticamente un enlace cuando siga un espacio o paréntesis. %BR%
+%T% Si quiere generar un enlace a otro grupo o red, escribe =OtraRed.NombreDelTema=. %BR%
+%H% El texto del enlace que se presenta en la página final excluye el nombre de la red. Quiere decir que se muestra solamente el nombre del tema. Como excepción, se muestra el nombre de la red del tema <nop>%HOMETOPIC%.
+
+En general se recomienda utilizar las TWiki.TWikiVariables %FLAGGB% %<nop>TWIKIWEB% y %<nop>MAINWEB% en lugar de las palabras TWiki y Main.
+</td><td>
+<verbatim>
+WebStatistics
+
+Sandbox.WebNotify
+
+Sandbox.WebHome
+</verbatim>
+</td><td>
+
+WebStatistics
+
+Sandbox.WebNotify
+
+Sandbox.%HOMETOPIC%
+</td>
+</tr>
+<tr valign="top">
+<td>
+ *Anclas:* %BR%
+ Se puede definir una referencia dentro de un tema (se llama palabra ancla) y enlazar un texto a esta ancla. Para __definir__ una ancla, escribe =#PalabraAncla= al inicio de una linea. La ancla debe se una PalabraWiki. Para __enlazar a__ a una palabra ancla, utilice la sintaxis =[<nop>[ElTema#LaPalabraAncla]]=. Puede omitir el nombre del tema si la palabra ancla está dentro del mismo.
+</td><td>
+<verbatim>
+[[PalabraWiki#NoEsta]]
+
+[[#LaPalabraAncla][Saltar]]
+
+#LaPalabraAncla aquí
+</verbatim>
+</td><td>
+
+[[PalabraWiki#NoEsta]]
+
+[[#LaPalabraAncla][Saltar]]
+
+#LaPalabraAncla aquí
+</td>
+</tr>
+<tr valign="top">
+<td>
+#HeRe
+ *Enlaces forzados:* %BR%
+ Se puede crear un enlace interno forzado encerrando palabras en doble corchete.
+%BR% 
+Texto dentro de los corchetes puede contener espacios obcionales; el nombre del tema será formado escribiendo la primera letra en mayúscula y removiendo los espacios; por ejemplo, =[<nop>[text formatting FAQ]]= enlaza al tema TWiki.TextFormattingFAQ %FLAGGB%. De la misma manera puede referirse a otra red y utilizar anclas.
+%BR%
+%T% Para escribir dos corchetes que normalmente generarían un enlace, ponga un signo de exclamación delante del primer corchete.
+</td><td>
+<verbatim>
+[[sintaxis wiki]]
+
+[[Main.TWiki users]]
+
+para evitar enlace:
+![[sintaxis wiki]]
+</verbatim>
+</td><td>
+
+[[sintaxis wiki]]
+
+[[%MAINWEB%.TWiki users]]
+
+para evitar enlace:
+![[sintaxis wiki]]
+</td>
+</tr>
+<tr valign="top">
+<td>
+ *Enlaces específicos:* %BR%
+ Puede crear enlaces done especifica la etiqueta del enlace y el enlace en si por separado utilizando corchetes anidados =[<nop>[enlace][etiqueta]]=. Se permite con ambas opciones, enlaces internos (por ejemplo SintaxisWiki) y direcciones del internet (por ejemplo http://TWiki.org/).
+Las reglas establecidas en __Enlaces forzados__ también aplican para enlaces internos.
+ %BR% %T% Se puede añadir palabras ancla también para crear enlaces que se refieren a un lugar específico dentro del documento.
+</td><td>
+<verbatim>
+[[SintaxisWiki][sintaxis wiki]]
+
+[[http://gnu.org][GNU]]
+</verbatim>
+</td><td>
+
+[[SintaxisWiki][sintaxis wiki]]
+
+[[http://gnu.org][GNU]]
+</td>
+</tr>
+<tr valign="top">
+<td>
+ *Impedir un enlace:* %BR%
+ Para impedir que una PalabraWiki sea transformada automáticamente a un enlace, digite un signo de exclamación antes de la palabra correspondiente.
+</td><td>
+<verbatim>
+!SunOS
+</verbatim>
+</td><td>
+
+!SunOS
+</td>
+</tr>
+<tr valign="top">
+<td>
+ *Deshabilitar enlaces:* %BR%
+ Puede deshabilitar la generación automática de enlaces de [[PalabraWiki][PalabrasWiki]] encerrando las partes correspondientes con =&lt;noautolink&gt;= y =&lt;/noautolink&gt;=.%BR%
+%H% Es posible apagar completamente la generación automática de enlaces, utilizando la preferencia NOAUTOLINK.
+</td><td>
+<verbatim>
+ <noautolink>
+ RedHat &
+ SuSE
+ </noautolink>
+</verbatim>
+</td><td>
+
+ <noautolink>
+ RedHat &
+ SuSE
+ </noautolink>
+</td>
+</tr>
+<tr valign="top">
+<td>
+*Direcciones de correo electrónico:* %BR%
+Direcciones de correo electrónico serán convertidas en enlaces automáticamente. Para crear enlaces de correo electrónico que tengan una etiqueta específica, especifiquen asuntos o partes del mensaje o omiten la dirección de correo electrónico, puede escribir =[<nop>[mailto:user@domain][etiqueta específica]]=.
+</td><td>
+<verbatim>
+a@b.com
+
+[[mailto:a@b.com]\
+[Mail]]
+
+[[mailto:?subject=\
+Hi][Hi]]
+</verbatim>
+</td><td>
+
+a@b.com
+
+[[mailto:a@b.com]\
+[Mail]]
+
+[[mailto:?subject=Hi][Hi]]
+</td>
+</tr>
+</table>
+
+%STOPINCLUDE%
+
+*%MAKETEXT{"Related Topics"}%:* ComoFormatearTexto
+
+-- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 08 Dec 2007
+
+%META:FORM{name="TWiki.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.TWikiEditingShorthand"}%
+%META:FIELD{name="Revision" attributes="" title="Revision" value="3"}%
+%META:FIELD{name="Language" attributes="" title="Language" value="es"}%

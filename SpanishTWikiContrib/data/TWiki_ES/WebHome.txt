@@ -1,0 +1,48 @@
+%META:TOPICINFO{author="BaseUserMapping_111" date="1216579781" format="1.1" reprev="1.14" version="1.14"}%
+%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+
+<a href="http://twiki.org"><img width="235" alt="Colabore con TWiki -- visite TWiki.org" src="/twiki/pub/%SYSTEMWEB%/TWikiLogos/T-logo-235x67-t.gif" style="margin: 0.3em 0pt" title="Colabore con TWiki -- visite TWiki.org" height="67" border="0" /></a> <br />El sitio oficial de TWiki es <a href="http://twiki.org">twiki.org</a>
+
+---+!! Benvenid@ a la Web <nop>%WEB%
+
+_El sitio para conocer las características de TWiki y para realizar el mantenimiento del sistema TWiki._
+
+Este sitio está utilizando la versión *%WIKIVERSION%*, Plugin API versión *%PLUGINVERSION{}%*
+
+TWiki es una plataforma de colaboración flexible, poderosa, segura y aún simple basada en una red. Utilice TWiki para efectuar el desarrollo de un proyecto, un sistema de administración de documentos, una base de conocimiento o cualquier otra herramienta tipo groupware sea en un intranet o en la internet.
+
+%STARTINCLUDE%
+---++ Documentación y Configuración del TWiki
+
+%INCLUDE{ "TWikiTipsOfTheDayInclude" warn="off" }%
+   * [[BienvenidoHuesped][Bienvenido Huésped]] - venga a ver aquí primero
+   * [[TutorialTWiki][Tutorial]] - Tutorial acerca de TWiki de 20 minutos
+   * [[GuiaDeUsuarioTWiki][Guía de usuario]] - documentación para usuarios TWiki
+   * [[PreguntasFrecuentes][Preguntas frecuentes]] - acerca del TWiki
+   * [[TWiki.TWikiReferenceManual][Manual de referencia]] %FLAGGB% - documentación para administradores del sistema
+   * [[TWiki.AdminToolsCategory][Herramientas de administración]] %FLAGGB% - administre el TWiki
+   * [[TWiki.TWikiReleaseNotes04x02][TWiki-4.2 Release Notes]] %FLAGGB% - describe que hay de nuevo en esta edición
+
+---++ <nop>%WEB% Web Utilities
+ <form action='%SCRIPTURLPATH{"search"}%/%WEB%/'> 
+   * <input type="text" name="search" class="twikiInputField" size="22" /> <input type="submit" class="twikiSubmit" value="Buscar" /> - [[WebSearchAdvanced][búsqueda avanzada]]
+   * WebTopicList - todas las páginas en orden alfabético
+   * WebChanges - cambios recientes de páginas en esta web
+   * WebNotify - suscríbase al servicio de notificación por correo electrónico que le avisa sobre cambios en páginas
+   * WebRss, WebAtom - RSS y ATOM news feeds de cambios de página
+   * WebStatistics %FLAGGB% - lista de páginas populares y contribuyentes principales
+   * WebPreferences %FLAGGB% - preferencias de esta web
+ </form>
+
+---++ Aviso legal
+   * TWiki&trade;, el [[TWiki.TWikiLogos][logo TWiki]] y la línea "Collaborate with TWiki" son marcas registradas de [[http://twiki.org/cgi-bin/view/Main/PeterThoeny][Peter Thoeny]]
+   * __Nota__: Twiki (con la "w" en minúscula) es el caracter de un robot de la serie de televisión _Buck Rogers&trade; in the 25th Century_. TWiki (con la "W" en mayúscula) no es afiliado con Dille Family Trust, el propietario de la marca registrada del nombre _Buck Rogers_
+   * TWiki se desarrolla como Software Libre bajo la [[TWiki.GnuGeneralPublicLicense][GNU/GPL]] %FLAGGB%
+   * Obtenga la última versión de [[http://TWiki.org/download.html][TWiki.org downloads]]
+
+-- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 11 Apr 2008
+
+%META:FORM{name="TWiki.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.WebHome"}%
+%META:FIELD{name="Revision" attributes="" title="Revision" value="90"}%
+%META:FIELD{name="Language" attributes="" title="Language" value="es"}%

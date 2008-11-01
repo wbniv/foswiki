@@ -1,0 +1,183 @@
+%META:TOPICINFO{author="BaseUserMapping_333" date="1216579969" format="1.1" reprev="1.5" version="1.5"}%
+%META:TOPICPARENT{name="WebHome"}%
+%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+
+---++ Preguntas frecuentes sobre formatear texto
+
+Se contestan las preguntas más frecuentes sobre formatear texto. También, ComoFormatearTexto contiene el sistema completo de taquigrafía TWiki resumida en una sola página para su referencia.
+
+%TOC%
+
+---
+---+++ Cómo generar una línea de separación?
+
+Genere una línea de separación - una línea horizontal - digitando tres guiones al inicio de una línea vacía: =---=. Puede digitar más que tres guiones si quiere, para representar mejor la de separación en el modo de edición: <br />
+=--------------=
+
+--------------
+---+++ Cómo crear un título?
+
+Puede crear títulos de seis tamaños - &lt;h1&gt;...&lt;h6&gt; en HTML - digitando, desde el inicio de una línea, tres guiones (-), de uno a seis signos de más (+), un espacio y el texto del título. Las preguntas de esta página se crearon con: =---+++ Tiene una pregunta?=.
+   * Puede insertar una tabla de contenido anidada, generada en base a los títulos, ubicando =%<nop>TOC%= en algún lado de la página (ver %SYSTEMWEB%.TWikiVariables %FLAGGB% para más opciones de =%<nop>TOC%=).
+
+-----
+#TextEnclosed
+---+++ Texto encerrado en llaves angulares como &lt;nombre&gt; no se muestra. Cómo puedo hacer para que se muestre?
+
+El TWiki interpreta texto como HTML, y los caracteres '&lt;' y '&gt;' definen el inicio y fin de comandos HTML. Texto _dentro_ de llaves angulares se considera como HTML, y se ignora si no genera nada - de todas formas, los paréntesis y su contenido no se mostrarán.
+
+Si quiere mostrar este tipo de paréntesis, digítelos como código HTML en lugar de digitarlos directamente:
+   * =&amp;lt;= = =&lt;= <br />
+     =&amp;gt;= = =&gt;=
+
+   * __Digite:__ =(a &amp;gt; 0)= <p /> 
+     __Resultado:__ =(a &gt; 0)=
+
+---
+---+++ Algunas palabras aparecen resaltadas, con un enlace tipo "?" al final. Cómo puedo evitar esto?
+
+Un signo de pregunta al final de una palabra es un enlace a una página que todavía no existe - haga click en el signo de pregunta para crear la nueva página. Esto es una característica del TWiki - digitando un TítuloInteresante en un comentario es una invitación a otra persona de agregar un tema nuevo a la página.
+
+Para evitar la generación automática de enlace - por ejemplo para digitar una palabra como <nop>JavaScript - ponga un signo de exclamación ante la PalabraWiki:
+
+   * =!WikiStyleWord= se muestra como !WikiStyleWord
+
+---
+---+++ Cómo puedo iniciar una palabra con un signo de exclamación?
+
+Un signo de exclamación al inicio de una palabra se utiliza para evitar el formateo de palabras wiki, como hemos aprendido en la pregunta anterior. A veces tiene un efecto no deseado, por ejemplo cuando escribe "!=" (e.g. "no igual"), no va a ver el signo de exclamación.
+
+Para evitar que no se muestre el signo de exclamación, intente de ponerle =&lt;nop>= adelante, e.g. digite =A &lt;nop>!=<nop> B= para obtener "A <nop>!= B". Opcionalmente, utilice la entidad HTML =&amp;#33;= que se muestra como un signo de eclamación, e.g. digite =A &amp;#33;=<nop> B= para obtener "A &#33;= B".
+
+---
+---+++ Cómo puedo escribir texto con espaciado fijo?
+
+La forma más rápida en encerrar el texto en signos de igual:
+
+   * __Digite:__ =Espaciado proporcional, <nop>=espaciado fijo=<nop>, y otra vez proporcional.= <p />
+     __Resultado:__ Espaciado proporcional, =espaciado fijo=, y otra vez proporcional.
+
+---
+#VerbatimText
+---+++ El texto que digito se ajusta automáticamente. Cómo puedo mantener el formato tal y como está?
+
+TWiki interpreta texto como HTML, así que puede utilicar la opción HTML =preformatted= para mantener la nueva línea de texto tal y como está. Encierre el texto en &lt;pre&gt; &lt;/pre&gt;, o en los comandos propios del TWiki &lt;verbatim&gt; &lt;/verbatim&gt;:
+<pre>
+Este texto mantendrá su formato tal y como está:
+&lt;verbatim&gt;
+  Unidad     Precio   Cantidad  Costo
+  -------    -------  --------- -------
+  aaa        12.00    3         36.00
+&lt;/verbatim&gt;
+</pre>
+
+El comando =pre= es HTML estándar; =verbatim= es un comando especial del TWiki convierte texto a texto con espaciado fijo y además prohibe la interpretación de otros comandos y de taquigrafía TWiki.
+
+__NOTA:__ VARIABLES serán interpretadas aún estando dentro del comando verbatim (esto es una peculiaridad histórica)
+
+__NOTA:__ Los comandos de inicio y fin de =verbatim= serán convertidos en comandos =pre=; cualquier atributo HTML (e.g., =class=, =id=) incluido en el comando inicial de =verbatim= será incluido en el comando =pre= correspondiente.
+
+---
+---+++ Cómo puedo crear tablas?
+
+Hay tres posibilidades:
+   1 Utilice las reglas Wiki con líneas verticales "|".
+   2 Utilice tablas HTML con los comandos &lt;table&gt;, &lt;tr&gt;, &lt;td&gt;.
+   3 Utilice texto preformateado con los comandos &lt;verbatim&gt;.
+
+*1. Utilice las reglas Wiki con líneas verticales "|"*
+
+   * Texto de ejemplo: %BR%
+     =| celda A1 | celda B1 | celda C1 |= %BR%
+     =| celda A2 | celda B2 | celda C2 |=
+   * Resultado: 
+     | celda A1 | celda B1 | celda C1 |
+     | celda A2 | celda B2 | celda C2 |
+
+*2. Utilice tablas HTML con los comandos &lt;table&gt;, &lt;tr&gt;, &lt;td&gt;*
+
+Esto es un proceso manual utilizando comandos HTML.
+
+__Digite:__
+
+<pre>
+&lt;table border="1"&gt;
+  &lt;tr&gt;
+    &lt;th&gt; Título A  &lt;/th&gt; &lt;th&gt; Título B  &lt;/th&gt;
+  &lt;/tr&gt;&lt;tr&gt;
+    &lt;td&gt; Celda A2 &lt;/td&gt; &lt;td&gt; Celda B2 &lt;/td&gt;
+  &lt;/tr&gt;&lt;tr&gt;
+    &lt;td&gt; Celda A3 &lt;/td&gt; &lt;td&gt; Celda B3 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+</pre>
+
+__Resultado:__
+
+<table border="1">
+  <tr>
+    <th> Título A  </th> <th> Título B  </th>
+  </tr><tr>
+    <td> Celda A2 </td> <td> Celda B2 </td>
+  </tr><tr>
+    <td> Celda A3 </td> <td> Celda B3 </td>
+  </tr>
+</table>
+
+*3. Utilice texto preformateado con los comandos &lt;verbatim&gt;*
+
+Ver [[#VerbatimText]["El texto que digito se ajusta automáticamente..."]] 
+
+
+---
+
+---+++ Puedo incluir imágenes en una página?
+
+Sí. La manera más fácil es [[ArchivosAdjuntos][adjuntar]] archivos tipo GIF, JPG o PNG a una página y después ubicarlas con =%<nop>ATTACHURL%/myImage.gif=. Esto funciona únicamente para la página que conlleva el archivo adjunto.
+
+Para ubicar una imagen en cualquier página, hay dos formas de incluir las imágenes.
+
+*1. Utilizando una dirección URL que termina en .gif, .jpg, .jpeg, .png*
+
+Esta es una manera simple y automática de incluir imágenes. Simplemente escriba la dirección URL del archivo de la imagen, esto le creará la imagen en la página. __NOTA:__ La imagen tiene que ser [[#ImgUpload][accessible]] como URL.
+
+   * __Digite:__ <code> %<nop>PUBURL%/%SYSTEMWEB%/TWikiLogos/T-logo-80x15.gif logo.</code> <br />
+     __Resultado:__ %PUBURL%/%SYSTEMWEB%/TWikiLogos/T-logo-80x15.gif logo.
+
+#ImgUpload
+Puede subir imágenes directamente a su servidor por medio de acceso FTP. También puede [[ArchivosAdjuntos][adjuntar]] archivos de imagen a su página - aún podría crear una página que contiene únicamente imágenes, como =BibliotecaDeImágenes= y generar enlaces directamente a esta página:
+   * Adjunte =pic.gif= a =Algunaweb.AlgunaPágina= <br />
+     La incluye con =%<nop>PUBURL%/Algunaweb/AlgunaPágina/pic.gif=
+
+*2. Utilizando el comando &lt;img&gt;*
+
+Esto es un proceso manual donde tiene más control sobre como se muestra la imagen. Utilice el comando HTML &lt;img&gt; para incluir archivos GIF, JPG y PNG. __Nota:__ El proceso de mostrar la página es más rápido si incluye los parámetros =width= y =height= que contiene el tamaño actual de la imagen. http://www.htmlhelp.com/reference/wilbur/special/img.html contiene más detalles acerca imágenes.
+
+   * __Digite:__ <code> &lt;img src="%<nop>PUBURLPATH%/%SYSTEMWEB%/TWikiLogos/T-logo-80x15.gif" width="80" height="15" border="0" alt="logo" /&gt; logo.</code><br />
+    __Resultado:__ <br /> <img src="%PUBURLPATH%/%SYSTEMWEB%/TWikiLogos/T-logo-80x15.gif" width="80" height="15" border="0" alt="logo" /> logo.
+
+-----
+---+++ Puede escribir texto coloreado?
+
+TWiki.TWikiPreferences %FLAGGB% define algunos colores comunes: *%YELLOW% %<nop>YELLOW%%ENDCOLOR%, %RED% %<nop>RED%%ENDCOLOR%, %PINK% %<nop>PINK%%ENDCOLOR%, %PURPLE% %<nop>PURPLE%%ENDCOLOR%, %TEAL% %<nop>TEAL%%ENDCOLOR%, %NAVY% %<nop>NAVY%%ENDCOLOR%, %BLUE% %<nop>BLUE%%ENDCOLOR%, %AQUA% %<nop>AQUA%%ENDCOLOR%, %LIME% %<nop>LIME%%ENDCOLOR%, %GREEN% %<nop>GREEN%%ENDCOLOR%, %OLIVE% %<nop>OLIVE%%ENDCOLOR%, %MAROON% %<nop>MAROON%%ENDCOLOR%, %BLACK% %<nop>BLACK%%ENDCOLOR%, %GRAY% %<nop>GRAY%%ENDCOLOR%, %SILVER% %<nop>SILVER%%ENDCOLOR%* y *%<nop>ENDCOLOR%*.
+
+   * __Digite:__ =%<nop>RED% texto color rojo %<nop>ENDCOLOR% y %<nop>GREEN% texto color verde %<nop>ENDCOLOR%= <p /> 
+     __Resultado:__ %RED% texto color rojo %ENDCOLOR% y %GREEN% texto color verde %ENDCOLOR%
+
+__Nota:__ texto a =%&lt;color&gt;%= tiene que terminar con =%<nop>ENDCOLOR%= . Si quiere cambiar de un color a otro, tiene que terminar el color actual primero con =%<nop>ENDCOLOR%=, e.g. escriba =%<nop>RED% algún texto %<nop>ENDCOLOR% %<nop>GREEN% más texto %<nop>ENDCOLOR%=.
+
+Si necesita más colores puede utilizar HTML, como =&lt;font color="#ff0000"&gt; texto color rojo &lt;/font&gt;=. También puede utilizar el atributo vigente =style= - ejemplo:
+=style="color:#ff0000"= - ubicado en la mayoría de los comandos HTML. =span= es una selección todo-propósito: =&lt;span style="color:#ff0000"&gt;CoLoR&lt;/span&gt;=. Solamente navegadores viejos (como 3.x IE &amp; NS) tienen problemas con =style=.
+
+El código es un _código hexadecimal de color RGB_, que simplemente es Rojo, Verde y Azúl en anotación hexadecimal (base 16, 0-F). Para rojo puro, los componentes RGB son 255-0-0 - rojo puro (255), nada de verde o azúl. En hexadecimal es FF-0-0 o ="#ff0000"= para propósitos de una página internet. TWiki.StandardColors %FLAGGB% lista los colores básicos.
+
+-----
+%STOPINCLUDE%
+-- __Colaboradores:__ TWiki:Main.PeterThoeny,  TWiki:Main.MikeMannix
+
+-- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 21 May 2008
+
+%META:FORM{name="TWiki.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.TextFormattingFAQ"}%
+%META:FIELD{name="Revision" attributes="" title="Revision" value="20"}%
+%META:FIELD{name="Language" attributes="" title="Language" value="es"}%
