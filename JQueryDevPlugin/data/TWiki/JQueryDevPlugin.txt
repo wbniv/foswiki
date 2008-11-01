@@ -1,0 +1,101 @@
+%META:TOPICINFO{author="StephaneLenclud" date="1204157195" format="1.1" reprev="1.3" version="1.3"}%
+---+!! jQuery developer plug-in
+
+<!--
+   * Set SHORTDESCRIPTION = Enable jquery 1.2.3 and jquery.ui-1.5b for TWiki 
+--> 
+%SHORTDESCRIPTION%
+
+%TOC%
+
+---++ Description
+
+Provides jQuery and jQuery UI. Designed for jQuery developer targeting the TWiki platform.
+
+<blockquote> "jQuery is a fast, concise, JavaScript Library that simplifies how you traverse HTML documents, handle events, perform animations, and add Ajax interactions to your web pages." </blockquote>
+
+---++ Acknowledgement
+
+This plug-in was derived from the excellent TWiki:Plugins.JQueryPlugin from TWiki:Main.MichaelDaum.
+
+---++ jQuery documentation
+
+   * [[http://docs.jquery.com/How_jQuery_Works][Getting the feets wet]] 
+   * [[http://docs.jquery.com/Tutorials][Tutorials]] 
+   * [[http://docs.jquery.com/Main_Page][Reference API]] 
+   * [[http://docs.jquery.com/Using_jQuery_with_Other_Libraries][Using jQuery with other libraries]] 
+   * [[http://docs.jquery.com/Plugins][Plugin repository]] 
+   * [[http://ui.jquery.com][jQuery UI]] 
+
+---++ Syntax Rules
+
+=%<nop>JQSCRIPT{"jquery.js"}%= : Include the specified script. Keep in mind that the =jquery.js= script must be loaded before plug-ins scripts.<br />
+=%<nop>JQTHEME{"mythemename"}%= : Include the specified theme. Better load the desired theme before any script.<br />
+=%<nop>JQIMAGESURLPATH{"myimage.png"}%= : Expand to the specified image path.<br />
+=%<nop>JQIMAGESURLPATH%/myimage.png= : Same result as the above.<br />
+
+---++ Themes
+
+The following themes are provided:
+   * =flora= theme
+   * =ogray= theme
+
+---++ Examples
+
+See Sandbox.PluginTestJQueryDevPlugin.
+
+---++ Plugin Settings
+
+none.
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the TWiki server.
+
+   * Download the ZIP file from the Plugin Home (see below) 
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. 
+   * Configure the Plugin: 
+      * TWiki 4.0 and up: Run the [[%SCRIPTURL%/configure%SCRIPTSUFFIX%][configure]] script to enable the Plugin 
+      * Change the Plugin settings as needed 
+      * Edit =/lib/TWiki/Plugin/%TOPIC%.pm= and adjust the =js= and =css= files inclusions has needed.
+   * If the installation was successful you should be able to create a dialog by clicking the button below: 
+
+<!--
+Include the jQuery javascript we need
+-->
+%JQTHEME{"ogray"}%
+%JQSCRIPT{"jquery.js"}%
+%JQSCRIPT{"jquery.dimensions.js"}%
+%JQSCRIPT{"ui.mouse.js"}%
+%JQSCRIPT{"ui.draggable.js"}%
+%JQSCRIPT{"ui.resizable.js "}%
+%JQSCRIPT{"ui.dialog.js "}%  
+
+<div class="ogray" id="example2" title="Congratulation!" style="display: none">You successfully installed that plug-in.</div> <br /> <button onclick="$('#example2').dialog({width: 600, height: 300}).show('slow');$(this).hide().next().show();">Create Dialog</button> <button onclick="$('#example2').dialog('open').hide().show('slow');" style="display:none;">Open</button> <button onclick="$('#example2').dialog('close')">Close</button>
+
+
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.StephaneLenclud |
+|  Copyright: | © 2008, Stéphane Lenclud <br /> 2007 Michael Daum http://michaeldaumconsulting.com <br /> 2007 John Resig (jquery.com) and jQuery plugin authors |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | 28 Feb 2008 (V0.5) |
+|  Change History: | <!-- versions below in reverse order --> |
+|  28 Feb 2008 | Adding =JQSCRIPT=, =JQTHEME= and =JQIMAGESURLPATH= tags. |
+|  25 Feb 2008 | Support multiple spinner per page. New spinner API. <br /> Adding =jquery.debug.js= from [[http://jquery.glyphix.com/][Glyphix]] |
+|  25 Feb 2008 | Adding spinner prototype from [[http://www.command-tab.com/2007/05/07/jquery-spinner-plugin/][command-tab.com]] |
+|  24 Feb 2008 | Adding the _ogray_ theme and making it the default one |
+|  24 Feb 2008 | First draft.<br /> Contains jquery 1.2.3, jquery.ui-1.5b and the _flora_ theme  |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+
+%META:FILEATTACHMENT{name="wikiringlogo40x40.png" attachment="wikiringlogo40x40.png" attr="h" comment="" date="1189787359" path="wikiringlogo40x40.png" size="2571" stream="wikiringlogo40x40.png" tmpFilename="" user="TWikiContributor" version="1"}%

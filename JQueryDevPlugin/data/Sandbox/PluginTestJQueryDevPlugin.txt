@@ -1,0 +1,53 @@
+%META:TOPICINFO{author="StephaneLenclud" date="1204156608" format="1.1" reprev="1.3" version="1.3"}%
+---+!! Examples for TWiki.JQueryDevPlugin
+
+%TOC%
+
+<!--
+Include the jQuery javascript we need
+-->
+
+%JQTHEME{"ogray"}%
+%JQSCRIPT{"jquery.js"}%
+%JQSCRIPT{"jquery.spinner.js"}%
+%JQSCRIPT{"jquery.dimensions.js"}%
+%JQSCRIPT{"ui.mouse.js"}%
+%JQSCRIPT{"ui.draggable.js"}%
+%JQSCRIPT{"ui.resizable.js "}%
+%JQSCRIPT{"ui.dialog.js "}%  
+
+---++ Dialog
+
+---+++ Default, no options
+
+<div class="ogray" id="example1">Hello, World!</div>
+
+<br /> <button onclick="$('#example1').dialog();$(this).hide().next().show();">Create Dialog</button> <button onclick="$('#example1').dialog('open')" style="display:none;">Open</button> <button onclick="$('#example1').dialog('close')">Close</button>
+
+
+---+++ Title, Width & Height
+
+<div class="ogray" id="example2" title="Nice title">I have a title and I'm big</div> <br /> <button onclick="$('#example2').dialog({width: 600, height: 300});$(this).hide().next().show();">Create Dialog</button> <button onclick="$('#example2').dialog('open')" style="display:none;">Open</button> <button onclick="$('#example2').dialog('close')">Close</button>
+
+
+---++ Spinner
+
+We fully support multiple spinner per page. One minor bug though: we can't change the spinner image once it's been loaded once. Tested on Firefox, IE7 and Opera. We had to specify the number of frames for Opera as it could not work it out like the others.
+
+<button onclick="$('#spinner').spinner({image: '%JQIMAGESURLPATH{"linux_spinner.png"}%'});$('#spinner').show();">Start spinner</button>
+<button onclick="$('#spinner').spinner({height: 48,width: 48,speed: 50, frames:12, image: '%JQIMAGESURLPATH{"spotlight_spinner_big.png"}%'});$('#spinner').show();">Start big spinner</button>
+<button onclick="$('#spinner').spinner('stop');//$('#spinner').hide();">Stop spinning</button> 
+
+<button onclick="$('#spinnerfast').spinner({height: 32,width: 32,speed: 25, image: '%JQIMAGESURLPATH%/linux_spinner.png'});$('#spinnerfast').show();">Start fast spinner</button>
+<button onclick="$('#spinnerfast').spinner({height: 48,width: 48,speed: 25, frames:12, image: '%JQIMAGESURLPATH%/spotlight_spinner_big.png'});$('#spinnerfast').show();">Start big fast spinner</button>
+<button onclick="$('#spinnerfast').spinner('stop');//$('#spinnerfast').hide();">Stop fast spinning</button> 
+
+
+<div id="spinner"></div>
+		
+<div id="spinnerfast"></div>
+		
+
+
+		
+
