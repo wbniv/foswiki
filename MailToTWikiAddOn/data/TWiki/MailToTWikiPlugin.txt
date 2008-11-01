@@ -1,0 +1,130 @@
+%META:TOPICINFO{author="MichaelSchmidt" date="1111154151" format="1.0" version="1.2"}%
+---+ <nop>MailToTWiki Plugin
+
+| Author  | TWiki:Main.AlanBurlison - alan@bleaklow.com |
+| Version | 0.05 |
+| Date	 | 18 Mar 2005 |
+| License | This is released under the Perl Artistic license |
+
+---++ Description
+
+This Plugin and associated script allow emails to be inserted into TWiki topics.  They can handle multipart MIME messages (i.e. ones with attachments).  The body of the mail is rendered into text surrounded by ==&lt;pre&gt;== ... ==&lt;/pre&gt;== tags, and any attachments of the email are extracted and attached to the specified TWiki topic, with a link placed in the rendered mail body.  If for any reason there is a problem inserting the mail into TWiki, a diagnostic email reply will be sent to the sender, and the original mail will be returned.  If successful, no reply will be received.
+
+---++ Syntax Rules
+
+To use this Plugin you will need to know the email address that has been configured for it - either ask the person who installed the module, or if you are the installer refer to the installation section below.  To insert an email into a topic, the body of the email should contain a line of the form:
+
+	 ==<nop>%{MAILTOTWIKI_APPEND_TO Web.Topic}%==
+
+This specifies the web and topic that the email should be inserted into (subject to authorisation and access control - see the section below for details).  This command will be stripped from the mail before insertion.  Any email attachments will be added to the TWiki topic, and linked to from the email body.  If the email body is empty other than the ==<nop>%{MAILTOTWIKI_APPEND_TO Web.Topic}%== line, the header and body of the email will not be added to the topic - this is useful where you want to forward an email to a topic, or if you want to just upload an attached file.
+
+By default the email text will be appended to the end of the topic.  To insert at a specific point in the topic, put the following TWiki variable at the required insertion point in the topic body:
+
+	 ==<nop>%MAILTOTWIKI_INSERT_HERE%==
+
+The email will be inserted immediately before this variable.
+
+---++ Authentication and Access Control
+
+Unlike the normal HTTP access to TWiki, there is no way of authenticating a user via the normal TWiki username/password prompt when an email is received for insertion into TWiki, and sending passwords via email is inadvisable.  ==mailtotwiki== therefore uses the email address of the sender for authentication.  The address is looked up in %MAINWEB%.%WIKIUSERSTOPIC% and mapped to the appropriate TWiki user, which will then be used for subsequent TWiki access control.  This means that the sender *must* be registered and have the *correct* email address in %MAINWEB%.%WIKIUSERSTOPIC%.  This is obviously not as secure as the normal TWiki authentication, so several additional access controls are provided:
+
+	* Email insertion is restricted to a specific set of Webs (==ALLOWEDWEBS==).
+	* Creation of new topics by email is disabled by default (==ALLOWTOPICCREATE==).
+	* Topic names must be a valid WikiName by default (==WIKITOPICNAMES==)
+	* Topic names can be filtered, and unacceptable ones rejected (==TOPICSMUSTMATCH==)
+
+It may be acceptable in some contexts (e.g. intranet usage) to allow unregistered users email access.  If this is required, set ==MapUnknownToGuest== to true and any unknown senders will be authenticated as the %MAINWEB%.TWikiGuest user, and subject to the normal %MAINWEB%.TWikiGuest access controls.
+
+---++ Topic Locking and Mail Spooling
+
+If the topic specified in the email is locked by another user, the email will be stored in ==MAILSPOOLDIR== (see below), for insertion when the topic becomes unlocked.  The spool directory is scanned every time an email is received, and may be scanned at additional intervals if required (see Configuration section).
+
+---++ <nop>%TOPIC% Global Settings
+
+The Plugin can be configured by modifying the following configuration variables.  As a minimum, you need to configure ==MAILSPOOLDIR== and ==ALLOWEDWEBS== - see the Installation section below.
+
+	* Descrition of the plugin, for display purposes.
+		* Set SHORTDESCRIPTION = Inserts emails forwarded to TWiki into a specified Web.Topic.
+
+	* Directory to be used for spooling mail.  Must exist and be writeable by the user that the script runs as.  It is suggested that you create and use =mailspool= under your TWiki installation directory.
+		* Set MAILSPOOLDIR = d:/twiki/tmp/mailspool
+
+	* List of Webs that mail may be sent to.  Must be non-empty.
+		* Set ALLOWEDWEBS = Sandbox
+
+	* Map unknown senders to Guest, true=1, false=0.
+		* Set MAPUNKNOWNTOGUEST = 1
+
+	* Only accept valid Wiki names for topics, true=1, false=0.
+		* Set WIKITOPICNAMES = 0
+
+	* Perl regular expression used to filter topic names, empty to match anything.
+		* Set TOPICSMUSTMATCH = 
+
+	* Allow creation of new topics, true=1, false=0.
+		* Set ALLOWTOPICCREATE = 0
+
+	* List of the email header fields to preserve in the email display.  Note these fields are case sensitive.
+		* Set HEADERFIELDS = Subject, From, Date, To, Cc
+
+---++ Plugin Installation Instructions
+
+*Note:* You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running.
+
+	* Download the ZIP file from the Plugin web (see below)
+
+	* Install the required Perl modules
+		* The ==mailtotwiki== script requires MIME::Tools, which in turn has a list of dependencies.  All these are available from any CPAN mirror (see http://www.cpan.org).
+
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Contents are:
+	  | *File:* | *Description:* |
+	  | ==bin/mailtotwiki== | Mail handler script |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+
+	* Configure the library path in the ==mailtotwiki== script
+		* Because this script is run from outside the TWiki directory tree, it needs to know where the TWiki ==lib== directory is.  Edit the script and modify the ==use lib== statement to point to the TWiki ==lib== directory.
+
+	* Configure an email address or alias, or email filter rule to accept email submissions for TWiki.  In order to insert emails into TWiki, the ==mailtotwiki== script needs to be called with the email body supplied on the standard input.  There are several ways of achieving this:
+		* By hand.  For testing purposes, you can save an email to a file, and then feed that to the script via standard input:
+			* ==$ mailtotwiki < /tmp/my.mail==
+		* From a ==sendmail== alias.  Configure a sendmail alias of the following form:
+			* ==twiki: "|/path/to/twiki/bin/mailtotwiki"==
+		* Configure an email filter rule.  For example, for ==procmail== use something like the following:
+			* ==:0 B== <br />
+			  ==* <nop>%{MAILTOTWIKI_APPEND_TO== <br />
+			  ==| /path/to/twiki/bin/mailtotwiki==
+
+		* =Important note=  If you are using the sendmail method, sendmail will run the ==mailtotwiki== script with the userid and group of the ==sendmail== user.  It is unlikely that this user will have permissions to write to the TWiki files.  If this is the case, you can make the ==mailtotwiki== script setuid to the user who owns the TWiki files.  The script runs under perl's =Taint= mode, and although this is not an ideal solution, it should be reasonably secure.
+
+	* Set up polling of the email spool directory.
+		* If you wish to process the spool directory regularly for pending emails, you will have to add the command ==/path/to/twiki/bin/mailtotwiki -s== to your batch processing system (e.g. cron).  Every hour is probably a good interval, as this corresponds to the default TWiki topic lock time.  In any case, the spool directory is checked on every upload for pending emails.
+
+	* Test if the plugin is correctly installed:
+		* Send an email to the configured email address with the appropriate ==<nop>%{MAILTOTWIKI_APPEND_TO Web.Topic}%== command in it.  It should be appended to the specified topic (subject to authentication and access control as described above).  If there are any errors, a reply email should be received detailing the problem.
+		* If the email isn't inserted into the topic, save the email as a text file and feed it to the ==mailtotwiki== script on the standard input.  Watch for any error messages to stdout.
+
+---++ ==mailtotwiki== command-line arguments.
+
+	* No arguments and an email provided on standard input
+		* Insert the email into the Web.Topic specified in the email with the ==<nop>%{MAILTOTWIKI_APPEND_TO Web.Topic}%== command.
+	* ==-s== and no email on standard input
+		* Scan ==MAILSPOOLDIR== for spooled emails, and insert if the topic is now unlocked.
+
+---++ Plugin Info
+
+| Plugin Author: | TWiki:Main.AlanBurlison |
+| Plugin Version: | 27 Jan 2002 (V0.03) |
+| Change History: | 18 Mar 2005 (V0.05) |
+| Version 0.05 | Modified beta version |
+| CPAN Dependencies: | MIME::Tools |
+| Other Dependencies: | Unix/Linux or Windows/cygwin only |
+| Perl Version: | 5.6.1 |
+| Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/MailToTWikiAddOn |
+| Feedback: | http://TWiki.org/cgi-bin/view/Plugins/MailToTWikiAddOnDev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- TWiki:Main.AlanBurlison - 27 Jan 2003
+

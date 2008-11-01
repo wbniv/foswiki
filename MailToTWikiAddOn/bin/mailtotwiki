@@ -1,0 +1,850 @@
+#!c:/cygwin/bin/perl -wT
+#
+# Author:	Alan Burlison - alan@bleaklow.com
+# Version:	0.05
+# Date:		18 Mar 2005
+# License:	This is released under the Perl Artistic license.
+#
+# This script allows emails to be appended to TWiki topics.  It can handle
+# multipart MIME messages (i.e. ones with attachments).  The body of the mail is
+# rendered into text, and any attachments of the mail are extracted and attached
+# to the TWiki topic, with a link placed in the rendered mail body.  It requires
+# that  the mail body is provided on stdin.  If the topic that is to be inserted
+# into is locked by another user editing it, the mail will be spooled for
+# subsequent insertion.  The only command-line argument is:
+#	-s		- process spool directory
+# In which case no mail should be provided on stdin.
+#
+# This script can be called from /etc/mail/aliases like this:
+#	twiki: "|/path/to/twiki/bin/mailtotwiki"
+# and from a procmail recipe like this:
+#	:0 B
+#	* %{MAILTOTWIKI_APPEND_TO
+# 	| /path/to/twiki/bin/mailtotwiki 
+#
+# If you wish to process the spool directory regularly for pending mails, add
+#	/path/to/twikimail -s
+# to your batch processing system, hourly is probably a good interval.  In any
+# case, the spool directory is checked on every upload for pending mails.
+#
+# See the MailToTWikiPlugin topic for full documentation.
+#
+
+use 5.6.1;
+use strict;
+use warnings;
+
+our $VERSION = q{0.05};
+
+#
+# Location of the TWiki 'lib' directory.  Edit as appropriate.
+#
+
+use lib qw(d:/twiki/lib);
+
+#
+# Default configuration values - Modify in the assciated plugin topic.
+#
+
+# Mail spool directory, used for spooling stuff if a topic is locked.
+our $MailSpool = q{d:/twiki/tmp/mailspool};
+
+# List of webs that may have mail sent to them.
+our @AllowedWebs = ();
+
+# Map unknown senders to Guest?
+our $MapUnknownToGuest = 1;
+
+# Allow creation of new topics?
+our $AllowTopicCreate = 0;
+
+# Only allow valid Wiki names for topics.
+our $WikiTopicNames = 1;
+
+# Topics must match this pattern, if defined.
+our $TopicsMustMatch = undef;
+
+# List of mail header fields to preserve.
+our @HeaderFields = qw(Subject From Date To Cc);
+#our @HeaderFields = qw(Betreff Von Gesendet An Cc);
+
+#
+# Other configuration values, shouldn't need modification.
+# 
+
+# Name of associated Plugin.
+our $PluginName = q{MailToTWikiPlugin};
+
+# RE for capturing TWiki command.  Must leave the web in $1 and the topic in $2.
+our $AppendCommand = qr[%{MAILTOTWIKI_APPEND_TO\s+([^\s.]+)\.([^\s]+)\s*}%];
+
+#
+# Marker for specifying where mail should be inserted.
+# NOTE: This MUST be the same as the value in MailToTwikiPlugin.pm.
+#
+our $InsertMarker = qr[(?<!<nop>)%{?MAILTOTWIKI_INSERT_HERE}?%];
+
+# Spool data file.
+our $SpoolFile = q{.spoolfile};
+
+# Exit codes for various errors, same as sendmail (see /usr/include/sysexits.h)
+our $ArgError    = 64;	# Command-line argument error.
+our $DataError   = 65;	# Input mail message error.
+our $CreateError = 73;	# File creation error.
+our $PermsError  = 77;	# Permissions error.
+
+# Guest login and topic.  Initialised in Main.
+our $GuestLogin = q{};
+our $GuestTopic = q{};
+
+# Mail header field length.  Initialised in Main.
+our $MailFieldLen = 0;
+
+#
+# End of configuration section.
+#
+
+use TWiki;
+use TWiki::Net;
+use Fcntl qw(:DEFAULT :flock);
+use MIME::Parser;
+
+#
+# XXX HACK ALERT XXX
+# I *think* the logic of TWiki::Store::saveAttachment is broken,
+# see http://twiki.org/cgi-bin/view/Codev/SaveAttachmentBroken.
+# This is here until either I figure out how it is *really* supposed to work,
+# or it is fixed.
+#
+sub twiki_store_save_attachment
+{
+	my ($web, $topic, $text, $saveCmd, $attachment, $dontLogSave,
+	    $doUnlock, $dontNotify, $theComment, $theTmpFilename, $forceDate)
+	    = @_;
+
+	my $topicHandler = TWiki::Store::_getTopicHandler(
+	    $web, $topic, $attachment);
+	my $error = $topicHandler->addRevision($theTmpFilename, $theComment,
+	    $TWiki::userName );
+	$topicHandler->setLock(0) if ($doUnlock);
+	return $error;
+}
+  
+#
+# Note: It would be nice to use File::Path for the next two functions,
+# but it isn't taint-safe.  Sigh.  The following two replacements assume Unix
+# filesystem semantics.  Bite me.
+#
+
+#
+# Make a new directory tree, from an existing starting point.
+#
+sub mktree
+{
+	my ($start, $subtree) = @_;
+
+	my ($next, $rest) = split(m{/}, $subtree, 2); 
+	my $path = "$start/$next";
+	return($rest ? mktree($path, $rest) : 1) if (-d $path);
+	return(0) unless (mkdir($path));
+	return($rest ? mktree($path, $rest) : 1);
+}
+
+#
+# Remove a directory tree.  Equivalent to 'rm -rf'
+#
+sub rmtree
+{
+	my ($start) = @_;
+
+	return(0) unless chmod(0777, $start);
+	if (-d $start) {
+		my $dh;
+		return(0) unless opendir($dh, $start);
+		my $ok = 1;
+		foreach my $next (grep(! /^\.\.?$/, readdir($dh))) {
+			($next) = $next =~ /^(.*)$/;	# Untaint.
+			$ok = 0 unless (rmtree("$start/$next"));
+		}
+		closedir($dh);
+		$ok = 0 unless(rmdir($start));
+		return($ok);
+	} else {
+		return(unlink($start));
+	}
+}
+
+#
+#
+#
+# Lock a file and return a filehandle to it.
+# $mode is "r" for exclusive read.
+# If the file doesn't exists or can't be locked, undef will be returned.
+# $mode is "w" for exclusive create and write.
+# If the file already exists or can't be locked, undef will be returned.
+#
+sub lock_file
+{
+	my ($path, $mode) = @_;
+
+	my $m = $mode eq 'w' ? (O_RDWR | O_CREAT | O_EXCL) : (O_RDWR);
+	my $fh;
+	sysopen($fh, $path, $m, 0666) || return(undef);
+	flock($fh, LOCK_EX | LOCK_NB) || return(undef);
+	return($fh);
+}
+
+#
+# Unlock a file, and delete if a path is specified.  Return true/false.
+#
+sub unlock_file
+{
+	my ($fh, $path) = @_;
+	flock($fh, LOCK_UN) || return(0);
+	close($fh) || return(0);
+	return($path ? unlink($path) : 1);
+}
+
+#
+# Send an error message back to the sender.
+#
+sub error_reply
+{
+	my ($sender, $error) = @_;
+	if ($sender) {
+		my $from = TWiki::Func::getPreferencesValue('WIKIWEBMASTER');
+		my $name = TWiki::Func::getPreferencesValue('WIKITOOLNAME');
+		my $home = TWiki::Func::getPreferencesValue('WIKILOGOURL');
+		my $msg;
+		$msg .= "From: $from\n";
+		$msg .= "To: $sender->{From}\n";
+		$msg .= "Subject: Re: $sender->{Subject}\n";
+		$msg .= "In-Reply-To: $sender->{'Message-ID'}\n"
+		    if (exists($sender->{'Message-ID'}));
+		$msg .= "\nThere was an error in your attempt to email ";
+		$msg .= "to $name ($home),\nthe error message is below:\n\n";
+		$msg .= "$error\n\n";
+		$msg .= "--\n$from\n--\n";
+		TWiki::Net::sendEmail($msg);
+	} else {
+		print STDERR ("$0: $error\n");
+	}
+}
+
+#
+# Map a mail address to a TWiki user. This is gross.
+# And we need both the login name and their topic name.  Double gag.
+# Returns (username, topicname).
+#
+sub lookup_mailaddr
+{
+	my ($email) = @_;
+
+	# Extract the email address.
+	$email =~ s/^[^<]*<([^>]+)>.*/$1/s;
+
+	# Fetch the %MAINWEB%.TWikiUser topic
+	my $mainweb = TWiki::Func::getMainWebname();
+	my $topic1 = TWiki::Func::readTopicText($mainweb, 'TWikiUsers');
+
+	# For each likely-looking user, open the topic, get the email address.
+	while ($topic1 =~ /^\s+\*\s+(\w+)\s+-\s+\S+\s+-\s+/mg) {
+		my $usertopic = $1;
+		my $topic2 = TWiki::Func::readTopicText($mainweb, $usertopic);
+		$topic2 =~ /^\s*\*\s+Email:\s*(\S+)/m;
+		if (lc($1) eq lc($email)) {
+			$topic2 =~ /^\s*\*\s+Login Name:\s*(\S+)/m;
+			return($1, "$mainweb.$usertopic");
+		}
+	}
+
+	# Fallback to guest if required.
+	if ($MapUnknownToGuest) {
+		return($GuestLogin, $GuestTopic);
+	}
+		    
+	# Not found.
+	return(undef, undef);
+}
+
+#
+# TWiki ignores anything in <pre> .. </pre> blocks, but we would like some
+# things to be auto-linked.  Make it so.
+#
+sub munge_pre_text
+{
+	my ($text) = @_;
+
+	# Strip leading/trailing whitespace.
+	$text =~ s/\A\s+//s;
+	$text =~ s/\s+\Z//s;
+
+	# Protect HTML tags.
+	$text =~ s/</&lt;/g;
+	$text =~ s/>/&gt;/g;
+
+	# TWiki thinks lines like this belong to it.
+	$text =~ s/^---/<nop>---/mg;
+
+	# URLs.
+	$text =~ s{((?:https?|ftp|file|mailto):/\S+)}{<a href="$1">$1</a>}g;
+
+	# Email addresses.
+	$text =~ s{\b(\w[\w._-]*\w@\w[\w._-]*\w)\b}{<a href="$1">$1</a>}g;
+
+	return($text);
+}
+
+#
+# Render mail into text, and extract topic and attachments.
+# Note:  To save space/time, text and attachments are returned as refs.
+#
+sub parse_mail
+{
+	my ($entity, $spooldir) = @_;
+	my ($sender, $web, $topic, $emailtext, @attachments, $headertext);
+	$emailtext = '';
+
+	# Serial number for attachments without a filename.
+	my $unknown = 1;
+
+# Original
+#   foreach my $part ( $entity->parts_DFS ) {
+# Changed
+	foreach my $part ( getParts($entity) ) {
+		
+		my $type = $part->effective_type();
+		my $head = $part->head();
+		my $filename = $head->recommended_filename();
+
+		# Get the sender details, if present.
+		if (! $sender) {
+			$sender = {};
+			foreach my $field (qw{From Subject Message-ID}) {
+				my $value = $head->get($field);
+				next unless ($value);
+				chomp($value);
+				$sender->{$field} = $value;
+			}
+		}
+
+		# Get any required mail header fields.
+		my $ht;
+		foreach my $hf (@HeaderFields) {
+			if (my $v = $head->get($hf)) {
+				my $f = "$hf:";
+				$ht .= sprintf("%-*s %s",
+				    $MailFieldLen + 1, $f, $v);
+			}
+		}
+		# Save if we found anything.
+		$headertext = munge_pre_text($ht) if ($ht);
+
+### Original
+#        # Ignore MIME goop.
+#		if ($type eq 'multipart/mixed' || $type eq 'message/rfc822' ) {
+### Changed		
+		
+    	# Ignore MIME goop.
+		if ($type eq 'multipart/mixed' || 
+		                 $type eq 'message/rfc822' || 
+		                                 $type eq 'multipart/alternative') {
+			;
+
+		# Plaintext mail messages are stored inline in the topic.
+		} elsif ($type eq 'text/plain' && ! $filename) {
+
+			# Need to have a body.
+			my $body = $part->bodyhandle();
+			next unless ($body);
+
+			# Fetch the body.
+			$body = $body->open('r');
+			my $et = '';
+			$et .= $_ while (defined($_ = $body->getline()));
+
+			# Look for an append command (first valid one counts).
+			if (! ($web && $topic) &&
+			    $et =~ /^\s*$AppendCommand\s*$/m) {
+				$web = $1;
+				$topic = $2;
+				$et =~ s/^\s*$AppendCommand\s*$//m;
+
+				#
+				# Suppress the 'wrapper' of forwarded messages.
+				# If all that was in the body was the append
+				# command, don't save the mail body.
+				#
+				next if ($et eq '');
+			}
+
+			# Mail divider.
+			$emailtext .= $emailtext ?
+			    "<hr />" : qq{<pre>\n<hr noshade="1" />};
+
+			# Mail header.
+			if ($headertext) {
+				$emailtext .= "$headertext\n\n";
+				$headertext = undef;
+			}
+
+			# Mail body.
+			$emailtext .= munge_pre_text($et);
+
+		# Everything else is stored as an attachment.
+		} else {
+
+			# Generate filename, if required.
+			if (! $filename) {
+				$filename = "unknown.$$.$unknown";
+				$unknown++;
+			}
+
+			# Do the same filename munging as bin/upload.
+			$filename =~ s/[^$TWiki::regex{mixedAlphaNum}\._-]+//go;
+			$filename =~ s/$TWiki::uploadFilter/$1\.txt/goi;
+
+			my $spoolpath = $part->bodyhandle()->path();
+			$spoolpath =~ s{^$spooldir/}{};
+			push(@attachments, { filename => $filename,
+			    spoolpath => $spoolpath, type => $type });
+		}
+	}
+
+	# Add links for attachments (if mail has a body and there are some).
+	if  (@attachments && $emailtext) {
+		# Mail divider.
+		$emailtext .= "<hr />";
+
+		# Add a link for each attachment.
+		foreach my $att (@attachments) {
+			# Display a link and save the attachment details.
+			my $fn = $att->{filename};
+			my $aref = qq{<a href="\%ATTACHURL\%/$fn">$fn</a>};
+			$emailtext .= "[ Attachment $aref ]\n";
+		}
+	}
+
+	# Mail divider.
+	$emailtext .= qq{<hr noshade="1" /></pre>\n} if ($emailtext);
+
+	# Return.
+	if ($web && $topic) {
+		return ($sender, $web, $topic, \$emailtext, \@attachments);
+	} else {
+		return ($sender, undef, undef, undef, undef);
+	}
+	
+}
+
+
+### Changed ( Add new )
+
+#
+#To get only the relevant parts of the mail.
+#If there are alternate parts in the mail, select the one with type 'text/plain'
+#If none exists with type 'text/plain', select the first alternative.
+#
+sub getParts 
+{
+    my ($entity) = @_;
+    
+    if( $entity->mime_type eq 'multipart/alternative') {
+      map { return ( $entity, $_ ) if ( $_->mime_type eq 'text/plain' ) } $entity->parts;
+      return ($entity, map { getParts($_) } $entity->parts(0));
+    } else {
+      return ($entity, map { getParts($_) } $entity->parts);
+    }
+}
+
+### End
+
+
+#
+# Save a list of attachments in a topic.  Here be dragons.
+# This is modelled on the bin/upload CGI script, as there is no API for this.
+# Returns (exitval, message) on error.
+#
+sub twiki_attach
+{ 
+	my ($spooldir, $username, $web, $topic, $metadata, $attachments) = @_;
+
+	foreach my $att (@$attachments) {
+		my ($filename, $spoolpath, $type) =
+		    @{$att}{qw{filename spoolpath type}};
+
+		# Save the attachment.
+		# XXX should really be TWiki::Store::saveAttachment().
+		$spoolpath = "$spooldir/$spoolpath";
+		if (twiki_store_save_attachment($web, $topic, '', '',
+		    $filename, 1, 0, 1, $type, $spoolpath)) {
+			return($CreateError, 
+			    "Can't attach file $filename to '$web.$topic'");
+		}
+
+		# Update the details.
+		my $revision = TWiki::Store::getRevisionInfo(
+		    $web, $topic, $filename);
+		my ($size, $mtime) = (stat($spoolpath))[7,9];
+		TWiki::Attach::updateAttachment($revision, $filename,
+		    $spoolpath, $size, $mtime, $username,
+		    $type, 0, $metadata);
+
+		# Be a good citizen and log the attach.
+		TWiki::Store::writeLog('attach', "$web.$topic", $filename)
+		    if ($TWiki::doLogTopicAttach);
+	}
+	return(0, undef);
+}
+
+#
+# Insert the mail into TWiki.  Returns an exit() code and message.
+#
+sub twiki_insert
+{
+	my ($spooldir, $sender, $username, $usertopic,
+	    $web, $topic, $emailtext, $attachments) = @_;
+
+	# Connect as the user.
+	TWiki::initialize("/$web/$topic", $username, $topic, '', undef);
+
+	# Lock the topic, return a pseudo-error if the lock fails.
+	if (TWiki::Func::setTopicEditLock($web, $topic, 1)) {
+		return(-1, "Topic '$web.$topic' is locked, try again later");
+	}
+
+	# Retrieve the topic.
+	my ($metadata, $topictext) = TWiki::Store::readTopic($web, $topic);
+
+	# Check the permissions
+	if (! TWiki::Func::checkAccessPermission('CHANGE',
+	    $usertopic, $topictext, $topic, $web)) {
+		TWiki::Func::setTopicEditLock($web, $topic, 0);
+		return($PermsError,
+		    "You don't have permission to edit '$web.$topic'");
+	}
+
+	# Append the email text to the topic.
+	if ($topictext =~ /^\s*$InsertMarker\s*$/m) {
+		$topictext =~ s/^(\s*$InsertMarker\s*)$/$$emailtext$1/m;
+	} else {
+		$topictext .= $$emailtext;
+	}
+
+	# Save the attachments.
+	my ($exitval, $errmsg) = twiki_attach($spooldir, $username,
+	    $web, $topic, $metadata, $attachments);
+	if ($exitval) {
+		TWiki::Func::setTopicEditLock($web, $topic, 0);
+		return($exitval, $errmsg);
+	}
+
+	# Save the topic.
+	if ($_ = TWiki::Store::saveTopic($web, $topic, $topictext, $metadata)) {
+		TWiki::Func::setTopicEditLock($web, $topic, 0);
+		return($CreateError, "Error editing '$web.$topic': $_");
+	}
+
+	# Unlock the topic, remove the temp directory and return.
+	TWiki::Func::setTopicEditLock($web, $topic, 0);
+	return(0, undef);
+}
+
+#
+# Save the details of a mail in a spool file, in case a topic is locked.
+#
+sub save_spool
+{
+	my ($sender, $username, $usertopic,
+	    $web, $topic, $spooldir, $emailtext, $attachments) = @_;
+	
+	my $spoolfile = "$spooldir/$SpoolFile";
+	my $sfh = lock_file($spoolfile, 'w') || return(0);
+
+	# Save details in spool file.
+	my ($k, $v);
+	print $sfh ("Sender.$k = $v\n") while (($k, $v) = each(%$sender));
+	print $sfh ("UserName = $username\n");
+	print $sfh ("UserTopic = $usertopic\n");
+	print $sfh ("Web = $web\n");
+	print $sfh ("Topic = $topic\n");
+	my $i = 0;
+	foreach my $att (@$attachments) {
+		print $sfh ("Attachment[$i].$k = $v\n")
+		    while (($k, $v) = each(%$att));
+		$i++;
+	}
+	print $sfh ("\n$$emailtext");
+
+	unlock_file($sfh) || return(0);
+	return(1);
+}
+
+#
+# Process a spooled file.
+#
+sub process_spool_file
+{
+	my ($spooldir) = @_;
+
+	# Lock the spool file.
+	my $spoolfile = "$spooldir/$SpoolFile";
+	my $sfh = lock_file($spoolfile, 'r') || return;
+
+	# Read back the contents.
+	my ($sender, $username, $usertopic,
+	    $web, $topic, $emailtext, $attachments);
+	$sender = {};
+	$emailtext = '';
+	$attachments = [];
+	my $line;
+	while (defined($line = <$sfh>)) {
+		chomp($line);
+
+		# First block is terminated by a blank line.
+		last if ($line =~ /^\s*$/);
+		$line =~ s/^\s+//;
+		$line =~ s/\s+$//;
+
+		# Read attributes.
+		my ($k, $v) = split(/\s*=\s*/, $line, 2);
+		if ($k =~ /^Sender\.(.+)$/) {
+			$sender->{$1} = $v;
+		} elsif ($k eq 'UserName') {
+			$username = $v;
+		} elsif ($k eq 'UserTopic') {
+			$usertopic = $v;
+		} elsif ($k eq 'Web') {
+			$web = $v;
+		} elsif ($k eq 'Topic') {
+			$topic = $v;
+		} elsif ($k =~ /^Attachment\[(\d+)\]\.(.+)$/) {
+			$attachments->[$1]{$2} = $v;
+		}
+	}
+
+	# Skip blank lines.
+	while (defined($line = <$sfh>) && $line =~ /^\s*$/) {
+		;
+	}
+
+	# Read email text.
+	$emailtext = $line;
+	$emailtext .= $line while (defined($line = <$sfh>));
+	
+	# Try to add to TWiki.
+	my ($exitval, $errmsg) = twiki_insert($spooldir, $sender,
+	    $username, $usertopic, $web, $topic, \$emailtext, $attachments);
+
+	# If the topic is still locked.
+	if ($exitval eq -1) {
+		# Unlock and leave.
+		unlock_file($sfh);
+	} else {
+		# Unlock & delete.
+		unlock_file($sfh, $spoolfile);
+		rmtree($spooldir);
+	}
+}
+
+#
+# Search for and process any spooled files, saved if a topic was locked.
+# Spool subdirectories are processed in time/date order, oldest first.
+# Any errors are silently ignored.
+#
+sub process_spool_dirs
+{
+	my ($spooldir) = @_;
+
+	# Open the spool directory.
+	my ($dh, %spool);
+	opendir($dh, $spooldir) || return;
+
+	# For each spool subdirectory.
+	# Note: skip the spool for this process, if present.
+	foreach my $dir (grep(! /^(?:\.\.?|$$)$/o, readdir($dh))) {
+		# Untaint & validate.
+		(($dir) = $dir =~ /^(\d+)$/) || next;
+		my $sd = "$spooldir/$dir";
+		my $sf = "$sd/$SpoolFile";
+		next unless (-f $sf);
+		$spool{$sd} = (stat(_))[9];	# mtime.
+	}
+	closedir($dh);
+
+	# Now process all the files in date order.
+	foreach my $sd (sort { $spool{$a} <=> $spool{$b} } keys(%spool)) {
+		process_spool_file($sd);
+	}
+}
+
+
+#
+# Main.
+#
+
+# Check the command-line arguments.
+if ((@ARGV > 1) || (@ARGV == 1 && $ARGV[0] ne '-s')) {
+	error_reply(undef, "Invalid command-line arguments @ARGV");
+	exit($ArgError);
+}
+
+#
+# If running setuid, make real and effective userid the same,
+# otherwise RCS complains when checking in the initial version of a file.
+#
+if ($< != $>) {
+	$< = $>;
+	$( = $);
+}
+
+# Initialise TWiki.
+TWiki::basicInitialize();
+$GuestLogin = TWiki::Func::getDefaultUserName();
+$GuestTopic = TWiki::userToWikiName($GuestLogin);
+
+#
+# TWiki has to be fully initialised before we can read configuration variables
+# from a plugin's topic, so connect initially as guest.  Bah.
+#
+$_= TWiki::Func::getTwikiWebname();
+TWiki::initialize("/$_/$PluginName", $GuestLogin, $PluginName, '', undef);
+
+# Read the configuration variables for the plugin.
+my $pit = uc($PluginName);
+my $cfgval;
+
+$cfgval = TWiki::Func::getPreferencesValue("${pit}_MAILSPOOLDIR");
+$MailSpool = $cfgval if ($cfgval ne '');
+
+$cfgval = TWiki::Func::getPreferencesValue("${pit}_ALLOWEDWEBS");
+@AllowedWebs = split(/\s*[,;|]\s*/, $cfgval) if ($cfgval ne '');
+
+$cfgval = TWiki::Func::getPreferencesFlag("${pit}_MAPUNKNOWNTOGUEST");
+$MapUnknownToGuest = $cfgval if ($cfgval ne '');
+
+$cfgval = TWiki::Func::getPreferencesFlag("${pit}_ALLOWTOPICCREATE");
+$AllowTopicCreate = $cfgval if ($cfgval ne '');
+
+$cfgval = TWiki::Func::getPreferencesFlag("${pit}_WIKITOPICNAMES");
+$WikiTopicNames = $cfgval if ($cfgval ne '');
+
+$cfgval = TWiki::Func::getPreferencesValue("${pit}_TOPICSMUSTMATCH");
+if ($cfgval && $cfgval ne /^\s*$/) {
+	$cfgval = eval { qr{$cfgval}; };
+	$TopicsMustMatch = $cfgval if ($cfgval);
+}
+
+$cfgval = TWiki::Func::getPreferencesValue("${pit}_HEADERFIELDS");
+@HeaderFields = split(/\s*[,;|]\s*/, $cfgval) if ($cfgval ne '');
+
+# Calculate space needed for mail header fields.
+foreach my $hf (@HeaderFields) {
+	my $l = length($hf);
+	$MailFieldLen = $l if ($l > $MailFieldLen);
+}
+
+# Always process the spool directory first, to preserve time order of mails.
+process_spool_dirs($MailSpool);
+
+# If just processing the mail spool, stop now.
+exit (0) if (@ARGV == 1 && $ARGV[0] eq '-s');
+
+# Make the spool directory for this mail.
+mktree($MailSpool, $$);
+my $spooldir = "$MailSpool/$$";
+my ($exitval, $errmsg) = (0, undef);
+
+# Create mail message parser and parse the mail.
+my $parser = MIME::Parser->new();
+$parser->output_dir($spooldir);
+my $entity;
+if (! eval { $entity = $parser->parse(\*STDIN); }) {
+	$exitval = $DataError;
+	$errmsg = "Mail parse failed: $@";
+	goto EXIT;
+}
+
+# Process mail body, extract the sender, topic name, text and any attachments.
+my ($sender, $web, $topic, $emailtext, $attachments) =
+    parse_mail($entity, $spooldir);
+
+#
+# Validate the web and topic.
+#
+
+# Did we find a web and topic?
+if (! ($web && $topic)) {
+	$exitval = $DataError;
+	$errmsg = "Web.Topic not specified in mail";
+	goto EXIT;
+}
+
+# Check the specified web actually exists.
+if (! TWiki::Func::webExists($web)) {
+	$exitval = $DataError;
+	$errmsg = "Web '$web' does not exist";
+	goto EXIT;
+}
+
+# Check the web is authorised for mail insertion.
+if (! grep($_ eq $web, @AllowedWebs)) {
+	$exitval = $DataError;
+	$errmsg = "Web '$web' is not authorised for mail insertion";
+	goto EXIT;
+}
+
+# Check if the topic is a valid Wiki name, if required.
+if ($WikiTopicNames && ! TWiki::isWikiName($topic)) {
+	$exitval = $DataError;
+	$errmsg = "Topic '$web.$topic' is not a valid Wiki name";
+	goto EXIT;
+}
+
+# Check if the topic matches the topic filter, if required.
+if ($TopicsMustMatch && $topic !~ $TopicsMustMatch) {
+	$exitval = $DataError;
+	$errmsg = "Topic '$web.$topic' is not an allowed name";
+	goto EXIT;
+}
+
+# Check the topic exists, if required.
+if (! $AllowTopicCreate && ! TWiki::Func::topicExists($web, $topic)) {
+	$exitval = $PermsError,
+	$errmsg = "Creation of '$web.$topic' is not allowed";
+	goto EXIT;
+	}
+
+# Map the mail sender to a TWiki account & validate.
+my ($username, $usertopic) = lookup_mailaddr($sender->{From});
+if (! $username) {
+	$exitval = $PermsError;
+	$errmsg = "You are not authorised to add to the '$web' web";
+	goto EXIT;
+}
+
+#
+# Everything should now be OK.  Insert into TWiki.
+#
+($exitval, $errmsg) = twiki_insert($spooldir, $sender, $username, $usertopic,
+    $web, $topic, $emailtext, $attachments);
+
+# -1 means the topic was locked, but otherwise OK, so spool the mail.
+if ($exitval eq -1) {
+	if (! save_spool($sender, $username, $usertopic,
+	    $web, $topic, $spooldir, $emailtext, $attachments)) {
+		$exitval = $CreateError;
+		$errmsg = "Topic '$web.$topic' is locked, but can't spool data";
+		goto EXIT;
+	}
+}
+
+EXIT:
+
+# Mail was spooled, don't remove spool directory.
+exit(0) if ($exitval == -1);
+
+# Otherwise delete the spool directory and exit.
+rmtree($spooldir);
+error_reply($sender, $errmsg) if ($errmsg);
+exit($exitval);
