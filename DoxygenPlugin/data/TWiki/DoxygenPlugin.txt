@@ -1,0 +1,76 @@
+%META:TOPICINFO{author="WillNorris" date="1059780720" format="1.0" version="1.12"}%
+%META:TOPICPARENT{name="SearchResult"}%
+---+ <nop>%TOPIC%
+
+This plugin allows you to create links to classes within doxygen-generated documentation.
+
+---++ Syntax Rules 
+
+<tt>%<nop>DOX{</tt><i>classname</i><tt>[</tt><i>displayName</i><tt>] project="</tt><i>optionalProjectName</i><tt>"}%</tt>
+
+---++ Examples
+
+| *syntax* | *example* | *result* |
+| <tt>%<nop>DOX{</tt><i>classname</i><tt>}%</tt> | =%<nop>DOX{nKernelServer}%= | %DOX{nKernelServer}% |
+| <tt>%<nop>DOX{</tt><i>classname</i><tt>}%</tt> | =%<nop>DOX{nebulacollide::nKernelClient::BadConnection}%= | %DOX{nebulacollide::nKernelClient::BadConnection}% |
+| <tt>%<nop>DOX{</tt><i>path/to/html</i><tt>}%</tt> | =%<nop>DOX{nebulacollide/html/collide_usage.html}%= | %DOX{nebulacollide/html/collide_usage.html}% |
+| <tt>%<nop>DOX{</tt><i>classname</i><tt>[</tt><i>displayName</i><tt>]}%</tt> | =%<nop>DOX{nKernelServer[The Kernel]}%= | %DOX{nKernelServer[The Kernel]}% |
+
+Where _classname_ is the *case sensitive* name of the class you wish to link to. For example %DOX{nKernelServer}% creates a link like this %DOX{nKernelServer}%.
+
+If you are using namespaces or nested classes, specific the fully qualified name with =::= as you would referecing it in code as in the example above.
+
+If you wish to link to a specific function or other API page, then you can use =%<nop>DOX{path}%= where _path_ is the path to the html file relative to =/doc/doxydoc/=. For example if you wished to link to =/doc/doxydoc/nebulacollide/html/collide_usage.html= then you would type =%<nop>DOX{nebulacollide/html/collide_usage.html}%= to get a link like this %DOX{nebulacollide/html/collide_usage.html}%.
+
+To have the link display text other than the class name or file path, put the alternative text in square brackets like this =%<nop>DOX{nKernelServer[The Kernel]}%=, which would display as %DOX{nKernelServer[The Kernel]}% 
+
+---++ <nop>%TOPIC% Global Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>DOXYGENPLUGIN_SHORTDESCRIPTION%==
+
+   * Set SHORTDESCRIPTION = Creates links to doxygen-generated docs using =%<nop>DOX{classname}%=.
+      * Set DEBUG = 0
+
+   * The Nebula Device project codebase
+      * Set DOCS_BASE_NEB = /home/groups/n/ne/nebuladevice/nebula/doc/doxydoc/nebulacore/html/class
+      * Set URL_BASE_NEB = http://nebuladevice.sourceforge.net/doc/doxydoc/nebulacore/html/
+
+   * default project if repository isn't specified in the plugin parameters (case doesn't matter here because it all gets uppercased anyway)
+      * Set PROJECT = neb
+
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+    | *File:* | *Description:* |
+    | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+    | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+    | ==data/TWiki/%TOPIC%Tests.txt== | Plugin topic tests |
+    | ==data/TWiki/%TOPIC%Tests.txt,v== | Plugin topic tests repository |
+    | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+   * (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+   * Test if the installation was successful:
+      * %<nop>DOX{ nKernelServer project="neb" }% : %DOX{ nKernelServer project="neb" }%
+   * Other examples
+      * see DoxygenPluginTests, Nebula:WritingTopics, Nebula:AddANewModule, and Nebula:LinkNode
+
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/WillNorris, TWiki:Main/LeafGarland |
+|  Plugin Version: | 11 Jan 2007 (V1.1) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  11 Jan 2007: | Added support for namespaces and nested classes (TWiki:Main/RickMach) |
+|  01 Aug 2003: | Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | [[http://www.stack.nl/~dimitri/doxygen/][doxygen]] |
+|  Perl Version: | 5.005+ |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- TWiki:Main/WillNorris - 01 Aug 2003
