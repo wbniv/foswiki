@@ -1,0 +1,2 @@
+TWiki::Contrib::BuildContrib,>0.1,perl,Build Environment
+LWP,>5.0,CPAN,Used for downloads. Available from CPAN:LWP

@@ -1,0 +1,56 @@
+Provides access to TWiki Distribution meta information
+---+ Summary of Contents
+   * 
+   * 
+
+
+---++ Distribution Contrib
+
+A module to provide programmatic access to:
+    1 Conversion between release identifiers (e.g. %WIKINAME -> TWiki2002...)
+    2 Fetching of individual files of any given distribution name (excluding zip files)
+
+---+++ Settings
+Settings are stored as preferences variables. To reference a setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, e.g. ==%<nop>DISTRIBUTIONCONTRIB_STUB%==
+
+   * Name of the perl package
+      * Set STUB = TWiki::Contrib::DistributionContrib
+      * Set SHORTDESCRIPTION = Provides access to TWiki Distribution meta information
+
+
+---+++ To Do
+   1 The settings in Config.pm should be made into settings on this page.
+
+---+++ Detailed Documentation
+
+%$POD%      
+
+---++ Installation Instructions
+
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+%$MANIFEST%
+
+
+   * Test if the installation was successful:
+      * _enter samples here_
+
+
+---++ Contrib Info
+
+|  Author: | TWiki:Main.MartinCleaver |
+|  Copyright &copy;: | 2004, Martin Cleaver, All Rights Reserved |
+|  License: | GPL |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Version: | %$VERSION%  |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  23 Aug 2004: | Initial version |
+|  Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- TWiki:Main.MartinCleaver - 23 Aug 2004
+
+
