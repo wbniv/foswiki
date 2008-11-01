@@ -1,0 +1,106 @@
+%META:TOPICINFO{author="AurelioAHeckert" date="1119967705" format="1.0" version="1.3"}%
+%META:TOPICPARENT{name="FlowchartPlugin"}%
+---+!! FlowchartPlugin Example
+
+<center>
+%FLOWCHART%
+<small>
+%BR% Stop the mouse above each item and see the tag with the name in a bigger size.
+%BR% Each item is a link for the text block what was created it and where can exist more information about this step.
+</small>
+%BR% *[[%ATTACHURL%/flowchart_%TOPIC%.svg][The Based SVG]]*
+</center>
+
+%TOC%
+
+------
+%BR%
+
+%FLOWCHART_START%
+
+---++ Flowchart Start
+	* Type: Start
+
+---++ Question 1
+	* Type: Question
+	* Yes: trunk1
+	* No: trunk2
+
+---++ Start of %FLOWCHART_BR% Trunk 1
+	* Id: trunk1
+	* Color: 70B070
+
+---++ Bli...
+
+---++ Question 2
+	* Type: Question
+	* Yes: trunk1
+	* No: Next
+
+---++ Question 4
+	* Type: Question
+	* Yes: Next
+	* No: Quest6
+
+---++ Bla bla bla...
+
+---++ Question 6
+	* Id: Quest6
+	* Type: Question
+	* Yes: Next
+	* No: Lennon
+
+---++ End of Trunk 1
+	* Id: Fim1
+	* Type: End
+
+---++ "Imagine all %FLOWCHART_BR% the people..."
+	* Id: Lennon
+	* Goto: trunk1
+
+---++ Start of %FLOWCHART_BR% Trunk 2
+	* Id: trunk2
+	* Color: E0B040
+
+---++ Blo...
+
+---++ Question 3
+	* Type: Question
+	* Yes: Lennon
+	* No: Next
+
+---++ Question 5
+	* Type: Question
+	* Yes: Next
+	* No: error
+
+---++ Question 7
+	* Type: Question
+	* Yes: Next
+	* No: trunk2
+
+---++ Faz algo
+
+---++ Question 9
+	* Type: Question
+	* Yes: fim
+	* No: Next
+
+---++ ERROR bla... %FLOWCHART_BR% :-(
+	* Id: error
+	* Type: End-Error
+
+---++ End of Trunk 2 %FLOWCHART_BR% :-)
+	* Id: fim
+	* Type: End
+
+%FLOWCHART_STOP%
+
+------
+
+---++ This title is out of the Flowchart
+
+
+
+-- TWiki:Main.AurelioAHeckert - 25 Jun 2005
+
