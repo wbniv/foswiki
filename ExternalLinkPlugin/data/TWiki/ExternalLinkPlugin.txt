@@ -1,0 +1,80 @@
+%META:TOPICINFO{author="TWikiContributor" date="1145828137" format="1.0" version="1.1"}%
+---+ External Link Plugin
+
+This plugin will mark external links so users don't leave your site by accident.
+
+This will only work for forced links marked up using []-syntax - like i.e. 
+<code>[<nop/>[http://external.site.com]<nop/>[an external site]<nop/>]</code>). 
+
+URLs that are just written in straight text (i.e. just =http://external.site.com=) are left untouched.
+
+---++ Syntax Rules
+
+Remember to use the =[]= forced link syntax.
+
+---++ Plugin Settings
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = This plugin will mark external links so users don't leave your site by accident.
+
+	* External link mark (besides images it is also possible to use HTML entity characters like e.g. "&raquo;" (=&amp;raquo;=))
+		* Set MARK = <img src="%PUBURLPATH%/%TWIKIWEB%/ExternalLinkPlugin/external.gif" alt="External link mark" />
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+This plugin is installed by default with a TWiki release. You should not need to install the plugin unless it is for an upgrade.
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==pub/TWiki/%TOPIC%/external.gif== | Default graphic for external link mark |
+	  | ==ExternalLinkPlugin_installer.pl== | Plugin installer script |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+
+---++ Testing your installation
+
+To test if the plugin is correctly installed, check the following links.
+
+---+++ External links
+
+The links in the "If plugin enabled"-column should be marked with a %EXTERNALLINKPLUGIN_MARK% if the plugin is functioning correctly.
+
+| *Verbatim* | *Pre-rendered* | *If plugin enabled* | 
+| =[<nop>[http://TWiki.org][TWiki.org: TWiki's home]]= | <a href="http://TWiki.org" target="_top">TWiki.org: TWiki's home</a>&nbsp;<img src="%PUBURLPATH%/%TWIKIWEB%/%TOPIC%/external.gif" alt="External link mark"> | [[http://TWiki.org][TWiki.org: TWiki's home]] |
+| =[<nop>[ftp://no.where.com][Some nonexistent FTP site]]= | <a href="ftp://no.where.com" target="_top">Some nonexistent FTP site</a>&nbsp;<img src="%PUBURLPATH%/%TWIKIWEB%/%TOPIC%/external.gif" alt="External link mark"> | [[ftp://no.where.com][Some nonexistent FTP site]] |
+| =[<nop>[https://sourceforge.net][Sourceforge.net under a secure connection]]= | <a href="https://sourceforge.net" target="_top">Sourceforge.net under a secure connection</a>&nbsp;<img src="%PUBURLPATH%/%TWIKIWEB%/%TOPIC%/external.gif" alt="External link mark"> | [[https://sourceforge.net][Sourceforge.net under a secure connection]] |
+
+---+++ Local links
+
+Not surprisingly, ExternalLinkPlugin won't mark local links as being external. The
+following links should not be marked with a %EXTERNALLINKPLUGIN_MARK%:
+
+| *Verbatim* | *Pre-rendered* | *If plugin enabled* | 
+| =[<nop>[%<nop>ATTACHURL%/bli.png][link to (nonexistent) local attachment]]= | <a href="%ATTACHURL%/bli.png" target="_top">link to (nonexistent) local attachment</a> | [[%ATTACHURL%/bli.png][link to (nonexistent) local attachment]] |
+| =[<nop>[%<nop>SCRIPTURL%/view%<nop>SCRIPTSUFFIX%/%<nop>WEB%/%<nop>TOPIC%][explicit link to this topic]]= | <a href="%SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%" target="_top">explicit link to this topic</a> | [[%SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%][explicit link to this topic]] |
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.AurelioAHeckert, TWiki:Main.NelsonFerraz, TWiki:Main.AntonioTerceiro |
+|  Plugin Version: | v1.11 - 24 Apr 2006 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  24 Apr 2006: | (v1.11) - =%<nop>TOPIC% removed from =MARK= definition, wasn't expanded correctly. |
+|  23 Apr 2006: | (v1.10) - Incorporated patch from TWiki:Main.TobiasRoeser (only mark external link once in an included scenario). Minor doc brush-up. Changed default marker to =external.gif= graphic. (TWiki:Main.SteffenPoulsen). 
+|  02 Nov 2005: | (v1.00) - Initial release |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+
