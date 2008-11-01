@@ -1,0 +1,63 @@
+%META:TOPICINFO{author="MeredithLesly" date="1143047551" format="1.1" reprev="1.2" version="1.2"}%
+---+ !ExtTopicList TWiki Plugin
+
+An extended version of the !TWikiVariable =TOPICLIST= which allow you to exclude topics.
+
+
+---++ Syntax Rules
+
+   * List of all topics in a web, optionally excluding some of them. The "format" defines the format of one topic item. It may include variables: The =$name= variable gets expanded to the topic name, =$qname= to double quoted name, =$marker= to =marker= parameter where topic matches =selection=, and =$web= to the name of the web.
+   * Syntax: =%<nop>EXTTOPICLIST{"format" ...}%=
+   * Supported parameters:
+     | *Parameter:* | *Description:* | *Default:* |
+     | ="format"= | Format of one line, may include =$web= (name of web), =$name= (name of the topic), =$qname= (name of topic in double quotes), =$marker= (which expands to =marker= for the item matching =selection= only) | ="$name"= |
+     | =format="format"= | (Alternative to above) | ="$name"= |
+     | =separator=", "= | line separator | ="$n"= (new line) |
+     | =marker="selected"= | Text for =$marker= if the item matches =selection= | ="selected"= |
+     | =selection="TopicA, !TopicB"= | Current value to be selected in list | =(none)= |
+     | =web="Name"= | Name of web | Current web |
+     | =excludetopic="Web*"= <br /> =excludetopic="%HOMETOPIC%, <nop>WebChanges"= | Exclude topics from search: A topic, a topic with asterisk wildcards, or a list of topics separated by comma. | None |
+   * Example: =%<nop>EXTTOPICLIST{"   * $web.$name"}%= creates a bullet list of all topics
+   * Example: =%<nop>EXTTOPICLIST{separator=", "}%= creates a comma separated list of all topics
+   * Example: =%<nop>EXTTOPICLIST{" &lt;option&gt;$name&lt;/option&gt;"}%= creates an option list (for drop down menus)
+   * Example: =&lt;select&gt;%<nop>TOPICLIST{" &lt;option $marker value='$name'&gt;$name&lt;/option&gt;" separator=" " selection="%<nop>TOPIC%"}%&lt;/select&gt;= creates an option list of web topics with the current topic selected
+   * Related: [[TWiki.TWikiVariables#VarSEARCH][SEARCH]], [[TWiki.TWikiVariables#VarTOPICLIST][TOPICLIST]], [[TWiki.TWikiVariables#VarWEBLIST][WEBLIST]]
+
+
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference
+a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>EXTTOPICLISTPLUGIN_SHORTDESCRIPTION%==
+
+   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = Extends TOPICLIST by adding excludetopic
+
+   * Debug plugin: (See output in =data/debug.txt=)
+      * Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+---++ Plugin Info
+,
+|  Plugin Author: | TWiki:Main.AndreaSterbini, TWiki:Main.PeterThoeny, TWiki:Main.CrawfordCurrie, TWiki:Main.MeredithLesly |
+|  Copyright: | &copy; 2001-2006, %TWIKIWEB%.TWikiContributor |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | 01 Feb 2006 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  01 Feb 2006: | Dakar changes |
+|  21 Mar 2004: | Added afterSaveHandler |
+|  14 Jul 2001: | Changed to plug&amp;play |
+|  27 Feb 2001: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 99%, %TWIKIWEB%.FormattedSearch 99%, %TOPIC% 99% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+
+-- %TWIKIWEB%.TWikiContributor - 01 Feb 2006
