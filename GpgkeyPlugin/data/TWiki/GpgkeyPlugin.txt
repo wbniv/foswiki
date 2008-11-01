@@ -1,0 +1,83 @@
+%META:TOPICINFO{author="TriBble" date="1068505020" format="1.0" version="1.2"}%
+---+ <nop>%TOPIC%
+
+This plugin does some features for a GPG/PGP key signing party.
+
+It creates a table with username, key id and fingerprint. It is okay for listing only, but
+can be used widely.
+
+---++ Syntax Rules
+
+	* add to your personal page the following user information. Multiple keys/fingerprints are possible by separating with comma:
+		* GPG Key: __your key id, like 0xDEADBEEF__
+		* GPG Fingerprint: __your key fingerprint, like FFFF FFFF FFFF ...__
+
+	* add yourself to the GpgkeySigningPartyList list like:
+		 3 spaces,asterix,name (including Main. .., e.g. Main.TriBble), it can also take Groups
+
+---++ <nop>%TOPIC% Settings
+
+	* One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = This plugin can be used to gather a list of gpg keys and fingerprints
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+---+++ Shellside
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+
+---+++ Wikipage
+
+__Note:___ This can be done by users.
+
+Adds the following tags:
+
+	* %<nop>GPGLISTVIEW% - displays a table list of GPG keys and fingerprints found in user information. Takes a list of users from the GpgkeySigningPartyList topic.
+
+Attributes:
+
+	* topic - specify tree's root topic (if none, will do the entire web)
+
+So you can use %<nop>GPGLISTVIEW{topic="GpgkeySigningPartyList"}% to define a specific topic, from which the (gpg-) user list shall be taken.
+
+The WikiMaster can add a GPG Key/Fingerprint questionarie at the TWiki.TWikiRegistration for automatisation.
+
+---++ Examples
+
+%<nop>GPGLISTVIEW%
+
+%GPGLISTVIEW%
+
+%<nop>GPGLISTVIEW{topic="Main.WhoUsesGPG"}%
+
+%GPGLISTVIEW{topic="Main.WhoUsesGPG"}%
+
+
+---++ Plugin Info
+
+|  Plugin Author: | Main.TriBble |
+|  Plugin Version: | 10 Nov 2003 (V1.000) |
+|  Change History: | &nbsp; |
+| 10 Nov 2003: | details, attributes |
+| 09 Nov 2003: | Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.0 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins, EmptyPlugin
+
+-- TWiki:Main/TriBble - 10 Nov 2003
+
