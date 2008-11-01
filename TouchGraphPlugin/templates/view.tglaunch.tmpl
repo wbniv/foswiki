@@ -1,0 +1,30 @@
+%TMPL:INCLUDE{"twiki"}%
+%TMPL:P{"htmldoctype"}%
+ <head>
+  <title>%WIKITOOLNAME% Touchgraph Applet: Topology of the %WEB% Web</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=%CHARSET%" /> 
+  <meta name="robots" content="noindex" /> %HTTP_EQUIV_ON_VIEW%
+  <base href="%SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%" />
+ </head>
+	
+ <body style="horizontal-align: center; vertical-align: middle">
+  <!-- tag must be on one line for twiki! -->
+  <applet name="wikiapplet" code="com.touchgraph.wikibrowser.TGWikiBrowserApplet" archive="%PUBURLPATH%/%TWIKIWEB%/TouchGraphPlugin/TGWikiBrowser.jar" width="500" height="500">
+   <param name="DATA_URL" value="%PUBURLPATH%/%WEB%/touchgraph.txt"/>
+   <param name="WIKI_URL" value="<nop>%SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%/"/>
+   <param name="INITIAL_NODE" value="<nop>%TOPIC%"/>
+   <param name="LOCALITY_RADIUS" value="2"/>
+   <param name="SHOW_BACKLINKS" value="false"/>    
+	<p>Your browser does not interpret the &lt;applet&gt; tag.</p>
+	<p>This page does not support &lt;object&gt; or &lt;embed&gt; at the moment.</p>
+  </applet>
+  <p>
+  <form name="search" target="#">
+    Search for a topic: <input type="text" name="term" value=""/><input type="submit" value="Search" onClick="document.wikiapplet.setTopic(document.search.term.value); return false"/> 
+  </form>
+<a href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/TouchGraphAppletInstructions" target="wiki">Quick Instructions</a>
+</p>
+ </body>
+</html>
+
+<!-- java -cp <nop>TGWikiBrowser.jar;<nop>BrowserLauncher.jar com.touchgraph.wikibrowser.TGWikiBrowser  <nop>%PUBURLPATH%/%WEB%/touchgraph.txt <nop>%SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%/ <nop>%TOPIC% 2 false -->
