@@ -1,0 +1,139 @@
+%META:TOPICINFO{author="dbourget" date="1104135681" format="1.0" version="1.1"}%
+%META:TOPICPARENT{name="WebHome"}%
+---+!! Embed Topic Plugin
+
+Supports viewing/editing of embeded topics in one page. Unlimited nesting of topics. 
+
+%TOC%
+
+---++ What this is for
+
+There are many ways this plugin could be used, but the most obvious is to modularize large topics. It is like the built-in include feature, but a bit more powerful because you can edit a topic at the same time you are editing the topic it is included in. The plugin has other features that minimize typing and clicking. It works very well if you use TWiki to take notes, as you can take notes in a continuous matter in one page while at the same time creating a structure. 
+
+---++ Syntax (summary)
+
+The tags are not case-sensitive. There are two ways of embedding a topic into another:
+
+=&#37;EmbedTopic{MyTopic}%=
+
+=&#37;BeginTopic{MyTopic}%= <br />
+=.. content of <nop>MyTopic ..= <br />
+=&#37;End{MyTopic}%=
+
+With available shorthands:
+
+=&#37;T&#123;MyTopic}=
+
+=&#37;B&#123;MyTopic}= <br />
+=.. content of <nop>MyTopic ..= <br />
+=&#37;E&#123;MyTopic}=
+
+---++ Syntax (with examples)
+
+There are two ways to embed a topic, say, <nop>MyTopic. 
+
+There is first =&#37;EmbedTopic{MyTopic}%= (or =&#37;T&#123;MyTopic}=, for short). 
+
+If you write =&#37;EmbedTopic{MyTopic}%= in topic X, the next time you view X, <nop>MyTopic will be embedded in it. You will see something like:
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0"><td width="1" bgcolor="#222288" valign="top"><img src="%ATTACHURLPATH%/spacer.gif" width="1"></td><td width="100%" valign="top"><table cellspacing="0" border="0" width="100%">
+<tr><td bgcolor="#222288"><span style="color:#DDDDDD;font-size:9px;text-decoration:none;">MyTopic</span></td></tr>
+<tr><td><table border="0" cellpadding="2"><td>Content of <nop>MyTopic</td></table></td></tr>
+<tr><td><img src="%ATTACHURLPATH%/spacer.gif" width="300" height="1"></td></tr>
+</table>
+</td>
+</table>
+
+
+The next time you edit X, you will see something like this in the textarea:
+
+<pre>
+.. content of X ..
+
+&#37;BeginTopic{MyTopic}%
+  .. content of MyTopic ..
+&#37;End{MyTopic}%
+</pre>
+
+If you change the content between the two tags, this will change the content of <nop>MyTopic.
+
+You can also insert the Begin/End tags directly in a topic (or use the shorthands =&#37;B&#123;MyTopic}= and =&#37;E&#123;MyTopic}=. If the embeded topic doesn't exist, it will be created with the content you write. If you enter =&#37;EmbedTopic{MyTopic}%= and <nop>MyTopic does not exist, it will not be created upon saving. It will be created only if you open the embeding topic another time, in which case you will get:
+
+<pre>
+.. content of embeding topic
+&#37;BeginTopic{MyTopic}%&#37;End{MyTopic}%
+</pre>
+
+If you save this, an empty <nop>MyTopic will be created. 
+
+There is also a handy shortcut. If, while using the second way, you write an embedded topic name like this: 
+
+=&#37;BeginTopic{AnotherTopic::MyTopic}%= <br />
+=.. content of <nop>MyTopic ..= <br />
+=&#37;End{AnotherTopic::MyTopic}%=
+
+Then the same as above will happen, but in addition <nop>MyTopic will be embedded in <nop>AnotherTopic. If <nop>AnotherTopoc does not exist, it will be created with <nop>MyTopic embedded in it. If it already exists, <nop>MyTopic will be embedded at the end. 
+
+This is useful if you come across a new subtopic which you would like to write about as part of a larger topic, and also to have a link to it somewhere else. Say for instance you are writing something on water. You open a subtopic H2O in your water topic, and you want at the same time to have this H2O subtopic to appear in a topic in which you write down all yours notes in chemistry. Whatever. I use this mainly to insert definitions I create in a list of definitions at the same time I write them down in the topics in which I first use them.
+
+---++ Nested embeds
+
+You can nest embeded topics. See the demo. 
+
+
+---++ Demo
+
+See Sandbox.EmbedTopicPluginDemo.
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>EMBEDTOPICPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Supports viewing/editing of embeded topics in one page
+
+	* Background of the headings:
+		* Set BGCOLOR = #EEEEEE
+	* Color of the headings' text:
+		* Set HDCOLOR = #000000
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/Sandbox/%TOPIC%Demo.txt== | Demo topic |
+	  | ==data/Sandbox/WaterDef.txt== | Part of the demo |
+	  | ==data/Sandbox/H2ODef.txt== | Part of the demo |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==pub/TWiki/%TOPIC%/spacer.gif== | Spacer image |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the installation was successful:
+		* View Sandbox.EmbedTopicPluginDemo and see if the topics Sandbox.WaterDef and [[Sandbox.H2ODef][H2ODef]] are embedded in it. 
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/DavidBourget |
+|  Plugin Version: | 27 Dec 2004 (V1.051) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  09 Dec 2005: | Moved <nop>EmbedTopicPluginDemo to the Sandbox web (TWiki:Main.WillNorris) |
+|  24 Dec 2004: | Initial version |
+|  26 Dec 2004: | Added auto-insert feature and infinite regress check |
+|  27 Dec 2004: | Code clean-up. Minor changes to documentation. |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.024 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- TWiki:Main/DavidBourget - 23 Dec 2004
+
+%META:FILEATTACHMENT{name="spacer.gif" attr="" comment="spacer image" date="1103836508" path="C:\home\philwww\Apache2\htdocs\images\spacer.gif" size="43" user="dbourget" version="1.1"}%
