@@ -1,0 +1,52 @@
+#!/usr/bin/perl -wT
+# Set library paths in @INC, at compile time
+BEGIN { unshift @INC, '.'; require 'setlib.cfg' }
+
+use CGI::Carp qw( fatalsToBrowser );
+use CGI;
+use TWiki;
+use TWiki::Plugins::FormQueryPlugin::WebDB;
+
+my $query = new CGI;
+
+my $thePathInfo = $query->path_info(); 
+my $theRemoteUser = $query->remote_user();
+my $theTopic = $query->param( 'topic' );
+my $theUrl = $query->url;
+
+my( $topic, $webName, $scriptUrlPath, $userName ) = 
+  &TWiki::initialize( $thePathInfo, $theRemoteUser, $theTopic, $theUrl, $query );
+
+my $db = new TWiki::Plugins::FormQueryPlugin::WebDB( $webName );
+my $relation = $query->param( "relation" );
+
+# Get the new topic name with \n in place of a number
+my $nt = $db->deriveNewTopic( $relation, $topic );
+my $grepplate = $nt;
+$grepplate =~ s/\n/([0-9]+)/o;
+
+# Now find the maximum topic that matches in the web
+opendir( DH, TWiki::Func::getDataDir() . "/$webName" ) || die;
+my $max = 0;
+foreach my $kt ( grep( /^$grepplate/, readdir( DH ))) {
+  eval "\$kt =~ s/^$grepplate.*/\$1/o;";
+  if ( $kt > $max ) {
+    $max = $kt;
+  }
+}
+closedir( DH );
+# increment and insert
+$max++;
+$nt =~ s/\n/$max/o;
+
+#my $dir = TWiki::Func::getScriptUrl( $webName, $nt, "edit")."?";
+#my $p = $query->param( "formtemplate" );
+#$dir .= "formtemplate=$p;" if ( $p );
+#$p = $query->param( "templatetopic" );
+#$dir .= "templatetopic=$p;" if ( $p );
+my $dir = TWiki::Func::getScriptUrl( $webName, $nt, "edit")."?".$query->query_string();
+ print $query->redirect( $dir );
+
+print $query->redirect( $dir );
+
+1;

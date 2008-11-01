@@ -1,0 +1,407 @@
+<TOPIC> "Dir"
+%META:TOPICINFO{author="guest" date="1118985690" format="1.0" version="1.1"}%
+%EDITTABLE{include="DirTable"}%
+| *Name* | *Date* |
+|data|07-Sep-2001|
+|templates|08-Sep-2001|
+|bin|15-Sep-2001|
+|lib|01-Aug-2001|
+%EDITTABLE{include="FileTable"}%
+| *Name* | *Type* | *Size* | *Date* |
+|TWikiDocumentation|html|206249|16-Sep-2001|
+|TWikiHistory|html|40635|16-Sep-2001|
+|index|html|511|29-Jun-2001|
+|license|text|19440|15-Sep-2001|
+|readme|text|3749|16-Sep-2001|
+
+%META:FORM{name="DirForm"}%
+%META:FIELD{name="Level" title="Level" value="0"}%
+%META:FIELD{name="RealName" title="RealName" value="twiki"}%
+<TOPIC> "Dir1"
+%META:TOPICINFO{author="guest" date="1118983605" format="1.0" version="1.1"}%
+%EDITTABLE{include="DirTable"}%
+| *Name* | *Date* |
+|Know|09-Sep-2001|
+|Main|09-Sep-2001|
+|TWiki|16-Sep-2001|
+|Test|09-Sep-2001|
+|Trash|15-Sep-2001|
+|_default|09-Sep-2001|
+%EDITTABLE{include="FileTable"}%
+| *Name* | *Type* | *Size* | *Date* |
+|debug|text|0|01-Aug-2001|
+|warning|text|0|01-Aug-2001|
+
+%META:FORM{name="DirForm"}%
+%META:FIELD{name="Level" title="Level" value="1"}%
+%META:FIELD{name="RealName" title="RealName" value="data"}%
+
+<TOPIC> "Dir1_1"
+%META:TOPICINFO{author="guest" date="1118983605" format="1.0" version="1.1"}%
+%EDITTABLE{include="FileTable"}%
+| *Name* | *Type* | *Size* | *Date* |
+|IncorrectDllVersionW32PTH10DLL\
+|text|765|04-Sep-2001|
+|NoDisclosure|\
+text|302|19-Aug-2000|
+|OperatingSystem|text\
+|611|04-Sep-2001|
+|OsHPUX|text|255|19-Aug-2000|
+|OsLinux|text|251|19-Aug-2000|
+|OsMacOS|text|253|19-Aug-2000|
+|OsSolaris|text|257|19-Aug-2000|
+|OsSunOS|text|256|19-Aug-2000|
+|OsVersion|text|184|04-Sep-2001|
+|OsWin|text|258|19-Aug-2000|
+|PublicFAQ|text|273|19-Aug-2000|
+|PublicSupported|text|291|19-Aug-2000|
+|ReadmeFirst|text|2535|04-Sep-2001|
+|SunOS|text|13|06-Apr-2000|
+|TWikiCategory|text|747|12-Nov-2000|
+|TopicClassification|text|417|04-Sep-2001|
+|WebChanges|text|124|16-Aug-2001|
+|WebHome|text|1622|17-Aug-2001|
+|WebIndex|text|56|19-Aug-2000|
+|WebNotify|text|729|24-Mar-2001|
+|WebPreferences|text|3042|09-Sep-2001|
+|WebSearch|text|1414|04-Sep-2001|
+|WebStatistics|text|850|08-Aug-2001|
+|WinDoze95Crash|text|518|04-Sep-2001|
+|WebTopicEditTemplate|text|408|01-Sep-2001|
+|WebForm|text|546|04-Sep-2001|
+
+%META:FORM{name="DirForm"}%
+%META:FIELD{name="Level" title="Level" value="2"}%
+%META:FIELD{name="RealName" title="RealName" value="Know"}%
+
+<TOPIC> "Dir1_2"
+%META:TOPICINFO{author="guest" date="1118983605" format="1.0" version="1.1"}%
+%EDITTABLE{include="FileTable"}%
+| *Name* | *Type* | *Size* | *Date* |
+|FileAttachment|text|163|11-Nov-2000|
+|KevinKinnell|text|709|14-Dec-2000|
+|LondonOffice|text|281|15-Dec-2000|
+|NicholasLee|text|691|14-Dec-2000|
+|OfficeLocations|text|417|15-Dec-2000|
+|PeterThoeny|text|987|14-Dec-2000|
+|SanJoseOffice|text|283|15-Dec-2000|
+|TWikiAdminGroup|text|466|07-Aug-2001|
+|TWikiGroups|text|942|14-Dec-2000|
+|TWikiGuest|text|686|14-Dec-2000|
+|TWikiUsers|text|2060|11-Aug-2001|
+|TWikiVariables|text|163|11-Nov-2000|
+|TokyoOffice|text|280|15-Dec-2000|
+|WebChanges|text|124|16-Aug-2001|
+|WebHome|text|2597|31-Aug-2001|
+|WebIndex|text|56|19-Aug-2000|
+|WebNotify|text|729|24-Mar-2001|
+|WebPreferences|text|3146|09-Sep-2001|
+|WebSearch|text|158|08-Aug-2001|
+|WebStatistics|text|850|08-Aug-2001|
+|MikeMannix|text|572|25-Aug-2001|
+|JohnTalintyre|text|803|07-Aug-2001|
+|NobodyGroup|text|332|07-Aug-2001|
+
+%META:FORM{name="DirForm"}%
+%META:FIELD{name="Level" title="Level" value="2"}%
+%META:FIELD{name="RealName" title="RealName" value="Main"}%
+
+
+<TOPIC> "Dir1_3"
+%META:TOPICINFO{author="guest" date="1118983605" format="1.0" version="1.1"}%
+%EDITTABLE{include="FileTable"}%
+| *Name* | *Type* | *Size* | *Date* |
+|AlWilliams|text|87|15-Nov-2000|
+|AndreaSterbini|text|113|15-Nov-2000|
+|BillClinton|text|28|18-Aug-2000|
+|BookView|text|233|19-Aug-2000|
+|BumpyWord|text|18|01-Aug-2000|
+|ChristopheVermeulen|text|96|15-Nov-2000|
+|CrisBailiff|text|88|15-Nov-2000|
+|DavidWarman|text|88|15-Nov-2000|
+|DefaultPlugin|text|2304|14-Aug-2001|
+|TWikiFaqTemplate|text|218|01-Sep-2001|
+|DontNotify|text|729|14-Aug-2001|
+|EditDoesNotIncreaseTheRevision|text|556|01-Sep-2001|
+|EmptyPlugin|text|2002|14-Aug-2001|
+|TWikiTemplates|text|10544|15-Sep-2001|
+|FileAttachment|text|11502|14-Sep-2001|
+|GnuGeneralPublicLicense|text|1355|01-Sep-2001|
+|GoodStyle|text|2333|14-Sep-2001|
+|HaroldGottschalk|text|92|15-Nov-2000|
+|Hey|text|230|01-Aug-2000|
+|JaneDoeTestCreateForm|text|2038|06-Aug-2000|
+|JaneDoeTestEditForm|text|1171|06-Aug-2000|
+|JohnAltstadt|text|89|15-Nov-2000|
+|JohnTalintyre|text|90|12-Mar-2001|
+|KevinKinnell|text|112|15-Nov-2000|
+|ManpreetSingh|text|90|15-Nov-2000|
+|NicholasLee|text|111|15-Nov-2000|
+|PeterFokkinga|text|90|15-Nov-2000|
+|PeterThoeny|text|165|15-Nov-2000|
+|PreviewBackground|text|3851|14-Dec-2000|
+|RandyKramer|text|87|16-Mar-2001|
+|RegularExpression|text|5665|23-Aug-2000|
+|SearchDoesNotWork|text|499|01-Sep-2001|
+|SimultaneousEdits|text|621|01-Sep-2001|
+|StandardColors|text|6591|14-Dec-2000|
+|StanleyKnutson|text|91|07-Jan-2001|
+|SvenDowideit|text|89|12-Mar-2001|
+|TWikiAccessControl|text|9804|14-Sep-2001|
+|ManagingTopics|text|4483|15-Sep-2001|
+|MonitoringSiteActivity|text|3880|15-Sep-2001|
+|TWikiCategoryTable|text|9309|12-Sep-2001|
+|TWikiContributor|text|861|25-Aug-2001|
+|TWikiDocumentation|text|1377|15-Sep-2001|
+|TWikiDownload|text|371|01-Sep-2001|
+|TWikiEnhancementRequests|text|354|15-Nov-2000|
+|TWikiFAQ|text|1490|14-Sep-2001|
+|TWikiHistory|text|21740|15-Sep-2001|
+|TWikiImplementationNotes|text|2007|15-Sep-2001|
+|TWikiUpgradeGuide|text|17455|16-Sep-2001|
+|AppendixFileSystem|text|18276|15-Sep-2001|
+|TWikiPlannedFeatures|text|481|15-Nov-2000|
+|TWikiPlugins|text|14377|15-Sep-2001|
+|TWikiPreferences|text|7205|14-Sep-2001|
+|TWikiRegistration|text|4009|11-Aug-2001|
+|TWikiRegistrationPub|text|8455|11-Aug-2001|
+|TWikiSkins|text|1352|14-Sep-2001|
+|TWikiForms|text|8903|15-Sep-2001|
+|TWikiTutorial|text|6537|14-Sep-2001|
+|SiteUsageStatistics|text|1825|01-Sep-2001|
+|TWikiUpgradeTo01May2000|text|2230|01-Sep-2001|
+|TWikiUsernameVsLoginUsername|text|1611|29-Aug-2001|
+|TWikiVariables|text|20623|15-Sep-2001|
+|TWikiWebsTable|text|2645|12-Sep-2001|
+|TextFormattingFAQ|text|8783|15-Sep-2001|
+|TextFormattingRules|text|13967|07-Sep-2001|
+|UnlockTopic|text|1038|14-Aug-2001|
+|WabiSabi|text|1825|14-Sep-2001|
+|WebChanges|text|1058|16-Aug-2001|
+|WebHome|text|4177|15-Sep-2001|
+|WebIndex|text|56|19-Aug-2000|
+|WebNotify|text|729|24-Mar-2001|
+|WebPreferences|text|2945|12-Sep-2001|
+|WebSearch|text|6083|08-Aug-2001|
+|WebStatistics|text|850|08-Aug-2001|
+|WelcomeGuest|text|5375|12-Sep-2001|
+|WhatIsWikiWiki|text|514|01-Sep-2001|
+|WikiCulture|text|1710|01-Sep-2001|
+|WikiName|text|342|18-Aug-2000|
+|WikiNotation|text|69|01-Aug-2000|
+|WikiSyntax|text|2465|14-Sep-2001|
+|WikiTopic|text|154|18-Aug-2000|
+|WikiWikiClones|text|371|11-Nov-2000|
+|WikiWord|text|2004|30-Jan-2001|
+|IncludeTopicsAndWebPages|text|2737|26-Jun-2001|
+|ExampleTopicTemplate|text|240|12-Sep-2001|
+|WebTopicViewTemplate|text|963|08-Jun-2001|
+|WebTopicEditTemplate|text|122|26-Aug-2001|
+|WebTopicNonWikiTemplate|text|951|08-Jun-2001|
+|InterwikiPlugin|text|3174|27-Aug-2001|
+|InterWikis|text|4023|27-Aug-2001|
+|TWikiUpgradeTo01Dec2000|text|8086|01-Sep-2001|
+|WikiReferences|text|2028|27-Aug-2001|
+|ChangePassword|text|1475|06-Sep-2001|
+|MikeMannix|text|148|25-Aug-2001|
+|MoveTopic|text|194|01-Sep-2001|
+|ManagingWebs|text|2049|14-Sep-2001|
+|FileAttribute|text|439|30-Aug-2001|
+|UtilTempDocNote|text|278|12-Sep-2001|
+|MetaDataRendering|text|1364|30-Aug-2001|
+|TWikiSite|text|2815|14-Sep-2001|
+|MetaDataDefinition|text|183|07-Sep-2001|
+|TWikiMetaData|text|6638|14-Sep-2001|
+|TWikiInstallationGuide|text|13560|15-Sep-2001|
+|DeleteOrRenameATopic|text|1098|14-Sep-2001|
+|TWikiUserAuthentication|text|4937|15-Sep-2001|
+|TWikiPages|text|3781|14-Sep-2001|
+|ResetPassword|text|1384|06-Sep-2001|
+|KlausWriessnegger|text|220|06-Sep-2001|
+|TWikiGlossary|text|2443|10-Sep-2001|
+|WebChangesAlert|text|395|12-Sep-2001|
+
+%META:FORM{name="DirForm"}%
+%META:FIELD{name="Level" title="Level" value="2"}%
+
+<TOPIC> "Dir1_4"
+%META:TOPICINFO{author="guest" date="1118983605" format="1.0" version="1.1"}%
+%EDITTABLE{include="FileTable"}%
+| *Name* | *Type* | *Size* | *Date* |
+|WebChanges|text|124|16-Aug-2001|
+|WebHome|text|1561|17-Aug-2001|
+|WebIndex|text|56|19-Aug-2000|
+|WebNotify|text|729|24-Mar-2001|
+|WebPreferences|text|3046|09-Sep-2001|
+|WebSearch|text|158|08-Aug-2001|
+|WebStatistics|text|850|08-Aug-2001|
+
+%META:FORM{name="DirForm"}%
+%META:FIELD{name="Level" title="Level" value="2"}%
+%META:FIELD{name="RealName" title="RealName" value="Test"}%
+<TOPIC> "Dir2"
+%META:TOPICINFO{author="guest" date="1118983605" format="1.0" version="1.1"}%
+%EDITTABLE{include="FileTable"}%
+| *Name* | *Type* | *Size* | *Date* |
+|oopsnoformdef|tmpl|1136|01-Aug-2001|
+|attach|tmpl|2573|31-Aug-2001|
+|changeform|tmpl|1309|04-Sep-2001|
+|changes|tmpl|1619|31-Aug-2001|
+|edit|tmpl|2603|04-Sep-2001|
+|mailnotify|tmpl|981|29-Jun-2001|
+|moveattachment|tmpl|1499|31-Aug-2001|
+|oopsmore|tmpl|2158|13-Sep-2001|
+|oopsaccesschange|tmpl|570|01-Aug-2001|
+|oopsaccessgroup|tmpl|586|01-Aug-2001|
+|oopsaccessview|tmpl|573|01-Aug-2001|
+|oopsauth|tmpl|1014|01-Aug-2001|
+|oopsbadpwformat|tmpl|405|01-Aug-2001|
+|oopschangepasswd|tmpl|344|31-Aug-2001|
+|twiki|tmpl|2246|31-Aug-2001|
+|attachagain|tmpl|1604|03-Aug-2001|
+|oopslocked|tmpl|918|31-Aug-2001|
+|oopslockedrename|tmpl|590|31-Aug-2001|
+|oopsmissing|tmpl|328|31-Aug-2001|
+|oopsnotwikiuser|tmpl|522|01-Aug-2001|
+|oopsregexist|tmpl|462|01-Aug-2001|
+|oopsregpasswd|tmpl|345|01-Aug-2001|
+|oopsregrequ|tmpl|356|01-Aug-2001|
+|oopsregthanks|tmpl|540|01-Aug-2001|
+|oopsregwiki|tmpl|679|01-Aug-2001|
+|oopsresetpasswd|tmpl|483|01-Aug-2001|
+|oopsrev|tmpl|921|08-Sep-2001|
+|oopssave|tmpl|774|01-Aug-2001|
+|oopssaveerr|tmpl|477|01-Aug-2001|
+|oopssendmailerr|tmpl|452|01-Aug-2001|
+|oopsupload|tmpl|342|31-Aug-2001|
+|oopswrongpassword|tmpl|364|01-Aug-2001|
+|preview|tmpl|2584|04-Sep-2001|
+|rdiff|tmpl|1539|09-Sep-2001|
+|register|tmpl|552|15-Aug-2001|
+|registernotify|tmpl|1151|24-Aug-2001|
+|rename|tmpl|789|09-Aug-2001|
+|search|tmpl|1792|01-Sep-2001|
+|searchbookview|tmpl|1650|01-Sep-2001|
+|searchmeta|tmpl|149|13-Sep-2001|
+|searchrenameview|tmpl|2044|01-Sep-2001|
+|view.plain|tmpl|418|31-Aug-2001|
+|view.print|tmpl|826|31-Aug-2001|
+|view|tmpl|1770|08-Sep-2001|
+|oopsaccessrename|tmpl|573|01-Aug-2001|
+|oopsempty|tmpl|624|31-Aug-2001|
+|oopsnoweb|tmpl|413|31-Aug-2001|
+|oopspreview|tmpl|393|01-Aug-2001|
+|renamebase|tmpl|2310|10-Sep-2001|
+|renameconfirm|tmpl|475|04-Aug-2001|
+|renamerefs|tmpl|589|09-Aug-2001|
+|attachnew|tmpl|449|03-Aug-2001|
+|oopsmoveerr|tmpl|407|01-Aug-2001|
+|oopsrenameerr|tmpl|411|01-Aug-2001|
+|oopstopicexists|tmpl|379|01-Aug-2001|
+
+%META:FORM{name="DirForm"}%
+%META:FIELD{name="Level" title="Level" value="1"}%
+%META:FIELD{name="RealName" title="RealName" value="templates"}%
+<TOPIC> "Dir3"
+%META:TOPICINFO{author="guest" date="1118983605" format="1.0" version="1.1"}%
+%EDITTABLE{include="FileTable"}%
+| *Name* | *Type* | *Size* | *Date* |
+|attach||4819|07-Sep-2001|
+|changes||3381|22-Aug-2001|
+|edit||8056|04-Sep-2001|
+|geturl||1736|17-Nov-2000|
+|installpasswd||4481|22-Aug-2001|
+|mailnotify||5829|22-Aug-2001|
+|oops||2254|22-Aug-2001|
+|passwd||6399|23-Aug-2001|
+|preview||5315|04-Sep-2001|
+|rdiff||8946|09-Sep-2001|
+|register||9199|26-Aug-2001|
+|rename||13481|08-Sep-2001|
+|save||4645|07-Sep-2001|
+|search||4166|22-Aug-2001|
+|statistics||10006|07-Sep-2001|
+|testenv||9356|31-Aug-2001|
+|upload||13782|22-Aug-2001|
+|view||10164|09-Sep-2001|
+|viewfile||2773|14-Sep-2001|
+
+%META:FORM{name="DirForm"}%
+%META:FIELD{name="Level" value="1"}%
+%META:FIELD{name="RealName" title="RealName" value="bin"}%
+<TOPIC> "Dir4"
+%META:TOPICINFO{author="guest" date="1119146668" format="1.0" version="1.1"}%
+%EDITTABLE{include="DirTable"}%
+| *Name* | *Date* |
+|TWiki|22-Aug-2001|
+%EDITTABLE{include="FileTable"}%
+| *Name* | *Type* | *Size* | *Date* |
+
+%META:FORM{name="DirForm"}%
+%META:FIELD{name="Level" title="Level" value="1"}%
+%META:FIELD{name="RealName" title="RealName" value="lib"}%
+<TOPIC> "Dir4_1"
+%META:TOPICINFO{author="guest" date="1118983605" format="1.0" version="1.1"}%
+%EDITTABLE{include="DirTable"}%
+|Plugins|directory|0|27-Aug-2001|
+%EDITTABLE{include="FileTable"}%
+| *Name* | *Type* | *Size* | *Date* |
+|TWiki|perl|64585|15-Sep-2001|
+
+%META:FORM{name="DirForm"}%
+%META:FIELD{name="Level" title="Level" value="2"}%
+%META:FIELD{name="RealName" title="RealName" value="TWiki"}%
+<TOPIC> "Dir4_1_1"
+%META:TOPICINFO{author="guest" date="1118983605" format="1.0" version="1.1"}%
+%EDITTABLE{include="FileTable"}%
+| *Name* | *Type* | *Size* | *Date* |
+|DefaultPlugin|perl|5683|22-Aug-2001|
+|EmptyPlugin|perl|4694|14-Aug-2001|
+|InterwikiPlugin|perl|5554|27-Aug-2001|
+
+%META:FORM{name="DirForm"}%
+%META:FIELD{name="Level" title="Level" value="3"}%
+%META:FIELD{name="RealName" title="RealName" value="Plugins"}%
+<TOPIC> "DirForm"
+%META:TOPICINFO{author="guest" date="1118983605" format="1.0" version="1.1"}%
+
+| %META:TOPICINFO{author="guest" date="1107738027" format="1.0" version="1.2"}%
+| *Name*	  | *Type* | *Size* | *Values* | *Tooltip message* | *Mandatory* |
+| Level | text | 0 |  |  |  |
+| RealName | text | 0 |  |  |  |
+
+<TOPIC> "DirTable"
+%META:TOPICINFO{author="guest" date="1118915495" format="1.0" version="1.1"}%
+%EDITTABLE{header="| *Name* | *Date* |" format="|text,16|text,16|"}%
+| *Name* | *Date* |
+
+<TOPIC> "FileTable"
+%META:TOPICINFO{author="guest" date="1118983605" format="1.0" version="1.1"}%
+%EDITTABLE{header="| *Name* | *Type* | *Size* | *Date* |" format="|text,16|text,16|text,5|text,16|"}%
+| *Name* | *Type* | *Size* | *Date* |
+
+<TOPIC> "PrettyPrint"
+   * /readme/ = README
+
+<TOPIC> "WebHome"
+%META:TOPICINFO{author="guest" date="1117088258" format="1.0" version="1.8"}%
+The <b>%WIKITOOLNAME%.%WEB%</b> web is the sandbox you can use for testing. Everybody is welcome to add or delete some stuff. It is recommended to walk through the %TWIKIWEB%.TWikiTutorial to get a jumpstart on the %WIKITOOLNAME% tool. A good rule of thumb is to add at the end of the page and sign & date it with your %TWIKIWEB%.WikiName. 
+
+%TOPICLIST{"	* $web.$name"}%  
+
+Activated plugins: %ACTIVATEDPLUGINS%
+
+%<nop>FQPDEBUG{topic="WebHome"}%
+
+
+---++ Site Tools of the %WEB% Web
+
+%INCLUDE{"%TWIKIWEB%.WebSiteTools"}%
+
+<TOPIC> "WebPreferences"
+%META:TOPICINFO{author="guest" date="1117504548" format="1.0" version="1.17"}%
+%META:TOPICPARENT{name="WebHome"}%
+   * Set FORMQUERYPLUGIN_RELATIONS = Dir%B_%A subdir Dir%B; Dir%A_%C_%B subsubdir Dir%A_%C
+   * Set FORMQUERYPLUGIN_TABLES = FileTable,DirTable
+   * Set FORMQUERYPLUGIN_MOAN = 1
+   * Set WEBFORMS = DirForm
