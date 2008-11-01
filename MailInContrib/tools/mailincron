@@ -1,0 +1,60 @@
+#!/usr/bin/perl -w
+#
+# TWiki Enterprise Collaboration Platform, http://TWiki.org/
+#
+# Copyright (C) 2005 TWiki Contributors. All Rights Reserved.
+# TWiki Contributors are listed in the AUTHORS file in the root
+# of this distribution.
+# NOTE: Please extend that file, not this notice.
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version. For
+# more details read LICENSE in the root of this distribution.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# As per the GPL, removal of this notice is prohibited.
+use strict;
+
+BEGIN {
+    unshift @INC, '.';
+    require 'setlib.cfg';
+}
+
+use TWiki::Contrib::MailInContrib;
+
+my $debug;
+if( $ENV{'DOCUMENT_ROOT'} ) {
+    # Called from browser.
+    # CODE_SMELL: Is this really a reliable way of detecting
+    # a browser environment?
+    print "Content-type: text/plain\n\n";
+    use CGI;
+    my $query = new CGI;
+    $debug = $query->param( 'debug' ) || 0;
+} else {
+    # Called from the command line
+    my $args = join(" ", @ARGV );
+    $debug = ( $args =~ /\bdebug\b/ );
+}
+
+my $twiki;
+my $folders;
+if( eval 'defined($TWiki::wikiversion)' ) {
+    TWiki::initialize();
+    $twiki = undef;
+    eval "use LocalSite.cfg";
+} else {
+    $twiki = new TWiki();
+    $TWiki::Plugins::SESSION = $twiki;
+}
+$folders = $TWiki::cfg{MailInContrib};
+my $processor = new TWiki::Contrib::MailInContrib($twiki, $debug);
+foreach my $folder ( @$folders ) {
+    $processor->processInbox( $folder );
+}
+$processor->wrapUp();

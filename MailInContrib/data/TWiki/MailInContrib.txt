@@ -1,0 +1,127 @@
+---+!! <nop>MailInContrib for TWiki
+%SHORTDESCRIPTION%
+<a href="http://wikiring.com"><img src="%ATTACHURL%/logo.gif" style="float:right" /></a>
+This Contrib supports the submission of content to TWiki topics via e-mail.
+
+<!--
+
+   PLEASE DO NOT EDIT THIS TOPIC
+
+   It is automatically generated from the subversion repository, and any changes
+   you make will simply be overwritten the next time a release is generated.
+
+   Instead, you could check your fix in, raise a bug in the Bugs web, or mail the author.
+-->
+
+<div class="twikiBroadcastMessage" style="background-color:#ffc;">WARNING: TWiki-4 only. If you want to use this extension with an earlier version of TWiki, please use [[http://twiki.org/cgi-bin/attach/Plugins/%TOPIC%?filename=%TOPIC%.zip&revInfo=1][revision 7 of the zip]].</div>
+
+Mails for twiki can be pulled out of mail folders using [[CPAN:Email::Folder::POP3][POP3]], [[CPAN:Email::Folder::IMAP][IMAP]], or anything else supported by CPAN:Email::Folder.
+
+The implementation is very simple; a script called =mailincron= is run every so often (usually by =cron= or an equivalent offline job scheduler). The script trawls the mail folders you specify and grabs messages that it recognises as being for the TWiki.
+
+For example, your wayward child might send a mail like this from an internet cafe in Thailand:
+<verbatim>
+To: twiki@mum_and_dad.org.uk
+From: gapper@isp.co.uk
+Subject: Travels.DailyDiary: cashless
+
+*Phuket*: I've run out of money!
+</verbatim>
+The message lands in your email folder at your ISP. Once an hour, a cron job runs the =mailincron= script, which scans the folder. If it finds any messages that have nothing but a correctly formatted TWiki Web.Topic<nop>Name in the subject line, that topic is appended to (created) with the plain text of the email.  The Web must exist, though the topic will be created if necessary. Both web and topic _must_ be specified.
+
+In our example, the web exists, and so does the topic, so the following text gets appended to Travels.Daily<nop>Diary:
+<div style='background: #EEFFEE'>
+
+*Phuket*: I've run out of money!
+
+<em> -- Prodigal Son &lt;gapper@isp.co.uk> 10 Jul 2005 08:35:11 -0900 </em>
+
+</div>
+Attachments to the mail get treated as attachments by TWiki, and attached to the target topic.
+
+Note that =mailincron= will only process messages that have arrived since the last time it ran. So if there was an error adding a mail, it won't attempt to add it again even if it is still in the inbox.
+
+---+ Where the mail gets added
+The target topic for a mail is normally specified in the =Subject:= of the mail. You just put Web.Topic as the first thing on the subject line, optionally followed by a colon and other subject text. Alternatively you can configure the module to examine the =To:= field in the mail and get the topic name from there instead.
+   * If a topic is specified, but doesn't exist, it will be created.
+   * If there is no web name specified, then you can configure a default web to accept those mails.
+   * If a non-existant web is specified, then it is an error.
+You can also define a 'spambox' for each mail folder. A spambox is a topic that will take all messages that do _not_ have a valid topic.
+
+The module can use special HTML comments in the topic to decide where to insert new emails within the text.
+
+If it sees the comment =&lt;!--MAIL--&gt;= it will insert the incoming mail immediately *below* the comment. =MAIL= is rather ike a TWikiVariable; you can give it parameters. For example, =&lt;!--MAIL{where="below"}--&gt;=. The following options are available:
+   * =where= - can be =above=, =below= (relative to the comment) =top=, =bottom= (of the topic)
+   * =template= set to the name of one of the templates in %TWIKIWEB%.MailInContribTemplate to change the formatting of comments. The default format is "below" format.
+
+If there is no such comment in the topic, then it just appends it to the end. If there is more than one, only the first is recognised.
+
+Any attachments in the mail get added to the target topic as TWiki attachments. Attachments are also listed immediately below the mail body in the topic.
+
+---+ How the contributor is identified
+The user identity is used for access control checks on the target topic, so you can use TWiki access controls to protect target topics.
+
+You can configure the module to look at the =From:= entry in the email, and if a registered user has set that email (see ChangeEmailAddress), then they are identified as the contributor. Note that there is a security risk here, as the =From:= address in e-mail can easily be spoofed.
+
+You can also optionally set a default user for an inbox, so if the user can't be identified from the mail, it will fall back to the default.
+
+<!--
+      * Set SHORTDESCRIPTION = Supports submissions to TWiki via e-mail
+-->
+
+---++ Installation
+%$INSTALL_INSTRUCTIONS%
+
+__Note__: The CPAN =Email= modules uses *many* pluggable modules to support different folder types. It's impossible to cover all the options here; all we can suggest is that you try running the script from the command-line and resolve missing modules as you find them.
+   * Set up cron (or equivalent) jobs to run =mailincron=. You must =cd= to the TWiki bin directory, and invoke the sript from there (this is so =mailincron= can read =setlib.cfg=)
+
+Because of the security issues involved (passwords for the mailboxes etc.) configuration uses variables set in your =LocalSite.cfg=. The easiest way to set them is using =configure=.
+
+The =mailincron= script takes one optional parameter, <tt>debug</tt>, which takes a boolean value e.g. <tt>debug=1</tt>. If you pass anything other than 0 or the empty string in =debug=, the script will scan the mail folders, describe what it would have done, and exit, without modifying any folders, the TWiki, or sending any mails.
+
+To run the script you need to set up a cron job. For example, to transfer mail into the TWiki once every hour you might write:
+<verbatim>
+0 * * * * cd /home/twiki/bin && ../tools/mailincron 2&>1 >> /home/twiki/logs/mailincron.log
+</verbatim>
+You _must_ run the script from the bin directory.
+Make sure that the cron is run by a user with the permissions needed to read and write the TWiki data directory.
+
+This is a brand-new development, not related in any to the original TWiki:Plugins/MailInAddon. Due acknowledgement is made to those early pioneers for the idea. ;-)
+
+---++ Contrib Info
+
+Another great TWiki extension from the <a style="text-decoration:none" href="http://wikiring.com"><img src="%ATTACHURLPATH%/wikiringlogo20x20.png" alt="" /> *WikiRing* </a> - working together to improve your wiki experience!
+
+Many thanks to the following sponsors for supporting this work:
+   * [[http://www.evolvedmedianetwork.com][Evolved Media Network]]
+
+|  Author: | TWiki:Main/CrawfordCurrie (http://c-dot.co.uk) |
+|  Copyright &copy;: | 2005, TWiki Contributors |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Version: | %$VERSION% |
+| Change History: | |
+|  1 Aug 2008 | Bugs:Item5450: minor doc fix |
+|  8 Sep 2007 | Bugs:Item4575 various ideas from Dev topic, tested against 4.2.0 |
+|  12412 | Fixed Bugs:Item3334 by removing dependency on !FuncUsersContrib |
+|  10239 | Added support for listing attachments in-line with the mail |
+|  10182 | Fixed parser failures on multipart MIME messages |
+|  10111 | Fixed problem with spaces in attachment names |
+|  9427 | Added Email::Delete::POP3 and Email::Delete::IMAP implementations, and solved a curious problem with IMAP folders, where the MIME parser couldn't parse messages coming from them. |
+|  8969 | TWikibug:Item1665 - TWikibug:Item1666: Now configurable to accept mail only from registered users. Automatically maps the user and signs the contribution. Also configurable to parse the topic from the To: line. Also improved error reporting and recovery. |
+|  7205 | TWikibug:Item788 - updated CPAN dependencies for MailInContrib |
+|  7196 | TWikibug:Item784 - Added POP3 support for delete. Don't understand why it was working before; though I suspect it must have been using MailDir |
+|  6993 | TWikibug:Item143 - Cairo compatibility in MailInContrib |
+|  5980 | TWikibug:Item181 - added dependendcy on Error for Cairo installs; split contributions using a blank line to stop them crushing together |
+|  5961 | TWikibug:Item181 - minor formatting issue fixed |
+|  5960 | TWikibug:Item181 - new version, supports DEVELOP and Cairo, and adds support for attachments (you can now mail attachments to topics) |
+|  31 July 2005 | 1.001 Back-ported to Cairo, added spambox (work generously supported by the [[http://www.evolvedmedianetwork.com/][Evolved Media Network]]) |
+|  10 Mar 2005 | 1.000 Initial version |
+|  Home: | TWiki:Plugins/%TOPIC% |
+|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences
+
+%META:FILEATTACHMENT{name="wikiringlogo20x20.png" attr="h" comment="" version="1"}%
+%META:FILEATTACHMENT{name="logo.gif" attr="h" comment="" version="1"}%

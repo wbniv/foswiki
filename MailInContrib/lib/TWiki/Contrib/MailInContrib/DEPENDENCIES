@@ -1,0 +1,7 @@
+TWiki::Plugins,>=1.1,,This module requires TWiki-4
+Time::ParseDate,>=2003.0211,cpan,Required. Available from the CPAN:Time::ParseDate archive.
+Error,>=0.15,cpan,Required. Available from the CPAN:Error archive.
+Email::Folder,>=0.84,cpan,Required. Available from the CPAN:Email::Folder archive.
+Email::FolderType::Net,>=1.02,cpan,Required. Available from the CPAN:Email::FolderType::Net archive.
+Email::MIME,>=1.82,cpan,Required. Available from the CPAN:Email::MIME archive.
+Email::Delete,>=1.02,cpan,Optional, recommended. Available from the CPAN:Email::Delete archive.
