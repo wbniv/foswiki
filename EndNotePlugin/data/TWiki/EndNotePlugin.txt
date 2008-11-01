@@ -1,0 +1,72 @@
+---+!! <nop>%TOPIC%
+
+Endnotes are notes placed at the end of a topic. They are just like footnotes.
+
+%TOC%
+
+---++ Syntax Rules
+
+Write the command =%<nop>ENDNOTE{= _note text_ =}%= anywhere in a TWiki topic.
+This will be replaced with a link to the note at the end of the topic.
+The endnote has a link back to the text where it was inserted.
+
+Do not embed endnotes in headings. That will break the heading in the %<nop>TOC%.
+Endnotes at the end of headings seem to work.
+
+---++ Examples
+
+   * You type:
+      * ==Tim Berners-Lee%<nop>ENDNOTE{Tim Berners-Lee is now director of the World Wide Web Consortium, and Professor of Computer Science at Southampton ECS.}% invented the World Wide Web.==
+   * If the plugin is installed you get:
+      * Tim Berners-Lee<sup>[[#EndNote1a][1]]</sup> invented the World Wide Web.
+   * And this at the end of the page:
+      * <a name="#EndNote1a"></a> *1:* Tim Berners-Lee is now director of the World Wide Web Consortium, and Professor of Computer Science at Southampton ECS.
+   * Actual example, it renders properly if the Plugin is installed and enabled:
+      * Tim Berners-Lee%ENDNOTE{Tim Berners-Lee is now director of the World Wide Web Consortium, and Professor of Computer Science at Southampton ECS.}% invented the World Wide Web.
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>NEWPLUGIN_SHORTDESCRIPTION%==
+
+   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = End notes are notes about the text of a topic, which are listed at the end of the page.
+
+   * Debug plugin: (See output in =data/debug.txt=)
+      * Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the TWiki server. 
+
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+   * Configure the Plugin:
+      * TWiki 4.0 and up: Run the [[%SCRIPTURL%/configure%SCRIPTSUFFIX%][configure]] script to enable the Plugin
+      * Change the Plugin settings as needed
+   * Test if the installation was successful:
+      * See example above.
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.IanBygrave |
+|  Copyright: | &copy; 2006, TWiki:Main.IanBygrave |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | 05 Jun 2006 (V1.000) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  05 Jun 2006: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+
+-- TWiki:Main.IanBygrave - 05 Jun 2006
