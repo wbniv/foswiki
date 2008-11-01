@@ -1,0 +1,138 @@
+---++ Find Elsewhere Plugin
+%SHORTDESCRIPTION%
+<!--
+   * Set SHORTDESCRIPTION = Automatically link to another web(s) if a topic isn't found in the current web.
+-->
+
+This plugin is useful - for example - for a TWiki site that wants to implement a glossary/dictionary web where common terms are defined and stored. Without this plugin:
+
+	* Each web would need to create their own topic for a common term 
+	* Or need to link to or INCLUDE the topic from where it is defined
+	* Authors would need to remember to put the Web name in front of the topic name, such as [[%TWIKIWEB%.WikiWord]]
+
+Without this kind of plugin, it's likely that common terms or acronyms (abbreviations) used within an organization would be defined in multiple webs or the common terms will be unlinked wiki words (as if they didn't exist).
+
+---+++ Syntax Rules
+
+No new syntax is introduced.  However, new automatic %TWIKIWEB%.WikiWord linking will occur.  
+
+If a topic or abbreviation is not found in the current web, this plugin will look through the webs listed in the LOOKELSEWHEREWEBS variable.  If the topic is found (as it looks through the webs in their listed order), it will create one or more links, depending on the number of topics found.
+
+#NewFunctionalityTest
+
+__Single hits__
+
+| *Test case*         | *Input*             | *Output<br/>(if installed)* | *Expected*       |
+| Found here          | =<nop>WebHome=        | WebHome        | %TWIKIWEB%.WebHome     |
+| Found singular here | =<nop>WebHomes=       | WebHomes       | [[%TWIKIWEB%.WebHome][WebHomes]] |
+| Found elsewhere     | =<nop>WebSearch= | WebSearch | [[%TWIKIWEB%.WebSearch][WebSearch]] |
+| Found elsewhere (LOOKELSEWHEREFORLOCAL enabled)    | =<nop>%TWIKIWEB%.TWikiUsers= | %TWIKIWEB%.TWikiUsers | [[Main.TWikiUsers][TWikiUsers]] |
+| Found elsewhere (LOOKELSEWHEREFORLOCAL disabled)    | =<nop>%TWIKIWEB%.TWikiUsers= | %TWIKIWEB%.TWikiUsers | [[TWiki.TWikiUsers][TWikiUsers]] (non-existing) |
+| Found elsewhere     | =[<nop>[TWikiAdminGroup][twiki admins]]= | [[TWikiAdminGroup][twiki admins]] | [[Main.TWikiAdminGroup][twiki admins]] |
+| Don't touch direct links     | =[<nop>[%MAINWEB%.TWikiAdminGroup][twiki admins]]= | [[%MAINWEB%.TWikiAdminGroup][twiki admins]] | [[Main.TWikiAdminGroup][twiki admins]] |
+| Found singular  elsewhere     | =<nop>WebSearches= | WebSearches | [[%TWIKIWEB%.WebSearch][WebSearches]] | 
+| Found elsewhere, spaced wiki word | =[<nop/>[Web search]]= | [[Web search]] | [[%TWIKIWEB%.WebSearch][Web search]] |
+| Found elsewhere, abbrev | =<nop/>ACRONYM= | ACRONYM | (If <nop/>ACRONYM is a topic defined in one of the LOOKELSEWHERE webs, a link to it should show up) |
+| Found elsewhere, abbrev w. alt. linktext | =[<nop/>[ACRONYM][acronym link text]]= | [[ACRONYM][acronym link text]] | (If <nop/>ACRONYM is a topic defined in one of the LOOKELSEWHERE webs, a link to it should show up) |
+| Escaped with &lt;noautolink> | =&lt;noautolink> <nop>WebSearch &lt;/noautolink>= | <noautolink> WebSearch </noautolink> | <nop>WebSearch  |
+
+(Note: <nop>%TOPIC% doesn't support =&lt;noautolink>= in TWiki-3; <nop>WebSearch will be found anyway if you're still using this codebase) |
+
+__Multiple hits__
+
+If a word is found in two or more LOOKELSEWHERE webs, a special syntax is used:
+
+	* Standard <nop/>WikiWord: <nop/>TWikiPreferences<sup>([[TWiki.TWikiPreferences][TWiki]],[[Main.TWikiPreferences][Main]])</sup> 
+	* [<nop/>[Spaced wiki word]]: <em>TWiki preferences</em><sup>([[%TWIKIWEB%.TWikiPreferences][%TWIKIWEB%]],[[%MAINWEB%.TWikiPreferences][%MAINWEB%]])</sup> 
+
+Create this table in [[Sandbox.FindElsewherePluginTest]] to try it out (use raw edit when pasting):
+
+<verbatim>
+| *Test case* | *Input* | *Output<br />(if installed)* | *Expected* |
+| Found elsewhere, spaced wiki word | [<nop>[TWiki preferences]] | [[TWiki preferences]] | _TWiki preferences_ <sup>([[%TWIKIWEB%.TWikiPreferences][%TWIKIWEB%]],[[%MAINWEB%.TWikiPreferences][%MAINWEB%]])</sup> |
+| Found elsewhere | <nop>TWikiContributor | TWikiContributor | <nop>TWikiContributor<sup>([[%TWIKIWEB%.TWikiContributor][%TWIKIWEB%]],[[%MAINWEB%.TWikiContributor][%MAINWEB%]])</sup> |
+</verbatim>
+
+__Internationalization__
+
+<nop/>FindElsewherePlugin handles international characters (I18N) in links, topics and webs.
+
+__Compatibility__
+
+| *Input*								 | *Output*				  |
+| <nop>%TOPIC%#TopicAnchor		  | %TOPIC%#NewFunctionalityTest  |
+| <nop>%TWIKIWEB%.WebHome			| %TWIKIWEB%.WebHome	 |
+| <nop>WebHome						  | WebHome					|
+| [<nop>[%TWIKIWEB%.WebHome]]	  | [[%TWIKIWEB%.WebHome]]	  |
+| [<nop>[%TWIKIWEB%.WikiWord]]	 | [[%TWIKIWEB%.WikiWord]]	 |
+| [<nop>[%TWIKIWEB%.WikiWords]]	| [[%TWIKIWEB%.WikiWords]]	|
+| <nop>%TWIKIWEB%.WikiWord		  | %TWIKIWEB%.WikiWord	|
+| <nop>%TWIKIWEB%.WikiWords		 | %TWIKIWEB%.WikiWords  |
+| [<nop/>[%MAINWEB%.WebSearch][This is a link to <nop/>WebSearch in <nop/>%MAINWEB%]] | [[%MAINWEB%.WebSearch][This is a link to WebSearch in %MAINWEB%]] |
+
+---+++ <nop>%TOPIC% Hints
+
+	* You can en- or disable this plugin for webs, topics or users, using the standard TWiki preferences hierarchy
+	* You can avoid single words being looked up by using =!DontLookup= or =&lt;nop/&gt;DontLookup= syntax
+	* "Groups of webs" can use each other as lookup webs, by setting the LOOKELSEWHEREWEBS variable accordingly in their !WebPreferences
+
+---+++ <nop>%TOPIC% Settings
+
+---++++ Enabling and disabling the plugin globally
+
+You can enable or disable the <nop>%TOPIC% plugin sitewide (in %MAINWEB%.TWikiPreferences), per web (in <nop/>WebPreferences) or pr. topic by defining DISABLELOOKELSEWHERE = 1.
+
+---++++ Scope of the plugin - webs to find topics in
+
+You can list other webs in which to look for topics that don't exist in the current web by defining LOOKELSEWHEREWEBS to be a comma-separated list of webs - for example, =TWiki,Main=
+
+---++++ Singular and plural topics
+
+If the TWiki.WikiWord is plural but doesn't exist, %TOPIC% also looks for the singular word in other webs. You can disable this behaviour by setting DISABLEPLURALTOSINGULAR = 1. (Note this setting is for looking in *other* webs only (plural to singular is still automatically done in the current web, dependent on the setting in =configure=).
+
+---++++ <nop>ACRONYM link settings
+
+A setting called "LOOKELSEWHEREFORACRONYMS" can be set to a value of =none=, =first= or =all= (=all= is default). 
+
+=none= means that non-forced acronyms in topics are never found elsewhere, =first= that they are linked only at the first occurence and =all= that every occurence is linked. Especially topics with many occurences of the same acronym will experience improved readability by use of the =first= setting.
+
+---++++ Overriding forced local links
+
+Even if a link refers explicitly to the current web and a topic name (for
+example, [<nop>[Thatweb.ThatTopic]], you can still trigger
+%TOPIC% to look in other webs for that topic. To enable this behaviour for a
+web, define LOOKELSEWHEREFORLOCAL = 1 in the !WebPreferences. This is
+particular useful when you have moved topics from one web to another, but
+you don't want to rewrite all the links in the source web.
+
+Enabled for demo and testing - try it on and off
+
+   * Set LOOKELSEWHEREFORLOCAL = 1
+
+---+++ Plugin Installation Instructions
+%$INSTALL_INSTRUCTIONS%
+
+---+++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.MikeBarton |
+|  Version: | %$VERSION% |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  19 Dec 2007: | TWiki:Main.SteffenPoulsen - Link none, first or all standalone abbreviations (LOOKELSEWHEREFORACRONYMS option added) |
+|  18 Dec 2007: | TWiki:Main.SteffenPoulsen - Abbrev with alternative linktext found elsewhere again |
+|  25 Sep 2007: | TWiki:Main.CrawfordCurrie - Added redirect support, removed illegal calls, and made more efficient |
+|  20-Apr-2006: | (v1.9) - Now repects &lt;noautolink&gt; ... &lt;/noautolink&gt; blocks (Dakar only) and a new NOAUTOLINK preference flag - TWiki:Main.MichaelDaum |
+|  07-Apr-2006: | (v1.8) - Replaced direct usage of %regex with TWiki::Func::getRegularExpression(), replaced some implicit scalar references with explicit $ notation - TWiki:Main.ScottHunter |
+|  08 Apr 2005: | (v1.7) - Negated vars =DISABLELOOKELSEWHERE= and =DISABLEPLURALTOSINGULAR= can now be set per web (!WebPreferences) or per topic. - TWiki:Main.SteffenPoulsen |
+|  05 Apr 2005: | (v1.6) - Bugfix: Preambles for ACRONYMS were doubled. - TWiki:Main.SteffenPoulsen |
+|  04 Apr 2005: | (v1.5) - Plugin less greedy - now leaves linktext in [<nop/>[WikiWord][long links with <nop/>ACRONYMS or <nop/>WikiWords]] alone - TWiki:Main.SteffenPoulsen |
+|  03 Apr 2005: | (v1.4) - Documentation update. - TWiki:Main.SteffenPoulsen |
+|  02 Apr 2005: | (v1.3) - I18N-support added. New link style. TWiki:Codev.WebNameAsWikiName supported - TWiki:Main.SteffenPoulsen |
+|  12-Feb-2004: |	Matt Wilkie - put all of above into twikiplugins cvs, - removed "/o"'s as there may be issues with modperl (Codev.ModPerl) |
+|  25-May-2003:	| Martin Cleaver - patch to add Codev.WebNameAsWikiName (cvs rev1.4) |
+|  25-Sep-2002:	| PeterHErnst - modified webname to show as superscript, - some other changes (chiefly "/o" regex modifiers) (cvs rev1.3) |
+|  15-May-2002:	| Marco Carnut - patch to show webname, e.g. Main.WebHome (cvs rev1.2) |
+|  01 Feb 2002: | Initial version |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
