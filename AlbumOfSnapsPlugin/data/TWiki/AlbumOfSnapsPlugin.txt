@@ -1,0 +1,31 @@
+%META:TOPICINFO{author="guest" date="1099379306" format="1.0" version="1.1"}%
+---+ <nop>%TOPIC%
+
+This Plugin allows the user to maintain Album on the
+twiki website.  You just need to upload the compressed
+.tgz/.zip file of directory containing images.
+
+
+---++ Usage
+
+	* Various Album directories will be shown on the page using the plugin by specifying =%<nop>ALBUMOFSNAPS_PLUGIN%= or =%<nop>ALBUMOFSNAPS{web="WebName" topic="TopicName"}%= (if any of the argument is not specified by default it gets the argument value from the current web or topic).
+
+	* Clicking on the Album Directory will displays thumbnail view of images in that galary 20 at a time. If there are more images it can be seen by going to next page.We can go to previous and next page by clicking on the links ,Or to list of Albums by clicking on up arrow.
+
+	* After Clicking on the images from the thumbnail view , Whole image is displayed along with the number of times it is seen.We can go to next or previous image by clicking on next and previous links. Or go to thumbnail view by clickin on up Arrow.
+
+	* FOR UPLOADING SNAPS. Store the snaps in some directory containing only image files (Set the permissions to 755 at least ) Then zip or tarzip it to  (same name as directory ).zip/.tgz file. These files should be uploaded to the page where plugin is called by specifying the plugin tag , and don't upload any other files to that page other than image files.
+
+
+---++ Examples
+
+	* =%<nop>ALBUMOFSNAPS_PLUGIN%= will search on topic name
+	* =%<nop>ALBUMOFSNAPS_PLUGIN{web="AnyWeb" topic="AnyName"}%= will search on any topic or keyword in Wiki notation
+
+---++ Plugin Settings
+Edit AlbumOfSnapsPlugin topic to set the debug variable to 0 or 1 i.e. to enable or disable debugging
+
+		* Set DEBUG = 0
+
+-- Main.TWikiGuest - 02 Nov 2004
+
