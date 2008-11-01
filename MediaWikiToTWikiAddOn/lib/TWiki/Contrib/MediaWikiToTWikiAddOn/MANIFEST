@@ -1,0 +1,10 @@
+data/TWiki/MediaWikiToTWikiAddOn.txt 0644
+lib/CPAN/lib/Parse/MediaWikiDump.pm 0644
+lib/TWiki/Contrib/MediaWikiToTWikiAddOn/Converter.pm 0644
+lib/TWiki/Contrib/MediaWikiToTWikiAddOn/EmptyPlugin.pm 0644
+lib/TWiki/Contrib/MediaWikiToTWikiAddOn/build.pl 0644
+lib/TWiki/Contrib/MediaWikiToTWikiAddOn.pm 0644
+pub/TWiki/MediaWikiToTWikiAddOn/schenck_logo.gif 0644
+pub/TWiki/MediaWikiToTWikiAddOn/wikiringlogo40x40.png 0644
+tools/EmptyMediaWiki2TWikiPlugin.pm 0755
+tools/mediawiki2twiki 0755

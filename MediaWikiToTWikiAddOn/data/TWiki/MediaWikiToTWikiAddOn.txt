@@ -1,0 +1,129 @@
+%META:TOPICINFO{author="TWikiContributor" date="1184958640" format="1.1" reprev="1.2" version="$Rev$"}%
+---+!! !MediaWikiToTWikiAddOn
+<!--
+One line description, required for extensions repository catalog.
+   * Set SHORTDESCRIPTION = <nop>MediaWiki 2 TWiki Conversion Tool
+-->
+%SHORTDESCRIPTION%
+
+%TOC%
+<table style="float:right">
+<tr>
+  <td><img src="%ATTACHURLPATH%/wikiringlogo40x40.png"></td>
+  <td><a href="http://wikiring.de" title="Make your Wiki ring!" style="text-decoration:none">
+      Powered by <br /> <nop>WikiRing Consultants </a>
+  </td>
+</tr>
+</table>
+
+This is a commandline tool to import <nop>MediaWiki pages and images
+to TWiki. It processes a <nop>MediaWiki XML dump to extract the pages
+and thus does not need a database access once the dump was created.
+
+The conversion tool takes care of almost all peculiarities of <nop>MediaWiki
+and TWiki. It does _not_ map <nop>MediaWiki's category system onto TWiki
+as long as TWiki lacks a standard category system. There are however many
+ways to implement categories in TWiki, one of which is the upcomming
+<nop>ClassificationPlugin which implements true hierarchies and 
+semantic predicates to query categories and topics within. The mediawiki2twiki
+tool allows to map the <nop>MediaWiki categories onto any TWiki category
+system like the mentioned one using a plugin interface that comes with
+the conversion tool.
+
+One notion of caution: in general the conversion tool is able to
+convert the wiki markup dialects. However, the <nop>MediaWiki's template 
+mechanism, comparable to TWiki's parametrized =INCLUDE= statement does
+*not* match. The reason is burried in the different parsing priorities
+within both parsers: while <nop>MediaWiki parses left-to-right, TWiki
+does also parser inside-out, which means parameters to =INCLUDE= are
+evaluate _before_ making the inclusion. The opposite is the case
+in <nop>MediaWiki. In a way <nop>MediaWiki's tempaltes are called
+"by reference" (passing the unparsed parameters) while TWiki evaluates
+=INCLUDE= passing parameters "by value". This means, that <nop>WikiApplications
+written for <nop>MediaWiki won't be translatable to <nop>TWikiApplications
+easily by this tool.
+
+
+---++ Documentation
+The conversion tool is in =&lt;path-to-your-twiki&gt;/tools/mediawiki2twiki=.
+
+---+++ Synopsis
+<verbatim>
+       mediawiki2twiki
+             --file <dumpfile>
+             [--<debug>]
+             [--<defaultweb> <webname>]
+             [--<dry>]
+             [--<exclude> <regex>]
+             [--<help>]
+             [--<images> <path>]
+             [--<include> <regex>]
+             [--<language> <language code>]
+             [--<match> <regex>]
+             [--<max> <number>]
+             [--<namespace> <name>]
+             [--<plugin> <perlfile>]
+             [--<topicmap> <fromTopic1=toTopic1,fromTopic2=toTopic2,...>]
+             [--<web> <target web>]
+             [--<webmap> <fromWeb1=toWeb1,fromWeb2=toWeb2,...>
+</verbatim>
+
+---+++ Example call
+<verbatim>
+       mediawiki2twiki
+             --file dump.xml
+             --web MediaWiki
+             --language de
+             --topicmap 'Hauptseite=WebHome,Spezial.Allpages=WebTopicList'
+             --images /var/www/mediawiki/images
+             --defaultweb _mediawiki_default
+             --plugin MyConversionPlugin
+             --exclude '^(MediaWiki|Bild|Kategorie):'
+</verbatim>
+
+This reads the file =dump.xml=, and creats a TWiki web called <nop>MediaWiki in our
+current TWiki installation (see Setup). In this example, the source content is German.
+The pages "Hauptseite" will be stored in the the =WebHome= topic. The
+=Special.Allpages= page will be stored in =WebTopicList"=. Images are taken from
+the images subdirectory of our <nop>MediaWiki installation at =/var/www/mediawiki=.
+We prepared a template web called =_mediawiki_defaul= that will be used when
+creating TWiki webs. We have some perl code in =MyConversionPlugin.pm= that
+defines some custom conversions only of relevance for our own content. Source
+pages that match the regular expression =MediaWiki|Bild|Kategorie= will be
+excluded from the translation process.
+
+---+++ Options
+The only mandatory option is the name of the <nop>MediaWiki dump file from which
+content is extracted. Before you start extracting large amount of data you
+should test the conversion result by using the -debug, -dry and -max.
+
+%RED%more docu please%ENDCOLOR%
+
+
+---++ Installation Instructions
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+   | *File:* | *Description:* |
+%$MANIFEST%
+   * Verify that the tool works fine by going to the =tools= subdirectory
+     of your TWiki installation and type =./mediawiki2twiki --help=
+
+
+---++ <nop>AddOn Info
+Sponsored by <a href="http://www.schenck-rotec.net"><img src="%ATTACHURLPATH%/schenck_logo.gif" border="0" title="Schenck-RoTec"/></a>
+
+|  <nop>AddOn Author: | TWiki:Main.MichaelDaum |
+|  Copyright &copy;: | 2006-2007, Michael Daum http://wikiring.de |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  <nop>AddOn Version: | v1.0 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  20 Jul 2007 | initial release |
+|  Dependencies: | %$DEPENDENCIES% |
+|  <nop>AddOn Home: | http://twiki.org/cgi-bin/view/Plugins/MediaWikiToTWikiAddOn |
+|  Feedback: | http://twiki.org/cgi-bin/view/Plugins/MediaWikiToTWikiAddOnDev |
+|  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/MediaWikiToTWikiAddOnAppraisal |
+
+
+
+%META:FILEATTACHMENT{name="schenck_logo.gif" attachment="schenck_logo.gif" attr="h" comment="" date="1184958431" path="schenck_logo.gif" size="882" stream="schenck_logo.gif" tmpFilename="/var/tmp/CGItemp4701" user="TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="wikiringlogo40x40.png" attachment="wikiringlogo40x40.png" attr="h" comment="" date="1189787359" path="wikiringlogo40x40.png" size="2571" stream="wikiringlogo40x40.png" tmpFilename="" user="TWikiContributor" version="1"}%
