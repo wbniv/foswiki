@@ -1,0 +1,362 @@
+%META:TOPICINFO{author="TWikiContributor" date="1181041089" format="1.0" version="$Rev: 17715 $"}%
+<!--
+This topic is part of the documentation for HolidaylistPlugin and is
+automatically generated from Subversion. Do not edit it! Your edits
+will be lost the next time the topic is uploaded!
+
+If you want to report an error in the topic, please raise a report at
+http://develop.twiki.org/~twiki4/cgi-bin/view/Bugs/HolidaylistPlugin
+-->
+
+---+!! <nop>HolidaylistPlugin</nop>
+
+The !HolidaylistPlugin handles the tag %<nop>HOLIDAYLIST</nop>% that inserts a vacation list on the current page. Smilies are used to indicate if a person is in work or on holiday. 
+
+The plugin creates a table filled with Smilies and today's date will be the first column. There is a row in the table for each person and each day is flagged as either: :mad: (in work), :ok: (a day off) or 8-) (absent for some time), :-I (not at work; used if you type a location). You can also use other smilies (like :skull:).
+
+*Example (image):*
+<div style="overflow:auto">
+<img src="%ATTACHURLPATH%/example.gif" alt="Example" title="Example"  />
+</div>
+
+%TOC%
+
+---++ Usage Examples
+
+To insert vacations into the table, create a bullet list. Three spaces and then a *.
+
+The syntax is described below ([[#SyntaX][Syntax]]).
+
+Example1: To list that John will be away on 1-July-2005
+<verbatim>
+	* 01 Jul 2005 - John
+</verbatim>
+Example2: To list that Mary will be away from 3-Sep - 9-Sep 2005
+<verbatim>
+	* 03 Sep 2005 - 09 Sep 2005 - Mary 
+</verbatim>
+Example3: To list that Jill will be in Paris from 10-Sep - 11-Sep 2005 and in Tokyo on 15 Sep 2005
+<verbatim>
+	* 10 Sep 2005 - 11 Sep 2005 - Jill - Paris
+
+	* 15 Sep 2005 - Jill - Tokyo
+</verbatim>
+Example4: To list that Eve will be ill from 12-Sep - 20-Sep 2005  with her own 'smily'
+<verbatim>
+	* 12 Sep 2005 - 20 Sep 2005 - Eve - is ill - :skull:
+</verbatim>
+Example5: To list that Lisa will by not at work from April to June and the complete December 2005:
+<verbatim>
+	* Apr 2005 - Jun 2005 - Lisa
+	* Dec 2005 - Lisa
+</verbatim>
+
+Example6: To list in all time table entries that anybody will be not at work on Christmas Day:
+<verbatim>
+	* 25 Dec 2005 - Christmas Day @all
+</verbatim>
+
+Example7: There are several attributes (see [[#AttriButes][Attributes]]) like =days= (defaults to 30days) and =tablecaption= (defaults to null). 
+
+=%<nop>HOLIDAYLIST{days="90" tablecaption="Planned Holidays"}</nop>%=
+
+#SyntaX
+---++ Syntax
+The syntax follows that of the !CalendarPlugin. See TWiki:Plugins.CalendarPlugin for more details.
+
+
+
+| *Entry type* | *Syntax* | *Example* |
+| Single entry | ==&nbsp;* dd MMM yyyy - name== | ==&nbsp;* 01 Jul 2005 - Jane== |
+|^| ==&nbsp;* dd MMM yyyy - name - location== | ==&nbsp;* 01 Jul 2005 - Sarah - in Paris== |
+|^| ==&nbsp;* dd MMM yyyy - name - location - icon== | ==&nbsp;* 01 Jul 2005 - Eve - ill - :skull:== |
+| Interval entry | ==&nbsp;* dd MMM yyyy - dd MMM yyyy - name== | ==&nbsp;* 01 Aug 2005 - 22 Aug 2005 - !EvaMaria== |
+|^| ==&nbsp;* dd MMM yyyy - dd MMM yyyy - name - location== | ==&nbsp;* 02 Sep 2005 - 10 Sep 2005 - !JohnDo - in London== |
+|^| ==&nbsp;* dd MMM yyyy - dd MMM yyyy - name - location - icon== | ==&nbsp;* 02 Oct 2005 - 22 Oct 2005 - Fred - is ill - :skull:== |
+|^| ==&nbsp;* MMM yyyy - name== | ==&nbsp;* May 2005 - Carl== |
+|^| ==&nbsp;* MMM yyyy - name - location== | ==&nbsp;* Jun 2005 - Sam - in Sidney== | 
+|^| ==&nbsp;* MMM yyyy - name - location - icon== | ==&nbsp;* Nov 2005 - Lisa - is ill for a complete month - :skull:== |
+|^| ==&nbsp;* MMM yyyy - MMM yyyy - name== | ==&nbsp;* Jun 2005 - Jul 2005 - Lily== |
+|^| ==&nbsp;* MMM yyyy - MMM yyyy - name - location== | ==&nbsp;* Feb 2005 - Apr 2005 - Lisa - is not at work==|
+|^| ==&nbsp;* MMM yyyy - MMM yyyy - name - location - icon==| ==&nbsp;* Nov 2005 - Dec 2005 - Lola - is 2 month not at work - :yes:== |
+| Exception | insert the following before the name field and after a date (range): \
+  ==&nbsp;X { dd MMM yyyy, dd MMM yyy - dd MMM yyyy }== | ==&nbsp;* Dec 2005 X { 5 Dec 2005 - 7 Dec 2005, 12 Dec 2005 } - Sarah - will be away for the complete December except between 5 Dec and 7 Dec and on 12 Dec 2005== |
+| Public Holidays | just type '@all' in the name field | ==&nbsp;* 25 Dec 2005 - Christmas Day @all== | 
+
+
+*Notes and hints:*
+	* At least one space character have to stay before and after a seperator ('-'). This allows you to use a '-' in names, locations or icons, e.g. if you have a composite name like Eva-Maria.
+	* If you enable the compatmode (see [[#AttriButes][Attributes]]) you can use all event types of the TWiki:Plugins.CalendarPlugin
+	* If you change the default language ('lang' attribute; see [[#AttriButes][Attributes]]) you can use your language specific month and day names or the abbreviations for any entry type (including TWiki:Plugins.CalendarPlugin event types).
+	* If you change the month names or day names ('monthnames' and 'daynames' attributes; see [[#AttriButes][Attributes]]) you can use it for your entries (including TWiki:Plugins.CalendarPlugin event types).
+	* You can hide all calendar entries if you put them into HTML comments, e.g:
+<verbatim>
+		%HOLIDAYLIST%
+		<!--
+			* 24 Dec 2005 - Sam - @home
+		-->
+</verbatim>
+	* You can put the entries to another topic and use the topic attribute, e.g:
+<verbatim>
+		%HOLIDAYLIST{topic="TimeTableDataTopic" tablecaption="Planned Holidays (see TimeTableDataTopic)"}%
+</verbatim>
+	* You can hide '@all' in an entry if you put it into HTML comments, e.g: 
+<verbatim>
+		* 25 Dec 2005 - Christmas Day <!--@all-->
+</verbatim>
+
+#AttriButes
+---++ Attributes
+
+| *Attribute* | *Comment* | *Default / Example* |
+|  *Behavior*  |||
+| compatmode  | if set to "1" all TWiki:Plugins.CalendarPlugin event types are supported (related: compatmodeicon) | =compatmode="0"= |
+| daynames | custom daynames (a list separated by a '&brvbar;' and starting on Monday; overwrites lang attribute) | =daynames="M&brvbar;T&brvbar;W&brvbar;T&brvbar;F&brvbar;S&brvbar;S"= |
+| days | number of days to show |=days="30"= |
+| enablepubholidays | enables/disables public holidays (bullet list entries with a @all in a person field; related: showpubholidays, pubholidayicon) | =enablepubholidays="1"= |
+| lang | language (related: daynames, monthnames) | =lang="English"= |
+| month | set a month (e.g. Jan, Feb ... or 01, 02, ... 12 ) or a month offset (e.g. +0, +1, -2,...) *Note:* If you use this month attribute the days attribute will be ignored (days will be set to the duration of the month). | =month="+1"= |
+| monthnames | custom month names (a list separated by '&brvbar;' and starting on January; overwrites lang attribute) | =monthnames="J&brvbar;F&brvbar;M&brvbar;A&brvbar;M&brvbar;J&brvbar;J&brvbar;A&brvbar;S&brvbar;O&brvbar;N&brvbar;D"= |
+| namepos | allows you to change the position of the names; allowed values: left, right, both | =namepos="left"= |
+| navdays | defines the days to navigate to (default: value of the =days= attribute) | =navdays="30"= |
+| order | changes the sorting order of entries and contains a comma separated list of names or special tags (default: alphanumerical order); hint: order attribute can also be used as a filter: show only listed persons (e.g. =order="Bob,Bill"=); specials: =[:ralpha:]= - sort persons reverse alphanumerical; =[:nextfirst:]= - next person with an entry will be shown first; =[:rest:]= - will be replaced by missing persons if =order= contains an uncomplete person list (e.g. =order="Bob,Bill,[:rest:]"=); =[:num:] ([:rnum])= - (reverse) numerical order | undefined / =order="Bob,Bill,Alice,Jane,[:rest:]"= |
+| removeatwork | set to "1" to remove persons without calendar entries from table | =removeatwork="0"= |
+| showmonthheader | enabes/disables month header | =showmonthheader="1"= |
+| showoptions | shows a navigation form | =showoptions="0"= |
+| showpubholidays | shows public holidays as separate lines (rows) in table (related: enablepubholidays, pubholidayicon) | =showpubholidays="0"= |
+| showstatcol | enables/disables statistics column(s) | =showstatcol="off"= | 
+| showstatrow | enables/disables statistics row(s) | =showstatrow="off"= | 
+| showstatsum | enables/disables statistics summary below/behind the statistics columns/rows; works only in conjunction with showstatcol and/or showstatrow | =showstatsum="on"= | 
+| showweekends | shows weekends if set to 1 | =showweekends="0"= |
+| startdate | a start date (e.g. '1 Oct 2005') or a day offset (e.g. '10', '+30' or '-30') | =startdate="+0"= |
+| topic | a comma separated list of source topics | =topic="%<nop>TOPIC%"= |
+| week | set a week (1..52) or a week offset (-1, +0, +1, +2, ...) | =week="+0"= |
+| year | set a year (e.g. 2005, 2006 ...) or a year offset (e.g. +0, +1, -1, ...) | =year="0"= |
+|  *Icons*  |||
+| adayofficon |a day off icon | =adayofficon=":ok:"= |
+| compatmodeicon | icon used for TWiki:Plugins.CalendarPlugin event types (only used if compatmode is enabled) | =compatmodeicon="8-)"= |
+| holidayicon | holiday icon | =holidayicon="8-)"= |
+| notatworkicon | not at work icon (only used if you type a location) | =notatworkicon=":-I"= |
+| pubholidayicon | public holiday icon (related: enablepubholidays, showpubholidays)| =pubholidayicon=":-)"= |
+| workicon | in work icon | =workicon="&amp;nbsp;"= |
+|  *Table Formatting*  |||
+| border | table border | =border="1"= |
+| cellpadding | table cell padding | =cellpadding="1"= |
+| cellspacing | tabel cell spacing | =cellspacing="0"= |
+| daynames | custom daynames (a list separated by a '&brvbar;' and starting on Monday; overwrites lang attribute) | =daynames="M&brvbar;T&brvbar;W&brvbar;T&brvbar;F&brvbar;S&brvbar;S"= |
+| headerformat | table header format of a day; a subset of strftime conversion specifiers is supported (only date not time specificiers; see manual page or TWiki:Codev.ConvergeDateTimeFormattingModels) | =headerformat="&lt;font&nbsp;size=\"-2\">%a&lt;br/&gt;%e&lt;/font&gt;"= |
+| lang | language (related: daynames, monthnames) | =lang="English"= |
+| monthheaderformat | month header format (related: showmonthheader) | =monthheaderformat="%b"= |
+| monthnames | custom month names (a list separated by '&brvbar;' and starting on January; overwrites lang attribute) | =monthnames="J&brvbar;F&brvbar;M&brvbar;A&brvbar;M&brvbar;J&brvbar;J&brvbar;A&brvbar;S&brvbar;O&brvbar;N&brvbar;D"= |
+| name | header content of the first cell header |=name="Name"= |
+| namecolors | a comma separated list of names with own colors, e.g. namecolors="Mary:red,Bob:lightblue" | undefined / =namecolors="Bill:yellow"= |
+| navdays | defines the days to navigate to (default: value of the =days= attribute) | =navdays="30"= |
+| navenable | enables/disables navigation (1 - enabled; 0 - disabled) | =navenable="1"= |
+| navhome | navigation button to the start date (%d will be replaced with page x days) | =navhome="%d"= |
+| navhometitle | title text (tooltip text) for the navigation button to the start date | =navhometitle="Go to the start date"= |
+| navnext | navigation button to the next =navdays= days| =navnext="&amp;gt;&brvbar;"= |
+| navnexthalf | navigation button to the next =navdays/2= days | =navnexthalf="&amp;gt;"= |
+| navnexthalftitle | title text (tooltip text) for the navigation button to the next =navdays/2= days (%n will be replaced with the half number of days to show)| =navnexttitle="Next %n day(s)"= |
+| navnexttitle | title text (tooltip text) for the navigation button to the next navdays days (%n will be replaced with the number of days to show)| =navnexttitle="Next %n day(s)"= |
+| navprev | navigation button to the previous =navdays= days | =navprev="&lt;br/&gt;&brvbar;&amp;lt;"= |
+| navprevhalf | navigation button to the previous =navdays/2= days | =navprevhalf="&amp;lt;"= |
+| navprevhalftitle | title text (tooltip text) for the navigation button to the previous =navdays/2= days (%n will be replaced with the half number of days to show) | =navprevtitle="Previous %n day(s)"= |
+| navprevtitle | title text (tooltip text) for the navigation button to the previous =navdays= days (%n will be replaced with the number of days to show) | =navprevtitle="Previous %n day(s)"= |
+| nwidth | cell width of the first column | =nwidth="120px"= |
+| optionspos | position of the navigation form; allowed values: top, bottom, both | =optionspos="bottom"= |
+| optionsformat | defines the output format of the navigation form; some variables are available: =%(WEEK&#124;MONTH&#124;YEAR)SEL(&lt;range&gt;)= - a week&#124;month&#124;year popup menu; =%(STARTDATE&#124;WEEK&#124;MONTH&#124;YEAR)OFFS(&lt;range&gt;)= - a day&#124;week&#124;month&#124;year offset popup menu; =%(STARTDATE&#124;WEEK&#124;MONTH&#124;YEAR)(&lt;default value&gt;)= - a startdate&#124;week&#124;month&#124;year input field; =%BUTTON(&lt;submit button text&gt;)= - a submit button; =ranges= are optional (range syntax: =&lt;start value&gt;(:&lt;end value&gt;(:&lt;steps&gt;)?)?=, e.g. =%YEARSEL(2002:2010:1)= | =optionsformat="Month: %MONTHSEL, Year: %YEARSEL %BUTTON(Change)"= | 
+| rowcolors | a comma separated list of background colors used for entries; the color count is not limited | =rowcolors="#ffffff,#f0f0f0"= |
+| tablebgcolor | table background color | =tablebgcolor="white"= |
+| tablecaption | table caption | =tablecaption="&amp;nbsp;"= |
+| tablecaptionalign | table caption alignment (top, bottom, left, right) | =tablecaptionalign="top"= |
+| tableheadercolor | color of the table header | =tableheadercolor="%<nop>WEBBGCOLOR%"= |
+| tcwidth | width of the icon table cells | =tcwidth="33px"= |
+| todaybgcolor | background color for today cells (usefull if you use startdate attribute) | =todaybgcolor="white"= |
+| todayfgcolor | foreground color for today cells (usefull for a dark todaybgcolor) | =todayfgcolor="black"= |
+| weekendbgcolor | background color of weekend header and data table cells | =weekendbgcolor="%<nop>WEBBGCOLOR%"= |
+| width | width of table in pixels or percent | =width="100%"= |
+|  *Table Formatting - Statistics<br/>(%X% showstatcol or showstatrow should be enabled)*  |||
+| statcolformat | statistics column format (related: showstatcol, statcolheader, statcoltitle); see [[#StatisticsColumnFormat][Statistics Column/Row Format/Title section]] | =statcolformat="%{hh}"= -or- =statcolofrmat="%{h}"= (if =showweekends= set to ="on"=) |
+| statcolheader | statistics header (related: showstatcol, statcolformat, statcoltitle); use '&#124;' to separate multiple column headers | =statcolheader="#"= |
+| statcoltitle | statistics tooltip (related: showstatcol, statcolformat, statcolheader); see  [[#StatisticsColumnFormat][Statistics Column/Row Format/Title section]] | =statcoltitle="%{ll}"= -or- =statcoltitle="%{l}"= (if =showweekends= set to ="on"=) |
+| statformat | statistics format; overwrites statcolformat and statrowformat | undefined / =statformat="%{hh}"= |
+| statformat_0 | defines the string for the zero value of all statistics variables; [[#StatisticsColumnFormat][Statistics Column/Row Format/Title section]] | =statformat_0="0"= |
+| statformat_i | format for a single %{i} variable value; %ICON will be substituted by the icon; see [[#StatisticsColumnFormat][Statistics Column/Row Format/Title section]] | =statformat_i="%{i:%ICON} x %ICON ;"= |
+| statformat_ii | format for a single %{ii} variable value; %ICON will be substituted by the icon; see [[#StatisticsColumnFormat][Statistics Column/Row Format/Title section]] | =statformat_ii="%{ii:%ICON} x %ICON ;"= |
+| statformat_l | format for a single %{l} variable value; %LOCATION will be substituted by the location; see [[#StatisticsColumnFormat][Statistics Column/Row Format/Title section]] | =statformat_l="%{l:%LOCATION} x %LOCATION;"= |
+| statformat_ll | format for a single %{ll} variable value; %LOCATION will be substituted by the location; see [[#StatisticsColumnFormat][Statistics Column/Row Format/Title section]] | =statformat_ll="%{ll:%LOCATION} x %LOCATION;"= |
+| statformat_perc | percentage format | =statformat_perc="%3.1f%%"= |
+| statformat_unknown | will be used for unknown locations or icons if one of the statistics variables %{l}, %{ll}, %{i} or %{ii}) is replaced | =statformat_unknown="unknown"= |
+| statheader | statistics header; overwrites statcolheader and statrowheader | undefined / =statheader="#"= | 
+| statrowformat | statistics row format (related: showstatrow, statrowheader, statrowtitle); see [[#StatisticsColumnFormat][Statistics Column/Row Format/Title section]] | =statrowformat="%{hh}"= -or- =statrowformat="%{h}"= (if =showweekends= set to ="on"=) |
+| statrowheader | statistics header (related: showstatrow, statrowformat, statrowtitle); use '&#124;' to separate multiple row headers | =statrowheader="#"= |
+| statrowtitle | statistics tooltip (related: showstatrow, statrowformat, statrowheader); see  [[#StatisticsColumnFormat][Statistics Column/Row Format/Title section]] | =statrowtitle="%{ll}"= -or- =statrowtitle="%{l}"= (if =showweekends= set to ="on"=) |
+| stattitle | statistics tooltip; overwrites statrowtitle and statcoltitle | undefined / =stattitle="%{ll}"= |
+
+
+*Hints:* 
+	* You can use TWiki.TextFormattingRules for some attribute values: tablecaption, name, holidayicon, adayofficon, workicon, notatworkicon, compatmodeicon, pubholidayicon
+	* Every attribute of %<nop>HOLIDAYLIST% can also be used as plugin setting. You only have to use capital letters.
+	* Every attribute can be overwritten by URI query parameters: =hlp_&lt;attribute&gt;= e.g. %SCRIPTURL%/view/%WEB%.%TOPIC%?hlp_startdate=+10#HolidaylistPluginExample
+
+#StatisticsColumnFormat
+---+++ Statistics Column/Row Format/Title
+*Usage:* 
+<br/> =statcolformat=" &lt;column1 format&gt; | &lt;column2 format&gt; | ..."=
+<br/> =statcoltitle=" &lt;column1 format&gt; | &lt;column2 format&gt; | ..."=
+<br/> =statrowformat=" &lt;row1 format&gt; | &lt;row2 format&gt; | ..."=
+<br/> =statrowtitle=" &lt;row1 format&gt; | &lt;row2 format&gt; | ..."=
+<br/> =statformat=" &lt;column1/row1 format&gt; | &lt;column2/row2 format&gt; | ..."=
+<br/> =stattitle=" &lt;column1/row1 format&gt; | &lt;column2/row2 format&gt; | ..."=
+   * you can define multiple columns/rows in =statcolformat/statrowformat= and =statcoltitle/statrowtitle=, simple use '|' as separator
+   * you can use variables in the  =&lt;column/row? format&gt;= definitions (see table below), e.g. =statcolformat="%{l}"= 
+   * if you use the same format definitions for statrowformat and statcolformat, statrowtitle and statcoltitle or statrowheader and statcolheader you should use the statformat, stattitle or statheader attributes
+   * %X% =statcolheader/statrowheader= should have the same number of columns/rows (count of ='|'= should be equal)
+*Example:* 
+   * display three statistics columns and rows; tooltips with percentage of days without weekends and public holidays:
+     <verbatim>
+%HOLIDAYLIST{startdate="21 Jul 2008" showstatcol="on" showstatrow="on" statformat="%{ll:sick} | %{ll:holidays} | %{ww} " statheader="sick | holidays | @work " stattitle="%{lldd:sick}|%{lldd:holidays}|%{wwdd}"}%
+   * 21 Jul 2008 - Sam - sick
+   * 23 Jul 2008 - 25 Jul 2008 - Sam - holidays
+     </verbatim>
+
+| *Substituted Statistics Variables* ||
+| *Variable* | *Description* |
+| *Counters* ||
+| %{d} | number of days |
+| %{dd} | number of days without weekends | 
+| %{h} | number of days in holidays |
+| %{hh} | number of days in holidays without weekends and public holidays |
+| %{i} | all icons and icon counts; use statformat_i to format an entry |
+| %{i:<i>ICON</i>} | count of <i>ICON</i> icons |
+| %{ii} | all icons and icon counts without weekends and public holidays; use statformat_ii to format an entry |
+| %{ii:<i>ICON</i>} | count of <i>ICON</i> icons without weekends and public holidays |
+| %{l} | all locations and location counts; use statformat_l to format an entry |
+| %{l:<i>LOCATION</i>} | location count of <i>LOCATION</i> |
+| %{ll} | all locations and location counts without weekends and publich holidays; use statformat_ll to fromat an entry |
+| %{ll:<i>LOCATION</i>} | location count of <i>LOCATION</i> without weekends and public holidays |
+| %{p} | day count of public holidays |
+| %{pp} | day count of public holidays without weekends |
+| %{w} | = %{d} - %{h} (day count at work) |
+| %{ww} | = %{dd} - %{hh} (day count at work without weekends and public holidays) |
+| *Percentages (value format attribute: statformat_perc)* ||
+| %{hd}, %{hdd},<br/> %{hhd}, %{hhdd} | holidays-to-days percentage with ('h'/'d') or without weekends and public holidays ('hh'/'dd') |
+| %{id:<i>ICON</i>}, %{idd:<i>ICON</i>},<br/> %{iid:<i>ICON</i>}, %{iidd:<i>ICON</i>} | icon-to-days percentage with ('i'/'d') or without weekends and public holidays ('ii'/'dd') |
+| %{ih:<i>ICON</i>}, %{ihh:<i>ICON</i>},<br/> %{iih:<i>ICON</i>}, %{iihh:<i>ICON</i>} | icon-to-holidays percentage with ('i'/'h') or without weekends and public holidays ('ii'/'dd') |
+| %{ld:<i>LOCATION</i>}, %{ldd:<i>LOCATION</i>},<br/> %{lld:<i>LOCATION</i>}, %{lldd:<i>LOCATION</i>} | location-to-days percentage with ('l'/'d') or without weekends and public holidays ('ll'/'dd') |
+| %{lh:<i>LOCATION</i>}, %{lhh:<i>LOCATION</i>},<br/> %{llh:<i>LOCATION</i>}, %{llhh:<i>LOCATION</i>} | location-to-holidays percentage with ('l'/'h') or without weekends and public holidays ('ll'/'hh') |
+| %{pd}, %{pdd},<br/> %{ppd}, %{ppdd} | public holidays-to-days percentage with ('p'/'d') or without weekends ('pp'/'dd') |
+| %{wd}, %{wdd},<br/> %{wwd}, %{wwdd} | working days-to-days percentage with ('w'/'d') or without weekends ('ww'/'dd') |
+
+#HolidaylistPluginExample
+---++ Example
+
+%HOLIDAYLIST{startdate="1 Jun 2005" showstatrow="on" showstatcol="on" days="70" showoptions="on" namecolors="Bill:lightblue,Alice:#ffaaaa" showmonthheader="on" namepos="both"}%
+
+	* 02 Jan 2005 - 28 Feb 2005 - Bill
+	* 27 Mar 2005 - 20 Apr 2005 - Bob
+	* 10 May 2005 - 01 Jun 2005 - Mary
+	* 13 Jun 2005 - 12 Jun 2006 - Jill's Motherhood 
+	* 08 Jun 2005 - Bill
+	* 10 Jun 2005 - 15 Jun 2005 - Bob
+	* 12 Jun 2005 - 14 Jun 2005 - Alice - Paris
+	* 17 Jun 2005 - Bob - is ill - :skull:
+	* 10 Jul 2005 - Mary
+	* 20 Jul 2005 - 02 Sep 2005 - Bob
+	* 15 Sep 2005 - 15 Oct 2005 - Mary
+	* 30 Oct 2005 - Jane
+	* 19 Nov 2005 - Bob
+	* 29 Nov 2005 - 20 Dec 2005 - Bill
+	* 25 Dec 2005 - Bob
+
+---++ Plugin Settings
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Create a table with a list of people on holidays
+
+	* Days to show (default: 30)
+		* # Set DAYS = 30
+
+	* Language (default: English - see manual page of Date::Calc perl module, e.g: English, Deutsch, Fran&ccedil;ais, Espa&ntilde;ol, Nederlands, Dansk, suomi, ...). 
+		* # Set LANG = Deutsch
+
+	* Content of the first cell (default: Name):
+		* # Set NAME = Name
+
+	* Set work icon (default: &amp;nbsp; - old behavior: =:<nop>mad:= ):
+		* # Set WORKICON = :mad:
+
+	* Set compatibility mode (default: 0; disables all TWiki:Plugins.CalendarPlugin event types) and icon (default: =8<nop>-)=)
+		* # Set COMPATMODE = 1
+		* # Set COMPATMODEICON = 8-)
+
+	* Set unknown parameter message (default: =%<nop>RED% Sorry, some parameters are unknown: %<nop>UNKNOWNPARAMSLIST% %<nop>ENDCOLOR% &lt;br/&gt; Allowed parameters are (see !TWiki.HolidaylistPlugin topic for more details): %<nop>KNOWNPARAMSLIST%=)
+		* # Set UNKNOWNPARAMSMSG = %RED% Following parameter(s) is/are unknown: %UNKNOWNPARAMSLIST% %ENDCOLOR%
+
+	* Enable/Disable public holiday support (default: 1; public holiday support is enabled), show public holidays as separate lines in table (default: 0; public holidays are not shown as separate rows in table); public holiday icon (default: =<nop>:-)=)
+		* # Set ENABLEPUBHOLIDAYS = 1
+		* # Set SHOWPUBHOLIDAYS = 0
+		* # Set PUBHOLIDAYICON = :-)
+  
+*Note:* Every attribute of %<nop>HOLIDAYLIST% can also be used as plugin setting. You only have to use capital letters.
+
+---++ Plugin Installation Instructions
+
+	* Install required CPAN modules (e.g. =perl -MCPAN -e "install Date::Calc"= and =perl -MCPAN -e "install HTML::Entities"=)
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+| *File:* | *Description:* |
+| ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+| ==data/TWiki/VarHOLIDAYLIST.txt== | Documentation |
+| ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+| ==pub/TWiki/%TOPIC%/example.gif== | Example image |
+	* Test if the plugin is correctly installed: Copy the example above into a new topic and change the year number to the current year.
+
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.PeterJones, TWiki:Main.DanielRohde |
+|  Plugin Version: | v1.027 (BETA) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  v1.027 (BETA) | TWiki:Main.DanielRohde: changed some defaults (showmonthheader, monthheaderformat, headerformat); fixed alignments (statistics, monthheader) |
+|  v1.026 (28 Oct 2008) | TWiki:Main.DanielRohde: added missing anchor in showoptions form action; added row color feature (new attributes: namecolors, rowcolors); added order feature (new attribute: order); added namepos attribute (place names left and/or right of a row) |
+|  v1.025 (17 Oct 2008) | TWiki:Main.DanielRohde: added div tag with style overflow:auto requested by Matthew Thomson; added query parameters feature (hlp_&lt;attribute&gt; in URIs); added option form feature (new attributes: showoptions, optionspos, optionsformat) requested by Matthew Thomson; improved performance; fixed minor icon related bugs |
+|  v1.024 (29 Jul 2008) | TWiki:Main.DanielRohde: added statistics feature requested by TWiki:Main.GarySprague |
+|  v1.023 (19 Jan 2008) | TWiki:Main.KennethLavrsen: fixed Item5190 - does not like whitespace after the smiley. This makes the plugin work with TWiki 4.2.0 and Wysiwyg |
+|  v1.022 (18 Jun 2007) | TWiki:Main.DanielRohde: added documentation requested by TWiki:Main.PeterThoeny; fixed type (on=off bug) |
+|  v1.021 (20 Apr 2007) | TWiki:Main.DanielRohde: fixed minor HTML bug reported by TWiki:Main.JfMacaud; added month header feature (showmonthheader attribute) requested by Rikard Johansson; fixed some minor bugs (documentation, preferences handling); |
+|  v1.020 (21 Sep 2006) | TWiki:Main.DanielRohde: added week attribute requested by TWiki:Main.JanFilipsky; added tooltip to day headers; |
+|  v1.019 (7 Aug 2006) | TWiki:Main.DanielRohde: improved navigation; fixed %<nop>ICON% tag handling bug reported by TWiki:Main.UlfJastrow; |
+|  v1.018 (25 Jul 2006) | TWiki:Main.DanielRohde: fixed periodic event bug; added navigation feature | 
+|  v1.017 (31 May 2006) | TWiki:Main.DanielRohde: fixed minor bug (periodic repeater) |
+|  v1.016 (27 Apr 2006) | TWiki:Main.DanielRohde: fixed some major bugs: deep recursion bug reported by TWiki:Main.ChrisHausen; exception handling bug (concerns Dakar) |
+|  v1.015 (9 Feb 2006) | TWiki:Main.DanielRohde: added class attribute (holidaylistPluginTable) to table tag for stylesheet support (thanx TWiki:Main.HaraldJoerg and TWiki:Main.ArthurClemens); fixed mod_perl preload bug (removed 'use warnings;') reported by TWiki:Main.KennethLavrsen |
+|  v1.014 (23 Jan 2006) | TWiki:Main.DanielRohde: incorporated documentation fixes by TWiki:Main.KennethLavrsen (Bugs:Item1440) | 
+|  v1.013 (8 Nov 2005) | TWiki:Main.DanielRohde: added Perl strict pragma; | 
+|  v1.012 (5 Sep 2005): | TWiki:Main.DanielRohde: added public holiday support requested by TWiki:Main.IlltudDaniel; improved documentation; improved forced link handling in alt/title attributes of img tags; fixed documentation bug reported by TWiki:Main.FranzJosefSilli |
+|  v1.011 (11 Jul 2005): | TWiki:Main.DanielRohde: improved performance; fixed major periodic repeater bug; added parameter check; fixed flag parameter handling; allowed language specific month and day names for entries; fixed minor repeater bugs; added new attributes: monthnames, daynames, width, unknownparamsmsg |
+|  v1.010 (5 Jul 2005): | TWiki:Main.DanielRohde: added exception handling; added compatibility mode (new attributes: compatmode, compatmodeicon) with full CalendarPlugin event type support; added documentation |
+|  v1.009 (29 Jun 2005): | TWiki:Main.DanielRohde: fixed major bug (!WikiNames and forced links in names) reported by TWiki:Main.KennethLavrsen; fixed documentation bugs; added INCLUDE expansion (for topics in topic attribute value); added name rendering |
+|  v1.008 (23 Jun 2005): | TWiki:Main.DanielRohde: added new attributes (nwidth,tcwidth,removeatwork,tablecaptionalign,headerformat); performance fixes; allowed digits in month attribute  |
+|  v1.007 (17 Jun 2005): | TWiki:Main.DanielRohde: personal icon support; new attributes (month,year); icon tooltips with dates/person/location/icon; fixed '-' bug |
+|  v1.006 (16 Jun 2005): | TWiki:Main.DanielRohde: added new features (location support; today(fg/bg)color) |
+|  v1.005 (16 Jun 2005): | TWiki:Main.DanielRohde: added new features (start date support; weekendbgcolor); fixed documentation bugs; |
+|  v1.004 (14 Jun 2005): | TWiki:Main.DanielRohde: some performance improvements; code cleanup; documentation |
+|  v1.003 (13 Jun 2005): | TWiki:Main.DanielRohde: fix plugin preference handling; rename some subroutines |
+|  v1.002 (13 Jun 2005): | TWiki:Main.DanielRohde: renders some options; fixes some documentation bugs and a white space bug |
+|  v1.001 (10 Jun 2005): | TWiki:Main.DanielRohde: A complete reimplementation with many bug fixes and some new features. |
+|  v1.021 (01 Jun 2005): | TWiki:Main.PeterJones: Initial version |
+|  CPAN Dependencies: | *required:* CPAN:Date::Calc %BR% optional: CPAN:HTML::Entities |
+|  Other Dependencies: | %TWIKIWEB%.SmiliesPlugin |
+|  Perl Version: | 5.0 and up|
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 94%, %TWIKIWEB%.FormattedSearch 98%, %TOPIC% 86% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.SmiliesPlugin, %TWIKIWEB%.TWikiPlugins, TWiki:Plugins.CalendarPlugin
+ 
+-- TWiki:Main.PeterJones - 01 Jun 2005
+%BR% -- TWiki:Main.DanielRohde - 10 Jun 2005
+
+%META:FILEATTACHMENT{name="example.gif" attr="h" comment="Example" date="1119006048" path="example.gif" size="15447" user="rohdedan" version="1.1"}%
