@@ -1,0 +1,266 @@
+#!/usr/bin/perl -wT
+#
+# TWiki WikiClone (see TWiki.pm for $wikiversion and other info)
+#
+# Based on parts of Ward Cunninghams original Wiki and JosWiki.
+# Copyright (C) 1998 Markus Peter - SPiN GmbH (warpi@spin.de)
+# Some changes by Dave Harris (drh@bhresearch.co.uk) incorporated
+# Copyright (C) 1999-2000 Peter Thoeny, peter@thoeny.com
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details, published at 
+# http://www.gnu.org/copyleft/gpl.html
+
+# A thought on design.  Information is passed to the preview script via various form variables.
+# Much of the meta data could have been passed by an extra hidden field, instead individual items such
+# as parent information is passed by individual form variables, hopefully giving a clear "API".
+
+use CGI::Carp qw(fatalsToBrowser);
+use CGI;
+use lib ( '.' );
+use lib ( '../lib' );
+use TWiki;
+use Text::Ispell qw (spellcheck);
+use HTML::Entities;
+
+use strict;
+
+use vars qw( $query );
+
+$query = new CGI;
+
+&main();
+
+sub goodChar {
+	my $c = shift;
+	$c = ord $c;
+	return (($c >= ord('a') && $c <= ord('z'))  || ($c >= ord('A') && $c <= ord('Z')) || $c == ord("'"));
+}
+
+sub wrapWord {
+	my($goodword, $word) = @_;
+	my @ret;
+	my $type;
+	my @misses;
+	if ($goodword) { if (TWiki::isWikiName($word)) {
+		$goodword = 0;
+	}}
+	if ($goodword) {
+		@ret = spellcheck($word);
+		$type = $ret[0]->{'type'};
+		if ($type eq 'miss') {
+			@misses = $ret[0]->{'misses'};
+			return ("spell", $word, @misses);
+		} elsif ($type eq 'guess') {
+			@misses = $ret[0]->{'guesses'};
+			return ("spell", $word, @misses);
+		} else {
+			return ("noc", $word);
+		}
+	} else {
+		return ("noc", $word);
+	}
+}
+
+sub twSpellCheck {
+	my $text = shift;
+	my $sc = '((http|ftp|gopher|mailto):\/{0,2}[^\s\n]+)|(%[A-Z]+(\{.*\})?%)|(\[\[.+\]\[)|([a-zA-Z0-9-_\.]+\@[a-zA-Z0-9-_\.]+\.[a-zA-Z0-9-_\.]+)|(\&[a-z]+\;)';
+	$text =~ s/($sc)/\<SKIPCHECK $1 \>/g;
+	
+	my @ret;
+	my $len = length $text;
+	my $word = substr $text, 0, 1;
+	my $goodword = &goodChar($word);
+	my $intag = ($word eq '<');
+	for (my $x = 1; $x < $len; $x++) {
+		my $c = substr $text, $x, 1;
+		if ($intag) {
+			$word .= $c;
+			if ($c eq '>') {
+				$intag = 0;
+			}
+			$word =~ s/\<SKIPCHECK (.*) \>/$1/g;
+		} elsif (goodChar($c)) {
+			if ($goodword) {
+				$word .= $c;
+			} else {
+				push @ret, [ &wrapWord($goodword, $word) ];
+				$word = $c;
+				$goodword = 1;
+			}
+		} else {
+			if ($goodword) {
+				push @ret, [ &wrapWord($goodword, $word) ];
+				$word = $c;
+				$goodword = 0;
+			} else {
+				$word .= $c;
+			}
+			if ($c eq '<') {
+				$intag = 1;
+			}
+		}
+	}
+	push @ret, [ &wrapWord($goodword, $word) ];
+	
+	my $sret = "";
+	my $mnoc = "";
+	my $tlen;
+	my $w;
+	my $ssug;
+	my $sug;
+	my $idx = 1;
+	my $emnoc;
+	for $w (@ret) {
+		my $type = shift @$w;
+		my $word = shift @$w;
+		if ($type eq "noc") {
+			$mnoc .= $word;
+		} else {
+			unless ( $mnoc eq "" ) {
+				$mnoc = HTML::Entities::encode($mnoc);
+				$emnoc = $mnoc;
+				$emnoc =~ s/\r\n/\<TWSCBREAK\>/g;
+				$sret .= "<input type=\"hidden\" name=\"noc$idx\" value=\"$emnoc\"/>";
+				$mnoc =~ s/\n/\<br\>/g;
+				$sret .= $mnoc;
+				$mnoc = "";
+				$idx++;
+			}
+			$word = HTML::Entities::encode($word);
+			$tlen = length($word) + 4;
+			$sret .= "<input type=\"text\" name=\"usr$idx\" value=\"$word\" size=\"$tlen\"/><select name=\"sug$idx\"><option selected>(manual)</option>";
+			while ($sug = shift @$w) {
+				for $ssug (split ' ', $sug) {
+					$sret .= "<option>$ssug</option>";
+				}
+			}
+			$sret .= "</select>";
+			$idx++;
+		}
+	}
+	unless ( $mnoc eq "" ) {
+		$mnoc = HTML::Entities::encode($mnoc);
+		$mnoc = HTML::Entities::encode($mnoc, "\n");
+		$sret .= "<input type=\"hidden\" name=\"noc$idx\" value=\"$mnoc\"/>";
+		$mnoc =~ s/\n/\<br\>/g;
+		$sret .= $mnoc;
+		$mnoc = "";
+		$idx++;
+	}
+	
+	return "$sret\n";
+}
+
+sub main
+{
+    my $thePathInfo = $query->path_info(); 
+    my $theRemoteUser = $query->remote_user();
+    my $theTopic = $query->param( 'topic' ) || "";
+    my $theUrl = $query->url;
+
+    my( $topic, $webName, $dummy, $userName ) = 
+	&TWiki::initialize( $thePathInfo, $theRemoteUser, $theTopic, $theUrl, $query );
+    $dummy = "";  # to suppress warning
+
+    my $breakLock = $query->param( 'breaklock' ) || "";
+    my $tmpl = "";
+    my $text = "";
+    my $meta = "";
+    my $extra = "";
+    my $wikiUserName = &TWiki::userToWikiName( $userName );
+
+    if( ! &TWiki::Store::webExists( $webName ) ) {
+        my $url = &TWiki::getOopsUrl( $webName, $topic, "oopsnoweb" );
+        TWiki::redirect( $query, $url );
+        return;
+    }
+
+    my( $mirrorSiteName, $mirrorViewURL ) = &TWiki::readOnlyMirrorWeb( $webName );
+    if( $mirrorSiteName ) {
+        my $url = &TWiki::getOopsUrl( $webName, $topic, "oopsmirror", $mirrorSiteName, $mirrorViewURL );
+        print $query->redirect( $url );
+        return;
+    }
+
+    # read topic and check access permission
+    if( &TWiki::Store::topicExists( $webName, $topic ) ) {
+        ( $meta, $text ) = &TWiki::Store::readTopic( $webName, $topic );
+    } else {
+    	my $url = &TWiki::getOopsUrl( $webName, $topic, "oopsmissing" );
+    	TWiki::redirect( $query, $url );
+    	return;
+    }
+    if( ! &TWiki::Access::checkAccessPermission( "change", $wikiUserName, $text, $topic, $webName ) ) {
+        # user has not permission to change the topic
+        my $url = &TWiki::getOopsUrl( $webName, $topic, "oopsaccesschange" );
+        TWiki::redirect( $query, $url );
+        return;
+    }
+
+    my( $lockUser, $lockTime ) = &TWiki::Store::topicIsLockedBy( $webName, $topic );
+    if( ( ! $breakLock ) && ( $lockUser ) ) {
+        # warn user that other person is editing this topic
+        $lockUser = &TWiki::userToWikiName( $lockUser );
+        use integer;
+        $lockTime = ( $lockTime / 60 ) + 1; # convert to minutes
+        my $editLock = $TWiki::editLockTime / 60;
+        # PTh 20 Jun 2000: changed to getOopsUrl
+        my $url = &TWiki::getOopsUrl( $webName, $topic, "oopslocked",
+            $lockUser, $editLock, $lockTime );
+        TWiki::redirect( $query, $url );
+        return;
+    }
+    &TWiki::Store::lockTopic( $topic );
+
+    # get edit template, standard or a different skin
+    my $skin = $query->param( "skin" ) || &TWiki::Prefs::getPreferencesValue( "SKIN" );
+    $tmpl = &TWiki::Store::readTemplate( "spellcheck", $skin );
+    
+    $tmpl =~ s/%TOPICPARENT%//;
+    
+    $text =~ s/\t/   /go;
+
+    if( $TWiki::doLogTopicEdit ) {
+        # write log entry
+        &TWiki::Store::writeLog( "spellcheck", "$webName.$topic", $extra );
+    }
+
+    $tmpl =~ s/%CMD%//go;
+    $tmpl = &TWiki::handleCommonTags( $tmpl, $topic );
+    $tmpl = &TWiki::handleMetaTags( $webName, $topic, $tmpl, $meta );
+    $tmpl = &TWiki::getRenderedVersion( $tmpl );
+
+    # Dont want to render form fields, so this after getRenderedVersion
+    my %formMeta = $meta->findOne( "FORM" );
+    my $form = "";
+    $form = $formMeta{"name"} if( %formMeta );
+    if( $form ) {
+       my @fieldDefs = &TWiki::Form::getFormDef( $webName, $form );
+       
+       if( ! @fieldDefs ) {
+            my $url = &TWiki::getOopsUrl( $webName, $topic, "oopsnoformdef" );
+            TWiki::redirect( $query, $url );
+            return;
+       }
+       my $formText = &TWiki::Form::renderForHidden( $webName, $form, $meta, $query, @fieldDefs );
+       $tmpl =~ s/%FORMFIELDS%/$formText/go;
+    } else {
+       $tmpl =~ s/%FORMFIELDS%//go;
+    }
+    $tmpl =~ s/%FORMTEMPLATE%//go; # Clear if not being used
+
+	$text = &twSpellCheck($text);
+    $tmpl =~ s/%TEXT%/$text/go;
+
+    TWiki::writeHeader( $query );
+
+    print $tmpl;
+}
