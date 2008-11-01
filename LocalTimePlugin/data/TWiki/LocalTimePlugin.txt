@@ -1,0 +1,88 @@
+%META:TOPICINFO{author="TWikiContributor" date="1057159140" format="1.0" version="1.2"}%
+---+ <nop>%TOPIC%
+
+LocalTimePlugin is kind-of rewrite of LocalCityTimePlugin. I was unsatisfied with LocalCityTimePlugin (it has to connect to an external site to get the local time for a given city), so I wrote this Plugin to use the system's localtime functions. It works rather well, but doesn't do too much checking right now for a valid code. It won't die horribly if you give it a bad code, it just will give you a random time.
+
+I use it for our systems diary here. Works quite well.
+
+---++ Syntax Rules
+
+Add a %<nop>LOCALTIME% tag to your text to show the current time. You can specify the location or timezone such as "Asia/Tokyo" or "GMT" with %<nop>LOCALTIME{location}%, where _location_ is a location mentioned at http://twiki.org/cgi-bin/xtra/tzdate, or a timezone code such as "JST".
+   * see http://www.twinsun.com/tz/tz-link.htm for more information
+
+   * The =unnamed=, or =DEFAULT= parameter is the timezone to output
+   * =dateGMT= must be a datetime string that TWiki can parse (see Time::TWiki::parseTime), but assumes GMT
+      * 31 Dec 2001 - 23:59
+      * 2001/12/31 23:59:59
+      * 2001.12.31.23.59.59
+      * 2001/12/31 23:59
+      * 2001.12.31.23.59
+      * 2001-12-31T23:59:59Z
+      * 2001-12-31T23:59:59+01:00
+      * 2001-12-31T23:59Z
+      * 2001-12-31T23:59+01:00
+   * =format= is the same as for the format specifier in http://t42p/cgi-bin/DEVELOP/bin/view/TWiki/TWikiVariables#VarGMTIME
+   * fromtopic="web.topic" - the plugin tries to use the timezone set in the variable TIMEZONE on the topic selected
+
+---++ Examples
+| | you type | if installed you get |
+| Time in Tokyo now | %<nop>LOCALTIME{Asia/Tokyo}% | %LOCALTIME{Asia/Tokyo}% |
+| Time in London now | %<nop>LOCALTIME{Europe/London}% | %LOCALTIME{Europe/London}% |
+| Time in your TIMEZONE (if you've set the TIMEZONE VAR) now | %<nop>LOCALTIME{fromtopic="$percntWIKIUSERNAME$percnt"}% | %LOCALTIME{fromtopic="$percntWIKIUSERNAME$percnt"}% |
+| 05 Apr 2006, 15:43:50 GMT in Sydney/Australia | %<nop>LOCALTIME{"Australia/Sydney" dateGMT="05 Apr 2006 - 15:43:50"}% | %LOCALTIME{"Australia/Sydney" dateGMT="05 Apr 2006 - 15:43:50"}% |
+| 05 Apr 2006, 15:43:50 GMT in Sydney/Australia (format as iso) | %<nop>LOCALTIME{"Australia/Sydney" dateGMT="05 Apr 2006 - 15:43:50" format="iso"}% | %LOCALTIME{"Australia/Sydney" dateGMT="05 Apr 2006 - 15:43:50" format="iso"}% |
+
+This plugin can be used in combination with the CalendarPlugin, to get a localtime version of your appointments.
+
+Your TWikiAdmin may need to add this plugin to the pluginsOrder to make sure it evaluates before CalendarPlugin.
+
+to add a TWikiIrcMeeting add a line like
+<verbatim>   * %<nop>LOCALTIME{"Australia/Sydney" dateGMT="6 Mar 2006 - 15:39" format="$day $month"}% - TWikiIrcMeeting=
+</verbatim>
+
+you can even define a USER Variable on your UserTopic, that sets a TimeZone variable, and replace the hardcoded Timezone with that variable.
+
+---++ <nop>%TOPIC% Global Settings
+
+	* One line description:
+		* Set SHORTDESCRIPTION = A plugin to give the current date and time of a particular city/timezone.
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+	* Defaults:
+		* Set TIMEZONE = Asia/Tokyo
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Install the Date::Handler package from CPAN:
+		* perl -MCPAN -e 'install Date::Handler'
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the installation was successful:
+		* %LOCALTIME%
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.NathanOllerenshaw & TWiki:Main.SvenDowideit |
+|  Plugin Version: | 23 Jul 2006 (V2.000) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  05 Mar 2006: | SvenDowideit@WikiRing.com - updated to use TWiki04 registerHandler, added format= and dateGMT parameters |
+|  02 Jul 2003: | Initial version |
+|  CPAN Dependencies: | Date::Handler |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- TWiki:Main/NathanOllerenshaw - 02 Jul 2003
+-- TWiki:Main/SvenDowideit - 06 Mar 2006
