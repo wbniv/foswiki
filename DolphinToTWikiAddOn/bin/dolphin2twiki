@@ -1,0 +1,140 @@
+#!/usr/bin/perl -w
+#
+# Dolphin to TWiki text converter
+#
+# Copyright (C) 2001 Peter Thoeny, peter@thoeny.com
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details, published at 
+# http://www.gnu.org/copyleft/gpl.html
+#
+
+use lib ( '.' );
+use lib ( '../lib' );
+
+# these variables will be set by TWiki.cfg:
+$revCiDateCmd = "";
+$defaultUserName = "";
+
+# read the configuration part
+do "TWiki.cfg";
+
+$inDir  = "";
+$outDir = "";
+
+if( @ARGV ) {
+    $inDir  = $ARGV[0] if $ARGV[0];
+    $outDir = $ARGV[1] if $ARGV[1];
+    $inDir  = "" unless -d $inDir;
+    $outDir = "" unless -d $outDir;
+}
+
+&main();
+
+sub main
+{
+    print "Dolphin to TWiki text converter. Copyright (C) 2001, Peter Thoeny, http://TWiki.org/\n";
+    if( ! $inDir || ! $outDir ) {
+        print "example% dolphin2twiki fromDir toDir\n";
+        print "fromDir:   Directory containing dolphin .txt files\n";
+        print "toDir:     Directory where converted .txt and .txt,v files are stored\n";
+        print "Attention: toDir is assumed to be empty. Existing files will be overwritten!\n";
+        return;
+    }
+    if( $inDir eq $outDir ) {
+        print "Error: toDir and fromDir must be different!\n";
+        return;
+    }
+
+    opendir( DIR, "$inDir" ) or die "could not open $inDir";
+    my @inList = grep /.txt$/, readdir DIR;
+    closedir DIR;
+    my $text = "";
+    my $time = 0;
+    foreach( @inList ) {
+        print "- $_: read";
+        $text = readFile( "$inDir/$_" );
+        print ", convert";
+        ( $text, $time ) = convertText( $text );
+        print ", save";
+        saveFile( "$outDir/$_", $text );
+        print ", archive";
+        ciFile( "$outDir/$_", $time );
+        print "\n";
+    }
+}
+
+# =========================
+sub convertText
+{
+    my( $theText ) = @_;
+    my $text = "";
+    my $time = 0;
+    $theText =~ s/\r//gos;
+    foreach( split( /\n/, $theText ) ) {
+        if( /^\$LASTMODIFIED\:([0-9]+)\$$/ ) {
+            $time = $1;
+        } elsif( /^\$AUTHOR\:([0-9\.]+)\$$/ ) {
+            # nothing
+        } else {
+            # %Topic%         --> [[Topic]]
+            s/\%([a-zA-Z0-9]+)\%/\[\[$1\]\]/go;
+            # %Web:Topic%     --> [[Web.Topic]]
+            s/\%([a-zA-Z0-9]+)\:([a-zA-Z0-9]+)\%/\[\[$1.$2\]\]/go;
+            # [1]             --> [<a href="#1">1</a>]
+            s/\[([0-9]+)\]/\[<a href="\#$1">$1<\/a>\]/go;
+            # [1: http://...] --> <a name="1">[1]</a>: http://...
+            s/\[([0-9]+)\:\s+((http|https|ftp|news)\:[^\]\s]+)(?:\])/<a name="$1">\[$1\]<\/a>\: $2/go;
+            $text .= "$_\n";
+        }
+    }
+    $text =~ s/\n\n+/\n\n/gos;
+    return ( $text, $time );
+}
+
+# =========================
+sub readFile
+{
+    my( $theName ) = @_;
+    my $data = "";
+    undef $/; # set to read to EOF
+    open( IN_FILE, "<$theName" ) || return "";
+    $data = <IN_FILE>;
+    $/ = "\n";
+    close( IN_FILE );
+    return $data;
+}
+
+# =========================
+sub saveFile
+{
+    my( $theName, $theText ) = @_;
+    open( FILE, ">$theName" ) or warn "Can't create file $theName";
+    print FILE $theText;
+    close( FILE);
+}
+
+# =========================
+sub ciFile
+{
+    my( $theName, $theTime ) = @_;
+    my @arr = gmtime( $theTime );
+    # format to RCS date "2000/12/31/23:59:59"
+    my $date = sprintf( "%.4u/%.2u/%.2u/%.2u:%.2u:%.2u", $arr[5] + 1900,
+                         $arr[4] + 1, $arr[3], $arr[2], $arr[1], $arr[0] );
+    my $cmd = $revCiDateCmd;
+    $cmd =~ s/%USERNAME%/$defaultUserName/;
+    $cmd =~ s/%FILENAME%/$theName/;
+    $cmd =~ s/%DATE%/$date/;
+    my $rcsError = `$cmd 2>&1 1>/dev/null`;
+    if( $rcsError ) {
+        print " $rcsError";
+    }
+}
