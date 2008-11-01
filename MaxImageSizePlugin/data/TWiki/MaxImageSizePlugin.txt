@@ -1,0 +1,55 @@
+%META:TOPICINFO{author="TWikiGuest" date="1081694253" format="1.0" version="1.4"}%
+---+ Max Image Size Plugin
+
+This is an plugin to restrict the max size of an image. It gets called before images are saved to disk and changes the size of them according to the RESIZE_GEOMETRY string.
+
+	* i.e. http://studio.imagemagick.org/www/Magick++/Geometry.html
+
+
+---++ Syntax Rules
+
+
+---++ <nop>%TOPIC% Global Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, for example, ==%<nop>EMPTYPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = This plugin changes the geometry of images attached.
+
+	* Resize geometry
+		* Set RESIZE_GEOMETRY = "640x480>"
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 1
+
+
+---++ Plugin Installation Instructions
+
+(This plugin is preinstalled, you do not need to install it.)
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running.
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* Test if the plugin is correctly installed:
+		* (describe tests here)
+
+---++ Plugin Info
+
+|  Plugin Author: | Main.MartinCleaver  |
+|  Plugin Version: | 11 Apr 2004 (V1.000) |
+|  CPAN Dependencies: | http://www.imagemagick.org/www/perl.html |
+|  Other Dependencies: | Image Magick |
+|  Perl Version: | 5.005 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins, DefaultPlugin
+
+-- %TWIKIWEB%.MartinCleaver - 11 Apr 2004 <br /> 
+
+%META:FILEATTACHMENT{name="martin-at-cape-rienga.jpg" attr="" comment="" date="1081694473" path="C:\Documents and Settings\Martin Cleaver\My Documents\My Pictures\martin-at-cape-rienga.jpg" size="90785" user="TWikiGuest" version="1.2"}%
