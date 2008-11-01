@@ -1,0 +1,4 @@
+data/TWiki/ImgTag.txt  Tag doc page
+data/Sandbox/ImgTagTest.txt     Tag test page
+pub/Sandbox/ImgTagTest/tamsin.jpg   Attachment for test
+lib/TWiki/Tags/IMG.pm  Tag Perl module 
