@@ -1,0 +1,3 @@
+bin/editthread NEW
+data/TWiki/ThreadedDiscussionPlugin.txt NEW
+lib/TWiki/Plugins/ThreadedDiscussionPlugin.pm NEW

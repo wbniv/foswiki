@@ -1,0 +1,351 @@
+%META:TOPICINFO{author="guest" date="1113436644" format="1.0" version="1.3"}%
+---+ <nop>%TOPIC%
+
+Generates a threaded discussion. Each discussion point can be edited
+individually, and discussion points can be commented on individually.
+
+---++ Syntax Rules
+
+---+++ DISCUSSION Variable
+
+	* Place the variable =%<nop>DISCUSSION{...}%= before any bullet list.
+	* Supported parameters:
+	| ="(list&#124;thread)"= | Rendering style for discussion, see =STYLE= preference:<br>=list= formats the discussion as a bullet list; the level of discussion is indicated by the indentation and the associated bullet symbol<br>"thread" formats the discussion with colored thread lines to the left indicating the level.  |
+	| =focus="text"= | Focus list on a bullet containing the specified text. If no depth (see below) is specified, focus limits the depth to the focus item plus two levels. |
+	| =depth="number"= | Hide bullets with an indent greater then depth. The depth is relative to the highlighted bullet in case =focus= is specified |
+		  | =interactive="(on&#124;off)"= | If =on=, the discussion is followed by a control allowing selection of depth and focus interactively. |
+	* To start a discussion, omit the bullet list. Any text that immediatly follows the =%<nop>DISCUSSION{...}%= variable on the same line is shown, but removed when the first discussion point is entered. This may serve as an introductory text inviting initiation of the discussion.
+
+---+++ Bullets
+
+	* Use regular ==*== bullets
+	* Start with level one
+		* Increase indentation only one level at a time
+			* =Like this=
+	* Decreasing indentation many levels at a time is fine
+	* You can specify an icon for a bullet:
+		* Attach the icon to a topic, e.g. =myicon.gif=, or
+		* Use one of the existing icons from TWiki.TWikiDocGraphics
+		* Refer to an attached icon at the beginning of the bullet with:
+			* =icon:myicon Followed by normal bullet text=
+
+---++ Usage
+
+	* You can turn any bullet list into a threaded discussion by prefixing the list with the =%<nop>DISCUSSION{...}%= variable.
+	* You can edit each item of the bulleted list individually, and you can add further items by creating them individually.
+		* Click on the =EDITLABEL= to edit the text at the selected item.
+		* Click on the =COMMENTLABEL= to insert a comment to the current item. The comment is inserted as the last item at the next level of indentation.
+		* Each item will become a list item. Consequentially, it may not contain newlines, lest the list will be interrupted. (However, each item can be arbitrarily long, and it will be rendered with the lines wrapped to page width.)
+	* To start a new discussion, just insert the  =%<nop>DISCUSSION{...}%= variable, immediately followed by some text. This text will be deleted when the first discussion item is added (click on either of the icons to edit a new item).
+
+---++ Examples
+
+<table border="0" cellspacing="5" cellpadding="3"><tr><th valign="top" bgcolor="#CCCCC">
+__You type:__
+</th><th valign="top" bgcolor="#CCCCC">
+__You get: (simulated)__
+</th><th valign="top" bgcolor="#CCCCC">
+__You get: (if installed)__
+</th></tr>
+<tr><td valign="top" bgcolor="#EEEEEE">
+<pre>
+%<nop>DISCUSSION{"thread"}%
+	* one
+		* one.a
+			* one.a.x
+		* one.b
+			* one.b.x
+			  continue
+			* one.b.y
+				* icon:person Tim
+				* icon:person Mico
+	* two
+	* three
+</pre>
+</td><td valign="top" bgcolor="#EEEEEE">
+
+<table border="0" cellspacing="0" cellpadding="0"><tr>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">one&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<table border="0" cellspacing="0" cellpadding="0"><tr>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">one.a&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<table border="0" cellspacing="0" cellpadding="0"><tr>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">one.a.x&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<table border="0" cellspacing="0" cellpadding="0"><tr>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">one.b&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<table border="0" cellspacing="0" cellpadding="0"><tr>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">one.b.x&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<table border="0" cellspacing="0" cellpadding="0"><tr>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">continue&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<table border="0" cellspacing="0" cellpadding="0"><tr>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">one.b.y&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<table border="0" cellspacing="0" cellpadding="0"><tr>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top"><img src="%PUBURL%/TWiki/TWikiDocGraphics/person.gif" width="16" height="16" alt="" border="0" />&nbsp; </td>
+<td valign="top">Tim&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<table border="0" cellspacing="0" cellpadding="0"><tr>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top"><img src="%PUBURL%/TWiki/TWikiDocGraphics/person.gif" width="16" height="16" alt="" border="0" />&nbsp; </td>
+<td valign="top">Mico&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<table border="0" cellspacing="0" cellpadding="0"><tr>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">two&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<table border="0" cellspacing="0" cellpadding="0"><tr>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">three&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+
+</td><td valign="top" bgcolor="#EEEEEE">
+
+%DISCUSSION{"thread"}%
+	* one
+		* one.a
+			* one.a.x
+		* one.b
+			* one.b.x
+			  continue
+			* one.b.y
+				* icon:person Tim
+				* icon:person Mico
+	* two
+	* three
+
+</td></tr>
+
+<tr><th valign="top" bgcolor="#CCCCC">
+__You type:__
+</th><th valign="top" bgcolor="#CCCCC">
+__You get: (simulated)__
+</th><th valign="top" bgcolor="#CCCCC">
+__You get: (if installed)__
+</th></tr>
+<tr><td valign="top" bgcolor="#EEEEEE">
+<pre>
+%<nop>DISCUSSION{"thread" focus="Tim"}%
+	* one
+		* one.a
+			* one.a.x
+		* one.b
+			* one.b.x
+			  continue
+			* one.b.y
+				* icon:person Tim
+				* icon:person Mico
+	* two
+	* three
+</pre>
+</td><td valign="top" bgcolor="#EEEEEE">
+
+<table border="0" cellspacing="0" cellpadding="0"><tr>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">one&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<table border="0" cellspacing="0" cellpadding="0"><tr>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">one.b&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<table border="0" cellspacing="0" cellpadding="0"><tr>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">one.b.y&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<table border="0" cellspacing="0" cellpadding="0"><tr>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top"><img src="%PUBURL%/TWiki/TWikiDocGraphics/person.gif" width="16" height="16" alt="" border="0" />&nbsp; </td>
+<td valign="top"><b>Tim</b>&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+
+</td><td valign="top" bgcolor="#EEEEEE">
+
+%DISCUSSION{"thread" focus="Tim"}%
+	* one
+		* one.a
+			* one.a.x
+		* one.b
+			* one.b.x
+			  continue
+			* one.b.y
+				* icon:person Tim
+				* icon:person Mico
+	* two
+	* three
+
+</td></tr>
+
+<tr><th valign="top" bgcolor="#CCCCC">
+__You type:__
+</th><th valign="top" bgcolor="#CCCCC">
+__You get: (simulated)__
+</th><th valign="top" bgcolor="#CCCCC">
+__You get: (if installed)__
+</th></tr>
+<tr><td valign="top" bgcolor="#EEEEEE">
+<pre>
+%<nop>DISCUSSION{"thread" depth="2"}%
+	* one
+		* one.a
+			* one.a.x
+		* one.b
+			* one.b.x
+			  continue
+			* one.b.y
+				* icon:person Tim
+				* icon:person Mico
+	* two
+	* three
+</pre>
+</td><td valign="top" bgcolor="#EEEEEE">
+
+<table border="0" cellspacing="0" cellpadding="0"><tr>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">one&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<table border="0" cellspacing="0" cellpadding="0"><tr>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">one.a&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<table border="0" cellspacing="0" cellpadding="0"><tr>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">one.b&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<table border="0" cellspacing="0" cellpadding="0"><tr>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">two&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<table border="0" cellspacing="0" cellpadding="0"><tr>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">three&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+
+</td><td valign="top" bgcolor="#EEEEEE">
+
+%DISCUSSION{"thread" depth="2"}%
+	* one
+		* one.a
+			* one.a.x
+		* one.b
+			* one.b.x
+			  continue
+			* one.b.y
+				* icon:person Tim
+				* icon:person Mico
+	* two
+	* three
+
+</td></tr>
+
+<tr><th valign="top" bgcolor="#CCCCC">
+__You type:__
+</th><th valign="top" bgcolor="#CCCCC">
+__You get: (simulated)__
+</th><th valign="top" bgcolor="#CCCCC">
+__You get: (if installed)__
+</th></tr>
+<tr><td valign="top" bgcolor="#EEEEEE">
+<pre>
+%<nop>DISCUSSION{"list"}%Start a discussion
+
+</pre>
+</td><td valign="top" bgcolor="#EEEEEE">
+
+<table border="0" cellspacing="0" cellpadding="0"><tr>
+<td valign="top">Start a discussion.&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+
+</td><td valign="top" bgcolor="#EEEEEE">
+
+%DISCUSSION{"list"}%Start a discussion
+
+</td></tr></table>
+
+---++ <nop>%TOPIC% Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>THREADEDDISCUSSIONPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Support a threaded discussion mode.
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+	* Determines how the discussion list will be rendered: =list= formats the discussion as an indented bullet list; =thread= formats the discussion with thread bars indicating the depth of the discussion. 
+		* Set STYLE = list
+
+	* Formatting preferences for the =thread= style
+		* Color, style, and thickness of line indicating thread as valid for the HTML style attribute
+			* Set THREADCOLOR = solid thin #FFCCCC
+			* #Set THREADCOLOR = dotted medium black
+		* Additional icon separating thread lines
+			* Set SPACEICON = 1, 16, 16, empty.gif
+			* The first element is a =0|1= flag indicating whether to suppress or show thread lines at the top level; the next two arguments indicate width and height of icons, respectively; and the final argument gives the spacer icon between thread lines.
+
+	* Topic at which icons are attached, unless explicitly given.
+		* Set ICONTOPIC = %PUBURL%/%TWIKIWEB%/TWikiDocGraphics
+
+	* Labels for the edit and comment buttons. Can be textual or icons.
+		* Set EDITLABEL = Edit
+		* #Set EDITLABEL = <img src="%PUBURL%/%TWIKIWEB%/TWikiDocGraphics/pencil.gif" alt="Edit" border="0">
+		* Set COMMENTLABEL = Comment
+		* #Set COMMENTLABEL = <img src="%PUBURL%/%TWIKIWEB%/TWikiDocGraphics/note.gif" alt="Comment" border="0">
+		
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running.
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==bin/editthread== | edit script |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the installation was successful:
+		* See if the above example works
+
+---++ Acknowledgment
+
+This plugin was inspired by the TWiki:Plugins/RenderListPlugin and
+borrows code heavily from it.
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/ThomasWeigert |
+|  Plugin Version: | 12 Apr 2005 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  12 Apr 2005: | Allow configurable edit and comment labels. Support bullet list style and thread style. More formatting options for thread lines.  |
+|  21 Mar 2005: | Integrate 21 Mar version of  TWiki:Plugins/EditContrib |
+|  12 Mar 2005: | Integrate TWiki:Plugins/EditContrib |
+|  08 Mar 2005: | Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | TWiki:Plugins/EditContrib |
+|  Perl Version: | 5.005 |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ TWiki:Plugins/EditContrib, TWiki:Plugins/RenderListPlugin
+
+-- TWiki:Main/ThomasWeigert - 21 Mar 2005
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the Dev topic instead. -->
