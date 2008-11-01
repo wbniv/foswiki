@@ -1,0 +1,56 @@
+%META:TOPICINFO{author="PeterThoeny" date="1076120820" format="1.0" version="1.1"}%
+%META:TOPICPARENT{name="GlobalReplacePlugin"}%
+---++ Global Search and Replace
+
+Welcome %WIKIUSERNAME% <font size=\"-1\">([[%SCRIPTURL%/viewauth%SCRIPTSUFFIX%/%WEB%/%TOPIC%][not me?]])</font>. You must %CALC{"$IF($EXACT(%USERNAME%,guest),[[%SCRIPTURL%/viewauth%SCRIPTSUFFIX%/%WEB%/%TOPIC%][login]] and)"}% be a member of the %MAINWEB%.TWikiAdminGroup to be able to save your search and replace.
+
+<form name="search" action="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%" method="post">
+<table border="0" cellspacing="2" cellpadding="1" >
+<tr><td align="right" bgcolor="#0c2577"><font color="#FFFF99"><b>Topic Search String</b></font></td><td> <input type="text" size="64" name="search" value="%URLPARAM{"search" encode="entity"}%" onblur="this.form.rSearchString.value=this.value;" /> </td></tr>
+<tr><td align="right" bgcolor="#0c2577"><font color="#FFFF99"><b>Search Scope</b></font></td><td> <select name="scope" size="1"> <option>%URLPARAM{"scope" default="text"}%</option><option></option><option>text</option><option>topic</option></select> </td></tr>
+<tr><td align="right" bgcolor="#0c2577"><font color="#FFFF99"><b>Web</b>  (single name, e.g., %WEB%)</font></td><td> <input type="text" size="64" name="web" value="%URLPARAM{"web" default="Sandbox"}%" /> </td></tr>
+<tr><td align="right" bgcolor="#000000"><font color="#FFFF99"><b>Replace Search String</b></font></td><td> <input type="text" size="64" name="rSearchString" value="%URLPARAM{"rSearchString" encode="entity"}%" /> </td></tr>
+<tr><td align="right" bgcolor="#000000"><font color="#FFFF99"><b>Replace String</b></font></td><td> <input type="text" size="64" name="rString" value="%URLPARAM{"rString" encode="entity"}%" /> </td></tr>
+<tr><td align="right" bgcolor="#000000"><font color="#FFFF99"><b>Case Sensitive Replace Search</b></font></td><td> <select name="caseSensitive" size="1"><option>%URLPARAM{"caseSensitive" default="yes"}%<option>yes</option><option>no</option></select> </td></tr>
+</table>
+<input type="submit" value="Search" />&nbsp;&nbsp;[[%TOPIC%][Start over]]&nbsp;&nbsp;[[%TOPIC%Help][Help]]
+<input type="hidden" name="hideHeaderStart" value="|" />
+<input type="hidden" name="hideHeaderEnd" value="|" />
+<input type="hidden" name="hideButtonsStart" value="  ">
+<input type="hidden" name="hideButtonsEnd" value="  ">
+</form>
+
+<form name="replace" action="%SCRIPTURLPATH%/viewauth%SCRIPTSUFFIX%/%WEB%/%TOPIC%Topics" method="post">
+
+%TABLE{ sort="off" tableborder="0" tablewidth="780" columnwidth="10%, 45%, 45%" databg="#F8F8F8"  }%
+%URLPARAM{"hideHeaderStart" default="<!--"}% *Topic* | *Hit* | *Replace With* %URLPARAM{"hideHeaderEnd" default="-->"}%
+%SEARCH{ search="%URLPARAM{"search" default="do[N]othing"}%" scope="%URLPARAM{"scope"}%" web="%URLPARAM{"web" default="%WEB%"}%" nosearch="on" nototal="on" regex="on" noheader="on" format="$percntGLOBALREPLACE{ func=\"search\" param=\"$web.$topic\" rSearchString=\"%URLPARAM{"rSearchString" encode="entity"}%\" rString=\"%URLPARAM{"rString" encode="entity"}%\" caseSensitive=\"%URLPARAM{"caseSensitive"}%\" }$percnt" separator=" "}%
+<input type="hidden" name="func" value="replace" />
+<input type="hidden" name="caseSensitive" value="%URLPARAM{"caseSensitive"}%" />
+<input type="hidden" name="rSearchString" value="%URLPARAM{"rSearchString" encode="entity"}%" />
+<input type="hidden" name="rString" value="%URLPARAM{"rString" encode="entity"}%" />
+%URLPARAM{"hideButtonsStart" default="<!--"}%
+<input type="button" value="Set All" onClick="checkAll(true);" />&nbsp;&nbsp;<input type="button" value="Clear All" onClick="checkAll(false);" />
+<input type="submit" value="Replace all Check Marked Hits" />
+
+__Warning:__ Large scale changes can be done quickly; verify your selections carefully before replacing content!
+%URLPARAM{"hideButtonsEnd" default="-->"}%
+</form>
+
+<script language="JavaScript">
+<!-- HIDE and <pre> escape TWiki rendering
+  function checkAll( theCheck )
+  {
+	 for( var i = 0; i < document.replace.length; i++ ) {
+		document.replace.elements[i].checked = theCheck;
+	 }
+  }
+//STOP HIDING and </pre> escaping -->
+</script>
+
+	* Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
+
+__Related Topics:__ [[GlobalReplacePlugin]], [[%TOPIC%Help]], GlobalSearchAndReplaceTopics
+
+-- TWiki:Main.PaulineCheung - 12 Jan 2004
+

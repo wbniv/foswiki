@@ -1,0 +1,12 @@
+%META:TOPICINFO{author="PeterThoeny" date="1076120400" format="1.0" version="1.1"}%
+%META:TOPICPARENT{name="GlobalSearchAndReplace"}%
+---+ Result of Global Search And Replace 
+
+Back to GlobalSearchAndReplace.
+
+%GLOBALREPLACE{ func="%URLPARAM{"func"}%" rSearchString="%URLPARAM{"rSearchString" encode="entity" }%" rString="%URLPARAM{"rString" encode="entity" }%" caseSensitive="%URLPARAM{"caseSensitive"}%" }%
+
+-- TWiki:Main.PaulineCheung - 12 Jan 2004
+
+	* Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup 
+
