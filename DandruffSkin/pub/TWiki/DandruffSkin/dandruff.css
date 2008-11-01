@@ -1,0 +1,245 @@
+/* css for dandruff */
+
+body {
+	margin:0px;
+	padding:20px;
+	background: white;
+	background-image: url("/pub/skins/dandruff/dandruff_banner.gif");
+	background-repeat: no-repeat;
+	background-position: top right;
+	font-family:verdana, arial, sans-serif; 
+	font-size: 11px;
+	color: #369;
+}
+
+#footer { color: #369; }
+
+A { 
+	color: #999966; 
+	text-decoration: none; 
+	font-weight:bold;
+	font-family:verdana, arial, sans-serif; 
+	font-size: 11px;
+} 
+
+A:link		{ color: #999966;  } 
+A:visited	{ color: #9999cc;  } 
+A:active	{ color: #CCCC99;  } 
+A:hover		{ color: #CCCC99;  }
+
+#main {
+	position: relative;
+       
+	width:70%;
+        right: 25%;
+        left: 0px;
+	background:#FFF;
+	margin-right:15px;
+	padding-bottom:20px;
+	padding-right:20px;
+	border-right: 1px dashed #369;
+}
+
+#sidebar {
+	position: absolute;
+	left: 75%;
+        top: 100px;
+        width: auto;
+}
+
+#bbar {
+   padding-top: 0px;
+   margin-top: 0px;
+   margin-bottom: 1em;
+   padding-bottom: 5px;
+   padding-left: 1em;
+   padding-top: 0.5em;
+   border-top: 1px solid #eee;
+   border-left: 1px solid #ccc;
+}
+
+#bbar a {
+   padding-top: 0px;
+   margin: 0px 5px 0px 0px;
+}
+
+.blog {
+	padding-bottom:20px;
+  border-bottom:1px solid #CCC;
+  padding-top: 5px;	
+	font-family: verdana, arial, sans-serif;
+	font-size:11px;
+  line-height:16px;
+	color: #333;	
+	background: white;
+}
+
+.sb_box {
+	background:#fff;
+	border-bottom:1px solid #CCC;
+	padding-bottom:10px;	
+	font-family:verdana, arial, sans-serif;
+	font-size:100%;
+	line-height:16px;
+	color:#333;		
+	font-weight:bold;
+}
+
+.description {
+	font-family: verdana, arial, sans-serif;
+	font-size:12px;
+	color:#333;
+        font-style: italic;
+        letter-spacing: 1px;
+	font-weight:bold;
+}		
+
+.date {
+	font-family: verdana, arial, sans-serif;
+	font-size:12px;
+	color:#333;
+	font-weight:bold;
+}		
+
+.archives {
+	font-family: verdana, arial, sans-serif;
+	font-size:12px;
+	color:#336699;
+	font-weight:bold;
+}
+
+.posted {
+	font-family:verdana, arial, sans-serif;
+	font-size:11px;
+	color:#999966;
+}
+		
+.extended {
+	font-family:verdana, arial, sans-serif;
+	font-size:11px;
+	color:#333;
+}
+		
+div#main h1 {
+  padding: 0px;
+  margin: 0px;
+}
+		
+div#main h1 a {
+  font-family: verdana, arial, sans-serif;
+  font-size: large;
+  letter-spacing: 1px;
+  color: #336699;
+  font-weight: bold;
+}	
+
+div#main h2 a {
+  color: #336699;
+  font-style: italic;
+}
+
+.commentstitle {
+	font-family:verdana, arial, sans-serif;
+	font-size:12px;
+	color: #663366;
+	/* text-transform:uppercase; */
+  font-weight:bold;
+}
+
+#pageheader {
+	font-family:trebuchet MS, verdana, arial, sans-serif;
+	color:#333;
+	font-weight:bold;
+	padding-bottom:10px; 
+}
+
+#pageheader h1 {
+   font-size: 24px;
+   padding: 0px;
+   margin: 0px 0px 5px 0px;
+}
+					
+
+p.note { color: #600; }	
+
+#sidebar h4 {
+   padding: 0px 0px 0px 0px;
+   margin: 5px 0px 0px 0px;
+}
+
+#sidebar li {
+        list-style: none inside;
+        display: block;
+				margin: 0px;	
+				padding: 0px;	
+}
+
+hr {
+  border: 1px solid #eee;
+}
+
+#sidebar ul { margin: 0px;  padding: 0px; }
+
+.cdtitle { 
+		text-decoration: underline;
+}
+
+strong { font-weight: bold; }
+em { font-style: italic; }
+
+.first { color: #333; }
+.firststr { color: #333; font-weight: bold; }
+.second { color: #369; }
+.secstr { color: #369; font-weight: bold; }
+
+.quote { font-style: normal; color: #369; } 
+.quoted { font-style: italic; margin-left: 10px; color: #369;  }
+
+.location { color: #666; font-size: 90%; font-style: italic; }
+
+.malay { color: #669; }
+.french {color: #960; }
+
+.rightpic {
+	border: 1px solid #666;
+	margin: 0px 0px 20px 20px;
+	float: right;
+}
+
+.leftpic {
+	border: 1px solid #666;
+	float: left;
+	margin: 0px 20px 20px 0px;
+}
+
+.bigpic {
+	border: 1px solid #666;
+}
+
+div.NN4 {display: none;}
+/* Boxed table styles */
+
+table {
+  border-spacing: 2px;
+  empty-cells: hide;
+}
+
+td, th, th {
+  background-color: #ffffff;
+  border-color: #369;
+  border-style: solid;
+  border-width: 1px;
+  color: #369;
+  padding: 2px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+div#main th a {
+  color: #ffffff;
+}
+
+th {
+  background-color: #369;
+  color: #ffffff;
+}
