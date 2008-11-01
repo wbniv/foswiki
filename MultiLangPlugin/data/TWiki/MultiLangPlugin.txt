@@ -1,0 +1,172 @@
+%META:TOPICINFO{author="FrankLichtenheld" date="1112878991" format="1.0" version="1.1"}%
+---+ <nop>%TOPIC%
+
+Some useful stuff for providing several distinct TWiki sites with the
+same content but in different languages.
+
+---++ Concepts and Design
+
+This plug-in was developed to be able to maintain a web page in two
+different languages. It assumes to distinct TWiki installations
+which share both a common location in the host's file system and
+a common path as seen from the web server. These should only differ
+by their language name (e.g. file system
+=/var/www/twiki/<var>lang</var>/{bin,data}= and URL =/<var>lang</var>/bin/=).
+So all the plug-in needs to know is which language a certain TWiki has
+(set by WIKILANG below) and where to replace <var>lang</var> in a
+given path. You can define templates for this in the Plugin settings
+(see below), =#LANG#= is used as the string to substitute. In the
+most common configurations, the plug-in should be able to guess them
+by itself given WIKILANG is set correctly.
+
+---+++ Concepts that aren't implemented yet/Limitations
+
+Patches welcome :)
+
+	* Sometimes it is useful to use different representations of a language's name (e.g. en, English, Englisch (the name of the English language in German)). It would be good (and certainly not too complicated) to allow users to define those mapping with a table in a certain Topic.
+	* To obtain information about topics in other languages the plug-in uses direct access over the file system rather than [[TWiki.TWikiFuncModule][TWiki::Func]] (i.e. TWiki::Store) which would be way more flexible. However, because of the many global variables TWiki uses it isn't easy to instantiate two different Store objects for entirely different TWikis and to do it through a wrapper program is probably much, much slower than the current solution which _just works_ for the default configuration.
+	* Theoretically it would be nice to be able to use the same TWiki for all languages (e.g. with a custom TWiki::Store implementation). The lack of real L10N support in templates (i.e. something like gettext) is a big problem for such a solution, though.
+	* The complete URL/path part is grown out of some confusion at my side which sources of information to use. I (or someone else) need to take a deep look at that again. (e.g. should it also try to use TOPICURL). I have also generally ignored the possibility that SCRIPTSUFFIX != "", so this is probably horribly broken.
+
+---++ Interaction with other Plug-ins
+
+If you want to use the FindElsewherePlugin and the WikiWord expansion
+of MultiLangPlugin (%<nop>FINDINOTHERLANGS%) you should define a
+certain order for calling them both depending on your preferences
+(i.e. if you would like to get linked WikiWords to other webs or
+other languages if both is possible).
+
+---++ Syntax Rules
+
+MultiLangPlugin introduces the following new variables that are
+intended to be used in templates:
+
+	* %<nop>TRANSLATIONS%; will be expanded to a list of available translations of the current topic
+	* %<nop>TRANSLATIONCHECK%; if a topic includes the TranslationForm TWikiMetaData, you can use this variable to display a note depending on whether the translation is up-to-date or outdated. Which note to display in what situations is greatly configurable, see below in section Plugin Settings. This part of the plug-in is greatly inspired by the translation system of the [[http://www.debian.org/devel/website][Debian website]].
+	* %<nop>MLP_DATADIRFORM%, %<nop>MLP_SCRIPTURLFORM%, %<nop>MLP_SCRIPTPATHFORM%; these give you access to the path variables the plug-in uses internally to compute links and file paths. You probably will never need these, except for debugging purposes.
+	* %<nop>MLP_USEFORM{ "<var>formname</var>" lang="<var>language</var>" }%; this gives you the ability to produce links and file paths the same way the plug-in does. See section Installation Instructions for an example of its use.
+
+The plug-in also provides some new auto-linking abilities:
+
+	* WikiWords can be linked to other languages if the topic in question doesn't exist in the current language. This works similar to the FindElsewherePlugin and some code is borrowed from there.
+	* You can specially request to link a WikiWord to another language by preceding it with the language and a colon (e.g. =de:TWiki.WebHome=). This is inspired by the InterwikiPlugin.
+
+---++ Skinning support (CSS)
+
+I've tried to hardcode almost nothing into the output the plug-in produces.
+All produces links have the class translationLink and a correctly set
+lang attribute. This should you to develop complex layouts by using CSS.
+
+Just a quick example: to display a German flag before any link that
+links to a German translation use the following CSS
+<pre>
+.translationLink:lang(de):before { content: url(%<nop>PUBURLPATH%/%<nop>TWIKIWEB%/germany.png)" " }
+</pre>
+(Disclaimer: Using flags to indicate translations is of course strongly
+discouraged by most I18N people but it makes for a good example and some
+people like it)
+
+---++ Plugin Settings
+
+Plug-in settings are stored as preferences variables. To reference a
+plug-in setting write =%<nop>&lt;plugin&gt;_&lt;setting&gt;%=,
+i.e. =%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%=
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Handle multiple twiki installations which contain the same content in different languages
+
+	* Debug plug-in: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+	* Language:
+		* Set WIKILANG = en
+
+	* Site preferences:
+		* Equivalent to $dataDir:
+		* Set DATADIRFORM =
+		* I may have guessed it already: %<nop>MLP_DATADIRFORM% = %MLP_DATADIRFORM%
+		* Equivalent to complete view URL (uses $dispViewUrl):
+		* Set VIEWURLFORM =
+		* I may have guessed it already: %<nop>MLP_VIEWURLFORM% = %MLP_VIEWURLFORM%
+		* Equivalent to complete script URL:
+		* Set SCRIPTURLFORM =
+		* I may have guessed it already: %<nop>MLP_SCRIPTURLFORM% = %MLP_SCRIPTURLFORM%
+		* Equivalent to $scriptUrlPath:
+		* Set SCRIPTPATHFORM =
+		* I may have guessed it already: %<nop>MLP_SCRIPTPATHFORM% = %MLP_SCRIPTPATHFORM%
+		* All languages to support:
+		* Set LANGUAGES = en,de,es
+
+	* Rendering Preferences:
+		* %<nop>TRANSLATIONS%; also list non-existant translations:
+		* Set LISTNONEXISTANT = 0
+		* %<nop>TRANSLATIONS%; also list current language:
+		* Set LISTCURRENT = 0
+		* Try to link WikiWords with topics in other languages:
+		* Set FINDINOTHERLANGS = 1
+		* When linking with topics in other languages only use the first hit rather than listing all translations:
+		* Set ONLYFINDFIRSTOTHER = 1
+		* If FINDINOTHERLANGS is enabled, also try to reduce plural WikiWords to singular before matching:
+		* Set PLURALTOSINGULAR = 1
+		* Enable <var>lang</var>:<var>Web.Topicname</var> syntax:
+		* Set CROSSLANGLINKS = 1
+		* %<nop>TRANSLATIONCHECK%; if current revision of original documents differs more than OUTDATEDMAXIMUM from last translated revision, output TOOOUTDATED_TXT:
+		* Set OUTDATEDMAXIMUM = 5
+		* %<nop>TRANSLATIONCHECK%; if current revision of original documents differs more than OUTDATEDMINIMUM (but less than OUTDATEDMAXIMUM) from last translated revision, output OUTDATED_TXT:
+		* Set OUTDATEDMINIMUM = 1
+
+
+	* Output:
+		* Set DOESNTEXIST_TXT = <span class="translationCheck"><em>Note:</em> The <a class="translationOrigLink" #LINKATTRS#>original document</a> of this translation no longer exists.</span>
+		* Set OUTDATED_TXT = <span class="translationCheck"><em>Note:</em> The <a class="translationOrigLink" #LINKATTRS#>original document</a> is newer than this translation.</span>
+		* Set TOOOUTDATED_TXT = <span class="translationCheck"><strong>Warning!</strong> This translation is too out of date, please see the <a class="translationOrigLink" #LINKATTRS#>original document</a>.</span>
+		* Set UPTODATE_TXT =
+
+
+---+++ Settings to change in TWikiPreferences/WebPreferences
+
+This plug-in comes with a proposed [[TWikiForms][TWikiForm]]: TWiki.TranslationForm, you may
+want to add it to <nop>WEBFORMS.
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plug-in. The following instructions are for the administrator who installs the plug-in on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip =%TOPIC%.zip= in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | =data/TWiki/%TOPIC%.txt= | Plugin topic |
+	  | =data/TWiki/TranslationForm.txt= | TWikiForms template |
+	  | =lib/TWiki/Plugins/%TOPIC%.pm= | Plugin Perl module |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the installation was successful:
+		* %<nop>MLP_USEFORM{ "SCRIPTURLFORM" lang="en"}% = %MLP_USEFORM{ "SCRIPTURLFORM" lang="en"}%
+		* %<nop>TRANSLATIONS% = %TRANSLATIONS%
+		* <nop>Sandbox.OnlyExistsInEN = Sandbox.OnlyExistsInEN
+		* <nop>en:TWiki.WebHome = en:TWiki.WebHome
+		* Interaction between MultiLangPlugin and FindElsewherePlugin. The following link might depend on the order of the both plug-ins in %<nop>INSTALLEDPLUGINS% (current value %INSTALLEDPLUGINS%): <nop>TestTopic1 = TestTopic1
+		* InterwikiPlugin configuration: <nop>English:%<nop>WEB%/%<nop>TOPIC% = English:%WEB%/%TOPIC%
+
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/FrankLichtenheld |
+|  Plugin Version: | 29 Apr 2005 (V0.92) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  29 Apr 2005: | Second RC (V0.92) Fix =[<nop>[...][...]]= style links and add new ONLYFINDFIRSTOTHER variable |
+|  18 Apr 2005: | Second RC (V0.91) Introduces VIEWURLFORM and some documentation fixes |
+|  11 Apr 2005: | First RC (V0.90) |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.021 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 100%, %TWIKIWEB%.FormattedSearch 100%, %TOPIC% 100% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- TWiki:Main/FrankLichtenheld - 11 Apr 2005
+
