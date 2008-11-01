@@ -1,0 +1,124 @@
+%META:TOPICINFO{author="SvenDowideit" date="1157251037" format="1.1" version="1.3"}%
+---+ Timeline TWiki Plugin
+<img src="%ATTACHURLPATH%/timeline.jpg" alt="timeline.jpg" style="float:right;" />
+
+[[http://simile.mit.edu/timeline/][Timeline]] is a DHTML-based AJAXy widget for visualizing time-based events.
+
+I use it to show a <nop>WebChanges timeline  with the query below.
+
+
+---++ Syntax Rules
+the %<nop>TIMELINE% variable has the following parmeters:
+   * DEFAULT - the url of the datasource
+   * urltype - XML or JSON (defaults to JSON)
+   * interval - (DAY, MONTH, YEAR, DECADE)
+   * date - the initial date that the timeline will be centered on
+   * height - height in pixels that the timeline area will use
+   * width - width in pixels that the timeline area will use
+   * orientation - horizontal or vertical (horizontal by default)
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference
+a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>TIMELINEPLUGIN_SHORTDESCRIPTION%==
+
+   * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = Show a scrolling Timeline from a TWiki SEARCH
+
+   * Debug plugin: (See output in =data/debug.txt=)
+      * Set DEBUG = 0
+      
+---++ Example (shows when Plugin is installed and running successfully)
+Note that the JSON based output is much more reliable cross browsers, so only use xml is you really need to.
+---+++ static file
+The first example shows a timeline based on a pre-existing JSON file (%PUBURL%/%SYSTEMWEB%/TimelinePlugin/cubism.js)
+
+%TIMELINE{
+urltype="JSON"
+"%PUBURL%/%SYSTEMWEB%/TimelinePlugin/cubism.js"
+interval="DECADE"
+height="200px"
+width="700px"
+date="1890"
+}%
+
+To use data from a twiki topic, you need to set the SKIN=text and add =?contenttype=text/xml= (to trick IE's XHTTPRequest into working) to the url
+
+<verbatim>
+"http://10.10.10.20/trunk/bin/view/TWiki/TimeLineSearchJSON?contenttype=text/xml"
+urltype="JSON"
+</verbatim>
+
+---+++ TWiki =SEARCH= based timeline
+This example uses the %SYSTEMWEB%.TimeLineSearchJSON topic to show the last 10 modified topics in all webs.
+
+
+%TIMELINE{
+urltype="JSON"
+"%SCRIPTURL{view}%/%SYSTEMWEB%/TimeLineSearchJSON?contenttype=text/xml"
+interval="YEAR"
+height="450px"
+width="700px"
+date="%DISPLAYTIME{"$day $month $year"}%"
+}%
+ The example is made up of the the %<nop>TIMELINE% variable that is converted into the client side javascript, and a TWiki %<nop>SEARCH% statement that formats the results into the XML data format that the javascript requires.
+ 
+<verbatim>
+%TIMELINE{
+urltype="JSON"
+"%SCRIPTURL{view}%/%SYSTEMWEB%/TimeLineSearchJSON?contenttype=text/xml"
+interval="YEAR"
+height="450px"
+width="700px"
+date="%DISPLAYTIME{"$day $month $year"}%"
+}%
+</verbatim>
+
+where TimeLineSearch contains
+<verbatim>
+<data>
+<!--
+   * Set <nop>SKIN = xml
+
+the format of and event:  
+   start="May 28 2006 09:00:00 GMT"
+   end="Jun 15 2006 09:00:00 GMT"
+   isDuration="true" 
+   title="Writing Timeline documentation" 
+   image="http://simile.mit.edu/images/csail-logo.gif" 
+-->
+%SEARCH{
+".*" web="all" regex="on" nototal="on" noheader="on" nosearch="on" order="modified" reverse="on" limit="10"
+format="<event start='$date' title='$topic' link='%SCRIPTURL{"view"}%/$web/$topic' >$summary(noheader)</event>"}%
+</data>
+</verbatim>
+
+
+---++ Plugin Installation Instructions
+
+%$INSTALL_INSTRUCTIONS%
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.SvenDowideit - <img src="%ATTACHURLPATH%/wikiringlogo20x20.png" /> http://WikiRing.com |
+|  Copyright: | TWiki Plugin &copy; 2006-2008, TWiki:Main.SvenDowideit |
+|             | The SIMILE Timeline software is sponsored by The Andrew W. Mellon Foundation  and is maintained by the SIMILE project, in particular: David François Huynh, dfhuynh at csail.mit.edu |
+|  Plugin License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  SIMILE Timeline  License: | [[http://simile.mit.edu/license.html][BSD license]] |
+|  Plugin Version: | %$VERSION% - %$DATE% |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  19 March 2008   | updated to Revision 9234: http://simile.mit.edu/repository/timeline/trunk/src/webapp/api and http://simile.mit.edu/repository/ajax/trunk/src/webapp/api/ , updated Plugin to add features.|
+|  22 July 2006: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  Bug reports: | %$BUGSURL% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
+
+%META:FILEATTACHMENT{name="wikiringlogo20x20.png" attr="" autoattached="1" comment="" date="1153741461" path="wikiringlogo20x20.png" size="1343" user="Main.TWikiGuest" version="1"}%
+%META:FILEATTACHMENT{name="timeline.jpg" attr="" autoattached="1" comment="" date="1153721646" path="timeline.jpg" size="11824" user="UnknownUser" version=""}%

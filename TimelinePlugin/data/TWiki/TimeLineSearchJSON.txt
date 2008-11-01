@@ -1,0 +1,17 @@
+%META:TOPICINFO{author="SvenDowideit" date="1157258874" format="1.1" reprev="1.2" version="1.2"}%
+{
+'dateTimeFormat': 'iso8601',
+'wikiURL': "http://simile.mit.edu/shelf/",
+'wikiSection': "Simile Cubism Timeline",
+'events' : [
+%SEARCH{
+".*" web="all" regex="on" nototal="on" noheader="on" nosearch="on" 
+order="modified" limit="10" reverse="on"
+format="{ 'start':'$isodate', 'title':'$web.$topic', 'link':'%SCRIPTURL{view}%/$web/$topic', 'description':'$web.$topic r$rev edited by $wikiusername see  [[%SCRIPTURL%/rdiff%SCRIPTSUFFIX%/$web/$topic#_foo=$rev][diff]] ', 'icon': '%FAVICON%' }, "}%
+        {'start': '1900',
+        'title': 'Fake',
+        'description': 'Fake to stop Safari complaining about extra ,',
+        'link': '%SCRIPTURL{view}%'
+        }
+]}
+%META:PREFERENCE{name="SKIN" title="SKIN" type="Set" value="text"}%

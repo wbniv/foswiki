@@ -1,0 +1,170 @@
+
+<script src="%PLUGINPUBURL%/ajax/simile-ajax-api.js" type="text/javascript"></script>
+<script src="%PLUGINPUBURL%/timeline-api.js" type="text/javascript"></script>
+
+
+<nonscript src="%PLUGINPUBURL%/timeline-bundle.js" type="text/javascript"></nonscript>
+<nonstyle src="%PLUGINPUBURL%/timeline-bundle.js" media="all" />
+<script type="text/javascript">
+
+function addResizeEvent(func, prepend) {
+	var oldonresize = window.onresize;
+	if (typeof window.onresize != 'function') {
+		window.onresize = function() {
+			func();
+		};
+	} else {
+		var prependFunc = function() {
+			func(); oldonresize();
+		};
+		var appendFunc = function() {
+			oldonresize(); func();
+		};
+		window.onresize = prepend ? prependFunc : appendFunc;
+	}
+}
+
+function addLoadEvent(func, prepend) {
+	var oldonload = window.onload;
+	if (typeof window.onload != 'function') {
+		window.onload = function() {
+			func();
+		};
+	} else {
+		var prependFunc = function() {
+			func(); oldonload();
+		};
+		var appendFunc = function() {
+			oldonload(); func();
+		};
+		window.onload = prepend ? prependFunc : appendFunc;
+	}
+}
+
+//<body onload="onLoad();" onresize="onResize();">
+//<div id="my-timeline1" class="TimelineDiv" style="height: 150px; border: 1px solid #aaa"></div>
+
+//create the TWiki namespace if needed
+if ( typeof( TWiki ) == "undefined" ) {
+    TWiki = {};
+}
+//create the TWiki.TimelinePlugin namespace if needed
+if ( typeof( TWiki.TimelinePlugin ) == "undefined" ) {
+    TWiki.TimelinePlugin = {};
+}
+TWiki.TimelinePlugin.timelines = [];
+
+TWiki.TimelinePlugin.getDateTimeConstantByName = function(periodName) {
+if (periodName == "MILLISECOND") {
+    return Timeline.DateTime.MILLISECOND;
+} else if (periodName == "SECOND") {
+    return Timeline.DateTime.SECOND;
+} else if (periodName == "MINUTE") {
+    return Timeline.DateTime.MINUTE;
+} else if (periodName == "HOUR") {
+    return Timeline.DateTime.HOUR;
+} else if (periodName == "DAY") {
+    return Timeline.DateTime.DAY;
+} else if (periodName == "WEEK") {
+    return Timeline.DateTime.WEEK;
+} else if (periodName == "MONTH") {
+    return Timeline.DateTime.MONTH;
+} else if (periodName == "YEAR") {
+    return Timeline.DateTime.YEAR;
+} else if (periodName == "DECADE") {
+    return Timeline.DateTime.DECADE;
+} else if (periodName == "CENTURY") {
+    return Timeline.DateTime.CENTURY;
+} else if (periodName == "MILLENNIUM") {
+    return Timeline.DateTime.MILLENNIUM;
+} else if (periodName == "EPOCH") {
+    return Timeline.DateTime.EPOCH;
+} else if (periodName == "ERA") {
+    return Timeline.DateTime.ERA;
+}
+return Timeline.DateTime.YEAR;
+}
+
+
+TWiki.TimelinePlugin.timelineOnLoad = function() {
+    var elements = document.getElementsByTagName('div');
+    for (var i = 0; i < elements.length; i++) {
+        //The user viewed HTML
+        if (elements[i].className == 'TimelineDiv') {
+            TWiki.TimelinePlugin.createNewTimeline(elements[i]);
+        }
+    }
+}
+
+TWiki.TimelinePlugin.createNewTimeline = function(thisDiv) {
+    var url = thisDiv.getAttribute('url');
+    var urltype = thisDiv.getAttribute('urltype');
+    var interval = thisDiv.getAttribute('interval');
+    var TimelineInterval = TWiki.TimelinePlugin.getDateTimeConstantByName(interval);
+    var date = thisDiv.getAttribute('date');
+    var orientation = Timeline.HORIZONTAL; 
+    if (thisDiv.getAttribute('orientation') == 'Timeline.VERTICAL') {
+        orientation = Timeline.VERTICAL; 
+    }
+    
+    var eventSource = new Timeline.DefaultEventSource(0);
+            
+    var theme = Timeline.ClassicTheme.create();
+    theme.event.bubble.width = 320;
+    theme.event.bubble.height = 220;
+    theme.ether.backgroundColors[1] = theme.ether.backgroundColors[0];
+    var d = Timeline.DateTime.parseGregorianDateTime(date);
+    var bandInfos = [
+        Timeline.createBandInfo({
+            width:          "85%", 
+            intervalUnit:   TimelineInterval-1, 
+            intervalPixels: 100,
+            eventSource:    eventSource,
+            date:           d,
+            theme:          theme
+        }),
+        Timeline.createBandInfo({
+            width:          "15%", 
+            intervalUnit:   TimelineInterval, 
+            intervalPixels: 200,
+            eventSource:    eventSource,
+            date:           d,
+            showEventText:  false,
+            trackHeight:    0.5,
+            trackGap:       0.2,
+            showEventText:  false,
+            theme:          theme
+        })
+    ];
+    bandInfos[1].syncWith = 0;
+    bandInfos[1].highlight = true;
+            
+    TWiki.TimelinePlugin.timelines = Timeline.create(document.getElementById(thisDiv.id), bandInfos, orientation);
+//    push(TimelinePlugin.timelines, TWiki.TimelinePlugin.timelines);
+    if (urltype == 'XML') {
+        Timeline.loadXML(url, function(data, url) { 
+             eventSource.loadXML(data, url);
+        });
+    }
+    if (urltype == 'JSON') {
+        Timeline.loadJSON(url, function(data, url) { 
+             eventSource.loadJSON(data, url);
+        });
+    }
+}
+        
+        
+var resizeTimerID = null;
+TWiki.TimelinePlugin.timelineOnResize = function() {
+    if (resizeTimerID == null) {
+        resizeTimerID = window.setTimeout(function() {
+            resizeTimerID = null;
+            TWiki.TimelinePlugin.timelines.layout();
+        }, 500);
+    }
+}
+addLoadEvent(TWiki.TimelinePlugin.timelineOnLoad);
+addResizeEvent(TWiki.TimelinePlugin.timelineOnResize);
+</script>
+
+

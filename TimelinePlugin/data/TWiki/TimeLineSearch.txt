@@ -1,0 +1,10 @@
+%META:TOPICINFO{author="SvenDowideit" date="1157258874" format="1.1" reprev="1.2" version="1.2"}%
+<?xml version="1.0" encoding="%CHARSET%" ?>
+<data>
+%SEARCH{
+".*" web="TWiki" regex="on" nototal="on" noheader="on" nosearch="on" 
+order="modified" limit="10" reverse="on"
+format="<event start=$quot$date GMT$quot title=$quot$topic$quot link=$quot%SCRIPTURL{"view"}%/$web/$topic$quot >$summary(noheader)</event>"}%
+</data>
+
+%META:PREFERENCE{name="SKIN" title="SKIN" type="Set" value="xml"}%
