@@ -1,0 +1,58 @@
+%META:TOPICINFO{author="TWikiContributor" date="1181331494" format="1.1" reprev="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+%RED%TODO%ENDCOLOR%
+
+---+++++ Parameters
+none
+
+---+++++ Css
+   * 
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%<!-- -->
+---+!! <nop>%BASETOPIC%
+<div class="clsTopicInfo">
+%~~ DBQUERY{topic="%BASEWEB%.%BASETOPIC%"
+~~~   format="
+~~~    $percntIFDEFINEDTHEN{\"$formfield(Tag)\" glue=\"off\"}$percnt
+~~~      Tagged 
+~~~      $percntFORMATLIST{\"$formfield(Tag)\"
+~~~        format=\"<a href=\\"%SCRIPTURLPATH{"view"}%/$web/WebTagCloud?search=$1\\">$1</a>\"
+~~~      }$percnt
+~~~    $percntFIDEFINED$percnt
+~~~    <div class=\"clsTopicSummary\">$formfield(Summary)</div>"
+~~~ }%
+</div> %STOPINCLUDE%
+</verbatim>
+
+<!-- interrupt glue -->
+
+---++ Test
+<div class="alt">
+%DBCALL{"%TOPIC%"}%
+</div>
+
+%DBCALL{"Applications.RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+&copy; 2007 Michael Daum http://wikiring.de
+
+%DBCALL{"Applications.GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="DocuTopic, TopicFunction"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Renders the TopicView of a TaggedTopic"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="ClassificationApp"}%

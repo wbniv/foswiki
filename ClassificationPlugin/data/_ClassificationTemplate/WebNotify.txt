@@ -1,0 +1,15 @@
+%META:TOPICINFO{author="TWikiContributor" date="1212998720" format="1.1" version="$Rev$"}%
+---+ %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%MAKETEXT{"This is a subscription service to be automatically notified by e-mail when topics change in this [_1] web. This is a convenient service, so you do not have to come back and check all the time if something has changed. To subscribe, please add a bullet with your [_2] in alphabetical order to this list:" args="*<nop>%WEB%*,%TWIKIWEB%.WikiName"}%
+
+   * Main.TWikiGuest - example@your.company
+
+
+__%MAKETEXT{"Related topics:"}%__ %TWIKIWEB%.WebChangesAlert, %MAINWEB%.%WIKIUSERSTOPIC%, %TWIKIREGISTRATION%
+
+%META:FORM{name="Applications.TWikiTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="Applications.WebTool"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value=""}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Subscription list"}%

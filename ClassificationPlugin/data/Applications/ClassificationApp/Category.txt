@@ -1,0 +1,72 @@
+%META:TOPICINFO{author="TWikiContributor" date="1214469138" format="1.1" reprev="1.6" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicType"}%
+---+!! [[%WEB%.%TOPIC%][%TOPICTITLE%]]
+%FORMFIELD{"Summary"}%
+
+%TOC%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+Categories are a kind of predefined "backgone" to organized content and facilitate navigation.
+Categories can be used for very different purposes. To effectively
+use categories you have to understand the difference to tags as they are available for TaggedTopics.
+So while tags are a kind of "keywords" that connect content in a per-to-per fashion, 
+categories are a predefined hierarchy where content is situated in separate compartments.
+
+Categories themselves are CategorizedTopics thus implementing a hierarchy.
+
+See also: See CategorizedTopic, ClassifiedTopic, TaggedTopic, CategoryTemplate
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Installation
+%DBCALL{"Applications.RenderTopicInstaller" 
+  TEXT="Install '%TOPIC%' TopicType in" 
+  TYPE="TopicType"
+  TEMPLATE="Applications.EmptyTopicStubTemplate"
+}%
+
+%STARTINCLUDE%<!-- category -->
+%IFDEFINEDTHEN{"%URLPARAM{"name"}%" glue="off"}%
+~~~ <div class="clsTopicInfo">
+~~~ <noautolink>
+%~~ CATINFO$nop{
+~~~   cat="%URLPARAM{"name"}%"
+~~~   format="<h1>$link 
+~~~     $percntIFDEFINED{\"$summary\"
+~~~       then=\" - <span class='clsTopicSummary'>$test</span>\"
+~~~     }$percnt</h1>
+~~~     <div class=\"clsTagInfo\">
+~~~       Filed in $parentlinks
+~~~    </div>"
+~~~ }%
+~~~ </noautolink>
+~~~ </div>
+<hr class="clsTopicInfoSep" />
+%$nopDBCALL{"Applications.ClassificationApp.RenderCategory" CAT="%URLPARAM{"name"}%"}%
+%ELSEDEFINED%
+---+!! %TOPIC%
+%FORMFIELD{"Summary"}%
+%$nopDBCALL{"Applications.ClassificationApp.RenderCategoryFactory"}%
+%FIDEFINED%
+<!-- category -->%STOPINCLUDE%
+
+---++ %TOPIC% form
+| *Name:*| *Type:* | *Size:* | *Values:* | *Tooltip message:* | *Attributes:* |
+| TopicType | label | 3 |Category,CategorizedTopic| Document type  | |
+| <nop>TopicTitle | text | 75 | | title | |
+| Summary | text | 75 | | short description of | |
+| Category | cat | 1 | | list of parent categories |  |
+| Icon | text | 75 | | icon to be displayed listing categories |  |
+| <nop>ImportedCategory | text | 75 | | imported foreign categories |  |
+
+
+%DBCALL{"Applications.RenderTWikiFormList" THEWEB="%URLPARAM{"web" default="%BASEWEB%"}%"}%
+
+
+
+%META:FORM{name="Applications.TopicType"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="DocuTopic, TopicType, TWikiForm"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value="Category"}%
+%META:FIELD{name="Inheritance" attributes="" title="Inheritance" value="CategorizedTopic"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Hierarchy of categories for topics"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="ClassificationApp"}%

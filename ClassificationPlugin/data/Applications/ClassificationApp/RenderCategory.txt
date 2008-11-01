@@ -1,0 +1,115 @@
+%META:TOPICINFO{author="TWikiContributor" date="1212400494" format="1.1" reprev="1.2" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+This function is called in Category topics.
+
+See the CategoryTemplate.
+---+++++ Parameters
+   * CAT: category to be rendered, defaults to BASETOPIC
+
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%<!-- rendercategory -->
+<noautolink>
+%~~ MAKEINDEX{"
+*~~
+%~~     HIERARCHY{
+~~~       web="%BASEWEB%"
+~~~       top="%IFDEFINED{"%CAT%" then="%CAT%" else="%BASETOPIC%"}%"
+~~~       exclude="%IFDEFINED{"%CAT%" then="%CAT%" else="%BASETOPIC%"}%"
+~~~       depth="2"
+~~~       format="$title;$topic;$origweb$n"
+~~~     }%
+*~~   "
+~~~   cols="%IFDEFINED{"%CLASSIFICATIONPLUGIN_NRCOLS%" then="$test" else="3"}%"
+~~~   header="<h2>Categories</h2>
+~~~     There 
+~~~     $percntIFDEFINED{\"$count\" as=\"1\" 
+~~~       then=\" is one subcategory \"
+~~~       else=\" are $count subcategories \"
+~~~     }$percnt in this category."
+~~~   split="\n"
+~~~   pattern="(.*);(.*);(.*)"
+~~~   format="$percntDBCALL{\"$3.$2->RenderIndexItem\"}$percnt"
+~~~ }%
+
+%~~ MAKEINDEX{"
+*~~
+%~~    DBQUERY{
+~~~      "!(TopicType=~'\bCategory\b') AND 
+~~~        ('%IFDEFINED{"%CAT%" then="%CAT%" else="%BASETOPIC%"}%' DISTANCE topic) = 1"
+~~~      web="%BASEWEB%"
+~~~      hidenull="on"
+~~~      format="$expand(TopicTitle or topic);$topic;$web"
+~~~      separator="$n"
+~~~    }%
+*~~   "
+~~~   cols="%IFDEFINED{"%CLASSIFICATIONPLUGIN_NRCOLS%" then="$test" else="3"}%"
+~~~   header="<h2>Topics in $percntTOPICTITLE$percnt</h2>
+~~~     There
+~~~     $percntIFDEFINED{\"$count\" as=\"1\" 
+~~~       then=\" is one topic \"
+~~~       else=\" are $count topics \"
+~~~     }$percnt in this category."
+~~~   split="\n"
+~~~   pattern="(.*);(.*);(.*)"
+~~~   format="$percntDBCALL{\"$3.$2->RenderIndexItem\"}$percnt"
+~~~ }%
+</noautolink>
+<!-- //rendercategory -->%STOPINCLUDE%
+</verbatim>
+
+---++ Toolbar 
+<verbatim>
+%STARTSECTION{"toolbar"}%<!-- toolbar -->
+<div class="toolbar">
+%~~ BUTTON{"New Topic" href="%SCRIPTURLPATH{view}%/%BASEWEB%/ClassifiedTopic?cat=%BASETOPIC%
+*~~
+%~~   IFDEFINED{"%TEMPLATE%" 
+~~~     then=";tmpl=$test" 
+~~~     else="$percntIFEXISTS{\"%BASEWEB%.%BASETOPIC%Template\" 
+~~~         then=\";tmpl=%BASEWEB%.%BASETOPIC%Template\"
+~~~         else=\"\"
+~~~       }$percnt"
+~~~   }%" 
+~~~   title="Create a new topic in %CATINFO{cat="%BASEWEB%.%BASETOPIC%" format="<nop>$title"}%"
+~~~ }%  
+%IFDEFINEDTHEN{"%IFACCESS{"%MAINWEB%.TWikiAdminGroup" type="change"}%" as="1"}%
+%BUTTON{"Manage" href="%SCRIPTURLPATH{view}%/%BASEWEB%/Category" title="Manage categories"}%  
+%BUTTON{"Browse" href="%SCRIPTURLPATH{view}%/%BASEWEB%/CategoryBrowser" title="Browse the hierarchy"}%  
+%FIDEFINED%
+</div>
+<br clear='both' />
+<!-- //toolbar -->%ENDSECTION{"toolbar"}%
+</verbatim>
+
+
+<!-- interrupt glue -->
+---++ Test
+<div class="alt">
+%DBCALL{"%TOPIC%"}%
+</div>
+
+%DBCALL{"Applications.RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+&copy; 2006-2007 Michael Daum http://wikiring.de
+
+%DBCALL{"Applications.GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="DocuTopic, TopicFunction"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value="RenderCategory"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Render tools to handle categories"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="ClassificationApp"}%

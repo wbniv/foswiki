@@ -1,0 +1,25 @@
+%META:TOPICINFO{author="TWikiContributor" date="1200330004" format="1.1" reprev="1.3" version="$Rev$"}%
+%META:TOPICPARENT{name="ApplicationTopic"}%
+<h1>[[%TOPIC%][Advanced Classification Search]]</h1>
+
+
+See also: RenderWebClassSearch
+
+---++ Installation
+%DBCALL{"Applications.RenderTopicInstaller"}%
+
+---++ Implementation
+%STARTINCLUDE%<!-- -->
+%~~ DBCALL{"Applications.ClassificationApp.RenderWebClassSearch" 
+~~~   QTEXT="%URLPARAM{"qtext"}%" 
+~~~   QTAGS="%URLPARAM{"qtags"}%" 
+~~~   QCATS="%URLPARAM{"qcats"}%"
+~~~   SEARCHALLWEBS="%URLPARAM{"searchallwebs" default="on"}%"
+~~~ }%
+<!-- -->%STOPINCLUDE%
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="ApplicationFactory, ApplicationTopic"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value=""}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Advanced Classification Search"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="ClassificationApp"}%

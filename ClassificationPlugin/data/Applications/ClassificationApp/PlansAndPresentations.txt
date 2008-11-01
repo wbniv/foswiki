@@ -1,0 +1,16 @@
+%META:TOPICINFO{author="TWikiContributor" date="1214239236" format="1.1" reprev="1.3" version="$Rev$"}%
+%META:TOPICPARENT{name="MarketingCategory"}%
+%DBCALL{"Applications.ClassificationApp.RenderCategory"}%
+
+
+
+
+
+
+%META:FORM{name="Applications.ClassificationApp.Category"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="Category, CategorizedTopic"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value="Plans & Presentations"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value=""}%
+%META:FIELD{name="Category" attributes="" title="Category" value="MarketingCategory"}%
+%META:FIELD{name="Icon" attributes="" title="Icon" value="chart_curve.png"}%
+%META:FIELD{name="ImportedCategory" attributes="" title="<nop>ImportedCategory" value=""}%

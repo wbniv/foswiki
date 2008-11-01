@@ -1,0 +1,81 @@
+%META:TOPICINFO{author="TWikiContributor" date="1202208170" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicType"}%
+---+!! %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+This is a TopicType for topics that you want to tag. If you want to categorize them also
+use the ClassifiedTopic type.
+
+See also: ClassifiedTopic, CategorizedTopic, TaggedTopicTemplate, TaggedTopicViewTemplate
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Installation
+%DBCALL{"Applications.RenderTopicInstaller" TEXT="Install '%TOPIC%' TopicType in" TYPE="TopicType"}%
+
+%STARTINCLUDE%
+---+++ Create a new topic 
+%STARTSECTION{"factory"}%
+<div class="twikiPageForm">
+<form action="%SCRIPTURLPATH{"edit"}%/%BASEWEB%/" method="post">
+<input type="hidden" name="topicparent" value="%BASEWEB%.%BASETOPIC%" />
+<input type="hidden" name="web" value="%BASEWEB%" />
+<input type="hidden" name="onlynewtopic" value="on" />
+<input type="hidden" name="formtemplate" value="Applications.ClassificationApp.TaggedTopic" />
+<input type="hidden" name="templatetopic" value="Applications.ClassificationApp.TaggedTopicTemplate" />
+<input type="hidden" name="TopicType" value="<nop>TaggedTopic" />
+<input type="hidden" name="Summary" value="" />
+<input type="hidden" name="Tag" value="" />
+<table>
+<tr>
+  <th class="twikiFirstCol">Name:</th>
+  <td><input class="twikiInputField" type="text" name="topic" size="40" /></td>
+</tr>
+<tr>
+  <th class="twikiFirstCol">&nbsp;</th>
+  <td style="padding-top:1em">
+    <input type="submit" class="twikiSubmit natOkButton" value="Submit" />
+    <input type="reset" class="twikiButton natCancelButton" value="Reset" />
+  </td>
+</tr>
+</table>
+</form>
+</div>
+%ENDSECTION{"factory"}%
+%STOPINCLUDE%
+
+%~~ DBQUERY{web="%BASEWEB%"
+~~~   "TopicType=~'\b(Tagged|Classified)Topic\b'"
+~~~   hidenull="on"
+~~~   header="---++ Tagged topics in the <nop>%BASEWEB% web$n
+~~~           $percntTABLE{tablewidth=\"100%\"}$percnt$n
+~~~           | *Nr*
+~~~           | *Name*
+~~~           | *Description*
+~~~           | *Tags* |$n"
+~~~   format="| $index
+~~~           | [[$web.$topic][$topic]]
+~~~           | $formfield(Summary)
+~~~           | $formfield(Tag) 
+~~~           |"
+~~~ }%
+
+
+---++ %TOPIC% form
+| *Name:*| *Type:* | *Size:* | *Values:* | *Tooltip message:* | *Attributes:* |
+| TopicType | label | 1 | TaggedTopic | Document type  | |
+| <nop>TopicTitle | text | 75 | | Title of this topic | |
+| Summary | text | 75 | | Short description of the role of this topic | |
+| Tag | tag | 1 | | tag and keywords | |
+
+
+
+%META:FORM{name="Applications.TopicType"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="DocuTopic, TopicType, TWikiForm"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value=""}%
+%META:FIELD{name="Inheritance" attributes="" title="Inheritance" value="ApplicationTopic"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Content classification using folksonomy"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="ClassificationApp"}%

@@ -1,0 +1,12 @@
+%META:TOPICINFO{author="TWikiContributor" date="1214250029" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="SalesCategory"}%
+%DBCALL{"Applications.ClassificationApp.RenderCategory"}%
+
+
+
+%META:FORM{name="Applications.ClassificationApp.Category"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="Category, CategorizedTopic"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value="Pipeline Management"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value=""}%
+%META:FIELD{name="Category" attributes="" title="Category" value="SalesCategory"}%
+%META:FIELD{name="Icon" attributes="" title="Icon" value="pipe.png"}%

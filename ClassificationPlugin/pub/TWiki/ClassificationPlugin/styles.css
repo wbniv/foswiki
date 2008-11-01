@@ -1,0 +1,181 @@
+.clsTopicInfo {
+  color:gray;
+}
+.clsTopicInfoSep {
+  margin:0.3em 0em 1em 0em;
+  clear:both;
+}
+.clsBrowser a {
+  text-decoration:none;
+}
+.clsBrowser a.twikiCurrentTopicLink {
+  color:red;
+}
+.clsBrowser .treeview li { 
+  padding: 1px 0px 1px 20px;
+}
+.clsTagCloud {
+  margin:10px 0px;
+  text-align:center;
+}
+.clsTagCloud strong {
+  font-size:160%;
+  margin:0px 5px 0px 2px;
+}
+.clsTagCloud a {
+  padding:0px 5px;
+  line-height:110%;
+  text-decoration:none;
+}
+.clsBrowser .current,
+.clsTagCloud a:hover,
+.clsTagCloud .hilite,
+.clsTagCloud .current {
+  background:#06c;
+  color:white !important;
+  text-decoration:none;
+}
+.clsIconSelector,
+.clsBrowser,
+#clsTagSelector .clsTagCloud {
+  padding:5px;
+  border:1px solid #ccc;
+  margin-bottom:5px;
+}
+.clsTagSelector table td,
+.clsTagSelector table th {
+  padding:0em 1em 0em 0em;
+}
+.clsTagSelector table {
+  margin:5px 0px;
+  width:auto !important;
+}
+.clsButtonBox
+.aquaPillSelected,
+.aquaPill {
+  background-repeat:no-repeat;
+  background-image:url('aqua-pill-18.gif');
+  background-position:left top;
+  text-decoration:none !important;
+  font-size:11px;
+  line-height:18px;
+  height:18px;
+  float:left;
+  vertical-align:middle;
+}
+.aquaPillSelected span,
+.aquaPill span {
+  color:white;
+  font-weight:bold;
+  margin:0px 0px 0px 10px;
+  padding:0px 10px 0px 0px;
+  background-image:url('aqua-pill-18.gif');
+  background-repeat:no-repeat;
+  background-position:right top;
+  font-size:11px;
+  line-height:18px;
+  line-height:18px;
+  height:18px;
+  float:left;
+  vertical-align:middle;
+}
+.aquaPill:hover,
+.aquaPillSelected:hover {
+  text-decoration:none;
+  color:white;
+}
+.aquaPill:hover,
+.aquaPillSelected {
+  background-image:url('aqua-pill-18.gif') !important;
+  background-position:left bottom !important;
+}
+.aquaPill:hover span,
+.aquaPillSelected span {
+  background-position:right bottom;
+}
+#clsNewCategory, #clsNewTopic {
+  margin-bottom:0.5em;
+}
+#clsNewCategory table,
+#clsNewTopic table {
+  margin:0px;
+}
+.clsTagCloud .typed {
+  background:pink;
+}
+.clsCategoryFactory .twikiFirstCol {
+  width:100px;
+}
+
+/* indexes */
+.fltMakeIndexWrapper {
+  margin:1em 0px;
+}
+.fltMakeIndexWrapper h3 {
+  margin:0px !important;
+}
+.fltMakeIndexWrapper ul {
+  margin:0px;
+  padding-top:0px;
+  padding-bottom:0px;
+}
+.fltMakeIndexWrapper li {
+  padding:7px 0px 0px 0px;
+  margin:0px 0px 3px 0px;
+  border-bottom:1px solid #eeeeee;
+}
+.fltMakeIndexWrapper .clsTopicInfo {
+  color:gray;
+  margin:0px;
+}
+.fltMakeIndexWrapper .redDot a {
+  display:inline !important;
+}
+.fltMakeIndexWrapper table td {
+  width:40em;
+}
+
+.fltMakeIndexWrapper .clsSubCategories {
+  margin-top:0.2em;
+  margin-bottom:0.2em;
+}
+.fltMakeIndexWrapper .clsSubCategories a,
+.fltMakeIndexWrapper .clsSubCategories {
+  color:gray;
+}
+.clsTopicItem {
+  padding-left:18px;
+  background-image:url(../../Applications/ClassificationApp/IconSet/text.png); 
+  background-repeat:no-repeat;
+}
+.clsCategoryItem {
+  padding-left:18px;
+  background-image:url(../../Applications/ClassificationApp/IconSet/folder.gif);
+  background-repeat:no-repeat;
+}
+
+/* icon selector */
+.clsEditIcon {
+  margin:0px 5px 5px 0px;
+  border:2px solid white;
+  padding:1px;
+  display:block;
+  float:left;
+}
+.clsEditIcon.selected {
+  border:2px solid red;
+  background:#eee;
+}
+.clsIconSelector input {
+  display:none;
+}
+
+/* pattern skin tweaks */
+.patternTopic h1 a,
+.patternTopic h2 a,
+.patternTopic h3 a,
+.patternTopic h4 a,
+.patternTopic h5 a,
+.patternTopic h6 a {
+  text-decoration:none;
+}

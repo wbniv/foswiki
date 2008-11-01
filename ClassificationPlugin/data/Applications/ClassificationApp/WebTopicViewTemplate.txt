@@ -1,0 +1,10 @@
+%META:TOPICINFO{author="TWikiContributor" date="1111929255" format="1.0" version="$Rev$"}%
+%STARTSECTION{name="message"}%
+---+ <span class="twikiAlert">Warning: this page does not exist.</span>
+
+
+Contact <a href="mailto:%WIKIWEBMASTER%?subject=%ENCODE{"%WIKITOOLNAME%: Request for support"}%&&body=%ENCODE{"Hello, i've got a question ..."}%">%WIKIWEBMASTER%</a> 
+if you have any questions.
+
+
+%ENDSECTION{name="message"}%

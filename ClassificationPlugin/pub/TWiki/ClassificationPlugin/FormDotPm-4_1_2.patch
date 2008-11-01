@@ -1,0 +1,56 @@
+Index: Form.pm
+===================================================================
+--- Form.pm	(revision 13543)
++++ Form.pm	(working copy)
+@@ -763,6 +763,35 @@
+             }
+         }
+ 
++        # category values
++        if ($fieldDef->{type} eq 'cat') {
++          my @values = $query->param( $param );
++          if ($#values>=0) {
++            if ($#values==0) {
++              @values = split /\,|%2C/, $values[0];
++            }
++            my %vset = ();
++            foreach my $val (@values) {
++              $val =~ s/^\s*//o;
++              $val =~ s/\s*$//o;
++              $vset{$val} = (defined $val && $val =~ /\S/); # skip empty values
++            }
++
++            my $baseWeb = $this->{session}->{SESSION_TAGS}{BASEWEB};
++            my $params = new TWiki::Attrs($fieldDef->{value});
++            my $web = $params->{web} || $baseWeb;
++
++            require TWiki::Plugins::ClassificationPlugin;
++            my $hierarchy = TWiki::Plugins::ClassificationPlugin::getHierarchy($web);
++            my @cats = $hierarchy->getCategoryNames();
++            my @newValues = ();
++            foreach my $cat (@cats) {
++              push @newValues, $cat if $vset{$cat};
++            }
++            $value = join(", ", sort @newValues);
++          }
++        }
++
+         my $preDef;
+         foreach my $item ( @old ) {
+             if( $item->{name} eq $fieldDef->{name} ) {
+@@ -782,10 +811,14 @@
+         if( defined( $value ) ) {
+             # NOTE: title and name are stored in the topic so that it can be
+             # viewed without reading in the form definition
++            my $title = $fieldDef->{title};
++            if( $fieldDef->{definingTopic} ) {
++              $title = '[['.$fieldDef->{definingTopic}.']['.$title.']]';
++            }
+             $def =
+               {
+                   name =>  $fieldDef->{name},
+-                  title => $fieldDef->{title},
++                  title => $title,
+                   value => $value,
+                   attributes => $fieldDef->{attributes},
+               };

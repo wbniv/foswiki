@@ -1,0 +1,30 @@
+%META:TOPICINFO{author="TWikiContributor" date="1184008534" format="1.1" reprev="1.5" version="$Rev$"}%
+%META:TOPICPARENT{name="TWikiApplication"}%
+---+!! %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="4"}%
+---++ Description
+
+---++ Documentation
+%DBCALL{"Applications.RenderApplicationDocumentation" TYPE="TopicType"}%
+<!--%<nop>DBCALL{"RenderApplicationDocumentation" TYPE="TWikiForm" THEWEB="Applications.ClassificationApp"}%-->
+%DBCALL{"Applications.RenderApplicationDocumentation" TYPE="TopicTemplate" }%
+%DBCALL{"Applications.RenderApplicationDocumentation" TYPE="TopicView"}%
+%DBCALL{"Applications.RenderApplicationDocumentation" TYPE="TopicFunction"}%
+
+---++ Installation
+...
+
+---++ Manifest
+%DBCALL{"Applications.RenderApplicationManifest"}%
+
+
+%META:FORM{name="Applications.TWikiApplication"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TWikiApplication"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Categorization and folksomony application"}%
+%META:FIELD{name="Version" attributes="" title="Version" value="v0.1"}%
+%META:FIELD{name="Author" attributes="" title="Author" value="Michael Daum"}%
+%META:FIELD{name="Copyright" attributes="" title="Copyright" value="&copy; 2006-2007 Michael Daum http://wikiring.de"}%
+%META:FIELD{name="License" attributes="" title="License" value="GnuGeneralPublicLicense"}%
+%META:FIELD{name="Dependencies" attributes="" title="Dependencies" value="Applications.TWikiWorkbench"}%

@@ -1,0 +1,96 @@
+%META:TOPICINFO{author="TWikiContributor" date="1214468999" format="1.1" reprev="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+%RED%TODO%ENDCOLOR%
+
+---+++++ Parameters
+   * 
+
+---+++++ Css
+   * 
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%<!-- render all categories -->
+<noautolink>
+%~~ MAKEINDEX{"
+*~~
+%~~     HIERARCHY{
+~~~       web="%BASEWEB%"
+~~~       top="TopCategory"
+~~~       exclude="TopCategory"
+~~~       depth="2"
+~~~       format="$title;$topic;$origweb$n"
+~~~     }%
+*~~   "
+~~~   cols="%IFDEFINED{"%CLASSIFICATIONPLUGIN_NRCOLS%" then="$test" else="3"}%"
+~~~   header="<h2>Top categories</h2>
+~~~     There 
+~~~     $percntIFDEFINED{\"$count\" as=\"1\" 
+~~~       then=\" is one top category \"
+~~~       else=\" are $count  top categories \"
+~~~     }$percnt in this web."
+~~~   split="\n"
+~~~   pattern="(.*);(.*);(.*)"
+~~~   unique="on"
+~~~   format="$percntDBCALL{\"$3.$2->RenderIndexItem\"}$percnt"
+~~~  "
+~~~ }%
+
+%~~ MAKEINDEX{"
+*~~
+%~~     HIERARCHY{
+~~~       web="%BASEWEB%"
+~~~       top="TopCategory"
+~~~       exclude="TopCategory"
+~~~       mindepth="1"
+~~~       format="$title;$topic;$origweb$n$children"
+~~~     }%
+*~~   "
+~~~   cols="%IFDEFINED{"%CLASSIFICATIONPLUGIN_NRCOLS%" then="$test" else="3"}%"
+~~~   header="<h2>List of all child categories</h2>
+~~~     There 
+~~~     $percntIFDEFINED{\"$count\" as=\"1\" 
+~~~       then=\" is one child category \"
+~~~       else=\" are $count child categories \"
+~~~     }$percnt in this web."
+~~~   split="\n"
+~~~   unique="on"
+~~~   pattern="(.*);(.*);(.*)"
+~~~   format="$percntDBCALL{\"$3.$2->RenderIndexItem\"}$percnt"
+~~~  "
+~~~ }%
+</noautolink>
+<!-- //render all categories %STOPINCLUDE%
+</verbatim>
+
+<!-- interrupt glue -->
+
+---++ Test
+<div class="alt">
+%DBCALL{"%TOPIC%"}%
+</div>
+
+%DBCALL{"Applications.RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+&copy; 2008 Michael Daum info@michaeldaumconsulting.com
+
+%DBCALL{"Applications.GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="DocuTopic, TopicFunction"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value="RenderAllCategories"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Renders an overview of all known categories"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="ClassificationApp"}%

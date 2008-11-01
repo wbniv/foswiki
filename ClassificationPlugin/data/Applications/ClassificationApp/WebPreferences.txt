@@ -1,0 +1,57 @@
+%META:TOPICINFO{author="TWikiContributor" date="1212998697" format="1.1" version="$Rev$"}%
+---+!! <nop>%WEB% Web Preferences
+
+%TOC%
+
+---+++ Naming
+Text to be displayed on the sitemap and in the headerbar describing this web
+using a kind of tagline:
+   * Set SITEMAPWHAT = Categorization and folksomony application
+   * Set SITEMAPUSETO = Categorization and folksomony application
+
+Name of this blog displayed in the header if you are using the <nop>NatSkin:
+   * Set WEBTOOLNAME =
+
+Color to be displayed in the sitemap representing this web:
+   * Set WEBBGCOLOR = #D0D0D0
+
+Flag to enable/disable listing this web on the sitemap:
+   * Set SITEMAPLIST = on
+
+---+++ Access rights
+   * Set #DENYWEBVIEW =
+   * Set #ALLOWWEBVIEW = 
+   * Set DENYWEBCHANGE = %MAINWEB%.TWikiGuest
+   * Set ALLOWWEBCHANGE = %MAINWEB%.TWikiAdminGroup
+   * Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
+
+---+++ Application Pointer
+<nop>DBCachePlugin settings registering the !WebDB
+implementation for this web (don't change):
+   * Set WEBDB = TWiki::Plugins::DBCachePlugin::WebDB
+   * Set CLASSIFICATIONPLUGIN_AUTOREPARENT  = 1
+
+TopicFunctions to generate html page header information:
+<verbatim>
+   * Set HTTP_EQUIV_ON_VIEW = %DBCALL{"Applications.RenderHttpEquivs"}%
+   * Set HTMLTITLE = %DBCALL{"Applications.RenderHtmlTitle"}%
+   * Set DEFAULT_METAKEYWORDS = TWikiWorkbench
+   * Set METAKEYWORDS = %DEFAULT_METAKEYWORDS%
+   * #Set METAAUTHOR =
+   * #Set METADESCRIPTION =
+</verbatim>
+
+---+++ Misc
+Definition of TWikiForms:
+   * Set WEBFORMS = Applications.TWikiTopic, Applications.TopicStub
+   * Set FINALPREFERENCES = ATTACHFILESIZELIMIT, WIKIWEBMASTER, WEBCOPYRIGHT, WEBTOPICLIST, DENYWEBVIEW, ALLOWWEBVIEW, DENYWEBCHANGE, ALLOWWEBCHANGE, WEBDB
+
+__Related Topics__:
+   * [[%LOCALSITEPREFS%]]
+   * [[%TWIKIWEB%.TWikiPreferences]]
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="WebTool"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value=""}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Preferences of the <nop>%25WEB%25 web"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="ClassificationApp"}%

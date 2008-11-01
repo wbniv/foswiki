@@ -1,0 +1,108 @@
+%META:TOPICINFO{author="TWikiContributor" date="1213786209" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+%RED%TODO%ENDCOLOR%
+
+---+++++ Parameters
+   * QUERY
+   * SKIP
+   * LIMIT
+   * PARAMS
+   * HILITE
+
+---+++++ Css
+   * 
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%
+*~~
+<noautolink>
+%~~ MAKEINDEX{"
+%~~   DBQUERY{"TopicType=~'\b(Tagged|Classified)Topic\b' %QUERY%"
+~~~    web="%BASEWEB%"
+~~~    limit="%IFDEFINED{"%LIMIT%" then="$test"}%" 
+~~~    format="$expand(topictitle);$topic;$web"
+~~~    separator="$n"
+~~~   }%"
+~~~   cols="%IFDEFINED{"%CLASSIFICATIONPLUGIN_NRCOLS%" then="$test" else="3"}%"
+~~~   header="<h2 >Found $count topic(s)</h2>"
+~~~   split="\n"
+~~~   pattern="(.*);(.*);(.*)"
+~~~   format="$percntDBCALL{\"$3.$2->RenderIndexItem\"}$percnt"
+~~~ "
+~~~ }%
+%STOPINCLUDE%
+</verbatim>
+
+---++ Old Implementation
+<verbatim>
+%STARTSECTION{"oldimpl"}%
+*~~
+%~~ DBQUERY{"TopicType=~'\b(Tagged|Classified)Topic\b' %QUERY%"
+~~~    web="%BASEWEB%"
+~~~    sort="modified" 
+~~~    limit="%IFDEFINED{"%LIMIT%" then="$test"}%" 
+~~~    reverse="on" 
+~~~    skip="%IFDEFINED{"%SKIP%" then="$test"}%"
+~~~    header="<noautolink><div class=\"clsHitList\"> $n
+~~~      | *Nr* | *Topic* | *Summary* | *Changed* | *By* |$n
+~~~      $percntTABLE{tablewidth=\"100%\"}$percnt$n"
+~~~    format="
+~~~      | $index 
+~~~      | <a href=\"%SCRIPTURLPATH{"view"}%/$web/$topic\" 
+~~~         %IFDEFINEDTHEN{"%HILITE%" glue="off"}%
+~~~           title=\"$expand(%HILITE%)\"
+~~~           onmouseover=\"hiliteElements('$expand(%HILITE%)','hilite');\"
+~~~           onmouseout=\"hiliteElements('%URLPARAM{"search"}%','current');\"
+~~~         %FIDEFINED%
+~~~         >$expand(TopicTitle or topic)</a>
+~~~      | $flatten($expand(Summary or Text or 'no description'))
+~~~      | <span style=\"white-space:nowrap\">$formatTime(info.date)</span>
+~~~      | [[%MAINWEB%.$expand(info.author)][$expand(info.author)]]  
+~~~      |"
+~~~    footer="$n
+~~~      $percntIFDEFINEDTHEN{\"%LIMIT%\" glue=\"off\"}$percnt
+~~~        $percntDBCALL$nop{\"Applications.RenderPageNavigation\" 
+~~~          SKIP=\"%IFDEFINED{"%SKIP%" then="$test"}%\" 
+~~~          MAX=\"$count\"
+~~~          LIMIT=\"%IFDEFINED{"%LIMIT%" then="$test"}%\"
+~~~          PARAMS=\"%PARAMS%\"
+~~~        }$percnt
+~~~      $percntFIDEFINED$percnt
+~~~      </div></noautolink>"
+~~~ }%
+~~~
+%ENDSECTION{"oldimpl"}%
+</verbatim>
+
+<!-- interrupt glue -->
+
+---++ Test
+<div class="alt">
+%DBCALL{"%TOPIC%" QUERY="%URLPARAM{"search"}%" LIMIT="%URLPARAM{"limit" default="2"}%" SKIP="%URLPARAM{"skip"}%"}%
+</div>
+
+%DBCALL{"Applications.RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+&copy; 2007 Michael Daum http://wikiring.de
+
+%DBCALL{"Applications.GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="DocuTopic, TopicFunction"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value="RenderWebTagCloudHitList"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Renders the hit list in a WebTagCloud selection"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="ClassificationApp"}%

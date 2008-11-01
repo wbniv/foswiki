@@ -1,0 +1,15 @@
+%META:TOPICINFO{author="TWikiContributor" date="1196879877" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicView"}%
+%TMPL:INCLUDE{"view"}%
+%TMPL:DEF{"textcontent"}%<div class="patternTopic">
+%DBCALL{"Applications.ClassificationApp.RenderClassifiedTopicView"}%
+<hr class="clsTopicInfoSep" />
+%TEXT% 
+</div>%TMPL:END%
+%TMPL:DEF{"form"}%%TMPL:END%
+%TMPL:DEF{"attachments"}%%TMPL:END%
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicView"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="View for Categories"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="ClassificationApp"}%

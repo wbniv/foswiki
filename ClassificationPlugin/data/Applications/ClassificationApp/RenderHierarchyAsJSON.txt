@@ -1,0 +1,111 @@
+%META:TOPICINFO{author="TWikiContributor" date="1215795381" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+This function is called by the TWiki.RenderPlugin to implement the REST handler
+for the hierarchy browsers.
+
+The output format for the list formats is fixed currently to be used in RenderCategoryBrowser.
+
+---+++++ Parameters
+   * web: name of the web where to extract the hierarchy from, defaults to BASEWEB
+   * root: top category inside the hierarchy to start extracting information from, defaults to !TopCategory
+   * depth: number of levels to extract, defaults to 2
+   * format: one of "browser" or "editor", defaults to "browser"
+
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%
+*~~ [
+%~~ HIERARCHY{
+~~~   web="%IFDEFINED{"%web%" then="$test" else="%BASEWEB%"}%"
+~~~   top="%IFDEFINED{"%root%" then="$test" else="TopCategory"}%"
+~~~   exclude="%IFDEFINED{"%root%" then="$test" else="TopCategory"}%"
+~~~   depth="%IFDEFINED{"%depth%" then="$test" else="2"}%"
+~~~   separator=",$n"
+~~~   format="
+*~~     $indent{$n
+*~~     $indent  'text':
+~~~       \"%DBCALL{"%WEB%.%TOPIC%"
+~~~          section="%IFDEFINED{"%format%" then="$test" else="browser"}%"
+~~~          depth="%depth"
+~~~          fieldname="%fieldname%"
+~~~          value="%value%"
+~~~        }%\",$n
+*~~     $indent  'expanded': false,$n
+*~~     $indent  'hasChildren': $subcats,$n
+*~~     $indent  'id': '$name',$n
+*~~     $indent  'children': [$children]$n
+*~~     $indent}"
+*~~ }%
+]%STOPINCLUDE%
+</verbatim>
+
+---++ Browser format
+<verbatim>
+%STARTSECTION{"browser"}%
+*~~  <a href='$url' 
+~~~     title='$percntENCODE{$summary}$percnt'>
+~~~    <img src='$icon' alt='$percntENCODE{$title}$percnt' />
+~~~    $title
+~~~  </a>
+~~~  $percntIFDEFINED{\"$cyclic\" as=\"1\" 
+~~~    then=\" <span class='twikiAlert'>C</span>\"
+~~~  }$percnt
+~~~  $percntIFDEFINED{\"$leafs\" as=\"0\"
+~~~    then=\"\"
+~~~    else=\" ($leafs)\"
+~~~  }$percnt
+*~~
+%ENDSECTION{"browser"}%
+</verbatim>
+
+---++ Editor format
+<verbatim>
+%STARTSECTION{"editor"}%
+*~~  <a href='javascript:void(0)'
+~~~     title='$percntENCODE{$summary}$percnt'
+~~~     onclick='this.blur();toggleValue(\\"%fieldname%\\", \\"$name\\", \\"clsCatSelector_%fieldname%\\");'
+~~~     class='$name
+~~~     $percntIFDEFINED{\"%value%\" as=\".*\b$name\b.*\" glue=\"off\"
+~~~       then=\" current\"
+~~~     }$percnt'
+~~~     >
+~~~     <img src='$icon' alt='$percntENCODE{$title}$percnt' />
+~~~    $title</a>
+*~~
+%ENDSECTION{"editor"}%
+</verbatim>
+
+<!-- interrupt glue -->
+
+---++ Test
+<div class="alt">
+<pre>
+%DBCALL{"%TOPIC%" format="editor"}%
+</pre>
+</div>
+
+%DBCALL{"Applications.RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+&copy; 2008 Michael Daum info@michaeldaumconsulting.com
+
+%DBCALL{"Applications.GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="DocuTopic, TopicFunction"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value="RenderHierarchyAsJSON"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Renders a hierarchy as a JSON object"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="ClassificationApp"}%

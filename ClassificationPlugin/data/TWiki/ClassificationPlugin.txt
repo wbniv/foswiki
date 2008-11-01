@@ -1,0 +1,97 @@
+%META:TOPICINFO{author="TWikiContributor" date="1139390249" format="1.1" version="$Rev$"}%
+<!--
+
+   PLEASE DO NOT EDIT THIS TOPIC
+
+   It is automatically generated from the subversion repository, and any changes
+   you make will simply be overwritten the next time a release is generated.
+
+   Instead, you could check your fix in, raise a bug in the Bugs web, or mail the author.
+-->
+---+!! ClassificationPlugin
+%TOC%
+<table style="float:right">
+<tr>
+  <td><img src="%ATTACHURLPATH%/wikiringlogo40x40.png"></td>
+  <td><a href="http://wikiring.de" title="Make your Wiki ring!" style="text-decoration:none">
+      Powered by <br /> <nop>WikiRing Consultants </a>
+  </td>
+</tr>
+</table>
+
+---++ Description
+The ClassificationPlugin is a building block for <nop>TWikiApplications in need of
+tagging and hierarchies. The contained <nop>ClassificationApp is a basic
+categorization and tagging solution for TWiki based on TWikiForms.
+
+
+---++ Syntax Rules
+=%<nop>HIERARCHY{...}%=
+
+Format strings may contain the following:
+   * =$time= expands to the calculated time difference
+   * =$percnt$= expands to a =%= char
+   * =$dollar$= expands to a =$= char
+   * =$n= expands to a linefeed
+   * =$t= expands to a tab space
+   * =$nop= expands to the empty string
+
+---++ ISA
+Predicate that checks if a topic is filed in a specific category or one of its subcategories
+Also available in <nop>DBCacheContrib search expressions.
+
+---++ SUBSUMES
+Predicate that checks if a category is a parent category of another. 
+Also available in <nop>DBCacheContrib search expressions.
+
+---++ TAGRELATEDTOPICS
+Renders a list of topics that are tag-related to the current one. Two topics are 
+tag- related if they have at least two tags in common.
+
+
+---++ Plugin Installation Instructions
+   * Download the ZIP file
+   * Unzip it in your twiki installation directory. Content: 
+   | *File:* | *Description:* |
+%$MANIFEST%
+   * Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+
+---++ Plugin Info
+<!-- provided for compatibility only
+   * Set SHORTDESCRIPTION = A topic classification plugin and application
+-->
+
+|  Plugin Author: | TWiki:Main.MichaelDaum |
+|  Copyright &copy;: | 2006-2008, Michael Daum http://michaeldaumconsulting.com |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | v0.50 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  17 Jan 2008: | new TAGCOOCURRENCE; \
+                  new HIERARCHY tag; \
+                  TOP category can be mapped onto a real topic now; \
+                  new jquery.tagselector plugin; \
+                  reworked view for topictypes making use of new MAKEINDEX of \
+                  TWiki:Plugins/FilterPlugin; \
+                  added category and tag search; \
+                  speedup for tag clouds |
+|  13 Nov 2007: | added semantic predicates ISA, SUBSUMES, COMPATIBLE to DBQUERY, \
+                  fixed exclude parameter to cat formfield, \
+                  fixed registering topics to TOP category, \
+                  rewrite of detecting which categories a <nop>TopicType has, \
+                  normalized topic documentation according to <nop>TWikiWorkbench standards, \
+                  removed pagination in tag cloud selections, \
+                  added support for displaying "recent" tags |
+|  30 Oct 2007: | first checkin to twiki svn |
+|  30 Oct 2006: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+|  CPAN Dependencies: |  |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | TWiki:Plugins/%TOPIC% |
+|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
+|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+
+-- TWiki:Main.MichaelDaum - 13 Feb 2008
+
+%META:FILEATTACHMENT{name="wikiringlogo40x40.png" attachment="wikiringlogo40x40.png" attr="h" comment="" date="1189787359" path="wikiringlogo40x40.png" size="2571" stream="wikiringlogo40x40.png" tmpFilename="" user="TWikiContributor" version="1"}%

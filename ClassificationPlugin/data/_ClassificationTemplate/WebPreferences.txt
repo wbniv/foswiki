@@ -1,0 +1,43 @@
+%META:TOPICINFO{author="TWikiContributor" date="1197302614" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="WebHome"}%
+---+!! <nop>%WEB% Web Preferences
+
+%TOC%
+
+---++ General settings
+   * Set SITEMAPLIST = on
+   * Set SITEMAPWHAT = 
+   * Set SITEMAPUSETO = 
+   * Set NOSEARCHALL = 
+
+---++ Supplemental topics
+   * WebTopicEditTemplate
+   * WebButtons
+   * WebLinks
+   * WebSideBar
+   * WebCss
+   * WebJavaScript
+   * WebTopicActions
+
+---++ Application settings
+   * Set WEBFORMS = Applications.TWikiTopic, Applications.ClassificationApp.ClassifiedTopic, Applications.ClassificationApp.CategorizedTopic, Applications.ClassificationApp.TaggedTopic
+   * Set CLASSIFICATIONPLUGIN_AUTOREPARENT = 1
+
+---++ Cache settings
+   * Set WEBDEPENDENCIES = TWikiTopic
+
+---++ Access rights
+*Web*:
+   * #Set DENYWEBVIEW = 
+   * Set ALLOWWEBVIEW = %MAINWEB%.TWikiAdminGroup
+   * #Set DENYWEBCHANGE = 
+   * Set ALLOWWEBCHANGE = %MAINWEB%.TWikiAdminGroup
+   * #Set DENYWEBRENAME = 
+   * Set ALLOWWEBRENAME = %MAINWEB%.TWikiAdminGroup
+
+*Topic*
+   * Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
+   * Set ALLOWTOPICRENAME = %MAINWEB%.TWikiAdminGroup
+
+---++ Finalization
+   * Set FINALPREFERENCES = NOSEARCHALL, DENYWEBVIEW, ALLOWWEBVIEW, DENYWEBCHANGE, ALLOWWEBCHANGE, DENYWEBRENAME, ALLOWWEBRENAME

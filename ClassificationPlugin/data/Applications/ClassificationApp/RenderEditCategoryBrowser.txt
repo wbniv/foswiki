@@ -1,0 +1,130 @@
+%META:TOPICINFO{author="TWikiContributor" date="1215802379" format="1.1" reprev="1.5" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+
+---+++++ Parameters
+   * THEWEB: the web where to look for classes, defaults to BASEWEB
+   * NAME: name of the formfield to render the browser for
+   * TITLE: title for the formfield (optional)
+   * VALUE: list of pre-selected categories
+   * TOP: node from where to start the category
+   * BUTTONS: "on" or "off", defaults to on
+   * UNIQUE: "on" or "off", defaults to off
+
+---+++++ Css
+   * 
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%<div id="clsCatSelector_%NAME%"><noautolink>
+~~~ <input type="hidden" size="75" name="%NAME%" id="%NAME%" value="%IFDEFINED{"%VALUE%"}%" />
+~~~ %IFDEFINED{"%TITLE%" then="<h3 class='clsBrowserTitle'>%TITLE%</h3>"}%
+~~~ <div class="clsBrowser" style="display:none">
+%~~ HIERARCHY{
+~~~   web="%IFDEFINED{"%THEWEB%" then="$test" else="%BASEWEB%"}%"
+~~~   top="%IFDEFINED{"%TOP%" then="$test" else="TopCategory}%"
+~~~   exclude="%IFDEFINED{"%TOP%" then="$test" else="TopCategory"}%"
+~~~   header="<ul>"
+~~~   footer="</ul>"
+~~~   %IFDEFINED{"%VALUE%" then="open=\"$test\"" else="depth=\"2\""}%
+~~~   format="
+~~~       <li id='$name'
+~~~         class='
+~~~           $percntIFDEFINED{\"$subcats\" as=\"0\" 
+~~~             then=\"\" else=\" hasChildren \"
+~~~           }$percnt
+~~~           $percntIFDEFINED{
+~~~             \"$percntSUBSUMES{\"$name\" 
+~~~               web=\"%IFDEFINED{"%THEWEB%" then="$test" else="%BASEWEB%"}%\"
+~~~               cat=\"%VALUE%\"
+~~~             }$percnt\" 
+~~~             as=\"1\" 
+~~~             then=\" open \"
+~~~             else=\" closed \"
+~~~           }$percnt
+~~~         '>
+*~~         <a href='javascript:void(0)'
+~~~            onclick=\"this.blur(); toggleValue('%NAME%','$name', 'clsCatSelector_%NAME%');\" 
+~~~            class='$name
+~~~            $percntIFDEFINED{\"%VALUE%\" as=\".*\b$name\b.*\" glue=\"off\"
+~~~              then=\" current\"
+~~~            }$percnt'
+~~~            title='$percntENCODE{$summary}$percnt'>
+~~~         <img src='$icon' alt='$percntENCODE{$title}$percnt'/>
+~~~         $title</a>
+~~~         $percntIFDEFINED{\"$subcats\" as=\"0\" 
+~~~           then=\"\" else=\"<ul><li><span class='placeholder'>&nbsp;</span></li></ul>\"
+~~~         }$percnt
+~~~         $children</li>"
+~~~ }%
+~~~ </div>
+~~~ %IFDEFINEDTHEN{"%BUTTONS%" as="off"}%%ELSEDEFINED%
+~~~ <div class="clsButtonBox">
+~~~ <input class="twikiButton natCancelButton" type="button" value="Clear" 
+~~~   onclick="clsClearSelection('%NAME%', 'clsCatSelector_%NAME%')" />
+~~~ <input class="twikiButton natAltButton" type="button" value="Reset"
+~~~   onclick="clsClearSelection('%NAME%', 'clsCatSelector_%NAME%');clsSetSelection('%NAME%', 'clsCatSelector_%NAME%', '%IFDEFINED{"%VALUE%"}%')" />
+~~~ </div>
+~~~ %FIDEFINED%
+~~~ </noautolink>
+~~~ </div>
+~~~ <script type="text/javascript">
+~~~ $(function () {
+~~~   $("#clsCatSelector_%NAME% .clsBrowser > ul").each(function() {
+~~~        $(".hasChildren.open > ul > li> .placeholder", this).parent().remove();
+~~~        $(".hasChildren.open", this).removeClass("hasChildren");
+~~~     }).treeview({
+~~~     url: "%SCRIPTURLPATH{"rest"}%/RenderPlugin/tag?
+*~~             name=DBCALL;
+*~~             param=Applications.ClassificationApp.RenderHierarchyAsJSON;
+*~~             depth=2;
+*~~             format=editor;
+*~~             fieldname=%NAME%;
+*~~             value=%VALUE%;
+*~~             web=%IFDEFINED{"%THEWEB%" then="$test" else="%BASEWEB%"}%
+*~~          ",
+~~~     root: '%IFDEFINED{"%TOP%" then="$test" else="TopCategory"}%',
+~~~     animated: 'fast',
+~~~     unique: %IFDEFINED{"%UNIQUE%" as="on" then="true" else="false"}%
+~~~   }).parent().show();
+~~~ });
+~~~ </script>
+~~~ %STOPINCLUDE%
+</verbatim>
+
+<!-- interrupt glue -->
+
+---++ Test
+<div class="alt">
+*Categories A*:
+%DBCALL{"%TOPIC%" NAME="CategoryA"}%
+</div>
+<div class="alt">
+*Categories B*:
+%DBCALL{"%TOPIC%" NAME="CategoryB" VALUE="CorporateCategory"}%
+</div>
+
+%DBCALL{"Applications.RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+&copy; 2007-2008 Michael Daum http://michaeldaumconsulting.com
+
+%DBCALL{"Applications.GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+
+
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="DocuTopic, TopicFunction"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value="RenderEditCategoryBrowser"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Renders a hierarchical browser for categories during edit"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="ClassificationApp"}%

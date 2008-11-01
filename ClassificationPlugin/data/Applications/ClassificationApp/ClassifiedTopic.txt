@@ -1,0 +1,118 @@
+%META:TOPICINFO{author="TWikiContributor" date="1207038788" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicType"}%
+---+!! %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+This TopicType inherits the properties of CategorizedTopic and TaggedTopic. Take those types if
+you want to categorize or tag content solely.
+
+See also: ClassifiedTopicTemplate, ClassifiedTopicViewTemplate
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Installation
+%DBCALL{"Applications.RenderTopicInstaller" TEXT="Install '%TOPIC%' TopicType in" TYPE="TopicType"}%
+
+%STARTINCLUDE%<!-- classified topic -->
+<h2>Create a new topic %IFDEFINED{"%URLPARAM{"cat" default="%CAT%"}%" then=" in '[[%BASEWEB%.$test]]'" glue="off"}%</h2>
+%STARTSECTION{"factory"}%<!-- factory -->
+<style type="text/css">
+.twikiPageForm .twikiFirstCol {
+  width:8em;
+}
+.twikiPageForm .twikiInputField,
+.twikiPageForm .twikiSelectField {
+  width:25em;
+}
+</style>
+<div class="twikiPageForm">
+<form action="%SCRIPTURLPATH{"edit"}%/%BASEWEB%/" method="post">
+<input type="hidden" name="topicparent" value="%BASEWEB%.%HOMETOPIC%" />
+<input type="hidden" name="web" value="%BASEWEB%" />
+<input type="hidden" name="onlynewtopic" value="on" />
+<input type="hidden" name="formtemplate" value="Applications.ClassificationApp.ClassifiedTopic" />
+<input type="hidden" name="template" value="Applications.ClassificationApp.ClassifiedTopicEdit" />
+<input type="hidden" name="TopicType" value="<nop>ClassifiedTopic, <nop>CategorizedTopic, <nop>TaggedTopic" />
+<input type="hidden" name="Summary" value="" />
+<input type="hidden" name="Tag" value="" />
+<table>
+<tr>
+  <th class="twikiFirstCol">%IFDEFINED{"%LABEL%" then="$test" else="Name"}%:</th>
+  <td><input class="twikiInputField" type="text" name="topic" size="40" />
+  &nbsp;%TOGGLE{target=".toggleMe" text="Advanced Options"}%
+  </td>
+</tr>
+<tr class="toggleMe" style="display:none">
+  <th class="twikiFirstCol">
+    <div>Category:</div>
+  </th>
+  <td>
+    <div>
+      <select class="twikiSelectField" name="Category">
+        <option value='' %IFDEFINED{"%URLPARAM{"cat" default="%CAT%"}%" as="" then=" selected"}%>ALL</option>
+%~~     HIERARCHY{
+~~~       web="%BASEWEB%"
+~~~       top="%IFDEFINED{"%TOPCAT%" then="%TOPCAT%" else="TopCategory"}%"
+~~~       exclude="%IFDEFINED{"%EXCLUDECAT%" then="%EXCLUDECAT%" else="TopCategory"}%"
+~~~       indent="&nbsp;"
+~~~       format="<option value='$topic' 
+~~~         $percntIFDEFINED{\"%URLPARAM{"cat" default="%CAT%"}%\" as=\"$topic\" 
+~~~           then=\" selected\"
+~~~         }$percnt>$indent $title</option>$n$children"
+~~~     }%
+      </select> 
+    </div>
+  </td>
+</tr>
+<tr class="toggleMe" style="display:none">
+  <th class="twikiFirstCol">
+    <div>Template:</div>
+  </th>
+  <td><div>
+    <select class="twikiSelectField" name="templatetopic">
+      <option value="Applications.ClassificationApp.ClassifiedTopicTemplate">DEFAULT</option>
+%~~   DBQUERY{"TopicType=~'\bTopicTemplate\b'"
+~~~     web="%BASEWEB%"
+~~~     format="<option value='$web.$topic' 
+~~~               $percntIFDEFINED{\"%URLPARAM{"tmpl" default="%TEMPLATE%"}%\" 
+~~~                 as=\"$topic\"
+~~~                 then=\" selected\"
+~~~               }$percnt
+~~~             >$expand(topictitle)</option>"
+~~~   }%
+    </select>
+    </div>
+  </td>
+</tr>
+<tr>
+  <th class="twikiFirstCol">&nbsp;</th>
+  <td>
+    <input type="submit" class="twikiSubmit natOkButton" value="Submit" />
+    <input type="reset" class="twikiButton natAltButton" value="Reset" />
+    <input type="button" class="twikiButton natCancelButton" value="Cancel" onclick="window.location.href='%SCRIPTURLPATH{"view"}%/%BASEWEB%/%HOMETOPIC%';" />
+  </td>
+</tr>
+</table>
+</form> 
+</div>
+<!-- //factory -->%ENDSECTION{"factory"}%
+<!-- //classified topic -->%STOPINCLUDE%
+
+---++ %TOPIC% form
+| *Name:*| *Type:* | *Size:* | *Values:* | *Tooltip message:* | *Attributes:* |
+| TopicType | label | 1 |ClassifiedTopic, CategorizedTopic, TaggedTopic| Document type  | |
+| <nop>TopicTitle | text | 75 | | title of this topic | |
+| Summary | text | 75 | | Short description of the role of this topic | |
+| Tag | tag | 1 | | tag and keywords | |
+| Category | cat | 1 | | categories |  |
+
+
+%META:FORM{name="Applications.TopicType"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="DocuTopic, TopicType, TWikiForm"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value=""}%
+%META:FIELD{name="Inheritance" attributes="" title="Inheritance" value="CategorizedTopic, TaggedTopic"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Categorized and tagged topics"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="ClassificationApp"}%

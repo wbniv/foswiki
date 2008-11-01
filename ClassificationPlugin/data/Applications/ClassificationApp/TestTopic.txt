@@ -1,0 +1,15 @@
+%META:TOPICINFO{author="TWikiContributor" date="1214237625" format="1.1" reprev="1.3" version="$Rev$"}%
+%META:TOPICPARENT{name="TestTopic"}%
+   * DISTANCE{from="IntranetDirectory" to="CorporateCategory"}: %DISTANCE{from="IntranetDirectory" to="CorporateCategory"}%
+   * DISTANCE{from="CorporateCategory" to="BusinessStructure"}: %DISTANCE{from="CorporateCategory" to="BusinessStructure"}%
+   * DISTANCE{from="IntranetDirectory" to="BusinessStructure"}: %DISTANCE{from="IntranetDirectory" to="BusinessStructure"}%
+
+<!--
+   * SUBSUMES{"TOP" cat="CorporateCategory"} = %<nop>SUBSUMES{"TOP" cat="CorporateCategory"}% (should be 1)
+   * SUBSUMES{"TopCategory" cat="CorporateCategory"} = %<nop>SUBSUMES{"TopCategory" cat="CorporateCategory"}% (should be 1)
+   * SUBSUMES{"IntranetDirectory" cat="CorporateCategory"} = %<nop>SUBSUMES{"IntranetDirectory" cat="CorporateCategory"}% (should be 1)
+   * SUBSUMES{"IntranetDirectory" cat="BusinessStructure"} = %<nop>SUBSUMES{"IntranetDirectory" cat="BusinessStructure"}% (should be 1)
+   * SUBSUMES{"IntranetDirectory" cat="TravelingCategory"} = %<nop>SUBSUMES{"IntranetDirectory" cat="TravelingCategory"}% (should be 0)
+-->
+
+-- Main.MichaelDaum - 22 Nov 2007

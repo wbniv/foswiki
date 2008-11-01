@@ -1,0 +1,123 @@
+%META:TOPICINFO{author="TWikiContributor" date="1200331240" format="1.1" reprev="1.2" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+%RED%TODO%ENDCOLOR%
+
+---+++++ Parameters
+   * QTEXT: text to query for
+   * QTAGS
+   * QCATS
+   * SEARCHALLWEBS: on/off
+
+---+++++ Css
+   * 
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%<!-- render web class search -->
+<div class="twikiPageForm">
+<form action="%SCRIPTURLPATH{"view"}%/%BASEWEB%/%BASETOPIC%#results" DISmethod="post">
+<input type="hidden" name="trigger" value="on" />
+<input type="hidden" name="refresh" value="on" />
+<table>
+<tr>
+   <th>Text:</th>
+   <td><input class="twikiInputField" type="text" name="qtext" size="50" value="%IFDEFINED{"%QTEXT%"}%" />
+</tr>
+<tr>
+   <th>Tags:</th>
+   <td><input class="twikiInputField" type="text" name="qtags" size="50" value="%IFDEFINED{"%QTAGS%"}%" /> 
+</tr>
+<tr>
+   <th>Categories:</th>
+   <td><input class="twikiInputField" type="text" name="qcats" size="50" value="%IFDEFINED{"%QCATS%"}%" />
+</tr>
+<tr>
+  <th>&nbsp;</th>
+  <td><input type="submit" value="Ok" class="twikiSubmit natOkButton" />&nbsp;
+      <input type="button" value="Reset" class="twikiButton natCancelButton" onclick="window.location.href= '%SCRIPTURLPATH{view}%/%BASEWEB%/%BASETOPIC%';" />&nbsp;
+      <label><input type="checkbox" value="on" name="searchallwebs" %IFDEFINED{"%SEARCHALLWEBS%" as="on" then=" checked "}% /> search in all webs</label>
+             <input type="hidden" name="searchallwebs" value="off" />
+</tr>
+</table>
+</form>
+</div>
+%IFDEFINEDTHEN{"%URLPARAM{"trigger"}%" as="on" glue="off"}%
+<a namne="results"></a>
+%~~ FORMATLIST$nop{"%$nopIFDEFINED{"%SEARCHALLWEBS%" as="on" then="$percntWEBLIST{separator=\", \"}$percnt" else="%BASEWEB%"}%"
+~~~   separator="<p />"
+~~~   format="$percntDBQUERY{\"
+~~~     1
+~~~
+%~~     FORMATLIST{"%QTEXT%"
+~~~       header=" AND "
+~~~       format="lc(all) =~ lc('$1')"
+~~~       separator=" AND "
+~~~       footer=" "
+~~~     }%
+~~~
+%~~     FORMATLIST{"%QTAGS%"
+~~~       header=" AND Tag =~ '("
+~~~       format="$1"
+~~~       separator="|"
+~~~       footer=")' "
+~~~     }%
+~~~
+%~~     FORMATLIST{"%QCATS%"
+~~~       header=" AND "
+~~~       format="topic ISA '$1'"
+~~~       separator="AND "
+~~~       footer=" "
+~~~     }%
+~~~   \"
+~~~     web=\"$1\"
+~~~     header=\"
+~~~       <h2>Results in $1</h2>
+~~~       *Found <span class='twikiAlert'> $dollarcount </span> topic(s)* %BR%
+~~~       <noautolink><div class='clsHitList'> $n
+~~~       | *Nr* | *Topic* | *Summary* | *Changed* | *By* |$n
+~~~       $dollarpercntTABLE{tablewidth=\\"100%\\"}$dollarpercnt$n\"
+~~~     format=\"
+~~~       | $dollarindex 
+~~~       | <a href='%SCRIPTURLPATH{"view"}%/$web/$topic'>$expand(TopicTitle or topic)</a>
+~~~       | $flatten($expand(Summary or 'no description'))
+~~~       | <span style='white-space:nowrap'>$formatTime(info.date)</span>
+~~~       | [[%MAINWEB%.$expand(info.author)][$expand(info.author)]]  
+~~~       |\"
+~~~      footer=\"$n</div></noautolink>\"
+~~~     }$percnt"
+~~~ }%
+%FIDEFINED%
+%STOPINCLUDE%
+</verbatim>
+
+<!-- interrupt glue -->
+
+---++ Test
+<div class="alt">
+%DBCALL{"%TOPIC%"}%
+</div>
+
+%DBCALL{"Applications.RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+&copy; 2008 Michael Daum info@michaeldaumconsulting.com
+
+%DBCALL{"Applications.GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="DocuTopic, TopicFunction"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value=""}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Render a search tool for ClassifiedTopics"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="ClassificationApp"}%

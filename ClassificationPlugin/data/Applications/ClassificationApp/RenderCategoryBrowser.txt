@@ -1,0 +1,93 @@
+%META:TOPICINFO{author="TWikiContributor" date="1215789680" format="1.1" reprev="1.3" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+
+---+++++ Parameters
+   * TOP: node from where to start the category, defaults to 'TopCategory'
+   * THEWEB: where to search for categories, defaults to BASEWEB
+   * UNIQUE: "on" or "off"
+
+---+++++ Css
+   * 
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%<div class="clsBrowser">
+~~~ <noautolink>
+%~~ HIERARCHY{
+~~~   web="%IFDEFINED{"%THEWEB%" then="$test" else="%BASEWEB%"}%"
+~~~   top="%IFDEFINED{"%TOP%" then="$test" else="TopCategory"}%"
+~~~   exclude="%IFDEFINED{"%TOP%" then="$test" else="TopCategory"}%"
+~~~   header="<ul id='categoryBrowser'>"
+~~~   depth="2"
+~~~   footer="</ul>"
+~~~   format="<li 
+~~~     id=\"$name\"
+~~~     class=\"
+~~~       $percntIFDEFINED{\"$subcats\" as=\"0\" 
+~~~         then=\"\" else=\"hasChildren\"
+~~~       }$percnt\">
+~~~     <a href=\"$url\" 
+~~~          title=\"$summary\">
+~~~         <img src='$icon' alt='$percntENCODE{$title}$percnt'/>
+~~~         $title</a>
+~~~       $percntIFDEFINED{\"$cyclic\" as=\"1\" 
+~~~         then=\" <span class='twikiAlert'>C</span>\"
+~~~       }$percnt
+~~~     $percntIFDEFINED{\"$leafs \" as=\"0 \" then=\" \" else=\" ($leafs)\"}$percnt
+~~~     $percntIFDEFINED{\"$subcats\" as=\"0\" 
+~~~       then=\"\" else=\"<ul><li><span class='placeholder'>&nbsp;</span></li></ul>\"
+~~~     }$percnt
+~~~     $children</li>"
+~~~ }%
+~~~ </noautolink>
+~~~ </div>
+~~~ <script type="text/javascript">
+~~~ $(function () {
+~~~   $("#categoryBrowser").treeview({
+~~~     url: "%SCRIPTURLPATH{"rest"}%/RenderPlugin/tag?
+*~~             name=DBCALL;
+*~~             param=Applications.ClassificationApp.RenderHierarchyAsJSON;
+*~~             depth=2;
+*~~             format=browser;
+*~~             web=%IFDEFINED{"%THEWEB%" then="$test" else="%BASEWEB%"}%
+*~~          ",
+~~~     root: '%IFDEFINED{"%TOP%" then="$test" else="TopCategory"}%',
+~~~     animated: 'fast',
+~~~     unique: %IFDEFINED{"%UNIQUE%" as="on" then="true" else="false"}%
+~~~   });
+~~~ });
+~~~ </script>
+~~~ %STOPINCLUDE%
+</verbatim>
+
+<!-- interrupt glue -->
+
+---++ Test
+<div class="alt">
+%DBCALL{"%TOPIC%" UNIQUE="off"}%
+</div>
+
+%DBCALL{"Applications.RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+&copy; 2007 Michael Daum http://wikiring.de
+
+%DBCALL{"Applications.GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="DocuTopic, TopicFunction"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value="RenderCategoryBrowser"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Renders a hierarchical browser for categories"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="ClassificationApp"}%

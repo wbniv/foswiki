@@ -1,0 +1,114 @@
+%META:TOPICINFO{author="TWikiContributor" date="1214469810" format="1.1" reprev="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+This function renders an input form to create a new category.
+If you click on the "Show all Categories", all known categories
+in the baseweb will be listed below.
+
+---+++++ Parameters
+   * 
+
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%<!-- render category factory -->
+---++ Create a new category
+<noautolink>
+<div class="twikiPageForm clsCategoryFactory">
+<form action="%SCRIPTURLPATH{"save"}%/%BASEWEB%/" method="post">
+<input type="hidden" name="refresh" value="on" />
+<input type="hidden" name="web" value="%BASEWEB%" />
+<input type="hidden" name="onlynewtopic" value="on" />
+<input type="hidden" name="formtemplate" value="Applications.ClassificationApp.Category" />
+<input type="hidden" name="templatetopic" value="Applications.ClassificationApp.CategoryTemplate" />
+<input type="hidden" name="action" value="form" />
+<input type="hidden" name="TopicType" value="Category, CategorizedTopic" />
+<input type="hidden" name="topicparent" value="%BASEWEB%.%BASETOPIC%" />
+<table>
+<tr>
+  <th class="twikiFirstCol">Title:</th>
+  <td><input class="twikiInputField" type="text" id="title" name="TopicTitle" size="60" onblur="wikify('title','topic', 'Category')" onkeyup="wikify('title','topic', 'Category')" value="%URLPARAM{"TopicTitle"}%" /></td>
+</tr>
+<tr>
+  <th class="twikiFirstCol">Topic:</th>
+  <td><input class="twikiInputField" type="text" id="topic" name="topic" size="60" value="%URLPARAM{"topic"}%" /></td>
+</tr>
+<tr>
+  <th class="twikiFirstCol">Summary:</th>
+  <td><input class="twikiInputField" type="text" name="Summary" size="60" value="%URLPARAM{"Summary"}%"/></td>
+</tr>
+<tr>
+  <th class="twikiFirstCol" valign="top">Parent:</th>
+  <td>
+%~~ DBCALL{"Applications.ClassificationApp.RenderEditCategoryBrowser" 
+~~~   NAME="Category" 
+~~~   VALUE="%IFDEFINED{"%VALUE%" then="%VALUE%" else="%URLPARAM{"Category"}%"}%"
+~~~   TOP="%IFDEFINED{"%TOP%" then="%TOP%"}%"
+~~~   BUTTONS="off"
+~~~ }%
+  </td>
+</tr>
+<tr>
+  <th class="twikiFirstCol" valign="top">Icon:
+    %TWISTYBUTTON{showimg="%ICONURLPATH{plus}%" hideimg="%ICONURLPATH{minus}%" id="icons" link=""}%
+  </th>
+  <td>
+    %TWISTYTOGGLE{id="icons"}%
+      %DBCALL{"Applications.ClassificationApp.RenderIconSelector" BUTTONS="off" VALUE="%URLPARAM{"Icon"}%"}%
+    %ENDTWISTYTOGGLE%
+  </td>
+</tr>
+<tr style="padding-top:1em">
+  <th class="twikiFirstCol">&nbsp;</th>
+  <td style="padding-top:1em">
+    <input type="submit" class="twikiSubmit natOkButton" value="Submit" />&nbsp;
+%IFDEFINEDTHEN{"%URLPARAM{"manage"}%" as="on"}%
+    <input type="button" class="twikiButton natAltButton" value="Hide all Categories" onclick="window.location.href='%SCRIPTURL{view}%/%BASEWEB%/%BASETOPIC%';"/>
+%ELSEDEFINED%
+    <input type="button" class="twikiButton natAltButton" value="Show all Categories" onclick="window.location.href='%SCRIPTURL{view}%/%BASEWEB%/%BASETOPIC%?manage=on';"/>
+%FIDEFINED%
+    &nbsp;<input type="button" class="twikiButtonCancel natCancelButton" value="Reset" onclick="window.location.href='%SCRIPTURL{view}%/%BASEWEB%/%BASETOPIC%';"/>
+  </td>
+</tr>
+</table>
+</form>
+</div>
+<script type="text/javascript" src="%PUBURLPATH%/Applications/twb.js"></script>
+</noautolink>
+
+%IFDEFINEDTHEN{"%URLPARAM{"manage"}%" as="on"}%
+%$nopDBCALL{"Applications.ClassificationApp.RenderAllCategories"}%
+%FIDEFINED%
+<!-- //render category factory -->%STOPINCLUDE%
+</verbatim>
+
+<!-- interrupt glue -->
+
+---++ Test
+<div class="alt">
+%DBCALL{"%TOPIC%"}%
+</div>
+
+%DBCALL{"Applications.RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+&copy; 2008 Michael Daum info@michaeldaumconsulting.com
+
+%DBCALL{"Applications.GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="DocuTopic, TopicFunction"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value="RenderCategoryFactory"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Renders a factory for Categories"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="ClassificationApp"}%

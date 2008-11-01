@@ -1,0 +1,12 @@
+%META:TOPICINFO{author="TWikiContributor" date="1181331903" format="1.1" reprev="1.2" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicView"}%
+%TMPL:INCLUDE{"view"}%
+%TMPL:DEF{"simpleheader"}%
+%DBCALL{"Applications.ClassificationApp.RenderClassifiedTopicView"}%
+%TMPL:END% 
+%TMPL:DEF{"form"}%%TMPL:END%
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicView"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Display a tagged topic"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="ClassificationApp"}%

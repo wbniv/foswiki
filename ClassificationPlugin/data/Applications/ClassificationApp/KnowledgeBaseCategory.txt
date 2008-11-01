@@ -1,0 +1,12 @@
+%META:TOPICINFO{author="TWikiContributor" date="1214251218" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="ToolsAndServicesCategory"}%
+%DBCALL{"Applications.ClassificationApp.RenderCategory"}%
+
+
+
+%META:FORM{name="Applications.ClassificationApp.Category"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="Category, CategorizedTopic"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value="Knowledge Base"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value=""}%
+%META:FIELD{name="Category" attributes="" title="Category" value="ToolsAndServicesCategory"}%
+%META:FIELD{name="Icon" attributes="" title="Icon" value="ruby.png"}%

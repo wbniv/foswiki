@@ -1,0 +1,17 @@
+%META:TOPICINFO{author="TWikiContributor" date="1214238900" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="PlansAndPresentations"}%
+   * DISTANCE{from="TopCategory" to="BottomCategory" format="min=$min, max=$max"} = %DISTANCE{from="TopCategory" to="BottomCategory" format="min=$min, max=$max"}%
+   * DISTANCE{from="%TOPIC%" to="PlansAndPresentations"}: %DISTANCE{from="%TOPIC%" to="PlansAndPresentations"}%
+   * DISTANCE{from="%TOPIC%" to="MarketingCategory"}: %DISTANCE{from="%TOPIC%" to="MarketingCategory"}%
+
+
+TestTopic0
+
+   * Set TOPICTITLE = Foo
+
+%META:FORM{name="Applications.ClassificationApp.ClassifiedTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="ClassifiedTopic, CategorizedTopic, TaggedTopic"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value="TestTopic0"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="foo bar"}%
+%META:FIELD{name="Tag" attributes="" title="Tag" value="client, fat, foo, sql"}%
+%META:FIELD{name="Category" attributes="" title="Category" value="PlansAndPresentations, TestCategory11"}%

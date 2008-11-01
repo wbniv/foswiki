@@ -1,0 +1,13 @@
+%META:TOPICINFO{author="TWikiContributor" date="1214251875" format="1.1" reprev="1.2" version="$Rev$"}%
+%META:TOPICPARENT{name="ToolsAndServicesCategory"}%
+%DBCALL{"Applications.ClassificationApp.RenderCategory"}%
+
+
+
+%META:FORM{name="Applications.ClassificationApp.Category"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="Category, CategorizedTopic"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value="Blogs"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value=""}%
+%META:FIELD{name="Category" attributes="" title="Category" value="ToolsAndServicesCategory"}%
+%META:FIELD{name="Icon" attributes="" title="Icon" value="newspaper.png"}%
+%META:FIELD{name="ImportedCategory" attributes="" title="<nop>ImportedCategory" value=""}%

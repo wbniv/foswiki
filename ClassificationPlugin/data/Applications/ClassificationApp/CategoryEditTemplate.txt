@@ -1,0 +1,64 @@
+%META:TOPICINFO{author="TWikiContributor" date="1199824438" format="1.1" reprev="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicView"}%
+%TMPL:INCLUDE{"edit"}%
+%TMPL:DEF{"title"}%%TOPICTITLE% - (%MAKETEXT{"edit category"}%) - %WIKITOOLNAME%%TMPL:END%
+%TMPL:DEF{"contenttitle"}%<!-- contenttitle -->
+%IFDEFINEDTHEN{"%IFEXISTS{"%WEB%.%TOPIC%"}%" as="1"}%
+<h1>[[%WEB%.%TOPIC%][%WEBLINK{format="$web"}%.%TOPIC%]] (%MAKETEXT{"edit category"}%)</h1>
+%ELSEDEFINED%
+<h1><nop>%WEBLINK{format="$web"}%.%TOPIC% (%MAKETEXT{"new classified topic"}%)</h1>
+%FIDEFINED%
+<!-- //contenttitle -->%TMPL:END%
+%TMPL:DEF{"topicinfo"}%<!-- topicinfo -->
+<literal>
+<div class="natEditTopicInfo">
+  <table>
+  <tr class="natEditTopicTitle">
+    <th>Title:</th>
+    <td><input class="twikiInputField" type="text" name="TopicTitle" size="80" value="%URLPARAM{"TopicTitle" default="%TOPICTITLE%"}%"/></td>
+  </tr>
+  <tr class="natEditTopicSummary">
+    <th>Summary:</th>
+    <td><input class="twikiInputField" type="text" name="Summary" size="80" value="%URLPARAM{"Summary" default="%FORMFIELD{topic="%BASEWEB%.%BASETOPIC%" "Summary"}%"}%" /></td>
+  </tr>
+  </table>
+</div>
+</literal>
+<!-- //topicinfo -->%TMPL:END%
+%TMPL:DEF{"formfields"}%<!-- formfields -->
+%TAB{"Categories" after="fixHeightOfPane()"}%
+<div class="natTopicEditForm">
+  %DBCALL{"Applications.ClassificationApp.RenderEditCategoryBrowser"
+    NAME="Category"
+    VALUE="%URLPARAM{"Category" default="%FORMFIELD{topic="%BASEWEB%.%BASETOPIC%" "Category"}%"}%"
+  }%
+</div>
+%ENDTAB%
+<!-- //formfields -->%TMPL:END%
+%TMPL:DEF{"settings"}%<!-- settings -->
+<div class="natSubmitOptions">
+<table>
+<tr>
+  <th>%MAKETEXT{"Parent topic"}%:</th>
+  <td><input class="twikiInputField" type="text" name="topicparent" size="80" value="%TOPICPARENT%" /></td>
+</tr>
+<tr>
+  <th>%MAKETEXT{"Imported Categories"}%:</th>
+  <td><input class="twikiInputField" type="text" name="ImportedCategory" size="80" value="%URLPARAM{"ImportedCategory" default="%FORMFIELD{topic="%BASEWEB%.%BASETOPIC%" "ImportedCategory"}%"}%" /></td>
+</tr>
+<tr>
+  <th valign="top">%MAKETEXT{"Icon"}%:</th>
+  <td>
+    %DBCALL{"Applications.ClassificationApp.RenderIconSelector"
+      VALUE="%URLPARAM{"Icon" default="%FORMFIELD{topic="%BASEWEB%.%BASETOPIC%" "Icon"}%"}%"
+    }%
+  </td>
+</tr>
+</table>
+</div>%TMPL:END%
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicView"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value=""}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Editor for category topics, <nop>NatSkin version"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="ClassificationApp"}%

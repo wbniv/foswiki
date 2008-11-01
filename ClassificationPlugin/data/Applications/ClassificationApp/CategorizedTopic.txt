@@ -1,0 +1,63 @@
+%META:TOPICINFO{author="TWikiContributor" date="1202207995" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicType"}%
+---+!! %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+This is a TopicType for categorization only. 
+
+See also: CategorizedTopicTemplate, ClassifiedTopic, TaggedTopic
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Installation
+%DBCALL{"Applications.RenderTopicInstaller" TEXT="Install '%TOPIC%' TopicType in" TYPE="TopicType"}%
+
+
+%STARTINCLUDE% 
+---++ Create a new topic %IFDEFINED{"%CAT%" then="in <nop>%CAT%'" glue="off"}%
+%STARTSECTION{"factory"}%
+<div class="twikiPageForm">
+<form action="%SCRIPTURLPATH{"edit"}%/%BASEWEB%/" method="post">
+<input type="hidden" name="topicparent" value="%BASEWEB%.%BASETOPIC%" />
+<input type="hidden" name="web" value="%BASEWEB%" />
+<input type="hidden" name="onlynewtopic" value="on" />
+<input type="hidden" name="formtemplate" value="Applications.ClassificationApp.CategorizedTopic" />
+<input type="hidden" name="templatetopic" value="Applications.ClassificationApp.CategorizedTopicTemplate" />
+<input type="hidden" name="TopicType" value="CategorizedTopic" />
+<input type="hidden" name="Summary" value="" />
+<input type="hidden" name="Category" value="%IFDEFINED{"%CAT%" then="%CAT%" else="TopCategory"}%" />
+<table>
+<tr>
+  <th class="twikiFirstCol">Name:</th>
+  <td><input class="twikiInputField" type="text" name="topic" size="40" /></td>
+</tr>
+<tr>
+  <th class="twikiFirstCol">&nbsp;</th>
+  <td style="padding-top:1em">
+    <input type="submit" class="twikiSubmit natOkButton" value="Submit" />
+    <input type="reset" class="twikiButton natCancelButton" value="Reset" />
+  </td>
+</tr>
+</table>
+</form>
+</div>%ENDSECTION{"factory"}%
+%STOPINCLUDE%
+
+---++ %TOPIC% form
+| *Name:*| *Type:* | *Size:* | *Values:* | *Tooltip message:* | *Attributes:* |
+| TopicType | label | 1 | CategorizedTopic | Document type  | |
+| <nop>TopicTitle | text | 75 | | Title of this topic | |
+| Summary | text | 75 | | Short description of the role of this topic | |
+| Category | cat | 1 | | categories |  |
+
+
+
+%META:FORM{name="Applications.TopicType"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="DocuTopic, TopicType, TWikiForm"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value=""}%
+%META:FIELD{name="Inheritance" attributes="" title="Inheritance" value="ApplicationTopic"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Categorized topics"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="ClassificationApp"}%

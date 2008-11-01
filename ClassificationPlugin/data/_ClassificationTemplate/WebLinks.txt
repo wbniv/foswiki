@@ -1,0 +1,24 @@
+%META:TOPICINFO{author="TWikiContributor" date="1199552369" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="WebPreferences"}%
+---+ WebLinks for the %WEB% web
+
+%STARTINCLUDE%<!-- -->
+   * [[ClassifiedTopic][%MAKETEXT{"New Topic"}%]]
+   * [[Category][Categories]]
+   * [[CategoryBrowser][Category Browser]]
+   * [[WebTagCloud][Tags]]
+   * [[WebTopicList][%MAKETEXT{"Index"}%]]
+   * [[WebChanges][%MAKETEXT{"Changes"}%]]
+   * [[WebNotify][%MAKETEXT{"Notifications"}%]]
+   * [[WebStatistics][%MAKETEXT{"Statistics"}%]]
+%IFDEFINEDTHEN{"%IFACCESS{"%BASEWEB%.WebPreferences" type="change"}%" as="1"}%
+   * [[WebPreferences][%MAKETEXT{"Preferences"}%]]
+%FIDEFINED% 
+%~~ TAGRELATEDTOPICS{"%BASETOPIC%" 
+~~~   header="<h2><a name=\"related\">Related Topics</a></h2>$n" 
+~~~   format="   1 <a href=\"%SCRIPTURLPATH{"view"}%/%BASEWEB%/$topic\"
+~~~                   title=\"$percntDBQUERY{topic=\"$topic\" format=\"$formfield(Tag)\"}$percnt\">
+*~~                $percntTOPICTITLE{\"$web.$topic\"}$percnt</a>"
+~~~   separator="$n"
+~~~ }%
+<!-- -->%STOPINCLUDE%

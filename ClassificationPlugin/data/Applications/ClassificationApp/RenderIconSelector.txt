@@ -1,0 +1,118 @@
+%META:TOPICINFO{author="TWikiContributor" date="1201605128" format="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="TopicFunction"}%
+---+!! Function: %TOPIC%
+%FORMFIELD{"Summary"}%
+
+%TOC{depth="2"}%
+
+---++ Documentation
+%STARTSECTION{name="documentation" type="section"}%
+This function renders a selection widget to chose an icon
+
+
+---+++++ Parameters
+   * VALUE: which icon is preselected
+   * SOURCE: topic that has got a set of icons attached to it, 
+     defaults to Applications.ClassificationApp.IconSet 
+   * BUTTONS: on or off, defaults to on
+
+---+++++ Css
+   * clsIconSelector
+   * clsIcon[0-9]+
+   * clsEditIcon
+   * orig
+   * selected
+
+%ENDSECTION{name="documentation" type="section"}%
+
+---++ Implementation
+<verbatim>
+%STARTINCLUDE%<!-- render photo selector -->
+~~~  <div class="clsIconSelector">
+%~~  ATTACHMENTS{
+~~~    topic="%IFDEFINED{"%SOURCE%" then="$test" else="Applications.ClassificationApp.IconSet"}%"
+~~~    name=".*\.(jpe?g|JPE?G|gif|GIF|png|PNG)$"
+~~~    sort="name"
+~~~    format="
+~~~      <div id='clsEditIcon$index'>
+~~~      <input type='radio'
+~~~        class='twikiRadioButton'
+~~~        id='clsIcon$index'
+~~~        name='Icon'
+~~~        value='$name'
+~~~        $percntIFDEFINED{\"%VALUE%\" glue=\"off\"
+~~~          as=\"$name\"
+~~~          then=\" checked='checked'\"
+~~~        }$percnt
+~~~        onclick=\"
+~~~          $('.clsEditIcon').removeClass('selected');
+~~~          $('#clsEditIcon$index img').addClass('selected');
+~~~        \"
+~~~      />
+~~~      <label for='clsIcon$index'>
+~~~        <img class='clsEditIcon
+~~~          $percntIFDEFINED{\"%VALUE%\" 
+~~~            as=\"$name\"
+~~~            then=\" selected orig\"
+~~~          }$percnt
+~~~        '
+~~~          src='$urlpath'
+~~~          alt='$name' 
+~~~          title='$name' 
+~~~          height='16px' />
+~~~      </label></div>
+~~~    "
+~~~  }%
+~~~  <br clear="both" />
+~~~  <input type="hidden" name="Icon" value="" />
+~~~  </div>
+~~~  %IFDEFINEDTHEN{"%BUTTONS%" as="off"}%%ELSEDEFINED%
+~~~  <div class="clsButtonBox">
+~~~  <input type="button" 
+~~~         title="No photo"
+~~~         class="twikiButton natCancelButton" 
+~~~         value="Clear"
+~~~    onclick="
+~~~      this.blur();
+~~~      $('.clsEditIcon').removeClass('selected');
+~~~      $('.clsEditIconSelector input').removeAttr('checked');
+~~~      $('#clsIconNone').attr('checked', 'checked');
+~~~    "
+~~~  >
+~~~  <input type="button" class="twikiButton natAltButton" value="Reset"
+~~~    onclick="
+~~~      this.blur();
+~~~      $('.clsEditIcon').removeClass('selected');
+~~~      $('.clsEditIconSelector input').removeAttr('checked');
+~~~      $('.orig').parent().attr('checked', 'checked');
+~~~      $('.orig').addClass('selected');
+~~~    "
+~~~  >
+~~~ </div>
+~~~ %FIDEFINED%
+~~~ %STOPINCLUDE%
+</verbatim>
+
+<!-- interrupt glue -->
+
+---++ Test
+<div class="alt">
+%DBCALL{"%TOPIC%"}%
+</div>
+
+%DBCALL{"Applications.RenderFunctionCallers"}%
+
+---++ Copyright
+<div style="text-align:justify;margin:1em;">
+&copy; 2008 Michael Daum info@michaeldaumconsulting.com
+
+%DBCALL{"Applications.GnuGeneralPublicLicense" section="notice"}%
+</div>
+
+
+
+%META:FORM{name="Applications.ApplicationTopic"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="DocuTopic, TopicFunction"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value=""}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Renders a widget to select a photo"}%
+%META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="EmployeePortalApp"}%

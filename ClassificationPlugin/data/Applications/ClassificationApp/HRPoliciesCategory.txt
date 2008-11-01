@@ -1,0 +1,13 @@
+%META:TOPICINFO{author="TWikiContributor" date="1214239506" format="1.1" reprev="1.1" version="$Rev$"}%
+%META:TOPICPARENT{name="HumanResourcesCategory"}%
+%DBCALL{"Applications.ClassificationApp.RenderCategory"}%
+
+
+
+%META:FORM{name="Applications.ClassificationApp.Category"}%
+%META:FIELD{name="TopicType" attributes="" title="TopicType" value="Category, CategorizedTopic"}%
+%META:FIELD{name="TopicTitle" attributes="" title="<nop>TopicTitle" value="Policies"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value=""}%
+%META:FIELD{name="Category" attributes="" title="Category" value="HumanResourcesCategory"}%
+%META:FIELD{name="Icon" attributes="" title="Icon" value="report_user.png"}%
+%META:FIELD{name="ImportedCategory" attributes="" title="<nop>ImportedCategory" value=""}%
