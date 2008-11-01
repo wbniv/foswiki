@@ -1,0 +1,3 @@
+bin/editsection NEW
+data/TWiki/SectionalEditPlugin.txt NEW
+lib/TWiki/Plugins/SectionalEditPlugin.pm NEW

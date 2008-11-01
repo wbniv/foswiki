@@ -1,0 +1,108 @@
+%META:TOPICINFO{author="TWikiGuest" date="1150610781" format="1.1" reprev="1.20" version="1.20"}%
+---++ Sectional Edit Plugin
+_Discussion of this plugin can be found in [[TWiki:Plugins.%TOPIC%Dev][%TOPIC%Dev]]._
+
+This plugin allows the user to break a topic into sections which can be edited individually.
+
+%X% There is a known problem in that if the last character in a section is a TWiki markup, the markup will be rendered verbatim. Nevertheless, due to many requests I have put the plugin here without having addressed this final issue.
+
+---+++ Syntax Rules
+
+To enable editing of:
+   * *One or more sections,* insert a =&lt;sectionbreak/&gt;= tag on the line above each  heading marker (=---+=) or deeper;
+   * *Any portion of a topic,* enclose that portion between =&lt;sectionedit&gt;= and =&lt;/sectionedit&gt;= tags;
+   * *The entire topic,* insert the =&lt;editsections/&gt;= tag on the first line of the topic; or
+   * *On all topics, by default,* set the preference flag =EDITSECTIONS= to true (in either user or web preferences). With this approach, the preference variable =SECTIONDEPTHMIN= and =SECTIONDEPTH= (again set in either user or web) controls the level of headings down to which SectionalEditPlugin will apply (with all lower headings/sections being included in that section); the former skips lower-level headings from sectioning. If =SECTIONDEPTH= is undefined or =all=, all levels of headings create sections. If =SECTIONDEPTHMIN= is undefined or =0=, a section is created also for the text preceeding the first encountered section.
+      * SECTIONDEPTH = all
+      * SECTIONDEPTHMIN = 1
+      * %X% I do not recommend turning sectional editing on globally, as this will also section topics that might not be desired to be presented in this form, e.g., email reports about web changes, various searches, etc. A much better approach is to put the =&lt;editsections/&gt;= tag into a custom template and apply it to a topic by setting the =VIEW_TEMPLATE= for topic, web, or site.
+
+*NOTE:* You *cannot* mix these three methods on a single page.
+
+*NOTE:* This breaks the page up at the lowest level, meaning that you can't put section breaks inside tables, lists, etc. as it breaks the whole page up into a table.
+
+---+++ <nop>%TOPIC% Settings
+
+   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = Allows the user to break a topic into sections for individual editing.
+
+   * Debug plugin: (See output in =data/debug.txt=)
+      * Set DEBUG = 0
+
+   * Edit Label (may also be an =&lt;img&gt;= tag):
+      * Set LABEL = Edit
+
+   * A comma separated list of skins *NOT* to section (you'll probably want the print skin here):
+      * Set SKIPSKIN = print, plain
+
+   * Style for marking sections. This is either an inline style definition or a class reference. If left blank, a bar of BGCOLOR is placed next to the sections that can be edited. Style definitions may also be placed with the =&lt;sectionedit&gt;= tag to give individual sections a different style.
+      * Set STYLE = style="border: black thin dotted"
+      * #Set STYLE = class="twikiTopicActions"
+      * #Set STYLE = 
+
+   * Placement of the Edit Label (below or above, only valid together with the STYLE setting)
+      * Set PLACEMENT = below
+
+   * Justification of Edit Label (left or right)
+      * Set JUSTIFICATION = right
+
+   * Edit Bar Background Color:
+      * Set BGCOLOR = silver
+
+---+++ Plugin Installation Instructions
+
+   1 Download the zip file.
+   1 Unzip the zip file into your twiki web folder.
+   1 Verify access and ownership settings for the new scripts.
+   1 Edit your .htaccess file to require a valid user for the editsection and previewsection scripts.
+
+---+++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.DanBoitnott |
+|  Plugin Maintainer: | TWiki:Main.JohnKnottenbelt, TWiki:Main.ThomasWeigert (03 Feb 2005 onwards) |
+|  Plugin Version: | 2 Oct 2006 |
+|  Change History: |  |
+|   2 Oct 2006: | Use sensible default. Improve doco. |
+|  13 Sep 2006: | Bug fix. |
+|  09 Sep 2006: | Added missing variable declaration. |
+|  17 Aug 2006: | Fixed rendering when STYLE is empty. |
+|  16 Aug 2006: | Added =SECTIONDEPTHMIN= setting to allow to have sections constructed only from specific headings, and exclude lower level headings. Also allow to exclude the initial text before first heading from editing. |
+|  17 Jul 2006: | Added =use strict=. Removed use of =startRenderingHandler=. Support =render= script. |
+|  17 Jun 2006: | Fixed an interaction with plugins that generate Javascript, such as TreeBrowserPlugin |
+|  12 Jun 2006: | Transitioned to Dakar Release |
+|   4 Aug 2005: | Updated definition of styles with &lt;sectionedit&gt; tag |
+|   2 May 2005: | Fixed caching problem when using SpeedyCGI |
+|  12 Apr 2005: | Corrected documentation. Add the ability to define styles for the edited sections, in addition to the bar next to an editable section. |
+|  21 Mar 2005: | Integrate 21 Mar version of TWiki:Plugins/EditContrib |
+|  20 Mar 2005: | Resolved problems due to discrepancies between browsers in handling URL parameters |
+|  12 Mar 2005: | Abstract additional features into TWiki:Plugins/EditContrib |
+|   8 Mar 2005: | Rely on TWiki:Plugins/EditContrib to pull out code common to serveral plugins. |
+|  27 Feb 2005: | Do not edit attached form, if any, when editing sections. Made more consistent with =lib/TWiki/UI/= | 
+|  13 Feb 2005: | Integrate savemulti capability. Render text before and after the section being edited. |
+|  12 Feb 2005: | Added =SECTIONDEPTH= preference variable. |
+|  11 Feb 2005: | Added =EDITSECTIONS= preference variable with the same effect as inserting an &lt;editsection/&gt; tag in every topic. | 
+|   3 Feb 2005: | Preliminary port to cairo with support for TWiki.PatternSkin. Does not yet support =savemulti=. |
+|   6 Apr 2004: | Custom edit width / edit height / edit style (defaults to same as ordinary edit). BGCOLOR is now interpreted so you can set it to be the same as %WEBBGGOLOR% if you like. Edit bar can be left or right justified. Added &lt;editsections/&gt; tag which automatically splits on section headers =---+= Updated =bin/editsection= program and templates. |
+|  21 Sep 2003: | Fixed a few bugs in plugin (especially the double-quote problem) |
+|  11 May 2003: | [[TWiki:Main.JohnCavanaugh][JohnCavanaugh]]'s tag method added |
+|  16 Mar 2003: | Windoze compatibility issue corrected |
+|  12 Feb 2003: | Break replacement bug fixed |
+|  11 Feb 2003: | False dependencies HTML::Entities fixed properly |
+|  11 Feb 2003: | False dependencies on Ispell & HTML:Entities fixed |
+|   9 Feb 2003: | Added ability to exclude certain skins (like print) from sectioning |
+|   7 Feb 2003: | Wordwrap fixed in edit page |
+|   6 Feb 2003: | Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | TWiki:Plugins/EditContrib |
+|  Perl Version: | 5.0 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+---+++ Discussion
+_Discussion of this plugin can be found in [[TWiki:Plugins.%TOPIC%Dev][%TOPIC%Dev]]._
+
+__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.EditContrib
+
+-- TWiki:Main/ThomasWeigert - 2 Oct 2006
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the Dev topic instead. -->
