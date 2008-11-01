@@ -1,0 +1,17 @@
+---+ Find orphaned Topics
+
+This page lets you search for topics in a web that are not referenced by any other topic. You can also search to find out how many references there are to all the topics in a web.
+
+Select the web using the form below, and choose whether to show all references to all topics, and whether to search all webs for references to topics, and hit the Go button. The resulting table shows all topics with an *delete* link that lets you delete the topic. Note that if you delete a topic, you will be navigated away from this page; you can hit "back" in your browser until you return here.
+
+<form name="display" action="%SCRIPTURL{view}%/%WEB%/%TOPIC%">
+|  *Web* | <select name="qTheWeb"><option>%URLPARAM{"qTheWeb" default="%WEB%"}%</option>%WEBLIST{"<option>$name</option>" separator=" "}%</select> | Select web to search |
+|  *Ref counts* | <input type="checkbox" name="qAllRefs" %IF{'$qAllRefs=on' then="checked='checked'" else=""}% /> | Show reference counts for all topics in web (slower) |
+|  *All webs* |<input type="checkbox" name="qAllWebs" %IF{'$qAllWebs=on' then="checked='checked'" else=""}% /> | Look for references in all webs (even slower) |
+| *&nbsp;* | <input type="submit" value="Go"> | Submit selection (or [[%TOPIC%][cancel]] it) |
+<input type="hidden" name="qAction" value="orphans" />
+</form>
+%FINDORPHANS{web="%URLPARAM{"qTheWeb"}%" allrefs="%URLPARAM{"qAllRefs"}%" allwebs="%URLPARAM{"qAllWebs"}%" }%
+
+---
+%T% For full information on the plugin that supports this page, see %TWIKIWEB%.OrphansPlugin
