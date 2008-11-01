@@ -1,0 +1,257 @@
+%META:TOPICINFO{author="guest" date="1099489158" format="1.0" version="1.3"}%
+---++!! Mail Reminder Plugin (version 1.000)
+
+The <nop>MailReminderPlugin handles the tag *%<nop>MAILREMINDER_PLUGIN%* that inserts a monthly calendar in the page and It allows you to send reminders before those events. It is the extension of Calendar Plugin. I have modified the existing code of Calendar Plugin so as to enable it to send reminders befores the date of event.
+
+
+%TOC%
+
+---++ Usage example
+
+<table border=1 width="80%">
+<tr><th>You type:</th><th>You get:</th><th>If correctly installed:</th></tr>
+<tr><td>
+Following are the configurations for user name and email address. just copy into your page ;
+
+ + Name = YOUR NAME
+
+ + email = yourid@domain.com
+
+ + reminder = 3
+
+( Reminder tells the no. of days before the event it should send email )
+
+Specify list of events as following using bullets:
+	* 2 Feb - Andrea's birthday
+	* 7 Mar - Nicoletta's birthday
+	* 29 May 1996 - Maria Teresa is born!
+	* 29 Sep 1998 - Davide is born!
+
+To delete the event
+
+  - 29 Sep 1998 - Davide is born!
+
+
+%<nop>MAILREMINDER_PLUGIN{month="2" year="2002" bgcolor="cyan"}%
+%<nop>MAILREMINDER_PLUGIN{month="3" year="2002" showweekdayheaders="1"}%
+
+</td><td align=center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+<tr valign="top" align="left">
+<td align="left" valign="top" bgcolor="black"><table border="0" cellpadding="3" cellspacing="1" width="100%"><tr><td colspan=7 bgcolor="pink"><center><font size=+2>February 2002</font></center></td></tr>
+<TR>
+<td width="14" valign="center" align="center" bgcolor="lightgrey" bordercolor="black">&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="cyan" bordercolor="black">&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="cyan" bordercolor="black">&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="cyan" bordercolor="black">&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="cyan" bordercolor="black">&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="cyan" bordercolor="black">1&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="lightgrey" bordercolor="black">2 <br> Andrea's birthday&nbsp;</td>
+</tr>
+<TR>
+<td width="14" valign="center" align="center" bgcolor="lightgrey" bordercolor="black">3&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="cyan" bordercolor="black">4&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="cyan" bordercolor="black">5&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="cyan" bordercolor="black">6&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="cyan" bordercolor="black">7&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="cyan" bordercolor="black">8&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="lightgrey" bordercolor="black">9&nbsp;</td>
+</tr>
+<TR>
+<td width="14" valign="center" align="center" bgcolor="lightgrey" bordercolor="black">10&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="cyan" bordercolor="black">11&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="cyan" bordercolor="black">12&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="cyan" bordercolor="black">13&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="cyan" bordercolor="black">14&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="cyan" bordercolor="black">15&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="lightgrey" bordercolor="black">16&nbsp;</td>
+</tr>
+<TR>
+<td width="14" valign="center" align="center" bgcolor="lightgrey" bordercolor="black">17&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="cyan" bordercolor="black">18&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="cyan" bordercolor="black">19&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="cyan" bordercolor="black">20&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="cyan" bordercolor="black">21&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="cyan" bordercolor="black">22&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="lightgrey" bordercolor="black">23&nbsp;</td>
+</tr>
+<TR>
+<td width="14" valign="center" align="center" bgcolor="lightgrey" bordercolor="black">24&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="cyan" bordercolor="black">25&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="cyan" bordercolor="black">26&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="cyan" bordercolor="black">27&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="cyan" bordercolor="black">28&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="cyan" bordercolor="black">&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="lightgrey" bordercolor="black">&nbsp;</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<p />
+<table border="0" cellpadding="0" cellspacing="0">
+<tr valign="top" align="left">
+<td align="left" valign="top" bgcolor="black"><table border="0" cellpadding="3" cellspacing="1" width="100%"><tr><td colspan=7 bgcolor="pink"><center><font size=+2>March 2002</font></center></td></tr>
+<tr>
+<th bgcolor="white">Sunday</th>
+<th bgcolor="white">Monday</th>
+<th bgcolor="white">Tuesday</th>
+<th bgcolor="white">Wednesday</th>
+<th bgcolor="white">Thursday</th>
+<th bgcolor="white">Friday</th>
+<th bgcolor="white">Saturday</th>
+</tr>
+<TR>
+<td width="14" valign="center" align="center" bgcolor="lightgrey" bordercolor="black">&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">1&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="lightgrey" bordercolor="black">2&nbsp;</td>
+</tr>
+<TR>
+<td width="14" valign="center" align="center" bgcolor="lightgrey" bordercolor="black">3&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">4&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">5&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">6&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">7 <br> Nicoletta's birthday&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">8&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="lightgrey" bordercolor="black">9&nbsp;</td>
+</tr>
+<TR>
+<td width="14" valign="center" align="center" bgcolor="lightgrey" bordercolor="black">10&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">11&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">12&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">13&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">14&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">15&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="lightgrey" bordercolor="black">16&nbsp;</td>
+</tr>
+<TR>
+<td width="14" valign="center" align="center" bgcolor="lightgrey" bordercolor="black">17&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">18&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">19&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">20&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">21&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">22&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="lightgrey" bordercolor="black">23&nbsp;</td>
+</tr>
+<TR>
+<td width="14" valign="center" align="center" bgcolor="lightgrey" bordercolor="black">24&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">25&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">26&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">27&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">28&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">29&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="lightgrey" bordercolor="black">30&nbsp;</td>
+</tr>
+<TR>
+<td width="14" valign="center" align="center" bgcolor="lightgrey" bordercolor="black">31&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="white" bordercolor="black">&nbsp;</td>
+<td width="14" valign="center" align="center" bgcolor="lightgrey" bordercolor="black">&nbsp;</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+</td><td align=center>
+%MAILREMINDER_PLUGIN{month="2" year="2002" bgcolor="cyan"}%
+%MAILREMINDER_PLUGIN{month="3" year="2002" showweekdayheaders="1"}%
+</td></tr>
+</table>
+
+---++ Syntax
+| *You type* | *you get* |
+| %<nop>MAILREMINDER_PLUGIN% | a monthly calendar for the current month/year, with events taken from the current topic |
+| %<nop>MAILREMINDER_PLUGIN{&lt;attributes>}% | is the full syntax |
+
+---+++ User settings Event settings and Setting to delete event from database - Syntax
+
+User set the Various information parameters as follows:
+
+| *Command type* | *Syntax* | *Example* |
+| *Specify Name* :| ==&nbsp;&nbsp; + Name = YOUR NAME== | + Name=Naval |
+| *Specify email* :| ==&nbsp;&nbsp; + email= Yourid@yourdomain== |&nbsp; + email = naval@it.iitb.ac.in |
+| *Reminder before days* :| ==&nbsp;&nbsp; + reminder = number of days before the event== |&nbsp; + reminder=3 |
+| *Specify event*: | ==&nbsp;&nbsp; * dd MMM yyyy - description== | 09 Dec 2002 - Expo |
+| *Delete event*: | ==&nbsp;&nbsp; - dd MMM yyyy - description== | 09 Dec 2002 - Influence 02 |
+---++ Default settings
+	* One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = This plugin shows a monthly calendar with highlighted events
+	* How the cell content is formatted
+<verbatim>
+		* Set FORMAT = $old <br /> $description
+</verbatim>
+	* __Note:__ You can add settings of any of the recognized attributes (in upper case like SHOWWEEKDAYHEADERS)
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* The Plugin uses the ==HTML::CalendarMonthSimple== and ==Date::Calc== CPAN packages (see http://www.cpan.org)
+		* Install ==Date::Calc==
+		* Install ==HTML::CalendarMonthSimple==
+		* Change line 197 of <nop>CalendarMonthSimple.pm as follows to avoid an annoying log message:<br />
+		  =if ($self->year == $todayyear && $self->month == $todaymonth &lt;font color="red"&gt;&& defined $thisday&lt;/font&gt; && $thisday == $todaydate)=
+
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:*					 |
+	  | ==data/TWiki/%TOPIC%.txt==									  | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v==									| Plugin topic repository |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm==							  | Plugin Perl module |
+	  | ==lib/TWiki/Plugins/%TOPIC%/cron.pl==		 | Plugin Perl module |
+	  | ==lib/TWiki/Plugins/%TOPIC%/config_file==	| Plugin configruraion file |
+	  | ==lib/TWiki/Plugins/%TOPIC%/calender_config_file== | Plugin configruraion file |
+	  | ==pub/TWiki/%TOPIC%/exclam.gif== | Image file |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+
+*Create Table to store events in my database*
+
+Structure of table is as follows: 
+
+| *Field* | Type			  |	Null | Key |
+|name		| varchar(30)  | YES	 |	  |
+|e_date	 | date		  |			| PRI |
+|r_date	| date		 | YES		|	  |
+|email_id | varchar(100) |		  | PRI |
+|event	  | varchar(200) |		  | PRI |
+
+*Mysql query to create table is*  :
+
+ Create table caltab(name varchar(30), e_date date not Null ,r_date date, email_id  varchar(100) not Null, event varchar(200) not Null, primary key(e_date, event, email_id));
+
+*Edit cront tab as follows to make entry for cronjob* :
+
+In shell prompt execute :-  crontab -e [Enter]
+
+	* Vi editor will be opened make the following crontab entry and save the file:- 
+	* 01 00 * * * /[path of your lib/TWiki/Plugin directory]/MailReminderPlugin/cron.pl
+
+*Make changes in configuration files*
+			
+	* In /[Path of Plugins Directory]/MailReminderPlugin/calender_config_file :- Should be configured with various database related settings like database host ,database user , database password , database name.  
+	* In /[Path of Plugins Directory]/MailReminderPlugin/config_file :- Should be configured with various database settings and mail related settings  like Smtp server name , email of sender etx.
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/AshishNaval |
+|  Plugin Version: | V1.000 (03 Nov 2004) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  CPAN Dependencies: | CPAN:HTML::CalendarMonthSimple >= v1.23, CPAN:Date::Calc |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.000 and up |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- Main.AshishNaval - 03 Nov 2004
+
