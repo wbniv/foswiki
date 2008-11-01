@@ -1,0 +1,227 @@
+%META:TOPICINFO{author="ColasNahaboo" date="1045749000" format="1.0" version="1.4"}%
+---+ Some News
+
+Please add your news items in this page, most recent first.
+The %TWIKIWEB%.NewsPlugin - generated headlines can be found in NewsPluginExampleHeadlines
+
+Announces should be in the form of bulleted lists (3 spaces, a star, a space).
+The first line of the first 5 news will be shown in the front page, 
+so try to put a meaningful short summary as the first line.
+
+---  <!-- %NEWS% 
+___* <===== Max recommended length of the 1rst line ==-->
+
+	* *1.24* _18 Feb 2003_ fixes
+		* hidden webs now do not appear in sitemap anymore
+		* if NOSEARCHALL is set in a WebPreferences of a web,
+		  do not include it in group searches
+		* some html bug fixes in ks_leftbar template
+		* typo fixed in the doc: TOPIC instead of TOPICS
+		  found by Nathan Neulinger
+		* default CSS: class "compact" can be used in ul and table
+		  tags to set left margin of bulleted list to none
+	* *1.23* _21 Dec 2002_ accesskeys in tooltips.
+		* *WARNING* does not work on cygwin. please use 1.22 on cygwin
+		  (it triggers a bug in cygwin: "cannot fork"...)
+		* doc: all accesskeys documented in tooltips ([Alt-E]...)
+	* *1.22* _21 Dec 2002_ bugfixes
+		* bugfix: Wiki Words in web description messed up tabs
+		* bugfix: some wrong title colors in search results pages
+		* hidden webs are indented a bit more in sitemaps
+	* *1.21* _17 Dec 2002_
+		* *[!]* You should apply the Patch 
+		  TWiki:Codev/ViewUseCssInKoala
+		* tooltips to all the tabs and links in view mode
+		* bugfix: background color for sitemap was omitted.
+		* docfix: TOPICSTOP was not documented
+		* script now checks that the needed variables are defined in
+		  TWiki.TWikiPreferences, and issue warnings on missing ones
+		* default css for html tags &lt;b> and &lt;i>, and twiki __
+		  constructs are rendered in a colored ink. Note that this is
+		  not the case for the twiki * and _ constructs as they are
+		  mapped to strong and em tags
+		* Access keys supported, on mnemotechnic letters. Disablable
+		  via the KSNOACCESS variable
+		* favicon.ico supported
+	* *1.20* _11 Dec 2002_
+		* *[!]* Apply the patches  <nop>NoWebHome.patch and
+		  <nop>NoWebHome2.patch from:
+		  TWiki:Codev/SettingParentTopicToNone
+		  (it is only cosmetics, will not break if not applied)
+		* *[!]* define the variable *%<nop>CSS%* in the
+		  TWiki.TWikiPreferences to nothing.
+		* *[!]* define the variable *%<nop>TOPICSTOP%* in the
+		  TWiki.TWikiPreferences to nothing.
+		* New %<nop>CSS% TWiki var to override CSS per web
+		* New global Koala Skin KSCSS var to define an additional
+		  external style sheet local to the site
+		* New layout:
+			* left margin is smaller
+			* left margin do not depend anymore on web/topic names
+			  (long names could ruin the layout before)
+			* "breadcrumbs trail" to give the hierarchy at the 
+			  top instead of the left margin
+		* New global variable KSNOMARGIN, and per-web option NOMARGIN
+		  to specify a different layout with no left margin for webs
+		  having wide contents.
+		* New option KSFILEPERMS (= ALL for all users, or unix group
+		  name) at Martin request.
+		* New options to set position of TWiki.TWikiForms per web:
+		  FORM_LM, FORM_TL, FORM_TR, FORM_BL, FORM_BR, and 
+		  global variable KSFORM_POS for the default.
+		* checkbox labels are clickable, see 
+		  TWiki:Codev/FormsUseLabelTags
+		* New link to directly create a new topic, via new template
+		  oopscreate
+		* Cleaner layout (skin) for printing.
+		* textarea {width: "90%";height: "60%";} removed from style
+		  (bug in IE 5)
+		* fix: quoting of "%TOPICPARENT%" in savemulti by 
+		  Esteban Manchado
+		* -r option to script to uninstall
+		* reorganisation of the code, it should be easier to add
+		  features now.
+	* *1.19* _18 Sep 2002_
+		* Support for Navbar Plugin: See KSNONAVBAR variable
+		  To enable Navbar support, install the plugin, and
+		  re-generate
+		* some macros in templates/ks_boxes.koala.txt to do text boxes
+		  in the color scheme of the web
+		* bugfix: lock remained when previewing before save 
+		  with mod_perl
+		* new feature: option HIDDEN possible on sub-webs to save
+		  navigation bar space. (contributed by Fabio Spreafico
+		  and Wenzel Kalus, Biomax)
+	* *1.18* _23 Aug 2002_
+		* bugfix: navigation bar was badly generated in some cases
+	* *1.17* _21 Aug 2002_
+		* *[!]* add the line to your Site Prefs
+		  (TWiki.TWikiPreferences), to be forward-compatible with the
+		  upcoming TWiki release.
+		  <br> _6 spaces_ * Set EDITBOXSTYLE = width: 99%
+		* bugfix: names like WebHome have been replaced by their
+		  "meta" name, (e.g.: %<nop>HOMETOPIC%)
+		* bugfix: sitemaps were broken in 1.16 (bad html comment
+		  syntax: -- is forbidden in comments, but browsers didnt mind
+		  before...)
+		* bugfix: search result pages header colors were broken since
+		  1.14  
+	* *1.16* _09 Aug 2002_
+		* bugfix: CSS was misplaced on some views (search, diff...)
+		  (bug introduced in 1.14 found by Jon Reid)
+		* bugfix: some garbage could be seen in some views in the
+		  parents field on some pages.
+		* bugfix: cleaning pass on html to pass W3C validator
+		  http://validator.w3.org/ .
+		  Tested: view, diffs, changes.
+		  Work remains to do for other scripts (edit), but may imply
+		  more fixes to TWiki itself.
+		* for validation, you may want to apply also this patch:
+		  http://twiki.org/cgi-bin/view/Codev/InvalidHtmlFixRdiff
+	* *1.15* _08 Aug 2002_
+		* new option variable KSNOEXPAND for space-tight people, to
+		  use the same template/ space as 1.14 and before.
+		  (no need to upgrade if you do not need this option)
+	* *1.14* _07 Aug 2002_
+		* *[!]* bugfix: when saving with the bottom save button from
+		  the preview view, parent field was overwritten by garbage
+		  with %TOPICPARENT%. You must repair the damage done to
+		  some pages, see:
+		  http://twiki.org/cgi-bin/view/Plugins/KoalaSkinDev#topicparent
+		  You can either:
+			* edit by hand the pages showing %TOPICPARENT%
+			  strings, if some exist on your site.
+			* use the automatic shell script:
+			  http://twiki.org/p/pub/Plugins/KoalaSkinDev/repair-topicparent
+		* mail template redesigned. 
+		* Hints for writing KSICON
+		* Tests /tmp/hsv2rgbhex & /tmp/rgb2hsvhex before using them
+		* new %KSHELP% variable
+		* %TMPL:INCLUDES are now expansed at generation time. Much
+		  slower at generation, but cuts disks access at runtime.
+	* *1.13* _18 Jun 2002_
+		* *[!]* you may want to apply the patch to Dec 2001 version:
+		  TWiki:Codev/SkinParamOnAllTemplateReads
+		  (but nothing serious will happen if you dont)
+		* A way to re-generate templates from the web added
+		* bugfix: the WebList template outputted with -i was buggy
+		  (the * EMPTY line was mistaken for a web declaration)
+		* bugfix: when previewing a page containing html forms
+		  (such as the registration page), save buttons were inoperant
+		  Bug found by Samuel Tardieu.
+		* bugfix: Internet Explorer rendered badly the sitemaps,
+		  workaround for this IE bug.
+		* doc: which patches to apply are more explicit
+		* announcements of the koalaskin@koala.ilog.fr and 
+		  koalaskin-announce@koala.ilog.fr mailing lists
+	* *1.12* _05 Jun 2002_
+		* *[!]* Terser signature patch used, but you *must* apply
+		  the TWiki:Codev/TerserSignature
+		  patch to bin/edit
+		* empty groups by declaration. Suggestion of  Matt Wilkie.
+		  Put the word EMPTY at the start of the Web description.
+		* cosmetic: attachements table left-aligned in view mode
+		* %<nop>USERSWEB% everywhere, instead of Main.
+		  variable main settable in the script also. 
+		* Wiki Name syntax is checked on create topic by menu
+		* CSS declarations trimmed (and bugfixed) to be smaller.
+		  Simple pages went from 50k to 13k.
+		* new KSNOICONS variable for the Web List topic
+		* non-clickable links are now not white to differentiate
+		  them visually from clickable web tabs
+	* *1.11* _11 Apr 2002_
+		* bugfix: was not working well if your directory structure
+		  differred from the distribution.
+		<br> *Note:* No need to upgrade if you had no problem
+		  installing the 1.10 version 
+	* *1.10* _28 Mar 2002_
+		* bugfix: editing failed (javascript error) on old versions
+		  (5.0) of IE. 
+	* *1.9* _18 Mar 2002_
+		* *[!]* Forgot to mention that the <nop>RefreshEditPage patch 
+		  should be applied. Apply it if you didnt already!
+		* Minor bug fix: QuietSave would not remove lock
+		  (change to bin/savemulti)
+	* *1.8* _12 Mar 2002_
+		* Some fixes to the script to make it run on windows under
+		  cygwin.
+	* *1.7* _10 Mar 2002_
+		* *[!]* Name of install topic changed from <nop>KoalaSkinPlugin
+		  to just <nop>KoalaSkin. You *must* rename the topic
+		  <nop>Plugins.KoalaSkinPlugin if you have one!
+		* This readme is now fully in TWiki syntax. You should create
+		  the topic Plugins.KoalaSkin to include it (it is
+		  installed as an attachement), see new install instructions.
+		* script can be run from twiki dir without setting DIR
+		* Created the official distribution page on TWiki:
+		  TWiki:Plugins/KoalaSkin
+	* *1.6* _8 Mar 2002_ 
+		* fixes to colors in search results in bookview mode, and in
+		  rename topic (result of search for pages refering to page to
+		  be moved)
+	* *1.5* _4 Mar 2002_ 
+		* *[!]* *NOTE:* if you already applied the fix
+		TWiki:Codev/PostfixArgToParentMeta
+		you need to change all 5 occurences of postfix to suffix in
+		lib/TWiki.pm
+		* -d option to bin/koalaskin-generate to generate a distrib
+		* Note that the <nop>RefreshEditPage fix is not needed anymore
+		(but is not harmful)
+		* Use of the ?time=nnnn hack in edit pages
+	* *1.4* _28 Feb 2002_ 
+		* *[!]* patches to apply: #3				 
+		* new script bin/savemulti (needs a similar entry to save
+		in bin/.htaccess), to provide in edit template 4 buttons: 
+		Save, Checkpoint, Preview, and Cancel
+		* Raw view with metadata option in More...
+		(new koala templates for oopsmore & preview)
+		* understands the new var =%<nop>EDITBOXCSS%=
+		* uses the new version of the <nop>PostfixToArgParentMeta
+	* *1.3* _24 Feb 2002_ 
+		* Checkpoint save
+	* *1.2* _23 Feb 2002_ 
+		* everything works (but with patches to distrib).
+		* Announced on TWiki.org
+	* *1.1* _20 Feb 2002_ 
+		* First functional internal release.
+	* _Nov 2001_ First sketches in HTML+CSS by Thierry Kormann
