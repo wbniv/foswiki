@@ -1,0 +1,97 @@
+%META:TOPICINFO{author="DetlefMarxsen" date="1118390260" format="1.0" version="1.4"}%
+%META:TOPICPARENT{name="WebHome"}%
+---+ MakeCtrlTopicsListAddOn
+
+The ApprovalPlugin is a great tool for adding quality management (QM) to a Wiki web. However, there is no overview about the pages which are under QM approval control. Therefore, the quality manager cannot determine which pages have to be approved.
+
+The MakeCtrlTopicsListAddOn Add-On provides this information.
+
+The Add-On is a simple Perl script. It is a quick hack but is nevertheless pretty useful. ;-)
+
+---++ Usage
+
+The following you have to do once:
+
+	1 Create a topic which shall contain the controlled-topics-report in the future ("report topic").
+	1 Enter the desired colour settings on the page:
+		* Format: Three spaces, then =* Set %CTR_RED%=UNDERREVISION= <br>The above configures UNDERREVISION entries to be red. You can assign multiple status strings to a colour. Separate them with a comma.
+		* You can use all predefined colours of your Wiki.
+		* You can use the status strings defined within the ApprovalPlugin setup.
+		* You can assign as many colours as you want.
+	1 Set up your cron (Linux) or planned tasks (Windows) to start the script regularely. The call must look like this: <br> =perl &lt;addon_script_name_with_path&gt; &lt;report_page_file_name_with_path&gt;= <br>%I% The Add-On scans the web where the report topic resides.
+	1 If you prefer table 2 (see "Output") to be filled, new topics must be marked accordingly. The marker string =###MakeCtrlTopicsList:topicmustbechecked= must be placed at the beginning of one line of new topics. To force the marker string into new pages, the text of the topic WebTopicEditTemplate must be modified. Since the "normal" user may be confused by this string and even attempt to delete it, the following format is advisable (requires HiddenTextPlugin):
+
+*Example*
+
+<verbatim>
+
+%STARTHIDDEN%
+<!--
+###MakeCtrlTopicsList:topicmustbechecked
+	* Set ALLOWTOPICHIDDEN = ApproveControlledPagesGroup, TWikiAdminGroup
+-->
+|%ORANGE% *The QM department has not yet checked this topic for QM relevance.* %ENDCOLOR%|
+%ENDHIDDEN%
+
+</verbatim>
+
+%I% Replace <nop>ApproveControlledPagesGroup with the according QM user or QM group of your Wiki.
+
+%I% The QM must remove the above header after the topic check (and may add the ApprovalPlugin header instead).
+
+%I% Instead, the QM could simply check the TWiki changes page for new topics regularely. The drawback is that the change list doesn't show if some QM employee checked the according topic already. The above marking method is a lot more fail-safe and transparent and will satisfy auditors more easily.
+
+---++Output
+
+The report topic is filled with this information:
+
+	* Time of validity.
+	* Total amount of topics in the web.
+	* Table 1: List of controlled pages and their current (see above) status.
+	* Table 2: List of new pages which may have to be under approval control. <br>Topics which contain a certain string are listed here (see "Usage").
+	* Add-On settings (concentrated at one location, idenpendent on their original location).
+	* Version of the Add-On.
+
+Example report (with only four topics under approval control): <br />
+	 <img src="%ATTACHURLPATH%/MCTLscreenshot.gif" alt="Example Screenshot"  width="555" height="832"  />
+
+---++ Add-On Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this add-on. The following instructions are for the administrator who installs the add-on on the server where TWiki is running. 
+
+	* Download the ZIP file from the Add-on Home (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Add-on topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Add-on topic repository |
+	  | ==bin/makectrltopicslist.pl== | Add-on script |
+	  | ==pub/TWiki/MakeCtrlTopicsListAddOn/MCTLscreenshot.gif== | Example output |
+	  | ==pub/TWiki/MakeCtrlTopicsListAddOn/MCTLscreenshot.gif,v== | Example output repository |
+	* Test if the installation was successful:
+		1 Install and configure ApprovalPlugin.
+		1 Configure MakeCtrlTopicsListAddOn as described under "Usage".
+		1 Verify that the report topic gets changed by the script.
+
+---++ Add-On Info
+
+|  Add-on Author: | TWiki:Main/DetlefMarxsen |
+|  Add-on Version: | 10 Jun 2005 (v1.02) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  07 Jun 2005: | Initial version |
+|  10 Jun 2005: | Bug fix (incorrect handling of topics "with dash"). <br>Marker string must now be placed at the beginning of the line (this removes doc topic from list). <br>Forces link at non-[[TWiki.WikiWord][WikiWord]]-Topics now.|
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | ApprovalPlugin must be installed |
+|  Perl Version: | 5.85 (all 5.x versions should work) |
+|  License: | GPL |
+|  Add-on Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topic:__ %TWIKIWEB%.TWikiAddOns, Plugins.ApprovalPlugin
+
+-- TWiki:Main/DetlefMarxsen - 09 Jun 2005, 10 Jun 2005
+
+-----
+
+%META:FILEATTACHMENT{name="MCTLscreenshot.gif" attr="" comment="Example Screenshot" date="1118312007" path="D:\data\Work\twiki-org\MCTLscreenshot.gif" size="41215" user="DetlefMarxsen" version="1.1"}%
+%META:TOPICMOVED{by="DetlefMarxsen" date="1118214755" from="TWiki.MakeCtrlTopicsList" to="TWiki.MakeCtrlTopicsListAddOn"}%
