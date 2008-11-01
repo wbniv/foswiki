@@ -1,0 +1,4 @@
+data/TWiki/HeadlinesPlugin.txt 0644
+lib/TWiki/Plugins/HeadlinesPlugin/Core.pm 0644
+lib/TWiki/Plugins/HeadlinesPlugin.pm 0644
+pub/TWiki/HeadlinesPlugin/style.css 0644
