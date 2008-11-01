@@ -1,0 +1,197 @@
+%META:TOPICINFO{author="TWikiContributor" date="1173512397" format="1.1" reprev="1.2" version="$Rev$"}%
+%META:TOPICPARENT{name="FlexWebListPlugin"}%
+---+!! %TOPIC%
+
+These are some simple examples to show how to use the basic features
+of the FlexWebListPlugin. Please create some subwebs in the Sandbox web 
+for a better illustration of the examples below. Some of the examples
+are displayed using the "glue" syntax of the TWiki:Plugins.GluePlugin
+to ease reading multiline TML expressions and arguments.
+
+%TOC%
+
+---++ No params
+<verbatim>
+%FLEXWEBLIST%
+</verbatim>
+%FLEXWEBLIST%
+
+---++ Influencing order
+<verbatim>
+%FLEXWEBLIST{webs="%MAINWEB%,public,%TWIKIWEB%"}%
+</verbatim>
+%FLEXWEBLIST{webs="%MAINWEB%,public,%TWIKIWEB%"}%
+
+---++ Controlling subwebs
+---+++ No subwebs
+<verbatim>
+%FLEXWEBLIST{subwebs="none"}%
+</verbatim>
+%FLEXWEBLIST{subwebs="none"}%
+
+---+++ Only subwebs
+<verbatim>
+%FLEXWEBLIST{subwebs="only"}%
+</verbatim>
+%FLEXWEBLIST{subwebs="only"}%
+
+---+++ Subwebs of "Sandbox"
+<verbatim>
+%FLEXWEBLIST{subwebs="Sandbox"}%
+</verbatim>
+%FLEXWEBLIST{subwebs="Sandbox"}%
+
+---++ Using include and exclude
+
+---+++ Exclude <nop>TestCases and Trash webs
+<verbatim>
+%FLEXWEBLIST{exclude="TestCases|Trash.*" subwebs="none"}%
+</verbatim>
+%FLEXWEBLIST{exclude="TestCases|Trash.*" subwebs="none"}%
+
+---+++ Include Sandbox web and all of its subwebs
+<verbatim>
+%FLEXWEBLIST{include="Sandbox(/\w+)?"}%
+</verbatim>
+%FLEXWEBLIST{include="Sandbox(/\w+)?"}%
+
+---++ Creating lists
+---+++ Simple nested list
+<verbatim>
+%FLEXWEBLIST{format="$indent   * [[$web.%HOMETOPIC%][$name]]$n"}%
+</verbatim>
+%FLEXWEBLIST{format="$indent   * [[$web.%HOMETOPIC%][$name]]$n"}%
+
+---+++ Nested list using HTML
+<verbatim>
+%~~ FLEXWEBLIST{
+~~~   header="<ul>" 
+~~~   format="<li>[[$web.%HOMETOPIC%][$name]]" 
+~~~   separator="</li>"
+~~~   footer="</li></ul>" 
+~~~ }%
+</verbatim>
+%FLEXWEBLIST{header="<ul>" format="<li>[[$web.%HOMETOPIC%][$name]]" separator="</li>" footer="</li></ul>"}%
+
+---+++ Nested calls to FLEXWEBLIST
+<verbatim>
+%~~ FLEXWEBLIST{
+~~~   exclude="TestCases|Trash.*" 
+~~~   subwebs="none"
+~~~   selection="Sandbox"
+~~~   format="$indent   * [[$web.%HOMETOPIC%][$name]]$n"
+~~~   markerformat="$percntFLEXWEBLIST{
+~~~     webs=\"$web\"
+~~~     format=\"$dollarindent   * [[$dollarweb.%HOMETOPIC%][$dollarname]]$dollarn\"
+~~~   }$percnt"
+~~~ }%
+</verbatim>
+%FLEXWEBLIST{exclude="TestCases|Trash.*" subwebs="none" selection="Sandbox" format="$indent   * [[$web.%HOMETOPIC%][$name]]$n" markerformat="$percntFLEXWEBLIST{ webs=\"$web\" format=\"$dollarindent   * [[$dollarweb.%HOMETOPIC%][$dollarname]]$dollarn\" }$percnt"}%
+
+---+++ Twisty weblist
+needs the TWiki:Plugins/TwistyPlugin
+<verbatim>
+%~~ FLEXWEBLIST{
+~~~   header="<ul>" 
+~~~   format="<li>
+~~~     $percntTWISTYBUTTON{
+~~~       id=\"twisty_weblist_$web\"
+~~~       link=\"$name ($nrsubwebs)\"
+~~~     }$percnt"
+~~~   separator="</li>"
+~~~   subheader="
+~~~     $percntTWISTYTOGGLE{
+~~~       id=\"twisty_weblist_$web\" 
+~~~       mode=\"div\"
+~~~     }$percnt<ul>" 
+~~~   subfooter="</li></ul>$percntENDTWISTY$percnt" 
+~~~   footer="</li></ul>" 
+~~~ }%
+</verbatim>
+%FLEXWEBLIST{header="<ul>" format="<li> $percntTWISTYBUTTON{ id=\"twisty_weblist_$web\" link=\"$name ($nrsubwebs)\" }$percnt" separator="</li>" subheader="$percntTWISTYTOGGLE{id=\"twisty_weblist_$web\" mode=\"div\"}$percnt<ul>" subfooter="</li></ul>$percntENDTWISTY$percnt" footer="</li></ul>"}%
+
+
+---++ Twisty navigation
+needs the TWiki:Plugins/TwistyPlugin and the TWiki:Plugins/IfDefinedPlugin
+
+<verbatim>
+%~~ FLEXWEBLIST{
+~~~   webs="%MAINWEB%,public,%TWIKIWEB%"
+~~~   exclude="TestCases|Trash.*"
+~~~   header="<ul>" 
+~~~   format="<li>[[$web.%HOMETOPIC%][$name]]&nbsp;
+~~~     $percntIFDEFINEDTHEN{\"$nrsubwebs \" as=\"0 \"}$percnt
+~~~     $percntELSEDEFINED$percnt
+~~~       $percntTWISTYBUTTON{
+~~~         id=\"sitemap_$web\"
+~~~         buttonmode=\"span\"
+~~~         showimg=\"$percntICONURLPATH{\"toggleopenleft\"}$percnt\"
+~~~         hideimg=\"$percntICONURLPATH{\"toggleclose\"}$percnt\"
+~~~       }$percnt
+~~~     $percntFIDEFINED$percnt"
+~~~   separator="</li>$n"
+~~~   subheader="$percntTWISTYTOGGLE{id=\"sitemap_$web\"}$percnt<ul>" 
+~~~   subfooter="</li></ul>$percntENDTWISTY$percnt" 
+~~~   footer="</ul>" 
+~~~ }%
+</verbatim>
+%FLEXWEBLIST{webs="%MAINWEB%,public,%TWIKIWEB%" exclude="TestCases|Trash.*" header="<ul>" format="<li>[[$web.%HOMETOPIC%][$name]]&nbsp; $percntIFDEFINEDTHEN{\"$nrsubwebs \" as=\"0 \"}$percnt $percntELSEDEFINED$percnt $percntTWISTYBUTTON{id=\"sitemap_$web\" buttonmode=\"span\" showimg=\"$percntICONURLPATH{\"toggleopenleft\"}$percnt\" hideimg=\"$percntICONURLPATH{\"toggleclose\"}$percnt\" }$percnt $percntFIDEFINED$percnt" separator="</li>$n" subheader="$percntTWISTYTOGGLE{id=\"sitemap_$web\" mode=\"div\"}$percnt<ul>" subfooter="</li></ul>$percntENDTWISTY$percnt" footer="</ul>"}%
+
+---++ Sitemap
+%~~ FLEXWEBLIST{
+~~~   webs="%MAINWEB%,public,%TWIKIWEB%"
+~~~   header="<div class=\"header\">" 
+~~~   format="<div class=\"web\">
+~~~     [[$web.%HOMETOPIC%][$name]] $percntVAR{\"SITEMAPWHAT\" web=\"$web\"}$percnt
+~~~   </div>" 
+~~~   footer="</div>" 
+~~~ }%
+<style type="text/css">
+.web,
+.header {
+  margin:5px 50px;
+  padding:5px;
+  border:1px solid #f3a;
+}
+.web {
+  margin:5px;
+}
+.header a:visited,
+.header a:hover,
+.header a {
+  font-weight:bold;
+}
+</style>
+
+---++ Mapping names
+<verbatim>
+%~~ FLEXWEBLIST{
+~~~    map="TestCases=Tests,%TWIKIWEB%=System,%MAINWEB%=Home"
+~~~    format="$indent   * [[$web.%HOMETOPIC%][$name]]$n"
+~~~ }%
+</verbatim>
+%FLEXWEBLIST{map="TestCases=Tests,%TWIKIWEB%=System,%MAINWEB%=Home" format="$indent   * [[$web.%HOMETOPIC%][$name]]$n"}%
+
+---++ Marking a selection
+---+++ Using marker
+<verbatim>
+%~~ FLEXWEBLIST{
+~~~   exclude="TestCases|Trash.*"
+~~~   format="$indent   * <span class=\"$marker\"> $web </span>$n"
+~~~   marker="twikiAlert"
+~~~   selection="%BASEWEB%"
+~~~ }%
+</verbatim>
+%FLEXWEBLIST{exclude="TestCases|Trash.*" format="$indent   * <span class=\"$marker\"> $web </span>$n" marker="twikiAlert" selection="%BASEWEB%"}%
+
+---+++ Using markerformat
+<verbatim>
+%~~ FLEXWEBLIST{
+~~~   exclude="TestCases|Trash.*"
+~~~   format="$indent   * [[$web.%HOMETOPIC%][$name]]$n"
+~~~   markerformat="$indent   * 
+~~~     [[$web.%HOMETOPIC%][<span class=\"twikiAlert\">$name</span>]]$n"
+~~~   selection="%BASEWEB%"
+~~~ }%
+</verbatim>
+%FLEXWEBLIST{exclude="TestCases|Trash.*" format="$indent   * [[$web.%HOMETOPIC%][$name]]$n" markerformat="$indent   * [[$web.%HOMETOPIC%][<span class=\"twikiAlert\">$name</span>]]$n" selection="%BASEWEB%"}% 

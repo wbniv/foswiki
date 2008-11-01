@@ -1,0 +1,52 @@
+%META:TOPICINFO{author="TWikiContributor" date="1185226497" format="1.1" reprev="1.2" version="$Rev$"}%
+---+!! %TOPIC%
+
+The fragment below can be used in a sidebar navigation to establish a "twisted" subweb navigation.
+Use it by adding =%<nop>INCLUDE{"%WEB%.%TOPIC%"}%= to your WebLeftBar or TWikiWebSideBar.
+
+If you want to hide the web navigation from <nop>TWikiGuests then uncomment the following:
+   * #Set DENYTOPICVIEW = %MAINWEB%.TWikiGuest
+
+<verbatim>
+%STARTINCLUDE%%TWISTY{
+  prefix="<h2 >"
+  suffix="</h2>"
+  remember="on" 
+  firststart="show"
+  link="Webs "
+  buttonmode="span"
+  mode="div"
+  showimg="%ICONURLPATH{"toggleclose-mini"}%"
+  hideimg="%ICONURLPATH{"toggleopen-mini"}%"
+}%
+%~~ FLEXWEBLIST{
+~~~   webs="%MAINWEB%,User,People,public,%TWIKIWEB%" 
+~~~   exclude="(TestCases|Trash).*" 
+~~~   adminwebs="Applications.*"
+~~~   header="<ul>"
+~~~   format="<li
+~~~       $percntIFDEFINED{\"%BASEWEB%\" as=\"$web\"
+~~~         then=\" class='natCurrentWeb'\"
+~~~       }$percnt>
+~~~     <a href=\"%SCRIPTURLPATH{"view"}%/$web/%HOMETOPIC%\"
+~~~           $percntIFDEFINED{\"%BASEWEB%\" as=\"$web\"
+~~~             then=\" class='twikiCurrentTopicLink'\"
+~~~           }$percnt>$name</a>
+~~~     $percntIFDEFINEDTHEN{\"$nrsubwebs \" as=\"0 \" glue=\"off\"}$percnt
+~~~     $percntELSEDEFINED$percnt
+~~~       $percntTWISTYBUTTON{
+~~~         id=\"subweb_$web\"
+~~~         remember=\"on\"
+~~~         buttonmode=\"span\"
+~~~         showimg=\"$percntICONURLPATH{\"toggleclose-mini\"}$percnt\"
+~~~         hideimg=\"$percntICONURLPATH{\"toggleopen-mini\"}$percnt\"
+~~~         link=\"\"
+~~~       }$percnt
+~~~     $percntFIDEFINED$percnt"
+~~~   footer="</li></ul>"
+~~~   separator="</li>"
+~~~   subheader="$percntTWISTYTOGGLE{id=\"subweb_$web\" mode=\"div\"}$percnt<ul class=\"natSubWebs\">"
+~~~   subfooter="</li></ul>$percntENDTWISTYTOGGLE$percnt"
+~~~ }%
+%ENDTWISTY%%STOPINCLUDE%
+</verbatim>
