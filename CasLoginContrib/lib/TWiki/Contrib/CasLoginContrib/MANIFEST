@@ -1,0 +1,7 @@
+# Release manifest for CasLoginContrib
+data/TWiki/CasLoginContrib.txt 0644 Documentation
+lib/TWiki/Contrib/CasLoginContrib.pm 0644 Perl module
+lib/TWiki/Client/CasLogin.pm 0644 Perl module
+lib/TWiki/LoginManager/CasLogin.pm 0644 Perl module
+lib/TWiki/Contrib/CasLoginContrib/Config.spec 0644 Configure templates
+

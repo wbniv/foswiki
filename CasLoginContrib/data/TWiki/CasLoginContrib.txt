@@ -1,0 +1,71 @@
+%META:TOPICINFO{author="OlivierBerger" date="1219765248" format="1.1" reprev="1.4" version="1.4"}%
+<!--
+This topic is part of the documentation for CasLoginContrib and is
+automatically generated from Subversion. Do not edit it! Your edits
+will be lost the next time the topic is uploaded!
+
+If you want to report an error in the topic, please raise a report at
+http://develop.twiki.org/~twiki4/cgi-bin/view/Bugs/CasLoginContrib
+-->
+
+---+!! !CasLoginContrib
+<!--
+One line description, required for extensions repository catalog.
+   * Set SHORTDESCRIPTION = CAS login manager for TWiki
+-->
+%SHORTDESCRIPTION%
+
+%TOC%
+
+---++ Usage
+
+This is a login manager for TWiki which allows integration in a [[Wikipedia:Central_Authentication_Service][CAS]] Single Sign On infrastructure.
+
+Once installed, it provides users with a "trip" to a CAS server to enter usernames and passwords when authentication is required in TWiki.
+
+To activate it, you will specify =TWiki::LoginManager::CasLogin= (or =TWiki::Client::CasLogin= for TWiki 4.1.x) in the security setup section of [[%SCRIPTURL{"configure"}%][configure]]. 
+
+
+---++ Examples
+
+Configure the following variables to activate this Login manager :
+<verbatim>
+$TWiki::cfg{LoginManager} = 'TWiki::LoginManager::CasLogin'; # or 'TWiki::Client::CasLogin'; for TWiki 4.1.x
+$TWiki::cfg{CAS}{casUrl} = 'https://yourcas.yourdomain/cas';
+$TWiki::cfg{CAS}{CAFile} = '/etc/ssl/certs/your_CAS.pem';
+</verbatim>
+
+Should you wish to trace execution of Client/LoginManager, you may set also :
+<verbatim>
+$TWiki::cfg{Trace}{Client} = 1;
+</verbatim>
+
+---++ Installation Instructions
+
+%$INSTALL_INSTRUCTIONS%
+
+---++ Contrib Info
+
+This initial attempt at packaging the <nop>CasLogin is based on work done
+by Main.CharlieReitsma (See Codev.CasLogin), modified by
+Main.OlivierBerger to work with TWiki 4.1.2, and assembled into a
+Contrib package.
+
+You'll find the original version of Main.CharlieReitsma meant for TWiki 4.2 in Codev.CasLogin.
+
+|  Contrib Author(s): | Main.CharlieReitsma, Main.OlivierBerger |
+|  Copyright: | &copy; Greg Abbas, Charlie Reitsma, Olivier Berger |
+|  License: | [[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License)]] |
+|  Contrib Version: | %$VERSION% |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  v. 0.%$VERSION% | Updating documentation, adding Config.spec, managing Contrib sources in SVN. |
+|  v. 2 (20080815) | Adding <nop>TWiki::LoginManager::CasLogin for TWiki 4.2 to ship both versions at the same time. |
+|  v. 1 (20080814) | Initial release with <nop>TWiki::Client::CasLogin, only for TWiki 4.1.2. |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Contrib Home: | http://twiki.org/cgi-bin/view/Plugins/CasLoginContrib |
+|  Feedback: | http://twiki.org/cgi-bin/view/Plugins/CasLoginContribDev |
+|  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/CasLoginContribAppraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiContribs, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the feedback topic on twiki.org instead. -->
