@@ -1,0 +1,9 @@
+TWiki::Plugins::BreadCrumbsPlugin,>=1.00,perl,Required
+TWiki::Plugins::FilterPlugin,>=1.40,perl,Required
+TWiki::Plugins::FlexWebListPlugin,>=1.20,perl,Required
+TWiki::Plugins::GluePlugin,>=2.00,perl,Required
+TWiki::Plugins::IfDefinedPlugin,>=1.01,perl,Required
+TWiki::Plugins::JQueryPlugin,>=1.0,perl,Required
+TWiki::Plugins::NatEditContrib,>=2.00,perl,Required
+TWiki::Plugins::RedDotPlugin,>=1.37,perl,Recommended
+TWiki::Plugins::JQueryTwistyPlugin,>=1.00,perl,Recommended

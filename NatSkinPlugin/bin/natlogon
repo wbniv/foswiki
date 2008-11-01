@@ -1,0 +1,50 @@
+#!/usr/bin/perl -wT
+#
+# TWiki Collaboration Platform, http://TWiki.org/
+#
+# Copyright (C) 2003-2006 Michael Daum <micha@nats.informatik.uni-hamburg.de>
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details, published at 
+# http://www.gnu.org/copyleft/gpl.html
+
+BEGIN { 
+  if ($ENV{GATEWAY_INTERFACE} !~ /^CGI-Perl/) {
+    unshift @INC, '.'; require 'setlib.cfg'; 
+  }
+}
+
+if ($ENV{GATEWAY_INTERFACE} !~ /^CGI-Perl/) {
+  use CGI::Carp qw(fatalsToBrowser);
+  use CGI;
+  use TWiki;
+}
+
+use strict;
+use TWiki::Plugins::NatSkinPlugin::Auth;
+
+&main();
+
+sub main
+{
+  my $query= new CGI;
+  my $thePathInfo = $query->path_info(); 
+  my $theRemoteUser = $query->remote_user();
+  my $theUrl = $query->url;
+  my $theUser = $query->param('username');
+
+  my($topic, $web, $scriptUrlPath, $userName) = 
+      &TWiki::initialize($thePathInfo, $theRemoteUser, undef, $theUrl, $query);
+
+  my $theTopic = $query->param('topic') || $topic;
+  my $theWeb = $query->param('web') || $web;
+
+  &TWiki::Plugins::NatSkinPlugin::Auth::logon($query, $theTopic, $theWeb);
+}
