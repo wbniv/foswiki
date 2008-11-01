@@ -1,0 +1,171 @@
+#!/usr/bin/perl -wT
+#
+# TWiki WikiClone (see wiki.pm for $wikiversion and other info)
+#
+# Based on parts of Ward Cunninghams original Wiki and JosWiki.
+# Copyright (C) 1998 Markus Peter - SPiN GmbH (warpi@spin.de)
+# Some changes by Dave Harris (drh@bhresearch.co.uk) incorporated
+# Copyright (C) 1999-2000 Peter Thoeny, peter@thoeny.com
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details, published at 
+# http://www.gnu.org/copyleft/gpl.html
+
+#This is a hack to the standard "save" script until Plugins are allowed
+#to handle form processing
+
+BEGIN { unshift @INC, '.'; require 'setlib.cfg'; }
+
+use CGI::Carp qw(fatalsToBrowser);
+use CGI;
+use TWiki;
+
+$query= new CGI;
+
+&main();
+
+sub main
+{
+
+=pod
+
+######################################################################
+# 			USE THIS CODE TO DO THE DEBUGGING            #
+######################################################################
+
+my $thePathInfo = $query->path_info(); 
+my $theRemoteUser = $query->remote_user();
+my $theUrl = $query->url;
+
+print "Content-type: text/html\n\n";
+print "Hello, world!\n";
+print "# $varweb # $vartopic # $varname # $varvalue #\n";
+print "# $thePathInfo # $theRemoteUser # $theUrl #\n";
+
+( $topic, $webName, $dummy, $userName ) = 
+	&TWiki::initialize( $thePathInfo, $theRemoteUser, $theTopic, $theUrl, $query );
+$dummy = "";  # to suppress warning	
+print "# $topic # $webName # $userName #\n";
+=cut
+
+    my $thePathInfo = $query->path_info(); 
+    my $theRemoteUser = $query->remote_user();
+    my $theUrl = $query->url;
+
+    my $varweb = $query->param( 'varweb' );
+    my $vartopic = $query->param( 'vartopic' );
+    my $varname = $query->param( 'varname' );
+    my $varvalue = $query->param( 'varvalue' );
+    my $modtype = $query->param( 'modtype' );
+
+
+    ( $topic, $webName, $dummy, $userName ) = 
+	&TWiki::initialize( $thePathInfo, $theRemoteUser, "", $theUrl, $query );
+
+    $dummy = "";  # to suppress warning	
+
+    my $wikiUserName = TWiki::Func::getWikiUserName();
+
+    $topic = $vartopic;
+    $webName = $varweb;
+
+    if( ! &TWiki::Store::webExists( $webName ) ) {
+        my $url = &TWiki::getOopsUrl( $webName, $topic, "oopsnoweb" );
+        TWiki::redirect( $query, $url );
+        return;
+    }
+
+    if( ! &TWiki::Store::topicExists( $webName, $topic ) ) {
+	TWiki::redirect( $query, &TWiki::getViewUrl( $webName, $topic ) );
+        return;
+    }
+
+    if( $varname eq "" or $varvalue eq "" or $modtype eq "" ) {
+	TWiki::redirect( $query, &TWiki::getViewUrl( $webName, $topic ) );
+        return;
+    }
+
+
+    # check access permission using POST
+    my $accessChange = TWiki::Func::checkAccessPermission( "change", $wikiUserName, "", $topic, $webName );
+
+    my $accessSetvar = TWiki::Func::checkAccessPermission( "setvar", $wikiUserName, "", $topic, $webName );
+
+    $accessSetvar = 1 if ( $varname =~ /CHANGEABLE/ );
+
+    if( ! $accessChange or ! $accessSetvar ) {
+        my $url = &TWiki::getOopsUrl( $webName, $topic, "oopsaccesschange" );
+        TWiki::redirect( $query, $url );
+        return;
+    }
+
+    my $unlock = "on";
+    my $dontNotify = "";
+    my $saveCmd = "";
+
+    #now just read in the topic file, modify it, and save
+    my ($meta, $text) =  &TWiki::Store::readTopic( $webName, $topic );
+
+    my $emptyvalue = 1; # does the TWiki Variable have an empty value?
+                        # 1 -> the value of the TWiki Var is an empty string
+                        # 0 -> the value is not an empty string
+
+    $emptyvalue = 0 if ( $text =~ /Set $varname = ./ );
+
+    if ( $modtype eq "replace" )
+    {	
+	$text =~ s/Set $varname = .*/Set $varname = $varvalue/g;
+    }
+    elsif ( $modtype eq "append" )
+    {
+    	$emptyvalue ?
+		$text =~ s/Set $varname = /Set $varname = ${varvalue}/g :
+		$text =~ s/Set $varname = (.*)/Set $varname = ${1}, ${varvalue}/g;
+    }
+    elsif ( $modtype eq "add" )
+    {
+	if ( $text !~ /Set $varname = .*${varvalue}.*/ )
+	{
+		$emptyvalue ?
+			$text =~ s/Set $varname = /Set $varname = ${varvalue}/g :
+			$text =~ s/Set $varname = (.*)/Set $varname = ${1}, ${varvalue}/g;
+	}
+    }
+    elsif ( $modtype eq "remove" )
+    {
+	if ( $text =~ /Set $varname = (.*${varvalue}.*)/ )
+	{
+		my $textpart = $1;
+		$textpart =~ s/$varvalue//g;
+		$textpart =~ s/, , /, /g;
+		$textpart =~ s/^, //g;
+		$textpart =~ s/, $//g;
+		$text =~ s/Set $varname = .*/Set $varname = $textpart/g;
+	}
+    }
+
+
+    my $error = &TWiki::Store::saveTopic( $webName, $topic, $text, $meta, $saveCmd, $unlock, $dontNotify );
+
+    if( $error ) {
+        # S. Knutson 30 Nov 2000: error happened (probably from RCS), show it
+        my $url = &TWiki::getOopsUrl( $webName, $topic, "oopssaveerr", $error );
+        TWiki::redirect( $query, $url );
+    } else {
+	# We use referer.... it may not be supported by all browsers
+	
+	if ( $query->referer() ne "" ) {
+            TWiki::redirect( $query, $query->referer() );
+	}
+	else {
+            TWiki::redirect( $query, &TWiki::getViewUrl( $webName, $topic ) );
+	}
+    }
+}
