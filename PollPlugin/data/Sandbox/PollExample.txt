@@ -1,0 +1,99 @@
+%META:TOPICINFO{author="guest" date="1064045280" format="1.0" version="1.4"}%
+---++ Poll Example
+
+This example shows:
+	* more than one poll in the same topic
+	* multidimensional polls
+	* cumulative results
+	* ex-aequo results collected together or separated
+	* votes stored the end of this topic
+	* access control
+
+See also: SmiliesPoll, %TWIKIWEB%.PollPlugin
+
+----
+<FORM ACTION="%SCRIPTURLPATH%/poll%SCRIPTSUFFIX%/%WEB%/%TOPIC%" method="POST">
+<input type="hidden" name="id" value="example1"/>
+Choose your 3 preferred plugins:
+	* if you change mind you can re-vote ... only last vote is valid
+	* if you like, you can choose same plugin 2 or 3 times
+
+<center>
+
+<SELECT NAME="Uno" size="1">
+	%TOPICLIST{" <option>$name</option>"}%
+</SELECT>
+<SELECT NAME="Due" size="1">
+	%TOPICLIST{" <option>$name</option>"}%
+</SELECT>
+<SELECT NAME="Tre" size="1">
+	%TOPICLIST{" <option>$name</option>"}%
+</SELECT>
+<INPUT type=submit value="Vote!"/>
+
+<table><td>
+%POLLRESULTS{id="example1" join="off" limit="10"}%
+</td><td>
+%POLLRESULTS{id="example1" join="on" }%
+</table>
+</center>
+
+</FORM>
+
+----
+<FORM ACTION="%SCRIPTURLPATH%/poll%SCRIPTSUFFIX%/%WEB%/%TOPIC%" method="POST">
+<input type="hidden" name="id" value="example2"/>
+Choose your preferred food and drink:
+	* if you change mind you can re-vote ... only last vote is valid
+
+<center>
+Preferred food:
+<SELECT NAME="Food" size="1">
+	<option></option>
+	<option>Pizza</option>
+	<option>Pasta</option>
+	<option>Pamigiano</option>
+	<option>Sushi</option>
+	<option>Sashimi</option>
+</SELECT>
+Preferred drink:
+<SELECT NAME="Drink" size="1">
+	<option></option>
+	<option>Water</option>
+	<option>Red wine</option>
+	<option>Beer</option>
+	<option>White wine</option>
+	<option>Coffee</option>
+	<option>American coffee</option>
+</SELECT>
+	<INPUT type=submit value="Vote!"/>
+
+%POLLRESULTS{header="| *The first 3 are* | *Votes* | *%* |" id="example2"}%
+</center>
+
+</FORM>
+----
+
+	* Set ALLOWTOPICRENAME = %MAINWEB%.TWikiAdminGroup
+	* Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
+	* Set DENYTOPICVOTE = %MAINWEB%.TWikiGuest
+
+<!--TWikiPoll-->
+| <pollId/> | <pollDate/> | <pollUserId/> | <pollItems/>
+<!--TWikiPoll-->
+| example2 | 19 Sep 2003 | H/2XIq2cLNaycgioqwM7w |  White wine | Pasta |
+| example1 | 19 Sep 2003 | H/2XIq2cNayacgioqwM7w |  ActionTrackerPlugin | ActionTrackerPlugin | ActionTrackerPlugin |
+| example1 | 19 Sep 2003 | H/2XIq2cLNayacgiqwM7w |  CachePlugin | ActionTrackerPlugin | ActionTrackerPlugin |
+| example2 | 19 Sep 2003 | H/2Iq2cLNayacgioqwM7w |  Beer | Pamigiano |
+| example2 | 19 Sep 2003 | H/XIq2LNayacgioqwM7w |  Red wine | Pasta |
+| example1 | 19 Sep 2003 | H/2XIq2cLyacgioqwM7w |  PollPlugin | ActionTrackerPlugin | ActionTrackerPlugin |
+
+| example1 | 19 Sep 2003 | H/2XIq2cLNaycgioqwM7w |  ChartPluginTestsRemote | ActionTrackerPlugin | BugzillaLinkPlugin |
+
+
+| example2 | 19 Sep 2003 | H/2XIq2cLNayacgoqwM7w |  Coffee | Pamigiano |
+| example2 | 19 Sep 2003 | H/2XIq2cLNayacgiowM7w |  White wine | Pasta |
+| example1 | 20 Sep 2003 | H/2XIq2cLNayacgioqw7w |  CopyCatSkin | BeautifierPlugin | ActionTrackerPlugin |
+| example2 | 20 Sep 2003 | H/2XIq2cLNayacgioqwM7w |  Red wine | Pamigiano |
+| example1 | 20 Sep 2003 | H/2XIq2cLNayacgioqwM7w |  CachePlugin | CachePlugin | CopyCatSkin |
+

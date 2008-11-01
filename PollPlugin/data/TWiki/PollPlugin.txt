@@ -1,0 +1,142 @@
+%META:TOPICINFO{author="guest" date="1064043540" format="1.0" version="1.6"}%
+<DIV class="sidebar">
+%TOC%
+</DIV>
+---++ %TOPIC%
+
+This is a plugin that handles Polls:
+	* multiple polls (each one has its *id*)
+	* the users are "anonymous" (their vote is stored with an MD5 id)
+	* all votes are attached at the end of a topic (the same or a different one)
+	* you can vote several issues together 
+		* you can show the cumulative rank (e.g. you can have 3 preferences counted together)
+	* only last vote of each user's is counted
+		* each user can change his/her mind and vote again
+		* or even cancel his/her vote (by doing an empty vote, if allowed)
+	* you can select the allowed voters with (ALLOW/DENY)TOPIC<font color=red>VOTE</font>
+	* all the ex-aequo winners can be
+		* collected together (I like it this way :-) )
+		* or listed separately
+
+---+++ How to set-up a Poll
+	* Define an html FORM with ==action=".../poll/&lt;web>/&lt;topic>"==
+		* the ==web== and ==topic== parameters sets where the votes should be accumulated
+		* if you want to collect votes at the end of the same topic use ==action=".../poll/%<nop>WEB%/%<nop>TOPIC%"==
+	* each value of the form is appended to the topic as a table row (a "vote"):
+		* the first 3 columns are FIXED, the remaining ones contain the vote values
+<verbatim>
+| &lt;pollId> | &lt;date> | &lt;userId> | item1 | item2 | ... |
+</verbatim>
+	* the topic collecting the votes should follow the syntax:
+<verbatim>
+here goes the topic normal text
+<!--TWikiPoll-->
+here goes the vote definition
+<!--TWikiPoll-->
+here go all the votes
+</verbatim>
+	* a vote definition is written this way:
+		* __BEWARE:__ this is the only valid syntax for multidimensional polls 
+<verbatim>
+| <pollId/> | <pollDate/> | <pollUserId/> | <pollItem1/> | <pollItem2/> | <pollItem3/> |<pollItem4/> | ... |
+</verbatim>
+	* if you are interested only in collective results (i.e. rank all the values together) you can use the shorter notation (note the missing final "|")
+<verbatim>
+| <pollId/> | <pollDate/> | <pollUserId/> | <pollItems/> 
+</verbatim>
+
+---+++ How you show the results
+
+| *When you  type* | *You get* |
+| %<nop>POLLRESULTS% | a table of counts, sorted in decreasing count order |
+| %<nop>POLLRESULTS{&lt;args>}% | a table of counts, sorted in decreasing count order |
+
+---+++ Parameters
+The POLLRESULTS tag accepts the following parameters:
+|  *Parameter*  |  *Default value*  | *Description*												|
+|  id			  |  'id0'				| needed to vote different issues in the same page |
+|  web			 |  %<nop>WEB%		 | web containing the topic collecting the votes	 |
+|  topic		  |  %<nop>TOPIC%	  | topic collecting the votes							  |
+|  limit		  |  5					 | number of "winners" shown								|
+|  itemformat	|  '$item'			 | how the item voted is formatted						|
+|  countformat  |  '$count'			| how the count is formatted							  |
+|  percformat	|  '$perc%'			| how the percentage is formatted						|
+|  lineformat	|  see below		  | how a line is formatted								  |
+|  exaequosep	|  ', '				 | separator of ex-aequo (same-count) votes			|
+|  header		 |  see below		  | header of the result table							  |
+|  join			|  'on'				 | if 'on' then all ex-aequo are collected in a single row  |
+
+The default value of:
+	* ==lineformat== is:
+<verbatim>
+|  $i{0}  |  $c{0} ($p{0})  |
+</verbatim>
+	* ==header== is:
+<verbatim>
+| *The winners are* | *Votes* |
+</verbatim>
+
+---+++ Format arguments
+The ==itemformat== parameters can contain the following arguments:
+	* ==$item==: the item voted
+The ==countformat== parameters can contain the following arguments:
+	* ==$count==: the number of votes
+The ==itemformat== parameters can contain the following arguments:
+	* ==$perc==: the percentage
+The ==lineformat== parameters can contain the following arguments:
+	* ==$i{n}==: item of column ==n==
+	* ==$c{n}==: count of column ==n==
+	* ==$p{n}==: percentage of column ==n==
+	* columns indexes:
+		* columns start with index ==n=1==
+		* column ==n=0== is special, and contains the cumulative count over all columns
+			* this way you allow more than one preference
+
+---++ Installation
+	* Install the module CPAN:Digest::MD5
+	* Unzip *<nop>%TOPIC%.zip* in your twiki installation dir.
+	* in the *bin* directory, add *poll* among the protected scripts (i.e. modify the ==.htaccess== file so that *poll* is protected the same way *save* is)
+<verbatim>
+<Files poll>
+	require valid-user
+</Files>
+</verbatim>
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+---++ Tips and Tricks
+	* DO NOT use the short line syntax for multidimensional polls!
+	* DO NOT write ==$p{0}%== inside the ==lineformat== argument *in the tag*, else you close the tag wrongly
+		* use the PERCFORMAT parameter
+
+---++ Examples
+See: Sandbox.PollExample or Sandbox.SmiliesPoll 
+
+---++ TODO
+	* add a deadline (only votes before date X are valid) or a CLOSED parameter
+----
+---++ Plugin Settings
+	* Short description of this plugin
+		* Set SHORTDESCRIPTION = A plugin to collect votes (Polls)
+	* This is the pattern recognized and transformed by the PollPlugin
+<verbatim>
+		* Set SYNTAX = %POLLRESULTS%|%POLLRESULTS{.*?}%|<!--TWikiPoll-->
+</verbatim>
+	* Number of winners shown
+		* Set LIMIT = 3
+	* How each voted item is formatted
+		* Set ITEMFORMAT = $item
+	* How each count is formatted
+		* Set COUNTFORMAT = $count
+	* How each percentage is formatted
+		* Set PERCFORMAT = $perc%
+	* How is the header formatted
+		* Set HEADER = |  *Winners!*  |  *Votes*  |  *Perc.*  |
+	* How each line of the resulting table is formatted
+		* Set LINEFORMAT = |  $i{0}  |  $c{0}  |  $p{0} |
+	* Do we want all the ex-aequo items collected together? (on/off)
+		* Set JOIN = on
+	* How do we separate the ex-aequo values?
+<verbatim>
+		* Set EXAEQUOSEP =  <br/> 
+</verbatim>
+
+-- TWiki:Main.AndreaSterbini - 20 Sep 2003

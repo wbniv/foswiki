@@ -1,0 +1,68 @@
+%META:TOPICINFO{author="guest" date="1063987680" format="1.0" version="1.1"}%
+%META:TOPICPARENT{name="TWiki.PollPlugin"}%
+---+++ A Smiling example of the TWiki.PollPlugin
+
+__NOTE:__ To use this example you must install also the Main:Plugins.SmiliesPlugin.
+
+This example shows:
+	* votes stored at the end of this topic
+	* some formatting tricks
+	* a multidimensional Poll
+	* cumulative and separate results
+See also : PollExample
+----
+
+Please, tell us how do you feel today ...
+	* Only your last vote counts 
+	* You can even cancel your vote by doing an empty vote ...
+
+<CENTER>
+<FORM ACTION="%SCRIPTURLPATH%/poll%SCRIPTSUFFIX%/%WEB%/%TOPIC%" method="POST">
+%TABLE{databg="white"}%
+|  :-) <INPUT type=radio name="Feeling" value=":-)"> \
+	|  :-( <INPUT type=radio name="Feeling" value=":-("> \
+	|  :cool: <INPUT type=radio name="Feeling" value=":cool:"> \
+	|  :o <INPUT type=radio name="Feeling" value=":o"> \
+	|  :D <INPUT type=radio name="Feeling" value=":D"> \
+	|  ;-) <INPUT type=radio name="Feeling" value=";-)"> \
+	|  :p <INPUT type=radio name="Feeling" value=":p"> \
+	|  :rolleyes: <INPUT type=radio name="Feeling" value=":rolleyes:"> \
+	|  :mad: <INPUT type=radio name="Feeling" value=":mad:"> \
+	|  :eek: <INPUT type=radio name="Feeling" value=":eek:"> \
+	|  :confused: <INPUT type=radio name="Feeling" value=":confused:"> |
+
+Are you happy?
+<select name="Happy">
+	<option>Yes</option>
+	<option>No</option>
+</select>
+
+<INPUT type=submit value="			 Vote !			 ">
+</CENTER>
+</FORM>
+<center>
+%POLLRESULTS{
+	limit="3" 
+	header="| *Cumulative* | *Votes* | | *Feeling* | *Votes* | | *Happy?* | *Votes* |" 
+	percformat="$perc%" 
+	exequosep=" " 
+	lineformat="|  $i{0}  |  $c{0}  | |  $i{1}  | <TABLE WIDTH=100 CELLSPACING=0 CELLPADDING=0><TR><TD BGCOLOR=lightblue WIDTH='$p{1}'>$c{1}</TD><TD bgcolor=lightcyan>&nbsp;</TD><TR></TABLE>  | |  $i{2}  | $c{2} ($p{2})  |"
+}%
+</center>
+
+----
+
+	* Set DENYTOPICVOTE = %MAINWEB%.TWikiGuest
+
+<!--TWikiPoll-->
+| <pollId/> | <pollDate/> | <pollUserId/> | <pollFeeling/> | <pollHappy/> |
+<!--TWikiPoll-->
+| id0 | 19 Sep 2003 | H/2XIq2cLNayacgoqwM7w |  :cool: | Yes |
+| id0 | 19 Sep 2003 | H/2XIq2LNayacgioqwM7w |  :D | No |
+| id0 | 19 Sep 2003 | H/2XIq2cLayacgioqwM7w |  :cool: | Yes |
+| id0 | 19 Sep 2003 | H/XIq2cLNayacgioqwM7w |  :D | No |
+| id0 | 19 Sep 2003 | H/2XIq2cLNayacgiowM7w |  :cool: | Yes |
+| id0 | 19 Sep 2003 | H/2XIq2LNayacgioqwM7w |  :D | No |
+| id0 | 19 Sep 2003 | H/2XIq2cLNayacgioqwM7w |  | Yes |
+
+%META:FILEATTACHMENT{name="redbar.gif" attr="h" comment="Histogram red color" date="1005779244" path="redbar.gif" size="61" user="AndreaSterbini" version="1.1"}%

@@ -1,0 +1,114 @@
+#!/usr/bin/perl -wT
+#
+# Copyright (C) 2001 Andrea Sterbini, a.sterbini@flashnet.it
+# Parts copied by the "edit" script ((C) Peter Thoeny)
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details, published at 
+# http://www.gnu.org/copyleft/gpl.html
+#
+
+BEGIN {
+    # Set library paths in @INC, at compile time
+    unshift @INC, '.';
+    require 'setlib.cfg';
+}
+use CGI::Carp qw(fatalsToBrowser);
+use CGI;
+use TWiki;
+
+
+$query= new CGI;
+
+&main();
+
+sub main
+{
+    my $thePathInfo = $query->path_info(); 
+    my $theRemoteUser = $query->remote_user();
+    my $theTopic = $query->param( 'topic' );
+    my $theUrl = $query->url;
+
+    ( $topic, $webName, $dummy, $userName ) = 
+	&TWiki::initialize( $thePathInfo, $theRemoteUser, $theTopic, $theUrl );
+
+    my $wikiUserName = &TWiki::userToWikiName( $userName );
+
+    if( ! &TWiki::Store::webExists( $webName ) ) {
+	my $tmpl= &TWiki::Store::readTemplate( "noweb" );
+	$tmpl = &TWiki::handleCommonTags( $tmpl, $topic );
+	print $tmpl;
+	return;
+    }
+
+    # check access permission
+    if( ! &TWiki::Access::checkAccessPermission( "vote", $wikiUserName, "", $topic, $webName ) ) {
+        my $url = &TWiki::getOopsUrl( $webName, $topic, "oopsaccessvote" );
+        print $query->redirect( $url );
+        return;
+    }
+    
+    # check if topic is locked
+    my( $lockUser, $lockTime ) = &TWiki::Store::topicIsLockedBy( $webName, $topic );
+    if( $lockUser ) {
+        # warn user that other person is editing this topic
+        $lockUser = &TWiki::userToWikiName( $lockUser );
+        use integer;
+        $lockTime = ( $lockTime / 60 ) + 1; # convert to minutes
+        my $editLock = $TWiki::editLockTime / 60;
+        # PTh 20 Jun 2000: changed to getOopsUrl
+        my $url = &TWiki::getOopsUrl( $webName, $topic, "oopslocked",
+            $lockUser, $editLock, $lockTime );
+        print $query->redirect( $url );
+	return;
+    }
+
+    # normal case: Get poll table
+    my $tmp = &TWiki::Store::readWebTopic( $webName, $topic );
+    my ( $tmp1, $pollLine, $tmp2 ) = split( /<!--TWikiPoll-->/, $tmp );
+
+    if( ! $pollLine ) {
+        $pollLine = "| <pollDate> *Date* </pollDate> | <pollUser> *User* </pollUser> | <!--pollItems-->";
+	&appendToTopic( $topic, $webName, "<!--TWikiPoll-->\n$pollLine\n<!--TWikiPoll-->" );
+    }
+
+    # strip newlines ...
+    $pollLine =~ s/\n|\r//go;
+
+    my $date = &TWiki::getLocaldate();
+
+    $pollLine =~ s/<pollDate>.*<\/pollDate>/$date/go;
+    $pollLine =~ s/<pollUser>.*<\/pollUser>/$wikiUserName/go;
+
+    # get text and other parameters
+    my $value = "";
+    my $item = "";
+    my $pollItems = "";
+    foreach $item ( $query->param ) {
+	$value = $query->param($item);
+	$pollItems .= " $value |";
+	$pollLine =~ s/<poll$item>.*<\/poll$item>/$value/g;
+    }
+    $pollLine =~ s/<\!\-\-pollItems\-\->/$pollItems/go;
+
+    &appendToTopic( $topic, $webName, "\n$pollLine" );
+
+    print $query->redirect( &TWiki::getViewUrl( "", $topic ) );
+}
+
+#==========================================
+sub appendToTopic {
+    my ( $topic, $web, $line ) = @_;
+    my $filename = "$TWiki::dataDir/$web/$topic.txt";
+
+    open( FILE, ">>$filename" );
+    print FILE  "$line";
+    close( FILE );
+}
