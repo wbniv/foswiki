@@ -1,0 +1,360 @@
+head	1.9;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.9
+date	2006.05.08.15.53.24;	author CraigMeyer;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2006.04.11.20.51.15;	author AdminUser;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2006.04.11.19.37.27;	author AdminUser;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2006.04.11.18.18.51;	author AdminUser;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2006.04.11.15.40.01;	author AdminUser;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2006.04.11.03.39.55;	author AdminUser;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2006.04.06.15.41.06;	author AdminUser;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2006.02.21.22.00.11;	author MeredithLesly;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2006.02.21.20.22.10;	author MeredithLesly;	state Exp;
+branches;
+next	;
+
+
+desc
+@none
+@
+
+
+1.9
+log
+@none
+@
+text
+@%META:TOPICINFO{author="CraigMeyer" date="1147103604" format="1.1" version="1.9"}%
+---+!! <nop>%TOPIC%
+
+This plugin has been extended to support resizing, and alignment control.  The new TAG is
+=%<nop>IMAGE{"[web].[topic]/image.ext;" web="&lt;web&gt;" topic="&lt;topic&gt;" type="thumb|thumbnail|frame" align="left|center|right" size="&lt<nnn&gt;" caption="caption text"}%=
+
+The original TAG =%<nop>IMG{"foo.gif" web="&lt;web&gt;" topic="&lt;topic&gt;"}%= is still supported.
+of using HTML syntax. 
+
+
+
+%TOC%
+
+---++ Syntax Rules
+
+---+++ =%<nop>IMG{"foo.gif"}%
+
+   * image name is mandatory, web and/or topic optional (defaulting to the current web and topic respectively
+   * Supports the img attributes 'align', 'border', 'height', 'width', 'id', and 'class
+   * Always puts in an alt tag with a value of '' if not specified. This is per XHTML spec.
+
+One good addition would be the auto-addition of the image size when possible, since I believe that pages load faster that way. This may require imagemagick, however.
+
+---+++ =%<nop>IMAGE{"foo.gif" ...}%
+
+   * Initial image name is required.
+   * The other arguments are optional and are order independent
+
+     | *Option* |  *Values*  |  *Default*  |
+     |  *web*  |  "&lt;web&gt;"  |  (current web)  |
+     |  *topic*  |  "&lt;topic&gt;"  |  (current topic)  |
+     |  *type*  |  "thumb&#124;thumbnail&#124;frame"  |  empty  |
+     |  *align*  |  "left&#124;center&#124;right&#124;none"  |  "right"  |
+     |  *size*  |  "&lt;nn&gt;"  |  (image width)  |
+     |  *caption*  |  "&lt;caption text&gt;"  |  empty  |
+   
+   * The Wikipedia format is also supported (see [[Wikipedia:Wikipedia:Extended_image_syntax]])
+   
+---++ Examples
+
+   * =%<nop>IMG{"foo.gif"}%=
+   * =%<nop>IMG{"foo.gif" topic="ADifferentTopic"}%=
+   * =%<nop>IMG{"foo.gif" align="right"}%=
+   
+   * =%<nop>IMAGE{"foo.gif" size="100" align="left" caption="This is my caption"}%=  (resize to 100 pixels, text flows right, with caption)
+   * =%<nop>IMAGE{"foo.gif" type="thumb" align="center"}%=  (Resize to %<nop>IMGPLUGIN_THUMBNAIL% size, and center image)
+   
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>IMGPLUGIN_SHORTDESCRIPTION%==
+
+   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = Allows TWiki variable-style insertion of images in topics
+
+   * Debug plugin: (See output in =data/debug.txt=)
+      * Set DEBUG = 0
+      
+   * Set Defaults Thumbnail size (defaults to 180)
+      * Set THUMBNAIL_SIZE = 180
+      
+   * Set Location of [[http://www.imagemagick.org/script/convert.php ][ ImageMagick]] *convert* utility
+      * Set CONVERT_PROG = /usr/local/bin/convert
+      
+   * Set Location of [[http://www.imagemagick.org/script/identify.php ][ ImageMagick]] *identify* utility
+      * Set IDENTIFY_PROG = /usr/local/bin/identify
+
+   * Location of ImgPlugin StyleSheet
+      * Set IMGPLUGIN_STYLE = %PUBURLPATH%/TWiki/ImgPlugin/ImgPlugin.css
+
+
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the TWiki server. 
+
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+     | ==pub/TWiki/ImgPlugin/ImgPlugin.css== | Plugin supporting CSS |
+     | ==data/Sandbox/ImgPluginEx2.txt== | Example usage of Plugin | 
+     | ==data/Sandbox/ImgPluginEx2.txt,v== | Example usage of Plugin repository | 
+     | ==pub/Sandbox/ImgPluginEx2/== | attachments for Example |
+     | ==pub/Sandbox/ImgPluginEx2/Buckingham_palace_Copyright2003KaihsuTai.jpg== | Image 1/4 |
+     | ==pub/Sandbox/ImgPluginEx2/Buckingham_palace_Copyright2003KaihsuTai.jpg,v== | respository |
+     | ==pub/Sandbox/ImgPluginEx2/STS-32_crew.jpg== | Image 2/4 |
+     | ==pub/Sandbox/ImgPluginEx2/STS-32_crew.jpg,v== | respository |
+     | ==pub/Sandbox/ImgPluginEx2/Tst.png== | Image 3/4 |
+     | ==pub/Sandbox/ImgPluginEx2/Tst.png,v== | respository |
+     | ==pub/Sandbox/ImgPluginEx2/Westminstpalace.jpg== | Image 4/4 |
+     | ==pub/Sandbox/ImgPluginEx2/Westminstpalace.jpg,v== | respository |
+
+   * Configure the Plugin:
+      * TWiki 4.0 and up: Run the [[%SCRIPTURL%/configure%SCRIPTSUFFIX%][configure]] script to enable the Plugin
+      * Change the Plugin settings as needed
+   * Test if the installation was successful:
+      * For complete example see ImgPluginEx
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.MeredithLesly |
+|  Copyright: | &copy; 2006, TWiki:Main.MeredithLesly |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | 8 May 2006 (V1.100) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  8 May 2006: | Extended version w/ =%<nop>IMAGE{}%= tag | 
+|  21 Feb 2006: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+
+-- TWiki:Main.MeredithLesly - 21 Feb 2006
+
+
+%META:FILEATTACHMENT{name="ImgPlugin.css" attachment="ImgPlugin.css" attr="" comment="" date="1144726795" path="ImgPlugin.css" size="1367" stream="ImgPlugin.css" user="Main.AdminUser" version="1"}%
+@
+
+
+1.8
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="AdminUser" date="1144788675" format="1.1" version="1.8"}%
+d28 1
+d79 1
+d84 13
+d108 1
+a108 1
+|  Plugin Version: | 21 Feb 2006 (V1.000) |
+d110 1
+@
+
+
+1.7
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="AdminUser" date="1144784247" format="1.1" version="1.7"}%
+d68 1
+a68 1
+      * Set IMGPLUGIN_STYLE = %ATTACHURL%/ImgPlugin.css
+@
+
+
+1.6
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="AdminUser" date="1144779531" format="1.1" version="1.6"}%
+d59 1
+a59 1
+      * Set IMG_THUMBNAIL = 180
+d61 2
+a62 2
+   * Set Location of ImageMagick *convert* utility
+      * Set CONVERT_LOCATION = /usr/local/bin/convert
+d64 6
+a69 2
+   * Set Location of ImageMagick *identify* utility
+      * Set IDENTIFY_LOCATION = /usr/local/bin/identify
+@
+
+
+1.5
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="AdminUser" date="1144770001" format="1.1" version="1.5"}%
+d28 8
+a35 6
+      * *web*="&lt;web&gt;"   - (default is current web)
+      * *topic*="&lt;topic&gt;" - (default is current topic)
+      * *type*="thumb|thumbnail|frame" - (default is empty)
+      * *align*="left|center|right|none" - (default is =right=)
+      * *size*="&lt;nn&gt;" - (default is image width)
+      * *caption*="&lt;caption text&gt;" - (default is empty)
+d82 1
+a82 1
+      * _enter samples here_
+@
+
+
+1.4
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="AdminUser" date="1144726795" format="1.1" version="1.4"}%
+d4 5
+a8 3
+This is a fairly winky-dink plugin that allows people to use =%<nop>IMG{"foo.gif"}%= instead
+of using HTML syntax. It allows specification of the standard attributes
+as well as an optional =web=&lt;web&gt;= and/or =topic=&lt;topic&gt;=.
+a9 1
+Another small step in the eradication of html in TWiki!
+d16 2
+d24 12
+d41 4
+d55 10
+d102 1
+@
+
+
+1.3
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="AdminUser" date="1144338066" format="1.1" version="1.3"}%
+d73 2
+@
+
+
+1.2
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="MeredithLesly" date="1140559211" format="1.1" version="1.2"}%
+d4 3
+a6 3
+This is a fairly winky-dink plugin that allows people to use %IMG{"foo.gif"}% instead
+of <img src="%ATTACHURL%/foo.gif" />. It allows specification of the standard attributes
+as well as an optional web=<web> and/or topic=<topic>.
+d17 3
+d23 3
+a25 3
+   * %img{"foo.gif"}%
+   * %img{"foo.gif" topic="ADifferentTopic"}%
+   * %img{"foo.gif" align="right"}%
+d29 1
+a29 1
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>NEWPLUGIN_SHORTDESCRIPTION%==
+d32 1
+a32 1
+      * Set SHORTDESCRIPTION = Allows TML-style insertion of images in topics
+a72 1
+
+@
+
+
+1.1
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="MeredithLesly" date="1140553330" format="1.1" version="1.1"}%
+d4 6
+a9 1
+A small plugin to let people insert images TWiki-style.
+d15 2
+a16 2
+   * 
+   * 
+d20 3
+a22 2
+   * 
+   * 
+d29 1
+a29 1
+      * Set SHORTDESCRIPTION = _one line description here_
+a33 3
+   * My own setting:
+      * Set HOWTO = got it!
+
+@

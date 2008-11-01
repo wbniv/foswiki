@@ -1,0 +1,81 @@
+%META:TOPICINFO{author="MeredithLesly" date="1150408134" format="1.1" reprev="1.2" version="1.2"}%
+---+!! <nop>%TOPIC%
+
+This is a fairly winky-dink plugin that allows people to use =%<nop>IMG{"foo.gif"}%= instead
+of using HTML syntax. It allows specification of the standard attributes
+as well as an optional =web=&lt;web&gt;= and/or =topic=&lt;topic&gt;=.
+
+Another small step in the eradication of html in TWiki!
+
+
+%TOC%
+
+---++ Syntax Rules
+
+   * image name is mandatory, web and/or topic optional (defaulting to the current web and topic respectively
+   * Supports the img attributes 'align', 'border', 'height', 'width', 'id', and 'class
+   * Always puts in an alt tag with a value of '' if not specified. This is per XHTML spec.
+
+| *Argument* | *Meaning* | *Default* | *Required* |
+| =name= | attachment name | none | yes |
+| =web= | web name of the attachment | current web | no |
+| =topic= | topic name of the attachment | current topic | no |
+| =alt= | alternate text tag | '' | no |
+| =caption= | caption to go with the image | none | no |
+| =captionplacement= | one of =right=, =left=, =top=, =bottom= | =right= | no |
+
+
+One good addition would be the auto-addition of the image size when possible, since I believe that pages load faster that way. This may require imagemagick, however.
+
+---++ Examples
+
+   * =%<nop>IMG{"foo.gif"}%=
+   * =%<nop>IMG{"foo.gif" topic="ADifferentTopic"}%=
+   * =%<nop>IMG{"foo.gif" align="right"}%=
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>IMGPLUGIN_SHORTDESCRIPTION%==
+
+   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = Allows TWiki variable-style insertion of images in topics
+
+   * Debug plugin: (See output in =data/debug.txt=)
+      * Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the TWiki server. 
+
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+   * Configure the Plugin:
+      * TWiki 4.0 and up: Run the [[%SCRIPTURL%/configure%SCRIPTSUFFIX%][configure]] script to enable the Plugin
+      * Change the Plugin settings as needed
+   * Test if the installation was successful:
+      * _enter samples here_
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.MeredithLesly |
+|  Copyright: | &copy; 2006, TWiki:Main.MeredithLesly |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | 21 Feb 2006 (V1.000) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  21 Feb 2006: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+
+-- TWiki:Main.MeredithLesly - 21 Feb 2006
