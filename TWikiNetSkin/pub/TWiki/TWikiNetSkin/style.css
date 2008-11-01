@@ -1,0 +1,1360 @@
+/*	-----------------------------------------------------------
+	STYLE
+	Appearance: margins, padding, fonts, borders
+	-----------------------------------------------------------	*/
+	
+
+/*	----------------------------------------------------------------------------
+	CONSTANTS
+	
+	Sizes
+	----------------------------------------
+	S1 line-height											1.5em
+	S2 somewhat smaller font size							94%
+	S3 small font size, twikiSmall							font-size:86%;
+	S4 horizontal bar padding (h2, patternTop)				5px
+	S5 form and attachment padding							20px
+	S6 left margin left bar									1em
+
+	------------------------------------------------------------------------- */
+
+/* GENERAL HTML ELEMENTS */
+
+html body {
+	font-size:104%; /* to change the site's font size, change #patternPage below */
+	voice-family:"\"}\""; 
+	voice-family:inherit;
+	font-size:small;
+}
+html>body { /* Mozilla */
+	font-size:small;	
+}
+th {
+	line-height:1.15em;
+}
+label {
+	padding:.15em .3em .15em 0; /* same vertical padding as twikiInputField */
+}
+strong, b {
+	font-weight:bold;
+}
+hr {
+	height:1px;
+	border:none;
+}
+/* put overflow pre in a scroll area */
+pre {
+    width:100%;
+    margin:1em 0; /* Win IE tries to make this bigger otherwise */
+    font-size:13px;
+}
+/* IE behavior for pre is defined in css.pattern.tmpl in conditional comment */
+html>body pre { /* hide from IE */
+	/*\*/ overflow:auto !important; /* */ overflow:scroll; width:auto; /* for Mac Safari */
+}
+ol, ul {
+	margin-top:0;
+}
+ol li, ul li {}
+blockquote {
+	padding:.5em 1.25em;
+	border-style:solid;
+	border-width:0 0 0 3px;
+}
+
+/* Text */
+
+h1, h2, h3, h4, h5, h6 {
+	padding:0;
+	margin:1em 0 .4em 0;
+}
+h1 {
+	margin-top:.5em;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-weight:normal;
+	line-height:1.1em;
+}
+h1 { font-size:190%; }
+h2 { font-size:170%; }
+h3 { font-size:155%; font-weight:normal; }
+h4 { font-size:140%; font-weight:normal; }
+h5 { font-size:132%; font-weight:bold; }
+h6 { font-size:120%; font-weight:bold; }
+h1.patternTemplateTitle {
+	font-size:180%;
+	text-align:center;
+}
+h2.patternTemplateTitle {
+	text-align:center;
+	margin-top:.5em;
+	background:none;
+	border:none;
+}
+/* Links */
+/* somehow the twikiNewLink style have to be before the general link styles */
+.twikiNewLink {
+	border-width:0 0 1px 0;
+	border-style:solid;
+}
+.twikiNewLink a {
+	text-decoration:none;
+	margin-left:1px;
+}
+.twikiNewLink a sup {
+	text-align:center;
+	padding:0 2px;
+	vertical-align:baseline;
+	font-size:100%;
+	text-decoration:none;
+}
+.twikiNewLink a:link sup,
+.twikiNewLink a:visited sup {
+	border-width:1px;
+	border-style:solid;
+	text-decoration:none;
+}
+.twikiNewLink a:hover sup {
+	text-decoration:none;
+}
+
+:link:focus,
+:visited:focus,
+:link,
+:visited,
+:link:active,
+:visited:active {
+	text-decoration:underline;
+}
+:link:hover,
+:visited:hover {
+	text-decoration:none;
+}
+img {
+	vertical-align:text-bottom;
+	border:0;
+}
+
+/* Form elements */
+form { 
+	display:inline;
+	margin:0;
+	padding:0;
+}
+textarea,
+input,
+select {
+	vertical-align:middle;
+	font-family:arial, verdana, sans-serif;
+	font-size:100%;
+	border-width:1px;
+	border-style:solid;
+}
+.twikiTextarea {
+	padding:1px;
+}
+.twikiSubmit,
+.twikiSubmitDisabled,
+.twikiButton,
+.twikiButtonDisabled,
+.twikiButtonCancel,
+a.twikiButton,
+a.twikiSubmit,
+.twikiCheckbox {
+	border-width:1px;
+	border-style:solid;
+	padding:.1em .25em;
+	font-weight:bold;
+	vertical-align:middle;
+	text-align:center;
+}
+.twikiSubmit,
+.twikiSubmitDisabled,
+.twikiButton,
+.twikiButtonDisabled,
+.twikiButtonCancel,
+.twikiSubmit:hover,
+.twikiSubmitDisabled:hover,
+.twikiButton:hover,
+.twikiSubmit:active,
+.twikiSubmitDisabled:active,
+.twikiButton:active {
+	cursor:default;
+	outline:none;
+}
+a.twikiButton,
+a.twikiButton:hover,
+a.twikiButton:link:active,
+a.twikiButton:visited:active,
+a.twikiSubmit,
+a.twikiSubmit:hover,
+a.twikiSubmit:link:active,
+a.twikiSubmit:visited:active {
+	text-decoration:none;
+}
+
+.twikiCheckbox,
+.twikiRadioButton {
+	margin:1px .25em 1px .1em;
+	padding:0 0 0 .5em;
+	border:0;
+}
+.twikiTextarea,
+.twikiInputField,
+.twikiInputFieldDisabled,
+.twikiInputFieldReadOnly,
+.twikiSelect {
+	border-width:1px;
+	border-style:solid;
+}
+.twikiTextarea,
+.twikiInputField,
+.twikiInputFieldDisabled,
+.twikiInputFieldReadOnly {
+	font-size:100%;
+}
+.twikiInputField,
+.twikiInputFieldDisabled,
+.twikiInputFieldReadOnly {
+	padding:3px 9px;
+}
+.twikiSelect {
+	padding:0 0 0 7px;
+}
+
+/*	-----------------------------------------------------------
+	Plugin elements
+	-----------------------------------------------------------	*/
+
+/* TagMePlugin */
+.tagMePlugin select {
+	margin:0 .25em 0 0;
+}
+.tagMePlugin input { 
+	border:0px;
+}
+
+/* RevCommentPlugin */
+.patternEditPage .revComment {
+	padding:1em 0 2em 0;
+}
+
+/* EditTablePlugin */
+.editTable .twikiTable {
+	margin:0 0 2px 0;
+}
+.editTableEditImageButton {
+	border:none;
+}
+
+/* TablePlugin */
+.twikiTable {
+	border-style:solid;
+	border-width:1px;
+	margin:1em 0;
+	border-collapse:collapse;
+}
+.twikiTable td {
+	padding:.25em 1em;
+	border-width:1px;
+}
+.twikiTable th {
+	border-left-style:solid;
+	border-width:1px;
+	padding:.3em 1em .6em 1em;
+}
+.twikiTable th.twikiFirstCol {
+	border-left-style:none;
+}
+.twikiTable a:link,
+.twikiTable a:visited {
+	text-decoration:underline;
+}
+.twikiTable a:hover {
+	text-decoration:underline;
+}
+
+.twikiEditForm {
+	margin:0 0 .5em 0;
+}
+
+/* TwistyContrib */
+.twistyTrigger a:link,
+.twistyTrigger a:visited {
+	text-decoration:none;
+}
+.twistyTrigger a:link .twikiLinkLabel,
+.twistyTrigger a:visited .twikiLinkLabel {
+	text-decoration:none;
+}
+.twistyTrigger a:hover .twikiLinkLabel {
+	text-decoration:underline;
+}
+
+/*	-----------------------------------------------------------
+	TWiki styles
+	-----------------------------------------------------------	*/
+
+#twikiLogin {
+	width:44em;
+	margin:0 auto;
+	text-align:center;
+}
+#twikiLogin .twikiFormSteps {
+	border-width:5px;
+}
+#twikiLogin .patternLoginNotification {
+	padding-left:.5em;
+	padding-right:.5em;
+	border-style:solid;
+	border-width:2px;
+}
+.twikiAttachments,
+.twikiForm {
+	margin:20px 0; /* overridden by twikinetRoundedAttachments at bottom */
+	padding:1px; /* fixes disappearing borders because of overflow:auto; in twikiForm */
+}
+
+.twikiAttachments table {
+	width:100%;
+	margin-bottom:0;
+}
+.patternContent .twikiAttachments,
+.patternContent .twikiForm {
+	/* form or attachment table inside topic area */
+	font-size:94%; /*S2*/
+	padding:20px 20px; /*S5*/
+	margin:1em 0;
+}
+.twikiAttachments .twikiTable td.twikiFirstCol img {
+	vertical-align:text-bottom;
+}
+.twikiAttachments .twikiTable caption {
+	display:none;
+}
+.twikiForm .twikiFormTable {
+	border-collapse:collapse;
+	padding:0px;
+	empty-cells:show;
+}
+.twikiFormTable td {
+	border-style:none none solid none;
+	border-width:1px;
+}
+/* table paddings */
+.twikiAttachments .twikiTable th,
+.twikiFormTable th {
+	padding:.8em 1em .5em 1em;
+	vertical-align:middle;
+}
+.twikiFormTable th {
+	padding-left:2.25em;
+}
+.twikiFormTable td,
+.twikiFormTable td.twikiFirstCol,
+.twikiAttachments .twikiTable td {
+	padding:.2em 1em .15em 1em;
+}
+.twikiAttachments .twikiTable td {
+	padding:.35em 1em;
+}
+
+.twikiFormTable td {
+	padding-right:8em;
+}
+.twikiFormTable th {
+	border-style:none;
+	font-weight:bold;
+}
+.twikiAttachments .twikiTable th.twikiFirstCol,
+.twikiAttachments .twikiTable td.twikiFirstCol {
+	/* make more width for the icon column */
+	text-align:center;
+	padding-left:.5em;
+	padding-right:.5em;
+}
+.twikiAttachments .twikiTable th {
+	border-style:solid;
+	border-width:1px;
+}
+
+.twikiTable h2, .twikiFormTable h2,
+.twikiTable h3, .twikiFormTable h3,
+.twikiTable h4, .twikiFormTable h4,
+.twikiTable h5, .twikiFormTable h5,
+.twikiTable h6, .twikiFormTable h6 {
+	border:0;
+	margin-top:0;
+	margin-bottom:0;
+}
+.twikiFormTable .twikiTable th {
+	font-weight:bold;
+}
+.patternEditPage .twikiFormTable td,
+.patternEditPage .twikiFormTable th {
+	padding-top:.3em;
+	padding-bottom:.3em;
+	border-style:solid;
+	border-width:0 0 1px 0;
+	vertical-align:middle;
+}
+.twikiAttachments .twistyTrigger .twikiLinkLabel,
+.patternNoViewPage .patternTop .twistyTrigger .twikiLinkLabel {
+	font-weight:bold;
+}
+.twistyTrigger .twikiLinkLabel,
+.twikiAttachments .twistyTrigger {
+	vertical-align:middle;
+	line-height:13px;
+}
+.twikiAttachments .twistyTrigger .twikiLinkLabel {
+	font-size:120%;
+}
+.patternNoViewPage .patternTop .twistyTrigger .twikiLinkLabel {
+	font-size:105%;
+}
+.patternNoViewPage .patternTop {
+	margin:0 0 .5em 0;
+}
+.patternAttachmentCount {
+	font-weight:normal;
+}
+.twikiFormSteps {
+	text-align:left;
+	border:none;
+}
+.twikiFormStep {
+	padding:1em 40px;
+	border-width:1px 0;
+	border-style:solid;
+}
+.twikiFormSteps .twikiLast {
+	height:1%; /* for IE6 */
+}
+.twikiFormStep h2,
+.twikiFormStep h3,
+.twikiFormStep h4 {
+	border:none;
+	margin:0;
+	padding:0;
+	background:none;
+}
+.twikiFormStep h2 {
+	font-size:130%;
+	font-weight:bold;
+}
+.twikiFormStep h3 {
+	font-size:115%;
+	font-weight:bold;
+}
+.twikiFormStep h4 {
+	font-size:104%;
+	font-weight:bold;
+}
+.twikiFormStep p {
+	margin:.35em 0;
+}
+.twikiFormStep blockquote {
+	margin-left:1em;
+	padding-top:.25em;
+	padding-bottom:.25em;
+}
+.twikiActionFormStepSign {
+	position:absolute;
+	font-size:104%;
+	margin-left:-20px; /* half of S5 */
+	margin-top:-.15em;
+}
+.twikiToc {
+	margin:1em 0;
+	padding:.3em 0 .6em 0;
+}
+.twikiToc ul {
+	list-style:none;
+	padding:0 0 0 .5em;
+	margin:0;
+}
+.twikiToc li {
+	margin-left:1em;
+	padding-left:1em;
+	background-repeat:no-repeat;
+	background-position:0 .5em;
+}
+.twikiToc .twikiTocTitle {
+	margin:0;
+	padding:0;
+	font-weight:bold;
+}
+
+.twikiSmall {
+	font-size:86%; /*S3*/
+	line-height:1.4em;
+}
+.twikiSmallish {
+	font-size:94%; /*S2*/
+	line-height:1.4em;
+}
+.twikiNew {}
+.twikiSummary {
+	font-size:86%; /*S3*/
+}
+.twikiEmulatedLink {
+	text-decoration:underline;
+}
+.twikiPageForm table {
+	border-width:1px;
+	border-style:solid;
+}
+.twikiPageForm table {
+	width:100%;
+}
+.twikiPageForm th,
+.twikiPageForm td {
+	border:0;
+	padding:.5em 1em;
+}
+.twikiPageForm td {}
+.twikiPageForm td.first {
+	padding-top:1em;
+}
+.twikiNotification {
+	padding:.5em 20px; /*S5*/
+}
+.twikiNotification {
+	margin:1em 0;
+}
+.twikiBroadcastMessage {
+	padding:10px;
+	border-width:2px;
+	border-style:solid;
+}
+.twikiHelp {
+	height:1%; /* for IE */
+	padding:1em;
+	border-style:solid;
+	border-width:4px;
+}
+.twikiHelp ul {
+	margin:0;
+	padding-left:20px;
+}
+.twikiAccessKey {
+	text-decoration:none;
+	border-width:0 0 1px 0;
+	border-style:solid;
+}
+.twikiWebIndent {
+	margin:0 0 0 1em;
+}
+a.twikiLinkInHeaderRight {
+	float:right;
+	display:block;
+	margin:0 0 0 5px;
+}
+.twikiLinkLabel {}
+.twikiImage img {
+	padding:3px;
+	border-width:1px;
+	border-style:solid;
+}
+.twikiImage a:link,
+.twikiImage a:visited {
+	background:none;
+}
+#twikiLogo img {
+	margin:0;
+	padding:0;
+}
+.twikiNoBreak {
+	white-space:nowrap;
+}
+.twikiSearchResultCount {
+	font-weight:bold;
+}
+.twikiContentHeader {
+	margin:.5em 0;
+}
+
+
+/*	-----------------------------------------------------------
+	Pattern skin specific elements
+	-----------------------------------------------------------	*/
+
+/*
+PL Left padding	30px
+PR Right padding 20px
+*/
+
+/* LAYOUT ELEMENTS */
+/* for specific layout sub-elements see further down */
+
+#patternPage {
+	font-family:arial, verdana, sans-serif;
+	line-height:1.4em; /*S1*/
+	/* change font size here */
+	font-size:105%;
+}
+#patternTopBarContents {
+	padding:23px 20px 22px 30px; /*PR PL*/
+}
+#patternBottomBar {
+	border:none;
+}
+#patternWebBottomBar {
+	font-size:94%; /*S2*/
+	line-height:140%;
+	text-align:left;
+}
+#patternLeftBarContents {
+	margin:0 0 1em 0;
+	padding-right:.5em;
+	padding-left:30px; /*PL*/
+}
+
+/* top paddings */
+#patternMainContents,
+#patternLeftBarContents {
+	padding-top:1em;
+}
+#patternBottomBarContents {
+	padding-top:25px;
+}
+.patternNoViewPage #patternMainContents {
+	padding-top:1.5em;
+}
+
+/* right paddings */
+#patternMainContents,
+#patternBottomBarContents {
+	padding-right:20px;
+}
+
+
+/* left paddings */
+#patternMainContents {
+	padding-left:30px;
+}
+#patternBottomBarContents {
+	padding-left:25px;
+}
+
+/* bottom paddings */
+#patternMainContents {
+	margin-bottom:100px;
+}
+#patternBottomBarContents {
+	padding-bottom:30px;
+}
+.patternTopic {
+	margin:.5em 0 2em 0;
+}
+.patternNoViewPage #patternMainContents {
+	margin-left:4%;
+	margin-right:4%;
+}
+.patternEditPage #patternMainContents {
+	margin-left:2%;
+	margin-right:2%;
+}
+
+#patternLeftBarContents {
+	padding-bottom:1em;
+}
+#patternLeftBarContents img {
+	margin:0 3px 0 0;
+	vertical-align:text-bottom;
+}
+#patternLeftBarContents a:link,
+#patternLeftBarContents a:visited {
+	text-decoration:none;
+}
+#patternLeftBarContents .patternLeftBarPersonal a:link,
+#patternLeftBarContents .patternLeftBarPersonal a:visited {
+	text-decoration:underline;
+}
+#patternLeftBarContents .patternLeftBarPersonal ul a:link,
+#patternLeftBarContents .patternLeftBarPersonal ul a:visited {
+	text-decoration:none;
+}
+#patternLeftBarContents .patternLeftBarPersonal ul a:hover {
+	text-decoration:underline;
+}
+#patternLeftBarContents ul {
+	padding:0;
+	margin:0;
+	list-style:none;
+}
+#patternLeftBarContents li {
+	margin:0 0 2px 0;
+}
+#patternLeftBarContents h2 {
+	border:none;
+	background-color:transparent;
+}
+
+#patternLeftBarContents li {
+	overflow:hidden;
+}
+html>body #patternLeftBarContents li { /* Mozilla */
+	overflow:visible;
+}
+
+/* form options in top bar */
+.patternMetaMenu input,
+.patternMetaMenu select,
+.patternMetaMenu select option {
+	margin:0;
+}
+.patternMetaMenu select option {
+	padding:1px 0 0 0;
+}
+.patternMetaMenu ul {
+    padding:0;
+    margin:0;
+   	list-style:none;
+}
+.patternMetaMenu ul li {
+    padding:0;
+	display:inline;
+}
+.patternMetaMenu ul li .twikiInputField,
+.patternMetaMenu ul li .twikiSelect {
+	margin:0 0 0 .5em;
+}
+.patternHomePath .twikiSeparator {
+	padding:0 .5em;
+}
+.patternHomePath a:link,
+.patternHomePath a:visited {
+	text-decoration:none;
+}
+.patternHomePathTitle {
+	font-weight:bold;
+}
+.patternToolBar {
+}
+.patternToolBar .patternButton {
+	float:left;
+}
+.patternToolBar .patternButton s,
+.patternToolBar .patternButton strike,
+.patternToolBar .patternButton a:link,
+.patternToolBar .patternButton a:visited {
+	display:block;
+	border-width:1px;
+	border-style:solid;
+	padding:.1em .35em;
+	margin:-.2em 0 .2em .25em;
+	font-weight:bold;
+}
+.patternToolBar .patternButton a:link,
+.patternToolBar .patternButton a:visited {
+	text-decoration:none;
+	outline:none;
+}
+.patternToolBar .patternButton a:hover,
+.patternToolBar .patternButton a:hover {
+	border-width:1px;
+	border-style:solid;
+}
+.patternToolBar .patternButton a:active {
+	outline:none;
+}
+.patternToolBar a:hover .twikiAccessKey {
+	border-width:0 0 1px 0;
+	border-style:solid;
+}
+.patternToolBar .patternButton s,
+.patternToolBar .patternButton strike {
+	text-decoration:none;
+}
+
+.patternTopicActions {
+	margin:20px 0 10px 0; /* overridden by twikinetRoundedTopicActions, see bottom */
+	border-width:2px;
+	border-style:solid;
+}
+.patternTopicAction {
+	padding:8px 18px; /* 10 and 20: subtract 2px border */
+	height:1%; /* for IE */
+}
+.patternViewPage .patternTopicActions {
+	margin-bottom:40px;
+}
+.patternAttachPage .patternTopicAction,
+.patternRenamePage .patternTopicAction {
+	padding-left:40px;
+}
+.patternActionButtons a:link,
+.patternActionButtons a:visited {
+	padding:1px 1px 2px 1px;
+}
+.patternTopicAction .patternActionButtons a:link,
+.patternTopicAction .patternActionButtons a:visited {
+	text-decoration:none;
+}
+.patternTopicAction .patternActionButtons a:hover {
+	text-decoration:underline;
+}
+.patternTopicAction .patternActionButtons s,
+.patternTopicAction .patternActionButtons strike {
+	text-decoration:none;
+}
+.patternTopicAction a:hover .twikiAccessKey {
+	text-decoration:underline;
+}
+.patternInfo {
+	margin:20px 0 0 0;
+}
+.patternHomePath .patternRevInfo {
+	font-size:94%;
+	white-space:nowrap;
+}
+.patternMoved {
+	margin:1em 0;
+}
+.patternMoved i,
+.patternMoved em {
+	font-style:normal;
+}
+.patternTopicFooter {
+	margin:1em 0 0 0;
+}
+
+/* WebSearch, WebSearchAdvanced */
+#twikiSearchTable {
+	background:none;
+	border-bottom:0;
+} 
+#twikiSearchTable th,
+#twikiSearchTable td {
+	padding:1em;
+	border-width:0 0 1px 0;
+	border-style:solid;
+} 
+#twikiSearchTable th {
+	width:20%;
+	text-align:right;
+}
+#twikiSearchTable td {
+	width:80%;
+}
+
+/*	-----------------------------------------------------------
+	Search results
+	styles and overridden styles used in search.pattern.tmpl
+	-----------------------------------------------------------	*/
+
+.patternSearchResults {
+	/* no longer used in search.pattern.tmpl, but remains in rename templates */
+	margin:0 0 1em 0;
+}
+.patternSearchResults blockquote {
+	margin:1em 0 1em 5em;
+}
+.patternSearchResultsHeader {
+	padding:5px 11px;
+	margin:1em -11px 0 -11px;
+}
+h3.patternSearchResultsHeader,
+h4.patternSearchResultsHeader {
+	display:block;
+	height:1%; /* for IE */
+	font-weight:bold;
+}
+.patternSearchResults h3 {
+	font-size:115%; /* same as twikiFormStep */
+	font-weight:bold;
+}
+h4.patternSearchResultsHeader {
+	font-size:100%;
+	font-weight:normal;
+}
+.patternSearchResult .twikiTopRow {
+	padding-top:.2em;
+	margin-top:.1em;
+}
+.patternSearchResult .twikiBottomRow {
+	margin-bottom:.1em;
+	padding-bottom:.25em;
+	border-width:0 0 1px 0;
+	border-style:solid;
+}
+.patternSearchResult .twikiAlert {
+	font-weight:bold;
+}
+.patternSearchResult .twikiSummary .twikiAlert {
+	font-weight:normal;
+}
+.patternSearchResult .twikiNew {
+	border-width:1px;
+	border-style:solid;
+	font-size:86%; /*S3*/
+	padding:0 1px;
+	font-weight:bold;
+}
+.patternSearchResults .twikiHelp {
+	display:block;
+	width:auto;
+	padding:.1em 5px;
+	margin:1em -5px .35em -5px;
+}
+.patternSearchResult .twikiSRAuthor {
+	width:15%;
+	text-align:left;
+}
+.patternSearchResult .twikiSRRev {
+	width:30%;
+	text-align:left;
+}
+.patternSearchResultCount {
+	margin:1em 0 3em 0;
+}
+.patternSearched {
+	display:block;
+}
+
+/* Search results in book view format */
+
+.patternBookView {
+	border-width:0 0 2px 2px;
+	border-style:solid;
+	/* border color in cssdynamic.pattern.tmpl */
+	margin:.5em 0 1.5em -5px;
+	padding:0 0 0 5px;
+}
+.patternBookView .twikiTopRow {
+	padding:.25em 5px .15em 5px; /*S4*/
+	margin:1em -5px .15em -5px; /*S4*/
+}
+.patternBookView .twikiBottomRow {
+	font-size:100%;
+	padding:1em 0 1em 0;
+	width:auto;
+	border:none;
+}
+
+/* pages that are not view */
+
+/* edit.pattern.tmpl */
+
+.patternEditPage .twikiForm {
+	margin:1em 0 0 0;
+}
+.patternEditPage .twikiForm h1,
+.patternEditPage .twikiForm h2,
+.patternEditPage .twikiForm h3 {
+	/* same as twikiFormStep */
+	font-size:120%;
+	font-weight:bold;
+}	
+.twikiEditboxStyleMono {
+	font-family:"Courier New", courier, monaco, monospace;
+}
+.twikiEditboxStyleProportional {
+	font-family:arial, verdana, sans-serif;
+}
+.twikiChangeFormButtonHolder {
+	float:right;
+	margin:.5em 0 -.5em 0;
+}
+.twikiFormHolder { /* constrains the textarea */
+	width:100%;
+}
+.patternSigLine {
+	padding:.25em 0;
+	border-style:none;
+	height:1%; /* for IE */
+}
+.patternTextareaButton {
+	margin:0 0 0 1px;
+	display:block;
+	cursor:pointer;
+	border-style:solid;
+	border-width:1px;
+}
+.patternButtonFontSelector {
+	margin:0 8px 0 0;
+}
+.patternTopicAction .patternSaveOptions {
+	margin-top:.5em;
+}
+.patternTopicAction .patternSaveOptions .patternSaveOptionsContents {
+	padding:.2em 0;
+}
+.patternSaveHelp {
+	line-height:1.5em;
+	padding:.5em 20px; /*S5*/
+}
+
+/* preview.pattern.tmpl */
+
+.twikiPreviewArea {
+	border-width:1px;
+	border-style:solid;
+	margin:0 -10px 20px -10px;
+	padding:10px 20px;
+	height:1%; /* for IE */
+}
+
+/* attach.pattern.tmpl */
+
+.patternAttachPage .twikiAttachments {
+	margin-top:0;
+}
+.patternMoveAttachment {
+	margin:.5em 0 0 0;
+	text-align:right;
+}
+
+/* rdiff.pattern.tmpl */
+
+.patternDiff {
+	/* same as patternBookView */
+	border-width:0 0 2px 2px;
+	border-style:solid;
+	margin:.5em 0 1.5em -5px;
+	padding:0 0 0 5px;
+}
+.patternDiffPage .patternRevInfo ul {
+	padding:0;
+	margin:2em 0 0 0;
+	list-style:none;
+}
+.patternDiffPage .twikiDiffTable {
+	margin:2em 0;
+}
+tr.twikiDiffDebug td {
+	border-width:1px;
+	border-style:solid;
+}
+.patternDiffPage td.twikiDiffDebugLeft {
+	border-bottom:none;
+}
+.patternDiffPage .twikiDiffTable th {
+	padding:.25em .5em;
+}
+.patternDiffPage .twikiDiffTable td {
+	padding:.25em;
+}
+.twikiDiffLineNumberHeader {
+	padding:.3em 0;
+}
+
+/* TWikiNetSkin specific elements */
+
+#twikinetTopToolBar {
+	border-width:1px;
+	border-style:solid none none none;
+}
+#twikinetTopToolBarContents {
+	margin:1px 20px 0 30px; /*PR PL*/
+}
+#twikinetTopToolBarContents .twikinetWebName h2 {
+	font-weight:bold;
+	font-size:22px;
+	margin:0;
+	padding:0;
+	border:none;
+}
+.twikinetWebName a:link,
+.twikinetWebName a:visited {
+	text-decoration:none;
+}
+.twikinetWebName a:hover {
+	text-decoration:underline;
+}
+#twikinetTopToolBarContents .patternToolBar .patternButton s,
+#twikinetTopToolBarContents .patternToolBar .patternButton strike,
+#twikinetTopToolBarContents .patternToolBar .patternButton a:link,
+#twikinetTopToolBarContents .patternToolBar .patternButton a:visited {
+	margin:0 0 0 .25em;
+}
+.twikinetSearchJump {
+	vertical-align:middle;
+	height:50px;
+	padding:0 9px 0 4px;
+}
+
+/* form options in top bar */
+.twikinetSearchJump input,
+.twikinetSearchJump select,
+.twikinetSearchJump select option {
+	margin:0;
+}
+.twikinetSearchJump select option {
+	padding:1px 0 0 0;
+}
+.twikinetSearchJump .twikinetJumpButton,
+.twikinetSearchJump .twikinetSearchButton {
+	margin:0 8px 0 4px;
+	background-color:transparent;
+	border:none;
+	padding:0;
+	cursor:pointer;
+}
+.twikinetJumpButton,
+.twikinetSearchButton {
+	width:24px;
+	height:25px;
+	margin-top:-1px;
+}
+.twikinetSearchJump ul {
+    padding:0;
+    margin:0;
+   	list-style:none;
+}
+.twikinetSearchJump ul li {
+    padding:0;
+	display:inline;
+}
+.twikinetSearchJump ul li .twikiInputField,
+.twikinetSearchJump ul li .twikiSelect {
+	margin:0 0 0 23px;
+}
+.twikinetSearchJump .twikiInputField {
+	vertical-align:middle;
+}
+
+.twikinetToolBar td {
+	vertical-align:middle;
+}
+.twikinetToolBar .rCRounded .rCBR,
+.twikinetToolBar .rCRounded .rCBR .rCBL {
+	height:4px; 
+}
+.twikinetToolBar .rCRounded .rCTL,
+.twikinetToolBar .rCRounded .rCBR .rCBL {
+	width:4px;
+	margin-left:-4px;
+}
+.twikinetToolBar .rCRounded .rCTR {
+	padding:4px 4px 0 0;
+}
+.twikinetToolBar .rCRounded {
+	margin-left:4px;
+	margin-bottom:0;
+}
+.twikinetToolBar .twikiLinkLabel {
+	display:block;
+	vertical-align:middle;
+	text-align:center;
+	padding:0px 7px;
+	margin:0;
+	border:none;
+}
+
+.twikinetToolBar a:link,
+.twikinetToolBar a:visited {
+	text-decoration:none;
+	border:none;
+}
+.twikinetToolBar a:hover {
+	text-decoration:none;
+}
+.twikinetToolBar strike,
+.twikinetToolBar a:link,
+.twikinetToolBar a:visited {
+	display:block;
+	margin:0 0 0 15px;
+	line-height:1.3em;
+	min-height:24px;
+}
+.twikinetToolBar a {
+	cursor:pointer;
+}
+.twikinetToolBar s,
+.twikinetToolBar strike {
+	text-decoration:none;
+	cursor:default;
+}
+.twikinetToolBar a:hover {
+	background:none;
+}
+.twikinetToolBar a:hover .twikiAccessKey {
+	border-width:0 0 1px 0;
+	border-style:solid;
+}
+/* extra link styles to prevent underlines with Safari */
+.twikinetToolBar :link:focus,
+.twikinetToolBar :visited:focus,
+.twikinetToolBar :link,
+.twikinetToolBar :visited,
+.twikinetToolBar :link:active,
+.twikinetToolBar :visited:active {
+	text-decoration:none;
+}
+.twikinetToolBar :link:hover,
+.twikinetToolBar :visited:hover {
+	text-decoration:none;
+}
+
+/* Rounded tables */
+
+.twikinetWrapperTable,
+.twikiTable .twikinetWrapperTable {
+	margin:1em 0;
+	padding:0;
+	border:none;
+	border-collapse:collapse;
+}
+td.twikinetWrapperTableMain,
+.twikiTable td.twikinetWrapperTableMain {
+	margin:0;
+	padding:0;
+}
+.twikinetWrapperTable .twikiTable {
+	border-top-color:#f4f5f9;
+	margin:0;
+}
+.twikinetWrapperTableT {
+	height:4px;
+}
+
+.twikiAttachments .twikinetWrapperTableT,
+.twikiAttachments .twikinetWrapperTableB {
+	display:none;
+}
+
+/* Rounded attachments */
+
+.twikinetRounded {
+	height:1%; /* for IE6 */
+}
+.twikinetRounded .twikiAttachments,
+.twikinetRounded .twikiForm {
+	margin:0;
+	padding:16px; /* 20px: subtract 4px for corner images */
+}
+.twikinetRounded {
+	margin:20px 0;
+}
+.twikinetRounded .rCRounded .rCBR,
+.twikinetRounded .rCRounded .rCBR .rCBL {
+	height:4px; 
+}
+.twikinetRounded .rCRounded .rCTL,
+.twikinetRounded .rCRounded .rCBR .rCBL {
+	width:4px;
+	margin-left:-4px;
+}
+.twikinetRounded .rCRounded .rCTR {
+	padding:4px 4px 0 0;
+}
+.twikinetRounded .rCRounded {
+	margin-left:4px;
+	margin-bottom:0;
+}
+
+/* Rounded topic actions */
+/*
+Usage:
+<div class="twikinetRounded twikinetRoundedTopicActions"><div class="rCRounded"><div class="rCTR"><div class="rCTL"></div><!--/rCTL--><div class="patternTopicActions"><div class="patternTopicAction"><span class="patternActionButtons">%TMPL:P{"topicactionbuttons"}%</span></div><!--/patternTopicAction--></div><!--/patternTopicActions--></div><!--/rCTR--><div class="rCBR"><div class="rCBL"></div><!--/rCBL--></div><!--/rCBR--></div><!--/rCRounded--></div><!--/twikinetRounded-->
+*/
+
+.twikinetRoundedTopicActions {
+	margin-top:20px;
+	height:1%; /* for IE6 */
+}
+.patternViewPage .twikinetRoundedTopicActions {
+	margin-bottom:40px;
+}
+.patternNoViewPage .twikinetRoundedTopicActions {
+	margin-bottom:10px;
+}
+.twikinetRoundedTopicActions .patternTopicActions {
+	margin:0;
+	border:none;
+	background:none;
+}
+.twikinetRoundedTopicActions .patternTopicAction {
+	padding-top:0;
+	padding-bottom:0;
+}
+.twikinetRoundedTopicActions .rCRounded .rCBR,
+.twikinetRoundedTopicActions .rCRounded .rCBR .rCBL {
+	height:8px; 
+}
+.twikinetRoundedTopicActions .rCRounded .rCTL,
+.twikinetRoundedTopicActions .rCRounded .rCBR .rCBL {
+	width:4px;
+	margin-left:-4px;
+}
+.twikinetRoundedTopicActions .rCRounded .rCTR {
+	padding:8px 4px 0 0;
+}
+.twikinetRoundedTopicActions .rCRounded {
+	margin-left:4px;
+	margin-bottom:0;
+}
+
+/* Rounded broadcast message */
+/*
+Usage:
+<div class="twikinetRoundedBroadcastMessage"><div class="rCRounded"><div class="rCTR"><div class="rCTL"></div><!--/rCTL-->
+<div class="twikiBroadcastMessage"> %BROADCASTMESSAGE% </div>
+</div><!--/rCTR--><div class="rCBR"><div class="rCBL"></div><!--/rCBL--></div><!--/rCBR--></div><!--/rCRounded--></div><!--/twikinetRoundedBroadcastMessage-->
+*/
+
+.twikinetRoundedBroadcastMessage {
+	margin:0 0 20px 0;
+	height:1%; /* for IE6 */
+}
+.twikinetRoundedBroadcastMessage .twikiBroadcastMessage {
+	margin:0;
+	border:none;
+	background:none;
+	padding-right:20px;
+}
+.twikinetRoundedBroadcastMessage .rCRounded .rCBR,
+.twikinetRoundedBroadcastMessage .rCRounded .rCBR .rCBL {
+	height:8px; 
+}
+.twikinetRoundedBroadcastMessage .rCRounded .rCTL,
+.twikinetRoundedBroadcastMessage .rCRounded .rCBR .rCBL {
+	width:4px;
+	margin-left:-4px;
+}
+.twikinetRoundedBroadcastMessage .rCRounded .rCTR {
+	padding:0 4px 0 0;
+}
+.twikinetRoundedBroadcastMessage .rCRounded {
+	margin-left:4px;
+	margin-bottom:0;
+}
+
+/* Rounded help */
+/*
+Usage:
+<div class="twikinetRounded twikinetRoundedHelp"><div class="rCRounded"><div class="rCTR"><div class="rCTL"></div><!--/rCTL--><div class="twikiHelp">
+HELP TEXT
+</div><!--/twikiHelp--></div><!--/rCTR--><div class="rCBR"><div class="rCBL"></div><!--/rCBL--></div><!--/rCBR--></div><!--/rCRounded--></div><!--/twikinetRounded-->
+
+Note: the background image has a height of 1200px, so help contents may not exceed this height. For higher contents use the non-rounded 'twikiHelp' class. 
+*/
+.twikinetRoundedHelp {
+	height:1%; /* for IE6 */
+	margin:0 0 1em 0;
+}
+.twikinetRoundedHelp .twikiHelp {
+	margin:0;
+	border:none;
+	padding:6px;
+	background:none;
+}
+.twikinetRoundedHelp .rCRounded .rCBR,
+.twikinetRoundedHelp .rCRounded .rCBR .rCBL {
+	height:15px; 
+}
+.twikinetRoundedHelp .rCRounded .rCTL,
+.twikinetRoundedHelp .rCRounded .rCBR .rCBL {
+	width:10px;
+	margin-left:-10px;
+}
+.twikinetRoundedHelp .rCRounded .rCTR {
+	padding:15px 10px 0 0;
+}
+.twikinetRoundedHelp .rCRounded {
+	margin-left:10px;
+	margin-bottom:0;
+}

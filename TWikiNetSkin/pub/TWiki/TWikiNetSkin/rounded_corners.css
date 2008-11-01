@@ -1,0 +1,170 @@
+
+/*
+Original code by Scott Schiller, "Even more rounded corners with CSS", see
+http://www.schillmania.com/content/projects/even-more-rounded-corners/
+
+Base stylesheet modified by Arthur Clemens to facilitate easier customization of size values and image urls.
+*/
+
+/*
+USAGE
+
+CSS: setting the image background
+- a transparent PNG for all browsers except IE
+- a transparent GIF for IE
+
+.rCRounded .rCTR,
+.rCRounded .rCTL,
+.rCRounded .rCBR,
+.rCRounded .rCBR .rCBL {
+	background-image:url(button.png);
+}
+.rCRounded .rCTR,
+.rCRounded .rCTL,
+.rCRounded .rCBR,
+.rCRounded .rCBR .rCBL {
+	_background-image:url(button.gif);
+}
+
+Set the sizes of the rounded element:
+
+height of bottom cap/twikinet
+
+.rCRounded .rCBR,
+.rCRounded .rCBR .rCBL {
+	height:30px; 
+}
+
+top slice width
+
+.rCRounded .rCTL,
+.rCRounded .rCBR .rCBL {
+	width:5px;
+	margin-left:-5px;
+} 
+.rCRounded .rCTR {
+	padding-top:5px;
+}
+
+left corner
+
+.rCRounded {
+	margin-left:5px;
+}
+
+bottom corner width
+
+.rCRounded .rCBR .rCBL {
+	width:5px;
+	margin-left:-5px;
+}
+
+HTML code for a rounded block:
+
+<div class="rCRounded">
+	<div class="rCTR">
+		<div class="rCTL"></div><!--/rCTL-->
+		Text
+	</div><!--/rCTR-->
+	<div class="rCBR"><div class="rCBL"></div><!--/rCBL--></div><!--/rCBR-->
+</div><!--/rCRounded-->
+
+This will generate a block of maximum size. To contrain the width, put it inside a floating container or a container with a defined size.
+
+To create rounded buttons, write:
+
+<a href="#">
+	<span class="rCRounded">
+		<span class="rCTR">
+			<span class="rCTL"></span><!--/rCTL-->
+			<span class="twikiLinkLabel">Attach</span>
+		</span><!--/rCTR-->
+		<span class="rCBR"><span class="rCBL"></span></span><!--/rCBR-->
+	</span><!--/rCRounded-->
+</a>
+
+*/
+
+/* Sizes */
+
+/* height of bottom cap/twikinet */
+.rCRounded .rCBR,
+.rCRounded .rCBR .rCBL {
+	height:30px; 
+}
+/* top slice width */
+.rCRounded .rCTL,
+.rCRounded .rCBR .rCBL {
+	width:5px;
+	margin-left:-5px;
+} 
+.rCRounded .rCTR {
+	padding-top:5px;
+}
+/* left corner */
+.rCRounded {
+	margin-left:5px;
+}
+/* bottom corner width */
+.rCRounded .rCBR .rCBL {
+	width:5px;
+	margin-left:-5px;
+}
+
+/* Core properties */
+
+.rCTR,
+.rCTL,
+.rCBR,
+.rCBL {
+	display:block;
+}
+.rCTR h1,
+.rCTR p {
+	margin:0px; /* margins will blow out backgrounds, leaving whitespace */
+}
+.rCRounded {
+	position:relative;
+	margin:0px auto;
+	min-width:4px;
+	max-width:2900px; /* based on image dimensions - image max 3000px wide */
+	z-index:1;
+}
+.rCRounded .rCTR,
+.rCRounded .rCTL,
+.rCRounded .rCBR,
+.rCRounded .rCBL {
+	background-color:transparent;
+	background-repeat:no-repeat;
+	background-position:top right;
+}
+.rCRounded .rCTR {
+	position:relative;
+	zoom:1;
+	_overflow-y:hidden; /* hides this property from everything but IE6 */
+}
+/* top+left vertical slice */
+.rCRounded .rCTL {
+	position:absolute;
+	left:0px;
+	top:0px;
+	height:100%;
+	_height:9999px; /* arbitrary long height for IE 6 */
+	background-position:top left;
+}
+/* bottom */
+.rCRounded .rCBR {
+	position:relative;
+	width:100%;
+}
+.rCRounded .rCBR,
+.rCRounded .rCBL {
+	font-size:1px;
+}
+.rCRounded .rCBR {
+	background-position:bottom right;
+}
+.rCRounded .rCBL {
+	position:relative;
+	background-position:bottom left;
+}

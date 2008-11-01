@@ -1,0 +1,56 @@
+%TMPL:INCLUDE{"css"}%
+%TMPL:DEF{"defaultstyle"}%%TMPL:P{"twikibase"}%%TMPL:P{"css:javascriptaffected"}%%TMPL:P{"templatestyle"}%%TMPL:P{"css:screen"}%
+%TMPL:P{"css:print"}%%TMPL:END%
+
+
+%{ template leftbardimensions is included from viewleftbar.twikinet.tmpl }%
+%{ template topbardimensions is included from viewtopbar.twikinet.tmpl }%
+
+
+%TMPL:DEF{"css:screen"}%<style type="text/css" media="all">
+%TMPL:P{"topbardimensions"}%
+%TMPL:P{"leftbardimensions"}%
+</style>
+<style type="text/css" media="all">
+@import url("%PUBURLPATH%/%TWIKIWEB%/TWikiNetSkin/layout.css");
+@import url("%PUBURLPATH%/%TWIKIWEB%/TWikiNetSkin/style.css");
+@import url("%PUBURLPATH%/%TWIKIWEB%/TWikiNetSkin/colors.css");
+@import url("%PUBURLPATH%/%TWIKIWEB%/TWikiNetSkin/rounded_corners.css");
+</style>
+%TMPL:P{"css:dynamic"}%<style type="text/css" media="all">
+%IF{ "$ USERLAYOUTURL" then="@import url('%USERLAYOUTURL%');"}%
+%IF{ "$ USERSTYLEURL"  then="@import url('%USERSTYLEURL%');"}%
+%IF{ "$ USERCOLORSURL" then="@import url('%USERCOLORSURL%');"}%
+</style>%TMPL:END%
+
+
+
+%TMPL:DEF{"css:print"}%<style type="text/css" media="all">
+	@import url("%PUBURLPATH%/%TWIKIWEB%/TWikiNetSkin/print.css");
+</style>%TMPL:END%
+
+
+
+%TMPL:DEF{"css:dynamic"}%<style type="text/css" media="all">
+	/* Styles that are set using variables */
+	#patternLeftBar .patternWebIndicator,
+	.patternBookView .twikiTopRow {
+		background-color:%WEBBGCOLOR%;
+	}
+	.patternBookView {
+		border-color:%WEBBGCOLOR%;
+	}
+	.patternPreviewPage #patternMain {
+		/* uncomment to set the preview image */
+		/*background-image:url("%PREVIEWBGIMAGE%");*/
+	}
+	%IF{ "defined PAGEBGCOLOR and $ PAGEBGCOLOR != ''" then='html body, #patternPage, #patternBottomBar, .twikiPreviewArea, #patternOuter, #patternTopBar { background-color:%PAGEBGCOLOR%;}
+	#patternOuter {background-image:none;}'}%
+</style>%TMPL:P{"css:dynamic:skin"}%%TMPL:END%
+
+
+
+%{ you may put dynamic overriding styles here; note that this will be written to each html page }%
+%TMPL:DEF{"css:dynamic:skin"}%%TMPL:END%
+
+%TMPL:DEF{"css:javascriptaffected"}%<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/TWikiJavascripts/twikiStyles.js"></script>%TMPL:END%

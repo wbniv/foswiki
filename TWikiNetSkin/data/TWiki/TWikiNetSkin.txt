@@ -1,0 +1,74 @@
+%META:TOPICINFO{author="TWikiContributor" date="1173120078" format="1.1" reprev="1.10" version="1.10"}%
+---+!! !TWikiNetSkin
+
+This is the default skin provided with [[http://www.twiki.net/][Certified TWiki]], designed by [[http://www.linkedin.com/in/paulvanberkel][Paul van Berkel]].
+
+%TOC%
+
+---++ Screen Shot
+
+<div class="twikiImage" style="margin:2em 0;">
+%SEARCH{ "%TOPIC%" scope="topic" nosearch="on" nototal="on" format="$pattern(.*\| *Screenshot\:[^\|]*\|([^\|]*).*)" }%
+</div>
+
+---++ Installation
+
+*Note:* You do not need to install anything on the browser to use this skin. The following instructions are for the administrator who installs the skin on the server where TWiki is running.
+
+This skin needs TWiki 4.2 or newer.
+
+   * Download the ZIP file from the Skin Home page (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory
+
+---+++ Additional installation steps
+   * Modify TablePlugin settings: copy the =TABLEATTRIBUTES= below to !Main.TWikiPreferences: %BR%
+   <verbatim>
+   * TWikiNetSkin table attributes:
+      * Set TABLEPLUGIN_TABLEATTRIBUTES = tableborder="1" cellpadding="0" cellspacing="0" valign="top" headercolor="#252b37" headerbg="#d8dde4" headerbgsorted="#ced4dd" headercolor="#252b37" databg="#ffffff,#f2f3f6" databgsorted="#f3f5f7,#e7e9ee" tablerules="cols"
+</verbatim>
+   * In !TWiki.TWikiPreferences, remove the =&lt;div class="twikiBroadcastMessage"&gt;&lt;/div&gt;= tags (if any) from =BROADCASTMESSAGE=
+
+   * To turn on the skin, write in !Main.TWikiPreferences: %BR%
+   <verbatim>
+      * Set SKIN = twikinet,pattern
+</verbatim>
+   * [[%SCRIPTURL{"view"}%/%WEB%/%TOPIC%?skin=twikinet,pattern][Test if installed]]
+
+---+++ Enhanced look
+Part of the design is done by TWiki:Plugins/TWikiNetSkinPlugin. Install this plugin for rounded tables and h2 headers.
+
+Example when installed:
+<div class="twikiImage">
+%ATTACHURL%/twikiNetSkinPlugin_example.png
+</div>
+
+---++ Creating your own look
+
+This skin is based on TWiki:Plugins/PatternSkin, and the same rules for customization apply.
+
+
+---++ Skin Info
+   * Set SHORTDESCRIPTION = Certified TWiki skin
+
+<!-- Note on Screenshot: Please attach a 600x130 pixel screenshot and a full screen shot to the Skin topic, then update the href and img src to reflect the names -->
+|  Skin Author: | TWiki:Main/ArthurClemens |
+|  Copyright: | &copy; 2007, 2008, [[http://twiki.net][TWIKI.NET]]; &copy; design 2007: [[http://www.linkedin.com/in/paulvanberkel][Paul van Berkel]] |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Description: | Certified TWiki skin |
+|  Screenshot: | <a href="%ATTACHURL%/fullscreen.png"><img src="%ATTACHURL%/screenshot.png" alt="Click for full screen image" width="600" height="130" /></a> |
+|  Preview: | [[%SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%?skin=twikinet,pattern][Preview with this topic]] |
+|  Base Name: | twikinet,pattern |
+|  Skin Version: | 16 Mar 2008 (v1.0.1) |
+|  Change History: | <!-- specify latest version first -->&nbsp; |
+|  16 Mar 2008: | Public release (v1.000) |
+|  Dependencies: | TWiki 4.2; TWiki:Plugins/PatternSkin (automatically provided by TWiki); TWiki:Plugins/TWikiNetSkinPlugin |
+|  Skin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+
+__Related topic:__ %TWIKIWEB%.TWikiSkins, %TWIKIWEB%.TWikiSkinBrowser, %TWIKIWEB%.UserDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory
+
+
+
+
