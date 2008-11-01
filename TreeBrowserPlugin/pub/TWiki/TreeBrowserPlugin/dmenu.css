@@ -1,0 +1,152 @@
+/*
+ Derived from dmenu 2.05 | www.destroydrop.com/javascript/tree/
+ Copyright (c) 2002-2003 Geir Landrö              
+ Copyright (c) 2007 Stéphane Lenclud
+*/
+/*
+#dmenu {
+   z-index:200!important; 
+}
+*/
+
+/*Prevents NatSkin firefox bug*/ 
+.natMainContents {
+overflow:visible;
+}
+
+.dmenu {
+    z-index:200; 
+	line-height:100%;
+    max-width:200px;
+    /*overflow:hidden;*/
+    cursor:pointer;
+}
+
+.dmenu img {
+	display:inline; /*Important for compatibility with NatSkin*/
+	border: 0px;
+	vertical-align: middle;
+}
+
+/*Make sure background item have lower z-index than the rest*/
+div.dmenuTranslucentBackground {
+    z-index: 150;
+}
+
+.dmenu a {
+    color: #EEEEEE;
+    text-decoration: none;
+    display:block;    
+ 
+}
+
+.dmenu a:hover {
+    color: #EEEEEE;
+    text-decoration: none;
+    display:block;    
+ 
+}
+
+.dmenuRoot {
+    color: #FFFFEE!important; /*overrides dmenuNodeOpened and dmenuNodeClosed*/
+}
+
+.dmenuNodeOpened,
+.dmenuNodeClosed,
+.dmenuLeaf {
+   color: #EEEEEE;
+	text-decoration: none;
+   display:block;
+   background-color:#555555;
+   width:100%;
+   border-style: solid;
+   /*border-color: top right bottom left;*/
+   border-color: #888888 #222222 #222222 #888888; /*grey*/
+   border-width: 1px;
+   /*margin: 2px 2px 2px 2px;*/ /* introduce white space */
+   padding: 2px 2px 2px 2px;
+   /*overflow: hidden;*/ /* prevents text to overflow*/
+ 
+}
+
+.dmenuNodeOpened:hover,
+.dmenuNodeClosed:hover,
+.dmenuLeaf:hover {
+   border-color: #222222 #888888 #888888 #222222; 
+   background-color:#777777;
+	text-decoration: none;
+ 
+}
+
+.dmenuLevel0, .dmenuLevel0 a, .dmenuLevel0 div {
+   /*font-weight: bold!important;*/ /*so that we overide the leaf settings*/
+ 
+}
+
+.dmenuLevel1, .dmenuLevel1 a, .dmenuLevel1 div {
+   opacity:0.90; 
+   filter: alpha (opacity=90);
+    z-index: 200;
+   /*position:relative;*/
+   /*position:absolute;*/
+   /*left:60px;*/
+   /*left:100%;*/
+   /*display:table-cell;*/
+}
+
+.dmenuLevel2, .dmenuLevel2 a, .dmenuLevel2 div {
+   opacity:0.80; 
+   filter: alpha (opacity=80);
+ 
+}
+
+.dmenuLevel3, .dmenuLevel3 a, .dmenuLevel3 div {
+   opacity:0.70; 
+   filter: alpha (opacity=70);
+ 
+}
+
+.dmenuNodeOpened, .dmenuNodeOpened a {
+   /*text-decoration: underline!important;*/ /*Make it important so that it overrides the decoration defined in .detree a:hover*/
+   font-weight: bold;
+   /*color: red;*/
+ 
+}
+
+.dmenuNodeClosed, .dmenuNodeClosed a {
+   /*text-decoration: underline;*/
+   font-weight: bold;
+   /*color: red;*/
+ 
+}
+
+.dmenuLeaf {
+   font-weight: normal;
+   display:block;
+   /*position: relative;*/
+ 
+}
+
+.dmenuChildren,
+.dmenuChildren a,
+.dmenuChildren div {
+/*overflow:visible!important;*/
+}
+
+.dmenuChildren div {
+width:180px; /* Fixes funny IE bug by which every menu item have a different size */
+}
+
+.dmenuRoot {
+width:180px; /* Align with the above */
+}
+
+
+
+
+/*
+#natMain {
+    z-index:-1; 
+}*/
+
+
