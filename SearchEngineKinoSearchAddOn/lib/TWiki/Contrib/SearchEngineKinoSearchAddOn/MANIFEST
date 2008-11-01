@@ -1,0 +1,35 @@
+# Release manifest for SearchEngineKinoSearchAddOn
+bin/kinosearch 0544
+data/TWiki/SearchEngineKinoSearchAddOn.txt 0644 Documentation
+data/TWiki/KinoSearch.txt 0644 Examples
+pub/TWiki/SearchEngineKinoSearchAddOn/KinoSearchResult.jpg 0644 Documentation
+pub/TWiki/SearchEngineKinoSearchAddOn/KinoSEARCH.jpg 0644 Documentation
+lib/TWiki/Contrib/SearchEngineKinoSearchAddOn.pm 0644 Perl module
+lib/TWiki/Contrib/SearchEngineKinoSearchAddOn/Index.pm
+lib/TWiki/Contrib/SearchEngineKinoSearchAddOn/KinoSearch.pm
+lib/TWiki/Contrib/SearchEngineKinoSearchAddOn/Search.pm
+lib/TWiki/Contrib/SearchEngineKinoSearchAddOn/Stringifier.pm
+lib/TWiki/Contrib/SearchEngineKinoSearchAddOn/StringifyBase.pm
+lib/TWiki/Contrib/SearchEngineKinoSearchAddOn/StringifierPlugins/DOC_antiword.pm
+lib/TWiki/Contrib/SearchEngineKinoSearchAddOn/StringifierPlugins/DOC_abiword.pm
+lib/TWiki/Contrib/SearchEngineKinoSearchAddOn/StringifierPlugins/DOC_wv.pm
+lib/TWiki/Contrib/SearchEngineKinoSearchAddOn/StringifierPlugins/HTML.pm
+lib/TWiki/Contrib/SearchEngineKinoSearchAddOn/StringifierPlugins/PDF.pm
+lib/TWiki/Contrib/SearchEngineKinoSearchAddOn/StringifierPlugins/Text.pm
+lib/TWiki/Contrib/SearchEngineKinoSearchAddOn/StringifierPlugins/XLS.pm
+lib/TWiki/Contrib/SearchEngineKinoSearchAddOn/StringifierPlugins/PPT.pm
+templates/kinosearch.pattern.tmpl
+templates/kinosearchrss.tmpl
+kinosearch/bin/kinoindex 0544
+kinosearch/bin/kinoupdate 0544
+kinosearch/bin/ks_test 0544
+kinosearch/bin/LocalLib.cfg 0644 
+kinosearch/logs/ 0755
+kinosearch/index/ 0755
+lib/TWiki/Store/SearchAlgorithms/Kino.pm #highly experimental SEARCH backend that requires 4.2.2 to work. talk to SvenDowideit@home.org.au if you're stuck.
+lib/TWiki/Plugins/SearchEngineKinoSearchPlugin.pm
+lib/TWiki/Contrib/SearchEngineKinoSearchAddOn/Config.spec
+data/TWiki/SearchEngineKinoSearchPlugin.txt
+data/TWiki/VarKINOSEARCH.txt
+templates/search.kino.tmpl
+

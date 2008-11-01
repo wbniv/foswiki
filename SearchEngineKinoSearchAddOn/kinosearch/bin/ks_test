@@ -1,0 +1,76 @@
+#!/usr/bin/perl -w
+#
+# Copyright (C) 2008 Markus Hesse
+#
+# For licensing info read LICENSE file in the TWiki root.
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details, published at 
+# http://www.gnu.org/copyleft/gpl.html
+
+# Set library paths in @INC, at compile time
+BEGIN { unshift @INC, '.'; require '../../bin/setlib.cfg' } 
+
+use TWiki::Contrib::SearchEngineKinoSearchAddOn::Index;
+use TWiki::Contrib::SearchEngineKinoSearchAddOn::StringifyBase;
+use strict;
+
+sub usage {
+    print "Usage: ks_test command [options] [file]\n";
+    print "   Possible commands:\n";
+    print "       stringify\n";
+    print "\n";
+    print "   Possible options\n";
+    print "       non implemented yet\n";
+    print "   file:\n";
+    print "       File to be stringified, if command = stringify\n";
+    
+}
+
+sub run_stringify {
+    my $filename = shift;
+
+    print "Running stringify on $filename\n";
+
+    if (!(-r $filename)){
+	print "No such file: $filename\n";
+	return;
+    };
+    
+    my $stringifier = TWiki::Contrib::SearchEngineKinoSearchAddOn::StringifyBase->new();
+    my $handler = $stringifier->handler_for($filename, "dummy");
+
+    print "\nUsed stringifier: $handler\n\n";
+
+    print "Stringified text:\n\n";
+    print $handler->stringForFile($filename);
+    print "\n\n";
+}
+
+my %possibleCommands = ( stringify => \&run_stringify );
+
+my $command = $ARGV[0];
+
+if (!$command) {
+    usage;
+    exit;
+}
+
+if (!$possibleCommands{$command} ){
+    print "Unknown command $command\n";
+    usage;
+    exit;
+}
+
+&{$possibleCommands{$command}}($ARGV[1], $ARGV[2], $ARGV[3]);
+
+
+1;
+
+# EOF

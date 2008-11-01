@@ -1,0 +1,14 @@
+%TMPL:INCLUDE{search}%
+
+%{ this template exploits the fact that %TOPICNAME% can be set to any string - including URLs }%
+
+%TMPL:DEF{"result"}%<div class="patternSearchResult">
+<div class="twikiTopRow">
+    <div class="twikiLeft">  %IF{"istopic '%WEB%.%TOPICNAME%'" else="%TOPICNAME%" then="<a href='%SCRIPTURLPATH{view}%/%WEB%/%TOPICNAME%'><b>%TOPICNAME%</b></a>" }%    </div>
+    <div class="twikiRight twikiSRAuthor"> %AUTHOR%</div>
+    <div class="twikiRight twikiSRRev" >  %IF{"istopic '%WEB%.%TOPICNAME%'" else="$percntICON{%TOPICNAME%}$percnt attachment" then="<a href='%SCRIPTURLPATH{rdiff}%/%WEB%/%TOPICNAME%' rel='nofollow'>%TIME%</a>" }%    </div>
+    <br class="twikiClear" /></div><!--/twikiTopRow-->
+    <div class="twikiBottomRow">
+        <div class="twikiSummary twikiGrayText">            %IF{"istopic '%WEB%.%TOPICNAME%'" else="<br />"}%            %TEXTHEAD%        </div><!--/twikiSummary-->
+    </div><!--/twikiBottomRow-->
+</div><!--/patternSearchResult-->%TMPL:END%

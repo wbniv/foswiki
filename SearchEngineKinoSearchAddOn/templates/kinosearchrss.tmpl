@@ -1,0 +1,43 @@
+%TMPL:INCLUDE{"view"}%
+
+%TMPL:DEF{"head"}%%TMPL:END%
+%TMPL:DEF{"main"}%%TMPL:P{"contentwrapper"}%%TMPL:END%
+%TMPL:DEF{"bodystart"}%%TMPL:END%
+%TMPL:DEF{"standardheader"}%%TMPL:END%
+%TMPL:DEF{"contentheaderstylewrapper"}%%TMPL:END%
+%TMPL:DEF{"contentfooterstylewrapper"}%%TMPL:END%
+%TMPL:DEF{"topicinfo"}%%TMPL:END%
+
+%TMPL:DEF{"topicaction"}%%TMPL:END%
+%TMPL:DEF{"toolbar_buttons"}%%TMPL:END%
+
+%TMPL:DEF{"htmldoctype"}%
+<rss version="2.0" xml:lang="%LANG%">
+<channel>%TMPL:END%
+%TMPL:DEF{"bodyend"}%</channel></rss>%TMPL:END%
+
+%TMPL:DEF{"kino_rss:title"}%"<nop>%SEARCHSTRING%" %SEARCHATTACHMENTSONLY% - TWiki Search%TMPL:END%
+%TMPL:DEF{"kino_rss:link"}%%SCRIPTURL{"view"}%/%MAINWEB%/%HOMETOPIC%%TMPL:END%
+%TMPL:DEF{"kino_rss:description"}%%MAKETEXT{"Search for "%SEARCHSTRING%". Retrieved at [_1]. %SEARCHATTACHMENTSONLY%" args="%DISPLAYTIME{"$hour:$min ($tz)"}%"}%%TMPL:END%
+
+%TMPL:DEF{"repeatedsearchblock"}%
+%REPEAT%
+
+<item>
+<title>%MATCHTITLE%</title>
+<link>%MATCHURL%</link>
+<pubDate>%TIME%</pubDate>
+<description><![CDATA[ %TEXTHEAD% ]]></description>
+<author>%AUTHOR%</author>
+</item>
+%REPEAT%%TMPL:END%
+
+%TMPL:DEF{"searchbody"}%%SPLIT%%TMPL:P{"repeatedsearchblock"}%%SPLIT%%TMPL:END%
+
+%TMPL:DEF{"content"}%
+%SPLIT%
+<title>%TMPL:P{"kino_rss:title"}%</title>
+<link>%TMPL:P{"kino_rss:link"}%</link>
+<description>%TMPL:P{"kino_rss:description"}%</description>
+%TMPL:P{"searchbody"}%%SPLIT%
+%TMPL:END%

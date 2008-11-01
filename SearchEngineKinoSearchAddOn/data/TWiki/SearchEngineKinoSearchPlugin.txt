@@ -1,0 +1,85 @@
+%META:TOPICINFO{author="BaseUserMapping_333" date="1207714807" format="1.1" version="1.3"}%
+---+!! <nop>%TOPIC%
+
+_A plugin wrapper around the SearchEngineKinoSearchAddOn_
+
+Allows embedding a KinoSearch in any page with a custom format it will automatically update the index when saving,
+renaming or adding an attachment.
+
+It can take a long time to update when dealing with large attachments
+
+This Plugin now also adds restHandlers to index, update and search the kinoIndex - removing the need for external scripts.
+
+%TOC%
+
+---++ USAGE
+
+---+++ Integrating KinoSearch into TWiki's internal =SEARCH= 
+
+By setting =$TWiki::cfg{RCS}{SearchAlgorithm} = 'TWiki::Store::SearchAlgorithms::Kino';= (a setting in the _Store settings_ section in =configure=), 
+TWiki will use the KinoSearch index for any inbuilt search (including WebSearch) that it can (for regex searches it will fall back to the =Forking= search algorithm).
+
+If you want TWiki's WebSearch to also show you attachment results (when you select the 'search all' option), you need to also set ={SearchEngineKinoSearchAddOn}{showAttachments}=1=, and add =kino= to the front of your =SKIN= setting.
+
+%INCLUDE{"VarKINOSEARCH"}%
+   
+---++ Rest Handler Usage (the rest handlers require that you are logged into TWiki)
+These restHandlers can be called from te browser, or from the comman line
+(best done as the user that the web server is run as to make sure permissions are ok) - and thus from cron.
+---+++ create Index
+   * %SCRIPTURL{rest}%/SearchEngineKinoSearchPlugin/index
+   * cd twiki/bin ; rest SearchEngineKinoSearchPlugin.index
+---+++ update Index
+%SCRIPTURL{rest}%/SearchEngineKinoSearchPlugin/update
+---+++ search Index
+__TODO:__ while search works, the template it uses isn't useable as its tuned for the =kinosearch= cgi atm.
+
+%SCRIPTURL{rest}%/SearchEngineKinoSearchPlugin/search
+
+<form action="%SCRIPTURL{rest}%/SearchEngineKinoSearchPlugin/search/%INTURLENCODE{"%INCLUDINGWEB%"}%/">
+   <input type="text" name="search" size="32" /> <input type="submit" value="Search text" /> | [[%TWIKIWEB%.KinoSearch][Help]]
+</form>
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>NEWPLUGIN_SHORTDESCRIPTION%==
+
+   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = _A plugin wrapper around the SearchEngineKinoSearchAddOn_
+
+   * Debug plugin: (See output in =data/debug.txt=)
+      * Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the TWiki server. 
+
+   * Download the ZIP file from the Plugin Home (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+   * Configure the Plugin:
+      * Change the Plugin settings as needed
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.DavidGuest and TWiki:Main.SvenDowideit|
+|  Copyright: | &copy; 2007, TWiki:Main.DavidGuest |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | 20 Aug 2008 (V1.200) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  20 Aug 2008: | Version 1.2, brought Plugin into SearchEngineKinoSearchAddOn package, and svn, and added restHandlers for indexing & searching - TWiki:Main.SvenDowideit |
+|  09 Apr 2008: | Version 1.1, Added auto index updater code |
+|  07 Apr 2008: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | %TWIKIWEB%.SearchEngineKinoSearchAddOn |
+|  Perl Version: | 5.005 |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences, SearchEngineKinoSearchAddOn

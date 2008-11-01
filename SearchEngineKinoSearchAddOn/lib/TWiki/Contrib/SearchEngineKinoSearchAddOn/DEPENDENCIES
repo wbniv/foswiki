@@ -1,0 +1,12 @@
+# Dependencies for SearchEngineKinoSearchAddOn
+# Example:
+# Time::ParseDate,>=2003.0211,cpan,Required.
+# TWiki::Plugins,>=1.15,perl,TWiki 4.1 release.
+
+KinoSearch,>0,cpan,Required
+File::MMagic,>0,cpan,Required
+Module::Pluggable,>0,cpan,Required
+HTML::TreeBuilder,>0,cpan,Required
+Spreadsheet::ParseExcel,>0,cpan,Required
+CharsetDetector,>0,cpan,Required
+Encode,>0,cpan,Required

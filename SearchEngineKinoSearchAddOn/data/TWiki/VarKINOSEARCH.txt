@@ -1,0 +1,13 @@
+
+
+---+++ KINOSEARCH tag
+If SearchEngineKinoSearchPlugin is enabled, you will be able to use the KINOSEARCH tag to search indexed topics and attachments:
+   * =%<nop>KINOSEARCH{'Search String' format='Formatting string'}%=
+   
+format takes the following variables to place content.
+   * $icon - An icon to display filetype when showing attachments
+   * $match - The Twiki Name of the page being displayed
+   * $locked - Show if a page is locked
+   * $texthead - Summary text
+   
+See: SearchEngineKinoSearchAddOn and SearchEngineKinoSearchPlugin

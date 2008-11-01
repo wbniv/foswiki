@@ -1,0 +1,67 @@
+%META:TOPICINFO{author="MarkusHesse" date="1199357925" format="1.1" reprev="1.3" version="1.3"}%
+---++ Search form
+<form action="%SCRIPTURLPATH%/kinosearch%SCRIPTSUFFIX%/%INTURLENCODE{"%INCLUDINGWEB%"}%/">
+   <input type="text" name="search" size="32" maxlength="255" /> <input type="submit" value="Search text" onClick="if (search.value.length < 2) {alert('Search string must have at least 2 characters'); return false;} return true;" />
+   in <select name="web">
+     <option value="all">all public webs</option>
+     <option value="%INCLUDINGWEB%">current web</option>
+%WEBLIST{"     <option>$name</option>"}%
+   </select><br/>
+   <input type="checkbox" name="nosummary" /> do not show summaries <br/>
+   <input type="checkbox" name="nototal" /> do not show total matches <br/>
+   <input type="checkbox" name="showlock" /> show locked topics <br/>
+   limit result count to <input type="text" name="limit" size="5" value="all" />
+</form>
+
+<hr/>Note that you can redefine this form to suit your current needs, removing the options you don't want<hr/>
+
+---+++ Search through all webs form (suited for top bar)
+<verbatim>
+<form action="%SCRIPTURLPATH%/kinosearch%SCRIPTSUFFIX%/%INTURLENCODE{"%INCLUDINGWEB%"}%/">
+  <input type="text" name="search" size="32" /> <input type="submit" value="Search" />
+  <input type="hidden" name="web" value="all">
+</form>
+</verbatim>
+
+---+++ Search through current web (suited for left bar)
+<verbatim>
+<form action="%SCRIPTURLPATH%/kinosearch%SCRIPTSUFFIX%/%INTURLENCODE{"%INCLUDINGWEB%"}%/">
+  <input type="text" name="search" size="32" /> <input type="submit" value="Go" />
+  <input type="hidden" name="web"  value="%INCLUDINGWEB%">
+</form>
+</verbatim>
+
+---+++ Search in <nop>WebTopBar
+Add the following lines to <nop>TWiki.WebTopBar. Then you have an
+additional search field in the upper right corner behaving and looking
+exactly the same as the normal search field there. If you want, you
+can also replace the existing search field with this one.
+<verbatim>
+   * <form name="kinosearch" form action="%SCRIPTURLPATH%/kinosearch%SCRIPTSUFFIX%/%INTURLENCODE{"%INCLUDINGWEB%"}%/">
+  %IF{" '%URLPARAM{"search" encode="entity" scope="topic"}%' = '' " then="<input type=\"text\" class=\"twikiInputField patternFormFieldDefaultColor\" name=\"search\" value=\"%MAKETEXT{"Search Index"}%\" size=\"14\" onfocus=\"clearDefaultandCSS(this);\" onblur=\"setDefaultText(this);\" />" else="<input type=\"text\" class=\"twikiInputField\" name=\"search\" value=\"%URLPARAM{ "search" encode="entity" scope="topic" }%\" size=\"14\" />"}%</form>
+</verbatim>
+
+---++ Query syntax
+
+   * To search for a word, just put that word into the Search box. (Alternatively, add the prefix ==text:== before the word.)
+   * To search for a phrase, put the phrase in "double quotes".
+   * Use the ==+== and ==-== operators, just as in Google query syntax, to indicate _required_ and _forbidden_ terms, respectively.
+   * To search on metadata, prefix the search term with ==field:== where _&lt;field&gt;_ is the field name in the metadata (for instance, _author_).
+
+---+++ Query examples
+
+   * ==text:kino== or just ==kino==
+   * ==text:"search engine"== or just =="search engine"==
+   * ==author:MarkusHesse== &mdash; note that to search for a TWiki author, use their login name
+   * ==form:WebFormName== to get all topics with that form attached.
+   * ==CONTACTINFO:MarkusHesse== if you have declared ==CONTACTINFO== as a variable to be indexed
+   * ==type:doc== to get all attachments of given type
+   * ==web:Sandbox== to get all the topics in a given web
+   * ==topic:WebHome== to get all the topics of a given name
+   * ==+web:Sandbox +topic:Test== to get all the topics containing "Test" in their titles and belonging to the Sandbox web.
+
+_Note:_ the current version of !KinoSearch does not support wildcards.
+
+__See also:__ TWiki.SearchEngineKinoSearchAddOn
+
+-- TWiki:Main/MarkusHesse - 12 Dec 2007

@@ -1,0 +1,45 @@
+%TMPL:INCLUDE{"view"}%
+%TMPL:DEF{"titleaction"}%%MAKETEXT{"(search results)"}% %TMPL:END%
+
+
+
+%TMPL:DEF{"webaction"}% %WEBTOPICLIST% %TMPL:END%
+
+
+
+%TMPL:DEF{"topicaction"}%%TMPL:END%
+%TMPL:DEF{"toolbar_buttons"}%%TMPL:END%
+
+%TMPL:DEF{"bodyclassname"}%patternSearchResultsPage%TMPL:END%
+
+
+
+%TMPL:DEF{"repeatedsearchblock"}%<div class="patternSearchResultsHeader" style="background-color:%WEBBGCOLOR%"><span class="twikiLeft">%MAKETEXT{"Search results"}%</span><span class="twikiRight">%MAKETEXT{"retrieved at [_1]" args="%DISPLAYTIME{"$hour:$min ($tz)"}%"}%</span><br class="twikiClear" /></div>
+%REPEAT%<div class="patternSearchResult"><div class="twikiTopRow"><div class="twikiLeft">%ICON% <b>%MATCH%</b> %SCORE%<span class="twikiAlert">%LOCKED%</span></div><div class="twikiRight twikiSRAuthor"> %AUTHOR%</div><div class="twikiRight twikiSRRev">%REVISION% - <a href="%SCRIPTURLPATH{"rdiff"}%/%WEB%/%TOPICNAME%" rel='nofollow'>%TIME%</a>&nbsp;</div><br class="twikiClear" /></div><div class="twikiBottomRow"><div class="twikiSummary twikiBlackText">%TEXTHEAD%</div></div></div>%REPEAT%%TMPL:END%
+
+
+
+%TMPL:DEF{"searchbody"}%%SPLIT%%TMPL:P{"repeatedsearchblock"}%%SPLIT%
+<div class="patternSearchResultCount"><span class="twikiLeft">%MAKETEXT{"Number of topics:"}% <b>%NTOPICS%</b></span><span class="twikiRight">%ICON{feed}% <a href='?%QUERYSTRING%;skin=none;rss=on'>Subscribe to these results</a></span></div>%TMPL:END%
+
+
+
+%TMPL:DEF{"content"}%
+%SPLIT%
+<div class="patternSearchResultsHeader" style="background-color:%WEBBGCOLOR%"><span class="twikiLeft">%MAKETEXT{"New Search"}%</span><br class="twikiClear" /></div>
+<form action="%SCRIPTURLPATH%/kinosearch%SCRIPTSUFFIX%/%INTURLENCODE{"%INCLUDINGWEB%"}%/">
+   <input type="text" name="search" size="32" maxlength="255" value="%SEARCHSTRING%" /> <input type="submit" value="Search text" onClick="if (search.value.length < 2) {alert('Search string must have at least 2 characters'); return false;} return true;" />
+   in <select name="web">
+     <option value="all">all public webs</option>
+     <option value="%INCLUDINGWEB%">current web</option>
+%WEBLIST{"     <option>$name</option>"}%
+   </select><br/>
+   <input type="checkbox" name="nosummary" %IF{"'on' = $nosummary" then="checked"}% /> do not show summaries <br/>
+   <input type="checkbox" name="nototal" %IF{"'on' = $nototal" then="checked"}% /> do not show total matches <br/>
+   <input type="checkbox" name="showlock" %IF{"'on' = $showlock" then="checked"}% /> show locked topics <br/>
+   limit result count to <input type="text" name="limit" size="5" value="%URLPARAM{"limit" default="100"}%" />
+</form>
+<br /><br />
+<div class="patternSearchString">%MAKETEXT{"Searched:"}% <b><nop>%SEARCHSTRING%</b> %SEARCHATTACHMENTSONLY%</div><div class="patternSearchResultsBegin"></div>
+%TMPL:P{"searchbody"}%%SPLIT%
+%TMPL:P{"standardfooter"}%%TMPL:END%
