@@ -1,0 +1,112 @@
+<!--
+
+   PLEASE DO NOT EDIT THIS TOPIC
+
+   It is automatically generated from the subversion repository, and any changes
+   you make will simply be overwritten the next time a release is generated.
+
+   Instead, you could check your fix in, raise a bug in the Bugs web, or mail thge author.
+-->
+---+!! MacrosPlugin
+
+Lets you use parameterised includes in TWiki. This plugin supports tags originally included with the TWiki:Plugins/FormQueryPlugin, but now split out for clarity.
+
+%TOC%
+
+---+ Features
+	* Macros defined in topics
+	* Topic-scope SET function
+	* Strip newlines from macro topics
+
+---+ Syntax Rules
+---++ <code>%<nop>CALLMACRO{...}%</code>
+
+<code>%CALLMACRO</code> is used to include a macro defined in a topic in the current web immediately, as if it were simply typed in the topic. It is like =%<nop>INCLUDE%= except that parameters can be passed in and expanded in the included text.
+
+A macro is defined by creating a topic that contains the macro body. For example, a topic named =MacroMaturity= may contain the text:
+<verbatim>
+The science of %science% is %state%
+</verbatim>
+This macro can be included in another topic using <code>%CALLMACRO</code> :
+<pre>
+%<nop>CALLMACRO{topic=MacroMaturity science="biology" state="mature"}%
+%<nop>CALLMACRO{topic=MacroMaturity science="nanotechnology" state="in its infancy"}%
+</pre>
+With fairly obvious results. Note that standard TWiki variables such as <code>%<nop>TOPIC%</code> are expanded with the values of _the calling topic_ and not the macro topic. Macro parameter expansions take precedence over any TWiki variable or =%SET= value for the same name.
+---+++ <code>%STRIP</code>
+To support the inclusion of macros that don't generate any text (e.g. macros containing only <code>%FORMQUERY</code> and <code>%TABLEFORMAT</code>) then the special tag <code>%<nop>STRIP%</code> can be included in the macro text. If this is seen, all newlines will be stripped from the macro before it is included in the calling topic. The <code>%STRIP</code> tag only works in the context of a macro body.
+---++ <code>%SET</code> pseudo-tag
+<code>%SET</code> is called a pseudo-tag because it doesn't operate the same way as normal twiki tags; it generates no output, and is delimited by end-of line.
+
+<code>%SET</code> is used to set a variable value within the context of the current topic. Variable values which are set remain in force only within the current topic, or until the variable is set to a new value. Note that variable values =%SET= within a =%CALLMACRO= are available in the calling topic.
+
+<code>%SET</code> tags *must* occur at the start of a line (no leading spaces) and are terminated by the end of line. For example,
+<pre>
+%<nop>SET X = 1000
+</pre>
+will set =%<nop>X%= to 1000 for the rest of the topic.
+
+Another difference from standard Set is that the RHS of a <code>%SET</code> is fully evaluated immediately. This means that it is unlike a macro, and more like an assignment expression in a programming language. For example,
+<pre>
+%<nop>SET X = 1000
+%<nop>SET Y = 100
+%<nop>SET Z = %CALC{"%<nop>X% / %<nop>Y%"}%
+</pre>
+will set =%<nop>Z%= to the string =10= and NOT the string <code>"%<nop>CALC{"1000 / 100"}%"</code>. This is a critically important difference; values that are <code>%SET</code> can be used alongside plugins (such as SpreadSheetPlugin) that are very sensitive to format.
+
+---+ <nop>%TOPIC% Settings
+One line description, shown in the TWiki.TextFormattingRules topic:
+	* Set SHORTDESCRIPTION = Supports parameterised includes.
+
+---+ Plugin Installation Instructions
+__Note:__ These instructions are for the TWiki maintainer. No changes to your browser are required.
+	* Download the ZIP file from the Plugin web (see below). Contents:
+	| *File:* | *Description:* |
+%$MANIFEST%
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory.
+	* Optionally, run ==%TOPIC%_installer== to automatically check and install other TWiki modules that this module depends on. You can also do this step manually.
+	* Alternatively, manually make sure the dependencies listed in the table below are resolved.
+	%$DEPENDENCIES%
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+---+ Plugin Info
+
+|  Plugin Author: | TWiki:Main/CrawfordCurrie |
+|  Plugin Version: | %$VERSION% |
+| Change History: | |
+| 6173 | TWikibug:Item196 - updates for MacrosPlugin |
+| 5223 | Documentation fixes, adding gifs. |
+| 5048 | Cairo readiness |
+| 5002 | Initial version |
+| 28 June 2004 | Initial version, split out from TWiki:Plugins/FormQueryPlugin |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Perl Version: | 5.6 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+---++ Further development
+
+Further development of this code is welcomed. It is recommended that you unpack the distribution into a development directory and use the supplied build file which provides targets to run the test suite, and install and uninstall your development code into a test installation. Please, please, _please_ run, and extend if necessary, the test set!
+
+Developer discussion is in TWiki:Plugins/%TOPIC%Dev.
+
+---++ Copyright
+
+This code is based on an original development of Motorola Inc. and is protected by the following copyrights:
+	* Copyright &copy; 2002-2003 Motorola. All Rights Reserved.
+	* Portions Copyright &copy; 2004 Crawford Currie http://www.c-dot.co.uk
+
+---++ License
+
+As required for the publication of all extensions to TWiki, this
+software is published under the terms of the GNU General Public
+License.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details, published at
+http://www.gnu.org/copyleft/gpl.html
+
+-- TWiki:Main/CrawfordCurrie - %$DATE%
