@@ -1,0 +1,61 @@
+%META:TOPICINFO{version="1.4" date="998494097" author="RoeS01" format="1.0beta"}%
+---++ <nop>%TOPIC%
+
+_[please see Codev.PeerRatingSystem for development chit-chat]_
+
+This plugin enables TWiki users to rate any topic for Quality of content and Relevance of the topic across their TWiki community. Several display methods are provided:
+
+	* A star rating is inserted in the topic header
+	* A Review link on each topic shows a list of the current reviews
+	* A link on a user page shows a list of reviews made by that person
+	* A ratings statistics topic shows an overall summary of reviews by topic
+
+This plugin also allows members of the TWiki community to rate any web page - and can be used to focus attention on the best (and worst) pages out there.
+
+Please note that this plugin uses a MySQL database for storage of review data. Installation help is provided in these topics (included in the install set):
+
+PeerReviewInstall<br>
+PeerReviewMySQLSetUp<br>
+PeerReviewDbiDbdSetUp<br>
+PeerReviewExamples<br>
+
+---+++ Plugin Installation Instructions
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Follow the instructions in PeerReviewInstall
+
+---+++ Plugin Info
+
+|  One Line Description: | Peer Review & Rating System |
+|  Plugin Author: | Main.SteveRoe under contract to <nop>DrKW |
+|  Plugin Version: | 1.0 |
+|  Change History: | 22 Aug 2001: Added... <br> ?? ??? 2001: Initial version |
+|  CPAN Dependencies: | DBI, DBD (<nop>MySQL) |
+|  Other Dependencies: | <nop>MySQL |
+|  Perl Version: | 5.004 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+%TOPIC% variable settings follow:
+
+<verbatim>
+		* Set LINKICON = %PUBURLPATH%/TWiki/PeerPlugin/peerreview.gif
+		* Set RATINGSUFFIX = 
+		* #Set LISTICONPREFIX = %PUBURLPATH%/TWiki/PeerPlugin/dot_
+		* #Set LISTICONHEIGHT = 12
+		* #Set LISTICONWIDTH = 64
+		* #Set RATINGICONPREFIX = %PUBURLPATH%/TWiki/PeerPlugin/rating
+		* #Set RATINGICONHEIGHT = 5
+		* #Set RATINGICONWIDTH = 42
+		* Set LISTICONPREFIX = %PUBURLPATH%/TWiki/PeerPlugin/star_
+		* Set LISTICONHEIGHT = 13
+		* Set LISTICONWIDTH = 75
+		* Set RATINGICONPREFIX = %PUBURLPATH%/TWiki/PeerPlugin/star_
+		* Set RATINGICONHEIGHT = 13
+		* Set RATINGICONWIDTH = 75
+</verbatim>
+
+
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+

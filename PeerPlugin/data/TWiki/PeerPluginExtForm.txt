@@ -1,0 +1,44 @@
+%META:TOPICINFO{author="RoeS01" date="998488789" format="1.0" version="1.3"}%
+%META:TOPICPARENT{name="WebHome"}%
+*Use this form to review any page on the web. Great for highlighting information that is useful to this wiki community.*
+<FORM action="%SCRIPTURL%/view%SCRIPTSUFFIX%/%TWIKIWEB%/PeerPluginExtView" method="post">
+<B>1. Select the Page</B>
+	* Enter any Internet or Intranet web page address...
+Url: <INPUT type="text" name="prurl" size="32" value="%PRURL%">
+<INPUT type="hidden" name="praction" value="viewext"><BR>
+<INPUT type="submit" value="Select Page">
+</FORM>
+<B>2. Enter your Review</B>
+<FORM action="%SCRIPTURL%/view%SCRIPTSUFFIX%/%TWIKIWEB%/PeerPluginView" method="post">
+*Quality Rating...*
+<br>
+Please rate the quality of this topic on a scale of 1-5:
+| *Rating* | *Quality*												 | *Key*		 |
+| *1*		| <INPUT type="radio" name="quality" value="2"> | 1=Poor		| 
+| *2*		| <INPUT type="radio" name="quality" value="2"> | 2=Below Average | 
+| *3*		| <INPUT type="radio" name="quality" value="3"> | 3=Average	| 
+| *4*		| <INPUT type="radio" name="quality" value="4"> | 4=Good		| 
+| *5*		| <INPUT type="radio" name="quality" value="5"> | 5=Excellent | 
+
+*Relevance Rating...*
+<br>
+Please rate the relevance of this topic to the Wiki community on a scale of 1-5. It is not a criticism to have narrow relevance - but affects how ratings statistics are weighted when popular topics are advertised.
+| *Rating* | *Relevance*												 | *Key*				  |
+| *1*		| <INPUT type="radio" name="relevance" value="1"> | 1=Very Specialized |
+| *2*		| <INPUT type="radio" name="relevance" value="2"> | 2=Limited Group	 |
+| *3*		| <INPUT type="radio" name="relevance" value="3"> | 3=Many Users		 |
+| *4*		| <INPUT type="radio" name="relevance" value="4"> | 4=Most Users		 |
+| *5*		| <INPUT type="radio" name="relevance" value="5"> | 5=All Users		  |
+
+*Comment...*
+<br>
+Please enter your comments below. Entries are limited to 255 characters (approx 3 lines). They can contain %TWIKIWEB%.WikiWords to reference (or create) an external topic.<br>
+<TEXTAREA name="comment" scroll="off" rows="2" cols="103"></TEXTAREA><BR>
+<INPUT type="hidden" name="prurl" value="%PRURL%">
+<INPUT type="hidden" name="prweb" value="%PRWEB%">
+<INPUT type="hidden" name="prtopic" value="%PRTOPIC%">
+<INPUT type="hidden" name="prrevinfo" value="%PRREVINFO%">
+<INPUT type="hidden" name="praction" value="add">
+<INPUT type="submit" value="Submit Review">
+</FORM>
+%PRDOFORM%

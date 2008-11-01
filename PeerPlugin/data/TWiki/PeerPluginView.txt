@@ -1,0 +1,9 @@
+%META:TOPICINFO{author="RoeS01" date="998479995" format="1.0" version="1.35"}%
+---+++ Add a Review of %PROBJECT%
+%INCLUDE{"%TWIKIWEB%.PeerPluginForm"}%
+----
+---+++ Previous Reviews of %PROBJECT%
+%PRLIST{format="topicview"}%
+----
+---+++ Content of %PROBJECT%
+%PRINCLUDE{prurl="%PRURL%"}%

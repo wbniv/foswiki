@@ -1,0 +1,154 @@
+%META:TOPICINFO{version="1.2" date="998489466" author="RoeS01" format="1.0beta"}%
+The Peer Review Plugin implements a number of TWiki variables in order to allow the TWiki site administrator to configure a solution that matches the needs of their particular TWiki community. This topic is intended to convey the rudiments of its operation and to provide examples. It is intended for site administrators with experience of using TWiki variables.
+
+---++ Links
+
+---++++ PRLINK
+
+A link &lt;!--%<nop>PRLINK%--&gt; that can either be placed in the site skin(s) or that may be edited into the %TWIKIWEB%.TwikiPreferences topic as one of the Web Topic List items. This link points to a special Peer Review topic - [[Wiki.PeerPluginView]].
+
+---++++ PRRATING
+
+A rating indicator &lt;!--%<nop>PRRATING%--&gt; that can be placed in the site skin or that may be edited into the %TWIKIWEB%.TwikiPreferences topic as one of the Web Topic List items. This indicator shows the average topic quality rating for all current reviews. It is greyed out if no review has yet been entered for the topic.
+
+Both of the above two variables are implemented as an HTML comment tag - they will disappear if the plugin is removed. Both are greyed out if referring to a user topic.
+
+---++++ PRUSERVIEW
+
+A link that should be placed in the user topic (it is recommended that this link is placed in the user topic automatically at registration by putting in in register.tmpl just below %<nop>FORMDATA%. This link displays as <A href="#">ViewMyReviews</a>. It points to a special Peer Review topic - [[Wiki.PeerPluginUser]].
+
+---++ Special Topics
+
+---++++ <nop>%TWIKIWEB%.PeerPluginView
+
+A fully featured version of this special topic contains the following:
+
+<verbatim>
+---+++ Add a Review of %<nop>PROBJECT%
+%<nop>INCLUDE{"%<nop>TWIKIWEB%.PeerPluginForm"}%
+----
+---+++ Previous Reviews of %<nop>PROBJECT%
+%<nop>PRLIST{format="topicview"}%
+----
+---+++ Content of %<nop>PROBJECT%
+%<nop>PRINCLUDE{prurl="%<nop>PRURL%"}%
+</verbatim>
+
+This performs the following:
+
+	1 Shows the review entry form (see below) by including another Special Topic <nop>%TWIKIWEB%.PeerPluginView
+	1 Shows a list of current reviews
+	1 Includes a view of the topic under review (specifically %<nop>PRINCLUDE% allows the include to refer to external urls so that TWiki users can review non-TWiki web pages and sites
+
+The order and presence of each of these items can be changed - specifically it is intended that this arrangement will allow modification (of the TWiki perl source code) so that "add a review" and "view reviews" may be separate links.
+
+---++++ <nop>%TWIKIWEB%.PeerPluginUser
+
+This special topic shows a list of the current reviews written by the user in question. It contains the following:
+
+<verbatim>
+---+++ Reviews by %<nop>PROBJECT%
+
+%<nop>PRLIST{format="userview"}%
+</verbatim>
+
+---++++ <nop>%TWIKIWEB%.PeerPluginForm
+
+This special topic shows a form for entry of new reviews. An example form is:
+
+<verbatim>
+<FORM action="%<nop>SCRIPTURL%/view%<nop>SCRIPTSUFFIX%/%<nop>TWIKIWEB%/PeerPluginView" method="post">
+Rating...
+| *Rating* | *1* | *2* | *3* | *4* | *5* | *Key* |
+| Quality | <INPUT type="radio" name="quality" value="1"> | <INPUT type="radio" name="quality" value="2"> |
+ <INPUT type="radio" name="quality" value="3"> | <INPUT type="radio" name="quality" value="4"> | <INPUT 
+type="radio" name="quality" value="5"> | <FONT size="-2"> How do you rate the quality of information on this 
+topic: 1=Poor, 2=Below Average, 3=Average, 4=Good, 5=Excellent? </FONT> |
+| Relevance | <INPUT type="radio" name="relevance" value="1"> | <INPUT type="radio" name="relevance" 
+value="2"> | <INPUT type="radio" name="relevance" value="3"> | <INPUT type="radio" name="relevance" 
+value="4"> | <INPUT type="radio" name="relevance" value="5"> | <FONT size="-2"> Is the information useful to 
+a narrow or wide audience: 1=Very Specialized, 2=Limited Group, 3=Many Users, 4=Most Users, 5=All Users? 
+</FONT> |
+Comment...<BR>
+<TEXTAREA name="comment" scroll="off" rows="2" cols="103"></TEXTAREA><BR>
+<INPUT type="hidden" name="prurl" value="%<nop>PRURL%">
+<INPUT type="hidden" name="prweb" value="%<nop>PRWEB%">
+<INPUT type="hidden" name="prtopic" value="%<nop>PRTOPIC%">
+<INPUT type="hidden" name="prrevinfo" value="%<nop>PRREVINFO%">
+<INPUT type="hidden" name="praction" value="add">
+<INPUT type="submit" value="Submit Review">
+</FORM>
+%<nop>PRDOFORM%
+</verbatim>
+
+By editing this topic, TWiki administrators can add their own explanatory wording and "rules" for fair play with reviews.
+
+---++++ <nop>%TWIKIWEB%.PeerReviewStats
+
+This topic uses a wiki variable to display review statistics:
+
+<verbatim>
+---++ Topic Peer Review Statistics
+%PRSTATS{web="all", limit="100"}% 
+</verbatim>
+
+---++++ <nop>%TWIKIWEB%.PeerPluginExtView
+
+Same idea as <nop>PeerPluginView - but is used to review external Internet/Intranet pages.
+
+<verbatim>
+---+++ Internet/Intranet Review of %<nop>PROBJECT%
+%<nop>INCLUDE{"%<nop>TWIKIWEB%/PeerPluginExtForm"}%
+----
+---+++ Previous Reviews of %<nop>PROBJECT%
+%<nop>PRLIST{format="topicview"}%
+----
+---+++ Content of %<nop>PROBJECT%
+%<nop>PRINCLUDE{prurl="%<nop>PRURL%"}%
+</verbatim>
+
+---++++ <nop>%TWIKIWEB%.PeerPluginExtForm
+
+Same idea as <nop>PeerPluginForm - but is used to review external Internet/Intranet pages.
+
+<verbatim>
+*Use this form to review any page on the web. Great for highlighting information that is useful to this wiki community.*
+<FORM action="%SCRIPTURL%/view%SCRIPTSUFFIX%/%TWIKIWEB%/PeerPluginExtView" method="post">
+<B>1. Select the Page</B>
+	* Enter any Internet or Intranet web page address...
+Url: <INPUT type="text" name="prurl" size="32" value="%PRURL%">
+<INPUT type="hidden" name="praction" value="viewext"><BR>
+<INPUT type="submit" value="Select Page">
+</FORM>
+<B>2. Enter your Review</B>
+<FORM action="%SCRIPTURL%/view%SCRIPTSUFFIX%/%TWIKIWEB%/PeerPluginExtView" method="post">
+Rating...
+| *Rating* | *1* | *2* | *3* | *4* | *5* | *Key* |
+| Quality | <INPUT type="radio" name="quality" value="1"> | <INPUT type="radio" name="quality" value="2"> |
+ <INPUT type="radio" name="quality" value="3"> | <INPUT type="radio" name="quality" value="4"> | <INPUT 
+type="radio" name="quality" value="5"> | <FONT size="-2"> How do you rate the quality of information on this 
+topic: 1=Poor, 2=Below Average, 3=Average, 4=Good, 5=Excellent? </FONT> |
+| Relevance | <INPUT type="radio" name="relevance" value="1"> | <INPUT type="radio" name="relevance" 
+value="2"> | <INPUT type="radio" name="relevance" value="3"> | <INPUT type="radio" name="relevance" 
+value="4"> | <INPUT type="radio" name="relevance" value="5"> | <FONT size="-2"> Is the information useful to 
+a narrow or wide audience: 1=Very Specialized, 2=Limited Group, 3=Many Users, 4=Most Users, 5=All Users? 
+</FONT> |
+Comment...<BR>
+<TEXTAREA name="comment" scroll="off" rows="2" cols="103"></TEXTAREA><BR>
+<INPUT type="hidden" name="prurl" value="%PRURL%">
+<INPUT type="hidden" name="prweb" value="%PRWEB%">
+<INPUT type="hidden" name="prtopic" value="%PRTOPIC%">
+<INPUT type="hidden" name="prrevinfo" value="%PRREVINFO%">
+<INPUT type="hidden" name="praction" value="add">
+<INPUT type="submit" value="Submit Review">
+</FORM>
+%PRDOFORM%
+</verbatim>
+
+
+<!--TWikiCat--> <h4> WikiCategory </h4>
+<table border="1" cellspacing="0" cellpadding="1">
+<tr>
+<td valign="top" align="right"> TopicClassification:  <br></td><td>  Select one... </td>
+</tr>
+</table><!--TWikiCat-->
