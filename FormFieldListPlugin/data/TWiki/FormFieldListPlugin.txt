@@ -1,0 +1,200 @@
+%META:TOPICINFO{author="TWikiContributor" date="1096633516" format="1.0" version="1.1"}%
+---+!! Form Field List Plugin
+
+Search, filter and format multiple TWiki form fields from multiple topics.
+
+This plugin offers more options than the predefined variable [[%TWIKIWEB%.TWikiDocumentation#FORMFIELD][%<nop>FORMFIELD{"fieldname"}%]].
+
+This plugin uses TWiki:Plugins/TopicDataHelperPlugin
+
+%TOC%
+
+---++ Syntax Rules
+
+   * =%<nop>FORMFIELDLIST{}%= - default rendering of the fields of the current topic
+   * =%<nop>FORMFIELDLIST{parameters}%= - see list of parameters below
+
+---+++ Topics to search
+%TABLE{columnwidths="20%,30%,15%,40%"}%
+| *Parameter* | *Comment* | *Default value* | *Example* |
+| =topic=     | Topic name to show form fields of. Possible values: \
+%BB% one topic \
+%BB% a comma-separated list of topic names \
+%BB% a wildcard =*= to search in all topics in the web; exclude topics using =excludetopics= | the current topic | =topic="<nop>%TOPIC%"=, =topic="<nop>%TOPIC%, <nop>WebHome"=, =topic="*"= |
+| =excludetopic= | Comma-separated list of topic names to not show the form fields of | none | =excludetopic="<nop>WebPreferences, <nop>WebHome"= |
+| =web=       | Web name to show form fields of. Possible values: \
+%BB% one web \
+%BB% a comma-separated list of web names \
+%BB% a wildcard * to search in all webs; exclude topics using =excludeweb= | the current web | =web="<nop>%WEB%"=, =web="<nop>%WEB%, <nop>Main"=, =web="*"= |
+| =excludeweb= | Comma-separated list of web names to not show the form fields of | none | =web="*" excludeweb="TWiki"= |
+
+---+++ Topics to include/exclude
+%TABLE{columnwidths="20%,30%,15%,40%"}%
+| *Parameter* | *Comment* | *Default value* | *Example* |
+| =user=  | Comma-separated list of user names (that have changed the containing topic last) to be listed. To find topics where no user is specified, use =UnknownUser=. | none | =user="TWikiContributor"= |
+| =excludeuser=  | Comma-separated list of user names (that have changed the containing topic last) to not show. | none | =excludeuser="<nop>TWikiContributor, <nop>TWikiAdminUser, <nop>TWikiGuest, <nop>UnknownUser"= |
+| =fromdate=, =todate=  | Date range filter: show topics between =fromdate= and =todate= (topic changed dates); dates are specified in format =yyyy/mm/dd= \
+%BB% =fromdate="" todate="2007/09/01"= selects all topics up to 1 Sep 2007 \
+%BB% =fromdate="2007/12/01" todate=""= selects all topics since 1 Dec 2007 | no date filter | =fromdate="2005/01/01"= =todate="2007/01/01"= |
+
+---+++ Form fields to include/exclude
+%TABLE{columnwidths="20%,30%,15%,40%"}%
+| *Parameter* | *Comment* | *Default value* | *Example* |
+| =""= or =field=        | The names of the form fields to show. If not specified, will retrieve all fields from the topic or topics. | The fields of the current topic. | =%<nop>FORMFIELDLIST{"Author, Status"}%= or =%<nop>FORMFIELDLIST{field="Author, Status"}%= |
+| =excludefield=        | The names of the form fields to exclude. | none | =excludefield="Author"= |
+| =includefieldpattern= | Regular expression pattern to match field names to show. For example: the pattern =^[A-Z]= will match fields which names start with an uppercase letter; pattern =[0-9]= will find fields that have a number in the name. Use prefix =(?i)= for case insensitivity. | none | =includefieldpattern="^(?i)[A]"= |
+| =excludefieldpattern= | Regular expression pattern to match field names to hide.  | none | =excludefieldpattern="^(?i)[B]"= |
+| =includevaluepattern= | Regular expression pattern to match field values to show. For example: the pattern =^[A-Z]= will match fields which values start with an uppercase letter; pattern =[0-9]= will find values that have a number. Use prefix =(?i)= for case insensitivity. | none | =includevaluepattern="^(?i)[A]"= |
+| =excludevaluepattern= | Regular expression pattern to match field valus to hide.  | none | =excludevaluepattern="^(?i)[B]"= |
+| =excludeemptyvalue= | Set to =on= to skip fields that have no value set. Listed fields do exist. To add missing fields to your listing, use =includemissingfields=. | =off= | =excludeemptyvalue="on"= |
+| =includemissingfields= | Set to =on= to add missing fields from topics. These will have an empty value, and may be substituted by param =alttext=. This is primarily useful if you want to achieve an even list of results. | =off= | =includemissingfields="on"= |
+| =limit=     | The maximum number of fields to display. Note that you should pass a multiple of the fields you are requesting: if you are requesting 2 form fields, the limit should be 2 or 4 or 6 and so on, otherwise the resulting text may be hard to understand. | no limit | =limit="10"= |
+
+
+---+++ Sort options
+%TABLE{columnwidths="20%,30%,15%,40%"}%
+| *Parameter* | *Comment* | *Default value* | *Example* |
+| =sort=      | Sorts the retrieved form fields on: %BR%\
+name (=$name=) %BR%\
+value (=$value=) %BR%\
+containing topic (=$topicName=) %BR%\
+date (=$fieldDate=) (when field has changed, this is checked against a cache)  %BR%\
+topic date (=$topicDate=) %BR%\
+user (=$topicUser=) %BR%\
+The sort order can be specified with parameter =sortorder=. | =$topicName= | =sort="$name"= |
+| =sortorder= | Lists sorted attachments: ascending or descending. The default sort order depends on the =sort= type: %BR%\
+=descending=: default for =$date= (latest file first) %BR%\
+=ascending=: default for =$fieldName=, =$fieldValue= and =$topicName= (alphabetically) | see left | =sortorder="ascending"= |
+
+---+++ Formatting parameters
+%TABLE{columnwidths="20%,30%,15%,40%"}%
+| *Parameter* | *Comment* | *Default value* | *Example* |
+| =format=    | Format string; use the format in the table below. | the plugin setting =FORMAT= (=%FORMAT%=) | =format="   * $name=$value"= |
+| =separator=    | String to separate formatted results. | none | =separator=","= |
+| =topicheader=    | String to separate grouped formatted results per topic.  | none | =topicheader="--- <nop>$topicName"= |
+| =header=    | A header text in case of hits. | no header | =header="All fields:"= |
+| =footer=    | A footer text in case of hits. | no footer | =footer="Number of fields: $fieldCount"= |
+| =alttext=       | Alternative text if no field is found in the topic form. Can only be used with =includemissingfields="on"=. | none | =alttext="--field not found--"= |
+| =default=       | Alternative text if no field value is set. | none | =default="(Field $name not set)"= |
+| =alt=       | Alternative text for the entire listing if nothing is found. | none | =alt="No fields found"= |
+
+---+++ Formatting variables
+These variables can be used in the =format= tag:
+
+| *Format variable* | *Comment* |
+| =$title=  | Field name |
+| =$name= | Field name |
+| =$value= | Field value |
+| =$topicName= | Containing topic name |
+| =$webName= | Containing web name |
+| =$topicUser= | Last editor of topic |
+| =$topicDate= | Last edit date of topic |
+| =$fieldDate= | Edit date of topic when field has been changed last (only set when param =sort="$fieldDate"= is used, otherwise the same as =$topicDate=) |
+
+These substitution variables can be used in the =format=, =header= and =footer= tags:
+
+| *Format variable* | *Comment* |
+| =$n= or =$n()= | New line. Use =$n()= if followed by alphanumeric character, e.g. write =Foo$n()Bar= instead of =Foo$nBar= |
+| =$nop= or =$nop()= | Is a "no operation". |
+| =$quot= | Double quote (="=) |
+| =$percnt= | Percent sign (=%=) |
+| =$dollar= | Dollar sign (=$=) |
+| =$br= | =&lt;br /&gt;= tag |
+
+These variables can be used in the =header= and =footer= tags:
+
+| *Format variable* | *Comment* |
+| =$fieldCount= | Number of listed fields  |
+
+
+---++ Sorting by field changed, not by topic changed
+
+A short motivation:
+
+At our intranet homepage we have a list of 'client news blurbs': news oneliners to give all a quick look on what work is going on for each client. These blurbs are part of the <nop>ClientForm, and are included on every client topic. Of course, when the topic gets updated, the news blurb would be bumped on the homepage as well, even though the news itself was not updated.
+
+For these situations it is useful to sort the list of field values on date when the field has been updated. For this you may use the =sort= parameter =$fieldDate=.
+
+When a list with =sort="$fieldDate"= is found, the plugin compares the form values with a cached version, and copies the change date of the cached version if the field value was not updated.
+
+The list will only work correctly once the cache is there. The very first view creates the cache. Subsequent views compares to the cache.
+
+Note that sorting on dates by default lists latest on top.
+
+
+---++ Example
+
+This example finds - from all topics in %MAINWEB% web - all field names with the string 'name' in it. The fields of each topic are grouped by a table header.
+<verbatim>
+%FORMFIELDLIST{
+web="%MAINWEB%"
+topic="*"
+includefieldpattern="(?i)name"
+limit="10"
+default="<span class='twikiGrayText'>not set<span>"
+alt="No fields found"
+topicheader="| *<nop>$topicName* ||"
+format="| <nop>$name | $value |"
+}%
+</verbatim>
+
+Output (if installed):
+
+%FORMFIELDLIST{
+web="%MAINWEB%"
+topic="*"
+includefieldpattern="(?i)name"
+limit="10"
+default="<span class='twikiGrayText'>not set</span>"
+alt="No fields found"
+topicheader="| *<nop>$topicName* ||"
+format="| <nop>$name | $value |"
+}%
+
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Search, filter and format multiple TWiki form fields from multiple topics.
+
+	* Default format of rendering form field values:
+<verbatim>
+		* Set FORMAT = $value
+</verbatim>
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==lib/TWiki/Plugins/%TOPIC%/FormFieldData.pm== | Data class; plugin Perl module |
+	* Visit =configure= in your TWiki installation, and enable the plugin in the =Plugins= section.
+
+
+---++ Plugin Info
+
+|  Authors: | TWiki:Main/BerndRaichle (2004), TWiki::Main/ArthurClemens (2008) |
+|  Copyright &copy;: | TWiki:Main/BerndRaichle (2004), TWiki::Main/ArthurClemens (2008) |
+|  Plugin Version: | 25 Oct 2008 (v2.010) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+| 25 Oct 2008:  | v.2.010 Arthur Clemens: Added param =includemissingfields= to explicitly generate field substitutes. |
+|  24 Oct 2008: | v.2.000 Arthur Clemens: Major code refactoring with the addition of numerous parameters. Created unit tests.  |
+|  01 Oct 2004: | Bernd Raichle: Initial version. |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Perl Version: | 5.005 |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ [[%TWIKIWEB%.TWikiDocumentation#FORMFIELD][TWiki Variable FORMFIELD]], %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
