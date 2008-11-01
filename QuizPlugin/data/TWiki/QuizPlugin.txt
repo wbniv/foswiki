@@ -1,0 +1,74 @@
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the Dev topic instead. -->
+
+---+!! !QuizPlugin
+<!--
+One line description, required for extensions repository catalog.
+   * Set SHORTDESCRIPTION = Small Quiz generator
+-->
+%SHORTDESCRIPTION%
+
+%TOC%
+
+One of the things that training design people tell us is that "it's good to checkpoint" during a training course with quiz questions. This is a little quiz formatter that lets us embed a quiz into the training in the wiki, as we develop it. Of course, you can use it for other things as well....
+
+The sort of quizzes we need are simple; multiple choice, or questions answerable with a single string. This plugin allows us to design such simple quizzes in a TWiki topic (these are just examples; they don't work):
+
+=%<nop>QUIZ{"Why is the sea boiling hot?" type="select" choices="It isn't;Just because;42" correct="Just because"}%=
+
+<div class='twikiAlert'> Q1: Why is the sea boiling hot?</div>
+<input type='radio' name='field' value='It isn't'> It isn't <br />
+<input type='radio' name='field' value='Just because'> Just because <br />
+<input type='radio' name='field' value='42'> 42 <br />
+
+<input type=button value="Submit Answer" onClick="Submit1()">
+<input type=button value="Show Solutions" onClick="Cheat1()">
+<p />
+=%<nop>QUIZ{"Which of the following are English Counties?" type="select" choices="Peckham;Cheshire;Argyll;Wisconsin;Cornwall" correct="Cheshire;Cornwall"}%=
+
+<div class='twikiAlert'> Q2: Which of the following are English Counties?</div>
+<input type='checkbox' name='field' value='Peckham'> Peckham <br />
+<input type='checkbox' name='field' value='Cheshire'> Cheshire <br />
+<input type='checkbox' name='field' value='Argyll'> Argyll <br />
+<input type='checkbox' name='field' value='Wisconsin'> Wisconsin <br />
+<input type='checkbox' name='field' value='Cornwall'> Cornwall <br />
+
+<input type=button value="Submit Answer" onClick="Submit2()">
+<input type=button value="Show Solutions" onClick="Cheat2()">
+<p />
+=%<nop>QUIZ{"How long is a yard?" type="string" correct="3.5 pints" jump="TWikiAccessControl"}%=
+<div class='twikiAlert'> Q3: How long is a yard?</div>
+<input type='text' name='field' size='9' maxlength='9'>  <br />
+</td></tr></table><input type=button value="Submit" onClick="Submit3()">
+<input type=button value="Show Solutions" onClick="Cheat3()">
+
+---++ Usage
+
+=%<nop>QUIZ{ " _question_ " _attributes_ }%=
+
+| *Attribute* | *Meaning* |
+| =type= | =string= (string must be matched) or =select= (multiple choice) |
+| =choices= | Semicolon separated list of choices for a multiple choice |
+| =correct= | Semicolon separated list of correct answers |
+| =jump= | |
+| =units= | Short string put after the data entry field for string questions |
+
+---++ Installation Instructions
+
+%$INSTALL_INSTRUCTIONS%
+
+If the plugin is installed, you will see a question here:
+%QUIZ{"Is the QuizPlugin installed and working?" type="select" choices="yes;no;maybe" correct="yes"}%
+
+---++ Plugin Info
+
+|  Plugin Author(s): | TWiki:Main.CrawfordCurrie|
+|  Plugin Version: | %$VERSION% |
+|  Copyright: | &copy; 2001 Motorola Ltd. and &copy; 2007 C-Dot Consultants http://c-dot.co.uk |
+|  License: | [[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License)]] |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Plugin Home: | http://twiki.org/cgi-bin/view/Plugins/QuizPlugin |
+|  Feedback: | http://twiki.org/cgi-bin/view/Plugins/QuizPluginDev |
+|  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/QuizPluginAppraisal |
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the Dev topic instead. -->
