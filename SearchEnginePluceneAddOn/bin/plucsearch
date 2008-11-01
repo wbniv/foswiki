@@ -1,0 +1,324 @@
+#!/usr/bin/perl -wT
+#
+# Copyright (C) 2004 Joan M Vigo, imnaoj@yahoo.es
+#
+# For licensing info read license.txt file in the TWiki root.
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details, published at 
+# http://www.gnu.org/copyleft/gpl.html
+
+# Set library paths in @INC, at compile time
+BEGIN { unshift @INC, '.'; require 'setlib.cfg'; }
+
+use CGI::Carp qw(fatalsToBrowser);
+use CGI;
+use TWiki;
+use Plucene::QueryParser;
+use Plucene::Analysis::SimpleAnalyzer;
+use Plucene::Search::HitCollector;
+use Plucene::Search::IndexSearcher;
+use Plucene::Document;
+use Plucene::Document::Field;
+use Plucene::Index::Writer;
+use Plucene::Analysis::SimpleAnalyzer;
+use Plucene::Document::DateSerializer;
+
+use strict;
+
+my $idxpath = "";
+
+&main();
+
+sub main
+{
+    my $query = new CGI;
+    
+    my $thePathInfo = $query->path_info(); 
+    my $theRemoteUser = $query->remote_user();
+    my $theTopic = $query->param( 'topic' );
+    my $theUrl = $query->url;
+
+    my( $topic, $webName ) = 
+	&TWiki::initialize( $thePathInfo, $theRemoteUser, $theTopic, $theUrl, $query );
+    
+    if( ! &TWiki::Store::webExists( $webName ) ) {
+        my $url = &TWiki::getOopsUrl( $webName, $topic, "oopsnoweb" );
+        TWiki::redirect( $query, $url );
+        return;
+    }
+
+    &TWiki::Prefs::initializePrefs( $webName );
+    $idxpath = &TWiki::Prefs::getPreferencesValue( "PLUCENEINDEXPATH" );
+
+    # Note that mod_perl/cgi appears to use ';' as separator, whereas plain cgi uses '&'
+    my $websStr       = join ' ',
+                        grep { s/^web=(.*)$/$1/ }
+                        split(/[&;]/, $query->query_string);
+    # need to unescape URL-encoded data since we use the raw query_string
+    # suggested by JeromeBouvattier
+    $websStr =~ tr/+/ /;       # pluses become spaces
+    $websStr =~ s/%([0-9a-fA-F]{2})/pack("c",hex($1))/ge;  # %20 becomes space
+
+    my $search        = $query->param( "search" ) || "";
+    my $scope         = $query->param( "scope" )  || "";
+    my $order         = $query->param( "order" )  || "";
+    my $revSort       = $query->param( "reverse" )  || "";
+    my $caseSensitive = $query->param( "casesensitive" ) || "";
+    my $regex         = $query->param( "regex" )  || "";
+    my $limit         = $query->param( "limit" )  || "";
+    my $nosummary     = $query->param( "nosummary" )  || "";
+    my $nosearch      = $query->param( "nosearch" )  || "";
+    my $noheader      = $query->param( "noheader" )  || "";
+    my $nototal       = $query->param( "nototal" ) || "";
+    my $bookView      = $query->param( "bookview" )  || ""; # PTh 20 Jul 2000
+    my $renameView    = $query->param( "renameview" )  || "";
+    my $showlock      = $query->param( "showlock" ) || "";
+    my $noempty       = $query->param( "noempty" ) || "";
+    my $attrTemplate  = $query->param( "template" ) || "";  # undocumented
+    my $attrHeader    = $query->param( "header" ) || "";
+    my $attrFormat    = $query->param( "format" ) || "";
+
+    &TWiki::writeHeader( $query );
+    searchWeb( "0",
+        $websStr, $search, $scope, $order, $regex,
+        $limit, $revSort, $caseSensitive, $nosummary,
+        $nosearch, $noheader, $nototal, $bookView, $renameView,
+        $showlock, $noempty, $attrTemplate, $attrHeader, $attrFormat
+    );
+}
+
+sub searchWeb
+{
+    my ( $doInline, $theWebName, $theSearchVal, $theScope, $theOrder,
+         $theRegex, $theLimit, $revSort, $caseSensitive, $noSummary,
+         $noSearch, $noHeader, $noTotal, $doBookView, $doRenameView,
+         $doShowLock, $noEmpty, $theTemplate, $theHeader, $theFormat,
+         @junk ) = @_;
+
+    my $originalSearch = $theSearchVal;
+
+    my $searchResult = ""; 
+
+    my $tempVal = "";
+
+    my $topic = $TWiki::mainTopicname;
+
+    if ($theLimit =~ /(^\d+$)/o) { # only digits, all else is the same as
+        $theLimit = $1;            # an empty string.  "+10" won't work.
+    } else {
+        $theLimit = 0;             # change "all" to 0, then to big number
+    }
+    if (! $theLimit ) {            # PTh 03 Nov 2000:
+        $theLimit = 32000;         # Big number, needed for performance improvements
+    }
+
+    # A value of 'all' or 'on' by itself gets all webs,
+    # otherwise ignored (unless there is a web called "All".)
+    my $searchAllFlag = ( $theWebName =~ /(^|[\,\s])(all|on)([\,\s]|$)/i );
+
+    my $tmpl = &TWiki::Store::readTemplate( "plucsearch" );
+    $tmpl =~ s/\%META{.*?}\%//go;  # remove %META{"parent"}%
+
+    my( $tmplHead, $tmplSearch,
+        $tmplTable, $tmplNumber, $tmplTail ) = split( /%SPLIT%/, $tmpl );
+    $tmplHead   = &TWiki::handleCommonTags( $tmplHead, $topic );
+    $tmplSearch = &TWiki::handleCommonTags( $tmplSearch, $topic );
+    $tmplNumber = &TWiki::handleCommonTags( $tmplNumber, $topic );
+    $tmplTail   = &TWiki::handleCommonTags( $tmplTail, $topic );
+
+    if( ! $tmplTail ) {
+        print "<html><body>";
+        print "<h1>TWiki Installation Error</h1>";
+        # Might not be search.tmpl FIXME
+        print "Incorrect format of search.tmpl (missing %SPLIT% parts)";
+        print "</body></html>";
+        return;
+    }
+
+    # print first part of full HTML page
+    $tmplHead = &TWiki::Render::getRenderedVersion( $tmplHead );
+    $tmplHead =~ s|</*nop/*>||goi;   # remove <nop> tags (PTh 06 Nov 2000)
+    print $tmplHead;
+
+    if( ! $noSearch ) {
+        # print "Search:" part
+        $tempVal = $theSearchVal;
+        $tempVal =~ s/&/&amp;/go;
+        $tempVal =~ s/</&lt;/go;
+        $tempVal =~ s/>/&gt;/go;
+        $tempVal =~ s/^\.\*$/Index/go;
+        $tmplSearch =~ s/%SEARCHSTRING%/$tempVal/go;
+        if( $doInline ) {
+            $searchResult .= $tmplSearch;
+        } else {
+            $tmplSearch = &TWiki::Render::getRenderedVersion( $tmplSearch );
+            $tmplSearch =~ s|</*nop/*>||goi;   # remove <nop> tag
+            print $tmplSearch;
+        }
+    }
+
+    # write log entry
+    if( $TWiki::doLogTopicSearch ) {
+        &TWiki::Store::writeLog( "search", $searchAllFlag, $tempVal );
+    }
+
+    # output header of $theWebName
+    my( $beforeText, $repeatText, $afterText ) = split( /%REPEAT%/, $tmplTable );
+
+    $beforeText =~ s/%WEBBGCOLOR%/#FF00FF/go;
+    $beforeText =~ s/%WEB%/lala/go;
+    $beforeText = &TWiki::handleCommonTags( $beforeText, $topic );
+    $afterText  = &TWiki::handleCommonTags( $afterText, $topic );
+    if( ! $noHeader ) {
+              $beforeText = &TWiki::Render::getRenderedVersion( $beforeText, $TWiki::webName );
+              $beforeText =~ s|</*nop/*>||goi;   # remove <nop> tag
+              print $beforeText;
+     }
+
+    # Plucene code
+    my $parser = Plucene::QueryParser->new({
+                  analyzer => Plucene::Analysis::SimpleAnalyzer->new(),
+                  default  => "text" # Default field for non-specified queries
+    });
+    my $query = $parser->parse("$theSearchVal"); 
+    my $searcher = Plucene::Search::IndexSearcher->new($idxpath);
+
+    my @docs;
+    my $hc = Plucene::Search::HitCollector->new(collect => sub {
+              my ($self, $doc, $score)= @_;
+              push @docs, [ ($searcher->doc($doc), $score) ];
+    });
+
+    $searcher->search_hc($query, $hc);
+    # @docs is now a list of Plucene::Document objects.
+ 
+    # first we need to build the hash for score
+    my %topicScore = (); # keep only temporarily for sort
+    foreach( @docs ) {
+      my @vresult = @$_;
+      my ($tempVal, $score) = @vresult;
+      $topicScore{ $_ } = $score;
+    }
+    # then sort docs using score hash
+    @docs = map { $_->[1] }
+            sort {$b->[0] <=> $a->[0] }
+            map { [ $topicScore{$_}, $_ ] }
+            @docs;
+                                                                                                                             
+                                                                                                                             
+    # output the list of topics
+    my $ntopics = 0;
+    my $topic = "";
+    my $head = "";
+    my $revUser = "";
+    my $revDate = "";
+    my $revNum = "";
+    my $locked = "";
+    my $name = "";
+    my $icon = "";
+
+    foreach my $vresultP (@docs) {
+      my @vresult = @$vresultP;
+      my ($result, $score) = @vresult;
+
+      my $resweb = $result->get('web')->string;
+      my $restopic = $result->get('topic')->string;
+       ###For partial name search of topics  
+      if($restopic =~ m/(\w+)/) { $restopic =~ s/$1 //; } ## Get hold of first part of the string...
+       $restopic =~ s/ //g;
+
+
+      next unless &TWiki::Store::topicExists( $resweb, $restopic );  # topics moved away maybe are still indexed
+
+      my $fieldattachment = $result->get('attachment');
+      if ( $fieldattachment ) {
+        $name = $result->get('name')->string;
+      } else {
+        $name = "";
+      }
+
+      my( $meta, $text ) = &TWiki::Store::readTopic( $resweb, $restopic );
+      $text =~ s/%WEB%/$resweb/gos;
+      $text =~ s/%TOPIC%/$restopic/gos;
+      if ( $result->get('author') ) {
+        $revUser = &TWiki::userToWikiName( $result->get('author')->string );
+        $revNum = $result->get('version')->string;
+        $revDate = $result->get('date')->string;
+      } else {
+        ( $revDate, $revUser, $revNum ) = &TWiki::Store::getRevisionInfoFromMeta( $resweb, $restopic, $meta, 1 );
+      }
+
+      my $allowView = &TWiki::Access::checkAccessPermission( "view", $TWiki::wikiUserName, $text, $restopic, $resweb );
+      # Check security
+      # FIXME - how deal with user login not available if coming from search script?
+      if( ! $allowView ) {
+        next;
+      }
+
+      $tempVal = $repeatText;
+      $tempVal =~ s/%WEB%/$resweb/go;
+      $tempVal =~ s/%SCORE%//go; # score needs to be treated (quality of the hit, stars, percentage, ...)
+
+      # field $name only present if hit is an attachment
+      if ($name) {
+        $icon = &TWiki::Attach::filenameToIcon($name);
+        $tempVal =~ s/%MATCH%/<a href="%PUBURLPATH%\/$resweb\/$restopic\/$name">$name<\/a> - \[\[$resweb\.$restopic\]\]/go;
+      } else {
+        $icon = ""; # is there a topic icon? - maybe &TWiki::Attach::filenameToIcon("twiki.txt");
+        $tempVal =~ s/%MATCH%/\[\[$resweb\.$restopic\]\]/go;
+        $revNum = "1." . $revNum;
+      }
+
+      $tempVal =~ s/%ICON%/$icon/go;
+      $tempVal =~ s/%LOCKED%/$locked/o;
+      $tempVal =~ s/%TIME%/$revDate/o;
+      $tempVal =~ s/%REVISION%/r$revNum/o;
+      $tempVal =~ s/%AUTHOR%/$revUser/o;
+      $tempVal = &TWiki::handleCommonTags( $tempVal, $restopic );
+      $tempVal = &TWiki::Render::getRenderedVersion( $tempVal );
+           
+      if( $noSummary || $name) {
+        $tempVal =~ s/%TEXTHEAD%//go;
+        $tempVal =~ s/&nbsp;//go;
+      } else {
+        $head = &TWiki::makeTopicSummary( $text, $restopic, $resweb );
+        $tempVal =~ s/%TEXTHEAD%/$head/go;
+      }
+      $tempVal = &TWiki::Render::getRenderedVersion( $tempVal, $resweb );
+      $tempVal =~ s|</*nop/*>||goi;   # remove <nop> tag
+      print $tempVal;
+
+      $ntopics += 1;
+      last if $ntopics >= $theLimit;
+    }
+    
+    $afterText = &TWiki::Render::getRenderedVersion( $afterText, $TWiki::webName );
+    $afterText =~ s|</*nop/*>||goi;   # remove <nop> tag
+    print $afterText;
+
+    if( ! $noTotal ) {
+      # print "Number of topics:" part
+      my $thisNumber = $tmplNumber;
+      $thisNumber =~ s/%NTOPICS%/$ntopics/go;
+      $thisNumber = &TWiki::Render::getRenderedVersion( $thisNumber, $TWiki::webName );
+      $thisNumber =~ s|</*nop/*>||goi;   # remove <nop> tag
+      print $thisNumber;
+    }
+
+    # print last part of full HTML page
+    $tmplTail = &TWiki::Render::getRenderedVersion( $tmplTail );
+    $tmplTail =~ s|</*nop/*>||goi;   # remove <nop> tag
+    print $tmplTail;
+
+    return $searchResult;
+
+}
+
+# EOF

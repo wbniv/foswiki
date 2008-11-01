@@ -1,0 +1,25 @@
+%META:TOPICINFO{author="jmv" date="1100773620" format="1.0" version="1.1"}%
+---++ Search form
+<form action="%SCRIPTURLPATH%/plucsearch%SCRIPTSUFFIX%/%INTURLENCODE{"%INCLUDINGWEB%"}%/">
+	<input type="text" name="search" size="32" />
+	<input type="submit" value="Search text" />
+</form>
+
+---+++ Query syntax
+	* you can use *and*, *or*
+	* if you want to search for some word, you should use the prefix ==text:==
+	* you can search for a sentence using quotes and prefixing with ==text:== as above
+	* if you want to search using some meta data, you should use the prefix ==field:== where _field_ is the meta data name
+	* if you want to search using some form field, you should use the prefix ==field:== where _field_ is the form's field name
+
+---+++ Query examples (just type it in your ==PluceneSearch== site topic)
+	* text:plucene
+	* text:"search engine"
+	* author:JoanMVigo
+	* form:WebFormName
+
+__Notes:__ current version of Plucene does not support wildcards.
+
+__See also:__ TWiki:Plugins/PluceneSearchEngineAddOn
+
+-- Main.JoanMVigo - 18 Nov 2004
