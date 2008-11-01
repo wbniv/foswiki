@@ -1,0 +1,57 @@
+%META:TOPICINFO{author="reitsmac" date="1016072953" format="1.0" version="1.6"}%
+---++ %TOPIC%
+
+This is the SablotronPlugin. It uses XML::Sablotron to transform an XSL stylesheet and XML data file into HTML. Both the XSL stylesheet and XML document are Wiki Topics.
+
+---++ Syntax Rules
+
+Place the directive %<nop>XSLTRANSFORM{xsl="SablotronXsl",xml=...}%
+at the top of the XML document where SablotronXsl is the name of the stylesheet and ... is the xml codes.
+
+---++ %TOPIC% Settings
+
+	* One line description (See output in %TWIKIWEB%.TextFormattingRules topic):
+		* Set SHORTDESCRIPTION = SablotronPlugin uses XML::Sablotron to apply a stylesheet to XML.
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---+++ Plugin Installation Instructions
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==data/TWiki/SablotronXsl.txt== | Sample stylesheet |
+	  | ==data/TWiki/SablotronXsl.txt,v== | Sample stylesheet repository |
+	  | ==data/TWiki/SablotronXml.txt== | Sample XML document |
+	  | ==data/TWiki/SablotronXml.txt,v== | Sample XML repository |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Check SablotronXml if %TOPIC% shows up in the list of activated plugins: %ACTIVATEDPLUGINS%
+
+---+++ Design History
+
+	* Thanks to Main.MartinCleaver for the XmlXslPlugin. My browser apparently does not have the feature needed to do client-side transformations so I make use of XML::Sablotron to perform the transformation on the server.
+	* I wanted to be able to see the transformation take place during the Preview Changes of an XML document. This way any extraneous characters or parsing problems will show up as an error.
+ 
+---+++ Issues Outstanding
+
+	* Double quotes are used in the xml code so cannot follow proper form for TWiki::Func::extractNameValuePair
+	* In most cases of error in the XML the result is an "Internal Server Error" - viewing the web server error log tells you the line number to fix. I really should handle this in the plugin.
+
+---+++ Plugin Info
+
+|  Plugin Author: | Main.CharlieReitsma |
+|  Plugin Version: | 13 Mar 2002 |
+|  Change History: | 13 Mar 2002: Bug Fixes<br /> 12 Mar 2002: Initial version |
+|  CPAN Dependencies: | XML::Sablotron |
+|  Other Dependencies: |  |
+|  Perl Version: | 5.0 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- Main.CharlieReitsma - 13 Mar 2002 <br>
