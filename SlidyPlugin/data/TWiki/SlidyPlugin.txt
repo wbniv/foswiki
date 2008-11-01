@@ -1,0 +1,139 @@
+%META:TOPICINFO{author="TWikiContributor" date="1111929255" format="1.0" version="$Rev: 6935 $"}%
+
+---+!! Slidy Plugin
+
+This Plugin converts a topic with headings into a slide show. Analogues to TWiki:Plugins.SlideShowPlugin, but based on W3Cs "HTML Slidy" (presentation at http://www.w3.org/Talks/Tools/Slidy/).
+
+A few of the technical selling points:
+
+   * Slide shows in XHTML
+   * Works across browsers and is operated like PowerPoint
+   * Content scales somewhat with browser window size
+   * URLs shown in presentation link back inside slide show (to explicit slide number).
+   * Use simple TWiki syntax (TML) or fullblown XHTML Slidy syntax to create slides (Slidy syntax has features like incremental display, expanded/collapsed items, handout comments, etc)
+   * Advance to next slide with mouse click or space bar 
+   * Move forward/backward between slides with Cursor Left, Cursor Right, Pg Up and Pg Dn keys 
+   * Home key for first slide, End key for last slide 
+   * The "C" key for an automatically generated table of contents (or click on "contents" on the toolbar) 
+   * Function F11 to go full screen and back 
+   * The "F" key toggles the display of the footer 
+   * The "A" key toggles display of current vs all slides 
+      * Use the "A" key when you want to view or print all slides 
+   * Font sizes automatically adapt to browser window size 
+      * use < and > keys for additional control (or - and + keys on number pad)   
+   * Switching off JavaScript reveals all slides   
+
+%TOC%
+
+---++ Introduction
+
+(Raw copy from TWiki:Plugins.SlideShowPlugin, needs a refactor)
+
+There is already a defacto standard for presentations, why this Plugin? This Plugin makes sense for organizations that do already have lots of content in TWiki: It is easy to create a web based presentation that contains many links to related content. The Plugin does not try to compete with the bells and whistles of the other presentation program, but the markup of TWiki and other Plugins like TWiki:Plugins/ChartPlugin, TWiki:Plugins/GaugePlugin, TWiki:Plugins/SpreadSheetPlugin, TWiki:Plugins/TWikiDrawPlugin can be used to create an appealing presentation.
+
+Any topic with headings can be converted into a slide show. Each slide starts with a ="---++"= heading. There are two modes to view a topic:
+
+	* Normal topic view mode: Headings and text is shown in the usual TWiki rendering, representing the outline of the slide show. This mode is useful to print handouts.
+	* Presentation mode: Each heading with text is shown as a slide; the format is based on a slide template. Navigation buttons are added to go to the "First", "Previous", and "Next" slide. Slide navigation is quick because it is done with anchor jumps to the same page. 
+
+You can start the presentation by clicking on the "Start presentation" button.
+
+---++ Syntax Rules
+
+   * Set TITLE = Silly Sample Slide Show Title
+
+---+++ How to Create a Slide Show
+
+	* Start with =%<nop>SLIDYSTART%=
+	* Create the slides. Start each slide with a ="---+ "= heading and add text like paragraphs, bullets, tables and images.
+		* __Hint:__ You can use an alternate syntax (="---% "=) for the very first slide to create a "cover slide" with an alternate look
+	* End your slide show with =%<nop>SLIDYEND%=
+
+
+This is a short example of a slide show. You should see a "Start presentation" button if this Plugin is installed:
+
+%SLIDYSTART%
+---% Silly Sample Slide Show Cover
+
+By TWiki:Main/SteffenPoulsen
+
+Denmark, 26 Apr 2006
+
+---+ Silly Sample Slide Show
+
+By TWiki:Main/SteffenPoulsen
+
+Denmark, 26 Apr 2006
+
+---+ Agenda
+
+	* Silly Introduction
+	* Silly Feature
+	* Silly Conclusion
+
+---+ Silly Introduction
+
+	* why foo bar
+	* blah blah
+
+---++ Second level heading
+
+	* More bullets
+
+---+ Silly Feature
+
+	* it's foo bar
+	* more foo bar
+
+---+ Silly Conclusion
+
+	* foo is bar
+	* bar is foo
+%SLIDYEND%
+
+This text is not part of the slide show
+
+---++ <nop>%TOPIC% Global Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>SLIDESHOWPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Create web based presentations based on topics with headings; operate presentation like an ordinary <nop>PowerPoint presentation.
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 1
+
+---++ Default Slide Template
+
+The part between the rulers defines the default format of a slide:
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==pub/TWiki/*.gif== | Various button image files |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test above example if the installation was successful.
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/SteffenPoulsen |
+|  Plugin Version: | 1.000 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  26 Apr 2006: | (v1.000) - Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 98%, %TWIKIWEB%.FormattedSearch 99%, SlidyPlugin 99% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
