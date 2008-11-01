@@ -1,0 +1,48 @@
+From: %EMAILFROM%
+To: %EMAILTO%
+Subject: %SUBJECT% on %WIKITOOLNAME%
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+        boundary="=====================_64421935==_.ALT"
+
+--=====================_64421935==_.ALT
+Content-Type: text/plain; charset="%CHARSET%"
+
+This is an automated notification from %WIKITOOLNAME%.
+
+%ACTIONS%
+Actions that require your attention follow:
+
+%ACTIONS_AS_STRING%
+%END%
+%CHANGES%
+Changes to actions since %SINCE% for which you have registered for notification follow. You are registered to receive notifications about state changes in these actions because you are in the "notify" list associated with the action.
+
+%CHANGES_AS_STRING%
+%END%
+For help please contact %WIKIWEBMASTER%.
+
+--=====================_64421935==_.ALT
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
+
+<html>
+<link rel="stylesheet" href="%ACTIONTRACKERPLUGIN_CSS%" type="text/css" />
+<body>
+<p />
+This is an automated notification from %WIKITOOLNAME%.
+%ACTIONS%
+<h3>Actions that require your attention follow:</h3>
+%ACTIONS_AS_HTML%
+%END%
+%CHANGES%
+<h3>Changes to actions since %SINCE%</h3>
+%CHANGES_AS_HTML%
+<br />
+You are registered to receive notifications about state changes in these actions because you are in the =notify= list associated with the action.
+%END%
+<p />For help please contact %WIKIWEBMASTER%.
+</body>
+</html>
+
+--=====================_64421935==_.ALT--

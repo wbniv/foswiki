@@ -1,0 +1,3 @@
+Time::ParseDate,>=2003.0211,cpan,Required. Available from the CPAN:Time::ParseDate archive.
+TWiki::Plugins,>=1.1,perl,TWiki 4
+TWiki::Contrib::JSCalendarContrib,>=0.961,perl,Optional, used if installed. Used to display a neat calendar popup when editing actions. Available from the TWiki:Plugins/JSCalendarContrib repository.
