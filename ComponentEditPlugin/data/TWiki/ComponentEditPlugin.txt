@@ -1,0 +1,55 @@
+%META:TOPICINFO{author="SvenDowideit" date="1144552219" format="1.1" version="1.2"}%
+---+!! <nop>%TOPIC%
+
+The ComponentEditPlugin is used in conjunction with an editor (like InlineEditPlugin) to bring up Syntax specific Edit UI's.
+
+By default it will pop up a floating div window containing a simple textarea, but in combination with registered tag syntax, can generate tag specific UI's (%!SEARCH% is the upcoming demo example)
+
+The tag specific UI's require a round trip to the server, but the default can be used without.
+
+*TODO: * does not yet deal with milti-line TML attrs
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = creates a popup edit UI for TWikiVariables
+
+   * Debug plugin: (See output in =data/debug.txt=)
+      * Set DEBUG = 0
+
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+   * Test if the installation was successful:
+      * _enter samples here_
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.SvenDowideit - SvenDowideit@wikiring.com |
+|  Plugin Version: | 30 April 2006 (V0.900) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  30 April 2006: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.024 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | JSPopupPlugin |
+|  Perl Version: | 5.005 |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- TWiki:Main.SvenDowideit
+

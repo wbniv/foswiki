@@ -1,0 +1,16 @@
+
+<script type="text/javascript" src="%PLUGINPUBURL%/ComponentEditPlugin.js"></script>
+
+<script type="text/javascript">
+//create the TWiki namespace if needed
+if ( typeof( TWiki ) == "undefined" ) {
+    TWiki = {};
+}
+
+//create the TWiki.ComponentEditPlugin namespace if needed
+if ( typeof( TWiki.ComponentEditPlugin ) == "undefined" ) {
+    TWiki.ComponentEditPlugin = {};
+}
+
+TWiki.ComponentEditPlugin.restUrl = '%SCRIPTURL{"rest"}%/ComponentEditPlugin/getEdit';
+</script>

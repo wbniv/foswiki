@@ -1,0 +1,5 @@
+data/TWiki/ComponentEditPlugin.txt  Plugin doc page
+pub/TWiki/ComponentEditPlugin/ComponentEditPlugin.js
+lib/TWiki/Plugins/ComponentEditPlugin.pm  Plugin Perl module 
+templates/componenteditplugin.javascript.tmpl
+templates/componenteditplugin.popup.tmpl
