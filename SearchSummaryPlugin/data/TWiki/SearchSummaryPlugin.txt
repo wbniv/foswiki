@@ -1,0 +1,50 @@
+---+!! !SearchSummaryPlugin
+<!--
+One line description, required for extensions repository catalog.
+   * Set SHORTDESCRIPTION = Show search terms and surrounding context in topic summaries
+-->
+%SHORTDESCRIPTION%
+
+%TOC%
+
+Improves the presentation of summaries for =keyword=, =word= and =literal= searches, by displaying topic content on either side of the search terms wherever they are found in the topic. Especially useful for searches in documentation.
+
+For example, =%<nop>SEARCH{"cat +spasm" type="keyword"}%= produces:
+
+<img src="%ATTACHURLPATH%/screenshot.gif" />
+
+This plugin only works with TWiki-4 or later.
+
+---++ Usage
+
+Install and enable the plugin. It "just works". You can change the size of the context (the number of characters either side of a search term) by setting the [[%TWIKIWEB%.TWikiVariables][TWikiVariable]] =SEARCHSUMMARYPLUGIN_CONTEXT= (the default is 30). You can change the CSS class used to highlight search terms by setting =SEARCHSUMMARYPLUGIN_CSSCLASS=. The default is =twikiAlert=.
+
+---++ Installation Instructions
+
+%$INSTALL_INSTRUCTIONS%
+
+---++ Some Technical Gobbledegook
+This plugin uses a technique called [[http://en.wikipedia.org/wiki/Monkey_patch][monkey-patching]] where the plugin replaces a section of the core with some different code. It does this dynamically, so you can install the plugin without needing to change the core. However the monkey-patching technique is very sensitive to changes in the core code. If it stops working after an upgrade, and you have some programming knowledge, then check to make sure the core functions it patches still have the same prototype as in the previous release, and if not, fix the plugin.
+
+---++ Plugin Info
+
+Another great TWiki extension from the <a style="text-decoration:none" href="http://wikiring.com"><img src="%ATTACHURLPATH%/wikiringlogo20x20.png" alt="" /> *WikiRing* </a> - working together to improve your wiki experience!
+
+|  Plugin Author(s): | Crawford Currie http://c-dot.co.uk for Escape Studios http://www.escapestudios.co.uk/ |
+|  Plugin Version: | %$VERSION% |
+|  Copyright: | &copy; 2007 Escape Studios |
+|  License: | [[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License)]] |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  8 Sep 2007 | Bugs:Item4211 fixed for 4.2.0 |
+|  11 Jun 2007 | Bugs:Item4237 fixed a couple of corner-cases |
+|  8 Jun 2007 | Minor bugfixes |
+|  6 Jun 2007 | First version |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Plugin Home: | http://twiki.org/cgi-bin/view/Plugins/SearchSummaryPlugin |
+|  Feedback: | http://twiki.org/cgi-bin/view/Plugins/SearchSummaryPluginDev |
+|  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/SearchSummaryPluginAppraisal |
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the Dev topic instead. -->
+
+%META:FILEATTACHMENT{name="screenshot.gif" attr="h" comment="" version="1"}%
+%META:FILEATTACHMENT{name="wikiringlogo20x20.png" attr="h" comment="" version="1"}%
