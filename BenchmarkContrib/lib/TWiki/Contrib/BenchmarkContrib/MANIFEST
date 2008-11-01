@@ -1,0 +1,19 @@
+bin/profile 0764  BenchmarkContrib script
+data/Benchmarks/EmptyTopic.txt 0764  The base of all measurements
+data/Benchmarks/WebAtom.txt 0764
+data/Benchmarks/WebChanges.txt 0764  New benchmark results for you!
+data/Benchmarks/WebHome.txt 0764  BenchmarkContrib web interface
+data/Benchmarks/WebIndex.txt 0764  How could we get a neat summary?
+data/Benchmarks/WebLeftBar.txt 0764  Make Pattern skin happy
+data/Benchmarks/WebNotify.txt 0764  Inform about new benchmark results (not very interesting)
+data/Benchmarks/WebPreferences.txt 0764  BenchmarkContrib "this is a web" indicator
+data/Benchmarks/WebRss.txt 0764
+data/Benchmarks/WebSearch.txt 0764  Look for a particular Benchmark
+data/Benchmarks/WebSearchAdvanced.txt 0764  Look for a particular Benchmark
+data/Benchmarks/WebStatistics.txt 0764  Why would anyone want these?
+data/Benchmarks/WebTopicCreator.txt 0764
+data/Benchmarks/WebTopicList.txt 0764  Alphabetical list of topics
+data/TWiki/BenchmarkContrib.txt  0764 BenchmarkContrib modules doc page
+data/TWiki/BenchmarkContribUserGuide.txt  0764 BenchmarkContrib user guide (just in case)
+lib/TWiki/Contrib/BenchmarkContrib.pm 0764  Plugin Perl module
+lib/TWiki/Contrib/BenchmarkContrib/DProf.pm 0764  Support for Devel::DProf

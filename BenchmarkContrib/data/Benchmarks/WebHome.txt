@@ -1,0 +1,35 @@
+%META:TOPICINFO{author="TWikiGuest" date="1147648879" format="1.1" reprev="1.5" version="1.5"}%
+---+!! Benchmarks - Examine TWiki Performance
+
+For help see the %TWIKIWEB%.BenchmarkContribUserGuide!
+
+%STARTSECTION{"benchmarkform"}%
+<!--
+   * Set PROFILER = DProf
+   * Set PROFILEMETHOD = %SCRIPTNAME%
+   * Set PROFILEPARAMS =
+   * Set PROFILEREVISION =
+   * Set PROFILESKIN = %SKIN%
+   * Set PROFILETOPIC = %HOMETOPIC%
+   * Set PROFILEVIEWER = %WIKINAME%
+   * Set PROFILEWEB = %TWIKIWEB%
+-->
+<form action="%SCRIPTURLPATH{profile}%/">
+|  *Benchmark Method:* | <select size="1" name="profiler"><option value="DProf" %IF{"$ PROFILER = 'DProf'" then="selected='selected'"}%>Profiling with Devel::DProf</option></select>  |||
+|  *Topic:* | <input name="topic" type="text" value="%PROFILEWEB%.%PROFILETOPIC%" size="40" />  |  *Revision:* | <input name="revision" type="text" value="%PROFILEREVISION%" size="10" /> |
+|  *Script:*| <input name="method" type="text" value="%PROFILEMETHOD%" size="10" /> |  *Skin:* | <input name="pskin" type="text" value="%PROFILESKIN%"  size="10" /> |
+|  *View as:* | <input name="viewer" type="text" value="%PROFILEVIEWER%" size="40" />  |||
+|  <input type="submit" class="twikiSubmit" value="...and go!" />  ||||
+</form>
+%ENDSECTION{"benchmarkform"}%
+
+---++ <nop>%WEB% Web Utilities
+<form action='%SCRIPTURLPATH{"search"}%/%WEB%/'>
+   * <input type="text" name="search" size="22" />&nbsp;<input type="submit" class="twikiSubmit" value="%MAKETEXT{"Search"}%" /> - [[WebSearchAdvanced][%MAKETEXT{"advanced search"}%]]
+   * WebTopicList - all topics in alphabetical order
+   * WebChanges - recent topic changes in this web <!-- 
+   * WebNotify - subscribe to an e-mail alert sent when topics change
+   * WebRss, WebAtom - RSS and ATOM news feeds of topic changes
+   * WebStatistics - listing popular topics and top contributors -->
+   * WebPreferences - preferences of this web
+</form>
