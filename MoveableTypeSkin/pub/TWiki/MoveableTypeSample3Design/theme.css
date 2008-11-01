@@ -1,0 +1,775 @@
+/*
+name: Design Study1
+designer: SvenDowideit
+designer_url: http://distributedINFORMATION.com
+developer: SvenDowideit
+developer_url: http://distributedINFORMATION.com
+*/
+/* general page elements */
+h1, h2, h3, h4, h5, h6
+{
+	margin-top: 25px;
+	margin-bottom: 25px;
+	line-height: 1.2em;
+}
+
+a
+{
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+a:link { color: slateblue; }
+a:visited { color: mediumslateblue; }
+a:active { color: mediumslateblue; }
+a:hover { color: mediumslateblue; }
+
+
+/* layout */
+
+body
+{
+	margin: 0;
+	color: #000000;
+	background: #000044;
+	background-image: url(no);
+	font-family: Arial, sans-serif;
+	font-size: 10pt;
+	line-height: 140%;
+}
+
+#container { 
+    position: static; 
+    padding: 50px;
+}
+
+#container-inner
+{
+	position: static;
+}
+
+#banner
+{
+}
+
+#banner-inner { 
+	border:4px solid white;
+	height: 191px;
+	right: -120px;
+	color: darkslategrey;
+	NObackground: steelblue url(fireworks.png) no-repeat scroll right top;
+	background: steelblue;
+	text-align: left;
+	font-size: large;
+}
+
+#banner a
+{
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+#banner-header
+{
+    padding: 65px 175px 0px; 
+	margin: 0.25em 0;
+	font-size: 2em;
+	font-weight: bold;
+	
+	
+}
+
+#banner-description
+{
+    padding: 10px 200px; 
+	margin: 0.25em 0;
+	font-size: 1em;
+}
+
+#banner #banner-extra {
+    float: right;
+    top: -3px;
+	background: #000044 url(fireworks.png) no-repeat scroll right top;
+	height: 234px;
+	width: 231px;
+	z-index: 9999;
+}
+
+
+
+/* default to artistic/calendar/timeline layout */
+
+#container
+{
+	width: auto;
+}
+
+.layout-artistic #alpha,
+.layout-calendar #alpha
+{
+	
+			display: block;
+		float: none;
+		width: auto;
+		margin-right: 465px;
+	
+}
+
+.layout-artistic #alpha-inner,
+.layout-calendar #alpha-inner,
+.layout-timeline #alpha-inner
+{
+	NOborder: 1px solid #CCCCCC;
+	padding: 14px 14px 14px 14px;
+	background: #FFFFFF;
+}
+
+.layout-artistic #beta,
+.layout-calendar #beta
+{
+	width: 465px;
+			display: block;
+		position: absolute;
+		float: none;
+		right: 0;
+		top: 0;
+	
+}
+
+.layout-artistic #beta-inner,
+.layout-calendar #beta-inner,
+.layout-timeline #beta-inner
+{
+	padding: 14px 14px 14px 14px;
+	background: #FFFFFF;
+}
+
+/* in artistic/calendar/timeline layouts, #gamma and #delta are inside #beta */
+
+#beta #gamma, #beta #delta { 
+    width: 210px; 
+    margin: 15px 0; 
+    padding: 25px;
+}
+#beta #gamma-inner, #beta #delta-inner { 
+    padding: 0; 
+}
+
+
+/* content */
+
+.content-nav { margin-top: 0; }
+
+.date-header,
+.trackbacks-header,
+.comments-header,
+.comments-open-header,
+.archive-header
+{
+	margin: 0 0 10px 0;
+	border: 0;
+	
+	NOcolor: #666666;
+	font-family: Arial, sans-serif;
+	font-size: x-small;
+	text-align: left;
+	font-weight: bold;
+	
+	
+}
+
+.entry-header
+{
+	margin: 1px 0 10px 0;
+	border: 0;
+	
+	color: #666666;
+	font-family: Georgia, 'Times New Roman', serif;
+	font-size: medium;
+	text-align: left;
+	font-weight: bold;
+	
+	
+}
+
+.entry-content,
+.entry-footer,
+.trackbacks-info,
+.trackback-content,
+.comment-content,
+.comments-open-content,
+.comments-open-footer,
+.comments-closed,
+.archive-content
+{
+	margin: 10px 0;
+}
+
+.entry-content p { text-align: left; }
+
+.entry-footer,
+.trackback-footer,
+.comment-footer
+{
+	margin: 0 0 10px 0;
+	border-top: 1px solid #CCCCCC;
+	padding: 3px;
+	font-family: Verdana, Arial, sans-serif;
+	font-size: x-small;
+	line-height: normal;
+	text-align: left;
+	
+	
+	
+}
+
+#comment-author, #comment-email, #comment-url, #comment-text
+{
+	width: 80%;
+}
+
+/* fixes bug in ie win */
+img.image-full
+{
+	width: 320px;
+}
+
+
+/* modules */
+
+	.module a
+	{
+		text-decoration: none;
+		font-weight: bold;
+	}
+
+	.module a:link { color: lightblue; }
+	.module a:visited { color: #336600; }
+	.module a:active { color: #336600; }
+	.module a:hover { color: #99CC66; }
+
+
+.module-header
+{
+	margin: 5px 0;
+	border-bottom: 1px dotted #CCCCCC;
+  	padding: 3px;
+	font-size: small;
+	line-height: normal;
+	font-weight: bold;
+	
+	text-transform: uppercase;
+	letter-spacing: .3em;
+	text-align: left;
+}
+
+.module-content
+{
+	margin: 5px 0 20px 0;
+	font-size: x-small;
+	line-height: 150%;
+	font-weight: bold;
+	
+	
+	text-align: left;
+}
+
+.module-list { margin: 0; }
+.module-list-item { margin: 10px 0; }
+.typelist-thumbnailed .module-list-item { margin: 10px 0; }
+
+.module img,
+.module-photo img
+{
+	NOborder: 3px solid #EEEEEE;
+}
+
+.module-photo
+{
+	text-align: left;
+}
+
+.module-powered { text-align: left; }
+
+.module-calendar .module-header
+{
+	font-size: x-small;
+	border-bottom: 1px dotted #CCCCCC;
+	text-align: left;
+	font-weight: bold;
+	
+	text-transform: uppercase;
+	padding: 3px;
+	letter-spacing: .3em;
+}
+
+.module-calendar th,
+.module-calendar td
+{
+	text-align: center;
+	font-weight: normal;
+}
+
+.typelist-thumbnail img { margin: 0; }
+
+.module-featured-photo { margin-bottom: 5px; }
+.module-featured-photo .module-content img { width: 420px; }
+
+.module-recent-photos .module-content { padding: 2px 0 0 0; }
+.module-recent-photos .module-list { margin: 0; }
+
+.module-recent-photos .module-list-item
+{
+	width: 70px; /* ie mac fix */
+	height: 70px; /* for appearance with varying image border widths */
+	margin: 0 2px 2px 0;
+}
+
+
+/* moblog1 tweaks */
+	
+	.layout-moblog1 #container
+	{
+		width: auto;
+	}
+	
+	.layout-moblog1 #alpha
+	{
+		width: 200px;
+					display: block;
+			position: absolute;
+			float: none;
+			left: 0;
+			top: 0;
+		
+	}
+	
+	.layout-moblog1 #alpha-inner
+	{
+		border: 1px solid #CCCCCC;
+		padding: 14px 14px 14px 14px;
+		background: #FFFFFF;
+	}
+	
+	.layout-moblog1 #beta
+	{
+		
+					display: block;
+			float: none;
+			width: auto;
+			margin-left: 200px;
+			margin-right: 200px;
+		
+	}
+	
+	.layout-moblog1 #beta-inner
+	{
+		border: 1px solid #CCCCCC;
+		padding: 14px 14px 14px 14px;
+		background: #FFFFFF;
+	}
+	
+	.layout-moblog1 #gamma
+	{
+		width: 200px;
+					display: block;
+			position: absolute;
+			float: none;
+			right: 0;
+			top: 0;
+		
+	}
+	
+	.layout-moblog1 #gamma-inner
+	{
+		border: 1px solid #CCCCCC;
+		padding: 14px 14px 14px 14px;
+		background: #FFFFFF;
+	}
+
+
+/* moblog2 tweaks */
+	
+	.layout-moblog2 #container
+	{
+		width: auto;
+	}
+	
+	.layout-moblog2 #alpha
+	{
+		width: 100px;
+					display: block;
+			position: absolute;
+			float: none;
+			left: 0;
+			top: 0;
+		
+	}
+	
+	.layout-moblog2 #alpha-inner
+	{
+		border: 1px solid #CCCCCC;
+		padding: 14px 14px 14px 14px;
+		background: #FFFFFF;
+	}
+	
+	.layout-moblog2 #beta
+	{
+		
+					display: block;
+			float: none;
+			width: auto;
+			margin-left: 100px;
+			margin-right: 330px;
+		
+	}
+	
+	.layout-moblog2 #beta-inner
+	{
+		border: 1px solid #CCCCCC;
+		padding: 14px 14px 14px 14px;
+		background: #FFFFFF;
+	}
+	
+	.layout-moblog2 #gamma
+	{
+		width: 190px;
+					display: block;
+			position: absolute;
+			float: none;
+			right: 140px;
+			top: 0;
+		
+	}
+	
+	.layout-moblog2 #gamma-inner
+	{
+		border: 1px solid #CCCCCC;
+		padding: 14px 14px 14px 14px;
+		background: #FFFFFF;
+	}
+	
+	.layout-moblog2 #delta
+	{
+		width: 140px;
+					display: block;
+			position: absolute;
+			float: none;
+			right: 0;
+			top: 0;
+		
+	}
+	
+	.layout-moblog2 #delta-inner
+	{
+		border: 1px solid #CCCCCC;
+		padding: 14px 14px 14px 14px;
+		background: #FFFFFF;
+	}
+	
+	.layout-moblog2 .module-photo img { width: 100px; height: auto; }
+
+
+/* timeline tweaks */
+
+	.layout-timeline #alpha
+	{
+		
+					display: block;
+			float: none;
+			width: auto;
+			margin-right: 390px;
+		
+	}
+	
+	.layout-timeline #beta
+	{
+		width: 390px;
+					display: block;
+			position: absolute;
+			float: none;
+			right: 0;
+			top: 0;
+		
+	}
+	
+	.layout-timeline #beta #gamma { width: 175px; }
+	.layout-timeline #beta #delta { width: 170px; }
+
+	
+
+/* one-column tweaks */
+	
+	.layout-one-column #container
+	{
+		width: auto;
+	}
+
+	.layout-one-column #alpha
+	{
+		display: block;
+		float: none;
+		width: auto;
+        margin-left: 0px;
+        margin-right: 0px;
+        top: 25px;
+        bottom: 0px;
+	}
+
+	.layout-one-column #alpha-inner
+	{
+		padding: 25px;
+   		padding-left: 50px;
+   		padding-right: 50px;
+        background: ivory;
+		text-align: justify;
+	}
+
+.layout-one-column #alpha-inner h1, 
+.layout-one-column #alpha-inner h2 
+{ 
+  	background: url(wikiringlogo20x20.png) no-repeat ;
+  	height: 25px;
+	padding-left: 25px;
+	padding-top : 2px;
+	padding-bottom : 2px;
+}
+
+
+/* two-column-left tweaks */
+	
+	.layout-two-column-left #container
+	{
+		width: auto;
+	}
+
+	.layout-two-column-left #alpha
+	{
+		width: 200px;
+		display: block;
+		position: absolute;
+		float: none;
+		left: 0px;
+		top: 60px;
+	    bottom: 0px;
+	}
+	
+	.layout-two-column-left #alpha-inner
+	{
+
+		padding: 14px 14px 14px 14px;
+        background: steelblue;
+        color: ivory;
+	}
+	
+	.layout-two-column-left #beta
+	{
+		display: block;
+		NOfloat: none;
+		width: auto;
+		margin-left: 225px;
+		top: 25px;
+	}
+	
+	.layout-two-column-left #beta-inner
+	{
+		padding: 25px;
+   		padding-left: 50px;
+   		padding-right: 50px;
+        background: ivory;
+		text-align: justify;
+	}
+
+.layout-two-column-left #beta-inner h1, 
+.layout-two-column-left #beta-inner h2 
+{ 
+  	background: url(wikiringlogo20x20.png) no-repeat ;
+  	height: 25px;
+	padding-left: 25px;
+	padding-top : 2px;
+	padding-bottom : 2px;
+}
+
+/* two-column-right tweaks */
+	
+	.layout-two-column-right #container
+	{
+		width: auto;
+	}
+
+	.layout-two-column-right #alpha
+	{
+			display: block;
+			float: none;
+			width: auto;
+		margin-left: 0px;
+		margin-right: 225px;
+		top: 25px;
+	    bottom: 0px;
+	}
+	
+	.layout-two-column-right #alpha-inner
+	{
+		padding: 25px;
+   		padding-left: 50px;
+   		padding-right: 50px;
+	    background: ivory;
+		text-align: justify;
+	}
+	
+.layout-two-column-right #alpha-inner h1, 
+.layout-two-column-right #alpha-inner h2 
+{ 
+  	background: url(wikiringlogo20x20.png) no-repeat ;
+  	height: 25px;
+	padding-left: 25px;
+	padding-top : 2px;
+	padding-bottom : 2px;
+}
+
+	
+	.layout-two-column-right #beta
+	{
+		width: 197px;
+					display: block;
+			position: absolute;
+			float: none;
+			right: 0;
+			top: 30px;
+	    bottom: 0px;
+	}
+	
+	.layout-two-column-right #beta-inner
+	{
+		padding: 14px 14px 14px 14px;
+        background: steelblue;
+        color: ivory;
+	    border:3px solid white;	}
+
+
+/* three-column tweaks */
+	
+	.layout-three-column #container
+	{
+		width: auto;
+	}
+	
+	.layout-three-column #alpha
+	{
+		width: 100px;
+		display: block;
+		position: absolute;
+		float: none;
+		left: 25px;
+		top: -175px;
+	    bottom: 0px;
+	}
+	
+	.layout-three-column #alpha-inner
+	{
+		padding: 14px 14px 14px 14px;
+	    height: 100%;
+		background: ivory;
+		background-image: url(wiki.gif);
+	}
+	
+	.layout-three-column #beta
+	{
+		display: block;
+		float: none;
+		width: auto;
+		margin-left: 160px;
+		margin-right: 235px;
+		top: 35px;
+	    bottom: 0px;
+	}
+	
+	.layout-three-column #beta-inner
+	{
+		padding: 25px;
+		padding-left: 50px;
+   		padding-right: 50px;
+		background: ivory;
+		text-align: justify;
+	}
+	
+.layout-three-column #beta-inner h1, 
+.layout-three-column #beta-inner h2 
+{ 
+  	background: url(wikiringlogo20x20.png) no-repeat ;
+  	height: 25px;
+	padding-left: 25px;
+	padding-top : 2px;
+	padding-bottom : 2px;
+}
+	
+	.layout-three-column #gamma
+	{
+		width: 197px;
+		display: block;
+		position: absolute;
+		float: none;
+		right: 0;
+		top: 30px;
+	    bottom: 0px;
+	}
+	
+	.layout-three-column #gamma-inner
+	{
+	    border:3px solid white;
+		padding: 14px 14px 14px 14px;
+        background: steelblue;
+        color: ivory;
+	}
+	
+.module-content ul {
+	list-style-image:none;
+    list-style-position:outside;
+    list-style-type:none;
+}
+
+/* default to ivory - the main textsection */
+.xsnazzy qh1, #xsnazzy qh2, #xsnazzy p {margin:0 10px; letter-spacing:1px;}
+.snazzy qh1 {font-size:2.5em; color:#fff;}
+.xsnazzy qh2 {font-size:2em;color:#06a; border:0;}
+.xsnazzy p {padding-bottom:0.5em;}
+.xsnazzy qh2 {padding-top:0.5em;}
+.xsnazzy {background: transparent; nomargin:1em;}
+.xtop, .xbottom {display:block; background:transparent; font-size:1px;}
+.xb1, .xb2, .xb3, .xb4 {display:block; overflow:hidden;}
+.xb1, .xb2, .xb3 {height:1px;}
+.xb2, .xb3, .xb4 {background:ivory; border-left:1px solid #929234; border-right:1px solid #929234;}
+.xb1 {margin:0 5px; background:#929234;}
+.xb2 {margin:0 3px; border-width:0 2px;}
+.xb3 {margin:0 2px;}
+.xb4 {height:2px; margin:0 1px;}
+.xboxcontent {display:block; background:ivory; border:0 solid #929234; border-width:0 1px;padding-left:8px;padding-right:8px;}
+
+
+/* in case I can round the banner */
+#banner .xb2, 
+#banner .xb3, 
+#banner .xb4,
+#banner .xboxcontent {
+    background: steelblue;
+}
+
+/* in case I can round the sidebars */
+.layout-two-column-left #alpha .xb2,
+.layout-two-column-left #alpha .xb2,
+.layout-two-column-left #alpha .xb4,
+.layout-two-column-left #alpha .xboxcontent,
+.layout-two-column-right #beta .xb2,
+.layout-two-column-right #beta .xb2,
+.layout-two-column-right #beta .xb4,
+.layout-two-column-right #beta .xboxcontent,
+.layout-three-column #gamma .xb2, 
+.layout-three-column #gamma .xb3, 
+.layout-three-column #gamma .xb4,
+.layout-three-column #gamma .xboxcontent 
+{
+    background: steelblue;
+}
+
+
+
