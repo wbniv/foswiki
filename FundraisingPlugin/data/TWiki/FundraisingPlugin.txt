@@ -1,0 +1,114 @@
+%META:TOPICINFO{author="IntRigeri" date="1136169962" format="1.1" version="$rev$"}%
+---+!! Fundraising Plugin
+
+This plugin defines %<nop>FUNDRAISINGMESSAGE%, using a few variables defined on <nop>FundraisingPlugin; this can be used as %<nop>BROADCASTMESSAGE% on [[%MAINWEB%.TWikiPreferences]].
+
+%TOC%
+
+------
+
+---++ Example
+
+<div class="fundraisingBanner" align="center" style="margin: 1em; font-size: 100%;">
+  <div style="text-align: center">
+    <div style="width: 100%; margin: 0 auto;">
+      <div style="font-size: 90%">
+        <a href="http://this-ngo.org" target="_top">this-ngo.org</a> needs money:
+      </div>
+      <div style="width: 100%; border: 1px solid gray; background-color: #ff5050; margin: .2em auto .2em">
+        <div style="width: 80%; float: left; background-color: #90ee90;">
+          <p style="margin: 0;">
+            &#160; <small>$120</small>
+          </p>
+        </div>
+        <div style="width: 20%; float: right; margin-left: -1px">
+          <p style="margin: 0;">
+            <strong><small>$30 to go</small></strong>
+          </p>
+        </div>
+        <div style="clear:both">
+        </div>
+      </div>
+      <div style="font-size: 90%">
+        before 2005-10-28: <a class="twikiLink" href="http://this-ngo.org">give us money</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+---++ Behaviour
+
+%<nop>FUNDRAISINGMESSAGE% is not defined when one of the following conditions is verified:
+   * %<nop>ENDDATE% is in the past;
+   * %<nop>GOAL% has already been reached;
+   * the configuration variables (defined below) values are not consistent.
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = Show a fundraising message with a progress bar
+
+   * Debug plugin: (See output in =data/debug.txt=)
+      * Set DEBUG = 0
+
+   * End date of the fundraising:
+      * Set ENDDATE = 2008-10-28
+
+   * Total amount to raise:
+      * Set GOAL = 1000
+
+   * Amount already pledged:
+      * Set PLEDGED = 200
+
+   * Message to display before the progress bar
+      * #Set PREMSG = %WIKITOOLNAME% a besoin d'argent :
+      * Set PREMSG = %WIKITOOLNAME% needs money:
+
+   * How to display the already pledged amount
+      * Set PLEDGEDMSG = $%FUNDRAISINGPLUGIN_PLEDGED%
+      * #Set PLEDGEDMSG = %FUNDRAISINGPLUGIN_PLEDGED% €
+
+   * How to display the amount to raise in the progress bar (=TOGO= will be replaced by the missing amount)
+      * Set TOGOMSG = $TOGO to go
+      * #Set TOGOMSG = manque TOGO €
+
+   * Message to display after the progress bar
+      * Set POSTMSG = before %FUNDRAISINGPLUGIN_ENDDATE%; visit http://this-ngo.org/
+      * #Set POSTMSG = avant le %FUNDRAISINGPLUGIN_ENDDATE% : http://this-ngo.org/
+
+---++ Plugin Installation Instructions
+
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/%TWIKIWEB%/%TOPIC%.txt== | Plugin topic |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+   * Edit <nop>FundraisingPlugin to suit your needs.
+   * Write-protect %TOPIC% against modifications (with bullet =* Set ALLOWTOPICCHANGE = <nop>%MAINWEB%.TWikiAdminGroup=).
+      * #Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
+   * To enable it on all pages, set %<nop>BROADCASTMESSAGE% to %<nop>FUNDRAISINGMESSAGE% in [[%MAINWEB%.TWikiPreferences]] topic.
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.BenVoui |
+|  Plugin Version: | 2 Feb 2006 (0.2.1) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  2 Feb 2005: | Replaced "euro" by the euro symbol. Use the non-breaking space Unicode char when needed. (0.2.1) |
+|  6 Nov 2005: | Fixed default config (0.2) |
+|  21 Aug 2005: | Initial version (0.1) |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.0 |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 96%, %TWIKIWEB%.FormattedSearch 98%, %TOPIC% 100% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+
+-- TWiki:Main.BenVoui - $Date: 2007-11-13 02:15:52 +1100 (Tue, 13 Nov 2007) $
+
