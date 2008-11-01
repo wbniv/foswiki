@@ -1,0 +1,41 @@
+---+!! <nop>%TOPIC%
+
+The !TWikiUmlPlugin allows editing UML diagrams as part of a wiki topic
+
+%TOC%
+
+---++ Syntax Rules
+
+   * Write the command =%<nop>UML{name}%= anywhere in a TWiki topic. You can name the UML diagram anything you like, allowed characters are =A-Z a-z 0-9 _ - .= . If you have only one UML diagram in the topic you can simply write =%<nop>UML%= .
+
+---++ <nop>%TOPIC% Global Settings
+
+   * Set SHORTDESCRIPTION = AJAX based UML diagram editor
+
+---+++ Plugin Installation Instructions
+
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory.
+   * (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+   * To test if the plugin is correctly installed, view this topic in the installation and you should see a placeholder box below. Click on it.<br />
+   %UML{empty}%
+
+---+++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.CarlosManzanares |
+|  Copyright: | &copy; 2007, TWiki:Main.CarlosManzanares |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | 13 May 2007 (V1.000) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  13 May 2007: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | %TOPIC% |
+|  Feedback: | %TOPIC%Dev |
+|  Appraisal: | %TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+
