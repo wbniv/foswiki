@@ -1,0 +1,135 @@
+%META:TOPICINFO{author="TWikiContributor" date="1081752098" format="1.0" version="1.1"}%
+---+!! Spaced Out Wiki Word Plugin
+
+Display TWiki links spaced out: [[%TOPIC%][WebHome]] is displayed as [[%TOPIC%][Web Home]]. %BR%
+Or use this plugin to display "underscore topic names" like [[%TOPIC%][Topic_name]] as [[%TOPIC%][Topic name]].
+
+%TOC%
+
+---++ Space Out Options
+You can choose to switch on or off either display option.
+
+Spaced out !WikiWords will definitely make links more readable, but they can also produce "Odd Looking Sentence Case" links.
+
+Use underscore topic names if you want total control over links:
+   1 (Optionally) disable automatic linking of !WikiWords. Do this if you are in the position to teach your users to only write links in bracket notation like =[<nop>[WebHome]]=. This is also how Wikipedia links are written. Bracket notation is necessary to create links for underscore topic names, but you can also mix both link notations.
+      * In [[Main.TWikiPreferences]] write =[3 spaces]* Set NOAUTOLINK = on=
+   1 Use bracket notation without explicit link labels:
+      * =[<nop>[WebHome][TWiki WebHome]]= - explicit link label, no spacing out
+      * =[<nop>[WebHome]]= - link is label, so no explicit link label: this is spaced out
+   1 Use underscores to create natural looking links:
+      * A topic name such as =[<nop>[Human_evolution]]= will be rendered as [[%TOPIC%][Human evolution]]
+      * Plain topic names like =Human_evolution= are not expanded; always use bracket notation
+
+
+   
+---++ Syntax Rules
+---+++ !WikiWord links
+You don't have to write any syntax. If this plugin is enabled, wiki words are automatically spaced out. Automatically spaced out are: =TopicName=, =Web.TopicName=, =[<nop>[TopicName]]=.
+
+Explicitly written link labels are *not* spaced out. Examples: =[<nop>[TopicName][TopicName]]= or =[<nop>[TopicName][SomeOtherName]]=.
+
+---+++ Underscore links
+=SPACE_OUT_UNDERSCORE_LINKS= needs to be set to =1=. Automatically spaced out are: =[<nop>[Underscore_topic]]=, but not =Underscore_topic= (without brackets).
+
+
+#SearchResults
+---+++ Spacing out search results
+Link labels in search results are also considered 'explicit':
+
+<verbatim>
+[[$web.$topic][$topic]]
+</verbatim>
+... is not spaced out automatically.
+
+Instead write:
+
+<verbatim>
+[[$web.$topic][$percntSPACEOUT{$topic}$percnt]]
+</verbatim>
+
+to generate: %SEARCH{"%TOPIC%" scope="topic" nonoise="on" format="[[$web.$topic][$percntSPACEOUT{$topic}$percnt]]"}%
+
+More info on search syntax in [[FormattedSearch]].
+
+#PreventingSpaceOut
+---+++ Preventing spacing out of some words
+Some words (often brand names and medical terms) are written in [[Wikipedia:CamelCase][CamelCase]] notation and should not be spaced out. For example: !CamelCase, !DaimlerChrysler, !MasterCard.
+
+Define a list of words that should not get spaced out with =DONTSPACE= at the [[#PluginSettings][Plugin Settings]] below.
+
+
+
+---++ Troubleshooting
+---+++ My links do not display spaced out
+   * At [[#PluginTest][Plugin test]] below, check if this plugin is enabled and if the correct spacing settings are applied.
+   * You have used an explicit link label: with =[<nop>[WebHome][TWiki WebHome]]=, "WebHome" is not spaced out. Use =[<nop>[WebHome]]= or =[<nop>[WebHome][TWiki %<nop>SPACEOUT{"WebHome"}%]]=
+   * You have used underscore topic names without bracket notation. Always write =[<nop>[Human_evolution]]=
+   * You are showing links from a search result. See [[#SearchResults]] above.
+   
+---+++ I try to write anchors with underscores
+Anchors written as =#Some_anchor= are not supported. Use !WikiWord syntax instead: =#SomeAnchor=
+
+---+++ Some word are spaced out but shouldn't
+See [[#PreventingSpaceOut]].
+
+
+
+#PluginSettings
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. 
+
+	* One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Display TWiki links spaced out
+
+	* List of words that should not be spaced out (separated by commas):
+		* Set DONTSPACE = 
+
+	* Where spacing is applied. %BR%
+		* =SPACE_OUT_WIKI_WORD_LINKS= will space out =WikiWord= links to =Wiki Word= links
+			* Set SPACE_OUT_WIKI_WORD_LINKS = 1
+		* =SPACE_OUT_UNDERSCORE_LINKS= will space out =Topic_name= links to =Topic name= links
+			* Set SPACE_OUT_UNDERSCORE_LINKS = 1
+		* Remove anchor dashes when writing =[<nop>[#SomeAnchor]]=
+			* Set REMOVE_ANCHOR_DASHES = 1
+		
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+
+
+#PluginTest
+---++ Plugin Tests
+   * This plugin is %IF{"context SpacedWikiWordPluginEnabled" then='%GREEN%enabled%ENDCOLOR%' else ='%RED%not enabled%ENDCOLOR%'}%.
+   * !WikiWord links will %IF{"$ SPACE_OUT_WIKI_WORD_LINKS='1'" then='%GREEN%be spaced out%ENDCOLOR%' else='%RED%not be spaced out%ENDCOLOR%'}%.
+   * !Underscore_topic links will %IF{"$ SPACE_OUT_UNDERSCORE_LINKS='1'" then='%GREEN%be spaced out%ENDCOLOR%' else='%RED%not be spaced out%ENDCOLOR%'}%.
+   * =NOAUTOLINK= is %IF{"$ NOAUTOLINK='on'" then='%GREEN%on%ENDCOLOR%' else='not set'}%. !WikiWords will %IF{"$ NOAUTOLINK='on'" then=' *not* '}% automatically create links. Test: SpacedWikiWordPlugin
+   * Anchor dashes will %IF{"$ REMOVE_ANCHOR_DASHES='1'" then='%GREEN%be removed%ENDCOLOR%' else='%RED%not be removed%ENDCOLOR%'}%. Test: [[#PluginSettings]]
+   
+   
+   
+---++ Plugin Installation Instructions
+
+To install plugin:
+	* Unzip the archive to the top of your directory
+	* TWiki 4 and higher: Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+
+
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.MartinCleaver (2002, 2004), TWiki:Main.ArthurClemens (2007) |
+|  Plugin Version: | 05 May 2007 |
+|     History: | <!-- specify latest version first -->&nbsp; |
+|  05 May 2007 | Arthur Clemens: fixed a wrong function call, thanks TWiki:Main.JohnFitzpatrick. |
+|  04 May 2007 | Arthur Clemens: spacing out uses a Core function (from Plugins version 1.13; fallback for older versions); added support for spacing out of "underscore topic names"; added optional removal of anchor dashes. |
+|  20 Apr 2007 | Arthur Clemens: updated with regexes from TWiki Core =spaceOutWikiWord=; added =DONTSPACE= option. |
+|  12 Apr 2004 | Updated for TWiki 3 |
+|  14 Apr 2002 | First release |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.0 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev | %STOPINCLUDE%
+|  Download: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
