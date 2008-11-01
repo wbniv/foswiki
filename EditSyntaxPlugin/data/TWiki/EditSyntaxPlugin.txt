@@ -1,0 +1,123 @@
+%META:TOPICINFO{author="PeterThoeny" date="1152440301" format="1.1" reprev="1.1" version="1.1"}%
+---+!! Edit Syntax Plugin (Alpha version - unsafe for public websites)
+
+This Plugin allows users to edit TWiki content with their favorite wiki syntax. Users can set their preferred syntax as a user preferences setting in their user homepage. Edit syntax converters convert the TWiki markup language (TML) into another syntax when a user edits a topic, and converts it back after edit. The content is always saved in the TWiki format, that is, users can edit the same content using different edit syntax.
+
+%TOC%
+
+
+---++ Syntax Rules, and How to Activate another Edit Syntax
+
+The edit syntax rules depend on the edit syntax converter activated by a user.
+
+Currently available converters:
+| *Syntax* | *To Activate* | *Syntax Summary and Help* | *Converter topic* |
+| =TWiki= | =<nop>   * Set EDITSYNTAX = <nop>= | [[%TWIKIWEB%.WikiSyntaxSummary][Summary]], [[%TWIKIWEB%.TextFormattingRules][Help]] | N/A |
+%SEARCH{ "EditSyntaxRegex" scope="topic" topic="*EditSyntaxRegex" nonoise="on" format="| =$percntCALC{$SET(name, $SUBSTITUTE($topic, EditSyntaxRegex))$GET(name)}$percnt= | =<nop>   * Set EDITSYNTAX = <nop>$percntCALC{$GET(name)}$percnt= | [[$percntCALC{$GET(name)}$percntWikiSyntaxSummary][Summary]], [[$percntCALC{$GET(name)}$percntTextFormattingRules][Help]] | [[$topic][$percntCALC{$GET(name)}$percnt converter]] |" }%
+
+Syntax converters are activated with an EDITSYNTAX preferences setting in the user homepage. Copy these bullets to the Personal Preferences section:
+
+<pre>
+      * Activate preferred edit syntax (see available edit syntax converters at %TWIKIWEB%.EditSyntaxPlugin) :
+         * Set <nop>EDITSYNTAX = Mediawiki
+</pre>
+
+To disable the converter (e.g. to use TWiki syntax), set the EDITSYNTAX to an empty value.
+
+
+---++ How to Create a New Edit Syntax Converter
+
+Steps to create a new edit syntax converter, using the !FooWiki syntax as an example:
+   1. Decide on the base name, =Foowiki=. Base name must not be a !WikiWord, e.g. not =FooWiki=.
+   1. Create a =FoowikiEditSyntaxRegex= topic in the %TWIKIWEB% web, taking MediawikiEditSyntaxRegex as a template.
+      * List regular expressions to convert the syntax from the TWiki to the Foowiki format, and vice versa.
+      * The converter format is indicated below.
+      * All topics ending in =*EditSyntaxRegex= are listed automatically in the converter topic.
+   1. Create a =FoowikiWikiSyntaxSummary= syntax summary topic in the %TWIKIWEB% web, taking MediawikiWikiSyntaxSummary as a template.
+      * This is the short help text shown in the edit screen.
+      * Replace =/MediawikiTextFormattingRules= in the "more formatting help" link with =/FoowikiTextFormattingRules=.
+   1. Create a =FoowikiTextFormattingRules= syntax help topic in the %TWIKIWEB% web, taking MediawikiTextFormattingRules and/or Foowiki's edit syntax help text as a template.
+      * This is the extensive help text shown when the users clicks on the "more formatting help" link.
+
+---+++ Format of Edit Syntax Regular Expression Converter Topic
+
+The converter topic contains bullets of format: =* TYPE: /from/to/= or =* TYPE: /from/to/ # comment=
+   * =TYPE= is =T2X= for "TWiki to External" syntax conversion, or =X2T= for "External to TWiki" syntax conversion.
+   * =/from/to/= are regular expressions to convert from one format to the other.
+   * =# comments= to annotate the expressions are optional. The hash sign requires a space to be recognized as a space.
+   * Empty lines are ignored.
+   * The sequence of regular expressions is relevant.
+
+Example lines:
+   * =T2X: /(^|[\n\r])---\+([^\n\r]*)/$1=$2 =/=
+   * =X2T: /(^|[\n\r])=(.*?) ?=(?=[\n\r]|$)/$1---\+$2/ # H1=
+
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>EDITSYNTAXPLUGIN_SHORTDESCRIPTION%==
+
+   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = Edit TWiki content using your preferred wiki syntax
+
+   * Debug plugin: (See output in =data/debug.txt=)
+      * Set DEBUG = 0
+
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the TWiki server. 
+
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==data/TWiki/MediawikiEditSyntaxRegex.txt== | Mediawiki edit syntax converter topic |
+     | ==data/TWiki/MediawikiWikiSyntaxSummary.txt== | Mediawiki edit syntax summary topic |
+     | ==data/TWiki/MediawikiTextFormattingRules.txt== | Mediawiki edit syntax help topic |
+     | ==data/TWiki/MediawikiEditSyntaxTest.txt== | Mediawiki edit syntax test topic |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+   * Configure the Plugin:
+      * TWiki 4.0 and up: Run the [[%SCRIPTURL%/configure%SCRIPTSUFFIX%][configure]] script to enable the Plugin
+      * Change the Plugin settings as needed
+   * Patch TWiki if you are running TWiki 4.0.0 - 4.0.5:
+      * Apply TWiki:Codev/AfterEditHandlerCallFix to fix a bug in the Plugin API.
+   * Test if the installation was successful:
+      * Enable the Mediawiki syntax with this setting in your home page:
+         * =Set EDITSYNTAX = Mediawiki=
+      * Edit a test topic that contains headings, bullets, *bold text* and _italic text_
+         * You should see the content in Mediawiki syntax
+         * Save the test topic
+         * View raw should show you the content in TWiki syntax
+   * Show proper edit syntax summary in edit screen:
+      * Create an =EDITSYNTAX= setting in your =%MAINWEB%.TWikiPreferences= and set it to an empty value
+      * Edit =twiki/templates/edit.pattern.tmpl= and change ="%<nop>TWIKIWEB%.WikiSyntaxSummary"= to ="%<nop>TWIKIWEB%.%EDITSYNTAX%WikiSyntaxSummary"=
+      * Change other =twiki/templates/edit.*.tmpl= template files as needed
+   * Secure the =*EditSyntaxRegex= converter topics so that only %MAINWEB%.TWikiAdminGroup members can edit the topics.
+
+
+---++ Limitations
+
+   * *Security risk:* The current implementation does no sanity check on the regular expressions of the Edit Syntax Converter topics. It is potentially possible to execute arbitrary Perl code by editing one of the converter topics. Secure the =*EditSyntaxRegex= converter topics so that only %MAINWEB%.TWikiAdminGroup members can edit the topics. It is not recommended to use this Plugin version on a public website.
+   * The MediawikiEditSyntaxRegex does not yet convert tables.
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.PeterThoeny |
+|  Copyright: | &copy; 2006, TWiki:Main.PeterThoeny |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | 09 Jul 2006 (V1.000) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  09 Jul 2006: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+
+-- TWiki:Main.PeterThoeny - 09 Jul 2006

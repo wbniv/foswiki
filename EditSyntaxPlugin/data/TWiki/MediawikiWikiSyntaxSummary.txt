@@ -1,0 +1,24 @@
+%META:TOPICINFO{author="PeterThoeny" date="1152640489" format="1.1" reprev="1.1" version="1.1"}%
+%META:TOPICPARENT{name="MediawikiEditSyntaxRegex"}%
+---+ Wikimedia Wiki Syntax Summary 
+
+This topic provides online help for users who activated the Mediawiki syntax in their user homepage with a =EDITSYNTAX = Mediawiki= setting. Syntax conversion is provided by the EditSyntaxPlugin.
+
+Keeping this help text short and simple is important since this page is aimed at new users.  It does include pop-up links for more detailed help.
+
+---
+%STARTINCLUDE%
+*Formatting help:*
+   * *bold* put word/phrase in three single quotes: ='''your phrase'''=
+   * *bullet list* start line with one or more asterisks and a space: =** your text=
+   * *headings* put text in 1 to 6 equal signs: =<nop>==Your Heading==<nop>=
+   * *italic* put word/phrase in two single quotes: =''your words''=
+   * *internal links* use topic name or =[<nop>[link|label]]= rule: =WebHome=, or =[<nop>[WebHome|home]]=
+   * *external links* use URL or =[url label]= rule: =http://yahoo.com=, or =[http://yahoo.com/ link to Yahoo]=
+   * *monospaced* use HTML: =&lt;tt&gt;your words&lt;/tt&gt;=
+   * *paragraphs* separate with blank line
+   * <a target="WikimediaTextFormattingRules" onclick="return launchWindow('%TWIKIWEB%','WikimediaTextFormattingRules')" href="%SCRIPTURLPATH{"view"}%/%TWIKIWEB%/WikimediaTextFormattingRules">More formatting help</a> and <a target="GoodStyle" onclick="return launchWindow('%TWIKIWEB%','GoodStyle')" href="%SCRIPTURLPATH{"view"}%/%TWIKIWEB%/GoodStyle">hints on good style</a>
+%STOPINCLUDE%
+---
+
+-- TWiki:Main.PeterThoeny - 09 Jul 2006
