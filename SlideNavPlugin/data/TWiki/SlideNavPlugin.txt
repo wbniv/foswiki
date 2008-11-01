@@ -1,0 +1,83 @@
+%META:TOPICINFO{author="TWikiGuest" date="1137388416" format="1.1" version="1.2"}%
+---+!! <nop>%TOPIC%
+
+A plugin for use in navigating arbitrary collections of slides
+
+%TOC%
+
+------
+
+Although TWiki is good at presenting hierarchical information I needed a way to store a collection of slides, used in internal training, and to navigate those slides in arbitrary ways.  I didn't want to have to mark each slide, as has been done before, and I wanted slides to be able to be used in more than one presentation.  The <nop>SlideNav plugin aims to help with this.
+
+To use this plugin you should also be using the <nop>SlidePlugin which is stored and documented seperately.
+
+Once you have installed the plugin you create an index topic which contains a bulleted set of other topics which are the slides.  Which presentation a user is reading at any time is controlled through a CGI Query variable, named =presentation=.  For example, if I were to be reading a presentation named __codespelunking__ that would looke like:
+<verbatim>
+...wiki/bin/view/Sandbox/CodeSpelunking?presentation=CodeSpelunking
+</verbatim>
+
+In order to make starting a presentation easier a link with a similar target should be placed into the index topic.
+
+---++ Syntax Rules
+
+   * Each slide topic must be places in its own bullet:
+
+<nop>* <nop>SlideTopicOne
+
+<nop>* <nop>SlideTopicTwo
+
+---++ Examples
+
+   * 
+   * 
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = A slide navigator
+
+   * Debug plugin: (See output in =data/debug.txt=)
+      * Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+   * *IMPORTANT*: In order to see the navigation bar you *must* update =templates/view.pattern.tmpl= to contain the lines:
+<verbatim>
+<div class="patternTopic">%TEXT%
+%SLIDENAVBAR%
+#TopicEnd
+</verbatim>
+
+   * Test if the installation was successful:
+      * You're on your own here...
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.GeorgeNevilleNeil |
+|  Plugin Version: | 16 Jan 2006 (V1.000) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  16 Jan 2006: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- TWiki:Main.GeorgeNevilleNeil - 16 Jan 2006
+
