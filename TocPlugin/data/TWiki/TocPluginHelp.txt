@@ -1,0 +1,231 @@
+If you see tags such as %<nop>SECTION0% on the next line, read TWiki.TocPlugin
+
+%SECTION0% Table of Contents and Cross-Reference Plugin
+This topic describes the facilities provided by the TOC TWiki Plugin
+for the support of documentation generation. The extensions support
+definition of an order among the topics in the web for the generation
+of tables of contents, together with cross-references that operate
+<u>within</u>, as well as between, topics.
+
+%SECTION1{name=installation}% Installation and Configuration
+
+Installation of the Plugin is straightforward. Simply unpack the tar
+file at the top level of your TWiki installation.     
+
+%SECTION2{name=WebOrder}% The =WebOrder= special topic
+The documentation extensions depend on the existance of a special
+topic called WebOrder, which is is analagous to a Framemaker
+"book". This topic should contain a list of the topics you want
+included.  This list must be formatted as a TWiki-format bulleted list
+e.g.
+%ANCHOR{type=Example,name=WebOrder,display=no}% The Weborder topic
+<pre>
+   * <nop>PageOne
+   * [[<nop>Page two]]
+</pre>
+Both =WikiWords=
+and =[<nop>[Odd Wiki Words]]= may be used to refer to topics.
+
+*NOTES*
+	* The WebOrder can contain any other TWiki or HTML formatting but it should be noted that *all* TWiki-format list bullets in the topic are taken as part of the ordering list.
+
+%SECTION1{name=Attributes}% Attributes on documentation tags
+Following the TWiki standard, attributes are used to pass values to
+tags to control their behaviour. Attributes are given as a list of
+=name= = =value= pairs enclosed in curly braces ={}= after the tag
+name. For example:
+<pre>
+%<nop>REF{type=Figure,topic="<nop>SpidersOfTheWorld",name="The Funnel Web"}%
+</pre>
+
+*NOTES*
+	* Attribute values that contain only no spaces or punctuation need not be quoted, but values containing punctuation or white space must be protected by double quotes. You are highly recommended to stick to values that don't require quoting!  All attribute names and values are case sensitive.
+
+%SECTION1% Sections and Tables of Contents
+
+%SECTION2{name=SECTION}% Creating sections using the =SECTION= tag
+<i>Supported attributes:</i> =name= <p>
+
+Subsections may be inserted in any topic using the =SECTIONn= tag,
+where =n= is the required subsection level. The heading of the section
+is taken as all text after the tag up to the end of line. For example,
+the heading at the top of this section is marked with
+<pre>
+%<nop>SECTION1{name=SECTION}% Creating sections using the =SECTION= tag
+</pre>
+
+*NOTES*
+	* See also %REF{type=Section,name=IndentedWebOrder}% for information about modifying section numbering from the WebOrder topic.
+	* Sections do not _have_ to be named, but if they are not then they can only be referred to by knowing the exact section number. Section names must be unique within the topic.
+	* The only way to _close_ a section is to start a new section with a different level, or to end the topic.
+	* You can still use standard HTML heading tags such as &lt;H1>, but sections marked this way will *not* be included in the table of contents.
+
+%SECTION3% The %SECTION<nop>0% tag
+If a %<nop>SECTION0% tag occurs in a topic, the heading of that section will replace the topic name in the table of contents.
+
+*NOTES*
+	* The =name= attribute cannot be used to refer to a %<nop>SECTION0% tag.
+
+%SECTION2{name=TOC}% Building the table of contents; the =%<nop>TOC%= tag
+<i>Supported attributes:</i> =depth topic=
+
+You can build a table of contents by inserting
+<pre>
+%<nop>CONTENTS%
+</pre>
+in a topic. The first level of the table of contents is normally the
+topics in the order of the list in WebOrder, though see
+%REF{type=Section,name=IndentedWebOrder}% for information about
+modifying section numbering from the WebOrder topic. Subsections
+listed in the table are automatically linked to the target =SECTION=.
+
+	* The =topic= attribute may be used to generate a table of contents for just one topic.
+	* The =depth= attribute may be used to set the maximum number of levels to generate.
+
+%SECTION3% Output from %<nop>CONTENTS{depth=2}% tag for this web
+%CONTENTS{depth=2}%
+%ANCHOR{type="Example",name="TOC"}% Table of contents for this web
+
+%SECTION3% Output from %<nop>CONTENTS% tag for this topic
+%CONTENTS{topic=TocPluginHelp}%
+%ANCHOR{type="Example",name="TopicTOC"}% Table of contents for this topic
+
+%SECTION2{name=TOCCHECK}% The =TOCCHECK= tag
+<i>Supported attributes: none</i>
+
+Any topic (but most usually the WebOrder topic) may include the
+<pre>%TOCCHECK<nop>%</pre>
+tag. This causes the entries in the WebOrder topic to be
+cross-referenced against the files actually stored in the web (see
+WebIndex). Any topics which exist as files in the web but are missing
+from the WebOrder will be listed.
+
+*NOTES*
+	* Any topics that begin with the characters "Web" are special topics and are excluded from the list, though they can still be listed in the WebOrder and will appear in the table of contents.
+
+%SECTION3% Output from the %<nop>TOCCHECK% tag for this web
+%TOCCHECK%
+%ANCHOR{type=Example,name=TOCCHECK}% Output of the =%<nop>TOCCHECK%= tag
+
+%SECTION1% Anchors and References - the =ANCHOR=, =REF= and =REFTABLE= tags
+Bookmarks and references can be inserted into text using the ANCHOR
+and REF tags. These can be used for references, for example, to tables
+or figures.
+
+*NOTES*
+	* Anchors and references only work within the current web; they cannot be used to create references between webs.
+
+%SECTION2{name=ANCHOR}% The =ANCHOR= tag
+<i>Supported attributes:</i> =type name display=
+
+The ANCHOR tag creates a jump target suitable for jumping to from
+somewhere else. The =type= adds the anchor to a "group"; this group is
+required when generating a reference to the anchor, and may be used to
+generate tables of same-type anchors (see
+%REF{type=Section,name=REFTABLE}% below). The =type= can be any name,
+though convention suggests the use of types such as =Figure= and
+=Table=. The special group =Section= is used internally to refer to
+sections and subsections. Avoid using it for an =ANCHOR= or you may
+see strange results.
+
+The =ANCHOR= tag is normally visible in the output, though it may be
+made invisible by setting the =display= attribute to =no= .  For
+example: %ANCHOR{type=Figure,name=A,display=no}% Here be sea monsters
+<pre>%<nop>ANCHOR{type=Figure,name=A,display=no}% Here be sea
+monsters</pre> will generate an invisible anchor on the text (there's
+one one the line above, honest!) and
+<pre>&lt;A name="#Figure_A"> &lt;/A></pre>
+<pre>%<nop>ANCHOR{type=Table,name=A}% A wooden table</pre>
+will generate:
+%ANCHOR{type=Table,name=A,display=yes}% A wooden table
+
+All the text between the anchor and the next end-of-line will be
+used to create the anchor. If the anchor is invisible, this text will
+be invisible too.
+
+%SECTION2{name=REF}% The =REF= tag
+<i>Supported attributes:</i> =type topic name=
+
+The =REF= tag may be used to refer to an anchor. Anchors are
+automatically inserted by =SECTION= tags or may be added using the
+=ANCHOR= tag. For a =REF= tag to work, the type of the target must be
+known. For example:
+<pre>
+See %<nop>REF{type=Example,name=WebOrder}% for more information about WebOrder
+</pre>
+will generate:
+
+See %REF{type=Example,name=WebOrder}% for more information about WebOrder
+
+To refer to anchors in a different topic, use the =topic= attribute.
+You can refer to sections by name by using the special type =Section=
+e.g. %<nop>REF{type=Section,name=TOCCHECK}%.
+
+If you refer to a non-existant anchor you are warned: for example,
+<pre>%<nop>REF{type=Reference,name=NonExistantAnchor}%</pre>generates<p>
+
+%REF{type=Reference,name=NonExistantAnchor}%
+
+%SECTION2{name=REFTABLE}% The =REFTABLE= tag
+<i>Supported attributes:</i> =type=
+
+The =REFTABLE= tag can be used to build tables of references based on
+the type assigned to anchors. For example, if you have a lot of
+anchors of type =Example= you can build a table of all these anchors
+thus:
+<pre>%<nop>REFTABLE{type=Example}%</pre>
+%ANCHOR{type=Example,name=example1,display=no}% REFTABLE{type=Table} example
+This will insert a table like this:
+%REFTABLE{type="Example"}%
+and <pre>%<nop>REFTABLE{type=Figure}%</pre>
+will insert a table like this:
+%ANCHOR{type=Example,name=example2,display=no}% REFTABLE{type=Figure} example
+%REFTABLE{type=Figure}%
+All topics listed in the WebOrder are scanned, but only anchors of the
+requested type will be listed.
+
+*NOTES*
+	* If you use =REFTABLE= with the type =Section= the table will contain a list of all _named_ sections. For example %ANCHOR{type=Example,name=example2,display=no}% REFTABLE{type=Section} example %REFTABLE{type=Section}%
+
+%SECTION1{name=IndentedWebOrder}% Getting clever
+It is possible to change the way the table of contents for the web is
+ordered by using extra levels of indent in the WebOrder. If you indent
+a topic below another topic, then that topic will be treated as a
+section of the parent topic. Section numbers within the subtopic are
+adjusted accordingly. For example, say the WebOrder contains
+<pre>
+	* <nop>[[Top level topic]]
+	* <nop>AnotherTopLevelTopic
+</pre>
+<nop>TopLevelTopic will be numbered 1., and the first =SECTION1= within <nop>TopLevelTopic will be 1.1. <nop>AnotherTopLevelTopic will be numbered 2. If, instead, WebOrder contains
+<pre>
+	* <nop>[[Top level topic]]
+		* <nop>[[Second level topic]]
+	* <nop>AnotherTopLevelTopic
+</pre>
+<nop>TopLevelTopic will still be numbered 1., but now <nop>SecondLevelTopic will be numbered 1.1., 
+and the first =SECTION1= within <nop>SecondLevelTopic will be 1.1.1. The first =SECTION1= within 
+<nop>TopLevelTopic will now be numbered 1.2. <nop>AnotherTopLevelTopic will still be numbered 2.
+
+%SECTION1{name=tips}% Hints and Tips
+	* The standard TWiki variable HTTP_EQUIV_ON_VIEW can be set in WebPreferences to define a style-sheet for the web, for example to apply corporate style quidelines to your documents.
+	* Include a %<nop>TOCCHECK% tag at the end of the table of contents topic.
+	* Name all sections. This makes it easier to refer to them by symbolic names rather than trying to REF numbered sections.
+
+%SECTION1% Copyright
+The TOC Plugin is a development of the Architectures and Systems
+Platforms group of Motorola Inc. and is protected by the following
+copyrights:
+	* Copyright (C) 2001 Motorola. All Rights Reserved.
+
+%SECTION1% License
+As required for the publication of all extensions to TWiki, the
+software is published under the terms of the GNU General Public
+License.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details, published at
+http://www.gnu.org/copyleft/gpl.html
+
