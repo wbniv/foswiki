@@ -1,0 +1,438 @@
+%META:TOPICINFO{author="TWikiGuest" date="1137100620" format="1.1" version="1.2"}%
+---+!! <nop>%TOPIC%
+
+%TOC%
+
+---++ Disclaimer
+This plugin is formerly known as the <nop>EmbedBibPlugin by TWiki:Main/DonnyKurniawan. As it has been rewritten in major parts and stuff has been renamed.   BTW, the new name seems more appropriate.
+
+---++ Synopsis
+This is a plugin that you can use to embed <nop>BibTeX entries in TWiki webs. It uses [[http://lml.ls.fi.upm.es/manuales/bibtool/][BibTool]], [[http://www.lri.fr/~filliatr/bibtex2html/][Bib2bib and Bibtex2html]]
+
+---++ Preview
+You type 
+<verbatim>
+%BIBTEX{select="author:'Moresi'"}%
+</verbatim>
+you get
+
+(simulated) %BR%
+<img src="%ATTACHURL%/bibtex-select-ex.png" alt="bibtex select example">
+
+(if installed)
+%BIBTEX{select="author:'Moresi'"}%
+
+You type
+<verbatim>
+%STARTBIBTEX{abstracts="on" keywords="on"}%
+@Article{DeLange:EPODD-6-3-241,
+  author =		 "Rudi W. De Lange and Hendry L. Esterhuizen and Derek
+					  Beatty",
+  title =		  "Performance differences between {Times} and
+					  {Helvetica} in a reading task",
+  journal =		"Electronic Pub\-lish\-ing\emdash{}Orig\-i\-na\-tion,
+					  Dissemination, and Design",
+  volume =		 "6",
+  number =		 "3",
+  pages =		  "241--248",
+  month =		  sep,
+  year =			"1993",
+  CODEN =		  "EPODEU",
+  ISSN =			"0894-3982",
+  bibdate =		"Sat Jan 06 18:28:52 1996",
+  abstract =	  "Typographers and printers often regard seriffed or
+					  roman typefaces as more legible and appropriate for
+					  reading material than typefaces without serifs. Authors
+					  contend that readers prefer roman above sans serif,
+					  that it is read faster, and that the comprehension rate
+					  is possibly higher when text is set in a roman
+					  typeface. The absence of satisfactory empirical data to
+					  prove these assumptions, and the importance of
+					  legibility in academic reading material, motivated this
+					  study. The aim of the study was to determine the
+					  comparative legibility of sans serif and roman
+					  typefaces. Four hundred and fifty primary school
+					  subjects from nine different schools were used in a
+					  control group pre-test, post-test research design where
+					  four different experiments were completed. Romans and
+					  sans serifs were found to be equally legible, as no
+					  significant statistical difference was found between
+					  the reading speed, scanning speed, accuracy and
+					  comprehension at the 0.05 level. These results are in
+					  contrast to the assumption that romans are more legible
+					  than sans serifs. They can be interpreted as promising
+					  for graphic designers and typographers, as it appears
+					  that legibility will not necessarily be sacrificed when
+					  certain reading material is set in a sans serif
+					  typeface.",
+  keywords =	  "Legibility, Sans serif typeface, Roman typeface,
+					  Reading task, Times Roman, Helvetica",
+  annote =		 "Never thought there is a difference",
+}
+%STOPBIBTEX%
+</verbatim>
+you get
+
+(simulated) %BR%
+<img src="%ATTACHURL%/bibtex-inline-ex.png" alt="bibtex inline example">
+
+(if installed)
+%STARTBIBTEX{abstracts="on" keywords="on"}%
+@Article{DeLange:EPODD-6-3-241,
+  author =		 "Rudi W. De Lange and Hendry L. Esterhuizen and Derek
+					  Beatty",
+  title =		  "Performance differences between {Times} and
+					  {Helvetica} in a reading task",
+  journal =		"Electronic Pub\-lish\-ing\emdash{}Orig\-i\-na\-tion,
+					  Dissemination, and Design",
+  volume =		 "6",
+  number =		 "3",
+  pages =		  "241--248",
+  month =		  sep,
+  year =			"1993",
+  CODEN =		  "EPODEU",
+  ISSN =			"0894-3982",
+  bibdate =		"Sat Jan 06 18:28:52 1996",
+  abstract =	  "Typographers and printers often regard seriffed or
+					  roman typefaces as more legible and appropriate for
+					  reading material than typefaces without serifs. Authors
+					  contend that readers prefer roman above sans serif,
+					  that it is read faster, and that the comprehension rate
+					  is possibly higher when text is set in a roman
+					  typeface. The absence of satisfactory empirical data to
+					  prove these assumptions, and the importance of
+					  legibility in academic reading material, motivated this
+					  study. The aim of the study was to determine the
+					  comparative legibility of sans serif and roman
+					  typefaces. Four hundred and fifty primary school
+					  subjects from nine different schools were used in a
+					  control group pre-test, post-test research design where
+					  four different experiments were completed. Romans and
+					  sans serifs were found to be equally legible, as no
+					  significant statistical difference was found between
+					  the reading speed, scanning speed, accuracy and
+					  comprehension at the 0.05 level. These results are in
+					  contrast to the assumption that romans are more legible
+					  than sans serifs. They can be interpreted as promising
+					  for graphic designers and typographers, as it appears
+					  that legibility will not necessarily be sacrificed when
+					  certain reading material is set in a sans serif
+					  typeface.",
+  keywords =	  "Legibility, Sans serif typeface, Roman typeface,
+					  Reading task, Times Roman, Helvetica",
+  annote =		 "Never thought there's a difference",
+}
+%STOPBIBTEX%
+
+You type
+<verbatim>
+%CITE{BahrSimpson02}%
+</verbatim>
+you get (simulated) <img src="%ATTACHURL%/bibtex-cite-ex.png" alt="bibtex select example"> (if installed) %CITE{BahrSimpson02}%
+
+The text within the citation is dictated by the results of the %<nop>BIBTEXREF% declaration in the topic (see below).
+
+_Note: The %<nop>CITE% macro is also defined by the TWiki:Plugins.BibliographyPlugin.  If both plugins are installed, one must use the alternate declaration, %<nop>BIBCITE{...}%, to access the !BibtexPlugin functionality._
+
+---++ Syntax
+	* =%<nop>BIBTEX{&lt;attributes&gt;}%= - render a set of bibtex files attached to some topic 
+	* =%<nop>STARTBIBTEX{&lt;attributes&gt;}% ... %<nop>STOPBIBTEX%= - render an inline-bibtex database
+	* =%<nop>CITE{key}%= (or =%<nop>BIBCITE{key}%=) - generate an hyperlink to a bibtex entry 
+	* =%<nop>BIBTEXREF{key, topic}%= - generate a list of references based on the declared =CITE= keys
+
+---++ Attributes
+
+All attributes for %<nop>BIBTEX% and %<nop>STARTBIBTEX% are optional. The attributes =topic= and =bibfile=
+are not valid in the %<nop>STARBIBTEX% tag as the bibtex database is given inline and not as an attachment.
+%<nop>CITE% has one obligatory attribute, that is =key= refering to the bibtex entry that is to be
+cited. =topic= is optional here and defaults to the recently used bibtex database location in a %<nop>BIBTEX%
+tag on the same topic (see [[#Tips][Tips]]).
+
+| *option* | *value*	  | *description* |
+| topic | =(webName.)topicName= | a valid topic where bibtex files are attached. |
+| file  | =bibfile=	| a regular expression specifying one or more bibtex files attached to \
+								=webName.topicName=, must have the extension =.bib= \
+								if no =bibfile= is specified all bibfiles attached are used |
+| select | =query=	 | see chapter [[#QueryAnchor][The Query Language]] for an explamation | 
+| sort  | =sorting=	| how to sort the bibentries; possible values are =year= (default), =author=  and =none= |
+| bibstyle | =bibstyle=		| can be one of the installed <nop>BibTeX styles installed on the servers system \
+								 plus the special styles =bibtool= and =raw=: <ul> \
+  <li> =bibtool= : keys are generated in the style defined in the =bibtoolrcs= file (default)</li> \
+  <li> =raw= : output is displayed in as raw bibtex (inside a &lt;pre&gt;...&lt;/pre&gt; environment. </li></ul> |
+| rev	| =on=, =off= | reverse or normal sorting (default =on= ) |
+| mix	| =on=, =off=	| switch on/off formatting of html and raw bibtex entries mixed (default =off=) |
+| errors | =on=, =off=  | display standard errors generated by the rendering pipeline tools \
+								 (e.g. warnings about double entries) in multiple bibfiles |
+| abstract | =on=, =off= | switch on/off rendering the abstract-field if present in the entries (default =off=) |
+| keywords | =on=, =off= | switch on/off rendering the keywords-field if present in the entries (default =off=) | 
+| form | =on=, =off=, =only=, =(formWeb.)formTopic= | delcare which query form to use, if any: <ul> \
+  <li> =on=: use the default query form at BibtexSearchTemplate </li> \
+  <li> =off=: (default) don't display a query form </li> \
+  <li> =formWeb.formTopic=: declare a query form to be displayed </li> \
+  <li> =only=: don't start to display the complete unfiltered database, but only show the query form</li> \
+  </ul> |
+
+---++ Citations and Automated Reference Lists
+
+As of release v1.3, the %TOPIC% has functionality similar to the TWiki:Plugins.BibliographyPlugin.  Specifically, if a topic has =%<nop>CITE{key}%= declarations through out, the use of =%<nop>BIBTEXREF{...}%= will generate a list of references based on the citations declared.  The output of the reference list is dictated by <nop>BibTeX.  Thus, the HTML output can use all of the flexibility of bibtex, including custom bibtex style templates and string macros.
+
+The citation keys _must refer to the output key produced by this plugin_, which may differ from the entries in the associated .bib files according to the bibtool resource file in use.  Simply use the output key produced by [[#SearchTemplates][<nop>BibtexPlugin search template]] query results.
+
+Again, if both the TWiki:Plugins.BibliographyPlugin and TWiki:BibtexPlugin are installed, one must use %<nop>BIBCITE{...}% inplace of %<nop>CITE% for the <nop>BibtexPlugin functionality to work.
+
+---+++ Example
+
+You type
+
+<verbatim>
+<table border=1><tr><td>
+     %BIBTEXREF{bibstyle="alpha"}%
+</table>
+</verbatim>
+
+you get
+
+(simulated) %BR%
+<img src="%ATTACHURL%/bibtex-ref-ex.png" alt="bibtex reference example">
+
+(if installed)
+<table border=1><tr><td>
+%BIBTEXREF{ bibstyle="alpha" }%
+</table>
+
+#QueryAnchor
+---++ The Query Language
+The information here is extracted from the bibtex2html manual (section 3.2: Filter conditions) and might be incomplete or outdated. Please
+see [[http://www.lri.fr/~filliatr/bibtex2html/doc][here]] for more information. Anyhow here's a version
+matching the naming conventions that we use here (filter conndition = =query=).
+
+A query is a boolean expression that is evaluated against a <nop>BibTeX entry to decide whether this entry should be selected. A query is either: 
+	* a comparison between two expressions, written as __e1 op e2__ 
+	* a matching of a field name with respect to a regular expression, written as __field : regexp__
+	* a conjunction of two conditions, written as __c1 and c2__
+	* a disjunction of two conditions, written as __c1 or c2__
+	* a negation of a condition, written as __not c__ (or __! c__)
+	* a test of existence of a field, written as __exists f__ (or __? f__) where f is a field name
+
+where an expression is either: 
+	* a __field__ name
+	* a __string__ constant between single quotes
+	* an __integer__ constant
+	* the special ident __$key__ which corresponds to the key of an entry. 
+	* the special ident __$type__ which corresponds to the type of an entry (ARTICLE, INPROCEEDINGS, etc.).
+	  notice that an entry type is always written in uppercase letters. 
+	* comparison operators are the usual ones: <b><tt> =, &lt;, &gt;, &lt;=, &gt;= and &lt;&gt; </tt></b>
+
+The field names are any sequences of lowercase or uppercase letters (but no distinction is made between lowercase and uppercase letters).
+ 
+Regular expressions must be put between single or double quotes, and must follow the GNU syntax of regular expressions,
+as for example in GNU Emacs. Any character other than $^.*+?[] matches itself, see the following table 
+for the meaning of the special characters:
+| . | matches any character except newline |
+| [..] | character set; ranges are denoted with -, as in [a-z]; an initial ^, as in [^0-9], complements the set |
+| ^ | matches the beginning of the string matched |
+| $ | matches the end of the string matched |
+| \b | matches word boundaries |
+| \ | quotes special characters |
+| regexp* | matches regexp zero, one or several times |
+| regexp+ | matches regexp one or several times |
+| regexp? | matches regexp once or not at all |
+| regexp1 \&Iota; regexp2 | alternative between two regular expressions, this operator has low priority against *, + and ? |
+| \( regexp \) | grouping regular expression |
+
+---++ Customizing Look &amp; Feel
+#CustomizingAnchor
+The BibtexPlugin is customizable in several ways:
+	* manipulate the cascading style sheets sitewide or derived on one topic
+	* implementing an different BibtexSearchTemplate used with the =form= attribute of the %<nop>BIBTEX% command
+	* rewriting the bibtool resourcefile shipped with the BibtexPlugin
+
+---+++ Cascading Stylesheets
+Here's the list of used styles:
+| *class* | *description* |
+| bibtex | division (&lt;div...&gt;) surrounding the complete bibtex. \
+			  The entries are rendered using a definition list: %BR% \
+			 &lt;dl&gt; %BR% \
+			 ... %BR% \
+			 &nbsp;&nbsp;&nbsp;&lt;dt&gt; =keyA= &lt;/dt&gt; %BR% \
+			 &nbsp;&nbsp;&nbsp;&lt;dd&gt; =entry= &lt;/dd&gt; %BR% \
+			 ... %BR% \
+			 &lt;/dl&gt; |
+| bibabstract | division surrounding the abstract |
+| bibcomment | division surrounding the comment |
+| bibkeywords | division surrounding the keywords |
+| bibsearch | class of the table in the BibtexSearchTemplate |
+| biboptions | class of the options table in the BibtexSearchTemplate |
+See [[#Tips][Tips]] for an example on how to modify the look easily.
+
+#SearchTemplates
+---+++ !BibtexPlugin search templates
+
+The !BibteXPlugin search templates provide an interactive query interface to
+the bibtex files present on a wiki.  As an example of their use, one can declare
+<verbatim>
+   %BIBTEX{form="only"}%
+</verbatim>
+in a topic to which .bib files are attached.  The resulting rendered form
+(defined by DEFAULTSEARCHTEMPLATE above) can then be used to query the .bib
+files.
+
+	* Available search templates
+		* TWiki.BibtexSearchTemplate - verbose .bib file query form
+		* TWiki.BibtexSimpleSearchTemplate - !BibTeX key query form
+		* TWiki.BibtexSelectTemplate - query .bib files using bib2bib 'select' syntax
+
+---+++ Bibtool Resource Files
+Actually this is an art for itself. The author has taken care to give you a quite reasonable
+resource file for bibtool. This contains an own (default) style of citation keys. You might
+have a look at the bibtool manual page and dig into the =bibtoolrcs= file yourself.
+
+---++ Examples
+	* %<nop>BIBTEX% %BR%
+	  Render all bibtex entries in the bibtex files attached to the =DEFAULTWEB=.=DEFAULTTOPIC= in the
+	  =DEFAULTSTYLE= with the =DEFAULTSORT=.
+
+	* %<nop>BIBTEX{web="Sandbox" topic="BibTest" file="cite.bib" select="author : 'Einstein'"}% %BR%
+	  Use cite.bib which is attached in <nop>Sandbox under the topic <nop>BibTest as the <nop>BibTeX file.
+	  Embeds all of the references from the <nop>BibTeX file which have Einstein in the author field
+
+	* %<nop>BIBTEX{file="cite.bib" select="author : 'Einstein|Fermi' and year=2003"}%
+		* Use cite.bib which is attached to the =DEFAULTWEB= under the topic =DEFAULTTOPIC=
+		  as the <nop>BibTeX file
+		* Embeds all of the references from the <nop>BibTeX file which have Einstein or Fermi in the author field and
+		  2003 in the year field
+		* Format the embedded text as =DEFAULTSTYLE=
+
+	* Selecting entries of a given year
+		* select only entries that appeared in 1999 : <b><tt>select="year=1999"</tt></b>
+		* select references appearing after and/or before a given year, e.g. references after 1997: %BR%
+		 <b><tt>select="year>1997"</tt></b>
+		* references between 1990 and 1995: %BR%
+		 <b><tt>select="year&gt;=1990 and year&lt;=1995"</tt></b>
+
+	* Selecting references of a given author
+		* select only entries whose (co)author is Donald Knuth: %BR%
+		  <b><tt>select="author : 'Knuth'"</tt></b>
+		* if you would like to have only the references whose author is Knuth only, you may try: %BR%
+		  <b><tt>select="author : '^\(Donald \(E. \)?Knuth\|Knuth, Donald \(E.\)?\)$'"</tt></b>
+		* or equivalently but missing the possible E.: %BR%
+		  <b><tt>select="author = 'Donald Knuth or author = 'Knuth, Donald'"</tt></b>
+
+	* Other examples
+		* extract the references that appeared since 1995 and have lambda-calculus in their title, with anything between
+		  "lambda" and "calculus": %BR%
+		  <b><tt>select="year >= 1995 and title : 'lambda.*calculus'"</tt></b>
+		* select entries for Wolfgang Menzel since year 2000: %BR%
+		  <b><tt>select="author : 'Wolfgang Menzel' or author = 'Menzel, Wolfgang' and year>=2000"</tt></b>
+
+---++ Tips
+	* Setting the current bibtex database for citations:%BR%
+	  Having a set of citations %<nop>CITE{keyA}% ... %<nop>CITE{keyZ}%
+	  refering to the same database is achievable in several ways:
+		* by attaching _all_ your bibtex files at a common place and set the =DEFAULTTOPIC= in the
+		  [[#Global_Settings][Global Settings]] section to that topic, or
+		* by declaring the current database in the first %<nop>CITE% tag: %CITE{"keyA" topic="Main.BibtexDatabase"}, or
+		* by setting the current database with %<nop>BIBTEX{topic="BibtexDatabase" display="off"}%, or
+		* by specifying the bibtex database in every %<nop>CITE% tag (not seriously)
+	* Merging bibtex databases from different sources: %BR%
+	  If there are lots of databases all over your twiki site, you might want to merge them or extend them
+	  with some extra entries you don't want in the main database. Example: the main database contains all
+	  publications of your division but not the crossrefering presentation slides. You might want to keep 
+	  them separate on your home-topic. You do that by _nesting_ one or several %<nop>;BIBTEX{...bibstyle="raw"...}% 
+	  commands inside a %<nop>STARBIBTEX% ... %<nop>STOPBIBTEX% section.
+<verbatim>
+		%STARTBIBTEX%
+		%BIBTEX{select="author:'YourName'" bibstyle="raw"}%
+		@Misc{YourName02Slides,
+			crossref = {YourName02},
+			note = {slides of oral presentation},
+		}
+		%STOPBIBTEX%
+</verbatim>
+	* Manipulating the Cascading Style Sheet: %BR%
+	  You possibly don't like the default stylesheet for bibtexing installed on your twiki site. Or you just
+	  want to render a bibtex database differently on a single topic. Then add a stylesheet section in the topic:
+	  &lt;style type="text/css"&gt; ... &lt;/style&gt;. Section [[#CustomizingAnchor][Customizing Look &amp; Feel]]
+	  lists the styles used.
+	  Here's a small example of how to get a different look easily. Just put it on some topic and see:
+<verbatim>
+		<style type="text/css">
+		.bibtex {
+		  background:transparent;
+		  border:0px;
+		}
+		.bibtex dd {
+		  margin-left:30px;
+		  margin-right:30px;
+		}
+		</style>
+</verbatim>
+
+
+---++ Global Settings
+	* One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Embeds <nop>BibTeX entries in a TWiki page
+
+	* Default topic name for <nop>BibTeX files:
+		* Set DEFAULTTOPIC = TWiki.BibtexPlugin
+
+	* Default search template
+		* Set DEFAULTSEARCHTEMPLATE = TWiki.BibtexSearchTemplate
+
+
+---++ Plugin Installation Instructions
+
+	* Download the .zip or .tgz file from the Plugin web (see below)
+	* extract the plugin files in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/BibtexSearchTemplate.txt== | default query template |
+	  | ==data/TWiki/BibtexSimpleSearchTemplate.txt== | simple query template |
+	  | ==data/TWiki/BibtexSelectTemplate.txt== | expert query template |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==pub/TWiki/BibtexPlugin/sample.bib== | Plugin sample <nop>BibTeX file |
+	  | ==pub/TWiki/BibtexPlugin/style.css== | default style definitions |
+	  | ==pub/TWiki/BibtexPlugin/bibtoolrsc== | bibtool resource file |
+	  | ==bin/bibsearch== | cgi query script |
+	  | ==tools/render.sh== | bibtex to html/raw rendering script |
+	* modify the =render.sh= script to point to the installed versions of =bibtool=, =bib2bib=, =bibtex2html=, and =bibtex=.
+	* set =$TWiki::cfg{Plugins}{BibtexPlugin}{render}= to declare the full path to =render.sh= in !LocalSite.cfg
+
+If TWiki access control is managed at the web-server level, be sure to add
+=bibsearch= to the authorization list. E.g., for Apache, add the following
+lines to the .htaccess file: 
+<verbatim>
+<Files "bibsearch">
+       require valid-user
+</Files>
+</verbatim>
+
+---++ Plugin Info
+|  Plugin Author: | TWiki:Main/MichaelDaum, TWiki:Main/ScottHoge |
+|  16 Okt 2003: | Initial version |
+|  Plugin Version: | v1.4 |
+|  Change History: | &nbsp; |
+|  2008/01/31: | (v1.5) updated to operate with TWiki 4.2 |
+|  2006/12/02: | minor bug fix: removed space requirement of render path |
+|  2006/08/29: | (v1.4) minor bug fixes: =bibstyle= replaces =style=, CITE/BIBCITE cleanup |
+|  2006/05/19: | (v1.3) twiki.org release |
+|  2006/01/06: | added code to generate automatic reference lists, based on declared citations |
+|  2005/12/09: | reworked to use the TWiki:DakarContrib on cairo and beijing |
+|  2004/11/26: | added simple and expert search forms, added select option to cgi-script; \
+		added configurable default search template |
+|  2004/11/25: | allow inline databases to be queried also, added forgotten bibsearch cgi-script |
+|  2004/10/01: | added cascading style sheets |
+|  2004/09/16: | added tar ball |
+|  2003/10/16: | renamed to BibtexPlugin, formerly known as <nop>EmbedBibPlugin |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | [[http://lml.ls.fi.upm.es/manuales/bibtool/][BibTool]], \
+		[[http://www-sop.inria.fr/epidaure/personnel/malandain/codes/bibtex2html.html][Bibtex2html]] |
+|  Perl Version: | >=5.6.1 |
+|  Plugin Home: | TWiki:Plugins/BibtexPlugin |
+|  Feedback: | TWiki:Plugins/BibtexPluginDev |
+|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+
+%META:FILEATTACHMENT{name="style.css" attr="" autoattached="1" comment="" date="1134157744" path="style.css" size="1221" user="UnknownUser" version=""}%
+%META:FILEATTACHMENT{name="bibtoolrsc" attr="" autoattached="1" comment="" date="1136505651" path="bibtoolrsc" size="1905" user="UnknownUser" version=""}%
+%META:FILEATTACHMENT{name="sample.bib" attr="" autoattached="1" comment="" date="1066305348" path="sample.bib" size="1713" user="UnknownUser" version=""}%
+
