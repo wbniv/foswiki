@@ -1,0 +1,73 @@
+%META:TOPICINFO{author="KenKaya" date="1009071298" format="1.0" version="1.1"}%
+---+ Search To Table Plugin
+
+
+
+Performs a topic search and puts results into a table:
+
+	* Only searches in the current web
+
+	* Specify what data from selected topics is displayed including field data from forms (display="topic,storyNumber,storyPriority")
+
+		* Display will default to topic, revUser, revDate, firstLine
+		* Predefined fields are:
+			* revUser - User name of last one to change topic
+			* revDate - Date last changes made
+			* revNumber - RCS revision number for topic
+			* topic - topic name
+			* firstLine - First line from topic to return. Skips comments and headings
+
+	* Specify column headings for table (titles="Topic,Number,Priority')
+
+	* Can narrow topics displayed based on values of form fields (fieldSearch="storyPriority:5,storyStatus:open")
+
+		* Implecit AND between fields (storyPriority = 5 AND storyStatus = open)
+
+	* Use with the TablePlugin to be able to sort columns in the table
+
+	* Display a next value line for a numeric field (nextValue=fieldName)
+
+
+---++ Global Preference
+
+	* Set DEBUG to on to get debug messages in =data/debug.txt=.  Default: =off=
+
+		* Set DEBUG = on
+
+
+---++ Examples
+
+
+
+%<nop>SearchToTable{search="<\!\-\- XP Story" display="topic,storyNumber,storyPriority,firstLine" titles="Topic,Number,Priority,Subject"}%
+
+
+
+%TABLE{sort="on" headerbg="#99CCCC" databg="#C8CB8F,#DBDDB5"}%
+%SearchToTable{search="<\!\-\- XP Story" display="topic,storyNumber,storyPriority,firstLine" titles="Topic,Number,Priority,Subject"}%
+
+
+---+++ Plugin Installation Instructions
+
+	* Unzip the file in your twiki directory, will loaf lib/TWiki/Plugins/SearchToTablePlugin.pm and data/TWiki/SearchToTablePlugin.txt
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+
+---+++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.KenKachnowich |
+|  Plugin Version: | 21 Dec 2001 |
+|  Change History: |  |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.0 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% ( TWiki:Plugins/%TOPIC% )|
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev ( TWiki:Plugins/%TOPIC%Dev )|
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- TWiki:Main.KenKachnowich  -  21 Dec 2001 <br> 
+
+
+
+
+%META:TOPICMOVED{by="JohnTalintyre" date="1002163558" from="TWiki.FancyTablePlugin" to="TWiki.TablePlugin"}%
