@@ -1,0 +1,117 @@
+%META:TOPICINFO{author="mmoretti" date="1100995336" format="1.0" version="1.3"}%
+---+ <nop>%TOPIC%
+
+Provides authentication based on SSL certs.  Uses !FakeBasicAuth to determine REMOTE_USER, etc.  Also provides access to environment variables from a TWiki topic.
+
+---++ Overview
+
+SSL provides user authentication based on a user's client cert (!FakeBasicAuth).  This plugin allows you to use that authentication.
+
+How it works is: SSL logs you in based on your client cert.  Instead of popping a login box, it gets your userid from the cert, and then authenticates you by doing a "fake" login using that userid and a password of "password".  If you have a valid entry in the htpassword file, login succeeds and REMOTE_USER is set.  If it fails, the login box pops up (and unfortunately you can't login; which is ok).
+
+This plugin only provides authentication/registration.  It's up to you to configure access restrictions later via WebPreferences, TWikiPreferences, Main.TWikiGroups, etc, or using an access restrictions plugin (are there any?).  See TWiki.TWikiAccessControl for more info.
+
+In addition, this plugin provides access to environment variables in a TWiki topic (this was necessary for registration to work).
+
+__Note:__ This plugin should only be installed with a new TWiki installation (I haven't determined yet how you'd retrofit it if you already have users created).
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==pub/TWiki/%TOPIC%/TWikiRegistration.txt== | Example configuration files |
+	  | ==pub/TWiki/%TOPIC%/oopsauth.tmpl== | Example configuration files |
+	  | ==pub/TWiki/%TOPIC%/htaccess.txt== | Example configuration files |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Make sure SSL is enabled in your Apache config file
+	* For Apache 1.3, add =SSLFakeBasicAuth= to your =httpd.conf= (for Apache 2.0, add =SSLOptions +FakeBasicAuth=)
+	* Copy =bin/.htaccess.txt= to =bin/.htaccess=
+	* Edit =bin/.htaccess= as follows (a preconfigured sample is included in =pub/TWiki/FakeBasicAuthRegPlugin/htaccess.txt=):
+		* In the *AuthUserFile* line, change =!FILE_path_to_TWiki!= to the path to your TWiki root directory
+		* Edit the *AuthName* line to say something like this (this is for when the login box pops if they aren't registered):
+			* 'You cannot edit content unless you are registered and have a valid certificate.  Please make sure you have a valid certificate and hit Cancel to register.'
+		* Make sure !AuthType is Basic
+		* Edit the !ErrorDocument line and replace =!URL_path_to_TWiki!= with =/twiki= (or whatever your TWiki root url is); it should NOT contain =https://hostname= in it.  Apache doesn't allow 401 error documents to be full urls.
+	* Edit =data/TWiki/TWikiRegistration.txt= as follows (an example file is included in this package in =pub/TWiki/FakeBasicAuthRegPlugin/TWikiRegistration.txt=):
+		* In the *Twk1Name* =input= tag insert<tt> !%ENV{SSL_CLIENT_CN}% </tt>into the empty *value* attribute (this automatically puts your name in the field from your cert)
+		* In the *!Twk1WikiName* =input= tag insert<tt> !%ENV{SSL_CLIENT_CN,[ .']}% </tt>into the empty *value* attribute (this automatically takes your name from your cert and sort of makes it into a WikiName)
+		* In the *!Twk1LoginName* =input= tag (this tag is going to be converted to a hidden but we also want to display the info):
+			* Change the input *type* to ="hidden"= (SSL automatically gets the userid from the cert, so they should NOT be able to specify it or they will never be able to login)
+			* Insert<tt> !%ENV{SSL_CLIENT_EMAIL,@.*}% </tt>into the empty *value* attribute (this automatically takes your email address from the cert and uses the part before the @ as your username; hopefully your email address is your username; if not, you'll need to figure out which environment variable you can get that from)
+			* Insert this same value after the *td* before the *input* tag (this will display it now that we've made this input hidden)
+		* In the *!Twk1Email* =input= tag (this tag is also going to be converted to a hidden but we want to display the info):
+			* Change the input *type* to ="hidden"= (the cert provides your email address)
+			* Insert<tt> !%ENV{SSL_CLIENT_EMAIL}% </tt>into the empty *value* attribute (this automatically takes your email address from the cert)
+			* Insert this same value after the *td* before the *input* tag (this will display it now that we've made this input hidden)
+		* Add two =hidden= fields before the *submit* input (this is for the password; it makes sure registration doesn't ask the user for a password because it must be set automatically):
+			* Add <tt>&lt;input type="hidden" name="Password" value="password"/&gt;</tt> (SSL FakeBasicAuth expects your password to be "password")
+			* Add <tt>&lt;input type="hidden" name="Confirm" value="password"/&gt;</tt>
+		* Make any other changes to the registration form that you need to make (Dept, Office, etc)
+	* You might want to edit your =templates/oopsauth.tmpl= template and remove the stuff about changing passwords, etc.  A sample is included in =pub/TWiki/FakeBasicAuthRegPlugin/oopsauth.tmpl=.
+	* At some point you should probably remove the =!TWikiGuest= user from the =bin/.htpasswd= file (once you're absolutely sure this works or you won't be able to back out and edit content)
+	* Test if the installation was successful:
+		* Before registering, try editing a page
+			* Make sure the login box pops up
+			* Click =Cancel= and make sure you're brought to the =oopsauth= page
+		* Go to the TWiki.TWikiRegistration page
+			* Make sure the fields are automatically filled in with the proper values
+			* Go ahead and register (you should receive a registration email if mail is setup properly)
+			* Make sure you can now edit a page without the login box popping up
+			* Close and restart your browser and try to edit a page and make sure you can edit without the login box popping up
+			* Check the =data/.htpasswd= file and make sure your userid is there (not your WikiName)
+
+---++ Syntax Rules for Accessing Environment Variables
+
+	* To access an environment variable, in your TWiki topic:
+		* !%ENV{envvarname}%
+	* To access an environment variable and substitute out a regex:
+		* !%ENV{envvarname,subsout}%
+	* To access an environment variable and substitute something in it for something else:
+		* !%ENV{envvarname,subsfrom,substo}%
+
+---++ Examples for Accessing Environment Variables
+
+	* !%ENV{REMOTE_USER}%
+		* e.g. mmoretti
+	* !%ENV{SSL_CLIENT_EMAIL,@.*}%
+		* e.g. xxx@MIT.EDU = xxx
+	* !%ENV{SSL_CLIENT_EMAIL,@.*,nowhere.com}%
+		* e.g. xxx@MIT.EDU = xxx.nowhere.com
+
+---++ Details (Under the hood)
+
+This plugin uses data from the client cert to fill in default values in the TWikiRegistration form (via !%ENV).  TWiki's =register= script bypasses creating a user in the htpasswd file if REMOTE_USER is present, which is great because usually it uses the WikiName as the userid when it creates a user.  Since !FakeBasicAuth requires a userid (and not a WikiName) and a password of "password", this plugin uses a registration handler to do that.  So in essence, anyone with a valid cert can register and will have a userid created for them automatically (which saves the TWiki admin from having to prepopulate the htpasswd file), and no login is necessary when editing, etc, because SSL's !FakeBasicAuth gets that info from the certificate.
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Use environment variables in your topics
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/MikeMoretti |
+|  Plugin Version: | 20 Nov 2004 (V1.000) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  20 Nov 2004: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.024 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPlugins
+

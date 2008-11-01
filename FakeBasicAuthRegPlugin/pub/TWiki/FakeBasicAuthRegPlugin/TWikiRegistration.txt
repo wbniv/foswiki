@@ -1,0 +1,66 @@
+%META:TOPICINFO{author="guest" date="1100984226" format="1.0" version="1.9"}%
+To edit pages on this %WIKITOOLNAME% Collaborative Web, you must have a registered user name in WikiNotation.
+
+To register as a new user, simply fill out this form:
+
+<!-- IMPORTANT NOTE if you want to customize this form: You can delete or add new input variables in this form. Use the topic TWikiRegistrationPub in case this installation is on a public server (just copy the content over to the TWikiRegistration topic). The name="" parameter of the input tags must start with: "Twk0..." (if this is an optional entry), "Twk1..." (if this is a required entry). This will ensure that the fields are processed correctly. -->
+
+<form action="%SCRIPTURL%/register%SCRIPTSUFFIX%/%MAINWEB%/%HOMETOPIC%" method="post">
+<table border="1">
+<tr>
+  <td align="right"> First & last name: </td>
+  <td><input type="text" name="Twk1Name" size="40" value="%ENV{SSL_CLIENT_CN}%" onblur="var sIn = this.value; var sOut = ''; var chgUpper = true; for ( var i = 0; i < sIn.length; i++ ) { var ch = sIn.charAt( i ); var ch2 = ''; if((ch=='&#224;')||(ch=='&#225;')||(ch=='&#226;')||(ch=='&#227;')||(ch=='&#229;') ) { ch = 'a'; } if( (ch=='&#232;')||(ch=='&#233;')||(ch=='&#234;') ) { ch = 'e'; } if( ch=='&#231;') { ch = 'c'; } if( ch=='&#241;') { ch = 'n'; } if( (ch=='&#242;')||(ch=='&#243;')||(ch=='&#244;') ) { ch = 'o'; } if( ch=='&#228;') { ch = 'a'; ch2 = 'e'; } if( ch=='&#246;') { ch = 'o'; ch2 = 'e'; } if( (ch=='&#249;')||(ch=='&#250;')||(ch=='&#251;') ) { ch = 'o'; } if( ch=='&#252;') { ch = 'u'; ch2 = 'e'; } if( ch=='&#196;') { ch = 'A'; ch2 = 'e'; } if( ch=='&#214;') { ch = 'O'; ch2 = 'e'; } if( ch=='&#220;') { ch = 'U'; ch2 = 'e'; } if( ch=='&#223;') { ch = 's'; ch2 = 's'; } if( ((ch>='a')&&(ch<='z')) || ((ch>='A')&&(ch<='Z')) ) { if( chgUpper ) { ch = ch.toUpperCase(); chgUpper = false; } sOut+=ch; if( ch2!='') { sOut+=ch2; } } else { if( ch==' ' ) { chgUpper = true; } } } this.form.Twk1WikiName.value=sOut;" /> =<font color="red">**</font>= </td>
+</tr><tr>
+  <td align="right"> Your WikiName: </td>
+  <td><input type="text" name="Twk1WikiName" size="40" value="%ENV{SSL_CLIENT_CN,[ .']}%" /> =<font color="red">**</font>= </td>
+</tr><tr>
+  <td align="right"> Intranet login name: </td>
+  <td>%ENV{SSL_CLIENT_EMAIL,@.*}%<input type="hidden" name="Twk1LoginName" value="%ENV{SSL_CLIENT_EMAIL,@.*}%" /></td>
+</tr><tr>
+  <td align="right"> Email address: </td>
+  <td>%ENV{SSL_CLIENT_EMAIL}%<input type="hidden" name="Twk1Email" value="%ENV{SSL_CLIENT_EMAIL}%" /></td>
+</tr>
+<!-- for now, until I can get this info from the db
+<tr>
+  <td align="right"> Phone: </td>
+  <td><input type="text" name="Twk0Phone" size="40" value="" /></td>
+</tr>
+<tr>
+  <td align="right"> Department: </td>
+  <td><input type="text" name="Twk0Department" size="40" value="" />
+</tr>
+<tr>
+  <td align="right"> Office location: </td>
+  <td>
+  <select name="Twk1Location" size="1">
+  <option selected value="">Select...</option>
+  <option>SanJoseOffice</option>
+  <option>LondonOffice</option>
+  <option>TokyoOffice</option>
+  <option value="(Please specify office location)">Other</option>
+  </select> =<font color="red">**</font>=
+  </td>
+</tr>
+-->
+<tr>
+  <td valign="top" align="right"> Comments : <br /> (optional) &nbsp; </td>
+  <td><textarea name="Twk0Comment" wrap="virtual" rows="4" cols="38"></textarea></td>
+</tr><tr>
+  <td valign="top" align="right"> &nbsp; <input type="hidden" name="Password" value="password"/><input type="hidden" name="Confirm" value="password"/><input type="hidden" name="TopicName" value="%TOPIC%" /></td>
+  <td> <input type="submit" value=" Submit "> &nbsp;&nbsp; (Fields marked =<Font color="red">**</font>= are required) </td>
+</tr>
+</table>
+</form>
+
+__Submitting the form will automatically:__ 
+
+	* Create an account for you, so that you can start editing pages using your WikiName.
+	* Create your personal %WIKITOOLNAME% topic using your WikiName as topic name, and add the data you submitted to the topic.
+	* Add your name to the list of users in the %MAINWEB%.%WIKIUSERSTOPIC% topic in the %MAINWEB% web.
+	* Send you a confirmation of your registration by email.
+
+
+Once registered you can login using your WikiName and password.
+
+If you have any questions about registration, send an email to <a href="mailto:%WIKIWEBMASTER%?subject=%TOPIC%&#32;Question">%WIKIWEBMASTER%</a>.
+
