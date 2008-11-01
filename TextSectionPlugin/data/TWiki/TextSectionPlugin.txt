@@ -1,0 +1,137 @@
+%META:TOPICINFO{author="nwindric" date="1096276468" format="1.0" version="1.1"}%
+---+ %TOPIC%
+
+This plugin adds the ability to do nested, segmented rendering in topics (section). The plugin has two modes, a heading and a section mode. The modes can&#180;t be mixed in a topic. 
+
+Texts outside of sections will be rendered normally. Texts within a section are hidden first. A '+' symbol shows a hidden section. After selecting the '+' symbol the contents of this section gets visible. The '+' indicator changes to a '-' to indicate this.  To hide a visible section select the '-' symbol. The '-' symbol changes back to a '+'. 
+
+A section can have nested sections. Nested sections are visible only in a visible parent section.
+
+---++ Heading mode
+A section starts on a heading item and ends on the next same heading item level. A nested section is started on a deeper heading level. To activate the heading mode just insert a %<nop>textsections% in the topic. 
+
+---+++ Syntax Rules
+
+%<nop>textsections% or %<nop>TEXTSECTIONS%
+
+---+++ Examples
+_Example 1:_ same heading level
+
+%<nop>textsections% => activate textsection heading mode
+
+<nop>---+ chapter 1: first level 1 heading  => Beginning of a section
+
+<nop>---+ chapter 2: second level 1 heading => Ends first section and starts next section
+
+_Example 2:_ nested headings
+
+%<nop>textsections% => activate textsection heading mode
+
+<nop>---+ chapter 1: first level 1 heading  => Beginning of first level 1 section
+
+<nop>---++ chapter 1.1: first level 1.1 heading  => Beginning of level 1.1 section
+
+
+<nop>---+ chapter 2: second level 1 heading => Ends level 1 and level 1.1 section, begin of next level 1 section
+
+---++ Section mode
+Each textsection consists of a start  (%<nop>textsection% or %<nop>textsection{...}% and an end (%<nop>textsectionend%). 
+
+---+++ Syntax Rules
+
+	* section start
+	* %<nop>textsection% or %<nop>TEXTSECTION%
+
+	* %<nop>textsection{params}% or %<nop>TEXTSECTION{params}%
+
+	* section end
+	* %<nop>textsectionend% or %<nop>TEXTSECTIONEND%
+
+	* __Note__: multiple %<nop>textsection% / %<nop>textsectionend% should not be in one line. The {} is optional.
+
+---++++ Params
+
+The parameters of a %<nop>textsection{...}% consists of one or more of the following values:
+
+	* hidenum:    Hide numbering (0 | 1) =>  no | yes == (Example: hidenum="1")
+	* title:      Button text == (Example: title="Capter 1")
+	* use_form:   Button text (0 | 1) => no | yes == (Example: use_form="1")
+
+Default is to hide the numbering, no title and don&#180;t use a form.
+
+---+++ Example
+
+---
+
+This is an Overview of vehicles. 
+
+%textsection{title="cars"}%
+cars are motorized four weel vehicles.
+
+%textsection{title="Car details" use_form="1"}%
+Her are the car details .....
+%textsectionend%
+%textsectionend%
+
+%textsection{title="bikes"}%
+Bikes are unmotorized vehicles with two wheels. 
+
+For very young children sometimes four wheel bikes are used. :-)
+
+%textsection{title="Bike details"}%
+
+Her are the bike details .....
+
+%textsectionend%
+
+%textsectionend%
+
+---
+
+---++ <nop>%TOPIC% Global Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* Set SHORTDESCRIPTION = Adds sectional rendering
+
+	* Skip textsection generation for specific skins (for example: print)
+	* Set SKIPSKIN = print koalaprint
+
+	* Use form button instead of a hyperlink (for section mode only)
+	* Set USE_FORM = 
+
+	* Debug plugin: (See output in =data/debug.txt=)
+	* Set DEBUG =
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* See the examples above to check if the installation was successful.
+
+---++ Plugin Info
+
+|  Plugin Author: | Main.NorbertWindrich |
+|  Plugin Version: | 18 Aug 2004 (V1.000) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  18 Aug 2004: | move to twiki syntax for tokens use of "%" instead of "\<\>" |
+|  13 Aug 2004: | added heading mode functionality |
+|  06 Aug 2004: | Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: |  |
+|  Perl Version: | 5.005 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+
+-- Main.NorbertWindrich - 13 Aug 2004
+
