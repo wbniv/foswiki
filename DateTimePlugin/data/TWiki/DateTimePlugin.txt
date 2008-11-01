@@ -1,0 +1,154 @@
+---+!! <nop>DateTimePlugin
+
+Display date and time with formatting options and localized dates.
+
+This plugin is an extension of the TWiki variable [[%TWIKIWEB%.VarGMTIME2][GMTIME{"format"}]] (that only allows to show the current date date and time). %BR%
+!DateTimePlugin lets you show any date and time before or after 'now', and it will return any part of a date such as the month name.
+
+With !DateTimePlugin you can write: %BR%
+In five days will be: =%<nop>DATETIME{incdays="5"}%= and will have a always coherent phrase.
+
+
+%TOC%
+
+---++ Syntax Rules
+
+Use =%<nop>DATETIME{}%= to show the current date and time in default date format (as set in [[%SCRIPTURL{configure}%][configure]]).
+
+For more options use: =%<nop>DATETIME{"format" &lt;optional parameters&gt;}%=
+
+---+++ Parameters
+
+| *Parameter* | *Description* | *Example* |
+| ="..."= or =format="..."= | Format of date string; see [[%TWIKIWEB%.VarGMTIME2][GMTIME{"format"}]] for formatting variables | =%<nop>DATETIME{"$wday"}%= |
+| =date="..."= | Any date in one of the following formats: %BR%%BR% \
+Default TWiki format %BR% \
+&nbsp;&nbsp;&nbsp; =31 Dec 2001 - 23:59= %BR%%BR% \
+TWiki format without time (defaults to =00:00=) %BR% \
+&nbsp;&nbsp;&nbsp; =31 Dec 2001= %BR%%BR% \
+Date seperated by '/', '.' or '-', time with '.' or ':' %BR% \
+Date and time separated by ' ', '.' and/or '-' %BR% \
+&nbsp;&nbsp;&nbsp; =2001/12/31 23:59:59= %BR% \
+&nbsp;&nbsp;&nbsp; =2001.12.31.23.59.59= %BR% \
+&nbsp;&nbsp;&nbsp; =2001/12/31 23:59= %BR% \
+&nbsp;&nbsp;&nbsp; =2001.12.31.23.59= %BR% \
+&nbsp;&nbsp;&nbsp; =2001-12-31 23:59= %BR% \
+&nbsp;&nbsp;&nbsp; =2001-12-31 - 23:59= %BR%%BR% \
+ISO format %BR% \
+&nbsp;&nbsp;&nbsp; =2001-12-31T23:59:59= %BR% \
+ISO dates may have a timezone specifier, either Z or a signed difference in hh:mm format. For example: %BR% \
+&nbsp;&nbsp;&nbsp; =2001-12-31T23:59:59+01:00= %BR% \
+&nbsp;&nbsp;&nbsp; =2001-12-31T23:59Z= %BR% \
+The local timezone will be assumed. %BR%%BR% \
+*Note: will not handle dates before 1970!* | =%<nop>DATETIME{date="2001/12/31"}%= |
+| =incdays="..."= | Increase the date by any number of days (may be a negative number) | =%<nop>DATETIME{date="31 Dec 2001" incdays="1"}%= |
+| =inchours="..."= | Increase the date by any number of hours (may be a negative number) | =%<nop>DATETIME{date="31 Dec 2001 - 07:00" format="$hours" inchours="-1"}%= |
+| =incminutes="..."= | Increase the date by any number of minutes (may be a negative number) | =%<nop>DATETIME{date="31 Dec 2001" format="$minutes" incminutes="15"}%= |
+| =incseconds="..."= | Increase the date by any number of seconds (may be a negative number) | =%<nop>DATETIME{date="31 Dec 2001" format="$seconds" incseconds="20"}%= |
+
+---+++ Formatting parameters
+See [[%TWIKIWEB%.VarGMTIME2][GMTIME{"format"}]] for general date and time formatting parameters to pass to =format=. !DateTimePlugin supports the following additional paramters:
+
+| *Parameter* | *Description* | *Example* |
+| =$i_month= | The localized short name of the month. | =Ago= |
+| =$lmonth= | The English long name of the month. | =July= |
+| =$i_lmonth= | The localized long name of the month. | =Julho= |
+| =$i_wday= | The summarized internationalized name of the day of the week. | =Qua= |
+| =$lwday= | The English long name of the day of the week. | =Wednesday= |
+| =$i_lwday= | The localized long name of the day of the week. | =Quarta-feira= |
+
+---++++ Overview of all formatting variables
+%DATETIME{format="
+| =$<nop>seconds= | $seconds |
+| =$<nop>minutes= | $minutes |
+| =$<nop>hours= | $hours |
+| =$<nop>day= | $day |
+| =$<nop>wday= | $wday |
+| =$<nop>i_wday= | $i_wday |
+| =$<nop>i_lwday= | $i_lwday |
+| =$<nop>dow= | $dow |
+| =$<nop>week= | $week |
+| =$<nop>month= | $month |
+| =$<nop>mo= | $mo |
+| =$<nop>i_month= | $i_month |
+| =$<nop>i_lmonth= | $i_lmonth |
+| =$<nop>year= | $year |
+| =$<nop>ye= | $ye |
+| =$<nop>tz= | $tz |
+| =$<nop>iso= | $iso |
+| =$<nop>rcs= | $rcs |
+| =$<nop>http= | $http |
+| =$<nop>epoch= | $epoch |
+"}%
+
+---++ Examples
+
+=Yesterday was %<nop>DATETIME{"$day $month $year" incdays="-1"}%= 
+
+results in:
+
+Yesterday was %DATETIME{"$lwday, $day $month $year" incdays="-1"}%
+
+---
+=One week from now is %<nop>DATETIME{"$wday, $day $month $year" incdays="7"}%= 
+
+results in:
+
+One week from now is %DATETIME{"$wday, $day $month $year" incdays="7"}%
+
+---
+To create time-based topics:
+
+<verbatim>
+%DATETIME{
+"Create TODO topic for tomorrow: [[ToDo$year$mo$day]] ($lwday, $day $lmonth)"
+incdays="1"
+}%
+</verbatim>
+
+results in:
+
+%DATETIME{
+"Create TODO topic for tomorrow: [[ToDo$year$mo$day]] ($lwday, $day $lmonth)"
+incdays="1"
+}%
+
+---++ Limitations
+Due to date handling in Perl, !DateTimePlugin cannot handle dates earlier than 1970.
+
+
+#PluginSettings
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>DATETIMEPLUGIN_SHORTDESCRIPTION%==
+
+   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = Display date and time with formatting options and localized dates
+
+---+++ Localization
+Localized dates are read from [[%SCRIPTURL{configure}%][configure]].
+
+---+++ Debugging
+Visit [[%SCRIPTURL{configure}%][configure]] and set ={DateTimePlugin}{Debug}= to 1.
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory.
+   * Enable the plugin in [[%SCRIPTURL{configure}%][configure]]
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.AurelioAHeckert (2004), TWiki:Main.ArthurClemens (2008) |
+|  Plugin Version: | 28 Feb 2008 (V1.0)  |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  28 Feb 2008 | 1.0 Arthur Clemens: Major rewrite to make this plugin compatible with (and use from) =TWiki::Time=. Localized language strings are now read from configure. |
+|  27 Jul 2004 | 0.90 Aurelio A Heckert: First release |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
