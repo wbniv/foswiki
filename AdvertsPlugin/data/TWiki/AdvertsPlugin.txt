@@ -1,0 +1,74 @@
+%META:TOPICINFO{author="PeterThoeny" date="1079856240" format="1.0" version="1.6"}%
+---+ Adverts TWiki Plugin
+
+This plugin provides a convenient interface to http://phpadsnew.com
+
+---++ Syntax Rules
+
+Adverts are picked by selection strings, as per the phpAdsNew user manual.
+
+It implements a %ADVERT and a %ADVERTRIJS - these both map to <nop>PhpAdsNew Remote Invocation <nop>JavaScript system. The other invocation methods are not supported.
+
+Here is an extract (from page 73) of that manual, containing some of handy examples:
+
+Below you will find examples of how the selection string could be configured.
+The examples include different statements, logical operators and multiple expressions.
+	1 key1|main
+		* Match a banner with keyword key1. If there are no banners with this keyword try to match a banner with keyword main.
+	2 key1,key2|campaignid:3
+		* Match a banner with keyword key1 or key2. If there are no banners with this keyword try to match a banner with client id 3.
+	3 key1,-campaignid:2
+		Match a banner with keyword key1, don�t match banners with client id 2.
+	4 |campaignid:2,clientid:4|key1|global
+		Match a banner with id 4. If there are no matching banners try to match a banner with client id 2 or 4. If there are no matching banners try to match a banner with keyword key1. If there are no matching banners try to match a banner with keyword global.
+	5 html,+key1,+key2,-campaignid:2
+		Match a html banner with keyword key1 and key2, but don�t match banners from client with id 2.
+	6 3,+468x60,4,+468x60,5,+468x60
+		Match a banner with a width of 468 and a height of 60. The banner id must be 3, 4 or 5.
+	7 key1/key2/key3
+		Match a banner with keyword key1, key2 and key3. If no matching banners are available try to match a banner with keyword key1 and key2. If there are
+still no matching banners available try to match a banner with keyword key1.
+	8 key1/key2/key3@468x60	
+		Match a banner with keyword key1, key2 and key3. If no matching banners are available try to match a banner with keyword key1 and key2. If there are still not matching banners available try to match a banner with keyword key1. The banner must not have a width of 468 and a height of 60.
+
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference
+a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>ADVERTSPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	
+		* Set SHORTDESCRIPTION = This plugin provides a convenient interface to the functionality in <nop>PhpAdsNew
+
+	* The root address of the the ads software.
+	* If the i.e. admin interface is at http://server.../phpAdsNew/admin/index.php then ADVERTSCRIPTBASE is //server.../phpAdsNew (no trailing /)
+		* Set ADVERTSCRIPTBASE = http://adverts.mrjc.com/phpAdsNew 
+
+	* Anyone who can change this can change what ads you show!
+		* Set ALLOWTOPICCHANGE = Main.TWikiAdminGroup
+
+---++ Plugin Installation Instructions
+
+	1 Install PhpAdsNew
+	2 unzip the plugin
+	3 Point ADVERTSCRIPTBASE to your adserver
+	4 Use <nop>%ADVERT{<nop>%TOPIC%}% to pull adverts by Keyword = Wikiword or just %ADVERT to pick any advert. This is passed to the WHAT parameter. 
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.MartinCleaver  |
+|  Plugin Version: | 30 Aug 2004 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  30 Aug 2004: | Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | http://phpadsnew.com, version 2 or above |
+|  Perl Version: | 5.0 |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 99%, %TWIKIWEB%.FormattedSearch 99%, %TOPIC% 99% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins, DefaultPlugin
+
+-- TWiki:Main.AndreaSterbini - 27 Feb 2001 %BR% 
+-- TWiki:Main.PeterThoeny - 21 Mar 2004
