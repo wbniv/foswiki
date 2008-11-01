@@ -1,0 +1,29 @@
+---++ Settings
+
+	* Set APPLET_INVOCATION = <APPLET CODE = "uk.org.ellery.twiki.TwikiEncrypt.class"  ARCHIVE = "%PUBURL%/%TWIKIWEB%/EncryptedPagesPlugin/TwikiEncrypt.jar,%PUBURL%/%TWIKIWEB%/EncryptedPagesPlugin/Crypt.jar"  WIDTH = 400 HEIGHT = 200> <PARAM NAME ="ATTACHURL" VALUE="%ATTACHURL%"> <PARAM NAME="KEY" VALUE="--!!--"> </APPLET>
+
+
+---++ Things to Do
+
+	* Work out why Triple DES algorithm is rejected by java security when run from applet
+	* Allow updates of multiple applets without potential for overwrite
+	* Add error handling
+	* Test properly
+
+
+---++ Raw java test:
+
+<!--TWIKIENCRYPT COPY THIS BIT INTO YOUR UPLOAD FORM -->
+<p />
+<APPLET CODE = "uk.org.ellery.twiki.TwikiEncrypt.class"  ARCHIVE = "%PUBURL%/%TWIKIWEB%/EncryptedPagesPlugin/TwikiEncrypt.jar,%PUBURL%/%TWIKIWEB%/EncryptedPagesPlugin/Crypt.jar"  WIDTH = 400 HEIGHT = 55>
+<PARAM NAME="KEY" VALUE="key1">
+<PARAM NAME ="ATTACHURL" VALUE="%ATTACHURL%">
+</APPLET>
+
+---++ And now for a Twiki plugin test:
+%ENCRYPTEDPAGE{key1}%
+
+%ENCRYPTEDPAGE{key2}%
+  
+
+-- Main.RichardJEllery - 13 Jan 2003
