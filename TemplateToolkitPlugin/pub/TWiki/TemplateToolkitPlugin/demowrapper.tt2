@@ -1,0 +1,29 @@
+[%# This is a TT template which will surround a topic, but not itself
+    be processed by TWiki - so it needs to contain HTML instead of TML
+    for lists.  Note that this paragraph - a TT comment - will vanish
+    from the output.
+-%]
+<div style="padding: 10px;
+            border-top: 10px solid #ddd;
+            border-right: 10px solid #888;
+            border-bottom: 10px solid #666;
+            border-left: 10px solid #bbb;
+            background-color: #ccc">
+  <h1>Demonstration Wrapper for the Template Toolkit Plugin</h1>
+  <ul>
+    <li>The text with light gray background is provided by the wrapper, 
+      the topic text is shown with a light red background.</li>
+    <li>If you have legacy TT templates, you'd probably want to use <tt>skin=text</tt> as additional URL parameter to suppress TWiki template handling.</li>
+    <li>Neither TML, nor %TWIKIWEB%.TWikiVariables - ooops - TWiki.TWikiVariables will be expanded in the wrapper.</li>
+    <li>The wrapper may, of course, contain TT constructs like <tt>[&#37; component.name &#37;]</tt>, which expands to the current TT template: [% component.name %].</li>
+    <li>In the topic text both TT constructs _and_ TWiki variables will be expanded.</li>
+  </ul>
+  <div style="padding: 10px;
+              border-top: 10px solid #666;
+              border-right: 10px solid #bbb;
+              border-bottom: 10px solid #ddd;
+              border-left: 10px solid #888;
+              background-color: #fcc">
+[% content %]
+  </div>
+</div>
