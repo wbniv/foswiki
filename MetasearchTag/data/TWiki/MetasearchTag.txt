@@ -1,0 +1,44 @@
+%META:TOPICINFO{author="TWikiContributor" date="1111929255" format="1.0" version="$Rev: 9189 $"}%
+---+ Empty TWiki Tag
+
+This is an empty Tag you can use as a template to build your own TWikiTag.
+
+---++ Syntax Rules
+
+(none)
+
+---++ Tag Settings
+
+Tag settings are stored as preferences variables. To reference
+a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>METASEARCHTAG_SHORTDESCRIPTION%==
+
+   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = Empty Tag used as a template for new Tags
+
+   * Your own setting, for example:
+      * Set EXAMPLE = got it!
+
+   * Debug plugin: (See output in =data/debug.txt=)
+      * Set DEBUG = 0
+
+---++ Tag Installation Instructions
+
+   * This plugin is preinstalled, you do not need to install it.
+
+---++ Tag Info
+
+|  Tag Author: | %MAINWEB%.MeredithLesly |
+|  Copyright: | &copy; 2001-2006, %MAINWEB%.MeredithLesly |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Tag Version: | 06 Jun 2006 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.8 |
+|  Tag Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiTags, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+
+-- %TWIKIWEB%.TWikiContributor - 01 Feb 2006
