@@ -1,0 +1,26 @@
+%META:TOPICINFO{author="StephaneLenclud" date="1179063410" format="1.1" reprev="1.2" version="1.2"}%
+%META:TOPICPARENT{name="TaskExeManager"}%
+---+ Create a new task specification
+
+---++ Usage
+
+   1 Give a TWiki.WikiName for your new task specification topic. Example: _TaskSpecMySoftwareRelease_.
+   1 Give a decriptive name for your new task. Example: _Offical Software Release_.
+   1 Click the create button.
+   1 Define your [[TaskExeContrib#Task_Specification][task specification]]. 
+
+---++ Console
+
+%STARTINCLUDE%<form name="createtaskspec" action="%SCRIPTURLPATH{edit}%/%TASKEXE_TASKWEB%">
+<table>
+<tr><td>Topic name:</td><td><input type="text" value="" name="topic" size="32" /></td></tr>
+<tr><td>Task name:</td><td><input type="text" value="" name="Name" size="32" /></td></tr>
+<tr><td></td><td></td></tr> 
+     <input type="hidden" name="templatetopic" value="%TASKEXE_INSTALLEDWEB%.TaskSpecTemplate" /> 
+     <input type="hidden" name="formtemplate" value="%TASKEXE_INSTALLEDWEB%.TaskSpecForm" />
+     <input type="hidden" name="topicparent" value="%TASKEXE_TASKPARENT%" />
+     <input type="hidden" name="onlynewtopic" value="on" />
+     <input type="hidden" name="onlywikiname" value="on" />
+</table>
+<input type="submit" class="twikiSubmit" value='Create task specification' />
+</form>%STOPINCLUDE%

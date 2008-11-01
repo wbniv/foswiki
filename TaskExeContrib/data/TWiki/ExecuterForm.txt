@@ -1,0 +1,6 @@
+%META:TOPICINFO{author="StephaneLenclud" date="1179063550" format="1.1" reprev="1.2" version="1.2"}%
+%META:TOPICPARENT{name="TaskExeManager"}%
+%EDITTABLE{ format="text, 20, init | select, 1, checkbox, checkbox+buttons, radio, label, select, text, textarea, date | text, 16, 16 | text, 16 | text, 16 | select, 1,  , H, M,HM  |" changerows="on" }%
+| *Name* | *Type* | *Size* | *Values* | *Tooltip message* | *Attributes* |
+| Name | text | 64 |  |  | M |
+| Bin URL | text | 128 |  |  | M |

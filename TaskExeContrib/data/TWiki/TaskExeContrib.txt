@@ -1,0 +1,344 @@
+%META:TOPICINFO{author="StephaneLenclud" date="1179353110" format="1.1" reprev="1.13" version="1.13"}%
+---+!! Task executer application
+
+<!--
+   * Set SHORTDESCRIPTION = TWiki application for managing remote task execution
+-->
+
+---++!! Purpose & Scope 
+
+TaskExeContrib was initially developed for [[Wikipedia:Software_release][software release]] management with [[Wikipedia:Continuous_integration][continuous integration]] in mind. However we kept the TaskExeContrib engine fairly generic. That article contains technical information intended for [[Wikipedia:release_engineering][release engineer]] using TaskExeContrib and [[http://www.perl.org][Perl]] developer maintaining that system.
+
+---++!! Overview 
+
+TaskExeContrib runs on a remote machine or [[#Executer][Executer]]. The [[#Executer][Executer]] reads a TWiki topic defining the tasks to execute and typically publishes output and results on another TWiki topic. 
+
+%TOC%
+
+---++ Management
+
+The task executer application can be managed using the following topics:
+
+   * TaskStarter
+
+   * TaskSpecList
+   * TaskSpecCreate
+   * TaskSpecForm
+   * TaskSpecTemplate
+   * TaskSpecSelect
+
+   * ExecuterList
+   * ExecuterRegistration
+   * ExecuterForm
+   * ExecuterTemplate
+   * ExecuterSelect
+
+TaskExeManager also offers links to those topics. All the topics mentioned here can be moved as needed to the desired Web. Typically a _Release_ Web in [[Wikipedia:Software_release][software release]] management context.
+
+---++ Definitions 
+
+In the TaskExeContrib world we use our own jargon. It is described in this section.
+
+---+++ Executer
+
+An _Executer_ is a remote machine performing a [[#Task][Task]]. In the [[Wikipedia:Software_release][software release]] world an _Executer_ is also called build server. Ideally an _Executer_ is fully automated and runs a web server in order to respond to requests and provide status information through the TWiki application. An _Executer_ must be [[#Executer_registration][registered]] to integrate with the TWiki application. 
+
+---+++ Task 
+   * A Task is defined by a single TWiki topic also called [[#Task_Specification][Task specification]]
+   * A Task can include any number of [[#Command][Commands]]
+
+---+++ Task Specification
+
+A Task Specification is a TWiki topic defining a set a [[#Command][Commands]] for the [[#Executer][Executer]] to process. 
+Ideally Task Specification topic should implement the TaskSpecForm. 
+
+See TaskSpecList, TaskSpecCreate, TaskSpecForm, TaskSpecTemplate.
+
+---+++ Command
+   * A Command is the atomic unit of a Task
+   * Commands follow the TWiki variable style but using the =Cmd= prefix. It should look like that:
+<verbatim>
+   * Cmd SHELLEX = dir C:
+</verbatim>
+ Use the =#= to comment out a Command:
+<verbatim>
+   * Cmd #SHELLEX = dir C:
+</verbatim>
+
+---++ Supported Commands
+
+---+++ =OUTPUTFORMWEB=
+Set the Web containing the TWiki.TWikiForms to use while creating the output topic.
+
+---+++ =OUTPUTFORMTOPIC=
+ Set the topic containing the TWiki.TWikiForms to use while creating the output topic.
+
+---+++ =OUTPUTWEB=
+ Set the topic containing the output topic.
+
+---+++ =OUTPUTTOPIC=
+ Set the output topic name. %ICON{warning}% It also triggers the creation of the output topic so that Command should comes last after =OUTPUTWEB=, =OUTPUTFORMTOPIC= and =OUTPUTFORMWEB=
+
+---+++ =OUTPUT=
+ Output the specified string. If an =OUTPUTTOPIC= was specified before the =OUTPUT= is written to that topic. In any case it is  written to the console standard output.
+
+---+++ =OUTPUTTWIKIVAR=
+Output some text to the TWiki topic adding % characters on each side. This is most useful to prevent the TWiki variable from being rendered in the Task specification topic.
+	
+---+++ =FORMFIELD=
+ Set a value for a field in the TWiki.TWikiForms implemented by the output topic. =FORMFIELD= Commands typically come before =OUTPUTTOPIC=. If used after the =OUTPUTTOPIC= Command one should use =SAVEFIELDS= to commit any changes made by =FORMFIELD= Commands.
+
+Field name and field value should be separated by a comma and a single space like in the following example:
+<verbatim>
+   * Set FORMFIELD = Fieldname, Fieldvalue
+</verbatim>
+
+---+++ =FORMFIELDEXE=
+ Similar to [[#FORMFIELD][ =FORMFIELD= ]] except that the field value is interpreted as a shell command and executed. The actual field value is the standard output resulting from the shell command execution.
+
+Field name and shell command should be separated by a comma and a single space like in the following example:
+<verbatim>
+   * Cmd FORMFIELD = Fieldname, perl getfieldvalue.pl 
+</verbatim>
+
+---+++ =SAVEFIELDS=
+ Commit changes made by =FORMFIELD= Commands. It results in the fields values actually changing on the output topic.
+
+---+++ =SHELLEXE=
+ Execute a shell command redirecting standard and error output into files. Once the command has finished executing it outputs the return code and upload standard and error output files to the output topic. 
+
+Example:
+<verbatim>
+   * Cmd SHELLEXE = dir c:
+</verbatim>
+
+---+++ =SHELLEXENR=
+ Same has above but No Redirection is made for standard and error output and therefore standard and error output files are not uploaded to the output topic. 
+
+Example:
+<verbatim>
+   * Cmd SHELLEXENR = echo Content>NewFile.txt 
+</verbatim>
+
+---+++ =CHDIR=
+ Change the current directory.
+
+Example:
+<verbatim>
+   * Cmd CHDIR = c:\dev\titanium 
+</verbatim>
+
+---+++ =UPLOAD=
+ Upload a file to the output topic.
+
+Example:
+<verbatim>
+   * Cmd UPLOAD = c:\buildoutput\binaries.zip 
+</verbatim>
+ 
+---+++ =TIMEFORMAT=
+
+Defines the default time format. Here are the supported variables in the time format string:
+   * =$sec=: Seconds
+   * =$min=: Minutes
+   * =$hour=: Hours  
+   * =$mday=: The day of the month
+   * =$month=: Month (from 1 to 12)
+   * =$year=: Year (e.g. 2006)
+   * =$wday=: The day of the week.
+   * =$yday=: The day of the year.
+
+Once this is defined =$starttime(format)= will render as specified. See [[#Variable_substitutions][Variables substitutions]].
+
+Example:
+<verbatim>
+   * Cmd TIMEFORMAT = $year.$month.$mday
+</verbatim>
+
+
+---+++ =USERVAR=
+
+Defines a user variable. The parameter should contains the variable name followed by a comma, a single space and the variable's value.  
+A variable can be recalled by using =$var=. See [[#Variable_substitutions][Variables Substitutions]].
+
+Example:
+<verbatim>
+   * Cmd USERVAR = AgeOfTheCaptain, 39
+</verbatim>
+
+---+++ =URLEXISTS=
+
+Check whether or not a URL can be successfully downloaded and put the result in the given variable. A variable can be recalled by using =$var=. See [[#Variable_substitutions][Variables Substitutions]].
+
+Example:
+<verbatim>
+   * Cmd URLEXISTS = isGoogleThere, http://www.google.com
+   * Cmd OUTPUT = Google must be there: $var(isGoogleThere)
+   * Cmd URLEXISTS = notThere, http://www.msdlfjsljflkjdf.hgth
+   * Cmd OUTPUT = Surely that URL does not exists: $var(notThere)
+</verbatim>
+
+---+++ =IF=, =ELSE=, =ENDIF=
+
+Conditionally executes commands. Nested =IF= are not supported. =IF= supports four different condition formats:
+   * =left==right= 
+   * =left!=right=   
+   * =condition= 
+   * =!condition=   
+
+Example:
+<verbatim>
+   * Cmd URLEXISTS = isGoogleThere, http://www.google.com
+   * Cmd IF = $var(isGoogleThere)
+   * Cmd OUTPUT = Google is there!
+   * Cmd ELSE = else
+   * Cmd OUTPUT = Google is not there!
+   * Cmd ENDIF = endif    
+</verbatim>
+
+---+++ =SENDMAIL=
+
+This command does just that. It sends email. Typically used at the end of a task.
+The parameter format is the one of the well known TWiki.TWikiVariables argument list. 
+Supported parameters are:
+   * =from= : Email address of the sender.
+   * =to= : Email address of the recipient. Can be a string of semicolon separated addresses.
+
+   * =subject= : Subject of the message.
+   * =body= : Body of the message.
+   * =attachments= : The attachments file name separated by a pipe '|' characters. Also supports attachment display name. Just prefix the file name with the display name and separate them using '?'. Example: ="changelog.txt? d:/temp/changelog.out| diff.txt? d:/temp/diff.txt"=.
+
+Example:
+<verbatim>
+   * Cmd SENDMAIL = from="executertest@myexetest.com" to="test1@myexetest.com;test2@myexetest.com" subject="test email" body="2 attachments and 2 recipients." attachments="that ? mailthat.txt | this ? mailthis.txt"  
+   * Cmd SENDMAIL = from="executertest@myexetest.com" to="test@myexetest.com" subject="test email" body="1 attachments and 1 recipients." attachments="mailthis.txt"  
+</verbatim>
+
+
+
+---++ Variable substitutions
+
+Before processing a [[#Command][Command]] variables are substituted by their actual values in the Command parameter. Here are described the supported variables.
+
+---+++ Form fields
+
+One can access the values of the Output Topic TWiki form field by using the =$formfield= variable.
+The =$formfield= variable takes the field name as argument. Field names are defined in you TWiki form topic. The argument given to the =$formfield= variables is case sensitive and should contains the form field name without blank spaces. 
+
+Examples:
+<verbatim>
+   * Cmd OUTPUT = Number of units: $formfield(Unitcount)
+</verbatim>
+
+---+++ User variables
+
+User variables are set using the Command [[#USERVAR][ =USERVAR= ]]. Variable names are case sensitive.
+One can recall a variable value in the Command parameter by using =$var= and passing the variable name as argument.
+This artefact is most useful when maintaining large [[#Task_Specification][Task Specification]]. In fact appropriate use of variables prevents information duplication on your [[#Task_Specification][Task Specification]].  
+
+
+Example:
+<verbatim>
+   * Cmd USERVAR = MyVar,  Nice value for my variable
+   * Cmd OUTPUT = Here is the non sense value for my variable: $var(MyVar)
+</verbatim>
+
+---+++ Parameters
+
+Parameters are passed using hash reference to the =Slion::TWiki::Executer->DoTask= function. Parameter names are case sensitive.
+One can recall a parameter value from a Command by using =$param= and passing the parameter name as argument. This is most useful when implementing continuous integration systems as you can pass date, label, tag or change list number as a parameter to your task and then perform appropriate source control operation.
+
+Example:
+<verbatim>
+   * Cmd SHELLEXE = cvs -q -d :pserver:sl@mysource.com/home/cvs/repository checkout -D "$param(date)" MyRepository
+</verbatim>
+
+---+++ Start time
+
+The start time is set to the [[#Executer][Executer]]'s system time at which the task was started.
+The =$starttime= variable takes one parameter from the followings:
+   * =format=: Renders the time as specified per [[#TIMEFORMAT][ =TIMEFORMAT= ]]
+   * =sec=: Seconds
+   * =min=: Minutes
+   * =hour=: Hours  
+   * =mday=: The day of the month
+   * =month=: Month (from 01 to 12)
+   * =year=: Year (e.g. 2006)
+   * =wday=: The day of the week.
+   * =yday=: The day of the year.
+
+Examples :
+<verbatim>
+   * Cmd OUTPUT = That task started at: $starttime(hour).$starttime(min)
+   * Cmd TIMEFORMAT = $year.$month.$mday
+   * Cmd OUTPUT = Start date is: $starttime(format)
+</verbatim>
+
+---+++ Current time
+
+The current time is set to the [[#Executer][Executer]]'s system time at which the current [[#Command][command]] was started.
+The =$currenttime= variable takes one parameter form the ones defined in [[#Start_time][Start time]]. 
+
+Examples :
+<verbatim>
+   * Cmd TIMEFORMAT = $hour:$min:$sec - $mday/$month/$year
+   * Cmd OUTPUT = That command started at: $currenttime(hour).$currenttime(min)
+   * Cmd SHELLEXE = dir c: /S /B
+   * Cmd OUTPUT = Command completed at: $currenttime(format)
+</verbatim>
+
+---+++ Other variables
+
+   * =$outputweb= : The name of the output Web.
+   * =$outputtopic= : The name of the definitive output topic. If auto numbering was used that variable resolves to the actual topic name.  
+   * =$taskspecweb= : The name of the Web containing the task specification topic.
+   * =$taskspectopic= : The name of the task specification topic.  
+   
+Example :
+<verbatim>
+   * Cmd OUTPUT = This topic is $outputweb.$outputtopic
+   * Cmd OUTPUT = Our task spec topic is $taskspecweb.$taskspectopic
+</verbatim>
+
+---++ Installation instructions
+
+   * Install TaskExePlugin.
+   * Install %TOPIC%.
+   * Set-up an _Executer_. See ExecuterContrib.
+   * Go to TaskStarter and try running Sandbox.TaskSpecDemo using your _Executer_ and check the results on Sandbox.TaskSpecDemoOutput.
+   * Once the above is working you should customize your application for your needs:
+      * Create a Web dedicated to TaskExeContrib and install TaskExeContrib in it.
+      * Fix the settings for TWiki.TaskExePlugin on %MAINWEB%.TWikiPreferences.
+      * Create [[#Task_Specification][task specifications]] to suite your needs.
+
+__Note:__ You do not need to install anything on the browser to use this contrib package. The following instructions are for the administrator who installs the package on the server where TWiki is running.
+
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+%$MANIFEST%
+
+Once installed you should have access to TaskExeManager.
+
+---++ Contrib Info
+
+|  Author: | TWiki:Main/StephaneLenclud |
+|  Copyright &copy;: | 2006-2007,  St�phane Lenclud, All Rights Reserved |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Version: | %$VERSION% |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  16 May 2007 | Adding support for =$taskspecweb=, =$taskspectopic= and =SENDMAIL= |
+|  15 May 2007 | Adding support for =URLEXISTS=, =IF=, =ELSE=, =ENDIF= |
+|  13 May 2007: | Initial version |
+|  Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences
+
+-- TWiki:Main/StephaneLenclud - 10 May 2007
+<!-- replace 10 May 2007 with %$DATE% for Build module, to get build date -->
+
+
+%META:TOPICMOVED{by="StephaneLenclud" date="1179060174" from="TWiki.TaskContrib" to="TWiki.TaskExeContrib"}%

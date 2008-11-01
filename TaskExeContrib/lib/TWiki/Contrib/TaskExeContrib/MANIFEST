@@ -1,0 +1,19 @@
+# Release manifest for TaskExeContrib
+data/TWiki/TaskExeContrib.txt 0644 Documentation
+data/TWiki/TaskExeManager.txt 0644 TWiki Application 
+data/TWiki/TaskStarter.txt 0644 TWiki Application
+data/TWiki/TaskSpecList.txt 0644 TWiki Application
+data/TWiki/TaskSpecCreate.txt 0644 TWiki Application
+data/TWiki/TaskSpecForm.txt 0644 TWiki Application
+data/TWiki/TaskSpecTemplate.txt 0644 TWiki Application
+data/TWiki/TaskSpecSelect.txt 0644 TWiki Application
+data/TWiki/ExecuterContrib.txt 0644 Documentation
+data/TWiki/ExecuterList.txt 0644 TWiki Application
+data/TWiki/ExecuterRegistration.txt 0644 TWiki Application
+data/TWiki/ExecuterForm.txt 0644 TWiki Application
+data/TWiki/ExecuterTemplate.txt 0644 TWiki Application
+data/TWiki/ExecuterSelect.txt 0644 TWiki Application
+data/Sandbox/TaskSpecDemo.txt 0644 TWiki Application
+data/Sandbox/TaskExeParent.txt 0644 TWiki Application
+
+

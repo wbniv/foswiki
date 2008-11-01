@@ -1,0 +1,9 @@
+%META:TOPICINFO{author="StephaneLenclud" date="1179063457" format="1.1" reprev="1.2" version="1.2"}%
+%META:TOPICPARENT{name="TaskExeManager"}%
+Use commands to define your task
+
+   * Cmd OUTPUTWEB = Sandbox
+   * Cmd OUTPUTTOPIC = ExecuterDemo
+
+   * Cmd OUTPUT = ---+ Executer Demo
+   * Cmd SHELLEXE = dir
