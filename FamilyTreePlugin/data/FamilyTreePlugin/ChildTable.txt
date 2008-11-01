@@ -1,0 +1,14 @@
+This topic defines a table format used in union topics when the
+%TWIKIWEB%.EditTablePlugin is installed.
+
+The table is for child records. These are simple one-column tables that
+list the wikinames of the issue of the union. For example:
+| *Child [[%TWIKIWEB%.WikiName][WikiName]]* |
+| LesleyFitzwilliamIII |
+| IanPeterNightly |
+
+You can modify the following EDITTABLE statement to reflect your
+requirements for this table, though you should always keep the first column or
+you will break the searches used by the FamilyTreePlugin.
+
+%EDITTABLE{header="| *Child [[%TWIKIWEB%.WikiName][WikiName]]* |" format="| text, 60 |" changerows="on"}%

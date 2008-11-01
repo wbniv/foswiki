@@ -1,0 +1,7 @@
+---+ Union of %URLPARAM{"Male"}% and %URLPARAM{"Female"}%
+%INCLUDE{"StdUnion"}%
+---++ Records
+%EDITTABLE{include="RecordTable"}%
+
+---++ Children
+%EDITTABLE{include="ChildTable"}%

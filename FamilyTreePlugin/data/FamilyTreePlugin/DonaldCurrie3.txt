@@ -1,0 +1,21 @@
+---+ Donald Currie
+%INCLUDE{"StdPerson"}%
+B.A, LlB
+---++ Records
+
+
+%EDITTABLE{include="RecordTable"}%
+
+
+
+
+
+
+
+%META:FORM{name="PersonForm"}%
+%META:FIELD{name="Forenames" attributes="" title="Forenames" value="Donald"}%
+%META:FIELD{name="Surname" attributes="" title="Surname" value="Currie"}%
+%META:FIELD{name="Born" attributes="" title="Born" value="23 Mar 1874"}%
+%META:FIELD{name="Died" attributes="" title="Died" value="14 Jun 1923"}%
+%META:FIELD{name="Sex" attributes="" title="Sex" value="M"}%
+

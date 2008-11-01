@@ -1,0 +1,6 @@
+| *Name* | *Type* | *Size* | *Values* | *Tooltip message* | *Attributes* |
+| Forenames | text | 60 | | |
+| Surname | text | 60 | | |
+| Born | date | 60 | | |
+| Died | date | 60 | | |
+| Sex | select | 1 | M,F | | |

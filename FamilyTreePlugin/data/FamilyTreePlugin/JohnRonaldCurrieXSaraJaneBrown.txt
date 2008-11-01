@@ -1,0 +1,20 @@
+---+ Union of JohnRonaldCurrie and SaraJaneBrown
+%INCLUDE{"StdUnion"}%
+---++ Records
+
+
+%EDITTABLE{include="RecordTable"}%
+
+---++ Children
+%EDITTABLE{include="ChildTable"}%
+| SheilaSinclairDouglasCurrie |
+
+
+
+
+
+%META:FORM{name="UnionForm"}%
+%META:FIELD{name="Date" attributes="" title="Date" value="3 Jan 1901"}%
+%META:FIELD{name="Male" attributes="" title="Male" value="JohnRonaldCurrie"}%
+%META:FIELD{name="Female" attributes="" title="Female" value="SaraJaneBrown"}%
+

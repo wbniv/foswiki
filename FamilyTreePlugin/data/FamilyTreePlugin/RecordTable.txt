@@ -1,0 +1,25 @@
+This topic defines a table used in person and union topics when the
+%TWIKIWEB%.EditTablePlugin is installed.
+
+The table is for arbitrary event records in a person's life, or a union,
+that don't have standard fields in the form. For example, a person might
+have records:
+
+| *Record Type* | *Start* | *End* | *Description* |
+| Occupation | 1877 | 1891 | Doctor of Pathology, University of Transylvania |
+| Scandal    | 1891 | 1891 | Publicly accused of draculism |
+| Emigration | 1892 | 1892 | Emigrated to Whitby, England |
+
+or a union might have records:
+| *Record Type* | *Start* | *End* | *Description* |
+| Divorce       | 1947    | 1947  | Grandma discovers Grandpa's pet sheep |
+
+Pick your own record types, or use standard record types such as those defined by the latter-day saints (LDS) record formats.
+
+You can modify the following EDITTABLE statement to reflect your
+requirements for this table.
+%EDITTABLE{
+   header="| *Record Type* | *Start* | *End* | *Description* |"
+   format="| text, 40 | date | date | text, 80 |"
+   changerows="on"
+}%

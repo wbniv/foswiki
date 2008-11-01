@@ -1,0 +1,38 @@
+This script is used in the NewUnion and NewPerson topics.
+<verbatim>
+%STARTINCLUDE%
+<script lang="JavaScript">
+function fillet(a) {
+ var b = '';
+ for (var i = 0; i < a.length; i++ ) {
+  var ch = a.charAt(i);
+  if('a' <= ch && ch <= 'z' || 'A' <= ch && ch <= 'Z' || '0' <= ch && ch <= '9') {
+   if( i == 0 )
+      b = ('' + ch).toUpperCase();
+   else
+      b = b + ch;
+  }
+ }
+ return b;
+}
+function buildName(field1,sep,field2) {
+ var a = fillet(field1);
+ var b = fillet(field2);
+ var basename = a+sep+b;
+ var topics = document.spec._hidden_topics.value.split('|');
+ var j = 2;
+ var name = basename;
+ var i = 0;
+ while( i < topics.length ) {
+  if(name == topics[i]) {
+   name = basename + j; j++;
+   i = 0;
+  } else {
+   i++;
+  }
+ }
+ document.spec.topic.value = name;
+}
+</script>
+%STOPINCLUDE%
+</verbatim>

@@ -1,0 +1,14 @@
+
+%INCLUDE{"%IF{"context can_login" then="%TWIKIWEB%.WebLeftBarLogin"}%" warn="off"}%
+<div class="twikiLeftBarPersonal" style="margin-top:0;">
+	* <b><nop>%INCLUDINGWEB% Web</b>
+	* [[%HOMETOPIC%][%INCLUDINGWEB% Web Home]]
+	* [[WebChanges][Changes]]
+	* [[WebIndex][Index]]
+	* [[WebSearch][Search]]
+----
+   * [[NewPerson][Create new person]]
+   * [[NewUnion][Create new union]]
+
+</div>
+

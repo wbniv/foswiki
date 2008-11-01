@@ -1,0 +1,17 @@
+
+
+---+ Create new person
+%INCLUDE{"CreatorScript"}%
+<form name="spec" action="%SCRIPTURL%/edit%SCRIPTSUFFIX%/%WEB%">
+| Forenames | <input type="text" name="Forenames" value="%URLPARAM{"Forenames"}%" onblur="buildName(document.spec.Forenames.value,'',document.spec.Surname.value)" /> |
+| Surname   | <input type="text" name="Surname" value="%URLPARAM{"Surname"}%" onblur="buildName(document.spec.Forenames.value,'',document.spec.Surname.value)" /> |
+| Sex (M/F)  | <input type="text" name="Sex" value="%URLPARAM{"Sex"}%" /> |
+| DOB   | <input type="text" name="Born" value="%URLPARAM{"Born"}%" /> |
+| Date died   | <input type="text" name="Died" value="%URLPARAM{"Died"}%" /> |
+<input type="text" name="topic" size="60" value="" />
+<input type="submit" value="Create" onclick="buildName(document.spec.Forenames.value,'',document.spec.Surname.value)"/>
+<input type="hidden" name="_hidden_topics" value="%TOPICLIST{separator="|"}%" />
+<input type="hidden" name="formtemplate" value="PersonForm" />
+<input type="hidden" name="templatetopic" value="TemplatePerson" />
+</form>
+
