@@ -1,0 +1,104 @@
+%META:TOPICINFO{author="joant" date="1128374233" format="1.0" version="1.3"}%
+---+ <nop>%TOPIC%
+
+This plugin provides shorthand for linking to [[http://www.bugzilla.org/][Bugzilla]] bugs without specifying a URL in longhand.  It is most useful if you are using a local copy of Bugzilla for issue/ticket/bug tracking, and want to reference it from your topic.
+
+%TOC%
+
+---++Features
+
+	* Short hand references for:
+	* Individual bugs
+	* Lists of bugs assigned to a given milestone (or its beta)
+	* Lists of bugs matching one or more keywords
+	* Lists of the specified user's assigned bugs
+	* URLs and text prompts are fully configurable
+
+---++ Syntax Rules
+
+The following =%<nop>BUG*{...}%= short hand references are supported:
+|Short hand reference|What it does|
+|=%<nop>BUG{#####}%=|Creates a link to a specific bug.|
+|=%<nop>BUGLISTMS{target_milestone}%=|Creates a link to a list of bugs with the specified =target_milestone=.|
+|=%<nop>BUGLISTKEY{keyword1+...+keywordn}%= <br/><br/> =%<nop>BUGLISTKEY{keyword1,...,keywordn}=|Creates a link to a list of bugs with one or more of the specified =keywords=.<br /><br />Using comma separators will generate an OR-type search.|
+|=%<nop>MYBUGS{user@some.domain}%=|Creates a link to a list of bugs assigned to =user@some.domain=.|
+
+---++ Examples
+
+|You type:|You get: (simulated)|You get: (if installed)|
+|%<nop>BUG{242971}%|%ATTACHURL%/bug_small.png [[http://bugzilla.mozilla.org/show_bug.cgi?id=242971][Bug #242971]]|%BUG{242971}%|
+|%<nop>BUGLISTMS{Firefox1.0}%|%ATTACHURL%/bug_small.png [[http://bugzilla.mozilla.org/buglist.cgi?target_milestone=Firefox1.0b&target_milestone=Firefox1.0][Buglist for milestone Firefox1.0]]|%BUGLISTMS{Firefox1.0}%|
+|%<nop>BUGLISTKEY{highrisk,64bit}%|%ATTACHURL%/bug_small.png [[http://bugzilla.mozilla.org/buglist.cgi?keywords_type=anywords&keywords=highrisk+64bit][Buglist for keyword(s) "highrisk,64bit"]]|%BUGLISTKEY{highrisk,64bit}%|
+|%<nop>BUGLISTKEY{crash+fonts}%|%ATTACHURL%/bug_small.png [[http://bugzilla.mozilla.org/buglist.cgi?keywords_type=allwords&keywords=crash+fonts][Buglist for keyword(s) "crash+fonts"]]|%BUGLISTKEY{crash+fonts}%|
+|%<nop>MYBUGS{shaver@mozilla.org}%|%ATTACHURL%/bug_small.png [[http://bugzilla.mozilla.org/buglist.cgi?bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&email1=shaver@mozilla.org&emailtype1=exact&emailassigned_to1=1&emailreporter1=1][Buglist for shaver@mozilla.org]]|%MYBUGS{shaver@mozilla.org}%|
+
+
+---++ <nop>%TOPIC% Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>RENDERPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* Set SHORTDESCRIPTION = Link to Bugzilla bugs using shorthand references
+
+	* Set DEBUG to 1 to get debug messages in =data/debug.txt=.  Default: =0=
+	* Set DEBUG = 0
+
+	* URL references to your Bugzilla installation and to the bug image
+	* Set BUGURL = http://bugzilla.mozilla.org/show_bug.cgi?id=
+	* Set BUGLISTURL = http://bugzilla.mozilla.org/buglist.cgi?
+	* Set BUGIMGURL = %ATTACHURL%/bug_small.png
+
+	* Text references for automatic substitution
+	* Set BUGTEXT = Bug #
+	* Set MILESTONEBUGLISTTEXT = Buglist for milestone
+	* Set KEYWORDSBUGLISTTEXT = Buglist for keyword(s)
+	* Set MYBUGLISTTEXT = Buglist for user
+
+---++ Limitations and Known Issues
+
+	* Many other sorts of linking is possible, but not yet implemented.
+	* This plugin could be refactored to work with many other sorts of bug tracking software, not limited to but including:
+	* RT
+	* Mantis
+	* DDTS (see Plugins.AutolinkDDTSPlugin)
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running.
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+     | ==pub/TWiki/%TOPIC%/*.gif== | Image files for themes |
+     | ==pub/TWiki/%TOPIC%/*.png== | Image files for themes |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Test if the installation was successful:
+	* See if the above example works
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.FlorianGnaegi |
+|  Plugin Version: | 03 Oct 2005 (V1.300) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  03 Oct 2005 | Fixes for Dakar, added BUGLISTKEY function, refactored Settings (TWiki:Main.JoanTouzet) |
+|  08 Jul 2003 | Added MYBUGS function (TWiki:Main.SteveKostecke), dealing with whitespace (TWiki:Main.AlanShields) |
+|  19 Aug 2002 | Added BUGLIST function, renamed to BugzillaLinkPlugin (TWiki:Main.AnthonPang ?) |
+|  15 Aug 2002 | Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | A working [[http://www.bugzilla.org][Bugzilla]] installation |
+|  Perl Version: | 5.005 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- TWiki:Main.JoanTouzet - 03 October 2005 <br>
+
+%META:FILEATTACHMENT{name="bug.gif" attr="" comment="GIF Bug large" date="1029409171" path="/home/gnaegi/bug.gif" size="166" user="FlorianGnaegi" version="1.1"}%
+%META:FILEATTACHMENT{name="bug_small.gif" attr="" comment="GIF Bug small" date="1029416770" path="/home/gnaegi/bug_small.gif" size="885" user="FlorianGnaegi" version="1.1"}%
+%META:FILEATTACHMENT{name="bug_small.png" attr="" comment="PNG Bug transparent" date="1029409171" path="/home/gnaegi/bug.gif" size="166" user="FlorianGnaegi" version="1.0"}%
+%META:FILEATTACHMENT{name="bug_small_white.png" attr="" comment="PNG Bug, white background" date="1029409171" path="/home/gnaegi/bug.gif" size="166" user="FlorianGnaegi" version="1.0"}%
