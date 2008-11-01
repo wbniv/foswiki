@@ -1,0 +1,22 @@
+%META:TOPICINFO{author="TWikiContributor" date="1148406023" format="1.1" version="1.1"}%
+%META:TOPICPARENT{name="TWikiForm"}%
+---+ %TOPIC%
+%FORMFIELD{"TopicDescription"}%
+
+| *Name:*| *Type:* | *Size:* | *Values:* | *Tooltip message:* | *Attributes:* |
+| TopicType | label | 1 | SubjectCategory, FrontPage | document type  | M |
+| TopicDescription | text | 75 | | short description of the role of this topic |  |
+| Comment | textarea | 80x4 | | informal description | |
+
+
+
+See also: %TWIKIWEB%.TWikiForms
+<!--
+   * Set ALLOWTOPICCHANGE = %MAINWEB%.BlogAdminGroup
+   * Set SIDEBAR = Admin
+   * Set SIDEBARARG = TWikiForm
+-->
+
+%META:FORM{name="TopicForm"}%
+%META:FIELD{name="TopicType" attributes="M" title="TopicType" value="TWikiForm"}%
+%META:FIELD{name="TopicDescription" attributes="M" title="TopicDescription" value="TWikiForm for SubjectCategories"}%
