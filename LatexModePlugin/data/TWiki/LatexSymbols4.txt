@@ -1,0 +1,53 @@
+---+ Latex Symbols (4 of 5)
+
+| *Symbols* | *Latex Command* | *Symbols* | *Latex Command* |
+
+---++ Symbols for Sets and Analytic Equations
+
+| *Symbols* | *Latex Command* | *Symbols* | *Latex Command* |
+|   %$ \wp $%        | \wp (prime numbers)     |   %$ \emptyset $%   | \emptyset |
+|   %$ \Re $%        | \Re (real numbers)      |   %$ \forall $%     | \forall   |           
+|   %$ \Im $%        | \Im (imaginary numbers) |   %$ \exists $%     | \exists   |                
+|   %$ \neg $%       | \neg      |
+|   %$ \angle $%     | \angle |   %$ \partial $%   | \partial      |
+|   %$ \dag $%       | \dag   |   %$ \infty $%     | \infty        |
+|   %$ \ddag $%      | \ddag  |   %$ \Box $%       | \Box          |
+|   %$ \aleph $%     | \aleph |   %$ \sum $%       | \sum          |
+|   %$ \hbar $%      | \hbar  |   %$ \prod $%      | \prod         |
+|   %$ \imath $%     | \imath |   %$ \coprod $%    | \coprod       |
+|   %$ \jmath $%     | \jmath |   %$ \int $%       | \int          |
+|   %$ \ell $%       | \ell   |   %$ \oint $%      | \oint         | 
+
+---++ Function names
+
+| *Symbols* | *Latex Command* | *Symbols* | *Latex Command* |
+| %$ \arccos $% | \arccos | %$ \ker $%      | \ker    |   
+| %$ \arcsin $% | \arcsin | %$ \lg $%       | \lg   |   
+| %$ \arctan $% | \arctan | %$ \lim $%      | \lim  |   
+| %$ \arg $%    | \arg    | %$ \liminf $%   | \liminf | 
+| %$ \cos $%    | \cos    | %$ \limsup $%   | \limsup | 
+| %$ \cosh $%   | \cosh   | %$ \ln $%       | \ln  |    
+| %$ \cot $%    | \cot    | %$ \log $%      | \log |    
+| %$ \coth $%   | \coth   | %$ \max $%      | \max |    
+| %$ \csc $%    | \csc    | %$ \min $%      | \min |    
+| %$ \deg $%    | \deg    | %$ \Pr $%       | \Pr  |    
+| %$ \det $%    | \det    | %$ \sin $%      | \sin |    
+| %$ \dim $%    | \dim    | %$ \sec $%      | \sec |    
+| %$ \exp $%    | \exp    | %$ \sinh $%     | \sinh |   
+| %$ \gcd $%    | \gcd    | %$ \sup $%      | \sup |    
+| %$ \hom $%    | \hom    | %$ \tan $%      | \tan |    
+| %$ \inf $%    | \inf    | %$ \tanh $%     | \tanh |   
+
+
+---
+
+Due to page loading constraints, the symbols tables are split up into 5 different topics.
+   * LatexSymbols (Greek Letters)
+   * LatexSymbols2 (Relationship and Operator Symbols)
+   * LatexSymbols3 (Arrows, Spacing, Accents)
+   * LatexSymbols4 (Function names and anlaytic symbols)
+   * LatexSymbols5 (Delimiters and other symbols)
+
+__Back to:__ LatexModePlugin
+
+-- TWiki:Main.AmandaSmith - 25 Apr 2006

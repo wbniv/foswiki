@@ -1,0 +1,14 @@
+lib/TWiki/Plugins/LatexModePlugin.pm           0644 Plugin Perl module 
+lib/TWiki/Plugins/LatexModePlugin/Init.pm      0644 The initialization module
+lib/TWiki/Plugins/LatexModePlugin/Render.pm    0644 The rendering module
+lib/TWiki/Plugins/LatexModePlugin/CrossRef.pm  0644 The cross-referencing module
+pub/TWiki/LatexModePlugin/expl-v1.4.png        0644 example image of rendered latex |
+pub/TWiki/LatexModePlugin/tikz-expl.png        0644 image for on-the-fly rendering example
+pub/TWiki/LatexModePlugin/rot-expl.png         0644 image for attachment rendering example
+data/TWiki/LatexModePlugin.txt                 0644 Plugin topic and documentation |                             
+data/TWiki/LatexSymbols.txt                    0644 Comprehensive list of available <nop>LaTeX symbols (1 of 5) 
+data/TWiki/LatexSymbols2.txt                   0644 Comprehensive list of available <nop>LaTeX symbols (2 of 5) 
+data/TWiki/LatexSymbols3.txt                   0644 Comprehensive list of available <nop>LaTeX symbols (3 of 5) 
+data/TWiki/LatexSymbols4.txt                   0644 Comprehensive list of available <nop>LaTeX symbols (4 of 5) 
+data/TWiki/LatexSymbols5.txt                   0644 Comprehensive list of available <nop>LaTeX symbols (5 of 5) 
+data/TWiki/LatexIntro.txt                      0644 A basic description of <nop>LaTeX markup conventions 

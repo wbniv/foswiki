@@ -1,0 +1,38 @@
+---+ Latex Symbols (5 of 5)
+
+---++ Delimiters
+
+| *Symbols* | *Latex Command* | *Symbols* | *Latex Command* |
+|   %$ \lfloor $%   | \lfloor |   %$\rfloor $%      | \rfloor    |
+|   %$ \lceil  $%   | \lceil  |   %$\rceil $%       | \rceil     |   
+|   %$ \langle $%   | \langle |   %$\rangle $%      | \rangle    |
+|   %$ /       $%   | /       |   %$\backslash $%   | \backslash |
+|   %$ ( ) $%     | ( )   |   %$ [ ] $%     | [ ]   |   
+|   %$ \{ \} $%   | \{ \} |   %$ \prime $%   |\prime |
+
+---++ Other symbols
+
+| *Symbols* | *Latex Command* | *Symbols* | *Latex Command* |
+|   %$ \clubsuit  $%   | \clubsuit  |   %$ \diamondsuit $%   | \diamondsuit |
+|   %$ \heartsuit $%   | \heartsuit |   %$ \spadesuit $%     | \spadesuit   |
+|   %$ \flat $%   | \flat |   %$\sharp$%   | \sharp |
+|   %$ \& $%    | \&  |   %$ \_ $%   | \_  |      
+|   %$ \P $%    | \P |   %$ \L $%   | \L  |
+|   %$ \S $%    | \S |   %$ \% $%   | \%  |
+|   %$ \$ $%    | \$ |   %$ \# $%   | \#  |
+|   %$ \pounds $%    | \pounds  |    %$ \copyright $%    | \copyright |
+|   %$\AA$%   | \AA  |   %$\AE$%   | \AE  |
+|   %$\OE$%   | \OE  |   %$\O$%    | \O   |
+
+---
+
+Due to page loading constraints, the symbols tables are split up into 5 different topics.
+   * LatexSymbols (Greek Letters)
+   * LatexSymbols2 (Relationship and Operator Symbols)
+   * LatexSymbols3 (Arrows, Spacing, Accents)
+   * LatexSymbols4 (Function names and anlaytic symbols)
+   * LatexSymbols5 (Delimiters and other symbols)
+
+__Back to:__ LatexModePlugin
+
+-- TWiki:Main.AmandaSmith - 25 Apr 2006

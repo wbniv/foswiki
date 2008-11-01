@@ -1,0 +1,47 @@
+---+ Latex Symbols (1 of 5)
+
+---++ Greek letters
+
+---+++ lower case
+
+| *Symbol*            | *Latex Command* | |   *Symbol*       | *Latex Command* | |   *Symbol*       | *Latex Command* |
+|   %$\alpha$%        | \alpha        |   |   %$\iota$%     | \iota     |     |   %$\varrho$%     | \varrho     |
+|   %$\beta$%         | \beta         |   |   %$\kappa$%    | \kappa    |     |   %$\sigma$%      | \sigma      | 
+|   %$\gamma$%        | \gamma        |   |   %$\lambda$%   | \lambda   |     |   %$\varsigma$%   | \varsigma   | 
+|   %$\delta$%        | \delta        |   |   %$\mu$%       | \mu       |     |   %$\tau$%        | \tau        | 
+|   %$\epsilon$%      | \epsilon      |   |   %$\nu$%       | \nu       |     |   %$\upsilon$%    | \upsilon    | 
+|   %$\varepsilon$%   | \varepsilon   |   |   %$\xi$%       | \xi       |     |   %$\phi$%        | \phi        | 
+|   %$\zeta$%         | \zeta         |   |   %$\pi$%       | \pi       |     |   %$\varphi$%     | \varphi     | 
+|   %$\eta$%          | \eta          |   |   %$\varpi$%    | \varpi    |     |   %$\chi$%        | \chi        | 
+|   %$\theta$%        | \theta        |   |   %$\rho$%      | \rho      |     |   %$\psi$%        | \psi        | 
+|   %$\vartheta$%     | \vartheta     |   |                  |           |     |   %$\omega$%      | \omega      | 
+
+
+---+++ upper case
+
+|   *Symbol*      | *Latex Command* | |   *Symbol*   | *Latex Command* |
+|   %$\Gamma$%    | \Gamma    | |   %$\Sigma$%     | \Sigma     |
+|   %$\Delta$%    | \Delta    | |   %$\Upsilon$%   | \Upsilon   |
+|   %$\Theta$%    | \Theta    | |   %$\Phi$%       | \Phi       |
+|   %$\Lambda$%   | \Lambda   | |   %$\Psi$%       | \Psi       |
+|   %$\Xi$%       | \Xi       | |   %$\Omega$%     | \Omega     |
+|   %$\Pi$%       | \Pi       | 
+
+---+++ Variations on Greek symbols
+
+|   *Symbol*      | *Latex Command* | |   *Symbol*   | *Latex Command* |
+|   %$\amalg$%    | \amalg (upsidedown pi) | |   %$ \mho $%   | \mho ( conductance - inverse of ohm ) |
+|   %$\nabla$%    | \nabla (upsidedown delta) |
+
+---
+
+Due to page loading constraints, the symbols tables are split up into 5 different topics.
+   * LatexSymbols (Greek Letters)
+   * LatexSymbols2 (Relationship and Operator Symbols)
+   * LatexSymbols3 (Arrows, Spacing, Accents)
+   * LatexSymbols4 (Function names and anlaytic symbols)
+   * LatexSymbols5 (Delimiters and other symbols)
+
+__Back to:__ LatexModePlugin
+
+-- TWiki:Main.AmandaSmith - 25 Apr 2006

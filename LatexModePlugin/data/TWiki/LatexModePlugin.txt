@@ -1,0 +1,468 @@
+
+---+!! <nop>%TOPIC%
+
+This <nop>LaTeX Mode TWiki Plugin allows you to include <nop>LaTeX mark up commands within a TWiki page.  It uses external programs (specifically latex, dvipng or dvips-and-convert, or mimetex) to generate =png= or =gif= images from the mark up.  These images are then included in the rendered TWiki page.  The first time a particular image is generated, there may be a significant lag in page rendering as the images are generated on the server.  Once rendered, the image is saved as an attached file for the page, so subsequent viewings will not require re-renders.  When you remove a math expression from a page, its image is deleted.  
+
+This plugin expands the functionality provided by the TWiki:Plugins.MathModePlugin.
+
+%TOC%
+
+---++ Syntax Rules
+
+The plugin interprets a number of delimiters to declare <nop>LaTeX markup strings.  For example, if the <nop>LatexModePlugin is successfully installed, the string =\int_{-\infty}^\infty e^{-\alpha x^2} dx = \sqrt{\frac{\pi}{\alpha}}= will render as an image %$\int_{-\infty}^\infty e^{ -\alpha x^2 } dx = \sqrt{ \frac{\pi}{\alpha} }$%, when enclosed within the defined delimiters.
+
+---+++ Standard Syntax
+
+This plugin has two standard modes: 
+	* *in-line*, declared by %<nop>$ $%. Similar to <nop>LaTeX's inline math mode, the math markup is rendered on the same line as other text in the string.
+	* *own-line*, declared by %<nop>\[ \]% or %<nop>MATHMODE{ ... }%.  These equations will be rendered with center justification on their own line. 
+
+For the majority of users, these commands should be sufficient 
+
+---++++ Example
+
+<table width="600" align="center" border=1><tr><td>
+%PURPLE%This is an example of the %BEGINLATEX{inline="1" density="200" gamma="1.0" color="Purple"}%\LaTeX%ENDLATEX% rendering possibilities using the LatexModePlugin.%ENDCOLOR%
+
+<blockquote>
+The singular value decomposition of a matrix %$A$% is defined as
+%BEGINLATEX{label="one" color="Green"}%
+\begin{displaymath}
+A = U \Sigma V^H
+\end{displaymath}
+%ENDLATEX%
+where %$U$% and %$V$% are both matrices with orthonormal columns, %$\{\cdot\}^H$% indicates a complex-conjugate transpose, and %$\Sigma$% is a diagonal matrix with singular values %\[ \sigma_1 > \sigma_2 > \cdots > \sigma_n \geq 0 \]% along the main diagonal.  Eq. %REFLATEX{one}% is just one of the many matrix decompositions that exists for matrix %$A$%.  
+</blockquote>
+</table>
+
+After the plugin has been succesfully installed and configured, this example should render like this:
+<div align="center">
+    <img src="%ATTACHURLPATH%/expl-v1.4.png" alt="expl-v1.4.png"  width="673" height="237"  />
+</div>
+
+---+++ Extended Syntax
+
+For those that are well familiar with <nop>LaTeX, a multi-line syntax allowing more complicated markup commands can be declared using
+<pre>
+%<nop>BEGINLATEX%
+  \begin{&lt;environment&gt;}
+	 _latex markup_ 
+  \end{&lt;environment&gt;}
+%<nop>ENDLATEX%
+</pre>
+Typically, the declared &lt;environment&gt; will be =displaymath=, although there is no limitation.
+
+
+Additional options can be included to modify the rendered result.  These include
+<div align="center">
+| *option* | *possible values* | *default* | *description* | 
+| inline | 0 or 1 | 0 | controls inline vs ownline rendering |
+| label | alpha-numeric | --- | produces a linkable equation number for ownline markup |
+| density | positive integer | %DENSITY% (set below) | controls rendered font size |
+| scale | positive number | %SCALE% (set below) | sets post-rendered image scaling |
+| gamma | positive number | %GAMMA% (set below) | controls rendered font darkness |
+| bgcolor | --- | 'white' | sets background color (details below) |
+| color | --- | 'black' | sets foreground font color (details below) |
+| attachment | alpha-numeric | --- | allows one to couple the latex command with an attached file.  Useful for latex graphics commands.  |
+| engine | {"", "dvipng", "ps", "pdf", "mimetex"} | "" | dynamically switch the rendering engine between the installation default (""), =dvipng=,  =dvips+convert=, =pdflatex+convert=, or =mimetex= for <nop>LaTeX packages than need it, e.g. tikz. (details below) |
+</div>
+
+For example, to declare an equation to be numbered by TWiki (not in the <nop>LaTeX image) with a larger font size and in red, use the following syntax:
+
+<blockquote>
+%<nop>BEGINLATEX{label="eq1" density="175" color="red"}%
+
+  _latex markup_
+
+%<nop>ENDLATEX%
+</blockquote>
+
+HTML references to <nop>LaTeX equations with a defined =&lt;label&gt;= can be generated using %<nop>REFLATEX{&lt;label&gt;}%.
+
+---++++ Rendering options
+
+Both DENSITY and SCALE alter the rendered image size and quality. For example, if one doubles the DENSITY and halves the SCALE, the rendered image resolution will improve but keep the same image size on the rendered page.  (Note: DENSITY * SCALE is the same in both cases)
+<div align="center">
+| density = 116, scale = 2.0 : | %BEGINLATEX{density="116" scale="2.0"}% \[ \mathcal{A } \] %ENDLATEX% |
+| density = 232, scale = 1.0 : | %BEGINLATEX{density="232" scale="1.0"}% \[\mathcal{A}\] %ENDLATEX% | 
+</div>
+
+For regular browser viewing, the SCALE parameter sould be set to 1.0.  However, one can use these parameters to improve print quality when printing a topic.  To do this, increase the DENSITY setting (a value of 300 will give roughly 300dpi) and then set the SCALE setting below 1.0.
+
+---++++ Font Color 
+
+As of v1.3, one can now directly control the foreground font color in the
+rendered mathematics.  This is achieved through use of the =color.sty=
+package in the intermediate latex file.
+
+Latex is able to render colors defined in 3 color spaces: =gray=, =rgb=, and
+=cmyk=.  A limited number of colors are predefined in Latex.  These include:
+<div align="center">
+| *color* | *color space* | *color space value* |
+|   =black=|   gray   | 0 |
+|   =white=|   gray   | 1 |
+|   =red=|   rgb   | 1,0,0 |
+|   =green=|   rgb   | 0,1,0 |
+|   =blue=|   rgb   | 0,0,1 |
+|   =cyan=|   cmyk   | 1,0,0,0 |
+|   =magenta=|   cmyk   | 0,1,0,0 |
+|   =yellow=|   cmyk   | 0,0,1,0 |
+</div>
+
+For convenience, the following TWiki colors are pre-defined in the LatexModePlugin
+<verbatim>
+   \definecolor{Red}{rgb}{1,0,0}
+   \definecolor{Blue}{rgb}{0,0,1}
+   \definecolor{Yellow}{rgb}{1,1,0}
+   \definecolor{Orange}{rgb}{1,0.4,0}
+   \definecolor{Pink}{rgb}{1,0,1}
+   \definecolor{Purple}{rgb}{0.5,0,0.5}
+   \definecolor{Teal}{rgb}{0,0.5,0.5}
+   \definecolor{Navy}{rgb}{0,0,0.5}
+   \definecolor{Aqua}{rgb}{0,1,1}
+   \definecolor{Lime}{rgb}{0,1,0}
+   \definecolor{Green}{rgb}{0,0.5,0}
+   \definecolor{Olive}{rgb}{0.5,0.5,0}
+   \definecolor{Maroon}{rgb}{0.5,0,0}
+   \definecolor{Brown}{rgb}{0.6,0.4,0.2}
+   \definecolor{Black}{gray}{0}
+   \definecolor{Gray}{gray}{0.5}
+   \definecolor{Silver}{gray}{0.75}
+   \definecolor{White}{gray}{1}
+</verbatim>
+
+To use additional colors, they need to be defined in the Latex preamble, as described in the next section.
+
+
+---++++ Including images in <nop>LaTeX markup
+
+
+v3.0 introduced the ability to include attachments in the latex markup
+processing.  This is most useful for graphics, e.g.
+
+<verbatim>
+%BEGINLATEX{attachment="fig1.eps"}%
+
+  \includegraphics{fig1.eps}
+
+%ENDLATEX%
+</verbatim>
+
+It is common practice in <nop>LaTeX, however, to _not_ specify the filename
+extension.  This is implemented in the Plugin as well, so one could type:
+<verbatim>
+%BEGINLATEX{attachment="fig1"}%
+
+  \includegraphics{fig1}
+
+%ENDLATEX%
+</verbatim>
+
+and the plugin will search for an attachment with extension '.eps',
+'.eps.gz', '.pdf', '.png', or '.jpg'.  The first extension match will be
+used, and the rendering engine that can recognize the attachment will also
+be automatically determined.  So for the example above, if a file 'fig1.eps'
+is attached to the topic, it will be used as the attachment and
+dvips+convert will be automatically chosen as the rendering engine.
+
+
+---++++ Switching the rendering on the fly
+
+v3.3 introduced the ability to switch rendering dynamically between
+=dvipng=, =dvips+convert=, and =pdflatex+convert=.  Some latex packages are not supported by the preferred
+method =dvipng=, for example
+[[http://sourceforge.net/projects/pgf/][Ti<em>k</em>Z and PGF]].  Rather than force
+all rendering to use a slower background rendering engine, this switch
+allows one to use dvipng rendering as the default, but fall back to 'ps' or
+'pdf' intermediate files in certain cases.
+
+<table>
+<tr><td width="70%">
+If you type:
+<verbatim>
+%BEGINLATEX{ engine="ps"}%
+
+\fbox{ 
+  \begin{tikzpicture}[auto,bend right] 
+    \node (a) at (0:1) {$0^\circ$}; 
+    \node (b) at (120:1) {$120^\circ$}; 
+    \node (c) at (240:1) {$240^\circ$}; 
+    \draw (a) to node {1} node [swap] {1'} (b) 
+          (b) to node {2} node [swap] {2'} (c) 
+          (c) to node {3} node [swap] {3'} (a); 
+  \end{tikzpicture} 
+} 
+
+%ENDLATEX%
+</verbatim>
+</td>
+<td>&nbsp;&nbsp;&nbsp;
+<td valign="top">
+It will render as:<br><br>
+<img src="%ATTACHURL%/tikz-expl.png" alt="TiKZ example">
+</table>
+
+This enables a wide variety of <nop>LaTeX packages to be used within TWiki.
+For example: simple image manipulations using the =graphicx= package.
+Note that the package must be declared in the <nop>LaTeX preamble.
+<table>
+<tr><td width="70%">
+If you type:
+<verbatim>
+%BEGINLATEX{attachment="fig2.png" engine="pdf"}%
+
+  \includegraphics[angle=30,scale=0.25]{fig2.png}
+
+%ENDLATEX%
+</verbatim>
+</td>
+<td>&nbsp;&nbsp;&nbsp;
+<td valign="top">
+It will render as:<br><br>
+<img src="%ATTACHURL%/rot-expl.png" alt="rotation example">
+</table>
+
+
+
+---++++ Tables, Figures, and cross-references
+
+To round out the functionality available in standard <nop>LaTeX, the automatic generation of Figure and Table reference links is also available.  These are declared using
+	* %<nop>BEGINFIGURE{label="fig:label" caption="this is a figure" span="twocolumn"}% ... %<nop>ENDFIGURE%, and
+	* %<nop>BEGINTABLE{label="tbl:label" caption="this is a table" span="twocolumn"}% ... %<nop>ENDTABLE%. 
+
+These commands will create an HTML table with a numbered caption either above (TABLE) or below (FIGURE) the included text.  Cross-references to these declared environments can be accessed through %<nop>REFLATEX{&lt;label&gt;}%.
+To keep the counters/cross-references seperate for each of the three types of references, use =eq:= or =eqn:=, =fig:=, and =tbl:= as the first characters in any declared label.
+
+The =span= option is used only by TWiki:Plugins.GenPDFLatex, giving the ability to designate the width of a table or figure in two-column styles. (e.g. for Figures, it expands to =\begin{figure*} ... \end{figure*}=.)  The default span is one-column. 
+
+Sections can be numbered and labeled, for easy cross-referencing.  To label
+a section, add a %<nop>SECLABEL{_label_}% tag after the TWiki section
+command. E.g.,
+<verbatim>
+   ---++ %SECLABEL{sec:intro}% Introduction
+</verbatim>
+Cross-references to the label can be generated using %<nop>REFLATEX{sec:intro}%.
+
+To add automatic numbering to the sections, set the following parameter to a
+non-zero number.  Sections up to this depth will be numbered.
+<blockquote>
+   * Set <nop>MAXSECDEPTH = 3
+</blockquote>
+The default setting is '0', which disables the numbering and section labels.
+
+
+---++++ Defining the <nop>LaTeX preamble
+
+In <nop>LaTeX, the preamble is used to customize the latex processing,
+allowing one to add custom styles and declare new commands.
+
+In TWiki, the preamble can be set as either a web or topic preference variable
+<verbatim>
+	* #Set PREAMBLE = \usepackage{color} \definecolor{Aqua}{rgb}{0,1,1}
+</verbatim>
+or as a multi-line declaration, using the tags:
+<verbatim>
+   %BEGINLATEXPREAMBLE% ... %ENDLATEXPREAMBLE%
+</verbatim>
+
+One critical difference between the two exists.  With the exception of the
+color declarations above, the TWiki preference setting will _override_ the
+default settings, and is intended to provide site administrators a central
+point to set preamble settings globally.  In contrast, the tag declaration
+will _add_ to the preamble defined by either the default settings or the
+preference setting, allowing TWiki users to amend the preamble.
+
+
+---+++ Common Symbols
+
+   * [[http://www.math.utep.edu/temp/Epoch/nasaepoch/node51.html][Math Symbols Commonly Used in Latex]] 
+
+Since the !LatexModePlugin is not installed on TWiki.org the above external html reference is given so that you can see what the symbols are.  For those who do use Latex in your TWiki install, you can copy the tables formatted for TWiki from the following topics (the symbols won't actually display without the plugin).
+
+What to type to get a variety of symbols using Latex.  Due to page loading constraints, the symbols tables are split up into 5 different topics.
+   * LatexSymbols (Greek Letters)
+   * LatexSymbols2 (Relationship and Operator Symbols)
+   * LatexSymbols3 (Arrows, Spacing, Accents)
+   * LatexSymbols4 (Function names and anlaytic symbols)
+   * LatexSymbols5 (Delimiters and other symbols)
+
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference
+these plugin settings write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>LATEXMODEPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, as shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Enables <nop>LaTeX markup (mathematics and more) in TWiki topics
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+	* Set the dots-per-inch default density level for the rendered images (116 is suggested for 11pt browser fonts.)
+		* Set DENSITY = 116
+
+	* Set the gamma correction for the rendered images.  This controls how dark the rendered text appears
+		* Set GAMMA = 0.6
+
+	* Set the scaling for the image size.  Typically, set to '1'.
+		* Set SCALE = 1.0
+
+	* Uncomment the following to define a site-wide custom color, <nop>DarkBlue.
+		* #Set PREAMBLE = \usepackage{color} \definecolor{DarkBlue}{rgb}{0,0.1,0.43} 
+
+	* In addition, the following parameters are available at the *topic* level, =EQN=, =FIG=, =TBL=, to override the counter reset.  (i.e. if =&nbsp;&nbsp;&nbsp;*&nbsp;Set&nbsp;EQN&nbsp;=&nbsp;3= is declared in a topic, the first labeled equation will be given the number =4=).
+
+*Note:* It is recommended to declare these settings in the <nop>WikiPreferences or <nop>WebPreferences topics, so that they aren't lost when the plugin is upgraded.  In this case, the macro declarations should be preceded by =LATEXMODEPLUGIN_=.  E.g. to the set the font density default for a specific web, WEB, use:
+   * Set <nop>LATEXMODEPLUGIN_DENSITY = 200
+in the topic !WEB.WebPreferences.
+
+
+
+---+++ Plugin Installation Instructions
+
+First, confirm that the external software needed by the plugin is installed on the TWiki server.  This includes:
+	* The =Digest::MD5= and =Image::Info= perl modules.
+	* A mechanism to convert !LaTeX markup to images.  This is either
+		* A working <nop>LaTeX implementation ([[http://www.tug.org/tetex/][tetex]] and <nop>[[http://www.miktex.org/][MikTeX]] are two popular choices)
+		* the 'convert' executable from either <nop>[[http://www.imagemagick.org/][ImageMagick]] or <nop>[[http://www.graphicsmagick.org/][GraphicsMagick]]
+		* [[http://sourceforge.net/projects/dvipng/][dvipng]] and/or [[http://www.cs.wisc.edu/~ghost/][Ghostscript]]
+	* or
+		* [[http://www.forkosh.com/mimetex.html][mimetex]]
+
+
+Rendering can be performed by (=latex= and =dvipng=) or (=latex= and =dvips=
+and =convert=) or (=pdflatex= and =convert=) or (=mimetex=).  The first
+three options allow one to include almost any !LaTeX markup in a TWiki
+topic, whereas =mimetex= has very limited functionality.  Among the first
+three options, =dvipng= is the fastest by a significant margin.  The
+=tweakinline= processing (v2.5 and above) to align the baseline of !LaTeX
+expressions with HTML text uses =convert=.
+
+=mimetex= can be used in server environments where a full !LaTeX
+installation is impractical (e.g. TWiki:Codev.TWikiOnMemoryStick).  mimetex
+provides rendering of equations independently of external font files.
+This provides a very lightweight and fast mechanism to show equations.  
+However, the number of colors is limited to 4 (black, red, blue, green)
+and only the mathmode and picture !LaTeX environments are supported.
+Also, the preamble, density, and gamma settings are ignored.
+
+Second,
+	* Download the ==%TOPIC%.zip== file from the Plugin web %BR%
+          %ICON{warning}% Note: versions 3.0 and above are compatible only with TWiki 4.x.x.  If you are running an earlier version of TWiki, (i.e. Cairo) [[http://twiki.org/cgi-bin/viewfile/Plugins/LatexModePlugin?rev=14;filename=LatexModePlugin.zip][download v2.62 (25 Sep 2006)]] instead. %ICON{warning}%
+
+	* Unzip ZIP file in your twiki installation directory. Content:
+   | *File:* | *Description:* |
+%$MANIFEST%
+
+Finally, customize the installation specific variables.
+	* Set the local disk paths for the rendering methods employed.  This can be done by copying the needed lines from the following list to =lib/LocalSite.cfg= or =lib/TWiki.cfg=.
+      *  $TWiki::cfg{Plugins}{LatexModePlugin}{latex} = '/usr/bin/latex';
+      *  $TWiki::cfg{Plugins}{LatexModePlugin}{pdflatex} = '/usr/bin/pdflatex';
+      *  $TWiki::cfg{Plugins}{LatexModePlugin}{dvips} = '/usr/bin/dvips';
+      *  $TWiki::cfg{Plugins}{LatexModePlugin}{dvipng} = '/usr/bin/dvipng';
+      *  $TWiki::cfg{Plugins}{LatexModePlugin}{convert} = '/usr/X11R6/bin/convert';
+      *  $TWiki::cfg{Plugins}{LatexModePlugin}{mimetex} = '/usr/bin/mimetex';
+   * Modify the following if needed. %BR% 
+      *  $TWiki::cfg{Plugins}{LatexModePlugin}{donotrenderlist} %BR% declare a comma-separated list of <nop>LaTeX commands that _will not be rendered_.  %BR% Default = ='input,include,catcode'=.
+      *  $TWiki::cfg{Plugins}{LatexModePlugin}{tweakinline} %BR% Turned off by default, if this variable is set to =1= the plugin will attempt to align the baseline of the rendered in-line math with the baseline of the HTML text.
+      *  $TWiki::cfg{Plugins}{LatexModePlugin}{bypassattach} %BR% Turned off by default, setting this boolean variable to =1= will force file creation to use direct file stores and bypass the saveAttach mechanism in TWiki4.  Saves a bit of processing overhead.
+      *  $TWiki::cfg{Plugins}{LatexModePlugin}{engine} %BR% This sets the default rendering engine %BR% Default: 'dvipng'
+      *  $TWiki::cfg{Plugins}{LatexModePlugin}{imagetype} %BR% This sets the image format for the generated files.  Valid types are png and gif.  %BR% Default:  'png'
+
+
+---+++ Security
+
+Aside from providing beautiful rendering of mathematics, !LaTeX is
+_fundamentally_ a programming language.  Before installation of this plugin,
+one should consider the implications of exposing access to a programming
+language on a web server.  TWiki's use of access control can mitigate some
+of the risk, by limiting access to trusted users.  Complementary to this
+approach, one can prevent certain commands from being rendered using the
+={donotrenderlist}= configuration setting.
+
+To start, before installing the Plugin, one should modify the =texmf.cnf=
+file on the sever to the following variables:
+<verbatim>
+    shell_escape = f
+    openout_any = p
+    openin_any = p  % note this won't work on Windows
+</verbatim>
+
+Next, one should declare the =donotrenderlist=. At a minimum, the !LaTeX
+commands of =input=, =include=, and =catcode= should be in the list.  On
+publicly editable wiki's, the commands =newcommand= and =def= should be
+added as well.  =newenvironment=, =newfont=, =newtheorem=, and =newsavebox=
+should be considered as well.
+
+Finally, one should set a limit on the length of time allowed for =latex= to
+finish its processing.  This can be done in Apache via
+[[http://httpd.apache.org/docs/1.3/mod/core.html#rlimit][RLimit]] settings.  
+
+---++ More Details
+
+Version control is not specifically used for the image files.  Because the images are generated from the raw text, the topic history includes all the versions of the markup for the expressions, and can be re-rendered when you view a different version.
+
+
+This plugin is an enhanced version of the TWiki:Plugins.MathModePlugin maintained by TWiki:Main.MichaelDaum.  There are a number of significant differences:
+	* equations, tables, and figures can be numbered, with automatic cross-links available
+	* if errors occur during the latex markup processing, they are reported during the editing =preview= screen, but not during the standard =view=.  The motivation for this is that, in general, _authors_ care about the error but _readers_ do not.
+	* as of version 2.5, one can force the recreation of all latex images in a topic.  To do this, add the following text (similar to raw text rendering) to the end of the URL: =?latex=rerender=.  E.g. changing =http<nop>://localhost/twiki/bin/view/TWiki/LatexModePlugin= to  =http<nop>://localhost/twiki/bin/view/TWiki/LatexModePlugin?latex=rerender= will force all of the images to be redrawn.
+	* as of version 2.6, one can bypass the file attachment code in TWiki 4.x.x.  TWiki 4.x.x and above is designed to accommodate non-filesystem-storage (i.e. databases) for attachments.  This plugin has supported this interface since v2.0.  However, using the TWiki4 attachment storage mechanism adds a significant delay in plugin response time.  So, a new configuration setting has been introduced to allow admins to bypass the TWiki4 interface and use direct file-system stores if they so choose.  To activate, set <verbatim>
+	$TWiki::cfg{Plugins}{LatexModePlugin}{bypassattach} = 1;
+</verbatim> in =LocalSite.cfg=
+
+---++ Additional Resources (external)
+	* [[http://tex.loria.fr/general/mil.pdf][Math into LATEX An Introduction to LATEX and AMS-LATEX]] provides an introduction to !LaTeX: Math into !LaTeX Short Course based on the book Math into !LaTeX An Introduction to !LaTeX and !AMS-LaTeX by George Gratzer, published by Birkhauser Boston, ISBN 0-8176-3805-9.
+	* [[http://www.math.utep.edu/temp/Epoch/nasaepoch/node51.html][Math Symbols Commonly Used in Latex]]
+	* [[ftp://ftp.ams.org/pub/tex/doc/amsfonts/amsfndoc.pdf][User's Guide to AMSFonts Version 2.2d]]
+	* [[http://www.artofproblemsolving.com/LaTeX/AoPS_L_GuideLay.php][Latex Basics Guide]]: Includes links to information on layout, symbols, commands, and packages.
+	* [[http://www.eng.cam.ac.uk/help/tpl/textprocessing/latex_maths+pix/latex_maths+pix.html][LATEX maths and graphics]]
+	* [[http://www.latex-project.org/][Latex Project]]
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.ScottHoge |
+|  Plugin Version: | 02 Dec 2007 (v 3.72, SVN:%$VERSION%)  |
+|  Change History: | %ICON{warning}% v3.0 and above requires TWiki 4.x.x and above %ICON{warning}% <!-- versions below in reverse order --> |
+|   02 Dec 2007 (v 3.72) | more bug fixes: sync doc to code, fixed trimline v2 for ps engine |
+|   15 Nov 2007 (v 3.71) | minor bug fixes: DEFAULTENGINE, doc changes, improved the 'stale time' in delete-image-check |
+|  -- Apr 2007 (v 3.62) | added =-halt-on-error= for better error handling. Fixed =debug= variable in Init.pm |
+|  12 Mar 2007 (v 3.6) | New option, imagetype, to set png or gif rendering from !LocalSite.cfg |
+|   2 Feb 2007 (unreleased) | Modified the section labeling to be more compatible with =genpdflatex=, minor cleanup of html markup, new inline processing available (set =tweakinline= equal to '2' to enable) |
+|  30 Dec 2006 (v 3.51) | fixed call to attachmentExists in Render.pm, corrected version number |
+|  30 Dec 2006 (v 3.5) | modified how rendering of math from included topics is handled.  Fixed mimetex inline processing |
+|  27 Dec 2006 (v 3.4) | added mimetex to the rendering engine list |
+|  27 Nov 2006 (v 3.35) | improved dynamic rendering engine to auto-select on graphics files |
+|  17 Nov 2006 (v 3.3) | added dynamic switching of rendering engine, more Parse bug fixes |
+|  06 Oct 2006 (v 3.2) | more bugs fixed: bgcolor option was missing from v3.0; verbatim mode fixed in Parse |
+|  04 Oct 2006 (v 3.1) | fixed two bugs: populating files to check under Dakar, and itemize env parsing in Parse |
+|  30 Sep 2006 (v 3.0) | Significant rewrite of module, including: section numbering/cross-links and mod_perl compatibility. |
+|  25 Sep 2006 (v 2.62) | fixed handleFloat to allow TWiki markup tags in captions. |
+|  8 Aug 2006 (v 2.61) | fixed INCLUDE-not-rendering bug introduced in v2.6.  Aded =bgcolor= option.  Split symbol list into 5 topics. |
+|  5 Aug 2006 (v 2.6) | added security description and expanded default =donotrenderlist=.  Reworked plugin init to reduce overhead when not in use.  Added =bypassattach= option.  Sandbox now used in place of system calls. |
+|  19 May 2006 (v 2.51) | bug fix: =rerender= hook block of mailnotify corrected |
+|  14 Mar 2006 (v 2.5) | added =rerender= hook, fixed '&gt; in =alt= field' bug. |
+|  21 Feb 2006 (v 2.4) | introduced =donotrenderlist= to patch a critical security hole.  Bug fixes include: disabling <nop>WikiWord link rendering in =alt= fields of =img= tags; improved in-line rendering alignment available; |
+|  1 Feb 2006 (v 2.3) | minor bug fixes: $pathSep changes, now uses &TWiki::Func::extractParameters(), improved efficiency and inline rendering |
+|  11 Nov 2005 (v 2.2) | more mods for TWiki:Plugins.GenPDFLatexAddOn: protect newlines, moved float handler, moved float label checker |
+|  15 Oct 2005 (v 2.1) | minor modifications for TWiki:Plugins.GenPDFLatexAddOn support |
+|  unreleased  (v 2.0) | Major rewrite for Dakar |
+|  30 Sep 2005 (v 1.41) | relaxed the scrubing a little bit... previous version caused problems with REFLATEX |
+|  29 Sep 2005 (v 1.4) | more robust scrubing of =convert= input parameters. errors on =save= now reported. |
+|   5 Sep 2005 (v 1.3) | added image scale parameter, color rendering, and preamble hooks | 
+|  22 Aug 2005 (v 1.2) | Forked from the TWiki:Plugins.MathModePlugin by TWiki:Main.GraemeLufkin |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.025, TWiki:Plugins.DakarContrib |
+|  CPAN Dependencies: | CPAN:Digest::MD5, CPAN:File::Basename, CPAN:Image::Info |
+|  Other Dependencies: | A working installation of =latex=.  A working installation of =convert= or =dvipng=. |
+|  Perl Version: | 5.8.0 |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 100%, %TWIKIWEB%.FormattedSearch 100%, %TOPIC% 100% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+This plugin was created and tested on the 02 Sep 2004 version of TWiki, using <nop>ImageMagick v5.5.7, EPS <nop>GhostScript v7.05, and tetex v2.02.  It has been reported to work (Thanks Jos!) using
+<nop>ImageMagick 6.2.3, tetex 3.0 and ghostscript 8.51 as well.
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins, TWiki:Plugins.MathModePlugin
+

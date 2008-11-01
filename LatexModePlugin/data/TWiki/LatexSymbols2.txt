@@ -1,0 +1,55 @@
+---+ Latex Symbols (2 of 5)
+
+---++ Relationship Symbols
+
+| *Symbols* | *Latex Command* | | *Symbols* | *Latex Command* |
+|   %$\leq$%          | \leq          | |   %$\equiv$%      | \equiv    |
+|   %$\prec$%         | \prec         | |   %$\sim$%        | \sim      |
+|   %$\preceq$%       | \preceq       | |   %$\simeq$%      | \simeq    |
+|   %$\ll$%           | \ll           | |   %$\asymp$%      | \asymp    |
+|   %$\subset$%       | \subset       | |   %$\approx$%     | \approx   |
+|   %$\subseteq$%     | \subseteq     | |   %$\cong$%       | \cong     |
+|   %$\sqsubset$%     | \sqsubset     | |   %$\neq$%        | \neq      |
+|   %$\sqsubseteq$%   | \sqsubseteq   | |   %$\doteq$%      | \doteq    |
+|   %$\in$%           | \in           | |   %$\propto$%     | \propto   |
+|   %$\geq$%          | \geq          | |   %$\models$%     | \models   |
+|   %$\succ$%         | \succ         | |   %$\dashv$%      | \dashv    |
+|   %$\succeq$%       | \succeq       | |   %$\vdash$%      | \vdash    |
+|   %$\gg$%           | \gg           | |   %$\top$%        | \top      |
+|   %$\supset$%       | \supset       | |   %$\perp$%       | \perp     |
+|   %$\supseteq$%     | \supseteq     | |   %$\mid$%        | \mid      |
+|   %$\sqsupset$%     | \sqsupset     | |   %$\parallel$%   | \parallel |
+|   %$\sqsupseteq$%   | \sqsupseteq   | |   %$\bowtie$%     | \bowtie   |
+|   %$\ni$%           | \ni           | |   %$\Join$%       | \Join     |
+|   %$\smile$%        | \smile        | |   %$\frown$%      | \frown    |
+
+---++ Operation symbols
+
+| *Symbols* | *Latex Command* | | *Symbols* | *Latex Command* |
+|   %$ \star $%      |\star |                     |   %$ \unlhd $%   | \unlhd |                        
+|   %$ \circ $%      |\circ |                     |   %$ \unrhd $%   | \unrhd |                        
+|   %$ \bullet $%    |\bullet |                   |   %$ \oslash $%   | \oslash |                      
+|   %$ \cdot $%      |\cdot |                     |   %$ \bigcirc $%   | \bigcirc |                    
+|   %$ \diamond $%   |\diamond |                  |   %$ \odot \bigodot $%   | \odot \bigodot |        
+|   %$ \bigtriangleup $%   | \bigtriangleup |     |   %$ \oplus \bigoplus $%   | \oplus \bigoplus |    
+|   %$ \bigtriangledown $%   | \bigtriangledown | |   %$ \uplus \biguplus $%   | \uplus \biguplus |    
+|   %$ \ominus $%   | \ominus |                   |   %$ \otimes \bigotimes $%   | \otimes \bigotimes |
+|   %$ \sqcap $%   | \sqcap |                     |   %$ \sqcup \bigsqcup $%   | \sqcup \bigsqcup |    
+|   %$ \wr $%   | \wr |                           |   %$ \cap \bigcap $%   | \cap \bigcap |            
+|   %$ \triangleleft $%   | \triangleleft |       |   %$ \cup \bigcup $%   | \cup \bigcup |            
+|   %$ \triangleright $%   | \triangleright |     |   %$ \vee \bigvee $%   | \vee \bigvee |            
+|   %$ \lhd $%   | \lhd |                         |   %$ \wedge \bigwedge $%   | \wedge \bigwedge |    
+|   %$ \rhd $%   | \rhd |
+
+---
+
+Due to page loading constraints, the symbols tables are split up into 5 different topics.
+   * LatexSymbols (Greek Letters)
+   * LatexSymbols2 (Relationship and Operator Symbols)
+   * LatexSymbols3 (Arrows, Spacing, Accents)
+   * LatexSymbols4 (Function names and anlaytic symbols)
+   * LatexSymbols5 (Delimiters and other symbols)
+
+__Back to:__ LatexModePlugin
+
+-- TWiki:Main.AmandaSmith - 25 Apr 2006
