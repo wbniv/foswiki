@@ -1,0 +1,91 @@
+%TMPL:INCLUDE{"twiki"}%
+%TMPL:P{"htmldoctype"}%
+<head>
+ <title> %WIKITOOLNAME% . %WEB% . %TOPIC% %TMPL:P{"titleaction"}%</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+ <meta name="robots" content="noindex" /> %HTTP_EQUIV_ON_EDIT%
+ <base href="%SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%" />
+<script language="JavaScript">
+<!--HIDE
+function initForm() {
+  document.main.text.focus();
+}
+function checkAll( theButton, theButtonOffset, theNum, theCheck )
+{
+  // find button element index
+  var j = 0;
+  for( var i = 0; i <= document.main.length; i++ ) {
+    if( theButton == document.main.elements[i] ) {
+      j = i;
+      break;
+    }
+  }
+  // set/clear all checkboxes
+  var last = j+theButtonOffset+theNum;
+  for( i = last-theNum; i < last; i++ ) {
+    document.main.elements[i].checked = theCheck;
+  }
+}
+function launchWindow( theWeb, theTopic ) {
+  win = open( "%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/" + theWeb + "/" + theTopic + "?skin=plain",
+              theTopic, "titlebar=0,width=500,height=480,resizable,scrollbars");
+  if( win ) {
+    win.focus();
+  }
+  return false;
+}
+
+
+//STOP HIDING-->
+</script>
+
+<SCRIPT>
+function sendtext() {
+var semi = new RegExp("\;","g");
+document.send.checkme.value = (document.main.text.value.replace(semi,"\;"));
+document.send.form.value = "main";
+document.send.field.value = "text";
+window.open('','SpellChecker','width=480,height=360,top=150,left=150,scrollbars=1,location=true');
+document.send.submit();
+}
+</script>
+
+
+</head>
+<body bgcolor="#ffffff" onLoad="initForm()">
+#PageTop
+<form name="main" action="%SCRIPTURLPATH%/preview%SCRIPTSUFFIX%/%WEB%/%TOPIC%" method="post">
+%TMPL:DEF{"titleaction"}%(edit)%TMPL:END%
+%TMPL:DEF{"titlehelp"}% %TMPL:END%
+%TMPL:DEF{"webaction"}%Change topic%TMPL:END%
+%TMPL:P{"simpleheader"}%
+<textarea name="text" wrap="virtual" rows="%EDITBOXHEIGHT%" cols="%EDITBOXWIDTH%">%TEXT%</textarea>
+<input type="hidden" name="formtemplate" value="%FORMTEMPLATE%" />
+<input type="hidden" name="topicparent" value="%TOPICPARENT%" />
+<input type="hidden" name="cmd" value="%CMD%" />     
+<br />
+Don't forget - if you change something, do it in 
+<a target="GoodStyle" onClick="return launchWindow('%TWIKIWEB%','GoodStyle')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/GoodStyle">GoodStyle</a>
+and follow the
+<a target="TextFormattingRules" onClick="return launchWindow('%TWIKIWEB%','TextFormattingRules')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/TextFormattingRules">TextFormattingRules</a>.
+<br /> <b>-- <nop>%WIKIUSERNAME% - %DATE% &lt;br /&gt;</b> &nbsp;&nbsp;<code>&lt;==</code> 
+This is your signature for easy copy & paste operation
+<br /> %FORMFIELDS%
+%TMPL:DEF{"topicaction"}% <input type="submit" value=" &nbsp; Preview Changes &nbsp; " />
+%TMPL:P{"sep"}% <a href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%?unlock=on">Cancel</a> edit %TMPL:END%
+%TMPL:P{"standardfooter"}%
+%WEBCOPYRIGHT%
+</form>
+
+<form name="send" action="%SCRIPTURLPATH%/spell.pl" method="POST" target="SpellChecker"> 
+<input type="button" name="SpellCheck" value="Spell check" onclick="sendtext()">
+<input type="hidden" name="checkme">
+<input type="hidden" name="form">
+<input type="hidden" name="field">
+<input type="hidden" name="spell" value="check">
+</form>
+
+
+#PageBottom
+</body>
+</html>

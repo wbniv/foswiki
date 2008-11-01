@@ -1,0 +1,70 @@
+%META:TOPICINFO{author="MikeBarton" date="1017251706" format="1.0" version="1.1"}%
+---++ %TOPIC%
+
+This plugin is underdevelopment, see %TOPIC%Dev for development discussions.
+
+This plugin is based on WBOSS "Web Based Open Source Spell Checker" (http://www.dontpokebadgers.com/spellchecker/ ) by Joshua Cantara (jcantara@grappone.com)
+
+---+++ About the latest version
+
+The version 0.1 of this plugin is the first prototype.
+
+The WBOSS spell checker should function.  It has not however been integrated with TWiki or packaged as a plugin.  See more info in %TOPIC%Dev.
+
+This version has not been thoroughly tested.  It has not been checked on many browsers or server platforms.  Users running a browser than handles JavaScript. IE5/6 or NS6 recommended. 
+
+---++ Syntax Rules
+
+	* No new syntax rules are introduced
+
+---++ %TOPIC% Settings
+
+Plugin settings are stored as preferences variables. To reference
+a plugin setting write ==%<plugin>_<setting>%==, i.e. ==%INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Provides a spell check capability when editing a topic.
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---++ System requirements
+	* Requires either Aspell or Ispell.  
+	* Source code has incorporated code from the Lignua::Ispell module.
+	* Uses IPC::Open3 to communicate with the spell check program.
+
+---++ Plugin Installation Instructions
+
+	* Download the ZIP file from the Plugin web (see below)
+		* Unzip ==%TOPIC%.zip== in your twiki installation directory.
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Check that Open3 and either Ispell or Aspell is installed
+	* Edit settings in the ==spell== and the ==edit.spell.tmpl== as necessary
+	* Currently there is no need to enable this plugin
+	* Check to see if the installation was successful
+		1. Edit any topic
+		2. Change the URL to use the spell check skin:	==twiki/bin/edit/Web/TopicName?skin=spellcheck==
+		3. Click the "spell check" button.  A smaller browser window should open and spelling errors should have a drop down list.
+		4. Add the spell check code to your installation's edit.tmpl file(s).
+
+---+++ File content
+| *File:*						 | *Description:* |
+| data/TWiki/%TOPIC%.txt	 | Plugin topic |
+| data/TWiki/%TOPIC%.txt,v  | Plugin topic repository |
+| bin/spell.pl				  | Spell check Perl module |
+| bin/custom.dic				| Site-specific custom dictionary |
+
+---+++ Plugin Info
+
+|  Plugin Author: | Main.MikeBarton |
+|  Plugin Version: | 0.1 |
+|  Change History: | 27 Mar 2002: Added initial version |
+|  CPAN Dependencies: | IPC::Open3 |
+|  Other Dependencies: | Unix aspell or ispell |
+|  Perl Version: | 5.0 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
