@@ -1,0 +1,13 @@
+
+# Release manifest for ExecuterContrib
+data/TWiki/ExecuterContrib.txt 0644 Documentation
+#lib/TWiki/Contrib/ExecuterContrib.pm 0644 Perl module
+executer/lib/Slion/TWiki/Client.pm 0644 Perl module
+executer/lib/Slion/TWiki/Executer.pm 0644 Perl module
+executer/lib/Slion/Email.pm 0644 Perl module
+executer/lib/TWiki/Func.pm 0644 Perl module
+executer/lib/TWiki/Attrs.pm 0644 Perl module
+executer/bin/executer.pl 0644 Perl script
+executer/cfg/executer.cfg 0644 Configuration file
+executer/cgi-bin/executer/exestart 0644 Perl cgi
+executer/cgi-bin/executer/exestatus 0644 Perl cgi
