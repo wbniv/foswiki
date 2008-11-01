@@ -1,0 +1,102 @@
+%META:TOPICINFO{author="TWikiContributor" date="1139390200" format="1.1" version="$Rev$"}%
+<!--
+
+   PLEASE DO NOT EDIT THIS TOPIC
+
+   It is automatically generated from the subversion repository, and any changes
+   you make will simply be overwritten the next time a release is generated.
+
+   Instead, you could check your fix in, raise a bug in the Bugs web, or mail the author(s).
+-->
+---+!! <nop>%TOPIC%
+
+This plugin renders a clickable red dot (<a style="color:red; font-weight:bold; padding-left:2px; padding-right:2px; line-height:100%; font-size:18px; text-decoration:none" href="%SCRIPTURL%/edit%SCRIPTSUFFIX%/%WEB%/%TOPIC%?t=%SERVERTIME{"$year$mo$day$min$sec"}%">.</a>) to ease the edit access to
+a page. The red dot will only be visible if the current wikiuser has
+write access to the page the dot points to. You might also specify
+a list of topics (see syntax), where the first topic that grants
+write access will be the target when you click on the red dot. After finishing an edit
+initiated by a red dot you will be redirected to the topic where the red dot was on, or any
+other topic that you specify. Note, however, that you need to enable cookies in your browser.
+
+%TOC%
+
+---++ Syntax Rules
+
+| *Tag* | *Description* | 
+| =%<nop>REDDOT{"&lt;topic1>[,..., &lt;topicN>]" ... }%= \
+| _reddot_ the first target topic that grants write access; <br/>\
+  Arguments: \
+  <ul> \
+  <li> =redirect="..."=: <br/>\
+  jump back to a given topic after the edit process was completed; \
+  defaults to the originating topic where the red dot was on </li> \
+  <li> =text="..."=: <br/>\
+  use this text to create the edit link; defaults to a dot ( =.= ) </li> \
+  <li> =style="..."=: \
+  css to be added to the reddot style </li> \
+  <li> =grant="..."=: <br/>\
+  regular expression to be checked in addition to the implicite check \
+  for write access to the target topic; reddot only if the =grant= matches </li>\
+  </ul> \
+|
+
+Furthermore, the RedDotPlugin respects the =WHITEBOARD= topic variable.
+If you add =Set WHITEBOARD = off=
+to a target topic text then the reddot link will disable the textarea (whiteboard) in edit mode.
+Note, however, that this feature only works on a TWiki/Dakar engine.
+
+---++ Examples
+	* %TOPIC%%REDDOT%  will get a red dot only if you are in the 
+	  %MAINWEB%.TWikiAdminGroup.
+	* %WIKIUSERNAME%%REDDOT{"%WIKIUSERNAME%"}% points to your homepage.
+
+---++ Plugin Installation Instructions
+
+	* [[http://twiki.org/p/pub/Plugins/%TOPIC%/%TOPIC%.zip][Download]] the ZIP file
+	* Unzip it in your twiki installation directory. Content: 
+	  | *File:* | *Description:* |
+%$MANIFEST%
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+
+
+---++ Plugin Info
+<!-- provided for compatibility only
+	* Set SHORTDESCRIPTION = Renders edit-links as little red dots
+-->
+
+
+|  Plugin Author: | TWiki:Main.MichaelDaum |
+|  Copyright &copy;: | 2005-2008, Michael Daum http://michaeldaumconsulting.com |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | v1.40 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  03 Jan 2008: | using TWiki-4 APIs to register tags; fixed default values for reddots |
+|  18 Sep 2006: | don't use private apis; removed endRenderingHandler: this plugin does not \
+                  work on older twiki releases!; create cgi urls properly |
+|  31 Aug 2006: | added NO_PREFS_IN_TOPIC |
+|  24 Aug 2006: | more effort to find out the current cgi action, even when using short urls |
+|  28 Jul 2006: | added <nop>PatternSkin css to really make reddots red |
+|  10 Mar 2006: | use ENV instead of the CGI object to detect the current cgi action |
+|  15 Feb 2006: | don't initialize the redirector in scripted mode |
+|  14 Feb 2006: | fixed redirects to anchors; \
+                  fixed permission check on old twiki releases;\
+		  fixed use of uninitialised variables on perl 5.8.8 |
+|  26 Jan 2006: | w3c fixes |
+|  01 Dec 2005: | fixed deprecation warnings on dakar |
+|  09 Nov 2005: | fix use of uninitialized variable |
+|  12 Oct 2005: | don't overwrite a system oops redirect, e.g. if a mandatory formfield is missing |
+|  27 Sep 2005: | added forgotten style.css; added support to redirect a save |
+|  23 Sep 2005: | added =text=, =style=, =grant= and =WHITEBOARD= feature |
+|  19 Sep 2005: | added redirect-to-origin feature |
+|  22 Aug 2005: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.024 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | TWiki:Plugins/SessionPlugin (not needed on TWiki/Dakar) |
+|  Perl Version: | 5.005 |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | TWiki:Plugins/%TOPIC% |
+|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
+|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+
+-- TWiki:Main.MichaelDaum - 03 Jan 2008
+
