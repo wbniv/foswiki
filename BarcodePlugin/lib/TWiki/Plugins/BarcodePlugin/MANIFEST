@@ -1,0 +1,4 @@
+data/TWiki/BarcodePlugin.txt NEW
+lib/TWiki/Plugins/BarcodePlugin.pm NEW
+pub/TWiki/BarcodePlugin/example_0.png NEW
+pub/TWiki/BarcodePlugin/example_1.png NEW
