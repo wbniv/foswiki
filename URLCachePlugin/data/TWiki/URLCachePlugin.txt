@@ -1,0 +1,65 @@
+%META:TOPICINFO{author="ArildBergh" date="1117233436" format="1.0" version="1.2"}%
+%META:TOPICPARENT{name="InstalledPlugins"}%
+---+Caches URLs referenced in the text.
+
+This is a plugin which will download a web page that is referenced in a topic and change the link to point to the cached page. The cached pages will have a date showing when it was cached, and a link to the original page. 
+
+There are two ways of caching a page, either as a new topic, or as a separate data file (similar to attachments). See below under *Syntax Rules* for more information on how to define what type of caching is done. In either case clicking the link will open the page in the current browser window.
+
+*Please note that web pages are only cached the first time the are found, the link is then changed so it will not be re-cached.* 
+
+---++ Syntax Rules
+
+Any string that begins with *http* or *https* and is at the beginning of a line or has a space before it will be cached. The URL is assumed to be everything from the beginning of the http(s) until a space or end of line is encountered. If you have a URL that includes a space you should replace the space with the code *%20*.These pages will be downloaded with any style sheets and/or images as well, i.e. it attempts to make a exact copy of the original page.
+
+If you add a + (plus sign) in front it will cache it as a new topic. The topic will use the URL minus the http:// prefix as the name. In this case the page will only be stored as plain text, with some very basic formatting attempted.
+
+The difference between caching as a standalone page or as a topic is that topics can be searched through the normal TWiki search engine.
+
+To avoid having URLs cached you have three options:
+	* For single URLs just make sure it does not have spaces around it, you may use normal brackets: (http://mylink.com) or a TWiki formatting code such as underscores for italic.
+	* For an entire page put the following code anywhere in the page: *&lt;!--NOCACHE--&gt;* this is in fact a hidden HTML comment and will not show up in the page itself.
+	* For an entire web (for instance the main TWiki web which has lots of pointers to live support information) add them to the _IGNORE_ setting below. By default the TWiki web is there already.
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference
+a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>URLCACHEPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = This plugin copies a referenced webpage to the TWiki server to avoid broken links
+
+	* Stop these webs from being cached, list them as a comma separate list here
+		* Set IGNORE = %TWIKIWEB%
+		
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+__Note:__ These instructions are for the TWiki maintainer. No changes to your browser are required. *This plugin uses several additional CPAN Perl modules (listed below), make sure they are all installed and working.*
+
+	* Download the ZIP file from the Plugin web (see below). Contents:
+	| *File:* | *Description:* |
+	| ==data/TWiki/URLCachePlugin.txt== | Plugin topic |
+	| ==lib/TWiki/Plugins/URLCachePlugin.pm== | Plugin Perl module |
+
+	* Unzip ==URLCachePlugin.zip== in your twiki installation directory.
+	* If you have some webs that you do not want to use the cache for, set them in the =IGNORE= setting in this topic.
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.ArildBergh |
+|  Plugin Version: | 10 June 2005 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  10 Jun 2005: | Initial version |
+|  CPAN Dependencies: | CPAN:Date::Format, CPAN:HTML::FormatText, CPAN:HTML::Parse, CPAN:LWP::UserAgent, CPAN:HTML::LinkExtor, CPAN:File::Basename, CPAN:Time::ParseDate, CPAN:Date::Format |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.0 |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 99%, %TWIKIWEB%.FormattedSearch 99%, %TOPIC% 99% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+-- TWiki:Main.ArildBergh - 11 Jun 2005 %BR% 
+
