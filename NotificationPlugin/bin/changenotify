@@ -1,0 +1,84 @@
+#!/usr/bin/perl -w
+
+# Set library paths in @INC, at compile time
+BEGIN { unshift @INC, '.'; require 'setlib.cfg' }
+
+use CGI;
+use TWiki;
+use TWiki::Plugins::NotificationPlugin;
+
+use strict;
+
+use vars qw( $query $topic $webName $scriptUrlPath $userName );
+
+&main();
+
+sub main {
+  $query = new CGI;
+  my $thePathInfo = $query->path_info(); 
+  my $theRemoteUser = $query->remote_user();
+  my $theTopic = $query->param( 'topic' );
+  my $theUrl = $query->url;
+  ( $topic, $webName, $scriptUrlPath, $userName ) = &TWiki::initialize( $thePathInfo, $theRemoteUser, $theTopic, $theUrl, $query );
+
+  if ( $TWiki::wikiName ne "TWikiGuest" ) {
+    if ($query->param("action")) {
+      if ($query->param("what")) {
+        modify_notification($webName, $topic, $query->param("what"), 
+                            $query->param("action"));
+      } else {
+        # loop thru all possible checkboxes
+        for (qw(TIN WIN TN WN)) {
+          modify_notification($webName, $topic, $_, $query->param($_));
+        }
+      }
+    }
+    # All work is done; redirect if needed
+    unless ($query->param("popup")) {
+      TWiki::Func::writeDebug( "URL = $scriptUrlPath/view/$webName/$topic" );
+      TWiki::redirect( $query, $scriptUrlPath."/view/$webName/$topic" );
+    }
+  }
+  #  Fallthru: do something if no Javascript
+  draw_checkboxes($scriptUrlPath, $topic, $webName);
+}
+
+sub modify_notification {
+  my ($webName, $topic, $what, $action) = @_;
+  $action ||= '';
+
+    my %tmp = ( "TIN" => 0, "WIN" => 1, "TN" => 3, "WN" => 4 );
+  
+    my $str = "$webName.$topic";
+    $str = "$webName" if ( $tmp{$what} == 1 || $tmp{$what} == 4 );
+    &TWiki::Func::writeDebug( "WHAT = $what" );
+    &TWiki::Func::writeDebug( "STR = $str" );
+    my ( $meta, $text ) = ( "", "" );
+    if ( $action eq "ON" ) 
+      { ( $meta, $text ) = TWiki::Plugins::NotificationPlugin::addItemToNotifyList( $TWiki::wikiName, $str, $tmp{$what} ); } else
+      { ( $meta, $text ) = TWiki::Plugins::NotificationPlugin::removeItemFromNotifyList( $TWiki::wikiName, $str, $tmp{$what} ); }
+    TWiki::Plugins::NotificationPlugin::saveUserNotifyList( $TWiki::wikiName, $meta, $text );
+  }
+  
+sub draw_checkboxes {
+  my ($scriptUrlPath, $topic, $webName) = @_;
+ 
+  my $tinOn = TWiki::Plugins::NotificationPlugin::isItemInSection($TWiki::wikiName, "$webName.$topic", 0);
+  my $winOn = TWiki::Plugins::NotificationPlugin::isItemInSection($TWiki::wikiName, "$webName", 1);
+  my $tnOn = TWiki::Plugins::NotificationPlugin::isItemInSection($TWiki::wikiName, "$webName.$topic", 3);
+  my $wnOn = TWiki::Plugins::NotificationPlugin::isItemInSection($TWiki::wikiName, "$webName", 4);
+  my $action = $scriptUrlPath."/changenotify/".$webName."/".$topic;
+  my $html = qq!<form onSubmit="setTimeout('window.close()',2000)" method="post" action="$action">
+    <input type="hidden" name="popup" value="1" />
+    <input type="checkbox" name="TIN" value="ON">Immediate Notification of changes to <b>$topic</b><br>
+    <input type="checkbox" name="WIN" value="ON">Immediate Notification of changes to <b>$webName</b><br>
+    <input type="checkbox" name="TN" value="ON" >Normal Notification of changes to <b>$topic</b><br>
+    <input type="checkbox" name="WN" value="ON" >Normal Notification of changes to <b>$webName</b><br>
+    <input type="submit" value="Update" name="action"></form>!;
+  $html =~ s/(name="TIN")/$1 checked="checked"/ if $tinOn;
+  $html =~ s/(name="WIN")/$1 checked="checked"/ if $winOn;
+  $html =~ s/(name="TN")/$1 checked="checked"/ if $tnOn;
+  $html =~ s/(name="WN")/$1 checked="checked"/ if $wnOn;
+  TWiki::writeHeader($query);
+  print "<B>$webName.$topic</B>$html\n";
+}

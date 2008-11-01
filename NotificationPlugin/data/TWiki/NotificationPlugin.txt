@@ -1,0 +1,139 @@
+%META:TOPICINFO{author="tarzan" date="1084271820" format="1.0" version="1.9"}%
+%META:TOPICPARENT{name="TWikiPlugins"}%
+---+!! <nop>%TOPIC%
+
+This plugin allows you to send fine grained notifications of topics you are interested in. It allows you to specify to kinds of notifications - immediate and regular. Immediate notifications are send every time somebody changed the requested topic, regular notifications are the same as default TWiki notifications, but allows better settings.
+
+%TOC%
+
+---++ Syntax Rules
+
+You have to create topic *%Your_user_name%NotifyList* in *Main* web from template Main.NotificationPluginListTemplate. Fill it with desired topics, webs and regexps and enjoy...
+
+%ICON{edittopic}% <a href="%SCRIPTURLPATH%/edit%SCRIPTSUFFIX%/%WIKIUSERNAME%NotifyList?templatetopic=Main.NotificationPluginListTemplate"><strong>Create <nop>%WIKIUSERNAME%NotifyList now!</strong></a>.
+
+---+++ NTF variable
+For adding _fast switching_ to notifications you can use =%<nop>NTF{}%= variable:
+
+You should add this variable to =view.tmpl= (you can use view.tmpl bundled in <nop>NotificationPlugin.zip). The buttons are !JavaScript-ed so you need to have !JavaScript enabled in your browser.
+
+You can use these attributes in =%<nop>NTF{}%= variable:
+	* =popup= - if displays button which opens new window with support of changing notifications
+	* =tin= - it displays button for changing 'Topic immediate notifications'
+	* =win= - it displays button for changing 'Web immediate notifications'
+	* =tn= - it displays button for changing 'Topic notifications'
+	* =wn= - it displays button for changing 'Web notifications'
+
+Default values for all these attributes are "on". You can set it "off" to hide buttons.
+
+---++++ NTF examples
+	* =%<nop>NTF{}%= - displays all four buttons
+	* =%<nop>NTF{win="off" wn="off"}%= - displays only buttons for topic immediate notification and regular topic notification
+
+---++ Description of <nop>NotifyList topics
+
+There are two types of notifications - immediate and regular.
+
+---+++ Type of notifications
+
+---++++ Immediate notifications
+This type of notifications is send immediatly after user change watched topic. This type of notification is send also in the case user use 'Don't notify' checkbox. This means that you can see ANY change which is made in selected topics or webs. But, on the other hand, this is also the best way to be spammed with many mails if you set immediate notification on whole webs if topics in this web are often changed. You have to decide when to use this type of notification.
+
+---++++ Regular notifications
+This type of notifications is the default TWiki notification system. The problem with this type of notifications is when somebody use "Don't notify" option because notification is not send (what is logical :-)). But sometimes you want to know about every change in your topic and then the immediate notifications come into play...
+
+---+++ Subtypes
+The syntax of setting a notification is with bullet TWiki list.
+
+*Example:*
+If you put following line in "Topic immediate notifications" section when anybody change this topic you will get notification about the change:
+	* Main.WebHome
+If you want to set immediate notifications on web _TWiki_ add this line under "Web immediate notifications":
+	* TWiki
+If you want to set immediate notifications on all topics in web Test and topics which contains string 'Design' in the name add following line in "Regex immediate notifications":
+	* Test\..*Design
+
+---++ <nop>%TOPIC% Global Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = This plugin allows you to send fine grained notifications of topics you are interested in
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+	* Custom settings:
+		* Set SENDER = Systinet TWiki <tarzan@systinet.com>
+
+---++ TODO
+
+	* Add child notifications (setting an topic and get notifications of all its children)
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/NotificationPluginListTemplate.txt== | Template for <nop>NotifyList topics |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==bin/mailnotify-NP== | Perl script for sending regular notifications (could be put in cron)<br>You can rename it if you need old notifications |
+	  | ==bin/changenotify== | Perl script for changing notifications using NTF variable |
+	  | ==templates/htmlchanges.tmpl== | Template for generating HTML mails with notifications |
+	  | ==templates/view.NP.tmpl== | Template with example of using NTF variable |
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+
+---++ Plugin History
+	* Version 1.03
+		* added SENDER variable
+		* fixed bug with remaining \n and \r characters when parsing <nop>NotifyList topics
+		* fixed many error log entries when notifications are generated
+	* Version 1.04
+		* fixed bug when immediate notifications were send to people who had not set this type of notification
+	* Version 1.05
+		* fixed error log entries generated on line 221; function getScriptUrl is now properly called with params (thanx Main.NormProffitt)
+	* Version 1.1
+		* added new functions for better handling of <nop>NotifyList topics
+		* added support for fast setting notifications on every TWiki page (view.tmpl)
+	* Version 1.11
+		* code substitution to remove trailing whitespace
+		* bug-fix 'attr' to 'attrs' on line 519
+	* Version 1.12
+		* fixed function getUsersToNotify
+	* Version 1.13
+		* fixed bug in mailnotify script
+	* Version 1.14
+		* added popup support for changing notifications (thanx Main.KenGoldenberg :-)
+		* _mailnotify_ script renamed to _mailnotify-NP_
+			* you should create new cron job for regular notifications of NotificationPlugin
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/RichardBaar |
+|  Plugin Version: | 21 May 2007 (V1.15) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  21 May 2007 | Bugs:Item3969 - 8bit email fix (TWiki:Main.WillNorris) |
+|  14 Jan 2004: | Initial version |
+|  24 Feb 2004: | Version 1.03 - added SENDER variable, bug-fixes |
+|  24 Feb 2004: | Version 1.04 - bug-fix of immediate notifications |
+|  25 Feb 2004: | Version 1.05 - bugfix |
+|  26 Apr 2004: | Version 1.1 - new functions; added support for fast setting notifications |
+|  28 Apr 2004: | Version 1.11 - bugfixes |
+|  28 Apr 2004: | Version 1.12 - bugfix |
+|  29 Apr 2004: | Version 1.13 - mailnotify script bugfix |
+|  11 May 2004: | Version 1.14 - popup support for changing notifications |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+
+Sponsored by [[http://www.systinet.com][Systinet]] ;-)
+
+-- TWiki:Main/RichardBaar - 26 Apr 2004
+

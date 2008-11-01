@@ -1,0 +1,100 @@
+%TMPL:INCLUDE{"twiki"}%
+%TMPL:P{"htmldoctype"}%
+<head>
+ <title>%WIKITOOLNAME% (changes)</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=%CHARSET%" />
+ <meta name="robots" content="noindex" /> %HTTP_EQUIV_ON_VIEW%
+ <base href="%SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%" />
+</head>
+<body bgcolor="#ffffff">
+<form name="main" action="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/">
+#PageTop
+%TMPL:DEF{"titleaction"}%(changes)%TMPL:END%
+</form>
+
+<h2 align="center">Notification about changes in TWiki as you specify in <a href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/Main/%WIKIUSER%NotifyList">%WIKIUSER%NotifyList</a> topic</h2>
+<a name="Topic"></a><table width="100%" border="0" cellpadding="0" cellspacing="4">
+<tr>
+  <td colspan="3" valign="top" style="border:1px solid #000000;background:#ffd700;" align="center"><h2>Topic changes</h2></td>
+</tr>
+<tr>
+  <td width="50%">
+    <b>Topic:</b>
+  </td><td width="30%">
+    <b>Changed:</b> now %GMTIME{"$hour:$min"}% GMT
+  </td><td width="20%">
+    <b>Changed by:</b>
+  </td>
+</tr>
+</table>
+<table width="100%" border="0" cellpadding="6" cellspacing="0">
+<tr>
+<td>
+%TOPICLIST%
+</td>
+</tr>
+</table>
+<a name="Regex"></a><table width="100%" border="0" cellpadding="0" cellspacing="4">
+<tr>
+  <td colspan="3" valign="top" style="border:1px solid #000000;background:#ffd700;" align="center"><h2>Regex changes</h2></td>
+</tr>
+<tr>
+  <td width="50%">
+    <b>Topic:</b>
+  </td><td width="30%">
+    <b>Changed:</b> now %GMTIME{"$hour:$min"}% GMT
+  </td><td width="20%">
+    <b>Changed by:</b>
+  </td>
+</tr>
+</table>
+<table width="100%" border="0" cellpadding="6" cellspacing="0">
+<tr>
+<td>
+%REGEXLIST%
+</td>
+</tr>
+</table>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+  <td colspan="3" valign="top" style="border:1px solid #000000;background:#ffd700;" align="center"><h2>Web changes</h2></td>
+</tr>
+</table>
+%REPEAT%<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+  <td colspan="3" valign="top" style="border:1px solid #000000;background:#eaefc2;" align="center"><h3><b>%WEBNAME%</b> web</h3></td>
+</tr>
+<tr>
+  <td width="50%">
+    <b>Topic:</b>
+  </td><td width="30%">
+    <b>Changed:</b> now %GMTIME{"$hour:$min"}% GMT
+  </td><td width="20%">
+    <b>Changed by:</b>
+  </td>
+</tr>
+</table>%REPEAT%
+<table width="100%" border="0" cellspacing="0" cellpadding="6">
+<tr>
+  <td width="50%">
+    <a href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEBNAME%/%TOPICNAME%"><b>%WEBNAME%.%TOPICNAME%</b></a>
+    <b><font color="red">%LOCKED%</font></b>
+  </td><td width="30%">
+    <a href="%SCRIPTURLPATH%/rdiff%SCRIPTSUFFIX%/%WEBNAME%/%TOPICNAME%">%TIME%</a> - %REVISION%
+  </td><td width="20%">
+    %AUTHOR%
+  </td>
+</tr>
+<tr>
+  <td colspan="2" width="80%">
+    <font size="-1">
+    %TEXTHEAD% </font>
+  </td><td width="20%">
+    &nbsp;
+  </td>
+</tr></table>
+%REPEAT%<p />
+%TMPL:DEF{"topicaction"}% %TMPL:END%
+#PageBottom
+</body>
+</html>
