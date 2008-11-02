@@ -1,0 +1,69 @@
+---+!! YahooUserInterfaceContrib Contrib Package
+
+%SHORTDESCRIPTION%
+
+%TOC%
+
+---++ Summary of Contents
+Contains an un-archived and ready for use copy of YUI 2.5.2 - see http://developer.yahoo.com/yui
+
+If you get the contrib using svn, it will contain all the examples and
+documentation that is in the original archive. 
+
+---++ Documentation
+   * [[%ATTACHURL%/docs/index.html][YUI API]]
+
+---++ Examples
+   * [[%ATTACHURL%/examples/animation/index.html][Animation]]
+   * [[%ATTACHURL%/examples/autocomplete/index.html][Autocomplete]]
+   * [[%ATTACHURL%/examples/button/index.html][Button]]
+   * [[%ATTACHURL%/examples/calendar/index.html][Calendar]]
+   * [[%ATTACHURL%/examples/connection/index.html][Connection]]
+   * [[%ATTACHURL%/examples/container/index.html][Container]]
+   * [[%ATTACHURL%/examples/datatable/index.html][Datatable]]
+   * [[%ATTACHURL%/examples/dom/index.html][Dom]]
+   * [[%ATTACHURL%/examples/dragdrop/index.html][Dragdrop]]
+   * [[%ATTACHURL%/examples/event/index.html][Event]]
+   * [[%ATTACHURL%/examples/fonts/index.html][Fonts]]
+   * [[%ATTACHURL%/examples/grids/index.html][Grids]]
+   * [[%ATTACHURL%/examples/history/index.html][History]]
+   * [[%ATTACHURL%/examples/logger/index.html][Logger]]
+   * [[%ATTACHURL%/examples/menu/index.html][Menu]]
+   * [[%ATTACHURL%/examples/reset/index.html][Reset]]
+   * [[%ATTACHURL%/examples/slider/index.html][Slider]]
+   * [[%ATTACHURL%/examples/tabview/index.html][Tabview]]
+   * [[%ATTACHURL%/examples/treeview/index.html][Treeview]]
+
+
+<!--
+   * Set SHORTDESCRIPTION = Yahoo User Interface AJAX library packaged as a contrib for plugins and TWiki application
+   * Set STUB = %$STUB%
+-->
+
+---++ Installation Instructions
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	| *File:* | *Description:* |
+%$MANIFEST%
+	* Run ==%TOPIC%_installer.pl== to automatically check and install other modules that this module depends on. You can also do this step manually. Dependencies:
+	%$DEPENDENCIES%
+
+---++ Contrib Info
+
+|  Plugin Author: | TWiki:Main.SvenDowideit - SvenDowideit@DistributedINFORMATION.com [[http://DistributedINFORMATION.com][DistributedINFORMATION]] - a <img src="%ATTACHURLPATH%/wikiringlogo20x20.png" /> [[http://www.wikiring.com][WikiRing.com]] partner |
+|  Copyright &copy;: | Copyright Yahoo INC |
+|  License: | GPL ([[http://developer.yahoo.com/yui/license.txt][Yahoo BSD License]]) |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Version: | %$VERSION% |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  06 Aug 2008: | update to v2.5.2 |
+|  10 Jul 2007: | update to v2.2.2 |
+|  16 Mar 2007: | update to v2.2.0a version |
+|  24 Oct 2006: | Initial version |
+|  Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences
+
+%META:FILEATTACHMENT{name="wikiringlogo20x20.png" attr="h" autoattached="1" comment="wikiringlogo20x20.png" date="1161688837" path="wikiringlogo20x20.png" size="1343" user="Main.SvenDowideit" version="1"}%
