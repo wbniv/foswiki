@@ -39,7 +39,7 @@ sub do_upload {
         my $v = shift(@_);
         $args{$k} = [$v];
     }
-    my $query = new CGI( \%args );
+    my $query = new Unit::Request( \%args );
     $query->path_info("$this->{test_web}/$this->{test_topic}");
     my $tmpfile = new CGITempFile(0);
     my $fh = Fh->new( $fn, $tmpfile->as_string, 0 );
@@ -98,7 +98,7 @@ sub test_oversized_upload {
         webName   => [ $this->{test_web} ],
         topicName => [ $this->{test_topic} ],
     );
-    my $query = new CGI( \%args );
+    my $query = new Unit::Request( \%args );
     $query->path_info("$this->{test_web}/$this->{test_topic}");
     $this->{twiki}->finish();
     $this->{twiki} = new TWiki( $this->{test_user_login}, $query );

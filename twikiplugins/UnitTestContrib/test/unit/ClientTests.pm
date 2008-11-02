@@ -8,6 +8,7 @@ package ClientTests;
 use base qw(TWikiFnTestCase);
 
 use CGI;
+use Unit::Request;
 use Error qw( :try );
 
 use TWiki;
@@ -114,7 +115,7 @@ sub verify_edit {
     #close this TWiki session - its using the wrong mapper and login
     $this->{twiki}->finish();
 
-    $query = new CGI( {} );
+    $query = new Unit::Request( {} );
     $query->path_info("/$this->{test_web}/$this->{test_topic}");
     $ENV{SCRIPT_NAME} = "edit";
     $this->{twiki} = new TWiki( undef, $query );
@@ -131,7 +132,7 @@ sub verify_edit {
         $this->assert( 0, shift->stringify() );
     };
 
-    $query = new CGI( {} );
+    $query = new Unit::Request( {} );
     $query->path_info("/$this->{test_web}/$this->{test_topic}?breaklock=1");
     $this->{twiki}->finish();
 
@@ -154,7 +155,7 @@ sub verify_edit {
         }
     };
 
-    $query = new CGI( {} );
+    $query = new Unit::Request( {} );
     $query->path_info("/$this->{test_web}/$this->{test_topic}");
     $this->{twiki}->finish();
 
@@ -179,7 +180,7 @@ sub verify_sudo_login {
     my $crypted = crypt( $secret, "12" );
     $TWiki::cfg{Password} = $crypted;
 
-    my $query = new CGI(
+    my $query = new Unit::Request(
         {
             username => [ $TWiki::cfg{AdminUserLogin} ],
             password => [$secret],

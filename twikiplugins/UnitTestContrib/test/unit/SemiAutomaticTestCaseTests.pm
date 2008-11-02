@@ -41,7 +41,7 @@ sub list_tests {
 
 sub run_testcase {
     my ( $this, $testcase ) = @_;
-    my $query = new CGI(
+    my $query = new Unit::Request(
         {
             test               => 'compare',
             debugenableplugins => 'TestFixturePlugin,InterwikiPlugin',

@@ -154,7 +154,7 @@ If ALLOWTOPIC is set
 THIS
         , undef
     );
-    my $topicquery = new CGI("");
+    my $topicquery = new Unit::Request("");
     $topicquery->path_info("/$this->{test_web}/$testTopic");
 
     # renew TWiki, so WebPreferences gets re-read

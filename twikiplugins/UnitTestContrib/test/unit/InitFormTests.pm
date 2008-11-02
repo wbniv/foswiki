@@ -36,7 +36,8 @@ use Error qw( :try );
 use TWiki;
 use TWiki::UI::Edit;
 use TWiki::Form;
-use CGI;
+use Unit::Request;
+use Unit::Response;
 use Error qw( :try );
 
 my $testweb    = "TestWeb";
@@ -133,8 +134,11 @@ sub set_up {
     my $this = shift;
     $this->SUPER::set_up();
 
-    $this->{twiki} = new TWiki();
-    $user = $this->{twiki}->{user};
+    my $query = new Unit::Request();
+    $this->{twiki}    = new TWiki( undef, $query );
+    $this->{request}  = $query;
+    $this->{response} = new Unit::Response();
+    $user             = $this->{twiki}->{user};
 
     $aurl = $this->{twiki}->getPubUrl( 1, $testweb, $testform );
     $surl = $this->{twiki}->getScriptUrl(1);
@@ -179,7 +183,7 @@ sub setup_formtests {
     my $attr = new TWiki::Attrs($params);
     foreach my $k ( keys %$attr ) {
         next if $k eq '_RAW';
-        $this->{twiki}->{cgiQuery}->param( -name => $k, -value => $attr->{$k} );
+        $this->{request}->param( -name => $k, -value => $attr->{$k} );
     }
 
     # Now generate the form. We pass a template which throws everything away

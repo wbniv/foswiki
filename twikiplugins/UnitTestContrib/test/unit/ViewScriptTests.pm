@@ -68,7 +68,7 @@ sub set_up {
 
 sub setup_view {
     my ( $this, $web, $topic, $tmpl ) = @_;
-    my $query = new CGI(
+    my $query = new Unit::Request(
         {
             webName   => [$web],
             topicName => [$topic],

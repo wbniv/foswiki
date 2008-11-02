@@ -27,7 +27,7 @@ sub set_up {
 
     $this->{twiki}->finish();
     $this->{twiki} = new TWiki( $this->{test_user_login},
-        new CGI( { topic => "/$this->{test_web}/OldTopic" } ) );
+        new Unit::Request( { topic => "/$this->{test_web}/OldTopic" } ) );
 
     $this->{new_web} = $this->{test_web} . 'New';
     $this->{twiki}->{store}
@@ -374,7 +374,7 @@ THIS
 # Rename OldTopic to NewTopic within the same web
 sub test_rename_oldwebnewtopic {
     my $this  = shift;
-    my $query = new CGI(
+    my $query = new Unit::Request(
         {
             action           => ['rename'],
             newweb           => [ $this->{test_web} ],
@@ -499,7 +499,7 @@ THIS
 # Rename OldTopic to a different web, keeping the same topic name
 sub test_rename_newweboldtopic {
     my $this  = shift;
-    my $query = new CGI(
+    my $query = new Unit::Request(
         {
             action           => ['rename'],
             newweb           => [ $this->{new_web} ],
@@ -637,7 +637,7 @@ Twolowercase
 THIS
     $this->{twiki}->{store}->saveTopic( $this->{twiki}->{user},
         $this->{test_web}, 'lowercase', $topictext, $meta );
-    my $query = new CGI(
+    my $query = new Unit::Request(
         {
             action           => 'rename',
             topic            => 'lowercase',
@@ -670,7 +670,7 @@ sub test_accessRenameRestrictedTopic {
     my $topictext = "   * Set ALLOWTOPICRENAME = GungaDin\n";
     $this->{twiki}->{store}->saveTopic( $this->{twiki}->{user},
         $this->{test_web}, 'OldTopic', $topictext, $meta );
-    my $query = new CGI(
+    my $query = new Unit::Request(
         {
             action   => 'rename',
             topic    => 'OldTopic',
@@ -706,7 +706,7 @@ sub test_accessRenameRestrictedWeb {
         $this->{test_web}, $TWiki::cfg{WebPrefsTopicName},
         $topictext, $meta
     );
-    my $query = new CGI(
+    my $query = new Unit::Request(
         {
             action   => 'rename',
             topic    => 'OldTopic',
@@ -739,7 +739,7 @@ sub test_leaseReleasemeLetMeGo {
     $this->{twiki}->{store}
       ->setLease( $this->{test_web}, 'OldTopic', $this->{twiki}->{user}, 1000 );
 
-    my $query = new CGI(
+    my $query = new Unit::Request(
         {
             action   => 'rename',
             topic    => 'OldTopic',

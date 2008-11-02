@@ -250,7 +250,7 @@ sub verify_releaselocksonsave {
     my $meta  = new TWiki::Meta( $this->{twiki}, $this->{test_web}, $topic );
 
     # create rev 1 as TestUser1
-    my $query = new CGI(
+    my $query = new Unit::Request(
         {
             originalrev => [0],
             'action'    => ['save'],
@@ -273,7 +273,7 @@ sub verify_releaselocksonsave {
     };
 
     # create rev 2 as TestUser1
-    $query = new CGI(
+    $query = new Unit::Request(
         {
             originalrev      => [1],
             'action'         => ['save'],
@@ -297,7 +297,7 @@ sub verify_releaselocksonsave {
     };
 
     # now TestUser2 has a go, based on rev 1
-    $query = new CGI(
+    $query = new Unit::Request(
         {
             originalrev      => [1],
             'action'         => ['save'],

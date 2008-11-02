@@ -191,7 +191,7 @@ sub test_url_parameters {
     my $topicquery;
 
     # Now query the subweb path. We should get the webhome of the subweb.
-    $topicquery = new CGI(
+    $topicquery = new Unit::Request(
         {
             action => 'view',
             topic  => "$testWebSubWebPath",
@@ -210,7 +210,7 @@ sub test_url_parameters {
     $this->{twiki}->{store}
       ->saveTopic( $this->{twiki}->{user}, $testWeb, $testWebSubWeb, "nowt" );
 
-    $topicquery = new CGI(
+    $topicquery = new Unit::Request(
         {
             action => 'view',
             topic  => "$testWebSubWebPath",
@@ -224,7 +224,7 @@ sub test_url_parameters {
     $this->assert_str_equals( $testWebSubWeb, $this->{twiki}->{topicName} );
 
     # try a query with a non-existant topic in the subweb.
-    $topicquery = new CGI(
+    $topicquery = new Unit::Request(
         {
             action => 'view',
             topic  => "$testWebSubWebPath/NonExistant",
@@ -246,7 +246,7 @@ sub test_url_parameters {
 sub test_squab_simple {
     my $this = shift;
 
-    my $query = new CGI("");
+    my $query = new Unit::Request("");
     $query->path_info("/$testWeb/NonExistant");
     $this->{twiki}->finish();
     $this->{twiki} = new TWiki( $TWiki::cfg{DefaultUserName}, $query );
@@ -268,7 +268,7 @@ sub test_squab_subweb {
     my $this = shift;
 
     # Make a query that should set topic=$testSubWeb
-    my $query = new CGI("");
+    my $query = new Unit::Request("");
     $query->path_info("/$testWeb/NonExistant");
     $this->{twiki}->finish();
     $this->{twiki} = new TWiki( $TWiki::cfg{DefaultUserName}, $query );
@@ -289,7 +289,7 @@ sub test_squab_subweb_full_path {
     my $this = shift;
 
     # Make a query that should set topic=$testSubWeb
-    my $query = new CGI("");
+    my $query = new Unit::Request("");
     $query->path_info("/$testWeb/NonExistant");
     $this->{twiki}->finish();
     $this->{twiki} = new TWiki( $TWiki::cfg{DefaultUserName}, $query );
@@ -310,7 +310,7 @@ sub test_squab_subweb_wih_topic {
     my $this = shift;
 
     # Make a query that should set topic=$testSubWeb
-    my $query = new CGI("");
+    my $query = new Unit::Request("");
     $query->path_info("/$testWeb/NonExistant");
     $this->{twiki}->finish();
     $this->{twiki} = new TWiki( $TWiki::cfg{DefaultUserName}, $query );
@@ -336,7 +336,7 @@ sub test_squab_full_path_with_topic {
     my $this = shift;
 
     # Make a query that should set topic=$testSubWeb
-    my $query = new CGI("");
+    my $query = new Unit::Request("");
     $query->path_info("/$testWeb/NonExistant");
     $this->{twiki}->finish();
     $this->{twiki} = new TWiki( $TWiki::cfg{DefaultUserName}, $query );
@@ -362,7 +362,7 @@ sub test_squab_path_to_topic_in_subweb {
     my $this = shift;
 
     # Make a query that should set topic=$testSubWeb
-    my $query = new CGI("");
+    my $query = new Unit::Request("");
     $query->path_info("/$testWeb/NonExistant");
     $this->{twiki}->finish();
     $this->{twiki} = new TWiki( $TWiki::cfg{DefaultUserName}, $query );
@@ -387,7 +387,7 @@ qr!<a href=".*view$TWiki::cfg{ScriptSuffix}/$testWeb/$testWebSubWeb/$TWiki::cfg{
 sub test_WEBLIST_all {
     my $this = shift;
 
-    my $query = new CGI("");
+    my $query = new Unit::Request("");
     $query->path_info("/$testWeb/WebHome");
     $this->{twiki}->finish();
     $this->{twiki} = new TWiki( $TWiki::cfg{DefaultUserName}, $query );
@@ -407,7 +407,7 @@ sub test_WEBLIST_all {
 sub test_WEBLIST_relative {
     my $this = shift;
 
-    my $query = new CGI("");
+    my $query = new Unit::Request("");
     $query->path_info("/$testWeb/WebHome");
     $this->{twiki}->finish();
     $this->{twiki} = new TWiki( $TWiki::cfg{DefaultUserName}, $query );
@@ -421,7 +421,7 @@ sub test_WEBLIST_relative {
 sub test_WEBLIST_end {
     my $this = shift;
 
-    my $query = new CGI("");
+    my $query = new Unit::Request("");
     $query->path_info("/$testWeb/WebHome");
     $this->{twiki}->finish();
     $this->{twiki} = new TWiki( $TWiki::cfg{DefaultUserName}, $query );

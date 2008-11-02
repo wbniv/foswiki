@@ -18,7 +18,7 @@ sub set_up {
 
     # You can now safely modify $TWiki::cfg
 
-    $topicquery = new CGI('');
+    $topicquery = new Unit::Request('');
     $topicquery->path_info('/TestCases/WebHome');
     try {
         $this->{twiki} = new TWiki( 'AdminUser' || '' );
