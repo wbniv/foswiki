@@ -1,0 +1,57 @@
+%META:TOPICINFO{author="ColasNahaboo" date="1055494260" format="1.0" version="1.1"}%
+%META:TOPICPARENT{name="WebHome"}%
+---+ User Home Page Add-On
+
+This addon just provide a new small script =bin/userhomepage=, that you can call as a target of HTML
+links to provide a direct button/link to a user TWiki home page
+
+---++ Usage
+
+Use it as link to <tt>%<nop>SCRIPTURL%/userhomepage%<nop>SCRIPTSUFFIX%, eg:
+
+<verbatim>
+  <tt>&lt;a href='%<nop>SCRIPTURL%/userhomepage%<nop>SCRIPTSUFFIX%'>Your TWiki account&lt;/a>
+
+  <form action='%<nop>SCRIPTURL%/userhomepage%<nop>SCRIPTSUFFIX%'>
+	 <input type=submit value="Your Home Page">
+  </form>
+</verbatim>
+
+
+---++ Add-On Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this add-on. The following instructions are for the administrator who installs the add-on on the server where TWiki is running. 
+
+	* Download the ZIP file from the Add-on Home (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==bin/userhomepage== | Add-on script |
+	* Require authentification for the ==userhomepage== script. e.g, in apache, edit the
+	  ==bin/.htaccess== file to add: <tt>
+	  <br>&nbsp;&nbsp;&lt;Files "userhomepage">
+	  <br>&nbsp;&nbsp;&nbsp;&nbsp;require valid-user
+	  <br>&nbsp;&nbsp;&lt;/Files>
+	* Test if the installation was successful:
+	  Clicking on either of the following link or button should bring you to your home page
+		* <a href='%SCRIPTURL%/userhomepage%SCRIPTSUFFIX%'>Your TWiki account</a>
+		* <form action='%SCRIPTURL%/userhomepage%SCRIPTSUFFIX%'><input type=submit value="Your Home Page"></form>
+
+---++ Plugin Info
+
+|  Add-on Author: | TWiki:Main/ColasNahaboo |
+|  Add-on Version: | 13 Jun 2003 (v1.000) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  13 Jun 2003: | Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  License: | GPL |
+|  Add-on Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topic:__ %TWIKIWEB%.TWikiAddOns
+---+ User Home Page Addon
+
+-- Main.ColasNahaboo - 13 Jun 2003
+%META:TOPICMOVED{by="ColasNahaboo" date="1055494233" from="TWiki.UserHomePageAddon" to="TWiki.UserHomePageAddOn"}%
