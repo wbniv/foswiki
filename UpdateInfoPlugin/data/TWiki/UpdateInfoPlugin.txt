@@ -1,0 +1,97 @@
+%META:TOPICINFO{author="TWikiContributor" date="1153933070" format="1.1" version="1.2"}%
+---+ Update Info Plugin
+
+<nop>UpdateInfoPlugin will add a "new" or "updated" icon after a %TWIKIWEB%.WikiWord link if a =%<nop>ISNEW%= tag is used after the link, and the linked topic was recently touched.
+
+=<nop>WikiWord %<nop>ISNEW%= will be expanded to:
+
+	* <nop>WikiWord - if the topic is neither new nor updated
+	* <nop>WikiWord %N% - if the topic is younger than five days and is revision 1.1
+	* <nop>WikiWord %U% - if the topic revision is higher than 1.1 and the topic was updated during the last five days
+
+Default values for the "version" and "days" parameters are set sitewide here in %TOPIC%#PluginSettings, but can be overridden pr. topic (or in !WebPreferences pr. web), by setting variables =UPDATEINFOVERSION= and/or =UPDATEINFODAYS=.
+
+---++ Syntax Rules
+
+The %<nop>ISNEW%-tag must be written after a <nop>WikiWord separated by _exactly one space_.
+
+Full %<nop>ISNEW% syntax takes one or two options:
+
+	* days: Changes the number of days a Topic is marked as new or updated
+	* version: Specifies which revision is still considered to be new
+
+Full syntax overrides site/topic defaults.
+
+---++ Syntax Examples
+
+	* =<nop>MyTopic %<nop/>ISNEW%=
+	* =<nop>Web.ToPic %<nop/>ISNEW%=
+	* =<nop>Gr�dWeb.Bl�B�rGr�d %<nop/>ISNEW%= (I18N characters in <nop>WikiWords and <nop>WebNames are matched)
+	* =<nop>TopIc %<nop/>ISNEW{days="15"}%=
+	* =<nop>TopiC %<nop/>ISNEW{days="20" version="1.4"}%=
+
+%TOPIC% supports these <nop/>TWikiML link syntaxes:
+
+	* <nop/>WikiWord 
+	* (<nop/>WikiWordAs)WebName.WikiWord 
+	* [<nop/>[WikiWord][link text]]
+	* [<nop/>[WebName.WikiWord][link text]] 
+	* [<nop/>[link text]] 
+	* [<nop/>[link-text]] (links to non-WikiWord topics, i.e. topic names containing special chars like "-")
+	* [<nop/>[singleword]] 
+	* WIK IWO RDS (abbreviations / acronyms) 
+
+(All followed by the %<nop/>ISNEW% syntax).
+
+---++ Examples (Works if installed)
+
+	* UpdateInfoPlugin %ISNEW%
+	* Main.WebHome %ISNEW%
+	* TWiki.WebHome %ISNEW{days="15"}%
+	* TWiki.TWikiPreferences %ISNEW{days="20" version="1.4"}%
+	* Sandbox.UpdateInfoPluginTest %ISNEW% (Edit and save the <nop/>Sandbox.UpdateInfoPluginTest topic, and it should be highlighted with a %N% icon)
+
+#PluginSettings
+---+++ <nop>%TOPIC% Settings
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Add a %<nop>ISNEW% tag after a %TWIKIWEB%.WikiWord to get a visual display of whether the linked topic was created or updated recently
+
+	* Sitewide "version" default
+		* Set UPDATEINFOVERSION = 1.1
+
+	* Sitewide "days" default
+		* Set UPDATEINFODAYS = 5
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---+++ Plugin Installation Instructions
+
+	* Just unzip the package as usual.
+
+---+++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.ChrisHuebsch & TWiki:Main.SteffenPoulsen |
+|  Plugin Version: | v2.0 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  26 Jul 2006: | (v2.0) - Updated to use default graphic icons from TWiki:TWiki.TWikiDocGraphics. |
+|  20 Apr 2006: | (v1.9) - Cairo+Dakar compatibility (TWiki:Main.SteffenPoulsen) |
+|  10 Jan 2006: | (v1.8) - Dakar compatibility |
+|  7 Apr 2005: | (v1.7) - New variable name in plugin settings |
+|  6 Apr 2005: | (v1.6) - Fetch default "days" and "version" variables from TWiki variables |
+|  4 Apr 2005: | (v1.5) - Support for non-WikiWord topics in <nop/>TWikiML link syntaxes |
+|  2 Apr 2005: | (v1.4) - Support for more <nop/>TWikiML link syntaxes |
+|  1 Apr 2005: | (v1.3) - Plugin is now I18N-aware |
+|  30 Mar 2005: | (v1.2) - implemented changes/fixes from TWiki:Plugins.UpdateInfoPluginDev |
+|  15 Apr 2002: | Initial version |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 99%, %TWIKIWEB%.FormattedSearch 99%, %TOPIC% 99% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+-- TWiki:Main.ChrisHuebsch - 07 Apr 2005
