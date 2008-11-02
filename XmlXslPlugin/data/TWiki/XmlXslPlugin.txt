@@ -1,0 +1,69 @@
+%META:TOPICINFO{author="TWikiContributor" date="1179808418" format="1.1" version="$Rev: 15572 $"}%
+---+!! XML XSL Plugin
+
+The plugin is used to return HTML containing an XML data island which, when processed by the browser, will show the XSL applied to the XML.
+
+Unlike the TWiki:Plugins.SablotronPlugin which does the transformation at the server, the !XmlXslPlugin does the transformation on the browser.
+
+%TOC%
+
+
+---++ Syntax Rules
+
+This has one directives to invoke this plugin.
+
+   * =%<nop>XMLXSLTRANSFORM{...}%=
+
+| *Parameter* | *Comment* | *Default* |
+| =xml= | xml source text |(none) |
+| =xsl= | xsl source text |(none) |
+| =css= | css source text |(none) |
+| =id= | identifier (must begin with a letter) | =""= |
+
+The xml source, xsl source, and css source parameters may be TWiki topic names or urls.
+
+
+---++ Plugin Settings
+
+   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = Return HTML created from the application of an XSL to some XML
+   * Debug plugin: (See output in =data/debug.txt=)
+      * Set DEBUG = 0
+
+
+---++ Plugin Installation Instructions	
+
+__Note:__ You do not need to install anything on the browser to use this Plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+   * (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.MartinCleaver and friends |
+|  Copyright: | &copy; 2001, TWiki:Main.MartinCleaver |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | 30 Mar 2005 |
+|  Change History: | <!-- specify latest version first -->&nbsp; |
+|  30 Mar 2005 | Removed the restriction that only one transformation could be included in a topic. Added css style sheet parameter. Made parameters follow TWiki conventions.  [[TWiki:Main/ThomasWeigert][Thomas Weigert]] |
+|  26 Oct 2001 | Initial release  [[TWiki:Main/MartinCleaver][Martin Cleaver]] |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | a browser that supports XML transformations/processing |
+|  Perl Version: | 5.0 |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+ 
+
+-- TWiki:Main.ThomasWeigert - 30 Mar 2005
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the Dev topic instead. -->
