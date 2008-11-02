@@ -1,0 +1,7 @@
+# Release manifest for UpdateAttachmentsPlugin
+data/TWiki/UpdateAttachmentsPlugin.txt 0644 Documentation
+lib/TWiki/Plugins/UpdateAttachmentsPlugin.pm 0644 Perl module
+lib/TWiki/Plugins/UpdateAttachmentsPlugin/Config.spec
+pub/TWiki/UpdateAttachmentsPlugin/wikiringlogo20x20.png
+pub/TWiki/UpdateAttachmentsPlugin/wikiring-attach.png
+

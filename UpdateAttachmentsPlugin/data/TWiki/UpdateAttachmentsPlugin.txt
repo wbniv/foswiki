@@ -1,0 +1,70 @@
+%META:TOPICINFO{author="BaseUserMapping_333" date="1196135362" format="1.1" version="1.2"}%
+
+<img src="%PUBURL%/%WEB%/%TOPIC%/wikiring-attach.png" style="float:right;padding:26px" />
+---+!! !UpdateAttachmentsPlugin
+<!--
+One line description, required for extensions repository catalog.
+   * Set SHORTDESCRIPTION = A batched alternative to !AutoAttachments (adds and removes attachments)
+-->
+%SHORTDESCRIPTION%
+
+%TOC%
+
+---++ Usage
+
+This plugin provides a rest handler that can replace the inbuilt ={AutoAttachPubFiles}= functionality with a batched update - so you can upload (ftp, drag&drop etc) thousands of images into TWiki's pub area, and then tell TWiki to update the attachments to all your topics.
+
+This will allow you to SEARCH for attachments, use DBCacheContrib & DBCachePlugin, and use any other functionality that relies on the topic files containing references to the attachments.
+
+Doing this may provide a speed advantage as it will remove the need for TWiki to scan the requested topics' attachment directory.
+
+Also, it will (optionally) remove attachment references to files that no longer exist in the topic's attachment directory.
+
+Warning: because TWiki does not deal well with attachments with special characters (or even spaces) in them, these files will be ignored on update.
+
+Warning: checking 28500 topics (many with attachments) takes around 2-3 minutes on my test system, with no plugins that have an beforeSave or afterSave handler registered.
+
+---+++ Triggering an Attachment Update
+As this is a TWiki.RestHandler based plugin, you can trigger it to run from a suitably authenticated URL (it will only update topics
+your user as permission to edit) - for example, to update the Sandbox web
+   * %SCRIPTURL{rest}%/UpdateAttachmentsPlugin/update?topic=Sandbox.WebHome
+
+Or using a cronjob - make sure the cronjob is running as the same user as TWiki's web access is
+   * =./rest UpdateAttachmentsPlugin.update topic Sandbox.WebHome=
+   
+(if you get a 500 or premature end of script error, chances are your current user does not have permission to change the web or topics)
+
+---++ Settings
+These settings are in the configure web interface in the <nop>Update Attachments Plugin section of [[%SCRIPTURL{configure}%][configure]].
+   * =$TWiki::cfg{Plugins}{UpdateAttachmentsPlugin}{AttachAsUser}= - defaults to the unknown user. To reset the attributed user for attachments that already exist, =touch= the files in the attachment directory.
+   * =$TWiki::cfg{Plugins}{UpdateAttachmentsPlugin}{RemoveMissing}= - will remove attachment references in a topic that no longer exist
+   * =$TWiki::cfg{Plugins}{UpdateAttachmentsPlugin}{UseDangerousNoHandlersSave}= - use with extreme caution, _if_ you understand what the results of a no_handler save are, and _if_ you are able to recover your TWiki if it fails.
+   * =$TWiki::cfg{Plugins}{UpdateAttachmentsPlugin}{Debug}= - to see what topics are updated (edit LocalSite.cfg by hand to add this setting).
+   
+It is recommended to disable $TWiki::cfg{AutoAttachPubFiles}.
+
+---++ Installation Instructions
+
+This plugin _may_ not function correctly if =$TWiki::cfg{AutoAttachPubFiles}= is on, predominantly on the WebHome and WebPreferences topics.
+
+%$INSTALL_INSTRUCTIONS%
+
+---++ Plugin Info
+
+|  Plugin Author(s): | TWiki:Main.SvenDowideit - http://distributedINFORMATION.com a %PUBURL%/%WEB%/%TOPIC%/wikiringlogo20x20.png [[http://WikiRing.com][WikiRing]] founding partner  |
+|  Copyright: | &copy; SvenDowideit@distributedINFORMATION.com |
+|  Attachment Icon | based on eXperience Crystal, by David Christian Berg |
+|  License: | [[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License)]] |
+|  Plugin Version: | %$VERSION% |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  add AttachAsUser: | December 2007 |
+|  initial release: | November 2007 |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Plugin Home: | http://twiki.org/cgi-bin/view/Plugins/UpdateAttachmentsPlugin |
+|  Feedback: | http://twiki.org/cgi-bin/view/Plugins/UpdateAttachmentsPluginDev |
+|  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/UpdateAttachmentsPluginAppraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the feedback topic on twiki.org instead. -->
+
