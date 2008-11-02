@@ -116,7 +116,7 @@ sub registerAccount {
 
     $this->registerVerifyOk();
 
-    my $query = new CGI(
+    my $query = $this->newRequest(
         {
             'code'   => [ $this->{twiki}->{DebugVerificationCode} ],
             'action' => [ 'verify' ]
@@ -479,7 +479,7 @@ EOF
 sub registerVerifyOk {
     my $this = shift;
     $TWiki::cfg{Register}{NeedVerification} = 1;
-    my $query = new CGI(
+    my $query = $this->newRequest(
         {
             'TopicName'     => [ 'TWikiRegistration' ],
             'Twk1Email'     => [ $this->{new_user_email} ],
@@ -522,7 +522,7 @@ sub registerVerifyOk {
     };
 
     my $code = shift || $this->{twiki}->{DebugVerificationCode};
-    $query = new CGI(
+    $query = $this->newRequest(
         {
             'code'   => [ $code ],
             'action' => [ 'verify' ]
@@ -567,7 +567,7 @@ sub registerVerifyOk {
 sub verify_registerBadVerify {
     my $this = shift;
     $TWiki::cfg{Register}{NeedVerification} = 1;
-    my $query = new CGI(
+    my $query = $this->newRequest(
         {
             'TopicName'     => [ 'TWikiRegistration' ],
             'Twk1Email'     => [ $this->{new_user_email} ],
@@ -608,7 +608,7 @@ sub verify_registerBadVerify {
     };
 
     my $code = "bad.$this->{twiki}->{DebugVerificationCode}";
-    $query = new CGI(
+    $query = $this->newRequest(
         {
             'code'   => [ $code ],
             'action' => [ 'verify' ]
@@ -656,7 +656,7 @@ sub verify_registerBadVerify {
 sub verify_registerNoVerifyOk {
     my $this = shift;
     $TWiki::cfg{Register}{NeedVerification} = 0;
-    my $query = new CGI(
+    my $query = $this->newRequest(
         {
             'TopicName'     => [ 'TWikiRegistration' ],
             'Twk1Email'     => [ $this->{new_user_email} ],
@@ -725,7 +725,7 @@ sub verify_rejectShortPassword {
     $TWiki::cfg{MinPasswordLength}          = 6;
     $TWiki::cfg{PasswordManager}            = 'TWiki::Users::HtPasswdUser';
     $TWiki::cfg{Register}{AllowLoginName}   = 0;
-    my $query = new CGI(
+    my $query = $this->newRequest(
         {
             'TopicName'    => ['TWikiRegistration'],
             'Twk1Email'    => [ $this->{new_user_email} ],
@@ -778,7 +778,7 @@ sub verify_shortPassword {
     $TWiki::cfg{MinPasswordLength}          = 6;
     $TWiki::cfg{PasswordManager}            = 'TWiki::Users::HtPasswdUser';
     $TWiki::cfg{Register}{AllowLoginName}   = 1;
-    my $query = new CGI(
+    my $query = $this->newRequest(
         {
             'TopicName'     => ['TWikiRegistration'],
             'Twk1Email'     => [ $this->{new_user_email} ],
@@ -969,7 +969,7 @@ sub verify_resetPasswordOkay {
     my @emails = $this->{twiki}->{users}->getEmails($cUID);
     $this->assert_str_equals( $this->{new_user_email}, $emails[0] );
 
-    my $query = new CGI(
+    my $query = $this->newRequest(
         {
             'LoginName' => [ $this->{new_user_login} ],
             'TopicName' => [ 'ResetPassword' ],
@@ -1021,7 +1021,7 @@ sub verify_resetPasswordNoSuchUser {
 
     # This time we don't set up the testWikiName, so it should fail.
 
-    my $query = new CGI(
+    my $query = $this->newRequest(
         {
             'LoginName' => [ $this->{new_user_wikiname} ],
             'TopicName' => [ 'ResetPassword' ],
@@ -1062,7 +1062,7 @@ sub verify_resetPasswordNeedPrivilegeForMultipleReset {
 
     # This time we don't set up the testWikiName, so it should fail.
 
-    my $query = new CGI(
+    my $query = $this->newRequest(
         {
             'LoginName' =>
               [ $this->{test_user_wikiname}, $this->{new_user_wikiname} ],
@@ -1107,7 +1107,7 @@ sub verify_resetPasswordNoPassword {
 
     $this->registerAccount();
 
-    my $query = new CGI(
+    my $query = $this->newRequest(
         {
             'LoginName' => [ $this->{new_user_wikiname} ],
             'TopicName' => [ 'ResetPassword' ],
@@ -1224,7 +1224,7 @@ EOM
     print $fh $testReg;
     $fh->close;
 
-    my $query = new CGI(
+    my $query = $this->newRequest(
         {
             'LogTopic'              => [ $logTopic ],
             'EmailUsersWithDetails' => [ '0' ],
@@ -1363,7 +1363,7 @@ sub verify_disabled_registration {
     my $this = shift;
     $TWiki::cfg{Register}{EnableNewUserRegistration} = 0;
     $TWiki::cfg{Register}{NeedVerification}          = 0;
-    my $query = new CGI(
+    my $query = $this->newRequest(
         {
             'TopicName'     => [ 'TWikiRegistration' ],
             'Twk1Email'     => [ $this->{new_user_email} ],
@@ -1421,7 +1421,7 @@ sub test_3951 {
     $TWiki::cfg{Register}{EnableNewUserRegistration} = 1;
     $TWiki::cfg{LoginManager}    = 'TWiki::LoginManager::TemplateLogin';
     $TWiki::cfg{PasswordManager} = 'TWiki::Users::HtPasswdUser';
-    my $query = new CGI(
+    my $query = $this->newRequest(
         {
             'TopicName'     => [ 'TWikiRegistration' ],
             'Twk1Email'     => [ $this->{new_user_email} ],
@@ -1472,7 +1472,7 @@ sub test_4061 {
     $TWiki::cfg{Register}{EnableNewUserRegistration} = 1;
     $TWiki::cfg{LoginManager}    = 'TWiki::LoginManager::TemplateLogin';
     $TWiki::cfg{PasswordManager} = 'TWiki::Users::HtPasswdUser';
-    my $query = new CGI(
+    my $query = $this->newRequest(
         {
             'TopicName'     => [ 'TWikiRegistration' ],
             'Twk1Email'     => [ $this->{new_user_email} ],
@@ -1559,7 +1559,7 @@ sub verify_resetEmailOkay {
         $this->{twiki}->{users}->setPassword( $cUID, $newPassU, $oldPassU ) );
     my $newEmail = 'UnitEmail@home.org.au';
 
-    my $query = new CGI(
+    my $query = $this->newRequest(
         {
             'LoginName'   => [ $this->{new_user_login} ],
             'TopicName'   => [ 'ChangeEmailAddress' ],
@@ -1646,7 +1646,7 @@ sub verify_resetPassword_NoTWikiUsersEntry {
     my @emails = $this->{twiki}->{users}->getEmails($cUID);
     $this->assert_str_equals( $this->{new_user_email}, $emails[0] );
 
-    my $query = new CGI(
+    my $query = $this->newRequest(
         {
             'LoginName' => [ $this->{new_user_login} ],
             'TopicName' => [ 'ResetPassword' ],

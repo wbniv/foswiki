@@ -13,8 +13,6 @@ use base 'Unit::TestCase';
 use Data::Dumper;
 
 use TWiki;
-use Unit::Request;
-use Unit::Response;
 use strict;
 use Error qw( :try );
 
@@ -35,8 +33,18 @@ my $cleanup = $ENV{TWIKI_DEBUG_KEEP} ? 0 : 1;
 
 sub new {
     my $class = shift;
-    my $self  = $class->SUPER::new(@_);
+    my $self = $class->SUPER::new(@_);
     return $self;
+}
+
+sub newRequest {
+    my $this = shift;
+    eval "use Unit::Request";
+    if ($@ || !defined &Unit::Request::new) {
+        return new CGI(@_);
+    } else {
+        return new Unit::Request(@_);
+    }
 }
 
 # Checks we only need to run once per test run
@@ -101,7 +109,7 @@ sub set_up {
     }
 
     # force a read of $TWiki::cfg
-    my $query = new Unit::Request();
+    my $query = $this->newRequest();
     my $tmp = new TWiki( undef, $query );
 
     # This needs to be a deep copy

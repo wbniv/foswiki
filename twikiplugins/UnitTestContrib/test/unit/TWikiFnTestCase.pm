@@ -14,8 +14,6 @@ package TWikiFnTestCase;
 use base 'TWikiTestCase';
 
 use TWiki;
-use Unit::Request;
-use Unit::Response;
 use TWiki::UI::Register;
 use Error qw( :try );
 
@@ -51,12 +49,11 @@ sub set_up {
     $TWiki::cfg{Register}{NeedVerification} = 0;
     $TWiki::cfg{MinPasswordLength}          = 0;
     $TWiki::cfg{UsersWebName}               = $this->{users_web};
-    my $query = new Unit::Request("");
+    my $query = $this->newRequest("");
     $query->path_info("/$this->{test_web}/$this->{test_topic}");
 
     $this->{twiki}           = new TWiki( undef, $query );
     $this->{request}         = $query;
-    $this->{response}        = new Unit::Response();
     $TWiki::Plugins::SESSION = $this->{twiki};
     @mails                   = ();
     $this->{twiki}->net->setMailHandler( \&TWikiFnTestCase::sentMail );
@@ -103,7 +100,7 @@ sub sentMail {
 sub registerUser {
     my ( $this, $loginname, $forename, $surname, $email ) = @_;
 
-    my $query = new Unit::Request(
+    my $query = $this->newRequest(
         {
             'TopicName'     => ['TWikiRegistration'],
             'Twk1Email'     => [$email],

@@ -333,6 +333,8 @@ sub sendEmail {
             # be nasty to errors that we didn't throw. They may be
             # caused by SMTP or perl, and give away info about the
             # install that we don't want to share.
+            $e = join( "\n", grep( /^ERROR/, split( /\n/, $e ) ) );
+
             unless ( $e =~ /^ERROR/ ) {
                 $e = "Mail could not be sent - see TWiki warning log.";
             }

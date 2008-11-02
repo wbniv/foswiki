@@ -395,8 +395,8 @@ sub _requireVerification {
     $data->{LoginName} ||= $data->{WikiName};
     $data->{webName} = $web;
 
-    require TWiki::Users;    #SMELL to use its BEGIN to initialise Rand?
-    $data->{VerificationCode} = $data->{WikiName} . '.' . int( rand(99999999) );
+    $data->{VerificationCode} =
+      $data->{WikiName} . '.' . int( rand(99999999) );
 
     #SMELL: used for Register unit tests
     $session->{DebugVerificationCode} = $data->{VerificationCode};
@@ -856,7 +856,17 @@ sub complete {
     catch Error::Simple with {
         my $e = shift;
 
-        # Log the error
+#only change the session's identity _if_ the registration was done by TWikiGuest
+    if ( $session->{user} eq
+        $session->{users}->getCanonicalUserID( $TWiki::cfg{DefaultUserLogin} ) )
+    {
+
+        # let the client session know that we're logged in. (This probably
+        # eliminates the need for the registrationHandler call above,
+        # but we'll leave them both in here for now.)
+        $users->{loginManager}
+          ->userLoggedIn( $data->{LoginName}, $data->{WikiName} );
+    }        # Log the error
         $session->writeWarning( 'Registration failed: ' . $e->stringify() );
         throw TWiki::OopsException(
             'attention',
@@ -873,19 +883,8 @@ sub complete {
       ->registrationHandler( $data->{WebName}, $data->{WikiName},
         $data->{LoginName}, $data );
 
-#only change the session's identity _if_ the registration was done by TWikiGuest
-    if ( $session->{user} eq
-        $session->{users}->getCanonicalUserID( $TWiki::cfg{DefaultUserLogin} ) )
-    {
-
-        # let the client session know that we're logged in. (This probably
-        # eliminates the need for the registrationHandler call above,
-        # but we'll leave them both in here for now.)
-        $users->{loginManager}
-          ->userLoggedIn( $data->{LoginName}, $data->{WikiName} );
-    }
-
     my $status;
+    my $safe2login = 1;
 
     if ( $TWiki::cfg{EnableEmail} ) {
 
@@ -903,6 +902,7 @@ sub complete {
             $status = $session->i18n->maketext(
                 'Warning: Could not send confirmation email')
               . "\n\n$status";
+            $safe2login = 0;
         }
         else {
             $status = $session->i18n->maketext(
@@ -914,6 +914,17 @@ sub complete {
         $status = $session->i18n->maketext(
 'Warning: Could not send confirmation email, email has been disabled'
         );
+    }
+
+    # Only change the session's identity _if_ the registration was done by
+    # TWikiGuest, and an email was correctly sent.
+    if( $safe2login &&
+          $session->{user} eq $session->{users}->getCanonicalUserID(
+              $TWiki::cfg{DefaultUserLogin}) ) {
+        # let the client session know that we're logged in. (This probably
+        # eliminates the need for the registrationHandler call above,
+        # but we'll leave them both in here for now.)
+        $users->{loginManager}->userLoggedIn( $data->{LoginName}, $data->{WikiName} );
     }
 
     # and finally display thank you page
