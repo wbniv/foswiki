@@ -1,0 +1,9 @@
+%META:TOPICINFO{author="SimianApe" date="1208936463" format="1.1" version="1.4"}%
+Here will be the detailed description of the %FORMFIELD{IssueType}%.
+
+
+%META:FIELD{name="History" attributes="" title="History" value="%25WORKFLOWHISTORY%25"}%
+%META:WORKFLOWHISTORY{value="Initial -- 23 Apr 2008 - 08:41"}%
+%META:WORKFLOW{name="Initial" LASTTIME_Initial="23 Apr 2008 - 08:41" LASTVERSION_Initial="3"}%
+%META:PREFERENCE{name="WORKFLOW" title="WORKFLOW" type="Set" value="DefectWorkflow"}%
+%META:PREFERENCE{name="VIEW_TEMPLATE" title="VIEW_TEMPLATE" type="Set" value="ApprovalView"}%

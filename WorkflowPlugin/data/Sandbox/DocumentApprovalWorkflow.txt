@@ -1,0 +1,33 @@
+---++ Tags used in controlled topics
+	* Set WORKFLOWNOTICE = This topic is under document control. Last approval on %WORKFLOWLASTTIME_APPROVED%: %WORKFLOWLASTVERSION_APPROVED%
+	* Set WORKFLOWBUTTON =  <table border="0" cellspacing="0" cellpadding="0"> <tr><td>You are permitted to change the status of this document:</td><td>%WORKFLOWTRANSITION%</TD></tr></table>
+
+<form action="%SCRIPTURLPATH{edit}%/Sandbox/ApprovedDocumentAUTOINC000">
+ <textarea name="text" style="display:none">
+<nop>   * Set WORKFLOW = DocumentApprovalWorkflow
+| *Workflow* ||
+| Current state | %<nop>WORKFLOWSTATE% |
+| Transitions available | %<nop>WORKFLOWTRANSITION% |
+| State message | %<nop>WORKFLOWSTATEMESSAGE% |
+| Last time in APPROVED state | %<nop>WORKFLOWLASTTIME_APPROVED% |
+| Last version in APPROVED state | %<nop>WORKFLOWLASTVERSION_APPROVED% |
+
+Workflow history: %<nop>WORKFLOWHISTORY%
+ </textarea>
+ <input type="submit" value="Create new example approved document" />
+</form>
+
+---++ States
+| *State*       | *Allow Edit* | *Message* |
+| UNDERREVISION | QualityGroup | This document is being revised. |
+| APPROVED      | nobody       | This document has been approved for release. |
+| WAITINGFORQM  | nobody       | This document is waiting for approval by the Quality Manager. |
+| WAITINGFORCTO | nobody       | This document is waiting for approval by the CTO.|
+---++ Transitions
+| *State*        | *Action* | *Next State*  | *Allowed*                        | *Form*        |
+| APPROVED       | revise   | UNDERREVISION | QualityGroup                     | ApprovedForm  |
+| UNDERREVISION  | ready for approval | WAITINGFORQM  | QualityGroup                     | InProcessForm |
+| WAITINGFORQM   | approve  | WAITINGFORCTO | QualityManager                   |               |
+| WAITINGFORQM   | reject   | UNDERREVISION | QualityManager,QualityGroup      |               |
+| WAITINGFORCTO  | approve  | APPROVED      | TechnicalDirector                | ApprovedForm  |
+| WAITINGFORCTO  | reject   | UNDERREVISION | TechnicalDirector,QualityManager |               |

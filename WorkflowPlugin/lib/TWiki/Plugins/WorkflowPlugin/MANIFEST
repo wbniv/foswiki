@@ -1,0 +1,18 @@
+data/TWiki/WorkflowPlugin.txt 0640 Plugin doc page
+lib/TWiki/Plugins/WorkflowPlugin.pm 0640 Plugin Perl module
+pub/TWiki/WorkflowPlugin/Flow.gif 0640 Example image
+pub/TWiki/WorkflowPlugin/Flow.draw 0640 Example image
+pub/TWiki/WorkflowPlugin/convert.pl.txt 0640 Conversion script
+data/Sandbox/DefectWorkflow.txt 0640 Example workflow
+data/Sandbox/DefectOne.txt 0640 Example defect
+data/Sandbox/DefectTwo.txt 0640 Example defect
+data/Sandbox/ApprovalViewTemplate.txt 0640 Template for DefectTwo style
+data/Sandbox/InitialForm.txt 0640 Forms for defect workflow
+data/Sandbox/SubmittedForm.txt 0640 Forms for defect workflow
+data/Sandbox/CompletedForm.txt 0640 Forms for defect workflow
+data/Sandbox/ControlledDocument.txt 0640 Example document
+data/Sandbox/DocumentApprovalWorkflow.txt 0640 Example workflow
+data/Sandbox/UnderRevisionForm.txt 0640 Forms for defect workflow
+data/Sandbox/QMApprovalForm.txt 0640 Forms for approval workflow
+data/Sandbox/TMApprovalForm.txt 0640 Forms for approval workflow
+data/Sandbox/ApprovedForm.txt 0640 Forms for approval workflow

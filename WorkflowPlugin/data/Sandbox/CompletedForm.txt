@@ -1,0 +1,11 @@
+%META:TOPICINFO{author="guest" date="1025373031" format="1.0" version="1.3"}%
+%META:TOPICPARENT{name="WebHome"}%
+| *Name* | *Type* | *Size* | *Values* | *Tooltip messages* | *Mandatory* | 
+| Issue Name | label | 73 |  | Illustrative name of issue | M | 
+| Issue Description | label | 55x5 |  | Short description of issue |  | 
+| Issue Type | label | 1 | , Defect, Enhancement, Other |  |  | 
+| Worker	| label | 73 |  |  | M | 
+| Reviewer | label | 73 |  |  | M |
+| History | label | 1 | %WORKFLOWHISTORY%		 |  | |
+| Issue Repository | label | 73 |  |  |  |
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the Dev topic instead. -->
