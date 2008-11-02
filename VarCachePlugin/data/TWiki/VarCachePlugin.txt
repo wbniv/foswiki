@@ -1,0 +1,96 @@
+%META:TOPICINFO{author="PeterThoeny" date="1141669952" format="1.0" version="1.4"}%
+---+ Variable Cache Plugin 
+
+This Plugin caches TWiki variables in selected topics for faster page rendering.
+
+Most topics in a typical TWiki installation are rendered within a small deviation in terms of speed. Exceptions are topics that contain a lot of dynamic content. This is mainly caused by CPU or I/O intensive %TWIKIWEB%.TWikiVariables, such as =%<nop>SEARCH{}%= and =%<nop>INCLUDE{}%=. 
+
+This Plugin caches all =%<nop>VARIABLES%= located in a topic so that the topic can get rendered as quickly as one without variables. An outdated cache gets refreshed when a user is looking at a topic; in which case it will take longer to render the page. Time-based refresh can also be disabled in favor of an on-demand cache update.
+
+The rendering of TWiki markup to HTML is not cached. That is, user specific HTML rendering based on skin settings is not affected by the caching.
+
+---++ Syntax Rules and Cache Update Rules
+
+	* Add a =%<nop>VARCACHE{}%= variable to the topic you want to cache
+		* It supports these parameters:
+		  | *Parameter* | *Description* | *Default* |
+		  | =refresh="24"= | Cache refresh period in hours, e.g. maximum age of cache | =REFRESH= Plugin setting |
+		  | =cachemsg="..."= | Message shown when looking at a cached topic %BR% __Note:__ Use =$age= to indicate the age of cache, =$link= to indicate the refresh URL | =CACHEMSG= Plugin setting |
+		  | =updatemsg="..."= | Message shown after a cache refresh %BR% __Note:__ Use =$link= to indicate the refresh URL | =UPDATEMSG= Plugin setting |
+	* The =%<nop>VARCACHE{}%= variable gets:
+		* replaced with the =cachemsg= message when looking at a cached topic
+		* replaced with the =updatemsg= message if the cache has just been updated
+		* removed if caching is not active, e.g. when the topic gets rendered dynamically
+	* The cache gets updated on topic view if:
+		* the cache does not exist (e.g. after adding the =%<nop>VARCACHE{}%= variable)
+		* the cache is older then the cache refresh period (unless refresh if set to 0)
+		* the cache is older then the topic (e.g. the topic has been updated)
+		* the topic is accessed with a =?varcache=refresh= URL parameter (usually by following the <u>refresh</u> link in the cache message)
+	* The topic is rendered dynamically without caching when:
+		* the topic has URL parameters other then =varcache= (e.g. to show dynamic content properly, such as table sorting, filtering, searching)
+		* the topic is previewed after editing
+	* Limitations:
+		* The cache is not user specific. For example, all users see the expanded =%<nop>WIKIUSERNAME%= of the person who refreshed the cache (on demand or by looking at a topic with an exired cache)
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>VARCACHEPLUGIN_SHORTDESCRIPTION%==
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Cache TWiki variables in selected topics for faster page rendering
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+	* Default refresh period in hours. No automatic refresh: =0=, default: =24=
+		* Set REFRESH = 24
+
+	* Cache help messages. Use =$age= to indicate age of cache, =$link= to indicate the refresh URL
+		* Set CACHEMSG = This topic was cached $age ago ([<nop>[$link][refresh]])
+		* Set UDATEMSG = This topic is now cached ([<nop>[$link][refresh]])
+		* #Set CACHEMSG = <a href="$link"><img src="%ATTACHURLPATH%/cachetopic.gif" alt="This topic was cached $age ago. Click icon to refresh." width="16" height="16" border="0" /></a>
+		* #Set UDATEMSG = <a href="$link"><img src="%ATTACHURLPATH%/cachetopic.gif" alt="This topic is now cached. Click icon to refresh." width="16" height="16" border="0" /></a>
+
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the Plugin on the TWiki server. 
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==data/TWiki/%TOPIC%Test.txt== | Plugin test topic |
+	  | ==data/TWiki/%TOPIC%Test.txt,v== | Plugin test topic repository |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==pub/TWiki/%TOPIC%/cachetopic.gif== | Cache icon 16x16 |
+	* TWiki 4.0 and up: Run the [[%SCRIPTURL%/configure%SCRIPTSUFFIX%][configure%SCRIPTSUFFIX%]] script to enable the Plugin
+	* Test if the installation was successful:
+		* Visit the %TOPIC%Test topic, it contains a nested search
+		* Click on the <u>refresh</u> link or append a =?varcache=refresh= parameter to the URL
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/PeterThoeny |
+|  Copyright: | &copy; 2004-2007, [[http://www.twiki.net/][TWIKI.NET]] |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | 06 Jan 2006 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  06 Jan 2006: | Small fix for TWiki 4.0 |
+|  16 Jul 2004: | Doc improvements (no code change) |
+|  15 Jul 2004: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.024 (15 Jul 2004) |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 99%, %TWIKIWEB%.FormattedSearch 99%, %TOPIC%Test 208% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+
+-- TWiki:Main/PeterThoeny - 06 Jan 2006
+
+%META:FILEATTACHMENT{name="cachetopic.gif" attr="h" comment="Cache icon 16x16 pixel" date="1089949592" path="cachetopic.gif" size="935" user="PeterThoeny" version="1.1"}%
