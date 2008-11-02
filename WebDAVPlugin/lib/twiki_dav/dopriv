@@ -1,0 +1,19 @@
+#!/bin/sh
+rm /tmp/vsnlog /tmp/perllog
+make install
+/etc/init.d/apache restart
+while [ -f dopriv ]; do
+echo "ACCESS_LOG:"
+tail -1 /var/log/httpd/access_log
+echo "ERROR_LOG:"
+tail -1 /var/log/httpd/error_log
+[ -f /tmp/perllog ] && {
+  echo "PERLLOG:"
+  cat /tmp/perllog
+}
+[ -f /tmp/vsnlog ] && {
+  echo "VSNLOG"
+  cat /tmp/vsnlog
+}
+sleep 3
+done

@@ -1,0 +1,243 @@
+---+!! <nop>Web<nop>DAV for TWiki
+
+<nop>Web<nop>DAV stands for "Web-based Distributed Authoring and Versioning". It is a set of extensions to the HTTP protocol which allows users to collaboratively edit and manage files on remote Apache 1.3 web servers.
+
+<!--
+
+   PLEASE DO NOT EDIT THIS TOPIC
+
+   It is automatically generated from the subversion repository, and any changes
+   you make will simply be overwritten the next time a release is generated.
+
+   Instead, you could check your fix in, raise a bug in the Bugs web, or mail the author.
+-->
+
+%TOC%
+
+TWiki integration with <nop>Web<nop>DAV means that users can edit topics and attachments using an appropriate <nop>Web<nop>DAV enabled client program, such as Microsoft&trade; Word&trade; or KWrite.
+
+Using the URL of a topic or attachment, it can also be opened directly from applications. Saving back automatically creates a new version.
+
+By opening a Web Folder on a TWiki directory, users can drag and drop attachments into the topic, and they will automatically be versioned and added to the topic attachment table. Topics can be created in webs by dragging and dropping =.txt= files into the directory representing the web.
+
+TWiki protections are honoured through use of a Plugin that caches protections in a TDB database, allowing Apache to rapidly test them when a file in a TWiki folder is being accessed.
+
+The TWiki DAV integration consists of a customised [[http://webdav.org/mod_dav/][mod_dav]] based Apache module, a bin script used for checking in, a bin script for refreshing the protections cache, and the plugin used to extract protections. The Apache module is based on mod_dav version 1.0.3 and includes all of the functionality of that module, so should be a drop-in replacement on Apache 1.3 servers.
+   * Apache 2 servers are *not* supported.
+   * Hierarchical webs are *not* supported
+
+*Note that webserver administrator access will usually be required to install this module.*
+
+*Note: this version of the plugin is for TWiki-4 and later only. For the previous version of TWiki (released Sept 2004) see* http://twiki.org/cgi-bin/view/Plugins/WebDAVPlugin?rev=1.30
+
+---++ Usage
+Different applications have different ways of accessing Web<nop>DAV folders.
+Many applications are DAV enabled; examples are:
+	* The entire Microsoft Office&trade; suite
+	* Microsoft Windows Explorer&trade;
+	* The Open<nop>Office.org suite
+	* Konqueror
+---+++ Windows Explorer
+To import a Web<nop>DAV folder into Windows Explorer, select "My Network Places" and double-click on "Add Network Place". Enter the URL of the DAV folder for the twiki topic, twiki web, or the root folder. Now when you double-click on an a TWiki file it should bring up the appropriate application.
+---+++ Konqueror
+In the Konqueror "Location" bar, type the URL of the folder but instead of specifying "http:" use "webdav:" instead. Konqueror will open the folder as a file folder.
+---+++ Other applications
+If you are not sure what applications are Web<nop>DAV enabled, just try typing a URL that uses the =Location= described below into the Open dialog of the application until you find one that offers to let you save the file back to the URL, instead of to a local folder.
+---++ Installation Instructions
+__Note:__ You do not need to install anything on the browser to use this add-on. The following instructions are for the administrator who installs the add-on on the server where TWiki is running.
+
+*Important* This plugin *will not* work with Apache 2.
+
+These instructions apply to *TWiki-4* and later *only*. For earlier versions of TWiki, please refer to http://twiki.org/cgi-bin/view/Plugins/WebDAVPlugin?rev=1.30, and download the zip from there.
+
+Installation is in several steps.
+   1 Download and unpack the package,
+   1 Build and install the dependencies
+   1 Build and install the Apache twiki_dav module,
+   1 Configure the plugin and Publish your directories
+
+---+++ Download and unpack the archive
+	* Download the archive from the Plugin Home (see below)
+	* Unpack the archive in your twiki installation directory. Content:
+	| *File* | *Description* |
+%$MANIFEST%
+
+---+++ Install the dependencies
+*Note that administrator access may be required to install this module.*
+
+Install the TdbContrib package (available from TWiki.org)
+
+---+++ Build =twiki_dav=
+*Note that administrator access may be required to install this module.*
+
+This module is an Apache extension module, and is installed either statically or using =apxs=. =apxs= is recommended if you have it.
+To build and install the module:
+<verbatim>
+cd lib/twiki-dav
+./configure
+make
+make install
+</verbatim>
+Fuller instructions are given at http://webdav.org/mod_dav/install.html
+
+---+++ Configure the Plugin & Publish Directories
+
+Edit =lib/LocalSite.cfg= and add the following setting:
+<verbatim>
+# **PATH**
+# Set to point to the same directory as your DAVLockDB directive in httpd.conf.
+# The protections database will be in a single file named =TWiki= and will be
+# written to this directory.
+$TWiki::cfg{Plugins}{WebDAVPlugin}{DAVLockDB} = '/var/lock/webdav';
+</verbatim>
+
+Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+
+To enable the TWiki-specific functions of twiki-dav, edit your =httpd.conf= and set up appropriate =Alias= entries to point at your TWiki directories (see example below). Add &lt;Location> sections for your TWiki directories, and add the following directives.
+   * =DAV<nop>LockDB= tells twiki_dav where to look for the TWiki permissions database, and must be the same as the {Plugins}{WebDAVPlugin}{DAVLockDB} setting in =configure=. *It must point to a directory that already exists* - create it if necessary, making sure the Apache user can read and write to it.
+	* =DAV= is the standard DAV directive for enabling DAV on the directory.
+	* =TWikiDir= defines the type of the directory (pub or data), and the server path to the directory after the URI has been resolved. It should be the same as the last parameter to the Alias directive.
+	* =TWikiScript= defines the path to the checkin script on the server. The script is per-directory, so if necessary you can use different scripts with different directories.
+For example,
+<verbatim>
+DAVLockDB /var/lock/webdav
+Alias /twiki/data/ /home/twiki/data/
+<Location /twiki/data/>
+   DAV On
+   TWikiDir data /home/twiki/data
+   TWikiScript /home/twiki/tools/dav.pl
+   Options FollowSymLinks Indexes
+   Allow from all
+   # Set your auth appropriately. Authentication MUST be enabled for ALL
+   # request types.
+   AuthType Basic
+   AuthName "Enter your wiki username"
+   AuthUserFile /home/twiki/.htpasswd
+   Require valid-user
+</Location>
+
+Alias /twiki/pub/ /home/twiki/pub/
+<Location /twiki/pub/>
+   DAV On
+   TWikiDir pub /home/twiki/pub
+   TWikiScript /home/twiki/tools/dav.pl
+   Options FollowSymLinks Indexes
+   Allow from all
+   # Set your auth appropriately. Authentication MUST be enabled for ALL
+   # request types.
+   AuthType Basic
+   AuthName "Enter your wiki username"
+   AuthUserFile /home/twiki/data/.htpasswd
+   Require valid-user
+</Location>
+
+</verbatim>
+Restart the Apache server.
+
+Build your initial protections cache database by running the =dav_recache= script, which should have been installed in your twiki =tools= directory. This should build the database in a file called =TWiki= in the =DAV<nop>LockDB= directory. Dump the content of this database using the =tools/dumpLockDB.pl= script. In a normal TWiki installation this database will _not_ be empty. The database must be readable/writable by the apache user.
+
+Note that there may be other files in this directory, with .dir and .pag extensions. These are used by =mod_dav= to implement the LOCK method (nothing to do with TWiki).
+
+To test the plugin, edit a topic in TWiki that should be controlled and put an access restriction in - for example, edit Sandbox.%TOPIC%Test and put in the lines:
+<pre>
+	* <nop>Set ALLOWTOPICVIEW = Allow<nop>Her
+	* <nop>Set DENYTOPICVIEW = Deny<nop>It
+</pre>
+Save the topic, dump the database again and grep for =Sandbox/%TOPIC%Test=. You should see two =P:= entries, one for ALLOW (:A) and one for DENY (:D).
+
+Now attach an arbitrary file to that topic, preferably one associated with a Web<nop>DAV-enabled application e.g. a =.doc= file.
+
+Open up the attachment directory using a Web<nop>DAV enabled application such as Windows Explorer, following the usage instructions above. If you used the example =Location= shown above in your =httpd.conf=, a URL such as =http<nop>://localhost/twiki/pub/Sandbox/%TOPIC%Test= should work.
+
+---+++ Important notes
+If you rename a TWiki topic _manually_ (i.e. by moving the folder from the shell command line, rather than from TWiki or from Explorer of Konqueror) then the protections cache for that topic will *not* get updated. This is only relevant if the topic contains protections statements such as DENYTOPICVIEW. To avoid this issue you should always rename from within a dav-enabled file browser, such as Konqueror or Windows Explorer, or rename only from within TWiki. If you _do_ rename from the shell, then you can correct the protections cache by one of the following methods:
+	1 Edit the destination topic in TWiki and save it again,
+	1 Use the script =dav_recache= to update the protections cache. =dav_recache= must be run by a user who has write access to the protections database, such as the apache user.
+	* From the command line, it takes one parameter, the twiki path name of the web or topic to refresh - for example,<br><pre>dav_recache<br>dav_recache Main<br>dav_recache Main.Secret<nop>Topic</pre>  
+	* From a CGI query, the parameters are passed in the CGI parameters =web= and =topic=.
+	* Where no path is given it will refresh the whole twiki; if only a web is given it will refresh just that web.
+
+---+++ Troubleshooting
+The most likely reason for any problems is permissions; the =DAV<nop>LockDB= directory, and all files within it, must be writable by the Apache user. Check the TWiki warning logs and the Apache error logs.
+
+Small memory leaks will occur when topics with protections are renamed frequently, so it is good practice to regenerate the cache for the whole twiki at regular intervals (say, monthly). The easiest way to do this is to set up a cron job that deletes the cache, and then runs the =dav_recache= script to regenerate it.
+
+Error and warning messages may be generated in the Apache =error_log=. Tracing may be enabled so that you can monitor the DAV transactions from messages in the Apache =error_log=. Tracing is enabled using the global Apache directive =DAVMonitor=, which takes an integer representing a bitmask where
+	* bit 0 (1) switches on tracing of method calls (GET, POST, etc)
+	* bit 1 (2) switches on resource resolution tracing
+	* bit 2 (4) switches on permissions tracing
+	* bit 3 (8) enables a dump of the entire permissions DB for each access (liable to overflow =error_log= with a large DB)
+
+Note that if you have non-default permissions set in your TWiki, then you *must* =require valid-user= on *all* requests on the DAV directories. This is because the TWiki permissions check requires a username, and the only way to get that information is to be authenticated by Apache. If you have used =.htpasswd= login this is straightforward to do (see the example Apache configuration above).
+
+If your Apache is sending wrong =Content-Type= headers, this indicates the files requested are being handled by twiki_dav, but they should not be. You should access your DAV enabled directories through another path. For example instead of the configuration above, use:
+<verbatim>
+[...]
+Alias /dav/pub/ /home/twiki/pub/
+<Location /dav/pub/>
+   DAV On
+[...]
+</verbatim>
+Now only requests to =http://your.domain/dav/pub/somefile= get handled by twiki_dav.
+
+You may want to add a new DAV-edit-link to your attachments table.
+   * Add the following to your TWikiPreferences:
+<verbatim>
+   * For the WebDAV edit link in the attachment tables we need the DAV-path, which is the PUBURL with twiki replaced by the alias set in httpd.conf:
+      * Set WIKIDAVPUBURL = http://%HTTP_HOST%/dav/pub/
+</verbatim>
+   * Change your templates/attachtables*.tmpl to include the following after the manage-link:
+<verbatim>
+<a href="%WIKIDAVPUBURL%/%INCLUDINGWEB%/%INCLUDINGTOPIC%/%A_FILE%">DAV-edit</a>
+</verbatim>
+
+---++ Settings
+		* Set SHORTDESCRIPTION = Support for a set of extensions to the HTTP protocol which allows users to collaboratively edit and manage files on remote web servers.
+
+---++ Plugin Info
+|  Plugin Author: | TWiki:Main/CrawfordCurrie http://c-dot.co.uk |
+|  Plugin Version: | %$VERSION% build %$DATE% |
+| Change History: | |
+|  10617 | Moved TDB to a separate Contrib |
+|  10434 | Cured problem with attachments going to zero bytes |
+|  9756 | Ported to TWiki-4. \
+         Added TDB. \
+         Incorporated doc improvements made by Marius Reiner. |
+|  5248 | Improved debug and documentation, and added tab conversion |
+|  5048 | Cairo readiness |
+|  5023 | Udates for Cairo, bug fixes grokked from WRS installation |
+|  5001 | Corner-case bugfixes |
+|  5000 | Merging changes made in live sites |
+|  4991 | Documentation fixes |
+|  4990 | Added back .exp and other PC build files. Added yet more tests. Updated documentation. |
+|  4989 | Range of tests for topic handling |
+|  4988 | Added first version of topic manipulation |
+|  4982 | Minor correction |
+|  4981 | Added curl-based server tests, and extended documentation. Renamed recache.pl to dav_recache. |
+|  4974 | Fixed rename, and respected locks |
+|  4973 | Cured nasty bug when drag-dropping to DAV dirs in Konqueror |
+|  4970 | Depends on shared |
+|  4958 | Changed tests to use shared fixtures |
+|  4949 | Changed to use shared code build process |
+|  4948 | Moved build process to SharedCode |
+|  4940 | Fixes for drag and drop, and checkin script. Tidied up debugging and added more tests. |
+|  4939 | Fixes for minor probs and docs |
+|  4937 | Added protections mechanism and tests |
+|  15 Sep 2004 | Improved authentication handling |
+|  16 Aug 2004 | Minor bugfixes |
+|  22 May 2004 | Support for topics added. Production release. |
+|  14 Apr 2004 | Initial very _very_ early access release |
+|  Other Dependencies: | %$DEPENDENCIES% |
+|  Perl Version: | 5.005 |
+|  License: | GPL |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+---++ Acknowledgements
+   * This product includes software developed by Greg Stein <gstein@lyra.org> for use in the mod_dav module for Apache (http://www.webdav.org/mod_dav/). mod_dav is licensed under the terms of the following license: http://webdav.org/mod_dav/license-1.html
+   * This work was commissioned by [[http://www.windriver.com/][Wind River Systems]].
+   * Porting to TWiki-4 was sponsored by [[http:///www.ilog.fr][ILOG]]
+
+__Related Topic:__ %TWIKIWEB%.TWikiPlugins, TWiki:Codev.WebDAV
+
+-- TWiki:Main/CrawfordCurrie - %$DATE%

@@ -1,0 +1,12 @@
+print "Installing twiki_dav....\n";
+# Install the twiki_dav apache module.
+# Would be better if we checked it was Apache 1.3
+chdir('lib/twiki_dav');
+if (! -f 'Makefile') {
+    # Assume dynamic loading with apxs
+    `./configure --with-apxs`;
+    die "Configuration failed: $?. Please correct any reported errors and re-run this script." if $?;
+}
+`make install`;
+die "Installation failed: $?. Please correct any reported errors and re-run this script." if $?;
+chdir('../..');

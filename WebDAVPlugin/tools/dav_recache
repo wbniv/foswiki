@@ -1,0 +1,42 @@
+#!/usr/bin/perl -w
+#
+# Copyright (C) 2004 Wind River Systems Inc.
+#
+# For licensing info read license.txt file in the TWiki root.
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details, published at 
+# http://www.gnu.org/copyleft/gpl.html
+
+BEGIN {
+    use lib '../bin';
+    require 'setlib.cfg';
+}
+
+use strict;
+use TWiki;
+use TWiki::Plugins::WebDAVPlugin::Permissions;
+use TWiki::UI;
+
+my $chosenWeb;
+my $chosenTopic;
+
+$chosenWeb = $ARGV[$#ARGV];
+if ( $chosenWeb && $chosenWeb =~ m/(.*)[\.\/\\](.*)/o ) {
+    ( $chosenWeb, $chosenTopic ) = ( $1, $2 );
+}
+
+$TWiki::Plugins::SESSION = new TWiki();
+my $pdb = $TWiki::cfg{Plugins}{WebDAVPlugin}{DAVLockDB};
+my $permDB = new TWiki::Plugins::WebDAVPlugin::Permissions( $pdb );
+
+if ( !defined( $chosenWeb ) && -w "$pdb/TWiki" ) {
+  unlink( $pdb.'/TWiki' );
+}
+$permDB->recache( $chosenWeb, $chosenTopic );
