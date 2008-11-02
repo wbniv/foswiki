@@ -18,7 +18,7 @@ lib/TWiki/Contrib/SearchEngineKinoSearchAddOn/StringifierPlugins/PDF.pm
 lib/TWiki/Contrib/SearchEngineKinoSearchAddOn/StringifierPlugins/Text.pm
 lib/TWiki/Contrib/SearchEngineKinoSearchAddOn/StringifierPlugins/XLS.pm
 lib/TWiki/Contrib/SearchEngineKinoSearchAddOn/StringifierPlugins/PPT.pm
-templates/kinosearch.pattern.tmpl
+templates/kinosearch.tmpl
 templates/kinosearchrss.tmpl
 kinosearch/bin/kinoindex 0544
 kinosearch/bin/kinoupdate 0544
