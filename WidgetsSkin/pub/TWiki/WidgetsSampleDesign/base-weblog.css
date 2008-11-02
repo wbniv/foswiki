@@ -107,6 +107,7 @@ body {
 #alpha, #beta, #gamma {
     display: inline;
     float: left;
+    width: 100%;
 }
 
 #header-inner, #content-inner, #footer-inner,

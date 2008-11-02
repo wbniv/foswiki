@@ -88,6 +88,7 @@ body { text-align: center; } /* center on ie */
 	position: relative;
 	float: left;
 	min-height: 1px;
+	width:100%;
 }
 
 #delta { float: right; }
