@@ -1,0 +1,70 @@
+%META:TOPICINFO{author="PeterThoeny" date="1171357543" format="1.1" reprev="1.3" version="1.3"}%
+---+ Upload to TWiki Add-On
+
+This is a small Perl script to programmatically attach a file to any TWiki topic. The script can be executed on any computer, it does not have to be on the server where TWiki is installed. This is a useful script to create mashups of TWiki and other applications.
+
+---++ Usage
+
+To attach a file to a TWiki topic, type this on the command line:
+<verbatim>
+./uploadtotwiki.pl -l <login> -c <comment> <file(s)> <TWiki URL>
+</verbatim>
+and enter the password when prompted.
+
+Supported command line parameters:
+   * =-l login      -= login name of TWiki account (optional)
+   * =-p password   -= password of TWiki account (optional)
+   * =-c 'comment'  -= comment of attached file (default: 'Uploaded by uploadtotwiki/2007-02-12')
+   * =-h 1          -= hide attachment, 0 or 1 (default: 0)
+   * =-i 1          -= inline attachment, e.g create link in topic text (default: 0)
+   * =-d 60         -= delay in seconds between uploads of multiple files (default: 30)
+   * =file(s)       -= one or more local files to upload (required)
+   * =URL           -= view URL of TWiki topic, http or https protocol (required, must be last)
+
+Example:
+
+=% ./uploadtotwiki.pl -l <nop>%USERNAME% ./smile.gif <nop>http://twiki.org/cgi-bin/view/Sandbox/UploadTest= %BR%
+=Uploading ./smile.gif to <nop>http://twiki.org/cgi-bin/view/Sandbox/UploadTest= %BR%
+=Enter password for <nop>%USERNAME% at twiki.org:= %BR%
+=... upload finished.= %BR%
+=%=
+
+---++ Add-On Installation Instructions
+
+__Note:__ This is a command line tool for administrators; regular TWiki user can ignore this.
+
+   * Download the ZIP file from the Add-on Home (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Add-on topic |
+     | ==tools/uploadtotwiki.pl== | Add-on script |
+   * If inclined, move =uploadtotwiki.pl= to a different location or server
+   * Run above example to test if the installation was successful
+   * Install CPAN:LWP if needed (see [[http://twiki.org/cgi-bin/view/TWiki/HowToInstallCpanModules][instructions]])
+
+---++ Limitations
+
+   * Upload of files with illegal characters (=$=, =@=, =^=, space, etc.) fail, and no error message is shown.
+
+---++ Add-On Info
+
+   * Set SHORTDESCRIPTION = Script to programmatically attach a file to any TWiki topic
+
+|  Add-on Author: | TWiki:Main.PeterThoeny |
+|  Copyright: | &copy; 2007, Peter Thoeny, [[http://www.twiki.net/][TWIKI.NET]] |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Add-on Version: | uploadtotwiki/2007-02-12 |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  2007-02-12: | Added =-l=, =-p=, =-c=, =-h=, =-i=, =-d= parameters; support for multiple files |
+|  2007-02-11: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 (TWiki 4.0) |
+|  CPAN Dependencies: | LWP |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  Add-on Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topic:__ %TWIKIWEB%.TWikiAddOns
+
+-- TWiki:Main/PeterThoeny - 2007-02-12

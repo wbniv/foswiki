@@ -1,0 +1,3 @@
+# Release manifest for UploadToTWikiAddOn
+data/TWiki/UploadToTWikiAddOn.txt 0644 Documentation
+tools/uploadtotwiki.pl 0755 Perl script
