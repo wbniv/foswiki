@@ -1,0 +1,31 @@
+%TMPL:INCLUDE{"edit"}%
+
+%TMPL:DEF{"content"}%%TMPL:P{"pagetitle"}%
+<form name="main" action="%SCRIPTURLPATH{"save"}%/%WEB%/%TOPIC%" method="post">
+%FORMFIELDS%
+%TMPL:P{"toolbar"}%<div id="edithelptoggle" class="twikiHelp twistyHidden twistyRememberSetting">%TMPL:P{"syntaxhelp"}%</div>
+<div class="patternFormHolder twistyMakeHidden" id="formHolder">
+<textarea class="twikiEditboxStyleProportional" id="topic" name="text" rows="%EDITBOXHEIGHT%" cols="%EDITBOXWIDTH%" style='%EDITBOXSTYLE%' onkeydown='handleKeyDown(event)'>%TEXT%</textarea>
+<input type="hidden" name="originalrev" value="%ORIGINALREV%" />
+<input type="hidden" name="skin" value="%URLPARAM{"skin"}%" />
+<input type="hidden" name="cover" value="%URLPARAM{"cover"}%" />
+<input type="hidden" name="formtemplate" value="%FORMTEMPLATE%" />
+<input type="hidden" name="templatetopic" value="%TEMPLATETOPIC%" />
+<input type="hidden" name="topicparent" value="%TOPICPARENT%" />
+<input type="hidden" name="newtopic" value="%NEWTOPIC%" />
+<input type="hidden" name="cmd" value="%CMD%" />
+<div class="patternSigLine">
+<span class="patternSig twikiLeft"><label for="sig" class="twikiGrayText">%MAKETEXT{"Your signature to copy/paste:"}%&nbsp;&nbsp;</label><input class="twikiInputField" size="41" name="sig" type="text" readonly="readonly" title='%MAKETEXT{"Select, copy and paste your signature text to the bottom of your entry"}%' id="sig" value="-- <nop>%WIKIUSERNAME% - %DATE%" /></span>
+<div class="twistyMakeOpaque twikiRight">
+<div style="text-align:left;">
+<a href="#" class="twistyTrigger"><img width="16" alt="%MAKETEXT{"Use monospace font"}%" title="%MAKETEXT{"Use monospace font"}%" align="top" src="%PUBURLPATH%/%TWIKIWEB%/TWikiDocGraphics/monospace.gif" height="16" border="0" onclick="return setEditBoxFontStyle('mono');" /></a> <a href="#" class="twistyTrigger"><img width="16" alt="%MAKETEXT{"Use proportional spaced font"}%" title="%MAKETEXT{"Use proportional spaced font"}%" align="top" src="%PUBURLPATH%/%TWIKIWEB%/TWikiDocGraphics/proportional.gif" height="16" border="0" onclick="return setEditBoxFontStyle('proportional');" /></a>
+&nbsp;
+<a href="#" class="twistyTrigger"><img width="16" alt="%MAKETEXT{"Enlarge edit box"}%" title="%MAKETEXT{"Enlarge edit box"}%" align="top" src="%PUBURLPATH%/%TWIKIWEB%/TWikiDocGraphics/arrowdown.gif" height="16" border="0" onclick="return changeEditBox(1);" /></a> <a href="#" class="twistyTrigger"><img width="16" alt="%MAKETEXT{"Shrink edit box"}%" title="%MAKETEXT{"Shrink edit box"}%" align="top" src="%PUBURLPATH%/%TWIKIWEB%/TWikiDocGraphics/arrowup.gif" height="16" border="0" onclick="return changeEditBox(-1);" /></a>
+</div>
+</div><!-- /twistyMakeOpaque twikiRight-->
+<br class="twikiClear" />
+</div><!-- /patternSigLine-->
+%TMPL:P{"topicaction"}%
+</form>
+</div><!-- /patternFormHolder-->
+<div class="twikiHelp twistyMakeHidden">%TMPL:P{"syntaxhelp"}%</div>%TMPL:END%

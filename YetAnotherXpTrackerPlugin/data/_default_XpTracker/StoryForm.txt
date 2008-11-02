@@ -1,0 +1,17 @@
+%META:TOPICINFO{author="TWikiGuest" date="1154157676" format="1.1" version="1.2"}%
+| *Name*      | *Type* | *Size* | *Values* | *Tooltip message* | *Mandatory* |
+| Story summary   | text   | 60     | |  | M |
+| [[AllIterations][Iteration]]   | select  | 1     | |  | M |
+| Ongoing      | radio | 2 | No, Yes | | |
+| [[TeamMembers][Story lead]]      | select   | 1 |  |  | |
+| Branch required   | radio | 2 | No, Yes | | |
+| Customer visible   | radio | 2 | No, Yes | | |
+| Customer priority   | select   | 1 | , 1-Resolve immediately, 2-Give high attention, 3-Normal queue, 4-Low priority |  | |
+| Inspection required   | radio | 2 | No, Yes | | |
+| Issue type      | select| 1 | Enhancement, Defect found in internal development, Defect found by test, Defect found in engineering release, Defect found in final release | | |
+| Priority      | select   | 1 | , 1-Resolve Immediately, 2-Give High Attention, 3-Normal Queue, 4-Low Priority |  | Yes |
+| Severity      | select   | 1 | , 1-System crashed/Showstopper, 2-Functionality failure, 3-Workaround possible, 4-Cosmetic/Documentation error |  | |
+| State      | select   | 1 | , Submitted, Assigned, Opened, Resolved, Approved, Verified, Closed, Terminated, Postponed, Duplicated |  | M |
+| Submit date      | text   | 15     | |  | |
+| [[TeamMembers][Submitter]]      | select   | 1 |  |  | M |
+| URL         | text  | 60      | |  | |
