@@ -1,0 +1,8 @@
+# Release manifest for WorkflowReportsContrib
+bin/workflowreports 0755 Command script
+lib/TWiki/Contrib/WorkflowReportsContrib.pm 0755 Perl module
+data/TWiki/WorkflowReportsContrib.txt 0644 Documentation
+data/Sandbox/DebugWorkflowReport.txt 0644 Sample report
+data/Sandbox/Issue1.txt 0644 Sample topic
+data/Sandbox/Issue2.txt 0644 Sample topic
+data/Sandbox/WorkflowReport.txt 0644 Sample report
