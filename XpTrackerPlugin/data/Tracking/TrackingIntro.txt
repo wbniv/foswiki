@@ -1,0 +1,29 @@
+%META:TOPICINFO{author="mwatt" date="1034186940" format="1.0" version="1.2"}%
+%META:TOPICPARENT{name="WebHome"}%
+<h2>XP tracking introduction</h2>
+
+This page explains the way XP projects are tracked in these pages
+
+<h3>Layout</h3>
+
+There is a hierarchy of information here:
+
+	* *Web* - the TWiki web for XP tracking. One web can be used to track multiple projects.
+	* *Project* - the project being worked on for a Product. Usually this will be the next major release. Each project has a page, which contains an auto-generated summary of the project progress.
+	* *Team* - Each project has one or more teams, groups of developers that work on one aspect of the project. Each team has a page which contains an auto-generated summary of the team's progress.
+	* *Iteration* - a project is divided into a series of short (usually 2-4 week) iterations. Each iteration has a page, the contents of which are also auto-generated.
+	* *Story* - An iteration comprises a number of stories. Stories are pieces of related functionality that are owned by a lead developer but can be worked on by more than one developer. The story page contains information on the acceptance criteria, and also a list of tasks.
+	* *Tasks* - these are the atomic units of work. A story is usually broken up into a number of tasks. No task should take more than 3 days to complete. Tasks may be shared among more than one developer. Tasks details are entered on the story page.
+
+<b>Information is only entered for Stories and their associated tasks. Information for all other levels in the hierarchy is automatically generated (once the pages are initialised)</b>
+
+<center>
+Example of hierarchy:
+<noautolink>
+
+ | *Web*	|  *Project*		 |  *Team*  | *Iteration* | *Story* | *Tasks* |
+ | Tracking | BeijingRelease  | CoreTeam | ItFinishUp  | FinalFixesStory | IncrementVersion |
+
+</noautolink>
+
+</center>

@@ -1,0 +1,39 @@
+%META:TOPICINFO{author="RafaelAlvarez" date="1090993264" format="1.0" version="1.1"}%
+---+ %TOPIC%
+
+%EDITTABLE{ format="| text, 20 | text, 40 |" changerows="off" }%
+| *Story summary*			 | |
+| *Iteration*				  | XPPARENTPAGE |
+| *FEA*						  | |
+| *Story Lead*					 | |
+| *Next Story*					 | |
+| *Passed acceptance test* | No %EDITCELL{"select,1,No,Yes,On Hold,Error,Deployment"}%|
+
+*Acceptance Criteria*
+
+
+
+*Additional Specification Comments*
+
+
+
+*Implementation Notes*
+
+
+
+*Delay Causes*
+
+
+
+*Final or Pending Considerations*
+
+
+
+---+++ Tasks in this story
+
+%EDITTABLE{ header="|*Tasks*|*Est*|*Spent*|*To do*|*Risk*|*Reviewer*|*Developer*|*Task Name*|*Start Date*|*Est End Date*|*End Date*|" format="| label,0, Task | text,5,0 | text,5,0| text,5,0 | select, 1, Low, Medium, High | text,20 | text,20 | text,30 | text,12,0| text,12,0| text,12,0|"  changerows="on" }%
+|*Tasks*|*Est*|*Spent*|*To do*|*Risk*|*Reviewer*|*Developer*|*Task Name*|*Start Date*|*Est End Date*|*End Date*|
+| Task | 0 | 0 | 0 | Low |  |  |Implementation| | | |
+
+---
+

@@ -1,0 +1,162 @@
+%META:TOPICINFO{author="RafaelAlvarez" date="1090993345" format="1.0" version="1.2"}%
+---+ XP Tracker Plugin
+
+<b>Version 3.2.2 - Jan 27 2005</b>
+
+This is a plugin for tracking [[http://www.c2.com/cgi/wiki?ExtremeProgramming][eXtreme Programming]] projects. The original code was
+written by TWiki:Main.RichardBennett, It was converted into this plugin by
+TWiki:Main.MartinWatt and enhanced by TWiki:Main.AndreaBacchetta, TWiki:Main.AnthonPang, TWiki:Main.AndreaSterbini, TWiki:Main.ThomasEschner, and TWiki:Main.RafaelAlvarez
+
+See TWiki:Plugins/XpTrackerPluginHistory for a description of changes in this new version.
+
+---++Documentation
+The documentation is hosted in the Twiki.org site, and is not being distributed with the plugin as it's an ongoing effort.
+
+	* TWiki:Plugins.XpTrackerPluginManual
+	* TWiki:Plugins.ZenAndXpTracking
+	* TWiki:Plugins.XpTrackerUpgradeGuide
+	* TWiki:Plugins.XpTrackerCustomizationGuide
+
+---++ Description
+
+---+++Layout
+
+There is a hierarchy of information here:
+
+	* *Web* - the TWiki web for XP tracking. One web can be used to track multiple products.
+	* *Project* - the project being worked on for a Product. Usually this will be the next major release. Each project has a page, which contains an auto-generated summary of the project progress.
+	* *Team* - Each project has one or more teams, groups of developers that work on one aspect of the project. Each team has a page which contains an auto-generated summary of the team's progress.
+	* *Iteration* - a project is divided into a series of short iterations. Each iteration has a page, the contents of which are also auto-generated.
+	* *Story* - An iteration comprises a number of stories. Stories are pieces of related functionality that are owned by a lead developer but can be worked on by more than one developer. The story page contains information on the acceptance criteria, and also a list of tasks.
+	* *Tasks* - these are the atomic units of work. A story is usually broken up into a number of tasks. Tasks may be shared among more than one developer. Tasks details are entered on the story page.
+
+__Information is entered for Stories and their associated tasks, and for iteration dates. Information for all other levels in the hierarchy is automatically generated.__
+
+---+++Usage
+
+ Creation of pages is recursive, each page has an html form that uses a template to create child pages:
+
+	* <b>Projects/Teams</b>. You can create a new project page using the html form on the home page for the tracking web. You can create a new team page using the form on the project page. You can add additional content to these pages if desired, but do not delete the existing content. This is used to provide high level overviews of schedule progress. Projects and Teams will not be shown in the pages if they don't have any iteration.
+
+	* <b>Iterations</b> Create new iterations from the team pages.
+
+	* <b>Stories</b> Create new stories from the iteration page. The story name can be any unique name, <b>as long as it ends with the string "Story"</b>. Fill in the two tables for the story summary and task list respectively.
+ 
+
+---++ <nop>%TOPIC% Settings
+
+Plugin settings are stored as preferences variables.
+
+	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = This plugin tracks XP projects
+
+	* Debug plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+	* Plugin coloring schema:
+		* Set UNSTARTEDCOLOR = #FFCCCC
+		* Set INPROGRESSCOLOR = #FFFF99
+		* Set FINISHEDCOLOR = #99FF00
+		* Set DEPLOYMENTCOLOR = #99CCCC
+		* Set ACCEPTANCECOLOR = #CCFFFF
+		* Set COMPLETECOLOR = #99FF99
+		* Set ERRORCOLOR = #999999
+		* Set HOLDCOLOR = #FFFFFF
+
+---+++ Templates
+		* Set PROJECTTEMPLATE = XpProjectTemplate
+		* Set TEAMTEMPLATE = XpTeamTemplate
+		* Set ITERATIONTEMPLATE = XpIterationTemplate
+
+
+---+++Recognized Variables.
+
+This is a list of all the tables available. The names should be self-explanatory.
+
+| *Variable*  | *Parameters*	| *Comment*	|
+| XPSHOWALLPROJECTS	  | none	| |
+| XPSHOWALLTEAMS		  | none	| |
+| XPSHOWALLITERATIONS	| none	| |
+| XPSHOWPROJECTTEAMS	 | project topic	 | |
+| XPSHOWPROJECTITERATIONS	| project topic	 | |
+| XPSHOWPROJECTSTORIES  | project topic	 | |
+| XPSHOWTEAMITERATIONS  | team topic	| |
+| XPSHOWITERATION		 | iteration topic	 | |
+| XPSHOWITERATIONTERSE  | iteration topic	 | |
+| XPSHOWPROJECTCOMPLETIONBYSTORIES  | project topic	| |
+| XPSHOWPROJECTCOMPLETIONBYTASKS	 | project topic	| |
+| XPVELOCITIES		 | iteration topic	 | |
+| XPDUMPITERATION	 | iteration topic	 | Shows the iteration in the Book format (the complete text for each story one after another)|
+| XPSHOWDEVELOPERTASKS  | developer |Show a developer's open tasks group by project and iteration|
+| XPSHOWDEVELOPERTASKS  | developer, web |Show a developer's open tasks group by project and iteration, in the specified tracking web |
+| XPSHOWDEVELOPERTASKSBYITERATION  | developer,iteration| Show a developer's open tasks for a given iteration|
+| XPSHOWDEVELOPERTASKSBYITERATION  | developer,iteration,web| Show a developer's open tasks for a given iteration, in the specified tracking web |
+| XPSHOWLOAD  | developer |Show a developer's group by project/iteration |
+| XPSHOWCOLOURS  | |Service procedure to show current colours for each story status |
+| XPGETSTORYSTATUS  | story | Shows the status text for the given story|
+
+---++ Limitations
+	* This version has not been checked against data from V2.0. 
+
+---++ Additional TWiki plugins/changes needed to get this plugin to work at its best
+
+	* The plugin should work in a standard 01Dec2001, 01Feb2003 and TWiki20040119beta TWiki install, but it is easier to use with these additional plugins:
+		* TWiki:Plugins.TablePlugin is optional but useful as it allows you to sort tabulated information by column
+		* TWiki:Plugins.EditTablePlugin is used to simplify entering of stories and tasks. The latest version (with support for the %<nop>EDITCELL% variable) is required.
+	* If not using the latest TWiki version, you need to apply the patch in TWiki:Codev.AfterSavePluginHandler
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this Plugin. The following instructions are for the administrator who installs the Plugin on the server where TWiki is running. 
+
+	* Download the ZIP file XpTrackerPlugin.zip from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory.
+
+Content:
+| *File:* | *Description:* | 
+| ==data/TWiki/%TOPIC%.txt== | Plugin topic | 
+| ==data/Tracking/WebHome.txt== | Home page for XP tracking web |
+| ==data/Tracking/SetupHowto.txt== | Help page - how to set up tracking for a project|
+| ==data/Tracking/TrackingIntro.txt== | Help page - Introduction to web layout |
+| ==data/Tracking/WebTopicEditTemplate.txt== | Template for any other type of new page (empty) |
+| ==data/Tracking/XpAdminPage.txt== | Tracking Web Admin Page |
+| ==data/Tracking/XpIterationDetails.txt== | Show XPSHOWITERATION for the including iteration topic |
+| ==data/Tracking/XpIterationTemplate.txt== | New Iteration template |
+| ==data/Tracking/XpMyOpenTasks.txt== | List the open tasks for the logged used |
+| ==data/Tracking/XpNewPageError.txt== | Page shown when there is an error creating a page |
+| ==data/Tracking/XpProjectStories.txt== | List all the stories for the including project topic |
+| ==data/Tracking/XpProjectStoriesStatus.txt== | Show the stories status for the including project topic |
+| ==data/Tracking/XpProjectTasksStatus.txt== | Show the tasks status for the including project topic |
+| ==data/Tracking/XpProjectTemplate.txt== | New project template |
+| ==data/Tracking/XpShowWindowScript.txt== | A utility javascript to show a topic in a new window |
+| ==data/Tracking/XpStoryTemplate.txt== | New Story template |
+| ==data/Tracking/XpTeamTemplate.txt== | New Team Template |
+| ==lib/TWiki/Plugins/%TOPIC%.pm== | Main plugin Perl module | 
+| ==lib/TWiki/Plugins/Xp/*.pm== | plugin Perl submodules | 
+| ==pub/TWiki/%TOPIC%/sorttable.js== | javascript used to sort tables on the client side | 
+	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+
+
+<b>Installation test</b>
+
+	* If installed correctly,you should see the table with all the possible Story status and their colors, if not then you'll see <nop>%XPSHOWCOLOURS<nop>%
+<br />
+%XPSHOWCOLOURS%
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.RichardBennett, TWiki:Main.MartinWatt, Thomas Eschner, TWiki:Main.AnthonPang, TWiki:Main.AndreaBacchetta, TWiki:Main.RafaelAlvarez |
+|  Plugin Version: | V3.2.2 - 27 Jan 2005: Bugfixes |
+|  Plugin Version: | V3.2 - 28 Jul 2004 |
+|  Change History: | V3.1 22 Feb 2003: Updated version |
+|  Change History: | V3.0 19 Nov 2002: Updated version |
+|  Change History: | V2.0 16 Oct 2002: New version of Plugin by TWiki:Main.MartinWatt |
+|  Change History: | V1.0 29 Jul 2002: Initial version of Plugin by TWiki:Main.MartinWatt based on code by TWiki:Main.RichardBennett |
+|  CPAN Dependencies: | HTTP::Date |
+|  Other Dependencies: | TWiki:TWiki.EditTablePlugin (The latest version (with support for the %<nop>EDITCELL% variable)), TWiki:TWiki.TablePlugin |
+|  Perl Version: | 5.0 |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+

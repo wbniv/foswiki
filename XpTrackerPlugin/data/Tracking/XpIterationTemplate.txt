@@ -1,0 +1,19 @@
+%META:TOPICINFO{author="RafaelAlvarez" date="1090993257" format="1.0" version="1.1"}%
+%INCLUDE{"XpShowWindowScript"}%
+
+---+ %TOPIC%
+
+%EDITTABLE{ format="| text, 20 | text, 40 |" changerows="off" }%
+| *Summary*	 |  |
+| *Team*		 | XPPARENTPAGE |  
+| *Start*	 |  %EDITCELL{"date"}%|
+| *End*		  |  %EDITCELL{"date"}%|
+
+---
+
+<a target="WikiSyntax" onClick="return launchWindow('%WEB%','XpIterationDetails')" href="%SCRIPTURLPATH%/view/%WEB%"><h3>Iteration Details &gt;&gt;</h3></a>
+
+%XPSHOWITERATIONTERSE{%TOPIC%}%
+
+%XPVELOCITIES{%TOPIC%}%
+

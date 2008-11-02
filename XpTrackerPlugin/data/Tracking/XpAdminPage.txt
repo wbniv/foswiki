@@ -1,0 +1,25 @@
+%META:TOPICINFO{author="RafaelAlvarez" date="1089776448" format="1.0" version="1.2"}%
+
+---+ TWiki.XpTrackerPlugin Web Administration
+This topic lists all the topics that can be customized to follow specific needs
+
+---+++Topic Templates
+Used to create new Projects, Teams, Iterations and Stories
+	* XpProjectTemplate
+	* XpTeamTemplate
+	* XpIterationTemplate
+	* XpStoryTemplate
+
+---+++ Extra info Pages
+Used to show additional info about some Project or Iteration
+	* XpProjectStories
+	* XpProjectStoriesStatus
+	* XpProjectTasksStatus
+	* XpIterationDetails
+ 
+---+++Support Pages
+Used for various functions.
+	* XpShowWindowScript: javascript that creates a new window with the specified topic in the current web.
+	* XpMyOpenTasks: Show the open tasks of the currently logged developer
+	* XpNewPageError: Shown when the creation of a topic failed.
+
