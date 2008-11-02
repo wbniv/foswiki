@@ -1,0 +1,505 @@
+%META:TOPICINFO{author="PatrickDiamond" date="1155807559" format="1.0" version="1.70"}%
+---+!! <nop>XmlQuery TWiki Plugin
+
+This Plugin allows TWiki to process [[http://www.w3.org/XML/][XML]] Data using the [[http://www.w3.org/TR/xslt][XSLT]] language.
+
+The inputs supported are
+	* TWiki topics (data from tables, actions, forms and other metadata)
+	* TWiki attachments (where these are XML files),
+	* External XML documents (e.g. http://example.com/doc.xml)
+	* Database sources (any datasource with a [[http://search.cpan.org/modlist/Database_Interfaces/DBD][DBD]] driver)
+
+The outputs supported are
+	* HTML or XML embedded within a topic
+	* XML written to an attachment e.g. [[http://blogs.law.harvard.edu/tech/rss][RSS]], [[http://www.w3.org/TR/SVG11/][SVG]], [[http://blogs.msdn.com/brian_jones/archive/2005/06/27/433152.aspx][Excel]] or [[http://blogs.msdn.com/brian_jones/archive/2005/07/05/435772.aspx][Word]] XML etc.
+	* Database data written to a DBI source
+
+---++!! Table of Contents
+%TOC%
+
+---++ <nop>%TOPIC% Settings
+	* Short Description of the <nop>XmlQuery Plugin
+		* Set SHORTDESCRIPTION = Apply XSLT queries to Topic Data, DBI data, XML attachments & URLs
+
+	* Debug this plugin: (See output in =data/debug.txt=)
+		* Set DEBUG = 0
+
+---++ Syntax Rules
+
+---+++ XSLTSTART tag: defining a stylesheet
+
+The basic format of an XSLT query is as follows
+
+%<nop>XSLTSTART{topic="^StartsWith.*"}%
+
+__XSLT Text, see recipes for example XSLT__
+
+%<nop>XSLTEND%
+
+---+++ XSLTSTART Parameters
+
+| *Parameter* | *Comment* | *Default* |
+| *web* | This a regular expression which can match multiple webs e.g. ^Work | current web |
+| *topic* | This is a regular expression that matchs topics within the web(s) matched by the __web__ parameter | current topic |
+| *attach* | This is a regular expression which is matched against attachments on already matched topics. The contents of these attachments are included in the XML parsed by this XSLT | |
+| *url* | __depreciated: used XSLT [[http://www-128.ibm.com/developerworks/xml/library/x-tipcombxslt/][document]] function instead__ <font size="smaller">Specify a url from which to extract XML. If specified this overrides the above XML sources</font> | |
+| *urlinc* | __depreciated: used XSLT [[http://www-128.ibm.com/developerworks/xml/library/x-tipcombxslt/][document]] function instead__ <font size="smaller">Specify a url from which to extract XML. The XML data from this URL is included in the main body of the XML under <verbatim>/twiki/url[id="x"]</verbatim> where _x_ is the number of the urlinc. _urlinc_ can be specified multiple times each having a separate /twiki/url </font> | |
+| *debug* | Accepts one of __on__ , __off__ or __full__ <br> __on__ lists the input XML, the XSLT being parsed, the raw output and plugin and cache settings <br> __off__ switches off debug out <br> __full__ by default the XML output in the debug is limited to the first 10k. This option will output it all. Browser beware | __off__ |
+| *quiet* | Accepts one of __on__ or __off__ . If __on__ will suppress warning and error messages | __off__ |
+| *benchmark* | Accepts one of __on__ or __off__ . If __on__ will display internal benchmarks on the processing of the XSLT. Points to note, XML will have to be generated for pages referenced by the query but not saved since the Plugin was installed. This can take sometime and is a one off operation. Previews are not cached and this can be seen in  benchmarks.  | __off__ |
+| *cache* | Switch __on__ or __off__ result caching. The __cache__ parameter overrides the __cacheexpires__ parameter. This allows a simple cache flush function to be created where the value for __cache__ is a URL parameter that gets set to __off__ to flush the cache.  | __on__ |
+| *cacheexpires* | Override the plugin defaults on expiring the result cache. <br/> Valid values are <ul><li> __never__ the cache is never expired</li><li> __now__ the cache is expired now</li><li> __x [seconds,minutes,hours,days,weeks,months,years]__ specify exactly how long the cache should live| __never__ |
+| *output* | Redirect the output of this XSLT block to a file stored as an attachment of the current TWiki Page.  This option allows the creation of XML content that is not encapsulated inside a <nop>TWiki page. Examples of what this could be are an Excel xml file, a .svg file or a .xml such as  a RSS file. The file can be referenced  in the following manner %<nop>ATTACHURL%/filename.extension | |
+| __anything else__ | Every other parameter specified is passed directly to the query as an XSLT parameter e.g. a parameter  of admin="%WIKIWEBMASTER%" becomes a parameter $admin available within the XSLT. See [[XmlQueryPluginRecipe2][Recipe 2]] for a working example.  This is the best way of inserting or passing TWiki content to an XSLT query.| |
+
+---+++ XML Input Format
+
+The XML that forms the input to the XSLT engine has the following outline structure. To see exactly what XML is being passed to an XSLT script set the debug parameter to either "on" or "full".
+
+<verbatim>
+<twiki>
+	 <web name="Bla">
+		  <topic name="BlaBla">
+				<data topic="BlaBla" web="Bla" version="Bla">
+					 <tables>
+						  <table bla="bla">
+								<row>
+									 <field type="title">Bla</field>
+									 <field type="data">Bla</field>
+									 ....
+								</row>
+								....
+							</table>
+							....
+					  </tables>
+					  <actions>
+							<action bla="bla" ..../>
+							....
+					  </actions>
+					  <metadata>
+							<? bla="bla"..../>
+					  </metadata>
+					  <xmldata>
+							....	
+					  </xmldata>
+				 </data>
+			<attachments>
+				 <attachment name="bla">
+					  ....
+				 </attachment>
+				 ....
+			</attachments>
+			</topic>
+	  </web>
+  <url>
+	  ...
+  </url>
+  <url>
+	  ...
+  </url>
+</twiki>
+</verbatim>
+
+Attachment data is only available if the attach parameter is used within the XSLTSTART tag. The table and action tag each contain the same arguments as specified within the TWiki text. This is a very useful way to pass metadata into the XML. The argument doesn't have to mean anything to the TWiki macro for it to be available. One use for this could be to create id and class parameters on these data sets.
+
+Metadata is handled in a generic fashion where the metadata name/type becomes the tag name and every argument to the metadata becomes an argument to the XML element.
+
+To view the actual structure of any TWiki page reference it in a XSLTSTART tag and set debug = "on" or "full".
+
+---+++ XSLT DBI Extensions
+
+3 XSLT DBI functions are available to connect database data to the XSLT engine. These provide means to both read and write data.
+
+	* dbiselect('dbd','userid','password','sql statement')
+	* dbido('dbd','userid','password','sql statement')
+	* dbiblock('dbd','userid','password',$xml)
+
+To import these functions add the following attribute to your initial spreadsheet tag
+<verbatim>  
+xmlns:xq="http://twiki.org/xmlquery" 
+</verbatim>
+
+Each of these functions use the same first 3 parameters to specify the database connection. However the available set of connections is by default locked down to a limited set specified within the <nop>XmlQueryPlugin module. The reason for this is security, the DBI interface allows both reading and writing of database data. To amend the available set of connections the server admin will have to edit the plugin  twiki/lib/TWiki/Plugins/XmlQueryPlugin.pm and amend the contents of the $dbi_connections variable. This variable and the $allow_user_to_specify_dbi_connection variable are both located near the start of the plugin.
+
+<verbatim>
+	 $dbi_connections = {
+		  'example1' => {
+				'DBD'		=> 'DBI:Pg:dbname=example;host=example.com',
+				'user'	  => 'exampleuser',
+				'password' => 'examplepassword'
+		  },
+	 }
+</verbatim>
+
+After the plugin text has been amended the web server may have to be restarted for your changes to take affect.
+
+Once a local connection has been specified within the plugin it can then be referred to by it's identifier. In the above example that would be 'example1' . Locally specified connections overwrite the contents of the userid and password fields.
+
+The available identifiers are listed in an error message returned from these dbi functions when an incorrect connection name has been specified.
+
+---++++ dbiselect function
+
+__xq:dbiselect('dbd','userid','password','sql statement','sql_arguments'...)__
+
+This Function takes an sql select statement, its arguments and returns the result of the select as an XML nodeset.
+
+e.g.
+<verbatim>
+ <xsl:stylesheet version="1.0" 
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:exslt="http://exslt.org/common"
+  xmlns:xq="http://twiki.org/xmlquery">
+
+ <xsl:template match="/">
+ <table>
+
+<xsl:variable name="query" select="xq:dbiselect('example1','','','select * from testtable where fieldname=?',$value)/>
+
+  <xsl:for-each select="exslt:node-set($query)/row">
+		<tr>
+			 <td><xsl:value-of select="fieldname"/></td>
+			 <td><xsl:value-of select="other_fieldname"/></td>
+		</tr>>
+  </xsl:for-each>
+  </table>
+  </xsl:template>
+</xsl:stylesheet>
+</verbatim>
+
+The XML returned is in the following format with "fieldname" being replaced with the actual column name
+
+<verbatim>
+<result>
+	 <row>
+		  <fieldname></fieldname>
+		  ...
+	 </row>
+	 ...
+<result>
+</verbatim>
+
+
+
+---++++ dbido function
+
+__dbido('dbd','userid','password','sql statement','sql_arguments'...)__
+
+This Function takes an sql statement, executes it with any sql_arguments and returns the number of rows updated (or an error message).
+
+e.g.
+<verbatim>
+<xsl:variable name="value1" select="'1'"/>
+<xsl:variable name="value2" select="'Joe'"/>
+<xsl:variable name="result" select="xq:dbido('example1','','','insert into test
+ VALUES(?,?)',$value1,$value2)"/>
+
+<xsl:if test="name(exslt:node-set($result)) = 'error'">
+	 <xsl:text>Error during processing</xsl:text>
+	 <xsl:value-of select="xsl:node-set($result)"/>
+</xsl:if>
+
+<xsl:if test="exslt:node-set($result)/updates">
+	 <xsl:text>Rows Updated</xsl:text>
+	 <xsl:value-of select="exsl:node-set($result)/updates"/>
+</xsl:if>
+
+</verbatim>
+
+---++++ dbiblock function
+
+__dbiblock('dbd','userid','password',$sql_block)__
+
+This function takes a block of sql statements, some associated data and executes these within a transaction block. In the following example the variable $sql is assigned an XML fragment with 2 embedded sql statements. The second insert statement has 4 rows of data each with 2 fields. These fields are mapped onto the sql statement at the positions of the "?" characters. For more info on
+
+e.g.
+<verbatim>
+
+ <xsl:variable name="sql">
+	  <statement sql="delete from test"/>
+	  <statement sql="insert into test VALUES(?,?)">
+			<row>
+				 <field>1</field>
+				 <field>fred</field>
+			</row>
+			<row>
+				 <field>2</field>
+				 <field>Joe</field>
+			</row>
+			<row>
+				 <field>3</field>
+				 <field>Annie</field>
+			</row>
+			<row>
+				 <field>4</field>
+				 <field>Jane</field>
+			</row>
+	  </statement>
+</xsl:variable>
+
+<xsl:variable name="result" select="xq:dbiblock('example1','','',$sql)"/>
+
+<xsl:if test="name(exslt:node-set($result)) = 'error'">
+	 <xsl:text>Error during processing</xsl:text>
+	 <xsl:value-of select="exslt:node-set($result)"/>
+</xsl:if>
+
+<xsl:if test="exslt:node-set($result)/updates">
+	 <xsl:text>Rows Updated</xsl:text>
+	 <xsl:value-of select="exslt:node-set($result)/updates"/>
+</xsl:if>
+
+</verbatim>
+
+
+---+++ XSLT TWiki Functions
+
+3 XSLT functions are available for interaction with Twiki. 
+
+	* readtopic('web name','topic name')
+	* readattachment('web name','topic name','attachment name')
+	* cgiparam('parameter name' ...)
+
+To import these functions add the following attribute to your initial spreadsheet tag
+<verbatim>  
+xmlns:xq="http://twiki.org/xmlquery" 
+</verbatim>
+
+
+Please be aware that the use of these functions is not cache safe. It is recommended that caching be switched off. Unlike topics, attachments or parameters specified within the XSLTSTART tag where if the topic,attachment or value changes the cache is flushed these functions do not affect the status of the cache flag. The same warning applies to the XPath function __document__ .
+
+---++++ readtopic function
+
+__readtopic('web name','topic name')__
+
+This Function takes the name of a web and the name of a topic and returns the XML for that topic.
+
+e.g.
+<verbatim>
+ <xsl:stylesheet version="1.0" 
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:exslt="http://exslt.org/common"
+  xmlns:xq="http://twiki.org/xmlquery">
+
+ <xsl:template match="/">
+ <table>
+
+<xsl:variable name="topic" select="xq:readtopic('TWiki','WebHome')"/>
+
+  <xsl:for-each select="exslt:node-set($topic)//table">
+		<tr>
+			 <td><xsl:value-of select="@name"/></td>
+			 <td><xsl:value-of select="count(row)"/></td>
+		</tr>>
+  </xsl:for-each>
+  </table>
+  </xsl:template>
+</xsl:stylesheet>
+</verbatim>
+
+The XML returned is a subset of the XML listed at __XML Input Format__ 
+e.g. 
+  <topic name="BlaBla">
+	 <data topic="BlaBla" web="Bla" version="Bla">
+		<tables>
+		  <table bla="bla">
+
+---++++ readattachment function
+
+__readattachment('web name','topic name','attachment name')__
+
+This Function takes the name of a web,a topic and an attachment and returns the XML for the attachment.
+
+e.g.
+<verbatim>
+ <xsl:stylesheet version="1.0" 
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:exslt="http://exslt.org/common"
+  xmlns:xq="http://twiki.org/xmlquery">
+
+ <xsl:template match="/">
+ <table>
+
+<xsl:variable name="attach" select="xq:readattachment('TWiki','WebHome','attached.xml')"/>
+
+  <xsl:for-each select="exslt:node-set($attach)//surname">
+		<tr>
+			 <td><xsl:value-of select="."/></td>
+		</tr>>
+  </xsl:for-each>
+  </table>
+  </xsl:template>
+</xsl:stylesheet>
+</verbatim>
+
+The XML returned is taken directly from the attachment
+
+---++++ cgiparam function
+
+__xmlquery:cgiparam('parameter name'...)__
+
+This Function takes a list of CGI parameter names and returns the values for these cgi parameters. Without any parameters this function returns all the parameter values.
+
+e.g.
+<verbatim>
+ <xsl:stylesheet version="1.0" 
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:exslt="http://exslt.org/common"
+  xmlns:xq="http://twiki.org/xmlquery">
+
+ <xsl:template match="/">
+ <table>
+
+  <xsl:variable name="params" select="xq:cgiparam()" />
+
+  <xsl:for-each select="exslt:node-set($params)/*">
+		<tr>
+			 <td><xsl:value-of select="name()"/></td>
+			 <td><xsl:value-of select="text()"/></td>
+		</tr>>
+  </xsl:for-each>
+
+  </table>
+  </xsl:template>
+</xsl:stylesheet>
+</verbatim>
+
+The XML returned is as follows
+<parameters>
+	 <parm name>....</parm name>
+	 <parm name>....</parm name>
+	 <parm name>....</parm name>
+	 ...
+</parameters>
+
+
+---+++ XMLSTART tag: defining XML content within a twiki page
+
+If you need to specify XML data directly within a twiki page the XMLSTART/XMLEND tags can be used.
+For example.
+
+%<nop>XMLSTART{display="hidden"}%
+
+__XML Text__
+
+%<nop>XMLEND%
+
+| *Parameter*| *Comment* | *Default* |
+|*display*| This controls the display of the XML text <ul><li> __hidden__ The XML text is hidden from display but still available to XSLT queries</li><li> __verbatim__ The XML is displayed exactly as entered</li><li> __include__ the XML is included along with the rest of the TWiki text in the display</li></ul> | __hidden__ |
+
+---++ Recipes
+
+As XSLT has has a very powerful but complex syntax here are several examples of how to use it. If you do create a query that could be useful to others and would like to share then please do create a Recipe similar to  the ones below and send to %TWIKIWEB%.PatrickDiamond.
+
+	* [[XmlQueryPluginRecipe1][Recipe 1]]: List all Attachments in the current Web
+	* [[XmlQueryPluginRecipe2][Recipe 2]]: Attachments Queried using parameters
+	* [[XmlQueryPluginRecipe3][Recipe 3]]: Table Contents Filtered
+	* [[XmlQueryPluginRecipe4][Recipe 4]]: Table Contents Restructured
+	* [[XmlQueryPluginRecipe5][Recipe 5]]: Creating a unique, sorted, list from the contents of a table column
+	* [[XmlQueryPluginRecipe6][Recipe 6]]: Outputting TWiki syntax from XSLT
+	* [[XmlQueryPluginRecipe7][Recipe 7]]: Place all fields in one set. Simplifies some types of query.
+
+---++ Notes on Debugging
+
+When debugging an XSLT script if you find that the error message returned is not detailed enough then try the following
+	1 set the debug parameter debug="full"
+	1 save the XML and XSLT to separate local files
+	1 run command line tool _xsltproc_ passing it the XSLT and XML files
+
+_xsltproc_ is a utility that comes with libxslt. On windows it is installed in perl/bin when XML-LibXSLT is installed. It provides a useful set of options to profile and debug XSLT.
+
+---++ Notes on Performance
+
+	* Caching is very good for performance especially when multiple topics are being referenced. Use the __benchmark__ parameter to help determine the benefits.
+	* Accessing large (or large numbers of) XML files will consume memory on your server.
+
+---++Useful Tutorials
+
+To learn more about XML and XSLT try the following online resources
+
+	* [[http://www.vbxml.com/xsl/default.asp][TopXML]] XSLT Tutorials and References
+	* [[http://www.w3schools.com/xml/default.asp][XML]] XML Tutorials
+	* [[http://www.w3schools.com/xsl/default.asp][XSLT]] XSLT Tutorials
+	* [[http://www.w3schools.com/xpath/default.asp][XPath]] XPATH Tutorials
+	* [[http://www.exslt.org/][EXSLT]] Extensions to XSLT available in <nop>LibXSLT
+
+---++Details on the operation of this Plugin
+
+	* When a topic is saved an XML version of the topic is also saved. This contains data held in TWiki tables, actions and metadata.
+
+	* When a topic is referenced by a query the XML is checked to ensure it is up todate. If it is not up todate it is then regenerated.
+	* When a query is parsed a top level XML document is created which includes the XML generated for each referenced topic
+	* if caching is on a cache key is created from
+		* this top level xml
+		* the last modified times of each referenced topic
+		* all the arguments passed to the XSLT (alter being evaluated for TWiki variables).
+	* If caching is on the cache is checked for a result and if available it is returned. The following steps are only taken if no cached result is returned.
+	* The topic/attachment/url XML is parsed by <nop>LibXML
+	* The XSLT is parsed by <nop>LibXML
+	* <nop>LibXSLT is then passed the parsed XML and parsed XSLT
+	* If caching is on the result is cached.
+	* The result is returned.
+
+*Notes on Plugin operation*
+	* The above caching schmea makes the use of TWiki variables and includes etc embedded into the XSLT a problem. If you do this it is best to switch off caching. To avoid having to do this pass the TWiki variables etc into the XSLT as parameters.
+	* The caching schema unfortunality doesn't cache the most expensive part of the XSLT processing. The parsing of the XML. What this means is that when parameters to the XSLT are changed the XML has to be reparsed :( . The reason for this is that the serialize function on <nop>LibXML gives a result which is no quicker to load than the original XML text.
+
+---++ Plugin Requirements
+
+This Plugin requires some disk space to store it's cache and the XML versions of each topic.  The XML version of each topic takes around 1k on average. 
+
+The location of this disk space has several different defaults
+	* On TWiki4.0+ systems the plugin work area will be used /twiki_install_dir/pub/_work_area/XmlQueryPlugin 
+	* On a pre TWiki4,0 Unix system /var/tmp/twiki_xml
+	* On a pre TWiki4,0 Windows system c:/.twiki_xml
+The default disk location can be modifed by altering the $xmldir variable within <nop>XmlQueryPlugin.pm. 
+
+The default maximum size for this disk space is 100Mb. This value can be modified by altering the $cachelimit variable within <nop>XmlQueryPlugin.pm. 
+
+See *Plugin Info* for the list of Perl modules that must be installed before this Plugin can be used. The included perl script  *<nop>XmlQueryPlugin_install.pl* will check for these modules.
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running.
+
+	* Download the ZIP file from the Plugin web (see below)
+	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+	  | *File:* | *Description:* |
+	  | ==XmlQueryPlugin_install.pl== | Script to check installed Perl Modules |
+	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==data/TWiki/%TOPIC%Recipe1== | Plugin Example |
+	  | ==data/TWiki/%TOPIC%Recipe2== | Plugin Example |
+	  | ==data/TWiki/%TOPIC%Recipe3== | Plugin Example |
+	  | ==data/TWiki/%TOPIC%Recipe4== | Plugin Example |
+	  | ==data/TWiki/%TOPIC%Recipe5== | Plugin Example |
+	  | ==data/TWiki/%TOPIC%Recipe6== | Plugin Example |
+	  | ==data/TWiki/%TOPIC%Recipe7== | Plugin Example |
+	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	* execute the script *<nop>XmlQueryPlugin_install.pl*
+	* Test if the installation was successful:
+		* %TOPIC%Recipe5
+	* if unsuccessful check the __data/warnings.txt__ file
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main/PatrickDiamond |
+|  Plugin Version: | 16th Aug 2006 (V1.204) |
+|  Change History: | |	 
+|  16th Aug 2006: | removed unsafe plugin preferences | 
+|  28th Feb 2006: | Documentation fixes <br/> Added script to check for required perl modules | 
+|  9th Feb 2006: | Dakar compatibility | 
+|  22nd Dec 2005: | Small bug fix, and doc fixes | 
+|  10th Oct 2005: | Added topic read function<br/>Added attachment read function<br/>Added cgi parameter read function <br/>some small speedups |
+|  9th Sept 2005: | Added DBI access functions<br/>Added output parameter support |
+|  7th Dec 2004: | Small fix, metadata date format problem.<br/> Date fields are now being padded to correct width |
+|  10 Nov 2004: | Initial version |
+|  TWiki Dependency: | TWiki version 01 Feb 2003 or later |
+|  CPAN Dependencies: | CPAN:DBI, CPAN:XML::LibXML, CPAN:XML::LibXSLT, CPAN:XML::Simple, CPAN:Text::ParseWords, CPAN:Cache::Cache, CPAN:String::CRC, CPAN:LWP::UserAgent |
+|  Other Dependencies: | |
+|  Perl Version: | 5.6 |
+|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 98%, %TWIKIWEB%.FormattedSearch 99%, %TOPIC%Recipe4 96% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+

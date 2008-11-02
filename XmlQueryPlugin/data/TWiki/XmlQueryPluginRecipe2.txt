@@ -1,0 +1,121 @@
+%META:TOPICINFO{author="PatrickDiamond" date="1141121924" format="1.0" version="1.44"}%
+%META:TOPICPARENT{name="XMLQueryPlugin"}%
+---+!!<nop>%TOPIC%  
+
+---+List Attachments in the current Web per user
+
+---++Annotated XSLT Query Text
+
+<verbatim>
+%XSLTSTART{topic=".*" benchmark="on" cache="off" debug="off" user=%URLPARAM{"user"}% puburl=%PUBURL% }%
+ <xsl:stylesheet version="1.0"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:set="http://exslt.org/sets"
+  extension-element-prefixes="set">
+</verbatim>
+__The last two arguments on the xsl:stylesheet element include set functions__
+
+<verbatim>
+ <xsl:template match="/twiki">
+
+ <form method="get">
+ <input type="submit" value="List Attachments for User"/>
+ <select name="user" onchange="submit()">
+ <option></option>
+
+</verbatim>
+__Output the html to start a form with a drop down list__
+<verbatim>
+
+  <xsl:for-each select="set:distinct(/twiki/web/topic/data/metadata/fileattachment/@user)">
+			 <xsl:sort select="."/>
+</verbatim>
+__Select a unique list of users, sort them and process each one__
+<verbatim>
+
+			 <xsl:choose>
+			 <xsl:when test=". = $user">
+								<option><xsl:attribute name="selected"/><xsl:value-of select="."/></option>
+			 </xsl:when>
+			 <xsl:otherwise>
+								<option><xsl:value-of select="."/></option>
+			 </xsl:otherwise>
+			 </xsl:choose>
+
+</verbatim>
+__When the user matchs the current user output a option tag with a selected attribute__
+<verbatim>
+
+
+  </xsl:for-each>
+  </select>
+  </form>
+
+ <table border="1">
+ <tr><th>Topic</th><th>Attachment</th><th>User</th><th>Comment</th></tr>
+ <xsl:for-each select="/twiki/web/topic/data/metadata/fileattachment[@user=$user]">
+</verbatim>
+__Loop over each attachment when the user attribute is equal to the currently select user__
+<verbatim>
+
+		  <tr>
+		  <td>[[<xsl:value-of select="../../@web"/>.<xsl:value-of select="../../@topic"/>]]</td>
+</verbatim>
+__Output the webname.topicname__
+<verbatim>
+
+		  <td>[[<xsl:value-of select="$puburl"/>/<xsl:value-of select="../../@web"/>/<xsl:value-of select="../../@topic"/>/<xsl:value-of select="@name"/>][<xsl:value-of select="@name"/>]]</td>
+		  <td><xsl:value-of select="@user"/></td>
+		  <td><xsl:value-of select="@comment"/></td>
+  </tr>
+  </xsl:for-each>
+  </table>
+  </xsl:template>
+  </xsl:stylesheet>
+%XSLTEND%
+</verbatim>
+
+---++ XSLT Demo
+*XmlQuery must be Installed for this demo to work. If %<nop>XSLTSTART{}% tag appears <nop>XmlQueryPugin is not installed*
+
+%XSLTSTART{topic=".*" benchmark="on" cache="on" debug="off" user='%URLPARAM{"user"}%' puburl=%PUBURL% }%
+ <xsl:stylesheet version="1.0"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:set="http://exslt.org/sets"
+  extension-element-prefixes="set">
+
+ <xsl:template match="/twiki">
+
+ <form method="get">
+ <input type="submit" value="List Attachments for User"/>
+ <select name="user" onchange="submit()">
+ <option></option>
+  <xsl:for-each select="set:distinct(/twiki/web/topic/data/metadata/fileattachment/@user)">
+			 <xsl:sort select="."/>
+			 <xsl:choose>
+			 <xsl:when test=". = $user">
+								<option><xsl:attribute name="selected"/><xsl:value-of select="."/></option>
+			 </xsl:when>
+			 <xsl:otherwise>
+								<option><xsl:value-of select="."/></option>
+			 </xsl:otherwise>
+			 </xsl:choose>
+  </xsl:for-each>
+  </select>
+  </form>
+
+ <table border="1">
+ <tr><th>Topic</th><th>Attachment</th><th>User</th><th>Comment</th></tr>
+ <xsl:for-each select="/twiki/web/topic/data/metadata/fileattachment[@user=$user]">
+		  <tr>
+		  <td>[[<xsl:value-of select="../../../@web"/>.<xsl:value-of select="../../../@name"/>]]</td>
+		  <td>[[<xsl:value-of select="$puburl"/>/<xsl:value-of select="../../../@web"/>/<xsl:value-of select="../../../@name"/>/<xsl:value-of select="@name"/>][<xsl:value-of select="@name"/>]]</td>
+		  <td><xsl:value-of select="@user"/></td>
+		  <td><xsl:value-of select="@comment"/></td>
+  </tr>
+  </xsl:for-each>
+  </table>
+  </xsl:template>
+  </xsl:stylesheet>
+%XSLTEND%
+

@@ -1,0 +1,80 @@
+%META:TOPICINFO{author="PatrickDiamond" date="1141121877" format="1.0" version="1.7"}%
+%META:TOPICPARENT{name="XMLQueryPlugin"}%
+---+!!<nop>%TOPIC%  
+
+---+List all Attachments in the current Web
+
+---++ Annotated XSLT
+
+<verbatim>
+%XSLTSTART{topic=".*" benchmark="off" cache="on" debug="on"}%
+ <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+</verbatim>
+__Required XSL header tag__
+<verbatim>
+
+ <xsl:template match="/twiki">
+
+</verbatim>
+__Match each /twiki item in the XML__
+<verbatim>
+
+ <table border="1">
+ <tr><th>Topic</th><th>Attachment</th><th>User</th><th>Comment</th></tr>
+</verbatim>
+__Output a table tag and the contents of the first row__
+<verbatim>
+
+
+ <xsl:for-each select="/twiki/web/topic/data/metadata/fileattachment">
+</verbatim>
+__Loop over each fileattachment__
+<verbatim>
+
+		  <tr>
+		  <td>[[<xsl:value-of select="../../@web"/>.<xsl:value-of select="../../@topic"/>]]</td>
+</verbatim>
+__Extract from the XML element "data" the web and topic attributes__
+<verbatim>
+
+		  <td><xsl:value-of select="@name"/></td>
+		  <td><xsl:value-of select="@user"/></td>
+		  <td><xsl:value-of select="@comment"/></td>
+
+</verbatim>
+__Output the file attachment attributes of name, user and comment__
+<verbatim>
+
+
+		  <p/>
+  </tr>
+  </xsl:for-each>
+  </table>
+  </xsl:template>
+  </xsl:stylesheet>
+%XSLTEND%
+</verbatim>
+
+---++ XSLT Demo
+*XmlQuery must be Installed for this demo to work. If %<nop>XSLTSTART{}% tag appears <nop>XmlQueryPugin is not installed*
+
+%XSLTSTART{topic=".*" benchmark="off" cache="on" debug="off"}%
+ <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+ <xsl:template match="/twiki">
+ <table border="1">
+ <tr><th>Topic</th><th>Attachment</th><th>User</th><th>Comment</th></tr>
+ <xsl:for-each select="/twiki/web/topic/data/metadata/fileattachment">
+		  <tr>
+		  <td>[[<xsl:value-of select="../../@web"/>.<xsl:value-of select="../../@topic"/>]]</td>
+		  <td><xsl:value-of select="@name"/></td>
+		  <td><xsl:value-of select="@user"/></td>
+		  <td><xsl:value-of select="@comment"/></td>
+		  <p/>
+  </tr>
+  </xsl:for-each>
+  </table>
+  </xsl:template>
+  </xsl:stylesheet>
+%XSLTEND%
+
