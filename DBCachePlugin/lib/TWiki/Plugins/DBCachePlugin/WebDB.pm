@@ -156,6 +156,7 @@ sub onReload {
         my $name = $pref->fastget('name');
         if ($name eq 'TOPICTITLE') {
           $topicTitle = $pref->fastget('value');
+          $topicTitle = TWiki::urlDecode($topicTitle);
           last;
         }
       }
@@ -259,8 +260,9 @@ sub dbQuery {
   @topicNames = grep(!/$theExclude/, @topicNames) if $theExclude;
 
   # parse & fetch
-  my $wikiUserName = TWiki::Func::getWikiUserName();
+  my $wikiName = TWiki::Func::getWikiName();
   my %hits = ();
+  my %sorting = ();
   my $search;
   if ($theSearch) {
     try {
@@ -275,7 +277,7 @@ sub dbQuery {
   }
 
   my $webViewPermission = TWiki::Func::checkAccessPermission('VIEW', 
-    $wikiUserName, undef, undef, $this->{web}) ;
+    $wikiName, undef, undef, $this->{web}) ;
 
   my $doNumericalSort = 1;
   foreach my $topicName (@topicNames) {
@@ -286,7 +288,7 @@ sub dbQuery {
 
       # TODO: re-code DBCacheContrib to add '   * Set ALLOW... perms into the
       # META 'preferences', then recode to just use that.
-      my $cachedText = $this->expandPath($topicObj, 'text');
+      my $cachedText = $topicObj->fastget('text');
       my $topicHasPerms = $cachedText =~ /(ALLOW|DENY)/;
       my $cachedPrefsMap = $topicObj->fastget('preferences');
       if (defined($cachedPrefsMap)) {
@@ -302,32 +304,32 @@ sub dbQuery {
       # work out howto abstract this concept - or to disable it (its worth about 400mS per topic in the set. (if you're not TWikiAdmin))
       if ((!$topicHasPerms && $webViewPermission) || 
           TWiki::Func::checkAccessPermission('VIEW', 
-            $wikiUserName, undef, $topicName, $this->{web})) {
+            $wikiName, undef, $topicName, $this->{web})) {
 
         $hits{$topicName} = $topicObj;
 
         # pre-fetch the sorting key - thus we only do it N times
-        if ($theSort eq 'name') {
-          $hits{$topicName}->{sort} = $topicName;
+        if ($theSort =~ /^(on|name)$/) {
+          $sorting{$topicName} = $topicName;
           $doNumericalSort = 0;
         }
         elsif ($theSort =~ /^created/) {
-          $hits{$topicName}->{sort} = 
-            $this->expandPath($hits{$topicName}, 'createdate');
+          $sorting{$topicName} = 
+            $topicObj->fastget('createdate');
         }
         elsif ($theSort =~ /^modified/) {
-          $hits{$topicName}->{sort} =
-            $this->expandPath($hits{$topicName}, 'info.date');
+          my $info = $topicObj->fastget('info');
+          $sorting{$topicName} = $info?
+            $topicObj->fastget('info')->fastget('date'):0;
         }
-        else {
+        elsif ($theSort ne 'off') {
           $theSort =~ s/\$percnt/\%/go;
           $theSort =~ s/\$nop//go;
           $theSort =~ s/\$n/\n/go;
           $theSort =~ s/\$dollar/\$/go;
-          $hits{$topicName}->{sort} =
-            $this->expandPath($hits{$topicName}, $theSort);
+          $sorting{$topicName} = $this->expandPath($topicObj, $theSort);
           if (($doNumericalSort == 1) &&
-              !($hits{$topicName}->{sort} =~ /^[+-]?\d+(\.\d+)?$/)) {
+              !($sorting{$topicName} =~ /^[+-]?\d+(\.\d+)?$/)) {
             $doNumericalSort = 0;
           }
         }
@@ -337,13 +339,15 @@ sub dbQuery {
 
   @topicNames = keys %hits;
   if (@topicNames > 1) {
-    if ($doNumericalSort == 1) {
-      @topicNames =
-        sort { $hits{$a}->{sort} <=> $hits{$b}->{sort} } @topicNames;
-    }
-    else {
-      @topicNames =
-        sort { $hits{$a}->{sort} cmp $hits{$b}->{sort} } @topicNames;
+    if ($theSort ne 'off') {
+      if ($doNumericalSort == 1) {
+        @topicNames =
+          sort { $sorting{$a} <=> $sorting{$b} } @topicNames;
+      }
+      else {
+        @topicNames =
+          sort { $sorting{$a} cmp $sorting{$b} } @topicNames;
+      }
     }
     @topicNames = reverse @topicNames if $theReverse eq 'on';
   }

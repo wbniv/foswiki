@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1209486030" format="1.1" reprev="1.1" version="$Rev$"}%
+%META:TOPICINFO{author="TWikiContributor" date="1222236379" format="1.1" reprev="1.3" version="$Rev$"}%
 <!--
 
    PLEASE DO NOT EDIT THIS TOPIC
@@ -170,7 +170,7 @@ tool or (b) as a tool to extract properties of (a set of) known topics.
 *Syntax:*
 | *%<nop>DBQUERY{"&lt;search>" ... }%* ||
 | ="&lt;search>"= \
-| search clause, see documentation of the DBCacheContrib (mode (a)) |
+| search clause, see below |
 | =topics="..."= or =topic="..."= \
 | set of topics to consult (mode (b)); \
   if "topics" are specified in addition to a "search" it will be restricted to \
@@ -236,7 +236,7 @@ Traverse topic-to-topic relations, like the intrinsic parent-child relation
 *Syntax:*
 | *%<nop>DBRECURSE{"&lt;topic>" ...}%* ||
 | =&lt;topic>= | starting point, can be in web.topic format, defaults to the current topic |
-| =web="...=" | web where to recurse, defaults to the web given in the =topic= parameter or the current web |
+| =web="..."= | web where to recurse, defaults to the web given in the =topic= parameter or the current web |
 | =format="..."= | format string for each found topic defaults to ='   $indent* [<nop>[$web.$topic][$topic]]'= |
 | =single="..."= | format string used when only one topic is found, defaults to value of =format= parameter |
 | =separator="..."= | separator string to be put between formatted topics, defaults to ='\n'= |
@@ -351,6 +351,42 @@ derive the title of a topic from a couple of properties:
    * from a "TopicTitle" formfield attribute, or
    * defaults to the topic name
 
+---++ Syntax of search queries
+A search query is a boolean expression on fields of a topic. (Tip: use %DBDUMP to explore the available fields).
+
+Fields are given by name, and values by strings or numbers. Strings should always be surrounded by 'single-quotes'. Strings which are regular expressions (RHS of =, != =~ operators) use 'perl' regular expression syntax (google for =perlre= for help). Numbers can be signed integers or decimals. Single quotes in values may be escaped using backslash (\).
+
+The following operators are available:
+| *Operator* | *Result* | *Meaning* |
+| <code>=</code> | Boolean | LHS exactly matches the regular expression on the RHS. The expression must match the whole string. |
+| <code>!=</code> | Boolean | Inverse of = |
+| <code>=~</code> | Boolean | LHS contains RHS i.e. the RHS is found somewhere in the field value. |
+| <code>&lt;</code> | Boolean | Numeric < |
+| <code>&gt;</code> | Boolean | Numeric > |
+| <code>&gt;=</code> | Boolean | Numeric >= |
+| <code>&lt;=</code> | Boolean | Numeric <= |
+| =lc= | String | Unary lower case |
+| =uc= | String | Unary UPPER CASE |
+| =EARLIER_THAN= | BOOLEAN | Date is earlier than the given date |
+| =LATER_THAN= | Boolean | LHS is later than the given date (string containing a date e.g. '1 Apr 2003') |
+| =WITHIN_DAYS= | Boolean | Date (which must be in the future) is within n _working_ days of todays date |
+| <code>!</code> | Boolean | Unary NOT |
+| =AND= | Boolean | AND |
+| =OR= | Boolean | OR |
+| <code>()</code> | any | Bracketed subexpression |
+
+Dates for =EARLIER_THAN=, =LATER_THAN= and =WITHIN_DAYS= must be dates in the format expected by =Time::ParseDate= (like the ActionTrackerPlugin). =WITHIN_DAYS= works out the number of _working_ days (i.e. excluding Saturday and Sunday). Apologies in advance if your weekend is offset &plusmn; a day! Integers will automatically be converted to dates, by assuming they represent a number of seconds since midnight GMT on 1st January 1970.
+
+---+++ Examples
+   * Find all topics that have been last modified before 1st January 2008
+     <verbatim>%DBQUERY{"info.date EARLIER_THAN '1st January 2008'"}%</verbatim>
+   * Find all topics last modified by Peter
+     <verbatim>%DBQUERY{"info.author =~ 'Peter'"}%</verbatim>
+   * Find all FAQs
+     <verbatim>%DBQUERY{"topic =~ 'FAQ'"}%</verbatim>
+   * Find all topics that have the word "random" in it (case-insensitive) excluding the current topic
+     <verbatim>%DBQUERY{"lc(text) =~ 'random' and topic != 'DBCachePlugin'"}%</verbatim>
+
 ---++ Perl API
 
 The <nop>DBCachePlugin supports overloading the contained default database cache by inheriting
@@ -442,8 +478,9 @@ You can also call the update from the command line - from the twiki/bin dir -
 |  Plugin Author: | TWiki:Main.MichaelDaum |
 |  Copyright &copy;: | 2005-2008, Michael Daum http://michaeldaumconsulting.com |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  Plugin Version: | v2.01 |
+|  Plugin Version: | v2.02 |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  24 Sep 2008: | expanding common variables in footers and headers |
 |  03 Jul 2008: | fixed calculation of a topic title; \
                   disabled =renderWikiWordHandler= for TWikis before 4.2, \
                   so not replacing the <nop>WikiName with its  <nop>TopicTitle  |
@@ -517,6 +554,6 @@ You can also call the update from the command line - from the twiki/bin dir -
 |  Feedback: | TWiki:Plugins/%TOPIC%Dev |
 |  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
 
--- TWiki:Main.MichaelDaum - 03 Jul 2008
+-- TWiki:Main.MichaelDaum - 24 Sep 2008
 
 %META:FILEATTACHMENT{name="wikiringlogo40x40.png" attr="h" autoattached="1" comment="" date="1207666446" path="wikiringlogo40x40.png" size="2571" user="TWikiContributor" version="1"}%

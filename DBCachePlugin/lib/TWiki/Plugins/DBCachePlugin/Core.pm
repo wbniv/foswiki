@@ -1,6 +1,6 @@
 # Plugin for TWiki Collaboration Platform, http://TWiki.org/
 #
-# Copyright (C) 2005-2006 MichaelDaum@WikiRing.com
+# Copyright (C) 2005-2008 Michael Daum http://michaeldaumconsulting.com
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -20,15 +20,6 @@ use vars qw(
   $defaultWebNameRegex $linkProtocolPattern $twikiWeb
   $baseWeb $baseTopic %MON2NUM
 );
-use constant DEBUG => 0; # toggle me
-
-use TWiki::Contrib::DBCacheContrib;
-use TWiki::Contrib::DBCacheContrib::Search;
-use TWiki::Plugins::DBCachePlugin::WebDB;
-use TWiki::Sandbox;
-use Time::Local;
-
-$TranslationToken = "\0"; # from TWiki.pm
 
 %MON2NUM = (
   Jan => 0,
@@ -42,7 +33,18 @@ $TranslationToken = "\0"; # from TWiki.pm
   Sep => 8,
   Oct => 9,
   Nov => 10,
-  Dec => 11);
+  Dec => 11
+);
+
+use constant DEBUG => 0; # toggle me
+
+use TWiki::Contrib::DBCacheContrib;
+use TWiki::Contrib::DBCacheContrib::Search;
+use TWiki::Plugins::DBCachePlugin::WebDB;
+use TWiki::Sandbox;
+use Time::Local;
+
+$TranslationToken = "\0"; # from TWiki.pm
 
 ###############################################################################
 sub writeDebug {
@@ -60,7 +62,7 @@ sub init {
   my $doRefresh = $query->param('refresh') || '';
   if ($doRefresh eq 'on') {
     %webDB = ();
-    writeDebug("found refresh=on in urlparam");
+    #writeDebug("found refresh=on in urlparam");
   }
 
   $wikiWordRegex = 
@@ -84,14 +86,12 @@ sub renderWikiWordHandler {
   $theWeb = TWiki::Sandbox::untaintUnchecked($theWeb);# woops why is theWeb tainted
   return if $hasExplicitLinkLabel;
   
-  writeDebug("called renderWikiWordHandler($theLinkText, $theWeb, $theTopic)");
+  #writeDebug("called renderWikiWordHandler($theLinkText, $theWeb, $theTopic)");
 
   my $topicTitle = getTopicTitle($theWeb, $theTopic);
-  writeDebug("topicTitle=$topicTitle");
+  #writeDebug("topicTitle=$topicTitle");
 
-  $theLinkText = $topicTitle;# if $topicTitle && $topicTitle ne $theTopic;
-
-  writeDebug("theLinkText = $theLinkText");
+  $theLinkText = $topicTitle if $topicTitle && $topicTitle ne $theTopic;
 
   return $theLinkText;
 }
@@ -117,8 +117,19 @@ sub handleTOPICTITLE {
 
   my $thisTopic = $params->{_DEFAULT} || $params->{topic} || $baseTopic;
   my $thisWeb = $params->{web} || $baseWeb;
+  my $theEncoding = $params->{encode} || '';
+  my $theDefault = $params->{default};
 
-  return getTopicTitle($thisWeb, $thisTopic);
+  my $topicTitle = getTopicTitle($thisWeb, $thisTopic);
+
+  if (defined($theDefault) && $topicTitle eq $thisTopic) {
+    $topicTitle = $theDefault;
+  }
+
+  return urlEncode($topicTitle) if $theEncoding eq 'url';
+  return entityEncode($topicTitle) if $theEncoding eq 'entity';
+
+  return $topicTitle;
 }
 
 ###############################################################################
@@ -216,6 +227,7 @@ sub handleDBQUERY {
       $format = $theSep unless $isFirst;
       $isFirst = 0;
       $format .= $theFormat;
+      $format =~ s/\$pattern\((.*?)\)/extractPattern($topicObj, $1)/geo;
       $format =~ s/\$formfield\((.*?)\)/
         my $temp = $theDB->getFormField($topicName, $1);
 	$temp =~ s#\)#${TranslationToken}#g;
@@ -231,7 +243,7 @@ sub handleDBQUERY {
       $format = expandVariables($format, $topicWeb, $topicName,
 	topic=>$topicName, web=>$topicWeb, index=>$index, count=>$count);
       $format =~ s/${TranslationToken}/)/go;
-      $format = &TWiki::Func::expandCommonVariables($format, $topicName, $topicWeb);
+      $format = TWiki::Func::expandCommonVariables($format, $topicName, $topicWeb);
       $text .= $format;
 
       $TWiki::Plugins::DBCachePlugin::addDependency->($topicWeb, $topicName);
@@ -240,8 +252,14 @@ sub handleDBQUERY {
     }
   }
 
-  $theHeader = expandVariables($theHeader, $thisWeb, $thisTopic, count=>$count, web=>$thisWeb) if defined $theHeader;
-  $theFooter = expandVariables($theFooter, $thisWeb, $thisTopic, count=>$count, web=>$thisWeb) if defined $theFooter;
+  if (defined $theHeader) {
+    $theHeader = expandVariables($theHeader, $thisWeb, $thisTopic, count=>$count, web=>$thisWeb);
+    $theHeader = TWiki::Func::expandCommonVariables($theHeader, $thisTopic, $thisWeb);
+  }
+  if (defined $theFooter) {
+    $theFooter = expandVariables($theFooter, $thisWeb, $thisTopic, count=>$count, web=>$thisWeb);
+    $theFooter = TWiki::Func::expandCommonVariables($theFooter, $thisTopic, $thisWeb);
+  }
 
   $text = $theHeader.$text.$theFooter;
 
@@ -257,39 +275,39 @@ sub handleDBQUERY {
 sub findTopicMethod {
   my ($session, $theWeb, $theTopic, $theObject) = @_;
 
-  #writeDebug("called findTopicMethod($theWeb, $theTopic, $theObject)");
+  writeDebug("called findTopicMethod($theWeb, $theTopic, $theObject)");
 
   return undef unless $theObject;
 
   my ($thisWeb, $thisObject) = &TWiki::Func::normalizeWebTopicName($theWeb, $theObject);
 
-  #writeDebug("object web=$thisWeb, topic=$thisObject");
+  writeDebug("object web=$thisWeb, topic=$thisObject");
 
   # get form object
   my $baseDB = getDB($thisWeb);
 
-  #writeDebug("1");
+  writeDebug("1");
 
   my $topicObj = $baseDB->fastget($thisObject);
   return undef unless $topicObj;
 
-  #writeDebug("2");
+  writeDebug("2");
 
   my $form = $topicObj->fastget('form');
   return undef unless $form;
 
-  #writeDebug("3");
+  writeDebug("3");
 
   my $formObj = $topicObj->fastget($form);
   return undef unless $formObj;
 
-  #writeDebug("4");
+  writeDebug("4");
 
   # get type information on this object
   my $topicTypes = $formObj->fastget('TopicType');
   return undef unless $topicTypes;
 
-  #writeDebug("topicTypes=$topicTypes");
+  writeDebug("topicTypes=$topicTypes");
 
   foreach my $topicType (split(/\s*,\s*/, $topicTypes)) {
     $topicType =~ s/^\s+//o;
@@ -332,11 +350,6 @@ sub findTopicMethod {
     #writeDebug("6");
   }
 
-  # last resort: lookup the method in the Applications web
-  writeDebug("last resort check for Applications.$theTopic");
-  my $appDB = getDB('Applications');
-  return ('Applications', $theTopic) if $appDB->fastget($theTopic);
-
 
   #writeDebug("5");
   return undef;
@@ -363,12 +376,18 @@ sub handleDBCALL {
   if ($theObject) {
     my ($methodWeb, $methodTopic) = findTopicMethod($session, $thisWeb, $thisTopic, $theObject);
     if (defined $methodWeb) {
-      writeDebug("found impl at $methodWeb.$methodTopic");
+      #writeDebug("found impl at $methodWeb.$methodTopic");
       $params->{OBJECT} = $theObject;
       $thisWeb = $methodWeb;
       $thisTopic = $methodTopic;
     } else {
-      writeDebug("no impl found ... proceeding as non-method");
+      # last resort: lookup the method in the Applications web
+      #writeDebug("last resort check for Applications.$thisTopic");
+      my $appDB = getDB('Applications');
+      if ($appDB->fastget($thisTopic)) {
+        $params->{OBJECT} = $theObject;
+        $thisWeb = 'Applications';
+      }
     }
   }
 
@@ -403,8 +422,8 @@ sub handleDBCALL {
   }
 
   # check access rights
-  my $wikiUserName = TWiki::Func::getWikiUserName();
-  unless (TWiki::Func::checkAccessPermission('VIEW', $wikiUserName, undef, $thisTopic, $thisWeb)) {
+  my $wikiName = TWiki::Func::getWikiName();
+  unless (TWiki::Func::checkAccessPermission('VIEW', $wikiName, undef, $thisTopic, $thisWeb)) {
     if ($warn) {
       return inlineError("ERROR: DBCALL access to '$thisWeb.$thisTopic' denied");
     } 
@@ -498,7 +517,7 @@ sub handleDBSTATS {
   }
 
   # compute statistics
-  my $wikiUserName = TWiki::Func::getWikiUserName();
+  my $wikiName = TWiki::Func::getWikiName();
   my %statistics = ();
   my $theDB = getDB($thisWeb);
   my @topicNames = $theDB->getKeys();
@@ -506,22 +525,22 @@ sub handleDBSTATS {
     my $topicObj = $theDB->fastget($topicName);
     next unless $search->matches($topicObj); # that match the query
     next unless TWiki::Func::checkAccessPermission('VIEW', 
-      $wikiUserName, undef, $topicName, $thisWeb);
+      $wikiName, undef, $topicName, $thisWeb);
 
-    writeDebug("found topic $topicName");
+    #writeDebug("found topic $topicName");
     my $createdate = $topicObj->fastget('createdate');
     foreach my $field (split(/\s*,\s*/, $theFields)) { # loop over all fields
       my $fieldValue = $topicObj->fastget($field);
       if (!$fieldValue || ref($fieldValue)) {
 	my $topicForm = $topicObj->fastget('form');
-	writeDebug("found form $topicForm");
+	#writeDebug("found form $topicForm");
 	if ($topicForm) {
 	  $topicForm = $topicObj->fastget($topicForm);
 	  $fieldValue = $topicForm->fastget($field);
 	}
       }
       next unless $fieldValue; # unless present
-      writeDebug("reading field $field found $fieldValue");
+      #writeDebug("reading field $field found $fieldValue");
 
       while ($fieldValue =~ /$thePattern/g) { # loop over all occurrences of the pattern
 	my $key1 = $1;
@@ -711,7 +730,7 @@ sub handleDBDUMP {
 sub handleATTACHMENTS {
   my ($session, $params, $theTopic, $theWeb) = @_;
 
-  writeDebug("called handleATTACHMENTS($theTopic, $theWeb)");
+  #writeDebug("called handleATTACHMENTS($theTopic, $theWeb)");
   #writeDebug("params=".$params->stringify());
 
 
@@ -771,7 +790,7 @@ sub handleATTACHMENTS {
       $attachments->getValues();
   }
 
-  writeDebug("theComment=$theComment");
+  #writeDebug("theComment=$theComment");
 
   # collect result
   my @result;
@@ -797,9 +816,8 @@ sub handleATTACHMENTS {
     next if $theMaxDate && $date > $theMaxDate;
 
     my $user = $attachment->fastget('user') || 'UnknownUser';
-    if (defined(&TWiki::Users::getWikiName)) {# TWiki-4.2 onwards
-      my $session = $TWiki::Plugins::SESSION;
-      $user = $session->{users}->getWikiName($user);
+    if ($TWiki::Plugins::VERSION >= 1.2) {# TWiki-4.2 onwards
+      $user = TWiki::Func::getWikiName($user);
     }
     #writeDebug("user=$user");
     next unless $user =~ /^($theUser)$/;
@@ -1059,7 +1077,7 @@ sub formatRecursive {
 sub getDB {
   my $theWeb = shift;
   
-  #writeDebug("called getDB($theWeb, $isModified)");
+  #writeDebug("called getDB($theWeb)");
 
   # We do not need to reload the cache if we run on mod_perl or speedy_cgi or
   # whatever perl accelerator that keeps our global variables and 
@@ -1071,7 +1089,7 @@ sub getDB {
   unless (defined $webDB{$theWeb}) {
     # never loaded
     $isModified = 1;
-    writeDebug("fresh reload of $theWeb ($isModified)");
+    writeDebug("fresh reload of '$theWeb' ($isModified)");
   } else {
     unless (defined $webDBIsModified{$theWeb}) {
       # never checked
@@ -1353,6 +1371,20 @@ sub flatten {
 
   return $text;
 }
+
+###############################################################################
+sub extractPattern {
+  my ($topicObj, $pattern) = @_;
+
+  my $text = $topicObj->fastget('text') || '';
+  my $result = '';
+  while ($text =~ /$pattern/gs) {
+    $result .= ($1 || '');
+  }
+  
+  return $result;
+}
+
 
 ###############################################################################
 sub inlineError {
