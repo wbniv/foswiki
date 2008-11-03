@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1203093319" format="1.1" version="$Rev$"}%
+%META:TOPICINFO{author="TWikiContributor" date="1223455374" format="1.1" reprev="1.2" version="$Rev$"}%
 <!--
 
    PLEASE DO NOT EDIT THIS TOPIC
@@ -90,15 +90,20 @@ prepended with a header and appended with a footer in case the list is not empty
    * separator="...": string to be inserted between list items
    * limit="...": max number of items to be taken out of the list (default "-1")
    * skip="...": number of list items to skip, not adding them to the result
-   * sort="on,off,alpha,num" order of the formatted items (default "off")
+   * sort="on,off,alpha,num,nocase" order of the formatted items (default "off")
    * reverse="on,off": reverse the sortion of the list
    * unique="on,off": remove dupplicates from the list
    * exclude="...": remove list items that match this regular expression
+   * selection="...": regular expression that a list item must match to be "selected"; if this matches the =$marker= is inserted
+   * marker="...": string to be inserted when the =selection= regex matches; this will be inserted at the position =$marker= as
+     indicated in =format= .
+
 The pattern string shall group matching substrings in the list item to which you can refer to by 
 using $1, $2, ... in the format string. Any format string (=format=, =header=, =footer=) may
 contain variables =$percnt$=, =$nop=, =$dollar= and =$n=. The variable
 =$index= referse to the position number within the list being formatted; using =$count= in the
-footer or header argument refers to the total number of list elements.
+footer or header argument refers to the total number of list elements; =$marker= is set if
+the =selection= regular expression matches the current item.
 
 ---+++ MAKEINDEX
 *Syntax*: =%<nop>MAKEINDEX{"&lt;list>" ...}%=
@@ -121,10 +126,12 @@ parameters:
    * header="...": format string to prepend to the result
    * footer="..." format string to be appended to the result
 
-Like in FORMATLIST the =format= parameter can make use of $1, $2, ... variables
+Like in FORMATLIST the =format= parameter can make use of =$1=, =$2=, ... variables
 to match the groupings defined in the =pattern= argument (like in =pattern="(.*);(.*);(.*)"=) .
 The first matched grouping $1 will be used as the $item to sort the list.
 
+In addition =header= and =footer= might contain the =$anchors= variable which will expand
+to a navigation to jump to the groups within the index.
 ---++ Examples
 
 ---+++ Secure Html
@@ -170,6 +177,7 @@ compare with [[http://en.wikipedia.org/wiki/Category:Philosophy_articles_needing
   "Absolute (philosophy), Accident (philosophy), Actualism, Talk:Adam Weishaupt, Alphabet of human thought, Alterity, Analytic philosophy, Analytic-synthetic distinction, Apologism, Bundle theory, Categories (Stoic), Causal chain, Causality, Coherentism, Conscience, Context principle, Contextualism, Cosmology, De dicto and de re, Dialectical monism, Difference (philosophy), Direct reference theory, Discourse ethics, Dualism, Emergentism, Essence, Ethical naturalism, Exemplification, Existentialism, Fatalism, French materialism, Futilitarianism, Hermeneutics, Hypokeimenon, Identity and change, Idolon tribus, Immanent evaluation, Indeterminacy (Philosophy), Individual, Inherence, Kennisbank Filosofie Nederland, Lazy Reason, Mike Lesser, Libertarianism (metaphysics), Logicism, Mad pain and Martian pain, Materialism, Meaning of life, Metakosmia, Metaphysical naturalism, Milesian school, Mind, Monism, Moral imperative, Multiplicity (philosophy), Mystical philosophy of antiquity, Nature (philosophy), Neomodernism, New England Transcendentalists, Nominalism, Non-archimedean time, Non-rigid designator, Object (philosophy), Ontic, Ontological reductionism, Phenomenology, Philosophical realism, Philosophical skepticism, Philosophy, Pluralism (philosophy), Post-structuralism, Postmodern philosophy, Preferentialism Present (time), Problem of universals, Process philosophy, Rational Animal, Rationalist movement, Relativism, Self (philosophy), Solipsism, Species (metaphysics), Specters of Marx, Substance theory, Talk:The Art of Being Right, Truth-value link, Universal (metaphysics), Utilitarianism, Value judgment, World riddle" 
   cols="3"
   format="[[http://en.wikipedia.org/wiki/$item][$item]]"
+  header="$anchors"
 }%
 
 ---++ Plugin Installation Instructions
@@ -187,8 +195,12 @@ compare with [[http://en.wikipedia.org/wiki/Category:Philosophy_articles_needing
 |  Plugin Author: | TWiki:Main.MichaelDaum |
 |  Copyright &copy;: | 2005-2008, Michael Daum http://michaeldaumconsulting.com |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  Plugin Version: | v1.51 |
+|  Plugin Version: | v1.70 |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  08 Oct 2008: | added =$anchors= to MAKEINDEX (by Dirk Zimoch); \
+                  added =nocase= option to FORMATLIST (by Dirk Zimoch); \
+                  fixed null/empty string match in FORMATLIST |
+|  20 Aug 2008: | added =selection= and =marker= to FORMATLIST, similar in use as TWiki.VarWEBLIST |
 |  03 Jul 2008: | sorting a list _before_, not _after_, formatting it in FORMATLIST |
 |  08 May 2008: | added 'text' parameter to SUBST and EXTRACT; \
                   fixed SUBST as it was pretty useless before |
@@ -218,6 +230,6 @@ compare with [[http://en.wikipedia.org/wiki/Category:Philosophy_articles_needing
 |  Feedback: | TWiki:Plugins/%TOPIC%Dev |
 |  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
 
--- TWiki:Main.MichaelDaum - 03 Jul 2008
+-- TWiki:Main.MichaelDaum - 08 Oct 2008
 
 %META:FILEATTACHMENT{name="wikiringlogo40x40.png" attr="h" autoattached="1" comment="" date="1189788323" path="wikiringlogo40x40.png" size="2571" user="TWikiContributor" version="1"}%
