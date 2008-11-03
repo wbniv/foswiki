@@ -226,13 +226,13 @@ sub _onReload {
 
     foreach my $topic ( $this->getValues() ) {
         # Fill in parent relations
-        unless ($topic->get('parent')) {
+        unless ($topic->fastget('parent')) {
           $topic->set('parent', $TWiki::cfg{HomeTopicName});
           # last parent is WebHome
         }
-        unless ( $topic->get( '_up' )) {
-            my $parent = $topic->get( 'parent' );
-            $parent = $this->get( $parent );
+        unless ( $topic->fastget( '_up' )) {
+            my $parent = $topic->fastget( 'parent' );
+            $parent = $this->fastget( $parent ) if $parent;
 
             # prevent the _up to be undefined in case of
             # a parent info to a non-existing topic;

@@ -76,8 +76,8 @@ Get the value for a key, but without any subfield field expansion
 =cut
 
 sub fastget {
-    my ( $this, $attr ) = @_;
-    return $this->{keys}{$attr};
+    #my ( $this, $attr ) = @_;
+    return $_[0]->{keys}{$_[1]};
 }
 
 =begin text
@@ -105,8 +105,8 @@ See also =TWiki::Contrib::DBCacheContrib::Array= for syntax that applies to arra
 sub get {
     my ( $this, $key, $root ) = @_;
 
-	# If empty string, then we are the required result
-	return $this unless $key;
+    # If empty string, then we are the required result
+    return $this unless $key;
 
     if ( $key =~ m/^(\w+)(.*)$/o ) {
         # Sub-expression
@@ -123,7 +123,8 @@ sub get {
     } elsif ( $key =~ m/^#(.*)$/o ) {
         return $root->get( $1, $root );
     } else {
-        die "ERROR: bad Map expression at $key";
+        #print STDERR "ERROR: bad Map expression at $key\n";
+        return undef; 
     }
 }
 
