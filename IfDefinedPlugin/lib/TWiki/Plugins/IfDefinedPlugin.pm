@@ -1,6 +1,6 @@
 # Plugin for TWiki Collaboration Platform, http://TWiki.org/
 #
-# Copyright (C) 2006-2008 Michael Daum http://wikiring.de
+# Copyright (C) 2006-2008 Michael Daum http://michaeldaumconsulting.com
 #
 # Based on the NatSkinPlugin
 #
@@ -25,7 +25,7 @@ use vars qw(
   $VERSION $RELEASE
   $currentAction 
   $baseWeb $baseTopic
-  $currentWeb $currentTopic
+  $currentWeb $currentTopic $currentAction
   $NO_PREFS_IN_TOPIC $SHORTDESCRIPTION
 );
 
@@ -54,6 +54,7 @@ sub commonTagsHandler {
 # $_[0]: $text, $_[1]: $topic, $_[2]: $web
   $currentWeb = $_[2];
   $currentTopic = $_[1];
+  $currentAction = '';
 
   $_[0] =~ s/(\s*)%IFDEFINED{(.*?)}%(\s*)/&handleIfDefined($2, $1, $3)/geos;
   $_[0] =~ s/(\s*)%IFACCESS%(\s*)/&handleIfAccess(undef, $1, $2)/geos;
@@ -148,7 +149,7 @@ sub ifDefinedImpl {
   }
 
   unless (defined $currentAction) {
-    $currentAction = getCgiAction();
+    $currentAction = getRequestAction();
   }
 
   if (!$theAction || $currentAction =~ /$theAction/) {
@@ -269,21 +270,38 @@ sub escapeParameter {
 # take the REQUEST_URI, strip off the PATH_INFO from the end, the last word
 # is the action; this is done that complicated as there may be different
 # paths for the same action depending on the apache configuration (rewrites, aliases)
-sub getCgiAction {
+sub getRequestAction {
 
-  my $pathInfo = $ENV{'PATH_INFO'} || '';
-  my $theAction = $ENV{'REQUEST_URI'} || '';
-  if ($theAction =~ /^.*?\/([^\/]+)$pathInfo.*$/) {
-    $theAction = $1;
+  return $currentAction if $currentAction;
+
+  my $request = TWiki::Func::getCgiQuery();
+
+  if (defined($request->action)) {
+    $currentAction = $request->action();
   } else {
-    $theAction = 'view';
+    my $context = TWiki::Func::getContext();
+
+    # not all cgi actions we want to distinguish set their context
+    # so only use those we are sure of
+    return 'edit' if $context->{'edit'};
+    return 'view' if $context->{'view'};
+    return 'save' if $context->{'save'};
+    # TODO: more
+
+    # fall back to analyzing the path info
+    my $pathInfo = $ENV{'PATH_INFO'} || '';
+    $currentAction = $ENV{'REQUEST_URI'} || '';
+    if ($currentAction =~ /^.*?\/([^\/]+)$pathInfo.*$/) {
+      $currentAction = $1;
+    } else {
+      $currentAction = 'view';
+    }
+    #writeDebug("PATH_INFO=$ENV{'PATH_INFO'}");
+    #writeDebug("REQUEST_URI=$ENV{'REQUEST_URI'}");
+    #writeDebug("currentAction=$currentAction");
+
   }
-
-  #writeDebug("PATH_INFO=$ENV{'PATH_INFO'}");
-  #writeDebug("REQUEST_URI=$ENV{'REQUEST_URI'}");
-  #writeDebug("theAction=$theAction");
-
-  return $theAction;
+  return $currentAction;
 }
 
 ###############################################################################
