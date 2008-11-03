@@ -70,7 +70,7 @@ unless ($errorcode == 0) {
     chdir($twikihome);
     if ($SvensAutomatedBuilds) {
     	sendEmail('nextwiki-svn@lists.sourceforge.net', "Subject: NextWiki $twikiBranch branch has Unit test FAILURES\n\n see http://fosiki.com/$twikiBranch/ for output files.\n".$unittestErrors);
-    	`scp TWiki* fosiki\@fosiki.com:/home/distributedinformation/www/TWikiBuilds`;
+    	`scp TWiki* distributedinformation\@fosiki.com:/home/distributedinformation/www/TWikiBuilds`;
     }
     die "\n\n$errorcode: unit test failures - need to fix them first\n" 
 }
@@ -112,7 +112,7 @@ if ($SvensAutomatedBuilds) {
 	$buildOutput .= "\n";
 	$buildOutput .= `grep 'All tests passed' $twikihome/TWiki-UnitTests.log`;
 	sendEmail('Builds@fosiki.com', "Subject: NextWiki $twikiBranch built OK\n\n see http://fosiki.com/$twikiBranch/ for output files.\n".$buildOutput);
-	`scp TWiki* fosiki\@fosiki.com:/home/distributedinformation/www/$twikiBranch` ;
+	`scp TWiki* distributedinformation\@fosiki.com:/home/distributedinformation/www/$twikiBranch` ;
 }
 
 
