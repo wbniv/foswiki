@@ -262,8 +262,8 @@ sub getLocationBreadCrumbs {
     push @breadCrumbs, @topicCrumbs;
   }
   
-  # maybe add this topic if it was not covered yet
-  unless ($seen{"$thisWeb.$thisTopic"}) {
+  # add this topic if it was not covered yet
+  unless ($seen{"$thisWeb.$thisTopic"} || $recurse->{topicoff}) {
     #writeDebug("finally adding breadcrumb: target=$thisWeb/$thisTopic, name=$thisTopic");
     push @breadCrumbs, {
         target=>"$thisWeb/$thisTopic", 
@@ -306,8 +306,8 @@ sub getTopicTitle {
 
   # use DBCachePlugin if installed
   if (TWiki::Func::getContext()->{'DBCachePluginEnabled'}) {
-    require TWiki::Plugins::DBCachePlugin::Core;
-    return TWiki::Plugins::DBCachePlugin::Core::getTopicTitle($theWeb, $theTopic);
+    require TWiki::Plugins::DBCachePlugin;
+    return TWiki::Plugins::DBCachePlugin::getTopicTitle($theWeb, $theTopic);
   }
 
   # use core means otherwise

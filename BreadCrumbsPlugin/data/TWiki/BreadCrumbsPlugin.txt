@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="micha" date="1209401597" format="1.1" reprev="1.2" version="1.2"}%
+%META:TOPICINFO{author="TWikiContributor" date="1209401597" format="1.1" reprev="1.2" version="$Rev$"}%
 <!--
 
    PLEASE DO NOT EDIT THIS TOPIC
@@ -8,7 +8,7 @@
 
    Instead, you could check your fix in, raise a bug in the Bugs web, or mail the author.
 -->
----+!! <nop>%TOPIC%
+---+!! <nop>BreadCrumbsPlugin
 %TOC%
 ---++ Description
 This plugin helps you to locate where you are, and shows you how
@@ -40,7 +40,11 @@ BREADCRUMBS will result in an undefined behaviour.
 
 ---+++ Displaying !TopicTitles
 !TopicTitles are a concept introduced by the TWiki:Plugins/DBCachePlugin. These are stored
-in a topic in the =TOPICTITLE= preference variable or in a formfield 'TopicTitle ' of a !TWikiForm attached to the topic. If a !TopicTitle is defined for a topicm, it will be displayed in the breadcrumbs instead of the normal !WikiWord topic name. For efficiency it is recommended to install the TWiki:Plugins/DBCachePlugin to determine the !TopicTitle.
+in a topic in the =TOPICTITLE= preference variable or in a formfield
+'TopicTitle ' of a !TWikiForm attached to the topic. If a !TopicTitle is
+defined for a topic, it will be displayed in the breadcrumbs instead of the
+normal !WikiWord topic name. For efficiency it is recommended to install the
+TWiki:Plugins/DBCachePlugin to determine the !TopicTitle.
 
 ---++ Syntax
 =%<nop>BREADCRUMBS%, %<nop>BREADCRUMBS{"&lt;web>.&lt;topic>" ...}%=
@@ -58,12 +62,12 @@ in a topic in the =TOPICTITLE= preference variable or in a formfield 'TopicTitle
      (defaults to one space char)
    * =include=: regular expression that items must match to be part of the path
    * =exclude=: regular expression that items must _not_ match to be part of the path
-   * =recurse=:  (type="location" only)can be one or more of the following values (comma separated) to
+   * =recurse=:  (type="location" only) can be one or more of the following values (comma separated) to
      decide which parts of the breadcrumbs path should be included (defaults to 'on'):
       * =on=: include all parent webs and all parent topics
       * =off=: include only the current web and the current topic
       * =weboff=: don't recurse on webs, include only the current web
-      * =topicoff=: don't recurse on topics, include only the current topic
+      * =topicoff=: don't recurse on topics
       * =webonce=: include the next parent web but not the parent web's parent web
       * =topiconce=: include the next parent topic but not the parent topic's parent topic
       * =once=: short formf of =webonce, topiconce=
@@ -154,14 +158,14 @@ separator) may contain special variables:
 ---++ Plugin Info
 <!-- provided for compatibility only
    * Set SHORTDESCRIPTION = A flexible way to display breadcrumbs navigation
-   * Set TOPICTITLE = BreadCrumbsPlugin
 -->
 
 |  Plugin Author: | TWiki:Main.MichaelDaum |
 |  Copyright &copy;: | 2006-2008, Michael Daum http://michaeldaumconsulting.com |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  Plugin Version: | v2.01 (%$VERSION%) |
+|  Plugin Version: | v2.10 (%$VERSION%) |
 |  Change History: | &nbsp; |
+|  15 Sep 2008: | switching off current topic in =topicoff= mode |
 |  01 Sep 2008: | TWiki:Main.OliverKrueger Bugs:Item5972 fixed: minor cosmetics |
 |  28 Apr 2008: | many new features for 2.0: topic titles, ellipsis, ... |
 |  08 May 2007: | respect HOMETOPIC setting, don't hardcoded '<nop>WebHome' |
@@ -182,4 +186,4 @@ separator) may contain special variables:
 |  Feedback: | TWiki:Plugins/%TOPIC%Dev |
 |  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
 
--- TWiki:Main/MichaelDaum - 28 Apr 2008
+-- TWiki:Main/MichaelDaum - 15 Sep 2008
