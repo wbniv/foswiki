@@ -404,7 +404,7 @@ sub _wrapInButtonHtml {
 
 sub _wrapInContentHtmlOpen {
     my $mode = shift;
-    return '<'.$mode.' style="display:inline;" class="twistyPlugin">';
+    return '<'.$mode.' class="twistyPlugin">';
 }
 
 sub _wrapInContentHtmlClose {
