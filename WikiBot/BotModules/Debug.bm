@@ -1,0 +1,46 @@
+################################
+# Debug Module                 #
+################################
+
+# STATUS: Fully functional
+
+package BotModules::Debug;
+use vars qw(@ISA);
+@ISA = qw(BotModules);
+1;
+
+sub RegisterConfig {
+    my $self = shift;
+    $self->SUPER::RegisterConfig(@_);
+    $self->registerVariables(
+      # [ name, save?, settable?, value ]
+        ['debugVar', 1, 1, ''], 
+    );
+}
+
+sub Help {
+    my $self = shift;
+    my ($event) = @_;
+    return {
+        '' => 'This module provides debugging information for writing modules and general adminning.',
+        'getLogFilename' => 'Requests that the bot respond with the full path to a log file, accepts filename as a parameter.',
+    };
+}
+
+sub Told {
+    my $self = shift;
+    my ($event, $message) = @_;
+    if ($message =~ /^\s*getlogfilename?(\s*)?(.*)\s*$/osi) {
+        if ($2) {
+	    $self->say($event, $self->getLogFilename($2));
+	} else {
+	    $self->say($event, $self->getLogFilename(''));
+	}
+    } elsif ($message =~ /^\s*setvar\s*(.*)\s*$/osi) {
+        $self->Set($event, 'debugVar', $1);
+    } else {
+        return $self->SUPER::Told(@_);
+    }
+    return 0; # we've dealt with it, no need to do anything else.
+}
+

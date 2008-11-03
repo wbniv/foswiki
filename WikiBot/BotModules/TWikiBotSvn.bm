@@ -1,0 +1,305 @@
+################################
+# TWikiBotSvn Module           #
+################################
+# based on the RDF module provided with mozbot.
+# Hacked to pieces by Jason Hill aka QBFreak (qbfreak@qbfreak.net)
+
+package BotModules::TWikiBotSvn;
+#use Data::Dumper;
+use vars qw(@ISA);
+@ISA = qw(BotModules);
+1;
+
+# RegisterConfig - Called when initialised, should call registerVariables
+sub RegisterConfig {
+    my $self = shift;
+    $self->SUPER::RegisterConfig(@_);
+    $self->registerVariables(
+      # [ name, save?, settable? ]
+        ['repos', 1, 1, {}], # name -> uri
+# TODO add link/URL support
+        ['updateDelay', 1, 1, 900],
+        ['preferredLineLength', 1, 1, 80],
+        ['data', 0, 0, {}],  # data -> uri -> items -> (name, rev, author, date, msg, files -> path)
+        ['mutes', 1, 1, {}],  # uri -> "channel channel channel"
+    );
+}
+
+# Schedule - called when bot connects to a server, to install any schedulers
+# use $self->schedule($event, $delay, $times, $data)
+# where $times is 1 for a single event, -1 for recurring events,
+# and a +ve number for an event that occurs that many times.
+sub Schedule {
+    my $self = shift;
+    my ($event) = @_;
+    $self->schedule($event, \$self->{'updateDelay'}, -1, 'svn');
+    $self->SUPER::Schedule($event);
+}
+
+sub Help {
+    my $self = shift;
+    my ($event) = @_;
+    my %commands; 
+    if ($self->isAdmin($event)) {
+        $commands{''} = "The $self->{'_name'} module monitors the TWiki Subversion repository. Add new SVN repositories to the 'repos' hash. Duplicates with different nicknames are fine. For example, \"vars $self->{'_name'} repos '+|slashdot|http://...'\" and \"vars $self->{'_name'} repos '+|/.|http://...'\" is fine.  To remove a repository from the $self->{_name} 'repos' hash, use this syntax \"vars $self->{_name} repos '-slashdot'";
+        $commands{'svn mute'} = 'Disable reporting of a repository in a channel. (Only does something if the given repository exists.) Syntax: svn mute <repo> in <channel>';
+        $commands{'svn unmute'} = 'Enable reporting of a repository in a channel. By default, repositories are reported in all channels that the module is active in. Syntax: svn unmute <repo> in <channel>';
+    } else {
+        $commands{''} = "The $self->{'_name'} module monitors the TWiki SVN repository.";
+    }
+    # TODO These commands aren't implimented
+    foreach my $repo (keys(%{$self->{'repos'}})) {
+        if ($self->{'data'}->{$self->{'repos'}->{$repo}}) {
+	    # does this work?
+            $commands{$repo} = "Reports the changes listed in $self->{'data'}->{$self->{'repos'}->{$repo}}->{'name'}";
+
+            # -- #mozilla was here --
+            #      <Hixie> anyway, $self->{'data'}->{$self->{'sites'}->{$site}}->{'title'} is 
+            #              another nice piece of perl (embedded in a quoted string in this case)
+            #     <moogle> yeah, that's a bit more familiar
+            #        <jag> Oooh, nice one
+            #        <jag> Reminds me of Java, a bit :-)
+            #        <jag> Without all the casting about from Object to Hashtable
+            #      <Hixie> all this, BTW, is from the RDF module (the one that mozbot uses to 
+            #              report changes in mozillazine and so on)
+            #     <moogle> I still tend to comment these things a bit just for maintainability 
+            #              by others who might not wish to do mental gymnastics :)
+            #      <Hixie> :-) 
+
+        } else {
+            $commands{$repo} = "Reports the commits to $self->{'repos'}->{$repo}";
+        }
+
+    }
+    return \%commands;
+}
+
+sub Told {
+    my $self = shift;
+    my ($event, $message) = @_;
+## TODO
+### Lets not worry about the !reponame commands just yet
+#    foreach my $repo (keys(%{$self->{'repos'}})) {
+#        if ($message =~ /^\s*(\Q$repo\E)\s*$/si) {
+#            $self->GetRepo($event, $1, 'request');
+#            return 0; # dealt with it... 
+#        }
+#    }
+    if ($self->isAdmin($event)) {
+        if ($message =~ /^\s*svn\s+mute\s+(\S+?)\s+in\s+(\S+?)\s*$/osi) {
+            my $repo = $1 eq 'SVN' ? '' : $self->{'repos'}->{$1};
+            my $repoName = $repo eq '' ? 'all repos' : $repo;
+            if (defined($repo)) {
+                $self->{'mutes'}->{$repo} .= " $2";
+                $self->saveConfig();
+                $self->say($event, "$event->{'from'}: SVN notifications for $repoName muted in channel $2.");
+            } else {
+                # can't say this, other modules might recognise it: $self->say($event, "$event->{'from'}: I don't know about any '$1' site...");
+            }
+        } elsif ($message =~ /^\s*svn\s+unmute\s+(\S+?)\s+in\s+(\S+?)\s*$/osi) {
+            my $repo = $1 eq 'SVN' ? '' : $self->{'repos'}->{$1};
+            my $repoName = $repo eq '' ? 'all repos' : $repo;
+            if (defined($repo)) {
+                my %mutedChannels = map { lc($_) => 1 } split(/ /o, $self->{'mutes'}->{$repo});
+                delete($mutedChannels{lc($2)}); # get rid of any mentions of that channel
+                $self->{'mutes'}->{$repo} = join(' ', keys(%mutedChannels));
+                $self->saveConfig();
+                $self->say($event, "$event->{'from'}: SVN notifications for $repoName resumed in channel $2.");
+            } else {
+                # can't say this, other modules might recognise it: $self->say($event, "$event->{'from'}: I don't know about any '$1' site...");
+            }
+	} elsif ($message =~ /^\s*svn\s+update\s*$/osi) {
+            foreach (keys %{$self->{'repos'}}) {
+                &GetRepo($self, $event, $_, 'update');
+            }
+	} elsif ($message =~ /^\s*svn\s+lastrev\s*$/osi) {
+	    $self->say($event, "$event->{'from'}: You must specify a repository and revision");
+	} elsif ($message =~ /^\s*svn\s+lastrev\s+(\S+)\s*$/osi) {
+	    if (defined($self->{'repos'}->{$1})) {
+	        $self->say($event, "$event->{'from'}: Last revision for repository $1 is ".$self->{'data'}->{$1}->{'lastrev'});
+	    } else {
+	        $self->say($event, "$event->{'from'}: I can't find the repository '$1'");
+	    }
+	} elsif ($message =~ /^\s*svn\s+lastrev\s+(\S+)\s+(\d+)\s*$/osi) {
+	    if (defined($self->{'repos'}->{$1})) {
+                $self->{'data'}->{$1}->{'lastrev'} = $2;
+	        $self->say($event, "$event->{'from'}: Last revision for repository $1 set to $2");
+		#TODO Save $self->{'data'} somehow;
+	    } else {
+	        $self->say($event, "$event->{'from'}: I can't find the repository '$1'");
+	    }
+        } else {
+            return $self->SUPER::Told(@_);
+        }
+    } else {
+        return $self->SUPER::Told(@_);
+    }
+    return 0;
+}
+
+sub GetRepo {
+    my $self = shift;
+    my ($event, $repo, $intent) = @_;
+
+    if (defined($self->{'repos'}->{$repo})) {
+        my $uri = $self->{'repos'}->{$repo};
+	$self->debug("Checking repository $repo: $uri");
+	my @items;
+	my $head = getinfo($uri, 'HEAD');
+	$self->debug("** HEAD revision: %$head->{rev}");
+	push(@items,$head);
+
+	# If we don't have a starting point yet, set it 10 revisions behind HEAD
+	if (not defined($self->{'data'}->{$repo}->{'lastrev'})) {
+	    if (%$head->{'rev'} > 9 ) {
+                $self->{'data'}->{$repo}->{'lastrev'} = %$head->{'rev'} - 10;
+	    } else {
+                $self->{'data'}->{$repo}->{'lastrev'} = 0;
+	    }
+	}
+
+	# Is there anything new to report?
+	if ( $self->{'data'}->{$repo}->{'lastrev'} < %$head->{'rev'} ) {
+	   # Do we need to retrieve any other revisions?
+	   if ( $self->{'data'}->{$repo}->{'lastrev'} + 1 < %$head->{'rev'} ) {
+	       for ( my $r = $self->{'data'}->{$repo}->{'lastrev'} + 1; $r < %$head->{'rev'}; $r++) {
+	           push(@items, getinfo($uri, $r))
+	       }
+	   }
+	} else {
+	    pop @items;
+	    $self->debug("Nothing to report");
+	}
+	@items = sort byrev @items;
+
+        # -- #sluggytoys was here --
+	#      <tene> the problem is that @items is being evaluated in scalar context
+	#      <tene> try "= \@items"
+	#      <tene> see what happens
+	#      <QBFreak> !TeneIs Awesome
+	#      -!- tene is now known as TeneIsAwesome
+	## So cool, and yet now we're not using it...
+	#$self->{'data'}->{$repo}->{'items'} = \@items;
+	
+	$self->debug('last rev: '.$self->{'data'}->{$repo}->{'lastrev'});
+
+        my %mutedChannels = ();
+        if (defined($self->{'mutes'}->{$uri})) {
+            %mutedChannels = map { lc($_) => 1 } split(/\s+/os, $self->{'mutes'}->{$uri});
+        }
+        if (defined($self->{'mutes'}->{''})) {
+            %mutedChannels = (%mutedChannels, map { lc($_) => 1 } split(/\s+/os, $self->{'mutes'}->{''}));
+        }
+        if ($intent eq 'request') {
+            $mutedChannels{$event->{'channel'}} = 1;
+        }
+	my $msg;
+        foreach (@{$self->{'channels'}}) {
+            unless ($mutedChannels{$_}) {
+                local $event->{'target'} = $_;
+                my %mutedChannels = ();
+                #foreach (@output) {
+                #    $self->say($event, $_);
+                #}
+        	foreach (@items) {
+                    $msg = $_->{'msg'};
+                    $msg =~ s/\n/ /g;
+	            # TODO Honor the preferredLineLength setting
+        	    $self->say($event, "$repo SVN update: r".$_->{'rev'}.' by '.$_->{'author'}.' ('.(keys %{$_->{'files'}}).' file'.((keys %{$_->{'files'}}) gt 1 ? 's' : '') .") - $msg ");
+	        }
+            }
+        }
+
+	$self->{'data'}->{$repo}->{'lastrev'} = %$head->{'rev'};
+	#TODO Save $self->{'data'} somehow;
+    } else {
+        # XXX
+    }
+}
+
+sub byrev {
+    $a->{rev} <=> $b->{rev};
+}
+
+sub Scheduled {
+    my $self = shift;
+    my ($event, @data) = @_;
+    if ($data[0] eq 'svn') {
+        foreach (keys %{$self->{'repos'}}) {
+            &GetRepo($self, $event, $_, 'scheduled');
+        }
+	    
+        #my %repos = map { $_ => 1 } values(%{$self->{'repos'}});
+        #foreach (keys(%repos)) {
+	#    # Self, Event, Repo, Intent
+        #    &GetRepo($self, $event, $_, 'schedule');
+        #}
+    } else {
+        $self->SUPER::Scheduled($event, @data);
+    }
+}
+
+# I totally stole this from SVN::Log since it wasn't working for me
+#  On modification: the data is now returned as a hash, not a list.
+sub getinfo {
+  my ($repos, $start_rev, $callback) = @_;
+  
+  open my $log, "svn log -v -r $start_rev $repos|"
+    or die "couldn't open pipe to svn process: $!";
+
+  my ($paths, $rev, $author, $date, $msg);
+
+  my $state = 'start';
+
+  my $seprule  = qr/^-{72}$/;
+  my $headrule = qr/r(\d+) \| (\w+) \| (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})/;
+
+  # XXX i'm sure this can be made much much cleaner...
+  while (<$log>) {
+    if ($state eq 'start' or $state eq 'message' and m/$seprule/) {
+      if ($state eq 'start') {
+        $state = 'head';
+      } elsif ($state eq 'message') {
+        $state = 'head';
+        return {
+                'files' => $paths,
+                'rev' => $rev,
+                'author' => $author,
+                'date' => $date,
+                'msg' => $msg
+	}
+      }
+    } elsif ($state eq 'head' and m/$headrule/) {
+      $rev = $1;
+      $author = $2;
+      $date = $3;
+      $paths = {};
+      $msg = "";
+
+      $state = 'paths';
+    } elsif ($state eq 'paths') {
+      unless (m/^Changed paths:$/) {
+        if (m/^$/) {
+          $state = 'message';
+        } else {
+          if (m/^\s+(\w+) (.+)$/) {
+	    my $action = $1;
+	    my $str    = $2;
+
+	    # If a copyfrom_{path,rev} is listed then include it,
+	    # otherwise just note the path and the action.
+	    if($str =~ /^(.*?) \(from (.*?):(\d+)\)$/) {
+	      $paths->{$1}{action} = $action;
+	      $paths->{$1}{copyfrom_path} = $2;
+	      $paths->{$1}{copyfrom_rev} = $3;
+	    } else {
+	      $paths->{$str}{action} = $action;
+	    }
+          }
+        }
+      }
+    } elsif ($state eq 'message') {
+      $msg .= $_;
+    }
+  }
+}

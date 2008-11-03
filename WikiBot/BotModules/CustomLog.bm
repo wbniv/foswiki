@@ -1,0 +1,182 @@
+################################
+# Custom Log Module            #
+################################
+# CustomLog.bm - Written by Jason Hill (qbfreak@qbfreak.net)
+# Some code from XMLLogger.bm - Written by Matt Jones
+
+# STATUS: non-functional, in development
+
+
+package BotModules::CustomLog;
+use vars qw(@ISA);
+@ISA = qw(BotModules);
+1;
+
+sub RegisterConfig {
+    my $self = shift;
+    $self->SUPER::RegisterConfig(@_);
+    $self->registerVariables(
+      # [ name, save?, settable?, value ]
+        ['lognames', 1, 1, {}], # logname => channel, channel == '' if log inactive
+    );
+}
+
+sub Help {
+    my $self = shift;
+    my ($event) = @_;
+    return {
+        '' => 'This is test module for user-specified logging.',
+        'startlog' => 'Requests that the bot start a new log. Startlog accepts one parameter; the name of the log.',
+        'stoplog' => 'Requests that the bot stop a current log. Stoplog accepts one parameter; the name of the log.',
+        'rmlog' => 'Requests that the bot remove an inactive log. Rmlog accepts one parameter; the name of the log.',
+        'logs' => 'Requests that the bot list all active and inactive logs.',
+        'log' => 'Requests that the bot display the state of a log. Log accepts one parameter; the name of the log.',
+    };
+}
+
+sub Told { # You know, this REALLY should call a generic handler... match on /^\s*command\s/osi here and check args elsewhere?
+           #   another option is to check args here but all call the same set of handers, indicating invalid param with a flag
+	   #   either way this is a total mess
+    my $self = shift;
+    my ($event, $message) = @_;
+    if ($message =~ /^\s*startlog\s*$/osi) { # startlog - no parameters
+        $self->say($event, 'usage: startlog <logname>');
+    } elsif ($message =~ /^\s*startlog\s*([0-9a-zA-Z._]+)\s*$/osi) { # startlog <valid_param>
+        if ( defined $self->{'lognames'}->{$1} ) { # log exists
+	    $self->say($event, "Sorry, a log already exists with the name '$1'");
+	} else { # log doesn't exist
+	    if ( $event->{'channel'} ne '' ) {
+	        $self->Set($event, 'lognames', "+|$1|".$event->{'channel'});
+                $self->say($event, "Starting log $1");
+	    } else {
+	        $self->say($event, 'You must start the log from within a channel');
+	    }
+	} 
+    } elsif ($message =~ /^\s*startlog\s*.*$/osi) { # startrlog <invalid param>
+        $self->say($event, 'That is not a valid log name, valid log names contain only 0-9A-Za-z._');
+    } elsif ($message =~ /^\s*stoplog\s*$/osi) { # stoplog - no parameters
+        $self->say($event, 'usage: stoplog <logname>');
+    } elsif ($message =~ /^\s*stoplog\s*(.*)\s*$/osi) { # stoplog <param>  -- no need to check for validity, invalid entries wont exist
+        if ( defined $self->{'lognames'}->{$1} ) { # log exists
+	    if ( $self->{'lognames'}->{$1} eq '' ) { # log is not active
+	        $self->say($event, "The log '$1' is not active, nothing to stop");
+	    } else { # log is active
+		$self->Set($event, 'lognames', "+|$1|");
+	        $self->say($event, "Stopping log '$1'");
+	    }
+	} else { # log doesn't exist
+            $self->say($event, "Sorry, I can't seem to find a log named '$1'");
+	} 
+    } elsif ($message =~ /^\s*rmlog\s*(.*)\s*$/osi) { # rmlog <param>  -- no need to check for validity, invalid entries wont exist
+        if ( defined $self->{'lognames'}->{$1} ) { # log exists
+	    if ( $self->{'lognames'}->{$1} eq '' ) { # log is not active
+		#delete $self->{'lognames'}->{$1};
+		$self->Set($event, 'lognames', "-$1");
+	        $self->say($event, "Deleting log '$1'");
+	    } else { # log is active
+	        $self->say($event, "The log '$1' is currently active, stop it first with 'stoplog $1'");
+	    }
+	} else { # log doesn't exist
+            $self->say($event, "Sorry, I can't seem to find a log named '$1'");
+	} 
+    } elsif ($message =~ /^\s*logs\s*$/osi) { # logs - has no parameters
+	$self->say($event, 'Listing all logs');
+	foreach (keys %{$self->{'lognames'}}) { # Note the %{} around the $self->{'lognames'} -- dereferences the whole bit, good to remember
+	    $self->say($event, " $_: $self->{'lognames'}->{$_}");
+	}
+	$self->say($event, 'List end');
+    } elsif ($message =~ /^\s*log\s*(.*)\s*$/osi) {
+	if ( defined $self->{'lognames'}->{$1} ) {
+	    if ( $self->{'lognames'}->{$1} eq '' ) {
+                $self->say($event, "Log '$1' is not currently active");
+	    } else {
+                $self->say($event, "Log '$1' is currently active on channel " . $self->{'lognames'}->{$1});
+	    }
+	} else {
+            $self->say($event, "Sorry, there is no log named '$1'");
+	}
+    } else { # not one of this module's commands
+        return $self->SUPER::Told(@_);
+    }
+    return 0; # we've dealt with it, no need to do anything else.
+}
+
+sub LogA { # Remove the A from the name once we're ready to use it
+    my $self = shift;
+    my ($event) = @_;
+    my $found = 0;
+    foreach (keys %{$self->{'lognames'}}) { if ( $self->{'lognames'}->{$_} eq $event->{'channel'} ) { $found = 1; } }
+    if ( $found == 0 ) { return $self->SUPER::Log(@_); } # If the channel doesn't have an active log, we're done
+    if (($event->{'firsttype'} eq 'Told') or
+        ($event->{'firsttype'} eq 'Heard')) {
+        $self->DoLog($event, 'msg');
+    } elsif (($event->{'firsttype'} eq 'Felt') or
+             ($event->{'firsttype'} eq 'Saw')) {
+        $self->DoLog($event, 'emote');
+    } elsif (($event->{'firsttype'} eq 'SpottedKick') or
+             ($event->{'firsttype'} eq 'Kicked')) {
+        $self->DoLog($event, 'kick');
+    } elsif ($event->{'firsttype'} eq 'SpottedPart') {
+        $self->DoLog($event, 'part');
+    } elsif ($event->{'firsttype'} eq 'SpottedQuit') {
+        $self->DoLog($event, 'quit');
+    } elsif ($event->{'firsttype'} eq 'SpottedJoin') {
+        $self->DoLog($event, 'join');
+    } elsif ($event->{'firsttype'} eq 'SpottedNickChange') {
+        $self->DoLog($event, 'nick');
+    } elsif ($event->{'firsttype'} eq 'ModeChange') {
+        $self->DoLog($event, 'mode');
+    } elsif ($event->{'firsttype'} eq 'SpottedTopicChange') {
+        $self->DoLog($event, 'topic');
+    } # XXX should log notices
+    return $self->SUPER::Log(@_);
+}
+
+sub DoLog {
+    my $self = shift;
+    my ($event, $messageType) = @_;
+    if ($event->{'channel'} ne '') { # don't log private messages
+        foreach my $pattern (@{$self->{'acceptedPatterns'}}) {
+            my $regexp = $self->sanitizeRegexp($pattern);
+            if (($regexp eq '') ||
+                ($event->{'fulldata'} =~ /$regexp/s) ||
+                ($event->{'from'} =~ /$regexp/s)) {
+                # wohay, we have a candidate!
+                # now check for possible blockers...
+                unless ($self->isBlocked($event)) {
+                    $self->WriteMessage($event->{'time'},
+                                        $event->{'channel'},
+                                        $event->{'from'},
+                                        $event->{'fulldata'},
+                                        $messageType);
+                    return; # only store each message once, regardless of how many patterns it matches
+                }
+            }
+        }
+    }
+}
+
+sub WriteMessage {
+    my $self = shift;
+    my ($time, $channel, $from, $message, $messageType) = @_;
+    # Open the log file and append the message
+    $channel = $self->sanitiseChannelName($channel);
+    my $logName = $self->getLogFilename("$channel.xml.part");
+    if (open(LOG, ">>$logName")) {
+        my $msgtime = $self->logdate($time);
+        # sanitise the output
+        $_ = $self->escapeXML($_) for ($messageType, $channel, $from, $msgtime, $message);
+        print LOG "<$messageType channel=\"$channel\" nick=\"$from\" time=\"$msgtime\">$message</$messageType>\n";
+        close(LOG);
+    } else {
+        $self->debug("Error logging, failed to open log $logName");
+    }
+}
+
+sub sanitiseChannelName {
+    my $self = shift;
+    my($channel) = @_;
+    $channel =~ s/([^\#&+a-zA-Z0-9-])//gosi; # sanitize
+    $channel =~ m/^(.*)$/os; # detaint
+    return $1;
+}

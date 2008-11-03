@@ -1,0 +1,82 @@
+################################
+# TWiki Module                 #
+################################
+
+package BotModules::TWiki;
+use WWW::REST;
+use vars qw(@ISA $restdone $restret);
+@ISA = qw(BotModules);
+1;
+
+sub Help {
+    my $self = shift;
+    my ($event) = @_;
+    return {
+        '' => 'This module interfaces with TWiki.',
+        'comment' => 'Posts a comment to a given topic. Usage: comment Web.Topic This is my comment',
+    };
+}
+
+sub Told {
+    my $self = shift;
+    my ($event, $message) = @_;
+    if ($message =~ /^\s*comment\s+([^\s]+)\s+(.*)\s*$/osi) {
+        #$self->say($event, "You wish to post '$2' to $1.");
+        my $topic = $1;
+	my $comment = $2;
+	$comment =~ s/\\n/\n/g;
+
+	print insertText($topic, $comment, "\%COMMENT\%", 'ABOVE', 1)."\n";
+    } elsif ($message =~ /^\s*inserttext\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)\s+(.*)\s*$/osi) {
+        # Topic Reference Relative Signature Text
+        #$self->say($event, "You wish to post '$2' to $1.");
+	my $comment = $5;
+	$comment =~ s/\\n/\n/g;
+
+	print insertText($1, $comment, $2, $3, $4, $comment)."\n";
+    } else {
+        return $self->SUPER::Told(@_);
+    }
+    return 0; # we've dealt with it, no need to do anything else.
+}
+
+sub insertText {
+    my ($tbpTopic, $tbpText, $tbpReference, $tbpRelative, $tbpSignature) = @_;
+
+    # These shold be configuration settings
+    my $uname = 'TWikiBot';
+    my $pass = 'IloveTWiki';
+    my $location = 'http://twiki.qbfreak.net/edinburgh/TWiki-4.1.2/bin/rest/TWikiBotPlugin/inserttext';
+
+    # Make the request
+    my $url = WWW::REST->new("$location");
+    $url->dispatch( \&gotData );
+    $restdone = 0;
+    $restret = '';
+    $url->post(
+        username => $uname,
+	password => $pass,
+	tbp_topic => $tbpTopic,
+	tbp_text => $tbpText,
+	tbp_reference => $tbpReference,
+	tbp_relative => $tbpRelative,
+	tbp_signature => $tbpSignature
+    );
+    
+    # Wait for $restdone == 1
+    until ($restdone) {  }
+    return $restret;
+}
+
+sub gotData {
+        #my $self = shift;
+	my $data = shift;
+        if ($data->is_error) {
+	    $restret = $data->status_line;
+	} else {
+            $restret = $data->content;
+	}
+	$restdone = 1;
+        return;
+}
+

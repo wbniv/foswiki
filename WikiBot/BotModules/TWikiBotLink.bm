@@ -1,0 +1,68 @@
+################################
+# TWikiBot link Module         #
+################################
+
+# STATUS: Complete
+
+# TODO:
+#    * Management commands for InterWikis hash, its huge
+#    * Better means to store links than InterWikis hash?
+
+package BotModules::TWikiBotLink;
+use vars qw(@ISA);
+@ISA = qw(BotModules);
+1;
+
+sub RegisterConfig {
+    my $self = shift;
+    $self->SUPER::RegisterConfig(@_);
+    $self->registerVariables(
+      # [ name, save?, settable?, value ]
+	['InterWikis', 1, 1, { 'TWiki' => 'http://twiki.org/cgi-bin/view/' }],
+    );
+}
+
+sub Help {
+    my $self = shift;
+    my ($event) = @_;
+    return {
+        '' => 'This module provides Interwiki-style link expansion.',
+    };
+}
+
+sub Heard {
+    my $self = shift;
+    my ($event, $message) = @_;
+    my %links;
+    
+    #                                    alphanum web params
+    #                                    |-------||--||------|
+    if ($message =~ s/([0-9A-Za-z._]+):([0-9A-Za-z._\/#\+\?=&;]+)/&procMatch($1, $2, \%links, $self)/ge) {
+        my $found = 0;
+        while ( my ($key, $value) = each(%links) ) {
+	    $found = 1;
+            $self->say($event, "$value\n");
+        }
+	if ( $found == 0 ) { return $self->SUPER::Heard(@_); }
+    } else {
+        return $self->SUPER::Heard(@_);
+    }
+    return 0; # we've dealt with it, no need to do anything else.
+}
+
+sub procMatch {
+    my ($site, $topic, $hash_ref, $self) = @_;
+    my $interwikis = $self->{InterWikis};
+    
+    if (exists $interwikis->{$site}) {
+        my $link = $interwikis->{$site};
+        if ( $link =~ s/\$page/$topic/go ) {
+	    $hash_ref->{ "$site:$topic" } = $link;
+	} else {
+            $hash_ref->{ "$site:$topic" } = "$link$topic";
+	}
+    }
+    
+    return '';
+}
+      

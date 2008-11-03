@@ -1,0 +1,29 @@
+################################
+# Hello World Module           #
+################################
+
+package BotModules::Tools;
+use vars qw(@ISA);
+@ISA = qw(BotModules);
+1;
+
+sub Help {
+    my $self = shift;
+    my ($event) = @_;
+    return {
+        '' => 'This module contains various useful tools for managing the bot.',
+        'resetnick' => 'Change back to the default nick',
+    };
+}
+
+sub Told {
+    my $self = shift;
+    my ($event, $message) = @_;
+    if ($message =~ /^\s*resetnick\s*$/osi) {
+        $self->say($event, "My nick: " . $event->{'bot'}->nick);
+    } else {
+        return $self->SUPER::Told(@_);
+    }
+    return 0; # we've dealt with it, no need to do anything else.
+}
+
