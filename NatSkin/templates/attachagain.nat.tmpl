@@ -1,13 +1,17 @@
-%TMPL:INCLUDE{"attach"}%
-<!-- template: attachagain.nat.tmpl -->
-%TMPL:DEF{"previousdetails"}%<h2> %MAKETEXT{"Update attachment"}% "%FILENAME%" </h2>
+%TMPL:INCLUDE{"attach"}%<!-- template: attachagain.nat.tmpl -->
+%TMPL:DEF{"heading"}%%MAKETEXT{"Update attachment [_1] on [_2]" args="[[%ATTACHURLPATH%/%ENCODE{%FILENAME%}%][%FILENAME%]],[[%TOPIC%]]"}%%TMPL:END%
+%TMPL:DEF{"existingattachments"}%<!-- existingattachments -->
+---++ %MAKETEXT{"Version history"}%
 <div class="natTopicAttachments">
 %ATTACHTABLE% 
 </div>
-%TMPL:END%
-%TMPL:DEF{"notes"}% *%MAKETEXT{"Properties"}%:* 
-%MAKETEXT{"The comment and visibility (i.e. is attachment hidden) can be changed without 
-uploading a file by pressing _Change Properties_"}%
+<!-- //existingattachments -->%TMPL:END%
+%TMPL:DEF{"notes"}%<!-- notes -->
+<p>
+  *%MAKETEXT{"Properties"}%:* 
+  %MAKETEXT{"The comment and visibility (i.e. is attachment hidden) can be changed without 
+  uploading a file by pressing _Change Properties_"}%
+</p>
 <p>
 %MAKETEXT{"*Change comment:* If you use _Change Properties_ to change a comment, the comment shown in 
 the topic will change, but the comment shown against the attachment history will be the 
@@ -18,10 +22,10 @@ comment when the file was uploaded."}%
 updated or added."}%
 </p>
 <p> %MAKETEXT{"*Move attachment*: An attachment can be deleted by moving it to the Trash.TrashAttachment."}%  </p>
-%TMPL:END%
-%TMPL:DEF{"attachaction"}% <!-- -->
-<input type="submit" class="natOkButton" value='%MAKETEXT{"Upload file"}%' /><!--
---><input type="submit" class="natAltButton" name="changeproperties" value='%MAKETEXT{"Change properties"}%' /><!--
---><input type="button" class="natCancelButton" value='%MAKETEXT{"Cancel"}%' onclick="window.location.href = '%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%';"><!--
--->%TMPL:END%
+<!-- //notes -->%TMPL:END%
+%TMPL:DEF{"attachaction"}% <!-- attachaction -->
+<input type="submit" class="natOkButton" value='%MAKETEXT{"Upload file"}%' />
+<input type="submit" class="natAltButton" name="changeproperties" value='%MAKETEXT{"Change properties"}%' />
+<input type="button" class="natCancelButton" value='%MAKETEXT{"Cancel"}%' onclick="window.location.href = '%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%';">
+<!-- //attachaction -->%TMPL:END%
 %TMPL:DEF{"fileuser"}%(%FILEUSER%)%TMPL:END%

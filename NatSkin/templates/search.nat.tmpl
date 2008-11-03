@@ -1,5 +1,7 @@
 %TMPL:INCLUDE{"searchbase"}%<!-- template: search.nat.tmpl -->
 %TMPL:DEF{"searchbox"}%%TMPL:END%
+%TMPL:DEF{"contentheader_container"}%%TMPL:END%
+%TMPL:DEF{"contentfooter_container"}%%TMPL:END%
 %TMPL:DEF{"topictitle_dbcache"}%%TOPICTITLE{"%TOPICNAME%"}%%TMPL:END%
 %TMPL:DEF{"topictitle_nodbcache"}%%TOPICNAME%%TMPL:END%
 %TMPL:DEF{"topictitle"}%%TMPL:P{context="DBCachePluginEnabled" then="topictitle_dbcache" else="topictitle_nodbcache"}%%TMPL:END%
@@ -12,13 +14,12 @@
     changed on <a href='%SCRIPTURLPATH{"rdiff"}%/%WEB%/%TOPICNAME%?type=last'>%TIME%</a> by <span class='natSearchAuthor'> %AUTHOR% </span>
   </div>
 <!-- //searchit -->%TMPL:END%
-%TMPL:DEF{"content"}% <!-- content -->
-<h2>%MAKETEXT{"Search result for [_1]" args="<span class='natSearchString'>\"%URLPARAM{"search"}%\"</span>"}%</h2>
+%TMPL:DEF{"contenttitle"}%<h1>%MAKETEXT{"Search result for [_1]" args="<span class='natSearchString'>\"%URLPARAM{"search"}%\"</span>"}%</h1>%TMPL:END%
+%TMPL:DEF{"content"}%<!-- content -->
+%TMPL:P{"contenttitle"}%<!-- contenttitle// -->
 %SPLIT%%TMPL:P{"searchform"}%%SPLIT% 
-%CALC{"$SET(incr, 0)"}% <!-- CALC incr = 0 -->
 <div class="natSearchResult">
-%REPEAT% %CALC{"$SETM(incr, +1)"}% <!-- CALC incr++ -->
-<div class="natSearchHit %CALC{"$IF($ODD($GET(incr)),natSearchHitOdd,natSearchHitEven)"}%">
+%REPEAT%<div class="natSearchHit %CALC{"$SETM(incr, +1)$IF($ODD($GET(incr)),natSearchHitOdd,natSearchHitEven)"}%">
 %TMPL:P{"searchhit"}%
 </div>
 %REPEAT%</div>%SPLIT%<div class="natSearchTotal">
@@ -29,30 +30,37 @@
 %IFSKINSTATETHEN{action="natsearch"}%
 <div class="natSearchForm">
 <form name="searchform" action="%SCRIPTURLPATH{"natsearch"}%/%BASEWEB%/%BASETOPIC%" method="post">
-<input type="text" name="search" size="50" value="%URLPARAM{"search" encode="entity"}%" accesskey="f" /> 
-<input type="submit" value="%MAKETEXT{"Submit"}%" class="natOkButton" title="submit the query" />
+<input type="text" name="search" size="30" value="%URLPARAM{"search" encode="entity"}%" accesskey="f" /> 
+<input type="submit" value="%MAKETEXT{"Search"}%" class="natOkButton" title="submit the query" />
 <input type="button" value="%MAKETEXT{"Cancel"}%" class="natCancelButton" onclick="window.location.href='%SCRIPTURLPATH{"view"}%/%BASEWEB%/%BASETOPIC%';" accesskey="c" title='%MAKETEXT{"go back to <nop>[_1]" args="%WEB%.%TOPIC%"}%'>
-&nbsp;&nbsp;
-%TMPL:P{"seealso"}%
-
-<label>
-  %MAKETEXT{"search in all webs"}%:
-  <input type="checkbox" class="twikiCheckbox" name="web" value="all" %IFDEFINED{"%URLPARAM{web}%" as="all" then=" checked"}%/>
-</label>
-&nbsp;
+&nbsp;%TMPL:P{"seealso"}%
+<table class="natSearchFormOptions" cellspacing="0" cellpadding="0"><tr>
+<td>
+<input type="checkbox" class="twikiCheckbox" id="web" name="web" value="all" %IFDEFINED{"%URLPARAM{web}%" as="all" then=" checked"}%/>
+</td>
+<td>
+<label for="web">%MAKETEXT{"search in all webs"}%</label>
+</td>
+<td>
+&nbsp;|&nbsp;
+</td>
+<td>
 <label>
   %MAKETEXT{"maximum number of hits per web"}%:
-  <select name="limit">
-    <option %IFDEFINED{"%URLPARAM{"limit"}%" as="5" then=" selected"}%>5</option>
-    <option %IFDEFINED{"%URLPARAM{"limit"}%" as="10" then=" selected"}%>10</option>
-    <option %IFDEFINED{"%URLPARAM{"limit"}%" as="20" then=" selected"}%>20</option>
-    <option %IFDEFINED{"%URLPARAM{"limit"}%" as="30" then=" selected"}%>30</option>
-    <option %IFDEFINED{"%URLPARAM{"limit"}%" as="40" then=" selected"}%>40</option>
-    <option %IFDEFINED{"%URLPARAM{"limit"}%" as="50" then=" selected"}%>50</option>
-    <option %IFDEFINED{"%URLPARAM{"limit"}%" as="100" then=" selected"}%>100</option>
-    <option %IFDEFINED{"%URLPARAM{"limit" default="all"}%" as="all" then=" selected"}%>all</option>
-  </select>
 </label>
+</td>
+<td>
+<select name="limit">
+  <option %IFDEFINED{"%URLPARAM{"limit"}%" as="5" then=" selected"}%>5</option>
+  <option %IFDEFINED{"%URLPARAM{"limit"}%" as="10" then=" selected"}%>10</option>
+  <option %IFDEFINED{"%URLPARAM{"limit"}%" as="20" then=" selected"}%>20</option>
+  <option %IFDEFINED{"%URLPARAM{"limit"}%" as="30" then=" selected"}%>30</option>
+  <option %IFDEFINED{"%URLPARAM{"limit"}%" as="40" then=" selected"}%>40</option>
+  <option %IFDEFINED{"%URLPARAM{"limit"}%" as="50" then=" selected"}%>50</option>
+  <option %IFDEFINED{"%URLPARAM{"limit"}%" as="100" then=" selected"}%>100</option>
+  <option %IFDEFINED{"%URLPARAM{"limit" default="all"}%" as="all" then=" selected"}%>all</option>
+</select>
+</td></tr></table>
 </form>
 </div>
 %FISKINSTATE%

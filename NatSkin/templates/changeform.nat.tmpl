@@ -1,15 +1,15 @@
-%TMPL:INCLUDE{"page"}% 
-<!-- template: changeform.nat.tmpl -->
-<!-- -->%TMPL:INCLUDE{"changeformbody"}% 
-<!-- -->%TMPL:INCLUDE{"changeformtopicactions"}% 
-<!-- -->%TMPL:INCLUDE{"changeformsidebar"}% 
-<!-- -->%TMPL:INCLUDE{"changeformjavascript"}%
-<!-- -->%TMPL:INCLUDE{"changeformstyles"}%
+%TMPL:INCLUDE{"page"}%<!-- template: changeform.nat.tmpl -->
+%TMPL:INCLUDE{"changeformbody"}%<!-- changeformbody// -->
+%TMPL:INCLUDE{"changeformtopicactions"}%<!-- changeformtopicactions// -->
+%TMPL:INCLUDE{"changeformsidebar"}%<!-- changeformsidebar// -->
+%TMPL:INCLUDE{"changeformjavascript"}%<!-- changeformjavascript// -->
+%TMPL:INCLUDE{"changeformstyles"}%<!-- changeformstyles// -->
 %TMPL:DEF{"bodyclass"}%natChangeFormBody%TMPL:END%
 %TMPL:DEF{"meta"}% <meta name="robots" content="noindex, nofollow" /> %TMPL:END%
 %TMPL:DEF{"title"}%%TOPICTITLE% (%MAKETEXT{"edit"}%) - %WIKITOOLNAME%%TMPL:END%
-%TMPL:DEF{"content"}% <!-- -->
----+ %MAKETEXT{"Choose a new form for [_1]" args="[[%TOPIC%]]"}%
+%TMPL:DEF{"contenttitle"}%<h1>%MAKETEXT{"Choose a new form for [_1]" args="[[%TOPIC%]]"}%</h1>%TMPL:END%
+%TMPL:DEF{"content"}%<!-- content -->
+%TMPL:P{"contenttitle"}%<!-- contenttitle// -->
 <div class="twikiPageForm">
 <form name="EditForm" method="post" action="%SCRIPTURLPATH{"edit"}%/%WEB%/%TOPIC%?t=%GMTIME{"$year$mo$day$hours$minutes$seconds"}%">
   <input type="hidden" name="topicparent" value="%TOPICPARENT%" />
@@ -53,4 +53,4 @@
 </form>
 </div>
 </noautolink>
-%TMPL:END%
+<!-- //content -->%TMPL:END%

@@ -1,15 +1,16 @@
 %TMPL:INCLUDE{"edit"}%<!-- template: preview.nat.tmpl -->
-%TMPL:INCLUDE{"previewbody"}%<!-- -->
-%TMPL:INCLUDE{"previewtopicactions"}%<!-- -->
-%TMPL:INCLUDE{"previewsidebar"}%<!-- -->
-%TMPL:INCLUDE{"previewjavascript"}%<!-- -->
-%TMPL:INCLUDE{"previewstyles"}%<!-- -->
-%TMPL:INCLUDE{"previewtoolbar.natedit"}%<!-- -->
+%TMPL:INCLUDE{"previewbody"}%<!-- previewbody// -->
+%TMPL:INCLUDE{"previewtopicactions"}%<!-- previewtopicactions// -->
+%TMPL:INCLUDE{"previewsidebar"}%<!-- previewsidebar// -->
+%TMPL:INCLUDE{"previewjavascript"}%<!-- previewjavascript// -->
+%TMPL:INCLUDE{"previewstyles"}%<!-- previewstyles// -->
+%TMPL:INCLUDE{"previewtoolbar"}%<!-- previewtoolbar// -->
 %TMPL:DEF{"bodyclass"}%natPreviewBody%TMPL:END%
 %TMPL:DEF{"meta"}% %HTTP_EQUIV_ON_PREVIEW% %TMPL:END%
 %TMPL:DEF{"title"}%%TOPICTITLE% (%MAKETEXT{"preview"}%) - %WIKITOOLNAME%%TMPL:END%
 %TMPL:DEF{"contentheader"}%<div class="natBreadCrumbs">%BREADCRUMBS{"%BASEWEB%.%BASETOPIC%" exclude="%BASETOPIC%" separator="<span class='natSep'>&nbsp;&#187; </span>" footer="<span class='natSep'>&#187;</span><nop>%BASETOPIC%"}%</div>%TMPL:END%
-%TMPL:DEF{"content"}%%TMPL:P{"previewtoolbar"}% 
+%TMPL:DEF{"content"}%<!-- content -->
+%TMPL:P{"previewtoolbar"}%<!-- previewtoolbar// -->
 %TEXT%
 %META{"form"}%
 <form name="EditForm" method="post" action="%SCRIPTURLPATH{"save"}%/%WEB%/%TOPIC%">
@@ -31,4 +32,5 @@
   <input type="hidden" name="nowysiwyg" value="%URLPARAM{"nowysiwyg"}%" />
   <input type="hidden" name="rev" value="%URLPARAM{"rev"}%" />
   <input type="hidden" name="text" value="%HIDDENTEXT%" />
-</form> %TMPL:END%
+</form>
+<!-- //content-->%TMPL:END%

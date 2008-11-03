@@ -1,0 +1,113 @@
+%META:TOPICINFO{author="TWikiContributor" date="1131431859" format="1.1" version="$Rev$"}%
+%TMPL:INCLUDE{"view"}%
+
+%TMPL:DEF{"content"}%
+---+ %MAKETEXT{"Create New Topic in [_1] Web" args="<nop>%BASEWEB%"}%
+%TMPL:P{"formstartstep"}%
+%TMPL:P{"topictitlestep"}%
+%TMPL:P{"topicnamestep"}%
+%TMPL:P{"DIStopictemplatestep"}%
+%TMPL:P{"formbuttons"}%
+%TMPL:P{"formendstep"}%
+%TMPL:END%
+
+%TMPL:DEF{"viewjavascript"}%<!-- viewjavascript -->
+%JQSCRIPT{"jquery.validate"}%
+<!-- //viewjavascript -->%TMPL:END%
+
+%{ do not show the following elements }%
+%TMPL:DEF{"topicactions"}%%TMPL:END%
+
+%TMPL:DEF{"formstartstep"}%<!-- formstartstep -->
+<div class='twikiFormSteps'>%TMPL:P{"formstart"}%
+<!-- //formstartstep -->%TMPL:END%
+
+%TMPL:DEF{"formendstep"}%<!-- formendstep -->
+%TMPL:P{"formend"}%
+</div>
+<!-- //formendstep -->%TMPL:END%
+
+%TMPL:DEF{"topictitlestep"}%<!-- topictitlestep -->
+<div class='twikiFormStep'>
+---+++ %MAKETEXT{"Title:"}%
+%TMPL:P{"topictitle"}%
+</div>
+<!-- //topictitlestep -->%TMPL:END%
+
+%TMPL:DEF{"topicnamestep"}%<!-- topicnamestep -->
+<div class='twikiFormStep'>
+---+++ %MAKETEXT{"<nop>Name:"}%
+%TMPL:P{"topicname"}%%TMPL:P{"nonwikiword"}%
+</div>
+<!-- //topicnamestep -->%TMPL:END%
+
+%TMPL:DEF{"topictemplatestep"}%<!-- topictemplatestep -->
+<div class='twikiFormStep'>
+---+++ %MAKETEXT{"Use template:"}%
+%TMPL:P{"topictemplate"}%
+</div>
+<!-- //topictemplate -->%TMPL:END%
+
+%TMPL:DEF{"formbuttons"}%<!-- formbuttons -->
+<div class='twikiFormStep twikiFormButtons twikiFormLast'>
+%TMPL:P{"submit"}%%TMPL:P{"reset"}%%TMPL:P{"cancel"}%
+</div>
+<!-- //formbuttons -->%TMPL:END%
+
+%TMPL:DEF{"formstart"}%<!-- formstart -->
+<form name="newTopicForm" id="newTopicForm" action="%SCRIPTURLPATH{edit}%/%BASEWEB%/">
+<input type="hidden" name="t" value="%GMTIME{"$epoch"}%" />
+<input type="hidden" name="onlynewtopic" value="on" />
+<input type="hidden" name="topicparent" value="%URLPARAM{"topicparent"}%" />
+<!-- //formstart -->%TMPL:END%
+
+
+%TMPL:DEF{"topictitle"}%<!-- topictitle -->
+<input type="text" class="twikiInputField required" name="topictitle" id="topictitle" size="40" value="%URLPARAM{"newtopictitle"}%" />
+<div class="twikiFormDescription">
+Free form title text.
+</div>
+<!--//topictitle -->%TMPL:END%
+
+%TMPL:DEF{"topicname"}%<!-- topicname -->
+<input type="text" class="twikiInputField" name="topic" id="topic" size="40" value="%URLPARAM{"newtopic"}%" />
+<div class="twikiFormDescription">
+<nop>WikiWord the new page is associated with.
+</div>
+<!--//topicname -->%TMPL:END%
+
+%TMPL:DEF{"topictemplate"}%<!-- topictemplate -->
+<select name="templatetopic" class="twikiSelect">
+%IF{"'%URLPARAM{"templatetopic"}%'" then='<option selected="selected">%URLPARAM{"templatetopic"}%</option>'}%
+<option value="">%MAKETEXT{"Default template"}%</option>%SEARCH{".*Template$" scope="topic" excludetopic="WebTopicEditTemplate,WebCreateNewTopicTemplate,*ViewTemplate" type="regex" nonoise="on" format="<option>$topic</option>"}%</select> 
+<div class="twikiFormDescription">
+Initialize the new topic using a template.
+</div>
+<!-- //topictemplate -->%TMPL:END%
+
+%TMPL:DEF{"submit"}%<!-- submit -->
+<input id="submit" type="submit" class="natOkButton twikiSubmit" value='%MAKETEXT{"OK"}%' />
+<!-- //submit -->%TMPL:END%
+
+%TMPL:DEF{"reset"}%<!-- reset -->
+<input id="reset" type="reset" class="natAltButton twikiButton" value='%MAKETEXT{"Reset"}%' />
+<!-- //reset -->%TMPL:END%
+
+%TMPL:DEF{"cancel"}%<!-- cancel -->
+<input id="button" type="button" class="natCancelButton twikiButton" value='%MAKETEXT{"Cancel"}%' onclick="window.location.href='%URLPARAM{"origurl" default="%SCRIPTURL{"view"}%/%BASEWEB%/%BASETOPIC%"}%';" />
+<!-- //cancel -->%TMPL:END%
+
+
+%TMPL:DEF{"formend"}%</form>%TMPL:END%
+
+%TMPL:DEF{"javascript"}%<!-- javascript -->
+%TMPL:P{"defaultjavascript"}%
+<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/JQueryPlugin/jquery.wikiword.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/JQueryPlugin/jquery.validate.js"></script>
+<script type="text/javascript">
+$(function() {
+  $("#topic").wikiword("#topictitle");
+  $("#newTopicForm").validate();
+});
+</script>
+<!-- javascript -->%TMPL:END%

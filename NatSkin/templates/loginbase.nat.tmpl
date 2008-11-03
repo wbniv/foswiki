@@ -11,8 +11,8 @@
 <form name="LogonForm" action="%IFDEFINED{"%HTTPSLOGON%" as ="on" then="https" else="http"}%://%HTTP_HOST%%SCRIPTURLPATH{"login"}%/%WEB%/%TOPIC%" method="post">
 <table class="natLogonForm" border="0"> 
 <tr class="natLogonFormLogin"> 
-  <th class="twikiFirstCol"><b>%MAKETEXT{"Login"}%</b>: </th>
-  <td><input type="text" size="20" name="username" /> 
+  <th class="twikiFirstCol"><b>%MAKETEXT{"Username"}%</b>: </th>
+  <td><input type="text" size="20" name="username" value='%URLPARAM{"usernamestep"}%' /> 
       <span class="twikiAlert">**</span>
   </td>
 </tr>

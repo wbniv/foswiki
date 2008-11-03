@@ -1,14 +1,14 @@
 %TMPL:INCLUDE{"page"}% 
 %TMPL:INCLUDE{"edit"}%<!-- template: settings.nat.tmpl -->
-%TMPL:INCLUDE{"settingsbody"}%<!-- -->
-%TMPL:INCLUDE{"settingstopicactions"}%<!-- -->
-%TMPL:INCLUDE{"settingssidebar"}%<!-- -->
-%TMPL:INCLUDE{"settingsjavascript"}%<!-- -->
-%TMPL:INCLUDE{"settingsstyles"}%<!-- -->
+%TMPL:INCLUDE{"settingsbody"}%<!-- settingsbody// -->
+%TMPL:INCLUDE{"settingstopicactions"}%<!-- settingstopicactions// -->
+%TMPL:INCLUDE{"settingssidebar"}%<!-- settingssidebar// -->
+%TMPL:INCLUDE{"settingsjavascript"}%<!-- settingsjavascript// -->
+%TMPL:INCLUDE{"settingsstyles"}%<!-- settingsstyles// -->
 %TMPL:DEF{"title"}%%TOPICTITLE% (%MAKETEXT{"prefs"}%) - %WIKITOOLNAME%%TMPL:END%
 %TMPL:DEF{"contenttitle"}%<h1>[[%WEB%.%TOPIC%][%WEBLINK{format="$web"}%.%TOPIC%]] (%MAKETEXT{"prefs"}%)</h1>%TMPL:END%
 %TMPL:DEF{"content"}%<!-- content -->
-%TMPL:P{"contenttitle"}%
+%TMPL:P{"contenttitle"}%<!-- contenttitle// -->
 <form name="EditForm" method="post" action="%SCRIPTURLPATH{"manage"}%/%WEB%/%TOPIC%">
 <input type="hidden" name="action_addform" value="" />
 <input type="hidden" name="action_cancel" value="" />

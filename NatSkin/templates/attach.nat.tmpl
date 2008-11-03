@@ -1,67 +1,76 @@
 %TMPL:INCLUDE{"page"}%<!-- template: attach.nat.tmpl -->
-%TMPL:INCLUDE{"attachtopicactions"}%<!-- -->
-%TMPL:INCLUDE{"attachbody"}%<!-- -->
-%TMPL:INCLUDE{"attachsidebar"}%<!-- -->
-%TMPL:INCLUDE{"attachjavascript"}%<!-- -->
-%TMPL:INCLUDE{"attachstyles"}%<!-- -->
+%TMPL:INCLUDE{"attachtopicactions"}%<!-- attachtopicactions// -->
+%TMPL:INCLUDE{"attachbody"}%<!-- attachbody// -->
+%TMPL:INCLUDE{"attachsidebar"}%<!-- attachsidebar// -->
+%TMPL:INCLUDE{"attachjavascript"}%<!-- attachjavascript// -->
+%TMPL:INCLUDE{"attachstyles"}%<!-- attachstyles// -->
+%TMPL:DEF{"breadcrumbs"}%<!-- breadcrumbs -->
+  <div class="natBreadCrumbs">
+    %MAKETEXT{"You are here:"}%<span class='natSep'>&nbsp; </span>%IFDEFINED{"$percntTHISBREADCRUMBS$percnt" then="$test" else="$percntBREADCRUMBS{separator=\"<span class='natSep'>&nbsp;&#187; </span>\"}$percnt"}%
+  </div>
+<!-- //breadcrumbs -->%TMPL:END%
+%TMPL:DEF{"contentheader"}%%TMPL:P{"breadcrumbs"}%%TMPL:END%
 %TMPL:DEF{"title"}%%TOPICTITLE% (attach) - %WIKITOOLNAME%%TMPL:END%
+%TMPL:DEF{"contenttitle"}%<h1>Attachments at %TOPICTITLE%</h1>%TMPL:END%
 %TMPL:DEF{"bodyclass"}%natAttachBody%TMPL:END%
 %TMPL:DEF{"meta"}%<meta name="robots" content="noindex, nofollow" />%TMPL:END%
 %TMPL:DEF{"onloadscript"}%document.main.filepath.focus();%TMPL:END%
-%TMPL:DEF{"content"}%<!-- -->
-%TMPL:P{"previousdetails"}%
-<div class="twikiPageForm">
-<form name="main" enctype="multipart/form-data" action="%SCRIPTURLPATH{"upload"}%/%WEB%/%TOPIC%" method="post">
-<table>
- <tr>
-  <th align="right">
-   %MAKETEXT{"File"}%:
-  </th><td>
-   <input type="hidden" name="filename" value="%FILENAME%" />
-   <input type="file" name="filepath" value="%FILEPATH%" size="50"/>
-  </td>
- </tr>
- <tr>
-  <th align="right">
-   %MAKETEXT{"Comment"}%:
-  </th><td>
-   <input type="text" name="filecomment" value="%FILECOMMENT%" size="50"/>
-  </td>
- </tr>
- <tr>
-  <th align="right" style="padding-top:20px">
-   %MAKETEXT{"Link:"}%
-  </th><td style="padding-top:20px">
-   <input type="checkbox" class="twikiCheckbox" name="createlink" %ATTACHLINKBOX% /> 
-   %MAKETEXT{"Create a link to the attached file at the end of the topic."}%
-  </td>
- </tr>
- <tr>
-  <th align="right">
-   %MAKETEXT{"Hide file:"}%
-  </th><td>
-   <input type="checkbox" class="twikiCheckbox" name="hidefile" %HIDEFILE% /> 
-   %MAKETEXT{"Hide attachment in normal topic view."}%
-  </td>
- </tr>
- <tr style="%IF{ "context BatchUploadPluginEnabled" else='display:none'}%">
-  <th align="right">
-   %MAKETEXT{"Batch upload"}%
-  </th><td>
-    <input type="checkbox" class="twikiCheckbox" id="batchupload" name="batchupload" />
-    <span class="twikiGrayText">%MAKETEXT{"Extracts individual files in a zip archive."}%</span>
-  </td>
- </tr>
-<tr>
-<th>&nbsp;</th>
-<td class="natAttachAction">%TMPL:P{"attachaction"}%</td>
-</tr>
-</table>
-</form>
+%TMPL:DEF{"content"}%<!-- content -->
+%TMPL:P{"contenttitle"}%<!-- contenttitle// -->
+%IFDEFINEDTHEN{"$percntURLPARAM{\"message\"}$percnt"}%
+<div class="twikiBroadcastMessage" id="message">
+%URLPARAM{"message"}%
+<a style="float:right" href="javascript:void()" title="close" onclick="$('#message').hide();">%MAKETEXT{"close"}%</a>
+<br clear="both" />
 </div>
-%IFDEFINEDTHEN{"%URLPARAM{"manage"}%" as="on"}%
-%$nopIFDEFINEDTHEN{"$percntMETA{\"attachments\" all=\"on\"}$percnt"}%
-<div class="natTopicAttachments"> $test </div>
-%$nopFIDEFINED%
 %FIDEFINED%
-%TMPL:END%
+<div class="twikiFormSteps">
+%TABPANE{select="%URLPARAM{"tab" default="1"}%"}%
+%TAB{"%MAKETEXT{"New"}%"}%
+<h2>%TMPL:P{"heading"}% </h2>
+  <form id="main" name="main" enctype="multipart/form-data" action="%SCRIPTURLPATH{"upload"}%/%WEB%/%TOPIC%" method="post" >
+    <input type="hidden" name="filename" id="filename" value="%FILENAME%" />
+    <div class="twikiFormStep">
+      <h3><label for="filepath">%MAKETEXT{"File"}%:</label></h3>
+      <input type="file" name="filepath" id="filepath" size="50"/>
+    </div>
+    <div class="twikiFormStep">
+      <h3><label for="filecomment">%MAKETEXT{"Comment"}%:</label></h3>
+     <input type="text" name="filecomment" id="filecomment" value="%URLPARAM{"filecomment" default="%FILECOMMENT%"}%" size="50"/>
+    </div>
+    <div class="twikiFormStep">
+      <h3>%MAKETEXT{"Options"}%:</h3>
+      <table class="twikiFormOptions" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <input type="checkbox" class="twikiCheckbox" name="createlink" id="createlink" %ATTACHLINKBOX% /> 
+          </td>
+          <td>
+            <label for="createlink">
+              %MAKETEXT{"<strong>Create</strong> a link to the attached file at the end of the topic."}%
+            </label>
+          </td>
+        </tr>
+        <tr>
+        <tr>
+          <td>
+            <input type="checkbox" class="twikiCheckbox" name="hidefile" id="hidefile" %HIDEFILE% /> 
+          </td>
+          <td>
+            <label for="hidefile">
+              %MAKETEXT{"<strong>Hide</strong> attachment in normal topic view."}%
+            </label>
+          </td>
+        </tr>
+%TMPL:P{"moreoptions"}%
+      </table>
+    </div>
+    <div class="twikiFormStep twikiFormLast twikiFormButtons">
+%TMPL:P{"attachaction"}%
+    </div>
+  </form>
+%ENDTAB%
+%TMPL:P{"existingattachments"}%<!-- existingattachments// -->
+%ENDTABPANE%
+</div>
+<!-- //content -->%TMPL:END%

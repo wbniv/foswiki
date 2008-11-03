@@ -4,8 +4,41 @@
 <script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/TWikiJavascripts/twiki.js"></script>
 <script type="text/javascript"> 
 $(function() { 
+  if (true) { // remove empty attachment comments
+    $("#natTopicAttachments .natAttachmentComment").each(function(){
+      var text = $(this).text();
+      //alert("text='"+text+"' char="+text.charCodeAt(0));
+      if ((text.length == 1 && text.charCodeAt(0) == 160)) {
+        $(this).hide();
+      }
+    });
+  }
+  /* tooltips */
   if (true) {
-    $("#natTopicAttachments .twikiTable a").shrinkUrls({size:25, trunc:'middle'});
+    $(".natAttachmentActions a").tooltip({
+      delay:350,
+      track:true,
+      showURL:false,
+      extraClass:'twiki',
+      showBody:': '
+    });
+
+    /* tooltip img previews */
+    $(".natAttachmentName a").each(function() {
+      if ($(this).attr('href').match(/jpe?g|gif|png|bmp/i)) {
+        $(this).tooltip({
+          delay:350,
+          track:true,
+          showURL:false,
+          bodyHandler: function() { 
+            var img = $("<img/>").attr({
+              src: this.href
+            }); 
+            return $("<div class='imgTooltip'></div>").append(img);
+          }
+        });
+      }
+    });
   }
   %TMPL:P{"onloadscript"}% 
 }); 

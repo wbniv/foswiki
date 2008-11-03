@@ -1,58 +1,41 @@
 %TMPL:INCLUDE{"page"}%<!-- template: view.nat.tmpl -->
-%TMPL:INCLUDE{"viewbody"}%<!-- -->
-%TMPL:INCLUDE{"viewtopicactions"}%<!-- -->
-%TMPL:INCLUDE{"viewsidebar"}%<!-- -->
-%TMPL:INCLUDE{"viewjavascript"}%<!-- -->
-%TMPL:INCLUDE{"viewstyles"}%<!-- -->
-%TMPL:INCLUDE{"searchbox"}%<!-- -->
+%TMPL:INCLUDE{"viewbody"}%<!-- viewbody// -->
+%TMPL:INCLUDE{"viewtopicactions"}%<!-- viewtopicactions// -->
+%TMPL:INCLUDE{"viewsidebar"}%<!-- viewsidebar// -->
+%TMPL:INCLUDE{"viewjavascript"}%<!-- viewjavascript// -->
+%TMPL:INCLUDE{"viewstyles"}%<!-- viewstyles// -->
+%TMPL:INCLUDE{"searchbox"}%<!-- searchbox// -->
 %TMPL:DEF{"bodyclass"}%natViewBody%TMPL:END%
 %TMPL:DEF{"title"}%%HTMLTITLE%%TMPL:END%
 %TMPL:DEF{"meta"}%%HTTP_EQUIV_ON_VIEW%
-%IFDEFINEDTHEN{"%IFACCESS{"%WEB%.%TOPIC%" type="change"}%" as="1"}%
-<link rel="alternate" type="application/x-wiki" title="Edit this page!" href="%SCRIPTURL{"edit"}%/%WEB%/%TOPIC%?t=%GMTIME{"$epoch"}%" />
-%FIDEFINED%
-%IFDEFINED{"%METAKEYWORDS%" then="<meta name=\"keywords\" content=\"$test\" />$n<meta http-equiv=\"keywords\" content=\"$test\" />"}%
-%IFDEFINED{"%METAAUTHOR%" glue="off" then="<meta name=\"author\" content=\"$test\" />"}%
-%IFDEFINED{"%METADESCRIPTION%" then="<meta name=\"description\" content=\"$test\" />"}%%TMPL:END%
+%IFACCESS{"%WEB%.%TOPIC%" type="change" as="1" then="<link rel=\"alternate\" type=\"application/x-wiki\" title=\"Edit this page!\" href=\"%SCRIPTURL{"edit"}%/%WEB%/%TOPIC%?t=%GMTIME{"$epoch"}%\" />" glue="off" else=""}%
+%IFDEFINED{"$percntMETAKEYWORDS$percnt" then="<meta name=\"keywords\" content=\"$test\" />$n<meta http-equiv=\"keywords\" content=\"$test\" />"}%
+%IFDEFINED{"$percntMETAAUTHOR$percnt" glue="off" then="<meta name=\"author\" content=\"$test\" />"}%
+%IFDEFINED{"$percntMETADESCRIPTION$percnt" then="<meta name=\"description\" content=\"$test\" />"}%%TMPL:END%
 %TMPL:DEF{"content"}%<!-- content -->
-%TEXT%
-%IFDEFINED{"%URLPARAM{"raw"}%" then="<div class='natButtonBox' style='text-align:right'><input type='button' class='natOkButton' onclick=\"window.location.href='%SCRIPTURL{view}%/%WEB%/%TOPIC%';\" value='Back' /></div>" else="<!-- -->" glue="off"}%
-<!-- form -->%META{"form"}%<!-- //form -->
+%TMPL:P{"beforetext"}%<!-- beforetext// -->
+%TMPL:P{"text"}%<!-- text// -->
+%TMPL:P{"rawbutton"}%<!-- rawbutton // -->
+%TMPL:P{"aftertext"}%<!-- aftertext// -->
+%TMPL:P{"form"}%<!-- form // -->
 <!-- //content -->%TMPL:END%
-%TMPL:DEF{"contentheader"}% <!-- contentheader -->
-<table width="100%" cellpadding="0" cellspacing="0" border="0">
-<tr>
-  <td valign="top">
-    <div class="natBreadCrumbs">
-      %BREADCRUMBS{separator="<span class='natSep'>&nbsp;&#187; </span>"}%
-    </div>
-  </td>
-  <td valign="top" align="right">
-    %IFDEFINEDTHEN{"$percntBROADCASTMESSAGE$percnt"}%
-    <span class="natBroadCastToggle">
-    %$nopTWISTYBUTTON{id="broadcastmessage" 
-      remember="on"
-      showlink="Broadcast on " hidelink="Broadcast off " 
-      showimg="%ICONURLPATH{toggleopenleft-small}%"
-      hideimg="%ICONURLPATH{toggleclose-small}%"
-    }%
-    </span>
-    %FIDEFINED%
-  </td>
-</tr></table>
-%TMPL:END%
+%TMPL:DEF{"rawbutton"}%%IFDEFINED{"%URLPARAM{"raw"}%" then="<div class='natButtonBox' style='text-align:right'><input type='button' class='natOkButton' onclick=\"window.location.href='%SCRIPTURL{view}%/%WEB%/%TOPIC%';\" value='Back' /></div>" else="<!-- -->" glue="off"}%%TMPL:END%
+%TMPL:DEF{"text"}%%TEXT%%TMPL:END%
+%TMPL:DEF{"form"}%%META{"form"}%%TMPL:END%
+%TMPL:DEF{"breadcrumbs"}%<!-- breadcrumbs -->
+%TMPL:P{context="natskin_topicactions_on" then="topicactions_toggle"}%<!-- topicactions_toggle// -->
+<div class="natBreadCrumbs">
+  %MAKETEXT{"You are here:"}%<span class='natSep'>&nbsp; </span>%IFDEFINED{"$percntTHISBREADCRUMBS$percnt" then="$test" else="$percntBREADCRUMBS{separator=\"<span class='natSep'>&nbsp;&#187; </span>\"}$percnt"}%
+</div>
+<!-- //breadcrumbs -->%TMPL:END%
+%TMPL:DEF{"contentheader"}%<!-- contentheader -->
+%TMPL:P{"breadcrumbs"}%<!-- breadcrumbs //-->
+%TMPL:P{context="natskin_topicactions_on" then="topicactions"}%<!-- topicactions// -->
+<!-- // contentheader -->%TMPL:END%
 %TMPL:DEF{"contentfooter"}%<!-- content footer -->
 %IFDEFINED{"$percntMETA{\"attachments\"}$percnt" then="<div class=\"natTopicAttachments\" id=\"natTopicAttachments\"> $test </div>"}%
 <div class="natRevision"> %REVINFO% </div>
 <!-- //content footer -->%TMPL:END%
-%TMPL:DEF{"broadcast"}%<!-- -->
-%IFDEFINEDTHEN{"$percntBROADCASTMESSAGE$percnt"}%
-  %$nopTWISTYTOGGLE{id="broadcastmessage"
-  mode="div" 
-  firstart="show"
-  remember="on"
-}%
-<div class="twikiBroadcastMessage"> $test </div>
-%$nopENDTWISTY%
-%FIDEFINED% 
-<!-- //contentheader -->%TMPL:END%
+%TMPL:DEF{"broadcast"}%<!-- broadcast -->
+%IFDEFINED{"$percntBROADCASTMESSAGE$percnt" then="<div class='twikiBroadcastMessage'> $test </div>"}%
+<!-- //broadcast -->%TMPL:END%

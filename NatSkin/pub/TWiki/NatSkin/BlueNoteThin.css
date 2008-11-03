@@ -1,0 +1,24 @@
+/* thin variant for clean */
+@import url("BaseThin.css");
+
+.natSideBarHeaderRight,
+.natWebButtonsRight,
+.natSideBarRight,
+.natMiddleRight,
+.natTopRight {
+  border-right:1px #aaaaaa solid;
+}
+.natSideBarHeaderLeft,
+.natWebButtonsLeft,
+.natSideBarLeft,
+.natMiddleLeft,
+.natTopLeft {
+  border-left:1px #aaaaaa solid;
+}
+.natMain,
+.natSideBar {
+  border-bottom:1px #aaaaaa solid;
+}
+.natBottomBar {
+  background:#e5e5e5;
+}

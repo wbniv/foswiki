@@ -1,6 +1,4 @@
 %META:TOPICINFO{author="TWikiContributor" date="1182452182" format="1.1" version="$Rev$"}%
 %STARTINCLUDE%<!-- twiki.weblinks -->
    * [[%TWIKIWEB%.InstalledPlugins][%MAKETEXT{"Plugins"}%]] %WEBCOMPONENT{"TWikiWebLinks"}%
-%IFDEFINEDTHEN{"%IFACCESS{"%TWIKIWEB%.TWikiPreferences" type="change"}%" as="1"}% <!-- -->
-   * [[%TWIKIWEB%.TWikiPreferences][%MAKETEXT{"SitePreferences"}%]] %FIDEFINED%
-%STOPINCLUDE%
+<!-- //twiki.weblinks -->%STOPINCLUDE%

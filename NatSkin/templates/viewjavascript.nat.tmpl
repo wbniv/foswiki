@@ -2,10 +2,19 @@
 %TMPL:DEF{"viewjavascript"}%<!-- viewjavascript -->
 <script type="text/javascript">
 $(function() {
-  if (true) {
+  if (true) { // add overflow div for tables
     $(".natMainContents .twikiTable")
       .not($(".twikiTable .twikiTable", this))
       .wrap("<div class='overflow'></div>");
+  }
+  if (true) { // install tooltips
+    $(".natSideBar a, .natWebButtons a, .natTopicAction, .natUserAction").tooltip({
+      delay:350,
+      track:true,
+      showURL:false,
+      extraClass:'twiki',
+      showBody:': '
+    });
   }
 });
 </script>

@@ -1,35 +1,44 @@
-%TMPL:INCLUDE{"attach"}%<!-- -->
-<!-- template: attachnew.nat.tmpl -->
-%TMPL:DEF{"previousdetails"}%<h2>%MAKETEXT{"Attach file to <nop>[_1]" args="%TOPICTITLE%"}%</h2>%TMPL:END% 
-%TMPL:DEF{"attachaction"}% <!--
---><input type="submit" class="natOkButton" title="Upload selected file" value='%MAKETEXT{"Upload file"}%' />
-%IFDEFINEDTHEN{"$percntMETA{\"attachments\" all=\"on\"}$percnt"}%
-%IFDEFINEDTHEN{"%URLPARAM{"manage"}%" as="on"}%
-<input type="button" class="twikiButton natAltButton" value="Hide all attachments" title="Hide list of existing attachments" onclick="window.location.href='%SCRIPTURLPATH{"attach"}%/%WEB%/%TOPIC%?manage=off'" />
-%ELSEDEFINED%
-<input type="button" class="twikiButton natAltButton" value="Show all attachments" title="Show all existing attachments" onclick="window.location.href='%SCRIPTURLPATH{"attach"}%/%WEB%/%TOPIC%?manage=on'" />
-%FIDEFINED%
-%FIDEFINED%
-<input type="button" class="natCancelButton" title="Cancel and return to topic" value='%MAKETEXT{"Cancel"}%' onclick="window.location.href = '%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%';"><!--
--->%TMPL:END%
-%TMPL:DEF{"notes"}% <!-- -->
-<p> %MAKETEXT{"*Link checkbox*: In case the attached file is a JPG, GIF or PNG image and you check the box, 
+%TMPL:INCLUDE{"attach"}%<!-- template: attachnew.nat.tmpl -->
+%TMPL:DEF{"heading"}%%MAKETEXT{"Upload a file to <nop>[_1]" args="'%TOPICTITLE%'"}%%TMPL:END%
+%TMPL:DEF{"attachaction"}%<!-- attachaction -->
+<input type="submit" class="natOkButton" title="Upload selected file" value='%MAKETEXT{"Submit"}%' />
+<input type="button" class="natCancelButton" title="Cancel and return to topic" value='%MAKETEXT{"Cancel"}%' onclick="window.location.href = '%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%';">
+<!-- //attachaction -->%TMPL:END%
+%TMPL:DEF{"notes"}% <!-- notes -->
+<p> 
+  %MAKETEXT{"*Link checkbox*: In case the attached file is a JPG, GIF or PNG image and you check the box, 
   it will create an inline image (e.g. show the image) at the end of the topic.  For other
   file types a simple link will be created."}%
 </p>
-%IFDEFINEDTHEN{"%URLPARAM{"manage"}%" as="on"}%
-<p>
-  %MAKETEXT{"*Hide*: Click on _Hide all attachments_ to hide the list of existing attachments."}%
-</p>
-<p>
-  %MAKETEXT{"*Properties*: Click on _props_ of an existing attachment to change its properties."}%
-</p>
-<p>
-  %MAKETEXT{"*Move*: Click on _move_ of an existing attachment to attach it to a different topic."}%
-</p>
-%ELSEDEFINED%
-<p>
-  %MAKETEXT{"*Show*: Click on _Show all attachments_ to display a list of all existing attachments."}%
-</p>
-%FIDEFINED%
-%TMPL:END%
+<!-- //notes -->%TMPL:END%
+%TMPL:DEF{"moreoptions"}%<!-- moreoptions -->
+<tr style="%IF{ "context BatchUploadPluginEnabled" else='display:none'}%">
+  <td>
+    <input type="checkbox" class="twikiCheckbox" id="batchupload" name="batchupload" id="batchupload" />
+  </td>
+  <td>
+    <label for="batchupload">
+      <strong>%MAKETEXT{"Batch upload"}%:</strong>
+      %MAKETEXT{"Extracts individual files in a zip archive."}%
+    </label>
+  </td>
+</tr>
+<tr>
+  <td>
+    <input type="checkbox" class="twikiCheckbox" name="redirectto" id="redirectto" value="%SCRIPTURL{"attach"}%/%WEB%/%TOPIC%?message=%ENCODE{"%MAKETEXT{"Upload successful"}%."}%" %IFDEFINED{"$percntURLPARAM{\"message\"}$percnt" then=" checked "}% />
+  </td>
+  <td>
+    <label for="redirectto">
+      %MAKETEXT{"<strong>Continue</strong> uploading more files"}%
+    </label>
+  </td>
+</tr>
+<!-- //moreoptions -->%TMPL:END%
+%TMPL:DEF{"existingattachments"}%<!-- existingattachments -->
+%TAB{"%MAKETEXT{"Existing files"}%"}%
+<h2>%MAKETEXT{"Attachments at [_1]" args="'%TOPICTITLE%'"}%</h2>
+<div id="natTopicAttachments" class="natTopicAttachments">
+%META{"attachments" all="on"}%
+</div>
+%ENDTAB%
+<!-- //existingattachments -->%TMPL:END%

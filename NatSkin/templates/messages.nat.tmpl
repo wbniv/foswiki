@@ -3,7 +3,7 @@
 ---+++ %MAKETEXT{"User Account [_1] Deleted" args="<nop>%PARAM1%"}%
 %MAKETEXT{"Your user name has been removed from the Authentication System."}%
 
-%MAKETEXT{"Your [[[_1]][homepage]] has _not_ been removed yet." args="%MAINWEB%.%PARAM1%"}%
+%MAKETEXT{"Your [[[_1]][homepage]] has _not_ been removed yet." args="%USERSWEB%.%PARAM1%"}%
 
 %MAKETEXT{"Please email [_1] to request this."
  args="<a href='mailto:%WIKIWEBMASTER%?subject=%ENCODE{"%WIKITOOLNAME% Delete User"}%&amp;body=%ENCODE{"%PARAM1%"}%'>%WIKIWEBMASTER%</a>"
@@ -24,7 +24,7 @@
  args="%TWIKIWEB%.LoginName,%WIKIWEBMASTER%"}%
 
 %MAKETEXT{"See [_1] for a list of existing users or register as new user in [_2]."
-args="%MAINWEB%.TWikiUsers,%TWIKIREGISTRATION%"}%
+args="%USERSWEB%.TWikiUsers,%TWIKIREGISTRATION%"}%
 %TMPL:END%
 %TMPL:DEF{"topic_exists"}%<!-- uses goback def -->
 ---+++ %MAKETEXT{"The [_1] topic already exists" args="\"%TOPIC%\""}%
@@ -107,7 +107,7 @@ white, maroon, red, purple, fuchsia, green, lime, olive, yellow, navy, blue, tea
 %TMPL:DEF{"password_changed"}%<!-- huh -->
 ---+++ %MAKETEXT{"Password changed successfully!"}%
 
-<form action="%SCRIPTURLPATH{"view"}%/%MAINWEB%/%WIKINAME%">
+<form action="%SCRIPTURLPATH{"view"}%/%USERSWEB%/%WIKINAME%">
 <input type="submit" class="natOkButton" value='%MAKETEXT{"OK"}%' />
 </form>
 %TMPL:END%
@@ -309,7 +309,7 @@ template that doesn't exist." args="%PARAM2%"}%
 
 %TMPL:P{"logon"}%
 
-%MAKETEXT{"See also:"}% %MAINWEB%.TWikiGroups, %TWIKIWEB%.TWikiAccessControl,
+%MAKETEXT{"See also:"}% %USERSWEB%.TWikiGroups, %TWIKIWEB%.TWikiAccessControl,
 %TWIKIREGISTRATION%
 %TMPL:END%
 %TMPL:DEF{"only_group"}% <!-- -->
@@ -317,7 +317,7 @@ template that doesn't exist." args="%PARAM2%"}%
 
 %TMPL:P{"logon"}%
 
-%MAKETEXT{"See also:"}% %MAINWEB%.TWikiGroups, %TWIKIWEB%.TWikiAccessControl,
+%MAKETEXT{"See also:"}% %USERSWEB%.TWikiGroups, %TWIKIWEB%.TWikiAccessControl,
 %TWIKIREGISTRATION%
 %TMPL:END%
 %TMPL:DEF{"no_such_web"}% <!-- -->
@@ -359,4 +359,11 @@ template that doesn't exist." args="%PARAM2%"}%
 %MAKETEXT{"Uploaded file [_1] exceeds limit of [_2] KB" args="<code>%PARAM1%</code>,%PARAM2%"}%
 
 %TMPL:P{"goback"}%
+%TMPL:END%
+%TMPL:DEF{"thanks"}%<!-- thanks -->
+---+++ %MAKETEXT{"Thank you for registering"}%
+   * %MAKETEXT{"Your personal TWiki topic [_1] has been created" args="%USERSWEB%.%PARAM2%"}% 
+   * %MAKETEXT{"You are also listed in the [_1] topic" args="%USERSWEB%.%WIKIUSERSTOPIC%"}%
+   * %MAKETEXT{"You can try out this site hands-on in the [[Sandbox.WebHome][Sandbox]] web."}%
+%PARAM1%
 %TMPL:END%

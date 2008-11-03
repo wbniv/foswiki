@@ -9,9 +9,8 @@ Sidebar navigation in the %WEB% web. See also the %TWIKIWEB%.TWikiWebLinks
    * [[%TWIKIREGISTRATION%][%MAKETEXT{"Registration"}%]] %IFDEFINEDTHEN{"%IFEXISTS{"%MAINWEB%.%WIKIUSERSTOPIC%"}%" as="1" glue="off"}%
    * [[%MAINWEB%.%WIKIUSERSTOPIC%][%MAKETEXT{"Users"}%]] %FIDEFINED%
    * [[%MAINWEB%.TWikiGroups][%MAKETEXT{"Groups"}%]]
-   * [[%TWIKIWEB%.ChangePassword][%MAKETEXT{"Password"}%]]%WEBCOMPONENT{"TWikiWebLinks"}% %IFDEFINEDTHEN{"%IFACCESS{"%LOCALSITEPREFS%" type="change"}%" as="1"}%
-   * [[%LOCALSITEPREFS%][%MAKETEXT{"SitePreferences"}%]] %FIDEFINED%
-%STOPINCLUDE%
+   * [[%TWIKIWEB%.ChangePassword][%MAKETEXT{"Password"}%]]%WEBCOMPONENT{"TWikiWebLinks"}% 
+<!-- //main.weblinks -->%STOPINCLUDE%
 
 
 <!--

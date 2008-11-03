@@ -1,14 +1,16 @@
-%TMPL:INCLUDE{"page"}% 
-<!-- template: rdiff.nat.tmpl -->
+%TMPL:INCLUDE{"page"}%<!-- template: rdiff.nat.tmpl -->
 %TMPL:INCLUDE{"rdiffsidebar"}%<!-- -->
 %TMPL:INCLUDE{"rdifftopicactions"}%<!-- -->
 %TMPL:INCLUDE{"rdiffbody"}%<!-- -->
 %TMPL:INCLUDE{"rdiffjavascript"}%<!-- -->
 %TMPL:INCLUDE{"rdiffstyles"}%<!-- -->
 %TMPL:DEF{"bodyclass"}%natRdiffBody%TMPL:END%
-%TMPL:DEF{"title"}%%TOPICTITLE% (%REVTITLE2% vs. %REVTITLE1%) - %WIKITOOLNAME%%TMPL:END%
+%TMPL:DEF{"title"}%%TOPICTITLE% %MAKETEXT{"([_1] vs. [_2])" args="%REVTITLE2%, %REVTITLE1%"}% - %WIKITOOLNAME%%TMPL:END%
+%TMPL:DEF{"contenttitle"}%<h1>%MAKETEXT{"Difference:"}% %TOPICTITLE% %MAKETEXT{"([_1] vs. [_2])" args="%REVTITLE2%, %REVTITLE1%"}%</h1>%TMPL:END%
 %TMPL:DEF{"meta"}% <meta name="robots" content="noindex, nofollow" /> %TMPL:END%
-%TMPL:DEF{"content"}%%REPEAT%<table class="twikiTable twikiDiffTable" cellspacing="0" cellpadding="0">
+%TMPL:DEF{"content"}%<!-- content -->
+%TMPL:P{"contenttitle"}%<!-- pagetitle // -->
+%REPEAT%<table class="twikiTable twikiDiffTable" cellspacing="0" cellpadding="0">
 <th>
 <a href="%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%?rev=%REVTITLE1%">%TOPIC% %REVTITLE1% - %REVINFO1%</a>
 </th>
@@ -22,5 +24,5 @@
 %TAIL%
 </table>
 </div>
-%TMPL:END%
+<!-- //content -->%TMPL:END%
 %REPEAT%<tr><td>%MAKETEXT{"Revision"}% %REVTITLE%</td><td>%REVINFO%</td></tr>

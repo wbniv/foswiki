@@ -24,6 +24,7 @@
   line-height:0px;
   clear:both;
   display:block;
+  border:0px;
 }
 .twikiHidden {
   display:none;
@@ -90,13 +91,24 @@ input, textarea, select, body {
 }
 h1 { font-size:180%;}
 h2 { font-size:160%;}
-h3 { font-size:130%; margin-top:10px;margin-bottom:0px;}
-h4 { font-size:120%; margin-top:10px;margin-bottom:0px;}
-h5 { font-size:110%; margin-top:10px;margin-bottom:0px;}
-h6 { font-size:110%; margin-top:10px;margin-bottom:0px;}
-h1, h2, h3, h4, h5, h6 {
-  line-height:normal;
+h3 { font-size:130%; margin-top:10px; margin-bottom:0px; }
+h4 { font-size:120%; margin-top:10px; margin-bottom:0px; }
+h5 { font-size:110%; margin-top:10px; margin-bottom:0px; }
+h6 { font-size:110%; margin-top:10px; margin-bottom:0px; }
+
+h1 .twikiEmulatedLink, h2 .twikiEmulatedLink, h3 .twikiEmulatedLink,
+h4 .twikiEmulatedLink, h5 .twikiEmulatedLink, h3 .twikiEmulatedLink,
+h1, h2, h3, h4, h5, h6,
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,
+h1 a:hover, h2 a:hover, h3 a:hover,
+h4 a:hover, h5 a:hover, h6 a:hover {
+  text-decoration:none;
 }
+.natMainContents > h1,
+.natMainContents h1:first-child {
+  margin-top:0px;
+}
+
 
 p {
   margin:1.0em 0em 0em 0em;
@@ -107,9 +119,16 @@ dt {
 }
 
 pre, code,
-.natMain .twikiTextareaRawView,
+.twikiTextareaRawView,
 .natEditTextArea {
   font-family:"Bitstream Vera Sans Mono", "Andale Mono", Courier, monospace;
+}
+
+pre {
+  overflow:auto;
+}
+.DISnatBody > pre { /* hide from IE */
+  /*\*/ overflow:auto !important; /* */ overflow:scroll; /* for Mac Safari */
 }
 
 /* extra divs */
@@ -121,7 +140,6 @@ pre, code,
 }
 
 /* debug
-.natPageBox,
 .natBody, .natBodyContents			{ border: 1px solid green }
 .natWebTitle, .natSearchBox,
 .natTopBar, .natTopBarContents, 
@@ -131,11 +149,10 @@ pre, code,
 
 						{ border: 1px solid blue }
 .natMiddle, 
-.natTopBarSizer,
 .natSideBar, natSideBarContents			{ border: 1px solid red }
 .natMain, .natMainContents, .natMainHeaderContents
 .natSideBar, .natSideBarContents,
-.natMainFooter, natMainFooterContents {
+.natMainFooterContents {
   border:1px solid red;
 }
 */
@@ -165,31 +182,9 @@ pre, code,
 .natBodyContents {
   text-align:left;
 }
-.natOopsMoreBody table ul,
-.natOopsMoreBody table h2 {
-  margin-top:0px;
-  margin-bottom:0px;
-}
-.natOopsMoreBody table input {
-  width:100%;
-}
 .natOopsMoreBody .natSideBarContents,
 .natOopsBody .natSideBarContents {
   display:none;
-}
-.natOopsBody .natMain h1, 
-.natOopsBody .natMain h2, 
-.natOopsBody .natMain h3, 
-.natOopsBody .natMain h4, 
-.natOopsBody .natMain h5, 
-.natOopsBody .natMain h6,
-.natOopsMoreBody .natMain h1, 
-.natOopsMoreBody .natMain h2, 
-.natOopsMoreBody .natMain h3, 
-.natOopsMoreBody .natMain h4, 
-.natOopsMoreBody .natMain h5, 
-.natOopsMoreBody .natMain h6 {
-  border-bottom:0px;
 }
 .natOopsBody .natWebButtons,
 .natOopsBody .natMainHeaderContents,
@@ -198,10 +193,13 @@ pre, code,
   display:none;
 }
 .natOopsMessage {
-  width:700px;
+  width:58em;
   margin:0px auto;
 }
-
+.natOopsMessage .twikiFormSteps {
+  width:25em;
+  margin-bottom:2em;
+}
 .natLayoutTable {
   table-layout:fixed;
   width:100%;
@@ -211,35 +209,28 @@ pre, code,
 .natBoxBorderBottomRight {
   width:1px;
 }
-.natRevision {
-  margin-top:10px;
-}
 .natBottomBarContents {
   text-align:center;
   padding-top:5px;
 }
-.natSideBarLeft {
-  width:200px;
-  min-width:200px;
-}
-.natSideBarRight, .natTopRight {
-  width:280px;
-  min-width:280px;
-  max-width:280px;
-}
-.natTopLeft,
-.natTopRight {
-  vertical-align:bottom;
+.natTopRight,
+.natSideBarHeader,
+.natSideBar {
+  width:250px;
 }
 .natSideBar {
   padding-bottom:5px;
 }
-.natMainFooter {
-  vertical-align:bottom;
-}
 .natSideBarContents {
   min-height:50em;
   overflow:hidden;
+}
+
+*:first-child+html .natSideBarHeaderContents { /* IE7 fix to draw the borders */
+  height:1em;
+}
+.natSideBarHeaderContents {
+  _height:1em; /* IE6 fix to draw the borders */
 }
 
 /* the main content topic is cropped using overflow:hidden
@@ -250,7 +241,7 @@ pre, code,
  * you may restrict overflow protection to layouts with
  * the sidebar on the right using the following:
  *
- * .natMiddleLeft .natMainContents { overflow:hidden }
+ * .natMiddle .natMainContents { overflow:hidden }
  *
  * for now I prefer the content to be cropped instead of the
  * page layout fall appart ... sort of.
@@ -258,10 +249,11 @@ pre, code,
 .natMainContents {
   min-height:50em;
   overflow:hidden;
+  clear:both;
 }
 
 /* login */
-.natLoginBody natMainHeaderContents {
+.natLoginBody .natMainHeaderContents {
   display:none;
 }
 .natLoginMessage {
@@ -302,11 +294,7 @@ pre, code,
 }
 .natSearchBox form {
   margin:0px;
-}
-
-
-.natSearchBox {
-  margin:5px 0px;
+  display:inline;
 }
 
 .natSearchBoxPos1 input,
@@ -321,6 +309,11 @@ pre, code,
 }
 .natSideBar h2 {
   margin:5px 0px;
+}
+.natSideBar h2 a,
+.natSideBar h2 a:hover {
+  background:inherit;
+  color:inherit;
 }
 .natSideBar h3 {
   margin:0px;
@@ -362,30 +355,6 @@ pre, code,
   margin:0px;
 }
 
-/* main area */
-.natMiddleLeft {
-  padding-right:10px;
-}
-.natMainContents {
-  margin:10px 0px 0px 0px;
-  padding:1px;
-}
-.natMainFooterContents,
-.natMainHeaderContents {
-  padding:0px;
-  margin:0px;
-}
-.natMainContents pre {
-  padding-bottom:.25em;
-  overflow:auto;
-}
-*:first-child+html .natMainContents pre { /* IE7 fix */
-}
-.DISABLEDnatMainContents > pre { /* hide from IE */
-  /*\*/ overflow:auto !important; /* */ overflow:scroll; /* for Mac Safari */
-}
-
-
 /* login */
 .natLogonFormHolder {
   padding:10px 0px 10px 0px;
@@ -397,12 +366,6 @@ pre, code,
   padding-bottom:1em;
 }
 
-/*
-.natMainContents a:visited:after {
-  content: "\00A0\221A";
-}
-*/
-
 /* edit */
 .natEditBody .natLayoutTable {
   table-layout:auto; /* firefox fix to preven collapsing tables */
@@ -411,10 +374,11 @@ pre, code,
 .natEditBody .natMainContents {
   min-height:0px;
 }
+.natEditBody .natMainHeaderContents,
+.natEditBody .natMainFooterContents,
 .natEditBody .natWebButtons,
-.natEditBody .natMainFooter,
 .natEditBody .natBottomBar,
-.natEditBody .natTopBar {
+.natEditBody .natHeaderArt {
   display:none;
 }
 .natEditBody h1 {
@@ -440,46 +404,9 @@ pre, code,
 .natBottomTopicActions a:hover {
   text-decoration:none;
 }
-.natSubmitOptions input {
-  margin:0px;
-}
 .natSignature {
   white-space:nowrap;
   float:right;
-}
-.natSignature, .natSubmitOptions {
-  padding-right:10px;
-  vertical-align:top;
-}
-.natSubmitOptions {
-  width:100%;
-  margin-bottom:1em;
-}
-.natSubmitOptions label,
-.natSubmitOptions input {
-  vertical-align:middle;
-}
-
-/* headings */
-.natMain h1 .twikiEmulatedLink,
-.natMain h2 .twikiEmulatedLink,
-.natMain h3 .twikiEmulatedLink,
-.natMain h4 .twikiEmulatedLink,
-.natMain h5 .twikiEmulatedLink,
-.natMain h1, .natMain h2, .natMain h3, .natMain h4, .natMain h5, .natMain h6,
-.natMain h1 a, .natMain h2 a, .natMain h3 a, .natMain h4 a,
-.natMain h5 a, .natMain h6 a,
-.natMain h1 a:hover, .natMain h2 a:hover, .natMain h3 a:hover,
-.natMain h4 a:hover, .natMain h5 a:hover, .natMain h6 a:hover {
-  text-decoration:none;
-}
-.natMainContents > h1,
-.natMainContents > h1,
-.natMainContents > h1,
-.natMainContents h1:first-child,
-.natMainContents h2:first-child,
-.natMainContents h3:first-child {
-  margin-top:0px;
 }
 
 /* search */
@@ -502,10 +429,29 @@ pre, code,
   vertical-align:top;
 }
 .natSearchHit {
-  margin:1.5em 0em;
+  margin:1em 0em 2em;
+}
+.natSearchTarget {
+  font-size:120%;
+  text-decoration:underline;
+}
+.natSearchSummary {
+  line-height:normal;
+}
+.natSearchTotal {
+  margin:1em 0em;
 }
 .natSearchTotal span {
   color:red;
+}
+.natSearchForm {
+  margin:1em 0em;
+}
+.natSearchFormOptions {
+  margin:1.0em 0em;
+}
+.natSearchFormOptions td {
+  padding:0px 5px 0px 0px;
 }
 .natSearchString {
   font-weight:bold;
@@ -546,8 +492,6 @@ pre, code,
 .natNoteHeading {
   color:green;
 }
-.natMain .natContact {
-}
 .twikiSubmit,
 .natOkButton {
   color:green;
@@ -565,15 +509,102 @@ pre, code,
   margin:1em;
 }
 
-
-/* helpers */
-.natSep {
-  margin-left:-0.2ex;
-  margin-right:-0.2ex;
+/* topic actions */
+.natGreeter {
+  margin:0em 0em 0.1em 0em;
+  white-space:nowrap;
+}
+.natUserGreeter {
+  padding:2px 0px;
+}
+.natTopicActionsToggle {
+  position:relative;
+  float:right;
+  display:inline;
+  margin:0px 0px 0px 10px;
+}
+.natTopicActions {
+  margin:20px 0px 0px -2px;
+  padding-bottom:4px;
 }
 .natTopicActions .natSep {
-  font-weight:bold;
+  display:none;
 }
+.natHomePageUserAction:hover,
+.natHomePageUserAction {
+  background-image:url(user.png);
+  background-repeat:no-repeat;
+  background-position:0% 0%;
+  padding:1px 2px 1px 20px;
+}
+.natLoginUserAction,
+.natRegisterUserAction,
+.natLogoutUserAction {
+  padding:1px 2px;
+}
+
+.natTopicAction,
+.natTopicAction:hover {
+  background-color:inherit;
+  background-repeat:no-repeat;
+  background-position:2px 2px;
+  display:inline;
+  height:16px;
+  margin:0px 2px 0px 0px;
+  padding:2px 5px 4px 22px;
+  color:black;
+}
+
+.natViewTopicAction:hover,
+.natViewTopicAction {
+  background-image:url(eye.png);
+}
+.natNewTopicAction:hover,
+.natNewTopicAction {
+  background-image:url(page_white_add.png);
+}
+.natEditTopicAction:hover,
+.natEditTopicAction {
+  background-image:url(pencil.png);
+}
+.natAttachTopicAction:hover,
+.natAttachTopicAction {
+  background-image:url(attach.png);
+}
+.natPrintTopicAction:hover,
+.natPrintTopicAction {
+  background-image:url(printer.png);
+}
+.natPdfTopicAction:hover,
+.natPdfTopicAction {
+  background-image:url(pdf.png);
+}
+.natDiffTopicAction:hover,
+.natDiffTopicAction {
+  background-image:url(time.png);
+}
+.natRawTopicAction:hover,
+.natRawTopicAction {
+  background-image:url(page_white_code.png);
+}
+.natDeleteTopicAction:hover,
+.natDeleteTopicAction {
+  background-image:url(bin.png);
+}
+.natMoveTopicAction:hover,
+.natMoveTopicAction {
+  background-image:url(page_white_go.png);
+}
+.natMoreTopicAction:hover,
+.natMoreTopicAction {
+  background-image:url(wrench.png);
+}
+.natHelpTopicAction:hover,
+.natHelpTopicAction {
+  background-image:url(help.png);
+}
+
+/* helpers */
 .natAction {
   color:red;
   text-transform:capitalize;
@@ -598,8 +629,15 @@ pre, code,
 .natTopicAttachments table {
   width:100%;
 }
-.natAttachAction {
-  padding-top:20px;
+.natTopicAttachments td {
+  vertical-align:top;
+}
+.natAttachmentIcon {
+  width:20px;
+}
+.natAttachmentActions {
+  width:100px;
+  text-align:right;
 }
 
 .natSideBar .natSkinStyleBrowser ul,
@@ -654,10 +692,11 @@ a.natFeedIcon {
   color:red;
 }
 .twikiBroadcastMessage {
+  text-align:left;
   background:yellow;
   color:black;
-  border:2px solid orange;
-  padding:1px 5px 2px;
+  border-bottom:2px solid orange;
+  padding:0.5em 1em;
 }
 .twikiBroadcastMessage .twikiLink,
 .twikiBroadcastMessage a {
@@ -698,19 +737,6 @@ a.natFeedIcon {
 
 .twikiDiffTable td {
   border:0px;
-}
-.twikiTableEven td {
-  background:white;
-}
-.twikiTableOdd td {
-  /*background:#eee;*/
-  background:none;
-}
-
-.twikiTable ul {
-  margin:0px;
-  padding:0px;
-  padding-left:15px;
 }
 
 /* twiki forms */
@@ -781,25 +807,58 @@ a.natFeedIcon {
   margin-bottom:3px;
 }
 
-.twikiFormStep {
-  padding:0.5em 1em 0.75em;
-  margin:0em;
+fieldset {
+  padding:0em 0.5em 0.5em;
+  border:1px #ccc solid;
 }
-.natMain .twikiFormStep h2,
-.natMain .twikiFormStep h3,
-.natMain .twikiFormStep h4,
-.twikiFormStep h2,
-.twikiFormStep h3,
-.twikiFormStep h4 {
-  border:none;
-  margin:0em 0em 0.1em 0em;
-  padding:0px;
-  background:none;
+legend {
+  margin:0em 1.3em;
   font-size:100%;
+  font-weight:bold;
+}
+.twikiFormSteps {
+  padding:1em;
+}
+.twikiFormStep {
+  margin:0em 0em 1em;
+}
+.twikiFormStep hr {
+  margin:1em 0em;
+}
+.twikiFormLast {
+  margin-bottom:0em;
+}
+.twikiFormSteps h2,
+.twikiFormSteps h3,
+.twikiFormSteps h4 {
   font-weight:bold;
 }
 .twikiFormStep p {
   margin:0.35em 0em;
+}
+.twikiFormOptions {
+  margin:0.35em 0em;
+  line-height:160%;
+}
+.twikiFormButtons.twikiFormLast {
+  margin-top:20px;
+}
+.twikiFormOptions .twikiCheckbox {
+  margin:0px 8px 0px 0px;
+}
+.twikiFormButtons input {
+  padding:3px 5px;
+}
+.twikiFormDescription {
+  margin:0.1em 0em;
+}
+
+
+span.twikiErrorSummary,
+label.error {
+  color:red;
+  padding:0em 0em 0em 1.0em;
+  line-height:normal;
 }
 
 /* twikiDiff */
@@ -1064,7 +1123,7 @@ img.alignleft {
   position:relative;
   bottom:2px;
 }
-.natMain .twistyTrigger a {
+.twistyTrigger a {
   text-decoration:none;
 }
 
@@ -1092,7 +1151,7 @@ img.alignleft {
 .twbPageNavigation {
   margin:0.5em 0em;
 }
-.natMain .twbPageNavigation a {
+.twbPageNavigation a {
   font-weight:bold;
 }
 
@@ -1105,11 +1164,6 @@ img.alignleft {
 }
 
 /* classification plugin */
-.clsTopicInfo h1 {
-  border-bottom:0px;
-  margin-top:0px;
-  margin-bottom:5px;
-}
 .clsTopicInfo a {
   text-decoration:none;
   background-image:none;
@@ -1124,4 +1178,11 @@ img.alignleft {
 /* jquery treeview */
 .natSideBar .jqTreeview ul > li:before { 
   content:"";
+}
+
+/* tooltips */
+.imgTooltip {
+  background:white;
+  padding:5px;
+  border:1px solid #ddd;
 }

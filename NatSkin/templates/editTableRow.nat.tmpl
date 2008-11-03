@@ -1,7 +1,7 @@
-%TMPL:INCLUDE{"edit"}%
-<!-- template: editTableRow.nat.tmpl -->
-%TMPL:DEF{"content"}%
----+ %HEADERTEXT% in Table <nop>%TABLENAME% of %TOPIC%
+%TMPL:INCLUDE{"edit"}%<!-- template: editTableRow.nat.tmpl -->
+%TMPL:DEF{"contenttitle"}%<h1>%HEADERTEXT% in Table <nop>%TABLENAME% of %TOPIC%</h1>%TMPL:END%
+%TMPL:DEF{"content"}%<!-- content -->
+%TMPL:P{"contenttitle"}%<!-- contenttitle// -->
 <div class="twikiFormHolder">
 <form name="main" enctype="multipart/form-data" action="%SCRIPTURLPATH{"uploadTableRow"}%/%WEB%/%TOPIC%" method="post">
 <input type="hidden" name="template" value="%TEMPLATE%">
@@ -25,4 +25,5 @@
 %HELPTEXT%
 %SHOWTABLE%
 </form>
-</div>%TMPL:END%
+</div>
+<!-- //content -->%TMPL:END%

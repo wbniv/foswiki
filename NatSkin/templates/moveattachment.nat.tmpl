@@ -1,26 +1,29 @@
-%TMPL:INCLUDE{"page"}% <!-- -->
-<!-- template: moveattachment.nat.tmpl -->
-%TMPL:INCLUDE{"moveattachmentbody"}%<!-- -->
-%TMPL:INCLUDE{"moveattachmentsidebar"}%<!-- -->
-%TMPL:INCLUDE{"moveattachmenttopicactions"}%<!-- -->
-%TMPL:INCLUDE{"moveattachmentjavascript"}%<!-- -->
-%TMPL:INCLUDE{"moveattachmentstyles"}%<!-- -->
+%TMPL:INCLUDE{"page"}%<!-- template: moveattachment.nat.tmpl -->
+%TMPL:INCLUDE{"moveattachmentbody"}%<!-- moveattachmentbody// -->
+%TMPL:INCLUDE{"moveattachmentsidebar"}%<!-- moveattachmentsidebar// -->
+%TMPL:INCLUDE{"moveattachmenttopicactions"}%<!-- moveattachmenttopicactions// -->
+%TMPL:INCLUDE{"moveattachmentjavascript"}%<!-- moveattachmentjavascript// -->
+%TMPL:INCLUDE{"moveattachmentstyles"}%<!-- moveattachmentstyles// -->
 %TMPL:DEF{"bodyclass"}%natMoveAttachmentBody%TMPL:END%
 %TMPL:DEF{"title"}%%TOPICTITLE% (%MAKETEXT{"move attachment"}%) - %WIKITOOLNAME%%TMPL:END%
+%TMPL:DEF{"contenttitle"}%<!-- contenttitle-->
+<h1>
+%IFDEFINEDTHEN{"%URLPARAM{"newweb"}%" as="%TRASHWEB%"}%
+%MAKETEXT{"Delete attachment \"[_1]\"" args="<nop>%FILENAME%"}%
+%ELSEDEFINED%
+%MAKETEXT{"Move attachment \"[_1]\"" args="<nop>%FILENAME%"}%
+%FIDEFINED%
+</h1>
+<!-- //contenttitle -->%TMPL:END%
 %TMPL:DEF{"meta"}% <meta name="robots" content="noindex, nofollow" /> %TMPL:END%
 %TMPL:DEF{"onloadscript"}%document.rename.newtopic.focus();%TMPL:END%
-%TMPL:DEF{"content"}%<!-- -->
+%TMPL:DEF{"content"}%<!-- content -->
+%TMPL:P{"contenttitle"}%<!-- contenttitle// -->
 <form name="rename" action="%SCRIPTURLPATH{"rename"}%/%WEB%/%TOPIC%">
-%IFDEFINEDTHEN{"%URLPARAM{"newweb"}%" as="Trash"}%
----+ %MAKETEXT{"Delete attachment \"[_1]\"" args="<nop>%FILENAME%"}%
-%ELSEDEFINED%
----+ %MAKETEXT{"Move attachment \"[_1]\"" args="<nop>%FILENAME%"}%
-%FIDEFINED%
+%IFDEFINEDTHEN{"%URLPARAM{"newweb"}%" as="%TRASHWEB%"}%
+<h3>Are you sure?</h3>
 
-%IFDEFINEDTHEN{"%URLPARAM{"newweb"}%" as="Trash" glue="off"}%
----+++ Are you sure?
-
-<input type="hidden" name="newweb" value="Trash" />
+<input type="hidden" name="newweb" value="%TRASHWEB%" />
 <input type="hidden" name="newtopic" value="TrashAttachment" />
 <input type="submit" class="natOkButton" value='%MAKETEXT{"Yes"}%' />&nbsp;
 <input type="button" class="natCancelButton" value='%MAKETEXT{"No"}%' onclick="window.location.href='%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%'">
@@ -34,14 +37,14 @@
 <tr>
   <th>%MAKETEXT{"To"}%:</th>
   <td><select name="newweb" onchange="
-~~~ if (document.rename.newweb.value == 'Trash') { 
+~~~ if (document.rename.newweb.value == '%TRASHWEB%') { 
 ~~~   document.rename.newtopic.value = 'TrashAttachment'; 
 ~~~   document.rename.totrash.checked = true;
 ~~~ } else {
 ~~~   document.rename.totrash.checked = false;
 ~~~ }
 ~~~ "> 
-    %WEBLIST{"<option $marker value='$name'>$name</option>" webs="Trash,%NEW_WEB%,public" selection="%NEW_WEB%" separator=" "}% 
+    %WEBLIST{"<option $marker value='$name'>$name</option>" webs="%TRASHWEB%,%NEW_WEB%,public" selection="%NEW_WEB%" separator=" "}% 
     </select>&nbsp;<input type="text" name="newtopic" value="%TOPIC%" size="40"/>
   </td>
 </tr>
@@ -52,18 +55,18 @@
       <td align="right"><input type="checkbox" class="twikiCheckbox" name="totrash" id="totrash" 
 ~~~ onclick="
 ~~~ var elem = document.rename.newweb; 
-~~~ if (elem.value == 'Trash') { 
+~~~ if (elem.value == '%TRASHWEB%') { 
 ~~~   elem.value = '%WEB%';
 ~~~   document.rename.newtopic.value = '%TOPIC%';
 ~~~   document.rename.totrash.checked = false;
 ~~~ } else {
-~~~   elem.value = 'Trash';
+~~~   elem.value = '%TRASHWEB%';
 ~~~   document.rename.newtopic.value = 'TrashAttachment'; 
 ~~~   document.rename.totrash.checked = true;
 ~~~ }
 ~~~ "
 ~~~   ></td>
-      <td><label for="totrash">%MAKETEXT{"Move to Trash"}%</label></td>
+      <td><label for="totrash">%MAKETEXT{"Move to %TRASHWEB%"}%</label></td>
     </tr>
     </table>
   </td>
@@ -81,18 +84,18 @@
 <input type="hidden" name="changeRefs" value="0" />
 </div>
 </form>
-%TMPL:END%
-%TMPL:DEF{"notes"}% <!-- -->
-%IFDEFINEDTHEN{"%URLPARAM{"newweb"}%" as="Trash"}%
+<!-- //content -->%TMPL:END%
+%TMPL:DEF{"notes"}%<!-- notes -->
+%IFDEFINEDTHEN{"%URLPARAM{"newweb"}%" as="%TRASHWEB%"}%
 <p>
-  %MAKETEXT{"When the file is deleted, it is moved to the Trash web and attached to the Trash.TrashAttachment topic."}%
+  %MAKETEXT{"When the file is deleted, it is moved to the %TRASHWEB% web and attached to the %TRASHWEB%.TrashAttachment topic."}%
 </p>
 <p> 
   %MAKETEXT{"The attachment and its history will be moved as well."}%
 </p>
 %ELSEDEFINED%
 <p>
-  %MAKETEXT{"To delete an attachment move it to the [_1] topic." args="Trash.TrashAttachment"}%
+  %MAKETEXT{"To delete an attachment move it to the [_1] topic." args="%TRASHWEB%.TrashAttachment"}%
 </p>
 <p> 
   %MAKETEXT{"The attachment and its history will be moved to the new topic."}%
@@ -107,4 +110,4 @@
 <p> 
   %MAKETEXT{"Note that any URLs that refer to the attachment will be broken after this move."}%
 </p>
-%TMPL:END%
+<!-- //notes -->%TMPL:END%

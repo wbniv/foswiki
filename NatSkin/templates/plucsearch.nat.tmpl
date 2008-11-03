@@ -1,7 +1,7 @@
 %TMPL:INCLUDE{"searchbase"}%<!-- template: plucsearch.nat.tmpl -->
 %TMPL:DEF{"topicactions"}%%TMPL:END%
 %TMPL:DEF{"searchbox"}%%TMPL:END%
-%TMPL:DEF{"content"}%%SPLIT%%TMPL:P{"searchform"}%%SPLIT%<div class="natSearchTotal" style="margin:5px 0px">%MAKETEXT{"Found <span>[_1]</span> topics." args="%NTOPICS%"}%</div>
+%TMPL:DEF{"content"}%<!-- content -->%SPLIT%%TMPL:P{"searchform"}%%SPLIT%<div class="natSearchTotal" style="margin:5px 0px">%MAKETEXT{"Found <span>[_1]</span> topics." args="%NTOPICS%"}%</div>
 %DBCALL{"Applications.RenderPageNavigation" SKIP="%URLPARAM{"skip" default="0"}%" LIMIT="%URLPARAM{"limit" default="100"}%" MAX="%NTOPICS%" HREF="%SCRIPTURLPATH{"plucsearch"}%/%BASEWEB%/%BASETOPIC%" PARAMS="search=%URLPARAM{"search"}%;web=%URLPARAM{"web"}%;attachments=%URLPARAM{"attachments"}%"}%
 %SPLIT%
 <table class="natSearchTable" width="100%" style="margin-top:0px">
@@ -42,7 +42,7 @@
   <td>%TIMESTAMP%</td>
 </tr>
 </table>
-%TMPL:END%
+<!-- //content -->%TMPL:END%
 %TMPL:DEF{"searchform"}%<!-- searchform -->
 <form name="searchform" action="%SCRIPTURLPATH{"plucsearch"}%/%BASEWEB%/%BASETOPIC%" method="post">
 <input type="hidden" name="nosummary" value="%URLPARAM{"nosummary" default="off"}%" />

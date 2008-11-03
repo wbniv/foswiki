@@ -1,36 +1,41 @@
-%TMPL:INCLUDE{"page"}%
-%TMPL:INCLUDE{"loginbase"}%
-<!-- template: login.nat.tmpl -->
-%TMPL:INCLUDE{"loginbody"}%<!-- -->
-%TMPL:INCLUDE{"logintopicactions"}%<!-- -->
-%TMPL:INCLUDE{"loginsidebar"}%<!-- -->
-%TMPL:INCLUDE{"loginjavascript"}%<!-- -->
-%TMPL:INCLUDE{"loginstyles"}%<!-- -->
+%TMPL:INCLUDE{"page"}%<!-- template: login.nat.tmpl -->
+%TMPL:INCLUDE{"loginbase"}%<!-- loginbase// -->
+%TMPL:INCLUDE{"loginbody"}%<!-- loginbody// -->
+%TMPL:INCLUDE{"logintopicactions"}%<!-- logintopicactions// -->
+%TMPL:INCLUDE{"loginsidebar"}%<!-- loginsidebar// -->
+%TMPL:INCLUDE{"loginjavascript"}%<!-- loginjavascript// -->
+%TMPL:INCLUDE{"loginstyles"}%<!-- loginstyles// -->
 %TMPL:DEF{"title"}%Login - %WIKITOOLNAME%%TMPL:END%
+%TMPL:DEF{"contenttitle"}%<h1 class="natLoginHeading"><span>%TMPL:P{"heading"}%</span></h1>%TMPL:END%
 %TMPL:DEF{"bodyclass"}%natLoginBody%TMPL:END%
 %TMPL:DEF{"meta"}% <meta name="robots" content="noindex, nofollow" /> %TMPL:END%
-%TMPL:DEF{"LOG_IN_BANNER"}%Please enter your username and password.%TMPL:END%
-%TMPL:DEF{"LOGGED_IN_BANNER"}%%MAINWEB%.%WIKINAME% is currently logged in.%TMPL:END%
-%TMPL:DEF{"NEW_USER_NOTE"}%Enter a new username and password to change identity.%TMPL:END%
+%TMPL:DEF{"LOG_IN_BANNER"}%%MAKETEXT{"Please enter your username and password"}%.%TMPL:END%
+%TMPL:DEF{"LOGGED_IN_BANNER"}%%MAKETEXT{"[_1] is currently logged in" args="%USERSWEB%.%WIKINAME%"}%.%TMPL:END%
+%TMPL:DEF{"NEW_USER_NOTE"}%%MAKETEXT{"Enter a new username and password to change identity"}%.%TMPL:END%
 %TMPL:DEF{"UNRECOGNISED_USER"}%%MAKETEXT{"Unrecognised user and/or password."}%%TMPL:END%
 %TMPL:DEF{"heading"}%%MAKETEXT{"Welcome to the [_1]" args="<nop>%WIKITOOLNAME%"}%%TMPL:END%
-%TMPL:DEF{"message"}%<h3>%BANNER%</h3>
+%TMPL:DEF{"message"}%<!-- message -->
+<h3>%BANNER%</h3>
 %NOTE%
 
 %TMPL:P{"logon"}%
 %TMPL:P{"seealso"}%
-%TMPL:END%
-%TMPL:DEF{"content"}%<div class="natLogin">
+<!-- //message-->%TMPL:END%
+%TMPL:DEF{"content"}%<!-- content -->
+<div class="natLogin">
 <div class="natLoginMessage">
-<h1 class="natLoginHeading"><span>%TMPL:P{"heading"}%</span></h1>
-%TMPL:P{"message"}% 
-%TMPL:P{"contact"}% 
-</div></div> %TMPL:END%
-%TMPL:DEF{"contact"}% <div class="natContact"> 
+%TMPL:P{"contenttitle"}%<!-- contenttitle// -->
+%TMPL:P{"message"}%<!-- message// -->
+%TMPL:P{"contact"}%<!-- contact// -->
+</div></div> 
+<!-- //content -->%TMPL:END%
+%TMPL:DEF{"contact"}%<!-- contact -->
+<div class="natContact"> 
 <hr />
 %MAKETEXT{"Contact [_1] if you have any questions." args="<a href='mailto:%WIKIWEBMASTER%?subject=%ENCODE{\"%WIKITOOLNAME%: Request for support\"}%&&body=%ENCODE{\"Hello, I have got a question ...\"}%'>%WIKIWEBMASTER%</a>"}%
-</div> %TMPL:END%
-%TMPL:DEF{"seealso"}%
+</div> 
+<!-- //contact -->%TMPL:END%
+%TMPL:DEF{"seealso"}%<!-- seealso -->
 [[%TWIKIWEB%.ResetPassword][%MAKETEXT{"Did you forget your password?"}%]] %BR%
 [[%TWIKIREGISTRATION%][%MAKETEXT{"Do you want to become a registered user?"}%]]
-%TMPL:END%
+<!-- //seealso -->%TMPL:END%

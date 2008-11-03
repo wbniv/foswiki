@@ -2,11 +2,13 @@
 %STARTINCLUDE% <noautolink> 
 <ul>
 %~~ FLEXWEBLIST{
-~~~   webs="%MAINWEB%,User,publiccurrent,%TWIKIWEB%"
-~~~   include="\w+|%BASEWEB%"
+~~~   webs="%MAINWEB%,public,%TWIKIWEB%"
+~~~   include="\w+"
+~~~   selection="%FORMATLIST{"%BASEWEB%" split="[\/\.]" limit="1"}%"
+~~~   marker="current"
 ~~~   exclude="TestCases|Trash|Attic"
 ~~~   adminwebs="Applications"
-~~~   format="$percntWEBLINK{\"$web\" format=\"<li>$default</li>\"}$percnt"
+~~~   format="$percntWEBLINK{\"$web\" format=\"<li><a class='natWebLink $marker' href='$dollarurl' title='$dollartooltip'>$dollarname</a></li>\"}$percnt"
 ~~~ }%
 </ul>
 </noautolink> %STOPINCLUDE%

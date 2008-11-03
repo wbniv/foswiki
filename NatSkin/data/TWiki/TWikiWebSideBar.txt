@@ -1,14 +1,17 @@
-%META:TOPICINFO{author="TWikiContributor" date="1197888780" format="1.1" reprev="1.6" version="$Rev$"}%
+%META:TOPICINFO{author="TWikiContributor" date="1224496336" format="1.1" reprev="1.2" version="$Rev$"}%
 %STARTINCLUDE%<!-- twiki.twikiwebsidebar -->
 <div class="natSideBarSection natSideBarWebLinks">
-<h2 class="natSideBarTitle">%WEBLINK%</h2>
+<h2 >%WEBLINK%</h2>
 %WEBCOMPONENT{"WebLinks"}%
 </div>
 %TMPL:P{context="natskin_sidebar_pos2" then="searchbox_pos2"}%<!-- -->
-<div class="natSideBarSection natSideBarPersonal"> 
-%IFEXISTS{"%MAINWEB%.%WIKINAME%SideBar" then="$percntINCLUDE{\"%MAINWEB%.%WIKINAME%SideBar\"}$percnt" else="$percntWEBCOMPONENT{\"MySideBar\"}$percnt"}%
+%IFDEFINEDTHEN{"%IFACCESS{"%MAINWEB%.TWikiAdminGroup" type="change"}%" as="1"}%
+<div class="natSidebarSection" natSideBarAdminLinks">
+<h2 >Admin</h2>
+   * [[%BASEWEB%.WebPreferences][%MAKETEXT{"Web Preferences"}%]]
+   * [[%LOCALSITEPREFS%][%MAKETEXT{"TWiki Preferences"}%]]
+   * [[%SYSTEMWEB%.InstalledPlugins][%MAKETEXT{"Installed Plugins"}%]]
+   * [[%SYSTEMWEB%.ManagingWebs][%MAKETEXT{"Managing Webs"}%]]
 </div>
-<div class="natSideBarSection natSideBarWebs">
-%INCLUDE{"%TWIKIWEB%.FlexWebListTree" warn="off"}%
-</div>
+%FIDEFINED%
 <!-- //twiki.twikiwebsidebar -->%STOPINCLUDE%

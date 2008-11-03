@@ -1,14 +1,13 @@
-%TMPL:INCLUDE{"page"}% 
-<!-- template: changes.nat.tmpl -->
-<!-- -->%TMPL:INCLUDE{"changesbody"}%
-<!-- -->%TMPL:INCLUDE{"changessidebar"}%
-<!-- -->%TMPL:INCLUDE{"changestopicactions"}%
-<!-- -->%TMPL:INCLUDE{"changesjavascript"}%
-<!-- -->%TMPL:INCLUDE{"changesstyles"}%
+%TMPL:INCLUDE{"page"}%<!-- template: changes.nat.tmpl -->
+%TMPL:INCLUDE{"changesbody"}%<!-- changesbody// -->
+%TMPL:INCLUDE{"changessidebar"}%<!-- changessidebar// -->
+%TMPL:INCLUDE{"changestopicactions"}%<!-- changestopicactions// -->
+%TMPL:INCLUDE{"changesjavascript"}%<!-- changesjavascript// -->
+%TMPL:INCLUDE{"changesstyles"}%<!-- changesstyles -->
 %TMPL:DEF{"bodyclass"}%natChangesBody%TMPL:END%
 %TMPL:DEF{"title"}%%TOPICTITLE% (%MAKETEXT{"changes"}%) - %WIKITOOLNAME%%TMPL:END%
 %TMPL:DEF{"meta"}% %HTTP_EQUIV_ON_VIEW% %TMPL:END%
-%TMPL:DEF{"content"}% <!-- -->
+%TMPL:DEF{"content"}%<!-- content -->
 <table class="natSearchTable" cellpadding="0" cellspacing="0" width=100%>
 <tr>
   <th width="50%">%MAKETEXT{"Topic"}%</th>
@@ -35,4 +34,4 @@
 </tr>
 <!-- debug: search repeat end -->%REPEAT%<!-- debug: search footer start-->
 </table>
-%TMPL:END%
+<!-- //content -->%TMPL:END%

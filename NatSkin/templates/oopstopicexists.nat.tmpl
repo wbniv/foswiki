@@ -1,7 +1,7 @@
-%TMPL:INCLUDE{"oops"}%
-<!-- template: oopstopicexists.nat.tmpl -->
+%TMPL:INCLUDE{"oops"}%<!-- template: oopstopicexists.nat.tmpl -->
 %TMPL:DEF{"heading"}%%MAKETEXT{"The [_1] topic already exists" args="\"%TOPIC%\""}%%TMPL:END%
-%TMPL:DEF{"message"}%<!-- -->
+%TMPL:DEF{"message"}%<!-- message-->
 %MAKETEXT{"Can not rename to [_1] as this already exists!" args="%TOPIC%"}%
 
-%TMPL:P{"goback"}%%TMPL:END%
+%TMPL:P{"goback"}%
+<!-- //message -->%TMPL:END%

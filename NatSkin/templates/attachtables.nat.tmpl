@@ -1,30 +1,104 @@
 <!-- Macros for definition of attachment tables -->
-<!-- Header definition for topic attachments and top table in attach screen -->
-%TMPL:DEF{ATTACH:files:header(basic)}% %TWISTY{mode="div" start="show" remember="off" buttonmode="div" prefix="<h2>" suffix="</h2>" showlink="Attached Files " hidelink="Attached Files " showimg="%ICONURLPATH{"toggleclose-mini"}%" hideimg="%ICONURLPATH{"toggleopen-mini"}%"}%<div class="twikiAttachments">
-| *&nbsp;* | *%MAKETEXT{"File"}%* |  *%MAKETEXT{"Size"}%* | *%MAKETEXT{"Date"}%* | *%MAKETEXT{"By"}%* | *%MAKETEXT{"Actions"}%* |%TMPL:END%
-<!-- A basic row definition, for attachment table and attach screen -->
-%TMPL:DEF{ATTACH:files:row(basic)}% | %A_ICON% | <a href="%PUBURL%/%WEB%/%TOPIC%/%A_FILE%">%A_FILE%</a> <div class="natAttachmentComment"><noautolink>%A_COMMENT%</noautolink></div> | %A_SIZE% | <nobr>%A_DATE%</nobr> | %A_USER% | <!--a href="%WIKIDAVPUBURL%/%WEB%/%TOPIC%/%A_FILE%" title="edit <nop>%A_FILE% using webdav" rel='nofollow'>edit</a>,--> <a href="%SCRIPTURLPATH{"attach"}%/%WEB%/%TOPIC%?filename=%A_FILE%&revInfo=1" title='%MAKETEXT{"manage properties of [_1]" args="<nop>%A_FILE%"}%' rel='nofollow'>%MAKETEXT{"props"}%</a>, <a href="%SCRIPTURLPATH{"rename"}%/%WEB%/%TOPIC%?attachment=%A_FILE%" title='%MAKETEXT{"move or delete [_1]" args="<nop>%A_FILE%"}%' rel='nofollow'>%MAKETEXT{"move"}%</a> |%TMPL:END%
-<!-- Header for topic attachment table -->
-%TMPL:DEF{ATTACH:files:header}% %TMPL:P{ATTACH:files:header(basic)}% 
-%TMPL:END%
-<!-- Row for topic attachment table -->
-%TMPL:DEF{ATTACH:files:row}% %TMPL:P{ATTACH:files:row(basic)}% 
-%TMPL:END%
-<!-- Footer for topic attachment table -->
+
+<!-- attachments editor -->
+%TMPL:DEF{"ATTACH:editor"}%<!-- ATTACH:editor -->
+<div id="natAttachmentEditor" style="display:none">
+<form name="attach" action="%SCRIPTURLPATH{"upload"}%/%WEB%/%TOPIC%" method="post">
+  <input type="hidden" name="filename" id="filename" value="%A_FILE%" />
+  <input type="hidden" name="redirectto" value="%SCRIPTURL{"attach"}%/%WEB%/%TOPIC%?tab=2#%A_FILE%" />
+  <input type="hidden" name="changeproperties" value="on" />
+  <div class="twikiFormStep">
+    <h3>Comment:</h3>
+    <textarea name="filecomment" class="twikiTextarea" cols="60" rows="3">
+      %IFDEFINED{"%ENCODE{"%A_COMMENT%" type="html"}%" as="&#38;nbsp;" then="" else="$test"}%
+    </textarea>
+  </div>
+  <div class="twikiFormStep twikiFormOptions">
+    <h3>Options:</h3>
+    <label>
+      <input type="checkbox" class="twikiCheckbox" name="hidefile" id="hidefile" %IFDEFINED{"%A_ATTRS%" as="h" then=" checked "}% /> 
+      %MAKETEXT{"Hide attachment in normal topic view."}%
+    </label><br />
+    <label>
+      <input type="checkbox" class="twikiCheckbox" name="createlink" id="createlink" /> 
+      %MAKETEXT{"Create a link to the attached file at the end of the topic."}%
+    </label>
+  </div>
+  <div class="twikiFormButtons">
+    <input type="submit" class="twikiSubmit natOkButton" value="%MAKETEXT{"OK"}%" />
+    <input type="button" class="twikiButton natCancelButton" value="%MAKETEXT{"Cancel"}%" onclick="toggleAttachmentEditor(this, 'off')" />
+  </div>
+</form>
+</div>
+<!-- //ATTACH:editor -->%TMPL:END%
+
+<!-- topic attachment table -->
+%TMPL:DEF{ATTACH:files:header}%<div class="twikiFormSteps">
+%TWISTY{
+  mode="div" 
+  start="show" 
+  remember="off" 
+  buttonmode="div" 
+  prefix="<h2>" 
+  suffix="</h2>" 
+  link="%MAKETEXT{"Attachments"}% " 
+  showimg="%ICONURLPATH{toggleopenleft}%"
+  hideimg="%ICONURLPATH{toggleclose}%"
+}%%TMPL:END%
+%TMPL:DEF{ATTACH:files:row}%<div class="twikiFormStep">
+  <table cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="natAttachmentIcon">%A_ICON%</td> 
+    <td class="natAttachmentInfo">
+      <div class="natAttachmentName"><a href="%PUBURL%/%WEB%/%TOPIC%/%A_FILE%">%A_FILE%</a> (%A_SIZE%)</div>
+      %MAKETEXT{"version [_1] uploaded by [_2] on [_3]" args="%A_REV%,%A_USER%, %A_DATE%"}%
+      <div class="natAttachmentComment"><noautolink>%A_COMMENT%</noautolink></div>
+    </td>
+  </tr>
+  </table>
+</div>%TMPL:END%
 %TMPL:DEF{ATTACH:files:footer}% </div> %ENDTWISTY% %TMPL:END%
-<!-- Header for table at top of attach screen -->
-%TMPL:DEF{ATTACH:files:header:A}% %TMPL:P{ATTACH:files:header(basic)}%
-%TMPL:END%
-<!-- Row for table at top of attach screen -->
-%TMPL:DEF{ATTACH:files:row:A}% %TMPL:P{ATTACH:files:row(basic)}%
-%TMPL:END%
-<!-- Footer for table at top of attach screen -->
-%TMPL:DEF{ATTACH:files:footer:A}% </div>
-%TMPL:END%
+
+<!-- table at top of attach screen -->
+
+%TMPL:DEF{ATTACH:files:header:A}% %TMPL:END%
+%TMPL:DEF{ATTACH:files:row:A}%<div class="twikiFormStep"><a name="%A_FILE%"></a>
+  <table cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="natAttachmentIcon">%A_ICON%</td> 
+    <td class="natAttachmentInfo">
+      <div class="natAttachmentName"><a href="%PUBURL%/%WEB%/%TOPIC%/%A_FILE%">%A_FILE%</a> (%A_SIZE%) </div>
+      %MAKETEXT{"version [_1] uploaded by [_2] on [_3]" args="%A_REV%,%A_USER%, %A_DATE%"}%
+      %IFDEFINED{"%A_ATTRS%" as="h" then=", <span class='twikiAlert'>hidden</span>"}%
+      <div class="natAttachmentComment"><noautolink>%A_COMMENT%</noautolink></div>
+      %TMPL:P{"ATTACH:editor"}% 
+    </td>
+    <td class="natAttachmentActions">
+      <a href="javascript:void(0)" title='%MAKETEXT{"edit properties of this attachment"}%' rel='nofollow' onclick="toggleAttachmentEditor(this)"><img src="%PUBURLPATH%/%TWIKIWEB%/NatSkin/pencil.png" border="0"/></a>
+      <a href="javascript:void(0)" title='%MAKETEXT{"view revisions of this attachment"}%' rel='nofollow' onclick="toggleAttachmentHistory(this)"><img src="%PUBURLPATH%/%TWIKIWEB%/NatSkin/time.png" border="0"/></a>
+      <a href="%SCRIPTURLPATH{"rename"}%/%WEB%/%TOPIC%?attachment=%A_FILE%" title='%MAKETEXT{"move this attachment to a different topic"}%' rel='nofollow'><img src="%PUBURLPATH%/%TWIKIWEB%/NatSkin/page_white_go.png" border="0"/></a> 
+      <a href="%SCRIPTURLPATH{"rename"}%/%WEB%/%TOPIC%?attachment=%A_FILE%;newweb=%TRASHWEB%;" title="%MAKETEXT{"delete this attachment"}%" rel='nofollow'><img src="%PUBURLPATH%/%TWIKIWEB%/NatSkin/bin.png" border="0" /></a>
+    </td>
+  </tr>
+  </table>
+</div>%TMPL:END%
+%TMPL:DEF{ATTACH:files:footer:A}%<div class="twikiFormStep twikiFormButtons twikiFormLast">
+<input type="button" class="natAltButton" title="Return to topic" value='%MAKETEXT{"Back"}%' onclick="window.location.href = '%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%';">
+</div>%TMPL:END%
+
+<!-- Header definition for top table in attach screen -->
+<!-- Header definition for topic attachments and top table in attach screen -->
+
+<!-- A basic row definition, for attachment table and attach screen -->
+
+<!-- Macros for definition of version tables -->
+
 <!-- Header for versions table in attach screen -->
 %TMPL:DEF{ATTACH:versions:header}% | *&nbsp;* | *%MAKETEXT{"Attachment"}%* | *%MAKETEXT{"Version"}%* | *%MAKETEXT{"Size"}%* | *%MAKETEXT{"Date"}%* | *%MAKETEXT{"Who"}%* | 
 %TMPL:END%
+
 <!-- Row for versions table in attach screen -->
 %TMPL:DEF{ATTACH:versions:row}% | %A_ICON% | <a href="%A_URL%">%A_FILE%</a><div class="natAttachmentComment"><noautolink>%A_COMMENT%</noautolink></div> | %A_REV% | %A_SIZE% | <nobr>%A_DATE%</nobr> | %A_USER% |%TMPL:END%
+
 <!-- Footer for versions table in attach screen -->
 %TMPL:DEF{ATTACH:versions:footer}% %TMPL:END%

@@ -1,16 +1,10 @@
-%TMPL:INCLUDE{"renamebase"}%<!-- -->
-<!-- template: rename.nat.tmpl -->
-%TMPL:DEF{"newtopic"}%<input type="text" name="newtopic" value="%TOPIC%" size="40" />%TMPL:END%
-%TMPL:DEF{"newweb"}% <select name="newweb" onchange="
-~~~ if (document.rename.newweb.value == 'Trash') { 
-~~~   document.rename.newtopic.value = 'TrashAttachment'; 
-~~~   document.rename.totrash.checked = true;
-~~~ } else {
-~~~   document.rename.totrash.checked = false;
-~~~ }
-~~~ "> 
-%WEBLIST{"<option $marker value='$name'>$name</option>" webs="Trash,%NEW_WEB%,public" selection="%NEW_WEB%" separator=" "}% 
-</select> %TMPL:END%
+%TMPL:INCLUDE{"renamebase"}%<!-- template: rename.nat.tmpl -->
+%TMPL:DEF{"newtopic"}%<input type="text" name="newtopic" value="%NEW_TOPIC%" size="40" />%TMPL:END%
+%TMPL:DEF{"newweb"}%<!-- newweb -->
+<select name="newweb" onchange="if (document.rename.newweb.value == '%TRASHWEB%') {document.rename.newtopic.value = 'TrashAttachment'; document.rename.totrash.checked = true; } else { document.rename.totrash.checked = false; }"> 
+%WEBLIST{"<option $marker value='$name'>$name</option>" webs="%TRASHWEB%,%NEW_WEB%,public" selection="%NEW_WEB%" separator=" "}% 
+</select> 
+<!-- //newweb -->%TMPL:END%
 %TMPL:DEF{"webaction"}%Rename%TMPL:END%
 %TMPL:DEF{"buttons"}%
 <input type="submit" class="natOkButton" value='%MAKETEXT{"OK"}%' />&nbsp;

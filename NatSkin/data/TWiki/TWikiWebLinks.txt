@@ -4,12 +4,9 @@
 
 Standard links in sidebar navigation. 
 
-%STARTINCLUDE%<!-- twiki.twikiweblinks -->%IFDEFINEDTHEN{"%BASEWEB%" as="%TWIKIWEB%|%MAINWEB%" glue="off"}%%ELSEDEFINED%
-   * [[%BASEWEB%.WebTopicCreator][%MAKETEXT{"New Topic"}%]]%FIDEFINED%
+%STARTINCLUDE%<!-- twiki.twikiweblinks -->
    * [[%BASEWEB%.WebTopicList][%MAKETEXT{"Index"}%]]
    * [[%BASEWEB%.WebChanges][%MAKETEXT{"Changes"}%]]
    * [[%BASEWEB%.WebNotify][%MAKETEXT{"Notifications"}%]]
    * [[%BASEWEB%.WebStatistics][%MAKETEXT{"Statistics"}%]]
-%IFDEFINEDTHEN{"%IFACCESS{"%BASEWEB%.WebPreferences" type="change"}%" as="1"}%
-   * [[%BASEWEB%.WebPreferences][%MAKETEXT{"Preferences"}%]] %FIDEFINED%
-%STOPINCLUDE%
+<!-- twiki.twikiweblinks -->%STOPINCLUDE%

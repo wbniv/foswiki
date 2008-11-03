@@ -1,0 +1,841 @@
+/* Clean Style */
+@import url("BaseStyle.css");
+
+/* html elements */
+html {
+  background:#e5e5e5;
+  line-height:140%;
+  color:#444444;
+  font-size:12px;
+  font-family:arial,sans-serif;
+}
+body {
+  line-height:140%;
+  margin:0;
+  padding:0;
+  background:#e5e5e5;
+}
+.twikiEmulatedLink,
+a:active, a {
+  color:#0055b5;
+  text-decoration:none;
+  font-weight:normal;
+}
+a:hover {
+  color:#ffffff;
+  background:#b22222;
+  background:#0055b5;
+  text-decoration:none;
+}
+
+hr {
+  border-bottom:1px solid #ddd;
+}
+
+p {
+  margin:1em 0em;
+}
+pre {
+  background:#f6f6f6;
+  padding:0.5em;
+  border:1px solid #ddd;
+  font-size:98%;
+}
+
+h1 { font-size:160%; margin-top:1em;margin-bottom:0.5em;}
+h2 { font-size:130%; margin-top:1em;margin-bottom:0.5em;}
+h3 { font-size:120%; margin-top:1em;margin-bottom:0.5em;}
+h4 { font-size:110%; margin-top:1em;margin-bottom:0.5em;}
+h5 { font-size:110%; margin-top:1em;margin-bottom:0.5em;}
+h6 { font-size:110%; margin-top:1em;margin-bottom:0.5em;}
+h1, h2, h3, h4, h5, h6 {
+  line-height:normal;
+}
+
+h1, h2, h3, h4, h5, h6,
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,
+h1 a:hover, h2 a:hover, h3 a:hover,
+h4 a:hover, h5 a:hover, h6 a:hover {
+  font-weight:normal;
+  background:none;
+  color:#0055b5;
+}
+
+h1 {
+  border-bottom:2px solid #73AA31;
+  color:#0055b5;
+  clear:both;
+}
+h2 {
+  border-bottom:2px solid #dedede;
+  padding-bottom:1px;
+  clear:both;
+}
+ul, ol {
+  margin:0.5em 0em 0em 0em;
+  padding:0em 0em 0em 3em;
+}
+ol ol,
+ul ol,
+ol ul,
+ul ul {
+  margin-top:0em;
+  margin-bottom:0em;
+}
+ol li,
+ul li {
+  margin:0px;
+  padding:0px;
+}
+
+blockquote {
+  padding:0em 0em 0em 0.7em;
+  margin:1.5em 0em 0em 1.6em;
+  border-left:0.4em solid #ddd;
+}
+
+dl {
+  padding:0em 0em 0em 1.5em;
+}
+dl dt {
+  padding:0em;
+}
+dl dd {
+  margin:0em 0em 0.5em 1.5em;
+  padding:0em;
+}
+
+/* layout */
+.natTopBar {
+  padding:0px;
+}
+.natTopLeft {
+  padding:2.0em;
+}
+.natTopRight {
+  padding:2em 1.5em 2em 1em;
+}
+.natMain {
+  padding:2em;
+}
+.natMainHeaderContents {
+  padding-bottom:2em;
+}
+.natEditBody .natMain {
+  padding:1.5em;
+}
+.natTopRight, 
+.natSideBarHeader,
+.natSideBar {
+  width:16em;
+}
+
+/* login */
+.natLoginBody .natLoginMessage {
+  padding:20px;
+}
+
+
+/* twiki styles */
+.twikiTable {
+  border:1px #dedede solid;
+  line-height:140%;
+  border-spacing:0px;
+  margin:5px 0px;
+}
+.twikiTable th {
+  background:#9CBAEF;
+}
+.twikiTable td {
+  background:#f9f9f9;
+}
+.twikiTable th,
+.twikiTable td {
+  padding:0.3em 0.7em;
+  border:1px #dedede solid;
+}
+.twikiTable th a {
+  text-decoration:none;
+  font-weight:bold;
+}
+.twikiTable th,
+.twikiTable th h2,
+.twikiTable th h3,
+.twikiTable th h4,
+.twikiTable th a,
+.twikiTable th span,
+.twikiTable th font {
+  color:#444444;
+  font-weight:bold;
+}
+.twikiTable th h4 {
+  margin:0px;
+}
+
+th.twikiSortedDescendingCol,
+th.twikiSortedAscendingCol {
+  background:#8DA8D8;
+}
+.twikiTable td.twikiSortedDescendingCol,
+.twikiTable td.twikiSortedAscendingCol {
+  background:#f4f4f4;
+}
+
+/* twikiDiff */
+.twikiDiffTable { 
+  border:1px solid #ddd;
+  background:#f6f6f6;
+}
+.twikiDiffTable td,
+.twikiDiffTable th {
+  border:0px;
+}
+.twikiDiffTable th { 
+  border-bottom:1px solid #ddd;
+}
+
+.twikiDiffChangedHeader { }
+.twikiDiffChangedMarker { }
+.twikiDiffChangedText { }
+
+.twikiDiffDeletedHeader { }
+.twikiDiffDeletedMarker { }
+.twikiDiffDeletedText { 
+ background:#FFD7D7;
+}
+
+.twikiDiffAddedHeader { }
+.twikiDiffAddedMarker { }
+.twikiDiffAddedText { }
+
+.twikiDiffUnchangedText { }
+
+
+/* twiki page form */
+.twikiPageForm {
+  margin:1em 0px;
+  padding:1em;
+  border-top:1px solid #ddd;
+  border-bottom:1px solid #ddd;
+  background:#FEF8EB;
+}
+.natSideBar .twikiPageForm {
+  margin:-1px -1em 0em;
+  border:0px;
+  border-top:1px solid #9C3063;
+  border-bottom:1px solid #9C3063;
+  background:#CECFCE;
+}
+.twikiPageForm table {
+  margin:0px;
+}
+
+.twikiPageForm th {
+  color:#444444;
+}
+.twikiPageForm th a {
+  color:#444444;
+  text-decoration:none;
+  font-weight:bold;
+}
+.natEditTextArea {
+  background:#eee;
+}
+
+fieldset {
+  padding:0px 0px 0px 1px; /* firefox fix to allign legend and content */
+  border:0px;
+  background:#FEF8EB;
+  border-top:1px solid #ddd;
+  border-bottom:1px solid #ddd;
+}
+legend {
+  color:#0055b5;
+  font-size:110%;
+}
+
+fieldset .twikiFormSteps {
+  border:0px;
+}
+
+.twikiFormSteps {
+  border-top:1px solid #ddd;
+  border-bottom:1px solid #ddd;
+  background:#FEF8EB;
+  padding:0.5em 1.5em;
+}
+.twikiFormStep {
+  margin:0.5em 0em;
+}
+.twikiFormStep hr {
+  margin:1.5em -1.5em;
+}
+.twikiFormSteps h2,
+.twikiFormSteps h3,
+.twikiFormSteps h4,
+.twikiFormSteps h2 a,
+.twikiFormSteps h3 a,
+.twikiFormSteps h4 a {
+  margin-top:0em;
+  font-weight:bold;
+  color:inherit;
+}
+.twikiFormSteps h2 { font-size:120%; }
+.twikiFormSteps h3 { font-size:110%; }
+.twikiFormSteps h4,
+.twikiFormSteps h5,
+.twikiFormSteps h6 { font-size:100%; }
+
+.twikiFormSteps h2 {
+  border-bottom:0px;
+  color:#9C3063;
+  margin:0.7em 0em;
+}
+.twikiFormSteps h3 {
+  margin:1.0em 0em 0.2em;
+}
+.twikiFormOptions .twikiCheckbox {
+  margin:0em 0.2em 0em; 
+}
+
+.twikiFormSteps .jqTabContents,
+.twikiFormSteps ul.jqTabGroup li.current {
+  background:#FEF1D6;
+}
+.twikiFormSteps .jqTabContents {
+  padding:0.5em;
+}
+.twikiFormDescription {
+  margin:0.2em 0em;
+  color:#828282;
+}
+
+/* helpers */
+.natErrorMsg {
+  background:#eee;
+}
+
+/* top */
+.natTopLeft,
+.natTopRight,
+.natTopLeft a,
+.natTopRight a  {
+  color:white;
+}
+.natHeaderArt {
+  background:#4275BD;
+}
+.natEditBody .natMainContents h1 {
+  margin:0.5em 0em 1.0em;
+}
+.natEditBody .natLayoutTable,
+.natTopBar {
+  border-top: 1px solid #aaa;
+}
+.natWebTitle {
+  font-weight:normal;
+  font-family:verdana,arial,sans-serif;
+  font-size:3em;
+  letter-spacing:-1px;
+  padding:0em;
+  display:inline;
+}
+.natWebSlogan {
+  font-style:italic;
+  display:inline;
+  display:none;
+}
+
+/* topic actions */
+.natUserAction:hover,
+.natUserAction:active,
+.natUserAction {
+  font-weight:bold; 
+}
+.natTopicActions {
+  border-bottom:1px solid #dedede;
+  margin:1.5em 0em 0em -2px;
+  padding-bottom:0.5em;
+}
+.natDisabledUserAction span,
+.natDisabledTopicAction span {
+  color:#cfcfcf;
+}
+.natTopicActions a:hover,
+.natTopicAction,
+.natTopicAction:hover {
+  color:black;
+}
+.natTopicAction:hover,
+.natTopicActions a:hover {
+  background-color:#efefef;
+}
+
+/* sidebar */
+.natSideBar {
+  background:#efefef;
+}
+.natSideBarContents  {
+  margin:0em;
+  padding:0em 1em;
+}
+.natSideBar .hover,
+.natSideBar a:hover {
+  background:#9CBAEF;
+  color:#0055b5;
+}
+.natSideBar h2,
+.natSideBar h2 a {
+  background:#9CCF31;
+  color:#424242;
+}
+.natSideBar h2 a {
+  display:block;
+  margin:0em -1em;
+  padding:0em 1em;
+}
+.natSideBar h2 a:hover {
+  color:#424242;
+  background:#90BE2D;
+}
+
+.natSideBar h2 {
+  font-weight:normal;
+  letter-spacing:.3em;
+  display:block;
+  margin:-1px -1em 0em;
+  padding:1px 1em;
+  line-height:1.5em;
+  border-top:1px solid white;
+  border-bottom:1px solid white;
+}
+.natSideBar h3 {
+  margin:0.5em 0em 0.5em 0em;
+  font-size:100%;
+  font-weight:bold;
+  display:inline;
+}
+.natSideBar h2 a,
+.natSideBar h3 a,
+.natSideBar h4 a {
+  color:inherit;
+  font-weight:inherit;
+}
+
+.natSideBar p,
+.natSideBarSection {
+  background:#CECFCE;
+  margin:0em -1em;
+  padding:0em 1em;
+}
+.natSideBar p {
+  border-bottom:1px solid white;
+}
+
+.natSideBar p {
+  padding:1em;
+}
+
+.natSideBar ol,
+.natSideBar ul {
+  margin:0em -1em;
+  background:#CECFCE;
+}
+
+.natSideBar .treeview a {
+  display:inline;
+  padding:0px;
+  margin:0px;
+}
+.natSideBar .jqTreeview {
+  padding:1em 0em;
+}
+.natSideBar .treeview li {
+  border-bottom:0px;
+}
+.natSideBar li {
+  line-height:2.0em;
+  margin-top:0px;
+  padding:1px 1em;
+  border-bottom:1px solid white;
+}
+.natSideBar ul li a {
+  font-weight:normal;
+  display:block;
+  color:#9C3063;
+  margin:0px -1em;
+  padding:0px 1em;
+}
+.natSideBar .twikiCurrentTopicLink {
+  color:#9C3063;
+}
+
+.natSideBar ol {
+  padding:1em 0em 1em 2.5em;
+}
+.natSideBar ol li {
+  background-image:none;
+  border-bottom:0px;
+  line-height:normal;
+}
+.natSideBar ol li a {
+  color:#9C3063;
+}
+.natSideBar ul ul {
+  margin-left:0px;
+  padding-left:0px;
+  list-style-type:none;
+}
+.natSideBar ul ol li,
+.natSideBar ul ul li {
+  background-image:none;
+  padding-left:0px;
+}
+
+.natGreeter,
+.natGreeter a {
+  color:#9CBAEF;
+}
+.natGreeter a:hover {
+  color:#ffffff;
+}
+
+.natSearchBox table {
+  width:100%;
+}
+.natSearchBox input {
+  width:99%;
+  color:#0055b5;
+  font-weight:bold;
+  margin:0px;
+  border:thin inset;
+  padding:1px;
+}
+.natSearchBoxPos1 a span {
+  display:none;
+}
+.natSearchBoxPos1 a {
+  margin:1px 5px;
+  padding:0px;
+  background-image:url(magnifier.png);
+  background-repeat:no-repeat;
+  display:block;
+  height:16px;
+  width:16px;
+}
+.natSearchBoxPos1 a:hover {
+  background-color:inherit;
+  background-image:url(magnifier.png);
+  background-repeat:no-repeat;
+}
+.natSearchBoxPos2,
+.natSearchBoxPos3 {
+  padding:1em 0px;
+}
+
+
+/* main area */
+.natBreadCrumbs .natSep,
+.natBreadCrumbs a {
+  color:#73AA31;
+}
+.natBreadCrumbs a:hover {
+  color:white;
+}
+
+.natMainContents .twikiNewLink {
+  background-color:#eee;
+}
+.twikiToc a {
+  background-image:none;
+}
+.natTopicForm a,
+.natMainContents th a {
+  background-image:none;
+}
+
+
+/* bottom */
+.natMainFooterContents {
+  margin:2em 0em 0em;
+}
+.natRevision {
+  margin:2em 0em 0em;
+}
+.natSyndicate {
+  display:inline;
+}
+.natBottomBar {
+  padding:20px;
+  background:white;
+}
+.natBottomBarContents {
+  width:100%;
+  text-align:left;
+}
+.natBottomBarContents,
+.natBottomBarContents a {
+  color:#999;
+}
+.natCopyRight {
+  display:inline;
+}
+
+/* forms */
+.natTopicForm {
+  padding:1em;
+  border-top:1px #ddd solid;
+  background:#f6f6f6;
+}
+.natTopicForm td,
+.natTopicForm th,
+.natTopicForm {
+  font-size:12px;
+}
+.natTopicForm td,
+.natTopicForm table {
+  border:1px #ddd solid;
+  background:#fff;
+}
+
+.natTopicEditForm .twikiFirstCol a,
+.natTopicEditForm .twikiFirstCol ,
+.natTopicForm .natTopicFormFirstCol,
+.natTopicForm .twikiFirstCol,
+.natTopicForm .twikiFirstCol a,
+.natTopicForm table th {
+  vertical-align:top;
+  font-weight:bold;
+}
+
+.natTopicEditForm .natTopicFormTitle {
+  border-bottom:1px solid #ddd;
+}
+.natTopicForm .natTopicFormFirstCol {
+  text-align:left;
+}
+.natTopicForm table th a {
+  color:#444444;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.natTopicEditForm {
+  margin-top:1em;
+  padding:1.5em 1em;
+  border-top:1px #ddd solid;
+  background:#f6f6f6;
+  border-bottom:1px #ddd solid;
+}
+
+/* attachments */
+.natTopicAttachments .twikiFormSteps {
+  margin:0px;
+}
+.natTopicAttachments .natDisabledTopicAction:hover,
+.natTopicAttachments .natViewTopicAction:hover,
+.natTopicAttachments .natNewTopicAction:hover,
+.natTopicAttachments .natEditTopicInfo:hover,
+.natTopicAttachments .natAttachTopicAction:hover,
+.natTopicAttachments .natPrintTopicAction:hover,
+.natTopicAttachments .natPdfTopicAction:hover,
+.natTopicAttachments .natDiffTopicAction:hover,
+.natTopicAttachments .natRawTopicAction:hover,
+.natTopicAttachments .natDeleteTopicAction:hover,
+.natTopicAttachments .natMoveTopicAction:hover,
+.natTopicAttachments .natMoreTopicAction:hover,
+.natTopicAttachments .natHelpTopicAction:hover,
+.natTopicAttachments .natTopicActions a:hover {
+  background-color:#FEE8B8;
+}
+
+/* search tables */
+.natSearchRevision,
+.natSearchRevision a {
+  color:#aaa;
+}
+.natSearchForm {
+  border-bottom:1px #ddd solid;
+  padding-bottom:2px;
+}
+
+/* TOC */
+.twikiToc {
+  margin:1em;
+}
+.twikiTocTitle {
+  color:#0055b5;
+  margin:0px 0px 5px 0px;
+  padding-bottom:2px;
+  display:block;
+  font-weight:normal;
+  border-bottom:1px #ddd solid;
+}
+.twikiToc ul {
+  margin:0px;
+  padding:0px;
+}
+.twikiToc ul ul {
+  margin-top:0px;
+}
+.twikiToc ul li {
+  background-image:url(q_black.gif);
+  background-position:0px 5px;
+  background-repeat:no-repeat;
+  padding-left:1em;
+}
+
+/* supported plugins and applications */
+
+/* Blogging */
+.alt {
+  margin:0.5em 0em;
+  padding:1.0em 1.5em;
+  background:#f8f8f8;
+  border-top:1px #ddd solid;
+  border-bottom:1px #ddd solid;
+}
+.border {
+  border:1px #ddd solid;
+}
+
+/* blogging */
+.blogAbout {
+  font-size:95%;
+  line-height:1.3em;
+}
+.blogSideBarLatest h2,
+.blogSideBarComments h2 {
+  border-bottom:0px;
+  margin-bottom:0px;
+}
+.blogSideBarHeader,
+.blogSideBarHeader h2,
+.blogSideBarHeader a {
+  font-size:14px;
+  color:#444444;
+  font-weight:normal !important;
+}
+.blogSideBarHeader {
+  line-height:1.4em;
+  border-bottom:1px solid #dedede;
+  margin:0em 0em 1em 0em;
+}
+.blogSideBar {
+  line-height:1.4em;
+}
+.blogSideBarSection {
+  margin-bottom:1em;
+}
+.blogSideBarSection ol {
+  margin-top:0px;
+}
+.blogSideBarSection ul {
+  margin-top:0px;
+  margin-left:0px;
+}
+.blogText {
+  margin-top:5px;
+  padding:1px; /* fix for konqueror */
+}
+.blogComment {
+  margin:5px 0px;
+  padding:1em;
+  border:1px #ddd solid;
+}
+.blogCommentOdd {
+  background:#f6f6f6;
+  border:1px #ddd solid;
+}
+.blogComment .blogDate {
+  font-size:0.8em;
+  color:#777;
+  font-weight:normal;
+}
+.blogCommentNr {
+  color:#444444;
+  margin-right:1em;
+}
+.blogCommentCount {
+  color:#777;
+  text-align:right;
+}
+.blogHeadline .blogCommentCount {
+  font-size:20px;
+}
+.blogSubComment {
+  padding-left:5px;
+  border-left:5px solid #ddd;
+}
+.blogCommentOdd .blogSubComment {
+  border-color:#ddd;
+}
+.blogCommentEven .blogSubComment {
+  border-color:#ddd;
+}
+.blogAddComment {
+  margin:1em 0em;
+}
+.blogAddComment textarea,
+.blogAddComment input {
+  font-family: Arial, Sans-Serif;
+}
+.blogArchiveDescription {
+  margin-bottom:20px;
+  font-size:0.9em;
+}
+.blogAdminButtons,
+.blogAuthorButtons {
+  background:#f6f6f6;
+  border:1px #ddd solid;
+}
+.blogSideBarSection ol {
+  padding-left:2em;
+}
+
+/* EmployeePortalApp */
+.empSkillSelector {
+  border-top:1px #bbb solid;
+  border-bottom:1px #bbb solid;
+  margin:-2px -5px;
+}
+
+/* ClassificationPlugin */
+.clsBrowser a,
+.clsTagCloud a {
+  text-decoration:none;
+  display:inline;
+}
+.fltMakeIndexWrapper a:hover,
+.natMainContents .fltMakeIndexWrapper a {
+  line-height:100%;
+}
+.fltMakeIndexWrapper h3 {
+  font-size:100%;
+  font-weight:bold;
+}
+.natMainContents .fltMakeIndexWrapper ul {
+  list-style-type:none;
+  margin:0px 7px 7px 0px;
+  padding:0px;
+}
+.natMainContents .fltMakeIndexWrapper li {
+  padding:7px 0px;
+}
+.clsTopicInfo h1 {
+  border-bottom:0px;
+}
+.clsTopicInfoSep {
+  border-bottom:2px solid #73AA31;
+}
+
+/* HistoryPlugin */
+.natOopsHistoryBody form {
+  margin:0em 1em 1em 0em;
+  padding:0.5em 1em;
+  border:1px #ddd solid;
+  background-image:url(GrayBlend.png);
+  background-repeat:repeat-x;
+  background-position:0px 0px;
+}
+

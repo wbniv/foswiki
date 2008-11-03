@@ -1,12 +1,22 @@
 <!-- template: searchbox.nat.tmpl -->
-%TMPL:DEF{"searchbox"}%<!-- search box -->
-<form name="searchbox" class="natSideBarSearch" action="%SCRIPTURLPATH{"natsearch"}%/%BASEWEB%/%BASETOPIC%" method="post">
+%TMPL:DEF{"searchbox_go"}%<!-- search box go-->
+<form name="searchbox" action="%SCRIPTURLPATH{"natsearch"}%/%BASEWEB%/%BASETOPIC%" method="post">
 <table cellspacing="0" cellpadding="0" border="0"><tr>
 <td valign="middle">
-<input type="text" title="Enter topic name or a search string" name="search" value="%URLPARAM{"search" default="Search" encode="entity"}%" accesskey="f" onblur="if(this.value==''){this.value = 'Search'}" onfocus="if(this.value=='Search'){this.value = ''}" /> 
+<input type="text" title="Enter topic name or a search string" name="search" value="%URLPARAM{"search" default="%MAKETEXT{"Search"}%" encode="entity"}%" accesskey="f" onblur="if(this.value==''){this.value = '%MAKETEXT{"Search"}%'}" onfocus="if(this.value=='%MAKETEXT{"Search"}%'){this.value = ''}" /> 
 </td>
 <td valign="middle">
 <a href="javascript:document.searchbox.submit()" title="Go"><span>Go</span></a>
 </td>
 </tr></table>
-</form> %TMPL:END%
+</form>
+<!-- //search box-->%TMPL:END%
+%TMPL:DEF{"searchbox"}%<!-- search box -->
+<form name="searchbox" action="%SCRIPTURLPATH{"natsearch"}%/%BASEWEB%/%BASETOPIC%" method="post">
+<input type="text" title="Enter topic name or a search string" name="search" value="%URLPARAM{"search" default="%MAKETEXT{"Search"}%" encode="entity"}%" accesskey="f" onblur="if(this.value==''){this.value = '%MAKETEXT{"Search"}%'}" onfocus="if(this.value=='%MAKETEXT{"Search"}%'){this.value = ''}" /> 
+</form>
+<!-- //search box-->%TMPL:END%
+%TMPL:DEF{"searchbox_top"}%<div class="natSearchBox natSearchBoxTop">%TMPL:P{"searchbox_go"}%</div>%TMPL:END%
+%TMPL:DEF{"searchbox_pos1"}%<div class="natSearchBox natSearchBoxPos1">%TMPL:P{"searchbox"}%</div>%TMPL:END%
+%TMPL:DEF{"searchbox_pos2"}%<div class="natSearchBox natSearchBoxPos2">%TMPL:P{"searchbox"}%</div>%TMPL:END%
+%TMPL:DEF{"searchbox_pos3"}%<div class="natSearchBox natSearchBoxPos3">%TMPL:P{"searchbox"}%</div>%TMPL:END%

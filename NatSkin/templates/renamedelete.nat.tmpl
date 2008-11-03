@@ -1,4 +1,4 @@
-%TMPL:INCLUDE{"rename"}%
-<!-- template: renamedelete.nat.tmpl -->
+%TMPL:INCLUDE{"rename"}%<!-- template: renamedelete.nat.tmpl -->
+%TMPL:DEF{"title"}%%TOPICTITLE% (%MAKETEXT{"delete"}%) - %WIKITOOLNAME%%TMPL:END%
 %TMPL:DEF{"webaction"}%%MAKETEXT{"Delete"}%%TMPL:END%
-%TMPL:DEF{"newweb"}%<input type="hidden" name="newweb" value="Trash" /> =Trash= %TMPL:END%
+%TMPL:DEF{"newweb"}%<input type="hidden" name="newweb" value="%TRASHWEB%" /> <span class="twikiAlert">%TRASHWEB%</span> %TMPL:END%

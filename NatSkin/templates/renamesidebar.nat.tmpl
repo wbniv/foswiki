@@ -1,11 +1,11 @@
 <!-- template: renamesidebar.nat.tmpl -->
-%TMPL:DEF{"sidebar"}%<!-- -->
-<nop><h2><a name="Help">%MAKETEXT{"Help"}%</a></h2>
+%TMPL:DEF{"sidebar"}%<!-- sidebar -->
+<h2 ><a name="Help">%MAKETEXT{"Help"}%</a></h2>
    * <a href="%SCRIPTURLPATH{"view"}%/%TWIKIWEB%/TWikiTopics" target="_blank">%MAKETEXT{"About Topics"}%</a> </li>
    * <a href="%SCRIPTURLPATH{"view"}%/%TWIKIWEB%/ManagingTopics" target="_blank">%MAKETEXT{"Managing Topics"}%</a> </li>
    * <a href="%SCRIPTURLPATH{"view"}%/%TWIKIWEB%/DeleteOrRenameATopic" target="_blank">%MAKETEXT{"Deleting Topics"}%</a> </li>
    * <a href="%SCRIPTURLPATH{"view"}%/%TWIKIWEB%/WikiWord" target="_blank">%MAKETEXT{"WikiWord"}%</a> </li>
-<nop><h2><a name="Notes">%MAKETEXT{"Notes"}%</a></h2>
+<h2 ><a name="Notes">%MAKETEXT{"Notes"}%</a></h2>
 <div class="natNotes">
 <p> %MAKETEXT{"Get help on <a href=\"[_1]\" target=\"_blank\">Renaming and moving topics</a>." args="%SCRIPTURLPATH{\"view\"}%/%TWIKIWEB%/ManagingTopics"}%</p>
 <p> %MAKETEXT{"It's usually best to chose a <a href='[_1]' target='_blank'>WikiWord</a>
@@ -15,4 +15,4 @@
 <p> %MAKETEXT{"The checkmarked topics will be updated (another form will appear which
      will _eventually_ allow you to rename any topics that were locked)"}% </p>
 </div>
-%TMPL:END%
+<!-- //sidebar -->%TMPL:END%
