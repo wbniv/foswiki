@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1185226497" format="1.1" reprev="1.2" version="$Rev$"}%
+%META:TOPICINFO{author="TWikiContributor" date="1218721163" format="1.1" reprev="1.2" version="$Rev$"}%
 ---+!! %TOPIC%
 
 The fragment below can be used in a sidebar navigation to establish a folder-like subweb navigation.
@@ -24,8 +24,9 @@ If you want to hide the web navigation from <nop>TWikiGuests then uncomment the 
 ~~~   webs="%MAINWEB%,User,People,public,%TWIKIWEB%" 
 ~~~   exclude="^(TestCases|Trash).*" 
 ~~~   adminwebs="Applications.*"
+~~~   map="%TWIKIWEB%=System"
 ~~~   header="<ul>"
-~~~   format="<li>$percntWEBLINK{\"$web\"}$percnt"
+~~~   format="<li><a href=\"$url\" title=\"$sitemapuseto\">$name</a>"
 ~~~   separator="</li>"
 ~~~   footer="</li></ul>"
 ~~~   subheader="<ul class=\"natSubWebs\">"
@@ -35,3 +36,5 @@ If you want to hide the web navigation from <nop>TWikiGuests then uncomment the 
 %STOPINCLUDE%
 </verbatim>
 
+---++ Test
+%INCLUDE{"%TOPIC%"}%

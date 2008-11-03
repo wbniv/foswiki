@@ -17,6 +17,7 @@ package TWiki::Plugins::FlexWebListPlugin::Core;
 use strict;
 
 use constant DEBUG => 0; # toggle me
+our $homeTopic;
 
 ###############################################################################
 # static
@@ -33,6 +34,8 @@ sub new {
   #writeDebug("new FlexWebListPlugin::Core");
 
   $this->{webCache} = ();
+  $homeTopic = TWiki::Func::getPreferencesValue('HOMETOPIC') 
+    || $TWiki::cfg{HomeTopicName} || 'WebHome';
 
   return $this;
 }
@@ -91,7 +94,6 @@ sub handler {
   my @list = ();
   my @websList = map {s/^\s+//go; s/\s+$//go; s/\./\//go; $_} split(/,\s*/, $this->{webs});
   #writeDebug("websList=".join(',', @websList));
-  %{$this->{isExplicit}} = map {$_ => 1} grep {!/^(public|webtemplate)$/} @websList;
   my $allWebs = $this->getWebs();
 
   # collect the list in preserving the given order in webs parameter
@@ -105,7 +107,6 @@ sub handler {
       push @webs, keys %{$this->getWebs($aweb)};
       foreach my $bweb (sort @webs) {
 	next if $seen{$bweb};
-	next if $this->{isExplicit}{$bweb};
 	$seen{$bweb} = 1;
 	push @list, $bweb;
       }
@@ -123,13 +124,11 @@ sub handler {
     my $web = $allWebs->{$aweb};
     next unless $web;
     $web->{enabled} = 0;
-    unless ($this->{isExplicit}{$web->{key}}) {
-      next if $web->{isSubWeb} && $this->{subWebs} eq 'none';
-      next if $this->{exclude} ne '' && $web->{key} =~ /^($this->{exclude})$/;
-      next if $this->{include} ne '' && $web->{key} !~ /^($this->{include})$/;
-      next if $this->{adminwebs} ne '' && !$this->{isAdmin} &&
-        $web->{key} =~ /^($this->{adminwebs})$/;
-    }
+    next if $web->{isSubWeb} && $this->{subWebs} eq 'none';
+    next if $this->{exclude} ne '' && $web->{key} =~ /^($this->{exclude})$/;
+    next if $this->{include} ne '' && $web->{key} !~ /^($this->{include})$/;
+    next if $this->{adminwebs} ne '' && !$this->{isAdmin} &&
+      $web->{key} =~ /^($this->{adminwebs})$/;
     $web->{enabled} = 1;
   }
 
@@ -187,9 +186,7 @@ sub formatWeb {
   }
 
   my $result = '';
-  if (!$web->{isSubWeb} && 
-      $this->{subWebs} eq 'only' && 
-      !$this->{isExplicit}{$web->{key}}) {
+  if (!$web->{isSubWeb} && $this->{subWebs} eq 'only') {
     $result = $subWebResult;
   } else {
     if ($this->{selection} =~ / \Q$web->{key}\E /) {
@@ -200,6 +197,34 @@ sub formatWeb {
   }
   my $nrSubWebs = @{$web->{children}};
   my $name = $this->{map}{$web->{name}} || $web->{name};
+
+  my $url = '';
+  if ($result =~ /\$url/) {
+    TWiki::Func::getScriptUrl($web->{key}, $homeTopic, 'view');
+  }
+
+  my $sitemapUseTo = '';
+  if ($result =~ /\$sitemapuseto/) {
+    $sitemapUseTo = 
+      TWiki::Func::getPreferencesValue('SITEMAPUSETO', $web->{key}) || '';
+
+    $sitemapUseTo =~ s/"/&quot;/g;
+    $sitemapUseTo =~ s/<nop>/#nop#/g;
+    $sitemapUseTo =~ s/<[^>]*>//g;
+    $sitemapUseTo =~ s/#nop#/<nop>/g;
+  }
+
+  my $sitemapWhat = '';
+  if ($result =~ /\$sitemapwhat/) {
+    $sitemapWhat = 
+      TWiki::Func::getPreferencesValue('SITEMAPWHAT', $web->{key}) || '';
+
+    $sitemapWhat =~ s/"/&quot;/g;
+    $sitemapWhat =~ s/<nop>/#nop#/g;
+    $sitemapWhat =~ s/<[^>]*>//g;
+    $sitemapWhat =~ s/#nop#/<nop>/g;
+  }
+
   $result =~ s/\$parent/$web->{parentName}/go;
   $result =~ s/\$name/$name/go;
   $result =~ s/\$origname/$web->{name}/go;
@@ -209,6 +234,9 @@ sub formatWeb {
   $result =~ s/\$indent\((.+?)\)/$1 x $web->{depth}/ge;
   $result =~ s/\$indent/'   ' x $web->{depth}/ge;
   $result =~ s/\$nrsubwebs/$nrSubWebs/g;
+  $result =~ s/\$url/$url/g;
+  $result =~ s/\$sitemapuseto/$sitemapUseTo/g;
+  $result =~ s/\$sitemapwhat/$sitemapWhat/g;
 
   #writeDebug("result=$result");
   #writeDebug("done formatWeb($web->{key})");
