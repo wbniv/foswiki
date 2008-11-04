@@ -53,7 +53,7 @@ containing those terms. Each term is assigned a _weight_, that is the ID of
 the bucket it has been sorted in. 
 
 In general the tag cloud renders the more frequent terms bolder
-and/or more colorful than the less frequent. See [[#Example][the exmaple below]].  But you
+and/or more colorful than the less frequent. See [[#Example][the example below]].  But you
 are free to configure any variation of the appearance of a tag depending on its
 frequency.  
 
@@ -87,8 +87,8 @@ Parameters:
    * =sort=: sort terms in the tag cloud alphabetically or by weight (alpha, count or weight)
      (default: alpha)
    * =group=: format string to distinguish groups within the sortion; if the tag cloud is
-     sorted alphabetically terms are groupd according their first letter; terms sorted by
-     weight are groupd by their weight collected in tenner chunks. That is terms with
+     sorted alphabetically terms are grouped according their first letter; terms sorted by
+     weight are groupdd by their weight collected in tenner chunks. That is terms with
      a weight 1-10 are put in group "10", terms with a weight 11-20 are in "20" and so on;
      the current group displayed by replacing the pseudo variable
      =$group= in it; example: group="&lt;b>$group&lt;/b>" (default: &lt;empty>)
@@ -212,7 +212,7 @@ Cloud for the above text:
 |  03 Mar 2006: | added warn parameter; \
                   fixed use of uninitialised value; \
                   if tags are sorted by weight tags of the same weight get sorted alphabetically now; \
-                  sorting by weight is desending by default now |
+                  sorting by weight is descending by default now |
 |  01 Mar 2006: | added docu, \
                   added more pre-defined english stop words, \
                   added map and plural parameters, \

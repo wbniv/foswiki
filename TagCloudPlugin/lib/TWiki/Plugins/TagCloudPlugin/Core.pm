@@ -25,7 +25,7 @@ $englishStopWords = qr(a|about|above|across|after|afterwards|again|against|all|a
 
 ###############################################################################
 sub writeDebug {
-  print STDERR '- TagCloudPlugin - '.$_[0] if DEBUG;
+  print STDERR '- TagCloudPlugin - '.$_[0]."\n" if DEBUG;
 }
 
 ###############################################################################
@@ -77,7 +77,7 @@ sub handleTagCloud {
   # build class map
   my %classMap = ();
   if ($theMap) {
-    foreach my $mapRule (split(/[,\s]+/, $theMap)) {
+    foreach my $mapRule (split(/\s*,\s*/, $theMap)) {
       if ($mapRule =~ /^(.+)=(.+)$/) {
 	$classMap{$1} = $2;
       }
@@ -114,6 +114,7 @@ sub handleTagCloud {
   writeDebug("after theTerms=$theTerms\n");
   foreach my $term (split(/$theSplit/, $theTerms)) {
     $term =~ s/^\s*(.*?)\s*$/$1/o;
+    writeDebug("term=$term");
     my $weight = 1;
     if ($term =~ /^(.*):(\d+)$/) {
       $term = $1;
