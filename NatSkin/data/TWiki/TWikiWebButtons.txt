@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1185225753" format="1.1" version="$Rev$"}%
+%META:TOPICINFO{author="TWikiContributor" date="1225762335" format="1.1" reprev="1.2" version="$Rev$"}%
 %STARTINCLUDE% <noautolink> 
 <ul>
 %~~ FLEXWEBLIST{
@@ -8,7 +8,8 @@
 ~~~   marker="current"
 ~~~   exclude="TestCases|Trash|Attic"
 ~~~   adminwebs="Applications"
-~~~   format="$percntWEBLINK{\"$web\" format=\"<li><a class='natWebLink $marker' href='$dollarurl' title='$dollartooltip'>$dollarname</a></li>\"}$percnt"
+~~~   map="TWiki=System"
+~~~   format="$percntWEBLINK{\"$web\" format=\"<li><a class='natWebLink $marker' href='$dollarurl' title='$dollartooltip'>$name</a></li>\"}$percnt"
 ~~~ }%
 </ul>
 </noautolink> %STOPINCLUDE%

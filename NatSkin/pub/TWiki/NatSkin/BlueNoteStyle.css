@@ -127,7 +127,7 @@ dl dd {
 .natTopRight, 
 .natSideBarHeader,
 .natSideBar {
-  width:16em;
+  width:15em;
 }
 
 /* login */
@@ -353,7 +353,7 @@ fieldset .twikiFormSteps {
   font-weight:bold; 
 }
 .natTopicActions {
-  border-bottom:1px solid #dedede;
+  /*border-bottom:1px solid #dedede;*/
   margin:1.5em 0em 0em -2px;
   padding-bottom:0.5em;
 }
@@ -462,7 +462,7 @@ fieldset .twikiFormSteps {
 .natSideBar ul li a {
   font-weight:normal;
   display:block;
-  color:#9C3063;
+  color:#434343;
   margin:0px -1em;
   padding:0px 1em;
 }
@@ -545,6 +545,7 @@ fieldset .twikiFormSteps {
 
 .natMainContents .twikiNewLink {
   background-color:#eee;
+  color:#9C3063;
 }
 .twikiToc a {
   background-image:none;
