@@ -56,7 +56,7 @@ $SHORTDESCRIPTION = 'Theming engine for NatSkin';
 
 # TODO generalize and reduce the ammount of variables 
 $defaultSkin    = 'nat';
-$defaultStyle   = 'Clean';
+$defaultStyle   = 'blutenote';
 $defaultStyleBorder = 'off';
 $defaultStyleButtons = 'off';
 $defaultStyleSideBar = 'left';
