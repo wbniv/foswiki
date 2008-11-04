@@ -1,6 +1,6 @@
 # Plugin for TWiki Collaboration Platform, http://TWiki.org/
 #
-# Copyright (C) 2005-2006 Michael Daum <micha@nats.informatik.uni-hamburg.de>
+# Copyright (C) 2005-2008 Michael Daum http://michaeldaumconsulting.com
 # 
 # Adapted from WordPress plugin TimeSince by
 # Michael Heilemann (http://binarybonsai.com), 
@@ -21,38 +21,25 @@
 
 package TWiki::Plugins::TimeSincePlugin::Core;
 
-use Time::Local;
+use DateTime;
 use strict;
-use vars qw( @SECONDS %MON2NUM );
 
 use constant DEBUG => 0; # toggle me
 
-%MON2NUM = (
-  Jan => 0,
-  Feb => 1,
-  Mar => 2,
-  Apr => 3,
-  May => 4,
-  Jun => 5,
-  Jul => 6,
-  Aug => 7,
-  Sep => 8,
-  Oct => 9,
-  Nov => 10,
-  Dec => 11
+our %MON2NUM = (
+  Jan => 1,
+  Feb => 2,
+  Mar => 3,
+  Apr => 4,
+  May => 5,
+  Jun => 6,
+  Jul => 7,
+  Aug => 8,
+  Sep => 9,
+  Oct => 10,
+  Nov => 11,
+  Dec => 12
 );
-
-@SECONDS = (
-  ['year',   60 * 60 * 24 * 365],
-  ['month',  60 * 60 * 24 * 30],
-  ['week',   60 * 60 * 24 * 7],
-  ['day',    60 * 60 * 24],
-  ['hour',   60 * 60],
-  ['minute', 60],
-  ['second', 1]
-);
-
-
 
 ###############################################################################
 sub writeDebug {
@@ -64,102 +51,122 @@ sub writeDebug {
 sub handleTimeSince {
   my ($session, $params, $theTopic, $theWeb) = @_;
 
-  #writeDebug("handleTimeSince(" . $params->stringify() . ") called\n");
+  writeDebug("handleTimeSince(" . $params->stringify() . ") called");
 
   my $theFrom = $params->{_DEFAULT} || $params->{from} || '';
   my $theTo = $params->{to} || '';
   my $theUnits = $params->{units} || 2;
+
   my $theSeconds = $params->{seconds} || 'off';
+  my $theMinutes = $params->{minutes} || 'on';
+  my $theHours = $params->{hours} || 'on';
+  my $theDays = $params->{days} || 'on';
+  my $theWeeks = $params->{weeks} || 'on';
+  my $theMonths = $params->{months} || 'on';
+  my $theYears = $params->{years} || 'on';
+
   my $theAbs = $params->{abs} || 'off';
   my $theNull = $params->{null} || 'about now';
   my $theFormat = $params->{format} || '$time';
-  my $theNegFormat = $params->{negformat} || '$time';
+  my $theNegFormat = $params->{negformat} || '- $time';
 
   if ($theFrom eq '' && $theTo eq '') {
     # if there's no starting date then get the current revision date
     my ($meta, undef) = &TWiki::Func::readTopic($theWeb, $theTopic);
-    ($theFrom) = $meta->getRevisionInfo();
-    $theTo = time();
+    my ($epoch) = $meta->getRevisionInfo();
+    $theFrom = DateTime->from_epoch(epoch=>$epoch);
+    $theTo = parseTime();
   } else {
 
     $theFrom =~ s/^\s*(.*)\s*$/$1/go;
     $theTo =~ s/^\s*(.*)\s*$/$1/go;
 
   
-    # convert time to epoch seconds
+    # convert time to DateTime object
     if ($theFrom ne '') {
-      if ($theFrom !~ /^\d+$/) { # already epoch seconds
+      if ($theFrom =~ /^\d+$/) { # already epoch seconds
+        $theFrom = DateTime->from_epoch(epoch=>$theFrom);
+      } else {
 	eval {
 	  local $SIG{'__DIE__'};
-	  $theFrom = &parseTime($theFrom);
+	  $theFrom = parseTime($theFrom);
 	};
 	if ($@) {
 	  my $message = $@;
-	  $message =~ s/\sat\s.*//go;
+	  $message =~ s/\scallback\s.*$//gs;
 	  return &inlineError("ERROR: can't parse from=\"$theFrom\" - $message");
 	}
 	return &inlineError("ERROR: can't parse from=\"$theFrom\"")
 	  unless defined $theFrom;
       }
     } else {
-      $theFrom = time();
+      $theFrom = parseTime();
     }
     if ($theTo ne '') {
-      if ($theTo !~ /^\d+$/) { # already epoch seconds
+      if ($theTo =~ /^\d+$/) { # already epoch seconds
+        $theTo = DateTime->from_epoch(epoch=>$theTo);
+      } else {
 	eval {
 	  local $SIG{'__DIE__'};
-	  $theTo = &parseTime($theTo);
+	  $theTo = parseTime($theTo);
 	};
 	if ($@) {
 	  my $message = $@;
-	  $message =~ s/\sat\s.*//go;
+	  $message =~ s/\scallback\s.*$//gs;
 	  return &inlineError("ERROR: can't parse to=\"$theTo\" - $message");
 	}
 	return &inlineError("ERROR: can't parse from=\"$theTo\"")
 	  unless defined $theTo;
       }
     } else {
-      $theTo = time();
+      $theTo = parseTime();
     }
   }
+
+  writeDebug("theFrom=$theFrom, theTo=$theTo");
 
   my $since = $theTo - $theFrom;
-  my $isNeg = $since < 0;
-  if ($theAbs eq 'on') {
-    $since = abs($since);
-  }
+  my $isNeg = $since->is_negative;
+  $since = $since->inverse if $isNeg;
 
-  #writeDebug("from=$theFrom to=$theTo, since=$since, abs=$theAbs");
-   
   # calculate time string
-  my $unit;
-  my $count;
-  my $seconds;
   my $timeString = '';
-  my $state = 0;
+  my $unit;
 
-  # step one: the first chunk
-  my $max = ($theSeconds eq 'on')?7:6;
-  for (my $i = 0; $i < $max; $i++) {
-    $unit = $SECONDS[$i][0];
-    $seconds = $SECONDS[$i][1];
-    $count = int(($since + 0.0) / $seconds);
-
-    #writeDebug("$i: unit=$unit, seconds=$seconds, count=$count, since=$since");
-
-    # finding next unit
-    if ($count) {
-      $timeString .= ', ' if $state > 0;
-      $timeString .= ($count == 1) ? '1 '.$unit : "$count ${unit}s";
-      $state++;
-    } else {
-      next;
-    }
-
-    $since -= ($count * $seconds);
-    last if $theUnits && $state >= $theUnits;
+  my @units = ();
+  my $last;
+  foreach my $unit (qw(years months weeks days hours minutes seconds)) {
+    next if $theSeconds eq 'off' && $unit eq 'seconds';
+    next if $theMinutes eq 'off' && $unit eq 'minutes';
+    next if $theHours eq 'off' && $unit eq 'hours';
+    next if $theDays eq 'off' && $unit eq 'days';
+    next if $theWeeks eq 'off' && $unit eq 'weeks';
+    next if $theMonths eq 'off' && $unit eq 'months';
+    next if $theYears eq 'off' && $unit eq 'years';
+    push @units, $unit;
+    $last = $unit;
   }
-  
+
+  my @raw = $since->in_units(@units);
+
+  my $index = 0;
+  foreach my $unit (@units) {
+
+    my $count = shift @raw;
+    if ($count) {
+      if ($index > 0) {
+        $timeString .= ($unit eq $last)?' and ':', ';
+      }
+      $unit =~ s/s$//go if $count == 1;
+      $timeString .= "$count $unit";
+      $index++;
+      last if $index >= $theUnits;
+    } 
+    writeDebug("unit=$unit, count=$count, timestring=$timeString");
+  };
+
+  writeDebug("timeString=$timeString");
+
   if ($timeString eq '') {
     return expandVariables($theNull);
   } else {
@@ -172,72 +179,162 @@ sub handleTimeSince {
 sub parseTime {
     my $date = shift;
 
+
+    # about now
+    return DateTime->from_epoch(
+      epoch=>time(), 
+      time_zone=>'local') unless $date;
+
     #writeDebug("parseTime($date)");
 
-    my $isGmt = ($date =~ /GMT$/i)?1:0;
+    my $tz = ($date =~ /GMT$/i)?'GMT':'floating';
+
+    #writeDebug("tz=$tz");
 
     # NOTE: This routine *will break* if input is not one of below formats!
     
     # FIXME - why aren't ifs around pattern match rather than $5 etc
     # try "31 Dec 2001 - 23:59:11"  (TWiki date)
-    if ($date =~ /([0-9]+)\s+([A-Za-z]+)\s+([0-9]+)[\s\-]+([0-9]+)\:([0-9]+)(?:\:([0-9]+))?/) {
+    if ($date =~ /(\d+)\s+([A-Za-z]+)\s+(\d\d\d\d)[\s\-]+(\d+)\:(\d+)(?:\:(\d+))?/) {
         my $year = $3;
         my $seconds = $6 || 0;
         #$year -= 1900 if( $year > 1900 );
         # The ($2) will look up the constant so named
-        return timegm( $seconds, $5, $4, $1, $MON2NUM{$2}, $year ) if $isGmt;
-        return timelocal( $seconds, $5, $4, $1, $MON2NUM{$2}, $year );
+        #writeDebug("case 1");
+        return DateTime->new(
+          second=> $seconds, 
+          minute=> $5, 
+          hour=>$4, 
+          day=>$1, 
+          month=>$MON2NUM{$2}, 
+          year=>$year,
+          time_zone=>$tz
+        ) 
     }
 
     # try "31 Dec 2001"
-    if ($date =~ /([0-9]+)\s+([A-Za-z]+)\s+([0-9]+)/) {
+    if ($date =~ /(\d+)\s+([A-Za-z]+)\s+(\d\d\d\d)/) {
         my $year = $3;
         #$year -= 1900 if( $year > 1900 );
         # The ($2) will look up the constant so named
-        return timegm( 0, 0, 0, $1, $MON2NUM{$2}, $year ) if $isGmt;
-        return timelocal( 0, 0, 0, $1, $MON2NUM{$2}, $year );
+        #writeDebug("case 2");
+        return DateTime->new( 
+          second=>0, 
+          minute=>0,
+          hour=>0, 
+          day=>$1, 
+          month=>$MON2NUM{$2}, 
+          year=>$year,
+          time_zone=>$tz
+        );
     }
 
     # try "2001/12/31 23:59:59" or "2001.12.31.23.59.59" (RCS date)
-    if ($date =~ /([0-9]+)[\.\/\-]([0-9]+)[\.\/\-]([0-9]+)[\.\s\-]+([0-9]+)[\.\:]([0-9]+)[\.\:]([0-9]+)/) {
+    if ($date =~ /(\d\d\d\d)[\.\/\-](\d+)[\.\/\-](\d+)[\.\s\-]+(\d+)[\.\:](\d+)[\.\:](\d+)/) {
         my $year = $1;
         #$year -= 1900 if( $year > 1900 );
-        return timegm( $6, $5, $4, $3, $2-1, $year ) if $isGmt;
-        return timelocal( $6, $5, $4, $3, $2-1, $year );
+        #writeDebug("case 3");
+        return DateTime->new( 
+          second=>$6, 
+          minute=>$5, 
+          hour=>$4, 
+          day=>$3, 
+          month=>$2, 
+          year=>$year,
+          time_zone=>$tz
+        );
     }
 
     # try "2001/12/31 23:59" or "2001.12.31.23.59" (RCS short date)
-    if ($date =~ /([0-9]+)[\.\/\-]([0-9]+)[\.\/\-]([0-9]+)[\.\s\-]+([0-9]+)[\.\:]([0-9]+)/) {
+    if ($date =~ /(\d\d\d\d)[\.\/\-](\d+)[\.\/\-](\d+)[\.\s\-]+(\d+)[\.\:](\d+)/) {
         my $year = $1;
         #$year -= 1900 if( $year > 1900 );
-        return timegm( 0, $5, $4, $3, $2-1, $year ) if $isGmt;
-        return timelocal( 0, $5, $4, $3, $2-1, $year );
+        #writeDebug("case 4");
+        return DateTime->new( 
+          second=>0, 
+          minute=>$5, 
+          hour=>$4, 
+          day=>$3, 
+          month=>$2, 
+          year=>$year,
+          time_zone=>$tz
+        );
     }
 
     # try "2001/12/31"
-    if ($date =~ /([0-9]+)[\.\/\-]([0-9]+)[\.\/\-]([0-9]+)/) {
+    if ($date =~ /(\d\d\d\d)[\.\/\-](\d+)[\.\/\-](\d+)/) {
         my $year = $1;
         #$year -= 1900 if( $year > 1900 );
-        return timegm( 0, 0, 0, $3, $2-1, $year ) if $isGmt;
-        return timelocal( 0, 0, 0, $3, $2-1, $year );
+        #writeDebug("case 5");
+        return DateTime->new( 
+          second=>0, 
+          minute=>0, 
+          hour=>0, 
+          day=>$3, 
+          month=>$2, 
+          year=>$year,
+          time_zone=>$tz
+        );
     }
 
-    # try "2001-12-31T23:59:59Z" or "2001-12-31T23:59:59+01:00" (ISO date)
-    # FIXME: Calc local to zulu time "2001-12-31T23:59:59+01:00"
-    if ($date =~ /([0-9]+)\-([0-9]+)\-([0-9]+)T([0-9]+)\:([0-9]+)\:([0-9]+)/ ) {
-        my $year = $1;
+    # try "12/31/2001"
+    if ($date =~ /(\d+)[\.\/\-](\d+)[\.\/\-](\d\d\d\d)/) {
+        my $month = $1;
+        my $day = $2;
+        my $year = $3;
+        if ($day > 12) {
+          my $tmp = $month;
+          $month = $day;
+          $day = $tmp;
+        }
         #$year -= 1900 if( $year > 1900 );
-        return timegm( $6, $5, $4, $3, $2-1, $year ) if $isGmt;
-        return timelocal( $6, $5, $4, $3, $2-1, $year );
+        #writeDebug("case 6");
+        return DateTime->new( 
+          second=>0, 
+          minute=>0, 
+          hour=>0, 
+          day=>$3, 
+          month=>$2, 
+          year=>$year,
+          time_zone=>$tz
+        );
+    }
+
+
+    # ISO date
+    if ($date =~ /(\d\d\d\d)(?:-(\d\d)(?:-(\d\d))?)?(?:T(\d\d)(?::(\d\d)(?::(\d\d(?:\.\d+)?))?)?)?(Z|[-+]\d\d(?::\d\d)?)?/ ) {
+      my ($Y, $M, $D, $h, $m, $s, $myTz) =
+        ($1, $2||1, $3||1, $4||0, $5||0, $6||0, $7||'');
+      $M--;
+      $Y -= 1900 if( $Y > 1900 );
+      $tz = $myTz if defined $myTz;
+      #writeDebug("case 7");
+      return DateTime->new(
+        second=>$s, 
+        minute=>$m, 
+        hour=>$h, 
+        day=>$D, 
+        month=>$M, 
+        year=>$Y,
+        time_zone=>$tz,
+      );
     }
 
     # try "2001-12-31T23:59Z" or "2001-12-31T23:59+01:00" (ISO short date)
     # FIXME: Calc local to zulu time "2001-12-31T23:59+01:00"
-    if ($date =~ /([0-9]+)\-([0-9]+)\-([0-9]+)T([0-9]+)\:([0-9]+)/ ) {
+    if ($date =~ /(\d+)\-(\d+)\-(\d+)T(\d+)\:(\d+)/ ) {
         my $year = $1;
         #$year -= 1900 if( $year > 1900 );
-        return timegm( 0, $5, $4, $3, $2-1, $year ) if $isGmt;
-        return timelocal( 0, $5, $4, $3, $2-1, $year );
+        #writeDebug("case 8");
+        return DateTime->new( 
+          second=>0, 
+          minute=>$5, 
+          hour=>$4, 
+          day=>$3, 
+          month=>$2, 
+          year=>$year,
+          time_zone=>$tz,
+        );
     }
 
     # give up, return start of epoch (01 Jan 1970 GMT)

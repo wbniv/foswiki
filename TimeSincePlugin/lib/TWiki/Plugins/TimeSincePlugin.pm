@@ -1,6 +1,6 @@
 # Plugin for TWiki Collaboration Platform, http://TWiki.org/
 #
-# Copyright (C) 2005-2006 Michael Daum <micha@nats.informatik.uni-hamburg.de>
+# Copyright (C) 2005-2008 Michael Daum http://michaeldaumconsulting.com
 # 
 # Adapted from WordPress plugin TimeSince by
 # Michael Heilemann (http://binarybonsai.com), 
@@ -28,7 +28,7 @@ use vars qw(
 );
 
 $VERSION = '$Rev$';
-$RELEASE = '1.10';
+$RELEASE = '2.00';
 $NO_PREFS_IN_TOPIC = 1;
 $SHORTSUMMARY = 'Display time difference in a human readable way';
 

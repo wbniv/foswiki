@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1139390249" format="1.1" version="$Rev$"}%
+%META:TOPICINFO{author="TWikiContributor" date="1218645196" format="1.1" version="$Rev$"}%
 <!--
 
    PLEASE DO NOT EDIT THIS TOPIC
@@ -32,13 +32,29 @@ Without arguments the time since the current topic has been created will be disp
 | =to="&lt;time-expression>"= | the ending timepoint, if ommited the current time |
 | =units="1...7"= | number of time units to display, default 2; \
   (example units="3": 2 months, 1 day and 3 minutes) |
-| =seconds="on,off"= | switch on/off second precision |
+| =seconds="on,off"= | switch on/off seconds, default off |
+| =minutes="on,off"= | switch on/off minutes |
+| =hours="on,off"= | switch on/off hours |
+| =days="on,off"= | switch on/off days |
+| =weeks="on,off"= | switch on/off weeks |
+| =months="on,off"= | switch on/off months |
+| =years="on,off"= | switch on/off years |
 | =null="&lt;format-string>"= | to be displayed if the tim difference is null; \
    defaults to "about now" |
 | =format="&lt;format-string>"= | format of the output, \
   defaults to "$time", other usefull settings =format="$time ago"=, \
   =format="replied $time later"=, ="format="$time after the incident"= |
 | =negformat="&lt;format-string>"= | use this format string if the time difference is negative |
+
+Note, that switching off years and months (or any other two adjacent time unites) won't display the correct duration
+when the times differ more than a year, that is: years can't be converted to weeks, the next lower unit.
+The following units can be converted to each other: 
+   * year &lt;=&gt; months
+   * weeks &lt;=&gt; days
+   * hours &lt;=&gt; minutes
+
+For a further explanation/excuse, read 
+[[http://search.cpan.org/~drolsky/DateTime-0.4304/lib/DateTime.pm#How_Datetime_Math_is_Done][how datetime math is done]].
 
 Time expressions can be specified in any of the following format:
    * 31 Dec 2001 - 23:59 (TWiki date)
@@ -63,8 +79,8 @@ Format strings may contain the following:
 
 ---++ Examples
 | *You type* | *You get (simulated)* | *You get (if installed) *|
-| %<nop>TIMESINCE% | 1 day, 3 hours | %TIMESINCE% | 
-| %<nop>TIMESINCE{format="topic was created $time ago" null="topic has just now been saved" units="4" }% | topic was created 1 day, 3 hours, 8 minutes ago \
+| %<nop>TIMESINCE% | 2 years and 6 months | %TIMESINCE% | 
+| %<nop>TIMESINCE{format="topic was created $time ago" null="topic has just now been saved" units="3" }% | topic was created 1 day, 3 hours and 8 minutes ago \
 | %TIMESINCE{format="topic was created $time ago" null="topic has just now been saved" units="4"}% |
 | %<nop>TIMESINCE{"11 Sep 2001 - 8:45" units="7" seconds="on"}% \
 | 4 years, 2 months, 2 days, 5 hours, 50 minutes, 16 seconds \
@@ -91,15 +107,16 @@ Format strings may contain the following:
 |  Plugin Author: | TWiki:Main.MichaelDaum |
 |  Copyright &copy;: | 2005-2008, Michael Daum http://michaeldaumconsulting.com |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  Plugin Version: | v1.10 |
+|  Plugin Version: | v2.00 |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  13 Aug 2008: | replaced CPAN:Time::Local with much more powerful and more precise CPAN:DateTime |
 |  03 Jan 2008: | improved parsing time formats |
 |  13 Oct 2006: | added =negformat= parameter |
 |  31 Aug 2006: | added NO_PREFS_IN_TOPIC |
 |  27 Apr 2006: | added lazy compilation |
 |  11 Nov 2005: | Initial version |
 |  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
-|  CPAN Dependencies: | CPAN:Time::Local |
+|  CPAN Dependencies: | CPAN:DateTime |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
 |  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
@@ -107,4 +124,4 @@ Format strings may contain the following:
 |  Feedback: | TWiki:Plugins/%TOPIC%Dev |
 |  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
 
--- TWiki:Main.MichaelDaum - 03 Jan 2008
+-- TWiki:Main.MichaelDaum - 13 Aug 2008
