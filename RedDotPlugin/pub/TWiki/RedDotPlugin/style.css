@@ -5,9 +5,10 @@
   font-weight:bold;
   padding-left:2px;
   padding-right:2px;
-  line-height:100%;
-  font-size:18px;
   text-decoration:none;
+}
+.redDot a:hover {
+  text-decoration:none !important;
 }
 
 /* pattern skin support */

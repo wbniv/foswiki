@@ -19,155 +19,87 @@ use strict;
 
 ###############################################################################
 use vars qw(
-        $baseWeb $baseTopic $user $installWeb $VERSION $RELEASE
-        $styleLink $doneHeader $hasInitRedirector
-	$redirectUrl $doneRedirect $query
-	%TWikiCompatibility
+        $baseWeb $baseTopic $user $VERSION $RELEASE
+        $header $doneHeader $currentAction
+	%TWikiCompatibility $counter
 	$NO_PREFS_IN_TOPIC $SHORTDESCRIPTION
     );
 
 
 $VERSION = '$Rev$';
-$RELEASE = '1.40';
+$RELEASE = '1.41';
 $NO_PREFS_IN_TOPIC = 1;
 $SHORTDESCRIPTION = 'Renders edit-links as little red dots';
 
 use constant DEBUG => 0; # toggle me
 
+$header = <<'HERE';
+<link rel="stylesheet" href="%PUBURLPATH%/%TWIKIWEB%/RedDotPlugin/style.css" type="text/css" media="all" />
+HERE
+
 ###############################################################################
 sub writeDebug {
-  TWiki::Func::writeDebug("- RedDotPlugin - " . $_[0]) if DEBUG;
+  #TWiki::Func::writeDebug("- RedDotPlugin - " . $_[0]) if DEBUG;
+  print STDERR "- RedDotPlugin - " . $_[0] . "\n" if DEBUG;
 }
 
 ###############################################################################
 sub initPlugin {
-  ($baseTopic, $baseWeb, $user, $installWeb) = @_;
+  ($baseTopic, $baseWeb, $user) = @_;
 
-
-  my $styleUrl = "%PUBURL%\/$installWeb/RedDotPlugin/style.css";
-  $styleLink = 
-    '<link rel="stylesheet" href="' . 
-    $styleUrl .
-    '" type="text/css" media="all" />';
 
   TWiki::Func::registerTagHandler('REDDOT', \&renderRedDot);
     
   $doneHeader = 0;
-  $hasInitRedirector = 0;
-  $redirectUrl = '';
-  $doneRedirect = 0;
-  $query = '';
-  
+  $counter = 0;
+  $baseWeb =~ s/\//\./go;
+  $currentAction = '';
+
   return 1;
 }
 
 ###############################################################################
 sub commonTagsHandler {
 
-  initRedirector();
-
-  if (!$doneHeader && $_[0] =~ s/<head>(.*?[\r\n]+)/<head>$1$styleLink\n/) {
-    $doneHeader = 1;
-  }
-
-
-}
-
-###############################################################################
-# TODO don't drop anchors
-sub initRedirector {
-
-  return if $hasInitRedirector;
-  $hasInitRedirector = 1;
-
-  writeDebug("called initRedirector");
-
-  if (defined $TWiki::RELEASE) {
-    return if defined TWiki::Func::getContext()->{'command_line'};
-  }
-
-  $query = TWiki::Func::getCgiQuery();
-  return unless $query;
-
-  my $theAction = getCgiAction();
-  #writeDebug("theAction=$theAction");
-
-  my $sessionKey = "REDDOT_REDIRECT_$baseWeb.$baseTopic";
-
-  # init redirect
-  if ($theAction =~ /^edit/) {
-    #writeDebug("found edit");
-    my $theRedirect = $query->param('redirect');
-    if ($theRedirect) {
-      #writeDebug("found theRedirect=$theRedirect");
-      TWiki::Func::setSessionValue($sessionKey, $theRedirect);
-      #writeDebug("init redirect to $theRedirect");
-    }
-  }
-
-  # execute redirect
-  if ($theAction =~ /^(view|save)/) {
-    my $theRedirect = $query->param('redirect');
-    if ($theAction =~ /^view/) {
-      #writeDebug("found view");
-      $theRedirect = TWiki::Func::getSessionValue($sessionKey);
-      TWiki::Func::clearSessionValue($sessionKey);
-    } else {
-      #writeDebug("found save");
-    }
-    if ($theRedirect) {
-      #writeDebug("found theRedirect=$theRedirect");
-      my $toWeb = $baseWeb;
-      my $toTopic = $theRedirect;
-      my $toAnchor = '';
-      if ($theRedirect =~ /^(.*)\.(.*?)$/) {
-	$toWeb = $1;
-	$toTopic = $2;
-      } 
-      if ($toTopic =~ /^(.*)(#.*?)$/) {
-	$toTopic = $1;
-	$toAnchor = $2;
-	#writeDebug("found anchor $toAnchor");
-      }
-      my $tmp = TWiki::Func::getViewUrl($toWeb,$toTopic) . $toAnchor;
-      if ($tmp ne TWiki::Func::getViewUrl($baseWeb,$baseTopic)) {
-	$redirectUrl = $tmp; # doit in the redirectCgiQueryHandler
-	#writeDebug("redirectUrl=$redirectUrl");
-      } else {
-	$redirectUrl = '';
-      }
-    }
-  }
-}
-
-###############################################################################
-sub postRenderingHandler {
-  return if $doneRedirect || $redirectUrl eq '' || !$query;
-  #writeDebug("called endRenderingHandler()");
-  TWiki::Func::redirectCgiQuery($query, $redirectUrl);
+  return if $doneHeader;
+  $doneHeader = 1 if $_[0] =~ s/<head>(.*?[\r\n]+)/<head>$1$header/o;
 }
 
 ###############################################################################
 sub renderRedDot {
   my ($session, $params, $theTopic, $theWeb) = @_;
 
+  writeDebug("called renderRedDot($theWeb, $theTopic), parms=".$params->stringify);
+
+  my $theAction = getRequestAction();
+  return '' unless $theAction =~ /^view/; 
+
   my $theWebTopics = $params->{_DEFAULT} || "$theWeb.$theTopic";
-  my $theRedirect = $params->{redirect} || "$baseWeb.$baseTopic";
+  my $theRedirect = $params->{redirect};
   my $theText = $params->{text} || '.';
   my $theStyle = $params->{style} || '';
   my $theGrant = $params->{grant} || '.*';
+
+  my $query = TWiki::Func::getCgiQuery();
+  unless ($theRedirect) {
+    my $queryString = $query->query_string;
+    $theRedirect = TWiki::Func::getScriptUrl($baseWeb, $baseTopic).
+      '?'.$queryString.
+      "#reddot$counter";
+  }
 
   # find the first webtopic that we have access to
   my $thisWeb;
   my $thisTopic;
   my $hasEditAccess = 0;
-  my $wikiName = TWiki::Func::getWikiUserName();
+  my $wikiName = TWiki::Func::getWikiName();
 
-  foreach my $webTopic (split(/, /, $theWebTopics)) {
+  foreach my $webTopic (split(/\s*,\s*/, $theWebTopics)) {
     #writeDebug("testing webTopic=$webTopic");
 
     ($thisWeb, $thisTopic) = 
       TWiki::Func::normalizeWebTopicName($baseWeb, $webTopic);
+    $thisWeb =~ s/\//\./go;
 
     if (TWiki::Func::topicExists($thisWeb, $thisTopic)) {
       #writeDebug("checking access on $thisWeb.$thisTopic for $wikiName");
@@ -192,15 +124,15 @@ sub renderRedDot {
   #writeDebug("rendering red dot on $thisWeb.$thisTopic for $wikiName");
 
   # red dotting
-  my $whiteBoard = _getValueFromTopic($thisWeb, $thisTopic, 'WHITEBOARD') || '';
+  my $whiteBoard = '';#_getValueFromTopic($thisWeb, $thisTopic, 'WHITEBOARD') || '';
   my $result = 
     '<span class="redDot" ';
   $result .=
-    '><a href="'.
-    TWiki::Func::getScriptUrl($thisWeb,$thisTopic,'edit').
-    '?t=' . time();
+    '><a name="reddot'.($counter++).'" '.
+    'href="'.
+    TWiki::Func::getScriptUrl($thisWeb,$thisTopic,'edit', 't'=>time());
   $result .= 
-    "&redirect=$theRedirect" if $theRedirect ne "$thisWeb.$thisTopic";
+    "&redirectto=".urlEncode($theRedirect) if $theRedirect ne "$thisWeb.$thisTopic";
   $result .= 
     '&action=form' if $whiteBoard =~ /off/;
   $result .= '" ';
@@ -208,6 +140,8 @@ sub renderRedDot {
   $result .=
     "title=\"Edit&nbsp;<nop>$thisWeb.$thisTopic\" " .
     ">$theText</a></span>";
+
+  writeDebug("done renderRedDot");
 
   return $result;
 }
@@ -233,44 +167,51 @@ sub _getValueFromTopic {
 }
 
 ###############################################################################
-sub redirectCgiQueryHandler {
-  if ($redirectUrl ne '') {
-    my ($query, $url) = @_;
+sub urlEncode {
+  my $text = shift;
 
-    my $scriptUrl = TWiki::Func::getScriptUrl('XXX', 'XXX', 'oops');
-    $scriptUrl =~ s/XXX.*$//go;
-    #writeDebug("scriptUrl=$scriptUrl");
+  $text =~ s/([^0-9a-zA-Z-_.:~!*'()\/%])/'%'.sprintf('%02x',ord($1))/ge;
 
-    if ($url =~ /^$scriptUrl/) {
-      #writeDebug("got an oops redirection to $_[1] ... suppressing ours");
-    } else {
-      #writeDebug("redirecting to $redirectUrl");
-      print $query->redirect($redirectUrl);
-      $doneRedirect = 1;
-    }
-  }
-
-  return 0;
+  return $text;
 }
 
 ###############################################################################
 # take the REQUEST_URI, strip off the PATH_INFO from the end, the last word
 # is the action; this is done that complicated as there may be different
 # paths for the same action depending on the apache configuration (rewrites, aliases)
-sub getCgiAction {
+sub getRequestAction {
 
-  my $pathInfo = $ENV{'PATH_INFO'} || '';
-  my $theAction = $ENV{'REQUEST_URI'} || '';
-  if ($theAction =~ /^.*?\/([^\/]+)$pathInfo.*$/) {
-    $theAction = $1;
+  return $currentAction if $currentAction;
+
+  my $request = TWiki::Func::getCgiQuery();
+
+  if (defined($request->action)) {
+    $currentAction = $request->action();
   } else {
-    $theAction = 'view';
-  }
-  #writeDebug("PATH_INFO=$ENV{'PATH_INFO'}");
-  #writeDebug("REQUEST_URI=$ENV{'REQUEST_URI'}");
-  #writeDebug("theAction=$theAction");
+    my $context = TWiki::Func::getContext();
 
-  return $theAction;
+    # not all cgi actions we want to distinguish set their context
+    # so only use those we are sure of
+    return 'edit' if $context->{'edit'};
+    return 'view' if $context->{'view'};
+    return 'save' if $context->{'save'};
+    # TODO: more
+
+    # fall back to analyzing the path info
+    my $pathInfo = $ENV{'PATH_INFO'} || '';
+    $currentAction = $ENV{'REQUEST_URI'} || '';
+    if ($currentAction =~ /^.*?\/([^\/]+)$pathInfo.*$/) {
+      $currentAction = $1;
+    } else {
+      $currentAction = 'view';
+    }
+    #writeDebug("PATH_INFO=$ENV{'PATH_INFO'}");
+    #writeDebug("REQUEST_URI=$ENV{'REQUEST_URI'}");
+    #writeDebug("currentAction=$currentAction");
+
+  }
+
+  return $currentAction;
 }
 
 1;

@@ -68,8 +68,9 @@ Note, however, that this feature only works on a TWiki/Dakar engine.
 |  Plugin Author: | TWiki:Main.MichaelDaum |
 |  Copyright &copy;: | 2005-2008, Michael Daum http://michaeldaumconsulting.com |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  Plugin Version: | v1.40 |
+|  Plugin Version: | v1.41 |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  14 Jun 2008: | redirecting to the url current url including its current url params |
 |  03 Jan 2008: | using TWiki-4 APIs to register tags; fixed default values for reddots |
 |  18 Sep 2006: | don't use private apis; removed endRenderingHandler: this plugin does not \
                   work on older twiki releases!; create cgi urls properly |
@@ -98,5 +99,5 @@ Note, however, that this feature only works on a TWiki/Dakar engine.
 |  Feedback: | TWiki:Plugins/%TOPIC%Dev |
 |  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
 
--- TWiki:Main.MichaelDaum - 03 Jan 2008
+-- TWiki:Main.MichaelDaum - 14 Jun 2008
 
