@@ -4,7 +4,7 @@
 # Copyright (C) 2003-2008 MichaelDaum http://michaeldaumconsulting.com
 #
 # Based on photonsearch
-# Copyright (C) 2001 Esteban Manchado Velázquez, zoso@foton.es
+# Copyright (C) 2001 Esteban Manchado VelÃ¡zquez, zoso@foton.es
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -47,7 +47,7 @@ sub new {
   my $session = shift;
 
   my $sandbox;
-  unless (defined TWiki::Sandbox::new) {
+  unless (defined &TWiki::Sandbox::new) {
     writeDebug("this is this");
     eval "use TWiki::Contrib::DakarContrib;";
     $sandbox = new TWiki::Sandbox();
@@ -59,7 +59,7 @@ sub new {
   my $this = {
     session => $session,
     dataDir => TWiki::Func::getDataDir(),
-    userName => TWiki::Func::getWikiUserName(),
+    userName => TWiki::Func::getWikiName(),
     homeTopic => $TWiki::Plugins::NatSkinPlugin::homeTopic,
     sandbox => $sandbox,
     includeWeb => TWiki::Func::getPreferencesValue('NATSEARCHINCLUDEWEB') || '',
@@ -95,7 +95,8 @@ sub search {
 
   writeDebug("called search()");
 
-  my $query = $this->{session}->{cgiQuery};
+  $TWiki::Plugins::SESSION = $this->{session};
+  my $query = TWiki::Func::getCgiQuery();
   my $topic = $this->{session}->{topicName};
   my $web = $this->{session}->{webName};
 
@@ -127,15 +128,19 @@ sub search {
   # check for topic actions
   if ($options =~ /^e(dit)?$/) {
     my ($editWeb, $editTopic) = TWiki::Func::normalizeWebTopicName($web, $theSearchString);
-    my $editUrl = TWiki::Func::getScriptUrl($editWeb, $editTopic, 'edit', 't', time());
-    TWiki::Func::redirectCgiQuery($query, $editUrl);
-    return '';
+    if (TWiki::Func::webExists($editWeb)) {
+      my $editUrl = TWiki::Func::getScriptUrl($editWeb, $editTopic, 'edit', 't', time());
+      TWiki::Func::redirectCgiQuery($query, $editUrl);
+      return '';
+    }
   }
   if ($options =~ /^n(ew)?$/) {
     my ($editWeb, $editTopic) = TWiki::Func::normalizeWebTopicName($web, $theSearchString);
-    my $editUrl = TWiki::Func::getScriptUrl($editWeb, $editTopic, 'edit', 'onlynewtopic', 'on', 't', time());
-    TWiki::Func::redirectCgiQuery($query, $editUrl);
-    return '';
+    if (TWiki::Func::webExists($editWeb)) {
+      my $editUrl = TWiki::Func::getScriptUrl($editWeb, $editTopic, 'edit', 'onlynewtopic', 'on', 't', time());
+      TWiki::Func::redirectCgiQuery($query, $editUrl);
+      return '';
+    }
   }
   $this->{keywordSearch} = ($options =~ /k/ || $this->{keywordSearch}) ? 1 : 0;
 
@@ -175,8 +180,8 @@ sub search {
     foreach my $thisWeb (@webList) {
       if (TWiki::Func::topicExists($thisWeb, $theSearchString)) {
 	my $viewUrl = TWiki::Func::getViewUrl($thisWeb, $theSearchString);
+	writeDebug("(1) jump");
 	TWiki::Func::redirectCgiQuery($query, $viewUrl);
-	writeDebug("jump");
 	return '';
       } 
     }
@@ -194,8 +199,8 @@ sub search {
       my $resultWeb = (keys %results)[0];
       my $resultTopic = (keys %{$results{$resultWeb}})[0];
       my $viewUrl = TWiki::Func::getViewUrl($resultWeb, $resultTopic);
+      writeDebug("(2) jump");
       TWiki::Func::redirectCgiQuery($query, $viewUrl);
-      writeDebug("jump");
       return '';
     }
     # (3) add content search

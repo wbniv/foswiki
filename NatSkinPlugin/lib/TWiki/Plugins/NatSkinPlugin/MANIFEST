@@ -1,4 +1,4 @@
 bin/natsearch 0755
 data/TWiki/NatSkinPlugin.txt 0644
-lib/TWiki/Plugins/NatSkinPlugin/Search.pm 0644
 lib/TWiki/Plugins/NatSkinPlugin.pm 0644
+lib/TWiki/Plugins/NatSkinPlugin/Search.pm 0644
