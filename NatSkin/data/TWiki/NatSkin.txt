@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1170346939" format="1.1" reprev="1.1" version="$Rev$"}%
+%META:TOPICINFO{author="TWikiContributor" date="1225815939" format="1.1" version="$Rev$"}%
 <!--
 
    PLEASE DO NOT EDIT THIS TOPIC
@@ -20,15 +20,8 @@
   </td>
 </tr>
 </table>
-NatSkin is a skin driven by cascading stylesheets shipping 12 predefined styles
-(themes) and 11 variations that can be applied to each of it. Most of these are
-inspired by [[http://www.movabletype.org][MovableType]] and
-[[http://wordpress.org][WordPress]], among others a port of the Kubrick style by
-[[http://binarybonsai.com][Michael Heilemann]] and an immitation of <nop>JotSpot. 
-In addition, a PatternSkin
-style is provided that emulates the look&amp;feel of the PatternSkin as it is known from
-the TWiki/Cairo release. While offering a decent appearance NatSkin offers an increased
-TWiki usability and customizability in several respects to quickly accomplish a
+NatSkin offers a decent appearance that increases
+usability and customizability in several respects to quickly accomplish a
 personalized wiki experience.
 
 NatSkin allows you to switch between several kinds of page layouts. All of the
@@ -41,8 +34,6 @@ To get a first impression check out the NatSkinStyleBrowser:
      enable a thin blog-like layout
    * switch on/off navigations tabs above the main area, the so called <nop>WebButtons
    * the position of the search box can be set to one of four predefined positions
-
-The screenshots below only display a limited set of all possible combinations.
 
 ---++ Acknowledgement
 This is a rework of the 
@@ -125,35 +116,18 @@ allways open an extra window.
    * Test if installed: [[%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%?skin=nat&style=Kubrick][click here]]
 
 ---++ Skin Info
-<style type="text/css">
-.screenshotter {
-  overflow:hidden;
-  height:130px;
-}
-.screenshotter img {
-  width:600px;
-}
-</style>
-
 |  Skin Author: | TWiki:Main/MichaelDaum |
 |  Copyright &copy;: | 2003-2008, Michael Daum http://michaeldaumconsulting.com |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  Skin Version: | v3.0-pre21 |
-|  Dependencies: | TWiki:Plugins/NatSkinPlugin |
+|  Skin Version: | v3.0-pre22 |
+|  Dependencies: | NatSkinPlugin |
 |  Description: | Driven by cascading stylesheets, Comes with 12 alternative styles, <nop>MoveableType and Wordpress Look-n-Feel |
 |  Base Name: | nat |
-|  Screenshot: | <div class="screenshotter"><a href="%ATTACHURL%/Clean.jpeg"><img src="%ATTACHURL%/Clean.jpeg" title="Clean"/></a></div> |
-|  More Screenshots: \
-| <div class="screenshotter"><a href="%ATTACHURL%/GeorgiaBlue.jpeg"><img src="%ATTACHURL%/GeorgiaBlue.jpeg" title="GeorgiaBlue"/></a></div>\
-  <div class="screenshotter"><a href="%ATTACHURL%/Gettysburg.jpeg"><img src="%ATTACHURL%/Gettysburg.jpeg" title="Gettysburg" /></a></div>\
-  <div class="screenshotter"><a href="%ATTACHURL%/IndependenceThin.jpeg"><img src="%ATTACHURL%/IndependenceThin.jpeg" title="IndependenceThin" /></a></div>\
-  <div class="screenshotter"><a href="%ATTACHURL%/Kubrick.jpeg"><img src="%ATTACHURL%/Kubrick.jpeg" title="Kubrick" /></a></div> \
-  <div class="screenshotter"><a href="%ATTACHURL%/PlainJane.jpeg"><img src="%ATTACHURL%/PlainJane.jpeg" title="PlainJane" /></a></div>\
-  <div class="screenshotter"><a href="%ATTACHURL%/SeaGreenThin.jpeg"><img src="%ATTACHURL%/SeaGreenThin.jpeg" title="SeaGreenThin" /></a></div>\
-  <div class="screenshotter"><a href="%ATTACHURL%/Rusty.jpeg"><img src="%ATTACHURL%/Rusty.jpeg" title="Rusty" /></a></div>\
-  <div class="screenshotter"><a href="%ATTACHURL%/SquashThin.jpeg"><img src="%ATTACHURL%/SquashThin.jpeg" title="SquashThin" /></a></div>\
-  <div class="screenshotter"><a href="%ATTACHURL%/StormyThin.jpeg"><img src="%ATTACHURL%/StormyThin.jpeg" title="StormyThin" /></a></div> |
+|  Screenshot: | <div class="screenshotter"><a href="%ATTACHURL%/BlueNoteStyle.jpeg"><img src="%ATTACHURL%/BlueNoteStyle.jpeg" title="Clean"/></a></div> |
 |  Change&nbsp;History: | <!-- specify latest version first -->&nbsp; |
+|  04 Nov 2008: | moved all default styles to a separate !NatSkinClassicsContrib package; \
+                  added a new default theme, called "bluenote" together with !CarloSchulz; \
+                  added support for !SearchEngineKinoSearchAddOn; |
 |  03 Jul 2008: | added support for TWiki:Plugins/OpenOffice2TWikiAddOn;\
                   added support for TWiki:Plugins/EmployeePortalPlugin; \
                   various improvements on all default themes; \
@@ -422,12 +396,7 @@ allways open an extra window.
 |  12 Aug 2005: | first round of pre-releases numbered 1.91 upwards |
 |  24 Jul 2005: | rewritten the templates, renamed the CSS classes |
 |  25 Jun 2003: | Initial version |
-|  Skin Home: | TWiki:Plugins/NatSkin |
-|  Feedback: | TWiki:Plugins/NatSkinDev |
-|  Appraisal: | TWiki:Plugins/NatSkinAppraisal |
-
-__Note:__ The Description, Screenshot and Base Name rows are needed by the TWiki:TWiki/TWikiSkinBrowser
-
--- TWiki:Main/MichaelDaum - 03 Jul 2008
+|  Skin Home: | http://nextwiki.org/Extensions/NatSkin |
+|  Feedback: | http://nextwiki.org/Extensions/NatSkinDev |
 
 %META:FILEATTACHMENT{name="wikiringlogo40x40.png" attachment="wikiringlogo40x40.png" attr="h" comment="" date="1189787359" path="wikiringlogo40x40.png" size="2571" stream="wikiringlogo40x40.png" tmpFilename="" user="TWikiContributor" version="1"}%

@@ -1,0 +1,39 @@
+%TMPL:INCLUDE{"search"}%<!-- template: kinosearch.nat.tmpl -->
+%TMPL:DEF{"seealso"}%%TMPL:END%
+%TMPL:DEF{"searchform"}%<!-- searchform -->
+<div class="natSearchForm">
+<form name="searchform" action="%SCRIPTURLPATH{"kinosearch"}%/%BASEWEB%/%BASETOPIC%" method="post">
+<input type="text" name="search" size="30" value="%URLPARAM{"search" encode="entity"}%" accesskey="f" /> 
+<input type="submit" value="%MAKETEXT{"Search"}%" class="natOkButton" title="submit the query" />
+<input type="button" value="%MAKETEXT{"Cancel"}%" class="natCancelButton" onclick="window.location.href='%SCRIPTURLPATH{"view"}%/%BASEWEB%/%BASETOPIC%';" accesskey="c" title='%MAKETEXT{"go back to <nop>[_1]" args="%WEB%.%TOPIC%"}%'>
+&nbsp;%TMPL:P{"seealso"}%
+<table class="natSearchFormOptions" cellspacing="0" cellpadding="0"><tr>
+<td>
+<input type="checkbox" class="twikiCheckbox" id="web" name="web" value="%WEB%" %IFDEFINED{"%URLPARAM{web}%" as="%WEB%" then=" checked"}%/>
+</td>
+<td>
+<label for="web">%MAKETEXT{"search in current web only"}%</label>
+</td>
+<td>
+&nbsp;|&nbsp;
+</td>
+<td>
+<label>
+  %MAKETEXT{"maximum number of hits per web"}%:
+</label>
+</td>
+<td>
+<select name="limit">
+  <option %IFDEFINED{"%URLPARAM{"limit"}%" as="5" then=" selected"}%>5</option>
+  <option %IFDEFINED{"%URLPARAM{"limit"}%" as="10" then=" selected"}%>10</option>
+  <option %IFDEFINED{"%URLPARAM{"limit"}%" as="20" then=" selected"}%>20</option>
+  <option %IFDEFINED{"%URLPARAM{"limit"}%" as="30" then=" selected"}%>30</option>
+  <option %IFDEFINED{"%URLPARAM{"limit"}%" as="40" then=" selected"}%>40</option>
+  <option %IFDEFINED{"%URLPARAM{"limit"}%" as="50" then=" selected"}%>50</option>
+  <option %IFDEFINED{"%URLPARAM{"limit" default="100"}%" as="100" then=" selected"}%>100</option>
+  <option %IFDEFINED{"%URLPARAM{"limit"}%" as="all" then=" selected"}%>all</option>
+</select>
+</td></tr></table>
+</form>
+</div>
+<!-- //searchform -->%TMPL:END%

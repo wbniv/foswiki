@@ -34,6 +34,7 @@ pub/TWiki/NatSkin/bin.png 0644
 pub/TWiki/NatSkin/BlueNoteBorder.css 0644
 pub/TWiki/NatSkin/BlueNoteButtons.css 0644
 pub/TWiki/NatSkin/BlueNoteStyle.css 0644
+pub/TWiki/NatSkin/BlueNoteStyle.jpeg 0644
 pub/TWiki/NatSkin/BlueNoteThin.css 0644
 pub/TWiki/NatSkin/comment.png 0644
 pub/TWiki/NatSkin/cross.png 0644
@@ -99,6 +100,7 @@ templates/edittext.nat.tmpl 0644
 templates/form.nat.tmpl 0644
 templates/formtables.nat.tmpl 0644
 templates/javascript.nat.tmpl 0644
+templates/kinosearch.nat.tmpl 0644
 templates/loginbase.nat.tmpl 0644
 templates/login.nat.tmpl 0644
 templates/login.sudo.nat.tmpl 0644

@@ -7,7 +7,7 @@ html {
   line-height:140%;
   color:#444444;
   font-size:13px;
-  font-family:arial,sans-serif;
+  font-family:,arial,Helvetica,sans-serif;
 }
 body {
   line-height:140%;
@@ -43,7 +43,7 @@ pre {
 }
 
 h1 { font-size:160%; margin-top:1em;margin-bottom:0.5em;}
-h2 { font-size:130%; margin-top:1em;margin-bottom:0.5em;}
+h2 { font-size:140%; margin-top:1em;margin-bottom:0.5em;}
 h3 { font-size:120%; margin-top:1em;margin-bottom:0.5em;}
 h4 { font-size:110%; margin-top:1em;margin-bottom:0.5em;}
 h5 { font-size:110%; margin-top:1em;margin-bottom:0.5em;}
@@ -62,14 +62,13 @@ h4 a:hover, h5 a:hover, h6 a:hover {
 }
 
 h1 {
-  border-bottom:2px solid #73AA31;
   color:#0055b5;
   clear:both;
 }
 h2 {
-  border-bottom:2px solid #dedede;
   padding-bottom:1px;
   clear:both;
+  border-bottom:2px solid green;
 }
 ul, ol {
   margin:0.5em 0em 0em 0em;
@@ -90,7 +89,7 @@ ul li {
 
 blockquote {
   padding:0em 0em 0em 0.7em;
-  margin:1.5em 0em 0em 1.6em;
+  margin:1.5em 0em 1.5em 1.6em;
   border-left:0.4em solid #ddd;
 }
 
@@ -124,7 +123,7 @@ dl dd {
 .natEditBody .natMain {
   padding:1.5em;
 }
-.natTopRight, 
+.natTopRight,
 .natSideBarHeader,
 .natSideBar {
   width:15em;
@@ -182,7 +181,7 @@ th.twikiSortedAscendingCol {
 }
 
 /* twikiDiff */
-.twikiDiffTable { 
+.twikiDiffTable {
   border:1px solid #ddd;
   background:#f6f6f6;
 }
@@ -190,7 +189,7 @@ th.twikiSortedAscendingCol {
 .twikiDiffTable th {
   border:0px;
 }
-.twikiDiffTable th { 
+.twikiDiffTable th {
   border-bottom:1px solid #ddd;
 }
 
@@ -200,7 +199,7 @@ th.twikiSortedAscendingCol {
 
 .twikiDiffDeletedHeader { }
 .twikiDiffDeletedMarker { }
-.twikiDiffDeletedText { 
+.twikiDiffDeletedText {
  background:#FFD7D7;
 }
 
@@ -295,7 +294,7 @@ fieldset .twikiFormSteps {
   margin:1.0em 0em 0.2em;
 }
 .twikiFormOptions .twikiCheckbox {
-  margin:0em 0.2em 0em; 
+  margin:0em 0.2em 0em;
 }
 
 .twikiFormSteps .jqTabContents,
@@ -350,7 +349,7 @@ fieldset .twikiFormSteps {
 .natUserAction:hover,
 .natUserAction:active,
 .natUserAction {
-  font-weight:bold; 
+  font-weight:bold;
 }
 .natTopicActions {
   /*border-bottom:1px solid #dedede;*/
@@ -384,6 +383,9 @@ fieldset .twikiFormSteps {
   background:#9CBAEF;
   color:#0055b5;
 }
+.natSideBar h2 {
+  font-size:130%;
+}
 .natSideBar h2,
 .natSideBar h2 a {
   background:#9CCF31;
@@ -406,8 +408,8 @@ fieldset .twikiFormSteps {
   margin:-1px -1em 0em;
   padding:1px 1em;
   line-height:1.5em;
-  border-top:1px solid white;
-  border-bottom:1px solid white;
+  border-top:1px solid #F5F5F5;
+  border-bottom:1px solid #F5F5F5;
 }
 .natSideBar h3 {
   margin:0.5em 0em 0.5em 0em;
@@ -439,7 +441,7 @@ fieldset .twikiFormSteps {
 .natSideBar ol,
 .natSideBar ul {
   margin:0em -1em;
-  background:#CECFCE;
+  background:#EFEFEF;
 }
 
 .natSideBar .treeview a {
@@ -457,7 +459,7 @@ fieldset .twikiFormSteps {
   line-height:2.0em;
   margin-top:0px;
   padding:1px 1em;
-  border-bottom:1px solid white;
+  border-bottom:1px solid #F9F9F9;
 }
 .natSideBar ul li a {
   font-weight:normal;
@@ -587,6 +589,7 @@ fieldset .twikiFormSteps {
   padding:1em;
   border-top:1px #ddd solid;
   background:#f6f6f6;
+  margin-top:1.5em;
 }
 .natTopicForm td,
 .natTopicForm th,
@@ -839,4 +842,3 @@ fieldset .twikiFormSteps {
   background-repeat:repeat-x;
   background-position:0px 0px;
 }
-
