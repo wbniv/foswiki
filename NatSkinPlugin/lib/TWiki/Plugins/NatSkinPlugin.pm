@@ -493,8 +493,6 @@ sub initSkinState {
   }
   $theStyleTopicActions = $defaultStyleTopicActions
     if $theStyleTopicActions !~ /^(on|off|allowed)$/;
-  $theStyleTopicActions = 'off' 
-    unless TWiki::Func::getContext()->{authenticated};
   $skinState{'topicactions'} = $theStyleTopicActions;
 
   # handle searchbox
@@ -590,12 +588,6 @@ sub initSkinState {
 
   $skinState{'sidebar'} = $theToggleSideBar 
     if $theToggleSideBar && $theToggleSideBar ne '';
-
-  # check access rights
-  if ($skinState{'topicactions'} eq 'allowed') {
-    my $gotAccess = TWiki::Func::checkAccessPermission('CHANGE',$currentUser,undef,$baseTopic, $baseWeb);
-    $skinState{'topicactions'} = $gotAccess?'on':'off';
-  }
 
   # set context
   my $context = TWiki::Func::getContext();
@@ -883,19 +875,18 @@ sub renderGetSkinStyle {
 sub renderUserActions {
   my ($session, $params) = @_;
 
-  my $text = '';
   my $sepString = $params->{sep} || $params->{separator} || '<span class="natSep"> | </span>';
-  if (TWiki::Func::getContext()->{authenticated}) {
-    $text = $params->{_DEFAULT} || $params->{format};
-    $text = 
-      '$user$sep$help$sep$logout$sep$print<br />'.
-      '$edit$sep$attach$sep$move$sep$raw$sep$diff$sep$more'
+
+  my $text = $params->{_DEFAULT} || $params->{format};
+  $text = '<div class="natTopicActions">$new$sep$edit$sep$attach$sep$raw$sep$delete$sep$diff$sep$print$sep$more</div>'
       unless defined $text;
-  } else {
-    $text = $params->{guest};
-    $text = '$login$sep$register$sep$print' unless defined $text;
-    return '' unless $text;
+
+  unless (TWiki::Func::getContext()->{authenticated}) {
+    my $guestText = $params->{guest};
+    $text = $guestText if defined $guestText;
   }
+
+  return '' unless $text;
 
   my $newString = '';
   my $editString = '';
@@ -914,7 +905,7 @@ sub renderUserActions {
   my $helpString = '';
 
   my $restrictedActions = $params->{restrictedactions};
-  $restrictedActions = 'edit, attach, move, delete' unless defined $restrictedActions;
+  $restrictedActions = 'new, edit, attach, move, delete, diff, more, raw' unless defined $restrictedActions;
   my %isRestrictedAction = map {$_ => 1} split(/\s*,\s*/, $restrictedActions);
   #writeDebug("restrictedActions=".join(',', sort keys %restrictedActions));
   my $gotAccess = TWiki::Func::checkAccessPermission('CHANGE',$currentUser,undef,$baseTopic, $baseWeb);
