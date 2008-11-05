@@ -37,8 +37,7 @@ sub new {
     my $type    = shift;
     my $self = bless {}, $handler;
 
-    $self->{Session} = new TWiki();
-    $TWiki::Plugins::SESSION = $self->{Session};
+    $self->{Session} = $TWiki::Plugins::SESSION;
 
     if (!($type eq "search") ) {$self->{Log} = $self->openLog($type)};
     $self->{Debug}   = $self->debugPref();

@@ -19,9 +19,6 @@ BEGIN { unshift @INC, '.'; require 'setlib.cfg'; }
 
 #use CGI;
 use TWiki::Contrib::SearchEngineKinoSearchAddOn::Search;
-
-$searcher = TWiki::Contrib::SearchEngineKinoSearchAddOn::Search->newSearch();
-
-$searcher->search();
+TWiki::Contrib::SearchEngineKinoSearchAddOn::Search::searchCgi();
 
 # EOF

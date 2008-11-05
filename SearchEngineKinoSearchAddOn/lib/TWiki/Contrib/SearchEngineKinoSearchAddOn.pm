@@ -18,6 +18,6 @@ use strict;
 use vars qw( $VERSION $RELEASE $SHORTDESCRIPTION );
 
 $VERSION = '$Rev$';
-$RELEASE = '';
+$RELEASE = '1.19';
 $SHORTDESCRIPTION = 'Fast indexed search with indexing of attachments like Word, Excel and PDF';
 

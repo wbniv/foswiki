@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="BaseUserMapping_333" date="1208389508" format="1.1" version="1.2"}%
+%META:TOPICINFO{author="TWikiContributor" date="1208389508" format="1.1" version="$Rev$"}%
 <!--
 This topic is part of the documentation for SearchEngineKinoSearchAddOn and is
 automatically generated from Subversion. Do not edit it! Your edits
@@ -335,16 +335,17 @@ text seems to be O.K.
 |  Add-on Version: | %$VERSION% |
 |  Update note | If you update from an older version to v1.15 or higher, remove the old index and create a complete new one with kinoindex|
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
-| 20 Aug 2008:  | v 1.18, added Integrated SEARCH, SearchEngineKinoSearchPlugin, restHandlers, updated code and tests -- TWiki:Main.SvenDowideit |
-| 6 Aug 2008:   | v 1.17, Bugs:Item5717: persist use form choices, Bugs:Item5647: cope better with attachment problems -- TWiki:Main.SvenDowideit |
-| 4 Jun 2008:   | v 1.16, Bugs:Item5646: Problem with attachments with capital letter suffix |
-| 12 May 2008:  | v 1.15, Bugs:Item5579, Bugs:Item5580, Bugs:Item5619: Problem with ALLOWWEBVIEW and Forms fixed |
-| 23 Apr 2008:  | v 1.14, Bugs:Item5273, Bugs:Item5546, Bugs:Item5550, Bugs:Item5552: Use current user in search script |
-| 27 Jan 2008:  | v 1.13, Bugs:Item5271: Option "show locked topics" now works |
-| 19 Jan 2008:  | v 1.12, Bugs:Item5270: Enhancement of stringifiers |
-| 19 Dec 2007:  | v 1.11, Additions on stringifiers, modification of output format |
-| 17 Nov 2007:  | v 1.10, PPT stringifier added |
-| 11 Nov 2007:  | v 1.09, Some bugfixing |
+|  05 Nov 2008:  | v 1.19, fixes for (nex)twiki/trunk |
+|  20 Aug 2008:  | v 1.18, added Integrated SEARCH, SearchEngineKinoSearchPlugin, restHandlers, updated code and tests -- TWiki:Main.SvenDowideit |
+|  6 Aug 2008:   | v 1.17, Bugs:Item5717: persist use form choices, Bugs:Item5647: cope better with attachment problems -- TWiki:Main.SvenDowideit |
+|  4 Jun 2008:   | v 1.16, Bugs:Item5646: Problem with attachments with capital letter suffix |
+|  12 May 2008:  | v 1.15, Bugs:Item5579, Bugs:Item5580, Bugs:Item5619: Problem with ALLOWWEBVIEW and Forms fixed |
+|  23 Apr 2008:  | v 1.14, Bugs:Item5273, Bugs:Item5546, Bugs:Item5550, Bugs:Item5552: Use current user in search script |
+|  27 Jan 2008:  | v 1.13, Bugs:Item5271: Option "show locked topics" now works |
+|  19 Jan 2008:  | v 1.12, Bugs:Item5270: Enhancement of stringifiers |
+|  19 Dec 2007:  | v 1.11, Additions on stringifiers, modification of output format |
+|  17 Nov 2007:  | v 1.10, PPT stringifier added |
+|  11 Nov 2007:  | v 1.09, Some bugfixing |
 |  3 Nov 2007:  | v 1.08, Some bugfixing |
 |  7 Oct 2007:  | v 1.07, Some bugfixing |
 |  6 Oct 2007:  | v 1.06, Upgrade for 4.1, Release with <nop>BuildContrib|
@@ -373,4 +374,4 @@ text seems to be O.K.
 
 
 
-%META:FILEATTACHMENT{name="KinoSearchResult.jpg" attachment="KinoSearchResult.jpg" attr="" comment="" date="1208389508" path="KinoSearchResult.jpg" size="112106" stream="KinoSearchResult.jpg" tmpFilename="" user="BaseUserMapping_333" version="1"}%
+%META:FILEATTACHMENT{name="KinoSearchResult.jpg" attachment="KinoSearchResult.jpg" attr="" comment="" date="1208389508" path="KinoSearchResult.jpg" size="112106" stream="KinoSearchResult.jpg" tmpFilename="" user="TWikiContributor" version="1"}%
