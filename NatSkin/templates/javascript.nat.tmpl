@@ -2,6 +2,7 @@
 %TMPL:DEF{"defaultjavascript"}%<!-- defaultjavascript -->
 %TMPL:P{"jqueryjavascript"}%
 <script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/TWikiJavascripts/twiki.js"></script>
+<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/JQueryPlugin/jquery.superfish.js" ></script>
 <script type="text/javascript"> 
 $(function() { 
   if (true) { // remove empty attachment comments
@@ -39,6 +40,10 @@ $(function() {
         });
       }
     });
+  }
+  /* horiz menu */
+  if (true) {
+    $(".natWebButtonsContents > ul").superfish({}).find("li:has(ul)").addClass("hasSubMenu");
   }
   %TMPL:P{"onloadscript"}% 
 }); 

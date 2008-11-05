@@ -1,6 +1,7 @@
 <!-- template: searchbox.nat.tmpl -->
 %TMPL:DEF{"searchbox_go"}%<!-- search box go-->
 <form name="searchbox" action="%SCRIPTURLPATH{"natsearch"}%/%BASEWEB%/%BASETOPIC%" method="post">
+<input type="hidden" name="limit" value="100" />
 <table cellspacing="0" cellpadding="0" border="0"><tr>
 <td valign="middle">
 <input type="text" title="Enter topic name or a search string" name="search" value="%URLPARAM{"search" default="%MAKETEXT{"Search"}%" encode="entity"}%" accesskey="f" onblur="if(this.value==''){this.value = '%MAKETEXT{"Search"}%'}" onfocus="if(this.value=='%MAKETEXT{"Search"}%'){this.value = ''}" /> 
@@ -13,6 +14,7 @@
 <!-- //search box-->%TMPL:END%
 %TMPL:DEF{"searchbox"}%<!-- search box -->
 <form name="searchbox" action="%SCRIPTURLPATH{"natsearch"}%/%BASEWEB%/%BASETOPIC%" method="post">
+<input type="hidden" name="limit" value="100" />
 <input type="text" title="Enter topic name or a search string" name="search" value="%URLPARAM{"search" default="%MAKETEXT{"Search"}%" encode="entity"}%" accesskey="f" onblur="if(this.value==''){this.value = '%MAKETEXT{"Search"}%'}" onfocus="if(this.value=='%MAKETEXT{"Search"}%'){this.value = ''}" /> 
 </form>
 <!-- //search box-->%TMPL:END%

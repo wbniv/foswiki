@@ -517,16 +517,6 @@ pre {
 .natUserGreeter {
   padding:2px 0px;
 }
-.natTopicActionsToggle {
-  position:relative;
-  float:right;
-  display:inline;
-  margin:0px 0px 0px 10px;
-}
-.natTopicActions {
-  margin:20px 0px 0px -2px;
-  padding-bottom:4px;
-}
 .natTopicActions .natSep {
   display:none;
 }
@@ -551,7 +541,7 @@ pre {
   display:inline;
   height:16px;
   margin:0px 2px 0px 0px;
-  padding:2px 5px 4px 22px;
+  padding:2px 5px 5px 22px;
   color:black;
 }
 
@@ -581,11 +571,11 @@ pre {
 }
 .natDiffTopicAction:hover,
 .natDiffTopicAction {
-  background-image:url(time.png);
+  background-image:url(page_white_stack.png);
 }
 .natRawTopicAction:hover,
 .natRawTopicAction {
-  background-image:url(page_white_code.png);
+  background-image:url(text_align_left.png);
 }
 .natDeleteTopicAction:hover,
 .natDeleteTopicAction {
@@ -628,6 +618,7 @@ pre {
 
 .natTopicAttachments table {
   width:100%;
+  margin-bottom:1.5em;
 }
 .natTopicAttachments td {
   vertical-align:top;

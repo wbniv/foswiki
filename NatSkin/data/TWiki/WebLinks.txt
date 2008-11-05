@@ -1,4 +1,11 @@
-%META:TOPICINFO{author="TWikiContributor" date="1182452182" format="1.1" version="$Rev$"}%
+%META:TOPICINFO{author="TWikiContributor" date="1225902695" format="1.1" version="$Rev$"}%
+---+!! %TOPIC%
+Navigation links in the %SYSTEMWEB% web.
+
 %STARTINCLUDE%<!-- twiki.weblinks -->
-   * [[%TWIKIWEB%.InstalledPlugins][%MAKETEXT{"Plugins"}%]] %WEBCOMPONENT{"TWikiWebLinks"}%
+   * [[TWikiTutorial][Tutorial]]
+   * [[TWikiUsersGuide][Users Guide]]
+   * [[TWikiFAQ][FAQ]]
+   * [[Installed Plugins]]
+   * [[TWikiReferenceManual][Reference Manual]]
 <!-- //twiki.weblinks -->%STOPINCLUDE%

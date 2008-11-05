@@ -1,17 +1,10 @@
 <!-- template: viewtopicaction.nat.tmpl -->
+%TMPL:DEF{"usersurl"}%<a class='natUserAction' href='%SCRIPTURLPATH{"view"}%/%MAINWEB%/TWikiUsers' title='%MAKETEXT{"List of registered users"}%'>%MAKETEXT{"Users"}%</a>
+%TMPL:DEF{"sandboxurl"}%<a class='natUserAction' href='%SCRIPTURLPATH{"view"}%/Sandbox/%HOMETOPIC%' title='%MAKETEXT{"Test area with all features enabled"}%'>%MAKETEXT{"Sandbox"}%</a>
 %TMPL:DEF{"topicactions_top"}%<!-- topicactions_top -->
 %USERACTIONS{
-  guest="<div class='natGreeter natGuestGreeter'>$login$sep$register</div>"
-  format="<div class='natGreeter natUserGreeter'>$user$sep$logout</div>"
+  guest="<div class='natGreeter natGuestGreeter'>$login$sep%TMPL:P{"usersurl"}%$sep%TMPL:P{"sandboxurl"}%$sep$register</div>"
+  format="<div class='natGreeter natUserGreeter'>$user$sep%TMPL:P{"usersurl"}%$sep%TMPL:P{"sandboxurl"}%$sep$logout</div>"
 }%
 <!-- //topicactions_top -->%TMPL:END%
-%TMPL:DEF{"topicactions_toggle"}%<div class="natTopicActionsToggle">%TWISTYBUTTON{
-  id="topicactions" 
-  showlink="%MAKETEXT{"Show toolbar"}% " 
-  hidelink="%MAKETEXT{"Hide toolbar"}% "
-  remember="on"
-  start="show"
-  showimg="%ICONURLPATH{toggleopenleft}%"
-  hideimg="%ICONURLPATH{toggleclose}%"
-}%</div>%TMPL:END%
-%TMPL:DEF{"topicactions"}%%TWISTYTOGGLE{id="topicactions"}%%WEBCOMPONENT{"WebTopicActions"}%%ENDTWISTY%%TMPL:END%
+%TMPL:DEF{"topicactions"}%%WEBCOMPONENT{"WebTopicActions"}%%TMPL:END%

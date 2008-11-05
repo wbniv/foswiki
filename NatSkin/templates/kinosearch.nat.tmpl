@@ -9,10 +9,10 @@
 &nbsp;%TMPL:P{"seealso"}%
 <table class="natSearchFormOptions" cellspacing="0" cellpadding="0"><tr>
 <td>
-<input type="checkbox" class="twikiCheckbox" id="web" name="web" value="%WEB%" %IFDEFINED{"%URLPARAM{web}%" as="%WEB%" then=" checked"}%/>
+<input type="checkbox" class="twikiCheckbox" id="web" name="web" value="all" %IFDEFINED{"%URLPARAM{web}%" as="all" then=" checked"}%/>
 </td>
 <td>
-<label for="web">%MAKETEXT{"search in current web only"}%</label>
+<label for="web">%MAKETEXT{"search in all webs"}%</label>
 </td>
 <td>
 &nbsp;|&nbsp;

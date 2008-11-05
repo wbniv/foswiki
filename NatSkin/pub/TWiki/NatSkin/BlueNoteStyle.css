@@ -1,4 +1,4 @@
-/* Clean Style */
+/* BlueNote Style */
 @import url("BaseStyle.css");
 
 /* html elements */
@@ -107,18 +107,34 @@ dl dd {
 /* layout */
 .natTopBar {
   padding:0px;
+  vertical-align:middle;
 }
 .natTopLeft {
-  padding:2.0em;
+  padding:2.0em
 }
 .natTopRight {
-  padding:2em 1.5em 2em 1em;
+  padding:2.0em 1.5em 2.0em 1em;
 }
 .natMain {
   padding:2em;
 }
+.natTopicActions {
+  float:right;
+}
+.natTopicAction:hover,
+.natTopicAction {
+  float:left;
+  display:block;
+  width:16px;
+  height:16px;
+  padding:2px;
+  margin-left:5px;
+}
+.natTopicActions span {
+  display:none;
+}
 .natMainHeaderContents {
-  padding-bottom:2em;
+  padding:0em 0em 1.5em;
 }
 .natEditBody .natMain {
   padding:1.5em;
@@ -264,7 +280,7 @@ fieldset .twikiFormSteps {
   padding:0.5em 1.5em;
 }
 .twikiFormStep {
-  margin:0.5em 0em;
+  margin:0.8em 0em;
 }
 .twikiFormStep hr {
   margin:1.5em -1.5em;
@@ -302,7 +318,7 @@ fieldset .twikiFormSteps {
   background:#FEF1D6;
 }
 .twikiFormSteps .jqTabContents {
-  padding:0.5em;
+  padding:0.5em 1.0em;
 }
 .twikiFormDescription {
   margin:0.2em 0em;
@@ -322,14 +338,32 @@ fieldset .twikiFormSteps {
   color:white;
 }
 .natHeaderArt {
-  background:#4275BD;
+  /*background:#4275BD;*/
+  background:url(nextwiki-header-tile.png) repeat-x;
+}
+.natTopLeft {
+  background:url(nextwiki-header.png) no-repeat;
+}
+.natWebTitle span {
+  display:none;
+}
+.natWebTitle a {
+  float:left;
+  width:275px;
+  height:45px;
+}
+.natWebTitle a,
+.natWebTitle a:hover {
+  background-color:inherit;
+  background-image:url(nextwiki-logo.png);
+  background-repeat:no-repeat;
 }
 .natEditBody .natMainContents h1 {
   margin:0.5em 0em 1.0em;
 }
 .natEditBody .natLayoutTable,
 .natTopBar {
-  border-top: 1px solid #aaa;
+  /*border-top: 1px solid #aaa;*/
 }
 .natWebTitle {
   font-weight:normal;
@@ -352,9 +386,6 @@ fieldset .twikiFormSteps {
   font-weight:bold;
 }
 .natTopicActions {
-  /*border-bottom:1px solid #dedede;*/
-  margin:1.5em 0em 0em -2px;
-  padding-bottom:0.5em;
 }
 .natDisabledUserAction span,
 .natDisabledTopicAction span {
@@ -442,6 +473,7 @@ fieldset .twikiFormSteps {
 .natSideBar ul {
   margin:0em -1em;
   background:#EFEFEF;
+  background:#cecfce;
 }
 
 .natSideBar .treeview a {
@@ -459,7 +491,7 @@ fieldset .twikiFormSteps {
   line-height:2.0em;
   margin-top:0px;
   padding:1px 1em;
-  border-bottom:1px solid #F9F9F9;
+  border-bottom:1px solid #e5e5e5;
 }
 .natSideBar ul li a {
   font-weight:normal;
@@ -494,9 +526,13 @@ fieldset .twikiFormSteps {
   padding-left:0px;
 }
 
-.natGreeter,
+.natGreeter {
+  text-align:right;
+  padding:0em 1.2em 0.3em 0em;
+}
 .natGreeter a {
-  color:#9CBAEF;
+  color:#444444;
+  font-weight:bold;
 }
 .natGreeter a:hover {
   color:#ffffff;

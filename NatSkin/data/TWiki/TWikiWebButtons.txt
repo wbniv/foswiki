@@ -6,8 +6,8 @@
 ~~~   include="\w+"
 ~~~   selection="%FORMATLIST{"%BASEWEB%" split="[\/\.]" limit="1"}%"
 ~~~   marker="current"
-~~~   exclude="TestCases|Trash|Attic"
-~~~   adminwebs="Applications"
+~~~   exclude="^TestCases|Trash|Attic"
+~~~   adminwebs="Applications.*"
 ~~~   map="TWiki=System"
 ~~~   format="$percntWEBLINK{\"$web\" format=\"<li><a class='natWebLink $marker' href='$dollarurl' title='$dollartooltip'>$name</a></li>\"}$percnt"
 ~~~ }%

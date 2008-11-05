@@ -1,8 +1,8 @@
 %TMPL:INCLUDE{"searchbase"}%<!-- template: search.nat.tmpl -->
-%TMPL:DEF{"searchbox"}%%TMPL:END%
+%TMPL:DEF{"searchbox_top"}%%TMPL:END%
 %TMPL:DEF{"contentheader_container"}%%TMPL:END%
 %TMPL:DEF{"contentfooter_container"}%%TMPL:END%
-%TMPL:DEF{"topictitle_dbcache"}%%TOPICTITLE{"%TOPICNAME%"}%%TMPL:END%
+%TMPL:DEF{"topictitle_dbcache"}%%GETTOPICTITLE{"%TOPICNAME%"}%%TMPL:END%
 %TMPL:DEF{"topictitle_nodbcache"}%%TOPICNAME%%TMPL:END%
 %TMPL:DEF{"topictitle"}%%TMPL:P{context="DBCachePluginEnabled" then="topictitle_dbcache" else="topictitle_nodbcache"}%%TMPL:END%
 %TMPL:DEF{"seealso"}%[[WebSearchAdvanced][%MAKETEXT{"Advanced Search"}%]]%TMPL:END%
@@ -20,7 +20,9 @@
 %SPLIT%%TMPL:P{"searchform"}%%SPLIT% 
 <div class="natSearchResult">
 %REPEAT%<div class="natSearchHit %CALC{"$SETM(incr, +1)$IF($ODD($GET(incr)),natSearchHitOdd,natSearchHitEven)"}%">
+<noautolink>
 %TMPL:P{"searchhit"}%
+</noautolink>
 </div>
 %REPEAT%</div>%SPLIT%<div class="natSearchTotal">
   %MAKETEXT{"<span>[_1]</span> topics found" args="%NTOPICS%"}% 

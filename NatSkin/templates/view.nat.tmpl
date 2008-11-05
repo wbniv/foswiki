@@ -23,14 +23,13 @@
 %TMPL:DEF{"text"}%%TEXT%%TMPL:END%
 %TMPL:DEF{"form"}%%META{"form"}%%TMPL:END%
 %TMPL:DEF{"breadcrumbs"}%<!-- breadcrumbs -->
-%TMPL:P{context="natskin_topicactions_on" then="topicactions_toggle"}%<!-- topicactions_toggle// -->
 <div class="natBreadCrumbs">
   %MAKETEXT{"You are here:"}%<span class='natSep'>&nbsp; </span>%IFDEFINED{"$percntTHISBREADCRUMBS$percnt" then="$test" else="$percntBREADCRUMBS{separator=\"<span class='natSep'>&nbsp;&#187; </span>\"}$percnt"}%
 </div>
 <!-- //breadcrumbs -->%TMPL:END%
 %TMPL:DEF{"contentheader"}%<!-- contentheader -->
-%TMPL:P{"breadcrumbs"}%<!-- breadcrumbs //-->
 %TMPL:P{context="natskin_topicactions_on" then="topicactions"}%<!-- topicactions// -->
+%TMPL:P{"breadcrumbs"}%<!-- breadcrumbs //-->
 <!-- // contentheader -->%TMPL:END%
 %TMPL:DEF{"contentfooter"}%<!-- content footer -->
 %IFDEFINED{"$percntMETA{\"attachments\"}$percnt" then="<div class=\"natTopicAttachments\" id=\"natTopicAttachments\"> $test </div>"}%

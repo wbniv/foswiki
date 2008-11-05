@@ -17,13 +17,6 @@
 %TMPL:DEF{"onloadscript"}%document.main.filepath.focus();%TMPL:END%
 %TMPL:DEF{"content"}%<!-- content -->
 %TMPL:P{"contenttitle"}%<!-- contenttitle// -->
-%IFDEFINEDTHEN{"$percntURLPARAM{\"message\"}$percnt"}%
-<div class="twikiBroadcastMessage" id="message">
-%URLPARAM{"message"}%
-<a style="float:right" href="javascript:void()" title="close" onclick="$('#message').hide();">%MAKETEXT{"close"}%</a>
-<br clear="both" />
-</div>
-%FIDEFINED%
 <div class="twikiFormSteps">
 %TABPANE{select="%URLPARAM{"tab" default="1"}%"}%
 %TAB{"%MAKETEXT{"New"}%"}%
@@ -33,6 +26,11 @@
     <div class="twikiFormStep">
       <h3><label for="filepath">%MAKETEXT{"File"}%:</label></h3>
       <input type="file" name="filepath" id="filepath" size="50"/>
+      %IFDEFINEDTHEN{"$percntURLPARAM{\"message\"}$percnt"}%
+        <span class="twikiAlert" id="message" style="padding:0px 10px">
+          %URLPARAM{"message"}%
+        </span>
+      %FIDEFINED%
     </div>
     <div class="twikiFormStep">
       <h3><label for="filecomment">%MAKETEXT{"Comment"}%:</label></h3>

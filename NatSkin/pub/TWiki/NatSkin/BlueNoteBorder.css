@@ -1,11 +1,16 @@
 /* border variation for clean */
 @import url('BaseBorder.css');
 
-.natWebButtons,
-.natTopLeft {
+.natBody {
+  margin:1em 2em;
+}
+.natEditBody {
+  margin:0px;
+}
+
+.natWebButtons {
   border-left:1px #aaaaaa solid;
 }
-.natWebButtons,
 .natTopRight {
   border-right:1px #aaaaaa solid;
 }
@@ -15,6 +20,7 @@
 .natMiddleRight {
   border-right:1px #aaaaaa solid;
 }
+.natMiddle,
 .natSideBar {
   border-bottom:1px #aaaaaa solid;
 }
@@ -23,4 +29,10 @@
 }
 .natBottomBarContents {
   margin-top:1px; /* konqueror fix */
+}
+.natEditBody .natTopBar,
+.natEditBody .natWebButtons,
+.natEditBody .natMiddle,
+.natEditBody .natBottomBar {
+  border:0px
 }

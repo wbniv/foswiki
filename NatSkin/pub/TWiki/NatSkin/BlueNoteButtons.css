@@ -10,44 +10,200 @@
 .natBodyRight .natWebButtons {
   padding-left:2em;
 }
-.natWebButtonsContents {
-  overflow:hidden;
-  height:2em;
-}
 .natTopBar {
   border-bottom:0px;
 }
 .natWebButtons ul {
   padding:0px;
   margin:0em 2em 0em 0em;
-  border-left:1px solid white;
   float:left;
 }
 
-.natWebButtons ul li {
-  margin:0px;
-  padding:0px;
-}
 .natWebButtons ul a {
   margin:0px;
   line-height:2.0em;
   padding-left:1.0em;
   padding-right:1.0em;
   font-weight:bold;
-  border-right:1px solid white;
   color:#0055b5;
+}
+.natWebButtons ul ul a {
+  font-weight:normal;
+  color:#444;
 }
 
 .natWebButtons ul a.current:hover,
 .natWebButtons ul a.current {
   text-decoration: none;
-  background:white;
-  border-bottom:0px;
+  background-color:#fff;
 }
 
 .natWebButtons ul a.current:hover,
 .natWebButtons ul a:hover {
   text-decoration: none;
-  background:#0055b5;
+  background-color:#0055b5;
   color:white;
+}
+
+/* superfish menu *************************/
+
+/* essentials *****************************/
+.superfish, 
+.superfish * {
+  margin:0;
+  padding:0;
+  list-style:none;
+  line-height:2em; /* to be added to top:... rules */
+}
+.superfish,
+.superfish li {
+  height:2em;
+}
+.superfish li li {
+  height:auto;
+}
+.superfish ul {
+  position:absolute; 
+  top:-999em; 
+}
+.superfish ul ul {
+  width:9.45em; /* to be added to left:... rules */
+}
+.superfish ul li { 
+  width: 100%;
+}
+.superfish li {
+  padding:0em 1em; /* to be added to left:... rules */
+  float:left; 
+  position:relative;
+  z-index:99; 
+}
+.superfish li.sfHover {
+  z-index:999;
+}
+
+embed, object {
+  position: relative;
+  z-index: 0;
+}
+
+
+/**** second tier *************************/
+.superfish li:hover ul, 
+ul.superfish li.sfHover ul 
+{
+  left:-1px;
+  top:2em; /* VARIABLE */
+}
+
+/**** third tier **************************/
+.superfish li:hover li ul,
+.superfish li.sfHover li ul {
+  top:-999em; 
+}
+.superfish li li:hover ul, 
+ul.superfish li li.sfHover ul {
+  left:11.45em; /* VARIABLE */
+  top:-1px; 
+}
+
+/**** fourth tier *************************/
+.superfish li li:hover li ul,
+.superfish li li.sfHover li ul {
+  top:-999em; 
+}
+.superfish li li li:hover ul, 
+ul.superfish li li li.sfHover ul {
+  left:11.45em; /* VARIABLE */ 
+  top:-1px;
+}
+
+/* hide menus */
+.superfish li:hover ul,
+.superfish li li:hover ul,
+.superfish li li li:hover ul {
+  top: -999em; /* hide submenu in screen-reader and search-engine friendly way */
+}
+
+/* skinning */
+ul.superfish a {
+  margin:0em -1em;
+  padding:0em 1em;
+  _padding:0em 2em; /* broken box model in IE6 */
+  display:block;
+}
+
+ul.superfish li {
+  /*
+  background:url(menubg.gif);
+  background-position:top left;
+  background-repeat:repeat-x;*/
+  border-right:1px solid #fff;
+}
+ul.superfish {
+  border-left:1px solid #fff;
+}
+ul.superfish ul {
+  border-left:0px;
+}
+ul.superfish li li {
+  border-bottom:1px solid #fff;
+  border-right:1px solid #fff;
+  width:9.45em; 
+}
+ul.superfish li:hover, 
+ul.superfish li.sfHover,
+ul.superfish li a:focus, 
+ul.superfish li a:hover, 
+ul.superfish li a:active {
+  /*background:url(menubg.gif) 0px -128px;*/
+}
+ul.superfish li li a:hover.twikiNewLink,
+ul.superfish li li:hover, 
+ul.superfish li li.sfHover,
+ul.superfish li li a:focus, 
+ul.superfish li li a:hover, 
+ul.superfish li li a:active {
+  background-color:#9CBAEF;
+  color:#0055b5;
+}
+ul.superfish li ul {
+  border-top:1px solid #fff;
+  width:11.45em;
+}
+ul.superfish li li a.twikiNewLink,
+ul.superfish li li {
+  background-color:#cfcecf;
+}
+ul.superfish li li li {
+  background-color:#cfcecf;
+}
+ul.superfish li li li li {
+  background-color:#cfcecf;
+}
+ul.superfish li.sfHover ul {
+  opacity:0.95;
+}
+ul.superfish .sfPath {
+  background-color:red;
+}
+ul.superfish li.hasSubMenu {
+  background-image:url(menucorner.gif);
+  background-repeat:no-repeat;
+  background-position:bottom right;
+}
+ul.superfish li li.sfHover a,
+ul.superfish li li a:hover.twikiNewLink,
+ul.superfish li li a.twikiNewLink,
+ul.superfish li li a:hover,
+ul.superfish li li a:active,
+ul.superfish li li a:link,
+ul.superfish li li a {
+  display:block;
+  background:transparent;
+  _background:inherit;
+  margin:0em -1em;
+  padding:0em 1em;
+  _padding:0em 2em; /* broken box model in IE6 */
+  display:block;
 }

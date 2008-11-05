@@ -4,14 +4,7 @@ Default site-level configuration for the !WebTopicActions !WebComponent
 
 %STARTINCLUDE%<!-- twikiwebtopicactions -->
 %USERACTIONS{
-  guest="<!-- guest -->"
-  format="<div class='natTopicActions'>$new$sep$edit$sep$attach$sep$raw$sep$delete$sep$diff$sep$print$sep$more$sep$help</div>"
+  format="<div class='natTopicActions'>$new$sep$edit$sep$attach$sep$raw$sep$delete$sep$diff$sep$print$sep$more</div>"
 }%
 <!-- //twikiwebtopicactions -->%STOPINCLUDE%
 
-%STARTSECTION{"topicactions_top"}%<!-- twikiwebtopicactions -->
-%USERACTIONS{
-  guest="$login$sep$register"
-  format="<div class='natGreeter'>$user</div><div class='natTopicActions'><table cellspacing='0' cellpadding='0'><tr><td>$edit</td><td>$attach</td><td>$raw</td><td>$print</td></tr><tr><td>$diff</td><td>$move</td><td>$more</td><td>$logout</td></tr></table></div>"
-}%
-<!-- //twikiwebtopicactions -->%ENDSECTION{"topicactions_top"}%
