@@ -35,7 +35,24 @@ sub searchCgi {
   my $session = shift;
 
   $TWiki::Plugins::SESSION = $session;
-  my $searcher = new TWiki::Plugins::NatSkinPlugin::Search($session);
+
+  my $searcher;
+  my $context = TWiki::Func::getContext();
+  my $systemWeb = TWiki::Func::getTwikiWebname();
+
+  # get search engine impl
+  my $searchEngine = TWiki::Func::getPreferencesValue('NATSEARCHENGINE') || 'native';
+
+  if ($searchEngine =~ /(SearchEngine)?KinoSearch(AddOn)?/i) {
+    require TWiki::Contrib::SearchEngineKinoSearchAddOn::Search;
+    $searcher = new TWiki::Contrib::SearchEngineKinoSearchAddOn::Search('search');
+  } elsif ($searchEngine =~ /(SearchEngine)?Plucene(AddOn)?/i) {
+    require TWiki::Contrib::SearchEngine::Plucene::Search;
+    $searcher = new TWiki::Contrib::SearchEngine::Plucene::Search($session);
+  } else {
+    $searcher = new TWiki::Plugins::NatSkinPlugin::Search($session);
+  }
+
   my $text = $searcher->search();
 
   $session->writeCompletePage($text, 'view');

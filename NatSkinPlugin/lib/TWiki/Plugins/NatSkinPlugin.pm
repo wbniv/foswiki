@@ -50,7 +50,7 @@ $STARTWW = qr/^|(?<=[\s\(])/m;
 $ENDWW = qr/$|(?=[\s\,\.\;\:\!\?\)])/m;
 
 $VERSION = '$Rev$';
-$RELEASE = '3.00-pre20';
+$RELEASE = '3.00-pre23';
 $NO_PREFS_IN_TOPIC = 1;
 $SHORTDESCRIPTION = 'Theming engine for NatSkin';
 
@@ -84,6 +84,7 @@ sub initPlugin {
   TWiki::Func::registerTagHandler('WEBLINK', \&renderWebLink);
   TWiki::Func::registerTagHandler('USERACTIONS', \&renderUserActions);
   TWiki::Func::registerTagHandler('NATWEBLOGO', \&renderNatWebLogo);
+  TWiki::Func::registerTagHandler('NATWEBLOGOURL', \&renderNatWebLogoUrl);
   TWiki::Func::registerTagHandler('KNOWNSTYLES', \&renderKnownStyles);
   TWiki::Func::registerTagHandler('KNOWNVARIATIONS', \&renderKnownVariations);
   TWiki::Func::registerTagHandler('WEBCOMPONENT', \&renderWebComponent);
@@ -1438,6 +1439,24 @@ sub renderNatWebLogo {
   return '<span class="natWebLogo">'.$natWebLogo.'</span>' if $natWebLogo;
 
   return 'TWiki';
+}
+
+#############################################################################
+# returns the logo url in the header bar.
+# this will check for a couple of preferences:
+#    * return %NATWEBLOGOURL% if defined
+#    * return %WEBLOGOURL% if defined
+#    * return %WIKITLOGOURL% if defined
+#    * or return url to %MAINWEB%/%HOMETOPIC%
+#
+sub renderNatWebLogoUrl {
+
+  return 
+    TWiki::Func::getPreferencesValue('NATWEBLOGOURL') ||
+    TWiki::Func::getPreferencesValue('WEBLOGOURL') ||
+    TWiki::Func::getPreferencesValue('WIKILOGOURL') ||
+    TWiki::Func::getPreferencesValue('%SCRIPTURL{"view"}%/%MAINWEB%/%HOMETOPIC%');
+
 }
 
 

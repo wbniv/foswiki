@@ -184,6 +184,18 @@ then add the following to  the %MAINWEB%.TWikiPreferences:
   * Set WEBLOGOIMG = /path/to/your/defaultlogo.gif
 </verbatim>
 
+---+++ NATWEBLOGOURL
+*Syntax*: =%<nop>NATWEBLOGOURL%=
+
+returns the hyper link that the logo points to. This will check the following
+preference variables in the order given and return the value of the first one defined:
+   1 NATWEBLOGOURL
+   1 WEBLOGOURL
+   1 WIKILOGOURL
+
+If none of them is defined NATWEBLOGOURL defaults to
+<verbatim>%SCRIPTURL{"view"}%/%MAINWEB%/%HOMETOPIC%</verbatim>
+
 ---+++ PREVREV
 *Syntax*: =%<nop>PREVREV%= 
 
@@ -335,8 +347,10 @@ The following variables can be used in the format string:
 |  Plugin Author: | TWiki:Main/MichaelDaum |
 |  Copyright &copy;: | 2003-2008, Michael Daum http://michaeldaumconsulting.com |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  Plugin Version: | v3.00-pre20 |
+|  Plugin Version: | v3.00-pre23 |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  05 Nov 2008: | added NATWEBLOGOURL; \
+                  natsearch can now use kinosearch, plucene, or its own native search engine |
 |  03 Jul 2008: | removed unused NATLOGINURL, NATLOGOUTURL, NATDIFFURL; \
                   removed auto-disabling the plugin on non-nat skins; \
                   fixed patching the skinpath not to include the cover; \
@@ -485,8 +499,6 @@ The following variables can be used in the format string:
 |  16 Mar 2005: | Initial version |
 |  Perl Version: | >=5.6 |
 |  TWiki:Plugins/Benchmark: | TWiki:TWiki/GoodStyle nn%, TWiki:TWiki/FormattedSearch nn%, %TOPIC% nn% |
-|  Plugin Home: | TWiki:Plugins/NatSkinPlugin |
-|  Feedback: | TWiki:Plugins/NatSkinPluginDev  |
-|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+|  Plugin Home: | http://nextwiki.org/Extensions/NatSkinPlugin |
+|  Feedback: | http://nextwiki.org/Extensions/NatSkinPluginDev  |
 
--- TWiki:Main/MichaelDaum - 03 Jul 2008 
