@@ -5,5 +5,4 @@ TWiki::Plugins::GluePlugin,>=2.00,perl,Required
 TWiki::Plugins::IfDefinedPlugin,>=1.01,perl,Required
 TWiki::Plugins::JQueryPlugin,>=1.0,perl,Required
 TWiki::Plugins::NatEditPlugin,>=2.00,perl,Required
-TWiki::Plugins::RedDotPlugin,>=1.37,perl,Recommended
 TWiki::Plugins::JQueryTwistyPlugin,>=1.00,perl,Recommended
