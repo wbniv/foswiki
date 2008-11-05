@@ -1,5 +1,8 @@
 data/TWiki/WorkflowPlugin.txt 0640 Plugin doc page
+data/TWiki/VarWORKFLOW.txt 0640 Variables doc page
 lib/TWiki/Plugins/WorkflowPlugin.pm 0640 Plugin Perl module
+lib/TWiki/Plugins/WorkflowPlugin/Workflow.pm 0640 Plugin Perl module
+lib/TWiki/Plugins/WorkflowPlugin/ControlledTopic.pm 0640 Plugin Perl module
 pub/TWiki/WorkflowPlugin/Flow.gif 0640 Example image
 pub/TWiki/WorkflowPlugin/Flow.draw 0640 Example image
 pub/TWiki/WorkflowPlugin/convert.pl.txt 0640 Conversion script

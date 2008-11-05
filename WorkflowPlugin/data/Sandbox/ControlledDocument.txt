@@ -1,21 +1,16 @@
-%META:TOPICINFO{author="TWikiGuest" date="1153719921" format="1.1" version="1.196"}%
-
 %WORKFLOWNOTICE%
-
-%WORKFLOWSTATEMESSAGE%
-
-Last approved %WORKFLOWLASTVERSION_APPROVED%, on %WORKFLOWLASTTIME_APPROVED%<br>
-Last revision %WORKFLOWLASTVERSION_UNDERREVISION%, on %WORKFLOWLASTTIME_UNDERREVISION%
 
 Some controlled text.
 
-
 	* Set WORKFLOW = DocumentApprovalWorkflow
+| *Workflow* ||
+| Current state | %WORKFLOWSTATE% |
+| Transitions available | %WORKFLOWTRANSITION% |
+| State message | %WORKFLOWSTATEMESSAGE% |
+| Last time in APPROVED state | %WORKFLOWLASTTIME_APPROVED% |
+| Last version in APPROVED state | %WORKFLOWLASTVERSION_APPROVED% |
+
+Workflow history: %WORKFLOWHISTORY%
 
 
-%WORKFLOWTRANSITION% 
 
-
-PS: Note, that the tags %<nop>WORKFLOWTRANSITION, %<nop>WORKFLOWNOTICE%, and
-%<nop>WORKFLOWSTATEMESSAGE% could be placed in the footer or header, as
-well.

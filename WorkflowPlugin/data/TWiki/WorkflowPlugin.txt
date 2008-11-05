@@ -5,20 +5,20 @@
 <div style="float:right">
 %ATTACHURL%/Flow.gif
 </div>
-TWiki benefits from the fact that every user can modify a topic instantly without restrictions. However sometimes you want to be able to associate a "state" with a topic and then control the work flow that the topic progresses through as content is added. 
+Wikis benefits from the fact that every user can modify a topic instantly without restrictions. However sometimes you want to be able to associate a "state" with a topic and then control the work flow that the topic progresses through as content is added. 
 For example,
    * When writing documents compliant with ISO 9000 (e.g. a quality manual), it is essential that documents are approved by the management before they may be applied by the employees.
    * In a defect tracking data base, defects typically transition through a series of states from submission to resolution, with different actions available depending on the state of the defect.
    * In a journal database, papers must be reviewed and approved by several experts in the field before being allowed to be published.
 
-This plugin lets you associate a complex work flow with topics in your TWiki.
+This plugin lets you associate a complex work flow with topics in your wiki.
 
 A workflow can be associated with a single topic, or with an entire web. If a topic is under workflow control, you can define a set of _states_ for this topic (e.g. "under revision", "waiting for approval", "approved") and _transitions_ (e.g. "revise", "approve") between these states. Furthermore, you can define which users/groups are permitted to perform specific transistions. In this way, you can control, for example, who is allowed to "approve" a topic and who is not. 
 
 ---++ Usage
 
 A topic is under document control if the preference variable =WORKFLOW= is set
-in the topic page. =WORKFLOW= must be set to the TWiki name of a topic that describes your specific workflow (the _workflow description topic_).
+in the topic page. =WORKFLOW= must be set to the wiki name of a topic that describes your specific workflow (the _workflow description topic_).
 
 Note: you can hide the setting in a normal view using HTML comments, or better, you can put these settings into the local topic settings, accessible from the "more" screen.
 
@@ -28,7 +28,7 @@ The workflow description topic must contain one state table and one transition t
 
 This is easiest illustrated using an example (available as Sandbox.DocumentApprovalWorkflow if the plugin is installed).
 
-The state table is a TWiki table with three columns:
+The state table is a table with three columns:
 
 <verbatim>
 | *State*       | *Allow Edit* | *Message* |
@@ -81,7 +81,7 @@ If a form name is given in the last column, this form will be attached to the to
    * If no form is given, the existing form (if any) is left in place.
 A typical usage of the form would be to collect additional information as the topic walks through the work flow, or to make information in the form unchangeable (by setting it to a =label= field) once a given state is reached.
 
-You can also define other TWiki variables starting with =WORKFLOW= in the workflow description topic. These will be expanded to their defined values in any topic that uses the workflow. For example:
+You can also define other variables starting with =WORKFLOW= in the workflow description topic. These will be expanded to their defined values in any topic that uses the workflow. For example:
 	* Set WORKFLOWNOTICE = This topic is under document control.
 will define =WORKFLOWNOTICE= in any topic that uses the workflow.
 
@@ -89,23 +89,22 @@ will define =WORKFLOWNOTICE= in any topic that uses the workflow.
 
 As described above the topic needs to contain a definition for the variable =WORKFLOW= for it to be controlled under the approval workflow. This is best set as a document-specific preference setting in the =More topic actions= screen.
 
-The plugin defines a number of %TWIKIWEB%.TWikiVariables that can be used in the topic under flow control:
-| *Variable* | *Description* |
-| =%<nop>WORKFLOWTRANSITION%= | Expands to either (a) a pull-down menu if the user can perform more than one transition, (b) a button if the current user can only perform one transition, or (c) empty space if the current user is not allowed to perform any action. |
-| =%<nop>WORKFLOWSTATEMESSAGE%= | Expands to the corresponding message in the state table. |
-| =%<nop>WORKFLOWLASTTIME_State%= | Expands to the timestamp when the document was last in the _State_ last state. For example, in our example above =%<nop>WORKFLOWLASTTIME_APPROVED%= would be replaced by the timestamp when the document was last in the =APPROVED= state. |
-| =%<nop>WORKFLOWLASTVERSION_State%= | Expands to topic version when the document was last in the state _State_. |
-| =%<nop>WORKFLOWHISTORY%= | Expands to the history of state transitions the topic has undergone. The format of the history is dictated by the =WORKFLOWHISTORYFORMAT= (described below). |
-| =%<nop>WORKFLOWSTATE%= | Expands to the current state of the document. It can also be given a =topic= parameter (default), in which case the state of that topic is returned. |
+The plugin defines a number of %SYSTEMWEB%.TWikiVariables that can be used in the topic under flow control:
+%INCLUDE{VarWORKFLOW}%
 
-Furthermore, the plugin replaces any variable starting with =WORKFLOW= that is defined in the workflow description file. If the topic is *not* controlled, then any references to =WORKFLOW= variables are simply removed (you can use this behaviour to place these tags in the header or footer in your %TWIKIWEB%.TWikiTemplates. They appear only if the currently displayed document is controlled. Otherwise, they are just removed and do not disturb the layout)
+If you replace =%<nop>EDITTOPIC%= with =%<nop>WORKFLOWEDITTOPIC%= in your %SYSTEMWEB%.TWikiTemplates, then the _Edit_ link is crossed out when the user is not allowed to edit the page in a state.  
 
-If you replace =%<nop>EDITTOPIC%= with =%<nop>WORKFLOWEDITTOPIC%= in your %TWIKIWEB%.TWikiTemplates, then the _Edit_ link is crossed out when the user is not allowed to edit the page in a state.  
+---++ Reporting
+A common requirement is to report on the status of topics that are in different states in the workflow. If you are using TWiki 4.2.0 or later, you can use the query search to search for topics in a specific state. For example, to search for all topics in state "APPROVED":
+<verbatim>
+%SEARCH{"META:WORKFLOW.name='APPROVED'" type="query"}%
+</verbatim>
+For more information of query searches, see %SYSTEMWEB%.QuerySearch.
 
 ---++ Bugs
 
 	* You can attach a file to a contolled topic even if the state of the topic does not allow the user to edit it. In general, the plugin should prevent any changes to the topic in such case.
-	* If a transition attaches a form, the initial values are not taken from the form definition, due to the TWiki form initialization algorithm.
+	* If a transition attaches a form, the initial values are not taken from the form definition, due to the way the form initialization algorithm works.
 
 ---++ History and Acknowledgements
 
@@ -119,9 +118,8 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>W
       * #Set WORKFLOWHISTORYFORMAT = "	* $state -- $wikiusername, $date"
       * Set WORKFLOWHISTORYFORMAT = "$n$state, $wikiusername, $date"
 
-   * Appearance of the button to change state can be configured by providing a sytle element, either defining a class for the control, or a local style:
-      * Set STYLE = class="twikiChangeFormButton twikiSubmit"
-      * #Set STYLE = style="padding:0; margin:0; color:#888; text-decoration:underline; background-color:transparent; border:none;"
+   * Appearance of the button to change state can be configured by providing a CSS class.
+      * Set CSSCLASS = twikiChangeFormButton twikiSubmit
 
 ---++ Plugin Installation Instructions
 
@@ -131,13 +129,14 @@ __Note:__ The script =[[%ATTACHURL/convert.pl.txt][convert.pl.txt]]= supplied wi
 
 Look at the examples in the !Sandbox web.
 
-__Note:__ For strict access control, the plugin should know who is looking at the controlled document/topic at all times.  To enable this, you may want to set up the TWiki in such way that users have to log-in *even if they just display a topic*.
+__Note:__ For strict access control, the plugin should know who is looking at the controlled document/topic at all times.  To enable this, you may want to set up the wiki in such way that users have to log-in *even if they just display a topic*.
 
 ---++ Plugin Info
 
 |  Plugin Author: | TWiki:Main/ThomasHartkens, Dakar port and changes from 24 Jul 2006 by TWiki:Main/ThomasWeigert |
 |  Plugin Version: | 28 Jan 2008 |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  5 Nov 2008 | Crawford Currie: Heavily refactored to OO style to ease maintenance. TWikibug:Item6063: ensure form is saved when state changes TWikibug:Item5585: support use of ' TWikibug:Item4188: split off VarWORKFLOW documentation. TWikibug:Item5371: removed 'back door' call that was causing issues |
 |  23 Apr 2008: | Crawford Currie: TWikibug:Item5369: removed last of the core calls, fixed user management. Work supported by http://www.productbox.co.uk/ |
 |  28 Jan 2008: | Kenneth Lavrsen: Fixed his typo in code. Renamed the convert.pl to convert.pl.txt as most TWiki's including twiki.org does not allow .pl as extension and this creates problems when you want to update attachments |
 |  27 Jan 2008: | Markus Ueberall: Fixed for compatibility with TWiki 4.2.0 |
@@ -153,12 +152,12 @@ __Note:__ For strict access control, the plugin should know who is looking at th
 |  05 Feb 2004: | Initial version of !WorkFlowAddOn |
 |  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
 |  Dependencies: | None |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main/ThomasWeigert - 25 Sep 2006
 

@@ -1,6 +1,11 @@
 ---++ Tags used in controlled topics
-	* Set WORKFLOWNOTICE = This topic is under document control. Last approval on %WORKFLOWLASTTIME_APPROVED%: %WORKFLOWLASTVERSION_APPROVED%
-	* Set WORKFLOWBUTTON =  <table border="0" cellspacing="0" cellpadding="0"> <tr><td>You are permitted to change the status of this document:</td><td>%WORKFLOWTRANSITION%</TD></tr></table>
+   * Set WORKFLOWNOTICE = This topic is under document control. Last approval on %WORKFLOWLASTTIME_APPROVED%: %WORKFLOWLASTVERSION_APPROVED%
+   * Set WORKFLOWBUTTON =  <table border="0" cellspacing="0" cellpadding="0"> <tr><td>You are permitted to change the status of this document:</td><td>%WORKFLOWTRANSITION%</TD></tr></table>
+   * Set this to 1 to enable debugging about the workflow
+   * Set WORKFLOWDEBUG = 1
+
+Existing Controlled documents:
+%SEARCH{"Set WORKFLOW = DocumentApprovalWorkflow" excludetopic="%TOPIC%" nonoise="on" format="|$topic|"}%
 
 <form action="%SCRIPTURLPATH{edit}%/Sandbox/ApprovedDocumentAUTOINC000">
  <textarea name="text" style="display:none">
@@ -14,20 +19,20 @@
 
 Workflow history: %<nop>WORKFLOWHISTORY%
  </textarea>
- <input type="submit" value="Create new example approved document" />
+ <input type="submit" value="Create new controlled document" />
 </form>
 
 ---++ States
 | *State*       | *Allow Edit* | *Message* |
-| UNDERREVISION | QualityGroup | This document is being revised. |
+| UNDERREVISION |              | This document is being revised. |
 | APPROVED      | nobody       | This document has been approved for release. |
 | WAITINGFORQM  | nobody       | This document is waiting for approval by the Quality Manager. |
 | WAITINGFORCTO | nobody       | This document is waiting for approval by the CTO.|
 ---++ Transitions
 | *State*        | *Action* | *Next State*  | *Allowed*                        | *Form*        |
-| APPROVED       | revise   | UNDERREVISION | QualityGroup                     | ApprovedForm  |
-| UNDERREVISION  | ready for approval | WAITINGFORQM  | QualityGroup                     | InProcessForm |
-| WAITINGFORQM   | approve  | WAITINGFORCTO | QualityManager                   |               |
-| WAITINGFORQM   | reject   | UNDERREVISION | QualityManager,QualityGroup      |               |
-| WAITINGFORCTO  | approve  | APPROVED      | TechnicalDirector                | ApprovedForm  |
-| WAITINGFORCTO  | reject   | UNDERREVISION | TechnicalDirector,QualityManager |               |
+| APPROVED       | revise   | UNDERREVISION |                      | ApprovedForm  |
+| UNDERREVISION  | ready for approval | WAITINGFORQM  |                      | InProcessForm |
+| WAITINGFORQM   | approve  | WAITINGFORCTO |       |               |
+| WAITINGFORQM   | reject   | UNDERREVISION |       |               |
+| WAITINGFORCTO  | approve  | APPROVED      |       | ApprovedForm  |
+| WAITINGFORCTO  | reject   | UNDERREVISION |       |               |

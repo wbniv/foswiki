@@ -1,0 +1,11 @@
+#VarWEB
+---+++ WORKFLOW* -- variables associated with WorkflowPlugin
+| *Variable* | *Description* |
+| =%<nop>WORKFLOWTRANSITION%= | Expands to either (a) a pull-down menu if the user can perform more than one transition, (b) a button if the current user can only perform one transition, or (c) empty space if the current user is not allowed to perform any action. |
+| =%<nop>WORKFLOWSTATEMESSAGE%= | Expands to the corresponding message in the state table. |
+| =%<nop>WORKFLOWLASTTIME_State%= | Expands to the timestamp when the document was last in the _State_ last state. For example, =%<nop>WORKFLOWLASTTIME_APPROVED%= would be replaced by the timestamp when the document was last in the =APPROVED= state. |
+| =%<nop>WORKFLOWLASTVERSION_State%= | Expands to topic version when the document was last in the state _State_. |
+| =%<nop>WORKFLOWHISTORY%= | Expands to the history of state transitions the topic has undergone. The format of the history is dictated by the =WORKFLOWHISTORYFORMAT= (described below). |
+| =%<nop>WORKFLOWSTATE%= | Expands to the current state of the document. It can also be given a =topic= parameter (default), in which case the state of that topic is returned. |
+
+Furthermore, the plugin replaces any variable starting with =WORKFLOW= that is defined in the workflow description file. If the topic is *not* controlled, then any references to =WORKFLOW= variables are simply removed (you can use this behaviour to place these tags in the header or footer in your %SYSTEMWEB%.TWikiTemplates. They appear only if the currently displayed document is controlled. Otherwise, they are just removed and do not disturb the layout)
