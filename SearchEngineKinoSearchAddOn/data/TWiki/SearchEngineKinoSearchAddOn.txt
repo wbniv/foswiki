@@ -335,6 +335,7 @@ text seems to be O.K.
 |  Add-on Version: | %$VERSION% |
 |  Update note | If you update from an older version to v1.15 or higher, remove the old index and create a complete new one with kinoindex|
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  06 Nov 2008:  | v 1.20, minor revert to stop crash |
 |  05 Nov 2008:  | v 1.19, fixes for (nex)twiki/trunk |
 |  20 Aug 2008:  | v 1.18, added Integrated SEARCH, SearchEngineKinoSearchPlugin, restHandlers, updated code and tests -- TWiki:Main.SvenDowideit |
 |  6 Aug 2008:   | v 1.17, Bugs:Item5717: persist use form choices, Bugs:Item5647: cope better with attachment problems -- TWiki:Main.SvenDowideit |
