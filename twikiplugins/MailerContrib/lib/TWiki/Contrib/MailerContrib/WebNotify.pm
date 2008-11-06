@@ -428,8 +428,6 @@ sub _subscribeTopic {
 
     my ( $web, $topic ) =
       TWiki::Func::normalizeWebTopicName( $this->{web}, $webTopic );
-    $this->_alert( 'warning: ignoring web prefix on ' . $webTopic )
-      if ( $web ne $this->{web} );
 
     #print STDERR "_subscribeTopic($topic)\n";
     my $opts = 0;
