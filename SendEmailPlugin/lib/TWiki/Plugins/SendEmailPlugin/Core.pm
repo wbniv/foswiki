@@ -104,7 +104,7 @@ sub sendEmail {
         # regular address
         $addrs = $thisTo;
       } else {
-        # get from user info
+        # get TO user info
         my $wikiName = TWiki::Func::getWikiName($thisTo);
         my @addrs = TWiki::Func::wikinameToEmails($wikiName);
         $addrs = $addrs[0] if @addrs;
@@ -187,7 +187,8 @@ sub sendEmail {
         } else {
 
           # get from user info
-          my @addrs = TWiki::Func::wikinameToEmails($thisCC);
+          my $wikiName = TWiki::Func::getWikiName($thisCC);
+          my @addrs = TWiki::Func::wikinameToEmails($wikiName);
           $addrs = $addrs[0] if @addrs;
 
           unless ($addrs) {

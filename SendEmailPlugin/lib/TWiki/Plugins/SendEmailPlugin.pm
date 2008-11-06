@@ -26,7 +26,7 @@ use TWiki::Func;
 use vars qw( $VERSION $RELEASE );
 
 $VERSION = '$Rev: 11069$';
-$RELEASE = '1.2.2';
+$RELEASE = '1.2.3';
 
 sub initPlugin {
 

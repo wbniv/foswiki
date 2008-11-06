@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1214322287" format="1.1" version="$Rev$"}%
+%META:TOPICINFO{author="TWikiContributor" date="1224232370" format="1.1" reprev="1.1" version="$Rev$"}%
 ---+!! Send Email Plugin
 
 *Allows to send e-mail through an e-mail form.*
@@ -97,7 +97,7 @@ Subject: %SUBJECT%
 
 <form enctype="application/x-www-form-urlencoded" name="mailform" action="%SCRIPTURL{sendemail}%/%WEB%/%TOPIC%" method="POST">
 <input type="hidden" name="successsection" value="thanks" />
-<fieldset style="border:1px solid #ddd; padding:1em">
+<fieldset>
 <legend><b>Send Email</b></legend>
 <div class="twikiFormSteps">
 <div class="twikiFormStep">
@@ -123,6 +123,13 @@ Subject: %SUBJECT%
 </fieldset>
 </form>
 %SENDEMAIL%
+
+<style type="text/css">
+#patternPage fieldset {
+  border:1px solid #ddd;
+  padding:1em
+}
+</style>
 
 <!--
 %STARTSECTION{"thanks"}%
@@ -366,10 +373,11 @@ plugin on the server where TWiki is running.
 |  Plugin Author: | TWiki:Main.ArthurClemens |
 |  Copyright: | &copy; 2007 Arthur Clemens; 2008 Michael Daum |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  Plugin Version: | 1.2.2, 17 Oct 2008  |
+|  Plugin Version: | 1.2.3, 06 Nov 2008  |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
-|  17 Oct 2008 | 1.2.1 TWiki:Main/MichaelDaum: added support for TWiki-5; fixed sending emails to login names |
-|  26 Jun 2008 | 1.2.0 TWiki:Main/MichaelDaum: \
+|  06 Nov 2008 | 1.2.3 Michael Daum: fixed CC emails; fixed css in docu |
+|  17 Oct 2008 | 1.2.1 Michael Daum: added support for TWiki-5; fixed sending emails to login names |
+|  26 Jun 2008 | 1.2.0 Michael Daum: \
                  added ALLOW/DENY preference settings to prevent this plugin from being used as an open spam relay; \
                  added =template= option allowing more control over email header etc; \
                  fixed mod_perl/perperl coding errors;\
