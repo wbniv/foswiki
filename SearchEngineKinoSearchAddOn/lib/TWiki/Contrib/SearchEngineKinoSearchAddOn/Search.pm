@@ -31,13 +31,18 @@ sub newSearch {
 
 
 sub searchCgi {
-  my $session = shift;
+    my $session = shift;
+  
+    if (! defined $session) {
+        my $query   = new CGI;    
+        $session = new TWiki( undef, $query);
+    }
 
-  $TWiki::Plugins::SESSION = $session;
-  my $searcher = TWiki::Contrib::SearchEngineKinoSearchAddOn::Search->newSearch();
-  my $text = $searcher->search(0, $session);
-
-  $session->writeCompletePage($text, 'view');
+    $TWiki::Plugins::SESSION = $session;
+    my $searcher = TWiki::Contrib::SearchEngineKinoSearchAddOn::Search->newSearch();
+    my $text = $searcher->search(0, $session);
+  
+    $session->writeCompletePage($text, 'view');
 }
 
 # Method to do the search.
