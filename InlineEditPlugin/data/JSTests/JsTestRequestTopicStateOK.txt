@@ -1,5 +1,5 @@
 %META:TOPICINFO{author="SvenDowideit" date="1166451067" format="1.1" reprev="1.2" version="1.2"}%
-<script language="javascript" src="%PUBURL%/%TWIKIWEB%/JSUnitContrib/app/jsUnitCore.js"></script>
+<script language="javascript" src="%PUBURL%/%SYSTEMWEB%/JSUnitContrib/app/jsUnitCore.js"></script>
 <script language="javascript">
 var stateJSON;
 function localAjaxSuccess(o) {
@@ -18,8 +18,8 @@ function testAjaxResult() {
 }
 </script>
 
-*[[%PUBURL%/%TWIKIWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%WEB%/%TOPIC%][Run test with TestRuner]]*
+*[[%PUBURL%/%SYSTEMWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%WEB%/%TOPIC%][Run test with TestRuner]]*
 
-*[[%PUBURL%/%TWIKIWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%WEB%/JsTestSuite][Run JsTestSuite with TestRuner]]*
+*[[%PUBURL%/%SYSTEMWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%WEB%/JsTestSuite][Run JsTestSuite with TestRuner]]*
 
 %META:TOPICMOVED{by="SvenDowideit" date="1166450656" from="Sandbox.JsUnitTest" to="Sandbox.JsTestRequestTopicStateOK"}%

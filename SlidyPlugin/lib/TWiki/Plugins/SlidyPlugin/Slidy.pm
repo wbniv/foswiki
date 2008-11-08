@@ -65,27 +65,27 @@ sub handler {
             $cover .=
 '<!-- hidden style graphics to ensure they are saved with other content -->';
             $cover .=
-'<img class="hidden" src="%PUBURLPATH%/%TWIKIWEB%/SlidyPlugin/bullet.png" alt="" />';
+'<img class="hidden" src="%PUBURLPATH%/%SYSTEMWEB%/SlidyPlugin/bullet.png" alt="" />';
             $cover .=
-'<img class="hidden" src="%PUBURLPATH%/%TWIKIWEB%/SlidyPlugin/fold.bmp" alt="" />';
+'<img class="hidden" src="%PUBURLPATH%/%SYSTEMWEB%/SlidyPlugin/fold.bmp" alt="" />';
             $cover .=
-'<img class="hidden" src="%PUBURLPATH%/%TWIKIWEB%/SlidyPlugin/unfold.bmp" alt="" />';
+'<img class="hidden" src="%PUBURLPATH%/%SYSTEMWEB%/SlidyPlugin/unfold.bmp" alt="" />';
             $cover .=
-'<img class="hidden" src="%PUBURLPATH%/%TWIKIWEB%/SlidyPlugin/fold-dim.bmp" alt="" />';
+'<img class="hidden" src="%PUBURLPATH%/%SYSTEMWEB%/SlidyPlugin/fold-dim.bmp" alt="" />';
             $cover .=
-'<img class="hidden" src="%PUBURLPATH%/%TWIKIWEB%/SlidyPlugin/nofold-dim.bmp" alt="" />';
+'<img class="hidden" src="%PUBURLPATH%/%SYSTEMWEB%/SlidyPlugin/nofold-dim.bmp" alt="" />';
             $cover .=
-'<img class="hidden" src="%PUBURLPATH%/%TWIKIWEB%/SlidyPlugin/unfold-dim.bmp" alt="" />';
+'<img class="hidden" src="%PUBURLPATH%/%SYSTEMWEB%/SlidyPlugin/unfold-dim.bmp" alt="" />';
             $cover .=
-'<img class="hidden" src="%PUBURLPATH%/%TWIKIWEB%/SlidyPlugin/bullet-fold.gif" alt="" />';
+'<img class="hidden" src="%PUBURLPATH%/%SYSTEMWEB%/SlidyPlugin/bullet-fold.gif" alt="" />';
             $cover .=
-'<img class="hidden" src="%PUBURLPATH%/%TWIKIWEB%/SlidyPlugin/bullet-unfold.gif" alt="" />';
+'<img class="hidden" src="%PUBURLPATH%/%SYSTEMWEB%/SlidyPlugin/bullet-unfold.gif" alt="" />';
             $cover .=
-'<img class="hidden" src="%PUBURLPATH%/%TWIKIWEB%/SlidyPlugin/bullet-fold-dim.gif" alt="" />';
+'<img class="hidden" src="%PUBURLPATH%/%SYSTEMWEB%/SlidyPlugin/bullet-fold-dim.gif" alt="" />';
             $cover .=
-'<img class="hidden" src="%PUBURLPATH%/%TWIKIWEB%/SlidyPlugin/bullet-nofold-dim.gif" alt="" />';
+'<img class="hidden" src="%PUBURLPATH%/%SYSTEMWEB%/SlidyPlugin/bullet-nofold-dim.gif" alt="" />';
             $cover .=
-'<img class="hidden" src="%PUBURLPATH%/%TWIKIWEB%/SlidyPlugin/bullet-unfold-dim.gif" alt="" />';
+'<img class="hidden" src="%PUBURLPATH%/%SYSTEMWEB%/SlidyPlugin/bullet-unfold-dim.gif" alt="" />';
             $cover .= "\n---+ " . $1 . "</div>";
             $text = $2;
         }

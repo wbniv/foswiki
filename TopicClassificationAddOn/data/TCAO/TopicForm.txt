@@ -27,7 +27,7 @@ of TWikiForms.
 | SubjectArea | checkbox | 3 | %DBQUERY{"Classification='SubjectArea'" format="$topic" separator=", "}%    | Classify a topic by subject | |
 | Summary   | text   | 50  |   | Short summary or headline of topic  | |
 
-Related Topic: TopicClassification, WebPreferences, %TWIKIWEB%.TWikiForms
+Related Topic: TopicClassification, WebPreferences, %SYSTEMWEB%.TWikiForms
 
 <!-- Topic Permissions
    * Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup

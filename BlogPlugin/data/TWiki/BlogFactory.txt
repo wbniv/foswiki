@@ -1,6 +1,6 @@
 %META:TOPICINFO{author="TWikiContributor" date="1156794737" format="1.1" version="1.1"}%
 ---+!! %TOPIC%
-See also: %TWIKIWEB%.BlogPlugin, %TWIKIWEB%.BlogUp
+See also: %SYSTEMWEB%.BlogPlugin, %SYSTEMWEB%.BlogUp
 
 ---++ Create a new blog
 <noautolink>
@@ -28,7 +28,7 @@ See also: %TWIKIWEB%.BlogPlugin, %TWIKIWEB%.BlogUp
   <td colspan="2" style="padding:0px;margin:0px;">
   %TWISTYTOGGLE{id="advopts" mode="div" remember="on"}%
   <table>
-    <tr style="%CALC{"$IF($EXISTS(%TWIKIWEB%.NatSkin),,display:none)"}%">
+    <tr style="%CALC{"$IF($EXISTS(%SYSTEMWEB%.NatSkin),,display:none)"}%">
       <td valign="top" class="twikiFirstCol">Style:</td>
       <td valign="top">
 	<select name="style">

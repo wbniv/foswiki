@@ -136,7 +136,7 @@ Because TWiki files are served along dynamic urls we cannot use a static url for
 <blockquote>
 <verbatim>
 twiki.AjaxRequest.setDefaultIndicatorHtml(
-	"<img src='%PUBURL%/%TWIKIWEB%/TWikiAjaxContrib/indicator.gif' alt='' />"
+	"<img src='%PUBURL%/%SYSTEMWEB%/TWikiAjaxContrib/indicator.gif' alt='' />"
 	);
 </verbatim>
 </blockquote>
@@ -337,7 +337,7 @@ The solution is to create a separate request for the script section:
 
 <blockquote>
 <verbatim>
-var javascriptUrl = "%SCRIPTURL{"view"}%/%TWIKIWEB%/WebTopicCreator?skin=text"
+var javascriptUrl = "%SCRIPTURL{"view"}%/%SYSTEMWEB%/WebTopicCreator?skin=text"
 				+ ";section=javascriptfunctions";
 
 twiki.AjaxRequest.load("NEWTOPICFORM_JS",
@@ -408,18 +408,18 @@ The Yahoo! classes are available as Contrib at TWiki:Plugins.YahooUserInterfaceC
 Include the required scripts:
 <blockquote>
 <verbatim>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/YahooUserInterfaceContrib/build/yahoo/yahoo.js"></script>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/YahooUserInterfaceContrib/build/connection/connection.js"></script>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/TWikiJavascripts/twikilib.js"></script>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/TWikiJavascripts/twikiArray.js"></script>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/TWikiAjaxContrib/twikiAjaxRequest.compressed.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/YahooUserInterfaceContrib/build/yahoo/yahoo.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/YahooUserInterfaceContrib/build/connection/connection.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiJavascripts/twikilib.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiJavascripts/twikiArray.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiAjaxContrib/twikiAjaxRequest.compressed.js"></script>
 </verbatim>
 </blockquote>
 
 It is recommended to use TWiki:Plugins.BehaviourContrib for interface elements:
 
 <verbatim>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/BehaviourContrib/behaviour.compressed.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/BehaviourContrib/behaviour.compressed.js"></script>
 </verbatim>
 
 ---+++ Public API
@@ -488,7 +488,7 @@ See TWikiAjaxContribExamples
 | Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 | Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences
 
 
 %META:FILEATTACHMENT{name="twikiAjaxRequest.js" attr="" autoattached="1" comment="" date="1162503911" path="twikiAjaxRequest.js" size="19760" user="UnknownUser" version=""}%

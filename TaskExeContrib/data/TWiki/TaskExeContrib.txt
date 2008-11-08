@@ -335,7 +335,7 @@ Once installed you should have access to TaskExeManager.
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences
 
 -- TWiki:Main/StephaneLenclud - 10 May 2007
 <!-- replace 10 May 2007 with %$DATE% for Build module, to get build date -->

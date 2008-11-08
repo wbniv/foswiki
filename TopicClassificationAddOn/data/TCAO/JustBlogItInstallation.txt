@@ -6,7 +6,7 @@ This topic explains how to install and use the [[http://blog.warmbrain.com/justb
    * The URL and title for the web page are automatically copied and added to the appropriate fields in the !WebLog form.
    * Whatever text was selected in the 
 
-To use this, first you need to have %TWIKIWEB%.TopicClassificationAddOn as well as the !WebLog !TopicType installed. We'll assume you already have %TWIKIWEB%.TopicClassificationAddOn installed in the web where you want the blog (if not, see %TWIKIWEB%.TopicClassificationAddOn). To add the  !WebLog !TopicType to that web, use "Add new !TopicType" form in the !TopicType topic within the web. 
+To use this, first you need to have %SYSTEMWEB%.TopicClassificationAddOn as well as the !WebLog !TopicType installed. We'll assume you already have %SYSTEMWEB%.TopicClassificationAddOn installed in the web where you want the blog (if not, see %SYSTEMWEB%.TopicClassificationAddOn). To add the  !WebLog !TopicType to that web, use "Add new !TopicType" form in the !TopicType topic within the web. 
 
 To get the !JustBlogIt extension, you can go to its [[http://blog.warmbrain.com/justblogit/][home page]], or if you're using a Mozilla/Firefird browser and are ready to install it, just [[http://blog.warmbrain.com/justblogit/justblogit-0.2.xpi][click here]] to install it.
 

@@ -70,7 +70,7 @@ If you are viewing with the nave skin and you want to "break-out" so that you ca
 
 ---+++ <nop>%TOPIC% Settings
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 	* Set SHORTDESCRIPTION = This plugin allows a user to easily combine different TWiki topics into one logical document that a user can can easily navigate through "navigation" links displayed at the header and footer of each page.
 
 	* Debug plugin: (See output in data/debug.txt) 
@@ -104,7 +104,7 @@ All pages referenced in the index must be in the same web as the index page.
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main.MikeBarton - 30 Jan 2002<br />
 %META:FILEATTACHMENT{name="NavPlugin.zip" attr="" comment="" date="1012414230" path="\\fs1\userhomes\mikeb\mikeb\TWiki-Installs\NavPlugin.zip" size="18376" user="MikeBarton" version="1.1"}%

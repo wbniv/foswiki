@@ -183,7 +183,7 @@ User set the Various information parameters as follows:
 | *Specify event*: | ==&nbsp;&nbsp; * dd MMM yyyy - description== | 09 Dec 2002 - Expo |
 | *Delete event*: | ==&nbsp;&nbsp; - dd MMM yyyy - description== | 09 Dec 2002 - Influence 02 |
 ---++ Default settings
-	* One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = This plugin shows a monthly calendar with highlighted events
 	* How the cell content is formatted
 <verbatim>
@@ -251,7 +251,7 @@ In shell prompt execute :-  crontab -e [Enter]
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- Main.AshishNaval - 03 Nov 2004
 

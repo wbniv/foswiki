@@ -205,7 +205,7 @@ Following variables are expanded in format strings:
    * $formatTime(&lt;formfield-accessor> [,&lt;format>]): format the datefield pointed
      to by the &lt;formfield-accessor> using the given &lt;format>; the format can be
      in any form supported by =TWiki::Func::formatTime()= 
-     (see [[%TWIKIWEB%.TWikiVariables#DISPLAYTIME_format_formatted_dis][TWikiVariables]] documentation).
+     (see [[%SYSTEMWEB%.TWikiVariables#DISPLAYTIME_format_formatted_dis][TWikiVariables]] documentation).
    * $expand(&lt;formfield-accessor>): return the formfield pointed to by the 
       &lt;formfield-accessor>
    * $rss(...): encode entities so that the text can be included in an rss feed
@@ -549,7 +549,7 @@ You can also call the update from the command line - from the twiki/bin dir -
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | TWiki:Plugins/DBCacheContrib (Version TWiki-4, Rev &gt;= 13562)|
 |  Perl Version: | 5.8 |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | TWiki:Plugins/%TOPIC% |
 |  Feedback: | TWiki:Plugins/%TOPIC%Dev |
 |  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |

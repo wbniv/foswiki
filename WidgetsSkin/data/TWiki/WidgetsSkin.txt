@@ -73,7 +73,7 @@ Select the Widget skin:
    * Set SKIN = widgets
 Get the common text section definitions from this topic (see the "Customisation" section in %WEB%.%TOPIC% for more information on what this means):
    * Set WIDGETSSKIN_DESIGNTOPIC = %DESIGN%CURRENTDESIGN%%
-Get the Moveable Type compatible CSS and images from this topic (must be in the %TWIKIWEB%):
+Get the Moveable Type compatible CSS and images from this topic (must be in the %SYSTEMWEB%):
    * Set WIDGETSSKIN_CSSFILE = %CSS%CURRENTCSS%%
 Get the extra CSS required by TWiki from this topic
    * Set WIDGETSSKIN_TWIKICSSFILE = %URLPARAM{"twikicssfile" default="%PUBURLPATH%/%WIDGETSSKIN_DESIGNTOPIC%/TWiki.css"}%
@@ -119,7 +119,7 @@ Once you are done, you will be able to follow the instructions under 'Enable thi
    * skin - must be set to Widget
    * cssfile - the url to the Widget css file you want to view
    * twikicssfile - the url to the TWiki.css file (usually directly linked to the widgetstopic)
-   * widgetstopic - the topic (in the %TWIKIWEB% only) that the Widget common sections come from
+   * widgetstopic - the topic (in the %SYSTEMWEB% only) that the Widget common sections come from
    * widgetscolumns - column setting (one-column, two-column-left, two-column-right, three-column)
 
 ---++ Installation Instructions
@@ -158,7 +158,7 @@ You can use this technique to create a TWikiSkin that matches closely the HTML o
 |  Feedback: | [[http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev][%TOPIC%Dev]] |
 |  Appraisal: | [[http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal][%TOPIC%Appraisal]] |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences
 
 -- TWiki:Main/SvenDowideit - %DATE%
 
@@ -190,7 +190,7 @@ Or type the *full URL path* to a CSS you have downloaded from the style browser 
 <input type="hidden" name="cssidx" value="%CURRENTCSS%" />
 <input type="hidden" name="colsidx" value="%CURRENTCOLS%" />
 <input type="hidden" name="widgetscolumns" value="%URLPARAM{"widgetscolumns" default="%COLS%CURRENTCOLS%%"}%" />
-<input type="text" style="width:65%" name="cssfile" value="%PUBURL%/%TWIKIWEB%/WidgetsSkin/"/>
+<input type="text" style="width:65%" name="cssfile" value="%PUBURL%/%SYSTEMWEB%/WidgetsSkin/"/>
 <input type="submit" value="View design" />
 </form>
 </div>
@@ -239,90 +239,90 @@ CSSes
    * Set DEFAULTCSS = 70
    * Set FIRSTCSS = 50
 removed as they are MT3 css   
-   * Set CSS47 = %PUBURL%/%TWIKIWEB%/WidgetsSample3Design/theme.css
+   * Set CSS47 = %PUBURL%/%SYSTEMWEB%/WidgetsSample3Design/theme.css
    * Set NAME47 = Sample3Theme
-   * Set CSS48 = %PUBURL%/%TWIKIWEB%/WidgetsSample2Design/theme.css
+   * Set CSS48 = %PUBURL%/%SYSTEMWEB%/WidgetsSample2Design/theme.css
    * Set NAME48 = Sample2Theme
-   * Set CSS49 = %PUBURL%/%TWIKIWEB%/WidgetsSampleDesign/theme.css
+   * Set CSS49 = %PUBURL%/%SYSTEMWEB%/WidgetsSampleDesign/theme.css
    * Set NAME49 = SampleTheme
    
-   * Set CSS50 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-austin/screen.css
+   * Set CSS50 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/cityscape-austin/screen.css
    * Set NAME50 = cityscape-austin
-   * Set CSS51 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-boston/screen.css
+   * Set CSS51 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/cityscape-boston/screen.css
    * Set NAME51 = cityscape-boston
-   * Set CSS52 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-chicago/screen.css
+   * Set CSS52 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/cityscape-chicago/screen.css
    * Set NAME52 = cityscape-chicago
-   * Set CSS53 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-dc/screen.css
+   * Set CSS53 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/cityscape-dc/screen.css
    * Set NAME53 = cityscape-dc
-   * Set CSS54 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-houston/screen.css
+   * Set CSS54 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/cityscape-houston/screen.css
    * Set NAME54 = cityscape-houston
-   * Set CSS55 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-kiev/screen.css
+   * Set CSS55 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/cityscape-kiev/screen.css
    * Set NAME55 = cityscape-kiev
-   * Set CSS56 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-la/screen.css
+   * Set CSS56 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/cityscape-la/screen.css
    * Set NAME56 = cityscape-la
-   * Set CSS57 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-london/screen.css
+   * Set CSS57 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/cityscape-london/screen.css
    * Set NAME57 = cityscape-london
-   * Set CSS58 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-miami/screen.css
+   * Set CSS58 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/cityscape-miami/screen.css
    * Set NAME58 = cityscape-miami
-   * Set CSS59 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-nashville/screen.css
+   * Set CSS59 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/cityscape-nashville/screen.css
    * Set NAME59 = cityscape-nashville
-   * Set CSS60 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-nyc/screen.css
+   * Set CSS60 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/cityscape-nyc/screen.css
    * Set NAME60 = cityscape-nyc
-   * Set CSS61 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-paris/screen.css
+   * Set CSS61 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/cityscape-paris/screen.css
    * Set NAME61 = cityscape-paris
-   * Set CSS62 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-philadelphia/screen.css
+   * Set CSS62 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/cityscape-philadelphia/screen.css
    * Set NAME62 = cityscape-philadelphia
-   * Set CSS63 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-portland/screen.css
+   * Set CSS63 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/cityscape-portland/screen.css
    * Set NAME63 = cityscape-portland
-   * Set CSS64 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-seattle/screen.css
+   * Set CSS64 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/cityscape-seattle/screen.css
    * Set NAME64 = cityscape-seattle
-   * Set CSS65 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-sf/screen.css
+   * Set CSS65 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/cityscape-sf/screen.css
    * Set NAME65 = cityscape-sf
-   * Set CSS66 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-sydney/screen.css
+   * Set CSS66 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/cityscape-sydney/screen.css
    * Set NAME66 = cityscape-sydney
-   * Set CSS67 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-tokyo/screen.css
+   * Set CSS67 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/cityscape-tokyo/screen.css
    * Set NAME67 = cityscape-tokyo
-   * Set CSS68 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-toronto/screen.css
+   * Set CSS68 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/cityscape-toronto/screen.css
    * Set NAME68 = cityscape-toronto
-   * Set CSS69 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/cityscape-vegas/screen.css
+   * Set CSS69 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/cityscape-vegas/screen.css
    * Set NAME69 = cityscape-vegas
-   * Set CSS70 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/hills-dusk/screen.css
+   * Set CSS70 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/hills-dusk/screen.css
    * Set NAME70 = hills-dusk
-   * Set CSS71 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/hills-green/screen.css
+   * Set CSS71 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/hills-green/screen.css
    * Set NAME71 = hills-green
-   * Set CSS72 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/hills-midnight/screen.css
+   * Set CSS72 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/hills-midnight/screen.css
    * Set NAME72 = hills-midnight
-   * Set CSS73 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/hills-pink/screen.css
+   * Set CSS73 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/hills-pink/screen.css
    * Set NAME73 = hills-pink
-   * Set CSS74 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/minimalist-blue/screen.css
+   * Set CSS74 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/minimalist-blue/screen.css
    * Set NAME74 = minimalist-blue
-   * Set CSS75 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/minimalist-brown/screen.css
+   * Set CSS75 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/minimalist-brown/screen.css
    * Set NAME75 = minimalist-brown
-   * Set CSS76 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/minimalist-green/screen.css
+   * Set CSS76 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/minimalist-green/screen.css
    * Set NAME76 = minimalist-green
-   * Set CSS77 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/minimalist-grey/screen.css
+   * Set CSS77 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/minimalist-grey/screen.css
    * Set NAME77 = minimalist-grey
-   * Set CSS78 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/minimalist-light-blue/screen.css
+   * Set CSS78 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/minimalist-light-blue/screen.css
    * Set NAME78 = minimalist-light-blue
-   * Set CSS79 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/minimalist-light-green/screen.css
+   * Set CSS79 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/minimalist-light-green/screen.css
    * Set NAME79 = minimalist-light-green
-   * Set CSS80 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/minimalist-pink/screen.css
+   * Set CSS80 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/minimalist-pink/screen.css
    * Set NAME80 = minimalist-pink
-   * Set CSS81 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/minimalist-purple/screen.css
+   * Set CSS81 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/minimalist-purple/screen.css
    * Set NAME81 = minimalist-purple
-   * Set CSS82 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/minimalist-red/screen.css
+   * Set CSS82 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/minimalist-red/screen.css
    * Set NAME82 = minimalist-red
-   * Set CSS83 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/minimalist-white/screen.css
+   * Set CSS83 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/minimalist-white/screen.css
    * Set NAME83 = minimalist-white
-   * Set CSS84 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/unity-blue/screen.css
+   * Set CSS84 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/unity-blue/screen.css
    * Set NAME84 = unity-blue
-   * Set CSS85 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/unity-green/screen.css
+   * Set CSS85 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/unity-green/screen.css
    * Set NAME85 = unity-green
-   * Set CSS86 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/unity-purple/screen.css
+   * Set CSS86 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/unity-purple/screen.css
    * Set NAME86 = unity-purple
-   * Set CSS87 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/unity-tricolor/screen.css
+   * Set CSS87 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/unity-tricolor/screen.css
    * Set NAME87 = unity-tricolor
-   * Set CSS88 = %PUBURL%/%TWIKIWEB%/WidgetsSkin/themes/unstyled/screen.css
+   * Set CSS88 = %PUBURL%/%SYSTEMWEB%/WidgetsSkin/themes/unstyled/screen.css
    * Set NAME88 = unstyled
 
 

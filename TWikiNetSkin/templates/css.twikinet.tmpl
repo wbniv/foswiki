@@ -12,10 +12,10 @@
 %TMPL:P{"leftbardimensions"}%
 </style>
 <style type="text/css" media="all">
-@import url("%PUBURLPATH%/%TWIKIWEB%/TWikiNetSkin/layout.css");
-@import url("%PUBURLPATH%/%TWIKIWEB%/TWikiNetSkin/style.css");
-@import url("%PUBURLPATH%/%TWIKIWEB%/TWikiNetSkin/colors.css");
-@import url("%PUBURLPATH%/%TWIKIWEB%/TWikiNetSkin/rounded_corners.css");
+@import url("%PUBURLPATH%/%SYSTEMWEB%/TWikiNetSkin/layout.css");
+@import url("%PUBURLPATH%/%SYSTEMWEB%/TWikiNetSkin/style.css");
+@import url("%PUBURLPATH%/%SYSTEMWEB%/TWikiNetSkin/colors.css");
+@import url("%PUBURLPATH%/%SYSTEMWEB%/TWikiNetSkin/rounded_corners.css");
 </style>
 %TMPL:P{"css:dynamic"}%<style type="text/css" media="all">
 %IF{ "$ USERLAYOUTURL" then="@import url('%USERLAYOUTURL%');"}%
@@ -26,7 +26,7 @@
 
 
 %TMPL:DEF{"css:print"}%<style type="text/css" media="all">
-	@import url("%PUBURLPATH%/%TWIKIWEB%/TWikiNetSkin/print.css");
+	@import url("%PUBURLPATH%/%SYSTEMWEB%/TWikiNetSkin/print.css");
 </style>%TMPL:END%
 
 

@@ -19,7 +19,7 @@ Returns =Web.Topic=, where =Web= is the Web it was found in, =Topic= the name of
 Plugin settings are stored as preferences variables. To reference
 a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>FALLBACKPLUGIN_SHORTDESCRIPTION%==
 
-   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+   * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
       * Set SHORTDESCRIPTION = allows an easy way to specify fallback topics and webs to be checked if the topic argument isn't found in the current web.
 
    * Debug plugin: (See output in =data/debug.txt=)
@@ -42,6 +42,6 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>F
 |  Other Dependencies: | none |
 |  Perl Version: | 5.6 |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
 
 -- %MAINWEB%.MeredithLesly - 01 Feb 2006

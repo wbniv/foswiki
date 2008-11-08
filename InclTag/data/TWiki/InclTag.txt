@@ -17,7 +17,7 @@ A lighter weight version of =INCLUDE= that only includes from the current TWiki.
 Tag settings are stored as preferences variables. To reference
 a tag setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INCLTAG_SHORTDESCRIPTION%==
 
-   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+   * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
       * Set SHORTDESCRIPTION = A lighter include
 
  ---++ Tag Installation Instructions
@@ -35,11 +35,11 @@ a tag setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INCL
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 99%, %TWIKIWEB%.FormattedSearch 99%, %TOPIC% 99% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 99% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiTags, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiTags, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
--- %TWIKIWEB%.TWikiContributor - 01 Feb 2006
+-- %SYSTEMWEB%.TWikiContributor - 01 Feb 2006

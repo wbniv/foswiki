@@ -74,13 +74,13 @@ Formatting is based on a template (quicksearch.tmpl) where the only fields updat
   then installation was successful
 
 
-<!---	* Add the following line to the "TWiki Plugins" section of %TWIKIWEB%.TextFormattingRules:
+<!---	* Add the following line to the "TWiki Plugins" section of %SYSTEMWEB%.TextFormattingRules:
 
 		* Plugins.%TOPIC%: Quick searches
 
 -->
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Add quick and dirty search capability to topics. Implements small subset of regular =%<nop>SEARCH%= facility.
 
 
@@ -101,7 +101,7 @@ Formatting is based on a template (quicksearch.tmpl) where the only fields updat
 
 
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 
 -- Main.DaveAlsup - 12 Mar 2002 <br>	

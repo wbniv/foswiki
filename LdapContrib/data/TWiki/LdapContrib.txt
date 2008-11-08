@@ -47,7 +47,7 @@ the "Refresh Cache" button below. Read the documentation of the =MaxCacheAge= va
 
 Tip: You can add this button on any page by adding
 <verbatim>
-%INCLUDE{"%TWIKIWEB%.LdapContrib"}%
+%INCLUDE{"%SYSTEMWEB%.LdapContrib"}%
 </verbatim>
 to it.
 
@@ -334,7 +334,7 @@ Alias old !WikiNames to new account. This is a comma separated list of
 "OldName=NewName" values.
 <verbatim>$TWiki::cfg{Ldap}{WikiNameAliases} = '';</verbatim>
 
-Allow/disallow changing the LDAP password using TWiki's %TWIKIWEB%.ChangePassword feature
+Allow/disallow changing the LDAP password using TWiki's %SYSTEMWEB%.ChangePassword feature
 <verbatim>$TWiki::cfg{Ldap}{AllowChangePassword} = 0; </verbatim>
 
 Define a secondary password manager used to authenticate users that are 

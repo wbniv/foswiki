@@ -245,8 +245,8 @@ sub _addYUI {
     eval 'use TWiki::Contrib::YahooUserInterfaceContrib';
     if (! $@ ) {
         _Debug( 'YahooUserInterfaceContrib is installed, using local files' );
-        $yui = '<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/YahooUserInterfaceContrib/build/yahoo-dom-event/yahoo-dom-event.js"></script>'
-             . '<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/YahooUserInterfaceContrib/build/autocomplete/autocomplete-min.js"></script>'
+        $yui = '<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/YahooUserInterfaceContrib/build/yahoo-dom-event/yahoo-dom-event.js"></script>'
+             . '<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/YahooUserInterfaceContrib/build/autocomplete/autocomplete-min.js"></script>'
     } else {
         _Debug( 'YahooUserInterfaceContrib is not installed, using Yahoo servers' );
         $yui = '<script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/yahoo-dom-event/yahoo-dom-event.js"></script>'

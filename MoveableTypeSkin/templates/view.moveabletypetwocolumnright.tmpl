@@ -1,4 +1,4 @@
-%TMPL:DEF{"moveabletypecss"}%%URLPARAM{"cssfile" default="%IF{"defined MOVEABLETYPESKIN_CSSFILE" then="%MOVEABLETYPESKIN_CSSFILE%" else="%PUBURLPATH%/%TWIKIWEB%/%TMPL:P{moveabletypetext}%/sample.css"}%"}%%TMPL:END%
+%TMPL:DEF{"moveabletypecss"}%%URLPARAM{"cssfile" default="%IF{"defined MOVEABLETYPESKIN_CSSFILE" then="%MOVEABLETYPESKIN_CSSFILE%" else="%PUBURLPATH%/%SYSTEMWEB%/%TMPL:P{moveabletypetext}%/sample.css"}%"}%%TMPL:END%
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" id="sixapart-standard">
@@ -7,7 +7,7 @@
    <meta name="generator" content="Movable Type 3.2" />
    
    <!-- base_weblog.css is a basic stylesheet that gives you a foundation to work off, please include it in your zip file -->
-<link rel="stylesheet" href="%PUBURL%/%TWIKIWEB%/MoveableTypeSampleDesign/base-weblog.css" type="text/css" />
+<link rel="stylesheet" href="%PUBURL%/%SYSTEMWEB%/MoveableTypeSampleDesign/base-weblog.css" type="text/css" />
 <style type="text/css" title="currentStyle" media="screen">
 @import "%TMPL:P{moveabletypecss}%";
 </style>   

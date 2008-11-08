@@ -65,7 +65,7 @@ Discussion with heading for Table of Content - People.LynnwoodBrown
 </verbatim>
 ---------------------------------------------------------------------------
 ---+++ Removable help section 
-This template is used by %TWIKIWEB%.TopicClassificationAddOn
+This template is used by %SYSTEMWEB%.TopicClassificationAddOn
 <verbatim>
 %TMPL:DEF{PROMPT:removeable_help}%
 <div style="background-color:%HELP_BACKGROUND_COLOR%;padding:1em;">
@@ -104,6 +104,6 @@ Once %TOPIC% is enabled within a web, you're ready to start defining *TopicTypes
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Demo url: | http://skyloom.com/Demo/TopicClassification |
 
-__Related Topic:__ %TWIKIWEB%.TWikiAddOns
+__Related Topic:__ %SYSTEMWEB%.TWikiAddOns
 
 %META:REVCOMMENT{ncomments="0"}%

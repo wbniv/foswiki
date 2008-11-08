@@ -16,7 +16,7 @@ Just install the plugin and it will look for PODs to convert. (A POD is generall
 Plugin settings are stored as preferences variables. To reference
 a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>PODPLUGIN_SHORTDESCRIPTION%==
 
-   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+   * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
       * Set SHORTDESCRIPTION = Extract Perl documentation (POD) online. Write TWiki topics in POD.
 
    * Debug plugin: (See output in =data/debug.txt=)
@@ -65,6 +65,6 @@ Test podplugin - testing podplugin
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://twiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
 
 <!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the feedback topic on twiki.org instead. -->

@@ -14,8 +14,8 @@
 
 
 %TMPL:DEF{"script"}%
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/TWikiJavascripts/twiki.js"></script>
-%IF{"context TwistyPluginEnabled" then="" else="<script type='text/javascript' src='%PUBURLPATH%/%TWIKIWEB%/TwistyContrib/twist.js'></script>"}%
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/TWikiJavascripts/twiki.js"></script>
+%IF{"context TwistyPluginEnabled" then="" else="<script type='text/javascript' src='%PUBURLPATH%/%SYSTEMWEB%/TwistyContrib/twist.js'></script>"}%
 <script type="text/javascript">
 //<![CDATA[
 	function launchWindow(inWeb, inTopic) {
@@ -33,11 +33,11 @@
 %TMPL:DEF{"twikistyle"}%
 %TMPL:INCLUDE{"css.tmpl"}%
 <style type="text/css" media="all">%IF{ "context TwistyPluginEnabled" then="" else="
-	@import url('%PUBURLPATH%/%TWIKIWEB%/TwistyContrib/twist.css');"}%
-	@import url('%PUBURLPATH%/%TWIKIWEB%/QuickMenuSkin/qmenu.css');
-	@import url('%PUBURLPATH%/%TWIKIWEB%/QuickMenuSkin/style.css');
+	@import url('%PUBURLPATH%/%SYSTEMWEB%/TwistyContrib/twist.css');"}%
+	@import url('%PUBURLPATH%/%SYSTEMWEB%/QuickMenuSkin/qmenu.css');
+	@import url('%PUBURLPATH%/%SYSTEMWEB%/QuickMenuSkin/style.css');
 	.twikiToc LI {
-		background: url("%PUBURLPATH%/%TWIKIWEB%/PatternSkin/bullet-down.gif") no-repeat 0 .5em;
+		background: url("%PUBURLPATH%/%SYSTEMWEB%/PatternSkin/bullet-down.gif") no-repeat 0 .5em;
 	}
 </style> %TMPL:END%
 
@@ -74,8 +74,8 @@
 <tr><td class="twikiRevInfo">%REVINFO% </td>
 </table>
 <div id="MenuBar" class="MenuBar"><div class="MenuBarRight"><table cellspacing="0" cellpadding="0"><tr id="MenuBarRightTR"><td style="padding: 1px 5px 0 2px"><form action="%SCRIPTURLPATH{"view"}%/%BASEWEB%/%BASETOPIC%"><input type="text" name="topic" value="%MAKETEXT{"Jump"}%" class="twikiInputBox twikiInputBoxDefault" size="15" onfocus="clearDefaultandCSS(this)" onblur="setDefaultandCSS(this)"></form></td>
-<td style="padding: 1px 5px 0 2px"><form action="%SCRIPTURLPATH{view}%/%INCLUDINGWEB%/WebSearch"><input type="text" name="search" value="%MAKETEXT{"Search"}%" class="twikiInputBox twikiInputBoxDefault" size="15" onfocus="clearDefaultandCSS(this)" onblur="setDefaultandCSS(this)"></form></td></tr></table></div><noscript><small style="float:left">Webs: %WEBLIST{format="[[$name]]" separator=", "}%</small><center style="color:#f00">QuickMenu is disabled! <a href="%SCRIPTURLPATH{view}%/%TWIKIWEB%/QuickMenuDisabled?skin=plain.quickmenu" style="font-weight:normal;font-size:80%;vertical-align:top">Why?</a></center></noscript></div>
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/QuickMenuSkin/qmenu.js"></script>
+<td style="padding: 1px 5px 0 2px"><form action="%SCRIPTURLPATH{view}%/%INCLUDINGWEB%/WebSearch"><input type="text" name="search" value="%MAKETEXT{"Search"}%" class="twikiInputBox twikiInputBoxDefault" size="15" onfocus="clearDefaultandCSS(this)" onblur="setDefaultandCSS(this)"></form></td></tr></table></div><noscript><small style="float:left">Webs: %WEBLIST{format="[[$name]]" separator=", "}%</small><center style="color:#f00">QuickMenu is disabled! <a href="%SCRIPTURLPATH{view}%/%SYSTEMWEB%/QuickMenuDisabled?skin=plain.quickmenu" style="font-weight:normal;font-size:80%;vertical-align:top">Why?</a></center></noscript></div>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/QuickMenuSkin/qmenu.js"></script>
 <script type="text/javascript">
 QuickMenu.Set.ShowOnHover =%IF{"defined CLICKMENU and $ CLICKMENU" then=" 0" else=" 1"}%;
 function clearDefaultandCSS(el) {
@@ -92,7 +92,7 @@ function QuickMenuInit() {
 	langBar = menuBar.firstChild;
 	langBar.QuickMenuTR = document.getElementById("MenuBarRightTR");
 %TMPL:P{"webaction"}%
-%IF{"context i18n_enabled" then='%INCLUDE{"%TWIKIWEB%.QuickMenuBarLanguage" raw="on" warn="off"}%'}%
+%IF{"context i18n_enabled" then='%INCLUDE{"%SYSTEMWEB%.QuickMenuBarLanguage" raw="on" warn="off"}%'}%
 }
 addLoadEvent(QuickMenuInit, false);
 </script>%TMPL:END%

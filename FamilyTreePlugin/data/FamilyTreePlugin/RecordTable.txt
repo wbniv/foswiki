@@ -1,5 +1,5 @@
 This topic defines a table used in person and union topics when the
-%TWIKIWEB%.EditTablePlugin is installed.
+%SYSTEMWEB%.EditTablePlugin is installed.
 
 The table is for arbitrary event records in a person's life, or a union,
 that don't have standard fields in the form. For example, a person might

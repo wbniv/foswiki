@@ -83,13 +83,13 @@ function submitForm(id)
 </script>%TMPL:END%
 
 %TMPL:DEF{"notes"}%
-%INCLUDE{"%TWIKIWEB%.WikiSyntaxSummary"}%
+%INCLUDE{"%SYSTEMWEB%.WikiSyntaxSummary"}%
 %TMPL:END%
 
 %TMPL:DEF{"editactions"}%
 <input type="hidden" name="action" id="" value=""/>
 <a href='javascript:submitForm("cancel");'>Cancel</a>&nbsp;%TMPL:P{"sep"}%&nbsp;<a href='javascript:submitForm("checkpoint");'>Save and Continue</a>&nbsp;%TMPL:P{"sep"}%&nbsp;<a href='javascript:submitForm("quietsave");'><nop>QuietSave</a>&nbsp;%TMPL:P{"sep"}%&nbsp;<a href='javascript:submitForm("save");'>Save</a>&nbsp;%TMPL:P{"sep"}%&nbsp;<a href='javascript:submitForm("preview");'>Preview</a><br>
-<input type="checkbox" name="unlock" %RELEASEEDITLOCKCHECKBOX% />Release edit lock<a target="UnlockTopic" onclick="return launchWindow('%TWIKIWEB%','UnlockTopic')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/UnlockTopic">&nbsp;help</a><br/><input type="checkbox" name="dontnotify" %DONTNOTIFYCHECKBOX% />Minor changes, don't notify<a target="DontNotify" onclick="return launchWindow('%TWIKIWEB%','DontNotify')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/DontNotify">&nbsp;help</a>
+<input type="checkbox" name="unlock" %RELEASEEDITLOCKCHECKBOX% />Release edit lock<a target="UnlockTopic" onclick="return launchWindow('%SYSTEMWEB%','UnlockTopic')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%SYSTEMWEB%/UnlockTopic">&nbsp;help</a><br/><input type="checkbox" name="dontnotify" %DONTNOTIFYCHECKBOX% />Minor changes, don't notify<a target="DontNotify" onclick="return launchWindow('%SYSTEMWEB%','DontNotify')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%SYSTEMWEB%/DontNotify">&nbsp;help</a>
 %TMPL:END%
 
 %TMPL:DEF{"actionstring"}%Edit%TMPL:END%

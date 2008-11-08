@@ -20,7 +20,7 @@ The =%<nop>GAUGE{...}%= variable gets expanded to an image representing the gaug
 Plugin settings are stored as preferences variables. To reference
 a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, for example, ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Build dashboards that contain graphical images of gauges defined with =%<nop>GAUGE{}%= variables.
 
 	* Set DEBUG to 1 to get debug messages in =data/debug.txt=.  Default: =0=
@@ -94,7 +94,7 @@ __Note:__ You do not need to install anything on your browser to use this plugin
 
 ---++ Plugin Info
 
-|  Plugin Author: | %TWIKIWEB%.PeterThoeny, TWiki:Main/TaitCyrus |
+|  Plugin Author: | %SYSTEMWEB%.PeterThoeny, TWiki:Main/TaitCyrus |
 |  Plugin Version: | 01 May 2003 |
 |  Change History: | <!-- specify latest version first -->&nbsp; |
 |  01 May 2003: | Added time stamp to image to prevent browser from caching images; ignore non-numerical chars in value parameter; fixed warnings (V1.002) |
@@ -107,10 +107,10 @@ __Note:__ You do not need to install anything on your browser to use this plugin
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main/TaitCyrus - 23 May 2002 <br />
--- %TWIKIWEB%.PeterThoeny - 01 May 2003
+-- %SYSTEMWEB%.PeterThoeny - 01 May 2003
 %META:FILEATTACHMENT{name="tambar1.gif" attr="h" comment="Target Measure Bar, 60x16 example" date="1021945424" path="C:\Data\MyTWiki\Plugins\GaugePlugin\pub\Plugins\GaugePlugin\tambar1.gif" size="932" user="PeterThoeny" version="1.1"}%
 %META:FILEATTACHMENT{name="trendup.gif" attr="h" comment="Trend Up Icon 16x16" date="1021945466" path="C:\Data\MyTWiki\Plugins\GaugePlugin\pub\Plugins\GaugePlugin\trendup.gif" size="877" user="PeterThoeny" version="1.1"}%
 %META:FILEATTACHMENT{name="trenddn.gif" attr="h" comment="Trend Down Icon 16x16" date="1021945479" path="C:\Data\MyTWiki\Plugins\GaugePlugin\pub\Plugins\GaugePlugin\trenddn.gif" size="875" user="PeterThoeny" version="1.1"}%

@@ -201,7 +201,7 @@ Example: %<nop>TIMETABLE{lang="Deutsch" timeinterval="15" }%
 
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>NEWPLUGIN_SHORTDESCRIPTION%==
 
-   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+   * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
       * Set SHORTDESCRIPTION = Render a weekly timetable
 
    * Debug plugin: (See output in =data/debug.txt=)
@@ -303,11 +303,11 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  CPAN Dependencies: | CPAN:Date::Calc %BR% CPAN:POSIX |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle 92%, %TWIKIWEB%.FormattedSearch 98%, %TOPIC% 80% |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle 92%, %SYSTEMWEB%.FormattedSearch 98%, %TOPIC% 80% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
 
 -- TWiki:Main.DanielRohde - 16 May 2006

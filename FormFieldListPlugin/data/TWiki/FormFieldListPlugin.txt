@@ -3,7 +3,7 @@
 
 Search, filter and format multiple TWiki form fields from multiple topics.
 
-This plugin offers more options than the predefined variable [[%TWIKIWEB%.TWikiDocumentation#FORMFIELD][%<nop>FORMFIELD{"fieldname"}%]].
+This plugin offers more options than the predefined variable [[%SYSTEMWEB%.TWikiDocumentation#FORMFIELD][%<nop>FORMFIELD{"fieldname"}%]].
 
 This plugin uses TWiki:Plugins/TopicDataHelperPlugin
 
@@ -156,7 +156,7 @@ format="| <nop>$name | $value |"
 
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Search, filter and format multiple TWiki form fields from multiple topics.
 
 	* Default format of rendering form field values:
@@ -193,8 +193,8 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  01 Oct 2004: | Bernd Raichle: Initial version. |
 |  Dependencies: | %$DEPENDENCIES% |
 |  Perl Version: | 5.005 |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ [[%TWIKIWEB%.TWikiDocumentation#FORMFIELD][TWiki Variable FORMFIELD]], %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ [[%SYSTEMWEB%.TWikiDocumentation#FORMFIELD][TWiki Variable FORMFIELD]], %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins

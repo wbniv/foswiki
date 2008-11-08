@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="TWikiContributor" date="1206906698" format="1.1" reprev="1.1" version="1.1"}%
 ---+!! Personal Info !AddOn Custom Data
 
-*Admin topic for %TWIKIWEB%.PersonalInfoAddOn.* For a general overview see [[PersonalInfoHome]].
+*Admin topic for %SYSTEMWEB%.PersonalInfoAddOn.* For a general overview see [[PersonalInfoHome]].
 
 This current topic and PersonalInfoModules work in tandem:
    * PersonalInfoModules contains the core modules

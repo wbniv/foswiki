@@ -101,10 +101,10 @@ sub _addHeader {
 
     my $header = <<'EOF';
 <style type="text/css" media="all">
-@import url("%PUBURL%/%TWIKIWEB%/JQueryTwistyPlugin/twist.css");
+@import url("%PUBURL%/%SYSTEMWEB%/JQueryTwistyPlugin/twist.css");
 </style>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/JQueryTwistyPlugin/twist.js"></script>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/TWikiJavascripts/twikiPref.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JQueryTwistyPlugin/twist.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiJavascripts/twikiPref.js"></script>
 <script type="text/javascript">
 // <![CDATA[
 var styleText = '<style type="text/css" media="all">.twikiMakeVisible{display:inline;}.twikiMakeVisibleInline{display:inline;}.twikiMakeVisibleBlock{display:block;}.twikiMakeHidden{display:none;}</style>';

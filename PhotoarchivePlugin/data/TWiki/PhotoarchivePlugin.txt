@@ -64,7 +64,7 @@ These are the rules to add a Photoarchive to your twiki web.
 
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
 
-   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+   * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
       * Set SHORTDESCRIPTION = PhotoarchivePlugin creates nice image galleries
 
    * Debug plugin: (See output in =data/debug.txt=)
@@ -159,11 +159,11 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | netpbm |
 |  Perl Version: | 5.005 |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 98%, %TWIKIWEB%.FormattedSearch 96%, %TOPIC% 96% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 98%, %SYSTEMWEB%.FormattedSearch 96%, %TOPIC% 96% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | mailto:twiki-photoarchive@tower-netREMOVE_BEFORE_SEND.de |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- Main.MarkusKolb - 31 Oct 2006
 

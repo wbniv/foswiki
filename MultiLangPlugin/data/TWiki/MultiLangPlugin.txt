@@ -60,7 +60,7 @@ lang attribute. This should you to develop complex layouts by using CSS.
 Just a quick example: to display a German flag before any link that
 links to a German translation use the following CSS
 <pre>
-.translationLink:lang(de):before { content: url(%<nop>PUBURLPATH%/%<nop>TWIKIWEB%/germany.png)" " }
+.translationLink:lang(de):before { content: url(%<nop>PUBURLPATH%/%<nop>SYSTEMWEB%/germany.png)" " }
 </pre>
 (Disclaimer: Using flags to indicate translations is of course strongly
 discouraged by most I18N people but it makes for a good example and some
@@ -72,7 +72,7 @@ Plug-in settings are stored as preferences variables. To reference a
 plug-in setting write =%<nop>&lt;plugin&gt;_&lt;setting&gt;%=,
 i.e. =%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%=
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Handle multiple twiki installations which contain the same content in different languages
 
 	* Debug plug-in: (See output in =data/debug.txt=)
@@ -161,12 +161,12 @@ __Note:__ You do not need to install anything on the browser to use this plug-in
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 100%, %TWIKIWEB%.FormattedSearch 100%, %TOPIC% 100% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 100%, %SYSTEMWEB%.FormattedSearch 100%, %TOPIC% 100% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main/FrankLichtenheld - 11 Apr 2005
 

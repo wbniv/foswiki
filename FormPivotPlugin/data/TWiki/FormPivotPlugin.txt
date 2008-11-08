@@ -2,14 +2,14 @@
 %META:TOPICPARENT{name="TWikiPreferences"}%
 ---+ Form Pivot Plugin
 
-Basic analysis of values for a [[%TWIKIWEB%.TWikiForms][form]] used by the topics in a Web.
+Basic analysis of values for a [[%SYSTEMWEB%.TWikiForms][form]] used by the topics in a Web.
 
 ---++ %TOPIC% Global Settings
 
 Plugin settings are stored as preferences variables. To reference
 a plugin setting write ==%<plugin>_<setting>%==, for example, ==%INTERWIKIPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Statistics of values in a TWikiForm
 
 	* Set DEBUG to 1 to get debug messages in =data/debug.txt=.  Default: =0=
@@ -46,7 +46,7 @@ This is a fairly simple initial implementation and probably doesn't yet deserve 
 
 ---++ Plugin Info
 
-|  Plugin Author: | %TWIKIWEB%.JohnTalintyre |
+|  Plugin Author: | %SYSTEMWEB%.JohnTalintyre |
 |  Plugin Version: | 15Apr 2002 |
 |  Change History: | 15 Apr 2002: Initial version |
 |  CPAN Dependencies: | none |
@@ -55,9 +55,9 @@ This is a fairly simple initial implementation and probably doesn't yet deserve 
 |  Plugin Home: | TWiki:Plugins/%TOPIC% |
 |  Feedback: | TWiki:Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
--- %TWIKIWEB%.JohnTalintyre - 15 Apr 2002
+-- %SYSTEMWEB%.JohnTalintyre - 15 Apr 2002
 	* : Simple example of using FormPivotPlugin
 
 %META:FILEATTACHMENT{name="formpivot-example.zip" attr="" comment="Simple example of using FormPivotPlugin" date="1018989276" path="c:\devel\twiki\formpivot-example.zip" size="5306" user="JohnTalintyre" version="1.1"}%

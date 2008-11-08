@@ -17,7 +17,7 @@ Publish topic:
 
 %PUBLISHWEB{ "%URLPARAM{ "action" }%" topic="%URLPARAM{ "ptopic" }%" }%
 
-__Related topic:__ %TWIKIWEB%.PublishWebPlugin
+__Related topic:__ %SYSTEMWEB%.PublishWebPlugin
 
 -- TWiki:Main.PeterThoeny - 15 Feb 2006
 

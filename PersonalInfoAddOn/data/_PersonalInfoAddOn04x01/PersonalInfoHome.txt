@@ -3,7 +3,7 @@
 
 *User personalisation and reference tool.*
 
-See %TWIKIWEB%.PersonalInfoAddOn for an introduction and installation instructions. %BR%
+See %SYSTEMWEB%.PersonalInfoAddOn for an introduction and installation instructions. %BR%
 This topic is meant for administrators and serves as introduction springboard to !PersonalInfoAddOn topics. Keep this topic as reference.
 
 %TOC%
@@ -22,7 +22,7 @@ Distribution files:
 All these files need to reside in your user web (by default Main).
 
 ---+++ Diagram of main pages
-<div class="twikiImage"><img src="%PUBURL%/%TWIKIWEB%/PersonalInfoAddOn/template_diagram.png" alt="Diagram of main pages" width='800' height='409' /></div>
+<div class="twikiImage"><img src="%PUBURL%/%SYSTEMWEB%/PersonalInfoAddOn/template_diagram.png" alt="Diagram of main pages" width='800' height='409' /></div>
 
 ---++ Documentation of the INCLUDE sections in PersonalInfo.
 
@@ -39,7 +39,7 @@ This block is included on every user page when PersonalInfoUserViewTemplate is s
 </verbatim>
    Make sure the topic ends with a newline.
       * or by editing topics using a web interface: set the preference =* Local VIEW_TEMPLATE = <nop>PersonalInfoUserView=
-   1 To have this set automatically for new users, change the last line in <nop>%TWIKIWEB%.NewUserTemplate to %BR%
+   1 To have this set automatically for new users, change the last line in <nop>%SYSTEMWEB%.NewUserTemplate to %BR%
    <verbatim>
    %META:PREFERENCE{name="VIEW_TEMPLATE" title="VIEW_TEMPLATE" type="Local" value="PersonalInfoUserView"}%
 </verbatim>
@@ -59,7 +59,7 @@ This block is included on every user page when PersonalInfoUserViewTemplate is s
    1 If you want to change the layout:
       * The base style sheets are included from PersonalInfoLayoutModules
       * The styles for =personalInfo= are included from PersonalInfo.
-      * The default picture [[%PUBURL%/%TWIKIWEB%/PersonalInfoAddOn/silhouette.gif][silhouette.gif]] is attached to %TWIKIWEB%.PersonalInfoAddOn.
+      * The default picture [[%PUBURL%/%SYSTEMWEB%/PersonalInfoAddOn/silhouette.gif][silhouette.gif]] is attached to %SYSTEMWEB%.PersonalInfoAddOn.
       * Pictures are 120 px wide and may vary in height. This is set in PersonalInfoLayoutModules.
    
 *Some more indepth information what happens when the user saves her data:*

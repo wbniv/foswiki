@@ -3,7 +3,7 @@
   <title><nop>%WIKITOOLNAME%'s <nop>%WEB% web</title>
   <link>%SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%</link>
   <description>%MAKETEXT{"The [_1] web of TWiki. TWiki is a Web-Based Collaboration Platform for the Corporate World." args="<nop>%WEB%"}%</description>
-%INCLUDE{"%TWIKIWEB%.WebRssBase"}%<!--
+%INCLUDE{"%SYSTEMWEB%.WebRssBase"}%<!--
    * Set SKIN = rss
 -->
 

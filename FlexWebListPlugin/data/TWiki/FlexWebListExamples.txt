@@ -18,9 +18,9 @@ to ease reading multiline TML expressions and arguments.
 
 ---++ Influencing order
 <verbatim>
-%FLEXWEBLIST{webs="%MAINWEB%,public,%TWIKIWEB%"}%
+%FLEXWEBLIST{webs="%MAINWEB%,public,%SYSTEMWEB%"}%
 </verbatim>
-%FLEXWEBLIST{webs="%MAINWEB%,public,%TWIKIWEB%"}%
+%FLEXWEBLIST{webs="%MAINWEB%,public,%SYSTEMWEB%"}%
 
 ---++ Controlling subwebs
 ---+++ No subwebs
@@ -116,7 +116,7 @@ needs the TWiki:Plugins/TwistyPlugin and the TWiki:Plugins/IfDefinedPlugin
 
 <verbatim>
 %~~ FLEXWEBLIST{
-~~~   webs="%MAINWEB%,public,%TWIKIWEB%"
+~~~   webs="%MAINWEB%,public,%SYSTEMWEB%"
 ~~~   exclude="TestCases|Trash.*"
 ~~~   header="<ul>" 
 ~~~   format="<li>[[$web.%HOMETOPIC%][$name]]&nbsp;
@@ -135,11 +135,11 @@ needs the TWiki:Plugins/TwistyPlugin and the TWiki:Plugins/IfDefinedPlugin
 ~~~   footer="</ul>" 
 ~~~ }%
 </verbatim>
-%FLEXWEBLIST{webs="%MAINWEB%,public,%TWIKIWEB%" exclude="TestCases|Trash.*" header="<ul>" format="<li>[[$web.%HOMETOPIC%][$name]]&nbsp; $percntIFDEFINEDTHEN{\"$nrsubwebs \" as=\"0 \"}$percnt $percntELSEDEFINED$percnt $percntTWISTYBUTTON{id=\"sitemap_$web\" buttonmode=\"span\" showimg=\"$percntICONURLPATH{\"toggleopenleft\"}$percnt\" hideimg=\"$percntICONURLPATH{\"toggleclose\"}$percnt\" }$percnt $percntFIDEFINED$percnt" separator="</li>$n" subheader="$percntTWISTYTOGGLE{id=\"sitemap_$web\" mode=\"div\"}$percnt<ul>" subfooter="</li></ul>$percntENDTWISTY$percnt" footer="</ul>"}%
+%FLEXWEBLIST{webs="%MAINWEB%,public,%SYSTEMWEB%" exclude="TestCases|Trash.*" header="<ul>" format="<li>[[$web.%HOMETOPIC%][$name]]&nbsp; $percntIFDEFINEDTHEN{\"$nrsubwebs \" as=\"0 \"}$percnt $percntELSEDEFINED$percnt $percntTWISTYBUTTON{id=\"sitemap_$web\" buttonmode=\"span\" showimg=\"$percntICONURLPATH{\"toggleopenleft\"}$percnt\" hideimg=\"$percntICONURLPATH{\"toggleclose\"}$percnt\" }$percnt $percntFIDEFINED$percnt" separator="</li>$n" subheader="$percntTWISTYTOGGLE{id=\"sitemap_$web\" mode=\"div\"}$percnt<ul>" subfooter="</li></ul>$percntENDTWISTY$percnt" footer="</ul>"}%
 
 ---++ Sitemap
 %~~ FLEXWEBLIST{
-~~~   webs="%MAINWEB%,public,%TWIKIWEB%"
+~~~   webs="%MAINWEB%,public,%SYSTEMWEB%"
 ~~~   header="<div class=\"header\">" 
 ~~~   format="<div class=\"web\">
 ~~~     [[$web.%HOMETOPIC%][$name]] $percntVAR{\"SITEMAPWHAT\" web=\"$web\"}$percnt
@@ -166,11 +166,11 @@ needs the TWiki:Plugins/TwistyPlugin and the TWiki:Plugins/IfDefinedPlugin
 ---++ Mapping names
 <verbatim>
 %~~ FLEXWEBLIST{
-~~~    map="TestCases=Tests,%TWIKIWEB%=System,%MAINWEB%=Home"
+~~~    map="TestCases=Tests,%SYSTEMWEB%=System,%MAINWEB%=Home"
 ~~~    format="$indent   * [[$web.%HOMETOPIC%][$name]]$n"
 ~~~ }%
 </verbatim>
-%FLEXWEBLIST{map="TestCases=Tests,%TWIKIWEB%=System,%MAINWEB%=Home" format="$indent   * [[$web.%HOMETOPIC%][$name]]$n"}%
+%FLEXWEBLIST{map="TestCases=Tests,%SYSTEMWEB%=System,%MAINWEB%=Home" format="$indent   * [[$web.%HOMETOPIC%][$name]]$n"}%
 
 ---++ Marking a selection
 ---+++ Using marker

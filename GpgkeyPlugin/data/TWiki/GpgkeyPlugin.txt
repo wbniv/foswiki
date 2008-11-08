@@ -17,7 +17,7 @@ can be used widely.
 
 ---++ <nop>%TOPIC% Settings
 
-	* One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = This plugin can be used to gather a list of gpg keys and fingerprints
 
 	* Debug plugin: (See output in =data/debug.txt=)
@@ -77,7 +77,7 @@ The WikiMaster can add a GPG Key/Fingerprint questionarie at the TWiki.TWikiRegi
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins, EmptyPlugin
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins, EmptyPlugin
 
 -- TWiki:Main/TriBble - 10 Nov 2003
 

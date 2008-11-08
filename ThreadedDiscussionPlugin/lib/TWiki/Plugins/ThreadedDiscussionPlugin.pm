@@ -187,7 +187,7 @@ sub handleTagsForIcons
     $theParams =~ s/%ATTACHURL%/$attachUrl/go;
     $theParams =~ s/%WEB%/$installWeb/go;
     $theParams =~ s/%MAINWEB%/TWiki::Func::getMainWebname()/geo;
-    $theParams =~ s/%TWIKIWEB%/TWiki::Func::getTwikiWebname()/geo;
+    $theParams =~ s/%SYSTEMWEB%/TWiki::Func::getTwikiWebname()/geo;
 
     return $theParams;
 }

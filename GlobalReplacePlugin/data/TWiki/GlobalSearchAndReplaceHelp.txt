@@ -72,7 +72,7 @@ Only members of the Main.TWikiAdminGroup will be allowed to commit changes.
 	1 Currently, the =Replace String= cannot handle more than one set of double quotes. For example, =%<nop>META:FIELD{name="TopicClassification" title="TopicClassification" value="TWikiChangeRequest"}%= will be truncated to =%<nop>META:FIELD{name="TopicClassification"= if you try to commit the changes. 
 
 __More Help:__
-	* [[%TWIKIWEB%.RegularExpression]]
-	* [[%TWIKIWEB%.TWikiVariables]] %<nop>SEARCH% Section
+	* [[%SYSTEMWEB%.RegularExpression]]
+	* [[%SYSTEMWEB%.TWikiVariables]] %<nop>SEARCH% Section
 
 %META:FILEATTACHMENT{name="GSR.gif" attr="h" comment="screen shot" date="1076120418" path="GSR.gif" size="13535" user="PeterThoeny" version="1.1"}%

@@ -8,7 +8,7 @@ See the GenPDFLatexAddOn for details
 Plugin settings are stored as preferences variables. To reference
 these plugin settings write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>GENPDFLATEX_SHORTDESCRIPTION%==
 
-	* One line description, as shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, as shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Support functions for the GenPDFLatexAddOn package
 
 	* Debug plugin: (See output in =data/debug.txt=)

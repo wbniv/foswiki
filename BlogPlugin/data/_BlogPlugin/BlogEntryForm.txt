@@ -19,10 +19,10 @@
 | | label | 3 | *Upload*: <ul style="margin-top:0px"><li>Attach image to the <a target="_blank" href="%SCRIPTURLPATH{"view"}%/%WEB%/BlogImages">BlogImages</a> collection</li> \
   <li>Add to your posting text %BR% &lt;img class="alignright border" src="%<nop>BLOGIMAGES%/SomeImage.gif" /> </li>\
   <li>use css classes alignright, alignleft, border to layout the image</li>\
-  <li style="%CALC{"$IF($EXISTS(%TWIKIWEB%/ImagePlugin),,display:none)"}%">\
+  <li style="%CALC{"$IF($EXISTS(%SYSTEMWEB%/ImagePlugin),,display:none)"}%">\
     Use %<nop>IMAGE{"SomeImage.gif" type="frame" align="left" size="200px"}% to create a framed image floating \
     left, not exceed 200px. \
-    See the %TWIKIWEB%.ImagePlugin documentation for more information. \
+    See the %SYSTEMWEB%.ImagePlugin documentation for more information. \
   </ul> |||
 
 

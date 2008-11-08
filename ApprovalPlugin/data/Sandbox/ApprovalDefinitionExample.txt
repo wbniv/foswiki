@@ -4,7 +4,7 @@ This is the approval definition for the following topics:
 
 ---+++  State table 
 
-This is an example of the state table. For more information, see %TWIKIWEB%.ApprovalPlugin#The_State_Table.
+This is an example of the state table. For more information, see %SYSTEMWEB%.ApprovalPlugin#The_State_Table.
 
 | *State* | *Allow Edit* | *Message* |
 | REJECTED | | This document is waiting to be sent to the Stage Reviewers for review. |
@@ -15,7 +15,7 @@ This is an example of the state table. For more information, see %TWIKIWEB%.Appr
 
 ---+++ Transition table
 
-This is an example of the transition table, which defines the relationship between the states. For more information, see %TWIKIWEB%.ApprovalPlugin#The_Transition_Table.
+This is an example of the transition table, which defines the relationship between the states. For more information, see %SYSTEMWEB%.ApprovalPlugin#The_Transition_Table.
 
 | *State* | *Action* | *Next State* | *Allowed* | *Notify* | *Sign Off's (%)* |
 | REJECTED | Send For Review | WAITINGFORREVIEW | | | |

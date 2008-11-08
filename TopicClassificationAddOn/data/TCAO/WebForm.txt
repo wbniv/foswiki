@@ -6,7 +6,7 @@
 | SubjectArea | checkbox | 3 |  | Classify a topic by subject |
 | Summary   | text   | 50  |   | Short summary or headline of topic  |
 
-Related Topic: WebPreferences, WebTopicEditTemplate, %TWIKIWEB%.TWikiForms
+Related Topic: WebPreferences, WebTopicEditTemplate, %SYSTEMWEB%.TWikiForms
 
 
 For more information about how you can use form to organize topics or create simple database applications, see TWiki.TWikiForms.

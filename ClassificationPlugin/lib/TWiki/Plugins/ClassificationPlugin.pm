@@ -72,10 +72,10 @@ sub commonTagsHandler {
 
   my $link = 
     '<link rel="stylesheet" '.
-    'href="%PUBURL%/%TWIKIWEB%/ClassificationPlugin/styles.css" '.
+    'href="%PUBURL%/%SYSTEMWEB%/ClassificationPlugin/styles.css" '.
     'type="text/css" media="all" />' . "\n" .
     '<script type="text/javascript" ' .
-    'src="%PUBURL%/%TWIKIWEB%/ClassificationPlugin/classification.js">' .
+    'src="%PUBURL%/%SYSTEMWEB%/ClassificationPlugin/classification.js">' .
     '</script>';
   
   if ($_[0] =~ s/<head>(.*?[\r\n]+)/<head>$1$link\n/o) {

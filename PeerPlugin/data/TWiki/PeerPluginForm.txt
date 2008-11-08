@@ -1,5 +1,5 @@
 %META:TOPICINFO{author="RoeS01" date="998488026" format="1.0" version="1.4"}%
-<FORM action="%SCRIPTURL%/view%SCRIPTSUFFIX%/%TWIKIWEB%/PeerPluginView" method="post">
+<FORM action="%SCRIPTURL%/view%SCRIPTSUFFIX%/%SYSTEMWEB%/PeerPluginView" method="post">
 *Quality Rating...*
 <br>
 Please rate the quality of this topic on a scale of 1-5:
@@ -22,7 +22,7 @@ Please rate the relevance of this topic to the Wiki community on a scale of 1-5.
 
 *Comment...*
 <br>
-Please enter your comments below. Entries are limited to 255 characters (approx 3 lines). They can contain %TWIKIWEB%.WikiWords to reference (or create) an external topic.<br>
+Please enter your comments below. Entries are limited to 255 characters (approx 3 lines). They can contain %SYSTEMWEB%.WikiWords to reference (or create) an external topic.<br>
 <TEXTAREA name="comment" scroll="off" rows="2" cols="103"></TEXTAREA><BR>
 <INPUT type="hidden" name="prurl" value="%PRURL%">
 <INPUT type="hidden" name="prweb" value="%PRWEB%">

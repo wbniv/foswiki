@@ -27,7 +27,7 @@ To fight Wiki-spam, the Plugin can also add a =rel="nofollow"= parameter to exte
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
 
 ---+++ General settings
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Utility to keep malicious users away from a public TWiki site
 
 	* Debug plugin: (See output in =data/debug.txt=)
@@ -76,14 +76,14 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
 
 #SpamList
 <form name="spamlist" action="%SCRIPTURL%/viewauth%SCRIPTSUFFIX%/%WEB%/%TOPIC%#SpamList" method="post">
-	* Local SPAMLIST: Manually maintained list of spam patterns (NOTE: *Must be* %TWIKIWEB%.RegularExpression patterns)
+	* Local SPAMLIST: Manually maintained list of spam patterns (NOTE: *Must be* %SYSTEMWEB%.RegularExpression patterns)
 		* Action: <select name="spam_action"> <option></option> <option value="spam_add">Add</option> <option value="spam_remove">Remove</option> </select> wiki-spam regex pattern(s) <code>http://.*?</code><input type="text" name="spam" size="32" value="" /> <input type="submit" value="Submit" /> %BLACKLISTPLUGIN{ action="%URLPARAM{spam_action}%" value="%URLPARAM{spam}%" }%
 		* Current list: %BLACKLISTPLUGIN{ action="spam_show" }%
 </form>
 
 #ExcludeList
 <form name="spamlist" action="%SCRIPTURL%/viewauth%SCRIPTSUFFIX%/%WEB%/%TOPIC%#ExcludeList" method="post">
-	* EXCLUDELIST: Manually maintained list of exceptions to public wiki-spam patterns, useful to exclude patterns listed incorrectly as spam (NOTE: *Must be* %TWIKIWEB%.RegularExpression patterns)
+	* EXCLUDELIST: Manually maintained list of exceptions to public wiki-spam patterns, useful to exclude patterns listed incorrectly as spam (NOTE: *Must be* %SYSTEMWEB%.RegularExpression patterns)
 		* Action: <select name="exclude_action"> <option></option> <option value="exclude_add">Add</option> <option value="exclude_remove">Remove</option> </select> exclude spam regex pattern(s) <code>http://.*?</code><input type="text" name="spam" size="32" value="" /> <input type="submit" value="Submit" /> %BLACKLISTPLUGIN{ action="%URLPARAM{exclude_action}%" value="%URLPARAM{spam}%" }%
 		* Current list: %BLACKLISTPLUGIN{ action="exclude_show" }%
 </form>
@@ -169,12 +169,12 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 99%, %TWIKIWEB%.FormattedSearch 99%, %TOPIC% 97% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 97% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins, [[http://directory.google.com/Top/Computers/Internet/Abuse/Spam/Wikispam/][Google wiki spam directory]]
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins, [[http://directory.google.com/Top/Computers/Internet/Abuse/Spam/Wikispam/][Google wiki spam directory]]
 
 -- TWiki:Main/PeterThoeny - 29 Mar 2007
 

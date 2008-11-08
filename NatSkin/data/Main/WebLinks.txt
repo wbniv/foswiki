@@ -2,14 +2,14 @@
 %META:TOPICPARENT{name="TWikiPreferences"}%
 ---+ %TOPIC%
 
-Sidebar navigation in the %WEB% web. See also the %TWIKIWEB%.TWikiWebLinks
+Sidebar navigation in the %WEB% web. See also the %SYSTEMWEB%.TWikiWebLinks
 
 %STARTINCLUDE%<!-- main.weblinks -->
-   * [[%TWIKIWEB%.WelcomeGuest][%MAKETEXT{"Welcome"}%]]
+   * [[%SYSTEMWEB%.WelcomeGuest][%MAKETEXT{"Welcome"}%]]
    * [[%TWIKIREGISTRATION%][%MAKETEXT{"Registration"}%]] %IFDEFINEDTHEN{"%IFEXISTS{"%MAINWEB%.%WIKIUSERSTOPIC%"}%" as="1" glue="off"}%
    * [[%MAINWEB%.%WIKIUSERSTOPIC%][%MAKETEXT{"Users"}%]] %FIDEFINED%
    * [[%MAINWEB%.TWikiGroups][%MAKETEXT{"Groups"}%]]
-   * [[%TWIKIWEB%.ChangePassword][%MAKETEXT{"Password"}%]]%WEBCOMPONENT{"TWikiWebLinks"}% 
+   * [[%SYSTEMWEB%.ChangePassword][%MAKETEXT{"Password"}%]]%WEBCOMPONENT{"TWikiWebLinks"}% 
 <!-- //main.weblinks -->%STOPINCLUDE%
 
 

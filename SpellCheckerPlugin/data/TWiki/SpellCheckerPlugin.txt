@@ -22,7 +22,7 @@ This version has not been thoroughly tested.  It has not been checked on many br
 Plugin settings are stored as preferences variables. To reference
 a plugin setting write ==%<plugin>_<setting>%==, i.e. ==%INTERWIKIPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Provides a spell check capability when editing a topic.
 
 	* Debug plugin: (See output in =data/debug.txt=)
@@ -66,5 +66,5 @@ a plugin setting write ==%<plugin>_<setting>%==, i.e. ==%INTERWIKIPLUGIN_SHORTDE
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 

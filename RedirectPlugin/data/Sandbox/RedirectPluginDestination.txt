@@ -1,5 +1,5 @@
 %META:TOPICINFO{author="MeredithLesly" date="1150118041" format="1.1" version="1.1"}%
----+ %TWIKIWEB%.RedirectPlugin Test Topic: destination
+---+ %SYSTEMWEB%.RedirectPlugin Test Topic: destination
 
 This is the destination of the !RedirectPlugin test topic. %BR%
 You should end up here coming from <a href="%SCRIPTURL{view}%/%WEB%/RedirectPluginTest?noredirect=on">RedirectPluginTest</a>

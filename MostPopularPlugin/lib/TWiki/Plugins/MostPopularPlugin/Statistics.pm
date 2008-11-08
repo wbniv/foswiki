@@ -2,6 +2,7 @@
 #
 # Adapted from lib/TWiki/UI/Statistics.pm
 # by Koen Martens, kmartens@sonologic.nl
+# Copyright (C) 2006-2008 Koen Martens, kmartens@sonologic.nl
 # Copyright (C) 1999-2006 Peter Thoeny, peter@thoeny.org
 # and TWiki Contributors. All Rights Reserved. TWiki Contributors
 # are listed in the AUTHORS file in the root of this distribution.

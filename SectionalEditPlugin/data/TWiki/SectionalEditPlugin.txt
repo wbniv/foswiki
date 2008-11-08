@@ -23,7 +23,7 @@ To enable editing of:
 
 ---+++ <nop>%TOPIC% Settings
 
-   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+   * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
       * Set SHORTDESCRIPTION = Allows the user to break a topic into sections for individual editing.
 
    * Debug plugin: (See output in =data/debug.txt=)
@@ -101,7 +101,7 @@ To enable editing of:
 ---+++ Discussion
 _Discussion of this plugin can be found in [[TWiki:Plugins.%TOPIC%Dev][%TOPIC%Dev]]._
 
-__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.EditContrib
+__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.EditContrib
 
 -- TWiki:Main/ThomasWeigert - 2 Oct 2006
 

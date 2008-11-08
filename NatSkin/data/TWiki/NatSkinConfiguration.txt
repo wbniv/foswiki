@@ -8,7 +8,7 @@ The different NatSkin styles (themes) are controlled using TWiki preference
 variables and can be set 
    * per user (on the user's home topic), 
    * per web (in the WebPreferences),
-   * site wide (in the[[%TWIKIWEB%.TWikiPreferences]]) and
+   * site wide (in the[[%SYSTEMWEB%.TWikiPreferences]]) and
    * on every request (using url parameters)
 
 Use the NatSkinStyleBrowser to preview the known styles and settings. Note,
@@ -95,7 +95,7 @@ to fool collecting web crawlers. But that is not adequate enough today as crawle
 to that is to remove every trace of a pattern that could be an email address from the html source code and regenerate
 them using javascript. Most likely, web crawlers will only parse the html and don't run a javascript interpreter 
 beforehand. Nevertheless the obfuscation feature can be switched on and off by adding the =OBFUSCATEEMAIL= variable
-to your %TWIKIWEB%.TWikiPreferences like
+to your %SYSTEMWEB%.TWikiPreferences like
 
 <verbatim>
   * Set OBFUSCATEEMAIL = on

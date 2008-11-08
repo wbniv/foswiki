@@ -139,7 +139,7 @@ This is <latex color="red" size="large">\cal A</latex> new inline test.
       * [[http://www.imagemagick.org/][ImageMagick]]
    * Make sure they are installed and check the paths to the programs =latex=, =dvipng= and
      =convert= in the latex2img shiped with this plugin 
-   * Edit the file =&lt;path-to-twiki>/pub/%TWIKIWEB%/%TOPIC%/latex2img= accordingly
+   * Edit the file =&lt;path-to-twiki>/pub/%SYSTEMWEB%/%TOPIC%/latex2img= accordingly
    * Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
 
 ---++ Configuration
@@ -160,7 +160,7 @@ overridden by defining the respective prefrence variable.
 | =ImageType= | %<nop>LATEXIMAGETYPE% | 'png' |
 | &nbsp; | extension of the image type; \
            possible values are 'gif' and 'png' ||
-| =Latex2Img= | | '.../%TWIKIWEB%/%TOPIC%/latex2img' |
+| =Latex2Img= | | '.../%SYSTEMWEB%/%TOPIC%/latex2img' |
 | &nbsp; | the script to convert a latex formula to an image ||
 | =LatexPreamble= | %<nop>LATEXPREAMBLE% | '\usepackage{latexsym}' |
 | &nbsp; | latex preamble to include additional packages \
@@ -214,7 +214,7 @@ overridden by defining the respective prefrence variable.
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | <nop>LaTeX, dvipng, <nop>ImageMagick |
 |  Perl Version: | 5.8 |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | TWiki:Plugins/%TOPIC% |
 |  Feedback: | TWiki:Plugins/%TOPIC%Dev |
 |  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |

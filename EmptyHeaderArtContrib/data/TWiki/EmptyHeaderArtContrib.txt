@@ -9,7 +9,7 @@
 %ICON{"hand"}% Click on an image thumbnail to preview the header art on this page.  To use this image for a web, updates its =HEADERART= variable in the web's <nop>WebPreferences like so:
 
 <tt>
-&nbsp;&nbsp;&nbsp;<nop>* Set <nop>HEADERART = %<nop>ATTACHURLPATH%/%<nop>TWIKIWEB%/%TOPIC%/%URLPARAM{"filename" default="pictureName.jpg" }%
+&nbsp;&nbsp;&nbsp;<nop>* Set <nop>HEADERART = %<nop>ATTACHURLPATH%/%<nop>SYSTEMWEB%/%TOPIC%/%URLPARAM{"filename" default="pictureName.jpg" }%
 </tt>
 
 %ICON{"tip"}% You can also use this header art on a topic-by-topic basis by adding the preference to individual topics.
@@ -51,6 +51,6 @@ Settings are stored as preferences variables. To reference a setting write ==%<n
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences
 
 -- TWiki:Main/%USERNAME% - %DATE%

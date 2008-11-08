@@ -10,7 +10,7 @@
 
 
 <!--
-%ALIAS{name="TWikiApplication" value="%TWIKIWEB%.AnApplicationWithWikiForm"}%
+%ALIAS{name="TWikiApplication" value="%SYSTEMWEB%.AnApplicationWithWikiForm"}%
 %ALIAS{name="TopicFunction" value="#TopicFunctions"}%
 %ALIAS{name="TopicFunctions" value="#TopicFunctions"}%
 %ALIAS{name="TWikiWorkbench" value="#Implementation"}%

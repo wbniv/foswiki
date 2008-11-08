@@ -1374,7 +1374,7 @@ sub renderEmailObfuscator {
   #writeDebug("called renderEmailObfuscator()");
 
   my $text = "\n".
-    '<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/NatSkin/obfuscator.js"></script>'."\n".
+    '<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/NatSkin/obfuscator.js"></script>'."\n".
     '<script type="text/javascript">'."\n".
     "<!--\n".
     "function initEMO() {\n".

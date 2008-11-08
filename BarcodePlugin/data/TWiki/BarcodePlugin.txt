@@ -32,7 +32,7 @@ The =%<nop>BARCODE{parm="value" ...}%= variable gets expanded to an image repres
 Plugin settings are stored as preferences variables. To reference
 a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, for example, ==%<nop>DEFAULTPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = This plugin creates embedded Code128 barcodes in a page.
 
 
@@ -91,11 +91,11 @@ __Note:__ You do not need to install anything on your browser to use this plugin
 |  | GD v1.20 or later |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.0 |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 100%, %TWIKIWEB%.FormattedSearch 100%, %TOPIC% 100% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 100%, %SYSTEMWEB%.FormattedSearch 100%, %TOPIC% 100% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev &amp; TWiki:Main/StevenSprouse |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins, EmptyPlugin
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins, EmptyPlugin
 
 
 %META:FILEATTACHMENT{name="example_1.png" attr="" comment="" date="1099600975" path="example_1.png" size="270" user="StevenSprouse" version="1.1"}%

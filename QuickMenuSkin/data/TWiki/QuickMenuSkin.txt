@@ -19,24 +19,24 @@
    * Download the ZIP file from the Skin Home page (see below)
    * Unzip ==QuickMenuSkin.zip== in your twiki installation directory
    * Test if installed: %SCRIPTURL{"view"}%/%WEB%/%TOPIC%?skin=quickmenu
-   * For skin activation see %TWIKIWEB%.TWikiSkins
+   * For skin activation see %SYSTEMWEB%.TWikiSkins
 
 ---++ Settings
 
 The menu can behave in two ways. When =CLICKMENU= is set to 0 then the menu automatically shows when you hover the mouse over the menu. When it is set to 1 then the menu is activated by clicking on it. By default =CLICKMENU= is set to 0.
 
-To add different menus to the menubar you can set =QUICKMENUBAR= to the topic containing the javascript for your own custom menus. By default =QUICKMENUBAR= is set to =%%NOP%TWIKIWEB%.QuickMenuBar=, have a look at %TWIKIWEB%.QuickMenuBar to see how the menus are created.
+To add different menus to the menubar you can set =QUICKMENUBAR= to the topic containing the javascript for your own custom menus. By default =QUICKMENUBAR= is set to =%%NOP%SYSTEMWEB%.QuickMenuBar=, have a look at %SYSTEMWEB%.QuickMenuBar to see how the menus are created.
 
 To change settings just add them to %MAINWEB%.TWikiPreferences, WebPreferences, or your personal page.%BR%
 Eg:
 <pre>
    * %NOP%Set CLICKMENU = 1
-   * %NOP%Set QUICKMENUBAR = %%NOP%TWIKIWEB%.QuickMenuBar
+   * %NOP%Set QUICKMENUBAR = %%NOP%SYSTEMWEB%.QuickMenuBar
 </pre>
 
 ---++ Modifying Menus
 
-The menu bar is built by default from %TWIKIWEB%.QuickMenuBar, which in turn includes %TWIKIWEB%.QuickMenuBarLogin (if login is enabled) and %TWIKIWEB%.QuickMenuBarWebs and %TWIKIWEB%.QuickMenuBarUtilities. If internationalisation is enabled, then %TWIKIWEB%.QuickMenuBarLanguage is also included. These files contain javascript commands that are included by the skin's templates. You can edit these files to customize the menu, but be sure to avoid unwanted linking by enclosing your code in =&lt;noautolink&gt;= ... =&lt;/noautolink&gt;= tags.
+The menu bar is built by default from %SYSTEMWEB%.QuickMenuBar, which in turn includes %SYSTEMWEB%.QuickMenuBarLogin (if login is enabled) and %SYSTEMWEB%.QuickMenuBarWebs and %SYSTEMWEB%.QuickMenuBarUtilities. If internationalisation is enabled, then %SYSTEMWEB%.QuickMenuBarLanguage is also included. These files contain javascript commands that are included by the skin's templates. You can edit these files to customize the menu, but be sure to avoid unwanted linking by enclosing your code in =&lt;noautolink&gt;= ... =&lt;/noautolink&gt;= tags.
 
 <noautolink>
 ---+++ QuickMenu Javascript Reference
@@ -114,7 +114,7 @@ The menu bar is built by default from %TWIKIWEB%.QuickMenuBar, which in turn inc
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/QuickMenuSkinDev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/QuickMenuSkinAppraisal |
 
-__Related topic:__ %TWIKIWEB%.TWikiSkins, %TWIKIWEB%.TWikiSkinBrowser, %TWIKIWEB%.UserDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory
+__Related topic:__ %SYSTEMWEB%.TWikiSkins, %SYSTEMWEB%.TWikiSkinBrowser, %SYSTEMWEB%.UserDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory
 
 -- TWiki:Main/VernonLyon - 13 Jun 2006
 

@@ -519,7 +519,7 @@ sub _checkEdit {
                                     def => 'topic_access',
                                     web => $_[2],
                                     topic => $_[1],
-                                    params => [ 'Edit topic', 'The %TWIKIWEB%.ApprovalPlugin controls this topic. You are not permitted to edit this topic' ] );
+                                    params => [ 'Edit topic', 'The %SYSTEMWEB%.ApprovalPlugin controls this topic. You are not permitted to edit this topic' ] );
     }
 }
 
@@ -628,7 +628,7 @@ sub _Return {
     my $out = '<span class="ApprovalPluginMessage ';
     $out .= 'twikiAlert' if $error;
     $out .= '">';
-    $out .= " %TWIKIWEB%.$pluginName - $text";
+    $out .= " %SYSTEMWEB%.$pluginName - $text";
     $out .= '</span>';
 
     return $out;

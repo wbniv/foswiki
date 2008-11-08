@@ -1,6 +1,6 @@
 %META:TOPICINFO{author="cbs" date="1090926289" format="1.0" version="1.3"}%
 ---+ <nop>DragonSkin installation
-This topic describes how to install !DragonSkin and perform some simple administrator-level (i.e. requiring the editing of template and CSS files) customizations. See the %TWIKIWEB%.DragonSkinCustomize topic for information on doing user-configurable customizations, such as configuring the left quicklinks submenu, and the %TWIKIWEB%.DragonSkin topic for some general information about the skin.
+This topic describes how to install !DragonSkin and perform some simple administrator-level (i.e. requiring the editing of template and CSS files) customizations. See the %SYSTEMWEB%.DragonSkinCustomize topic for information on doing user-configurable customizations, such as configuring the left quicklinks submenu, and the %SYSTEMWEB%.DragonSkin topic for some general information about the skin.
 
 %TOC%
 
@@ -10,10 +10,10 @@ This topic describes how to install !DragonSkin and perform some simple administ
 		* <nop>Set SKIN = dragon
 		* <nop>Set DS_THEME = gray  (or select another theme such as "monochrome" or "tabstyle").
 	3. In your templates directory, edit the file dragonmenu.dragon.tmpl to configure the left menu (see below	if you wish to read this menu from a topic).  When editing this file, keep the basic div and class structure. H2 tags are used for menu headings; HTML unordered lists are used for menus.
-	4. Set the contents of the DS_QUICKLINKS submenu.  Instructions on how to do so (or hide this submenu entirely) are in %TWIKIWEB%.DragonSkinCustomize. 
-	5. Do any other customizations (fonts, etc) as per %TWIKIWEB%.DragonSkinCustomize.
+	4. Set the contents of the DS_QUICKLINKS submenu.  Instructions on how to do so (or hide this submenu entirely) are in %SYSTEMWEB%.DragonSkinCustomize. 
+	5. Do any other customizations (fonts, etc) as per %SYSTEMWEB%.DragonSkinCustomize.
 	6. (Optional) If you are still using the default TWiki robot logo, the skin will look much better if you change it to something else, such as twikiRobot121x54.gif from TWiki:Codev.TWikiLogosDropInReplacementsWhite.
-	7. (Optional) Replace the default TWiki site map with %TWIKIWEB%.DragonSkinSiteMap.
+	7. (Optional) Replace the default TWiki site map with %SYSTEMWEB%.DragonSkinSiteMap.
 ---+++ Browser issues
 !DragonSkin has been tested on IE6, Firefox, IE5.2/Mac, and fairly recent versions of Firefox, Mozilla, Opera, Safari, Camino, and Netscape, and appears to work on those browsers (Firefox and IE6 have been used the most).  It has not been tested at all on IE5/Win, and may have display problems with that browser.  Netscape 4.x should see the skin without any CSS formatting.
 ---++ Customizing the installation
@@ -22,5 +22,5 @@ This topic describes how to install !DragonSkin and perform some simple administ
 	1. Create a topic with the menu contents.  When doing so, be careful about including blank lines in the menu, since the TWiki renderer will insert paragraph tags and mess up the layout.  Also, use %<nop>INCLUDINGWEB% when necessary to make sure that searches and links to topics like !WebPreferences will reference the right web.  Note that including the menu from a topic will be slightly slower than using it directly from the template file.
 	2. Change the templates/dragonmenu.dragon.css file to just have the single line %<nop>INCLUDE{"TWiki.DragonMenuTopic"}% (or whatever your menu topic is called). 
 ---+++ Adding site-specific CSS styles
-If you want to add a site-specific CSS style, add it to pub/%<nop>TWIKIWEB%/DragonSkin/typography.css, since that file is included in every theme.  Alternatively, add another import rule to the definition of dragoncss in templates/twiki.dragon.tmpl that imports a site-specific css file, and put all local styles in that file.  If your style makes use of TWiki variables, add it to templates/dragoncssvars.dragon.tmpl, so variables will get expanded.
+If you want to add a site-specific CSS style, add it to pub/%<nop>SYSTEMWEB%/DragonSkin/typography.css, since that file is included in every theme.  Alternatively, add another import rule to the definition of dragoncss in templates/twiki.dragon.tmpl that imports a site-specific css file, and put all local styles in that file.  If your style makes use of TWiki variables, add it to templates/dragoncssvars.dragon.tmpl, so variables will get expanded.
 

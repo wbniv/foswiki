@@ -130,7 +130,7 @@ sub handleGlobalReplace
         return "Invalid User";
     }
 
-    my $prefsWeb   = &TWiki::Func::expandCommonVariables( "%TWIKIWEB%", "Main" );
+    my $prefsWeb   = &TWiki::Func::expandCommonVariables( "%SYSTEMWEB%", "Main" );
     my $prefsTopic = &TWiki::Func::expandCommonVariables( "%WIKIPREFSTOPIC%", "Main" );
     my $access = &TWiki::Func::checkAccessPermission("change",
                                                      &TWiki::Func::userToWikiName($_user),

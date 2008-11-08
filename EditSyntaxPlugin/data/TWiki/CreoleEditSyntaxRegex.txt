@@ -4,7 +4,7 @@
 
 This topic contains the syntax rules to convert TML to/from Wiki Creole syntax. See EditSyntaxPlugin for format description.
 
-__Note:__ Do not update this topic unless you are familiar with %TWIKIWEB%.RegularExpression syntax. Make sure to create proper pairs, so that an edit roundtrip results in the same text, including whitespace.
+__Note:__ Do not update this topic unless you are familiar with %SYSTEMWEB%.RegularExpression syntax. Make sure to create proper pairs, so that an edit roundtrip results in the same text, including whitespace.
 
 ---++ TWiki to Creole
 

@@ -21,7 +21,7 @@ Simple plugin to display weather information for a specific location. It uses [[
 
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Displays nice weather graphics for a specific location
 
 	* Partner ID and License Key (Get them from Weather.com, see Weather::Com manpage (Free of charge))
@@ -59,7 +59,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main/AndreBonhote - 01 Nov 2004
 

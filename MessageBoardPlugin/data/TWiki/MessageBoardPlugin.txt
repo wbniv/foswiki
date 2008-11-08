@@ -13,15 +13,15 @@ Use the TWiki Tag =%<nop>MESSAGE_BOARD%= with options:
 
 ---++ <nop>%TOPIC% Global Settings
 
-	* One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Database-Based message board plugin.
 
 	* Color Settings
 		* Set TABLE_HEAD_COLOR = %WEBCOLOR%
 
 	* Icons and Image Settings
-		* Set TRASH_CAN_ICON_LINK = <img src="%PUBURL%/%TWIKIWEB%/MessageBoardPlugin/trashcan.png" alt="Remove" border="0" />
-		* Set PENCIL_ICON_LINK = <img src="%PUBURL%/%TWIKIWEB%/MessageBoardPlugin/editicon.png" alt="Edit" border="0" />
+		* Set TRASH_CAN_ICON_LINK = <img src="%PUBURL%/%SYSTEMWEB%/MessageBoardPlugin/trashcan.png" alt="Remove" border="0" />
+		* Set PENCIL_ICON_LINK = <img src="%PUBURL%/%SYSTEMWEB%/MessageBoardPlugin/editicon.png" alt="Edit" border="0" />
 
 	* Database Settings
 		* Set DB_DRIVER = mysql
@@ -100,7 +100,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main.LuisCamposDeCarvalho - 15 Jun 2004
 %META:FILEATTACHMENT{name="trashcan.png" attr="" comment="" date="1087408473" path="C:\Documents and Settings\lcampos\Desktop\trashcan.png" size="779" user="lcampos" version="1.4"}%

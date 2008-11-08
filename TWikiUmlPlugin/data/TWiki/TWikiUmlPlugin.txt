@@ -32,10 +32,10 @@ The !TWikiUmlPlugin allows editing UML diagrams as part of a wiki topic
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | %TOPIC% |
 |  Feedback: | %TOPIC%Dev |
 |  Appraisal: | %TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
 

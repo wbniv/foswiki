@@ -13,7 +13,7 @@ Once the plugin is installed, users can register for notification in the Web<nop
 
 ---++ <nop>%TOPIC% Global Settings
 
-   * One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+   * One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
       * Set SHORTDESCRIPTION = Allows immediate notification of topic changes through SMTP or Jabber
 
    * Notification method configuration:
@@ -59,7 +59,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins, DefaultPlugin
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins, DefaultPlugin
 
 -- TWiki:Main/WalterMundt - 04 Feb 2003 <br />
 -- TWiki:Main/JuergenPabel - 16 Mar 2003

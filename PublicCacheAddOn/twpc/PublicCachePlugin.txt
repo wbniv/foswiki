@@ -11,7 +11,7 @@ cache on topic saves.
 ---++ Plugin Info
 
 |  Plugin Author: | TWiki:Main.ColasNahaboo |
-|  Copyright: | &copy; 2008, %TWIKIWEB%.TWikiContributor |
+|  Copyright: | &copy; 2008, %SYSTEMWEB%.TWikiContributor |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
 |  Plugin Version: | 1 (12 Jan 2008) |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
@@ -23,6 +23,6 @@ cache on topic saves.
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
 
--- %TWIKIWEB%.TWikiContributor - 12 Jan 2008
+-- %SYSTEMWEB%.TWikiContributor - 12 Jan 2008

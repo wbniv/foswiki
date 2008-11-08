@@ -22,8 +22,8 @@ work - see TWikiUserAuthentication for details.
 
    * TWikiRegistration is used when you want new users to individually
      register with TWiki by filling out a form
-   * You can create a custom versions of %TWIKIWEB%.NewUserTemplate and
-     %TWIKIWEB%.UserForm
+   * You can create a custom versions of %SYSTEMWEB%.NewUserTemplate and
+     %SYSTEMWEB%.UserForm
    * BulkRegistration is used by administrators to register multiple users at
      the same time
 

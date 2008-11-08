@@ -28,7 +28,7 @@ Use of this revision link syntax causes problems when used within "square bracke
 
 Plugin settings are stored as preferences variables. The following variables are used for this plugin.
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = This plugin enables linking to specific Topic revisions.
 
 	* Debug plugin: (See output in =data/debug.txt=)
@@ -41,7 +41,7 @@ Plugin settings are stored as preferences variables. The following variables are
 	* Test if the installation was successful:
 		* %TOPIC%?rev=1
 		* %TOPIC%?rev=1.1
-		* %TWIKIWEB%.ATasteOfTWiki?rev=1
+		* %SYSTEMWEB%.ATasteOfTWiki?rev=1
 		* %MAINWEB%.TWikiContributor?rev=1
 
 ---+++ Plugin Info
@@ -57,5 +57,5 @@ Plugin settings are stored as preferences variables. The following variables are
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 

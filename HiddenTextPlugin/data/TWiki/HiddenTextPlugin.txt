@@ -30,7 +30,7 @@ Hello World
 
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, for example, ==%<nop>HIDDENTEXTPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Hide a block of text in the edit page
 
 	* Debug plugin: (See output in =data/debug.txt=)
@@ -61,8 +61,8 @@ __Note:__ The following instructions are for the administrator who installs the 
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
  
--- %TWIKIWEB%.DonnyKurniawan - 03 Oct 2003
+-- %SYSTEMWEB%.DonnyKurniawan - 03 Oct 2003
 
 %META:FILEATTACHMENT{name="sample.mov" attr="h" comment="A small <nop>QuickTime movie" date="1060215181" path="sample.mov" size="494658" user="DonnyKurniawan" version="1.1"}%

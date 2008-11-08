@@ -34,7 +34,7 @@ $VERSION = '$Rev$';
 $RELEASE = '1.0';
 
 # Short description of this plugin
-# One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+# One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 $SHORTDESCRIPTION = 'Helps formatting TWikiNetSkin design. Enable by setting the skin to "twikinet"';
 
 # Name of this Plugin, only used in this module

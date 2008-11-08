@@ -143,7 +143,7 @@ padding:.5em;
   <td>Select skin for published HTML</td>
   <td>
     <input type="text" name="skin" class="twikiInputField" size="20" value="basic_publish" /><br />
-    The skin provides the template for how topics are published. See %TWIKIWEB%.TWikiSkins for more informations on skins.<br />
+    The skin provides the template for how topics are published. See %SYSTEMWEB%.TWikiSkins for more informations on skins.<br />
     You are recommended to pick =basic_publish=, or =plain=, or a =print= skin.
     Your installation may also offer a special =export= or =publish= skin.<br />%I% The =view= [[TWikiTemplates][template]] is used to generate published pages, so =view.%URLPARAM{"skin" default="basic_publish"}%.tmpl= is the template that will be used to generate the output. You can preview any topic in this skin simply by appending =?skin=%URLPARAM{"skin" default="basic_publish"}%= to the end of the view URL. Note that the standard =VIEW_TEMPLATE= template override still works when publishing.
 
@@ -361,7 +361,7 @@ You can control what gets published from a topic using =%<nop>STARTPUBLISH%= and
    * =%<nop>STARTPUBLISH%= and =%<nop>STOPPUBLISH%= will be visible in the viewed topic, so you can easily see what will be published from the topic.
 Note: the old &lt;nopublish> tag is deprecated and should be replaced in topics
 
-Another good trick is to set up a special "publishing" web. Create topics in the web that %INCLUDE the topics from *other* webs that you want to publish. You can use [[%TWIKIWEB%.VarSTARTSECTION][STARTSECTION]] and [[%TWIKIWEB%.VarENDSECTION][ENDSECTION]] to highlight what you want published. This way the "publishing" web gives you a view of exactly what will be in the published output, without the need for special publishing tags.
+Another good trick is to set up a special "publishing" web. Create topics in the web that %INCLUDE the topics from *other* webs that you want to publish. You can use [[%SYSTEMWEB%.VarSTARTSECTION][STARTSECTION]] and [[%SYSTEMWEB%.VarENDSECTION][ENDSECTION]] to highlight what you want published. This way the "publishing" web gives you a view of exactly what will be in the published output, without the need for special publishing tags.
 
 ---++ Publishing History
 Every time a web is published, then the results of that publishing step are stored in a topic in the web. By default this topic is called =PublishContribHistory=, but you can choose another name (see the form, above). In order to publish a web, you have to be able to write to this topic. If you need to add access controls to the topic, then make sure you do that right at the beginning of the topic, or in the hidden preferences.
@@ -439,7 +439,7 @@ This add-on started as the TWiki:Plugins/GenHTMLAddon, written by TWiki:Main/Cra
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 ---+++ Copyright
 This code is a development of the Architectures and System Platforms group of Motorola Inc. and is protected by the following copyrights:

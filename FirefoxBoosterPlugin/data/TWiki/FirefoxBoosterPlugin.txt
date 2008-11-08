@@ -44,11 +44,11 @@ This plugin is brought to you by <img border="0" align="texttop" style="margin-r
 |  09 Nov 2007: | Initial version |
 |  TWiki Dependency: | $TWiki::Plugins::VERSION 1.2 |
 |  Dependencies: | %$DEPENDENCIES% |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 99%, %TWIKIWEB%.FormattedSearch 99%, %TOPIC% 99% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 99% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
 __Related Topics:__
 
--- %TWIKIWEB%.TWikiContributor - 09 Nov 2007
+-- %SYSTEMWEB%.TWikiContributor - 09 Nov 2007

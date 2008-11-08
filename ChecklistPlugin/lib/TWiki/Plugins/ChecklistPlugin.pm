@@ -162,7 +162,7 @@ sub commonTagsHandler
     %itemsCollected = ( );
 	
 
-    $_[0] =~ s/<\/head>/<script src="%PUBURL%\/%TWIKIWEB%\/$pluginName\/itemstatechange.js" language="javascript" type="text\/javascript"><\/script><\/head>/is unless ($_[0]=~/itemstatechange.js/);
+    $_[0] =~ s/<\/head>/<script src="%PUBURL%\/%SYSTEMWEB%\/$pluginName\/itemstatechange.js" language="javascript" type="text\/javascript"><\/script><\/head>/is unless ($_[0]=~/itemstatechange.js/);
     &handleAllTags(@_);
 }
 

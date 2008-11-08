@@ -10,7 +10,7 @@ Autocomplete input field based on Yahoo's User Interface Library (available thro
 ---++ Usage
 Write the following =INCLUDE= in your topic:
 <verbatim>
-%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="autocomplete"}%
+%INCLUDE{"%SYSTEMWEB%.AutoCompleteAddOn" section="autocomplete"}%
 </verbatim>
 This will put an input field in your topic, but without autocomplete suggestions. You also need to pass data parameters: see the following section.
 
@@ -18,7 +18,7 @@ This will put an input field in your topic, but without autocomplete suggestions
 ---+++ Parameters
 Parameters to pass to the =INCLUDE= variable, for example:
 <verbatim>
-%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="autocomplete" name="topics"}%
+%INCLUDE{"%SYSTEMWEB%.AutoCompleteAddOn" section="autocomplete" name="topics"}%
 </verbatim>
 
 | *Parameter*   | *Required* | *Description* | *Default* | *Example* |
@@ -38,36 +38,36 @@ The include section =autocomplete= writes the default parts: form, stylesheet an
 
 ---++++ Separate sections
 <verbatim>
-%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="form" name="my"}%
-%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="stylesheet" name="my"}%
-%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="javascript" name="my" datatopic="Myweb.MyDataTopic" datasection="mysection"}%
+%INCLUDE{"%SYSTEMWEB%.AutoCompleteAddOn" section="form" name="my"}%
+%INCLUDE{"%SYSTEMWEB%.AutoCompleteAddOn" section="stylesheet" name="my"}%
+%INCLUDE{"%SYSTEMWEB%.AutoCompleteAddOn" section="javascript" name="my" datatopic="Myweb.MyDataTopic" datasection="mysection"}%
 </verbatim>
 
 ---++++ Customized section example
 <verbatim>
-%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="form" name="my"}%
+%INCLUDE{"%SYSTEMWEB%.AutoCompleteAddOn" section="form" name="my"}%
 %INCLUDE{"Myweb.MyTopic" section="stylesheet" name="my"}%
-%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="javascript" name="my" datatopic="Myweb.MyDataTopic" datasection="mysection"}%
+%INCLUDE{"%SYSTEMWEB%.AutoCompleteAddOn" section="javascript" name="my" datatopic="Myweb.MyDataTopic" datasection="mysection"}%
 </verbatim>
 
 
 ---++ Example
 <verbatim>
 %INCLUDE{
-"%TWIKIWEB%.AutoCompleteAddOn"
+"%SYSTEMWEB%.AutoCompleteAddOn"
 section="autocomplete"
 name="example"
 inputname="topic"
 size="25em"
 datatopic="Sandbox.AutoCompleteTestData"
 datasection="topics"
-topicsweb="%TWIKIWEB%"
+topicsweb="%SYSTEMWEB%"
 }%
 </verbatim>
 
 <!-- usernames example for PersonalInfoAddOn
 %<nop>INCLUDE{
-"%TWIKIWEB%.AutoCompleteAddOn"
+"%SYSTEMWEB%.AutoCompleteAddOn"
 section="autocomplete"
 name="example2"
 size="200px"
@@ -80,14 +80,14 @@ itemformat="item[0] + ' (' + item[1] + ')'"
 
 Generates:
 %INCLUDE{
-"%TWIKIWEB%.AutoCompleteAddOn"
+"%SYSTEMWEB%.AutoCompleteAddOn"
 section="autocomplete"
 name="example"
 inputname="topic"
 size="25em"
 datatopic="Sandbox.AutoCompleteTestData"
 datasection="topics"
-topicsweb="%TWIKIWEB%"
+topicsweb="%SYSTEMWEB%"
 }%
 
 This topic uses TWiki:Plugins/VarCachePlugin to cache search results.
@@ -110,9 +110,9 @@ This example shows where to place the INCLUDE sections
 	}
 //]]>
 </script>
-%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="javascript" name="login" datatopic="Sandbox.AutoCompleteTestData" datasection="usernames" itemformat="item[0]"}%%TMPL:END%
+%INCLUDE{"%SYSTEMWEB%.AutoCompleteAddOn" section="javascript" name="login" datatopic="Sandbox.AutoCompleteTestData" datasection="usernames" itemformat="item[0]"}%%TMPL:END%
 
-%TMPL:DEF{"templatestyle"}%%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="stylesheet" name="login"}%%TMPL:END%
+%TMPL:DEF{"templatestyle"}%%INCLUDE{"%SYSTEMWEB%.AutoCompleteAddOn" section="stylesheet" name="login"}%%TMPL:END%
 
 %TMPL:DEF{"LOG_IN_BANNER"}%%MAKETEXT{"Log in"}%%TMPL:END%
 %TMPL:DEF{"authrealm"}%%TMPL:END%
@@ -121,7 +121,7 @@ This example shows where to place the INCLUDE sections
 ---+++ %MAKETEXT{"Please enter your name"}%
 
 %INCLUDE{
-"%TWIKIWEB%.AutoCompleteAddOn"
+"%SYSTEMWEB%.AutoCompleteAddOn"
 section="input"
 name="login"
 inputname="username"
@@ -142,13 +142,13 @@ Includes form, stylesheet and javascript.
 
 Usage:
 <verbatim>
-%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="autocomplete"}%
+%INCLUDE{"%SYSTEMWEB%.AutoCompleteAddOn" section="autocomplete"}%
 </verbatim>
 
 <verbatim>
-%STARTSECTION{"autocomplete"}%%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="form"}%
-%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="stylesheet"}%
-%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="javascript"}%%ENDSECTION{"autocomplete"}%
+%STARTSECTION{"autocomplete"}%%INCLUDE{"%SYSTEMWEB%.AutoCompleteAddOn" section="form"}%
+%INCLUDE{"%SYSTEMWEB%.AutoCompleteAddOn" section="stylesheet"}%
+%INCLUDE{"%SYSTEMWEB%.AutoCompleteAddOn" section="javascript"}%%ENDSECTION{"autocomplete"}%
 </verbatim>
 
 ---+++ Partial includes
@@ -157,12 +157,12 @@ Includes form only. This section includes a nested section named =input=.
 
 Usage:
 <verbatim>
-%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="form"}%
+%INCLUDE{"%SYSTEMWEB%.AutoCompleteAddOn" section="form"}%
 </verbatim>
 
 To use the input field only (for instance when you have a custom form):
 <verbatim>
-%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="input"}%
+%INCLUDE{"%SYSTEMWEB%.AutoCompleteAddOn" section="input"}%
 </verbatim>
 
 <verbatim>
@@ -179,7 +179,7 @@ Includes CSS stylesheet only.
 
 Usage:
 <verbatim>
-%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="stylesheet"}%
+%INCLUDE{"%SYSTEMWEB%.AutoCompleteAddOn" section="stylesheet"}%
 </verbatim>
 
 <verbatim>
@@ -239,7 +239,7 @@ Includes javascript only.
 
 Usage:
 <verbatim>
-%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="javascript"}%
+%INCLUDE{"%SYSTEMWEB%.AutoCompleteAddOn" section="javascript"}%
 </verbatim>
 
 <verbatim>
@@ -273,14 +273,14 @@ Includes Yahoo User Interface Library javascript only. This is already included 
 
 Usage (only if you are using a customized =javascript= section):
 <verbatim>
-%INCLUDE{"%TWIKIWEB%.AutoCompleteAddOn" section="javascript"}%
+%INCLUDE{"%SYSTEMWEB%.AutoCompleteAddOn" section="javascript"}%
 </verbatim>
 
 <verbatim>
-%STARTSECTION{"yahoo"}%<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/YahooUserInterfaceContrib/build/yahoo/yahoo.js"></script>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/YahooUserInterfaceContrib/build/autocomplete/autocomplete.js"></script>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/YahooUserInterfaceContrib/build/event/event.js"></script>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/YahooUserInterfaceContrib/build/dom/dom.js"></script>%ENDSECTION{"yahoo"}%
+%STARTSECTION{"yahoo"}%<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/YahooUserInterfaceContrib/build/yahoo/yahoo.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/YahooUserInterfaceContrib/build/autocomplete/autocomplete.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/YahooUserInterfaceContrib/build/event/event.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/YahooUserInterfaceContrib/build/dom/dom.js"></script>%ENDSECTION{"yahoo"}%
 </verbatim>
 
 

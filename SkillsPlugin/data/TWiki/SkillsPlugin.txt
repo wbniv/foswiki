@@ -74,7 +74,7 @@ Plugin settings are stored as preferences variables in %LOCALSITEPREFS%.
       * Set ALLOWADDSKILLS = Main.UnknownUser
 
    * By default, the styles using in the plugins forms are found in the =style.css=, attached to this topic. To define your own style sheet, add the following to %LOCALSITEPREFS%:
-      * Set STYLEURL = %PUBURL%/%TWIKIWEB%/SkillsPlugin/style.css
+      * Set STYLEURL = %PUBURL%/%SYSTEMWEB%/SkillsPlugin/style.css
 
    * Log add/create actions
       * By default, any skills or categories that are created/deleted/renamed are logged in the standard TWiki logs (defined at =$TWiki::cfg{LogFileName}=). To disable this, add the following to =LocalSite.cfg=:
@@ -122,7 +122,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
 
 %META:FILEATTACHMENT{name="style.css" attr="" autoattached="1" comment="" date="1171245554" path="style.css" size="2317" user="Main.TWikiContributor" version=""}%
 %META:FILEATTACHMENT{name="skills_screenshot_thumb.png" attr="" autoattached="1" comment="" date="1171248289" path="skills_screenshot_thumb.png" size="48997" user="Main.TWikiContributor" version="2"}%

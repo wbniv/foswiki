@@ -1,6 +1,6 @@
 %META:TOPICINFO{author="TWikiContributor" date="1202840013" format="1.1" version="$Rev$"}%
 ---+ Style Browser
-Explore the style variations of the %TWIKIWEB%.NatSkin by changing the base
+Explore the style variations of the %SYSTEMWEB%.NatSkin by changing the base
 _style_ and a _variation_ of it. In general style variations are used to change
 the header art but also adapt colors to match the graphics. Various elements of
 the style can be relocated using style switches or even be switched off. Use
@@ -24,7 +24,7 @@ See the TWiki.NatSkinPlugin documentation on how to use style settings in your p
 %IFSKINSTATETHEN{final="style"}% %ELSESKINSTATE%
 <tr><td colspan="3"> *%MAKETEXT{"Style"}%:* </td></tr>
 <tr>
-<td><a href="?switchstyle=prev" title="%MAKETEXT{"Switch to previous style"}%"><img src="%PUBURLPATH%/%TWIKIWEB%/TWikiDocGraphics/arrowleft.gif" border="0" alt="%MAKETEXT{"prev"}%"/></a></td>
+<td><a href="?switchstyle=prev" title="%MAKETEXT{"Switch to previous style"}%"><img src="%PUBURLPATH%/%SYSTEMWEB%/TWikiDocGraphics/arrowleft.gif" border="0" alt="%MAKETEXT{"prev"}%"/></a></td>
 <td>
 <select name="style">
 <noautolink>
@@ -32,12 +32,12 @@ See the TWiki.NatSkinPlugin documentation on how to use style settings in your p
 </noautolink>
 </select>
 </td>
-<td align="right"><a href="?switchstyle=next" title="%MAKETEXT{"Switch to next style"}%"><img src="%PUBURLPATH%/%TWIKIWEB%/TWikiDocGraphics/arrowright.gif" border="0" alt="%MAKETEXT{"next"}%"/></a></td>
+<td align="right"><a href="?switchstyle=next" title="%MAKETEXT{"Switch to next style"}%"><img src="%PUBURLPATH%/%SYSTEMWEB%/TWikiDocGraphics/arrowright.gif" border="0" alt="%MAKETEXT{"next"}%"/></a></td>
 </tr>
 %FISKINSTATE%
 %IFSKINSTATETHEN{final="variation"}% %ELSESKINSTATE%
 <tr><td colspan="3"> *%MAKETEXT{"Variation"}%:* </td></tr>
-<tr><td><a href="?switchvariation=prev" title="%MAKETEXT{"Switch to previous variation"}%"><img src="%PUBURLPATH%/%TWIKIWEB%/TWikiDocGraphics/arrowleft.gif" border="0" alt="%MAKETEXT{"prev"}%"/></a></td>
+<tr><td><a href="?switchvariation=prev" title="%MAKETEXT{"Switch to previous variation"}%"><img src="%PUBURLPATH%/%SYSTEMWEB%/TWikiDocGraphics/arrowleft.gif" border="0" alt="%MAKETEXT{"prev"}%"/></a></td>
 <td>
 <select name="stylevariation">
 <noautolink>
@@ -45,7 +45,7 @@ See the TWiki.NatSkinPlugin documentation on how to use style settings in your p
 </noautolink>
 </select>
 </td>
-<td align="right"><a href="?switchvariation=next" title="%MAKETEXT{"Switch to next variation"}%"><img src="%PUBURLPATH%/%TWIKIWEB%/TWikiDocGraphics/arrowright.gif" border="0" alt="%MAKETEXT{"prev"}%"/></a></td>
+<td align="right"><a href="?switchvariation=next" title="%MAKETEXT{"Switch to next variation"}%"><img src="%PUBURLPATH%/%SYSTEMWEB%/TWikiDocGraphics/arrowright.gif" border="0" alt="%MAKETEXT{"prev"}%"/></a></td>
 </tr>
 %FISKINSTATE%
 %IFSKINSTATETHEN{final="switches"}% %ELSESKINSTATE%

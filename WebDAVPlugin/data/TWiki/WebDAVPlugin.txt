@@ -238,6 +238,6 @@ You may want to add a new DAV-edit-link to your attachments table.
    * This work was commissioned by [[http://www.windriver.com/][Wind River Systems]].
    * Porting to TWiki-4 was sponsored by [[http:///www.ilog.fr][ILOG]]
 
-__Related Topic:__ %TWIKIWEB%.TWikiPlugins, TWiki:Codev.WebDAV
+__Related Topic:__ %SYSTEMWEB%.TWikiPlugins, TWiki:Codev.WebDAV
 
 -- TWiki:Main/CrawfordCurrie - %$DATE%

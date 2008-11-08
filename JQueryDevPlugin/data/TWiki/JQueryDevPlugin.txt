@@ -91,11 +91,11 @@ Include the jQuery javascript we need
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
 
 %META:FILEATTACHMENT{name="wikiringlogo40x40.png" attachment="wikiringlogo40x40.png" attr="h" comment="" date="1189787359" path="wikiringlogo40x40.png" size="2571" stream="wikiringlogo40x40.png" tmpFilename="" user="TWikiContributor" version="1"}%

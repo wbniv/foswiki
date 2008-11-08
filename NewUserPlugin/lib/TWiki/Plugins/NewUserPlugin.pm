@@ -109,7 +109,7 @@ sub createUserTopic {
   # search the NEWUSERTEMPLATE
   $newUserTemplate =~ s/^\s+//go;
   $newUserTemplate =~ s/\s+$//go;
-  $newUserTemplate =~ s/\%TWIKIWEB\%/$twikiWeb/g;
+  $newUserTemplate =~ s/\%SYSTEMWEB\%/$twikiWeb/g;
   $newUserTemplate =~ s/\%SYSTEMWEB\%/$twikiWeb/g;
   $newUserTemplate =~ s/\%MAINWEB\%/$mainWeb/g;
 

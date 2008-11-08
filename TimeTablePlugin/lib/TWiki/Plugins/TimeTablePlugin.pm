@@ -238,7 +238,7 @@ sub commonTagsHandler {
     eval {
 	    require TWiki::Plugins::TimeTablePlugin::TimeTable;
              
-	    $_[0] =~ s/<\/head>/<script src="%PUBURL%\/%TWIKIWEB%\/$pluginName\/timetabletooltips.js" language="javascript" type="text\/javascript"><\/script><\/head>/is unless ($_[0]=~/timetabletooltips.js/);
+	    $_[0] =~ s/<\/head>/<script src="%PUBURL%\/%SYSTEMWEB%\/$pluginName\/timetabletooltips.js" language="javascript" type="text\/javascript"><\/script><\/head>/is unless ($_[0]=~/timetabletooltips.js/);
 	    $_[0] =~ s/%TIMETABLE%/&TWiki::Plugins::TimeTablePlugin::TimeTable::expand("",$_[0],$_[1],$_[2])/ge;
 	    $_[0] =~ s/%TIMETABLE{(.*?)}%/&TWiki::Plugins::TimeTablePlugin::TimeTable::expand($1, $_[0], $_[1], $_[2])/ge;
 	    $_[0] =~ s/%TTCM{(.*?)}%/&TWiki::Plugins::TimeTablePlugin::TimeTable::inflate($1, $_[0],$_[1],$_[2])/ge;

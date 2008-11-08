@@ -1,5 +1,5 @@
 %META:TOPICINFO{author="SvenDowideit" date="1166589534" format="1.1" reprev="1.4" version="1.4"}%
-<script language="javascript" src="%PUBURL%/%TWIKIWEB%/JSUnitContrib/app/jsUnitCore.js"></script>
+<script language="javascript" src="%PUBURL%/%SYSTEMWEB%/JSUnitContrib/app/jsUnitCore.js"></script>
 <script language="javascript">
 var toSaveTML = "\n---++ Topic Title\n   * bullet1\n   * bullet2\n\nsection 2 with a *little* bold text\n\n|q|w|e|\n|123|234|345|\n|987|987|876|\n\n";
 var stateJSON;
@@ -46,6 +46,6 @@ function testAjaxResult() {
 }
 </script>
 
-*[[%PUBURL%/%TWIKIWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%WEB%/%TOPIC%][Run test with TestRuner]]*
+*[[%PUBURL%/%SYSTEMWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%WEB%/%TOPIC%][Run test with TestRuner]]*
 
-*[[%PUBURL%/%TWIKIWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%WEB%/JsTestSuite][Run JsTestSuite with TestRuner]]*
+*[[%PUBURL%/%SYSTEMWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%WEB%/JsTestSuite][Run JsTestSuite with TestRuner]]*

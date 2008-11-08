@@ -79,7 +79,7 @@ No settings necessary.
 	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
 	* To test if the plugin is correctly installed, view this topic in the installation and you should see a placeholder box below. Click on it.<br />
    %DRAWINGSVG{example}%
-	* Add the following line to the "TWiki Plugins" section of %TWIKIWEB%.TextFormattingRules:
+	* Add the following line to the "TWiki Plugins" section of %SYSTEMWEB%.TextFormattingRules:
 	* Plugins.%TOPIC%: Drawing Editor Plugin
 	* May be you will have to define the mime-type "application/x-java-jnlp-file" to "jnlp JNLP" in the mime.types file of Apache or Twiki (or both)
 
@@ -97,7 +97,7 @@ No settings necessary.
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 	* <a href="http://www.w3.org/TR/SVG/"><nop>SVG</a> (Scalable Vector Graphics)
 	* Java(tm) <a href="http://java.sun.com/products/javawebstart/">Web Start</a>

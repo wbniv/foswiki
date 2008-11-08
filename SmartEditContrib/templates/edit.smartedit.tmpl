@@ -1,8 +1,8 @@
 %TMPL:INCLUDE{"edit.pattern"}%
 
 
-%TMPL:DEF{"templatejavascript"}%<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/TWikiJavascripts/twiki_edit.js"></script>
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/SmartEditContrib/js/smartedit.js"></script>
+%TMPL:DEF{"templatejavascript"}%<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/TWikiJavascripts/twiki_edit.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/SmartEditContrib/js/smartedit.js"></script>
 <script type="text/javascript">
 addLoadEvent(twikismartEdit);
 </script>
@@ -22,16 +22,16 @@ addLoadEvent(twikismartEdit);
 <option value="7">Paragraph</option>
 <option value="10">Verbatim</option>
 </select></td>
-<td height="25" valign="top"><img id="twikismartbold" src="%PUBURLPATH%/%TWIKIWEB%/SmartEditContrib/img/bold.gif" onclick="twikismartInsertBold();"></img></td>
-<td height="25" valign="top"><img id="twikismartitalic" src="%PUBURLPATH%/%TWIKIWEB%/SmartEditContrib/img/italic.gif" onclick="twikismartInsertItalic();"></img></td>
-<td height="25" valign="top"><img id="twikismartbullet" src="%PUBURLPATH%/%TWIKIWEB%/SmartEditContrib/img/bullist.gif" onclick="twikismartInsertBulletList();"></img></td>
-<td height="25" valign="top"><img id="twikismartnum" src="%PUBURLPATH%/%TWIKIWEB%/SmartEditContrib/img/numlist.gif" onclick="twikismartInsertNumList();"></img></td>
-<td height="25" valign="top"><img id="twikismartexlink" src="%PUBURLPATH%/%TWIKIWEB%/SmartEditContrib/img/exthyperlink.png" onclick="twikismartExlink();"></img></td>
-<td height="25" valign="top"><img id="twikismartindent" src="%PUBURLPATH%/%TWIKIWEB%/SmartEditContrib/img/indent.gif" onclick="twikismartIndent();"></img></td>
-<td height="25" valign="top"><img id="twikismartoutdent" src="%PUBURLPATH%/%TWIKIWEB%/SmartEditContrib/img/outdent.gif" onclick="twikismartOutdent();"></img></td>
+<td height="25" valign="top"><img id="twikismartbold" src="%PUBURLPATH%/%SYSTEMWEB%/SmartEditContrib/img/bold.gif" onclick="twikismartInsertBold();"></img></td>
+<td height="25" valign="top"><img id="twikismartitalic" src="%PUBURLPATH%/%SYSTEMWEB%/SmartEditContrib/img/italic.gif" onclick="twikismartInsertItalic();"></img></td>
+<td height="25" valign="top"><img id="twikismartbullet" src="%PUBURLPATH%/%SYSTEMWEB%/SmartEditContrib/img/bullist.gif" onclick="twikismartInsertBulletList();"></img></td>
+<td height="25" valign="top"><img id="twikismartnum" src="%PUBURLPATH%/%SYSTEMWEB%/SmartEditContrib/img/numlist.gif" onclick="twikismartInsertNumList();"></img></td>
+<td height="25" valign="top"><img id="twikismartexlink" src="%PUBURLPATH%/%SYSTEMWEB%/SmartEditContrib/img/exthyperlink.png" onclick="twikismartExlink();"></img></td>
+<td height="25" valign="top"><img id="twikismartindent" src="%PUBURLPATH%/%SYSTEMWEB%/SmartEditContrib/img/indent.gif" onclick="twikismartIndent();"></img></td>
+<td height="25" valign="top"><img id="twikismartoutdent" src="%PUBURLPATH%/%SYSTEMWEB%/SmartEditContrib/img/outdent.gif" onclick="twikismartOutdent();"></img></td>
 <td height="25" valign="top">
-<img id="twikismarthr" src="%PUBURLPATH%/%TWIKIWEB%/SmartEditContrib/img/hr.gif" onclick="twikismartInsertHR();"></img></td>
-<td height="25" valign="top"><img id="twikismartnop" src="%PUBURLPATH%/%TWIKIWEB%/SmartEditContrib/img/nop.png" onclick="twikismartNop();"></img></td>
+<img id="twikismarthr" src="%PUBURLPATH%/%SYSTEMWEB%/SmartEditContrib/img/hr.gif" onclick="twikismartInsertHR();"></img></td>
+<td height="25" valign="top"><img id="twikismartnop" src="%PUBURLPATH%/%SYSTEMWEB%/SmartEditContrib/img/nop.png" onclick="twikismartNop();"></img></td>
 <td height="25" valign="top"><select id="twikismartselectcommon" onchange="twikismartCommon();">
 <option value="0">Common</option>
 <option value="1">Signature</option>
@@ -39,7 +39,7 @@ addLoadEvent(twikismartEdit);
 <option value="3">Table of content</option>
 </select></td>
 <td id="cheatItem" height="25" valign="top"></td>
-<td height="25" valign="top" align="right"><input id="twikismartadjustmode" type="checkbox" selected="false" onclick="twikismartAdjustMode();">Adjust to text size</input><img id="twikismartzoomin" src="%PUBURLPATH%/%TWIKIWEB%/SmartEditContrib/img/loupe.gif" onclick="twikismartZoomIn();" title="Increase textarea size"></img><img id="twikismartzoomout" src="%PUBURLPATH%/%TWIKIWEB%/SmartEditContrib/img/loupem.gif" onclick="twikismartZoomOut();" title="Decrease textarea size"></img><font face="Verdana, Arial, Helvetica, sans-serif" color="#60a0e0">SmartEditContrib alpha release</font></td>
+<td height="25" valign="top" align="right"><input id="twikismartadjustmode" type="checkbox" selected="false" onclick="twikismartAdjustMode();">Adjust to text size</input><img id="twikismartzoomin" src="%PUBURLPATH%/%SYSTEMWEB%/SmartEditContrib/img/loupe.gif" onclick="twikismartZoomIn();" title="Increase textarea size"></img><img id="twikismartzoomout" src="%PUBURLPATH%/%SYSTEMWEB%/SmartEditContrib/img/loupem.gif" onclick="twikismartZoomOut();" title="Decrease textarea size"></img><font face="Verdana, Arial, Helvetica, sans-serif" color="#60a0e0">SmartEditContrib alpha release</font></td>
 </tr></table>
 <textarea class="twikiEditboxStyleProportional" id="topic" name="text" rows="%EDITBOXHEIGHT%" cols="%EDITBOXWIDTH%" style='%EDITBOXSTYLE%' onkeydown='handleKeyDown(event)'>%TEXT%</textarea>%TMPL:END%
 

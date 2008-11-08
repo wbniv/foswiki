@@ -46,7 +46,7 @@ $VERSION = '$Rev$';
 $RELEASE = 'Dakar';
 
 # Short description of this plugin
-# One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+# One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 $SHORTDESCRIPTION = 'HtmlFormsPlugin';
 
 # You must set $NO_PREFS_IN_TOPIC to 0 if you want your plugin to use preferences

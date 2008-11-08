@@ -46,7 +46,7 @@ Copy and paste the following section to your %MAINWEB%.TWikiPreferences topic (o
    * set the Widget skin to use this topic to get the _Moveable Type Common Text sections_ from this topic
       * Set WidgetsSkin_DESIGNTOPIC = %TOPIC%
    * set the Widget skin to use to get the css and images from here
-      * Set WidgetsSkin_CSSFILE = %PUBURL%/%TWIKIWEB%/%WidgetsSkin_DESIGNTOPIC%/theme.css
+      * Set WidgetsSkin_CSSFILE = %PUBURL%/%SYSTEMWEB%/%WidgetsSkin_DESIGNTOPIC%/theme.css
    * is the css one-column, two-column-left, two-column-right, three-column
       * Set WidgetsSkin_COLUMNS = %URLPARAM{"Widgetcolumns" default="%COLS%CURRENTCOLS%%"}%
 </textarea>
@@ -131,9 +131,9 @@ Copy and paste the following section to your %MAINWEB%.TWikiPreferences topic (o
 ---+++ module-powered-right
 %STARTSECTION{"module-powered-right-three-column"}%%STARTSECTION{"module-powered-right-two-column-right"}%%STARTSECTION{"module-powered-left-two-column-left"}%%STARTSECTION{"module-powered-right"}%<div class="module-powered module">
    <div class="module-content">
-      <a href="http://twiki.org"><img src="%PUBURLPATH%/%TWIKIWEB%/TWikiLogos/T-logo-34x26.png" />TWiki powered</a>
+      <a href="http://twiki.org"><img src="%PUBURLPATH%/%SYSTEMWEB%/TWikiLogos/T-logo-34x26.png" />TWiki powered</a>
  skin by <a href="http://DistributedINFORMATION.com">Distributed INFORMATION.com</a>
- [[http://WikiRing.com][a <img src="%PUBURLPATH%/%TWIKIWEB%/WidgetsSkin/wikiringlogo20x20.png" alt="@" width='20' height='20' border='0'  /> WikiRing.com partner]]
+ [[http://WikiRing.com][a <img src="%PUBURLPATH%/%SYSTEMWEB%/WidgetsSkin/wikiringlogo20x20.png" alt="@" width='20' height='20' border='0'  /> WikiRing.com partner]]
    </div>
 </div> %ENDSECTION{"module-powered-right"}%%ENDSECTION{"module-powered-left-two-column-left"}%%ENDSECTION{"module-powered-right-two-column-right"}%%ENDSECTION{"module-powered-right-three-column"}%
 

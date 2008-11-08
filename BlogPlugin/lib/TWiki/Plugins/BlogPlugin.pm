@@ -101,10 +101,10 @@ sub commonTagsHandler {
   if (!$doneHeader) {
     my $link = 
       '<link rel="stylesheet" '.
-      'href="%PUBURL%/%TWIKIWEB%/BlogPlugin/style.css" '.
+      'href="%PUBURL%/%SYSTEMWEB%/BlogPlugin/style.css" '.
       'type="text/css" media="all" />' . "\n" .
       '<script type="text/javascript" ' .
-      'src="%PUBURL%/%TWIKIWEB%/BlogPlugin/blogplugin.js">' .
+      'src="%PUBURL%/%SYSTEMWEB%/BlogPlugin/blogplugin.js">' .
       '</script>';
     if ($_[0] =~ s/<head>(.*?[\r\n]+)/<head>$1$link\n/o) {
       $doneHeader = 1;

@@ -90,16 +90,16 @@ sub _addHeader {
     return if $headerDone;
 
     my $header = <<'END';
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/YahooUserInterfaceContrib/build/yahoo/yahoo.js"></script>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/YahooUserInterfaceContrib/build/connection/connection.js"></script>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/TWikiJavascripts/twikilib.js"></script>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/TWikiJavascripts/twikiArray.js"></script>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/TWikiJavascripts/twikiHTML.js"></script>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/TWikiAjaxContrib/twikiAjaxRequest.compressed.js"></script>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/BehaviourContrib/behaviour.compressed.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/YahooUserInterfaceContrib/build/yahoo/yahoo.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/YahooUserInterfaceContrib/build/connection/connection.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiJavascripts/twikilib.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiJavascripts/twikiArray.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiJavascripts/twikiHTML.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiAjaxContrib/twikiAjaxRequest.compressed.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/BehaviourContrib/behaviour.compressed.js"></script>
 <script type="text/javascript">
 // <![CDATA[
-	twiki.AjaxRequest.setDefaultIndicatorHtml("<img src='%PUBURL%/%TWIKIWEB%/TWikiAjaxContrib/indicator.gif' alt='' />");
+	twiki.AjaxRequest.setDefaultIndicatorHtml("<img src='%PUBURL%/%SYSTEMWEB%/TWikiAjaxContrib/indicator.gif' alt='' />");
 // ]]>
 </script>
 END

@@ -4,8 +4,8 @@
 
 %DBCALL{"RenderInstallTopicClassification"}%
 
----++ Important Entry Points for %TWIKIWEB%.TopicClassificationAddOn
-   * %TWIKIWEB%.TopicClassificationAddOn
+---++ Important Entry Points for %SYSTEMWEB%.TopicClassificationAddOn
+   * %SYSTEMWEB%.TopicClassificationAddOn
    * %WEB%/Installs.WebHome - Subweb of template files
 
 %INCLUDE{"TopicClassWebHomeIntro"}%

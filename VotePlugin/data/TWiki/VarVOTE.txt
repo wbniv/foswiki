@@ -2,5 +2,5 @@
 %META:TOPICPARENT{name="TWikiVariables"}%
 #VarVOTE
 ---+++ VOTE{ _attributes_ } -- define a poll in a TWiki topic.
-%INCLUDE{"%TWIKIWEB%.VotePlugin" section="vote_attributes"}%
+%INCLUDE{"%SYSTEMWEB%.VotePlugin" section="vote_attributes"}%
    * See VotePlugin for more information

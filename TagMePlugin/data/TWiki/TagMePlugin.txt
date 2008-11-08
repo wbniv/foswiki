@@ -100,7 +100,7 @@ Use the url parameter =deletetag=my+tag+name= to pass the to-be-deleted tag name
 
 ---+++ List All Tags
 
-%TWIKIWEB%.TagMeViewAllTags shows all tags used in the system. The font size indicates the overall tag count of a tag.
+%SYSTEMWEB%.TagMeViewAllTags shows all tags used in the system. The font size indicates the overall tag count of a tag.
 
 Screenshot of tag cloud in the list all tags view:
 <div class="twikiImage">
@@ -117,11 +117,11 @@ __%T% Tip:__ In a <nop>%HOMETOPIC% of a web you can show a tag cloud of all tagg
 
 ---+++ List My Tags
 
-%TWIKIWEB%.TagMeViewMyTags shows all tags used by logged-in user. The font size indicates the overall tag count of a tag.
+%SYSTEMWEB%.TagMeViewMyTags shows all tags used by logged-in user. The font size indicates the overall tag count of a tag.
 
 ---+++ Tag Search
 
-%TWIKIWEB%.TagMeSearch shows a list of topics that are tagged with all of the selected tags, sorted by relevance. Topics with a high tag count are shown first.
+%SYSTEMWEB%.TagMeSearch shows a list of topics that are tagged with all of the selected tags, sorted by relevance. Topics with a high tag count are shown first.
 
 ---+++ Plugin Variable
 
@@ -160,7 +160,7 @@ The Plugin handles a =%<nop>TAGME{}%= variable that performs different actions. 
 	  | =nototal="on"= | Do not show total number of topics found | (show total) |
 	  | =minsize="90"= | Minimum size of topic =$size= (typically percent font size) | ="90"= |
 	  | =maxsize="180"= | Maximum size of topic =$size= | ="180"= |
-	  | =format="..."= | Format of a topic, any token of %TWIKIWEB%.FormattedSearch can be used, such as =$web=, =$topic=, =$summary=, =$rev=, =$n=. In addition, =$votecount= expands to the number of tag votes, =$size= to the suggested font size, and =$taglist= to the tag list of the topic.  | (nice formatting) |
+	  | =format="..."= | Format of a topic, any token of %SYSTEMWEB%.FormattedSearch can be used, such as =$web=, =$topic=, =$summary=, =$rev=, =$n=. In addition, =$votecount= expands to the number of tag votes, =$size= to the suggested font size, and =$taglist= to the tag list of the topic.  | (nice formatting) |
 	  | =separator=", "= | Separator between tags, =$n= or =$n()= can be used for newlines | ="$n"= |
 	  | =limit=""= | limit number of results if =sort="web"= | |
 	  | =header=""= | if =sort="web"=, add this header once per web with results (only =$web= is interpreted) | =---+++ $web= |
@@ -218,7 +218,7 @@ Attach ones, in the same style, on the upper right:
 </div>
 
 ---+++ Customizing the appearance
-If you customize your site you probably want to change overall appearance. You can find instructions how to do that - at least for default pattern skin - in [[%TWIKIWEB%.PatternSkinCssCookbook]]. %BR%
+If you customize your site you probably want to change overall appearance. You can find instructions how to do that - at least for default pattern skin - in [[%SYSTEMWEB%.PatternSkinCssCookbook]]. %BR%
 The short summary is:
    * Create an empty CSS file, for instance =sitestyle.css=
    * Copy the CSS styles for =tagmetags= (see below at [[%TOPIC%#ExampleStyle][Example styles used on twiki.org]]) into the file
@@ -229,7 +229,7 @@ The short summary is:
    </verbatim>
 
 ---+++ Other places for the tag interface
-To show the tags in the top bar, edit [[%TWIKIWEB%.WebTopBar]] and copy:
+To show the tags in the top bar, edit [[%SYSTEMWEB%.WebTopBar]] and copy:
 <verbatim>
 <div class="tagmetags">
 Tags: %TAGME{ tpaction="%URLPARAM{tpaction}%" web="%WEB%" tag="%URLPARAM{tag}%" }%, [[TWiki.TagMeViewAllTags][view all tags]]
@@ -244,7 +244,7 @@ To show the tags at the bottom of every page, write in [[%MAINWEB%.TWikiPreferen
 ---+++ How to show the tags without vote buttons
 To just show the tags for a topic, without buttons or "Create new tag" link, use a =showalltags= search:
 <verbatim>
-Tags: %TAGME{ tpaction="showalltags" web="%WEB%" topic="%TOPIC%" format="<a href=\"%SCRIPTURL{view}%/%TWIKIWEB%/TagMeSearch?tag=$tag\">$tag</a> " }%
+Tags: %TAGME{ tpaction="showalltags" web="%WEB%" topic="%TOPIC%" format="<a href=\"%SCRIPTURL{view}%/%SYSTEMWEB%/TagMeSearch?tag=$tag\">$tag</a> " }%
 </verbatim>
 
 ---++ Tag styles
@@ -325,7 +325,7 @@ CSS styles:
 
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, e.g., ==%<nop>TAGMEPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Tag wiki content collectively to find content by keywords
 
 	* Log add/create actions:
@@ -430,12 +430,12 @@ count of known tags, option to delete tags |
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle 100%, %TWIKIWEB%.FormattedSearch 100%, %TOPIC% 99% |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle 100%, %SYSTEMWEB%.FormattedSearch 100%, %TOPIC% 99% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TagMeViewAllTags, %TWIKIWEB%.TagMeViewMyTags, %TWIKIWEB%.TagMeSearch, %TWIKIWEB%.TagMeDebugViewTags, %TWIKIWEB%.TagMeDebugSearch, %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TagMeViewAllTags, %SYSTEMWEB%.TagMeViewMyTags, %SYSTEMWEB%.TagMeSearch, %SYSTEMWEB%.TagMeDebugViewTags, %SYSTEMWEB%.TagMeDebugSearch, %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
 
 -- TWiki:Main.PeterThoeny - 16 Oct 2007
 

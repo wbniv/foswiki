@@ -363,7 +363,7 @@ sub _searchSkills {
 <!-- SKILLSPLUGIN - SEARCH SKILLS -->
 <table class='skillsTable'>
 <tr>
-<th class='skillsHeading' colspan='6'><a href='%SCRIPTURL{view}%/%TWIKIWEB%/SkillsPlugin'>Skills Search Results</a></th>
+<th class='skillsHeading' colspan='6'><a href='%SCRIPTURL{view}%/%SYSTEMWEB%/SkillsPlugin'>Skills Search Results</a></th>
 </tr><tr>
 <td style="padding-left:200px;"></td><td class='skillsRatingHeader'>Ancient<br />Knowledge</td><td class='skillsRatingHeader'>Working<br />Knowledge</td><td class='skillsRatingHeader'>Expert</td><td class='skillsRatingHeader'>Guru</td>
 </tr>

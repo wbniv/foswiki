@@ -43,7 +43,7 @@ The =%<nop>RANDOMQUOTE{...}%= variable gets expanded to a random quote selected 
 
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = display a random quote
 
 	* Debug plugin: (See output in =data/debug.txt=)
@@ -57,8 +57,8 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
 	  | *File:* | *Description:* |
 	  | ==data/%MAINWEB%/RandomQuotes== | RandomQuotePlugin data topic |
-	  | ==data/%TWIKIWEB%/%TOPIC%.txt== | Plugin topic |
-	  | ==data/%TWIKIWEB%/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==data/%SYSTEMWEB%/%TOPIC%.txt== | Plugin topic |
+	  | ==data/%SYSTEMWEB%/%TOPIC%.txt,v== | Plugin topic repository |
 	  | ==data/Sandbox/NotableQuotes.txt== | Sample quotes |
 	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
 	* Test if the installation was successful:
@@ -76,6 +76,6 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Plugin Home: | http://wiki.trommetter.com/TWiki/%TOPIC% |
 |  Feedback: | http://wiki.trommetter.com/TWiki/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- [[http://wiki.trommetter.com/Main/JasonTromm][JasonTromm]] - 03 Jul 2003

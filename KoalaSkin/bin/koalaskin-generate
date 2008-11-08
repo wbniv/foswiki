@@ -30,7 +30,7 @@ export templates=$DIR/templates
 export pub=$DIR/pub
 # name of the web where you put the KoalaSkinWebList topic
 # was Main (%MAINWEB% / $mainWebname in TWiki config) in 2.14 and before, 
-# then TWiki (%TWIKIWEB% / $twikiWebname) afterwards
+# then TWiki (%SYSTEMWEB% / $twikiWebname) afterwards
 export wlw=TWiki
 # name of Home topic in web if you renamed it (%HOMETOPIC% in config)
 export webhome=WebHome
@@ -587,7 +587,7 @@ check_ks_variables () {
     done
   fi
   if [ -n "$KSWEBMAP" ]; then 
-    KSWEBMAPLEGEND=", on map icon (<img src='%PUBURLPATH%/_ks/sitemap.gif' width=16 height=16 border=0 alt='sitemap icon'>) to see its map, and on \"what's new?\" icon (<img src='%PUBURLPATH%/%TWIKIWEB%/TWikiDocGraphics/changes.gif' width=16 height=16 border=0 alt=\"what's new icon\">) to see the latest changed topics in the web"
+    KSWEBMAPLEGEND=", on map icon (<img src='%PUBURLPATH%/_ks/sitemap.gif' width=16 height=16 border=0 alt='sitemap icon'>) to see its map, and on \"what's new?\" icon (<img src='%PUBURLPATH%/%SYSTEMWEB%/TWikiDocGraphics/changes.gif' width=16 height=16 border=0 alt=\"what's new icon\">) to see the latest changed topics in the web"
   fi
 }
 

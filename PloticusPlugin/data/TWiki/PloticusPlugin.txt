@@ -1298,7 +1298,7 @@ file: logo.dcm
 
 ---++ Plugin Settings 
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 	* Set SHORTDESCRIPTION = Allows users to plot data and functions using <nop>Ploticus
 
 	* Debug plugin: (See output in =data/debug.txt=)
@@ -1335,12 +1335,12 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 | Other Dependencies: | Ploticus (available from http://ploticus.sourceforge.net/) |
 | Perl Version: | 5.005 |
 | License: | GPL ( [[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-| [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle 99%, %TWIKIWEB%.FormattedSearch 99%, %TOPIC% 98% |
+| [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 98% |
 | Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 | Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 | Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main.SteffenPoulsen - 27 Apr 2006
 

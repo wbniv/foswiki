@@ -24,7 +24,7 @@
 ---++ Implementation
 <verbatim>
 %STARTINCLUDE%<!-- render edit tag cloud -->
-~~~ <script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/ClassificationPlugin/jquery.tagselector.js"></script>
+~~~ <script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/ClassificationPlugin/jquery.tagselector.js"></script>
 ~~~ <script type="text/javascript">
 ~~~ $(function() {
 ~~~   $("#clsTagSelector").tagSelector();

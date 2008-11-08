@@ -40,11 +40,11 @@ To add the editor to another skin, add the following link to the skin alongside 
 As you can see this is just a standard edit link with the 'kupu' skin in place of the usual edit skin. Here it is for this topic: <a href="%SCRIPTURLPATH%/edit%SCRIPTSUFFIX%/%WEB%/%TOPIC%?skin=kupu">Kupu</a>. Try clicking on it, but _do not save_!
 
 ---++ Other Settings
-%INCLUDE{"%TWIKIWEB%.WysiwygPluginSettings"}%
+%INCLUDE{"%SYSTEMWEB%.WysiwygPluginSettings"}%
 
 The editor template includes a number of files that can be used for other settings. These files are *not* included in the distribution, so that you can easily create your own local content.
 
----+++ %TWIKIWEB%.<nop>WysiwygPluginIcons
+---+++ %SYSTEMWEB%.<nop>WysiwygPluginIcons
 You can define a list of icons that will be available in the Kupu editor when the %ATTACHURL%/smiley.png toolbar button is pressed. This topic has to contain a list of &lt;IMG&gt; tags. If present, the 'alt' text will be used in place of the &lt;IMG&gt; tag when translating from HTML to TML. Example:
 <verbatim>
 	<img src="%PUBURL%/TWiki/TWikiDocGraphics/tip.gif" />
@@ -58,7 +58,7 @@ You can define a list of icons that will be available in the Kupu editor when th
 	<img src="%PUBURL%/TWiki/TWikiDocGraphics/arrowright.gif" />
 </verbatim>
 
----+++ %TWIKIWEB%.<nop>WysiwygPluginStrings
+---+++ %SYSTEMWEB%.<nop>WysiwygPluginStrings
 You can also define a list of strings that will be available for insertion in topics using the %ATTACHURL%/strings.png toolbar button. This topic has to contain a list of HTML 'option' tags. Example:
 <verbatim>
 	<option value='-- <nop>%WIKIUSERNAME% - %DATE%'>Signature</option>
@@ -71,7 +71,7 @@ You can also define a list of strings that will be available for insertion in to
 	<option value="%<nop>DATE%"> Date (variable)</option>
 </verbatim>
 The bit between the &gt; &lt; =value= defines text in the drop-down box in the editor, and the =value= defines the actual string inserted in the topic.			
----+++ %TWIKIWEB%.<nop>WysiwygPluginLocalHelp
+---+++ %SYSTEMWEB%.<nop>WysiwygPluginLocalHelp
 If it exists, the contents of this topic will be included and shown on the edit screen below the status bar. It is intended to be used for site-specific quick help information.
 
 ---++ Known problems
@@ -85,7 +85,7 @@ Kupu does not work on Safari.
 
 ---++ Contrib Info
 
-This extension is brought to you by a [[http://wikiring.com][WikiRing <a href="http://wikiring.com"><img src="%PUBURLPATH%/%TWIKIWEB%/WysiwygPlugin/wikiringlogo20x20.png" title="WikiRing: Professional Wiki Innovation and Support" /></a>]] partner - working together to improve your wiki experience!
+This extension is brought to you by a [[http://wikiring.com][WikiRing <a href="http://wikiring.com"><img src="%PUBURLPATH%/%SYSTEMWEB%/WysiwygPlugin/wikiringlogo20x20.png" title="WikiRing: Professional Wiki Innovation and Support" /></a>]] partner - working together to improve your wiki experience!
 
 |  Contrib Author: | TWiki:Main.CrawfordCurrie http://www.c-dot.co.uk (from original work by TWiki:Main.RomainRaugi, TWiki:Main.DamienMandrioli, TWiki:Main.FredericLuddeni, and TWiki:Main.ColasNahaboo)  |
 |  Copyright | &copy; ILOG 2005 http://www.ilog.fr |

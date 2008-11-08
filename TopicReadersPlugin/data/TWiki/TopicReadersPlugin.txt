@@ -16,7 +16,7 @@ Can be used as a supplement to general statistical tools as an easy way for user
 
 ---++ General Settings
 
-   * One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+   * One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
    * Set SHORTDESCRIPTION = This plugin list readers of a TOPIC since a given date
 
    * Debug plugin: (See output in =data/debug.txt=)
@@ -40,7 +40,7 @@ Can be used as a supplement to general statistical tools as an easy way for user
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.6 |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle 99%, %TWIKIWEB%.FormattedSearch 99%, %TOPIC% 80% |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 80% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |

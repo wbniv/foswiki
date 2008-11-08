@@ -50,7 +50,7 @@ Please, to suggest indexing improvements read/post to TWiki:Plugins/SearchEngine
 
 ---+++ Attachment file types to be indexed
 
-All the PDF, HTML and text attachments are also indexed by default. If you want to override this setting you can use a TWiki preference ==PLUCENEINDEXEXTENSIONS==. You can copy & paste the next lines in your [[%TWIKIWEB%.TWikiPreferences]] topic
+All the PDF, HTML and text attachments are also indexed by default. If you want to override this setting you can use a TWiki preference ==PLUCENEINDEXEXTENSIONS==. You can copy & paste the next lines in your [[%SYSTEMWEB%.TWikiPreferences]] topic
 <verbatim>
 	* Plucene settings
 		* Set PLUCENEINDEXEXTENSIONS = .pdf,.html,.txt,.doc
@@ -77,7 +77,7 @@ __Note:__ You do not need to install anything on the browser to use this add-on.
 	  | ==data/Plugins/SearchEnginePluceneAddOn.txt== | Add-on topic |
 	  | ==data/Plugins/SearchEnginePluceneAddOn.txt,v== | Add-on topic repository |
 	  | ==index/== | directory for index files to be stored |
-	* %RED% ATTENTION! %ENDCOLOR% Now the ==$idxpath== variable is loaded with the new TWiki preference ==PLUCENEINDEXPATH== value, so you should add to your [[%TWIKIWEB%.TWikiPreferences]] topic the next text
+	* %RED% ATTENTION! %ENDCOLOR% Now the ==$idxpath== variable is loaded with the new TWiki preference ==PLUCENEINDEXPATH== value, so you should add to your [[%SYSTEMWEB%.TWikiPreferences]] topic the next text
 <verbatim>
 	* Plucene settings
 		* Set PLUCENEINDEXPATH = /srv/www/personal/index or whatever path your index folder is located
@@ -107,7 +107,7 @@ __Note:__ You do not need to install anything on the browser to use this add-on.
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
 
-__Related Topic:__ %TWIKIWEB%.TWikiAddOns
+__Related Topic:__ %SYSTEMWEB%.TWikiAddOns
 
 -- TWiki:Main/JoanMVigo - 15 Dec 2004
 

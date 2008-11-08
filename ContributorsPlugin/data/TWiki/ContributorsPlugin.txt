@@ -46,7 +46,7 @@ To use WebContributors, you pass a URL with the information you want in the quer
 
 ---++ Plugins Settings
 
-	* One line description which is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description which is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = This plugin gives a variable %<nop>CONTRIBUTORS% which gives information on all revisions of a given topic.
 
 
@@ -105,11 +105,11 @@ Use  %<nop>CONTRIBUTORS{web="TWiki" topic="TWikiPreferences"  last="7" rev="1.20
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.0 |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 100%, %TWIKIWEB%.FormattedSearch 100%, %TOPIC% 100% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 100%, %SYSTEMWEB%.FormattedSearch 100%, %TOPIC% 100% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% (TWiki:Plugins.%TOPIC%) |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev (TWiki:Plugins.%TOPIC%Dev) |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main.AndreaSterbini - 27 Feb 2001 %BR% 
 -- TWiki:Main.PeterThoeny - 21 Mar 2004 %BR%

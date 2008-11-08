@@ -326,7 +326,7 @@ sub populateWebMapArray {
         # expand WEB and TOPIC variables
         $baseTopicText =~ s/%(HOME|NOTIFY|WEBPREFS|WIKIPREFS|WIKIUSERS)?TOPIC%/TWiki::Func::expandCommonVariables($&, $baseTopic, $web)/ge;
         $baseTopicText =~ s/%MAINWEB%/TWiki::Func::getMainWebname()/ge; # faster than expandCommonVariables
-        $baseTopicText =~ s/%TWIKIWEB%/TWiki::Func::getTwikiWebname()/ge;
+        $baseTopicText =~ s/%SYSTEMWEB%/TWiki::Func::getTwikiWebname()/ge;
         # skip meta
         $baseTopicText =~ s/%META[^%]+%//g;
 #         # throw away text part of forced links

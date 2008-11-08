@@ -45,7 +45,7 @@ sub test_returnHtml {
     
     my $text = "an error";
     my $html = TWiki::Plugins::ApprovalPlugin::_Return($text);
-    $this->assert_html_equals("<span class=\"ApprovalPluginMessage \"> %TWIKIWEB%.ApprovalPlugin - $text</span>", $html, "message");
+    $this->assert_html_equals("<span class=\"ApprovalPluginMessage \"> %SYSTEMWEB%.ApprovalPlugin - $text</span>", $html, "message");
 }
 
 sub test_returnError {
@@ -53,7 +53,7 @@ sub test_returnError {
     
     my $text = "an error";
     my $html = TWiki::Plugins::ApprovalPlugin::_Return($text, 1);
-    $this->assert_html_equals("<span class=\"ApprovalPluginMessage twikiAlert\"> %TWIKIWEB%.ApprovalPlugin - $text</span>", $html, "message");
+    $this->assert_html_equals("<span class=\"ApprovalPluginMessage twikiAlert\"> %SYSTEMWEB%.ApprovalPlugin - $text</span>", $html, "message");
 }
 
 # how can i pretend to be a user...?

@@ -18,11 +18,11 @@
 </verbatim>
 
 <verbatim>
-%STARTSECTION{"pubImage"}%%IF{"defined imgName and '%imgName%'!=''" then="%IF{"$imgType!='nolink'" then="<a href='%PUBURL%/%imgWeb%/%imgTopic%/%imgName%'>"}%<img src='%PUBURL%/%imgWeb%/%imgTopic%/%imgName%' alt='' title='%IF{"defined imgTitle" then="%imgTitle%" else="%MAKETEXT{"Enlarge"}%"}%' />%IF{"$imgType!='nolink'" then="</a>"}%" else="<img src='%PUBURL%/%TWIKIWEB%/PersonalInfoAddOn/silhouette.gif' alt='' title=%IF{"defined imgTitle" then='%imgTitle%' else='"%MAKETEXT{"Enlarge"}%"'}% />"}%%ENDSECTION{"pubImage"}%
+%STARTSECTION{"pubImage"}%%IF{"defined imgName and '%imgName%'!=''" then="%IF{"$imgType!='nolink'" then="<a href='%PUBURL%/%imgWeb%/%imgTopic%/%imgName%'>"}%<img src='%PUBURL%/%imgWeb%/%imgTopic%/%imgName%' alt='' title='%IF{"defined imgTitle" then="%imgTitle%" else="%MAKETEXT{"Enlarge"}%"}%' />%IF{"$imgType!='nolink'" then="</a>"}%" else="<img src='%PUBURL%/%SYSTEMWEB%/PersonalInfoAddOn/silhouette.gif' alt='' title=%IF{"defined imgTitle" then='%imgTitle%' else='"%MAKETEXT{"Enlarge"}%"'}% />"}%%ENDSECTION{"pubImage"}%
 </verbatim>
 
 <verbatim>
-%STARTSECTION{"imagePluginImage"}%%IMAGE{"%IF{"defined imgName and '%imgName%'!=''" then="%imgName%" else="silhouette.gif"}%" warn="off" align="none" topic="%IF{"defined imgName and '%imgName%'!=''" then="%imgTopic%" else="PersonalInfoAddOn"}%" web="%IF{"defined imgName and '%imgName%'!=''" then="%imgWeb%" else="%TWIKIWEB%"}%" size="%IF{"defined imgWidth" then="%imgWidth%"}%x%IF{"defined imgHeight" then="%imgHeight%"}%" %IF{"$imgType='nolink'" then="format=\"<img border=\\"0\\" align=\\"middle\\" src=\\"$src\\" alt=\\"$alt\\" width=\\"$width\\" height=\\"$height\\" longdesc=\\"$desc\\" title=\\"$title\\" />\" "}% title="%IF{"defined imgTitle" then='%imgTitle%' else='"%MAKETEXT{"Enlarge"}%"'}%" }%%ENDSECTION{"imagePluginImage"}%
+%STARTSECTION{"imagePluginImage"}%%IMAGE{"%IF{"defined imgName and '%imgName%'!=''" then="%imgName%" else="silhouette.gif"}%" warn="off" align="none" topic="%IF{"defined imgName and '%imgName%'!=''" then="%imgTopic%" else="PersonalInfoAddOn"}%" web="%IF{"defined imgName and '%imgName%'!=''" then="%imgWeb%" else="%SYSTEMWEB%"}%" size="%IF{"defined imgWidth" then="%imgWidth%"}%x%IF{"defined imgHeight" then="%imgHeight%"}%" %IF{"$imgType='nolink'" then="format=\"<img border=\\"0\\" align=\\"middle\\" src=\\"$src\\" alt=\\"$alt\\" width=\\"$width\\" height=\\"$height\\" longdesc=\\"$desc\\" title=\\"$title\\" />\" "}% title="%IF{"defined imgTitle" then='%imgTitle%' else='"%MAKETEXT{"Enlarge"}%"'}%" }%%ENDSECTION{"imagePluginImage"}%
 </verbatim>
 
 <verbatim>

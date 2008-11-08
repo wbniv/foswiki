@@ -139,7 +139,7 @@ sub processTopic
     open TOPIC, "$dataDir/$web/$topic.txt" or die "$web/$topic: $!";
     while (<TOPIC>)
     {
-	s/%TWIKIWEB%/TWiki/go;
+	s/%SYSTEMWEB%/TWiki/go;
 	s/%MAINWEB%/Main/go;
 	# meta stuff
 	if (/^%META:TOPICPARENT.name="(.*)"/o) {

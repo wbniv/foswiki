@@ -6,6 +6,6 @@ authMenu.Add("%SPACEOUT{%WIKINAME%}%","%SCRIPTURLPATH{view}%/%MAINWEB%/%WIKINAME
 authMenu.Add("%MAKETEXT{"Log Out"}%","%IF{"defined LOGOUTURL" then="%LOGOUTURL%" else="?logout=1"}%","%ICONURLPATH{"logout"}%");
 ' else='
 authMenu.Add("%MAKETEXT{"Log In"}%","%LOGINURL%","%ICONURLPATH{"key"}%");
-authMenu.Add("%MAKETEXT{"Register"}%","%SCRIPTURLPATH{view}%/%TWIKIWEB%/TWikiRegistration","%ICONURLPATH{"pencil"}%");
+authMenu.Add("%MAKETEXT{"Register"}%","%SCRIPTURLPATH{view}%/%SYSTEMWEB%/TWikiRegistration","%ICONURLPATH{"pencil"}%");
 '}%
 </noautolink>%STOPINCLUDE%</pre>

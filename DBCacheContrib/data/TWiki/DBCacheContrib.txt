@@ -36,7 +36,7 @@ array entry is a map (or hash in perl terms) that maps a set of field names to
 values.
 
 Each topic in the web automatically gets a number of standard fields, generated
-by reading the metadata from the topic (see %TWIKIWEB%.TWikiMetaData)
+by reading the metadata from the topic (see %SYSTEMWEB%.TWikiMetaData)
 	* =name=        - name of the topic
 	* =parent=      - name of parent topic
 	* =_up=         - _reference_ to the Map of the parent topic, if it exists

@@ -66,7 +66,7 @@ get the current skin style; the priority is
    3 preference value =SKINSTYLE= set in 
       (a) the user preferences 
       (b) the WebPreferences or 
-      (c) %TWIKIWEB%.TWikiPreferences 
+      (c) %SYSTEMWEB%.TWikiPreferences 
 
 ---+++ IFSKINSTATE
 *Syntax*: =%<nop>IFSKINSTATE{&lt;tests> then="..." else="..."}%= 
@@ -232,7 +232,7 @@ display separate sets of actions for anonymous or authenticated users.
      format string of actions for authenticated users
    * restrictedactions="...": list of user actions that are disabled if the user
      has got no write access to the current topic
-   * help="...": help topic used for =$help=, defaults to %TWIKIWEB%.TWikiUsersGuide (see below)
+   * help="...": help topic used for =$help=, defaults to %SYSTEMWEB%.TWikiUsersGuide (see below)
 
 The "guest" and "format" format strings can use the following variables
    * $attach: link to "attach" topic action
@@ -263,23 +263,23 @@ The "guest" and "format" format strings can use the following variables
 display a web component. A web component "<nop>MyComponent" is searched looking for
    1 <nop>MyComponent in the current web,
    2 <nop>TWikiMyComponent in the %MAINWEB% web,
-   3 <nop>TWikiMyComponent in the %TWIKIWEB% web and
-   4 <nop>MyComponent in the %TWIKIWEB% web.
+   3 <nop>TWikiMyComponent in the %SYSTEMWEB% web and
+   4 <nop>MyComponent in the %SYSTEMWEB% web.
 
 The WEBCOMPONENT tag will retrieve the component where it was found
 first. Thereby every web can define a component of its own but if it is
 not defined locally a predefined component will be returned. Components
-can be predefined in the %MAINWEB% and the %TWIKIWEB% where the name
+can be predefined in the %MAINWEB% and the %SYSTEMWEB% where the name
 of the component is prefix with "TWiki" to distinguish them from the
-local web components that may be present in the %MAINWEB% and the %TWIKIWEB%.
-As a last resort the local components of the %TWIKIWEB% are used.
+local web components that may be present in the %MAINWEB% and the %SYSTEMWEB%.
+As a last resort the local components of the %SYSTEMWEB% are used.
 
 By default the NatSkin comes with predefined components 
-   * [[%TWIKIWEB%.TWikiWebSideBar]]
-   * [[%TWIKIWEB%.TWikiWebButtons]]
-   * [[%TWIKIWEB%.TWikiWebLinks]]
-   * [[%TWIKIWEB%.TWikiWebTopicActions]]
-   * [[%TWIKIWEB%.TWikiWebHtmlHead]]
+   * [[%SYSTEMWEB%.TWikiWebSideBar]]
+   * [[%SYSTEMWEB%.TWikiWebButtons]]
+   * [[%SYSTEMWEB%.TWikiWebLinks]]
+   * [[%SYSTEMWEB%.TWikiWebTopicActions]]
+   * [[%SYSTEMWEB%.TWikiWebHtmlHead]]
 
 Example: 
    * use =%<nop>WEBCOMPONENT{"WebSideBar"}%= to display a the sidebar component
@@ -324,7 +324,7 @@ The following variables can be used in the format string:
 %$DEPENDENCIES%
    * Optionally install the TWiki:Plugins/RedDotPlugin to ease editing the sidebar navigation
    * Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
-   * Edit [[%TWIKIWEB%.TWikiPreferences]] and change the SKIN variable to "nat";
+   * Edit [[%SYSTEMWEB%.TWikiPreferences]] and change the SKIN variable to "nat";
      customize the default style adding the variables SKINSTYLE, STYLEBORDER,
      STYLEBUTTONS and STYLESIDEBAR (see NatSkin)
    * If you have set up ssl for your server add the following variable to your <nop>TWikiPreferences:

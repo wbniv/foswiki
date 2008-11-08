@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="PeterThoeny" date="1155231533" format="1.1" reprev="1.2" version="1.2"}%
 ---+!! <nop>%TOPIC%
 
-This Plugin prevents automatic linking of selected [[%TWIKIWEB%.WikiWord][WikiWords]] such as <nop>LinuxWorld or <nop>MacDonald.
+This Plugin prevents automatic linking of selected [[%SYSTEMWEB%.WikiWord][WikiWords]] such as <nop>LinuxWorld or <nop>MacDonald.
 
 %TOC%
 
@@ -13,7 +13,7 @@ This Plugin prevents automatic linking of selected [[%TWIKIWEB%.WikiWord][WikiWo
 
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>STOPWIKIWORDLINKPLUGIN_SHORTDESCRIPTION%==
 
-   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+   * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
       * Set SHORTDESCRIPTION = Prevents automatic linking of selected <nop>WikiWords
 
    * Debug plugin: (See output in =data/debug.txt=)
@@ -58,11 +58,11 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle 100%, %TWIKIWEB%.FormattedSearch 100%, %TOPIC% 99% |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle 100%, %SYSTEMWEB%.FormattedSearch 100%, %TOPIC% 99% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
 
 -- TWiki:Main.PeterThoeny - 10 Aug 2006

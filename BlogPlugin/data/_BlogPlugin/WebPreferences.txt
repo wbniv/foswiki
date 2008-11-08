@@ -2,7 +2,7 @@
 ---+!! <nop>%WEB% Web Preferences
 %FORMFIELD{"TopicDescription"}%
 
-See also the BlogAbout page to write about you and your blog. Use the %TWIKIWEB%.BlogFactory
+See also the BlogAbout page to write about you and your blog. Use the %SYSTEMWEB%.BlogFactory
 to create more blogs.
 
 %TOC%
@@ -44,7 +44,7 @@ Flag to include/exclude this web from TWiki's SEARCH
 
 Note this is only relevant if you are using TWiki:Plugins.NatSkin
 
-Flag to enable/disable automatic linking of %TWIKIWEB%.WikiWords
+Flag to enable/disable automatic linking of %SYSTEMWEB%.WikiWords
    * Set NOAUTOLINK =
 
 ---+++ Technorati
@@ -107,7 +107,7 @@ Chose the skin to be used for this web:
    * #Set SKIN = pattern
 
 <nop>PatternSkin styles for <nop>BlogUp:
-   * Set USERSTYLEURL = %PUBURLPATH%/%TWIKIWEB%/BlogPlugin/patternstyle.css
+   * Set USERSTYLEURL = %PUBURLPATH%/%SYSTEMWEB%/BlogPlugin/patternstyle.css
 
 <nop>NatSkin variables:
    * Set SKINSTYLE = Kubrick
@@ -155,7 +155,7 @@ TopicFunctions to generate html page header information:
 
 __Related Topics__:
    * [[%LOCALSITEPREFS%]]
-   * [[%TWIKIWEB%.TWikiPreferences]]
+   * [[%SYSTEMWEB%.TWikiPreferences]]
 
 %META:FORM{name="TopicForm"}%
 %META:FIELD{name="TopicType" attributes="M" title="TopicType" value="AdminTool"}%

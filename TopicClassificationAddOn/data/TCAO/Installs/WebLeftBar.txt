@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="LynnwoodBrown" date="1130443857" format="1.1" version="1.2"}%
-%INCLUDE{"%IF{"context can_login" then="%TWIKIWEB%.WebLeftBarLogin"}%" warn="off"}%
+%INCLUDE{"%IF{"context can_login" then="%SYSTEMWEB%.WebLeftBarLogin"}%" warn="off"}%
 <div class="patternLeftBarContents">
-%INCLUDE{ "%TWIKIWEB%.WebLeftBarSearch" }%
+%INCLUDE{ "%SYSTEMWEB%.WebLeftBarSearch" }%
 ----
    * <b>[[%INCLUDINGWEB%.%HOMETOPIC%][ %ICON{"home"}% <nop>%MAKETEXT{"[_1] Web" args="%INCLUDINGWEB%"}%]]</b>
    * [[WebTopicList][ %ICON{"index"}% %MAKETEXT{"Index"}%]]
@@ -13,5 +13,5 @@
    * [[WebStatistics][ %ICON{"statistics"}% %MAKETEXT{"Statistics"}%]]
    * [[WebPreferences][ %ICON{"wrench"}% %MAKETEXT{"Preferences"}%]]
 ---
-%INCLUDE{ "%TWIKIWEB%.WebLeftBarWebsList" }%
+%INCLUDE{ "%SYSTEMWEB%.WebLeftBarWebsList" }%
 </div>

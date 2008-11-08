@@ -19,7 +19,7 @@ Test:
 
 ---+++ Syntax Rules(none)
 ---+++ %TOPIC% 
-	* One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
 	* Set SHORTDESCRIPTION = This plugin holds a function to implement the features listed on http://twiki.org/cgi-bin/view/Codev/?topic=SingletonWikiWord.
 
 	* Set DEBUG to 1 to get debug messages in =data/debug.txt=. Default: =0=
@@ -43,7 +43,7 @@ Test:
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main.MartinCleaver - 28 Nov 2001 <br> 
 

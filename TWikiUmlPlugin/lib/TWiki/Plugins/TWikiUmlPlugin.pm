@@ -72,7 +72,7 @@ sub commonTagsHandler {
 }
 
 sub getJSInit() {
-  return '<head><!-- '.$pluginName.' JSInit --><script language="JavaScript" type="text/javascript">djConfig = { isDebug: false };</script><script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/TWikiUmlPlugin/dojo/dojo.js"></script>';
+  return '<head><!-- '.$pluginName.' JSInit --><script language="JavaScript" type="text/javascript">djConfig = { isDebug: false };</script><script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/TWikiUmlPlugin/dojo/dojo.js"></script>';
 }
 
 sub handleUml {

@@ -38,6 +38,6 @@ of the topic before adding the topic, its =,v= file and the attachments listed i
 |  Feedback: | http://twiki.org/cgi-bin/view/Plugins/GetAWebPluginDev |
 |  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/GetAWebPluginAppraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
 
 <!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the feedback topic on twiki.org instead. -->

@@ -119,7 +119,7 @@ Format strings may contain the following:
 |  CPAN Dependencies: | CPAN:DateTime |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | TWiki:Plugins/%TOPIC% |
 |  Feedback: | TWiki:Plugins/%TOPIC%Dev |
 |  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |

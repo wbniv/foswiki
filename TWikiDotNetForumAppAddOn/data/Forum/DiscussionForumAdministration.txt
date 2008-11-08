@@ -33,7 +33,7 @@ return 'Forum' + sOut.substring(0,3);
       * DiscussionTopicForm
       * DiscussionTopicTemplate
       * DiscussionTopicHeader
-   * %TWIKIWEB%.TWikiDotNetForumAppAddOn documentation
+   * %SYSTEMWEB%.TWikiDotNetForumAppAddOn documentation
 
 ---++ Access Control
 

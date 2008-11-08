@@ -194,12 +194,12 @@ If the required parameters are not defined, then an error message is returned or
 |  27 Jun 2002: | V1.001 - Data range specified is clipped to actual table size; more forgiving data parsing by extracting first numeral from a table cell, e.g. extract =25= from =&lt;u&gt;25%&lt;/u&gt;= |
 |  20 Jun 2002: | Initial version (V1.000) |
 |  Dependencies: | %$DEPENDENCIES% |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 96%, %TWIKIWEB%.FormattedSearch 97%, ChartPlugin 69% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 96%, %SYSTEMWEB%.FormattedSearch 97%, ChartPlugin 69% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main.TaitCyrus - 3 June 2004 <br />
 -- TWiki:Main.PeterThoeny - 16 Nov 2004

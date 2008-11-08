@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="TWikiContributor" date="1153933070" format="1.1" version="1.2"}%
 ---+ Update Info Plugin
 
-<nop>UpdateInfoPlugin will add a "new" or "updated" icon after a %TWIKIWEB%.WikiWord link if a =%<nop>ISNEW%= tag is used after the link, and the linked topic was recently touched.
+<nop>UpdateInfoPlugin will add a "new" or "updated" icon after a %SYSTEMWEB%.WikiWord link if a =%<nop>ISNEW%= tag is used after the link, and the linked topic was recently touched.
 
 =<nop>WikiWord %<nop>ISNEW%= will be expanded to:
 
@@ -54,8 +54,8 @@ Full syntax overrides site/topic defaults.
 #PluginSettings
 ---+++ <nop>%TOPIC% Settings
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
-		* Set SHORTDESCRIPTION = Add a %<nop>ISNEW% tag after a %TWIKIWEB%.WikiWord to get a visual display of whether the linked topic was created or updated recently
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
+		* Set SHORTDESCRIPTION = Add a %<nop>ISNEW% tag after a %SYSTEMWEB%.WikiWord to get a visual display of whether the linked topic was created or updated recently
 
 	* Sitewide "version" default
 		* Set UPDATEINFOVERSION = 1.1
@@ -89,7 +89,7 @@ Full syntax overrides site/topic defaults.
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 99%, %TWIKIWEB%.FormattedSearch 99%, %TOPIC% 99% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 99% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |

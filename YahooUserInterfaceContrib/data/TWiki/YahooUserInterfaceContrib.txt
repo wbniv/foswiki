@@ -64,6 +64,6 @@ documentation that is in the original archive.
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences
 
 %META:FILEATTACHMENT{name="wikiringlogo20x20.png" attr="h" autoattached="1" comment="wikiringlogo20x20.png" date="1161688837" path="wikiringlogo20x20.png" size="1343" user="Main.SvenDowideit" version="1"}%

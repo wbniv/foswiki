@@ -204,7 +204,7 @@ defining the default CSS properties  (indentation illustrates enclosure).
 |  02 Aug 2002: | Implemented caching of feeds, thanks to TWiki:Main/RobDuarte |
 |  11 Jun 2002: | Initial version (V1.000) |
 |  Perl Version: | 5.8 |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 100%, %TWIKIWEB%.FormattedSearch 99.5%, %TOPIC% 94% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 100%, %SYSTEMWEB%.FormattedSearch 99.5%, %TOPIC% 94% |
 |  Plugin Home: | TWiki:Plugins/%TOPIC% |
 |  Feedback: | TWiki:Plugins/%TOPIC%Dev |
 |  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |

@@ -31,7 +31,7 @@ Name of new tag: <input type="text" class="twikiInputField" name="newtag" id="ne
 %ENDSECTION{"create"}%
 
 %STARTSECTION{"existing"}%
-Existing tags: %TAGME{ tpaction="showalltags" format="[[%SCRIPTURL{view}%/%TWIKIWEB%/TagMeSearch?tag=$tag][$tag]]" separator=", " }%
+Existing tags: %TAGME{ tpaction="showalltags" format="[[%SCRIPTURL{view}%/%SYSTEMWEB%/TagMeSearch?tag=$tag][$tag]]" separator=", " }%
 %ENDSECTION{"existing"}%
 %STOPINCLUDE%
 

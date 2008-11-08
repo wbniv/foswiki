@@ -280,7 +280,7 @@ __You get: (if installed)__
 
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>THREADEDDISCUSSIONPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Support a threaded discussion mode.
 
 	* Debug plugin: (See output in =data/debug.txt=)
@@ -298,13 +298,13 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
 			* The first element is a =0|1= flag indicating whether to suppress or show thread lines at the top level; the next two arguments indicate width and height of icons, respectively; and the final argument gives the spacer icon between thread lines.
 
 	* Topic at which icons are attached, unless explicitly given.
-		* Set ICONTOPIC = %PUBURL%/%TWIKIWEB%/TWikiDocGraphics
+		* Set ICONTOPIC = %PUBURL%/%SYSTEMWEB%/TWikiDocGraphics
 
 	* Labels for the edit and comment buttons. Can be textual or icons.
 		* Set EDITLABEL = Edit
-		* #Set EDITLABEL = <img src="%PUBURL%/%TWIKIWEB%/TWikiDocGraphics/pencil.gif" alt="Edit" border="0">
+		* #Set EDITLABEL = <img src="%PUBURL%/%SYSTEMWEB%/TWikiDocGraphics/pencil.gif" alt="Edit" border="0">
 		* Set COMMENTLABEL = Comment
-		* #Set COMMENTLABEL = <img src="%PUBURL%/%TWIKIWEB%/TWikiDocGraphics/note.gif" alt="Comment" border="0">
+		* #Set COMMENTLABEL = <img src="%PUBURL%/%SYSTEMWEB%/TWikiDocGraphics/note.gif" alt="Comment" border="0">
 		
 
 ---++ Plugin Installation Instructions
@@ -339,7 +339,7 @@ borrows code heavily from it.
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | TWiki:Plugins/EditContrib |
 |  Perl Version: | 5.005 |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |

@@ -1,5 +1,5 @@
 
-%INCLUDE{"%IF{"context can_login" then="%TWIKIWEB%.WebLeftBarLogin"}%" warn="off"}%
+%INCLUDE{"%IF{"context can_login" then="%SYSTEMWEB%.WebLeftBarLogin"}%" warn="off"}%
 <div class="twikiLeftBarPersonal" style="margin-top:0;">
 	* <b><nop>%INCLUDINGWEB% Web</b>
 	* [[%HOMETOPIC%][%INCLUDINGWEB% Web Home]]

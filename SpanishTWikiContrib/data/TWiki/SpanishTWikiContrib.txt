@@ -9,7 +9,7 @@ One line description, required for extensions repository catalog.
 %TOC%
 
 ---++ Documentation
-This contrib provides a spanish translation of the most important documents provided in the %TWIKIWEB% Web. Therefore, a new web called TWiki_ES is added which is structured the same way the original %TWIKIWEB% Web is. Where necesary, references to the original (english) documentation are included. 
+This contrib provides a spanish translation of the most important documents provided in the %SYSTEMWEB% Web. Therefore, a new web called TWiki_ES is added which is structured the same way the original %SYSTEMWEB% Web is. Where necesary, references to the original (english) documentation are included. 
 
 In the most recent version, the following documents are included:
 
@@ -69,6 +69,6 @@ Presently, this Contrib is not shipped with an automatic installer. So, for inst
 |  Feedback: | http://twiki.org/cgi-bin/view/Plugins/SpanishTWikiContribDev |
 |  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/SpanishTWikiContribAppraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiContribs, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiContribs, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
 
 <!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the feedback topic on twiki.org instead. -->

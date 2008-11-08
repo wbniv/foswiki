@@ -3,7 +3,7 @@
 _This topic is displayed in TopicClassification after TCAO has been enabled within a specific web and outlines some next steps for getting the most use out of TCAO._
 
 %STARTINCLUDE%
----+++ Enable forms used by %TWIKIWEB%.TopicClassificationAddOn
+---+++ Enable forms used by %SYSTEMWEB%.TopicClassificationAddOn
 
 To complete the installation process, you need to manually edit %BASEWEB%.WebPreferences and:
    1 Copy and paste =TopicForm,= =TopicClassForm= to "Set WEBFORMS = " .

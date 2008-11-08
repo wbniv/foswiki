@@ -5,11 +5,11 @@ The Peer Review Plugin implements a number of TWiki variables in order to allow 
 
 ---++++ PRLINK
 
-A link &lt;!--%<nop>PRLINK%--&gt; that can either be placed in the site skin(s) or that may be edited into the %TWIKIWEB%.TwikiPreferences topic as one of the Web Topic List items. This link points to a special Peer Review topic - [[Wiki.PeerPluginView]].
+A link &lt;!--%<nop>PRLINK%--&gt; that can either be placed in the site skin(s) or that may be edited into the %SYSTEMWEB%.TwikiPreferences topic as one of the Web Topic List items. This link points to a special Peer Review topic - [[Wiki.PeerPluginView]].
 
 ---++++ PRRATING
 
-A rating indicator &lt;!--%<nop>PRRATING%--&gt; that can be placed in the site skin or that may be edited into the %TWIKIWEB%.TwikiPreferences topic as one of the Web Topic List items. This indicator shows the average topic quality rating for all current reviews. It is greyed out if no review has yet been entered for the topic.
+A rating indicator &lt;!--%<nop>PRRATING%--&gt; that can be placed in the site skin or that may be edited into the %SYSTEMWEB%.TwikiPreferences topic as one of the Web Topic List items. This indicator shows the average topic quality rating for all current reviews. It is greyed out if no review has yet been entered for the topic.
 
 Both of the above two variables are implemented as an HTML comment tag - they will disappear if the plugin is removed. Both are greyed out if referring to a user topic.
 
@@ -19,13 +19,13 @@ A link that should be placed in the user topic (it is recommended that this link
 
 ---++ Special Topics
 
----++++ <nop>%TWIKIWEB%.PeerPluginView
+---++++ <nop>%SYSTEMWEB%.PeerPluginView
 
 A fully featured version of this special topic contains the following:
 
 <verbatim>
 ---+++ Add a Review of %<nop>PROBJECT%
-%<nop>INCLUDE{"%<nop>TWIKIWEB%.PeerPluginForm"}%
+%<nop>INCLUDE{"%<nop>SYSTEMWEB%.PeerPluginForm"}%
 ----
 ---+++ Previous Reviews of %<nop>PROBJECT%
 %<nop>PRLIST{format="topicview"}%
@@ -36,13 +36,13 @@ A fully featured version of this special topic contains the following:
 
 This performs the following:
 
-	1 Shows the review entry form (see below) by including another Special Topic <nop>%TWIKIWEB%.PeerPluginView
+	1 Shows the review entry form (see below) by including another Special Topic <nop>%SYSTEMWEB%.PeerPluginView
 	1 Shows a list of current reviews
 	1 Includes a view of the topic under review (specifically %<nop>PRINCLUDE% allows the include to refer to external urls so that TWiki users can review non-TWiki web pages and sites
 
 The order and presence of each of these items can be changed - specifically it is intended that this arrangement will allow modification (of the TWiki perl source code) so that "add a review" and "view reviews" may be separate links.
 
----++++ <nop>%TWIKIWEB%.PeerPluginUser
+---++++ <nop>%SYSTEMWEB%.PeerPluginUser
 
 This special topic shows a list of the current reviews written by the user in question. It contains the following:
 
@@ -52,12 +52,12 @@ This special topic shows a list of the current reviews written by the user in qu
 %<nop>PRLIST{format="userview"}%
 </verbatim>
 
----++++ <nop>%TWIKIWEB%.PeerPluginForm
+---++++ <nop>%SYSTEMWEB%.PeerPluginForm
 
 This special topic shows a form for entry of new reviews. An example form is:
 
 <verbatim>
-<FORM action="%<nop>SCRIPTURL%/view%<nop>SCRIPTSUFFIX%/%<nop>TWIKIWEB%/PeerPluginView" method="post">
+<FORM action="%<nop>SCRIPTURL%/view%<nop>SCRIPTSUFFIX%/%<nop>SYSTEMWEB%/PeerPluginView" method="post">
 Rating...
 | *Rating* | *1* | *2* | *3* | *4* | *5* | *Key* |
 | Quality | <INPUT type="radio" name="quality" value="1"> | <INPUT type="radio" name="quality" value="2"> |
@@ -83,7 +83,7 @@ Comment...<BR>
 
 By editing this topic, TWiki administrators can add their own explanatory wording and "rules" for fair play with reviews.
 
----++++ <nop>%TWIKIWEB%.PeerReviewStats
+---++++ <nop>%SYSTEMWEB%.PeerReviewStats
 
 This topic uses a wiki variable to display review statistics:
 
@@ -92,13 +92,13 @@ This topic uses a wiki variable to display review statistics:
 %PRSTATS{web="all", limit="100"}% 
 </verbatim>
 
----++++ <nop>%TWIKIWEB%.PeerPluginExtView
+---++++ <nop>%SYSTEMWEB%.PeerPluginExtView
 
 Same idea as <nop>PeerPluginView - but is used to review external Internet/Intranet pages.
 
 <verbatim>
 ---+++ Internet/Intranet Review of %<nop>PROBJECT%
-%<nop>INCLUDE{"%<nop>TWIKIWEB%/PeerPluginExtForm"}%
+%<nop>INCLUDE{"%<nop>SYSTEMWEB%/PeerPluginExtForm"}%
 ----
 ---+++ Previous Reviews of %<nop>PROBJECT%
 %<nop>PRLIST{format="topicview"}%
@@ -107,13 +107,13 @@ Same idea as <nop>PeerPluginView - but is used to review external Internet/Intra
 %<nop>PRINCLUDE{prurl="%<nop>PRURL%"}%
 </verbatim>
 
----++++ <nop>%TWIKIWEB%.PeerPluginExtForm
+---++++ <nop>%SYSTEMWEB%.PeerPluginExtForm
 
 Same idea as <nop>PeerPluginForm - but is used to review external Internet/Intranet pages.
 
 <verbatim>
 *Use this form to review any page on the web. Great for highlighting information that is useful to this wiki community.*
-<FORM action="%SCRIPTURL%/view%SCRIPTSUFFIX%/%TWIKIWEB%/PeerPluginExtView" method="post">
+<FORM action="%SCRIPTURL%/view%SCRIPTSUFFIX%/%SYSTEMWEB%/PeerPluginExtView" method="post">
 <B>1. Select the Page</B>
 	* Enter any Internet or Intranet web page address...
 Url: <INPUT type="text" name="prurl" size="32" value="%PRURL%">
@@ -121,7 +121,7 @@ Url: <INPUT type="text" name="prurl" size="32" value="%PRURL%">
 <INPUT type="submit" value="Select Page">
 </FORM>
 <B>2. Enter your Review</B>
-<FORM action="%SCRIPTURL%/view%SCRIPTSUFFIX%/%TWIKIWEB%/PeerPluginExtView" method="post">
+<FORM action="%SCRIPTURL%/view%SCRIPTSUFFIX%/%SYSTEMWEB%/PeerPluginExtView" method="post">
 Rating...
 | *Rating* | *1* | *2* | *3* | *4* | *5* | *Key* |
 | Quality | <INPUT type="radio" name="quality" value="1"> | <INPUT type="radio" name="quality" value="2"> |

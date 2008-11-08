@@ -6,14 +6,14 @@
 %{ ******************************************* }%
 %TMPL:DEF{"windowtitle"}%<title>%TMPL:P{"titleaction"}%%IF{"defined PAGETITLE" then="%PAGETITLE%" else="<nop>%TOPIC% &lt; %WEB% &lt; <nop>%WIKITOOLNAME%"}%</title>%TMPL:END%
 %{ ******************************************* }%
-%TMPL:DEF{"copyright"}% %WEBRSSCOPYRIGHT% %BR% skin by <a href="http://DistributedINFORMATION.com">DistributedINFORMATION</a> a [[http://WikiRing.com][<img src="%PUBURLPATH%/%TWIKIWEB%/MOVEABLETYPESKIN/wikiringlogo20x20.png" alt="@" width='20' height='20' border='0'  /> WikiRing.com partner]] %TMPL:END%
+%TMPL:DEF{"copyright"}% %WEBRSSCOPYRIGHT% %BR% skin by <a href="http://DistributedINFORMATION.com">DistributedINFORMATION</a> a [[http://WikiRing.com][<img src="%PUBURLPATH%/%SYSTEMWEB%/MOVEABLETYPESKIN/wikiringlogo20x20.png" alt="@" width='20' height='20' border='0'  /> WikiRing.com partner]] %TMPL:END%
 %{ ******************************************* }%
 %TMPL:DEF{"topicinfo"}%%BR%<hr />%TMPL:P{"topicaction"}%%TMPL:END%
 %{ ******************************************* }%
 %TMPL:DEF{"sep"}% &#8226; %TMPL:END%
 %{ ******************************************* }%
 %TMPL:DEF{"login_actions"}%
-%IF{"context authenticated" then='%MAKETEXT{"Hello [_1]!" args="[[%WIKIUSERNAME%][%SPACEOUT{%WIKINAME%}%]]"}% %SEP% %LOGOUT%' else='%LOGIN% %MAKETEXT{"or"}% [[%TWIKIWEB%.TWikiRegistration][%MAKETEXT{"Register"}%]]'}%%TMPL:END%
+%IF{"context authenticated" then='%MAKETEXT{"Hello [_1]!" args="[[%WIKIUSERNAME%][%SPACEOUT{%WIKINAME%}%]]"}% %SEP% %LOGOUT%' else='%LOGIN% %MAKETEXT{"or"}% [[%SYSTEMWEB%.TWikiRegistration][%MAKETEXT{"Register"}%]]'}%%TMPL:END%
    
 %{ **************************************************************************************************************************************************************************** }%
 %{ ******************************************* }%
@@ -40,9 +40,9 @@
 
 
 %{ ******************************************* }%
-%TMPL:DEF{"moveabletypecss"}%%URLPARAM{"cssfile" default="%IF{"defined MOVEABLETYPESKIN_CSSFILE" then="%MOVEABLETYPESKIN_CSSFILE%" else="%PUBURLPATH%/%TWIKIWEB%/%TMPL:P{moveabletypetext}%/theme.css"}%"}%%TMPL:END%
+%TMPL:DEF{"moveabletypecss"}%%URLPARAM{"cssfile" default="%IF{"defined MOVEABLETYPESKIN_CSSFILE" then="%MOVEABLETYPESKIN_CSSFILE%" else="%PUBURLPATH%/%SYSTEMWEB%/%TMPL:P{moveabletypetext}%/theme.css"}%"}%%TMPL:END%
 %{ ******************************************* }%
-%TMPL:DEF{"moveabletypetwikicss"}%%URLPARAM{"twikicssfile" default="%IF{"defined MOVEABLETYPESKIN_TWIKICSSFILE" then="%MOVEABLETYPESKIN_TWIKICSSFILE%" else="%PUBURLPATH%/%TWIKIWEB%/%TMPL:P{moveabletypetext}%/TWiki.css"}%"}%%TMPL:END%
+%TMPL:DEF{"moveabletypetwikicss"}%%URLPARAM{"twikicssfile" default="%IF{"defined MOVEABLETYPESKIN_TWIKICSSFILE" then="%MOVEABLETYPESKIN_TWIKICSSFILE%" else="%PUBURLPATH%/%SYSTEMWEB%/%TMPL:P{moveabletypetext}%/TWiki.css"}%"}%%TMPL:END%
 %{ ******************************************* }%
 %TMPL:DEF{"twikistyle"}%
 <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="%SCRIPTURL{view}%/%BASEWEB%/WebRss" />
@@ -53,7 +53,7 @@
 <script type="text/javascript"></script>
 <!-- css moveabletype skin -->	
 <!-- base_weblog.css is a basic stylesheet that gives you a foundation to work off, please include it in your zip file -->
-<link rel="stylesheet" href="%PUBURL%/%TWIKIWEB%/%TMPL:P{"moveabletypetext"}%/base-weblog.css" type="text/css" />
+<link rel="stylesheet" href="%PUBURL%/%SYSTEMWEB%/%TMPL:P{"moveabletypetext"}%/base-weblog.css" type="text/css" />
 <style type="text/css" title="currentStyle" media="screen">
 @import "%TMPL:P{moveabletypetwikicss}%";
 @import "%TMPL:P{moveabletypecss}%";
@@ -72,16 +72,16 @@ mainclass = %TMPL:P{"mainclass"}%
    <div id="container">
       <div id="container-inner" class="pkg">%TMPL:END%
 %{ ******************************************* }%
-%TMPL:DEF{"standardheader"}%         <div id="banner">%INCLUDE{"%TWIKIWEB%.%TMPL:P{moveabletypetext}%" section="startsectionwrapper-banner"}%
+%TMPL:DEF{"standardheader"}%         <div id="banner">%INCLUDE{"%SYSTEMWEB%.%TMPL:P{moveabletypetext}%" section="startsectionwrapper-banner"}%
                <span id="banner-extra"></span>
             <div id="banner-inner" class="pkg">
                <h1 id="banner-header">%TMPL:P{"titleaction"}%%IF{"defined PAGETITLE" then="%PAGETITLE%" else="<nop>%TOPIC% "}%</h1>
                <h2 id="banner-description"> [[%WEB%.WebHome][%WEB%]] </h2>
             </div>
-%INCLUDE{"%TWIKIWEB%.%TMPL:P{moveabletypetext}%" section="endsectionwrapper-banner"}%         </div>
+%INCLUDE{"%SYSTEMWEB%.%TMPL:P{moveabletypetext}%" section="endsectionwrapper-banner"}%         </div>
          <div id="pagebody">
             <div id="pagebody-inner" class="pkg">%TMPL:P{two-column-left}%               <div id="%TMPL:P{"mainclass"}%">
-%INCLUDE{"%TWIKIWEB%.%TMPL:P{moveabletypetext}%" section="startsectionwrapper-main"}%  <div id="%TMPL:P{"mainclass"}%-inner" class="pkg">
+%INCLUDE{"%SYSTEMWEB%.%TMPL:P{moveabletypetext}%" section="startsectionwrapper-main"}%  <div id="%TMPL:P{"mainclass"}%-inner" class="pkg">
 	<span id="twiki_text">%TMPL:END%
 	
 	
@@ -90,7 +90,7 @@ mainclass = %TMPL:P{"mainclass"}%
 %{ ******************************************* }%
 %TMPL:DEF{"standardfooter"}%
 	</span><!-- twiki_text -->
-  </div>%INCLUDE{"%TWIKIWEB%.%TMPL:P{moveabletypetext}%" section="endsectionwrapper-main"}%
+  </div>%INCLUDE{"%SYSTEMWEB%.%TMPL:P{moveabletypetext}%" section="endsectionwrapper-main"}%
                </div>%TMPL:P{two-column-right}%            </div>
          </div>
 %TMPL:END%
@@ -101,12 +101,12 @@ mainclass = %TMPL:P{"mainclass"}%
 </body>
 </html> %TMPL:END%
 %{ ******************************************* }%
-%TMPL:DEF{"two-column-right"}%               <div id='%TMPL:P{"secondsidebarclass"}%' >%INCLUDE{"%TWIKIWEB%.%TMPL:P{moveabletypetext}%" section="startsectionwrapper-right-%TMPL:P{"moveabletypecolumns"}%"}%
-<div id='%TMPL:P{"secondsidebarclass"}%-inner' class='pkg'> %INCLUDE{"%TWIKIWEB%.%TMPL:P{moveabletypetext}%" section="module-search-right-%TMPL:P{moveabletypecolumns}%" warn="on"}% %INCLUDE{"%TWIKIWEB%.%TMPL:P{moveabletypetext}%" section="module-categories-right-%TMPL:P{moveabletypecolumns}%" warn="off"}% %INCLUDE{"%TWIKIWEB%.%TMPL:P{moveabletypetext}%" section="module-archives-right-%TMPL:P{moveabletypecolumns}%" warn="off"}% %INCLUDE{"%TWIKIWEB%.%TMPL:P{moveabletypetext}%" section="module-syndicate-right-%TMPL:P{moveabletypecolumns}%" warn="off"}% %INCLUDE{"%TWIKIWEB%.%TMPL:P{moveabletypetext}%" section="module-powered-right-%TMPL:P{moveabletypecolumns}%" warn="off"}% </div>
-%INCLUDE{"%TWIKIWEB%.%TMPL:P{moveabletypetext}%" section="endsectionwrapper-right-%TMPL:P{"moveabletypecolumns"}%"}%</div>%TMPL:END%
+%TMPL:DEF{"two-column-right"}%               <div id='%TMPL:P{"secondsidebarclass"}%' >%INCLUDE{"%SYSTEMWEB%.%TMPL:P{moveabletypetext}%" section="startsectionwrapper-right-%TMPL:P{"moveabletypecolumns"}%"}%
+<div id='%TMPL:P{"secondsidebarclass"}%-inner' class='pkg'> %INCLUDE{"%SYSTEMWEB%.%TMPL:P{moveabletypetext}%" section="module-search-right-%TMPL:P{moveabletypecolumns}%" warn="on"}% %INCLUDE{"%SYSTEMWEB%.%TMPL:P{moveabletypetext}%" section="module-categories-right-%TMPL:P{moveabletypecolumns}%" warn="off"}% %INCLUDE{"%SYSTEMWEB%.%TMPL:P{moveabletypetext}%" section="module-archives-right-%TMPL:P{moveabletypecolumns}%" warn="off"}% %INCLUDE{"%SYSTEMWEB%.%TMPL:P{moveabletypetext}%" section="module-syndicate-right-%TMPL:P{moveabletypecolumns}%" warn="off"}% %INCLUDE{"%SYSTEMWEB%.%TMPL:P{moveabletypetext}%" section="module-powered-right-%TMPL:P{moveabletypecolumns}%" warn="off"}% </div>
+%INCLUDE{"%SYSTEMWEB%.%TMPL:P{moveabletypetext}%" section="endsectionwrapper-right-%TMPL:P{"moveabletypecolumns"}%"}%</div>%TMPL:END%
 %{ ******************************************* }%
-%TMPL:DEF{"two-column-left"}%               <div id="%TMPL:P{"firstsidebarclass"}%" >%INCLUDE{"%TWIKIWEB%.%TMPL:P{moveabletypetext}%" section="startsectionwrapper-left-%TMPL:P{"moveabletypecolumns"}%"}%
-<div id='%TMPL:P{"firstsidebarclass"}%-inner' class='pkg'> %INCLUDE{"%TWIKIWEB%.%TMPL:P{moveabletypetext}%" section="module-search-left-%TMPL:P{moveabletypecolumns}%" warn="on"}% %INCLUDE{"%TWIKIWEB%.%TMPL:P{moveabletypetext}%" section="module-categories-left-%TMPL:P{moveabletypecolumns}%" warn="off"}% %INCLUDE{"%TWIKIWEB%.%TMPL:P{moveabletypetext}%" section="module-archives-left-%TMPL:P{moveabletypecolumns}%" warn="off"}% %INCLUDE{"%TWIKIWEB%.%TMPL:P{moveabletypetext}%" section="module-syndicate-left-%TMPL:P{moveabletypecolumns}%" warn="off"}% %INCLUDE{"%TWIKIWEB%.%TMPL:P{moveabletypetext}%" section="module-powered-left-%TMPL:P{moveabletypecolumns}%" warn="off"}% </div>
-%INCLUDE{"%TWIKIWEB%.%TMPL:P{moveabletypetext}%" section="endsectionwrapper-left-%TMPL:P{"moveabletypecolumns"}%"}%</div>           %TMPL:END%
+%TMPL:DEF{"two-column-left"}%               <div id="%TMPL:P{"firstsidebarclass"}%" >%INCLUDE{"%SYSTEMWEB%.%TMPL:P{moveabletypetext}%" section="startsectionwrapper-left-%TMPL:P{"moveabletypecolumns"}%"}%
+<div id='%TMPL:P{"firstsidebarclass"}%-inner' class='pkg'> %INCLUDE{"%SYSTEMWEB%.%TMPL:P{moveabletypetext}%" section="module-search-left-%TMPL:P{moveabletypecolumns}%" warn="on"}% %INCLUDE{"%SYSTEMWEB%.%TMPL:P{moveabletypetext}%" section="module-categories-left-%TMPL:P{moveabletypecolumns}%" warn="off"}% %INCLUDE{"%SYSTEMWEB%.%TMPL:P{moveabletypetext}%" section="module-archives-left-%TMPL:P{moveabletypecolumns}%" warn="off"}% %INCLUDE{"%SYSTEMWEB%.%TMPL:P{moveabletypetext}%" section="module-syndicate-left-%TMPL:P{moveabletypecolumns}%" warn="off"}% %INCLUDE{"%SYSTEMWEB%.%TMPL:P{moveabletypetext}%" section="module-powered-left-%TMPL:P{moveabletypecolumns}%" warn="off"}% </div>
+%INCLUDE{"%SYSTEMWEB%.%TMPL:P{moveabletypetext}%" section="endsectionwrapper-left-%TMPL:P{"moveabletypecolumns"}%"}%</div>           %TMPL:END%
 
 

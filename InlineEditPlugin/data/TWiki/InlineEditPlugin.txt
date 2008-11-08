@@ -25,7 +25,7 @@ If the InlineEditPlugin is installed and enabled, all you should need to edit a 
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
 
 
-   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+   * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
       * Set SHORTDESCRIPTION = adds double click to edit functionality to the TWiki view script
 
    * Debug plugin: (See output in =data/debug.txt=)
@@ -74,12 +74,12 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Other Dependencies: | TWiki:Plugins.WysiwygPlugin |
 |  Perl Version: | 5.005 |
 |  License: | GPL ( [[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | [[http://TWiki.org/cgi-bin/view/Plugins/%3Cspan%20id=%27TMLvariable10%27%20class=%27TMLvariable%27%20%3ETOPIC%3C/span%3E][http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%]] |
 |  Feedback: | [[http://TWiki.org/cgi-bin/view/Plugins/%3Cspan%20id=%27TMLvariable12%27%20class=%27TMLvariable%27%20%3ETOPIC%3C/span%3EDev][http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev]] |
 |  Appraisal: | [[http://TWiki.org/cgi-bin/view/Plugins/%3Cspan%20id=%27TMLvariable14%27%20class=%27TMLvariable%27%20%3ETOPIC%3C/span%3EAppraisal][http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal]] |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main.SvenDowideit
 

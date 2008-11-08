@@ -23,7 +23,7 @@ Google presents visitor data in a visually rich dashboard: %BR%
    * Google provides its users with a piece of html to copy-paste into pages. You only need one piece of it, the value of =_uacct=:
    * Set GOOGLESITEKEY = 
 
-   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+   * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
       * Set SHORTDESCRIPTION = Adds Google Analytics !JavaScript code to all pages
 
 ---++ Plugin Installation Instructions
@@ -53,12 +53,12 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences
 
 %META:FILEATTACHMENT{name="Google_Analytics_Dashboard_small.jpg" attr="" autoattached="1" comment="" date="1158800196" path="Google_Analytics_Dashboard_small.jpg" size="46250" user="UnknownUser" version=""}%
 %META:FILEATTACHMENT{name="Google_Analytics_Dashboard.png" attr="" autoattached="1" comment="" date="1158800010" path="Google_Analytics_Dashboard.png" size="122481" user="UnknownUser" version=""}%

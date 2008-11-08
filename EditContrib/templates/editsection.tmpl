@@ -3,7 +3,7 @@
 try { document.main.text.focus(); } catch (er) {}
 %TMPL:END%
 %TMPL:DEF{"templatescript"}%
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/TWikiJavascripts/twiki_edit.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/TWikiJavascripts/twiki_edit.js"></script>
 %TMPL:END%
 %TMPL:DEF{"bodystart"}%
 <body bgcolor="#ffffff" onload="initForm()">
@@ -18,9 +18,9 @@ try { document.main.text.focus(); } catch (er) {}
 <input type="checkbox" name="dontnotify" %DONTNOTIFYCHECKBOX% /> Minor changes, don't notify <br />
 &nbsp; &nbsp;
 <input type="checkbox" name="forcenewrevision" %FORCENEWREVISIONCHECKBOX% /> Force new revision 
-<font size="-1">(<a href="#%MAKETEXT{"Opens page in new window"}%" target="DontNotify" onclick="return launchWindow('%TWIKIWEB%','DontNotify')" href="%SCRIPTURLPATH{"view"}%/%TWIKIWEB%/DontNotify" rel='nofollow'>help</a>)</font>
+<font size="-1">(<a href="#%MAKETEXT{"Opens page in new window"}%" target="DontNotify" onclick="return launchWindow('%SYSTEMWEB%','DontNotify')" href="%SCRIPTURLPATH{"view"}%/%SYSTEMWEB%/DontNotify" rel='nofollow'>help</a>)</font>
 <font color="#333333" size="-1">
-%INCLUDE{"%TWIKIWEB%.WikiSyntaxSummary"}%
+%INCLUDE{"%SYSTEMWEB%.WikiSyntaxSummary"}%
 </font>
  </div>%TMPL:END%
 

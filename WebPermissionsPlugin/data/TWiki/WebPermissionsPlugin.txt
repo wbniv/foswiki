@@ -136,7 +136,7 @@ Select the webs, users and groups you want to change permissions for from the li
 <input type="submit" value="Select"/>
 </form>
 
-%WEBPERMISSIONS{webs="%URLPARAM{"webs" multiple="on" separator="," default="%TWIKIWEB%,%MAINWEB%,%WEB%"}%" users="%URLPARAM{"users" multiple="on" separator="," default="%USERNAME%"}%" repeatheads="10"}%
+%WEBPERMISSIONS{webs="%URLPARAM{"webs" multiple="on" separator="," default="%SYSTEMWEB%,%MAINWEB%,%WEB%"}%" users="%URLPARAM{"users" multiple="on" separator="," default="%USERNAME%"}%" repeatheads="10"}%
 </div>
 <!-- TO HERE -->
 
@@ -147,14 +147,14 @@ To add  an "Edit ACLS" option to the "More topic actions" screen  add =webpermis
 
 ---++ Plugin Settings
 <!--
-   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+   * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
       * Set SHORTDESCRIPTION = View and edit web permissions
 -->
 By default, the plugin only supports VIEW and CHANGE permissions on webs. You can change the set of access modes handled by the plugin by defining a configuration variable (in !LocalSite.cfg) to be a comma-separated list of access modes. For example,
 <verbatim>
 $TWiki::cfg{Plugins}{WebPermissionsPlugin}{modes} = 'VIEW,CHANGE,RENAME';
 </verbatim>
-See %TWIKIWEB%.TWikiAccessControls for more information on what access modes can be used to control.
+See %SYSTEMWEB%.TWikiAccessControls for more information on what access modes can be used to control.
 
 ---++ Plugin Installation Instructions
 
@@ -189,7 +189,7 @@ Many thanks to the following sponsors for supporting this work:
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
 
 %META:FILEATTACHMENT{name="wikiringlogo20x20.png" attr="h" comment="" version="1"}%
 %META:FILEATTACHMENT{name="logo.gif" attr="h" comment="" version="1"}%

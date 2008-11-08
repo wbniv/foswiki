@@ -184,7 +184,7 @@ sub prLink
     {
         $link = qq{<span class=greyButton>Review $linkImg </span>};
     } else {    
-        $link = qq{<a class=menuButton href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/PeerPluginView?prurl=%SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%&prweb=%WEB%&prtopic=%TOPIC%&prrevinfo=$maxrev">Review $linkImg </a>};
+        $link = qq{<a class=menuButton href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%SYSTEMWEB%/PeerPluginView?prurl=%SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%&prweb=%WEB%&prtopic=%TOPIC%&prrevinfo=$maxrev">Review $linkImg </a>};
     }
     return( $link );
 }
@@ -211,7 +211,7 @@ sub prObject
 # ============================
 sub prFormUrl
 { 
-    return "%SCRIPTURL%/view%SCRIPTSUFFIX%/%TWIKIWEB%/PeerPluginView";
+    return "%SCRIPTURL%/view%SCRIPTSUFFIX%/%SYSTEMWEB%/PeerPluginView";
 }
 
 # =========================
@@ -421,7 +421,7 @@ sub prDispStatsItem
         $prTopic = $2;
         $opText .= "[[$prWeb.$prTopic][$prWeb.$prTopic]] <br> ";
     } else {    
-        $opText .= "[[%SCRIPTURL%/view%SCRIPTSUFFIX%/%TWIKIWEB%/PeerPluginExtView?prurl=$item][Wiki:$item]] <br> ";
+        $opText .= "[[%SCRIPTURL%/view%SCRIPTSUFFIX%/%SYSTEMWEB%/PeerPluginExtView?prurl=$item][Wiki:$item]] <br> ";
     }
     
     return $opText;
@@ -513,7 +513,7 @@ sub prInclude
 # =========================
 sub prUserView
 {
-    my $text = qq{<a href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/PeerPluginUser?};
+    my $text = qq{<a href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%SYSTEMWEB%/PeerPluginUser?};
     $text   .= qq{prurl=%SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%&prweb=%WEB%&prtopic=%TOPIC%&prrevinfo=$maxrev">};
     $text   .= qq{ViewMyReviews</a>};
     return $text;

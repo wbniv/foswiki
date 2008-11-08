@@ -48,7 +48,7 @@ You can over-ride the Topic formtemplate that is used when creating a new Talk t
 I have tested TalkContrib using TWiki 4.2.0 with the default skin (used as a building block for other skins), ClassicSkin, PatternSkin and TWiki:Plugins.MoveveableTypeSkin.
 ---++ Limitations
 There are 2 known limitations at this time
-   1 any topic containing the TALKSUFFIX will be considered a Talk topic - this is due to a bug in %TWIKIWEB%.VarIF string matching
+   1 any topic containing the TALKSUFFIX will be considered a Talk topic - this is due to a bug in %SYSTEMWEB%.VarIF string matching
    2 you cannot create Talk topics for topics in webs you do not have change permission. This will not be solved in the Talk Suffix mode.
 
 ---++ Discussion and future ideas
@@ -79,7 +79,7 @@ This <nop>TWikiApplication implements the first using either a SKIN or COVER set
 |  Feedback: | http://twiki.org/cgi-bin/view/Plugins/TalkContribDev |
 |  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/TalkContribAppraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiContribs, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiContribs, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
 
 <!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the feedback topic on twiki.org instead. -->
 

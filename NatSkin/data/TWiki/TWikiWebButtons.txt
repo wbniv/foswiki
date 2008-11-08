@@ -2,7 +2,7 @@
 %STARTINCLUDE% <noautolink> 
 <ul>
 %~~ FLEXWEBLIST{
-~~~   webs="%MAINWEB%,public,%TWIKIWEB%"
+~~~   webs="%MAINWEB%,public,%SYSTEMWEB%"
 ~~~   include="\w+"
 ~~~   selection="%FORMATLIST{"%BASEWEB%" split="[\/\.]" limit="1"}%"
 ~~~   marker="current"

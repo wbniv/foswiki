@@ -93,12 +93,12 @@ sub DISABLED_commonTagsHandler
 	{
   	return if $doneHeader;
 
-	#<link rel="stylesheet" href="%PUBURLPATH%/%TWIKIWEB%/JQueryPlugin/jquery-all.css" type="text/css" media="all" />  
+	#<link rel="stylesheet" href="%PUBURLPATH%/%SYSTEMWEB%/JQueryPlugin/jquery-all.css" type="text/css" media="all" />  
   
 	#including several themes on one page seems to break the dialogues
-	#<link rel="stylesheet" href="%PUBURLPATH%/%TWIKIWEB%/JQueryDevPlugin/themes/flora/flora.all.css" type="text/css" media="screen" title="Flora (Default)" />  	
+	#<link rel="stylesheet" href="%PUBURLPATH%/%SYSTEMWEB%/JQueryDevPlugin/themes/flora/flora.all.css" type="text/css" media="screen" title="Flora (Default)" />  	
 	
-	#<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/JQueryDevPlugin/jquery.debug.js"></script>
+	#<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/JQueryDevPlugin/jquery.debug.js"></script>
 	
   	my $header = <<'HERE';
 HERE
@@ -108,24 +108,24 @@ HERE
 	
 
 =pod
-<link rel="stylesheet" href="%PUBURLPATH%/%TWIKIWEB%/JQueryDevPlugin/themes/ogray/ogray.all.css" type="text/css" media="screen" title="Ogray" />  	
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/JQueryDevPlugin/jquery.js"></script>
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/JQueryDevPlugin/jquery.dimensions.js"></script>
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/JQueryDevPlugin/ui.dialog.js"></script>
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/JQueryDevPlugin/ui.mouse.js"></script>
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/JQueryDevPlugin/ui.resizable.js"></script>
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/JQueryDevPlugin/ui.draggable.js"></script>
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/JQueryDevPlugin/ui.draggable.ext.js"></script>
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/JQueryDevPlugin/ui.accordion.js"></script>
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/JQueryDevPlugin/ui.droppable.js"></script>
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/JQueryDevPlugin/ui.droppable.ext.js"></script>
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/JQueryDevPlugin/ui.selectable.js"></script>
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/JQueryDevPlugin/ui.slider.js"></script>
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/JQueryDevPlugin/ui.sortable.js"></script>
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/JQueryDevPlugin/ui.sortable.ext.js"></script>
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/JQueryDevPlugin/ui.tabs.js"></script>
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/JQueryDevPlugin/ui.tabs.ext.js"></script>
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/JQueryDevPlugin/jquery.spinner.js"></script>
+<link rel="stylesheet" href="%PUBURLPATH%/%SYSTEMWEB%/JQueryDevPlugin/themes/ogray/ogray.all.css" type="text/css" media="screen" title="Ogray" />  	
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/JQueryDevPlugin/jquery.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/JQueryDevPlugin/jquery.dimensions.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/JQueryDevPlugin/ui.dialog.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/JQueryDevPlugin/ui.mouse.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/JQueryDevPlugin/ui.resizable.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/JQueryDevPlugin/ui.draggable.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/JQueryDevPlugin/ui.draggable.ext.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/JQueryDevPlugin/ui.accordion.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/JQueryDevPlugin/ui.droppable.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/JQueryDevPlugin/ui.droppable.ext.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/JQueryDevPlugin/ui.selectable.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/JQueryDevPlugin/ui.slider.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/JQueryDevPlugin/ui.sortable.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/JQueryDevPlugin/ui.sortable.ext.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/JQueryDevPlugin/ui.tabs.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/JQueryDevPlugin/ui.tabs.ext.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/JQueryDevPlugin/jquery.spinner.js"></script>
 =cut
 
 	
@@ -136,7 +136,7 @@ sub includeJQueryScript
     my($session, $params, $theTopic, $theWeb) = @_;   
     my $scriptFileName=$params->{_DEFAULT};
 
-    return "<script type=\"text/javascript\" src=\"%PUBURLPATH%/%TWIKIWEB%/$pluginName/$scriptFileName\"></script>";
+    return "<script type=\"text/javascript\" src=\"%PUBURLPATH%/%SYSTEMWEB%/$pluginName/$scriptFileName\"></script>";
 	}
 
 #######################################
@@ -146,7 +146,7 @@ sub includeJQueryTheme
     my($session, $params, $theTopic, $theWeb) = @_;   
     my $themeName=$params->{_DEFAULT};
 
-    return "<link rel=\"stylesheet\" href=\"%PUBURLPATH%/%TWIKIWEB%/$pluginName/themes/$themeName/$themeName.all.css\" type=\"text/css\" media=\"screen\" title=\"$themeName\" />";
+    return "<link rel=\"stylesheet\" href=\"%PUBURLPATH%/%SYSTEMWEB%/$pluginName/themes/$themeName/$themeName.all.css\" type=\"text/css\" media=\"screen\" title=\"$themeName\" />";
 
     }
 
@@ -158,11 +158,11 @@ sub handleJQueryImagesUrlPath
     my $image=$params->{_DEFAULT};
     if (defined $image)
         {
-        return "%PUBURLPATH%/%TWIKIWEB%/$pluginName/i/$image";
+        return "%PUBURLPATH%/%SYSTEMWEB%/$pluginName/i/$image";
         }
     else
         {
-        return "%PUBURLPATH%/%TWIKIWEB%/$pluginName/i";
+        return "%PUBURLPATH%/%SYSTEMWEB%/$pluginName/i";
         }
     }
 

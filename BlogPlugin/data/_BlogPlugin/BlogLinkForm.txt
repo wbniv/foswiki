@@ -16,7 +16,7 @@
 | Comment | textarea | 80x4 | | informal description | |
 
 
-See also: %TWIKIWEB%.TWikiForms, BlogLink, BlogLinkTemplate
+See also: %SYSTEMWEB%.TWikiForms, BlogLink, BlogLinkTemplate
 
 <!--
    * Set ALLOWTOPICCHANGE = %MAINWEB%.BlogAdminGroup

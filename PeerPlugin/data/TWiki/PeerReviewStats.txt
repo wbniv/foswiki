@@ -3,5 +3,5 @@
 
 %PRSTATS{web="all", limit="100"}% 
 
-...see %TWIKIWEB%.PeerPlugin for more information.
+...see %SYSTEMWEB%.PeerPlugin for more information.
 %META:TOPICMOVED{by="StephenRoe" date="993726916" from="Test.ReviewStats1" to="Wiki.ReviewStats"}%

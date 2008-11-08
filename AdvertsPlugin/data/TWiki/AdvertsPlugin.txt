@@ -37,7 +37,7 @@ still no matching banners available try to match a banner with keyword key1.
 Plugin settings are stored as preferences variables. To reference
 a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>ADVERTSPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 	
 		* Set SHORTDESCRIPTION = This plugin provides a convenient interface to the functionality in <nop>PhpAdsNew
 
@@ -64,11 +64,11 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>A
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | http://phpadsnew.com, version 2 or above |
 |  Perl Version: | 5.0 |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 99%, %TWIKIWEB%.FormattedSearch 99%, %TOPIC% 99% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 99% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins, DefaultPlugin
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins, DefaultPlugin
 
 -- TWiki:Main.AndreaSterbini - 27 Feb 2001 %BR% 
 -- TWiki:Main.PeterThoeny - 21 Mar 2004

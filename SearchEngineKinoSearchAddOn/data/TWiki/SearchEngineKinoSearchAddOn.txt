@@ -35,7 +35,7 @@ If you have enabled the SearchEngineKinoSearchPlugin, you can use the rest handl
 The following form submits text to the ==kinosearch== script. The installation instructions are detailed below.
 
 <form action="%SCRIPTURLPATH%/kinosearch%SCRIPTSUFFIX%/%INTURLENCODE{"%INCLUDINGWEB%"}%/">
-   <input type="text" name="search" size="32" /> <input type="submit" value="Search text" /> | [[%TWIKIWEB%.KinoSearch][Help]]
+   <input type="text" name="search" size="32" /> <input type="submit" value="Search text" /> | [[%SYSTEMWEB%.KinoSearch][Help]]
 </form>
 
 %INCLUDE{"VarKINOSEARCH"}%

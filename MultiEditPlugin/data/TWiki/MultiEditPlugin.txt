@@ -36,7 +36,7 @@ will render as shown in the picture below and allow each section to be edited in
 
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
 
-   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+   * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
       * Set SHORTDESCRIPTION = This plugin allows arbitrary section of a topic to be edited individually
 
    * Debug plugin: (See output in =$logDir/debug.txt=)
@@ -122,7 +122,7 @@ Index: lib/TWiki.pm
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | TWiki:Plugins/EditContrib |
 |  Perl Version: | 5.005 |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |

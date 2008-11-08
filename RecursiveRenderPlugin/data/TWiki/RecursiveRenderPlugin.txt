@@ -35,7 +35,7 @@ Produces:
 
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, for example, ==%<nop>RECURSIVERENDERPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = This plugin adds =&lt;render&gt;= tags and =~macros=.
 
 	* Debug plugin: (See output in =data/debug.txt=)

@@ -348,7 +348,7 @@ digraph G { size="2,3!"; dpi="100";
 
 Changes to the settings marked %X% will cause changes to the file hash.  This will result in the attached graphcs being regenerated on the next view.
 
-   * One line description, shown in the %TWIKIWEB%.TextFormattingRules topic: 
+   * One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic: 
       * Set SHORTDESCRIPTION = Embed directed graphs in TWiki topics (using the Graphviz package)
 
    * %X% Layout engine to use per default. Can be one of =dot=, =neato=, =twopi=, =circo=, =fdp= 
@@ -504,12 +504,12 @@ Details on how to install cairo, graphviz and imagemagick are beyond the scope o
 |  01 Jul 2004: | Initial version |
 |  TWiki Dependency: | $TWiki::Plugins::VERSION 1.024 |
 |  Dependencies: | %$DEPENDENCIES% |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 99%, %TWIKIWEB%.FormattedSearch 99%, %TOPIC% 99% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 99% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main.ColeBeck - 01 Jul 2004
 

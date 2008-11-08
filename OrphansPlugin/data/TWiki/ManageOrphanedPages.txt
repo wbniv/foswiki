@@ -14,4 +14,4 @@ Select the web using the form below, and choose whether to show all references t
 %FINDORPHANS{web="%URLPARAM{"qTheWeb"}%" allrefs="%URLPARAM{"qAllRefs"}%" allwebs="%URLPARAM{"qAllWebs"}%" }%
 
 ---
-%T% For full information on the plugin that supports this page, see %TWIKIWEB%.OrphansPlugin
+%T% For full information on the plugin that supports this page, see %SYSTEMWEB%.OrphansPlugin

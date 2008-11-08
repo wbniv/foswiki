@@ -52,7 +52,7 @@ The module can use special HTML comments in the topic to decide where to insert 
 
 If it sees the comment =&lt;!--MAIL--&gt;= it will insert the incoming mail immediately *below* the comment. =MAIL= is rather ike a TWikiVariable; you can give it parameters. For example, =&lt;!--MAIL{where="below"}--&gt;=. The following options are available:
    * =where= - can be =above=, =below= (relative to the comment) =top=, =bottom= (of the topic)
-   * =template= set to the name of one of the templates in %TWIKIWEB%.MailInContribTemplate to change the formatting of comments. The default format is "below" format.
+   * =template= set to the name of one of the templates in %SYSTEMWEB%.MailInContribTemplate to change the formatting of comments. The default format is "below" format.
 
 If there is no such comment in the topic, then it just appends it to the end. If there is more than one, only the first is recognised.
 
@@ -121,7 +121,7 @@ Many thanks to the following sponsors for supporting this work:
 |  Feedback: | TWiki:Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences
 
 %META:FILEATTACHMENT{name="wikiringlogo20x20.png" attr="h" comment="" version="1"}%
 %META:FILEATTACHMENT{name="logo.gif" attr="h" comment="" version="1"}%

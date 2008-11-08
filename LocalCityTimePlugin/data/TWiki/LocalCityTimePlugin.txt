@@ -19,7 +19,7 @@ Examples:
 Plugin settings are stored as preferences variables. To reference
 a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>LOCALCITYTIMEPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Shows the local time of a city embedded in a %WIKITOOLNAME% topic.
 
 	* Debug plugin: (See output in =data/debug.txt=)
@@ -55,12 +55,12 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>L
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | If =USEDATECOMMAND = 0=: Format of Date and Time Gateway web page at http://TWiki.org/cgi-bin/xtra/tzdate <br />Else: BSD or Linux zoneinfo files and date command |
 |  Perl Version: | 5.0 |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 99%, %TWIKIWEB%.FormattedSearch 99%, LocalCityTimePlugin with internal date command 96%, without 55% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, LocalCityTimePlugin with internal date command 96%, without 55% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.TextFormattingRules
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.TextFormattingRules
 
 -- TWiki:Main/PeterThoeny - 19 Nov 2004
 

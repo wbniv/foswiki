@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="TWikiGuest" date="1147648879" format="1.1" reprev="1.5" version="1.5"}%
 ---+!! Benchmarks - Examine TWiki Performance
 
-For help see the %TWIKIWEB%.BenchmarkContribUserGuide!
+For help see the %SYSTEMWEB%.BenchmarkContribUserGuide!
 
 %STARTSECTION{"benchmarkform"}%
 <!--
@@ -12,7 +12,7 @@ For help see the %TWIKIWEB%.BenchmarkContribUserGuide!
    * Set PROFILESKIN = %SKIN%
    * Set PROFILETOPIC = %HOMETOPIC%
    * Set PROFILEVIEWER = %WIKINAME%
-   * Set PROFILEWEB = %TWIKIWEB%
+   * Set PROFILEWEB = %SYSTEMWEB%
 -->
 <form action="%SCRIPTURLPATH{profile}%/">
 |  *Benchmark Method:* | <select size="1" name="profiler"><option value="DProf" %IF{"$ PROFILER = 'DProf'" then="selected='selected'"}%>Profiling with Devel::DProf</option></select>  |||

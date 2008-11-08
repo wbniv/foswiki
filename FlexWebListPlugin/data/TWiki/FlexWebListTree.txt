@@ -21,10 +21,10 @@ If you want to hide the web navigation from <nop>TWikiGuests then uncomment the 
 }%
 <div class="jqTreeview closed unique">
 %~~ FLEXWEBLIST{
-~~~   webs="%MAINWEB%,User,People,public,%TWIKIWEB%" 
+~~~   webs="%MAINWEB%,User,People,public,%SYSTEMWEB%" 
 ~~~   exclude="^(TestCases|Trash).*" 
 ~~~   adminwebs="Applications.*"
-~~~   map="%TWIKIWEB%=System"
+~~~   map="%SYSTEMWEB%=System"
 ~~~   header="<ul>"
 ~~~   format="<li><a href=\"$url\" title=\"$sitemapuseto\">$name</a>"
 ~~~   separator="</li>"

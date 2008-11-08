@@ -13,7 +13,7 @@
 | State | select | 1 | published, unpublished | |  |
 
 
-See also: %TWIKIWEB%.TWikiForms
+See also: %SYSTEMWEB%.TWikiForms
 
 <!--
    * Set ALLOWTOPICCHANGE = %MAINWEB%.BlogAdminGroup

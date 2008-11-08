@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="SvenDowideit" date="1158056830" format="1.1" reprev="1.3" version="1.3"}%
 ---+ %TOPIC%
 
-This plugin can be used to make html forms that set %TWIKIWEB%.TWikiVariables. SELECT, CHECKBOX and RADIO can be used to select from a comma separated list of options (that could be defined using a SEARCH), while BUTTON, TEXTVALUE and TEXTAREA will set the %TWIKIWEB%.TWikiVariable based on the value.
+This plugin can be used to make html forms that set %SYSTEMWEB%.TWikiVariables. SELECT, CHECKBOX and RADIO can be used to select from a comma separated list of options (that could be defined using a SEARCH), while BUTTON, TEXTVALUE and TEXTAREA will set the %SYSTEMWEB%.TWikiVariable based on the value.
 
 I will be using SELECT to allow the user to set a variable to a set of topics, which they will later publish to a web site using TWiki:Plugins/PublishContrib.
 
@@ -105,12 +105,12 @@ and set WHOWILLITBENOWTEXT in this topic to "There once was a girl"
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 99%, %TWIKIWEB%.FormattedSearch 99%, %TOPIC% 99% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 99% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
 
 %META:FORM{name="PackageForm"}%
 %META:FIELD{name="TopicClassification" attributes="" title="TopicClassification" value="PluginPackage"}%

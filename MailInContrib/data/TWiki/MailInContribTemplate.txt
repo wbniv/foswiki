@@ -3,7 +3,7 @@
 
 *DO NOT MODIFY THIS TOPIC*
 
-This is a normal TWiki topic, but it is also a template file, as described in %TWIKIWEB%.TWikiTemplates. It contains the template definitions used by the MailInContrib to insert mail messages in topics.
+This is a normal TWiki topic, but it is also a template file, as described in %SYSTEMWEB%.TWikiTemplates. It contains the template definitions used by the MailInContrib to insert mail messages in topics.
 
 Each template is specified in the form of a pair of TWiki template definitions, (surrounded by verbatim tags below for readability). The template to use when inserting incoming mail in a topic is decided from the parameters in the =&lt;--MAIL--> comment in the topic. The default template is =normal=.
 
@@ -20,7 +20,7 @@ Each template is specified in the form of a pair of TWiki template definitions, 
 
 *DO NOT MODIFY THIS TOPIC*
 
-If you want to modify or add any templates, create the TWiki topic %TWIKIWEB%.MailInContribUserTemplate. This topic is automatically included here if it exists, but it is *not* shipped with the MailInContrib. Any templates you define in %TWIKIWEB%.MailInContribUserTemplate will override those defined here.
+If you want to modify or add any templates, create the TWiki topic %SYSTEMWEB%.MailInContribUserTemplate. This topic is automatically included here if it exists, but it is *not* shipped with the MailInContrib. Any templates you define in %SYSTEMWEB%.MailInContribUserTemplate will override those defined here.
 
 <!-- The following line includes a *template* called "MailInUserContrib", which the template search rules automatically resolve to a *topic* called MailInContribUserTemplate. -->
 %TMPL:INCLUDE{"MailInContribUser"}%

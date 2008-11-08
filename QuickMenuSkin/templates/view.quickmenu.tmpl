@@ -20,7 +20,7 @@ pageMenu.Add();
 pageMenu.Add("%MAKETEXT{"New Topic"}%", "%SCRIPTURLPATH{"view"}%/%WEB%/WebTopicCreator?parent=%TOPIC%","%ICONURLPATH{"newtopic"}%","%MAKETEXT{"Create a new topic"}%");%TMPL:END%
 
 %TMPL:DEF{"webaction"}%<noautolink>
-%INCLUDE{"%IF{"defined QUICKMENUBAR and $ QUICKMENUBAR" then="%QUICKMENUBAR%" else="%TWIKIWEB%.QuickMenuBar"}%" raw="on" warn="off"}%
+%INCLUDE{"%IF{"defined QUICKMENUBAR and $ QUICKMENUBAR" then="%QUICKMENUBAR%" else="%SYSTEMWEB%.QuickMenuBar"}%" raw="on" warn="off"}%
 
 	pageMenu = new QuickMenu.Menu(menuBar,"%MAKETEXT{"Options"}%","","","%MAKETEXT{"Page viewing and editing options"}%");
 	%TMPL:P{context="inactive" then="inactive_menuitem" else="active_menuitem"}%

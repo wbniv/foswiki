@@ -61,7 +61,7 @@
    * <form name="quickSearchForm" action="%SCRIPTURLPATH{view}%/%INCLUDINGWEB%/WebSearch"><input type="text" class="twikiInputField" id="quickSearchBox" name="search" value="%URLPARAM{"search"}%" size="18" /><input type="hidden" name="scope" value="all" /><input type="hidden" name="web" value="%BASEWEB%" /><input type="submit" size="5" class="twikinetSearchButton" name="submit" value="" /></form>%TMPL:END%
 
 %TMPL:DEF{"topbarcontents:language"}%
-   * %INCLUDE{%TWIKIWEB%.LanguageSelector}%%TMPL:END%
+   * %INCLUDE{%SYSTEMWEB%.LanguageSelector}%%TMPL:END%
 
 %TMPL:DEF{"topbarcontents"}%<div class="twikiLeft">%TMPL:P{"topbarcontents:logo"}%</div>
 <div class="twikiRight">

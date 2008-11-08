@@ -152,13 +152,13 @@ You can also set the global TWiki variable TWISTYCONTRIB_DEBUG to 1 to make the 
 	* !TwistyContrib uses these header includes:
 	<verbatim>
 <style type="text/css" media="all">
-@import url("%PUBURL%/%TWIKIWEB%/TwistyContrib/twist.css");
+@import url("%PUBURL%/%SYSTEMWEB%/TwistyContrib/twist.css");
 </style>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/TWikiJavascripts/twikilib.js"></script>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/TWikiJavascripts/twikiPref.js"></script>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/TWikiJavascripts/twikiCSS.js"></script>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/BehaviourContrib/behaviour.js"></script>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/TwistyContrib/twist.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiJavascripts/twikilib.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiJavascripts/twikiPref.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiJavascripts/twikiCSS.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/BehaviourContrib/behaviour.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TwistyContrib/twist.js"></script>
 </verbatim>
 
 
@@ -180,7 +180,7 @@ You can also set the global TWiki variable TWISTYCONTRIB_DEBUG to 1 to make the 
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences
  
 %META:FILEATTACHMENT{name="twist.js" attachment="twist.js" attr="" comment="!JavaScript library" date="1126427179" path="twist.js" size="3441" stream="twist.js" user="TWikiContributor" version="0"}%
 %META:FILEATTACHMENT{name="twist.css" attachment="twist.css" attr="" comment="Style Sheet" date="1126427224" path="twist.css" size="122" stream="twist.css" user="TWikiContributor" version="0"}%

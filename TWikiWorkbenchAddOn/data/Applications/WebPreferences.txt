@@ -59,7 +59,7 @@ TopicFunctions to generate html page header information:
 
 __Related Topics__:
    * [[%LOCALSITEPREFS%]]
-   * [[%TWIKIWEB%.TWikiPreferences]]
+   * [[%SYSTEMWEB%.TWikiPreferences]]
 
 %META:FORM{name="Applications.ApplicationTopic"}%
 %META:FIELD{name="TopicType" attributes="" title="TopicType" value="WebTool"}%

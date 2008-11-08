@@ -102,7 +102,7 @@ sub handleCode
 {
     my ( $args, $codeFragment ) = @_;
 
-    TWiki::Func::addToHEAD( BEAUTIFIERPLUGIN_CODEFRAGMENT_CSS => '<link rel="stylesheet" href="%PUBURL%/%TWIKIWEB%/BeautifierPlugin/style.css" type="text/css" media="all" />' );
+    TWiki::Func::addToHEAD( BEAUTIFIERPLUGIN_CODEFRAGMENT_CSS => '<link rel="stylesheet" href="%PUBURL%/%SYSTEMWEB%/BeautifierPlugin/style.css" type="text/css" media="all" />' );
 
     my $lang = TWiki::Func::extractNameValuePair( $args );	# || default language (eg, TWiki::Func::getPreferencesValue(uc 'BEAUTIFIERPLUGIN_LANGUAGE' ) 
     unless ($langs->{$lang})

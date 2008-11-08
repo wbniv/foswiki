@@ -66,7 +66,7 @@ Or type the *full URL path* to a CSS you have downloaded from the style browser 
 <input type="hidden" name="cssidx" value="%CURRENTCSS%" />
 <input type="hidden" name="colsidx" value="%CURRENTCOLS%" />
 <input type="hidden" name="moveabletypecolumns" value="%URLPARAM{"moveabletypecolumns" default="%COLS%CURRENTCOLS%%"}%" />
-<input type="text" style="width:65%" name="cssfile" value="%PUBURL%/%TWIKIWEB%/MoveableTypeSkin/"/>
+<input type="text" style="width:65%" name="cssfile" value="%PUBURL%/%SYSTEMWEB%/MoveableTypeSkin/"/>
 <input type="submit" value="View design" />
 </form>
 </div>
@@ -121,10 +121,10 @@ Select the moveabletype skin:
    *<nop> Set SKIN = moveabletype
 Get the common text section definitions from this topic (see the "Customisation" section in %WEB%.%TOPIC% for more information on what this means):
    *<nop> Set MOVEABLETYPESKIN_DESIGNTOPIC = %URLPARAM{"moveabletypetopic" default="MoveableTypeSampleDesign"}%
-Get the Moveable Type compatible CSS and images from this topic (must be in the %TWIKIWEB%):
+Get the Moveable Type compatible CSS and images from this topic (must be in the %SYSTEMWEB%):
    *<nop> Set MOVEABLETYPESKIN_CSSFILE = <nop>%URLPARAM{"cssfile" default="%CSS%FIRSTCSS%%"}%
 Get the extra CSS required by TWiki from this topic
-   *<nop> Set MOVEABLETYPESKIN_TWIKICSSFILE = %URLPARAM{"twikicssfile" default="%PUBURLPATH%/%TWIKIWEB%/%MOVEABLETYPESKIN_DESIGNTOPIC%/TWiki.css"}%
+   *<nop> Set MOVEABLETYPESKIN_TWIKICSSFILE = %URLPARAM{"twikicssfile" default="%PUBURLPATH%/%SYSTEMWEB%/%MOVEABLETYPESKIN_DESIGNTOPIC%/TWiki.css"}%
 Set the column preference:
    *<nop> Set MOVEABLETYPESKIN_COLUMNS = %URLPARAM{"moveabletypecolumns" default="two-column-left"}%
 </textarea>
@@ -163,7 +163,7 @@ Once you are done, you will be able to follow the instructions under 'Enable thi
    * skin - must be set to moveabletype
    * cssfile - the url to the moveabletype css file you want to view
    * twikicssfile - the url to the TWiki.css file (usually directly linked to the moveabletypetopic)
-   * moveabletypetopic - the topic (in the %TWIKIWEB% only) that the moveabletype common sections come from
+   * moveabletypetopic - the topic (in the %SYSTEMWEB% only) that the moveabletype common sections come from
    * moveabletypecolumns - column setting (one-column, two-column-left, two-column-right, three-column)
 
 ---++ Installation Instructions
@@ -201,7 +201,7 @@ You can use this technique to create a TWikiSkin that matches closely the HTML o
 |  Feedback: | [[http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev][%TOPIC%Dev]] |
 |  Appraisal: | [[http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal][%TOPIC%Appraisal]] |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences
 
 -- TWiki:Main/SvenDowideit - %DATE%
 
@@ -211,7 +211,7 @@ __Related Topics:__ %TWIKIWEB%.TWikiPreferences
    * Set SHORTDESCRIPTION = a TWiki skin based on the HTML used by [[http://www.thestylecontest.com][The Style Archive]] and [[http://www.sixapart.com/movabletype/styles/library][The Six Apart style library]]
    * Set MOVEABLETYPESKIN_DESIGNTOPIC = %URLPARAM{"moveabletypetopic" default="%DESIGN%FIRSTDESIGN%%"}%
    * Set MOVEABLETYPESKIN_CSSFILE = %URLPARAM{"cssfile" default="%CSS%FIRSTCSS%%"}%
-   * Set MOVEABLETYPESKIN_TWIKICSSFILE = %URLPARAM{"twikicssfile" default="%PUBURLPATH%/%TWIKIWEB%/%MOVEABLETYPESKIN_DESIGNTOPIC%/TWiki.css"}%
+   * Set MOVEABLETYPESKIN_TWIKICSSFILE = %URLPARAM{"twikicssfile" default="%PUBURLPATH%/%SYSTEMWEB%/%MOVEABLETYPESKIN_DESIGNTOPIC%/TWiki.css"}%
 Set the column preference:
    * Set MOVEABLETYPESKIN_COLUMNS = %URLPARAM{"moveabletypecolumns" default="two-column-left"}%
 -->
@@ -235,11 +235,11 @@ Column layouts
 
 CSSes
    * Set FIRSTCSS = 47
-   * Set CSS47 = %PUBURL%/%TWIKIWEB%/MoveableTypeSample3Design/theme.css
+   * Set CSS47 = %PUBURL%/%SYSTEMWEB%/MoveableTypeSample3Design/theme.css
    * Set NAME47 = Sample3Theme
-   * Set CSS48 = %PUBURL%/%TWIKIWEB%/MoveableTypeSample2Design/theme.css
+   * Set CSS48 = %PUBURL%/%SYSTEMWEB%/MoveableTypeSample2Design/theme.css
    * Set NAME48 = Sample2Theme
-   * Set CSS49 = %PUBURL%/%TWIKIWEB%/MoveableTypeSampleDesign/theme.css
+   * Set CSS49 = %PUBURL%/%SYSTEMWEB%/MoveableTypeSampleDesign/theme.css
    * Set NAME49 = SampleTheme
    * Set CSS50 = http://www.sixapart.com/movabletype/styles/vicksburg_variations/theme-vicksburg_desert/theme-vicksburg_desert.css
    * Set NAME50 = vicksburg_desert

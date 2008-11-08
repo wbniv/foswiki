@@ -26,5 +26,5 @@ This form defines the form of the home pages of registered TWiki users listed in
 | <nop>WorkPhoneMobile | text | 40 |  |  | H |
 | <nop>WorkLocation | text | 40 |  |  | H |
 
-__Related topics:__ [[TWikiUsers]], [[%TWIKIWEB%.TWikiForms][TWikiForms]], [[%TWIKIWEB%.TWikiRegistration][TWikiRegistration]]
+__Related topics:__ [[TWikiUsers]], [[%SYSTEMWEB%.TWikiForms][TWikiForms]], [[%SYSTEMWEB%.TWikiRegistration][TWikiRegistration]]
 

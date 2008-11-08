@@ -15,7 +15,7 @@ This skin provides the following:
 
 	* A top menubar that highlights the main features of TWiki (edit and attach) and conceals the more complex features under a pop up (diffs, create, etc)
 
-	* A configurable left hand menu bar - the contents can be set in an editable WebMenu topic - one for the %TWIKIWEB% web and optionally one for other webs.  See WebMenuFormat for details.
+	* A configurable left hand menu bar - the contents can be set in an editable WebMenu topic - one for the %SYSTEMWEB% web and optionally one for other webs.  See WebMenuFormat for details.
 
 	* A top left hand icon that may change according to web selection - FIXME how
 
@@ -37,7 +37,7 @@ Installation:
 
 	* Then edit WebMenu to set the contents of the menu bar, supplied one cover TWiki, Main and Test Webs
 
-	* Add the following line to %TWIKIWEB%.TWikiPreferences or to any WebPreferences topic
+	* Add the following line to %SYSTEMWEB%.TWikiPreferences or to any WebPreferences topic
 
 <verbatim>
 

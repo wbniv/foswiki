@@ -1,9 +1,9 @@
 %META:TOPICINFO{author="TWikiAdminGroup" date="1178574333" format="1.1" reprev="1.2" version="1.2"}%
 ---+ List of <nop>%WIKITOOLNAME% users
 
-Below is a list of users with accounts. If you want to edit topics or see protected areas of the site then you can get added to the list by registering: fill out the form in %TWIKIWEB%.TWikiRegistration. 
+Below is a list of users with accounts. If you want to edit topics or see protected areas of the site then you can get added to the list by registering: fill out the form in %SYSTEMWEB%.TWikiRegistration. 
 
-If you forget your password, %TWIKIWEB%.ResetPassword will get a new one sent to you.
+If you forget your password, %SYSTEMWEB%.ResetPassword will get a new one sent to you.
 
 %INCLUDE{"UserListHeader"}%
 

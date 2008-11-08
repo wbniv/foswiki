@@ -29,8 +29,8 @@ $RELEASE = '1.14';
 $SHORTDESCRIPTION = 'An easy sectional edit facility';
 
 $header = <<'HERE';
-<link rel="stylesheet" href="%PUBURLPATH%/%TWIKIWEB%/EditChapterPlugin/ecpstyles.css" type="text/css" media="all" />
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/EditChapterPlugin/ecpjavascript.js"></script>
+<link rel="stylesheet" href="%PUBURLPATH%/%SYSTEMWEB%/EditChapterPlugin/ecpstyles.css" type="text/css" media="all" />
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/EditChapterPlugin/ecpjavascript.js"></script>
 HERE
 
 

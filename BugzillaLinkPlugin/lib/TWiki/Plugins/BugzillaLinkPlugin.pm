@@ -65,7 +65,7 @@ sub initPlugin
     # Get plugin preferences
 
     $bugUrl = &TWiki::Func::getPreferencesValue( "BUGZILLALINKPLUGIN_BUGURL" )  || "http://localhost/bugzilla/show_bug.cgi?id=";
-    $bugImgUrl = &TWiki::Func::getPreferencesValue( "BUGZILLALINKPLUGIN_BUGIMGURL" ) || "%TWIKIWEB%/BugzillaLinkPlugin/bug.gif";
+    $bugImgUrl = &TWiki::Func::getPreferencesValue( "BUGZILLALINKPLUGIN_BUGIMGURL" ) || "%SYSTEMWEB%/BugzillaLinkPlugin/bug.gif";
     $bugListUrl = &TWiki::Func::getPreferencesValue( "BUGZILLALINKPLUGIN_BUGLISTURL" )  || "http://localhost/bugzilla/buglist.cgi?";
 
     $bugText = &TWiki::Func::getPreferencesValue( "BUGZILLALINKPLUGIN_BUGTEXT" ) || "Bug #";

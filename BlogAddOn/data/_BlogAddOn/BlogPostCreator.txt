@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="TWikiContributor" date="1165850723" format="1.1" version="1.1"}%
 ---+!! %MAKETEXT{"Write a new blog post"}%
 
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/TWikiJavascripts/twikiString.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiJavascripts/twikiString.js"></script>
 <script type="text/javascript">
 /* <![CDATA[ */
 var didSwitchToJsField = false;

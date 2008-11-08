@@ -47,5 +47,5 @@ This plugin *for each topic name* of this web:
 If the installation is correct you should see the words "plugin that suggests topic links" above, highlighted
 and with an icon showing the ALT="%WEB%.%TOPIC%" string.
 
--- %TWIKIWEB%.AndreaSterbini - 27 Nov 2001 <br>
+-- %SYSTEMWEB%.AndreaSterbini - 27 Nov 2001 <br>
 %META:FILEATTACHMENT{name="exclam.gif" attr="h" comment="Icon for highlighted (possible) links" date="980902080" path="exclam.gif" size="79" user="AndreaSterbini" version=""}%

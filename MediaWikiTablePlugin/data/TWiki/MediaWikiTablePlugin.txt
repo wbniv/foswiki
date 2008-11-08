@@ -776,8 +776,8 @@ right side
 {| border="0"
 |+''A table in a table''
 |-
-| align="center" width="150px" | <img src="%PUBURLPATH%/%TWIKIWEB%/TWikiLogos/T-logo-65x50-t.gif" alt="TWiki" />
-| align="center" width="150px" | <img src="%PUBURLPATH%/%TWIKIWEB%/TWikiLogos/T-logo-65x50-t.gif" alt="TWiki" />
+| align="center" width="150px" | <img src="%PUBURLPATH%/%SYSTEMWEB%/TWikiLogos/T-logo-65x50-t.gif" alt="TWiki" />
+| align="center" width="150px" | <img src="%PUBURLPATH%/%SYSTEMWEB%/TWikiLogos/T-logo-65x50-t.gif" alt="TWiki" />
 |-
 | align="center" colspan="2" style="border-top:1px solid red; border-right:1px solid red; border-bottom:2px solid red; border-left:1px solid red;" | Two logos
 |}
@@ -1256,7 +1256,7 @@ Wiki markup like <code>_text_</code> instead of "font-style:italic".
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.8 |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | TWiki:Plugins/%TOPIC% |
 |  Feedback: | TWiki:Plugins/%TOPIC%Dev |
 |  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |

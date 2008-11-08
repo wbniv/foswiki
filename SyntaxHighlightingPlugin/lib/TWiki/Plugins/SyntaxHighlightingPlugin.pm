@@ -141,7 +141,7 @@ sub _handleTag {
     my $code = $2; # code to highlight
     
     unless( _definedLang( $lang ) ){
-        return _returnError("Language is either undefined or unsupported. Check %TWIKIWEB%.$pluginName for more information.");
+        return _returnError("Language is either undefined or unsupported. Check %SYSTEMWEB%.$pluginName for more information.");
     }
     
     my $highlighted = _highlight($code, $lang);
@@ -198,7 +198,7 @@ sub _returnError {
     my( $text ) = @_;
 
     my $out = '<span class="twikiAlert">';
-    $out .= "%TWIKIWEB%.$pluginName - $text";
+    $out .= "%SYSTEMWEB%.$pluginName - $text";
     $out .= '</span>';
 
     return $out;

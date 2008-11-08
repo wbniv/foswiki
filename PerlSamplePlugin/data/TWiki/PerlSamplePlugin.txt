@@ -54,5 +54,5 @@ print "hello world!";
 
 If the installation is correct you will see a nice table showing the code, its value and stdout/stderr near the example.
 
--- %TWIKIWEB%.AndreaSterbini and TWiki:Main/FrancoBagnoli -- 27 Nov 2001
+-- %SYSTEMWEB%.AndreaSterbini and TWiki:Main/FrancoBagnoli -- 27 Nov 2001
 %META:TOPICMOVED{by="AndreaSterbini" date="1006844912" from="Plugins.PerlsamplePlugin" to="Plugins.PerlSamplePlugin"}%

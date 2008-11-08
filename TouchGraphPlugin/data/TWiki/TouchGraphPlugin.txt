@@ -15,7 +15,7 @@ Advantages:
 
    You can still use the unmodified standalone <nop>TGWikiBowser as well e. g. from the command line:
 <pre>
-java -jar /<i>path/to</i>%PUBURLPATH%/%TWIKIWEB%/%TOPIC%/TGWikiBrowser.jar \ 
+java -jar /<i>path/to</i>%PUBURLPATH%/%SYSTEMWEB%/%TOPIC%/TGWikiBrowser.jar \ 
      <nop>%PUBURL%/%WEB%/touchgraph.txt \
      <nop>%SCRIPTURL%/view/%WEB%/
 </pre>
@@ -32,7 +32,7 @@ The window popping up schould resemble [[%ATTACHURL%/touchgraph_applet.png][this
 
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 	* Set SHORTDESCRIPTION = Displays the relations between topics of a web in a [[http://www.touchgraph.com/][TouchGraph]] applet
 
 	* Debug plugin: (See output in =data/debug.txt=)
@@ -76,10 +76,10 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | [[http://java.sun.com/j2se/1.4.2/download.html][Java Runtime Environment / Java Plugin]] - tested with 1.4 |
 |  Perl Version: | 5.005 |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins, TWiki:Plugins/TouchGraphAddOn
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins, TWiki:Plugins/TouchGraphAddOn
 
 -- TWiki:Main/ChristopherHuhn - 03 Mar 2004

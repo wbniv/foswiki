@@ -248,7 +248,7 @@ splot [-1.5:1.5] [-0.5:1.5] (1-x)**2 + 100*(y - x**2)**2
 
 ---++ Plugin Settings 
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 	* Set SHORTDESCRIPTION = Allows users to plot data and functions using <nop>GnuPlot
 
 	* Debug plugin: (See output in =data/debug.txt=)
@@ -292,12 +292,12 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 | Other Dependencies: | !GnuPlot (available from http://www.gnuplot.info) with support for a PNG terminal |
 | Perl Version: | 5.005 |
 | License: | GPL ( [[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-| [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle 100%, %TWIKIWEB%.FormattedSearch 100%, %TOPIC% 100% |
+| [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle 100%, %SYSTEMWEB%.FormattedSearch 100%, %TOPIC% 100% |
 | Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 | Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 | Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main.AbieSwanepoel - 27 Jan 2006
 

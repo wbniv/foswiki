@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="TWikiContributor" date="1212998720" format="1.1" version="$Rev$"}%
 ---+ %TOPIC%
 %FORMFIELD{"Summary"}%
-%INCLUDE{"%TWIKIWEB%.%TOPIC%"}%
+%INCLUDE{"%SYSTEMWEB%.%TOPIC%"}%
 
 %META:FORM{name="Applications.TWikiTopic"}%
 %META:FIELD{name="TopicType" attributes="" title="TopicType" value="Applications.WebTool"}%

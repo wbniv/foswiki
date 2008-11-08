@@ -229,7 +229,7 @@ sub commonTagsHandler {
 
     eval {
 
-            $_[0] =~ s/<\/head>/<script src="%PUBURL%\/%TWIKIWEB%\/$pluginName\/rackplannertooltips.js" language="javascript" type="text\/javascript"><\/script><\/head>/is unless ($_[0]=~/rackplannertooltips.js/);
+            $_[0] =~ s/<\/head>/<script src="%PUBURL%\/%SYSTEMWEB%\/$pluginName\/rackplannertooltips.js" language="javascript" type="text\/javascript"><\/script><\/head>/is unless ($_[0]=~/rackplannertooltips.js/);
 
 	    $_[0] =~ s/%RACKPLANNER%/&TWiki::Plugins::RackPlannerPlugin::RackPlanner::expand("",$_[0],$_[1],$_[2])/ge;
 	    $_[0] =~ s/%RACKPLANNER{(.*?)}%/&TWiki::Plugins::RackPlannerPlugin::RackPlanner::expand($1, $_[0], $_[1], $_[2])/ge;

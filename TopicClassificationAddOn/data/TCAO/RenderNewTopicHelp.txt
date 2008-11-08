@@ -7,7 +7,7 @@
 
 ---++ Documentation
 %STARTSECTION{name="documentation" type="section"}%
-%TOPIC% displays a banner at the top of newly created classification topics using %TWIKIWEB%.UserCommentsTemplate#Removable_help_section. (See %TWIKIWEB%.TopicClassificationAddOn#Add_On_Installation_Instructions for notes on adding this required comment template.) 
+%TOPIC% displays a banner at the top of newly created classification topics using %SYSTEMWEB%.UserCommentsTemplate#Removable_help_section. (See %SYSTEMWEB%.TopicClassificationAddOn#Add_On_Installation_Instructions for notes on adding this required comment template.) 
 
 ---+++++ Parameters
    * HELPTOPIC - specify a HelpTopic to provide additional instructions related to the particular classification.

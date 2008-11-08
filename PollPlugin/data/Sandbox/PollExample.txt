@@ -9,7 +9,7 @@ This example shows:
 	* votes stored the end of this topic
 	* access control
 
-See also: SmiliesPoll, %TWIKIWEB%.PollPlugin
+See also: SmiliesPoll, %SYSTEMWEB%.PollPlugin
 
 ----
 <FORM ACTION="%SCRIPTURLPATH%/poll%SCRIPTSUFFIX%/%WEB%/%TOPIC%" method="POST">

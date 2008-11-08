@@ -30,8 +30,8 @@ Add a =%<nop>EDITHIDDENTABLE{...}%= variable just before an existing table to ma
 | =changerows= | Rows can be added and removed if ="on"=; rows can be added but not removed if ="add"=. | =CHANGEROWS= Plugin setting |
 | =helptopic= | Topic name containing help text shown below the table when editing a table. The %<nop>STARTINCLUDE% and %<nop>STOPINCLUDE% variables can be used in the topic to specify what is shown. | (no help text) |
 | =headerislabel= | Table header cells are read-only (labels) if ="on"=; header cells can be edited if ="off"= or ="0"= | ="on"= |
-| =editbutton= | Set edit button text, e.g. ="Edit this table"=; set button image with alt text, e.g. ="Edit table, %<nop>PUBURL%/%<nop>TWIKIWEB%/TWikiDocGraphics/edittopic.gif"= | =EDITBUTTON= Plugin setting |
-| =editlink= | Set appearance of the per-row link, e.g. ="Edit"=; set button image with alt text, e.g. ="Edit table, %<nop>PUBURL%/%<nop>TWIKIWEB%/TWikiDocGraphics/edittopic.gif"= | =EDITLINK= Plugin setting |
+| =editbutton= | Set edit button text, e.g. ="Edit this table"=; set button image with alt text, e.g. ="Edit table, %<nop>PUBURL%/%<nop>SYSTEMWEB%/TWikiDocGraphics/edittopic.gif"= | =EDITBUTTON= Plugin setting |
+| =editlink= | Set appearance of the per-row link, e.g. ="Edit"=; set button image with alt text, e.g. ="Edit table, %<nop>PUBURL%/%<nop>SYSTEMWEB%/TWikiDocGraphics/edittopic.gif"= | =EDITLINK= Plugin setting |
 | =show= | When editing a row of a table, or adding to a table, display that table during edit. | ="off"=  |
 | =headeronempty= | Show the table headers when no rows for this table have yet been defined but the =%<nop>EDITTABLEROW{...}%= tag is present. | ="off"=  |
 
@@ -92,7 +92,7 @@ If you click on one of the links in the first column, say for the second row, yo
 Plugin settings are stored as preferences variables. To reference
 a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, for example, ==%<nop>EDITHIDDENTABLE_SHORTDESCRIPTION%==
 
-   * One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+   * One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
       * Set SHORTDESCRIPTION = Edit TWiki tables rows using a form
 
    * Set DEBUG to 1 to get debug messages in =data/debug.txt=.  Default: =0=
@@ -143,12 +143,12 @@ __Note:__ You do not need to install anything on the browser to use this Plugin.
 |  Other Dependencies: | JSCalendarContrib  |
 |  Perl Version: | 5.0 |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.EditTablePlugin, %TWIKIWEB%.EditTablerowPlugin
+__Related Topics:__ %SYSTEMWEB%.EditTablePlugin, %SYSTEMWEB%.EditTablerowPlugin
 
 -- TWiki:Main/ThomasWeigert - 19 Nov 2006
 

@@ -29,7 +29,7 @@ I also created a MeetingDatePlugin that just takes the topic name and pulls the 
 Plugin settings are stored as preferences variables. To reference
 a plugin setting write ==%<plugin>_<setting>%==, i.e. ==%INTERWIKIPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 	* Set SHORTDESCRIPTION = _(one line description)_
 
 	* Debug plugin: (See output in =data/debug.txt=)
@@ -62,7 +62,7 @@ a plugin setting write ==%<plugin>_<setting>%==, i.e. ==%INTERWIKIPLUGIN_SHORTDE
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- Main.JustinHickman - 29 Oct 2001 <br>
 

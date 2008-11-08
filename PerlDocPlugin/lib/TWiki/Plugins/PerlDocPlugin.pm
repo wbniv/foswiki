@@ -94,7 +94,7 @@ sub perlDocHandler {
     $libFile =~ s/[^a-zA-Z0-9_\/]//g;
     $libFile =~ /(.*)/;  # untaint
     $libFile = $1;
-    return "%TWIKIWEB%.PerlDocPlugin: Nothing to do, no module specified." unless( $libName );
+    return "%SYSTEMWEB%.PerlDocPlugin: Nothing to do, no module specified." unless( $libName );
 
     my $fileName = "";
     foreach( @INC ) {
@@ -104,7 +104,7 @@ sub perlDocHandler {
     }
     unless( $filename ) {
         my $path = join( ", ", @INC );
-        return "%TWIKIWEB%.PerlDocPlugin: Module =$libName= not found in lib path =$path=.";
+        return "%SYSTEMWEB%.PerlDocPlugin: Module =$libName= not found in lib path =$path=.";
     }
 
     my $rText = TWiki::Func::readFile( $filename );
@@ -123,7 +123,7 @@ sub perlDocHandler {
     $text = translatePod2TWiki( $text, ( $format eq "pod" ) );
 
     unless( $text ) {
-        return "%TWIKIWEB%.PerlDocPlugin:  Module =$libName= has no documentation.";
+        return "%SYSTEMWEB%.PerlDocPlugin:  Module =$libName= has no documentation.";
     }
 
     if( $format =~ /(pod|twiki|raw)/ ) {

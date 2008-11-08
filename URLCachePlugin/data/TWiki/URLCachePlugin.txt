@@ -26,11 +26,11 @@ To avoid having URLs cached you have three options:
 Plugin settings are stored as preferences variables. To reference
 a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>URLCACHEPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = This plugin copies a referenced webpage to the TWiki server to avoid broken links
 
 	* Stop these webs from being cached, list them as a comma separate list here
-		* Set IGNORE = %TWIKIWEB%
+		* Set IGNORE = %SYSTEMWEB%
 		
 	* Debug plugin: (See output in =data/debug.txt=)
 		* Set DEBUG = 0
@@ -55,11 +55,11 @@ __Note:__ These instructions are for the TWiki maintainer. No changes to your br
 |  CPAN Dependencies: | CPAN:Date::Format, CPAN:HTML::FormatText, CPAN:HTML::Parse, CPAN:LWP::UserAgent, CPAN:HTML::LinkExtor, CPAN:File::Basename, CPAN:Time::ParseDate, CPAN:Date::Format |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.0 |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 99%, %TWIKIWEB%.FormattedSearch 99%, %TOPIC% 99% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 99% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main.ArildBergh - 11 Jun 2005 %BR% 
 

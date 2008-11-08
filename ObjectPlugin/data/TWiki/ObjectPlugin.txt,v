@@ -171,7 +171,7 @@ This is sort-of what I was aiming for with =USEEMBED=. I assumed that you could 
 Plugin settings are stored as preferences variables. To reference
 a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, for example, ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
 
-   * One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+   * One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
    * Set SHORTDESCRIPTION = Embed arbitrary content into twiki pages with not much work ...
 
    * Default parameters for plugin. These *must* be defined. (For booleans use "TRUE" for true, anything else for false)
@@ -201,7 +201,7 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, for example, =
 |  Change History: | <!-- specify latest version first -->&nbsp; |
 
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 
 
@@ -479,7 +479,7 @@ a1 1
 %META:TOPICINFO{author="TWikiGuest" date="1159792587" format="1.1" reprev="1.4" version="1.4"}%
 a14 3
    * The name of the topic containig your Smilies. Default: ==%WEB%.SmiliesPlugin==
-   * #Set TOPIC = %TWIKIWEB%.SmiliesPlugin
+   * #Set TOPIC = %SYSTEMWEB%.SmiliesPlugin
 
 d18 1
 a18 1

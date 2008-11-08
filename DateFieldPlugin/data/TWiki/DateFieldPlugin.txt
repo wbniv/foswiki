@@ -67,7 +67,7 @@ See JSCalendarContrib for additional settings.
 |  Home: | TWiki:Plugins/%TOPIC% |
 |  Feedback: | TWiki:Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins, TWiki::Plugins/FormFieldsPlugin
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins, TWiki::Plugins/FormFieldsPlugin
 
 This work was commissioned by [[http://www.db.com/][Deutsche Bank AG]].
 

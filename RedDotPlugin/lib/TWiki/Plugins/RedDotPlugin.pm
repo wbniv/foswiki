@@ -34,7 +34,7 @@ $SHORTDESCRIPTION = 'Renders edit-links as little red dots';
 use constant DEBUG => 0; # toggle me
 
 $header = <<'HERE';
-<link rel="stylesheet" href="%PUBURLPATH%/%TWIKIWEB%/RedDotPlugin/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="%PUBURLPATH%/%SYSTEMWEB%/RedDotPlugin/style.css" type="text/css" media="all" />
 HERE
 
 ###############################################################################

@@ -11,7 +11,7 @@ One line description, required for extensions repository catalog.
 
 ---++ Introduction
 
-This plugin is a rewrite of the TWiki:Plugins.WorkflowPlugin by TWiki:Main.ThomasWeigert, which supports much the same functionality except a couple of the varaibles (=%<nop>WORKFLOWLASTTIME_State%=, =%<nop>WORKFLOWLASTVERSION_State%=) and the use of %TWIKIWEB%.TWikiForms in states. However, it does support concurrent reviewing and notifications on state change, which is not supported by the Workflow plugin. It was decided to spin this off seperatly as it is not backwords compatible.
+This plugin is a rewrite of the TWiki:Plugins.WorkflowPlugin by TWiki:Main.ThomasWeigert, which supports much the same functionality except a couple of the varaibles (=%<nop>WORKFLOWLASTTIME_State%=, =%<nop>WORKFLOWLASTVERSION_State%=) and the use of %SYSTEMWEB%.TWikiForms in states. However, it does support concurrent reviewing and notifications on state change, which is not supported by the Workflow plugin. It was decided to spin this off seperatly as it is not backwords compatible.
 
 ---++ Usage
 
@@ -89,7 +89,7 @@ The controlled topic must have the =APPROVALDEFINITION= set to a approval defini
 
 ---++++ Settings
 
-As well as the =APPROVALDEFINITION= setting, the topic may also contain the =APPROVALHISTORYFORMAT= setting. The defines the format of the history, which is updated after each state change. This may also be set in a WebPreferences topic, or in %LOCALSITEPREFS%. The format will expand the variables =$state=, =$wikiusername=, =$date=, =$quot= and =$n=, with the same meaning as in %TWIKIWEB%.FormattedSearch. The default setting is:
+As well as the =APPROVALDEFINITION= setting, the topic may also contain the =APPROVALHISTORYFORMAT= setting. The defines the format of the history, which is updated after each state change. This may also be set in a WebPreferences topic, or in %LOCALSITEPREFS%. The format will expand the variables =$state=, =$wikiusername=, =$date=, =$quot= and =$n=, with the same meaning as in %SYSTEMWEB%.FormattedSearch. The default setting is:
    * Set APPROVALHISTORYFORMAT = "$n$state -- $date"
 
 ---++++ Tags

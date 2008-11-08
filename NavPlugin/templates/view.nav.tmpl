@@ -11,9 +11,9 @@ function navBarDisplay()
   var strToc = "%TOCTOPIC%";
   if (strToc.length != 0) {
     var textOut = "<TR BGCOLOR=\"%WEBBGCOLOR%\"><TD colspan=\"3\" align=\"right\"> \
-       <A href=\"%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%PREVTOPIC%?skin=nav\"><IMG src=\"%PUBURLPATH%/%TWIKIWEB%/NavPlugin/prev.gif\" border=\"0\" alt=\"Previous\"></A> \
-       <A href=\"%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOCTOPIC%?skin=nav\"><IMG src=\"%PUBURLPATH%/%TWIKIWEB%/NavPlugin/toc.gif\" border=\"0\" alt=\"Table of Contents\"></A> \
-       <A href=\"%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%NEXTTOPIC%?skin=nav\"><IMG src=\"%PUBURLPATH%/%TWIKIWEB%/NavPlugin/next.gif\" border=\"0\" alt=\"Next\"></A> </TD></TR>";
+       <A href=\"%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%PREVTOPIC%?skin=nav\"><IMG src=\"%PUBURLPATH%/%SYSTEMWEB%/NavPlugin/prev.gif\" border=\"0\" alt=\"Previous\"></A> \
+       <A href=\"%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOCTOPIC%?skin=nav\"><IMG src=\"%PUBURLPATH%/%SYSTEMWEB%/NavPlugin/toc.gif\" border=\"0\" alt=\"Table of Contents\"></A> \
+       <A href=\"%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%NEXTTOPIC%?skin=nav\"><IMG src=\"%PUBURLPATH%/%SYSTEMWEB%/NavPlugin/next.gif\" border=\"0\" alt=\"Next\"></A> </TD></TR>";
     document.write(textOut);
   }
 }

@@ -11,8 +11,8 @@ You have 2 choices:
 
    * Use a browser that has javascript enabled.
    * Use a different TWiki skin like:
-     [[%SCRIPTURLPATH{"view"}%/%TWIKIWEB%/PatternSkin?skin=pattern][PatternSkin]]
-     or [[%SCRIPTURLPATH{"view"}%/%TWIKIWEB%/ClassicSkin?skin=classic][ClassicSkin]]
+     [[%SCRIPTURLPATH{"view"}%/%SYSTEMWEB%/PatternSkin?skin=pattern][PatternSkin]]
+     or [[%SCRIPTURLPATH{"view"}%/%SYSTEMWEB%/ClassicSkin?skin=classic][ClassicSkin]]
  %BR% To activate a skin see: [[TWikiSkins#Activating_Skins][TWikiSkins]]
 
 %T% TWikiSkinBrowser lists all the skins installed on your server.

@@ -35,7 +35,7 @@ enlarged since IE displays the PDF viewer controls within the HTML document alon
 
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Embed PDF document in TWiki page
 
 	* Debug plugin: (See output in =data/debug.txt=)
@@ -81,7 +81,7 @@ __Note:__ You do not need to have a PDF plugin installed in your browser for thi
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ TWiki:Plugins.EmbedPDFPluginDev, %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ TWiki:Plugins.EmbedPDFPluginDev, %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 %META:FILEATTACHMENT{name="pdf.pdf" attr="" comment="" date="1046959644" path="pdf.pdf" size="6019" user="JohannesMartin" version="1.2"}%
 %META:FILEATTACHMENT{name="pdf-prerendered.jpg" attr="" comment="" date="1048518399" path="pdf-prerendered.jpg" size="3727" user="JohannesMartin" version="1.1"}%

@@ -24,7 +24,7 @@ This plugin allows to identify a browser according to it's the user_agent string
 Plugin settings are stored as preferences variables. To reference
 a plugin setting write ==%&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%AGENTPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = This plugin identifies a browser using configurable rules.
 
 	* Fallback value for nonmatching user agents:
@@ -69,6 +69,6 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- Main.AndyThaller - 31 Oct 2002

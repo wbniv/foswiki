@@ -67,8 +67,8 @@ Only BlogAuthors will get to see them. See the access rights below.
      =%<nop>IMAGE{"SomeImage.gif|frame|left|200px"}%= to create a framed image floating
      left whose geometry does not exceed 200px,
      use =right=, =left=, =center= to position the image. 
-     <span style="%CALC{"$IF($EXISTS(%TWIKIWEB%/ImagePlugin),,display:none)"}%">
-     See the %TWIKIWEB%.ImagePlugin documentation for more information.
+     <span style="%CALC{"$IF($EXISTS(%SYSTEMWEB%/ImagePlugin),,display:none)"}%">
+     See the %SYSTEMWEB%.ImagePlugin documentation for more information.
      </span>
    
 %FIDEFINED%

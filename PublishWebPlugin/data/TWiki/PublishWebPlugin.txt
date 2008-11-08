@@ -11,8 +11,8 @@ One web (defined in the PUBLISHWEBNAME setting) serves as the master for the sta
 
 ---+++ Topics and Links
 	* The home topic is assumed to be =Index=
-	* Topic names: For clarity, use capitalized words and underscores (%TWIKIWEB%.WikiWord names are possible too)
-	* All links should be defined as double square bracket links, e.g. =[<nop>[Topic]]= or =[<nop>[Topic][label]]= (do not use %TWIKIWEB%.WikiWord links)
+	* Topic names: For clarity, use capitalized words and underscores (%SYSTEMWEB%.WikiWord names are possible too)
+	* All links should be defined as double square bracket links, e.g. =[<nop>[Topic]]= or =[<nop>[Topic][label]]= (do not use %SYSTEMWEB%.WikiWord links)
 
 #PublishProcess
 ---+++ Publish process
@@ -57,7 +57,7 @@ One web (defined in the PUBLISHWEBNAME setting) serves as the master for the sta
 
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>PUBLISHWEBPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Maintain a static website collaboratively in a TWiki web
 
 	* Debug plugin: (See output in =data/debug.txt=)
@@ -105,12 +105,12 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 				* =[<nop>[http://%<nop>HTTP_HOST%/index.html][/index.html]]=
 				* =[<nop>[http://%<nop>HTTP_HOST%%<nop>PUBLISHWEB{topicurl}%][%<nop>PUBLISHWEB{topicurl}%]]=
 				* =[<nop>[%<nop>SCRIPTURL%/view%<nop>SCRIPTSUFFIX%/%<nop>WEB%/WebPublish?\%BR%action=publish;ptopic=%<nop>BASETOPIC%][Re-publish this topic]]=
-				* =[<nop>[%<nop>TWIKIWEB%.PublishWebPlugin][PublishWebPlugin]]=
+				* =[<nop>[%<nop>SYSTEMWEB%.PublishWebPlugin][PublishWebPlugin]]=
 			* Create an =Test= topic in that web
 			* This should generate an =test.html= page on topic save
 			* Create =Index= topic and other topics
 	* Publish skin:
-		* Create a new publish skin based on your branding. The [[%TWIKIWEB%.TWikiSkins][TWiki skin]] can be derived from any =twiki/templates/view.*.tmpl= skin file
+		* Create a new publish skin based on your branding. The [[%SYSTEMWEB%.TWikiSkins][TWiki skin]] can be derived from any =twiki/templates/view.*.tmpl= skin file
 		* Omit any links to TWiki, such as edit and attach links
 		* The skin can use Plugin specific settings =%<nop>PUBLISHWEB{"breadcrumb"}%= and =%<nop>PUBLISHWEB{"nicetopic"}%=
 		* The skin can introduce skin specific [[Publish.WebPreferences]] settings, such as =%<nop>PUBLISH_SITE%=, =%<nop>PUBLISH_LOGO%=, etc.
@@ -133,12 +133,12 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle 100%, %TWIKIWEB%.FormattedSearch 100%, %TOPIC% 99% |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle 100%, %SYSTEMWEB%.FormattedSearch 100%, %TOPIC% 99% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
 
 -- TWiki:Main.PeterThoeny - 15 Feb 2006
 

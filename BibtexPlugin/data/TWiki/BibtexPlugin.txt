@@ -370,7 +370,7 @@ have a look at the bibtool manual page and dig into the =bibtoolrcs= file yourse
 
 
 ---++ Global Settings
-	* One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Embeds <nop>BibTeX entries in a TWiki page
 
 	* Default topic name for <nop>BibTeX files:

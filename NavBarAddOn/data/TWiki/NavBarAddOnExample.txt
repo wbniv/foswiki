@@ -15,12 +15,12 @@ This topic is part of the NavBarAddOn.
 Above navigation bar is defined as:
 <verbatim>
 %STARTINCLUDE%
-%INCLUDE{%TWIKIWEB%.NavBarAddOnStart}%
+%INCLUDE{%SYSTEMWEB%.NavBarAddOnStart}%
 %CALC{$SET(topic, NavBarAddOn)		  $SET(label, Nav-Bar Add-On) $EXEC($GET(tab))}%
 %CALC{$SET(topic, NavBarAddOnExample) $SET(label, %T% Example)	 $EXEC($GET(tab))}%
 %CALC{$SET(topic, NavBarAddOnStart)	$SET(label, Nav-Bar Start)  $EXEC($GET(tab))}%
 %CALC{$SET(topic, NavBarAddOnEnd)	  $SET(label, Nav-Bar End)	 $EXEC($GET(tab))}%
-%INCLUDE{%TWIKIWEB%.NavBarAddOnEnd}%
+%INCLUDE{%SYSTEMWEB%.NavBarAddOnEnd}%
 %STOPINCLUDE%
 </verbatim>
 

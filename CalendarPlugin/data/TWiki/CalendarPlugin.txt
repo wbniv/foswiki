@@ -39,7 +39,7 @@ NB. This Plugin does not, and has never, observed topic permissions.
 | ==width="n"== or =="n%"== | Width of calendar table in pixels or percent | Minimum width needed |
 | ==border="n"== | Border width of calendar table | "1" |
 | ==nowrap="1"== or =="0"== | Prevent cell content from wrapping | "0" |
-| ==bgcolor="#nnnn"== | Default background color of all cells unless redefined by other color settings below (use an HTML color-code like "#000000" as defined in %TWIKIWEB%.StandardColors) | white |
+| ==bgcolor="#nnnn"== | Default background color of all cells unless redefined by other color settings below (use an HTML color-code like "#000000" as defined in %SYSTEMWEB%.StandardColors) | white |
 | ==contentcolor="#nnnn"== | Default content color of all cells unless redefined | black |
 | ==headercolor="#nnnn"== | Background color of the Month+Year header | The web bgcolor |
 | ==headercontentcolor="#nnnn"== | Content color of the Month+Year header | contentcolor setting |
@@ -332,7 +332,7 @@ A list of Events is just a bullet list like this:
 ---++ Plugin Settings
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Show a monthly calendar with highlighted events
 
 	* Debug plugin: (See output in =data/debug.txt=)
@@ -402,12 +402,12 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Other Dependencies: | none |
 |  Perl Version: | 5.000 and up |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 95%, %TWIKIWEB%.FormattedSearch 97%, %TOPIC% 88% with installed Plugin |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 95%, %SYSTEMWEB%.FormattedSearch 97%, %TOPIC% 88% with installed Plugin |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main/AndreaSterbini - 27 Feb 2001 <br />
 -- TWiki:Main/PeterThoeny - 15 Jan 2004 <br />

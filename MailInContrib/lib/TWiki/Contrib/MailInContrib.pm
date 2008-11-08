@@ -353,7 +353,7 @@ sub _saveTopic {
         $opts->{template} ||= 'normal';
         $opts->{where} ||= 'bottom';
         # the $insert variable is initialized from
-        # %TWIKIWEB%/MailInContribTemplate and the recommended way to change
+        # %SYSTEMWEB%/MailInContribTemplate and the recommended way to change
         # the look and feel of the output pages is to copy
         # MailInContribTemplate as MailInContribUserTemplate and edit to
         # taste. - VickiBrown - 07 Sep 2007

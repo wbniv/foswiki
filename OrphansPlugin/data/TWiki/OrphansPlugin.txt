@@ -27,7 +27,7 @@ Orphaned topics are displayed in a table, optionally with a reference count. Exa
 
 
 ---++ Tools
-The plugin is used from a page in the %TWIKIWEB% web, %TWIKIWEB%.ManageOrphanedPages. Normally you should be able to get away with just this topic, though you can use the plugin from any topic in any web if you want to.
+The plugin is used from a page in the %SYSTEMWEB% web, %SYSTEMWEB%.ManageOrphanedPages. Normally you should be able to get away with just this topic, though you can use the plugin from any topic in any web if you want to.
 
 ---++ Syntax Rules
 
@@ -50,14 +50,14 @@ When the topic is viewed the Plugin will generate a table of topics in the selec
 
 <!--
 ---++ Settings
-	* One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Locate orphaned topics in TWiki webs
 -->
 
 ---++ Plugin Installation Instructions
 
 %$INSTALL_INSTRUCTIONS%
-	* Test if the plugin is correctly installed by visiting the %TWIKIWEB%.ManageOrphanedPages topic, select a web and see if the table is expanded correctly.
+	* Test if the plugin is correctly installed by visiting the %SYSTEMWEB%.ManageOrphanedPages topic, select a web and see if the table is expanded correctly.
 
 ---++ Plugin Info
 Another great TWiki extension from the <a style="text-decoration:none" href="http://wikiring.com"><img src="%ATTACHURLPATH%/wikiringlogo20x20.png" alt="" /> *WikiRing* </a> - working together to improve your wiki experience!
@@ -73,11 +73,11 @@ Many thanks to the following sponsors for supporting this work:
 |  25 Mar 2004: | Initial version |
 |  Dependencies: | %$DEPENDENCIES% |
 |  Perl Version: | 5.008 and up |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 99%, %TWIKIWEB%.FormattedSearch 99%, ManageOrphanedPages 95% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, ManageOrphanedPages 95% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 %META:FILEATTACHMENT{name="wikiringlogo20x20.png" attr="h" comment="" version="1"}%
 %META:FILEATTACHMENT{name="logo.png" attr="h" comment="" version="1"}%

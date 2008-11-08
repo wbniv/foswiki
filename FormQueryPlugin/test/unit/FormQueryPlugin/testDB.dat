@@ -385,7 +385,7 @@ text|302|19-Aug-2000|
 
 <TOPIC> "WebHome"
 %META:TOPICINFO{author="guest" date="1117088258" format="1.0" version="1.8"}%
-The <b>%WIKITOOLNAME%.%WEB%</b> web is the sandbox you can use for testing. Everybody is welcome to add or delete some stuff. It is recommended to walk through the %TWIKIWEB%.TWikiTutorial to get a jumpstart on the %WIKITOOLNAME% tool. A good rule of thumb is to add at the end of the page and sign & date it with your %TWIKIWEB%.WikiName. 
+The <b>%WIKITOOLNAME%.%WEB%</b> web is the sandbox you can use for testing. Everybody is welcome to add or delete some stuff. It is recommended to walk through the %SYSTEMWEB%.TWikiTutorial to get a jumpstart on the %WIKITOOLNAME% tool. A good rule of thumb is to add at the end of the page and sign & date it with your %SYSTEMWEB%.WikiName. 
 
 %TOPICLIST{"	* $web.$name"}%  
 
@@ -396,7 +396,7 @@ Activated plugins: %ACTIVATEDPLUGINS%
 
 ---++ Site Tools of the %WEB% Web
 
-%INCLUDE{"%TWIKIWEB%.WebSiteTools"}%
+%INCLUDE{"%SYSTEMWEB%.WebSiteTools"}%
 
 <TOPIC> "WebPreferences"
 %META:TOPICINFO{author="guest" date="1117504548" format="1.0" version="1.17"}%

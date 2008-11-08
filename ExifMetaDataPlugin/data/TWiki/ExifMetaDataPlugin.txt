@@ -45,7 +45,7 @@ Write =%<nop>EXIFMETADATA{ file="picture.jpg" tags="271,272" }%= to get the manu
 
 ---++ Plugin Settings
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Displays EXIF data for jpeg images attached to a topic.
 
 	* Debug plugin: (See output in =data/debug.txt=)
@@ -79,11 +79,11 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main/PascalBuchbinder - 18 Jan 2004
 %META:FILEATTACHMENT{name="picture.jpg" attr="" comment="sample jpeg file" date="1074463218" path="picture.jpg" size="41994" user="PascalBuchbinder" version="1.1"}%

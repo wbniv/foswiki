@@ -18,7 +18,7 @@ using =%<nop>PINGBACK{"ping" target="http://...."}%=.
   </tr>
   <tr>
     <td><b>Target</b>:</td>
-    <td><input type="text" name="target" value="%URLPARAM{"target" default="%SCRIPTURL{"view"}%/%TWIKIWEB%/PingBackPlugin"}%" size="50"></td>
+    <td><input type="text" name="target" value="%URLPARAM{"target" default="%SCRIPTURL{"view"}%/%SYSTEMWEB%/PingBackPlugin"}%" size="50"></td>
   </tr>
   <tr>
     <td>&nbsp;</td>

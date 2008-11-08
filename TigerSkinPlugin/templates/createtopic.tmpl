@@ -36,7 +36,7 @@ Please enter a name for your new topic:<BR>
 </td>
 </tr>
 
-<tr><td>Allow non <A target="WikiWord" onClick="return launchWindow('%TWIKIWEB%','WikiWord')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/WikiWord">WikiWord</A></td>
+<tr><td>Allow non <A target="WikiWord" onClick="return launchWindow('%SYSTEMWEB%','WikiWord')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%SYSTEMWEB%/WikiWord">WikiWord</A></td>
 <td>
 <INPUT type=checkbox name="nonwikiword">
 </td></tr>
@@ -49,12 +49,12 @@ Please enter a name for your new topic:<BR>
 </FORM>
 
 Hints:
-	* A <A target="GoodStyle" onClick="return launchWindow('%TWIKIWEB%','WikiTopic')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/WikiTopic">WikiTopic</A> is a web page that can be edited in your browser.
-	* All Topics generally be given a <A target="WikiWord" onClick="return launchWindow('%TWIKIWEB%','WikiWord')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/WikiWord">WikiWord</A> as their name, otherwise automatic linking of topic text will not happen.  Exceptions:
+	* A <A target="GoodStyle" onClick="return launchWindow('%SYSTEMWEB%','WikiTopic')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%SYSTEMWEB%/WikiTopic">WikiTopic</A> is a web page that can be edited in your browser.
+	* All Topics generally be given a <A target="WikiWord" onClick="return launchWindow('%SYSTEMWEB%','WikiWord')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%SYSTEMWEB%/WikiWord">WikiWord</A> as their name, otherwise automatic linking of topic text will not happen.  Exceptions:
 		* All capitals (at least 3 letters) will link
 		* For topics in the Products Web - a single word with initial capital (at least 3 letters) will link
 	* A Web is a collection of Topics
-	* Topics are normally created by typing a %TWIKIWEB%.WikiWord within another topic, after saving click on the question mark to create the new topic
+	* Topics are normally created by typing a %SYSTEMWEB%.WikiWord within another topic, after saving click on the question mark to create the new topic
 
 %TMPL:DEF{"topicaction"}% <A href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%">Cancel</A> %TMPL:END%
 %TMPL:P{"standardfooter"}%

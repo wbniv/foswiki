@@ -119,13 +119,13 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
 *Hints:* 
 	* You can setup every attribute of the =%<nop>CHECKLISTTABLE%= tag. You only have to use capital letters, e.g: 
 	  <br/> ==&nbsp;&nbsp;&nbsp;*&nbsp;Set&nbsp;ALLOWMOVE&nbsp;=&nbsp;on==
-	* Please use your <nop>%MAINWEB%.TWikiPreferences or <nop>%TWIKIWEB%.TWikiPreferences to setup plugin defaults. 
+	* Please use your <nop>%MAINWEB%.TWikiPreferences or <nop>%SYSTEMWEB%.TWikiPreferences to setup plugin defaults. 
 	  This prevents you from overwriting settings on plugin updates. E.g. put the following to your
 	  global preferences: 
 	  <br/> ==&nbsp;&nbsp;&nbsp;*&nbsp;Set&nbsp;CHECKLISTTABLEPLUGIN_ALLOWMOVE&nbsp;=&nbsp;on==
 
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Create a checklist table
 
 	* Debug plugin: (See output in =data/debug.txt=)
@@ -166,7 +166,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle 97%, %TWIKIWEB%.FormattedSearch 99%, %TOPIC% 92% |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle 97%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 92% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |

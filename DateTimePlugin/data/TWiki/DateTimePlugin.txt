@@ -2,7 +2,7 @@
 
 Display date and time with formatting options and localized dates.
 
-This plugin is an extension of the TWiki variable [[%TWIKIWEB%.VarGMTIME2][GMTIME{"format"}]] (that only allows to show the current date date and time). %BR%
+This plugin is an extension of the TWiki variable [[%SYSTEMWEB%.VarGMTIME2][GMTIME{"format"}]] (that only allows to show the current date date and time). %BR%
 !DateTimePlugin lets you show any date and time before or after 'now', and it will return any part of a date such as the month name.
 
 With !DateTimePlugin you can write: %BR%
@@ -20,7 +20,7 @@ For more options use: =%<nop>DATETIME{"format" &lt;optional parameters&gt;}%=
 ---+++ Parameters
 
 | *Parameter* | *Description* | *Example* |
-| ="..."= or =format="..."= | Format of date string; see [[%TWIKIWEB%.VarGMTIME2][GMTIME{"format"}]] for formatting variables | =%<nop>DATETIME{"$wday"}%= |
+| ="..."= or =format="..."= | Format of date string; see [[%SYSTEMWEB%.VarGMTIME2][GMTIME{"format"}]] for formatting variables | =%<nop>DATETIME{"$wday"}%= |
 | =date="..."= | Any date in one of the following formats: %BR%%BR% \
 Default TWiki format %BR% \
 &nbsp;&nbsp;&nbsp; =31 Dec 2001 - 23:59= %BR%%BR% \
@@ -47,7 +47,7 @@ The local timezone will be assumed. %BR%%BR% \
 | =incseconds="..."= | Increase the date by any number of seconds (may be a negative number) | =%<nop>DATETIME{date="31 Dec 2001" format="$seconds" incseconds="20"}%= |
 
 ---+++ Formatting parameters
-See [[%TWIKIWEB%.VarGMTIME2][GMTIME{"format"}]] for general date and time formatting parameters to pass to =format=. !DateTimePlugin supports the following additional paramters:
+See [[%SYSTEMWEB%.VarGMTIME2][GMTIME{"format"}]] for general date and time formatting parameters to pass to =format=. !DateTimePlugin supports the following additional paramters:
 
 | *Parameter* | *Description* | *Example* |
 | =$i_month= | The localized short name of the month. | =Ago= |
@@ -122,7 +122,7 @@ Due to date handling in Perl, !DateTimePlugin cannot handle dates earlier than 1
 
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>DATETIMEPLUGIN_SHORTDESCRIPTION%==
 
-   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+   * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
       * Set SHORTDESCRIPTION = Display date and time with formatting options and localized dates
 
 ---+++ Localization

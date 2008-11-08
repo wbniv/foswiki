@@ -5,7 +5,7 @@
 
 TWikiForms add structured information to twiki topics. 
 
-See also: %TOPIC%Template, WebPreferences, TWikiFormAttributes, %TWIKIWEB%.TWikiForms
+See also: %TOPIC%Template, WebPreferences, TWikiFormAttributes, %SYSTEMWEB%.TWikiForms
 
 %DBCALL{"RenderNewTopicTypeForm" NAME="%TOPIC%" TEMPLATE="%TOPIC%Template" warn="off"}%
 %DBCALL{"RenderTopicList" NAME="%TOPIC%"}%

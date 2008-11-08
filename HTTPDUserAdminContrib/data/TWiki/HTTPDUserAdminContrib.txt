@@ -51,11 +51,11 @@ This Contrib can also define and store group definitions in the same database.
 |  March 2008 | version 2 - updated for the 4.2.0 release, changes to allow registration, DB (MySQL in particular) and added group table |
 |  July 2007 | version 1 - initial release |
 |  Dependencies: | %$DEPENDENCIES% |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, HTTPDUserAdminContrib nn% |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, HTTPDUserAdminContrib nn% |
 |  Contrib Home: | http://twiki.org/cgi-bin/view/Plugins/HTTPDUserAdminContrib |
 |  Feedback: | http://twiki.org/cgi-bin/view/Plugins/HTTPDUserAdminContribDev |
 |  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/HTTPDUserAdminContribAppraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiContribs, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiContribs, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
 
 <!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the feedback topic on twiki.org instead. -->

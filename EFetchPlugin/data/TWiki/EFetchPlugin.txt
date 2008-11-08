@@ -83,7 +83,7 @@ Spindler KP, Kuhn JE, Freedman KB, Matthews CE, Dittus RS, Harrell FE Jr.&nbsp;&
 
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = This plugin allows the user to interact with <nop>PubMed
 
 	* Debug plugin: (See output in =data/debug.txt=)
@@ -112,12 +112,12 @@ __Note:__ The following instructions are for the administrator who installs the 
 |  CPAN Dependencies: | LWP::Simple |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 100%, %TWIKIWEB%.FormattedSearch 100%, %TOPIC% 100% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 100%, %SYSTEMWEB%.FormattedSearch 100%, %TOPIC% 100% |
 |  Plugin Home: | http://twiki.org/cgi-bin/view/Plugins/EFetchPlugin |
 |  Feedback: | none |
 |  Appraisal: | none |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main/ColeBeck - 31 Dec 2004
 

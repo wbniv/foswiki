@@ -32,7 +32,7 @@ See also: RenderRss, WebSyndication
 ~~~ hreflang="%LANGUAGES{format="$langtag" separator=","}%" 
 ~~~ href="%SCRIPTURL{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%" />
 %IFDEFINED{"%WEBLOGOIMG%" then="<logo>%WEBLOGOIMG%</logo>"}%
-<generator uri="%SCRIPTURL{"view"}%/%TWIKIWEB%/BlogPlugin">
+<generator uri="%SCRIPTURL{"view"}%/%SYSTEMWEB%/BlogPlugin">
   TWiki %WIKIVERSION%, <nop>BlogPlugin %PLUGINVERSION{"BlogPlugin"}%
 </generator>
 <id>

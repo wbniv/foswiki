@@ -7,7 +7,7 @@ package TWiki::Plugins::ActionTrackerPlugin::Options;
 use vars qw ( %options );
 
 my %defaults = (
-    CSS           => '%PUBURL%/%TWIKIWEB%/ActionTrackerPlugin/styles.css',
+    CSS           => '%PUBURL%/%SYSTEMWEB%/ActionTrackerPlugin/styles.css',
     DEBUG         => '0',
     DEFAULTDUE    => 9999999999, # far in the future
     EDITBOXHEIGHT => '%EDITBOXHEIGHT%',

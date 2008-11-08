@@ -58,7 +58,7 @@ There are a couple of preference variables to influence how and which headings a
 | EDITCHAPTERPLUGIN_MAXDEPTH | max depth of headings to edit | 6 | 
 | EDITCHAPTERPLUGIN_EDITIMG \
 | icon to be used in the edit link \
-| =&lt;img src="%$nopPUBURLPATH%/%<nop>TWIKIWEB%/EditChapterPlugin/uweb-g.gif" height="16" width="16" border="0" />= | 
+| =&lt;img src="%$nopPUBURLPATH%/%<nop>SYSTEMWEB%/EditChapterPlugin/uweb-g.gif" height="16" width="16" border="0" />= | 
 | EDITCHAPTERPLUGIN_EDITLABELFORMAT \
 | full format string to render the detected heading of a chapter \
 | =&lt;span class="ecpHeading">$anchor&lt;/a>$heading&lt;a class="ecpEdit" href="$url" title="Edit this chapter">$img&lt;/a>&lt;/span>= |

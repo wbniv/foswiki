@@ -16,7 +16,7 @@ This is a Tracking System implemented using TWiki.TWikiForms. It has been implem
 
 A customised version of it has been in use as TWiki's bug tracking and shakeout system since 2005 - See http://develop.twiki.org/~twiki4/cgi-bin/view/Bugs.
 
-The BugsContrib is a _TWikiApplication_ (an application that is implemented entirely in TWiki topics). It is designed to use the left bars supported by %TWIKIWEB%.PatternSkin and the TWiki:Plugins.MoveableTypeSkin, though could easily be converted to another skin. It's ideal for a small bug database (we have used it with over 4000 items with no problems) for a disciplined team.
+The BugsContrib is a _TWikiApplication_ (an application that is implemented entirely in TWiki topics). It is designed to use the left bars supported by %SYSTEMWEB%.PatternSkin and the TWiki:Plugins.MoveableTypeSkin, though could easily be converted to another skin. It's ideal for a small bug database (we have used it with over 4000 items with no problems) for a disciplined team.
 
 ---++ Installation
 

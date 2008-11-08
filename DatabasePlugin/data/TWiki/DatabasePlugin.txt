@@ -16,7 +16,7 @@ This is the most general of the commands. It allows you to execute arbitrary SQL
    * =format= - (optional) Format to display results in. if you don't give this parameter results will be ignored.
    * =header= - (optional) The header to display on the results table.
    * =separator= - string that separates results. Default newline.
-If the SQL statement doesn't return a result (e.g. an =UPDATE= statement) you must *not* give a =format= parameter. The =format= parameter is a string describing the required format for the results, where each =$colname= will expand to the value of that column. See %TWIKIWEB%.FormattedSearch for more on how =format=, =header= and =separator= work.
+If the SQL statement doesn't return a result (e.g. an =UPDATE= statement) you must *not* give a =format= parameter. The =format= parameter is a string describing the required format for the results, where each =$colname= will expand to the value of that column. See %SYSTEMWEB%.FormattedSearch for more on how =format=, =header= and =separator= work.
 
 ---+++ %<nop>DATABASE_SQL_TABLE{description="db1" headers="hdr1,hdr2,hdr3" command="sql command"}%
    * =description= - identifies the database configuration to use
@@ -91,6 +91,6 @@ Or let's say you wanted to display the next two upcoming scheduled events in the
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 

@@ -49,17 +49,17 @@ function launchWindow( theWeb, theTopic ) {
 <input type="hidden" name="cmd" value="%CMD%" />
 <br />
 Don't forget - if you change something, do it in
-<a target="GoodStyle" onClick="return launchWindow('%TWIKIWEB%','GoodStyle')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/GoodStyle">GoodStyle</a>
+<a target="GoodStyle" onClick="return launchWindow('%SYSTEMWEB%','GoodStyle')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%SYSTEMWEB%/GoodStyle">GoodStyle</a>
 and follow the
-<a target="TextFormattingRules" onClick="return launchWindow('%TWIKIWEB%','TextFormattingRules')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/TextFormattingRules">TextFormattingRules</a>.
+<a target="TextFormattingRules" onClick="return launchWindow('%SYSTEMWEB%','TextFormattingRules')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%SYSTEMWEB%/TextFormattingRules">TextFormattingRules</a>.
 <br /> <b>-- %WIKIUSERNAME% - %DATE% &lt;br&gt;</b> &nbsp;&nbsp;<code>&lt;==</code>
 This is your signature for easy copy & paste operation
 <br /> %FORMFIELDS%
 %TMPL:DEF{"topicaction"}% <input type="submit" value=" &nbsp; Save Changes &nbsp; " />
      <input type="checkbox" name="unlock" %RELEASEEDITLOCKCHECKBOX% /> Release edit lock
-     <font size="-1">(<a target="UnlockTopic" onClick="return launchWindow('%TWIKIWEB%','UnlockTopic')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/UnlockTopic">help</a>)</font>
+     <font size="-1">(<a target="UnlockTopic" onClick="return launchWindow('%SYSTEMWEB%','UnlockTopic')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%SYSTEMWEB%/UnlockTopic">help</a>)</font>
      <input type="checkbox" name="dontnotify" %DONTNOTIFYCHECKBOX% /> Minor changes, don't notify
-     <font size="-1">(<a target=DontNotify" onClick="return launchWindow('%TWIKIWEB%','DontNotify')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/DontNotify">help</a>)</font>
+     <font size="-1">(<a target=DontNotify" onClick="return launchWindow('%SYSTEMWEB%','DontNotify')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%SYSTEMWEB%/DontNotify">help</a>)</font>
   %TMPL:P{"sep"}% <a href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%?unlock=on">Cancel</a> edit %TMPL:END%
 %TMPL:P{"standardfooter"}%
 %WEBCOPYRIGHT%

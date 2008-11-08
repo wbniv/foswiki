@@ -41,7 +41,7 @@ These parameters can be used in the =format= tag:
 
 | *Format parameter* | *Comment* |
 | =$fileName=  | Name of the file |
-| =$fileIcon= | Icon image representing this file type (see %TWIKIWEB%.TWikiDocGraphics) |
+| =$fileIcon= | Icon image representing this file type (see %SYSTEMWEB%.TWikiDocGraphics) |
 | =$fileSize= | File size |
 | =$fileComment= | Attachment comment |
 | =$fileUser= | Who submitted |
@@ -71,7 +71,7 @@ These parameters can be used in the =header= and =footer= tags:
 
 <verbatim>
 %FILELIST{
-web="%TWIKIWEB%"
+web="%SYSTEMWEB%"
 topic="FileAttachment"
 format="| $fileIcon | [[$fileUrl][$fileName]] ($fileSize) | Submitted by $fileUser on $fileDate | $fileComment |<span class='twikiGrayText'>[[$fileActionUrl][manage]]</span> |"
 }%
@@ -80,7 +80,7 @@ format="| $fileIcon | [[$fileUrl][$fileName]] ($fileSize) | Submitted by $fileUs
 Output (if installed):
 
 %FILELIST{
-web="%TWIKIWEB%"
+web="%SYSTEMWEB%"
 topic="FileAttachment"
 format="| $fileIcon | [[$fileUrl][$fileName]] ($fileSize) | Submitted by $fileUser on $fileDate | $fileComment |<span class='twikiGrayText'>[[$fileActionUrl][manage]]</span> |"
 }%
@@ -90,7 +90,7 @@ format="| $fileIcon | [[$fileUrl][$fileName]] ($fileSize) | Submitted by $fileUs
 <verbatim>
 %FILELIST{
 topic="WabiSabi"
-web="%TWIKIWEB%"
+web="%SYSTEMWEB%"
 extension="jpg,jpeg,gif,png"
 header="Images:"
 format="<div class='twikiImage'><a href='$fileUrl'>$imgTag</a></div>"
@@ -103,7 +103,7 @@ Output (if installed):
 
 %FILELIST{
 topic="WabiSabi"
-web="%TWIKIWEB%"
+web="%SYSTEMWEB%"
 extension="jpg,jpeg,gif,png"
 header="Images:"
 format="<div class='twikiImage'><a href='$fileUrl'>$imgTag</a></div>"

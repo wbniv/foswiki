@@ -20,7 +20,7 @@
 
 %TMPL:DEF{"topicaction"}%
 <div style="padding-bottom:.5em"><input type="checkbox" name="forcenewrevision" %FORCENEWREVISIONCHECKBOX% /> %MAKETEXT{"Force new revision"}%
-<small>(<a href="#%MAKETEXT{"Opens page in new window"}%" target="ForceNewRevision" onclick="return launchWindow('%TWIKIWEB%','ForceNewRevision')" href="%SCRIPTURLPATH{"view"}%/%TWIKIWEB%/ForceNewRevision" title='%MAKETEXT{"Read new revision help text in new window"}%' rel='nofollow'>help</a>)</small></div>
+<small>(<a href="#%MAKETEXT{"Opens page in new window"}%" target="ForceNewRevision" onclick="return launchWindow('%SYSTEMWEB%','ForceNewRevision')" href="%SCRIPTURLPATH{"view"}%/%SYSTEMWEB%/ForceNewRevision" title='%MAKETEXT{"Read new revision help text in new window"}%' rel='nofollow'>help</a>)</small></div>
 <input type="submit" class="twikiSubmit" %MAKETEXT{"value='Save' accesskey='s'"}% />
 %TMPL:P{"sep"}%
 <input type="submit" class="twikiButton" name="action_quietsave" %MAKETEXT{"value='Quiet save' accesskey='q'"}% />

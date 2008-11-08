@@ -63,7 +63,7 @@ An input field with id 'googleAjaxSearchLabel' may override =GOOGLESEARCHLABEL=.
 To show the search box in another topic, write this:
 
 <verbatim>
-%INCLUDE{"%TWIKIWEB%.GoogleAjaxSearchPlugin" section="default" query="" web="%BASEWEB%" label="%BASEWEB% Web (results by Google)"}%
+%INCLUDE{"%SYSTEMWEB%.GoogleAjaxSearchPlugin" section="default" query="" web="%BASEWEB%" label="%BASEWEB% Web (results by Google)"}%
 </verbatim>
 
 This will include the following section (leave as is, no need to copy this):
@@ -100,7 +100,7 @@ You can set these values in this topic, or in any other topic where =%<nop>GOOGL
 ---++ Example
 To see it work (if installed and the right Google key is set):
 
-%INCLUDE{"%TWIKIWEB%.GoogleAjaxSearchPlugin" section="default" query="" web="TWiki" label="twiki.org TWiki Web"}%
+%INCLUDE{"%SYSTEMWEB%.GoogleAjaxSearchPlugin" section="default" query="" web="TWiki" label="twiki.org TWiki Web"}%
 
 
 ---++ Plugin Installation Instructions
@@ -128,5 +128,5 @@ To see it work (if installed and the right Google key is set):
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences
  

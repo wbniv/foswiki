@@ -1,5 +1,5 @@
 
-%INCLUDE{"%IF{"context can_login" then="%TWIKIWEB%.WebLeftBarLogin"}%" warn="off"}%
+%INCLUDE{"%IF{"context can_login" then="%SYSTEMWEB%.WebLeftBarLogin"}%" warn="off"}%
 
    * *[[WebHome][%ICON{"home"}% %INCLUDINGWEB% Web <img src="%PUBURL%/%BASEWEB%/WebPreferences/logo.png" />]]*
    * [[%SCRIPTURL{edit}%/%INCLUDINGWEB%/Item%NEWTOPICNAME%?templatetopic=WebTopicEditTemplate;formtemplate=ItemTemplate;_T=%SERVERTIME{$hou$min$sec}%][ %ICON{"newtopic"}% Create New Report]]
@@ -10,7 +10,7 @@
    * [[WebChanges][ %ICON{"changes"}% Changes]] 
       (<a href="%SCRIPTURLPATH{view}%/%WEB%/WebChanges?limit=50" rel=nofollow>50</a>,
        <a href="%SCRIPTURLPATH{view}%/%WEB%/WebChanges?limit=100" rel=nofollow>100</a>)
-     [[%SCRIPTURL{view}%/%INCLUDINGWEB%/WebRss?skin=rss][ %PUBURL%/%TWIKIWEB%/TWikiDocGraphics/rss-small.gif ]]
+     [[%SCRIPTURL{view}%/%INCLUDINGWEB%/WebRss?skin=rss][ %PUBURL%/%SYSTEMWEB%/TWikiDocGraphics/rss-small.gif ]]
    * [[WebSearch][ %ICON{"searchtopic"}% Search]]
 
    * *List by CurrentState*
@@ -25,6 +25,6 @@
 ----
    * [[WebAdmin][ %ICON{"wrench"}% Admin]]
 ----
-%INCLUDE{ "%TWIKIWEB%.WebLeftBarWebsList" }%
+%INCLUDE{ "%SYSTEMWEB%.WebLeftBarWebsList" }%
 
 

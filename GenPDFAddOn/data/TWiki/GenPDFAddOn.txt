@@ -87,7 +87,7 @@ The following table shows the various configuration variables and their meaning.
 
 If using TWiki preference variables, copy them to the appropriate web preferences page.
 
-%SEARCH{"[G]ENPDFADDON_" topic="%TOPIC%" type="regex" casesensitive="on" limit="21" nosearch="on" nosummary="on" header="	* Settings for the %TWIKIWEB%.%TOPIC% Plugin" nototal="on" multiple="on" format="		* #Set $pattern(.*(G.*?N_.*? ).*) = "}%
+%SEARCH{"[G]ENPDFADDON_" topic="%TOPIC%" type="regex" casesensitive="on" limit="21" nosearch="on" nosummary="on" header="	* Settings for the %SYSTEMWEB%.%TOPIC% Plugin" nototal="on" multiple="on" format="		* #Set $pattern(.*(G.*?N_.*? ).*) = "}%
 
 ---+++ Limiting the PDF Generation Region
 
@@ -195,7 +195,7 @@ __Note:__ You do not need to install anything on the browser to use this add-on.
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
 
-__Related Topic:__ %TWIKIWEB%.TWikiAddOns
+__Related Topic:__ %SYSTEMWEB%.TWikiAddOns
 <!-- PDFSTOP -->
 
 -- TWiki:Main/WadeTurland - 28 Jun 2005%BR%

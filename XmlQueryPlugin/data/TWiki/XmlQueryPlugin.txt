@@ -388,7 +388,7 @@ __XML Text__
 
 ---++ Recipes
 
-As XSLT has has a very powerful but complex syntax here are several examples of how to use it. If you do create a query that could be useful to others and would like to share then please do create a Recipe similar to  the ones below and send to %TWIKIWEB%.PatrickDiamond.
+As XSLT has has a very powerful but complex syntax here are several examples of how to use it. If you do create a query that could be useful to others and would like to share then please do create a Recipe similar to  the ones below and send to %SYSTEMWEB%.PatrickDiamond.
 
 	* [[XmlQueryPluginRecipe1][Recipe 1]]: List all Attachments in the current Web
 	* [[XmlQueryPluginRecipe2][Recipe 2]]: Attachments Queried using parameters
@@ -497,9 +497,9 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  CPAN Dependencies: | CPAN:DBI, CPAN:XML::LibXML, CPAN:XML::LibXSLT, CPAN:XML::Simple, CPAN:Text::ParseWords, CPAN:Cache::Cache, CPAN:String::CRC, CPAN:LWP::UserAgent |
 |  Other Dependencies: | |
 |  Perl Version: | 5.6 |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 98%, %TWIKIWEB%.FormattedSearch 99%, %TOPIC%Recipe4 96% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 98%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC%Recipe4 96% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 

@@ -4,15 +4,15 @@
 *Code examples and demos for TWikiAjaxContrib.*
 
 <!-- Dependencies -->
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/YahooUserInterfaceContrib/build/yahoo/yahoo.js"></script>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/YahooUserInterfaceContrib/build/connection/connection.js"></script>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/TWikiJavascripts/twikilib.js"></script>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/TWikiJavascripts/twikiArray.js"></script>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/TWikiJavascripts/twikiHTML.js"></script>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/TWikiAjaxContrib/twikiAjaxRequest.compressed.js"></script>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/BehaviourContrib/behaviour.compressed.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/YahooUserInterfaceContrib/build/yahoo/yahoo.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/YahooUserInterfaceContrib/build/connection/connection.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiJavascripts/twikilib.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiJavascripts/twikiArray.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiJavascripts/twikiHTML.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiAjaxContrib/twikiAjaxRequest.compressed.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/BehaviourContrib/behaviour.compressed.js"></script>
 <!-- Additional script for this page -->
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/TWikiJavascripts/twikiForm.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiJavascripts/twikiForm.js"></script>
 
 %TOC{title="On this page:"}%
 
@@ -23,7 +23,7 @@ Because TWiki files are served along dynamic urls we cannot use a static url for
 <blockquote>
 <verbatim>
 twiki.AjaxRequest.setDefaultIndicatorHtml(
-	"<img src='%PUBURL%/%TWIKIWEB%/TWikiAjaxContrib/indicator.gif' alt='' />"
+	"<img src='%PUBURL%/%SYSTEMWEB%/TWikiAjaxContrib/indicator.gif' alt='' />"
 	);
 </verbatim>
 </blockquote>
@@ -31,7 +31,7 @@ twiki.AjaxRequest.setDefaultIndicatorHtml(
 <script type="text/javascript">
 // <![CDATA[
 twiki.AjaxRequest.setDefaultIndicatorHtml(
-	"<img src='%PUBURL%/%TWIKIWEB%/TWikiAjaxContrib/indicator.gif' alt='' />"
+	"<img src='%PUBURL%/%SYSTEMWEB%/TWikiAjaxContrib/indicator.gif' alt='' />"
 	);
 // ]]>
 </script>
@@ -75,7 +75,7 @@ function autoLoad () {
 		"AUTOLOAD",
 		{
 			container:"autoLoadContainer",
-			url:"%PUBURL%/%TWIKIWEB%/TWikiAjaxContribExamples/test_hamlet.html?"
+			url:"%PUBURL%/%SYSTEMWEB%/TWikiAjaxContribExamples/test_hamlet.html?"
 		});
 }
 addLoadEvent(autoLoad);
@@ -97,7 +97,7 @@ function autoLoad () {
 		"AUTOLOAD",
 		{
 			container:"autoLoadContainer",
-			url:"%PUBURL%/%TWIKIWEB%/TWikiAjaxContribExamples/test_hamlet.html?"
+			url:"%PUBURL%/%SYSTEMWEB%/TWikiAjaxContribExamples/test_hamlet.html?"
 		});
 }
 addLoadEvent(autoLoad);
@@ -116,7 +116,7 @@ hideimgleft="%ICONURLPATH{code}%"}%
 function showNewTopicForm(el) {
 
 	// load javascript
-	var javascriptUrl = "%SCRIPTURL{"view"}%/%TWIKIWEB%/WebTopicCreator?skin=text"
+	var javascriptUrl = "%SCRIPTURL{"view"}%/%SYSTEMWEB%/WebTopicCreator?skin=text"
 				+ ";section=" + "javascriptfunctions";
 				
 	twiki.AjaxRequest.load("NEWTOPICFORM_JS",
@@ -145,7 +145,7 @@ function showNewTopicForm(el) {
 				}
 		}
 	);
-	var url = "%SCRIPTURL{"view"}%/%TWIKIWEB%/WebTopicCreator?skin=text"
+	var url = "%SCRIPTURL{"view"}%/%SYSTEMWEB%/WebTopicCreator?skin=text"
 				+ ";section=" + "newtopicform"
 				+ ";newtopic=" + topicName
 				+ ";parent=" + "<nop>%TOPIC%";
@@ -190,7 +190,7 @@ Who is't that can inform me?
 function showNewTopicForm(el) {
 
 	// load javascript
-	var javascriptUrl = "%SCRIPTURL{"view"}%/%TWIKIWEB%/WebTopicCreator?skin=text"
+	var javascriptUrl = "%SCRIPTURL{"view"}%/%SYSTEMWEB%/WebTopicCreator?skin=text"
 				+ ";section=javascriptfunctions";
 				
 	twiki.AjaxRequest.load("NEWTOPICFORM_JS",
@@ -219,7 +219,7 @@ function showNewTopicForm(el) {
 				}
 		}
 	);
-	var url = "%SCRIPTURL{"view"}%/%TWIKIWEB%/WebTopicCreator?skin=text"
+	var url = "%SCRIPTURL{"view"}%/%SYSTEMWEB%/WebTopicCreator?skin=text"
 				+ ";section=" + "newtopicform"
 				+ ";newtopic=" + topicName
 				+ ";parent=" + "<nop>%TOPIC%";
@@ -254,7 +254,7 @@ var Plugin = {
 		twiki.AjaxRequest.setProperties("SEARCHRESULTS",
   			{
   				container:"searchResultsPluginContainer",
-      			url:"%PUBURL%/%TWIKIWEB%/TWikiAjaxContribExamples/test_hamlet.html?"
+      			url:"%PUBURL%/%SYSTEMWEB%/TWikiAjaxContribExamples/test_hamlet.html?"
    			});
 	},
 	loadSearchResultsButton:function () {
@@ -317,7 +317,7 @@ var Plugin = {
 		twiki.AjaxRequest.setProperties("SEARCHRESULTS",
   			{
   				container:"searchResultsPluginContainer",
-      			url:"%PUBURL%/%TWIKIWEB%/TWikiAjaxContribExamples/test_hamlet.html?"
+      			url:"%PUBURL%/%SYSTEMWEB%/TWikiAjaxContribExamples/test_hamlet.html?"
    			});
 	},
 	loadSearchResultsButton:function () {
@@ -371,7 +371,7 @@ function writeContent () {
 		"CACHEDRESULTS",
 		{
 			container:"cachedContentContainer",
-			url:"%SCRIPTURL{view}%/%TWIKIWEB%/WikiSyntaxSummary?skin=text",
+			url:"%SCRIPTURL{view}%/%SYSTEMWEB%/WikiSyntaxSummary?skin=text",
 			cache:true
 		});
 }
@@ -421,7 +421,7 @@ function writeContent () {
 		"CACHEDRESULTS",
 		{
 			container:"cachedContentContainer",
-			url:"%SCRIPTURL{view}%/%TWIKIWEB%/WikiSyntaxSummary?skin=text",
+			url:"%SCRIPTURL{view}%/%SYSTEMWEB%/WikiSyntaxSummary?skin=text",
 			cache:true
 		});
 }
@@ -464,7 +464,7 @@ var indicatorHtml = "<div style=\"background-color:red; color:white; padding:.5e
 twiki.AjaxRequest.setProperties("CUSTOM_CONTAINER",
 	{
 		container:"customIndicatorContainer",
-		url:"%PUBURL%/%TWIKIWEB%/TWikiAjaxContribExamples/test_hamlet.html?",
+		url:"%PUBURL%/%SYSTEMWEB%/TWikiAjaxContribExamples/test_hamlet.html?",
 		indicator:indicatorHtml
 	});
    			
@@ -500,7 +500,7 @@ var indicatorHtml = "<div style=\"background-color:red; color:white; padding:.5e
 twiki.AjaxRequest.setProperties("CUSTOM_CONTAINER",
 	{
 		container:"customIndicatorContainer",
-		url:"%PUBURL%/%TWIKIWEB%/TWikiAjaxContribExamples/test_hamlet.html?",
+		url:"%PUBURL%/%SYSTEMWEB%/TWikiAjaxContribExamples/test_hamlet.html?",
 		indicator:indicatorHtml
 	});
    			
@@ -532,7 +532,7 @@ hideimgleft="%ICONURLPATH{code}%"}%
 twiki.AjaxRequest.setProperties(
 	"HTML_DATA",
 	{
-		url:"%SCRIPTURL{view}%/%TWIKIWEB%/WikiSyntaxSummary?skin=text",
+		url:"%SCRIPTURL{view}%/%SYSTEMWEB%/WikiSyntaxSummary?skin=text",
 		handler:"handleHtml",
 		scope:this,
 		container:"cachedHtmlProcessingContentContainer",
@@ -637,7 +637,7 @@ hideimgleft="%ICONURLPATH{toggleclose-small}%"}%
 twiki.AjaxRequest.setProperties(
 	"HTML_DATA",
 	{
-		url:"%SCRIPTURL{view}%/%TWIKIWEB%/WikiSyntaxSummary?skin=text",
+		url:"%SCRIPTURL{view}%/%SYSTEMWEB%/WikiSyntaxSummary?skin=text",
 		handler:"handleHtml",
 		scope:this,
 		container:"cachedHtmlProcessingContentContainer",
@@ -736,7 +736,7 @@ hideimgleft="%ICONURLPATH{code}%"}%
 twiki.AjaxRequest.setProperties(
 	"COUNTRIES",
 	{
-		url:"%PUBURL%/%TWIKIWEB%/TWikiAjaxContribExamples/test_cities.xml?",
+		url:"%PUBURL%/%SYSTEMWEB%/TWikiAjaxContribExamples/test_cities.xml?",
 		handler:"processCountryData",
 		scope:this,
 		type:"xml",
@@ -794,7 +794,7 @@ Behaviour.register(myrules);
 twiki.AjaxRequest.setProperties(
 	"COUNTRIES",
 	{
-		url:"%PUBURL%/%TWIKIWEB%/TWikiAjaxContribExamples/test_cities.xml?",
+		url:"%PUBURL%/%SYSTEMWEB%/TWikiAjaxContribExamples/test_cities.xml?",
 		handler:"processCountryData",
 		scope:this,
 		type:"xml",
@@ -879,7 +879,7 @@ Behaviour.register(myrules);
 <tr>
 <td colspan="2" class="first">
   <input type="text" class="twikiInputField" name="search" value="%URLPARAM{ "search" encode="entity" default="TWiki"}%" size="40" /> 
-  <input id="submitSearchButton" type="submit" class="twikiSubmit" value='%MAKETEXT{"Search"}%' /><span class="twikiSmall">&nbsp;&nbsp;[[%INCLUDINGWEB%.WebSearchAdvanced][%MAKETEXT{"Advanced search"}%]] | [[%TWIKIWEB%.SearchHelp][%MAKETEXT{"Help"}%]]</span>
+  <input id="submitSearchButton" type="submit" class="twikiSubmit" value='%MAKETEXT{"Search"}%' /><span class="twikiSmall">&nbsp;&nbsp;[[%INCLUDINGWEB%.WebSearchAdvanced][%MAKETEXT{"Advanced search"}%]] | [[%SYSTEMWEB%.SearchHelp][%MAKETEXT{"Help"}%]]</span>
 <div class="twikiSmall" style="padding:1em 0 0 0;">%MAKETEXT{"TIP: to search for all topics that contain =\"SOAP\"=, =\"WSDL\"=, a literal =\"web service\"=, but not =\"shampoo\"=, write:"}% <code>soap wsdl "web service" -shampoo</code></div>
 </td>
 </tr>
@@ -954,7 +954,7 @@ function loadFailure () {
 		{
 			container:"failureContainer",
 			/* use wrong url */
-			url:"%PUBURL%/%TWIKIWEB%/twikiajaxcontrib/bla"
+			url:"%PUBURL%/%SYSTEMWEB%/twikiajaxcontrib/bla"
 		});
 }
 
@@ -1001,7 +1001,7 @@ function loadFailure () {
 		{
 			container:"failureContainer",
 			/* for this demo to work use a wrong url */
-			url:"%PUBURL%/%TWIKIWEB%/TWikiAjaxContrib/bla"
+			url:"%PUBURL%/%SYSTEMWEB%/TWikiAjaxContrib/bla"
 		});
 }
 

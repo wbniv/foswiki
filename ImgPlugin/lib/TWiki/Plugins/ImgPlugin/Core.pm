@@ -85,7 +85,7 @@ sub new {
 
   $this->{magnifyIcon} = 
     TWiki::Func::getPluginPreferencesValue('IMGPLUGIN_ENLARGE_ICON') ||
-    '%PUBURLPATH%/%TWIKIWEB%/ImgPlugin/magnify-clip.png';
+    '%PUBURLPATH%/%SYSTEMWEB%/ImgPlugin/magnify-clip.png';
   $this->{magnifyWidth} = 15; # TODO: make this configurable/autodetected/irgnored
   $this->{magnifyHeight} = 11; # TODO: make this configurable/autodetected/irgnored
 

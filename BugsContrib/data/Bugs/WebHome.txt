@@ -1,6 +1,6 @@
-<img src="%PUBURL%/%TWIKIWEB%/BugsContrib/wikiring-bugscontrib.png" style="float:right;" />
+<img src="%PUBURL%/%SYSTEMWEB%/BugsContrib/wikiring-bugscontrib.png" style="float:right;" />
 
-This is an Item Tracking System implemented using TWiki.TWikiForms. It has been implemented to be used in a web on its own, but could be intermingled with a discussion style !TWikiWeb. It is a pure TWiki Application implemented using only what you get in the box when you download TWiki. See %TWIKIWEB%.BugsContrib for more information.
+This is an Item Tracking System implemented using TWiki.TWikiForms. It has been implemented to be used in a web on its own, but could be intermingled with a discussion style !TWikiWeb. It is a pure TWiki Application implemented using only what you get in the box when you download TWiki. See %SYSTEMWEB%.BugsContrib for more information.
 
 ---+ How to use the Bugs Web
 
@@ -15,7 +15,7 @@ You create a new bug by clicking the "Create New Item" link in the left bar.
 ---+ Configuring the Bugs Web
 
 The web is configured as a simple bug tracker, but can easily be customised to meet your own requirements. Here are some pointers:
-   1 ItemTemplate contains the basic bug form. This is a [[%TWIKIWEB%.TWikiForms][TWikiForm]].
+   1 ItemTemplate contains the basic bug form. This is a [[%SYSTEMWEB%.TWikiForms][TWikiForm]].
    1 WebLeftBar contains the left menu bar
    1 AppliesTo contains the list of areas that an issue might apply to. Configure this to your own requirements
    1 [[Priority]] contains a list of valid priorities

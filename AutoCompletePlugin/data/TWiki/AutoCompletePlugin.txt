@@ -5,7 +5,7 @@ One line description, required for extensions repository catalog.
 -->
 This plugin allows you to create an autocomplete input field based on Yahoo's User Interface Library.
 
-All this plugin does is implement Arthur Clemens' TWiki:Plugins/AutoCompleteAddOn as a plugin, which allows users to provide an autocomplete text box using the =%<nop>AUTOCOMPLETE%= syntax, and also in %TWIKIWEB%.TWikiForms (shown below).
+All this plugin does is implement Arthur Clemens' TWiki:Plugins/AutoCompleteAddOn as a plugin, which allows users to provide an autocomplete text box using the =%<nop>AUTOCOMPLETE%= syntax, and also in %SYSTEMWEB%.TWikiForms (shown below).
 
 <img src="%ATTACHURLPATH%/AutoCompletePluginScreenshot.png" alt="screenshot.png" />
 
@@ -21,7 +21,7 @@ This plugin expands the =%<nop>AUTOCOMPLETE{...}%= variable, which takes the par
 
 ---+++ In !TWikiForms
 
-To use this plugin in %TWIKIWEB%.TWikiForms, create a form template as descibed in %TWIKIWEB%.TWikiForms#Defining_a_Form. This plugin adds the =autocomplete= type of field. To pass the parameters required by the plugin, place them in the =Values= column. An example is shown below:
+To use this plugin in %SYSTEMWEB%.TWikiForms, create a form template as descibed in %SYSTEMWEB%.TWikiForms#Defining_a_Form. This plugin adds the =autocomplete= type of field. To pass the parameters required by the plugin, place them in the =Values= column. An example is shown below:
 
 | *Name* | *Type* | *Size* | *Values* | *Tooltip message* | *Attributes* |
 | Username | autocomplete | 25em | datatopic="Sandbox.AutoCompletePluginTestData" datasection="usernames" delimchar="," itemformat="item[0] + ' (' + item[1] + ')'" | |  | 
@@ -97,11 +97,11 @@ var SubmitJump = function(sType, aArgs) {
 |  14290 | Bugs:Item4304 - Various bug fixes and enhancements |
 |  14277 | Bugs:Item4301 - Initial release |
 |  Dependencies: | %$DEPENDENCIES% |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, AutoCompletePlugin nn% |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, AutoCompletePlugin nn% |
 |  Plugin Home: | http://twiki.org/cgi-bin/view/Plugins/AutoCompletePlugin |
 |  Feedback: | http://twiki.org/cgi-bin/view/Plugins/AutoCompletePluginDev |
 |  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/AutoCompletePluginAppraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
 
 <!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the feedback topic on twiki.org instead. -->

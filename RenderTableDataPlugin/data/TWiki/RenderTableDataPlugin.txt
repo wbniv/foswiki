@@ -87,7 +87,7 @@ Likewise use =show="..-5"= to show results up to the fifth item from the end. | 
 ---+++ Format tokens
 If you use TWiki variables inside TABLEDATA parameters chances are it will mess up the variable, or the rendered html. Use format tokens to 'delay' rendering of these variables until the TABLEDATA parameters are parsed.
 
-The format tokens are the same as with %TWIKIWEB%.FormattedSearch:
+The format tokens are the same as with %SYSTEMWEB%.FormattedSearch:
 
 | *Escape:* | *Expands To:* |
 | =$n= or =$n()= | New line. Use =$n()= if followed by alphanumeric character, e.g. write =Foo$n()Bar= instead of =Foo$nBar= |
@@ -131,28 +131,28 @@ separator="$n()"
 ---+++ Data from another topic
 <verbatim>
 %TABLEDATA{
-topic="%TWIKIWEB%.TWikiMetaData"
+topic="%SYSTEMWEB%.TWikiMetaData"
 rows="2.."
 format="   * *$C1*
       * _$C2_"
 separator="$n()"      
 sortcolumn="1"
 beforetext="---+++!! TOPICINFO $n()"
-aftertext="From [[%TWIKIWEB%.TWikiMetaData#META_TOPICINFO][TWikiMetaData]]"
+aftertext="From [[%SYSTEMWEB%.TWikiMetaData#META_TOPICINFO][TWikiMetaData]]"
 }%
 </verbatim>
 
 Results in:
 
 %TABLEDATA{
-topic="%TWIKIWEB%.TWikiMetaData"
+topic="%SYSTEMWEB%.TWikiMetaData"
 rows="2.."
 format="   * *$C1*
       * _$C2_"
 separator="$n()"      
 sortcolumn="1"
 beforetext="*TOPICINFO* $n()"
-aftertext="From [[%TWIKIWEB%.TWikiMetaData#META_TOPICINFO][TWikiMetaData]]"
+aftertext="From [[%SYSTEMWEB%.TWikiMetaData#META_TOPICINFO][TWikiMetaData]]"
 }%
 
 ---+++ Evaluating values

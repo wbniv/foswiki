@@ -11,14 +11,14 @@ Create a topic that defines the navigation bar.
 	* Example =MyOwnNavBar= topic content:
 	  %BR% =%<nop>STARTINCLUDE%=
 	  %BR% =%<nop>CALC{$SET( ...optional parameters listed below... )}%=
-	  %BR% =%<nop>INCLUDE{%<nop>TWIKIWEB%.NavBarAddOnStart}%=
+	  %BR% =%<nop>INCLUDE{%<nop>SYSTEMWEB%.NavBarAddOnStart}%=
 	  %BR% =%<nop>CALC{$SET(topic, <nop>TopicArt) $SET(label, Art) $EXEC($GET(tab))}%=
 	  %BR% =%<nop>CALC{$SET(topic, <nop>TopicBar) $SET(label, Bar) $EXEC($GET(tab))}%=
 	  %BR% =%<nop>CALC{$SET(topic, <nop>TopicCat) $SET(label, Cat) $EXEC($GET(tab))}%=
-	  %BR% =%<nop>INCLUDE{%<nop>TWIKIWEB%.NavBarAddOnEnd}%=
+	  %BR% =%<nop>INCLUDE{%<nop>SYSTEMWEB%.NavBarAddOnEnd}%=
 	  %BR% =%<nop>STOPINCLUDE%=
 	* Optional parameters can be defined by setting spreadsheet variables: (default values are shown)
-	  %BR% =$SET(bga_color, #999999)= %M% Background [[%TWIKIWEB%.StandardColors][color]] of active tab
+	  %BR% =$SET(bga_color, #999999)= %M% Background [[%SYSTEMWEB%.StandardColors][color]] of active tab
 	  %BR% =$SET(fga_color, #FFFFFF)= %M% Foreground color of active tab
 	  %BR% =$SET(bgi_color, #DDDDDD)= %M% Background color of inactive tab
 	  %BR% =$SET(fgi_color, #000000)= %M% Foreground color of inactive tab
@@ -26,7 +26,7 @@ Create a topic that defines the navigation bar.
 	* For each tab define the link (web name / topic name) and the label:
 	  %BR% =$SET(web, %<nop>MAINWEB%)= %M% Name of web (optional)
 	  %BR% =$SET(topic, %<nop>HOMETOPIC%)= %M% Name of topic (required)
-	  %BR% =$SET(label, Home)= %M% Label of tab (required) which may contain an [[%TWIKIWEB%.TWikiDocGraphics][icon]]
+	  %BR% =$SET(label, Home)= %M% Label of tab (required) which may contain an [[%SYSTEMWEB%.TWikiDocGraphics][icon]]
 
 ---+++ 2. Use Navigation Bar
 In each participating topic, include the navigation bar topic.
@@ -63,7 +63,7 @@ __Note:__ You do not need to install anything on the browser to use this add-on.
 
 ---++ Known Limitations
 
-This Add-on works properly with different skins on IE, Netspace and Firefox. It works nicely with the !PatternSkin shipped with the TWiki:Codev.TWikiRelease02Sep2004, but not with the latest version of the TWiki:Plugins:PatternSkin due to interference of the Plugin stylesheet with the table layout of the tabs. [[%SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%?skin=classic][Test this topic]] with the %TWIKIWEB%.ClassicSkin
+This Add-on works properly with different skins on IE, Netspace and Firefox. It works nicely with the !PatternSkin shipped with the TWiki:Codev.TWikiRelease02Sep2004, but not with the latest version of the TWiki:Plugins:PatternSkin due to interference of the Plugin stylesheet with the table layout of the tabs. [[%SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%?skin=classic][Test this topic]] with the %SYSTEMWEB%.ClassicSkin
 
 ---++ Add-On Info
 
@@ -87,7 +87,7 @@ License]]) |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
 __Related Topic:__
-	* %TWIKIWEB%.TWikiAddOns
+	* %SYSTEMWEB%.TWikiAddOns
 	* NavBarAddOnExample
 	* NavBarAddOnStart
 	* NavBarAddOnEnd

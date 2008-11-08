@@ -21,7 +21,7 @@ Describe the plugin
 Plugin settings are stored as preferences variables. To reference
 a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>IRCPLUGIN_SHORTDESCRIPTION%==
 
-   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+   * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
       * Set SHORTDESCRIPTION = Notifies an IRC channel when topics are created or updated
 
    * Debug plugin: (See output in =data/debug.txt=)
@@ -48,6 +48,6 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>I
    * queue/log with seperate program to spew messages as it can (and doesn't keep connecting and disconnecting)
    * when a topic is moved to the Trash, IrcPlugin reports ".../Trash/TopicName" was created rather than something more useful like (.../Web/TopicName was moved to Trash) - (read the Meta data for TOPICMOVED, iirc) - well, that's on notification when the topic is created, rather than removed...
 
-__Related Topics:__ DeveloperDocumentationCategory, AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ DeveloperDocumentationCategory, AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 

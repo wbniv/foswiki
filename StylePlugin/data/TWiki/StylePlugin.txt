@@ -16,7 +16,7 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>S
 		* Set ALLOWTOPICCHANGE = Main.TWikiAdminGroup
 		* Set ALLOWTOPICRENAME = Main.TWikiAdminGroup
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = A TWiki notation for adding css style class references with span and div tags
 
 	* Debug plugin: (See output in =data/debug.txt=)
@@ -105,6 +105,6 @@ This will produce
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main.DaleBrayden - 26 Dec 2002

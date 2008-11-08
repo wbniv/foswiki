@@ -39,6 +39,6 @@ One line description, required for extensions repository catalog.
 |  Feedback: | http://twiki.org/cgi-bin/view/Plugins/HostnamePluginDev |
 |  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/HostnamePluginAppraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiVariables
+__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiVariables
 
 <!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the feedback topic on twiki.org instead. -->

@@ -4,7 +4,7 @@
   <form name="main" action="%SCRIPTURLPATH{"manage"}%/%BASEWEB%/%BASETOPIC%" method="post">
     <div class="twikiFormStep">
         <input type="hidden" name="action" value="editSettings" />
-        <h2>%MAKETEXT{"Edit topic preferences"}% <img src="%PUBURLPATH%/%TWIKIWEB%/NatSkin/page_white_edit.png" /></h2>
+        <h2>%MAKETEXT{"Edit topic preferences"}% <img src="%PUBURLPATH%/%SYSTEMWEB%/NatSkin/page_white_edit.png" /></h2>
         %MAKETEXT{"Edit preference settings for '[_1]'" args="[[%BASEWEB%.%BASETOPIC%]]"}%
     </div>
     <div class="twikiFormStep twikiFormButtons twikiFormLast">
@@ -15,7 +15,7 @@
 <div class="twikiFormSteps %CALC{"$SETM(incr,+1)$IF($ODD($GET(incr)),twikiLeft,twikiRight)"}%">
   <form name="backlinksform" action="%SCRIPTURLPATH{"oops"}%/%BASEWEB%/%BASETOPIC%">
   <div class="twikiFormStep">
-    <h2>%MAKETEXT{"Search for backlinks"}% <img src="%PUBURLPATH%/%TWIKIWEB%/NatSkin/page_white_go.png" /></h2>
+    <h2>%MAKETEXT{"Search for backlinks"}% <img src="%PUBURLPATH%/%SYSTEMWEB%/NatSkin/page_white_go.png" /></h2>
   </div>
   <div class="twikiFormStep">
     %MAKETEXT{"Find topics that link back to '[_1]'" args="[[%BASEWEB%.%BASETOPIC%]]"}%
@@ -34,10 +34,10 @@
 <hr class="twikiClear" />
 <div class="twikiFormSteps %CALC{"$SETM(incr,+1)$IF($ODD($GET(incr)),twikiLeft,twikiRight)"}%">
   <div class="twikiFormStep">
-    <h2>%MAKETEXT{"Rename, move or delete this topic"}% <img src="%PUBURLPATH%/%TWIKIWEB%/NatSkin/page_white_delete.png" /></h2>
+    <h2>%MAKETEXT{"Rename, move or delete this topic"}% <img src="%PUBURLPATH%/%SYSTEMWEB%/NatSkin/page_white_delete.png" /></h2>
     %MAKETEXT{"Rename topic *[_1]*" args="%BASETOPIC%"}%
 
-    %MAKETEXT{"See also:"}% %TWIKIWEB%.ManagingTopics.
+    %MAKETEXT{"See also:"}% %SYSTEMWEB%.ManagingTopics.
   </div>
   <div class="twikiFormStep twikiFormButtons twikiFormLast">
     <input type="button" class="natOkButton" onclick="window.location.href='%SCRIPTURLPATH{"rename"}%/%BASEWEB%/%BASETOPIC%?currentwebonly=on'" value="%MAKETEXT{"OK"}%" />
@@ -45,10 +45,10 @@
 </div>
 <div class="twikiFormSteps %CALC{"$SETM(incr,+1)$IF($ODD($GET(incr)),twikiLeft,twikiRight)"}%">
   <div class="twikiFormStep">
-    <h2>%MAKETEXT{"Rename, move or delete this web"}%<img src="%PUBURLPATH%/%TWIKIWEB%/NatSkin/database_delete.png" /></h2>
+    <h2>%MAKETEXT{"Rename, move or delete this web"}%<img src="%PUBURLPATH%/%SYSTEMWEB%/NatSkin/database_delete.png" /></h2>
     %MAKETEXT{"Rename the <nop>[_1] web" args="%BASEWEB%"}%
 
-    %MAKETEXT{"See also:"}% %TWIKIWEB%.ManagingWebs
+    %MAKETEXT{"See also:"}% %SYSTEMWEB%.ManagingWebs
   </div>
   <div class="twikiFormStep twikiFormButtons twikiFormLast">
     <input type="button" class="natOkButton" onclick="window.location.href='%SCRIPTURLPATH{"rename"}%/%BASEWEB%/%BASETOPIC%?action=renameweb'" value="%MAKETEXT{"OK"}%" />
@@ -60,7 +60,7 @@
     <input type="hidden" name="template" value="oopslanguagechanged" />
     <input type="hidden" name="refresh" value="on" />
     <div class="twikiFormStep">
-      <h2>%MAKETEXT{"Change interface language"}% <img src="%PUBURLPATH%/%TWIKIWEB%/NatSkin/world.png" /></h2>
+      <h2>%MAKETEXT{"Change interface language"}% <img src="%PUBURLPATH%/%SYSTEMWEB%/NatSkin/world.png" /></h2>
       <select name="language">
       <option value="default">Default</option>
       %LANGUAGES{format="<option $marker value=\"$langtag\">$langname</option>" selection="%LANGUAGE%" separator=" "}%
@@ -76,7 +76,7 @@
 </div>
 <div class="twikiFormSteps %CALC{"$SETM(incr,+1)$IF($ODD($GET(incr)),twikiLeft,twikiRight)"}%" style="%IF{"not {Cache}{Enabled}" then="display:none"}%">
   <div class="twikiFormStep">
-    <h2>%MAKETEXT{"Refresh topic caching"}% <img src="%PUBURLPATH%/%TWIKIWEB%/NatSkin/arrow_refresh.png" /></h2>
+    <h2>%MAKETEXT{"Refresh topic caching"}% <img src="%PUBURLPATH%/%SYSTEMWEB%/NatSkin/arrow_refresh.png" /></h2>
     %MAKETEXT{"Get a fresh page of the topic [_1]" args="[[%BASEWEB%.%BASETOPIC%]]"}%&nbsp;
   </div>
   <div class="twikiFormStep twikiFormButtons twikiFormLast">

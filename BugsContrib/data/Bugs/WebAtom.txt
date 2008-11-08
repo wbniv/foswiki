@@ -5,7 +5,7 @@
 <subtitle>%INCLUDINGWEB% Item tracking system</subtitle>
 <link rel="self" type="application/atom+xml" href="%SCRIPTURL{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%?skin=rssatom" />
 <link rel="alternate" type="text/html" hreflang="%LANGUAGES{format="$langtag" separator=","}%" href="%SCRIPTURL{"view"}%/%INCLUDINGWEB%/%INCLUDINGTOPIC%" />
-<logo>%PUBURL%/%TWIKIWEB%/TWikiLogos/twikilogo88x31.gif</logo>
+<logo>%PUBURL%/%SYSTEMWEB%/TWikiLogos/twikilogo88x31.gif</logo>
 <generator>TWiki %WIKIVERSION%</generator>
 <rights>Copyright %GMTIME{"$year"}%, contributing authors.</rights>
 <id>tag:%HTTP_HOST%,%SERVERTIME{"$year-$mo-$day"}%:%INCLUDINGWEB%.%INCLUDINGTOPIC%</id>

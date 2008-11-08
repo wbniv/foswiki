@@ -42,8 +42,8 @@ Cuando escriba el título de una página, se convierte en un enlace. Existen varia
    * Para crear un enlace a una página que se encuentra *en una red diferente*, escriba: =Sandbox.WebSearch= - este se convierte en: Sandbox.WebSearch
    * Para mostrar el nombre de la red dentro del enlace, utilice corchetes: =[<nop>[Sandbox.%HOMETOPIC%]]= - este se convierte en: [[Sandbox.%HOMETOPIC%]]
    * Para crear un enlace a *otra página Wiki*, utilice: =TWiki:Main/WebHome= - este se convierte en: TWiki:Main/WebHome (sitios están definidos en el TWiki.InterwikiPlugin %FLAGGB%)
-   * Para crear un enlace a una parte que está *en la misma página*, escriba "#" seguido por el nombre de una palabra ancla. La palabra ancla es "#" seguido por una palabra que tiene que ser una !PalabraWiki. Ejemplo: =#MiAncla=. También puede enlazar a una ancla en otra página: =%TWIKIWEB%.%HOMETOPIC%#MiAncla=.
-   * Para crear un enlace a un título que está *en la misma página*, escriba "#" seguido por el texto del título, reemplazando los espacios por lineas bajas (y sin =!=): =[<nop>[#Buenos_ejemplos_de_PalabrasWiki]]= se convierte en: [[#Buenos_ejemplos_de_PalabrasWiki]]. También puede enlazar el título de otra página: =%TWIKIWEB%.%HOMETOPIC%#Disclaimer= se convierte en: %TWIKIWEB%.%HOMETOPIC%#Disclaimer.
+   * Para crear un enlace a una parte que está *en la misma página*, escriba "#" seguido por el nombre de una palabra ancla. La palabra ancla es "#" seguido por una palabra que tiene que ser una !PalabraWiki. Ejemplo: =#MiAncla=. También puede enlazar a una ancla en otra página: =%SYSTEMWEB%.%HOMETOPIC%#MiAncla=.
+   * Para crear un enlace a un título que está *en la misma página*, escriba "#" seguido por el texto del título, reemplazando los espacios por lineas bajas (y sin =!=): =[<nop>[#Buenos_ejemplos_de_PalabrasWiki]]= se convierte en: [[#Buenos_ejemplos_de_PalabrasWiki]]. También puede enlazar el título de otra página: =%SYSTEMWEB%.%HOMETOPIC%#Disclaimer= se convierte en: %SYSTEMWEB%.%HOMETOPIC%#Disclaimer.
 
 ---++ Consejos
    * Utilice !PalabrasWiki cuando pueda. Muchos enlaces ayudan a convertir un Wiki en un éxito.

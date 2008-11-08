@@ -23,7 +23,7 @@ This plugin fills that gap and creates a user's topic if it does not yet exist.
 You can customize the template that is used to create a new user topic
 by setting the =NEWUSERTEMPLATE= preference variable (e.g. in %MAINWEB%.TWikiPreferences):
 
-   * Set NEWUSERTEMPLATE = %TWIKIWEB%.NewLdapUserTemplate
+   * Set NEWUSERTEMPLATE = %SYSTEMWEB%.NewLdapUserTemplate
 
 If not set, it defaults to <nop>NewUserTemplate. This plugin comes with an example template,
 NewLdapUserTemplate, to illustrate how to extract user data from an LDAP directory and integrate

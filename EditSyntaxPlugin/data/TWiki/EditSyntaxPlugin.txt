@@ -12,13 +12,13 @@ The edit syntax rules depend on the edit syntax converter activated by a user.
 
 Currently available converters:
 | *Syntax* | *To Activate* | *Syntax Summary and Help* | *Converter topic* |
-| =TWiki= | =<nop>   * Set EDITSYNTAX = <nop>= | [[%TWIKIWEB%.WikiSyntaxSummary][Summary]], [[%TWIKIWEB%.TextFormattingRules][Help]] | N/A |
+| =TWiki= | =<nop>   * Set EDITSYNTAX = <nop>= | [[%SYSTEMWEB%.WikiSyntaxSummary][Summary]], [[%SYSTEMWEB%.TextFormattingRules][Help]] | N/A |
 %SEARCH{ "EditSyntaxRegex" scope="topic" topic="*EditSyntaxRegex" nonoise="on" format="| =$percntCALC{$SET(name, $SUBSTITUTE($topic, EditSyntaxRegex))$GET(name)}$percnt= | =<nop>   * Set EDITSYNTAX = <nop>$percntCALC{$GET(name)}$percnt= | [[$percntCALC{$GET(name)}$percntWikiSyntaxSummary][Summary]], [[$percntCALC{$GET(name)}$percntTextFormattingRules][Help]] | [[$topic][$percntCALC{$GET(name)}$percnt converter]] |" }%
 
 Syntax converters are activated with an EDITSYNTAX preferences setting in the user homepage. Copy these bullets to the Personal Preferences section:
 
 <pre>
-      * Activate preferred edit syntax (see available edit syntax converters at %TWIKIWEB%.EditSyntaxPlugin) :
+      * Activate preferred edit syntax (see available edit syntax converters at %SYSTEMWEB%.EditSyntaxPlugin) :
          * Set <nop>EDITSYNTAX = Mediawiki
 </pre>
 
@@ -29,14 +29,14 @@ To disable the converter (e.g. to use TWiki syntax), set the EDITSYNTAX to an em
 
 Steps to create a new edit syntax converter, using the !FooWiki syntax as an example:
    1. Decide on the base name, =Foowiki=. Base name must not be a !WikiWord, e.g. not =FooWiki=.
-   1. Create a =FoowikiEditSyntaxRegex= topic in the %TWIKIWEB% web, taking MediawikiEditSyntaxRegex as a template.
+   1. Create a =FoowikiEditSyntaxRegex= topic in the %SYSTEMWEB% web, taking MediawikiEditSyntaxRegex as a template.
       * List regular expressions to convert the syntax from the TWiki to the Foowiki format, and vice versa.
       * The converter format is indicated below.
       * All topics ending in =*EditSyntaxRegex= are listed automatically in the converter topic.
-   1. Create a =FoowikiWikiSyntaxSummary= syntax summary topic in the %TWIKIWEB% web, taking MediawikiWikiSyntaxSummary as a template.
+   1. Create a =FoowikiWikiSyntaxSummary= syntax summary topic in the %SYSTEMWEB% web, taking MediawikiWikiSyntaxSummary as a template.
       * This is the short help text shown in the edit screen.
       * Replace =/MediawikiTextFormattingRules= in the "more formatting help" link with =/FoowikiTextFormattingRules=.
-   1. Create a =FoowikiTextFormattingRules= syntax help topic in the %TWIKIWEB% web, taking MediawikiTextFormattingRules and/or Foowiki's edit syntax help text as a template.
+   1. Create a =FoowikiTextFormattingRules= syntax help topic in the %SYSTEMWEB% web, taking MediawikiTextFormattingRules and/or Foowiki's edit syntax help text as a template.
       * This is the extensive help text shown when the users clicks on the "more formatting help" link.
 
 ---+++ Format of Edit Syntax Regular Expression Converter Topic
@@ -57,7 +57,7 @@ Example lines:
 
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>EDITSYNTAXPLUGIN_SHORTDESCRIPTION%==
 
-   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+   * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
       * Set SHORTDESCRIPTION = Edit TWiki content using your preferred wiki syntax
 
    * Debug plugin: (See output in =data/debug.txt=)
@@ -91,7 +91,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
          * View raw should show you the content in TWiki syntax
    * Show proper edit syntax summary in edit screen:
       * Create an =EDITSYNTAX= setting in your =%MAINWEB%.TWikiPreferences= and set it to an empty value
-      * Edit =twiki/templates/edit.pattern.tmpl= and change ="%<nop>TWIKIWEB%.WikiSyntaxSummary"= to ="%<nop>TWIKIWEB%.%EDITSYNTAX%WikiSyntaxSummary"=
+      * Edit =twiki/templates/edit.pattern.tmpl= and change ="%<nop>SYSTEMWEB%.WikiSyntaxSummary"= to ="%<nop>SYSTEMWEB%.%EDITSYNTAX%WikiSyntaxSummary"=
       * Change other =twiki/templates/edit.*.tmpl= template files as needed
    * Secure the =*EditSyntaxRegex= converter topics so that only %MAINWEB%.TWikiAdminGroup members can edit the topics.
 
@@ -113,11 +113,11 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
 
 -- TWiki:Main.PeterThoeny - 09 Jul 2006

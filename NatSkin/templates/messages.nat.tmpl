@@ -21,7 +21,7 @@
 %TMPL:DEF{"notwikiuser"}%<!-- fixes duplicate definition of notwikiuser in messages.tmpl -->
 ---+++ %MAKETEXT{"Can't find user \"[_1]\"." args="<nop>%PARAM1%"}%
 %MAKETEXT{"Please make sure you spelled the [_1] correctly and try again. If you get stuck, please mail [_2]."
- args="%TWIKIWEB%.LoginName,%WIKIWEBMASTER%"}%
+ args="%SYSTEMWEB%.LoginName,%WIKIWEBMASTER%"}%
 
 %MAKETEXT{"See [_1] for a list of existing users or register as new user in [_2]."
 args="%USERSWEB%.TWikiUsers,%TWIKIREGISTRATION%"}%
@@ -45,8 +45,8 @@ args="%USERSWEB%.TWikiUsers,%TWIKIREGISTRATION%"}%
 %TMPL:P{"goback"}%
 %TMPL:END%
 %TMPL:DEF{"rename_not_wikiword"}%<!-- uses goback def -->
----+++ %MAKETEXT{"New topic name [_1] is not a [_2]" args="<nop>\"%PARAM1%\",%TWIKIWEB%.WikiWord"}%
-%MAKETEXT{"Chose a topic name that is a [_1] or check the allow non-Wiki Word box." args="%TWIKIWEB%.WikiWord"}%
+---+++ %MAKETEXT{"New topic name [_1] is not a [_2]" args="<nop>\"%PARAM1%\",%SYSTEMWEB%.WikiWord"}%
+%MAKETEXT{"Chose a topic name that is a [_1] or check the allow non-Wiki Word box." args="%SYSTEMWEB%.WikiWord"}%
 
 %TMPL:P{"goback"}%
 %TMPL:END%
@@ -97,7 +97,7 @@ alphanumeric characters."}%
 %MAKETEXT{"A color starts with a # sign, followed by 6 hexadecimal
 numbers, e.g. =#FFFF00=."}%
 
-%MAKETEXT{"Pick one of the [_1]." args="%TWIKIWEB%.StandardColors"}%
+%MAKETEXT{"Pick one of the [_1]." args="%SYSTEMWEB%.StandardColors"}%
 
 %MAKETEXT{"You can also use the names of the standard HTML colors"}% (black, silver, gray,
 white, maroon, red, purple, fuchsia, green, lime, olive, yellow, navy, blue, teal, or aqua)
@@ -178,11 +178,11 @@ link in your email or enter the code in the box below to activate your membershi
 %TMPL:P{"goback"}%
 %TMPL:END%
 %TMPL:DEF{"bad_wikiname"}%<!-- uses goback def -->
----+++ %MAKETEXT{"Incorrect [_1]" args="%TWIKIWEB%.WikiName"}%
+---+++ %MAKETEXT{"Incorrect [_1]" args="%SYSTEMWEB%.WikiName"}%
 %MAKETEXT{"The [_1] field must be your first and lastname in [_2], e.g. your capitalized first and lastname with spaces removed."
- args="%TWIKIWEB%.WikiName,%TWIKIWEB%.WikiNotation"}%
+ args="%SYSTEMWEB%.WikiName,%SYSTEMWEB%.WikiNotation"}%
 
-| *%MAKETEXT{"Good examples:"}%* | *%MAKETEXT{"Incorrect [_1]" args="%TWIKIWEB%.WikiNames"}%:* |
+| *%MAKETEXT{"Good examples:"}%* | *%MAKETEXT{"Incorrect [_1]" args="%SYSTEMWEB%.WikiNames"}%:* |
 | =JohnSmith= | =John M. Smith= |
 | =RjMiller= | =RJ Miller= |
 | =RickO= | =Rick O= (%MAKETEXT{"single character last name"}%) |
@@ -309,7 +309,7 @@ template that doesn't exist." args="%PARAM2%"}%
 
 %TMPL:P{"logon"}%
 
-%MAKETEXT{"See also:"}% %USERSWEB%.TWikiGroups, %TWIKIWEB%.TWikiAccessControl,
+%MAKETEXT{"See also:"}% %USERSWEB%.TWikiGroups, %SYSTEMWEB%.TWikiAccessControl,
 %TWIKIREGISTRATION%
 %TMPL:END%
 %TMPL:DEF{"only_group"}% <!-- -->
@@ -317,7 +317,7 @@ template that doesn't exist." args="%PARAM2%"}%
 
 %TMPL:P{"logon"}%
 
-%MAKETEXT{"See also:"}% %USERSWEB%.TWikiGroups, %TWIKIWEB%.TWikiAccessControl,
+%MAKETEXT{"See also:"}% %USERSWEB%.TWikiGroups, %SYSTEMWEB%.TWikiAccessControl,
 %TWIKIREGISTRATION%
 %TMPL:END%
 %TMPL:DEF{"no_such_web"}% <!-- -->

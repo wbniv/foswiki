@@ -171,6 +171,9 @@ sub renderTreeView
     $theParams =~ s/%ATTACHURL%/$attachUrl/go;
     $theParams =~ s/%WEB%/$installWeb/go;
     $theParams =~ s/%MAINWEB%/TWiki::Func::getMainWebname()/geo;
+    $theParams =~ s/%SYSTEMWEB%/TWiki::Func::getTwikiWebname()/geo;      
+
+    # deprecated:
     $theParams =~ s/%TWIKIWEB%/TWiki::Func::getTwikiWebname()/geo;      
 
     my ( $rooticon, $docicon, $fldricon, $fldropenicon )

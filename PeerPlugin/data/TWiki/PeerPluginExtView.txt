@@ -1,6 +1,6 @@
 %META:TOPICINFO{author="RoeS01" date="998488421" format="1.0" version="1.2"}%
 ---+++ Internet/Intranet Review of %PROBJECT%
-%INCLUDE{"%TWIKIWEB%/PeerPluginExtForm"}%
+%INCLUDE{"%SYSTEMWEB%/PeerPluginExtForm"}%
 ----
 ---+++ Previous Reviews of %PROBJECT%
 %PRLIST{format="topicview"}%

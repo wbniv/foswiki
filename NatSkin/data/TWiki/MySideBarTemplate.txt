@@ -24,15 +24,15 @@
    showicon="%ICONURLPATH{"toggleclose-mini"}%"
    hideicon="%ICONURLPATH{"toggleopen-mini"}%"
 }%
-   * [[%TWIKIWEB%.WelcomeGuest][%MAKETEXT{"Welcome Guest"}%]] 
-   * [[%TWIKIWEB%.TWikiUsersGuide][%MAKETEXT{"User's Guide"}%]] 
-   * [[%TWIKIWEB%.TWikiReferenceManual][%MAKETEXT{"Reference Manual"}%]]
-   * [[%TWIKIWEB%.GoodStyle][%MAKETEXT{"Good Style"}%]] 
-   * [[%TWIKIWEB%.TWikiFAQ][%MAKETEXT{"FAQs"}%]] 
-   * [[%TWIKIWEB%.TWikiVariables][%MAKETEXT{"TWiki Variables"}%]] 
-   * [[%TWIKIWEB%.TWikiForms][%MAKETEXT{"TWiki Forms"}%]] 
-   * [[%TWIKIWEB%.FormattedSearch][%MAKETEXT{"Formatted Search"}%]]
-   * [[%TWIKIWEB%.FileAttachment][%MAKETEXT{"File Attachment"}%]] 
+   * [[%SYSTEMWEB%.WelcomeGuest][%MAKETEXT{"Welcome Guest"}%]] 
+   * [[%SYSTEMWEB%.TWikiUsersGuide][%MAKETEXT{"User's Guide"}%]] 
+   * [[%SYSTEMWEB%.TWikiReferenceManual][%MAKETEXT{"Reference Manual"}%]]
+   * [[%SYSTEMWEB%.GoodStyle][%MAKETEXT{"Good Style"}%]] 
+   * [[%SYSTEMWEB%.TWikiFAQ][%MAKETEXT{"FAQs"}%]] 
+   * [[%SYSTEMWEB%.TWikiVariables][%MAKETEXT{"TWiki Variables"}%]] 
+   * [[%SYSTEMWEB%.TWikiForms][%MAKETEXT{"TWiki Forms"}%]] 
+   * [[%SYSTEMWEB%.FormattedSearch][%MAKETEXT{"Formatted Search"}%]]
+   * [[%SYSTEMWEB%.FileAttachment][%MAKETEXT{"File Attachment"}%]] 
 %ENDTWISTY%
 %TWISTY{
    prefix="<div>"
@@ -50,7 +50,7 @@
   sort="on"
 }%
 %ENDTWISTY%
-<h3 >[[%TWIKIWEB%.NatSkinStyleBrowser][Style Browser]]</h3>
+<h3 >[[%SYSTEMWEB%.NatSkinStyleBrowser][Style Browser]]</h3>
 <!-- /mysidebar -->%STOPINCLUDE%
 <!--
    * Set ALLOWTOPICCHANGE = %WIKIUSERNAME%

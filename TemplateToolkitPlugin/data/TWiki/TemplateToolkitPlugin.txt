@@ -67,11 +67,11 @@ don't occur in "normal text".  _Usually_.  In TWiki, there is a syntax
 construction which is quite popular, but makes TT croak: Forced links,
 with an embedded TWiki variable.  Example:
 <verbatim>
-[[%TWIKIWEB%.%STATISTICSTOPIC%]]
+[[%SYSTEMWEB%.%STATISTICSTOPIC%]]
 </verbatim>
 This is a valid TWiki link pointing to
-[[%TWIKIWEB%.%STATISTICSTOPIC%]], but an invalid TT construct
-=[&#37; TWIKIWEB%.%STATISTICSTOPIC %]= within an additional set of square
+[[%SYSTEMWEB%.%STATISTICSTOPIC%]], but an invalid TT construct
+=[&#37; SYSTEMWEB%.%STATISTICSTOPIC %]= within an additional set of square
 brackets.
 
 This plugin tries hard to cope with this, so the above example will
@@ -154,7 +154,7 @@ If time permits, I'll try to:
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
 
 -- TWiki:Main.HaraldJoerg - 21 Sep 2006
 

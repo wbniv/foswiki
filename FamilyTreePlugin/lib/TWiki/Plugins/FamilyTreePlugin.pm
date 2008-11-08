@@ -16,7 +16,7 @@ $VERSION = '$Rev$';
 $RELEASE = 'TWiki-4';
 
 $pluginName = 'FamilyTreePlugin';  # Name of this Plugin
-my $imgs = "<nop>%PUBURL%/<nop>%TWIKIWEB%/FamilyTreePlugin";
+my $imgs = "<nop>%PUBURL%/<nop>%SYSTEMWEB%/FamilyTreePlugin";
 
 sub initPlugin {
     my( $topic, $web, $user, $installWeb ) = @_;

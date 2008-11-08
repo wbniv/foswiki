@@ -17,7 +17,7 @@ Keeping this help text short and simple is important since this page is aimed at
    * *external links* use URL or =[url label]= rule: =http://yahoo.com=, or =[http://yahoo.com/ link to Yahoo]=
    * *monospaced* use HTML: =&lt;tt&gt;your words&lt;/tt&gt;=
    * *paragraphs* separate with blank line
-   * <a target="WikimediaTextFormattingRules" onclick="return launchWindow('%TWIKIWEB%','WikimediaTextFormattingRules')" href="%SCRIPTURLPATH{"view"}%/%TWIKIWEB%/WikimediaTextFormattingRules">More formatting help</a> and <a target="GoodStyle" onclick="return launchWindow('%TWIKIWEB%','GoodStyle')" href="%SCRIPTURLPATH{"view"}%/%TWIKIWEB%/GoodStyle">hints on good style</a>
+   * <a target="WikimediaTextFormattingRules" onclick="return launchWindow('%SYSTEMWEB%','WikimediaTextFormattingRules')" href="%SCRIPTURLPATH{"view"}%/%SYSTEMWEB%/WikimediaTextFormattingRules">More formatting help</a> and <a target="GoodStyle" onclick="return launchWindow('%SYSTEMWEB%','GoodStyle')" href="%SCRIPTURLPATH{"view"}%/%SYSTEMWEB%/GoodStyle">hints on good style</a>
 %STOPINCLUDE%
 ---
 

@@ -46,7 +46,7 @@ Example of more complex format attribute:<br>
 
 Plugin settings are stored as preferences variables. The following variables are used for this plugin.
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = This plugin enables linking to specific topic revisions.
 
 	* Debug plugin: (See output in =data/debug.txt=)
@@ -85,7 +85,7 @@ Plugin settings are stored as preferences variables. The following variables are
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 This work was sponsored by [[http://www.systinet.com][Systinet Corp.]]
 

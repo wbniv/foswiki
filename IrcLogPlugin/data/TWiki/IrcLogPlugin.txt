@@ -21,7 +21,7 @@ other suggestions for improvements:
 
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Pretty prints IRC logs
 
 	* Debug plugin: (See output in =data/debug.txt=)
@@ -56,7 +56,7 @@ Test:
 |  Plugin Home: | TWiki:Plugins.%TOPIC% |
 |  Feedback: | TWiki:Plugins.%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main.WillNorris - 07 Nov 2003
  

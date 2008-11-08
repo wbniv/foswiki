@@ -11,7 +11,7 @@
 ---+!! <nop>%TOPIC%
 %TOC%
 ---++ Description
-This is a replacement for TWiki's standard [[%TWIKIWEB%.VarWEBLIST][WEBLIST]] variable.
+This is a replacement for TWiki's standard [[%SYSTEMWEB%.VarWEBLIST][WEBLIST]] variable.
 It is extended to improve the display of hierarchical web structures,
 a feature added to TWiki4 and adds more flexibility when used in
 <nop>TWikiApplications. The FLEXWEBLIST can be used for example 
@@ -177,7 +177,7 @@ See the FlexWebListExamples.
 |  05 Jul 2006: | initial version |
 |  Dependencies: | %$DEPENDENCIES% |
 |  Perl Version: | 5.8 |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | TWiki:Plugins/%TOPIC% |
 |  Feedback: | TWiki:Plugins/%TOPIC%Dev |
 |  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |

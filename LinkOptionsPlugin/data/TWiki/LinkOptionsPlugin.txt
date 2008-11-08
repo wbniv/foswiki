@@ -20,7 +20,7 @@ Some new options and CSS sets can be used simultaneously, separated by a pipe (|
 |  ==Class==  |  %GREEN%Name%ENDCOLOR%  | The name of a class (to define CSS style) |
 |  ==ID==  |  %GREEN%Name%ENDCOLOR%  | This %GREEN%Name%ENDCOLOR% must be unique on the web page |
 |  ==Skin==  |  %GREEN%<nop>SkinName%ENDCOLOR%  | %GREEN%SkinName%ENDCOLOR% must be a valid TWiki skin |
-|  ==CSS==  |  %GREEN%CSS Code%ENDCOLOR%  | %GREEN%CSS Code%ENDCOLOR% is any CSS formatatin code. You can repeat this option <p/> ==color== is a CSS properti, and you can put values like =%GREEN%#00A0F0%ENDCOLOR%= or =%GREEN%red%ENDCOLOR%=. See more colors in %TWIKIWEB%.StandardColors. You can use any CSS properti (valid for links) hire. See more in the [[http://www.w3.org/TR/REC-CSS2/cover.html#minitoc][CSS2 Specification in the W3C Web Site]]. |
+|  ==CSS==  |  %GREEN%CSS Code%ENDCOLOR%  | %GREEN%CSS Code%ENDCOLOR% is any CSS formatatin code. You can repeat this option <p/> ==color== is a CSS properti, and you can put values like =%GREEN%#00A0F0%ENDCOLOR%= or =%GREEN%red%ENDCOLOR%=. See more colors in %SYSTEMWEB%.StandardColors. You can use any CSS properti (valid for links) hire. See more in the [[http://www.w3.org/TR/REC-CSS2/cover.html#minitoc][CSS2 Specification in the W3C Web Site]]. |
 The option names are case insensitive for LinkOptionsPlugin or CSS, but the W3C defines the CSS properties in lower case and it is important to validade. Write the LinkOptionsPlugin optins as  you prefer.
 
 ---++ Examples
@@ -38,11 +38,11 @@ Opening in other target:
 (=_blank= is no target. It will Open in a new window)
 
 Opening in a new window (with options):
-	* *Code:* =[<nop>[%TWIKIWEB%.TWikiVariables][See the TWiki Variables][NewWin:600x500|Name:winTWikiVariables|Skin:plain]]=
-	* *Expand to:* <a href="%SCRIPTURL%/view%SCRIPTSUFFIX%/%TWIKIWEB%/TWikiVariables?skin=plain" target="winTWikiVariables"\
- onclick="open('%SCRIPTURL%/view%SCRIPTSUFFIX%/%TWIKIWEB%/TWikiVariables?skin=plain',\
+	* *Code:* =[<nop>[%SYSTEMWEB%.TWikiVariables][See the TWiki Variables][NewWin:600x500|Name:winTWikiVariables|Skin:plain]]=
+	* *Expand to:* <a href="%SCRIPTURL%/view%SCRIPTSUFFIX%/%SYSTEMWEB%/TWikiVariables?skin=plain" target="winTWikiVariables"\
+ onclick="open('%SCRIPTURL%/view%SCRIPTSUFFIX%/%SYSTEMWEB%/TWikiVariables?skin=plain',\
  'winTWikiVariables', 'titlebar=0,width=600,height=500,resizable,scrollbars'); return false;">See the TWiki Variables</a>
-		* *If installed:* [[%TWIKIWEB%.TWikiVariables][See the TWiki Variables][NewWin:600x500|Name:winTWikiVariables|Skin:plain]]
+		* *If installed:* [[%SYSTEMWEB%.TWikiVariables][See the TWiki Variables][NewWin:600x500|Name:winTWikiVariables|Skin:plain]]
 
 Crazy CSS use:
 	* *Code:* =[<nop>[<nop>WebHome][Crazy Link!][color:green|background-color:#FFF0A0|border:3px dotted #FFC030|text-decoration:none|letter-spacing:10px|padding:4px|font-size:15px|font-weight:900]]=
@@ -54,7 +54,7 @@ Crazy CSS use:
 
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Extends the _"Forced Specific Links"_ syntax ==[<nop>[URL or <nop>TopicName][Link Text][Options]]==
 
 	* Set DEBUG to 1 to get debug messages in data/debug.txt. Default: 0
@@ -86,11 +86,11 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 100%, %TWIKIWEB%.FormattedSearch 100%, %TOPIC% 100% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 100%, %SYSTEMWEB%.FormattedSearch 100%, %TOPIC% 100% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main.AurelioAHeckert - 29 Mar 2005

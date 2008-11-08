@@ -183,7 +183,7 @@ mv: cannot stat `testpics': No such file or directory
 !& LatexModePlugin - viewing the page (after configuring program paths properly) yields: AccessControlException: Access to CHANGE TWiki.LatexModePlugin for TWikiGuest is denied. access not allowed on web[Sun Dec 11 17:27:09 2005] [error] [client 127.0.0.1] Premature end of script headers: view.cgi - need to move the sample to the Sandbox web
 ! LoginNameAliasesPlugin - TWiki::Plugins::LoginNameAliasesPlugin::earlyInitPlugin failed: 1
 ! MsOfficeAttachmentsAsHTMLPlugin - no docs, not sure what to do...
-! NavbarPlugin - fix Colas' TWiki: name, fix parents, fix references back to (%TWIKIWEB%.)NavbarPlugin - calls TWiki::Store::saveFile()
+! NavbarPlugin - fix Colas' TWiki: name, fix parents, fix references back to (%SYSTEMWEB%.)NavbarPlugin - calls TWiki::Store::saveFile()
 ! PhantomPlugin - no skin, probably other stuff...
 ! PollPlugin - problems with TWiki::userToWikiName(), TWiki::editLockTime, TWiki::dataDir
 ! PublishContrib - Can't locate object method "param" via package "TWikiGuest" (perhaps you forgot to load "TWikiGuest"?) at ../lib/TWiki.pm line 1044.
@@ -406,7 +406,7 @@ baseweb: %CALC{$GET(base_web)}%
 
    * TWiki.WebReferences - delete? - just put on twiki.org ??? - links from TWiki.TWikiSite and TWiki.WelcomeGuest
 
-   * FindElsewherePlugin renders [[%TWIKIWEB%.BookView][%MAKETEXT{"about BookView"}%]] incorrectly --- [[]]'s show up and link text BookView is a link :(
+   * FindElsewherePlugin renders [[%SYSTEMWEB%.BookView][%MAKETEXT{"about BookView"}%]] incorrectly --- [[]]'s show up and link text BookView is a link :(
 
    * do a pass on proper dashes: endash vs. emdash (&ndash; vs. &mdash;)
 

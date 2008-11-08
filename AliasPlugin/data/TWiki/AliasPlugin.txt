@@ -35,7 +35,7 @@ your aliases into a specific topic, the <nop>WebAliases. This topic is looked up
 in three places: 
    1 the current web
    2 the %MAINWEB% web
-   3 if there's no <nop>WebAliases topic in the %MAINWEB% it will be looked up in the %TWIKIWEB% 
+   3 if there's no <nop>WebAliases topic in the %MAINWEB% it will be looked up in the %SYSTEMWEB% 
 The aliases defined in (1) are merged with those in (2) or (3). Thereby you can define
 site-wide aliases in <nop>%MAINWEB%.WebAliases and  web specific aliases in the current's web <nop>WebAliases
 topic.
@@ -97,7 +97,7 @@ macro or listed in the following way:
 </verbatim>
 
 ---++ Defined Aliases
-%ALIAS{name="TESTLINK" value="%TWIKIWEB%.WebHome"}%
+%ALIAS{name="TESTLINK" value="%SYSTEMWEB%.WebHome"}%
 %ALIAS{name="TESTALIAS" value="yes"}%
 %ALIAS{name="rtfm" value="read the fine manual"}%
 %ALIASES%
@@ -118,15 +118,15 @@ macro or listed in the following way:
 ---++ Test-Cases
 %STARTALIASAREA%
 | *&nbsp;* | *Test* | *Should be* | *Comment* | 
-|  1 | TESTLINK | [[%TWIKIWEB%.WebHome][TESTLINK]] | yes, substitute: this is a link to <nop>TWiki.WebHome | 
+|  1 | TESTLINK | [[%SYSTEMWEB%.WebHome][TESTLINK]] | yes, substitute: this is a link to <nop>System.WebHome | 
 |  2 | TESTALIAS | yes | yes | 
 |  3 | _TESTLINK | _TESTLINK | no substitution: =_= is no word boundary | 
 |  4 | TESTLINK_TESTLINK | TESTLINK_TESTLINK | no: =_= is no word boundary | 
-|  5 | <u>TESTLINK</u> | <u>[[%TWIKIWEB%.WebHome][TESTLINK]]</u> | yes | 
+|  5 | <u>TESTLINK</u> | <u>[[%SYSTEMWEB%.WebHome][TESTLINK]]</u> | yes | 
 |  6 | TESTLINKTESTLINK | TESTLINKTESTLINK | no: this is _one_ word not being aliases |
 |  7 | rtfm | read the fine manual | yes, but be more polite to your users |
 |  8 | <a href="%SCRIPTURL{"view"}%/TESTALIAS" title="TESTALIAS">TESTALIAS</a> | <a href="%SCRIPTURL{"view"}%/yes" title="yes">yes</a> | yes |
-|  9 | [[TWiki.WebHome][TESTALIAS]] | <a href="%SCRIPTURLPATH{"view"}%/%TWIKIWEB%.WebHome">T<nop>ESTALIAS</a> | no, don't substitute inside a TWiki tag | 
+|  9 | [[TWiki.WebHome][TESTALIAS]] | <a href="%SCRIPTURLPATH{"view"}%/%SYSTEMWEB%.WebHome">T<nop>ESTALIAS</a> | no, don't substitute inside a TWiki tag | 
 |  10 | [[TESTALIAS]] | <a href="%SCRIPTURL{"edit"}%/%WEB%/TESTALIAS?topicparent=%WEB%.%TOPIC%" class="twikiNewLink" title="Create this topic">T<nop>ESTALIAS</a>| no, don't substitute inside a TWiki tag |
 |  11 | [<nop>[TESTALIAS]] | [<nop>[T<nop>ESTALIAS]] | no, not even inside a _nopped_ TWiki tag | 
 |  12 | <font color="red"> TESTALIAS </font> | <font color="red"> yes </font> | yes, ignores =red= |

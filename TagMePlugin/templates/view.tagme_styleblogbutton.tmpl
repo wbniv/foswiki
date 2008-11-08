@@ -1,5 +1,5 @@
 %TMPL:INCLUDE{"view"}%
 
-%TMPL:DEF{"contentheader"}%<div class="tagmetags">%TAGME{ tpaction="showalltags" web="%WEB%" topic="%TOPIC%" format="<a href='%SCRIPTURL{view}%/%TWIKIWEB%/TagMeSearch?tag=$tag' rel='nofollow'>$tag</a>" header="Tags: "}%</div>%TMPL:END%
+%TMPL:DEF{"contentheader"}%<div class="tagmetags">%TAGME{ tpaction="showalltags" web="%WEB%" topic="%TOPIC%" format="<a href='%SCRIPTURL{view}%/%SYSTEMWEB%/TagMeSearch?tag=$tag' rel='nofollow'>$tag</a>" header="Tags: "}%</div>%TMPL:END%
 
 %TMPL:DEF{"top:toolbarbuttons"}%%TMPL:P{"activatable_edit_or_create"}%%TMPL:P{"activatable_attach"}%%TAGME{ tpaction="%URLPARAM{tpaction}%" tag="%URLPARAM{tag}%" web="%WEB%"  style="blog" button="<span><a href='%SCRIPTURL{viewauth}%/%WEB%/%TOPIC%?tpaction=show' title='Open tag edit menu' rel='nofollow'>Tags</a></span>" header="</span></div></div><p />" footer="<div><div><span>"}%%TMPL:END%

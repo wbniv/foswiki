@@ -93,7 +93,7 @@ The mapping table, if present, overrides the form definition. If neither form no
 Plugin settings are stored as preferences variables. To reference
 a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>SMARTEDITPLUGIN_SHORTDESCRIPTION%==
 
-   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+   * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
       * Set SHORTDESCRIPTION = Renders an attached Excel spreadsheet as TWiki table
 
    * Debug plugin: (See output in =data/debug.txt=)
@@ -132,7 +132,7 @@ Look at the example in Sandbox...
 ---++ Plugin Info
 
 |  Plugin Author: | TWiki:Main.ThomasWeigert, based on code by TWiki:Main.ClausLanghans |
-|  Copyright: | &copy; 2001-2008, %TWIKIWEB%.TWikiContributor |
+|  Copyright: | &copy; 2001-2008, %SYSTEMWEB%.TWikiContributor |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
 |  Plugin Version: | July 2008 |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
@@ -144,11 +144,11 @@ Look at the example in Sandbox...
 |  CPAN Dependencies: | <table border="1"><tr><th>Name</th><th>Version</th><th>Description</th></tr><tr><td align="left">Spreadsheet::ParseExcel</td><td align="left">Required. Available from [[http://search.cpan.org][CPAN]].</td></tr><tr><td align="left">Spreadsheet::WriteExcel</td><td align="left">Required. Available from [[http://search.cpan.org][CPAN]].</td></tr><tr><td align="left">Date::Manip</td><td align="left">Required. Available from [[http://search.cpan.org][CPAN]].</td></tr></table> |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences, TWiki:Plugins.ExcelImportExportAddOn
+__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences, TWiki:Plugins.ExcelImportExportAddOn
 
 -- TWiki:Main.ThomasWeigert - 13 Aug 2006

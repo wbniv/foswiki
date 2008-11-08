@@ -3,7 +3,7 @@
 
 *A simple weblog application.*
 
-See %TWIKIWEB%.BlogAddOn for an introduction and installation instructions. %BR%
+See %SYSTEMWEB%.BlogAddOn for an introduction and installation instructions. %BR%
 This topic is meant for administrators and serves as introduction springboard to !BlogAddOn topics. You may safely delete this topic.
 
 %TOC%
@@ -19,7 +19,7 @@ This topic is meant for administrators and serves as introduction springboard to
    * BlogPostForm - form definition with post data fields
    * BlogPostTemplate - every new post gets settings from this topic
    * BlogPostViewTemplate - every post is displayed through this view template
-   * BlogPostCommentTemplate - form template for comment box (see %TWIKIWEB%.CommentPlugin)
+   * BlogPostCommentTemplate - form template for comment box (see %SYSTEMWEB%.CommentPlugin)
    * BlogAddOnStyles - default css styles for BlogPost and blog posts (BlogPostViewTemplate)
 
 *Note:* Care must be taken when:

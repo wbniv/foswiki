@@ -1,6 +1,6 @@
 ---++ Settings
 
-	* Set APPLET_INVOCATION = <APPLET CODE = "uk.org.ellery.twiki.TwikiEncrypt.class"  ARCHIVE = "%PUBURL%/%TWIKIWEB%/EncryptedPagesPlugin/TwikiEncrypt.jar,%PUBURL%/%TWIKIWEB%/EncryptedPagesPlugin/Crypt.jar"  WIDTH = 400 HEIGHT = 200> <PARAM NAME ="ATTACHURL" VALUE="%ATTACHURL%"> <PARAM NAME="KEY" VALUE="--!!--"> </APPLET>
+	* Set APPLET_INVOCATION = <APPLET CODE = "uk.org.ellery.twiki.TwikiEncrypt.class"  ARCHIVE = "%PUBURL%/%SYSTEMWEB%/EncryptedPagesPlugin/TwikiEncrypt.jar,%PUBURL%/%SYSTEMWEB%/EncryptedPagesPlugin/Crypt.jar"  WIDTH = 400 HEIGHT = 200> <PARAM NAME ="ATTACHURL" VALUE="%ATTACHURL%"> <PARAM NAME="KEY" VALUE="--!!--"> </APPLET>
 
 
 ---++ Things to Do
@@ -15,7 +15,7 @@
 
 <!--TWIKIENCRYPT COPY THIS BIT INTO YOUR UPLOAD FORM -->
 <p />
-<APPLET CODE = "uk.org.ellery.twiki.TwikiEncrypt.class"  ARCHIVE = "%PUBURL%/%TWIKIWEB%/EncryptedPagesPlugin/TwikiEncrypt.jar,%PUBURL%/%TWIKIWEB%/EncryptedPagesPlugin/Crypt.jar"  WIDTH = 400 HEIGHT = 55>
+<APPLET CODE = "uk.org.ellery.twiki.TwikiEncrypt.class"  ARCHIVE = "%PUBURL%/%SYSTEMWEB%/EncryptedPagesPlugin/TwikiEncrypt.jar,%PUBURL%/%SYSTEMWEB%/EncryptedPagesPlugin/Crypt.jar"  WIDTH = 400 HEIGHT = 55>
 <PARAM NAME="KEY" VALUE="key1">
 <PARAM NAME ="ATTACHURL" VALUE="%ATTACHURL%">
 </APPLET>

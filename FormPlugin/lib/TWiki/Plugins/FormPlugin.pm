@@ -331,12 +331,12 @@ sub _addHeader {
 
     my $header = <<'END';
 <style type="text/css" media="all">
-@import url("%PUBURL%/%TWIKIWEB%/FormPlugin/formplugin.css");
+@import url("%PUBURL%/%SYSTEMWEB%/FormPlugin/formplugin.css");
 </style>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/TWikiJavascripts/twikilib.js"></script>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/TWikiJavascripts/twikiCSS.js"></script>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/TWikiJavascripts/twikiForm.js"></script>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/TWikiJavascripts/twikiString.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiJavascripts/twikilib.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiJavascripts/twikiCSS.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiJavascripts/twikiForm.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiJavascripts/twikiString.js"></script>
 END
 
     TWiki::Func::addToHEAD( 'FORMPLUGIN', $header );
@@ -1522,7 +1522,7 @@ sub _getAttributeString {
 sub _wrapHtmlError {
     my ($text) = @_;
 
-    my $errorIconUrl = "%PUBURL%/%TWIKIWEB%/FormPlugin/error.gif";
+    my $errorIconUrl = "%PUBURL%/%SYSTEMWEB%/FormPlugin/error.gif";
     my $errorIconImgTag =
       '<img src="' . $errorIconUrl . '" alt="" width="16" height="16" />';
     return

@@ -10,7 +10,7 @@ at the top of the XML document where SablotronXsl is the name of the stylesheet 
 
 ---++ %TOPIC% Settings
 
-	* One line description (See output in %TWIKIWEB%.TextFormattingRules topic):
+	* One line description (See output in %SYSTEMWEB%.TextFormattingRules topic):
 		* Set SHORTDESCRIPTION = SablotronPlugin uses XML::Sablotron to apply a stylesheet to XML.
 
 	* Debug plugin: (See output in =data/debug.txt=)
@@ -52,6 +52,6 @@ at the top of the XML document where SablotronXsl is the name of the stylesheet 
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- Main.CharlieReitsma - 13 Mar 2002 <br>

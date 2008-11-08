@@ -305,7 +305,7 @@ Cada fila de una tabla en una linea que contenga una o más celdas. Cada celda em
 %T% Si quiere generar un enlace a otro grupo o red, escribe =OtraRed.NombreDelTema=. %BR%
 %H% El texto del enlace que se presenta en la página final excluye el nombre de la red. Quiere decir que se muestra solamente el nombre del tema. Como excepción, se muestra el nombre de la red del tema <nop>%HOMETOPIC%.
 
-En general se recomienda utilizar las TWiki.TWikiVariables %FLAGGB% %<nop>TWIKIWEB% y %<nop>MAINWEB% en lugar de las palabras TWiki y Main.
+En general se recomienda utilizar las TWiki.TWikiVariables %FLAGGB% %<nop>SYSTEMWEB% y %<nop>MAINWEB% en lugar de las palabras TWiki y Main.
 </td><td>
 <verbatim>
 WebStatistics

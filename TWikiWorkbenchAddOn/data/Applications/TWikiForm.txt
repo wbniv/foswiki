@@ -18,11 +18,11 @@
 %STARTSECTION{"documentation"}%
 TWikiForms add structured information to twiki topics. 
 
-See also: %TOPIC%Template, WebPreferences, TWikiFormAttributes, %TWIKIWEB%.TWikiForms
+See also: %TOPIC%Template, WebPreferences, TWikiFormAttributes, %SYSTEMWEB%.TWikiForms
 %ENDSECTION{"documentation"}%
 
 %META:FORM{name="Applications.TopicType"}%
 %META:FIELD{name="TopicType" attributes="" title="TopicType" value="DocuTopic, TopicType"}%
 %META:FIELD{name="Inheritance" attributes="" title="Inheritance" value="ApplicationTopic"}%
-%META:FIELD{name="Summary" attributes="" title="Summary" value="TopicType of %25TWIKIWEB%25.TWikiForms"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="TopicType of %25SYSTEMWEB%25.TWikiForms"}%
 %META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

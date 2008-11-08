@@ -85,7 +85,7 @@ sub xpShowVelocities {
     my $list = "<h3>Developer velocity for iteration ".$iteration."</h3>\n";
 
     # Show the list
-    $list .= "<script src=\"%PUBURLPATH%/%TWIKIWEB%/XpTrackerPlugin/sorttable.js\">\n";
+    $list .= "<script src=\"%PUBURLPATH%/%SYSTEMWEB%/XpTrackerPlugin/sorttable.js\">\n";
     $list .= "<table class=\"sortable\" id=\"showvelocity\" border=\"1\">";
     $list .= "<tr bgcolor=\"#CCCCCC\">";
     #$list .= "<th rowspan=\"2\">Who</th>";

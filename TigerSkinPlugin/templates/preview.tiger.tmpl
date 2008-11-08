@@ -44,9 +44,9 @@ Parent: %META{"parent"}%
 <input type="hidden" name="parent" value="%TOPICPARENT%" />
 %TMPL:DEF{"topicaction"}% <input type="submit" value=" Save Changes " />
 &nbsp; &nbsp;<input type="checkbox" name="unlock" %RELEASEEDITLOCKCHECKBOX% /> Release edit lock
-<font size="-1">(<a target="UnlockTopic" onClick="return launchWindow('%TWIKIWEB%','UnlockTopic')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/UnlockTopic">help</a>)</font>
+<font size="-1">(<a target="UnlockTopic" onClick="return launchWindow('%SYSTEMWEB%','UnlockTopic')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%SYSTEMWEB%/UnlockTopic">help</a>)</font>
 &nbsp; &nbsp;<input type="checkbox" name="dontnotify" %DONTNOTIFYCHECKBOX% /> Minor changes, don't notify
-<font size="-1">(<a target=DontNotify" onClick="return launchWindow('%TWIKIWEB%','DontNotify')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/DontNotify">help</a>)</font>
+<font size="-1">(<a target=DontNotify" onClick="return launchWindow('%SYSTEMWEB%','DontNotify')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%SYSTEMWEB%/DontNotify">help</a>)</font>
 %FORMFIELDS% %TMPL:END%
 %TMPL:P{"standardfooter"}%
 %WEBCOPYRIGHT%

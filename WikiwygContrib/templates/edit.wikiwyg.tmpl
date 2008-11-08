@@ -11,18 +11,18 @@
 %IF{ "$ USERLAYOUTURL" then="<link rel='stylesheet' type='text/css' href='%USERLAYOUTURL%' type='text/css' media='all'/>"}%
 %IF{ "$ USERSTYLEURL"  then="<link rel='stylesheet' type='text/css' href='%USERSTYLEURL%' type='text/css' media='all'/>"}%
 %IF{ "$ USERCOLORSURL"  then="<link rel='stylesheet' type='text/css' href='%USERCOLORSURL%' type='text/css' media='all'/>"}%
-<link rel="stylesheet" type="text/css" href="%PUBURLPATH%/%TWIKIWEB%/WikiwygContrib/css/wikiwyg.css" type='text/css' media='all'/>
-<link rel="stylesheet" type="text/css" href="%PUBURLPATH%/%TWIKIWEB%/WikiwygContrib/twikiwyg.css" type='text/css' media='all'/>
+<link rel="stylesheet" type="text/css" href="%PUBURLPATH%/%SYSTEMWEB%/WikiwygContrib/css/wikiwyg.css" type='text/css' media='all'/>
+<link rel="stylesheet" type="text/css" href="%PUBURLPATH%/%SYSTEMWEB%/WikiwygContrib/twikiwyg.css" type='text/css' media='all'/>
 
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/TWikiJavascripts/twiki.js"></script>
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/WikiwygContrib/lib/Wikiwyg.js"></script>
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/WikiwygContrib/lib/Wikiwyg/Util.js"></script>
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/WikiwygContrib/lib/Wikiwyg/HTML.js"></script>
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/WikiwygContrib/lib/Wikiwyg/Toolbar.js"></script>
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/WikiwygContrib/lib/Wikiwyg/Wysiwyg.js"></script>
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/WikiwygContrib/lib/Wikiwyg/Wikitext.js"></script>
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/WikiwygContrib/lib/Wikiwyg/Preview.js"></script>
-<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/WikiwygContrib/TWikitext.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/TWikiJavascripts/twiki.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/WikiwygContrib/lib/Wikiwyg.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/WikiwygContrib/lib/Wikiwyg/Util.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/WikiwygContrib/lib/Wikiwyg/HTML.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/WikiwygContrib/lib/Wikiwyg/Toolbar.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/WikiwygContrib/lib/Wikiwyg/Wysiwyg.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/WikiwygContrib/lib/Wikiwyg/Wikitext.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/WikiwygContrib/lib/Wikiwyg/Preview.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/WikiwygContrib/TWikitext.js"></script>
 <script type="text/javascript">
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -131,7 +131,7 @@ setHTML = function(reply) {
             iframeId: 'wikiwyg-iframe'
         },
         toolbar: {
-            imagesLocation: '%PUBURLPATH%/%TWIKIWEB%/WikiwygContrib/TWikiImages/button_',
+            imagesLocation: '%PUBURLPATH%/%SYSTEMWEB%/WikiwygContrib/TWikiImages/button_',
             imagesExtension: '.png',
             controlLayout: [
                 'save', 'cancel', 'mode_selector', '|',     // '/',

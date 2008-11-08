@@ -10,7 +10,7 @@ Copy and paste the following section to your %MAINWEB%.TWikiPreferences topic (o
    * set the Widget skin to use this topic to get the _Moveable Type Common Text sections_ from this topic
       * Set WIDGETSSKIN_DESIGNTOPIC = %TOPIC%
    * set the Widget skin to use to get the css and images from here
-      * Set WIDGETSSKIN_CSSFILE = %PUBURL%/%TWIKIWEB%/%WIDGETSSKIN_DESIGNTOPIC%/theme.css
+      * Set WIDGETSSKIN_CSSFILE = %PUBURL%/%SYSTEMWEB%/%WIDGETSSKIN_DESIGNTOPIC%/theme.css
    * is the css w, tw, wt, twt, wtt (wide, thin-wide, wide-thin, thin-wide-thin, wide-thin-thin)
       * Set WIDGETSSKIN_COLUMNS = wt
 </textarea>
@@ -19,23 +19,23 @@ Copy and paste the following section to your %MAINWEB%.TWikiPreferences topic (o
 ---++ sidebar widgets
 ---+++ first column
 %STARTSECTION{"column-one"}%
-%INCLUDE{"%TWIKIWEB%.DefaultWidgets" section="widget-search" warn="on"}%
-%INCLUDE{"%TWIKIWEB%.DefaultWidgets" section="widget-weblist" warn="on"}%
-%INCLUDE{"%TWIKIWEB%.DefaultWidgets" section="widget-subscribe" warn="on"}%
-%INCLUDE{"%TWIKIWEB%.DefaultWidgets" section="widget-webleftbar" warn="on"}%
-%INCLUDE{"%TWIKIWEB%.DefaultWidgets" section="widget-powered" warn="on"}%
+%INCLUDE{"%SYSTEMWEB%.DefaultWidgets" section="widget-search" warn="on"}%
+%INCLUDE{"%SYSTEMWEB%.DefaultWidgets" section="widget-weblist" warn="on"}%
+%INCLUDE{"%SYSTEMWEB%.DefaultWidgets" section="widget-subscribe" warn="on"}%
+%INCLUDE{"%SYSTEMWEB%.DefaultWidgets" section="widget-webleftbar" warn="on"}%
+%INCLUDE{"%SYSTEMWEB%.DefaultWidgets" section="widget-powered" warn="on"}%
 %ENDSECTION{"column-one"}%
 
 ---+++ second column (for three column designs)
 %STARTSECTION{"column-two"}%
-%INCLUDE{"%TWIKIWEB%.DefaultWidgets" section="widget-skins" warn="on"}%
-%INCLUDE{"%TWIKIWEB%.DefaultWidgets" section="widget-webchanges" warn="on"}%
-%INCLUDE{"%TWIKIWEB%.DefaultWidgets" section="widget-powered" warn="on"}%
+%INCLUDE{"%SYSTEMWEB%.DefaultWidgets" section="widget-skins" warn="on"}%
+%INCLUDE{"%SYSTEMWEB%.DefaultWidgets" section="widget-webchanges" warn="on"}%
+%INCLUDE{"%SYSTEMWEB%.DefaultWidgets" section="widget-powered" warn="on"}%
 %ENDSECTION{"column-two"}%
 
 ---+++ footer
 %STARTSECTION{"footer-widgets"}%
-%INCLUDE{"%TWIKIWEB%.DefaultWidgets" section="widget-history" warn="on"}%
+%INCLUDE{"%SYSTEMWEB%.DefaultWidgets" section="widget-history" warn="on"}%
 %ENDSECTION{"footer-widgets"}%
 
 

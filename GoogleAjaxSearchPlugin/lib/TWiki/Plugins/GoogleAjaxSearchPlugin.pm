@@ -61,9 +61,9 @@ sub _addToHead {
     $header .= '
 <style type="text/css" media="all">
 	@import url("http://www.google.com/uds/css/gsearch.css");
-	@import url("%PUBURL%/%TWIKIWEB%/GoogleAjaxSearchPlugin/googleAjaxSearch.css");
+	@import url("%PUBURL%/%SYSTEMWEB%/GoogleAjaxSearchPlugin/googleAjaxSearch.css");
 </style>
-<script type="text/javascript" src="%PUBURL%/%TWIKIWEB%/GoogleAjaxSearchPlugin/googleAjaxSearch.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/GoogleAjaxSearchPlugin/googleAjaxSearch.js"></script>
 <script type="text/javascript">
 	//<![CDATA[
 	GoogleAjaxSearch.prototype.getSearchSite = function () {

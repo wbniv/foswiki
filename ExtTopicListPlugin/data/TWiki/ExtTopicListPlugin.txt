@@ -30,7 +30,7 @@ An extended version of the !TWikiVariable =TOPICLIST= which allow you to exclude
 Plugin settings are stored as preferences variables. To reference
 a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>EXTTOPICLISTPLUGIN_SHORTDESCRIPTION%==
 
-   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+   * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
       * Set SHORTDESCRIPTION = Extends TOPICLIST by adding excludetopic
 
    * Debug plugin: (See output in =data/debug.txt=)
@@ -41,7 +41,7 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>E
 ---++ Plugin Info
 ,
 |  Plugin Author: | TWiki:Main.AndreaSterbini, TWiki:Main.PeterThoeny, TWiki:Main.CrawfordCurrie, TWiki:Main.MeredithLesly |
-|  Copyright: | &copy; 2001-2006, %TWIKIWEB%.TWikiContributor |
+|  Copyright: | &copy; 2001-2006, %SYSTEMWEB%.TWikiContributor |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
 |  Plugin Version: | 01 Feb 2006 |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
@@ -53,11 +53,11 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>E
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 99%, %TWIKIWEB%.FormattedSearch 99%, %TOPIC% 99% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 99% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
 
--- %TWIKIWEB%.TWikiContributor - 01 Feb 2006
+-- %SYSTEMWEB%.TWikiContributor - 01 Feb 2006

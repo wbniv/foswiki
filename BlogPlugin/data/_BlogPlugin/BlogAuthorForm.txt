@@ -9,7 +9,7 @@
 | About | textarea | 80x4 | | detailed description, displayed in the "about" section in the sidebar | |
 
 
-See also: %TWIKIWEB%.TWikiForms
+See also: %SYSTEMWEB%.TWikiForms
 
 <!--
    * Set ALLOWTOPICCHANGE = %MAINWEB%.BlogAdminGroup

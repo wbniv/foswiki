@@ -20,9 +20,9 @@ This is not really a skin. It is the set of default templates, shown if no skin 
 |  Skin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Note:__ The Description, Screenshot and Base Name rows are needed by the %TWIKIWEB%.TWikiSkinBrowser
+__Note:__ The Description, Screenshot and Base Name rows are needed by the %SYSTEMWEB%.TWikiSkinBrowser
 
-__Related topic:__ %TWIKIWEB%.TWikiSkins, %TWIKIWEB%.TWikiSkinBrowser
+__Related topic:__ %SYSTEMWEB%.TWikiSkins, %SYSTEMWEB%.TWikiSkinBrowser
 
 -- TWiki:Main/PeterThoeny - 25 Jul 2004
 

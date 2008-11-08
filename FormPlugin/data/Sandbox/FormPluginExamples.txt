@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="BaseUserMapping_333" date="1204935200" format="1.1" reprev="1.5" version="1.5"}%
 
 ---+!! Form Plugin Examples
-See [[%TWIKIWEB%.FormPlugin]]
+See [[%SYSTEMWEB%.FormPlugin]]
 
 Please view the raw text of this topic to learn how these forms are created.
 
@@ -606,7 +606,7 @@ Try it out:
 
 ---++ Working together with <nop>CommentPlugin: filling a table
 
-This form uses [[%TWIKIWEB%.CommentPlugin]] to write submitted values to a table. A user-friendly display of table data is not included in the example.
+This form uses [[%SYSTEMWEB%.CommentPlugin]] to write submitted values to a table. A user-friendly display of table data is not included in the example.
 
 #NewArticles
 %STARTFORM{

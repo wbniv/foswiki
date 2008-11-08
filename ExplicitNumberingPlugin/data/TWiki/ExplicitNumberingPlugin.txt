@@ -59,7 +59,7 @@ If you have the plugin installed, the *Rendered* and *Expected* columns should b
 
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>EXPLICITNUMBERINGPLUGIN_SHORTDESCRIPTION%==
 
-   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+   * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
       * Set SHORTDESCRIPTION = Use the ==#<nop>#.==, ==#<nop>#..== _etc._ notation to insert outline numbering sequences (1, 1.1, 2, 2.1) in topic's text. Support also numbered headings.
    * Debug plugin: (See output in =data/debug.txt=)
       * Set DEBUG = 0
@@ -86,7 +86,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 ---++ Plugin Info
 
 |  Plugin Author: | TWiki:Main/MartinVlach, TWiki:Main.ThomasWeigert (21 Nov 2006) |
-|  Copyright: | &copy; 2003, Lynguent, Inc. &copy; 2006, %TWIKIWEB%.TWikiContributor |
+|  Copyright: | &copy; 2003, Lynguent, Inc. &copy; 2006, %SYSTEMWEB%.TWikiContributor |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
 |  Plugin Version: | 21 Nov 2006 |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
@@ -101,7 +101,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main.ThomasWeigert - 21 Nov 2006
 

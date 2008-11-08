@@ -11,7 +11,7 @@ This is a plugin that you can use to embed <nop>MediaPlayer files in TWiki webs.
 
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, for example, ==%<nop>EMBEDPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Embeds <nop>MediaPlayer files in a TWiki page
 
 	* Debug plugin: (See output in =data/debug.txt=)
@@ -36,7 +36,7 @@ __Note:__ You need to install a <nop>MediaPlayer plugin on the browser to see th
 
 ---++ Plugin Info
 
-|  Plugin Author: | %TWIKIWEB%.MartinCleaver based on work by TWiki:Codev.DonnyKurniawan |
+|  Plugin Author: | %SYSTEMWEB%.MartinCleaver based on work by TWiki:Codev.DonnyKurniawan |
 |  Plugin Version: | 19 Nov 2003 (V1.000) |
 |  Change History: | <!-- specify latest version first -->&nbsp; |
 |  19 Nov 2003: | Initial version |
@@ -46,8 +46,8 @@ __Note:__ You need to install a <nop>MediaPlayer plugin on the browser to see th
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
  
--- %TWIKIWEB%.MartinCleaver - 6 Aug 2003
+-- %SYSTEMWEB%.MartinCleaver - 6 Aug 2003
 
 %META:FILEATTACHMENT{name="bells.mp3" attr="" comment="" date="1069303438" path="C:\Documents and Settings\Martin Cleaver\Desktop\bells.mp3" size="257472" user="guest" version="1.1"}%

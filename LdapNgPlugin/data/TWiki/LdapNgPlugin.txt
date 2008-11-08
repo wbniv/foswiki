@@ -12,7 +12,7 @@
 %TOC%
 <table style="float:right">
 <tr>
-  <td><img src="%PUBURLPATH%/%TWIKIWEB%/LdapContrib/wikiringlogo40x40.png"></td>
+  <td><img src="%PUBURLPATH%/%SYSTEMWEB%/LdapContrib/wikiringlogo40x40.png"></td>
   <td><a href="http://wikiring.de" title="Make your Wiki ring!" style="text-decoration:none">
       Powered by <br /> <nop>WikiRing Consultants </a>
   </td>
@@ -153,7 +153,7 @@ This work was partly funded by Spanlink Communications.
 |  19 Jul 2006: | public release |
 |  25 April 2006: | Initial (internal) version |
 |  Perl Version: | 5.8 |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | TWiki:Plugins/%TOPIC% |
 |  Feedback: | TWiki:Plugins/%TOPIC%Dev |
 

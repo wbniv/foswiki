@@ -117,7 +117,7 @@ sub initPlugin
                 _writeLog( "REGEXPIRE: Magic $magic is missing, bad or expired" );
                 my $msg = TWiki::Func::getPreferencesValue( "\U$pluginName\E_REGMESSAGE" ) ||
                       "Registration failed, please try again.";
-                $ok = "[[%TWIKIWEB%.TWikiRegistration][OK]]";
+                $ok = "[[%SYSTEMWEB%.TWikiRegistration][OK]]";
                 my $url = TWiki::Func::getOopsUrl( $web, $topic, "oopsblacklist", $msg, $ok );
                 print $cgiQuery->redirect( $url );
                 exit 0; # should never reach this

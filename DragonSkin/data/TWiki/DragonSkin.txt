@@ -31,7 +31,7 @@ See DragonSkinInstall for detailed installation instructions and administrator c
 	* Download the ZIP file from the Skin Home page (see below)
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory
 	* Test if installed: %SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%?skin=foobar (note: see the instructions in DragonSkinInstall, first)
-	* For skin activation see %TWIKIWEB%.TWikiSkins
+	* For skin activation see %SYSTEMWEB%.TWikiSkins
 
 ---++ Skin Info
 
@@ -47,9 +47,9 @@ See DragonSkinInstall for detailed installation instructions and administrator c
 |  Skin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Note:__ The Description, Screenshot and Base Name rows are needed by the %TWIKIWEB%.TWikiSkinBrowser
+__Note:__ The Description, Screenshot and Base Name rows are needed by the %SYSTEMWEB%.TWikiSkinBrowser
 
-__Related topic:__ %TWIKIWEB%.TWikiSkins, %TWIKIWEB%.TWikiSkinBrowser
+__Related topic:__ %SYSTEMWEB%.TWikiSkins, %SYSTEMWEB%.TWikiSkinBrowser
 
 -- TWiki:Main/PeterThoeny - 25 Jul 2004
 

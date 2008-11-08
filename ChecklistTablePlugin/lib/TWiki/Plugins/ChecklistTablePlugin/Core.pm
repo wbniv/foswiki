@@ -768,14 +768,14 @@ sub _createRowFromCgi {
 sub _initDefaults {
 	%defaults = ( 
 		'_DEFAULT' => undef,
-		'unknownparamsmsg' => '%RED% %TWIKIWEB%.ChecklistTablePlugin: Sorry, some parameters are unknown: %UNKNOWNPARAMSLIST% %ENDCOLOR% <br/> Allowed parameters are (see TWiki.ChecklistTablePlugin topic for more details): %KNOWNPARAMSLIST%',
+		'unknownparamsmsg' => '%RED% %SYSTEMWEB%.ChecklistTablePlugin: Sorry, some parameters are unknown: %UNKNOWNPARAMSLIST% %ENDCOLOR% <br/> Allowed parameters are (see TWiki.ChecklistTablePlugin topic for more details): %KNOWNPARAMSLIST%',
 		'header' => '|*State*|*Item*|*Comment*|',
 		'format' => '|item|text,30|textarea,3x30|',
 		'name' => '_default',
 		'template'=> undef,
 		'defaultcellformat'=> 'textarea,3x20',
 		'allowmove' => 0,
-		##'edittableicon'=>'%PUBURLPATH%/%TWIKIWEB%/EditTablePlugin/edittable.gif',
+		##'edittableicon'=>'%PUBURLPATH%/%SYSTEMWEB%/EditTablePlugin/edittable.gif',
 		'edittableicon'=>'%ICONURL{edittopic}%',
 		'moverowupicon'=>'%ICONURL{up}%',
 		'moverowdownicon'=>'%ICONURL{down}%',

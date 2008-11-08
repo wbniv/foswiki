@@ -96,7 +96,7 @@ sub getStep1 {
 ---+++ %MAKETEXT{"Topic name:"}%
             <p>%STARTSECTION{"topicname"}%<input type="text" class="twikiInputField" name="topic" id="topic" size="40" tabindex="10" %IF{"'%PREFILLTOPIC%'='1'" then="value=\"%BASETOPIC%\"" else="value=\"\""}% onkeyup="canSubmit(this.form,false);" onchange="canSubmit(this.form,false);"  onblur="canSubmit(this.form,true);" /> <span id="webTopicCreatorFeedback" class="twikiInputFieldDisabled"><!--generated name will be put here--></span>%ENDSECTION{"topicname"}%</p>
             <p>%STARTSECTION{"allownonwikiword"}%<input type="checkbox" class="twikiCheckbox" id="nonwikiword" name="nonwikiword" tabindex="11" onchange="canSubmit(this.form,false);" onmouseup="canSubmit(this.form,false);" /><label for="nonwikiword">%MAKETEXT{"Allow non <nop>WikiWord for the new topic name"}%</label><br />
-<span class="twikiGrayText">%MAKETEXT{"It's usually best to choose a <a target='WikiWord' onclick=\"return launchWindow('[_1]','WikiWord')\" href='[_1]' rel='nofollow'>WikiWord</a> for the new topic name, otherwise automatic linking may not work. Characters not allowed in topic names, such as spaces will automatically be removed." args="%TWIKIWEB%,%SCRIPTURLPATH{"view"}%/%TWIKIWEB%/WikiWord"}%</span>%ENDSECTION{"allownonwikiword"}%</p>
+<span class="twikiGrayText">%MAKETEXT{"It's usually best to choose a <a target='WikiWord' onclick=\"return launchWindow('[_1]','WikiWord')\" href='[_1]' rel='nofollow'>WikiWord</a> for the new topic name, otherwise automatic linking may not work. Characters not allowed in topic names, such as spaces will automatically be removed." args="%SYSTEMWEB%,%SCRIPTURLPATH{"view"}%/%SYSTEMWEB%/WikiWord"}%</span>%ENDSECTION{"allownonwikiword"}%</p>
         </div><!--/twikiFormStep-->
 EOF
 }

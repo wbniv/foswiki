@@ -6,7 +6,7 @@
 ---++ Usage
 After installing, include the core js file with:
 <verbatim>
-<script language="javascript" src="%PUBURL%/%TWIKIWEB%/JSUnitContrib/app/jsUnitCore.js"></script>
+<script language="javascript" src="%PUBURL%/%SYSTEMWEB%/JSUnitContrib/app/jsUnitCore.js"></script>
 </verbatim>
    
 
@@ -20,8 +20,8 @@ Suppose we want to write a test for a function called =multiplyAndAddFive(value1
 <html>
 <head>
 <title>Test Page for multiplyAndAddFive(value1, value2)</title>
-<script language="javascript" src="%PUBURL%/%TWIKIWEB%/JSUnitContrib/app/jsUnitCore.js"></script>
-<script language="javascript" src="%PUBURL%/%TWIKIWEB%/JSUnitContrib/sample_script_to_test.js"></script>
+<script language="javascript" src="%PUBURL%/%SYSTEMWEB%/JSUnitContrib/app/jsUnitCore.js"></script>
+<script language="javascript" src="%PUBURL%/%SYSTEMWEB%/JSUnitContrib/sample_script_to_test.js"></script>
 </head>
 <body>
 <script language="javascript">
@@ -40,7 +40,7 @@ Suppose we want to write a test for a function called =multiplyAndAddFive(value1
         assertNull("An undefined argument should result in null", multiplyAndAddFive(2, JSUNIT_UNDEFINED_VALUE));
     }
 </script>
-*[[%PUBURL%/%TWIKIWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%TWIKIWEB%/JSUnitContrib][Run test]]*
+*[[%PUBURL%/%SYSTEMWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%SYSTEMWEB%/JSUnitContrib][Run test]]*
 </body>
 </html>
 </verbatim>
@@ -48,8 +48,8 @@ Suppose we want to write a test for a function called =multiplyAndAddFive(value1
 
 If installed this will result in:
 
-<script language="javascript" src="%PUBURL%/%TWIKIWEB%/JSUnitContrib/app/jsUnitCore.js"></script>
-<script language="javascript" src="%PUBURL%/%TWIKIWEB%/JSUnitContrib/sample_script_to_test.js"></script>
+<script language="javascript" src="%PUBURL%/%SYSTEMWEB%/JSUnitContrib/app/jsUnitCore.js"></script>
+<script language="javascript" src="%PUBURL%/%SYSTEMWEB%/JSUnitContrib/sample_script_to_test.js"></script>
 <script language="javascript">
 /*<![CDATA[*/
     function testWithValidArgs() {
@@ -69,7 +69,7 @@ If installed this will result in:
 /*]]>*/
 </script>
 
-*[[%PUBURL%/%TWIKIWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%TWIKIWEB%/JSUnitContrib][Run test]]*
+*[[%PUBURL%/%SYSTEMWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%SYSTEMWEB%/JSUnitContrib][Run test]]*
 
 ---++ Documentation
 See: http://www.jsunit.net/documentation/
@@ -101,5 +101,5 @@ See: http://www.jsunit.net/documentation/
 | Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 | Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences
  

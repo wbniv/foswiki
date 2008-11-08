@@ -40,7 +40,7 @@ sub commonTagsHandler {
   return if $doneHeader;
   my $link = 
     '<link rel="stylesheet" '.
-    'href="%PUBURL%/%TWIKIWEB%/MediaWikiTablePlugin/style.css" '.
+    'href="%PUBURL%/%SYSTEMWEB%/MediaWikiTablePlugin/style.css" '.
     'type="text/css" media="all" />';
   if ($_[0] =~ s/<head>(.*?[\r\n]+)/<head>$1$link\n/o) {
     $doneHeader = 1;

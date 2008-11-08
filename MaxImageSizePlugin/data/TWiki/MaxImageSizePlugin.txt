@@ -13,7 +13,7 @@ This is an plugin to restrict the max size of an image. It gets called before im
 
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, for example, ==%<nop>EMPTYPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = This plugin changes the geometry of images attached.
 
 	* Resize geometry
@@ -48,8 +48,8 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins, DefaultPlugin
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins, DefaultPlugin
 
--- %TWIKIWEB%.MartinCleaver - 11 Apr 2004 <br /> 
+-- %SYSTEMWEB%.MartinCleaver - 11 Apr 2004 <br /> 
 
 %META:FILEATTACHMENT{name="martin-at-cape-rienga.jpg" attr="" comment="" date="1081694473" path="C:\Documents and Settings\Martin Cleaver\My Documents\My Pictures\martin-at-cape-rienga.jpg" size="90785" user="TWikiGuest" version="1.2"}%

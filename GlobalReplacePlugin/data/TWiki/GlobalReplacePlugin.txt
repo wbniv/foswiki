@@ -16,7 +16,7 @@ Please go to GlobalSearchAndReplace to perform a global replace operation.
 
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>GLOBALREPLACEPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Global search and replace functionality across all topics in a web
 
 	* Debug plugin: (See output in =data/debug.txt=)
@@ -48,7 +48,7 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
 
 	* This Plugin ignores locked topics, it writes over locked topics
 	* This Plugin is potentially dangerous. Security measures:
-		1 The operations of this Plugin is restricted to the group which can edit the %TWIKIWEB%.%WIKIPREFSTOPIC% (usually %MAINWEB%.TWikiAdminGroup)
+		1 The operations of this Plugin is restricted to the group which can edit the %SYSTEMWEB%.%WIKIPREFSTOPIC% (usually %MAINWEB%.TWikiAdminGroup)
 		1 For public sites, it is recommended to enable this Plugin only for the short time when needed (it is installed if the following variable shows "installed": %GLOBALREPLACE{func="check"}%)
 	* This Plugin has been tested. However, it does not have ANY WARRANTY, does not even have the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE
 
@@ -85,11 +85,11 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | TWiki:Plugins/SpreadSheetPlugin |
 |  Perl Version: | 5.005 |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 99%, %TWIKIWEB%.FormattedSearch 99%, %TOPIC% 99% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 99% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main/PeterThoeny - 03 Nov 2004

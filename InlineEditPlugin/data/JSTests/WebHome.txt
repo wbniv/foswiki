@@ -2,7 +2,7 @@
 ---+!! %MAKETEXT{"Welcome to the [_1] web" args="<nop>%WEB%"}%
 
 ---++ %MAKETEXT{"Available Information"}%
-   * *[[%PUBURL%/%TWIKIWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%WEB%/JsTestSuite][Run JsTestSuite with TestRuner]]*
+   * *[[%PUBURL%/%SYSTEMWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%WEB%/JsTestSuite][Run JsTestSuite with TestRuner]]*
 
 <form action='%SCRIPTURLPATH{"edit"}%/%WEB%/'> 
 %ICON{"newtopic"}% %MAKETEXT{"Create a new Test by name:"}% %MAKETEXT{"(Use a topic name in TWiki.WikiNotation)"}% <br /> 

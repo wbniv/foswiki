@@ -67,7 +67,7 @@ This skin is based on TWiki:Plugins/PatternSkin, and the same rules for customiz
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
 
-__Related topic:__ %TWIKIWEB%.TWikiSkins, %TWIKIWEB%.TWikiSkinBrowser, %TWIKIWEB%.UserDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory
+__Related topic:__ %SYSTEMWEB%.TWikiSkins, %SYSTEMWEB%.TWikiSkinBrowser, %SYSTEMWEB%.UserDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory
 
 
 

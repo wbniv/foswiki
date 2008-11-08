@@ -47,7 +47,7 @@ TODO: add retentive tests for matching revisions (and later try to track last re
 
 TODO: this test will fail until the reply contains the changed section, or that it is able to request the before Tml and modify it to compare..
 
-<script language="javascript" src="%PUBURL%/%TWIKIWEB%/JSUnitContrib/app/jsUnitCore.js"></script>
+<script language="javascript" src="%PUBURL%/%SYSTEMWEB%/JSUnitContrib/app/jsUnitCore.js"></script>
 <script language="javascript">
 var toSaveTML = "\n\nnew section2 - should be after bullets and before table\n";
 var stateJSON;
@@ -103,9 +103,9 @@ function testAjaxResult() {
 }
 </script>
 
-*[[%PUBURL%/%TWIKIWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%WEB%/%TOPIC%][Run test with TestRuner]]*
+*[[%PUBURL%/%SYSTEMWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%WEB%/%TOPIC%][Run test with TestRuner]]*
 
-*[[%PUBURL%/%TWIKIWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%WEB%/JsTestSuite][Run JsTestSuite with TestRuner]]*
+*[[%PUBURL%/%SYSTEMWEB%/JSUnitContrib/testRunner.html?testpage=%SCRIPTURL{"view"}%/%WEB%/JsTestSuite][Run JsTestSuite with TestRuner]]*
 @
 
 

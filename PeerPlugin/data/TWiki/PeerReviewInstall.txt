@@ -7,12 +7,12 @@ Follow these steps to install the PeerPlugin for TWiki:
 	1 Do PeerReviewMySQLSetUp
 	1 Do PeerReviewDbiDbdSetUp
 	1 Unzip the <nop>PeerPlugin.zip file in your twiki installation directory
-	1 Add <nop>Plugins.PeerPlugin to the ACTIVEPLUGINS variable of your %TWIKIWEB%.TWikiPreferences or WebPreferences (not strictly necessary as the plugin should now be detected automatically)
+	1 Add <nop>Plugins.PeerPlugin to the ACTIVEPLUGINS variable of your %SYSTEMWEB%.TWikiPreferences or WebPreferences (not strictly necessary as the plugin should now be detected automatically)
 	1 Edit the top of <nop>twiki/lib/TWiki/Plugins/PeerPlugin/Review.pm to reflect the database name and logon that you have chosen
 		* my $dataBase = "dbi:mysql:Peer";
 		* my $dbUsername  = "myusername";
 		* my $dbPassword  = "mypassword";
-	1 Edit the %TWIKIWEB%.<nop>TWikiPreferences, %TWIKIWEB%.<nop>WebPreferences and the WebPreferences topic in each web as shown below. (Or follow the instructions in PeerReviewExamples to modify any skin).
+	1 Edit the %SYSTEMWEB%.<nop>TWikiPreferences, %SYSTEMWEB%.<nop>WebPreferences and the WebPreferences topic in each web as shown below. (Or follow the instructions in PeerReviewExamples to modify any skin).
 
 *Change...*
 <VERBATIM>

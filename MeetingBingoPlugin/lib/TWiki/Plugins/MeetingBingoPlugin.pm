@@ -48,7 +48,7 @@ $VERSION = '$Rev: 12445$';
 $RELEASE = '1.1';
 
 # Short description of this plugin
-# One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+# One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 $SHORTDESCRIPTION = 'Meeting Bingo Plugin is a business game to enhance attention at meetings.';
 
 # You must set $NO_PREFS_IN_TOPIC to 0 if you want your plugin to use preferences

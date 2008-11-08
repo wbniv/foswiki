@@ -137,7 +137,7 @@ After filling in the desired information, the user must click the button below t
 Plugin settings are stored as preferences variables. To reference
 a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>EMPTYPLUGIN_SHORTDESCRIPTION%==
 
-   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+   * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
       * Set SHORTDESCRIPTION = Plugin supporting light-weight project management.
    * Plugin-specific settings
 		* Set ADDTLSTORYFIELDS =
@@ -236,7 +236,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  29 Jul 2002:    | 1.0 Initial version of Plugin by TWiki:Main.MartinWatt based on code by TWiki:Main.RichardBennett |
 |  Dependencies: | <table border="1"><tr><th>Name</th><th>Version</th><th>Description</th></tr><tr><td align="left">TWiki::Plugins::EditHiddenTablePlugin</td><td align="left">&gt;=0</td><td align="left">Required. Download and install from [[TWiki:Plugins/EditHiddenTablePlugin][plugin library]].</td></tr><tr><td align="left">TWiki::Plugins::DBCacheContrib</td><td align="left">&gt;=0</td><td align="left">Required. Download and install from [[TWiki:Plugins/YetAnotherDBCacheContrib][plugin library]].</td></tr><tr><td align="left">TWiki::Plugins::ControlsPlugin</td><td align="left">&gt;=0</td><td align="left">Required. Download and install from [[TWiki:Plugins/ControlsPlugin][plugin library]].</td></tr><tr><td align="left">HTTP::Date</td><td align="left">&gt;=1</td><td align="left">Required. Available from [[http://cpan.uwinnipeg.ca/dist/Time-modules][CPAN]].</td></tr><tr><td align="left">Time::CTime</td><td align="left">&gt;=1</td><td align="left">Required. Available from [[http://cpan.uwinnipeg.ca/dist/Time-modules][CPAN]].</td></tr></table> |
 |  Perl Version: | 5.0 |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle xx%, %TWIKIWEB%.FormattedSearch xx%, %TOPIC% xx% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle xx%, %SYSTEMWEB%.FormattedSearch xx%, %TOPIC% xx% |
 |  Plugin Home: | TWiki:Plugins/%TOPIC% |
 |  Feedback: | TWiki:Plugins/%TOPIC%Dev |
 |  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |

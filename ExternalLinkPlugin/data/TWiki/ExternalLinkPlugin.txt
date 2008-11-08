@@ -14,11 +14,11 @@ Remember to use the =[]= forced link syntax.
 
 ---++ Plugin Settings
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = This plugin will mark external links so users don't leave your site by accident.
 
 	* External link mark (besides images it is also possible to use HTML entity characters like e.g. "&raquo;" (=&amp;raquo;=))
-		* Set MARK = <img src="%PUBURLPATH%/%TWIKIWEB%/ExternalLinkPlugin/external.gif" alt="External link mark" />
+		* Set MARK = <img src="%PUBURLPATH%/%SYSTEMWEB%/ExternalLinkPlugin/external.gif" alt="External link mark" />
 
 	* Debug plugin: (See output in =data/debug.txt=)
 		* Set DEBUG = 0
@@ -44,9 +44,9 @@ To test if the plugin is correctly installed, check the following links.
 The links in the "If plugin enabled"-column should be marked with a %EXTERNALLINKPLUGIN_MARK% if the plugin is functioning correctly.
 
 | *Verbatim* | *Pre-rendered* | *If plugin enabled* | 
-| =[<nop>[http://TWiki.org][TWiki.org: TWiki's home]]= | <a href="http://TWiki.org" target="_top">TWiki.org: TWiki's home</a>&nbsp;<img src="%PUBURLPATH%/%TWIKIWEB%/%TOPIC%/external.gif" alt="External link mark"> | [[http://TWiki.org][TWiki.org: TWiki's home]] |
-| =[<nop>[ftp://no.where.com][Some nonexistent FTP site]]= | <a href="ftp://no.where.com" target="_top">Some nonexistent FTP site</a>&nbsp;<img src="%PUBURLPATH%/%TWIKIWEB%/%TOPIC%/external.gif" alt="External link mark"> | [[ftp://no.where.com][Some nonexistent FTP site]] |
-| =[<nop>[https://sourceforge.net][Sourceforge.net under a secure connection]]= | <a href="https://sourceforge.net" target="_top">Sourceforge.net under a secure connection</a>&nbsp;<img src="%PUBURLPATH%/%TWIKIWEB%/%TOPIC%/external.gif" alt="External link mark"> | [[https://sourceforge.net][Sourceforge.net under a secure connection]] |
+| =[<nop>[http://TWiki.org][TWiki.org: TWiki's home]]= | <a href="http://TWiki.org" target="_top">TWiki.org: TWiki's home</a>&nbsp;<img src="%PUBURLPATH%/%SYSTEMWEB%/%TOPIC%/external.gif" alt="External link mark"> | [[http://TWiki.org][TWiki.org: TWiki's home]] |
+| =[<nop>[ftp://no.where.com][Some nonexistent FTP site]]= | <a href="ftp://no.where.com" target="_top">Some nonexistent FTP site</a>&nbsp;<img src="%PUBURLPATH%/%SYSTEMWEB%/%TOPIC%/external.gif" alt="External link mark"> | [[ftp://no.where.com][Some nonexistent FTP site]] |
+| =[<nop>[https://sourceforge.net][Sourceforge.net under a secure connection]]= | <a href="https://sourceforge.net" target="_top">Sourceforge.net under a secure connection</a>&nbsp;<img src="%PUBURLPATH%/%SYSTEMWEB%/%TOPIC%/external.gif" alt="External link mark"> | [[https://sourceforge.net][Sourceforge.net under a secure connection]] |
 
 ---+++ Local links
 
@@ -69,12 +69,12 @@ following links should not be marked with a %EXTERNALLINKPLUGIN_MARK%:
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 

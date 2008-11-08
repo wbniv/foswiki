@@ -49,7 +49,7 @@ sub xpShowIterationTerse {
 
     my $list = &TWiki::Plugins::XpTrackerPlugin::HtmlUtil::emmitTwikiHeader(3,"Iteration summary");
     $list .= TWiki::Plugins::XpTrackerPlugin::xpCreateHtmlForm("NewnameStory", "XpStoryTemplate", "Create new story in this iteration");
-    $list .= "<script src=\"%PUBURLPATH%/%TWIKIWEB%/XpTrackerPlugin/sorttable.js\">\n";
+    $list .= "<script src=\"%PUBURLPATH%/%SYSTEMWEB%/XpTrackerPlugin/sorttable.js\">\n";
     $list .= "<table class=\"sortable\" border=\"1\" id=\"SHOWITERATIONTERSE_$iterationName_$web\">";
     $list .= "<tr bgcolor=\"#CCCCCC\">";
     $list .= "<th align=\"left\">Story</th>";

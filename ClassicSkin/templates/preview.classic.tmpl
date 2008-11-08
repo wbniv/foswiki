@@ -2,12 +2,12 @@
 %TMPL:DEF{"footernote"}%<div class="twikiFooterNote">
    &nbsp; &nbsp;
   </td><td valign="top">
-%IF{ "context RevCommentPluginEnabled" then="&nbsp; &nbsp; <label for='comment'>Summary of changes: </label> <a target='RevComment' onclick='return launchWindow(\"%TWIKIWEB%\",\"RevComment\")' href='#%MAKETEXT{Opens page in new window}%' >%MAKETEXT{help}%</a> <input type='hidden' name='t' value='%URLPARAM{t}%' /><input class='twikiEditComment' type='text' name='comment' value='%URLPARAM{comment}%'><br />" }%
+%IF{ "context RevCommentPluginEnabled" then="&nbsp; &nbsp; <label for='comment'>Summary of changes: </label> <a target='RevComment' onclick='return launchWindow(\"%SYSTEMWEB%\",\"RevComment\")' href='#%MAKETEXT{Opens page in new window}%' >%MAKETEXT{help}%</a> <input type='hidden' name='t' value='%URLPARAM{t}%' /><input class='twikiEditComment' type='text' name='comment' value='%URLPARAM{comment}%'><br />" }%
    &nbsp; &nbsp;
    <input type="checkbox" name="dontnotify" %DONTNOTIFYCHECKBOX% /> Minor changes, don't notify <br />
    &nbsp; &nbsp;
    <input type="checkbox" name="forcenewrevision" %FORCENEWREVISIONCHECKBOX% /> Force new revision
-   <font size="-1">(<a target="DontNotify" onclick="return launchWindow('%TWIKIWEB%','DontNotify')" href="#%MAKETEXT{"Opens page in new window"}%" rel='nofollow'>help</a>)</font>
+   <font size="-1">(<a target="DontNotify" onclick="return launchWindow('%SYSTEMWEB%','DontNotify')" href="#%MAKETEXT{"Opens page in new window"}%" rel='nofollow'>help</a>)</font>
    </div>%TMPL:END%
 
 %TMPL:DEF{"bodystart"}%<body bgcolor="#ffffff" background="%PREVIEWBGIMAGE%">

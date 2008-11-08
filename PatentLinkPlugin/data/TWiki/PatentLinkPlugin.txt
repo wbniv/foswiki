@@ -3,8 +3,8 @@
 
 This plugin is designed to create links to US Patent and US Patent Application Numbers based on their numbers.
 
-	* Create a  ==&lt;name&gt;Plugin== topic in the %TWIKIWEB% web. Do so by visiting http://TWiki.org/cgi-bin/view/Plugins/ and starting a new topic to get the default plugin topic text (don't save the topic). Customize your plugin topic to your needs.
-	* See details in %TWIKIWEB%.TWikiPlugins.
+	* Create a  ==&lt;name&gt;Plugin== topic in the %SYSTEMWEB% web. Do so by visiting http://TWiki.org/cgi-bin/view/Plugins/ and starting a new topic to get the default plugin topic text (don't save the topic). Customize your plugin topic to your needs.
+	* See details in %SYSTEMWEB%.TWikiPlugins.
 
 ---++ Syntax Rules
 
@@ -19,7 +19,7 @@ This plugin is designed to create links to US Patent and US Patent Application N
 Plugin settings are stored as preferences variables. To reference
 a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>PATENTLINKPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = This plugin does nothing, but can be used as a template for your own plugins.
 
 	* Patent URL is formed of three chanks with patent ID inserted as follows, ==01== + *ID* + ==02== + *ID* + ==03== + *ID*
@@ -61,9 +61,9 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>P
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.0 |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle /%, %TWIKIWEB%.FormattedSearch ?%, %TOPIC% ?% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle /%, %SYSTEMWEB%.FormattedSearch ?%, %TOPIC% ?% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 

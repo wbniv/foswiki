@@ -35,5 +35,5 @@
 
 Include generic comment templates:
 <verbatim>
-%TMPL:INCLUDE{"%TWIKIWEB%.CommentPlugin"}%
+%TMPL:INCLUDE{"%SYSTEMWEB%.CommentPlugin"}%
 </verbatim>

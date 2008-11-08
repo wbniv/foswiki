@@ -5,5 +5,5 @@
    * Set GROUP = TWikiAdminGroup
    * Set ALLOWTOPICCHANGE = BlogAdminGroup
 
-__Related topics:__ %WIKIUSERSTOPIC%, TWikiGroups, %TWIKIWEB%.TWikiAccessControl, BlogAuthorGroup
+__Related topics:__ %WIKIUSERSTOPIC%, TWikiGroups, %SYSTEMWEB%.TWikiAccessControl, BlogAuthorGroup
 

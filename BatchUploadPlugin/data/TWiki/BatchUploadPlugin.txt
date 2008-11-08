@@ -101,9 +101,9 @@ $TWiki::cfg{Plugins}{BatchUploadPlugin}{usercontrol} = 1;
 | CPAN Dependencies: | CPAN:Archive::Zip |
 | Other Dependencies: | none |
 | Perl Version: | 5.008 |
-| TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+| TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 | Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 | Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 

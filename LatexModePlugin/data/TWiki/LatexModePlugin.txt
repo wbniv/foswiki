@@ -292,7 +292,7 @@ What to type to get a variety of symbols using Latex.  Due to page loading const
 Plugin settings are stored as preferences variables. To reference
 these plugin settings write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>LATEXMODEPLUGIN_SHORTDESCRIPTION%==
 
-	* One line description, as shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, as shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Enables <nop>LaTeX markup (mathematics and more) in TWiki topics
 
 	* Debug plugin: (See output in =data/debug.txt=)
@@ -456,7 +456,7 @@ This plugin is an enhanced version of the TWiki:Plugins.MathModePlugin maintaine
 |  Other Dependencies: | A working installation of =latex=.  A working installation of =convert= or =dvipng=. |
 |  Perl Version: | 5.8.0 |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 100%, %TWIKIWEB%.FormattedSearch 100%, %TOPIC% 100% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 100%, %SYSTEMWEB%.FormattedSearch 100%, %TOPIC% 100% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
@@ -464,5 +464,5 @@ This plugin is an enhanced version of the TWiki:Plugins.MathModePlugin maintaine
 This plugin was created and tested on the 02 Sep 2004 version of TWiki, using <nop>ImageMagick v5.5.7, EPS <nop>GhostScript v7.05, and tetex v2.02.  It has been reported to work (Thanks Jos!) using
 <nop>ImageMagick 6.2.3, tetex 3.0 and ghostscript 8.51 as well.
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins, TWiki:Plugins.MathModePlugin
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins, TWiki:Plugins.MathModePlugin
 

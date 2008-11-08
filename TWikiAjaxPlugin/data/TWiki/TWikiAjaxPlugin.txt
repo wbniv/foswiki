@@ -32,7 +32,7 @@ var Container = {
 	load:function () {
 		twiki.AjaxRequest.load("STUFF", {
 			container:"stuffContainer",
-			url:"%PUBURL%/%TWIKIWEB%/TWikiAjaxContribExamples/test_hamlet.html?"
+			url:"%PUBURL%/%SYSTEMWEB%/TWikiAjaxContribExamples/test_hamlet.html?"
 		});
 	}
 }
@@ -56,7 +56,7 @@ Behaviour.register(myrules);
 
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>FORMPLUGIN_SHORTDESCRIPTION%==
 
-   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+   * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
       * Set SHORTDESCRIPTION = Convenience plugin for TWiki:Plugins.TWikiAjaxContrib
 
    * Debug plugin: (See output in =data/debug.txt=)
@@ -93,10 +93,10 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Other Dependencies: |- |
 |  Perl Version: | 5.005 |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 

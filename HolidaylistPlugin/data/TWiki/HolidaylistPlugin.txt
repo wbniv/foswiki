@@ -271,7 +271,7 @@ The syntax follows that of the !CalendarPlugin. See TWiki:Plugins.CalendarPlugin
 
 ---++ Plugin Settings
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Create a table with a list of people on holidays
 
 	* Days to show (default: 30)
@@ -347,14 +347,14 @@ The syntax follows that of the !CalendarPlugin. See TWiki:Plugins.CalendarPlugin
 |  v1.001 (10 Jun 2005): | TWiki:Main.DanielRohde: A complete reimplementation with many bug fixes and some new features. |
 |  v1.021 (01 Jun 2005): | TWiki:Main.PeterJones: Initial version |
 |  CPAN Dependencies: | *required:* CPAN:Date::Calc %BR% optional: CPAN:HTML::Entities |
-|  Other Dependencies: | %TWIKIWEB%.SmiliesPlugin |
+|  Other Dependencies: | %SYSTEMWEB%.SmiliesPlugin |
 |  Perl Version: | 5.0 and up|
-|  TWiki:Plugins/Benchmark: | %TWIKIWEB%.GoodStyle 94%, %TWIKIWEB%.FormattedSearch 98%, %TOPIC% 86% |
+|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 94%, %SYSTEMWEB%.FormattedSearch 98%, %TOPIC% 86% |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %TWIKIWEB%.SmiliesPlugin, %TWIKIWEB%.TWikiPlugins, TWiki:Plugins.CalendarPlugin
+__Related Topics:__ %SYSTEMWEB%.SmiliesPlugin, %SYSTEMWEB%.TWikiPlugins, TWiki:Plugins.CalendarPlugin
  
 -- TWiki:Main.PeterJones - 01 Jun 2005
 %BR% -- TWiki:Main.DanielRohde - 10 Jun 2005

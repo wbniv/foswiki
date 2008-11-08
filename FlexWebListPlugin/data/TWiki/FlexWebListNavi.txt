@@ -20,7 +20,7 @@ If you want to hide the web navigation from <nop>TWikiGuests then uncomment the 
   hideimg="%ICONURLPATH{"toggleopen-mini"}%"
 }%
 %~~ FLEXWEBLIST{
-~~~   webs="%MAINWEB%,User,People,public,%TWIKIWEB%" 
+~~~   webs="%MAINWEB%,User,People,public,%SYSTEMWEB%" 
 ~~~   exclude="^(TestCases|Trash).*" 
 ~~~   adminwebs="Applications.*"
 ~~~   map="TWiki=System"

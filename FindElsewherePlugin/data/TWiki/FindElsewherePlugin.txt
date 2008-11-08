@@ -8,13 +8,13 @@ This plugin is useful - for example - for a TWiki site that wants to implement a
 
 	* Each web would need to create their own topic for a common term 
 	* Or need to link to or INCLUDE the topic from where it is defined
-	* Authors would need to remember to put the Web name in front of the topic name, such as [[%TWIKIWEB%.WikiWord]]
+	* Authors would need to remember to put the Web name in front of the topic name, such as [[%SYSTEMWEB%.WikiWord]]
 
 Without this kind of plugin, it's likely that common terms or acronyms (abbreviations) used within an organization would be defined in multiple webs or the common terms will be unlinked wiki words (as if they didn't exist).
 
 ---+++ Syntax Rules
 
-No new syntax is introduced.  However, new automatic %TWIKIWEB%.WikiWord linking will occur.  
+No new syntax is introduced.  However, new automatic %SYSTEMWEB%.WikiWord linking will occur.  
 
 If a topic or abbreviation is not found in the current web, this plugin will look through the webs listed in the LOOKELSEWHEREWEBS variable.  If the topic is found (as it looks through the webs in their listed order), it will create one or more links, depending on the number of topics found.
 
@@ -23,15 +23,15 @@ If a topic or abbreviation is not found in the current web, this plugin will loo
 __Single hits__
 
 | *Test case*         | *Input*             | *Output<br/>(if installed)* | *Expected*       |
-| Found here          | =<nop>WebHome=        | WebHome        | %TWIKIWEB%.WebHome     |
-| Found singular here | =<nop>WebHomes=       | WebHomes       | [[%TWIKIWEB%.WebHome][WebHomes]] |
-| Found elsewhere     | =<nop>WebSearch= | WebSearch | [[%TWIKIWEB%.WebSearch][WebSearch]] |
-| Found elsewhere (LOOKELSEWHEREFORLOCAL enabled)    | =<nop>%TWIKIWEB%.TWikiUsers= | %TWIKIWEB%.TWikiUsers | [[Main.TWikiUsers][TWikiUsers]] |
-| Found elsewhere (LOOKELSEWHEREFORLOCAL disabled)    | =<nop>%TWIKIWEB%.TWikiUsers= | %TWIKIWEB%.TWikiUsers | [[TWiki.TWikiUsers][TWikiUsers]] (non-existing) |
+| Found here          | =<nop>WebHome=        | WebHome        | %SYSTEMWEB%.WebHome     |
+| Found singular here | =<nop>WebHomes=       | WebHomes       | [[%SYSTEMWEB%.WebHome][WebHomes]] |
+| Found elsewhere     | =<nop>WebSearch= | WebSearch | [[%SYSTEMWEB%.WebSearch][WebSearch]] |
+| Found elsewhere (LOOKELSEWHEREFORLOCAL enabled)    | =<nop>%SYSTEMWEB%.TWikiUsers= | %SYSTEMWEB%.TWikiUsers | [[Main.TWikiUsers][TWikiUsers]] |
+| Found elsewhere (LOOKELSEWHEREFORLOCAL disabled)    | =<nop>%SYSTEMWEB%.TWikiUsers= | %SYSTEMWEB%.TWikiUsers | [[TWiki.TWikiUsers][TWikiUsers]] (non-existing) |
 | Found elsewhere     | =[<nop>[TWikiAdminGroup][twiki admins]]= | [[TWikiAdminGroup][twiki admins]] | [[Main.TWikiAdminGroup][twiki admins]] |
 | Don't touch direct links     | =[<nop>[%MAINWEB%.TWikiAdminGroup][twiki admins]]= | [[%MAINWEB%.TWikiAdminGroup][twiki admins]] | [[Main.TWikiAdminGroup][twiki admins]] |
-| Found singular  elsewhere     | =<nop>WebSearches= | WebSearches | [[%TWIKIWEB%.WebSearch][WebSearches]] | 
-| Found elsewhere, spaced wiki word | =[<nop/>[Web search]]= | [[Web search]] | [[%TWIKIWEB%.WebSearch][Web search]] |
+| Found singular  elsewhere     | =<nop>WebSearches= | WebSearches | [[%SYSTEMWEB%.WebSearch][WebSearches]] | 
+| Found elsewhere, spaced wiki word | =[<nop/>[Web search]]= | [[Web search]] | [[%SYSTEMWEB%.WebSearch][Web search]] |
 | Found elsewhere, abbrev | =<nop/>ACRONYM= | ACRONYM | (If <nop/>ACRONYM is a topic defined in one of the LOOKELSEWHERE webs, a link to it should show up) |
 | Found elsewhere, abbrev w. alt. linktext | =[<nop/>[ACRONYM][acronym link text]]= | [[ACRONYM][acronym link text]] | (If <nop/>ACRONYM is a topic defined in one of the LOOKELSEWHERE webs, a link to it should show up) |
 | Escaped with &lt;noautolink> | =&lt;noautolink> <nop>WebSearch &lt;/noautolink>= | <noautolink> WebSearch </noautolink> | <nop>WebSearch  |
@@ -43,14 +43,14 @@ __Multiple hits__
 If a word is found in two or more LOOKELSEWHERE webs, a special syntax is used:
 
 	* Standard <nop/>WikiWord: <nop/>TWikiPreferences<sup>([[TWiki.TWikiPreferences][TWiki]],[[Main.TWikiPreferences][Main]])</sup> 
-	* [<nop/>[Spaced wiki word]]: <em>TWiki preferences</em><sup>([[%TWIKIWEB%.TWikiPreferences][%TWIKIWEB%]],[[%MAINWEB%.TWikiPreferences][%MAINWEB%]])</sup> 
+	* [<nop/>[Spaced wiki word]]: <em>TWiki preferences</em><sup>([[%SYSTEMWEB%.TWikiPreferences][%SYSTEMWEB%]],[[%MAINWEB%.TWikiPreferences][%MAINWEB%]])</sup> 
 
 Create this table in [[Sandbox.FindElsewherePluginTest]] to try it out (use raw edit when pasting):
 
 <verbatim>
 | *Test case* | *Input* | *Output<br />(if installed)* | *Expected* |
-| Found elsewhere, spaced wiki word | [<nop>[TWiki preferences]] | [[TWiki preferences]] | _TWiki preferences_ <sup>([[%TWIKIWEB%.TWikiPreferences][%TWIKIWEB%]],[[%MAINWEB%.TWikiPreferences][%MAINWEB%]])</sup> |
-| Found elsewhere | <nop>TWikiContributor | TWikiContributor | <nop>TWikiContributor<sup>([[%TWIKIWEB%.TWikiContributor][%TWIKIWEB%]],[[%MAINWEB%.TWikiContributor][%MAINWEB%]])</sup> |
+| Found elsewhere, spaced wiki word | [<nop>[TWiki preferences]] | [[TWiki preferences]] | _TWiki preferences_ <sup>([[%SYSTEMWEB%.TWikiPreferences][%SYSTEMWEB%]],[[%MAINWEB%.TWikiPreferences][%MAINWEB%]])</sup> |
+| Found elsewhere | <nop>TWikiContributor | TWikiContributor | <nop>TWikiContributor<sup>([[%SYSTEMWEB%.TWikiContributor][%SYSTEMWEB%]],[[%MAINWEB%.TWikiContributor][%MAINWEB%]])</sup> |
 </verbatim>
 
 __Internationalization__
@@ -61,13 +61,13 @@ __Compatibility__
 
 | *Input*								 | *Output*				  |
 | <nop>%TOPIC%#TopicAnchor		  | %TOPIC%#NewFunctionalityTest  |
-| <nop>%TWIKIWEB%.WebHome			| %TWIKIWEB%.WebHome	 |
+| <nop>%SYSTEMWEB%.WebHome			| %SYSTEMWEB%.WebHome	 |
 | <nop>WebHome						  | WebHome					|
-| [<nop>[%TWIKIWEB%.WebHome]]	  | [[%TWIKIWEB%.WebHome]]	  |
-| [<nop>[%TWIKIWEB%.WikiWord]]	 | [[%TWIKIWEB%.WikiWord]]	 |
-| [<nop>[%TWIKIWEB%.WikiWords]]	| [[%TWIKIWEB%.WikiWords]]	|
-| <nop>%TWIKIWEB%.WikiWord		  | %TWIKIWEB%.WikiWord	|
-| <nop>%TWIKIWEB%.WikiWords		 | %TWIKIWEB%.WikiWords  |
+| [<nop>[%SYSTEMWEB%.WebHome]]	  | [[%SYSTEMWEB%.WebHome]]	  |
+| [<nop>[%SYSTEMWEB%.WikiWord]]	 | [[%SYSTEMWEB%.WikiWord]]	 |
+| [<nop>[%SYSTEMWEB%.WikiWords]]	| [[%SYSTEMWEB%.WikiWords]]	|
+| <nop>%SYSTEMWEB%.WikiWord		  | %SYSTEMWEB%.WikiWord	|
+| <nop>%SYSTEMWEB%.WikiWords		 | %SYSTEMWEB%.WikiWords  |
 | [<nop/>[%MAINWEB%.WebSearch][This is a link to <nop/>WebSearch in <nop/>%MAINWEB%]] | [[%MAINWEB%.WebSearch][This is a link to WebSearch in %MAINWEB%]] |
 
 ---+++ <nop>%TOPIC% Hints

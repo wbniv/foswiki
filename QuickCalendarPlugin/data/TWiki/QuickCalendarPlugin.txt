@@ -162,7 +162,7 @@ If you like, you can specify ==doy="on"== as an argument, and get a calendar whi
 
 ---++ <nop>QuickCalendarPlugin Global Settings
 
-	* One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = An anchor linkified, internally generated, minimal calender.
 
 	* Debug plugin: 
@@ -211,7 +211,7 @@ The following should display a small calendar of month=12/year=2001
 |  Plugin Home: | TWiki:Plugins/%TOPIC% |
 |  Feedback: | TWiki:Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %TWIKIWEB%.TWikiPreferences, %TWIKIWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main/JonathanCline - 23 Aug 2003 <br/>
 -- TWiki:Main/JonathanCline - 10 Sep 2003 <br/>

@@ -14,7 +14,7 @@ The table of Translations is kept in the TagTranslations topic (by default).
 
 	+++ Plugin settings
 
-	* One line description, shown in the %TWIKIWEB%.TextFormattingRules topic:
+	* One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Translates TAGS on-the-fly for editing in foreign languages.
 	* Topic containing the translations (default: Plugins.TagTranslations)
 		* #Set TOPIC = TranslateTagPlugin

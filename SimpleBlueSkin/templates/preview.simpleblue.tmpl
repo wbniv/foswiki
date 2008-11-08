@@ -27,7 +27,7 @@ function submitForm()
 
 %TMPL:DEF{"editactions"}%
 <a href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%?unlock=on">Discard</a>&nbsp;%TMPL:P{"sep"}%&nbsp;<a href="javascript:submitForm();">Save Changes</a>%FORMFIELDS%<br>
-<input type="checkbox" name="unlock" %RELEASEEDITLOCKCHECKBOX% />Release edit lock<a target="UnlockTopic" onclick="return launchWindow('%TWIKIWEB%','UnlockTopic')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/UnlockTopic">&nbsp;help</a><br/><input type="checkbox" name="dontnotify" %DONTNOTIFYCHECKBOX% />Minor changes, don't notify<a target="DontNotify" onclick="return launchWindow('%TWIKIWEB%','DontNotify')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%TWIKIWEB%/DontNotify">&nbsp;help</a>
+<input type="checkbox" name="unlock" %RELEASEEDITLOCKCHECKBOX% />Release edit lock<a target="UnlockTopic" onclick="return launchWindow('%SYSTEMWEB%','UnlockTopic')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%SYSTEMWEB%/UnlockTopic">&nbsp;help</a><br/><input type="checkbox" name="dontnotify" %DONTNOTIFYCHECKBOX% />Minor changes, don't notify<a target="DontNotify" onclick="return launchWindow('%SYSTEMWEB%','DontNotify')" href="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%SYSTEMWEB%/DontNotify">&nbsp;help</a>
 %TMPL:END%
 
 %TMPL:DEF{"simpleBlueFormAction"}%<form name="main" action="%SCRIPTURLPATH%/save%SCRIPTSUFFIX%/%WEB%/%TOPIC%" method="post">%TMPL:END%

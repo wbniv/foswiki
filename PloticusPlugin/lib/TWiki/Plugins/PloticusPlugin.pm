@@ -47,7 +47,7 @@ Check the warning log file (defined by $TWiki::cfg{WarningFileName}) for
 errors.
 
 __NOTE:__ Defining deprecated handlers will cause the handlers to be 
-listed in %TWIKIWEB%.TWikiPlugins#FAILEDPLUGINS. See %TWIKIWEB%.TWikiPlugins 
+listed in %SYSTEMWEB%.TWikiPlugins#FAILEDPLUGINS. See %SYSTEMWEB%.TWikiPlugins 
 for information on guarding deprecated handlers that are defined for 
 compatibility with older TWiki versions.
 

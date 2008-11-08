@@ -1,6 +1,6 @@
 %META:TOPICINFO{author="LynnwoodBrown" date="1191523072" format="1.1" reprev="1.1" version="1.1"}%
----++  TCAO %TWIKIWEB%.CommentPlugin Templates
-_This topic defines %TWIKIWEB%.CommentPlugin templates used by %TWIKIWEB%.TopicClassificationAddOn._
+---++  TCAO %SYSTEMWEB%.CommentPlugin Templates
+_This topic defines %SYSTEMWEB%.CommentPlugin templates used by %SYSTEMWEB%.TopicClassificationAddOn._
 
 ---------------------------------------------------------------------------
 ---+++ comment
@@ -21,7 +21,7 @@ Simple comment box
 </verbatim>
 ---------------------------------------------------------------------------
 ---+++ Removable help section 
-This template is used by %TWIKIWEB%.TopicClassificationAddOn to display instructions for new !TopicTypes. - TWiki:Main.LynnwoodBrown
+This template is used by %SYSTEMWEB%.TopicClassificationAddOn to display instructions for new !TopicTypes. - TWiki:Main.LynnwoodBrown
 <verbatim>
 %TMPL:DEF{PROMPT:removeable_help}%
 <div style="background-color:%HELP_BACKGROUND_COLOR%;padding:1em;">
@@ -84,5 +84,5 @@ Like tocDiscuss except posts immediately *below* the comment box for log-type en
 %META:FORM{name="TopicForm"}%
 %META:FIELD{name="TopicType" attributes="" title="TopicType" value="MasterTopic"}%
 %META:FIELD{name="SubjectArea" attributes="" title="SubjectArea" value="TcaoUse"}%
-%META:FIELD{name="Summary" attributes="" title="Summary" value="%25TWIKIWEB%25.CommentPlugin templates"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="%25SYSTEMWEB%25.CommentPlugin templates"}%
 
