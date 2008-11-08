@@ -4,7 +4,7 @@
 
 ---++ My Links
 
-   * [[%SYSTEMWEB%.ATasteOfTWiki][ATasteOfTWiki]] - view a short introductory presentation on TWiki for beginners
+   * [[%SYSTEMWEB%.BeginnersStartHere][BeginnersStartHere]] - view a short introductory presentation on TWiki for beginners
    * [[%SYSTEMWEB%.WelcomeGuest][WelcomeGuest]] - starting points on TWiki
    * [[%SYSTEMWEB%.TWikiUsersGuide][TWikiUsersGuide]] - complete TWiki documentation, Quick Start to Reference
    * [[Sandbox.%HOMETOPIC%][%HOMETOPIC%]] - try out TWiki on your own
@@ -63,7 +63,7 @@ Text for multilingual wiki community, copy from here to %<nop>ENDSECTION{type="t
 -->
 ---++ %MAKETEXT{"My Links"}%
 
-   * %MAKETEXT{"[_1] - view a short introductory presentation on TWiki for beginners" args="[[%SYSTEMWEB%.ATasteOfTWiki][ATasteOfTWiki]]"}%
+   * %MAKETEXT{"[_1] - view a short introductory presentation on TWiki for beginners" args="[[%SYSTEMWEB%.BeginnersStartHere][BeginnersStartHere]]"}%
    * %MAKETEXT{"[_1] - starting points on TWiki" args="[[%SYSTEMWEB%.WelcomeGuest][WelcomeGuest]]"}%
    * %MAKETEXT{"[_1] - complete TWiki documentation, Quick Start to Reference" args="[[%SYSTEMWEB%.TWikiUsersGuide][TWikiUsersGuide]]"}%
    * %MAKETEXT{"[_1] - try out TWiki on your own" args="[[Sandbox.%HOMETOPIC%][%HOMETOPIC%]]"}%
