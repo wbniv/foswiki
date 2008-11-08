@@ -52,7 +52,7 @@ The script produces files in the formats:
 |  Add-on Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topic:__ %SYSTEMWEB%.TWikiAddOns
+__Related Topic:__ %SYSTEMWEB%.ContributedAddOns
 
 -- TWiki:Main.AndreaSterbini - 17 Sep 2000 %BR%
 -- TWiki:Main.WillNorris - 12 Oct 2004, 02 Dec 2004, 08 Dec 2004, 07 Feb 2005

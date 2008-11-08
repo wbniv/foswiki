@@ -121,8 +121,7 @@ __Note:__ You do not need to install anything on the browser to use this add-on.
 |  Add-on Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topic:__ %SYSTEMWEB%.TWikiAddOns
+__Related Topic:__ %SYSTEMWEB%.ContributedAddOns
 
 -- TWiki:Main/VinodKulkarni - 03 Aug 2004
 
-%META:TOPICMOVED{by="vinod" date="1091609302" from="TWiki.NoEditAddOn" to="TWiki.NamespaceManagerAddOn"}%
