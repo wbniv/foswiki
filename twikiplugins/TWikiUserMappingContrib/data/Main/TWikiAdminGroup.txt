@@ -3,7 +3,7 @@
 
 
    * Member list (comma-separated list):
-      * Set GROUP =
+      * Set GROUP = 
    * Persons/group who can change the list:
       * Set ALLOWTOPICCHANGE = TWikiAdminGroup
 
