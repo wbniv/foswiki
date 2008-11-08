@@ -25,7 +25,7 @@ __Relevant links on TWiki.org:__
    * TWiki:Plugins.PluginBrainstorming - open forum for new plugin ideas
    * TWiki:Plugins.PluginPackageHowTo - template to create a new plugin package
 
-__See other types of extensions:__ TWikiAddOns, TWikiContribs, TWikiSkins
+__See other types of extensions:__ ContributedAddOns, TWikiContribs, TWikiSkins
 
 #InstallPlugin
 ---++ Installing Plugins
@@ -389,6 +389,4 @@ If the currently-running TWiki version is 1.1 _or later_, then the _handler will
 
 %STOPINCLUDE%
 __Related Topics:__ DeveloperDocumentationCategory, AdminDocumentationCategory, TWiki:TWiki.TWikiPluginsSupplement
-
--- __Contributors:__ TWiki:Main.PeterThoeny, TWiki:Main.AndreaSterbini, TWiki:Main.MikeMannix, TWiki:Main.CrawfordCurrie, TWiki:Main.ArthurClemens, TWiki:Main.WillNorris
 
