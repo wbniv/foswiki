@@ -1,0 +1,155 @@
+head	1.3;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.3
+date	2006.08.12.14.36.19;	author KoenMartens;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2006.06.21.09.14.23;	author KoenMartens;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2006.06.21.07.49.04;	author KoenMartens;	state Exp;
+branches;
+next	;
+
+
+desc
+@none
+@
+
+
+1.3
+log
+@none
+@
+text
+@%META:TOPICINFO{author="KoenMartens" date="1155393379" format="1.1" version="1.3"}%
+---+!! <nop>%TOPIC%
+
+First stab at a plugin that displays the most popular topics or webs, counting topic views site-wide. 
+
+%TOC%
+
+---++ Syntax Rules
+
+The basic form is to include =%<nop>MOSTPOPULAR{}%= in your topic. The default is to output a table with the 10 most popular topics. The default behaviour can be changed by using the =%<nop>MOSTPOPULAR{parameter1="value1" parameter2="value2" ...}%= form. Valid parameters and their defaults are:
+
+| *Parameter* | *Explanation* | *Default* |
+| limit | Number of topics to show | =10= |
+| format | Format of the output (see below) | =<literal>| $web | $topic | $views |</literal>= |
+| header | Header printed before the output | =<literal>| *Web* | *Topic* | *Views* |</literal>= |
+| noheader | Supress header | =off= |
+| excluded | Comma-seperated list of webs to exclude | |
+| groupbyweb | Show most popular webs instead of topics | =no= |
+
+The format string can contain substitution patterns, these are:
+
+| *String* | *Substituded by* |
+| $views | Topic views |
+| $topic | The topic name (only if =groupbyweb= is =no=) |
+| $web | The web name |
+
+Note that the plugin needs data collected from the logfiles. To generate this data, run <code>bin/statistics-all</code> regularly, eg. by requesting <code>http://yourwiki.tld/bin/statistics-all</code> from a cronjob.
+
+---++ Examples
+
+   * =%<nop>MOSTPOPULAR{}%= displays:
+%MOSTPOPULAR{}%
+
+   * =&lt;ul&gt;%<nop>MOSTPOPULAR{limit="5" format="&lt;li&gt;[<nop>[$web.$topic]]&lt;/li&gt;" noheader="on"}%&lt;/ul&gt;= displays:
+<ul>%MOSTPOPULAR{limit="5" format="<li>[[$web.$topic]]</li>" noheader="on"}%</ul>
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>NEWPLUGIN_SHORTDESCRIPTION%==
+
+   * One line description, is shown in the %TWIKIWEB%.TextFormattingRules topic:
+      * Set SHORTDESCRIPTION = Show most popular topics across webs
+
+   * Debug plugin: (See output in =data/debug.txt=)
+      * Set DEBUG = 0
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the TWiki server. 
+
+   * Download the ZIP file from the Plugin web (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+     | ==lib/TWiki/Plugins/%TOPIC%/Statistics.pm== | Main module for the statistics collection process |
+     | ==bin/statistics-all== | Kickstart binary for the statistics collection process |
+   * Configure the Plugin:
+      * TWiki 4.0 and up: Run the [[%SCRIPTURL%/configure%SCRIPTSUFFIX%][configure]] script to enable the Plugin
+      * Change the Plugin settings as needed
+   * Test if the installation was successful:
+      * Create a topic containing =%<nop>MOSTPOPULAR{}%=
+
+---++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.KoenMartens |
+|  Copyright: | &copy; 2006, TWiki:Main.KoenMartens |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | 01 Aug 2006 (V0.2) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  01 Aug 2006: | Added grouping by web functionality |
+|  20 Jun 2006: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle 100%, %TWIKIWEB%.FormattedSearch 100%, %TOPIC% 98% |
+|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+
+__Related Topics:__ %TWIKIWEB%.TWikiPlugins, %TWIKIWEB%.DeveloperDocumentationCategory, %TWIKIWEB%.AdminDocumentationCategory, %TWIKIWEB%.TWikiPreferences
+
+-- TWiki:Main.KoenMartens - 20 Jun 2006
+@
+
+
+1.2
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="KoenMartens" date="1150881263" format="1.1" version="1.2"}%
+d4 1
+a4 1
+First stab at a plugin that displays the most popular topics, counting topic views site-wide. 
+d18 1
+d24 1
+a24 1
+| $topic | The topic name |
+d70 1
+a70 1
+|  Plugin Version: | 20 Jun 2006 (V0.1) |
+d72 1
+@
+
+
+1.1
+log
+@none
+@
+text
+@d1 1
+a1 1
+%META:TOPICINFO{author="KoenMartens" date="1150876144" format="1.1" reprev="1.1" version="1.1"}%
+d76 1
+a76 1
+|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %TWIKIWEB%.GoodStyle nn%, %TWIKIWEB%.FormattedSearch nn%, %TOPIC% nn% |
+@
