@@ -191,7 +191,7 @@ sub addHEAD {
     $setup ||= 'calendar-setup';
     my $style = $TWiki::cfg{JSCalendarContrib}{style} || 'blue';
     my $lang  = $TWiki::cfg{JSCalendarContrib}{lang}  || 'en';
-    my $base  = '%PUBURLPATH%/%TWIKIWEB%/JSCalendarContrib';
+    my $base  = '%PUBURLPATH%/%SYSTEMWEB%/JSCalendarContrib';
     eval {
         require TWiki::Contrib::BehaviourContrib;
         if ( defined(&TWiki::Contrib::BehaviourContrib::addHEAD) ) {
@@ -199,7 +199,7 @@ sub addHEAD {
         }
         else {
             TWiki::Func::addToHEAD( 'BEHAVIOURCONTRIB',
-'<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/BehaviourContrib/behaviour.compressed.js"></script>'
+'<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/BehaviourContrib/behaviour.compressed.js"></script>'
             );
         }
     };

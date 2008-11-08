@@ -1,6 +1,6 @@
 %TMPL:INCLUDE{"twiki.classic"}%
 
-%TMPL:DEF{"templatescript"}%<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/TWikiJavascripts/twiki_renamebase.js"></script>%TMPL:END%
+%TMPL:DEF{"templatescript"}%<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/TWikiJavascripts/twiki_renamebase.js"></script>%TMPL:END%
 
 %TMPL:DEF{"content"}%<form method="post" name="renameweb" action="%SCRIPTURLPATH{"rename"}%/%WEB%">
 ---+ %TMPL:P{"webaction"}% <code>%WEB%</code>
@@ -31,7 +31,7 @@
 
 __Note:__
    * Get help on
-     <a target="ManagingWebs" onclick="return launchWindow('%TWIKIWEB%','ManagingWebs')" href="%SCRIPTURLPATH{"view"}%/%TWIKIWEB%/ManagingWebs" rel='nofollow'>Renaming and moving webs</a>.
+     <a target="ManagingWebs" onclick="return launchWindow('%SYSTEMWEB%','ManagingWebs')" href="%SCRIPTURLPATH{"view"}%/%SYSTEMWEB%/ManagingWebs" rel='nofollow'>Renaming and moving webs</a>.
    * Select the %TRASHWEB% Web to delete the topic.
    * The checkmarked topics will be updated. 
 %TMPL:P{"topicinfo"}%

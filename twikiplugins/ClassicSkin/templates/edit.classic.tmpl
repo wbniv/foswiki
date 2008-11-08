@@ -1,7 +1,7 @@
 %TMPL:INCLUDE{"twiki.classic"}%
 %TMPL:DEF{"focus"}%try { document.main.text.focus(); } catch (er) {}
 %TMPL:END%
-%TMPL:DEF{"templatescript"}%<script type="text/javascript" src="%PUBURLPATH%/%TWIKIWEB%/TWikiJavascripts/twiki_edit.js"></script>
+%TMPL:DEF{"templatescript"}%<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/TWikiJavascripts/twiki_edit.js"></script>
 %TMPL:END%
 %TMPL:DEF{"bodystart"}%<body bgcolor="#ffffff" onload="initForm()">
 #PageTop
@@ -10,14 +10,14 @@
 %TMPL:DEF{"footernote"}%<div class="twikiFooterNote">
 &nbsp; &nbsp;
 </td><td valign="top">
-%IF{ "context RevCommentPluginEnabled" then="&nbsp; &nbsp; <label for='comment'>Summary of changes: </label> <sup>(<a target='RevComment' onclick='return launchWindow(\"%TWIKIWEB%\",\"RevComment\")' href='#%MAKETEXT{Opens page in new window}%' >%MAKETEXT{help}%</a>)</sup> <input type='hidden' name='t' value='%URLPARAM{t}%' /><input class='twikiEditComment' type='text' name='comment' value='%URLPARAM{comment}%'><br />" }%
+%IF{ "context RevCommentPluginEnabled" then="&nbsp; &nbsp; <label for='comment'>Summary of changes: </label> <sup>(<a target='RevComment' onclick='return launchWindow(\"%SYSTEMWEB%\",\"RevComment\")' href='#%MAKETEXT{Opens page in new window}%' >%MAKETEXT{help}%</a>)</sup> <input type='hidden' name='t' value='%URLPARAM{t}%' /><input class='twikiEditComment' type='text' name='comment' value='%URLPARAM{comment}%'><br />" }%
 &nbsp; &nbsp;
-<input type="checkbox" name="dontnotify" %DONTNOTIFYCHECKBOX% /> Minor changes, don't notify <font size="-1">(<a href="#Opens page in new window" target="DontNotify" onclick="return launchWindow('%TWIKIWEB%','DontNotify')" rel='nofollow'>help</a>)</font><br />
+<input type="checkbox" name="dontnotify" %DONTNOTIFYCHECKBOX% /> Minor changes, don't notify <font size="-1">(<a href="#Opens page in new window" target="DontNotify" onclick="return launchWindow('%SYSTEMWEB%','DontNotify')" rel='nofollow'>help</a>)</font><br />
 &nbsp; &nbsp;
 <input type="checkbox" name="forcenewrevision" %FORCENEWREVISIONCHECKBOX% /> Force new revision 
-<font size="-1">(<a href="#Opens page in new window" target="ForceNewRevision" onclick="return launchWindow('%TWIKIWEB%','ForceNewRevision')" rel='nofollow'>help</a>)</font>
+<font size="-1">(<a href="#Opens page in new window" target="ForceNewRevision" onclick="return launchWindow('%SYSTEMWEB%','ForceNewRevision')" rel='nofollow'>help</a>)</font>
 <font color="#333333" size="-1">
-%INCLUDE{"%TWIKIWEB%.WikiSyntaxSummary"}%
+%INCLUDE{"%SYSTEMWEB%.WikiSyntaxSummary"}%
 </font>
  </div>%TMPL:END%
 

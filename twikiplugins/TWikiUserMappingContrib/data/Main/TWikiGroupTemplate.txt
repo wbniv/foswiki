@@ -7,5 +7,5 @@
    * Persons/group who can change the list:
       * Set ALLOWTOPICCHANGE = %URLPARAM{"topic"}%
 
-__%MAKETEXT{"Related topics:"}%__ [[%WIKIUSERSTOPIC%]], [[TWikiGroups]], [[%TWIKIWEB%.TWikiAccessControl][TWikiAccessControl]]
+__%MAKETEXT{"Related topics:"}%__ [[%WIKIUSERSTOPIC%]], [[TWikiGroups]], [[%SYSTEMWEB%.TWikiAccessControl][TWikiAccessControl]]
 

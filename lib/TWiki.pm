@@ -323,7 +323,7 @@ BEGIN {
     # Compatibility synonyms, deprecated in 4.2 but still used throughout
     # the documentation.
     $functionTags{MAINWEB}  = $functionTags{USERSWEB};
-    $functionTags{TWIKIWEB} = $functionTags{SYSTEMWEB};
+    $functionTags{SYSTEMWEB} = $functionTags{SYSTEMWEB};
 
     # locale setup
     #

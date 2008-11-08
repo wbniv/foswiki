@@ -10,7 +10,7 @@ else="*%MAKETEXT{"This TWiki does _not_ support new User Registration"}%*"
       * Set NOREGISTRATION = %IF{"context registration_supported" then="%IF{"context registration_enabled" then="" else="DISABLED"}%" else="DISABLED"}%
 -->
 
-%H% *%MAKETEXT{"Note:"}%* %MAKETEXT{"Registered users can [[[_1]][change]] and [[[_2]][reset]] their passwords." args="%TWIKIWEB%.ChangePassword,%TWIKIWEB%.ResetPassword"}%
+%H% *%MAKETEXT{"Note:"}%* %MAKETEXT{"Registered users can [[[_1]][change]] and [[[_2]][reset]] their passwords." args="%SYSTEMWEB%.ChangePassword,%SYSTEMWEB%.ResetPassword"}%
 
 %MAKETEXT{"*Important:* the information provided in this form will be stored in a database on the TWiki server. This database is accessible to anyone who can access the server through the web (though passwords will be encrypted, and e-mail addresses will be obfusticated to help prevent spamming). Your country, or the country where the server is hosted, may have Data Protection laws governing the maintenance of such databases. If you are in doubt, you should contact [_1] for details of the Data Protection Policy of this TWiki server before registering." args="<a href='mailto:%WIKIWEBMASTER%?subject=Data%20Protection%20Policy'>%WIKIWEBMASTER%</a>"}%
 

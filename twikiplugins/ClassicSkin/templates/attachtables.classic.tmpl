@@ -2,7 +2,7 @@
 
 %{ Header definition for topic attachments and top table in attach screen }%
 %TMPL:DEF{ATTACH:files:header(basic)}%<div class="twikiAttachments">
-| *[[%TWIKIWEB%.FileAttachment][Attachment]]* | *Action* | *Size* | *Date* | *Who* | *Comment* |%TMPL:END%
+| *[[%SYSTEMWEB%.FileAttachment][Attachment]]* | *Action* | *Size* | *Date* | *Who* | *Comment* |%TMPL:END%
 
 %{ A basic row definition, for attachment table and attach screen }%
 %{ Use %A_URL% instead of %PUBURLPATH%/%WEB%/%TOPIC%/%A_FILE% to get a viewfile link }%
@@ -21,7 +21,7 @@
 
 %{ Header for table at top of attach screen }%
 %TMPL:DEF{ATTACH:files:header:A}%
-%TMPL:P{ATTACH:files:header(basic)}% *[[%TWIKIWEB%.FileAttribute][Attribute]]* |
+%TMPL:P{ATTACH:files:header(basic)}% *[[%SYSTEMWEB%.FileAttribute][Attribute]]* |
 %TMPL:END%
 
 %{ Row for table at top of attach screen }%
