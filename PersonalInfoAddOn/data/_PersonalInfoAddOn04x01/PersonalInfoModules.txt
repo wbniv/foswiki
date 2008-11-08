@@ -68,15 +68,15 @@ color:#ccc;
 </verbatim>
 
 <verbatim>
-%STARTSECTION{"personalInfo"}%<div class="pIparagraphFrame personalInfo">
+%STARTSECTION{"personalInfo"}%<div class="pIparagraphFrame personalInfo%IF{"$'FORMFIELD{WorkStatus}'!='Current'" then=" pIFormer"}%">
 ---+!! <nop>%FORMFIELD{"FirstName" topic="%BASETOPIC%"}% %FORMFIELD{"LastName" topic="%BASETOPIC%"}%
 %INCLUDE{"PersonalInfoLayoutModules" section="paragraphWithImageLeftStyle"}%
 <form name="main" action="%SCRIPTURLPATH{"save"}%/%BASEWEB%/%BASETOPIC%" method="post">
 <input type="hidden" name="editaction" value="form" />
 <!-- if !AllowRedirectUrl is enabled in configure, !PersonalInfo is updated to save the search data as javascript file -->
 %IF{"context AttachContentPluginEnabled" then='<input type="hidden" name="redirectto" value="%SCRIPTURL{save}%/%WEB%/PersonalInfo?redirectto=%BASETOPIC%" />'}%
-%INCLUDE{"PersonalInfoLayoutModules" section="paragraphWithImageLeft" imgName="%FORMFIELD{"Picture" topic="%BASEWEB%.%BASETOPIC%" format="$value" default="" alttext=""}%" imgWeb="%BASEWEB%" imgTopic="%BASETOPIC%" imgWidth="120" imgTitle="%FORMFIELD{FirstName}% %FORMFIELD{LastName}%" text="%INCLUDE{"PersonalInfo" section="personalInfoFields"}%
-%IF{"not defined editUserData" then="<div class='personalInfoFormDataActions twikiUnvisited'>[[%SCRIPTURL{view}%/%BASEWEB%/%BASETOPIC%?editUserData=on][Edit data]] <span class='twikiSeparator'>|</span> [[%SCRIPTURL{view}%/%BASEWEB%/%BASETOPIC%?template=PersonalInfoPictureView][Change picture]]</div>" }% %IF{"defined editUserData" then="<div class='personalInfoFormDataActions'><input type='submit' class='twikiSubmit' name='action_save' id='save' value='Save' /> <input type='submit' class='twikiButton' name='action_cancel' id='cancel' value='Cancel' /></div>" }%" }% </form></div><!--/pIparagraphFrame-->%ENDSECTION{"personalInfo"}%
+%INCLUDE{"PersonalInfoLayoutModules" section="paragraphWithImageLeft" imgName="%FORMFIELD{"Picture" topic="%BASEWEB%.%BASETOPIC%" format="$value" default="" alttext=""}%" imgWeb="%BASEWEB%" imgTopic="%BASETOPIC%" imgWidth="120" imgTitle="" text="%INCLUDE{"PersonalInfo" section="personalInfoFields"}%
+%IF{"not defined editUserData" then="<div class='personalInfoFormDataActions twikiUnvisited'>[[%SCRIPTURL{view}%/%BASEWEB%/%BASETOPIC%?editUserData=on][Edit data]] <span class='twikiSeparator'>|</span> [[%SCRIPTURL{view}%/%BASEWEB%/%BASETOPIC%?template=PersonalInfoPictureView][Change picture]] <span class='twikiSeparator'>|</span> %IF{"$'FORMFIELD{WorkStatus}'!='Current'" then="<a href='%SCRIPTURL{save}%/%BASEWEB%/%BASETOPIC%?WorkStatus=Current'>Set active</a>" else="<a href='%SCRIPTURL{save}%/%BASEWEB%/%BASETOPIC%?WorkStatus=Former'>Set inactive</a>"}%</div>" }% %IF{"defined editUserData" then="<div class='personalInfoFormDataActions'><input type='submit' class='twikiSubmit' name='action_save' id='save' value='Save' /> <input type='submit' class='twikiButton' name='action_cancel' id='cancel' value='Cancel' /></div>" }%" }% </form></div><!--/pIparagraphFrame-->%ENDSECTION{"personalInfo"}%
 </verbatim>
 
 

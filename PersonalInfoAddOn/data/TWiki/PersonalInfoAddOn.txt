@@ -81,11 +81,11 @@ If you are using !PersonalInfoAddon for TWiki 4.1, and need to update to the ver
 
 ---++ !AddOn Info
 
-| Authors: | TWiki:Main.ArthurClemens |
 | Copyright &copy;: | 2007, 2008 Arthur Clemens |
 | License: | [[http://www.gnu.org/copyleft/gpl.html][GPL]] |
 | Dependencies: | %$DEPENDENCIES% |
-| Plugin Version: | 1.4 (06 Apr 2008)  |
+| Plugin Version: | 1.4.1 (08 Nov 2008)  |
+| 08 Nov 2008 | 1.4.1 Prevent "create new topic links" in edit fields with wikiword names. |
 | 06 Apr 2008 | 1.4 Various formatting fixes (version TWiki 4.2 only). |
 | 30 Jan 2008 | 1.3.2 Fixes template bug in picture upload screen that caused images to be uploaded as FILENAME. |
 | 23 Aug 2007 | 1.3 Made this add-on work on TWiki 4.1 as well. Added vCard format and improved facebook display.  |
