@@ -52,7 +52,7 @@ sub run_testcase {
     $TWiki::cfg{Plugins}{TestFixturePlugin}{Enabled} = 1;
     my $twiki = new TWiki( $this->{test_user_login}, $query );
     $twiki->{store}
-      ->saveTopic( $twiki->{user}, $this->{users_web}, 'TWikiContributor',
+      ->saveTopic( $twiki->{user}, $this->{users_web}, 'ProjectContributor',
         'none' );
     my ( $text, $result ) = $this->capture( \&TWiki::UI::View::view, $twiki );
     unless ( $text =~ m#<font color="green">ALL TESTS PASSED</font># ) {

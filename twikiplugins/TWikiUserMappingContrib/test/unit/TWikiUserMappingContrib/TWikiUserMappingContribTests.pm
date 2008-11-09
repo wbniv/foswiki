@@ -288,7 +288,7 @@ sub verify_BaseMapping_handleUser {
     $this->assert(
         $basemapping->handlesUser( undef, $TWiki::cfg{DefaultUserLogin} ) );
     $this->assert( $basemapping->handlesUser( undef, 'unknown' ) );
-    $this->assert( $basemapping->handlesUser( undef, 'TWikiContributor' ) );
+    $this->assert( $basemapping->handlesUser( undef, 'ProjectContributor' ) );
     $this->assert(
         $basemapping->handlesUser( undef, 'TWikiRegistrationAgent' ) );
 
@@ -304,7 +304,7 @@ sub verify_BaseMapping_handleUser {
     );
     $this->assert( $basemapping->handlesUser( undef, undef, 'UnknownUser' ) );
     $this->assert(
-        $basemapping->handlesUser( undef, undef, 'TWikiContributor' ) );
+        $basemapping->handlesUser( undef, undef, 'ProjectContributor' ) );
     $this->assert(
         $basemapping->handlesUser( undef, undef, 'TWikiRegistrationAgent' ) );
 
@@ -324,7 +324,7 @@ sub verify_BaseMapping_handleUser {
         $basemapping->handlesUser( undef, 'unknown', 'UnknownUser' ) );
     $this->assert(
         $basemapping->handlesUser(
-            undef, 'TWikiContributor', 'TWikiContributor'
+            undef, 'ProjectContributor', 'ProjectContributor'
         )
     );
     $this->assert(

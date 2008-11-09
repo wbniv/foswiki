@@ -244,7 +244,7 @@ sub verify_Load {
     $this->assert( $k =~ s/^SadOldMan,//,              $k );
     $this->assert( $k =~ s/^SorryOldMan,//,            $k );
     $this->assert( $k =~ s/^StupidOldMan,//,           $k );
-    $this->assert( $k =~ s/^TWikiContributor,//,       $k );
+    $this->assert( $k =~ s/^ProjectContributor,//,     $k );
     $this->assert( $k =~ s/^TWikiGuest,//,             $k );
     $this->assert( $k =~ s/^TWikiRegistrationAgent,//, $k );
     $this->assert( $k =~ s/^UnknownUser,//,            $k );
