@@ -3,14 +3,15 @@ data/TWiki/TWikiUserMappingContrib.txt 0644 Documentation
 lib/TWiki/Contrib/TWikiUserMappingContrib.pm 0444 Perl module
 lib/TWiki/Users/TWikiUserMapping.pm 0444 Perl module
 
-#TWiki Topic based Usermapping topics
+# Topic based Usermapping topics
 data/Main/TWikiRegistrationAgent.txt 0644
 data/Main/UserListByPhotograph.txt 0644
 data/Main/UserListHeader.txt 0644
 data/Main/NobodyGroup.txt 0644
 data/Main/UserList.txt 0644
 data/Main/UserListByDateJoined.txt 0644
-data/Main/TWikiAdminGroup.txt 0644
+data/Main/TWikiAdminGroup.txt 0644 TWiki compatible admin group
+data/Main/AdminGroup.txt 0644
 data/Main/UserHomepageHeader.txt 0644
 data/Main/UserListByLocation.txt 0644
 data/Main/TWikiGroupTemplate.txt 0644
