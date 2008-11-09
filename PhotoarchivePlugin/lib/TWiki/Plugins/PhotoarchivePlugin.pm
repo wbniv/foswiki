@@ -34,7 +34,7 @@ package TWiki::Plugins::PhotoarchivePlugin;
 # =========================
 
 #use TWiki::Plugins::PhotoarchivePlugin::;
-#use TWiki::Func;
+use TWiki::Func;
 #use CGI;
 
 # =========================
@@ -388,7 +388,9 @@ sub getDescriptedContent
 				if $debug;
 
 			# create descripted images
-			system("$bin_anytopnm \"$sourceimage\" 2> /dev/null | ".
+			#system("$bin_anytopnm \"$sourceimage\" 2> /dev/null | ".
+			#	"$bin_pnmscale $pnmwidth $pnmheight | $bin_pnmtojpeg > \"$sourcedescripted\"");
+			$sandbox->sysCommand("$bin_anytopnm \"$sourceimage\" 2> /dev/null | ".
 				"$bin_pnmscale $pnmwidth $pnmheight | $bin_pnmtojpeg > \"$sourcedescripted\"");
 		}
 		
@@ -566,7 +568,9 @@ sub getDetailedContent
 			if $debug;
 
 		# create image
-		system("$bin_anytopnm \"$sourceimage\" 2> /dev/null | ".
+		#system("$bin_anytopnm \"$sourceimage\" 2> /dev/null | ".
+		#	"$bin_pnmscale $pnmwidth $pnmheight | $bin_pnmtojpeg > \"$sourcedetailed\"");
+		$sandbox->sysCommand("$bin_anytopnm \"$sourceimage\" 2> /dev/null | ".
 			"$bin_pnmscale $pnmwidth $pnmheight | $bin_pnmtojpeg > \"$sourcedetailed\"");
 	}
 
@@ -726,7 +730,9 @@ sub getThumbsContent
 				if $debug;
 
 			# create thumbnails
-			system("$bin_anytopnm \"$sourceimage\" 2> /dev/null | ".
+			#system("$bin_anytopnm \"$sourceimage\" 2> /dev/null | ".
+			#	"$bin_pnmscale $pnmwidth $pnmheight | $bin_pnmtojpeg > \"$sourcethumb\"");
+			$sandbox->sysCommand("$bin_anytopnm \"$sourceimage\" 2> /dev/null | ".
 				"$bin_pnmscale $pnmwidth $pnmheight | $bin_pnmtojpeg > \"$sourcethumb\"");
 		}
 
@@ -1013,7 +1019,9 @@ sub startRandom
 			if $debug;
 
 		# create image
-		system("$bin_anytopnm \"$sourceimage\" 2> /dev/null | ".
+		#system("$bin_anytopnm \"$sourceimage\" 2> /dev/null | ".
+		#	"$bin_pnmscale $pnmwidth $pnmheight | $bin_pnmtojpeg > \"$destimage\"");
+		$sandbox->sysCommand("$bin_anytopnm \"$sourceimage\" 2> /dev/null | ".
 			"$bin_pnmscale $pnmwidth $pnmheight | $bin_pnmtojpeg > \"$destimage\"");
 	}
 
