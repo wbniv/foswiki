@@ -36,7 +36,7 @@ my %testForms = (
     },
     topic2 => {
         name   => 'FormFieldListTestTopic2',
-        user   => 'TWikiContributor',
+        user   => 'ProjectContributor',
         date   => 1200000000,
         form   => 'ProjectForm',
         field1 => {
@@ -637,14 +637,14 @@ sub test_param_user {
     my $testTopic = $testForms{topic1}{name};
 
     my $source =
-"%FORMFIELDLIST{topic=\"$allTopics\" user=\"ScumBag, TWikiContributor\" format=\"topic=\$topicName, last changed by \$topicUser\"}%";
+"%FORMFIELDLIST{topic=\"$allTopics\" user=\"ScumBag, ProjectContributor\" format=\"topic=\$topicName, last changed by \$topicUser\"}%";
 
     my $expected = 'topic=FormFieldListTestTopic1, last changed by ScumBag
 topic=FormFieldListTestTopic1, last changed by ScumBag
 topic=FormFieldListTestTopic1, last changed by ScumBag
-topic=FormFieldListTestTopic2, last changed by TWikiContributor
-topic=FormFieldListTestTopic2, last changed by TWikiContributor
-topic=FormFieldListTestTopic2, last changed by TWikiContributor';
+topic=FormFieldListTestTopic2, last changed by ProjectContributor
+topic=FormFieldListTestTopic2, last changed by ProjectContributor
+topic=FormFieldListTestTopic2, last changed by ProjectContributor';
 
     $this->do_test( $testTopic, $expected, $source );
 }
@@ -661,7 +661,7 @@ sub test_param_excludeuser {
     my $testTopic = $testForms{topic1}{name};
 
     my $source =
-"%FORMFIELDLIST{topic=\"$allTopics\" excludeuser=\"ScumBag, TWikiContributor\" format=\"topic=\$topicName, last changed by \$topicUser\"}%";
+"%FORMFIELDLIST{topic=\"$allTopics\" excludeuser=\"ScumBag, ProjectContributor\" format=\"topic=\$topicName, last changed by \$topicUser\"}%";
 
     my $expected = 'topic=FormFieldListTestTopic3, last changed by TWikiGuest
 topic=FormFieldListTestTopic3, last changed by TWikiGuest
@@ -1107,7 +1107,7 @@ MaryJones';
 
     my ( $meta, $text ) =
       $this->{twiki}->{store}
-      ->readTopic( 'TWikiContributor', $this->{test_web}, $topic );
+      ->readTopic( 'ProjectContributor', $this->{test_web}, $topic );
 
     my @fields = $meta->find('FIELD');
     foreach my $field (@fields) {
@@ -1122,7 +1122,7 @@ MaryJones';
     _makeDelay(1.1);
 
     $this->{twiki}->{store}
-      ->saveTopic( 'TWikiContributor', $this->{test_web}, $topic, $text,
+      ->saveTopic( 'ProjectContributor', $this->{test_web}, $topic, $text,
         $meta );
 
     # --- STEP 2: change text of topic 3
@@ -1131,13 +1131,13 @@ MaryJones';
 
         my ( $meta, $text ) =
           $this->{twiki}->{store}
-          ->readTopic( 'TWikiContributor', $this->{test_web}, $topic );
+          ->readTopic( 'ProjectContributor', $this->{test_web}, $topic );
 
         # delay loop
         _makeDelay(1.1);
 
         $this->{twiki}->{store}
-          ->saveTopic( 'TWikiContributor', $this->{test_web}, $topic, 'DA',
+          ->saveTopic( 'ProjectContributor', $this->{test_web}, $topic, 'DA',
             $meta );
     }
 
@@ -1197,7 +1197,7 @@ FormFieldListTestTopic1';
     $meta->putAll( 'FIELD', @fields );
 
     $this->{twiki}->{store}
-      ->saveTopic( 'TWikiContributor', $this->{test_web}, $topic, $text,
+      ->saveTopic( 'ProjectContributor', $this->{test_web}, $topic, $text,
         $meta );
         
 	#$TWiki::cfg{DefaultDateFormat} = $currentDefaultDateFormat;
@@ -1519,9 +1519,9 @@ user=ScumBag
 user=TWikiAdminUser
 user=TWikiAdminUser
 user=TWikiAdminUser
-user=TWikiContributor
-user=TWikiContributor
-user=TWikiContributor
+user=ProjectContributor
+user=ProjectContributor
+user=ProjectContributor
 user=TWikiGuest
 user=TWikiGuest
 user=TWikiGuest';

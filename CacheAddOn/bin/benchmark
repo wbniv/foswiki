@@ -19,7 +19,7 @@
 #
 #	TWiki/BumpyWord
 #		Almost empty; it just renders all headers + footers
-#	TWiki/TWikiContributor
+#	TWiki/ProjectContributor
 #		A short page, but it involves searching all pages
 #	TWiki/WebIndex
 #		Medium size page, involves lots of RCS
@@ -146,7 +146,7 @@ then
 bench "Start perl +req vars"	$baseurl/benchmark?-s 
 bench "Hello-world +load twiki"	$baseurl/benchmark?-h 
 bench "Short page"		$viewurl/TWiki/BumpyWord
-bench "Formatted search"	$viewurl/TWiki/TWikiContributor
+bench "Formatted search"	$viewurl/TWiki/ProjectContributor
 bench "Large index w/much RCS"	$viewurl/TWiki/WebIndex
 bench "Large page w/INCLUDEs"	$viewurl/TWiki/TWikiDocumentation
 

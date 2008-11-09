@@ -16,7 +16,7 @@ OK
 * ChecklistPlugin
 * ChildTopicTemplatePlugin - works as well as dakar, but doesn't handle "'s in topic name parameter or a web parameter, either (ie, a combined %WEB%.%TOPIC% (or even %WEB%/%TOPIC%) - style topic specifier) - ok, it doesn't get rendered correctly (that is, it %CHILDTOPICPARENT% *does* get rendered, but it seems to work...)
 * CommentPlugin
-* ContributorsPlugin - i think so, anyway; i think the topic's "history" has been stripped to TWikiContributor
+* ContributorsPlugin - i think so, anyway; i think the topic's "history" has been stripped to ProjectContributor
 * CounterPlugin - arg, some *seriously* crap code
 * CpanContrib
 * DBCacheContrib
