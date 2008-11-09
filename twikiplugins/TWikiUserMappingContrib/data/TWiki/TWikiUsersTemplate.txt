@@ -31,7 +31,7 @@ If you forget your password, %SYSTEMWEB%.ResetPassword will get a new one sent t
    * R - <a name="R">- - - -</a>
    * S - <a name="S">- - - -</a>
    * T - <a name="T">- - - -</a>
-   * TWikiContributor - 1 Jan 2005
+   * ProjectContributor - 1 Jan 2005
    * TWikiGuest - guest - 10 Feb 1999
    * TWikiRegistrationAgent - 1 Jan 2005
    * U - <a name="U">- - - -</a>
@@ -43,7 +43,7 @@ If you forget your password, %SYSTEMWEB%.ResetPassword will get a new one sent t
    * Z - <a name="Z">- - - -</a>
 
 __%X% Note:__ There are four default system users:
-   * *TWikiContributor* - placeholder for a TWiki developer, and is used in TWiki documentation
+   * *ProjectContributor* - placeholder for a TWiki developer, and is used in TWiki documentation
    * *TWikiGuest* - guest user, used as a fallback if the user can't be identified
    * *TWikiRegistrationAgent* - special user used during the new user registration process
    * *UnknownUser* - used where the author of a previously stored piece of data can't be determined
