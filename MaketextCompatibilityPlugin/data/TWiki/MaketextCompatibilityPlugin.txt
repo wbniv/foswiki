@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributors" date="1140472612" format="1.0" version="1.1"}%
+%META:TOPICINFO{author="ProjectContributors" date="1140472612" format="1.0" version="1.1"}%
 ---+ Maketext Compatibility Plugin
 This plugin does notthing more than returning the string given to MAKETEXT as a parameter. You will need this feature, if you plan to run an internationalized skin under Bejing or Cairo version of TWiki.
 

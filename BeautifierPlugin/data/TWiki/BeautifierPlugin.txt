@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1177766845" format="1.1" version="1.2"}%
+%META:TOPICINFO{author="ProjectContributor" date="1177766845" format="1.1" version="1.2"}%
 ---+ <nop>%TOPIC%
 
 This plugin allows you to have code fragments automatically formatted and highlighted. It uses the [[http://www.beautifier.org/][Beautifier library]] (included) written by Mike Jewell.
@@ -125,4 +125,4 @@ __Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 
 
-%META:FILEATTACHMENT{name="style.css" attr="" autoattached="1" comment="CSS to format code fragments" date="1177765269" path="style.css" size="182" user="TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="style.css" attr="" autoattached="1" comment="CSS to format code fragments" date="1177765269" path="style.css" size="182" user="ProjectContributor" version=""}%

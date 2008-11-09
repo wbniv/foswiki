@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1179808418" format="1.1" version="$Rev: 15572 $"}%
+%META:TOPICINFO{author="ProjectContributor" date="1179808418" format="1.1" version="$Rev: 15572 $"}%
 ---+!! XML XSL Plugin
 
 The plugin is used to return HTML containing an XML data island which, when processed by the browser, will show the XSL applied to the XML.

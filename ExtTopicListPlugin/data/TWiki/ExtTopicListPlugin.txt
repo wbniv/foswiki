@@ -41,7 +41,7 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>E
 ---++ Plugin Info
 ,
 |  Plugin Author: | TWiki:Main.AndreaSterbini, TWiki:Main.PeterThoeny, TWiki:Main.CrawfordCurrie, TWiki:Main.MeredithLesly |
-|  Copyright: | &copy; 2001-2006, %SYSTEMWEB%.TWikiContributor |
+|  Copyright: | &copy; 2001-2006, %SYSTEMWEB%.ProjectContributor |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
 |  Plugin Version: | 01 Feb 2006 |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
@@ -60,4 +60,4 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>E
 
 __Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
 
--- %SYSTEMWEB%.TWikiContributor - 01 Feb 2006
+-- %SYSTEMWEB%.ProjectContributor - 01 Feb 2006

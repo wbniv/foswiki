@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1146425876" format="1.1" reprev="1.14" version="1.14"}%
+%META:TOPICINFO{author="ProjectContributor" date="1146425876" format="1.1" reprev="1.14" version="1.14"}%
 ---+!! <nop>%TOPIC% 
 
 A plugin that allows the display of !GnuPlot graphs.
@@ -302,36 +302,36 @@ __Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 -- TWiki:Main.AbieSwanepoel - 27 Jan 2006
 
 
-%META:FILEATTACHMENT{name="DampedSinusSample.png" attr="h" autoattached="1" comment="Pre-rendered graphics for <nop>DampedSinusSample example" date="1146425499" path="DampedSinusSample.png" size="9541" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="DampedSinusData.data" attr="h" autoattached="1" comment="Data for <nop>DampedSinusData example" date="1146425499" path="DampedSinusData.data" size="4091" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="MultigraphWithErrorbarsData.data" attr="h" autoattached="1" comment="Data for <nop>MultigraphWithErrorbarsData example" date="1146425499" path="MultigraphWithErrorbarsData.data" size="66" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="MultigraphWithErrorbars.png" attr="h" autoattached="1" comment="" date="1146425781" path="MultigraphWithErrorbars.png" size="4919" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="DampedSinusSample.png" attr="h" autoattached="1" comment="Pre-rendered graphics for <nop>DampedSinusSample example" date="1146425499" path="DampedSinusSample.png" size="9541" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="DampedSinusData.data" attr="h" autoattached="1" comment="Data for <nop>DampedSinusData example" date="1146425499" path="DampedSinusData.data" size="4091" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="MultigraphWithErrorbarsData.data" attr="h" autoattached="1" comment="Data for <nop>MultigraphWithErrorbarsData example" date="1146425499" path="MultigraphWithErrorbarsData.data" size="66" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="MultigraphWithErrorbars.png" attr="h" autoattached="1" comment="" date="1146425781" path="MultigraphWithErrorbars.png" size="4919" user="Main.ProjectContributor" version=""}%
 %META:FILEATTACHMENT{name="InterlockingTori.gnu" attr="h" autoattached="1" comment="" date="1146425499" path="InterlockingTori.gnu" size="324" user="UnknownUser" version=""}%
 %META:FILEATTACHMENT{name="RosenbrockFunction.err" attr="h" autoattached="1" comment="" date="1146425782" path="RosenbrockFunction.err" size="0" user="UnknownUser" version=""}%
-%META:FILEATTACHMENT{name="MultigraphWithErrorbars.err" attr="h" autoattached="1" comment="" date="1146425781" path="MultigraphWithErrorbars.err" size="0" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="TestInstall.gnu" attr="h" autoattached="1" comment="" date="1146425499" path="TestInstall.gnu" size="100" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="InterlockingTori.png" attr="h" autoattached="1" comment="Pre-rendered graphics for <nop>InterlockingTori example" date="1146425782" path="InterlockingTori.png" size="8858" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="CIAWorldDataBankIIDenmark.png" attr="h" autoattached="1" comment="" date="1146425781" path="CIAWorldDataBankIIDenmark.png" size="8657" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="TestInstallSample.png" attr="h" autoattached="1" comment="Pre-rendered graphics for <nop>TestInstallSample example" date="1146425499" path="TestInstallSample.png" size="9309" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="MultigraphWithErrorbars.gnu" attr="h" autoattached="1" comment="" date="1146425499" path="MultigraphWithErrorbars.gnu" size="434" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="DampedSinus.err" attr="h" autoattached="1" comment="" date="1146425781" path="DampedSinus.err" size="0" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="BlueWhaleSample.png" attr="h" autoattached="1" comment="" date="1146425499" path="BlueWhaleSample.png" size="9633" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="MultigraphWithErrorbarsSample.png" attr="h" autoattached="1" comment="Pre-rendered graphics for <nop>MultigraphWithErrorbarsSample example" date="1146425499" path="MultigraphWithErrorbarsSample.png" size="9082" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="BlueWhale.png" attr="h" autoattached="1" comment="Pre-rendered graphics for <nop>BlueWhale example" date="1146425782" path="BlueWhale.png" size="4610" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="InterlockingToriSample.png" attr="h" autoattached="1" comment="" date="1146425499" path="InterlockingToriSample.png" size="15800" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="RosenbrockFunction.png" attr="h" autoattached="1" comment="Pre-rendered graphics for <nop>RosenbrockFunction example" date="1146425784" path="RosenbrockFunction.png" size="5130" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="DampedSinus.gnu" attr="h" autoattached="1" comment="" date="1146425499" path="DampedSinus.gnu" size="126" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="BlueWhale.gnu" attr="h" autoattached="1" comment="" date="1146425499" path="BlueWhale.gnu" size="179" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="BlueWhale.err" attr="h" autoattached="1" comment="" date="1146425782" path="BlueWhale.err" size="0" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="CIAWorldDataBankIIDenmarkData.data" attr="h" autoattached="1" comment="Data for <nop>CIAWorldDataBankIIDenmark example" date="1146425499" path="CIAWorldDataBankIIDenmarkData.data" size="403115" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="TestInstall.png" attr="h" autoattached="1" comment="" date="1146425781" path="TestInstall.png" size="5060" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="CIAWorldDataBankIIDenmarkSample.png" attr="h" autoattached="1" comment="Pre-rendered graphics for <nop>CIAWorldDataBankIIDenmark example" date="1146425499" path="CIAWorldDataBankIIDenmarkSample.png" size="15279" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="DampedSinus.png" attr="h" autoattached="1" comment="" date="1146425781" path="DampedSinus.png" size="4659" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="CIAWorldDataBankIIDenmark.gnu" attr="h" autoattached="1" comment="" date="1146425499" path="CIAWorldDataBankIIDenmark.gnu" size="182" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="CIAWorldDataBankIIDenmark.err" attr="h" autoattached="1" comment="" date="1146425781" path="CIAWorldDataBankIIDenmark.err" size="0" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="whale.dat" attr="h" autoattached="1" comment="" date="1146425499" path="whale.dat" size="94590" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="RosenbrockFunction.gnu" attr="h" autoattached="1" comment="" date="1146425499" path="RosenbrockFunction.gnu" size="700" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="InterlockingTori.err" attr="h" autoattached="1" comment="" date="1146425781" path="InterlockingTori.err" size="0" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="TestInstall.err" attr="h" autoattached="1" comment="" date="1146425781" path="TestInstall.err" size="0" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="RosenbrockFunctionSample.png" attr="h" autoattached="1" comment="" date="1146425499" path="RosenbrockFunctionSample.png" size="9867" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="MultigraphWithErrorbars.err" attr="h" autoattached="1" comment="" date="1146425781" path="MultigraphWithErrorbars.err" size="0" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="TestInstall.gnu" attr="h" autoattached="1" comment="" date="1146425499" path="TestInstall.gnu" size="100" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="InterlockingTori.png" attr="h" autoattached="1" comment="Pre-rendered graphics for <nop>InterlockingTori example" date="1146425782" path="InterlockingTori.png" size="8858" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="CIAWorldDataBankIIDenmark.png" attr="h" autoattached="1" comment="" date="1146425781" path="CIAWorldDataBankIIDenmark.png" size="8657" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="TestInstallSample.png" attr="h" autoattached="1" comment="Pre-rendered graphics for <nop>TestInstallSample example" date="1146425499" path="TestInstallSample.png" size="9309" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="MultigraphWithErrorbars.gnu" attr="h" autoattached="1" comment="" date="1146425499" path="MultigraphWithErrorbars.gnu" size="434" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="DampedSinus.err" attr="h" autoattached="1" comment="" date="1146425781" path="DampedSinus.err" size="0" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="BlueWhaleSample.png" attr="h" autoattached="1" comment="" date="1146425499" path="BlueWhaleSample.png" size="9633" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="MultigraphWithErrorbarsSample.png" attr="h" autoattached="1" comment="Pre-rendered graphics for <nop>MultigraphWithErrorbarsSample example" date="1146425499" path="MultigraphWithErrorbarsSample.png" size="9082" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="BlueWhale.png" attr="h" autoattached="1" comment="Pre-rendered graphics for <nop>BlueWhale example" date="1146425782" path="BlueWhale.png" size="4610" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="InterlockingToriSample.png" attr="h" autoattached="1" comment="" date="1146425499" path="InterlockingToriSample.png" size="15800" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="RosenbrockFunction.png" attr="h" autoattached="1" comment="Pre-rendered graphics for <nop>RosenbrockFunction example" date="1146425784" path="RosenbrockFunction.png" size="5130" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="DampedSinus.gnu" attr="h" autoattached="1" comment="" date="1146425499" path="DampedSinus.gnu" size="126" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="BlueWhale.gnu" attr="h" autoattached="1" comment="" date="1146425499" path="BlueWhale.gnu" size="179" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="BlueWhale.err" attr="h" autoattached="1" comment="" date="1146425782" path="BlueWhale.err" size="0" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="CIAWorldDataBankIIDenmarkData.data" attr="h" autoattached="1" comment="Data for <nop>CIAWorldDataBankIIDenmark example" date="1146425499" path="CIAWorldDataBankIIDenmarkData.data" size="403115" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="TestInstall.png" attr="h" autoattached="1" comment="" date="1146425781" path="TestInstall.png" size="5060" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="CIAWorldDataBankIIDenmarkSample.png" attr="h" autoattached="1" comment="Pre-rendered graphics for <nop>CIAWorldDataBankIIDenmark example" date="1146425499" path="CIAWorldDataBankIIDenmarkSample.png" size="15279" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="DampedSinus.png" attr="h" autoattached="1" comment="" date="1146425781" path="DampedSinus.png" size="4659" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="CIAWorldDataBankIIDenmark.gnu" attr="h" autoattached="1" comment="" date="1146425499" path="CIAWorldDataBankIIDenmark.gnu" size="182" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="CIAWorldDataBankIIDenmark.err" attr="h" autoattached="1" comment="" date="1146425781" path="CIAWorldDataBankIIDenmark.err" size="0" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="whale.dat" attr="h" autoattached="1" comment="" date="1146425499" path="whale.dat" size="94590" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="RosenbrockFunction.gnu" attr="h" autoattached="1" comment="" date="1146425499" path="RosenbrockFunction.gnu" size="700" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="InterlockingTori.err" attr="h" autoattached="1" comment="" date="1146425781" path="InterlockingTori.err" size="0" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="TestInstall.err" attr="h" autoattached="1" comment="" date="1146425781" path="TestInstall.err" size="0" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="RosenbrockFunctionSample.png" attr="h" autoattached="1" comment="" date="1146425499" path="RosenbrockFunctionSample.png" size="9867" user="Main.ProjectContributor" version=""}%
 %META:REVCOMMENT{ncomments="0"}%

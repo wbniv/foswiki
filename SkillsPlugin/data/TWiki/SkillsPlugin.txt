@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1177340575" format="1.1" version="0"}%
+%META:TOPICINFO{author="ProjectContributor" date="1177340575" format="1.1" version="0"}%
 ---+!! <nop>%TOPIC%
 
 This plugin allows users to specify what skills they have and their level of proficiency. The user can then display their skills on their home page, and view other users skills by browsing through specific categories/skills.
@@ -124,7 +124,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 
 __Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
 
-%META:FILEATTACHMENT{name="style.css" attr="" autoattached="1" comment="" date="1171245554" path="style.css" size="2317" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="skills_screenshot_thumb.png" attr="" autoattached="1" comment="" date="1171248289" path="skills_screenshot_thumb.png" size="48997" user="Main.TWikiContributor" version="2"}%
-%META:FILEATTACHMENT{name="skills_screenshot_full.png" attr="" autoattached="1" comment="" date="1171248281" path="skills_screenshot_full.png" size="131655" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="skills_screenshot_search.png" attr="" autoattached="1" comment="" date="1172430565" path="skills_screenshot_search.png" size="9636" user="Main.TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="style.css" attr="" autoattached="1" comment="" date="1171245554" path="style.css" size="2317" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="skills_screenshot_thumb.png" attr="" autoattached="1" comment="" date="1171248289" path="skills_screenshot_thumb.png" size="48997" user="Main.ProjectContributor" version="2"}%
+%META:FILEATTACHMENT{name="skills_screenshot_full.png" attr="" autoattached="1" comment="" date="1171248281" path="skills_screenshot_full.png" size="131655" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="skills_screenshot_search.png" attr="" autoattached="1" comment="" date="1172430565" path="skills_screenshot_search.png" size="9636" user="Main.ProjectContributor" version="1"}%

@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1111929255" format="1.0" version="$Rev: 9189 $"}%
+%META:TOPICINFO{author="ProjectContributor" date="1111929255" format="1.0" version="$Rev: 9189 $"}%
 ---+ Empty TWiki Tag
 
 This is an empty Tag you can use as a template to build your own TWikiTag.
@@ -41,4 +41,4 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>M
 
 __Related Topics:__ %SYSTEMWEB%.TWikiTags, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
 
--- %SYSTEMWEB%.TWikiContributor - 01 Feb 2006
+-- %SYSTEMWEB%.ProjectContributor - 01 Feb 2006

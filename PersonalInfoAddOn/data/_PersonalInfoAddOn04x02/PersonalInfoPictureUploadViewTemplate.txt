@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1166089765" format="1.1" version="1.1"}%
+%META:TOPICINFO{author="ProjectContributor" date="1166089765" format="1.1" version="1.1"}%
 %{"View template with a stripped down attach template from pattern skin to show the upload option only. Attachments will be automatically hidden. After uploading the user will be redirected to PersonalInfoPictureViewTemplate."}%
 %TMPL:INCLUDE{"attach"}%
 

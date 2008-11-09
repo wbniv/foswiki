@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1163536597" format="1.0" version="1.1"}%
+%META:TOPICINFO{author="ProjectContributor" date="1163536597" format="1.0" version="1.1"}%
 ---+!! Tag-me Plugin
 
 Plugin to tag wiki content collectively in order to find content by tags and to get a meaningful page ranking.
@@ -439,12 +439,12 @@ __Related Topics:__ %SYSTEMWEB%.TagMeViewAllTags, %SYSTEMWEB%.TagMeViewMyTags, %
 
 -- TWiki:Main.PeterThoeny - 16 Oct 2007
 
-%META:FILEATTACHMENT{name="tag_add.gif" attr="h" comment="Button: add tag" date="1141691885" path="tag_add.gif" size="857" user="TWikiContributor" version="1.1"}%
-%META:FILEATTACHMENT{name="tag_remove.gif" attr="h" comment="Button: remove tag" date="1141697484" path="tag_remove.gif" size="862" user="TWikiContributor" version="1.1"}%
-%META:FILEATTACHMENT{name="alltagcloud.gif" attr="h" comment="Screenshot of view all tags tag cloud" date="1141693726" path="alltagcloud.gif" size="8087" user="TWikiContributor" version="1.1"}%
-%META:FILEATTACHMENT{name="topictags.gif" attr="h" comment="Screenshot of tags on a topic" date="1141696674" path="topictags.gif" size="1945" user="TWikiContributor" version="1.1"}%
-%META:FILEATTACHMENT{name="topictags_styleblog.gif" attr="h" comment="Screenshot of tags on a topic, closed" date="1219868858" path="topictags_styleblog.gif" size="12712" user="TWikiContributor" version="1.1"}%
-%META:FILEATTACHMENT{name="topictags_styleblog_open.gif" attr="h" comment="Screenshot of tags on a topic, opened" date="1219868858" path="topictags_styleblog_open.gif" size="22259" user="TWikiContributor" version="1.1"}%
-%META:FILEATTACHMENT{name="tag_addnew.gif" attr="h" comment="" date="1141696362" path="tag_addnew.gif" size="852" user="TWikiContributor" version="1.1"}%
-%META:FILEATTACHMENT{name="tagme.css" attr="h" comment="CSS styles" date="1141696362" path="tagme.css" size="1349" user="TWikiContributor" version="1.1"}%
-%META:FILEATTACHMENT{name="buttons_gradient.psd" attr="h" comment="Buttons design document (Photoshop format)" date="1141696362" path="buttons_gradient.psd" size="41686" user="TWikiContributor" version="1.1"}%
+%META:FILEATTACHMENT{name="tag_add.gif" attr="h" comment="Button: add tag" date="1141691885" path="tag_add.gif" size="857" user="ProjectContributor" version="1.1"}%
+%META:FILEATTACHMENT{name="tag_remove.gif" attr="h" comment="Button: remove tag" date="1141697484" path="tag_remove.gif" size="862" user="ProjectContributor" version="1.1"}%
+%META:FILEATTACHMENT{name="alltagcloud.gif" attr="h" comment="Screenshot of view all tags tag cloud" date="1141693726" path="alltagcloud.gif" size="8087" user="ProjectContributor" version="1.1"}%
+%META:FILEATTACHMENT{name="topictags.gif" attr="h" comment="Screenshot of tags on a topic" date="1141696674" path="topictags.gif" size="1945" user="ProjectContributor" version="1.1"}%
+%META:FILEATTACHMENT{name="topictags_styleblog.gif" attr="h" comment="Screenshot of tags on a topic, closed" date="1219868858" path="topictags_styleblog.gif" size="12712" user="ProjectContributor" version="1.1"}%
+%META:FILEATTACHMENT{name="topictags_styleblog_open.gif" attr="h" comment="Screenshot of tags on a topic, opened" date="1219868858" path="topictags_styleblog_open.gif" size="22259" user="ProjectContributor" version="1.1"}%
+%META:FILEATTACHMENT{name="tag_addnew.gif" attr="h" comment="" date="1141696362" path="tag_addnew.gif" size="852" user="ProjectContributor" version="1.1"}%
+%META:FILEATTACHMENT{name="tagme.css" attr="h" comment="CSS styles" date="1141696362" path="tagme.css" size="1349" user="ProjectContributor" version="1.1"}%
+%META:FILEATTACHMENT{name="buttons_gradient.psd" attr="h" comment="Buttons design document (Photoshop format)" date="1141696362" path="buttons_gradient.psd" size="41686" user="ProjectContributor" version="1.1"}%

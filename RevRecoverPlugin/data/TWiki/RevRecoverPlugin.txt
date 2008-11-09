@@ -42,7 +42,7 @@ Plugin settings are stored as preferences variables. The following variables are
 		* %TOPIC%?rev=1
 		* %TOPIC%?rev=1.1
 		* %SYSTEMWEB%.ATasteOfTWiki?rev=1
-		* %MAINWEB%.TWikiContributor?rev=1
+		* %MAINWEB%.ProjectContributor?rev=1
 
 ---+++ Plugin Info
 

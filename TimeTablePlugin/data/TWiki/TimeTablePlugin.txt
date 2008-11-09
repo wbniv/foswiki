@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1179321536" format="1.0" version="$Rev$"}%
+%META:TOPICINFO{author="ProjectContributor" date="1179321536" format="1.0" version="$Rev$"}%
 ---+!! <nop>%TOPIC%
 The <nop>%TOPIC% handles the tag =%<nop>TIMETABLE%= and creates a weekly timetable. 
 The timetable is rendered with HTML tables and should work with all modern web browsers. Please take a look at the [[#TimeTablePluginFeatures][feature list]] for more information.

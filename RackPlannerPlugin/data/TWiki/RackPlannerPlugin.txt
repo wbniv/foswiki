@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1181042297" format="1.0" version="$Rev$"}%
+%META:TOPICINFO{author="ProjectContributor" date="1181042297" format="1.0" version="$Rev$"}%
 ---+ <nop>RackPlannerPlugin
 The <nop>RackPlannerPlugin handles the tag =%<nop>RACKPLANNER%= and renders a rack overview (HTML table) with devices (computer, router, switches, ...). 
 ---++ Syntax Rules

@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1111929255" format="1.0" version="8"}%
+%META:TOPICINFO{author="ProjectContributor" date="1111929255" format="1.0" version="8"}%
 ---+ <nop>ExcelImportExportPlugin
 
 This plugin renders an attached Excel spreadsheet as a TWiki table, and vice versa. It also provides scripts to generate a set of topics from an Excel spreadsheet, and vice versa. In detail, the plugin supports the following use cases:
@@ -132,7 +132,7 @@ Look at the example in Sandbox...
 ---++ Plugin Info
 
 |  Plugin Author: | TWiki:Main.ThomasWeigert, based on code by TWiki:Main.ClausLanghans |
-|  Copyright: | &copy; 2001-2008, %SYSTEMWEB%.TWikiContributor |
+|  Copyright: | &copy; 2001-2008, %SYSTEMWEB%.ProjectContributor |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
 |  Plugin Version: | July 2008 |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |

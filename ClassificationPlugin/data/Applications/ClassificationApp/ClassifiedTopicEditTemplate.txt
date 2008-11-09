@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1199824438" format="1.1" reprev="1.1" version="$Rev$"}%
+%META:TOPICINFO{author="ProjectContributor" date="1199824438" format="1.1" reprev="1.1" version="$Rev$"}%
 %META:TOPICPARENT{name="TopicView"}%
 %TMPL:INCLUDE{"edit"}%
 %TMPL:DEF{"title"}%%TOPICTITLE% - (%MAKETEXT{"edit classified topic"}%) - %WIKITOOLNAME%%TMPL:END%

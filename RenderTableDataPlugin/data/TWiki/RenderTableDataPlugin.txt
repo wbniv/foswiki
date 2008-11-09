@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="Main.TWikiContributor" date="1173012480" format="1.1" reprev="1.1" version="1.1"}%
+%META:TOPICINFO{author="Main.ProjectContributor" date="1173012480" format="1.1" reprev="1.1" version="1.1"}%
 ---+!! !RenderTableDataPlugin
 
 *Separate data storage from display: render table data in any different way.*
@@ -227,5 +227,5 @@ format="   * $C1$C3(\"isempty\" then=\" $C4\" else=\" [[$C3][$C4]]\") %BR%   $C2
 | Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
 
-%META:FILEATTACHMENT{name="renderTableDataExample.png" attachment="renderTableDataExample.png" attr="" comment="Edit and render example" date="1173012452" path="renderTableDataExample.png" size="217811" stream="renderTableDataExample.png" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="renderTableDataExample_thumb.gif" attachment="renderTableDataExample_thumb.gif" attr="h" comment="Thumbnail to example image" date="1173012479" path="renderTableDataExample_thumb.gif" size="18396" stream="renderTableDataExample_thumb.gif" user="Main.TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="renderTableDataExample.png" attachment="renderTableDataExample.png" attr="" comment="Edit and render example" date="1173012452" path="renderTableDataExample.png" size="217811" stream="renderTableDataExample.png" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="renderTableDataExample_thumb.gif" attachment="renderTableDataExample_thumb.gif" attr="h" comment="Thumbnail to example image" date="1173012479" path="renderTableDataExample_thumb.gif" size="18396" stream="renderTableDataExample_thumb.gif" user="Main.ProjectContributor" version="1"}%

@@ -50,7 +50,7 @@ Create this table in [[Sandbox.FindElsewherePluginTest]] to try it out (use raw 
 <verbatim>
 | *Test case* | *Input* | *Output<br />(if installed)* | *Expected* |
 | Found elsewhere, spaced wiki word | [<nop>[TWiki preferences]] | [[TWiki preferences]] | _TWiki preferences_ <sup>([[%SYSTEMWEB%.TWikiPreferences][%SYSTEMWEB%]],[[%MAINWEB%.TWikiPreferences][%MAINWEB%]])</sup> |
-| Found elsewhere | <nop>TWikiContributor | TWikiContributor | <nop>TWikiContributor<sup>([[%SYSTEMWEB%.TWikiContributor][%SYSTEMWEB%]],[[%MAINWEB%.TWikiContributor][%MAINWEB%]])</sup> |
+| Found elsewhere | <nop>ProjectContributor | ProjectContributor | <nop>ProjectContributor<sup>([[%SYSTEMWEB%.ProjectContributor][%SYSTEMWEB%]],[[%MAINWEB%.ProjectContributor][%MAINWEB%]])</sup> |
 </verbatim>
 
 __Internationalization__

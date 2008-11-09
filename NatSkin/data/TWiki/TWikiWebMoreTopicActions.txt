@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1162063414" format="1.1" version="$Rev$"}%
+%META:TOPICINFO{author="ProjectContributor" date="1162063414" format="1.1" version="$Rev$"}%
 <div class="natOopsMore">
 <div class="twikiFormSteps %CALC{"$SETM(incr,+1)$IF($ODD($GET(incr)),twikiLeft,twikiRight)"}%">
   <form name="main" action="%SCRIPTURLPATH{"manage"}%/%BASEWEB%/%BASETOPIC%" method="post">

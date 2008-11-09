@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1140597757" format="1.1" version="1.1"}%
+%META:TOPICINFO{author="ProjectContributor" date="1140597757" format="1.1" version="1.1"}%
 ---+!! <nop>%TOPIC%
 
 *This contrib packages in a convenient way the !JavaScript library and the CSS file needed to implement Twisty sections.*
@@ -182,5 +182,5 @@ You can also set the global TWiki variable TWISTYCONTRIB_DEBUG to 1 to make the 
 
 __Related Topics:__ %SYSTEMWEB%.TWikiPreferences
  
-%META:FILEATTACHMENT{name="twist.js" attachment="twist.js" attr="" comment="!JavaScript library" date="1126427179" path="twist.js" size="3441" stream="twist.js" user="TWikiContributor" version="0"}%
-%META:FILEATTACHMENT{name="twist.css" attachment="twist.css" attr="" comment="Style Sheet" date="1126427224" path="twist.css" size="122" stream="twist.css" user="TWikiContributor" version="0"}%
+%META:FILEATTACHMENT{name="twist.js" attachment="twist.js" attr="" comment="!JavaScript library" date="1126427179" path="twist.js" size="3441" stream="twist.js" user="ProjectContributor" version="0"}%
+%META:FILEATTACHMENT{name="twist.css" attachment="twist.css" attr="" comment="Style Sheet" date="1126427224" path="twist.css" size="122" stream="twist.css" user="ProjectContributor" version="0"}%

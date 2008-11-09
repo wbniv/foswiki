@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1146316768" format="1.1" version="1.3"}%
+%META:TOPICINFO{author="ProjectContributor" date="1146316768" format="1.1" version="1.3"}%
 ---+!! <nop>%TOPIC% 
 
 <nop>%TOPIC% allows for dynamic rendering and display of a Ploticus graph in a TWiki topic.
@@ -1344,62 +1344,62 @@ __Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main.SteffenPoulsen - 27 Apr 2006
 
-%META:FILEATTACHMENT{name="SessionsSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143761" path="SessionsSample.png" size="8535" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="PieChartSimpleSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143603" path="PieChartSimpleSample.png" size="1364" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="FatsContent.err" attr="h" autoattached="1" comment="" date="1146315734" path="FatsContent.err" size="0" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="PieChartHalfMoon.err" attr="h" autoattached="1" comment="" date="1146315734" path="PieChartHalfMoon.err" size="0" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="StockCurveFit.err" attr="h" autoattached="1" comment="" date="1146315735" path="StockCurveFit.err" size="0" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="PieChartAutomaticPercentSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143680" path="PieChartAutomaticPercentSample.png" size="2374" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="FatsContentSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143726" path="FatsContentSample.png" size="1689" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="PieChartHalfMoon.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="PieChartHalfMoon.ploticus" size="408" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="PieChartExploded.err" attr="h" autoattached="1" comment="" date="1146315734" path="PieChartExploded.err" size="0" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="MultiScatSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146315288" path="MultiScatSample.png" size="8199" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="DrawingLogo.ploticus" attr="h" autoattached="1" comment="" date="1146261324" path="DrawingLogo.ploticus" size="388" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="AccrualSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143744" path="AccrualSample.png" size="3677" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="WindDirection.png" attr="h" autoattached="1" comment="" date="1146315735" path="WindDirection.png" size="28955" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="MultiScat.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="MultiScat.ploticus" size="3207" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="Sessions.err" attr="h" autoattached="1" comment="" date="1146315734" path="Sessions.err" size="0" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="HeatMap.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="HeatMap.ploticus" size="1605" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="StockCurveFit.ploticus" attr="h" autoattached="1" comment="" date="1146315288" path="StockCurveFit.ploticus" size="1759" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="Accrual.png" attr="h" autoattached="1" comment="" date="1146315734" path="Accrual.png" size="3677" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="MultiScat.err" attr="h" autoattached="1" comment="" date="1146315735" path="MultiScat.err" size="0" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="logo.dcm" attr="h" autoattached="1" comment="Datafile for Ploticus Logo example" date="1146258989" path="logo.dcm" size="435" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="PieChartExplodedSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143698" path="PieChartExplodedSample.png" size="2506" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="ClusteredVertBars.png" attr="h" autoattached="1" comment="" date="1146315734" path="ClusteredVertBars.png" size="2327" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="PieChartAutomaticPercent.err" attr="h" autoattached="1" comment="" date="1146315734" path="PieChartAutomaticPercent.err" size="0" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="DrawingLogo.png" attr="h" autoattached="1" comment="" date="1146315735" path="DrawingLogo.png" size="947" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="Sessions.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="Sessions.ploticus" size="644" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="WindDirection.err" attr="h" autoattached="1" comment="" date="1146315734" path="WindDirection.err" size="0" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="PieChartExploded.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="PieChartExploded.ploticus" size="546" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="WindDirection.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="WindDirection.ploticus" size="1926" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="PieChartSimple.err" attr="h" autoattached="1" comment="" date="1146315734" path="PieChartSimple.err" size="0" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="HeatMapSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143813" path="HeatMapSample.png" size="1853" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="StockCurveFitSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146315288" path="StockCurveFitSample.png" size="2984" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="Sessions.png" attr="h" autoattached="1" comment="" date="1146315734" path="Sessions.png" size="8535" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="wind.csv" attr="h" autoattached="1" comment="Datafile for Ploticus <nop>WindDirection example" date="1146130848" path="wind.csv" size="48304" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="ClusteredVertBars.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="ClusteredVertBars.ploticus" size="1200" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="ClusteredVertBarsSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143777" path="ClusteredVertBarsSample.png" size="2327" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="PieChartHalfMoon.png" attr="h" autoattached="1" comment="" date="1146315734" path="PieChartHalfMoon.png" size="2224" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="vf.dat" attr="h" autoattached="1" comment="Datafile for Ploticus <nop>MultiScat example" date="1146130848" path="vf.dat" size="26233" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="ClusteredVertBars.err" attr="h" autoattached="1" comment="" date="1146315734" path="ClusteredVertBars.err" size="0" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="PieChartAutomaticPercent.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="PieChartAutomaticPercent.ploticus" size="657" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="HeatMap.err" attr="h" autoattached="1" comment="" date="1146315735" path="HeatMap.err" size="0" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="StockCurveFit.png" attr="h" autoattached="1" comment="" date="1146315735" path="StockCurveFit.png" size="2984" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="FatsContent.png" attr="h" autoattached="1" comment="" date="1146315734" path="FatsContent.png" size="1689" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="PieChartHalfMoonSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143714" path="PieChartHalfMoonSample.png" size="2224" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="PieChartExploded.png" attr="h" autoattached="1" comment="" date="1146315734" path="PieChartExploded.png" size="2506" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="DrawingLogoSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146316747" path="DrawingLogoSample.png" size="947" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="snpmap.dat" attr="h" autoattached="1" comment="Datafile for Ploticus <nop>HeatMap example" date="1146130848" path="snpmap.dat" size="69501" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="PieChartSimple.ploticus" attr="h" autoattached="1" comment="" date="1146315288" path="PieChartSimple.ploticus" size="521" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="stock.csv" attr="h" autoattached="1" comment="Datafile for Ploticus <nop>StockCurveFit example" date="1146130848" path="stock.csv" size="4236" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="PieChartAutomaticPercent.png" attr="h" autoattached="1" comment="" date="1146315734" path="PieChartAutomaticPercent.png" size="2374" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="MultiScat.png" attr="h" autoattached="1" comment="" date="1146315735" path="MultiScat.png" size="8199" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="Accrual.err" attr="h" autoattached="1" comment="" date="1146315734" path="Accrual.err" size="0" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="FatsContent.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="FatsContent.ploticus" size="1997" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="accrual.dat" attr="h" autoattached="1" comment="Datafile for Ploticus Accrual example" date="1146130848" path="accrual.dat" size="25806" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="PieChartSimple.png" attr="h" autoattached="1" comment="" date="1146315734" path="PieChartSimple.png" size="1364" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="sess03022000.dat" attr="h" autoattached="1" comment="Datafile for Ploticus Sessions example" date="1146130848" path="sess03022000.dat" size="3053" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="HeatMap.png" attr="h" autoattached="1" comment="" date="1146315735" path="HeatMap.png" size="1853" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="WindDirectionSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143797" path="WindDirectionSample.png" size="28955" user="Main.TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="DrawingLogo.err" attr="h" autoattached="1" comment="" date="1146315735" path="DrawingLogo.err" size="0" user="Main.TWikiContributor" version=""}%
-%META:FILEATTACHMENT{name="Accrual.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="Accrual.ploticus" size="3507" user="Main.TWikiContributor" version=""}%
+%META:FILEATTACHMENT{name="SessionsSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143761" path="SessionsSample.png" size="8535" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="PieChartSimpleSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143603" path="PieChartSimpleSample.png" size="1364" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="FatsContent.err" attr="h" autoattached="1" comment="" date="1146315734" path="FatsContent.err" size="0" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="PieChartHalfMoon.err" attr="h" autoattached="1" comment="" date="1146315734" path="PieChartHalfMoon.err" size="0" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="StockCurveFit.err" attr="h" autoattached="1" comment="" date="1146315735" path="StockCurveFit.err" size="0" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="PieChartAutomaticPercentSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143680" path="PieChartAutomaticPercentSample.png" size="2374" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="FatsContentSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143726" path="FatsContentSample.png" size="1689" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="PieChartHalfMoon.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="PieChartHalfMoon.ploticus" size="408" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="PieChartExploded.err" attr="h" autoattached="1" comment="" date="1146315734" path="PieChartExploded.err" size="0" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="MultiScatSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146315288" path="MultiScatSample.png" size="8199" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="DrawingLogo.ploticus" attr="h" autoattached="1" comment="" date="1146261324" path="DrawingLogo.ploticus" size="388" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="AccrualSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143744" path="AccrualSample.png" size="3677" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="WindDirection.png" attr="h" autoattached="1" comment="" date="1146315735" path="WindDirection.png" size="28955" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="MultiScat.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="MultiScat.ploticus" size="3207" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="Sessions.err" attr="h" autoattached="1" comment="" date="1146315734" path="Sessions.err" size="0" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="HeatMap.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="HeatMap.ploticus" size="1605" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="StockCurveFit.ploticus" attr="h" autoattached="1" comment="" date="1146315288" path="StockCurveFit.ploticus" size="1759" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="Accrual.png" attr="h" autoattached="1" comment="" date="1146315734" path="Accrual.png" size="3677" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="MultiScat.err" attr="h" autoattached="1" comment="" date="1146315735" path="MultiScat.err" size="0" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="logo.dcm" attr="h" autoattached="1" comment="Datafile for Ploticus Logo example" date="1146258989" path="logo.dcm" size="435" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="PieChartExplodedSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143698" path="PieChartExplodedSample.png" size="2506" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="ClusteredVertBars.png" attr="h" autoattached="1" comment="" date="1146315734" path="ClusteredVertBars.png" size="2327" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="PieChartAutomaticPercent.err" attr="h" autoattached="1" comment="" date="1146315734" path="PieChartAutomaticPercent.err" size="0" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="DrawingLogo.png" attr="h" autoattached="1" comment="" date="1146315735" path="DrawingLogo.png" size="947" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="Sessions.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="Sessions.ploticus" size="644" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="WindDirection.err" attr="h" autoattached="1" comment="" date="1146315734" path="WindDirection.err" size="0" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="PieChartExploded.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="PieChartExploded.ploticus" size="546" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="WindDirection.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="WindDirection.ploticus" size="1926" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="PieChartSimple.err" attr="h" autoattached="1" comment="" date="1146315734" path="PieChartSimple.err" size="0" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="HeatMapSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143813" path="HeatMapSample.png" size="1853" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="StockCurveFitSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146315288" path="StockCurveFitSample.png" size="2984" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="Sessions.png" attr="h" autoattached="1" comment="" date="1146315734" path="Sessions.png" size="8535" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="wind.csv" attr="h" autoattached="1" comment="Datafile for Ploticus <nop>WindDirection example" date="1146130848" path="wind.csv" size="48304" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="ClusteredVertBars.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="ClusteredVertBars.ploticus" size="1200" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="ClusteredVertBarsSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143777" path="ClusteredVertBarsSample.png" size="2327" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="PieChartHalfMoon.png" attr="h" autoattached="1" comment="" date="1146315734" path="PieChartHalfMoon.png" size="2224" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="vf.dat" attr="h" autoattached="1" comment="Datafile for Ploticus <nop>MultiScat example" date="1146130848" path="vf.dat" size="26233" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="ClusteredVertBars.err" attr="h" autoattached="1" comment="" date="1146315734" path="ClusteredVertBars.err" size="0" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="PieChartAutomaticPercent.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="PieChartAutomaticPercent.ploticus" size="657" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="HeatMap.err" attr="h" autoattached="1" comment="" date="1146315735" path="HeatMap.err" size="0" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="StockCurveFit.png" attr="h" autoattached="1" comment="" date="1146315735" path="StockCurveFit.png" size="2984" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="FatsContent.png" attr="h" autoattached="1" comment="" date="1146315734" path="FatsContent.png" size="1689" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="PieChartHalfMoonSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143714" path="PieChartHalfMoonSample.png" size="2224" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="PieChartExploded.png" attr="h" autoattached="1" comment="" date="1146315734" path="PieChartExploded.png" size="2506" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="DrawingLogoSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146316747" path="DrawingLogoSample.png" size="947" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="snpmap.dat" attr="h" autoattached="1" comment="Datafile for Ploticus <nop>HeatMap example" date="1146130848" path="snpmap.dat" size="69501" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="PieChartSimple.ploticus" attr="h" autoattached="1" comment="" date="1146315288" path="PieChartSimple.ploticus" size="521" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="stock.csv" attr="h" autoattached="1" comment="Datafile for Ploticus <nop>StockCurveFit example" date="1146130848" path="stock.csv" size="4236" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="PieChartAutomaticPercent.png" attr="h" autoattached="1" comment="" date="1146315734" path="PieChartAutomaticPercent.png" size="2374" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="MultiScat.png" attr="h" autoattached="1" comment="" date="1146315735" path="MultiScat.png" size="8199" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="Accrual.err" attr="h" autoattached="1" comment="" date="1146315734" path="Accrual.err" size="0" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="FatsContent.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="FatsContent.ploticus" size="1997" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="accrual.dat" attr="h" autoattached="1" comment="Datafile for Ploticus Accrual example" date="1146130848" path="accrual.dat" size="25806" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="PieChartSimple.png" attr="h" autoattached="1" comment="" date="1146315734" path="PieChartSimple.png" size="1364" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="sess03022000.dat" attr="h" autoattached="1" comment="Datafile for Ploticus Sessions example" date="1146130848" path="sess03022000.dat" size="3053" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="HeatMap.png" attr="h" autoattached="1" comment="" date="1146315735" path="HeatMap.png" size="1853" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="WindDirectionSample.png" attr="h" autoattached="1" comment="Ploticus pre-rendered sample" date="1146143797" path="WindDirectionSample.png" size="28955" user="Main.ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="DrawingLogo.err" attr="h" autoattached="1" comment="" date="1146315735" path="DrawingLogo.err" size="0" user="Main.ProjectContributor" version=""}%
+%META:FILEATTACHMENT{name="Accrual.ploticus" attr="h" autoattached="1" comment="" date="1146130848" path="Accrual.ploticus" size="3507" user="Main.ProjectContributor" version=""}%

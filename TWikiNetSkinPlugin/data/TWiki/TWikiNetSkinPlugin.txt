@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1111929255" format="1.0" version="$Rev: 13805 $"}%
+%META:TOPICINFO{author="ProjectContributor" date="1111929255" format="1.0" version="$Rev: 13805 $"}%
 ---+ TWikiNetSkin Plugin
 
 Helps TWikiNetSkin to render tables and h2 headers. This plugin is only enabled if the skin is set to =twikinet=.

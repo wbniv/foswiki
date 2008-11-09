@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1181684909" format="1.1" version="1.1"}%
+%META:TOPICINFO{author="ProjectContributor" date="1181684909" format="1.1" version="1.1"}%
 ---+!! Personal Info !AddOn
 
 *User personalisation and user search tool.*
@@ -108,4 +108,4 @@ If you are using !PersonalInfoAddon for TWiki 4.1, and need to update to the ver
 %META:FILEATTACHMENT{name="twikiEvent.js" attr="" autoattached="1" comment="" date="1181684152" path="twikiEvent.js" size="195158" user="UnknownUser" version="" comment="Javascript compatibility file for TWiki 4.1"}%
 %META:FILEATTACHMENT{name="userpage_select_picture.png" attr="" autoattached="1" comment="" date="1181684268" path="userpage_select_picture.png" size="104724" user="UnknownUser" version=""}%
 %META:FILEATTACHMENT{name="phonelist.png" attr="" autoattached="1" comment="" date="1181684188" path="phonelist.png" size="15764" user="UnknownUser" version=""}%
-%META:FILEATTACHMENT{name="silhouette.gif" attr="h" autoattached="1" comment="Default silhouette image" date="1180882660" path="silhouette.gif" size="1177" user="Main.TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="silhouette.gif" attr="h" autoattached="1" comment="Default silhouette image" date="1180882660" path="silhouette.gif" size="1177" user="Main.ProjectContributor" version="1"}%

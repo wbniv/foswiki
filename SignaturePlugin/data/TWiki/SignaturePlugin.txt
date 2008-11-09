@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1111929255" format="1.0" version="8"}%
+%META:TOPICINFO{author="ProjectContributor" date="1111929255" format="1.0" version="8"}%
 ---+ Signature Plugin
 
 This plugin supports a simple tag which appears as a button with the label given by the =SIGNATURELABEL= setting. When clicked, it is replaced by the text given in the =SIGNATUREFORMAT= setting (this is typically the name of the logged in user and the current date).

@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1147158405" format="1.0" version="1.1"}%
+%META:TOPICINFO{author="ProjectContributor" date="1147158405" format="1.0" version="1.1"}%
 ---+ Exhaustive Test Page for TWiki.ImgPlugin
 
 The syntax for displaying an image is   
@@ -115,15 +115,15 @@ If you want to make a link to the description page for an image, use a leading c
 
 
 
-%META:FILEATTACHMENT{name="100px-Tst.png" attr="" autoattached="1" comment="" date="1144766522" path="100px-Tst.png" size="14805" user="TWikiContributor" version="1.1"}%
-%META:FILEATTACHMENT{name="Westminstpalace.jpg" attr="" autoattached="1" comment="" date="1144761714" path="Westminstpalace.jpg" size="19790" user="TWikiContributor" version="1.1"}%
-%META:FILEATTACHMENT{name="150px-Westminstpalace.jpg" attr="" autoattached="1" comment="" date="1144766522" path="150px-Westminstpalace.jpg" size="2925" user="TWikiContributor" version="1.1"}%
-%META:FILEATTACHMENT{name="100px-Westminstpalace.jpg" attr="" autoattached="1" comment="" date="1144766518" path="100px-Westminstpalace.jpg" size="1652" user="TWikiContributor" version="1.1"}%
-%META:FILEATTACHMENT{name="Buckingham_palace_Copyright2003KaihsuTai.jpg" attr="" autoattached="1" comment="" date="1144761756" path="Buckingham_palace_Copyright2003KaihsuTai.jpg" size="15294" user="TWikiContributor" version="1.1"}%
-%META:FILEATTACHMENT{name="80px-Westminstpalace.jpg" attr="" autoattached="1" comment="" date="1144766520" path="80px-Westminstpalace.jpg" size="1212" user="TWikiContributor" version="1.1"}%
-%META:FILEATTACHMENT{name="180px-Westminstpalace.jpg" attr="" autoattached="1" comment="" date="1144766522" path="180px-Westminstpalace.jpg" size="3847" user="TWikiContributor" version="1.1"}%
-%META:FILEATTACHMENT{name="70px-Westminstpalace.jpg" attr="" autoattached="1" comment="" date="1144766518" path="70px-Westminstpalace.jpg" size="1093" user="TWikiContributor" version="1.1"}%
-%META:FILEATTACHMENT{name="200px-Westminstpalace.jpg" attr="" autoattached="1" comment="" date="1144766518" path="200px-Westminstpalace.jpg" size="4453" user="TWikiContributor" version="1.1"}%
-%META:FILEATTACHMENT{name="Tst.png" attr="" autoattached="1" comment="" date="1144761728" path="Tst.png" size="499" user="TWikiContributor" version="1.1"}%
-%META:FILEATTACHMENT{name="50px-Westminstpalace.jpg" attr="" autoattached="1" comment="" date="1144766520" path="50px-Westminstpalace.jpg" size="821" user="TWikiContributor" version="1.1"}%
-%META:FILEATTACHMENT{name="STS-32_crew.jpg" attr="" autoattached="1" comment="" date="1144681150" path="STS-32_crew.jpg" size="49583" user="TWikiContributor" version="1.1"}%
+%META:FILEATTACHMENT{name="100px-Tst.png" attr="" autoattached="1" comment="" date="1144766522" path="100px-Tst.png" size="14805" user="ProjectContributor" version="1.1"}%
+%META:FILEATTACHMENT{name="Westminstpalace.jpg" attr="" autoattached="1" comment="" date="1144761714" path="Westminstpalace.jpg" size="19790" user="ProjectContributor" version="1.1"}%
+%META:FILEATTACHMENT{name="150px-Westminstpalace.jpg" attr="" autoattached="1" comment="" date="1144766522" path="150px-Westminstpalace.jpg" size="2925" user="ProjectContributor" version="1.1"}%
+%META:FILEATTACHMENT{name="100px-Westminstpalace.jpg" attr="" autoattached="1" comment="" date="1144766518" path="100px-Westminstpalace.jpg" size="1652" user="ProjectContributor" version="1.1"}%
+%META:FILEATTACHMENT{name="Buckingham_palace_Copyright2003KaihsuTai.jpg" attr="" autoattached="1" comment="" date="1144761756" path="Buckingham_palace_Copyright2003KaihsuTai.jpg" size="15294" user="ProjectContributor" version="1.1"}%
+%META:FILEATTACHMENT{name="80px-Westminstpalace.jpg" attr="" autoattached="1" comment="" date="1144766520" path="80px-Westminstpalace.jpg" size="1212" user="ProjectContributor" version="1.1"}%
+%META:FILEATTACHMENT{name="180px-Westminstpalace.jpg" attr="" autoattached="1" comment="" date="1144766522" path="180px-Westminstpalace.jpg" size="3847" user="ProjectContributor" version="1.1"}%
+%META:FILEATTACHMENT{name="70px-Westminstpalace.jpg" attr="" autoattached="1" comment="" date="1144766518" path="70px-Westminstpalace.jpg" size="1093" user="ProjectContributor" version="1.1"}%
+%META:FILEATTACHMENT{name="200px-Westminstpalace.jpg" attr="" autoattached="1" comment="" date="1144766518" path="200px-Westminstpalace.jpg" size="4453" user="ProjectContributor" version="1.1"}%
+%META:FILEATTACHMENT{name="Tst.png" attr="" autoattached="1" comment="" date="1144761728" path="Tst.png" size="499" user="ProjectContributor" version="1.1"}%
+%META:FILEATTACHMENT{name="50px-Westminstpalace.jpg" attr="" autoattached="1" comment="" date="1144766520" path="50px-Westminstpalace.jpg" size="821" user="ProjectContributor" version="1.1"}%
+%META:FILEATTACHMENT{name="STS-32_crew.jpg" attr="" autoattached="1" comment="" date="1144681150" path="STS-32_crew.jpg" size="49583" user="ProjectContributor" version="1.1"}%

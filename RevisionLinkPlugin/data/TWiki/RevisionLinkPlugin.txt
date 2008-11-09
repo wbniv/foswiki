@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1147820697" format="1.0" version="$Rev: 15566 $"}%
+%META:TOPICINFO{author="ProjectContributor" date="1147820697" format="1.0" version="$Rev: 15566 $"}%
 ---+ Revision Link Plugin
 
 This plugin enables the author of a TWiki page to specify a particular version of a topic to link to. You can use also negative numbers when specifying the revision number.

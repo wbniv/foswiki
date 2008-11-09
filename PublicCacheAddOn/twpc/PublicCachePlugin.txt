@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1111929255" format="1.0" version="10"}%
+%META:TOPICINFO{author="ProjectContributor" date="1111929255" format="1.0" version="10"}%
 ---+ Public Cache Plugin
 
 Support Plugin for the PublicCacheAddOn, in charge of invalidating its
@@ -11,7 +11,7 @@ cache on topic saves.
 ---++ Plugin Info
 
 |  Plugin Author: | TWiki:Main.ColasNahaboo |
-|  Copyright: | &copy; 2008, %SYSTEMWEB%.TWikiContributor |
+|  Copyright: | &copy; 2008, %SYSTEMWEB%.ProjectContributor |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
 |  Plugin Version: | 1 (12 Jan 2008) |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
@@ -25,4 +25,4 @@ cache on topic saves.
 
 __Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
 
--- %SYSTEMWEB%.TWikiContributor - 12 Jan 2008
+-- %SYSTEMWEB%.ProjectContributor - 12 Jan 2008

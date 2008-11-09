@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1101474660" format="1.0" version="1.1"}%
+%META:TOPICINFO{author="ProjectContributor" date="1101474660" format="1.0" version="1.1"}%
 %META:TOPICPARENT{name="BibtexPlugin"}%
 ---+!! <nop>%TOPIC%
 %STARTINCLUDE% <form action="%SCRIPTURLPATH%/bibsearch/%INCLUDINGWEB%/%INCLUDINGTOPIC%" method="post">

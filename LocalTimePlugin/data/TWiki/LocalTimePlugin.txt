@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1057159140" format="1.0" version="1.2"}%
+%META:TOPICINFO{author="ProjectContributor" date="1057159140" format="1.0" version="1.2"}%
 ---+ <nop>%TOPIC%
 
 LocalTimePlugin is kind-of rewrite of LocalCityTimePlugin. I was unsatisfied with LocalCityTimePlugin (it has to connect to an external site to get the local time for a given city), so I wrote this Plugin to use the system's localtime functions. It works rather well, but doesn't do too much checking right now for a valid code. It won't die horribly if you give it a bad code, it just will give you a random time.

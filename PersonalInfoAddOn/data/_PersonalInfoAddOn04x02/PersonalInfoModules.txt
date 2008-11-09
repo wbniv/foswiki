@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1173206530" format="1.1" reprev="1.1" version="1.1"}%
+%META:TOPICINFO{author="ProjectContributor" date="1173206530" format="1.1" reprev="1.1" version="1.1"}%
 ---+!! Personal Info !AddOn Application Sections
 
 *Admin topic for %SYSTEMWEB%.PersonalInfoAddOn.* %BR%
@@ -96,7 +96,7 @@ color:#ccc;
 <verbatim>
 %STARTSECTION{"phoneListXML"}%<?xml version="1.0" encoding="ISO-8859-1"?>
 <users>
-%SEARCH{ "[F]irstName.*value=.*();[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation,TWikiContributor,TWikiGuest,UnknownUser" format="<user><firstname><![CDATA[$formfield(FirstName)]]></firstname><lastname><![CDATA[$formfield(LastName)]]></lastname><phone><![CDATA[$formfield(WorkPhone)]]></phone><url><![CDATA[%SCRIPTURL{view}%/%WEB%/$topic]]></url><imgname><![CDATA[$formfield(Picture)]]></imgname><imgurl><![CDATA[%PUBURL%/Main/$topic/]]></imgurl></user>" "}%
+%SEARCH{ "[F]irstName.*value=.*();[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation,ProjectContributor,TWikiGuest,UnknownUser" format="<user><firstname><![CDATA[$formfield(FirstName)]]></firstname><lastname><![CDATA[$formfield(LastName)]]></lastname><phone><![CDATA[$formfield(WorkPhone)]]></phone><url><![CDATA[%SCRIPTURL{view}%/%WEB%/$topic]]></url><imgname><![CDATA[$formfield(Picture)]]></imgname><imgurl><![CDATA[%PUBURL%/Main/$topic/]]></imgurl></user>" "}%
 </users>
 %ENDSECTION{"phoneListXML"}%
 </verbatim>
@@ -106,7 +106,7 @@ color:#ccc;
 ---++ personalSearch
 
 <verbatim>
-%STARTSECTION{"personalSearch"}%%SEARCH{ "[F]irstName.*value=.*(%URLPARAM{"q"}%)|[L]astName.*value=.*(%URLPARAM{"q"}%)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation,TWikiContributor,TWikiGuest,UnknownUser" format="   * [[$web.$topic][$topic]] $formfield(WorkPhone)"}%%ENDSECTION{"personalSearch"}%
+%STARTSECTION{"personalSearch"}%%SEARCH{ "[F]irstName.*value=.*(%URLPARAM{"q"}%)|[L]astName.*value=.*(%URLPARAM{"q"}%)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation,ProjectContributor,TWikiGuest,UnknownUser" format="   * [[$web.$topic][$topic]] $formfield(WorkPhone)"}%%ENDSECTION{"personalSearch"}%
 </verbatim>
 
 
@@ -114,7 +114,7 @@ color:#ccc;
 ---++ vCard
 
 <verbatim>
-%STARTSECTION{"vCard"}%%SEARCH{ "[F]irstName.*value=.*();[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation,TWikiContributor,TWikiGuest,UnknownUser" format="begin:vcard
+%STARTSECTION{"vCard"}%%SEARCH{ "[F]irstName.*value=.*();[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation,ProjectContributor,TWikiGuest,UnknownUser" format="begin:vcard
 fn:$formfield(FirstName) $formfield(LastName)
 n:$formfield(LastName);$formfield(FirstName)
 tel;type=work:$formfield(WorkPhone)
@@ -238,7 +238,7 @@ pISearch.showResults = function(inValue) {
 
 ---+++ directSearchData
 <verbatim>
-%STARTSECTION{"directSearchData"}%%SEARCH{ "[F]irstName.*value=.*();[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation,TWikiContributor,TWikiGuest,UnknownUser" format="{name:\"$formfield(FirstName) $formfield(LastName)\",phone:\"$formfield(WorkPhone)\",topic:\"$web/$topic\",pictureName:\"$formfield(Picture)\"}" separator=", "}%%ENDSECTION{"directSearchData"}%
+%STARTSECTION{"directSearchData"}%%SEARCH{ "[F]irstName.*value=.*();[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation,ProjectContributor,TWikiGuest,UnknownUser" format="{name:\"$formfield(FirstName) $formfield(LastName)\",phone:\"$formfield(WorkPhone)\",topic:\"$web/$topic\",pictureName:\"$formfield(Picture)\"}" separator=", "}%%ENDSECTION{"directSearchData"}%
 </verbatim>
 
 
@@ -265,7 +265,7 @@ color:#fff;
 </style>
 <div id="compact">
 | *Personal page* | *Phone* | *E-mail* | *Location* |
-%SEARCH{ "[F]irstName.*value=.*();[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation,TWikiContributor,TWikiGuest,UnknownUser" format="|[[%SCRIPTURL{view}%/$web/$topic][$formfield(FirstName) $formfield(LastName)]] |$formfield(WorkPhone) |$formfield(WorkEmail) |$formfield(WorkLocation) |" "}%
+%SEARCH{ "[F]irstName.*value=.*();[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation,ProjectContributor,TWikiGuest,UnknownUser" format="|[[%SCRIPTURL{view}%/$web/$topic][$formfield(FirstName) $formfield(LastName)]] |$formfield(WorkPhone) |$formfield(WorkEmail) |$formfield(WorkLocation) |" "}%
 </div>%ENDSECTION{"tableOfAllUsers"}%
 </verbatim>
 
@@ -317,7 +317,7 @@ color:#06c;
 background:none;
 }
 </style>
-<div id="pISearchResultsGrid">%SEARCH{ "[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="PresentationForm,UserForm,PersonalInfo,PersonalInfoDocumentation,PersonalInfoFaceBook,TWikiContributor,TWikiGuest,UnknownUser%IF{'defined exclude' then=',%exclude%'}%" order="topic" format="<div class='twikiImage'><a href='%SCRIPTURL{view}%/$web/$topic' class='pISearchResultsGridItem' id='pISearch$topic' title='$formfield(FirstName) $formfield(LastName)'>$percntINCLUDE{$quotPersonalInfoLayoutModules$quot section=$quotimage$quot imgType=$quotnolink$quot imgWeb=$quot$web$quot imgTopic=$quot$topic$quot imgTitle=$quot$formfield(FirstName) $formfield(LastName)$quot imgName=$quot$percntFORMFIELD{$quotPicture$quot topic=$quot$web.$topic$quot format=$quot$value$quot default=$quot$quot alttext=$quot$quot}$percnt$quot}$percnt<span class='pISearchResultsGridInfo'>$formfield(FirstName) $formfield(LastName)</span></a></div>" "}%<br class="twikiClear" /></div>%ENDSECTION{"pictures"}%
+<div id="pISearchResultsGrid">%SEARCH{ "[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="PresentationForm,UserForm,PersonalInfo,PersonalInfoDocumentation,PersonalInfoFaceBook,ProjectContributor,TWikiGuest,UnknownUser%IF{'defined exclude' then=',%exclude%'}%" order="topic" format="<div class='twikiImage'><a href='%SCRIPTURL{view}%/$web/$topic' class='pISearchResultsGridItem' id='pISearch$topic' title='$formfield(FirstName) $formfield(LastName)'>$percntINCLUDE{$quotPersonalInfoLayoutModules$quot section=$quotimage$quot imgType=$quotnolink$quot imgWeb=$quot$web$quot imgTopic=$quot$topic$quot imgTitle=$quot$formfield(FirstName) $formfield(LastName)$quot imgName=$quot$percntFORMFIELD{$quotPicture$quot topic=$quot$web.$topic$quot format=$quot$value$quot default=$quot$quot alttext=$quot$quot}$percnt$quot}$percnt<span class='pISearchResultsGridInfo'>$formfield(FirstName) $formfield(LastName)</span></a></div>" "}%<br class="twikiClear" /></div>%ENDSECTION{"pictures"}%
 </verbatim>
 
 

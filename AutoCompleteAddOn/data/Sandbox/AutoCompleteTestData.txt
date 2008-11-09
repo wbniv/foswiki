@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1181772687" format="1.1" version="1.1"}%
+%META:TOPICINFO{author="ProjectContributor" date="1181772687" format="1.1" version="1.1"}%
 ---+!! Autocomplete test data
 
 Test data topic for %SYSTEMWEB%.AutoCompleteAddOn.
@@ -13,4 +13,4 @@ Pass parameter =topicsweb= for the web.
 Data is returned as an array of arrays. %BR%
 To be used with TWiki:Plugins/PersonalInfoAddOn.
 
-%STARTSECTION{"usernames"}%%SEARCH{ "[F]irstName.*value=.*();[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation,TWikiContributor,TWikiGuest,UnknownUser" format="[\"$topic\", \"$formfield(FirstName) $formfield(LastName)\"]" separator=","}%%ENDSECTION{"usernames"}%
+%STARTSECTION{"usernames"}%%SEARCH{ "[F]irstName.*value=.*();[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation,ProjectContributor,TWikiGuest,UnknownUser" format="[\"$topic\", \"$formfield(FirstName) $formfield(LastName)\"]" separator=","}%%ENDSECTION{"usernames"}%

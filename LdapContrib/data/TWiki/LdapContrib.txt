@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1195737941" format="1.1" reprev="1.1" version="$Rev$"}%
+%META:TOPICINFO{author="ProjectContributor" date="1195737941" format="1.1" reprev="1.1" version="$Rev$"}%
 ---+!! %TOPIC%
 <!--
 
@@ -380,7 +380,7 @@ Maximum size of the result set that the server can return; set it to
 <verbatim>$TWiki::cfg{Ldap}{PageSize} = 500; </verbatim>
 
 Prevent certain names from being looked up in LDAP:
-<verbatim>$TWiki::cfg{Ldap}{Exclude} = 'TWikiGuest, TWikiContributor, TWikiRegistrationAgent, TWikiAdminGroup, NobodyGroup'; </verbatim>
+<verbatim>$TWiki::cfg{Ldap}{Exclude} = 'TWikiGuest, ProjectContributor, TWikiRegistrationAgent, TWikiAdminGroup, NobodyGroup'; </verbatim>
 
 ---++ Updating the LDAP cache using a cronjob
 In some environments, updating the internal LDAP cache of the <nop>LdapContrib might
@@ -503,5 +503,5 @@ that the <nop>LdapContrib will force an update of the cache data.
 
 -- TWiki:Main/MichaelDaum - 25 May 2008
 
-%META:FILEATTACHMENT{name="TWikiDotPm-4.1.2.patch" attr="" autoattached="0" comment="" date="1191603621" path="TWikiDotPm-4.1.2.patch" size="1538" user="TWikiContributor" version="1"}%
-%META:FILEATTACHMENT{name="wikiringlogo40x40.png" attr="h" autoattached="0" comment="" date="1190996093" path="wikiringlogo40x40.png" size="2571" user="TWikiContributor" version="1"}%
+%META:FILEATTACHMENT{name="TWikiDotPm-4.1.2.patch" attr="" autoattached="0" comment="" date="1191603621" path="TWikiDotPm-4.1.2.patch" size="1538" user="ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="wikiringlogo40x40.png" attr="h" autoattached="0" comment="" date="1190996093" path="wikiringlogo40x40.png" size="2571" user="ProjectContributor" version="1"}%

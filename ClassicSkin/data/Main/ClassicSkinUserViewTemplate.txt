@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1145229574" format="1.1" version="1.1"}%
+%META:TOPICINFO{author="ProjectContributor" date="1145229574" format="1.1" version="1.1"}%
 %TMPL:INCLUDE{"view"}%
 
 %TMPL:DEF{"active_form"}%<a href='%SCRIPTURLPATH{"edit"}%/%WEB%/%TOPIC%?action=form&t=%GMTIME{"$epoch"}%' rel='nofollow' title='Edit personal data'>Edit personal data</a>%TMPL:END%

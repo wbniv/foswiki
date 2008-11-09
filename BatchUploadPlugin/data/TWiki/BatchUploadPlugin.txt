@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1099241512" format="1.0" version="1.1"}%
+%META:TOPICINFO{author="ProjectContributor" date="1099241512" format="1.0" version="1.1"}%
 ---+!! Batch Upload Plugin
 
 *Attach multiple files at once by uploading a =zip= archive.* All files in the zip file will be attached to the topic.

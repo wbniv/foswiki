@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiContributor" date="1140597757" format="1.1" version="$Rev$"}%
+%META:TOPICINFO{author="ProjectContributor" date="1140597757" format="1.1" version="$Rev$"}%
 ---+!! Google Analytics Plugin
 *Wrapper plugin for !JavaScript tags for [[http://www.google.com/analytics/][Google Analytics]].* If installed, this plugin adds Google !JavaScript code to all pages.
 
