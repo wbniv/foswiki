@@ -2,6 +2,8 @@
 
 use strict;
 
+package TWiki::Plugins::TWikiReleaseTrackerPlugin::TRTConfig;
+
 BEGIN {
 	$Common::excludeFilePattern =
 	  'DEADJOE|.svn|\~$|\,v|.changes|.mailnotify|.session';

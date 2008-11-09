@@ -3,8 +3,8 @@
 use strict;
 
 
-package Common;
-use TRTConfig;
+package TWiki::Plugins::TWikiReleaseTrackerPlugin::Common;
+use TWiki::Plugins::TWikiReleaseTrackerPlugin::TRTConfig;
 use Cwd;
 
 #FIXME: needs tidying, especially this pub monstrosity.

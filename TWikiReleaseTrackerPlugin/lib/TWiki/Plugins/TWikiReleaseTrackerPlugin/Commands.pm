@@ -70,8 +70,8 @@ my %addThese = (
 use Data::Dumper;
 
 
-use FileDigest;
-use TRTConfig;
+use TWiki::Plugins::TWikiReleaseTrackerPlugin::FileDigest;
+use TWiki::Plugins::TWikiReleaseTrackerPlugin::TRTConfig;
 
 use TWiki;
 use TWiki::Plugins;
@@ -85,7 +85,7 @@ unless (eval "use TWiki::Plugins::TWikiReleaseTrackerPlugin") {
 TWiki::Plugins::TWikiReleaseTrackerPlugin::initPlugin("WebHome", "TWiki", "Main.TWikiGuest", "TWiki");
 
 sub loadIndexes {
-    FileDigest::loadIndexes("pub/TWiki/TWikiReleaseTrackerPlugin");
+    TWiki::Plugins::TWikiReleaseTrackerPlugin::FileDigest::loadIndexes("pub/TWiki/TWikiReleaseTrackerPlugin");
 }
 
 BEGIN {
@@ -235,7 +235,8 @@ sub run_zipnew {
   printIfVerbose($config, "Changing to ".cwd());
   unlink $filename;
   my $cmd = "zip ".$filename." ".join(" ", @files);
-  my $ans = `$cmd`;
+  #my $ans = `$cmd`;
+  my ($ans) = $sandbox->sysCommand($cmd);
   printIfVerbose($config, "$cmd:\n ".$ans);
   printIfVerbose($config, "File saved as ".$filename);
 }
@@ -323,7 +324,8 @@ sub run__ {
   my $config = shift;
   my $command = join(" ", @_);
    
-  my $ans = `$command`;
+  #my $ans = `$command`;
+  my ($ans) = $sandbox->sysCommand($command);
   print $ans;
 
 }

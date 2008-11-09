@@ -57,20 +57,15 @@ sub getParam {
  my ( $inlineParamString, $paramName ) = @_;
  my $ans = untaint( $cgiQuery->param($paramName) );
 
- #    writeDebug("$inlineParamString\n1: $paramName = $ans");
  if ( $ans eq "" ) {
   $ans = TWiki::Func::extractNameValuePair( $inlineParamString, $paramName );
- }
-
- #    writeDebug("2: $paramName = $ans");
- if ( $ans eq "" ) {
   $ans = TWiki::Func::getPreferencesValue("\U$pluginName\E_\U$paramName\E");
+ } else {
+  #    writeDebug("$paramName = $ans");
+  # Circumstances sometimes that getPreferencesValue returns a CR, breaking the table definitions.
+  # Arguably a bug in TWiki::Func::getPreferencesValue (Codev.GetPreferencesValueReturnsNL)
+  $ans =~ s/\n//;
  }
-
- #    writeDebug("$paramName = $ans");
- # Circumstances sometimes that getPreferencesValue returns a CR, breaking the table definitions.
- # Arguably a bug in TWiki::Func::getPreferencesValue (Codev.GetPreferencesValueReturnsNL)
- $ans =~ s/\n//;
  return $ans;
 }
 
@@ -88,7 +83,7 @@ sub handleDiffWiki {
  my $modeParam = getParam( $param, 'mode' ) || 'listing';
  my $compareFromDistribution = getParam( $param, 'from' )
    || 'localInstallation';
- Common::setIndexTopic( getParam( $param, 'indexTopic' )
+ TWiki::Plugins::TWikiReleaseTrackerPlugin::Common::setIndexTopic( getParam( $param, 'indexTopic' )
     || 'TWiki.TWikiReleaseTrackerPlugin' );
 
  $listingFormat{'FSCS'} = getParam( $param, "fscsFormat" )
@@ -131,7 +126,7 @@ sub handleDiffWiki {
   $ans .= dumpIndex();
  }
  elsif ( $modeParam eq 'indexLocalInstallation' ) {
-  $ans .= "<pre>" . IndexDistributions::indexLocalInstallation() . "</pre>";
+  $ans .= "<pre>" . TWiki::Plugins::TWikiReleaseTrackerPlugin::IndexDistributions::indexLocalInstallation() . "</pre>";
   $ans .= browserCallback( "Back to listing", 'mode' => 'listing' );
  }
  else {
@@ -139,6 +134,9 @@ sub handleDiffWiki {
     compareFile( $fileParam, $modeParam, $compareFromDistribution,
    @distributions );
  }
+ # SMELL: Not sure where but the Content-type headers are getting messed up
+ #        MartinCleaver, maybe you can fix up this part
+ print "Content-type: text/html\n\n";
  return $ans;
 }
 
@@ -186,7 +184,7 @@ sub handleShowIndex {
 
  if ( $param =~ m/distributions/ ) {
   return formatList( $format, $separator, $selection, $marker,
-   sort &FileDigest::getDistributions );
+   sort &TWiki::Plugins::TWikiReleaseTrackerPlugin::FileDigest::getDistributions );
  }
  elsif ( $param =~ m/filenames/ ) {
   return formatList( $format, sort &FileDigest::getFilenames );
@@ -289,7 +287,7 @@ sub compareFile {
  # and distributions = (A, B)
  # then unmentionedDistributions = (C);
  my @mentionedDistributions = sort @distributions, $compareToDistribution;
- my @allDistributions = FileDigest::retreiveDistributionsForFilename($file);
+ my @allDistributions = TWiki::Plugins::TWikiReleaseTrackerPlugin::FileDigest::retreiveDistributionsForFilename($file);
  my @remainingDistributions = sort @allDistributions;
 
  my $mentionedCount = 0;
@@ -414,7 +412,7 @@ sub countChangesNormalDiff {
 sub dumpIndex {
  loadIndexes();
 
- return "<pre>" . FileDigest::dataOutline() . "</pre>";
+ return "<pre>" . TWiki::Plugins::TWikiReleaseTrackerPlugin::FileDigest::dataOutline() . "</pre>";
 }
 
 # =====================================================
@@ -438,13 +436,13 @@ sub listFiles {
   my $debugInfo;
 
   my @distributionsWithDigest =
-    FileDigest::retreiveDistributionsForDigest( $digest, $relativeFile );
+    TWiki::Plugins::TWikiReleaseTrackerPlugin::FileDigest::retreiveDistributionsForDigest( $digest, $relativeFile );
   @distributionsWithDigest =
     grep { !/$compareToDistribution/ }
     @distributionsWithDigest;    # don't match self
 
   my @allDistributionsForFilename =
-    FileDigest::retreiveDistributionsForFilename($relativeFile);
+    TWiki::Plugins::TWikiReleaseTrackerPlugin::FileDigest::retreiveDistributionsForFilename($relativeFile);
   @allDistributionsForFilename =
     grep { !/$compareToDistribution/ }
     @allDistributionsForFilename;    # don't match self
@@ -528,7 +526,7 @@ sub listFiles {
  #			     $Common::installationDir,
  #			     $Common::excludeFilePattern,
  #			     $matchCallback);
- my $countMatches = DistributionWalker::match(
+ my $countMatches = TWiki::Plugins::TWikiReleaseTrackerPlugin::DistributionWalker::match(
   $compareToDistribution,      $Common::installationDir,
   $Common::excludeFilePattern, $matchCallback
  );
@@ -536,7 +534,7 @@ sub listFiles {
   $ans .= "No luck matching... perhaps you need to regenerate the indexes?\n";
   foreach my $dist ( @distributions, $compareToDistribution ) {
    my $numberEntries =
-     scalar( FileDigest::retreiveOccurancesForDistribution($dist) );
+     scalar( TWiki::Plugins::TWikiReleaseTrackerPlugin::FileDigest::retreiveOccurancesForDistribution($dist) );
    $ans .= "<LI> Distribution $dist has " . $numberEntries . " entries\n";
    if ( $dist eq "localInstallation" ) {
     $ans .= browserCallback( "Regenerate index (slow)",
@@ -600,7 +598,8 @@ sub selectModeCallback {
 sub untaint {
  my ($param) = @_;
  return "" unless ( defined $param );
- $param =~ s/$TWiki::securityFilter//go;
+ #SMELL: $TWiki::securityFilter doesn't seem to exist anywhere!
+ #$param =~ s/$TWiki::securityFilter//go;
  $param =~ /(.*)/;
  return $1;
 }
@@ -699,8 +698,8 @@ sub initPlugin {
 sub loadIndexes {
  writeDebug("Loading from $Common::md5IndexDir");
  eval {
-  FileDigest::emptyIndexes();
-  FileDigest::loadIndexes($Common::md5IndexDir);
+  TWiki::Plugins::TWikiReleaseTrackerPlugin::FileDigest::emptyIndexes();
+  TWiki::Plugins::TWikiReleaseTrackerPlugin::FileDigest::loadIndexes($Common::md5IndexDir);
  };
  writeDebug($@) if ($@);
  return $@;

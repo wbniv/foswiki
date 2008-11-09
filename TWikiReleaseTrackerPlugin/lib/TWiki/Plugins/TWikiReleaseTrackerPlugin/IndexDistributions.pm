@@ -2,11 +2,11 @@
 
 use strict;
 use FileHandle;
-use FileDigest;
-use Common;
+use TWiki::Plugins::TWikiReleaseTrackerPlugin::FileDigest;
+use TWiki::Plugins::TWikiReleaseTrackerPlugin::Common;
 
 # TODO: split out the generic from the TWiki-specific parts of this.
-package IndexDistributions;
+package TWiki::Plugins::TWikiReleaseTrackerPlugin::IndexDistributions;
 
 sub indexDistribution {
  use Cwd;
@@ -23,13 +23,13 @@ sub indexDistribution {
 
  my $findCallback = sub {
   my $pathname = $File::Find::name;    #  complete pathname to the file.
-  Common::debug "$pathname\n";
+  TWiki::Plugins::TWikiReleaseTrackerPlugin::Common::debug "$pathname\n";
   my $relativePath =
-    Common::relativeFromPathname( $pathname, $distributionLocation );
+    TWiki::Plugins::TWikiReleaseTrackerPlugin::Common::relativeFromPathname( $pathname, $distributionLocation );
   return unless includeInResults($relativePath);
   return unless -f $pathname;
   return if -z $pathname;
-  Common::debug "$pathname\n";
+  TWiki::Plugins::TWikiReleaseTrackerPlugin::Common::debug "$pathname\n";
   indexFile( $distribution, $distributionLocation, $pathname, $pathPrefix,
    $relativePath );
  };
@@ -50,8 +50,8 @@ sub indexFile {
  my ( $distribution, $distributionLocation, $file, $pathPrefix, $relativePath )
    = @_;
  my $digest = digestForFile($file);
- Common::debug $relativePath. " = " . $digest . "\n";
- FileDigest::addOccurance( $distribution, $pathPrefix . $relativePath,
+ TWiki::Plugins::TWikiReleaseTrackerPlugin::Common::debug $relativePath. " = " . $digest . "\n";
+ TWiki::Plugins::TWikiReleaseTrackerPlugin::FileDigest::addOccurance( $distribution, $pathPrefix . $relativePath,
   $digest );
 }
 
@@ -101,9 +101,9 @@ sub includeInResults {
 sub indexLocalInstallation {
  my $ans;
  ensureInstallationDir();
- FileDigest::emptyIndexes();
+ TWiki::Plugins::TWikiReleaseTrackerPlugin::FileDigest::emptyIndexes();
  $ans .=  "Indexing localInstallation '$Common::installationDir'\n";
- IndexDistributions::indexDistribution( "localInstallation", 
+ TWiki::Plugins::TWikiReleaseTrackerPlugin::IndexDistributions::indexDistribution( "localInstallation", 
 					$Common::installationDir, $Common::excludeFilePattern,
 					"twiki");
 
@@ -114,7 +114,7 @@ sub indexLocalInstallation {
 
 sub indexLocalEmptyDistribution {
     my $ans;
-    FileDigest::emptyIndexes();
+    TWiki::Plugins::TWikiReleaseTrackerPlugin::FileDigest::emptyIndexes();
     $ans .=  "Emptying localInstallation\n";
     $ans .= saveIndex("localInstallation.md5");
     return $ans;
@@ -165,13 +165,13 @@ sub getDirsListed {
 }
 
 sub installsOfMine {
- IndexDistributions::indexDistribution( "athens",
+ TWiki::Plugins::TWikiReleaseTrackerPlugin::IndexDistributions::indexDistribution( "athens",
   $ENV{HOME} . "/athenstwiki.mrjc.com/",
   $Common::excludeFilePattern );
- IndexDistributions::indexDistribution( "beijing",
+ TWiki::Plugins::TWikiReleaseTrackerPlugin::IndexDistributions::indexDistribution( "beijing",
   $ENV{HOME} . "/beijingtwiki.mrjc.com/",
   $Common::excludeFilePattern );
- IndexDistributions::indexDistribution( "cairo",
+ TWiki::Plugins::TWikiReleaseTrackerPlugin::IndexDistributions::indexDistribution( "cairo",
   $ENV{HOME} . "/cairotwiki.mrjc.com/",
   $Common::excludeFilePattern );
 }
@@ -192,7 +192,7 @@ sub indexDistributions {
  # This depends on a modified version of Crawfords' SharedCode
  my ( $filterInSub, $indexName ) = @_;
  my $ans;
- FileDigest::emptyIndexes();
+ TWiki::Plugins::TWikiReleaseTrackerPlugin::FileDigest::emptyIndexes();
  my $dir = $Common::downloadDir;
 
  my @downloads = getDirsListed($Common::downloadDir);
@@ -200,7 +200,7 @@ sub indexDistributions {
  foreach my $download (@downloads) {
   next unless &$filterInSub($download);
   $ans .= "Indexing $download\n";
-  IndexDistributions::indexDistribution( $download, $dir . $download,
+  TWiki::Plugins::TWikiReleaseTrackerPlugin::IndexDistributions::indexDistribution( $download, $dir . $download,
    $Common::excludeFilePattern, "twiki" );
  }
 
@@ -212,7 +212,7 @@ sub saveIndex {
  my $saveFile = $Common::md5IndexDir . $indexName;
  my $ans = "saving to " . File::Spec->rel2abs($saveFile) . "\n";
 
- FileDigest::saveIndex($saveFile);
+ TWiki::Plugins::TWikiReleaseTrackerPlugin::FileDigest::saveIndex($saveFile);
  return $ans;
 }
 1;

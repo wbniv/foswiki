@@ -3,11 +3,11 @@
 use strict;
 use Digest::MD5;
 use FileHandle;
-use IndexDistributions;
-use FileDigest;
-use Common;
+use TWiki::Plugins::TWikiReleaseTrackerPlugin::IndexDistributions;
+use TWiki::Plugins::TWikiReleaseTrackerPlugin::FileDigest;
+use TWiki::Plugins::TWikiReleaseTrackerPlugin::Common;
 
-package DistributionWalker;
+package TWiki::Plugins::TWikiReleaseTrackerPlugin::DistributionWalker;
 
 sub match {
 =pod
@@ -52,7 +52,7 @@ sub match {
         &$matchCallback($distribution, $location, $pathname, $relativeFile, $digest);
     };
 
-    my @occurances = FileDigest::retreiveOccurancesForDistribution($distribution);
+    my @occurances = TWiki::Plugins::TWikiReleaseTrackerPlugin::FileDigest::retreiveOccurancesForDistribution($distribution);
     foreach my $occurance (@occurances) {
 	my ($filename, $digest) = @{$occurance};
 	&$findCallback($filename, $digest);

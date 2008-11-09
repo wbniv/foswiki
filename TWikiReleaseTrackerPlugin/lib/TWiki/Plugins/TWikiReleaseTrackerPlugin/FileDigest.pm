@@ -3,9 +3,9 @@
 use strict;
 use Digest::MD5;
 use FileHandle;
-use Common;
+use TWiki::Plugins::TWikiReleaseTrackerPlugin::Common;
 
-package FileDigest;
+package TWiki::Plugins::TWikiReleaseTrackerPlugin::FileDigest;
 =pod
 
 in: $digest
@@ -196,7 +196,7 @@ sub loadIndexes {
     use DirHandle;
     my $dh = DirHandle->new($dir) || die "$! - $dir";
 
-    Common::debug "loading indexes from $dir:\n\n";
+    TWiki::Plugins::TWikiReleaseTrackerPlugin::Common::debug "loading indexes from $dir:\n\n";
     foreach my $index (sort grep { /.md5$/ } $dh -> read()) {
 	loadIndex($dir."/".$index);
     }
@@ -204,7 +204,7 @@ sub loadIndexes {
 
 sub loadIndex {
     my ($filename) = @_;
-    Common::debug "loading index $filename\n";
+    TWiki::Plugins::TWikiReleaseTrackerPlugin::Common::debug "loading index $filename\n";
     my $fh = new FileHandle $filename, "r";
     unless (defined $fh) {
         die "$filename - $!"
@@ -213,13 +213,13 @@ sub loadIndex {
 
     while (my $line = <$fh>) {
 	chomp $line;
-	Common::debug "$line\n";
+	TWiki::Plugins::TWikiReleaseTrackerPlugin::Common::debug "$line\n";
 
 	next if ($line eq "");
 	next if ($line =~ m/^#.*/);
 	my ($digest, $distributionfile) = split /\s+/, $line;
 	my ($distribution, $file) = split /=/, $distributionfile;
-	Common::debug "$distribution, $file, $digest \n";
+	TWiki::Plugins::TWikiReleaseTrackerPlugin::Common::debug "$distribution, $file, $digest \n";
 	addOccurance($distribution, $file, $digest);
     }
     close $fh;
@@ -231,7 +231,7 @@ sub saveIndex {
     unless (defined $fh) {
         die "$! - $filename";
     };
-    Common::debug "Saving to $filename\n";
+    TWiki::Plugins::TWikiReleaseTrackerPlugin::Common::debug "Saving to $filename\n";
     foreach my $digest (keys %digestToOccurances) {
 	my @occurances = retreiveOccurancesForDigest($digest);
 	foreach my $occurance (@occurances) {

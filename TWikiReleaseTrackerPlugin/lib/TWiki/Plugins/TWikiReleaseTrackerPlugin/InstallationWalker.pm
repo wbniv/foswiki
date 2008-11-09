@@ -3,11 +3,11 @@
 use strict;
 use Digest::MD5;
 use FileHandle;
-use IndexDistributions;
-use FileDigest;
-use Common;
+use TWiki::Plugins::TWikiReleaseTrackerPlugin::IndexDistributions;
+use TWiki::Plugins::TWikiReleaseTrackerPlugin::FileDigest;
+use TWiki::Plugins::TWikiReleaseTrackerPlugin::Common;
 
-package InstallationWalker;
+package TWiki::Plugins::TWikiReleaseTrackerPlugin::InstallationWalker;
 
 sub match {
     my ($distribution, $distributionLocation, $excludeFilePattern, $matchCallback) = @_;
