@@ -19,7 +19,7 @@ If you can say something about this plugin or you have any ideas, i'll be glag i
 
 ---++ <nop>%TOPIC% Global Settings
 
-Following variables may using in your work. You can customize each TWiki web by setting this variables in WebPreferences of web. The variables setted in WebPreferences are overload this settings. The %SYSTEMWEB%.TWikiPreferences overload this %TOPIC% settings, WebPreferences overload %SYSTEMWEB%.TWikiPreferences.
+Following variables may using in your work. You can customize each TWiki web by setting this variables in WebPreferences of web. The variables setted in WebPreferences are overload this settings. The %SYSTEMWEB%.DefaultPreferences and %USERSWEB%.SitePreferences overload this %TOPIC% settings, WebPreferences overload %SYSTEMWEB%.DefaultPreferences and %USERSWEB%.SitePreferences.
 
 ---+++ Plugin core settings
 
@@ -54,7 +54,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- Main.AlexeyEfimov - 17 Nov 2002 
 

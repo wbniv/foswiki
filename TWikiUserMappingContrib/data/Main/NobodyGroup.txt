@@ -6,6 +6,6 @@
    * Persons/group who can change the list:
       * Set ALLOWTOPICCHANGE = TWikiAdminGroup
 
-Used to prevent dangerous actions e.g. renaming [[%SYSTEMWEB%.TWikiPreferences][TWikiPreferences]] - put !NobodyGroup as the only group allowed to rename a topic and it can't be renamed.
+Used to prevent dangerous actions e.g. renaming [[%SYSTEMWEB%.DefaultPreferences][DefaultPreferences]] - put !NobodyGroup as the only group allowed to rename a topic and it can't be renamed.
 
 __Related topics:__ [[%WIKIUSERSTOPIC%]], [[TWikiGroups]], [[%SYSTEMWEB%.TWikiAccessControl][TWikiAccessControl]]

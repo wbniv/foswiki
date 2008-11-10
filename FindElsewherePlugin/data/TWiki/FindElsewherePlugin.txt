@@ -42,14 +42,14 @@ __Multiple hits__
 
 If a word is found in two or more LOOKELSEWHERE webs, a special syntax is used:
 
-	* Standard <nop/>WikiWord: <nop/>TWikiPreferences<sup>([[TWiki.TWikiPreferences][TWiki]],[[Main.TWikiPreferences][Main]])</sup> 
-	* [<nop/>[Spaced wiki word]]: <em>TWiki preferences</em><sup>([[%SYSTEMWEB%.TWikiPreferences][%SYSTEMWEB%]],[[%MAINWEB%.TWikiPreferences][%MAINWEB%]])</sup> 
+	* Standard <nop/>WikiWord: <nop/>DefaultPreferences<sup>([[%SYSTEMWEB%.DefaultPreferences][%SYSTEMWEB%]],[[%USERSWEB%.SitePreferences][%USERSWEB%]])</sup> 
+	* [<nop/>[Spaced wiki word]]: <em>Default Preferences</em><sup>([[%SYSTEMWEB%.DefaultPreferences][%SYSTEMWEB%]],[[%USERSWEB%.SitePreferences][%USERSWEB%]])</sup> 
 
 Create this table in [[Sandbox.FindElsewherePluginTest]] to try it out (use raw edit when pasting):
 
 <verbatim>
 | *Test case* | *Input* | *Output<br />(if installed)* | *Expected* |
-| Found elsewhere, spaced wiki word | [<nop>[TWiki preferences]] | [[TWiki preferences]] | _TWiki preferences_ <sup>([[%SYSTEMWEB%.TWikiPreferences][%SYSTEMWEB%]],[[%MAINWEB%.TWikiPreferences][%MAINWEB%]])</sup> |
+| Found elsewhere, spaced wiki word | [<nop>[Default Preferences]] | [[Default Preferences]] | _Default preferences_ <sup>([[%SYSTEMWEB%.DefaultPreferences][%SYSTEMWEB%]],[[%USERSWEB%.SitePreferences][%USERSWEB%]])</sup> |
 | Found elsewhere | <nop>ProjectContributor | ProjectContributor | <nop>ProjectContributor<sup>([[%SYSTEMWEB%.ProjectContributor][%SYSTEMWEB%]],[[%MAINWEB%.ProjectContributor][%MAINWEB%]])</sup> |
 </verbatim>
 
@@ -80,7 +80,7 @@ __Compatibility__
 
 ---++++ Enabling and disabling the plugin globally
 
-You can enable or disable the <nop>%TOPIC% plugin sitewide (in %MAINWEB%.TWikiPreferences), per web (in <nop/>WebPreferences) or pr. topic by defining DISABLELOOKELSEWHERE = 1.
+You can enable or disable the <nop>%TOPIC% plugin sitewide (in %USERSWEB%.SitePreferences), per web (in <nop/>WebPreferences) or pr. topic by defining DISABLELOOKELSEWHERE = 1.
 
 ---++++ Scope of the plugin - webs to find topics in
 
