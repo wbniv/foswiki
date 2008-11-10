@@ -18,12 +18,12 @@ This current topic and PersonalInfoModules work in tandem:
 ---++ Customizable sections
 ---+++ personalInfoFields
 <verbatim>
-%STARTSECTION{"personalInfoFields"}%<noautolink><table cellspacing='0' cellpadding='0'>
+%STARTSECTION{"personalInfoFields"}%<table cellspacing='0' cellpadding='0'>
 %INCLUDE{"PersonalInfo" section="personalInfoDataRow" fieldName="WorkPhone" label="Work phone"}%
 %INCLUDE{"PersonalInfo" section="personalInfoDataRow" fieldName="WorkPhoneMobile" label="Work phone mobile"}%
 %INCLUDE{"PersonalInfo" section="personalInfoDataRow" fieldName="WorkEmail" label="E-mail"}%
 %INCLUDE{"PersonalInfo" section="personalInfoDataRow" fieldName="WorkLocation" label="Location"}%
-</table></noautolink>%ENDSECTION{"personalInfoFields"}%
+</table>%ENDSECTION{"personalInfoFields"}%
 </verbatim>
 
 ---+++ personalInfoDataRow

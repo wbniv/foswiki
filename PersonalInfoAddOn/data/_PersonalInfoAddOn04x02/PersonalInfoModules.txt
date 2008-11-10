@@ -16,7 +16,7 @@ This topic holds a number of modules (INCLUDE sections) to display and search us
 
 <verbatim>
 %STARTSECTION{"personalInfoDataRow" fieldName=%FIELDNAME% label=%LABEL%}%<tr>
-<th> %label% </th><td> %IF{"defined editUserData" then="<input type='text' name='%fieldName%' id='%fieldName%' $percntIF{$quot\'%editable%\'=\'no\'$quot then=$quotdisabled=\'disabled\'$quot}$percnt $percntIF{$quot\'%editable%\'=\'no\'$quot then=$quotclass=\'twikiInputFieldDisabled\'$quot else=$quotclass=\'twikiInputField\'$quot}$percnt size='40' value='%FORMFIELD{"%fieldName%" topic="%BASETOPIC%" format="$value"}%' />" else="%FORMFIELD{"%fieldName%" topic="%BASETOPIC%" format="$percntIF{$quot\'%link%\'=\'yes\'$quot then=$quot[[$value]]$quot else=$quot$value$quot}$percnt"}%" }% </td>
+<th> %label% </th><td> %IF{"defined editUserData" then="<noautolink><input type='text' name='%fieldName%' id='%fieldName%' $percntIF{$quot\'%editable%\'=\'no\'$quot then=$quotdisabled=\'disabled\'$quot}$percnt $percntIF{$quot\'%editable%\'=\'no\'$quot then=$quotclass=\'twikiInputFieldDisabled\'$quot else=$quotclass=\'twikiInputField\'$quot}$percnt size='40' value='%FORMFIELD{"%fieldName%" topic="%BASETOPIC%" format="$value"}%' /></noautolink>" else="%FORMFIELD{"%fieldName%" topic="%BASETOPIC%" format="$percntIF{$quot\'%link%\'=\'yes\'$quot then=$quot[[$value]]$quot else=$quot$value$quot}$percnt"}%" }% </td>
 </tr>%ENDSECTION{"personalInfoDataRow"}%
 </verbatim>
 

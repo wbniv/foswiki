@@ -16,7 +16,7 @@ This topic holds a number of modules (INCLUDE sections) to display and search us
 
 <verbatim>
 %STARTSECTION{"personalInfoDataRow" fieldName=%FIELDNAME% label=%LABEL%}%<tr>
-<th> %label% </th><td> %IF{"defined editUserData" then="<input type='text' name='%fieldName%' id='%fieldName%' class='twikiInputField' size='40' value='%FORMFIELD{"%fieldName%" topic="%BASETOPIC%" format="<nop>$value"}%' />" else="%FORMFIELD{"%fieldName%" topic="%BASETOPIC%"}%" }% </td>
+<th> %label% </th><td> %IF{"defined editUserData" then="<noautolink><input type='text' name='%fieldName%' id='%fieldName%' class='twikiInputField' size='40' value='%FORMFIELD{"%fieldName%" topic="%BASETOPIC%" format="<nop>$value"}%' /></noautolink>" else="%FORMFIELD{"%fieldName%" topic="%BASETOPIC%"}%" }% </td>
 </tr>%ENDSECTION{"personalInfoDataRow"}%
 </verbatim>
 
