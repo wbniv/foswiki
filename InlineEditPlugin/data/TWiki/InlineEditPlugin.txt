@@ -79,7 +79,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Feedback: | [[http://TWiki.org/cgi-bin/view/Plugins/%3Cspan%20id=%27TMLvariable12%27%20class=%27TMLvariable%27%20%3ETOPIC%3C/span%3EDev][http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev]] |
 |  Appraisal: | [[http://TWiki.org/cgi-bin/view/Plugins/%3Cspan%20id=%27TMLvariable14%27%20class=%27TMLvariable%27%20%3ETOPIC%3C/span%3EAppraisal][http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal]] |
 
-__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main.SvenDowideit
 

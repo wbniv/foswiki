@@ -21,7 +21,7 @@ This plugin fills that gap and creates a user's topic if it does not yet exist.
     * Set SHORTDESCRIPTION = Create a user topic if it does not exist yet
 -->
 You can customize the template that is used to create a new user topic
-by setting the =NEWUSERTEMPLATE= preference variable (e.g. in %MAINWEB%.TWikiPreferences):
+by setting the =NEWUSERTEMPLATE= preference variable (e.g. in %USERSWEB%.SitePreferences):
 
    * Set NEWUSERTEMPLATE = %SYSTEMWEB%.NewLdapUserTemplate
 

@@ -58,7 +58,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %SYSTEMWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
 
 %META:FILEATTACHMENT{name="Google_Analytics_Dashboard_small.jpg" attr="" autoattached="1" comment="" date="1158800196" path="Google_Analytics_Dashboard_small.jpg" size="46250" user="UnknownUser" version=""}%
 %META:FILEATTACHMENT{name="Google_Analytics_Dashboard.png" attr="" autoattached="1" comment="" date="1158800010" path="Google_Analytics_Dashboard.png" size="122481" user="UnknownUser" version=""}%

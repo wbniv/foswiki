@@ -119,7 +119,7 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
 *Hints:* 
 	* You can setup every attribute of the =%<nop>CHECKLISTTABLE%= tag. You only have to use capital letters, e.g: 
 	  <br/> ==&nbsp;&nbsp;&nbsp;*&nbsp;Set&nbsp;ALLOWMOVE&nbsp;=&nbsp;on==
-	* Please use your <nop>%MAINWEB%.TWikiPreferences or <nop>%SYSTEMWEB%.TWikiPreferences to setup plugin defaults. 
+	* Please use your <nop>%USERSWEB%.SitePreferences to setup plugin defaults. 
 	  This prevents you from overwriting settings on plugin updates. E.g. put the following to your
 	  global preferences: 
 	  <br/> ==&nbsp;&nbsp;&nbsp;*&nbsp;Set&nbsp;CHECKLISTTABLEPLUGIN_ALLOWMOVE&nbsp;=&nbsp;on==

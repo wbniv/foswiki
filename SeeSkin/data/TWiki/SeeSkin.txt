@@ -11,7 +11,7 @@
 	1. unpack the archive from twiki-root.
 		1. if you use the TWiki web for your plugins, move =*/Plugins/*= to =*/TWiki/*=
 	2. if you don't already have it, add the =savemulti= script to =$twiki/bin/.htaccess=
-	3. Edit TWiki.TWikiPreferences (or WebPreferences, or your <nop>UserName topic) and add the following:
+	3. Edit %SYSTEMWEB%.DefaultPreferences, or %USERSWEB%.SitePreferences, or WebPreferences, or your <nop>UserName topic and add the following:
 <verbatim>
 ---++ %PLUGINWEB%.SeeSkin preferences
 		* Set PLUGINWEB = Plugins

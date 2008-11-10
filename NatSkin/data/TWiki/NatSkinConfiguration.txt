@@ -8,7 +8,7 @@ The different NatSkin styles (themes) are controlled using TWiki preference
 variables and can be set 
    * per user (on the user's home topic), 
    * per web (in the WebPreferences),
-   * site wide (in the[[%SYSTEMWEB%.TWikiPreferences]]) and
+   * site wide (in the [[%SYSTEMWEB%.DefaultPreferences]] or better [[%USERSWEB%.SitePreferences]] and
    * on every request (using url parameters)
 
 Use the NatSkinStyleBrowser to preview the known styles and settings. Note,

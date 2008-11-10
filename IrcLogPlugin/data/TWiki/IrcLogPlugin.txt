@@ -56,7 +56,7 @@ Test:
 |  Plugin Home: | TWiki:Plugins.%TOPIC% |
 |  Feedback: | TWiki:Plugins.%TOPIC%Dev |
 
-__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main.WillNorris - 07 Nov 2003
  
