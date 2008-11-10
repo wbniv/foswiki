@@ -109,7 +109,7 @@ Use  %<nop>CONTRIBUTORS{web="TWiki" topic="TWikiPreferences"  last="7" rev="1.20
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% (TWiki:Plugins.%TOPIC%) |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev (TWiki:Plugins.%TOPIC%Dev) |
 
-__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main.AndreaSterbini - 27 Feb 2001 %BR% 
 -- TWiki:Main.PeterThoeny - 21 Mar 2004 %BR%

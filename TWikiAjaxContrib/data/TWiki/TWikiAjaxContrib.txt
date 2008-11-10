@@ -488,7 +488,7 @@ See TWikiAjaxContribExamples
 | Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 | Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %SYSTEMWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
 
 
 %META:FILEATTACHMENT{name="twikiAjaxRequest.js" attr="" autoattached="1" comment="" date="1162503911" path="twikiAjaxRequest.js" size="19760" user="UnknownUser" version=""}%

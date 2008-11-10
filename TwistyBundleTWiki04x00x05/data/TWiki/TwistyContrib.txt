@@ -180,7 +180,7 @@ You can also set the global TWiki variable TWISTYCONTRIB_DEBUG to 1 to make the 
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %SYSTEMWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
  
 %META:FILEATTACHMENT{name="twist.js" attachment="twist.js" attr="" comment="!JavaScript library" date="1126427179" path="twist.js" size="3441" stream="twist.js" user="ProjectContributor" version="0"}%
 %META:FILEATTACHMENT{name="twist.css" attachment="twist.css" attr="" comment="Style Sheet" date="1126427224" path="twist.css" size="122" stream="twist.css" user="ProjectContributor" version="0"}%
