@@ -376,7 +376,7 @@ The 4.2.0 release was built from SVN http://svn.twiki.org/svn/twiki/branches/TWi
 | [[%BUGS%/Item4034][Item4034]] | Topic rename: error in javascript so select all does not work |
 | [[%BUGS%/Item4028][Item4028]] | Authenticated twice; garbled !CommentPlugin text |
 | [[%BUGS%/Item4023][Item4023]] | configure link for 'Expert mode' missing t= parameter to prevent caching |
-| [[%BUGS%/Item4019][Item4019]] | Remove preferences edit button from TWiki.TWikiPreferences |
+| [[%BUGS%/Item4019][Item4019]] | Remove preferences edit button from !TWiki.TWikiPreferences |
 | [[%BUGS%/Item4006][Item4006]] | More options: do not show "View previous topic revision" when there is no previous version |
 | [[%BUGS%/Item3991][Item3991]] | Add =spaceOutWikiWord= to Func |
 | [[%BUGS%/Item3989][Item3989]] | Problematic Values for FINALPREFERENCES in Distribution |

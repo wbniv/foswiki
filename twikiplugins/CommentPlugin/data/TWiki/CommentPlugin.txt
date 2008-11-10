@@ -228,7 +228,7 @@ Two TWiki Preference variables are recognised by the CommentPlugin:
 | *Preference* | *Default* | *Description* |
 | =%<nop>COMMENTPLUGIN_TEMPLATES%= | =comments= | Name of template file in the 'templates' directory that contains the comment templates. The default 'comments.tmpl' automatically includes user templates from %SYSTEMWEB%.CommentPluginTemplate, which in turn includes %SYSTEMWEB%.UserCommentsTemplate. |
 | =%<nop>COMMENTPLUGIN_DEFAULT_TYPE%= | =above= | Default template type |
-These can be set in !TWikiPreferences, in !WebPreferences or in individual topics.
+These can be set in !SitePreferences, in !WebPreferences or in individual topics.
 
 #Installation
 ---++ Plugin Installation Instructions

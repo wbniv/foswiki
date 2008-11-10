@@ -70,7 +70,7 @@ The main steps are:
       * SmiliesPlugin - Did you add your own smileys? No real changes were made to the smilies topic October 2005 so you can just leave this topic as it is.
       * TablePlugin - Set TABLEATTRIBUTES   
    * Remember that a plugin must be activated in [[%SCRIPTURLPATH{"configure"}%][configure]].
-   * To avoid having to re-apply plugin settings each time you upgrade a plugin or TWiki itself, define the altered plugin settings in =Main.TWikiPreferences= instead
+   * To avoid having to re-apply plugin settings each time you upgrade a plugin or TWiki itself, define the altered plugin settings in =%USERSWEB%.SitePreferences= instead
 
 ---+++ Copy your old webs to new TWiki
 
@@ -126,9 +126,9 @@ TWiki4's PatternSkin introduces the use of the favicon feature which most browse
 In TWiki4 it is assumed that each web has a favicon.ico file attached to the !WebPreferences topic. When you upgrade from Cairo to TWiki4 you do not have this file and you will get flooded with errors the error log of your web server. There are two solutions to this.
 
    * Attach a favicon.ico file to !WebPreferences in each web.
-   * Preferred: Change the setting of the location of favicon.ico in !TWikiPreferences so all webs use the favicon.ico from the TWiki web. This is the fastest and easiest solution.
+   * Preferred: Change the setting of the location of favicon.ico in !%USERSWEB%.SitePreferences so all webs use the favicon.ico from the TWiki web. This is the fastest and easiest solution.
 
-To change the location of favicon.ico in !TWikiPreferences to the TWiki web add this line to Main.TWikiPreferences
+To change the location of favicon.ico in !DefaultPreferences to the %SYSTEM% web add this line to !%USERSWEB%.SitePreferences
 
 <verbatim>
    * Set FAVICON = %PUBURLPATH%/%SYSTEMWEB%/%WEBPREFSTOPIC%/favicon.ico
