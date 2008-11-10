@@ -1,4 +1,3 @@
-# Plugin for TWiki Collaboration Platform, http://TWiki.org/
 #
 # Copyright (C) 2005 Thomas Hartkens <thomas@hartkens.de>
 # Copyright (C) 2005 Thomas Weigert <thomas.weigert@motorola.com>

@@ -5,7 +5,7 @@
 <div style="float:right">
 %ATTACHURL%/Flow.gif
 </div>
-Wikis benefits from the fact that every user can modify a topic instantly without restrictions. However sometimes you want to be able to associate a "state" with a topic and then control the work flow that the topic progresses through as content is added. 
+Wikis benefit from the fact that every user can modify a topic instantly without restrictions. However sometimes you want to be able to associate a "state" with a topic and then control the work flow that the topic progresses through as content is added. 
 For example,
    * When writing documents compliant with ISO 9000 (e.g. a quality manual), it is essential that documents are approved by the management before they may be applied by the employees.
    * In a defect tracking data base, defects typically transition through a series of states from submission to resolution, with different actions available depending on the state of the defect.
@@ -13,7 +13,7 @@ For example,
 
 This plugin lets you associate a complex work flow with topics in your wiki.
 
-A workflow can be associated with a single topic, or with an entire web. If a topic is under workflow control, you can define a set of _states_ for this topic (e.g. "under revision", "waiting for approval", "approved") and _transitions_ (e.g. "revise", "approve") between these states. Furthermore, you can define which users/groups are permitted to perform specific transistions. In this way, you can control, for example, who is allowed to "approve" a topic and who is not. 
+A workflow can be associated with a single topic, or with an entire web. If a topic is under workflow control, you can define a set of _states_ for this topic (e.g. "under revision", "waiting for approval", "approved") and _transitions_ (e.g. "revise", "approve") between these states. Furthermore, you can define which users/groups are permitted to perform specific transistions. In this way, you can control, for example, who is allowed to "approve" a topic and who is not.
 
 ---++ Usage
 
@@ -89,17 +89,16 @@ will define =WORKFLOWNOTICE= in any topic that uses the workflow.
 
 As described above the topic needs to contain a definition for the variable =WORKFLOW= for it to be controlled under the approval workflow. This is best set as a document-specific preference setting in the =More topic actions= screen.
 
-The plugin defines a number of %SYSTEMWEB%.TWikiVariables that can be used in the topic under flow control:
+The plugin defines a number of preferences that can be used in the topic under flow control:
 %INCLUDE{VarWORKFLOW}%
 
-If you replace =%<nop>EDITTOPIC%= with =%<nop>WORKFLOWEDITTOPIC%= in your %SYSTEMWEB%.TWikiTemplates, then the _Edit_ link is crossed out when the user is not allowed to edit the page in a state.  
+If you replace =%<nop>EDITTOPIC%= with =%<nop>WORKFLOWEDITTOPIC%= in your skin templates, then the _Edit_ link is crossed out when the user is not allowed to edit the page in a state.  
 
 ---++ Reporting
 A common requirement is to report on the status of topics that are in different states in the workflow. If you are using TWiki 4.2.0 or later, you can use the query search to search for topics in a specific state. For example, to search for all topics in state "APPROVED":
 <verbatim>
 %SEARCH{"META:WORKFLOW.name='APPROVED'" type="query"}%
 </verbatim>
-For more information of query searches, see %SYSTEMWEB%.QuerySearch.
 
 ---++ Bugs
 
@@ -108,7 +107,7 @@ For more information of query searches, see %SYSTEMWEB%.QuerySearch.
 
 ---++ History and Acknowledgements
 
-This plugin was motivated by [[TWiki:Main.ThomasWeigert][Thomas Weigert]] 's [[TWiki:Plugins.WorkFlowAddOn][WorkFlowAddOn]] and its first version (then called !ApprovalPlugin) was written by [[TWiki:Main.ThomasHartkens][Thomas Hartkens]], albeit it was focused on document approval and control. [[TWiki:Main.ThomasWeigert][Thomas Weigert]] then merged the functionality of the [[TWiki:Plugins.WorkFlowAddOn][WorkFlowAddOn]] into this plugin. [[TWiki:Main.CrawfordCurrie][Crawford Currie]] enhanced the documentation and installation procedure.
+This plugin was motivated by [[TWiki:Main.ThomasWeigert][Thomas Weigert]]'s [[TWiki:Plugins.WorkFlowAddOn][WorkFlowAddOn]] and its first version (then called !ApprovalPlugin) was written by [[TWiki:Main.ThomasHartkens][Thomas Hartkens]], albeit it was focused on document approval and control. [[TWiki:Main.ThomasWeigert][Thomas Weigert]] then merged the functionality of the [[TWiki:Plugins.WorkFlowAddOn][WorkFlowAddOn]] into this plugin.
 
 ---++ Plugin Settings
 Plugin settings are stored as preferences variables. To reference
@@ -133,10 +132,10 @@ __Note:__ For strict access control, the plugin should know who is looking at th
 
 ---++ Plugin Info
 
-|  Plugin Author: | TWiki:Main/ThomasHartkens, Dakar port and changes from 24 Jul 2006 by TWiki:Main/ThomasWeigert |
-|  Plugin Version: | 28 Jan 2008 |
+|  Plugin Author(s): | Thomas Hartkens, Thomas Weigert |
+|  Plugin Version: | %DATE% |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
-|  5 Nov 2008 | Crawford Currie: Heavily refactored to OO style to ease maintenance. TWikibug:Item6063: ensure form is saved when state changes TWikibug:Item5585: support use of ' TWikibug:Item4188: split off VarWORKFLOW documentation. TWikibug:Item5371: removed 'back door' call that was causing issues |
+|  10 Nov 2008 | Crawford Currie: Heavily refactored to OO style to ease maintenance. TWikibug:Item6063: ensure form is saved when state changes TWikibug:Item5585: support use of ' TWikibug:Item4188: split off VarWORKFLOW documentation. TWikibug:Item5371: removed 'back door' call that was causing issues, Work supported by http://micralyne.com |
 |  23 Apr 2008: | Crawford Currie: TWikibug:Item5369: removed last of the core calls, fixed user management. Work supported by http://www.productbox.co.uk/ |
 |  28 Jan 2008: | Kenneth Lavrsen: Fixed his typo in code. Renamed the convert.pl to convert.pl.txt as most TWiki's including twiki.org does not allow .pl as extension and this creates problems when you want to update attachments |
 |  27 Jan 2008: | Markus Ueberall: Fixed for compatibility with TWiki 4.2.0 |
@@ -150,16 +149,8 @@ __Note:__ For strict access control, the plugin should know who is looking at th
 |  24 Jul 2006: | Ported to Dakar. Fixed problem in referencing previous versions. Fixed error messages. Fixed Documentation errors. |
 |  16 Feb 2005: | Initial version of !ApprovalPlugin |
 |  05 Feb 2004: | Initial version of !WorkFlowAddOn |
-|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
-|  Dependencies: | None |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
-|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
-|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
-
-__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins
-
--- TWiki:Main/ThomasWeigert - 25 Sep 2006
+|  Plugin Home: | Nextwiki:Extensions/%TOPIC% |
+|  Plugin Development: | Nextwiki:Extensions/%TOPIC%Dev |
 
 <!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the Dev topic instead. -->
 

@@ -1,4 +1,3 @@
-# Plugin for TWiki Collaboration Platform, http://TWiki.org/
 #
 # Copyright (C) 2005 Thomas Hartkens <thomas@hartkens.de>
 # Copyright (C) 2005 Thomas Weigert <thomas.weigert@motorola.com>
@@ -155,16 +154,20 @@ sub changeState {
       || '$state -- $date';
     $fmt = '$n()' . $fmt if $this->{history}->{value};
     if ( defined &TWiki::Func::decodeFormatTokens ) {
+
+        # Compatibility note: also expands $percnt etc.
         $fmt = TWiki::Func::decodeFormatTokens($fmt);
     }
     else {
         my $mixedAlpha = $TWiki::regex{mixedAlpha};
         $fmt =~ s/\$quot/\"/go;
-        $fmt =~ s/\$n/<br>/go;
-        $fmt =~ s/\$n\(\)/<br>/go;
+        $fmt =~ s/\$n/\n/go;
+        $fmt =~ s/\$n\(\)/\n/go;
         $fmt =~ s/\$n([^$mixedAlpha]|$)/\n$1/gos;
-        $fmt =~ s/\$wikiusername/TWiki::Func::getWikiUserName($revuser)/geo;
     }
+    $fmt =~ s/\r//gs;
+    $fmt =~ s/\n/<br>/gs;    # backward compatibility
+    $fmt =~ s/\$wikiusername/TWiki::Func::getWikiUserName($revuser)/geo;
     $fmt =~ s/\$state/$this->getState()/goe;
     $fmt =~ s/\$date/$this->{state}->{"LASTTIME_$state"}/geo;
 
@@ -173,14 +176,13 @@ sub changeState {
     my $form = $this->{workflow}->getNextForm( $cs, $action );
     if ($form) {
         $this->{meta}->put( "FORM", { name => $form } );
-    }    # else leave the existing form in place
+    }                        # else leave the existing form in place
     TWiki::Func::saveTopic(
         $this->{web}, $this->{topic}, $this->{meta},
         $this->{text}, { minor => 1 }
     );
 
     return undef;
-
 }
 
 1;
