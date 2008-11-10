@@ -2331,3 +2331,7 @@ tr.twikiDiffDebug td {
 .twikiDiffLineNumberHeader {
 	padding:.3em 0;
 }
+a {
+        font-weight:normal;
+}
+
