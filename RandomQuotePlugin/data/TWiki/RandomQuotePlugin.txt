@@ -76,6 +76,6 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Plugin Home: | http://wiki.trommetter.com/TWiki/%TOPIC% |
 |  Feedback: | http://wiki.trommetter.com/TWiki/%TOPIC%Dev |
 
-__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- [[http://wiki.trommetter.com/Main/JasonTromm][JasonTromm]] - 03 Jul 2003

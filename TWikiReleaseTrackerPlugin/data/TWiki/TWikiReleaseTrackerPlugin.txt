@@ -152,7 +152,7 @@ See the Parameters section for descriptions of the rest of these:
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins
 
 If you have comments or questions, please put them at TWiki:Plugins.TWikiReleaseTrackerPluginDev
 %META:FILEATTACHMENT{name="localInstallation.md5" attr="" comment="" date="1090726845" path="There no API to add attachments from plugins, so I hacked it" size="592" user="MartinCleaver" version="1.1"}%

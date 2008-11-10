@@ -117,7 +117,7 @@ __Note:__ The following instructions are for the administrator who installs the 
 |  Feedback: | none |
 |  Appraisal: | none |
 
-__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins
 
 -- TWiki:Main/ColeBeck - 31 Dec 2004
 

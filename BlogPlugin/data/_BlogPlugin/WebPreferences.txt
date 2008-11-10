@@ -155,7 +155,8 @@ TopicFunctions to generate html page header information:
 
 __Related Topics__:
    * [[%LOCALSITEPREFS%]]
-   * [[%SYSTEMWEB%.TWikiPreferences]]
+   * [[%SYSTEMWEB%.DefaultPreferences]]
+   * [[%USERSWEB%.SitePreferences]]
 
 %META:FORM{name="TopicForm"}%
 %META:FIELD{name="TopicType" attributes="M" title="TopicType" value="AdminTool"}%
