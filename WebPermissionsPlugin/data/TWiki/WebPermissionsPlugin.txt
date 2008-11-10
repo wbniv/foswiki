@@ -160,7 +160,7 @@ See %SYSTEMWEB%.TWikiAccessControls for more information on what access modes ca
 
 %$INSTALL_INSTRUCTIONS%
 
-To access the Topic Permission editor, add =webpermissions= to the SKIN setting in %MAINWEB%.TWikiPreferences .
+To access the Topic Permission editor, add =webpermissions= to the SKIN setting in %USERSWEB%.SitePreferences .
 e.g. =Set SKIN=webpermissions,pattern=)
 
 
@@ -189,7 +189,7 @@ Many thanks to the following sponsors for supporting this work:
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
 
 %META:FILEATTACHMENT{name="wikiringlogo20x20.png" attr="h" comment="" version="1"}%
 %META:FILEATTACHMENT{name="logo.gif" attr="h" comment="" version="1"}%

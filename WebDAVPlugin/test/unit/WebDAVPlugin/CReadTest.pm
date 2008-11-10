@@ -108,7 +108,7 @@ sub test__all_web_topic {
 				   "\t* Set ALLOWTOPICVIEW = atv1,atv2,atv3");
   $db->processText("Web", "WebPreferences",
 				   "\t* Set DENYWEBVIEW = atv1\n");
-  $db->processText("TWiki", "TWikiPreferences",
+  $db->processText("TWiki", "DefaultPreferences",
 				   "\t* Set DENYWEBVIEW = atv2\n");
   $db = undef; # force close
 
@@ -121,7 +121,7 @@ sub test__deny_global_group {
   my $this = shift;
   my $db = new TWiki::Plugins::WebDAVPlugin::Permissions($tmpdir);
 
-  $db->processText("TWiki", "TWikiPreferences",
+  $db->processText("TWiki", "DefaultPreferences",
 				   "\t* Set DENYWEBVIEW = UsGroup\n");
   $db->processText("Main", "UsGroup",
 				   "\t* Set GROUP = me,us,ThemGroup\n");

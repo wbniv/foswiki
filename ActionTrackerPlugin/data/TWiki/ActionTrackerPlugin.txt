@@ -338,7 +338,7 @@ will match both of the following actions:
 <!--
 	* Set SHORTDESCRIPTION = Adds support for action tags in topics, and automatic notification of action statuses
 -->
-You can override the defaults for these values in %MAINWEB%.<nop>TWikiPreferences, the Web<nop>Preferences topic of the current web, or in individual topics. Use the standard TWiki 'Set' syntax e.g:
+You can override the defaults for these values in %USERSWEB%.<nop>SitePreferences, the Web<nop>Preferences topic of the current web, or in individual topics. Use the standard TWiki 'Set' syntax e.g:
 <pre>
    *<nop> Set ACTIONTRACKERPLUGIN_EDITORIENT = rows
 </pre>

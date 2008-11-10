@@ -154,7 +154,7 @@ sub test__twiki_preferences {
     my $this = shift;
     my $db = new TWiki::Plugins::WebDAVPlugin::Permissions($tmpdir);
 
-    $db->processText("TWiki", "TWikiPreferences",
+    $db->processText("TWiki", "DefaultPreferences",
                      "\t* Set DENYWEBVIEW = $dv\n\t* Set ALLOWWEBVIEW = $av\n\t* Set DENYTOPICCHANGE = $dt");
     $db = undef; # force close
     $this->checkdb();
@@ -169,17 +169,17 @@ sub test__twiki_preferences {
        $hash{"P:/:V:A"});
     $this->assert_str_equals
       ($dttest,
-       $hash{"P:/TWiki/TWikiPreferences:C:D"});
+       $hash{"P:/TWiki/DefaultPreferences:C:D"});
     untie(%hash);
 
     $db = new TWiki::Plugins::WebDAVPlugin::Permissions($tmpdir);
-    $db->processText("TWiki", "TWikiPreferences", "");
+    $db->processText("TWiki", "DefaultPreferences", "");
     $db = undef; # force close
 
     tie(%hash,'TDB_File',$testdb,TDB_File::TDB_DEFAULT,Fcntl::O_RDONLY,0666) || die "$testdb $!";
     $this->assert_null($hash{"P:/:V:D"});
     $this->assert_null($hash{"P:/:V:A"});
-    $this->assert_null($hash{"P:/TWiki/TWikiPreferences:C:D"});
+    $this->assert_null($hash{"P:/TWiki/DefaultPreferences:C:D"});
     untie(%hash);
 }
 
@@ -187,7 +187,7 @@ sub test__group {
     my $this = shift;
     my $db = new TWiki::Plugins::WebDAVPlugin::Permissions($tmpdir);
 
-    $db->processText("TWiki", "TWikiPreferences",
+    $db->processText("TWiki", "DefaultPreferences",
                      "\t* Set DENYWEBVIEW = TurfGroup\n\t* Set ALLOWWEBVIEW = Main.SodGroup\n");
     $db->processText("Main", "SodGroup",
                      "\t* Set GROUP = $av\n");

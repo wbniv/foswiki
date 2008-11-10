@@ -28,11 +28,11 @@ If you want to use Javascript to create other data types in form fields, you can
 Required for old TWiki versions
 	* Set SHORTDESCRIPTION = Adds a =date= type to forms
 -->
-The default date format is taken from the JSCalendarContrib settings. You can change the date format by setting the TWiki variable 'DATEFORMAT' in your !TWikiPreferences, your !WebPreferences or in a topic. For example:
+The default date format is taken from the JSCalendarContrib settings. You can change the date format by setting the TWiki variable 'DATEFORMAT' in your !%SYSTEMWEB%.DefaultPreferences, your !%USERSWEB%.SitePreferences, your !WebPreferences or in a topic. For example:
    * Set <nop>DATEFORMAT = %c
 Look up =strftime= in Google for a full list of the format options.
 
-The plugin can default to todays date by setting the TWiki variable 'DATEFIELDPLUGIN_DEFAULTTOTODAY' in your !TWikiPreferences, your !WebPreferences or in a topic.  For example:
+The plugin can default to todays date by setting the TWiki variable 'DATEFIELDPLUGIN_DEFAULTTOTODAY' in your !%SYSTEMWEB%.DefaultPreferences, your !%USERSWEB%.SitePreferences, your !WebPreferences or in a topic.  For example:
    * Set <nop>DATEFIELDPLUGIN_DEFAULTTOTODAY = 1
 
 See JSCalendarContrib for additional settings.

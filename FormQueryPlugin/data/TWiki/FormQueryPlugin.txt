@@ -458,7 +458,7 @@ In this case, =$TableDefinition.0.Name= is =Cat=, =$TableDefinition.1.Name= is =
 <pre>
       * <nop>Set FORMQUERYPLUGIN_ENABLE = 1
 </pre>
-   * You can set a global default for the =moan= parameter by setting the =FORMQUERYPLUGIN_MOAN variable in %MAINWEB%.TWikiPreferences, WebPreferences in individual webs, or in individual topics.
+   * You can set a global default for the =moan= parameter by setting the =FORMQUERYPLUGIN_MOAN variable in %USERSWEB%.SitePreferences, WebPreferences in individual webs, or in individual topics.
    * FormQueryPlugin must appear in the Plugins evaluation order *before* TWiki:Plugins/SpreadSheetPlugin. You can ensure this by putting !FormQueryPlugin immediately after Default<nop>Plugin in the {PluginsOrder} list in =configure=.
    * Note: If you are using it, TWiki:Plugins/MacrosPlugin must appear in the Plugins evaluation order *before* FormQueryPlugin.
 

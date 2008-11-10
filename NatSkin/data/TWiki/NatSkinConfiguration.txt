@@ -14,7 +14,7 @@ variables and can be set
 Use the NatSkinStyleBrowser to preview the known styles and settings. Note,
 that the selection made there will only last for the current session. You
 need to add the respective preference variables to your [[%WIKIUSERNAME%][home topic]]
-or the WebPreferences or the %MAINWEB%.TWikiPreferences to make the selection
+or the WebPreferences or the %USERSWEB%.SitePreferences to make the selection
 persistent.
 
 This is the list of variables to configure the skin style:
@@ -95,7 +95,7 @@ to fool collecting web crawlers. But that is not adequate enough today as crawle
 to that is to remove every trace of a pattern that could be an email address from the html source code and regenerate
 them using javascript. Most likely, web crawlers will only parse the html and don't run a javascript interpreter 
 beforehand. Nevertheless the obfuscation feature can be switched on and off by adding the =OBFUSCATEEMAIL= variable
-to your %SYSTEMWEB%.TWikiPreferences like
+to your %SYSTEMWEB%.DefaultPreferences or %USERSWEB%.SitePreferences like
 
 <verbatim>
   * Set OBFUSCATEEMAIL = on

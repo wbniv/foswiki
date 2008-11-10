@@ -5,7 +5,7 @@
 
 ---++!! Usage
 ---+++!! Step 1
-Let %SYSTEMWEB%.TWikiNetSkin point to the custom-made colors style sheet. In [[%MAINWEB%.TWikiPreferences]] put:
+Let %SYSTEMWEB%.TWikiNetSkin point to the custom-made colors style sheet. In [[%USERSWEB%.SitePreferences]] put:
 <verbatim>
    * Set USERCOLORSURL = %PUBURLPATH%/%SYSTEMWEB%/TWikiNetSkin/theme-colors.css
 </verbatim>

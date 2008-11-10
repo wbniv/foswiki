@@ -21,14 +21,14 @@ This skin needs TWiki 4.2 or newer.
    * Unzip ==%TOPIC%.zip== in your twiki installation directory
 
 ---+++ Additional installation steps
-   * Modify TablePlugin settings: copy the =TABLEATTRIBUTES= below to !Main.TWikiPreferences: %BR%
+   * Modify TablePlugin settings: copy the =TABLEATTRIBUTES= below to !%USERSWEB%.SitePreferences: %BR%
    <verbatim>
    * TWikiNetSkin table attributes:
       * Set TABLEPLUGIN_TABLEATTRIBUTES = tableborder="1" cellpadding="0" cellspacing="0" valign="top" headercolor="#252b37" headerbg="#d8dde4" headerbgsorted="#ced4dd" headercolor="#252b37" databg="#ffffff,#f2f3f6" databgsorted="#f3f5f7,#e7e9ee" tablerules="cols"
 </verbatim>
-   * In !TWiki.TWikiPreferences, remove the =&lt;div class="twikiBroadcastMessage"&gt;&lt;/div&gt;= tags (if any) from =BROADCASTMESSAGE=
+   * In !%SYSTEMWEB%.DefaultPreferences, remove the =&lt;div class="twikiBroadcastMessage"&gt;&lt;/div&gt;= tags (if any) from =BROADCASTMESSAGE=
 
-   * To turn on the skin, write in !Main.TWikiPreferences: %BR%
+   * To turn on the skin, write in !%USERSWEB%.SitePreferences: %BR%
    <verbatim>
       * Set SKIN = twikinet,pattern
 </verbatim>

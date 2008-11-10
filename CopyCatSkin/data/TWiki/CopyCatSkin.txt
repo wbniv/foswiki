@@ -10,7 +10,7 @@
 To kick things off, atached is a Codev.MovableType look alike,  ==cc-moveabletype== .To install, 
 	* put the download archive in =$twikiroot=
 	* unzip, with directories (will put files in =templates/, pub/Plugins/CopyCatSkin/, data/Plugins/=)
-	* edit TWiki.TWikiPreferences, WebPreferences, or your personal page and set the variables
+	* edit %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, WebPreferences, or your personal page and set the variables
 <verbatim>
 		* Set SKIN = cc-movabletype
 		* Set CCSTYLE = mt-georgia-blue

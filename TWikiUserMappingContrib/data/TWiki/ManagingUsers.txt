@@ -103,7 +103,7 @@ cp registernotify.tmpl registernotify.myskin.tmpl
 cp registerconfirm.tmpl registerconfirm.myskin.tmpl
 cp registernotifyadmin.tmpl registernotifyadmin.myskin.tmpl
 </verbatim>
-then add =myskin= to the beginning of the =SKIN= setting in %MAINWEB%.TWikiPreferences.
+then add =myskin= to the beginning of the =SKIN= setting in %USERSWEB%.SitePreferences.
 
 From this point on, your myskin templates will be used for the registration emails.
 

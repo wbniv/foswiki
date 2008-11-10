@@ -181,7 +181,7 @@ Alias /dav/pub/ /home/twiki/pub/
 Now only requests to =http://your.domain/dav/pub/somefile= get handled by twiki_dav.
 
 You may want to add a new DAV-edit-link to your attachments table.
-   * Add the following to your TWikiPreferences:
+   * Add the following to your %SYSTEMWEB%.DefaultPreferences or your %USERSWEB%.SitePreferences:
 <verbatim>
    * For the WebDAV edit link in the attachment tables we need the DAV-path, which is the PUBURL with twiki replaced by the alias set in httpd.conf:
       * Set WIKIDAVPUBURL = http://%HTTP_HOST%/dav/pub/
