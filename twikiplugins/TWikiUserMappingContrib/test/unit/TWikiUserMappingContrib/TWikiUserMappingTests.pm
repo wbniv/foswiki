@@ -56,7 +56,7 @@ sub set_up_for_verify {
     $TWiki::cfg{Htpasswd}{FileName}   = "$TWiki::cfg{TempfileDir}/junkhtpasswd";
     $TWiki::cfg{UsersWebName}         = $testUsersWeb;
     $TWiki::cfg{SystemWebName}        = $testSysWeb;
-    $TWiki::cfg{LocalSitePreferences} = "$testUsersWeb.TWikiPreferences";
+    $TWiki::cfg{LocalSitePreferences} = "$testUsersWeb.SitePreferences";
     $TWiki::cfg{UserMappingManager}   = 'TWiki::Users::TWikiUserMapping';
     $TWiki::cfg{Register}{AllowLoginName}            = 1;
     $TWiki::cfg{Register}{EnableNewUserRegistration} = 1;

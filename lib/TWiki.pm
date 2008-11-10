@@ -1522,7 +1522,7 @@ sub new {
     # Form definition cache
     $this->{forms} = {};
 
-    # Push global preferences from TWiki.TWikiPreferences
+    # Push global preferences from %SYSTEMWEB%.DefaultPreferences
     $prefs->pushGlobalPreferences();
 
     #TODO: what happens if we move this into the TWiki::User::new?
