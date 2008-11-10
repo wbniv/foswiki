@@ -5,11 +5,11 @@ The Peer Review Plugin implements a number of TWiki variables in order to allow 
 
 ---++++ PRLINK
 
-A link &lt;!--%<nop>PRLINK%--&gt; that can either be placed in the site skin(s) or that may be edited into the %SYSTEMWEB%.TwikiPreferences topic as one of the Web Topic List items. This link points to a special Peer Review topic - [[Wiki.PeerPluginView]].
+A link &lt;!--%<nop>PRLINK%--&gt; that can either be placed in the site skin(s) or that may be edited into the %SYSTEMWEB%.DefaultPreferences or %USERSWEB%.SitePreferences topic as one of the Web Topic List items. This link points to a special Peer Review topic - [[Wiki.PeerPluginView]].
 
 ---++++ PRRATING
 
-A rating indicator &lt;!--%<nop>PRRATING%--&gt; that can be placed in the site skin or that may be edited into the %SYSTEMWEB%.TwikiPreferences topic as one of the Web Topic List items. This indicator shows the average topic quality rating for all current reviews. It is greyed out if no review has yet been entered for the topic.
+A rating indicator &lt;!--%<nop>PRRATING%--&gt; that can be placed in the site skin or that may be edited into the %SYSTEMWEB%.DefaultPreferences or %USERSWEB%.SitePreferences topic as one of the Web Topic List items. This indicator shows the average topic quality rating for all current reviews. It is greyed out if no review has yet been entered for the topic.
 
 Both of the above two variables are implemented as an HTML comment tag - they will disappear if the plugin is removed. Both are greyed out if referring to a user topic.
 

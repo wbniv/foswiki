@@ -44,6 +44,6 @@ The API is packaged this way so it can be used with TWiki-4.0
 |  Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %SYSTEMWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
 
 -- TWiki:Main/CrawfordCurrie - %$DATE%

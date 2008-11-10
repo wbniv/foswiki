@@ -37,7 +37,7 @@ Installation:
 
 	* Then edit WebMenu to set the contents of the menu bar, supplied one cover TWiki, Main and Test Webs
 
-	* Add the following line to %SYSTEMWEB%.TWikiPreferences or to any WebPreferences topic
+	* Add the following line to %SYSTEMWEB%.DefaultPreferences, or %USERSWEB%.SitePreferences or to any WebPreferences topic
 
 <verbatim>
 

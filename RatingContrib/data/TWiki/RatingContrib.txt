@@ -81,6 +81,6 @@ is good if you want (for example) to update values using a REST handler.
 |  Feedback: | http://twiki.org/cgi-bin/view/Plugins/RatingContribDev |
 |  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/RatingContribAppraisal |
 
-__Related Topics:__ %SYSTEMWEB%.WikiContribs, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.WikiContribs, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
 
 <!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the feedback topic on twiki.org instead. -->

@@ -122,7 +122,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
 
 %META:FILEATTACHMENT{name="style.css" attr="" autoattached="1" comment="" date="1171245554" path="style.css" size="2317" user="Main.ProjectContributor" version=""}%
 %META:FILEATTACHMENT{name="skills_screenshot_thumb.png" attr="" autoattached="1" comment="" date="1171248289" path="skills_screenshot_thumb.png" size="48997" user="Main.ProjectContributor" version="2"}%

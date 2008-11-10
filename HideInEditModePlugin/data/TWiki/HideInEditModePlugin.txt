@@ -66,7 +66,7 @@ __Note:__ The following instructions are for the administrator who installs the 
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins
  
 -- TWiki:Main.MeredithLesly - 25 Feb 2006
 %META:TOPICMOVED{by="MeredithLesly" date="1141059508" from="TWiki.HiddenInEditPlugin" to="TWiki.HideInEditModePlugin"}%

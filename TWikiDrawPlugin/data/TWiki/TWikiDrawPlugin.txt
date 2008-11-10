@@ -126,7 +126,7 @@ If you add a map to a drawing by setting a URL on any of the figures a map file 
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %SYSTEMWEB%.TWikiPreferences, %SYSTEMWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins
 
 	* %TOPIC% is based on Erich Gamma's <nop>JHotDraw 5.1. (<nop>JHotDraw is copyright 1996, 1997 by <a href="http://www.ifa.ch/">IFA Informatik</a> and Erich Gamma, erich_gamma@acm.org . _It is hereby granted that this software can be used, copied, modified, and distributed without fee provided that this copyright notice appears in all copies._ )
 	* %TOPIC% uses <a href="http://www.acme.com/java/">ACME Labs</a>' <nop>GifEncoder to convert a drawing into a GIF file format. (<nop>GifEncoder is Copyright &copy;1996,1998 by Jef Poskanzer, jef@acme.com . All rights reserved. _<font size="-6"> THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. )</font>_

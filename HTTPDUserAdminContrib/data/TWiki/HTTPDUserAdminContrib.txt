@@ -56,6 +56,6 @@ This Contrib can also define and store group definitions in the same database.
 |  Feedback: | http://twiki.org/cgi-bin/view/Plugins/HTTPDUserAdminContribDev |
 |  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/HTTPDUserAdminContribAppraisal |
 
-__Related Topics:__ %SYSTEMWEB%.WikiContribs, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
+__Related Topics:__ %SYSTEMWEB%.WikiContribs, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
 
 <!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the feedback topic on twiki.org instead. -->

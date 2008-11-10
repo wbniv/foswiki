@@ -66,7 +66,7 @@ get the current skin style; the priority is
    3 preference value =SKINSTYLE= set in 
       (a) the user preferences 
       (b) the WebPreferences or 
-      (c) %SYSTEMWEB%.TWikiPreferences 
+      (c) %SYSTEMWEB%.DefaultPreferences or %USERSWEB%.SitePreferences 
 
 ---+++ IFSKINSTATE
 *Syntax*: =%<nop>IFSKINSTATE{&lt;tests> then="..." else="..."}%= 
@@ -324,7 +324,7 @@ The following variables can be used in the format string:
 %$DEPENDENCIES%
    * Optionally install the TWiki:Plugins/RedDotPlugin to ease editing the sidebar navigation
    * Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
-   * Edit [[%SYSTEMWEB%.TWikiPreferences]] and change the SKIN variable to "nat";
+   * Edit [[%SYSTEMWEB%.DefaultPreferences]] or better [[%USERSWEB%.SitePreferences]] and change the SKIN variable to "nat";
      customize the default style adding the variables SKINSTYLE, STYLEBORDER,
      STYLEBUTTONS and STYLESIDEBAR (see NatSkin)
    * If you have set up ssl for your server add the following variable to your <nop>TWikiPreferences:

@@ -48,7 +48,8 @@ Definition of TWikiForms:
 
 __Related Topics__:
    * [[%LOCALSITEPREFS%]]
-   * [[%SYSTEMWEB%.TWikiPreferences]]
+   * [[%SYSTEMWEB%.DefaultPreferences]]
+   * [[%USERSWEB%.SitePreferences]]
 
 %META:FORM{name="Applications.ApplicationTopic"}%
 %META:FIELD{name="TopicType" attributes="" title="TopicType" value="WebTool"}%
