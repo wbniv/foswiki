@@ -75,19 +75,15 @@ sub handlePageStats
 
     my $dd = TWiki::Func::getDataDir();
     #my @pagestats = `grep $web\\.$topic $dd/log*.txt | grep -E \\(view\\|save\\)`;
-    use TWiki::Sandbox;
-    my $sandbox = TWiki::Sandbox->new();
-    my ($lsresp, $lsexit) = $sandbox->sysCommand("ls -1 $dd");
-    my @resp = split(/\n/, $lsresp);
-    my @logs = grep(/log2.*.txt/, @resp);
-    my $logs = "";
-    foreach my $l (@logs) {
-        $logs .= "$dd/$l ";
+    opendir DATADIR, $dd or die "Can't open DataDir: $!";
+    my @pagestats = ();
+    foreach my $l ( grep /log.*.txt/, readdir DATADIR ) {
+	open( my $logfile, "< $dd/$l" ) or next;
+	while( <$logfile> ) {
+	    push @pagestats, $_ if /$web\.$topic/ && /view|save/;
+	}
     }
-    my $pat = "$web.$topic";
-    my $x = 'grep -e '.$pat.' -e view -e save '.$logs;
-    my ($grepresp, $grepexit) = $sandbox->sysCommand('grep -e '.$pat.' -e view -e save '.$logs);
-    my @pagestats = split(/$/, $grepresp);
+    closedir DATADIR;
 
     my $maxEntries = scalar &TWiki::Func::extractNameValuePair( $attributes, "max" ) || scalar @pagestats;
     $maxEntries = scalar @pagestats if $maxEntries > scalar @pagestats;
