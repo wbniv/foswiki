@@ -192,7 +192,7 @@ The Plugin handles a =%<nop>TAGME{}%= variable that performs different actions. 
 
 To show the tag interface at the top of the page directly below the breadcrumb (like on twiki.org), use the default template =view.tagme.tmpl= in the templates directory.
 
-This template is in fact a 'skin' template. To enable it, write in [[%MAINWEB%.TWikiPreferences]]:
+This template is in fact a 'skin' template. To enable it, write in [[%USERSWEB%.SitePreferences]]:
 <pre>
    * Set S<nop>KIN = tagme,pattern
 </pre>
@@ -222,10 +222,10 @@ If you customize your site you probably want to change overall appearance. You c
 The short summary is:
    * Create an empty CSS file, for instance =sitestyle.css=
    * Copy the CSS styles for =tagmetags= (see below at [[%TOPIC%#ExampleStyle][Example styles used on twiki.org]]) into the file
-   * Attach the file to [[%MAINWEB%.TWikiPreferences]]
-   * In [[%MAINWEB%.TWikiPreferences]], write: 
+   * Attach the file to [[%USERSWEB%.SitePreferences]]
+   * In [[%USERSWEB%.SitePreferences]], write: 
    <verbatim>
-   * Set USERSTYLEURL = %PUBURL%/%MAINWEB%/TWikiPreferences/sitestyle.css
+   * Set USERSTYLEURL = %PUBURL%/%MAINWEB%/SitePreferences/sitestyle.css
    </verbatim>
 
 ---+++ Other places for the tag interface
@@ -236,7 +236,7 @@ Tags: %TAGME{ tpaction="%URLPARAM{tpaction}%" web="%WEB%" tag="%URLPARAM{tag}%" 
 </div>
 </verbatim>
 
-To show the tags at the bottom of every page, write in [[%MAINWEB%.TWikiPreferences]]:
+To show the tags at the bottom of every page, write in [[%USERSWEB%.SitePreferences]]:
 <verbatim>
  * Set WEBCOPYRIGHT = Tags: %TAGME{ tpaction="%URLPARAM{tpaction}%" web="%WEB%" tag="%URLPARAM{tag}%" }%, [[TWiki.TagMeViewAllTags][view all tags]] %BR% Copyright &copy; 1999-%GMTIME{"$year"}% by... etc
 </verbatim>

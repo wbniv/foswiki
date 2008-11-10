@@ -144,7 +144,7 @@ sub commonTagsHandler {
     }
 
 # manage categories/skills
-# If there is a preference in Main.TWikiPreferences, only people listed and admins can add categories/skills
+# If there is a preference in %USERSWEB%.SitePreferences, only people listed and admins can add categories/skills
     unless ( isAllowed() ) {
         $_[0] =~ s!%ADDSKILLSMESSAGE%!<div class="skillNotification">
                                       %ICON{"warning"}% You do not have permission to add skills/categories.

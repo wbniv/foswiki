@@ -16,7 +16,7 @@ use Carp;
 
 # Description:
 #    1 Locates TWiki installs (uses Google SOAP API)
-#    2 Finds common information from TWikiPreferences
+#    2 Finds common information from DefaultPreferences
 #    2 Catalog users
 #    2 Discovers webs
 #    3 Writes found information information into a TWiki topic
@@ -121,7 +121,7 @@ package TWikiSite;
 | Number of users | $self->user_count() |
 | Users | http://sitename/..../Main/TWikiUsers
 | Webs names |
-| TWiki prefs | http://sitename/..../TWiki/TWikiPreferences
+| TWiki prefs | http://sitename/..../TWiki/DefaultPreferences
 | Plugins installed |
 | Main skin |
 
@@ -222,7 +222,7 @@ sub reg_site {
 #  print "$siteurl: \n";
 #  print "\t$baseurl \n";
   my $site = new TWikiSite ($siteurl);
-  my @webs = get_wikiweblist($baseurl."/TWiki/TWikiPreferences", $siteurl);
+  my @webs = get_wikiweblist($baseurl."/TWiki/DefaultPreferences", $siteurl);
   $site->webs(@webs);
 
   $site->home(get_home($baseurl));

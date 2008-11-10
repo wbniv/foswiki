@@ -178,7 +178,7 @@ For the impatient, here is what to do to use it:
 		are not by default in you PATH (no need to on unix and cygwin)
 		Tradition versions of Sun, HP, etc,... will not work
 	  <ol>
-	4 Set in your global web preferences TWiki.TWikiPreferences:
+	4 Set in your global web preferences %SYSTEMWEB%.DefaultPreferences or %USERSWEB%.SitePreferences:
 	  <br> _6 spaces_ * Set SKIN = koala
 	  <br> _6 spaces_ * Set TOPICS = 
 	  <br> _6 spaces_ * Set TOPICSTOP = 
@@ -287,7 +287,8 @@ facilities for:
 	* <b>-r</b> only removes Koala Skin installation: distributed files
 	  and generated templates. Leaves the local customizations 
 	  (<nop>KoalaSkinWebList topic) untouched. You need also to change or remove
-	  the  <tt>* Set SKIN = koala</tt> in TWiki.TWikiPreferences
+	  the  <tt>* Set SKIN = koala</tt> in %SYSTEMWEB%.DefaultPreferences or 
+	  %USERSWEB%.SitePreferences
 	  to complete the uninstallation.
 
 ---++ Customizations
@@ -338,7 +339,7 @@ and possibly per user (if your set up forces people to authentify for just
 browsing). For instance, if you want to allow people to define topics that
 will be seen in all the site, and that local web topics are appended to these
 but do not override them (as is the case if you redefine TOPICS in a web),
-define in your site prefs TWiki.TWikiPreferences:
+define in your site prefs %SYSTEMWEB%.DefaultPreferences or %USERSWEB%.SitePreferences:
 	* *Set TOPICS =* _some globally visible topics..._ %<nop>TOPICS_WEB%
 	* *Set TOPICS_WEB =* 
 Then, in your webs local prefs, you can redefine TOPICS_WEB and not TOPICS...
@@ -424,7 +425,7 @@ variables in the <nop>KoalaSkinWebList topic such as:
 	* KSTHEME=themes,... 
 	  Can be used to redefine any KoalaSkin template, see Theming.
 To do this, set in TWiki.KoalaSkinWebList the variable to a %-var, that you will
-have to define the default in the site preferences in TWiki.TWikiPreferences,
+have to define the default in the site preferences in %SYSTEMWEB%.DefaultPreferences or %USERSWEB%.SitePreferences,
 that then can be used to define things per web. For instance, in
 TWiki.KoalaSkinWebList, with the following declaration you will be able to use
 %=%<nop>TOPICON%= to redefine the upper left icon per web.
@@ -495,7 +496,7 @@ Must be found at the start of the descriptions, blank-separated
 	  global KSTHEME for groups.
 
 ---+++ Boxes
-If you insert in your TWiki.TWikiPreferences site-wide preferences
+If you insert in your %SYSTEMWEB%.DefaultPreferences or %USERSWEB%.SitePreferences site-wide preferences
 the contents of the provided file =templates/ks_boxes.koala.txt=
 you will have %-macros to create colored boxes of text in the colors scheme
 of the current web, see http://koala.ilog.fr/wiki/bin/view/Test/TestBoxes .
@@ -807,12 +808,12 @@ Versions 3.x supports the Cairo (Sep 2004) and Beijing (Feb 2003) releases.
 	* *3.0* _12 Jan 2005_ Cairo support
 		* new PRINTCSS twiki var
 		* *%X%* you must add a <tt>* Set PRINTCSS =</tt> to your
-		  site global prefs, in TWiki.TWikiPreferences
+		  site global prefs, in %SYSTEMWEB%.DefaultPreferences or %USERSWEB%.SitePreferences
 		* new NOSHOW option
 		* =bin/koalaskin-generate= config: new lib var
 		* Beijing: *%X%* you must add a 
 		  <tt>* Set BROADCASTMESSAGE =</tt> to 
-		  your site global prefs, in TWiki.TWikiPreferences
+		  your site global prefs, in %SYSTEMWEB%.DefaultPreferences or %USERSWEB%.SitePreferences
 		  Cairo users do not need it.
 		* the topic list is now <nop>TWiki.KoalaSkinWebList, not
 		  <nop>Main.WebList anymore. The generate script will rename
@@ -939,7 +940,7 @@ Versions 2.x support only the Beijing (Feb 2003) Stable TWiki release.
 		  See KSWEBSRELATED, WEBSRELATEDBAR, RELATEDWEBS
 		  <br> *%X%* You *must* add a line:
 		  <br> _3 spaces_ * Set RELATEDWEBS =
-		  <br> to your TWiki.<nop>TWikiPreferences topic
+		  <br> to your !%SYSTEMWEB%.DefaultPreferences or !%USERSWEB%.SitePreferences topic
 		* bugfix: the script searchmulti ignored the templatetopic
 		  parameter (searchmulti can be used to create topics, with
 		  the parameter type=create, so it must supports all
@@ -1030,7 +1031,7 @@ Versions 2.x support only the Beijing (Feb 2003) Stable TWiki release.
 	* *2.7* _06 Jun 2003_
 		* Final bugfix for macintoshes (by Jon Reid)
 		* *%X%* new variable KSBUTTONS. You *must* declare it
-		  in your TWiki.TWikiPreferences as a:
+		  in your %SYSTEMWEB%.DefaultPreferences / %USERSWEB%.SitePreferences as a:
 		  <br> * Set KSBUTTONS =
 		* *%X%* Apply patch TWiki:Codev/TopicMovedMessageTooVisible
 		  The skin is modified to show moved info only in More...
@@ -1099,7 +1100,7 @@ Versions 2.x support only the Beijing (Feb 2003) Stable TWiki release.
 		  new "forcecreate" command for bin/searchmulti.
 		* koalaskin-generate -i was broken
 		* *%X%* new version of =ks_boxes.koala.txt= , update your
-		  TWiki.TWikiPreferences with it (MBOXHEAD, MBOXBODY, MBOXEND)
+		  %SYSTEMWEB%.DefaultPreferences or %USERSWEB%.SitePreferences with it (MBOXHEAD, MBOXBODY, MBOXEND)
 		* *%X%* New recommended patch 
 		  TWiki:Codev/LinksToWebHomeShowWebName
 		* script checks that we are running in a bash 2.x, not 1.x
@@ -1151,7 +1152,7 @@ Versions 1.x support only the Athens (Dec 2001) Stable TWiki release.
 		* bugfix: background color for sitemap was omitted.
 		* docfix: TOPICSTOP was not documented
 		* script now checks that the needed variables are defined in
-		  TWiki.TWikiPreferences, and issue warnings on missing ones
+		  %SYSTEMWEB%.DefaultPreferences or %USERSWEB%.SitePreferences, and issue warnings on missing ones
 		* default css for html tags &lt;b> and &lt;i>, and twiki __
 		  constructs are rendered in a colored ink. Note that this is
 		  not the case for the twiki * and _ constructs as they are
@@ -1165,9 +1166,9 @@ Versions 1.x support only the Athens (Dec 2001) Stable TWiki release.
 		  TWiki:Codev/SettingParentTopicToNone
 		  (it is only cosmetics, will not break if not applied)
 		* *%X%* define the variable *%<nop>CSS%* in the
-		  TWiki.TWikiPreferences to nothing.
+		  %SYSTEMWEB%.DefaultPreferences or %USERSWEB%.SitePreferences to nothing.
 		* *%X%* define the variable *%<nop>TOPICSTOP%* in the
-		  TWiki.TWikiPreferences to nothing.
+		  %SYSTEMWEB%.DefaultPreferences or %USERSWEB%.SitePreferences to nothing.
 		* New %<nop>CSS% TWiki var to override CSS per web
 		* New global Koala Skin KSCSS var to define an additional
 		  external style sheet local to the site
@@ -1212,7 +1213,7 @@ Versions 1.x support only the Athens (Dec 2001) Stable TWiki release.
 		* bugfix: navigation bar was badly generated in some cases
 	* *1.17* _21 Aug 2002_
 		* *%X%* add the line to your Site Prefs
-		  (TWiki.TWikiPreferences), to be forward-compatible with the
+		  (%SYSTEMWEB%.DefaultPreferences or %USERSWEB%.SitePreferences), to be forward-compatible with the
 		  upcoming TWiki release.
 		  <br> _6 spaces_ * Set EDITBOXSTYLE = width: 99%
 		* bugfix: names like WebHome have been replaced by their

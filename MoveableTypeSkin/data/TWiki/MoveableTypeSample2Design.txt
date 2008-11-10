@@ -7,9 +7,9 @@ and then replacing the content of theme.css with css generated using the [[http:
 
 
 ---++ Enable this design
-Copy and paste the following section to your %MAINWEB%.TWikiPreferences topic (or !WebPreferences, or your personal topic)
+Copy and paste the following section to your %USERSWEB%.SitePreferences topic (or !WebPreferences, or your personal topic)
 <textarea readonly rows="13" style="width:85%;margin:10px;">
-   * Set TWiki to use this MoveableType design, set the following on %MAINWEB%.TWikiPreferences (don't copy the raw text)
+   * Set TWiki to use this MoveableType design, set the following on %USERSWEB%.SitePreferences (don't copy the raw text)
       * Set SKIN=moveabletype
    * set the moveabletype skin to use this topic to get the _Moveable Type Common Text sections_ from this topic
       * Set MOVEABLETYPESKIN_DESIGNTOPIC = %TOPIC%

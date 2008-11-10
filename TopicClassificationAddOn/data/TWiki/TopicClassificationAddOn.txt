@@ -24,7 +24,7 @@ Some of the features of %TOPIC% include:
 ---++ %TOPIC% Setup 
 After installing this add-on, there are a few additional steps needed before it will function properly:
    * Make sure ={EnableHierarchicalWebs}= is enabled in =configure= (under "Store settings" tab). 
-   * Add the following preference section to [[Main.TWikiPreferences]]:
+   * Add the following preference section to [[%USERSWEB%.SitePreferences]]:
 <verbatim>
 ---++ TWiki.TopicClassificationAddOn Preferences 
    * TCAOWEB variable for identifying which web holds %TOPIC% infrastructure.

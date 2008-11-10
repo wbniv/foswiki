@@ -602,7 +602,7 @@ verify password $htpasswd_avail <input type=password name=configure_password2 id
 A password will be automatically generated and sent to the email specified by WebMasterEmail below<br/></div>
 
 <b>WebMasterEmail</b> <input type="text" name="WebMasterEmail" id=WebMasterEmail value="$WebMasterEmail" size="35" /><br />
-<div class=help id=WebMasterEmail_help>This will automatically set the TWiki webmaster email address <a target="_new" href="http://twiki.org/cgi-bin/view/TWiki/TWikiPreferences#Email_and_Proxy_Server_Settings">WebMasterEmail</a> <!-- in Main.TWikiPreferences --><br/></div>
+<div class=help id=WebMasterEmail_help>This will automatically set the TWiki webmaster email address <a target="_new" href="http://twiki.org/cgi-bin/view/TWiki/DefaultPreferences#Email_and_Proxy_Server_Settings">WebMasterEmail</a> <!-- in Main.SitePreferences --><br/></div>
 
 <!--
 <b>WebMasterEmailNAME</b> <input type="text" name="WebMasterEmailNAME" value="TWiki Administrator" size="35" /><br />

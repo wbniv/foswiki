@@ -12,7 +12,7 @@ Follow these steps to install the PeerPlugin for TWiki:
 		* my $dataBase = "dbi:mysql:Peer";
 		* my $dbUsername  = "myusername";
 		* my $dbPassword  = "mypassword";
-	1 Edit the %SYSTEMWEB%.<nop>TWikiPreferences, %SYSTEMWEB%.<nop>WebPreferences and the WebPreferences topic in each web as shown below. (Or follow the instructions in PeerReviewExamples to modify any skin).
+	1 Edit the !%SYSTEMWEB%.DefaultPreferences, !%USERSWEB%.SitePreferences, %SYSTEMWEB%.<nop>WebPreferences and the WebPreferences topic in each web as shown below. (Or follow the instructions in PeerReviewExamples to modify any skin).
 
 *Change...*
 <VERBATIM>

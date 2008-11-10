@@ -34,7 +34,7 @@ __Note:__ You do not need to install anything on the browser to use this add-on.
 
    1 Download the ZIP file from the Add-on Home (see below)
    1 Unpack the Add-on archive in the root of your TWiki installation.
-   1 Add the following preference section to [[Main.TWikiPreferences]]:
+   1 Add the following preference section to [[%USERSWEB%.SitePreferences]]:
 <verbatim>
 ---++ TWiki.TopicClassificationAddOn Preferences 
    * TCAOWEB variable for identifying which web holds %TOPIC% infrastructure.

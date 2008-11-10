@@ -53,7 +53,7 @@ Cuando escriba el título de una página, se convierte en un enlace. Existen varia
       * Para crear una página para el producto *Cuchara especial 1.2*, utilice =CucharaEspecial1punto2= o =CucharaEspecial1pt2=, pero no =CucharaEspecial1.2=.
       * Números se consideran como minúscula, lo cual convierte =Año2Mil= en una !PalabraWiki, pero no =Año2000=.
       * Convierte acrónimos en !PalabrasWiki, por ejemplo utilice =FaqIndex= para la página "FAQ index".
-   * Es posible de apagar la generación automática de !PalabrasWiki y basarse unicamente en la anotación con corchetes. Revise el comando NOAUTOLINK en TWiki.TWikiPreferences#Default_Web_Preferences %FLAGGB%.
+   * Es posible de apagar la generación automática de !PalabrasWiki y basarse unicamente en la anotación con corchetes. Revise el comando NOAUTOLINK en %SYSTEMWEB%.DefaultPreferences#Default_Web_Preferences %FLAGGB%.
    * %X% Cuando cree un enlace a la página <nop>%HOMETOPIC% _en otra red_, el enlace se va a mostrar como el nombre de la red, por ejemplo =Sandbox.%HOMETOPIC%= se convierte en Sandbox.%HOMETOPIC%.
 
 __%MAKETEXT{"Related Topics"}%:__ SintaxisWiki, ComoFormatearTexto

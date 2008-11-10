@@ -308,7 +308,7 @@ Example :
    * Go to TaskStarter and try running Sandbox.TaskSpecDemo using your _Executer_ and check the results on Sandbox.TaskSpecDemoOutput.
    * Once the above is working you should customize your application for your needs:
       * Create a Web dedicated to TaskExeContrib and install TaskExeContrib in it.
-      * Fix the settings for TWiki.TaskExePlugin on %MAINWEB%.TWikiPreferences.
+      * Fix the settings for TWiki.TaskExePlugin on %USERSWEB%.SitePreferences.
       * Create [[#Task_Specification][task specifications]] to suite your needs.
 
 __Note:__ You do not need to install anything on the browser to use this contrib package. The following instructions are for the administrator who installs the package on the server where TWiki is running.

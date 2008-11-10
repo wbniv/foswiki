@@ -123,7 +123,7 @@ i.e. =%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%=
 		* Set UPTODATE_TXT =
 
 
----+++ Settings to change in TWikiPreferences/WebPreferences
+---+++ Settings to change in %SYSTEMWEB%.DefaultPreferences /%USERSWEB%.SitePreferences / WebPreferences
 
 This plug-in comes with a proposed [[TWikiForms][TWikiForm]]: TWiki.TranslationForm, you may
 want to add it to <nop>WEBFORMS.

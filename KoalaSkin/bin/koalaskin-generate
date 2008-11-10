@@ -569,10 +569,11 @@ parse_web_options () {
 }
 
 # looks into the TWiki site prefs to see if user has set the needed vars
+# SMELL: Does not cope with DefaultPreferences and SitePreferences
 check_ks_variables () {
   local tp v
   if $onsite; then
-    for tp in $data/*/TWikiPreferences.txt; do
+    for tp in $data/*/DefaultPreferences.txt; do
       for v in `egrep '^	+[*] +Set +[A-Z_]+ +=' $tp | sed -e 's/^[	 *]*Set  *\([A-Z_][A-Z_]*\) .*/\1/'`; do
 	needed_vars="${needed_vars/ $v / +$v }"
       done
@@ -580,7 +581,7 @@ check_ks_variables () {
     for v in $needed_vars; do
       case "$v" in
 	+*) : ;; # ok, found
-	*) W You must define the TWiki variable \"$v\" in TWiki.TWikiPreferences, e.g.:
+	*) W You must define the TWiki variable \"$v\" in TWiki.DefaultPreferences, e.g.:
 	   echo "      * Set $v ="
 	   ;;
       esac
@@ -1209,15 +1210,15 @@ check_forgotten_dirs () {
 # check for various needed settings
 check_settings () {
   if $onsite; then
-    if grep -q '^		[*] Set TOPICS =' $data/TWiki/TWikiPreferences.txt
+    if grep -q '^		[*] Set TOPICS =' $data/TWiki/DefaultPreferences.txt
     then :; else W "You must set the TOPICS variable in Wiki prefs like this:
       * Set TOPICS ="
     fi
-    if grep -q '^		[*] Set SKIN = koala' $data/TWiki/TWikiPreferences.txt
+    if grep -q '^		[*] Set SKIN = koala' $data/TWiki/DefaultPreferences.txt
     then :; else W "You must set the SKIN variable in Wiki prefs like this:
       * Set SKIN = koala"
     fi
-    if grep -q '^		[*] Set EDITBOXSTYLE =' $data/TWiki/TWikiPreferences.txt
+    if grep -q '^		[*] Set EDITBOXSTYLE =' $data/TWiki/DefaultPreferences.txt
     then :; else W "You must set the EDITBOXSTYLE variable in Wiki prefs like this:
       * Set EDITBOXSTYLE = width: 99%"
     fi

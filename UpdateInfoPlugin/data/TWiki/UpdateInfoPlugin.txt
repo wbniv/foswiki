@@ -48,7 +48,7 @@ Full syntax overrides site/topic defaults.
 	* UpdateInfoPlugin %ISNEW%
 	* Main.WebHome %ISNEW%
 	* TWiki.WebHome %ISNEW{days="15"}%
-	* TWiki.TWikiPreferences %ISNEW{days="20" version="1.4"}%
+	* %SYSTEMWEB%.DefaultPreferences %ISNEW{days="20" version="1.4"}%
 	* Sandbox.UpdateInfoPluginTest %ISNEW% (Edit and save the <nop/>Sandbox.UpdateInfoPluginTest topic, and it should be highlighted with a %N% icon)
 
 #PluginSettings

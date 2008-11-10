@@ -130,7 +130,7 @@ __Note:__ You do not need to install anything on the browser to use this add-on.
 	* *Adjust the perl path in the genpdf script to match your perl installation location.*
 	* %X% *BEFORE TWiki-4* Add the variable =$htmldocCmd = "/path/to/htmldoc";= to your =lib/TWiki.cfg= file so TWiki can find the location of the htmldoc executable. Look for $fgrepCmd.
 	* %X% *TWiki-4 and later* Configure the =$TWiki::cfg{Extensions}{GenPDFAddOn}{htmldocCmd} = "/path/to/htmldoc";= using =configure= (in the =Extensions= section)
-	* %T% Copy the preferences from above and paste them into %MAINWEB%.TWikiPreferences, or the !WebPreferences topic for a single web.
+	* %T% Copy the preferences from above and paste them into %USERSWEB%.SitePreferences, or the !WebPreferences topic for a single web.
 	* Test if the installation was successful:
 		* Try loading [[%SCRIPTURL{genpdf}%/%WEB%/%TOPIC%][this page]]
 		* If it doesn't work, check your webserver logs for any problems. The most common issue is probably an htmldoc installation problem.

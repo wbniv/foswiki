@@ -90,7 +90,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
          * Save the test topic
          * View raw should show you the content in TWiki syntax
    * Show proper edit syntax summary in edit screen:
-      * Create an =EDITSYNTAX= setting in your =%MAINWEB%.TWikiPreferences= and set it to an empty value
+      * Create an =EDITSYNTAX= setting in your =%USERSWEB%.SitePreferences= and set it to an empty value
       * Edit =twiki/templates/edit.pattern.tmpl= and change ="%<nop>SYSTEMWEB%.WikiSyntaxSummary"= to ="%<nop>SYSTEMWEB%.%EDITSYNTAX%WikiSyntaxSummary"=
       * Change other =twiki/templates/edit.*.tmpl= template files as needed
    * Secure the =*EditSyntaxRegex= converter topics so that only %MAINWEB%.TWikiAdminGroup members can edit the topics.

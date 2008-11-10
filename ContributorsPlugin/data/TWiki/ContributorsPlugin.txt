@@ -55,28 +55,28 @@ To use WebContributors, you pass a URL with the information you want in the quer
 		* Set DEBUG = 0
 
 ---++ Examples
-Use %<nop>CONTRIBUTORS{web="TWiki" topic="TWikiPreferences" last="7"}% to get
+Use %<nop>CONTRIBUTORS{web="TWiki" topic="DefaultPreferences" last="7"}% to get
 
-%CONTRIBUTORS{web="TWiki" topic="TWikiPreferences" last="7"}%
-
----
-Use %<nop>CONTRIBUTORS{web="TWiki" topic="TWikiPreferences" last="7" rev="1.20"}% to get
-
-%CONTRIBUTORS{web="TWiki" topic="TWikiPreferences" last="7" rev="1.20"}%
+%CONTRIBUTORS{web="TWiki" topic="DefaultPreferences" last="7"}%
 
 ---
-Use %<nop>CONTRIBUTORS{web="TWiki" topic="TWikiPreferences" last="7" rev="1.20" format="	* $author$n"}% to get
+Use %<nop>CONTRIBUTORS{web="TWiki" topic="DefaultPreferences" last="7" rev="1.20"}% to get
 
-%CONTRIBUTORS{web="TWiki" topic="TWikiPreferences" last="7" rev="1.20" format="	* $author$n"}%
+%CONTRIBUTORS{web="TWiki" topic="DefaultPreferences" last="7" rev="1.20"}%
+
+---
+Use %<nop>CONTRIBUTORS{web="TWiki" topic="DefaultPreferences" last="7" rev="1.20" format="	* $author$n"}% to get
+
+%CONTRIBUTORS{web="TWiki" topic="DefaultPreferences" last="7" rev="1.20" format="	* $author$n"}%
 ---
 
-Use %<nop>CONTRIBUTORS{web="TWiki" topic="TWikiPreferences" last="7" rev="1.20" format="	* $author$n" nodups="on"}% to get
+Use %<nop>CONTRIBUTORS{web="TWiki" topic="DefaultPreferences" last="7" rev="1.20" format="	* $author$n" nodups="on"}% to get
 
-%CONTRIBUTORS{web="TWiki" topic="TWikiPreferences" last="7" rev="1.20" format="	* $author$n"  nodups="on"}%
+%CONTRIBUTORS{web="TWiki" topic="DefaultPreferences" last="7" rev="1.20" format="	* $author$n"  nodups="on"}%
 ---
-Use  %<nop>CONTRIBUTORS{web="TWiki" topic="TWikiPreferences"  last="7" rev="1.20" format="|$author|$date|$rev|$n" header="|*Author*|*Date*|*Revision*|$n"}% to get:
+Use  %<nop>CONTRIBUTORS{web="TWiki" topic="DefaultPreferences"  last="7" rev="1.20" format="|$author|$date|$rev|$n" header="|*Author*|*Date*|*Revision*|$n"}% to get:
 
-%CONTRIBUTORS{web="TWiki" topic="TWikiPreferences"  last="7" rev="1.20" format="|$author|$date|$rev|$n" header="|*Author*|*Date*|*Revision*|$n"}%
+%CONTRIBUTORS{web="TWiki" topic="DefaultPreferences"  last="7" rev="1.20" format="|$author|$date|$rev|$n" header="|*Author*|*Date*|*Revision*|$n"}%
 
 ---++ Plugin Installation Instructions
 

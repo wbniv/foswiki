@@ -82,7 +82,7 @@ __Note:__ You do not need to install anything on the browser to use this add-on.
       * in <nop>GenPDFLatex.pm, declare the =pdflatex= executable path and the =$ENV{'HOME'}= variables, if needed.
       * Set up the pdflatex generation form. Note, this form topic is _optional_.  If no form is declared, the cgi script will use a default form which can be modified by the administrator instead.
          * Modify the file generation form, <nop>GenPDFLatexForm, to reflect your own needs.  
-         * declare which topic to use as the form in a Preferences topic %BR% (e.g.  declare %BR% * Set GENPDFLATEX_OPTIONSPAGE = Main.<nop>GenPDFLatexForm %BR% in the TWiki.TWikiPreferences topic)
+         * declare which topic to use as the form in a Preferences topic %BR% (e.g.  declare %BR% * Set GENPDFLATEX_OPTIONSPAGE = Main.<nop>GenPDFLatexForm %BR% in the %SYSTEMWEB%.DefaultPreferences or %USERSWEB%.SitePreferences topic)
       * Test if the installation was successful:
          * point your browser to a TWiki topic that contains TWiki:Plugins.LatexModePlugin markup.
          * replace =view= with =genpdflatex= in the url, and reload the page.%BR% _(At this point, you should see the <nop>GenPDFLatex form)_

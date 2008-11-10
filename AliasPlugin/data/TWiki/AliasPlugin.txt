@@ -45,7 +45,7 @@ Syntax section for more details.
 
 By default no alias substitution is applied to a page. You can configure all of your TWiki
 pages to get alias substitution by 
-   1 prepending =alias= to your =SKIN= variable in your <nop>TWikiPreferences/<nop>WebPreferences/topic preferenes
+   1 prepending =alias= to your =SKIN= variable in your <nop>%SYSTEMWEB%.DefaultPreferences/<nop>%USERSWEB%.SitePreferences/<nop>WebPreferences/topic preferenes
      <verbatim>Set SKIN = alias, pattern</verbatim>
    2 appending =?cover=alias= to an url or
    3 by specifying so called "alias areas":
@@ -109,7 +109,7 @@ macro or listed in the following way:
      | *File:* | *Description:* |
 %$MANIFEST%
    * Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
-   * Edit your %MAINWEB%.TWikiPreferences and prepend to your SKIN variable the =alias= identifier,
+   * Edit your %USERSWEB%.SitePreferences and prepend to your SKIN variable the =alias= identifier,
      for example to
      <verbatim>   * Set SKIN = alias,pattern</verbatim>
      This surrounds the textarea with the STARTALIASAREA, STOPALIASAREA tags to mark the area where

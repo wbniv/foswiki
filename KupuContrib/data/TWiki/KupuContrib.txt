@@ -30,7 +30,7 @@ The version of Kupu shipped with this plugin is an uncustomised basic Kupu relea
 
 Kupu uses a special edit template (see TWiki.TWikiTemplates). 
 
-*Important* Set the name of the skin to use for WYSIWYG editing. This preference can be set in %MAINWEB%.<nop>TWikiPreferences, !WebPreferences or in individual topics. *If it is not set the editor is disabled*. For example,
+*Important* Set the name of the skin to use for WYSIWYG editing. This preference can be set in !%USERSWEB%.SitePreferences, !WebPreferences or in individual topics. *If it is not set the editor is disabled*. For example,
 	* <nop>Set WYSWIYGPLUGIN_WYSIWYGSKIN = kupu
 
 If you are using TWiki-4.0.0 or later with =pattern= skin, the =%<nop>COMPOSER%= global TWiki variable is used to control the skin used for the WYSIWYG editor link. You can define this variable to the empty string to disable WYSIWYG editing on a site, per-web, per-user or per-topic basis. Set =COMPOSER= to =kupu= to enable this module.

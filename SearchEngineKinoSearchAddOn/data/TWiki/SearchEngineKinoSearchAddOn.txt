@@ -125,7 +125,7 @@ You can also optionally use SearchEngineKinoSearchPlugin's updateHandlers to aut
 
 ---+++ Attachment file types to be indexed
 
-All the PDF, HTML, DOC, XLS and text attachments are indexed by default. If you want to override this setting you can use a TWiki preference ==KINOSEARCHINDEXEXTENSIONS==. You can copy & paste the next lines in your [[%MAINWEB%.TWikiPreferences]] topic
+All the PDF, HTML, DOC, XLS and text attachments are indexed by default. If you want to override this setting you can use a TWiki preference ==KINOSEARCHINDEXEXTENSIONS==. You can copy & paste the next lines in your [[%USERSWEB%.SitePreferences]] topic
 <verbatim>
    * KinoSearch settings
       * Set KINOSEARCHINDEXEXTENSIONS = .pdf, .html, .txt, .doc, .xls
@@ -160,7 +160,7 @@ You can add new stringifier plugins by just adding new files here. The minimum t
    * The plugin must register itself by =__PACKAGE__->register_handler($application, $file_extension)=;
    * The plugin must implement the method =$text = stringForFile ($filename)=
 
-Then you should add to the list in =KINOSEARCHINDEXEXTENSIONS= in %MAINWEB%.TWikiPreferences. Now
+Then you should add to the list in =KINOSEARCHINDEXEXTENSIONS= in %USERSWEB%.SitePreferences. Now
 the defined document type should be indexed and the new stringifier should be used. 
 
 NOTE: If you just extend the list without having a special stringifier
@@ -259,7 +259,7 @@ Like many other TWiki extensions, this module is shipped with a automatic instal
 
 ---+++ Configuration
 
-This add-on uses several preferences which should be set at [[%MAINWEB%.TWikiPreferences]]. All these preferences are optional. If you are fine with the default values given below, you need not change anything.
+This add-on uses several preferences which should be set at [[%USERSWEB%.SitePreferences]]. All these preferences are optional. If you are fine with the default values given below, you need not change anything.
 <verbatim>
 (Note, these are not where the defaults are set)
    *  KinoSearch settings

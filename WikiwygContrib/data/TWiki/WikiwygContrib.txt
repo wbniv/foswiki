@@ -22,7 +22,7 @@ Settings are stored as preferences variables. To reference a setting write ==%<n
 *Do not forget to enable the WysiwygPlugin in =configure= or it won't work*.
 
 If you are using =pattern= skin:
-   * set the COMPOSER variable to 'wikiwyg' in %MAINWEB%.TWikiPreferences
+   * set the COMPOSER variable to 'wikiwyg' in %USERSWEB%.SitePreferences
 Otherwise:
 	* To enable the editor in one of your skins, add the following link to the skin alongside or in place of the existing 'edit' link:<br /><code>&lt;a href="%<nop>SCRIPTURLPATH%/edit%<nop>SCRIPTSUFFIX%/%<nop>WEB%/%<nop>TOPIC%?skin=wikiwyg"&gt;Wikiwyg&lt;/a&gt;</code><br />As you can see this is just a standard edit link with the wikiwyg skin in place of the usual edit skin. Here it is for this topic: <a href="%SCRIPTURLPATH%/edit%SCRIPTSUFFIX%/%WEB%/%TOPIC%?skin=wikiwyg">Wikiwyg</a>. Try clicking on it, but _do not save_!
 

@@ -101,8 +101,8 @@ parse_log_color () {
 }
 
 parse_webs_webcore () {
-bgcolor="`grep '[*] Set WEBBGCOLOR =' TWiki/TWikiPreferences.txt|sed -e 's/.*=[ 	]*//' -e 's///g'`"
-fgcolor="`grep '[*] Set WEBFGCOLOR =' TWiki/TWikiPreferences.txt|sed -e 's/.*=[ 	]*//' -e 's///g'`"
+bgcolor="`grep '[*] Set WEBBGCOLOR =' TWiki/DefaultPreferences.txt|sed -e 's/.*=[ 	]*//' -e 's///g'`"
+fgcolor="`grep '[*] Set WEBFGCOLOR =' TWiki/DefaultPreferences.txt|sed -e 's/.*=[ 	]*//' -e 's///g'`"
 cat <<EOF
 <html><head><title>$title $wikiname</title>
 <link href="/webcore-layout/v2.0/templates/style/wikiinfo.css" rel="stylesheet" type="text/css" />
@@ -212,7 +212,7 @@ esac
 
 case "$PATH_INFO" in /[0-9]*) max="${PATH_INFO#/}"; max="${max%%/*}";; esac
 
-wikiname=`grep '^[ 	]*[*] Set WIKITOOLNAME =' TWiki/TWikiPreferences.txt | sed -e 's/[^=]*=[ 	]*//' -e 's/[ 	
+wikiname=`grep '^[ 	]*[*] Set WIKITOOLNAME =' TWiki/DefaultPreferences.txt | sed -e 's/[^=]*=[ 	]*//' -e 's/[ 	
 ]*$//'`
 wikiname=${wikiname:-Wiki}
 
@@ -228,7 +228,7 @@ done
 others="$others days.<p>"
 title="Changed topics in last $max days in"
 
-if grep '^		[*]  *Set  *SKIN  *=  *koala' TWiki/TWikiPreferences.txt >/dev/null 2>&1; then
+if grep '^		[*]  *Set  *SKIN  *=  *koala' TWiki/DefaultPreferences.txt >/dev/null 2>&1; then
     if grep '^		[*]  *Set  *KSTHEME  *=  *webcore' TWiki/KoalaSkinWebList.txt >/dev/null 2>&1
     then parse_webs_webcore; parse_log=parse_log_mono 2>&1
     else parse_webs_koalaskin 2>&1

@@ -159,7 +159,7 @@ Esto es un proceso manual donde tiene más control sobre como se muestra la image
 -----
 ---+++ Puede escribir texto coloreado?
 
-TWiki.TWikiPreferences %FLAGGB% define algunos colores comunes: *%YELLOW% %<nop>YELLOW%%ENDCOLOR%, %RED% %<nop>RED%%ENDCOLOR%, %PINK% %<nop>PINK%%ENDCOLOR%, %PURPLE% %<nop>PURPLE%%ENDCOLOR%, %TEAL% %<nop>TEAL%%ENDCOLOR%, %NAVY% %<nop>NAVY%%ENDCOLOR%, %BLUE% %<nop>BLUE%%ENDCOLOR%, %AQUA% %<nop>AQUA%%ENDCOLOR%, %LIME% %<nop>LIME%%ENDCOLOR%, %GREEN% %<nop>GREEN%%ENDCOLOR%, %OLIVE% %<nop>OLIVE%%ENDCOLOR%, %MAROON% %<nop>MAROON%%ENDCOLOR%, %BLACK% %<nop>BLACK%%ENDCOLOR%, %GRAY% %<nop>GRAY%%ENDCOLOR%, %SILVER% %<nop>SILVER%%ENDCOLOR%* y *%<nop>ENDCOLOR%*.
+%SYSTEMWEB%.DefaultPreferences %FLAGGB% define algunos colores comunes: *%YELLOW% %<nop>YELLOW%%ENDCOLOR%, %RED% %<nop>RED%%ENDCOLOR%, %PINK% %<nop>PINK%%ENDCOLOR%, %PURPLE% %<nop>PURPLE%%ENDCOLOR%, %TEAL% %<nop>TEAL%%ENDCOLOR%, %NAVY% %<nop>NAVY%%ENDCOLOR%, %BLUE% %<nop>BLUE%%ENDCOLOR%, %AQUA% %<nop>AQUA%%ENDCOLOR%, %LIME% %<nop>LIME%%ENDCOLOR%, %GREEN% %<nop>GREEN%%ENDCOLOR%, %OLIVE% %<nop>OLIVE%%ENDCOLOR%, %MAROON% %<nop>MAROON%%ENDCOLOR%, %BLACK% %<nop>BLACK%%ENDCOLOR%, %GRAY% %<nop>GRAY%%ENDCOLOR%, %SILVER% %<nop>SILVER%%ENDCOLOR%* y *%<nop>ENDCOLOR%*.
 
    * __Digite:__ =%<nop>RED% texto color rojo %<nop>ENDCOLOR% y %<nop>GREEN% texto color verde %<nop>ENDCOLOR%= <p /> 
      __Resultado:__ %RED% texto color rojo %ENDCOLOR% y %GREEN% texto color verde %ENDCOLOR%

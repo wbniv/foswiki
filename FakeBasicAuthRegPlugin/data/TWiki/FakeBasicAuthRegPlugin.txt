@@ -9,7 +9,7 @@ SSL provides user authentication based on a user's client cert (!FakeBasicAuth).
 
 How it works is: SSL logs you in based on your client cert.  Instead of popping a login box, it gets your userid from the cert, and then authenticates you by doing a "fake" login using that userid and a password of "password".  If you have a valid entry in the htpassword file, login succeeds and REMOTE_USER is set.  If it fails, the login box pops up (and unfortunately you can't login; which is ok).
 
-This plugin only provides authentication/registration.  It's up to you to configure access restrictions later via WebPreferences, TWikiPreferences, Main.TWikiGroups, etc, or using an access restrictions plugin (are there any?).  See TWiki.TWikiAccessControl for more info.
+This plugin only provides authentication/registration.  It's up to you to configure access restrictions later via WebPreferences, %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, Main.TWikiGroups, etc, or using an access restrictions plugin (are there any?).  See TWiki.TWikiAccessControl for more info.
 
 In addition, this plugin provides access to environment variables in a TWiki topic (this was necessary for registration to work).
 

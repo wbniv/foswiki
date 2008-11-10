@@ -87,7 +87,7 @@ $SHORTDESCRIPTION = 'Allows for TaskExeContrib setting configuration.';
 # older plugins, but imposes a significant performance penalty, and
 # is not recommended. Instead, use $TWiki::cfg entries set in LocalSite.cfg, or
 # if you want the users to be able to change settings, then use standard TWiki
-# preferences that can be defined in your Main.TWikiPreferences and overridden
+# preferences that can be defined in your %USERSWEB%.SitePreferences and overridden
 # at the web and topic level.
 $NO_PREFS_IN_TOPIC = 1;
 

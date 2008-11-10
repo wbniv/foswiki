@@ -22,23 +22,23 @@ and by TWiki:Codev.TalkTalk and its Discussion topic TWiki:Codev.TalkTalkTalk - 
 ---+++ 'Talk' topics in created in the same web as the topic, with 'Talk' Suffix
 <img src="%ATTACHURLPATH%/TalkSuffix.jpg" alt="TalkSuffix.jpg" width='320' height='200' style="float:right;margin:10px;border:1px solid black;"/>
 
-To enable Talk Topics, add the =talk= skin to the SKIN path in %MAINWEB%.TWikiPreferences or the <nop>WebPreferences topic of whatever web you want to enable Talk topics in (eg, if you're using PatternSkin):
+To enable Talk Topics, add the =talk= skin to the SKIN path in %USERSWEB%.SitePreferences or the <nop>WebPreferences topic of whatever web you want to enable Talk topics in (eg, if you're using PatternSkin):
 <verbatim>
       * Set <nop>SKIN = talk,pattern
 </verbatim>
 _OR_ by setting the COVER setting to =talk= _OR_ by putting the contents of =templates/view.talk.tmpl= into a topic, and setting VIEW_TEMPLATE to reference that topic (ok, rather advanced usage)
 
 
-You can over-ride the suffix (defaults to =Talk=) that is appended to a topic to create its Talk topic by setting =TALKSUFFIX= in %MAINWEB%.TWikiPreferences
+You can over-ride the suffix (defaults to =Talk=) that is appended to a topic to create its Talk topic by setting =TALKSUFFIX= in %USERSWEB%.SitePreferences
 <verbatim>
       * Set <nop>TALKSUFFIX = Talk
 </verbatim>
 
-You can over-ride the Topic template that is used when creating a new Talk topic by setting =TALKTOPICTEMPLATE= in %MAINWEB%.TWikiPreferences
+You can over-ride the Topic template that is used when creating a new Talk topic by setting =TALKTOPICTEMPLATE= in %USERSWEB%.SitePreferences
 <verbatim>
       * Set <nop>TALKTOPICTEMPLATE = TWiki.MyTalkTemplate
 </verbatim>
-You can over-ride the Topic formtemplate that is used when creating a new Talk topic by setting =TALKTOPICFORMTEMPLATE= in %MAINWEB%.TWikiPreferences
+You can over-ride the Topic formtemplate that is used when creating a new Talk topic by setting =TALKTOPICFORMTEMPLATE= in %USERSWEB%.SitePreferences
 <verbatim>
       * Set <nop>TALKTOPICFORMTEMPLATE = TWiki.MyTalkFormTemplate
 </verbatim>

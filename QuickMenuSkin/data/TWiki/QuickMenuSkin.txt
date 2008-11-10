@@ -27,7 +27,7 @@ The menu can behave in two ways. When =CLICKMENU= is set to 0 then the menu auto
 
 To add different menus to the menubar you can set =QUICKMENUBAR= to the topic containing the javascript for your own custom menus. By default =QUICKMENUBAR= is set to =%%NOP%SYSTEMWEB%.QuickMenuBar=, have a look at %SYSTEMWEB%.QuickMenuBar to see how the menus are created.
 
-To change settings just add them to %MAINWEB%.TWikiPreferences, WebPreferences, or your personal page.%BR%
+To change settings just add them to %USERSWEB%.SitePreferences, WebPreferences, or your personal page.%BR%
 Eg:
 <pre>
    * %NOP%Set CLICKMENU = 1

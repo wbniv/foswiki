@@ -105,7 +105,7 @@ the [[TWikiVariables][TWikiVariable]] =VOTEPLUGIN_DEFAULTS= to be a parameter st
 <pre>
    *<nop> Set VOTEPLUGIN_DEFAULTS = open="on" global="on" bayesian="on"
 </pre>
- You can do this in an individual topic, for an entire web (in !WebPreferences), or for the whole TWiki (in %MAINWEB%.<nop>TWikiPreferences).
+ You can do this in an individual topic, for an entire web (in !WebPreferences), or for the whole TWiki (in !%USERSWEB%.SitePreferences).
 
 #FormattingResults
 ---+++ Formatting the Results of a Poll
@@ -181,7 +181,7 @@ Note that it is important to finalise the setting, otherwise it can be overridde
 <verbatim>
    * Set VOTEPLUGIN_RESETTERS = none
 </verbatim>
-in Main.<nop>TWikiPreferences, and add =VOTEPLUGIN_RESETTERS= to =FINALPREFERENCES=.
+in !%USERSWEB%.SitePreferences, and add =VOTEPLUGIN_RESETTERS= to =FINALPREFERENCES=.
 </verbatim>
 
 ---++ Plugin Info

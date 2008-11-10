@@ -9,7 +9,7 @@ The =%<nop>MOVABLETYPE{...}%= variable gets expanded to the content pulled from 
 
 %TABLE{ sort="on" headerrows="1" }% 
 | *%<nop>MOVABLETYPE% Parameter* | *Explanation* | *Default* |
-| =blog_id= | id of the blog | %<nop>MOVABLETYPEPLUGIN_BLOG_ID%, Set in TWikiPreferences or WebPreferences.  Currently set to %MOVABLETYPEPLUGIN_BLOG_ID%. |
+| =blog_id= | id of the blog | %<nop>MOVABLETYPEPLUGIN_BLOG_ID%, Set in %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, or WebPreferences.  Currently set to %MOVABLETYPEPLUGIN_BLOG_ID%. |
 | =category= | blog category label | none |
 | =format= | Format of one item. Can include variables in the table below. | none |
 | =view_template= | Name of a MovableType template to be used for formatting category output%BR%See mt-view.cgi | none |

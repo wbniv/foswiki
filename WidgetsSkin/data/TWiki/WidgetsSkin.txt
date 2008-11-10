@@ -64,7 +64,7 @@ but aren't defined by the Moveable Type standard.
 Once you have chosen your CSS and layout, you must tell TWiki to use those
 options. If you have used the Theme Browser to select your preferred setup,
 you can copy and paste the following section to your
-%MAINWEB%.TWikiPreferences topic (or !WebPreferences, or your personal topic)
+%USERSWEB%.SitePreferences topic (or !WebPreferences, or your personal topic)
 
 <noautolink>
 <div align="center">

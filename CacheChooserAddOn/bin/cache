@@ -28,7 +28,7 @@
 data=${PWD%bin}/data
 cache=${PWD%bin}/cache
 errlog=$cache/.htcacherr.log
-twikipref=$data/TWiki/TWikiPreferences.txt
+twikipref=$data/TWiki/DefaultPreferences.txt
 #
 # debug:
 #exec 2>/tmp/cacherun

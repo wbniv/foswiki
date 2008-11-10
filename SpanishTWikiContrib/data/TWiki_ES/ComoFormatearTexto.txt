@@ -47,7 +47,7 @@ Plugins amplian la funcionalidad de TWiki en muchos campos diferentes. Hay una g
 Actualmente se encuentran las siguientes extensiones instaladas en este sistema, listadas por =%<nop>PLUGINDESCRIPTIONS%=: 
 %PLUGINDESCRIPTIONS%
 
-Revise el estado de estas extensiones y su configuración en TWiki.TWikiPreferences %FLAGGB%.
+Revise el estado de estas extensiones y su configuración en %SYSTEMWEB%.DefaultPreferences %FLAGGB%.
 
 ---++ Errores comunes de edición
 

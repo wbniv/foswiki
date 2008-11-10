@@ -37,11 +37,11 @@ Choose COLUMNS:
 %ENDSECTION{"css-browser"}%
 
 ---++ Enable this design
-Copy and paste the following section to your %MAINWEB%.TWikiPreferences topic (or !WebPreferences, or your personal topic)
+Copy and paste the following section to your %USERSWEB%.SitePreferences topic (or !WebPreferences, or your personal topic)
 
 <noautolink>
 <textarea readonly rows="13" style="width:85%;margin:10px;">
-   * Set TWiki to use this Widget design, set the following on %MAINWEB%.TWikiPreferences (don't copy the raw text)
+   * Set TWiki to use this Widget design, set the following on %USERSWEB%.SitePreferences (don't copy the raw text)
       * Set SKIN=Widget
    * set the Widget skin to use this topic to get the _Moveable Type Common Text sections_ from this topic
       * Set WidgetsSkin_DESIGNTOPIC = %TOPIC%

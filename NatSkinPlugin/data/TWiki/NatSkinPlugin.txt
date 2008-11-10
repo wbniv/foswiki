@@ -171,14 +171,14 @@ the =...NAME%= cases will return the string only.
 
 So given you want to have the string <nop>%WIKITOOLNAME% in the logo position
 when using NatSkin but not so when using a different skin on the same site.
-Then add the following to the %MAINWEB%.TWikiPreferences:
+Then add the following to the %USERSWEB%.SitePreferences:
 <verbatim>
   * Set NATWEBLOGONAME = %WIKITOOLNAME%
   * Set WEBLOGOIMG = /path/to/your/defaultlogo.gif
 </verbatim>
 
 If you want to have a different logo using NatSkin than using another skin on the same site
-then add the following to  the %MAINWEB%.TWikiPreferences:
+then add the following to  the %USERSWEB%.SitePreferences:
 <verbatim>
   * Set NATWEBLOGOIMG = /path/to/your/natskinlogo.gif
   * Set WEBLOGOIMG = /path/to/your/defaultlogo.gif
@@ -327,7 +327,7 @@ The following variables can be used in the format string:
    * Edit [[%SYSTEMWEB%.DefaultPreferences]] or better [[%USERSWEB%.SitePreferences]] and change the SKIN variable to "nat";
      customize the default style adding the variables SKINSTYLE, STYLEBORDER,
      STYLEBUTTONS and STYLESIDEBAR (see NatSkin)
-   * If you have set up ssl for your server add the following variable to your <nop>TWikiPreferences:
+   * If you have set up ssl for your server add the following variable to your <nop>SitePreferences:
      <verbatim> * Set HTTPSLOGON = on </verbatim>
      This will prevent passwords being sent in clear-text over a possibly insecure net.
    * To enable ssl as soon as you logged in use the following rewrite rules in =bin/.htaccess=:

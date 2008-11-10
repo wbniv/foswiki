@@ -92,7 +92,7 @@ sub set_up {
     $original = $TWiki::cfg{SystemWebName};
     $TWiki::cfg{UsersWebName} = $testUsersWeb;
     $TWiki::cfg{SystemWebName} = $testSysWeb;
-    $TWiki::cfg{LocalSitePreferences} = "$testUsersWeb.TWikiPreferences";
+    $TWiki::cfg{LocalSitePreferences} = "$testUsersWeb.SitePreferences";
     $TWiki::cfg{MapUserToWikiName} = 1;
     $TWiki::cfg{PasswordManager} = 'TWiki::Users::HtPasswdUser';
     $TWiki::cfg{Htpasswd}{FileName} = "/tmp/htpasswd";
