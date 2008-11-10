@@ -77,7 +77,7 @@ sub handlePageStats
     #my @pagestats = `grep $web\\.$topic $dd/log*.txt | grep -E \\(view\\|save\\)`;
     opendir DATADIR, $dd or die "Can't open DataDir: $!";
     my @pagestats = ();
-    foreach my $l ( grep /log.*.txt/, readdir DATADIR ) {
+    foreach my $l ( grep /^log.*\.txt$/, readdir DATADIR ) {
 	open( my $logfile, "< $dd/$l" ) or next;
 	while( <$logfile> ) {
 	    push @pagestats, $_ if /$web\.$topic/ && /view|save/;
