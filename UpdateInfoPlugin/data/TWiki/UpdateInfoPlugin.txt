@@ -75,7 +75,7 @@ Full syntax overrides site/topic defaults.
 |  Plugin Author: | TWiki:Main.ChrisHuebsch & TWiki:Main.SteffenPoulsen |
 |  Plugin Version: | v2.0 |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
-|  26 Jul 2006: | (v2.0) - Updated to use default graphic icons from TWiki:TWiki.TWikiDocGraphics. |
+|  26 Jul 2006: | (v2.0) - Updated to use default graphic icons from TWiki:TWiki.DocumentGraphics. |
 |  20 Apr 2006: | (v1.9) - Cairo+Dakar compatibility (TWiki:Main.SteffenPoulsen) |
 |  10 Jan 2006: | (v1.8) - Dakar compatibility |
 |  7 Apr 2005: | (v1.7) - New variable name in plugin settings |

@@ -588,7 +588,7 @@ check_ks_variables () {
     done
   fi
   if [ -n "$KSWEBMAP" ]; then 
-    KSWEBMAPLEGEND=", on map icon (<img src='%PUBURLPATH%/_ks/sitemap.gif' width=16 height=16 border=0 alt='sitemap icon'>) to see its map, and on \"what's new?\" icon (<img src='%PUBURLPATH%/%SYSTEMWEB%/TWikiDocGraphics/changes.gif' width=16 height=16 border=0 alt=\"what's new icon\">) to see the latest changed topics in the web"
+    KSWEBMAPLEGEND=", on map icon (<img src='%PUBURLPATH%/_ks/sitemap.gif' width=16 height=16 border=0 alt='sitemap icon'>) to see its map, and on \"what's new?\" icon (<img src='%PUBURLPATH%/%SYSTEMWEB%/DocumentGraphics/changes.gif' width=16 height=16 border=0 alt=\"what's new icon\">) to see the latest changed topics in the web"
   fi
 }
 
@@ -1222,10 +1222,10 @@ check_settings () {
     then :; else W "You must set the EDITBOXSTYLE variable in Wiki prefs like this:
       * Set EDITBOXSTYLE = width: 99%"
     fi
-    if [ -n "$KSWEBMAP" -a ! -e $pub/TWiki/TWikiDocGraphics/changes.gif ]; then
+    if [ -n "$KSWEBMAP" -a ! -e $pub/TWiki/DocumentGraphics/changes.gif ]; then
       W "You must copy the icon:
-      http://twiki.org/p/pub/TWiki/TWikiDocGraphics/changes.gif
-into: $pub/TWiki/TWikiDocGraphics/ "
+      http://twiki.org/p/pub/TWiki/DocumentGraphics/changes.gif
+into: $pub/TWiki/DocumentGraphics/ "
     fi
   fi
   if grep -sq '^[ 	]*SetHandler[ 	]*cgi-script' bin/.htaccess; then :

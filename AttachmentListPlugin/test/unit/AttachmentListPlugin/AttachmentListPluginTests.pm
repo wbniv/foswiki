@@ -389,7 +389,7 @@ sub test_param_format_fileIcon {
     my $expected =
         '<img width="16" alt="txt" align="top" src="'
       . $pubUrlPath
-      . '/TWiki/TWikiDocGraphics/txt.gif" height="16" border="0" />';
+      . '/TWiki/DocumentGraphics/txt.gif" height="16" border="0" />';
 
     $this->do_test( $this->{test_topic}, $expected, $source );
 }

@@ -28,8 +28,8 @@ Add a =%<nop>EDITTABLEROW{...}%= variable just before an existing table to make 
 | =changerows= | Rows can be added and removed if ="on"=; rows can be added but not removed if ="add"=. | =CHANGEROWS= Plugin setting |
 | =helptopic= | Topic name containing help text shown below the table when editing a table. The %<nop>STARTINCLUDE% and %<nop>STOPINCLUDE% variables can be used in the topic to specify what is shown. | (no help text) |
 | =headerislabel= | Table header cells are read-only (labels) if ="on"=; header cells can be edited if ="off"= or "0" | ="on"= |
-| =editbutton= | Set edit button text, e.g. ="Edit this table"=; set button image with alt text, e.g. ="Edit table, %<nop>PUBURL%/%<nop>SYSTEMWEB%/TWikiDocGraphics/edittopic.gif"= | =EDITBUTTON= Plugin setting |
-| =editlink= | Set appearance of the per-row link, e.g. ="Edit"=; set button image with alt text, e.g. ="Edit table, %<nop>PUBURL%/%<nop>SYSTEMWEB%/TWikiDocGraphics/edittopic.gif"= | =EDITLINK= Plugin setting |
+| =editbutton= | Set edit button text, e.g. ="Edit this table"=; set button image with alt text, e.g. ="Edit table, %<nop>PUBURL%/%<nop>SYSTEMWEB%/DocumentGraphics/edittopic.gif"= | =EDITBUTTON= Plugin setting |
+| =editlink= | Set appearance of the per-row link, e.g. ="Edit"=; set button image with alt text, e.g. ="Edit table, %<nop>PUBURL%/%<nop>SYSTEMWEB%/DocumentGraphics/edittopic.gif"= | =EDITLINK= Plugin setting |
 | =show= | When editing a row of a table, or adding to a table, display that table during edit. | ="off"=  |
 | =headeronempty= | Show the table headers when starting a table by placing the =%<nop>EDITTABLEROW{...}%= variable freely. | ="off"=  |
 
@@ -103,7 +103,7 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, for example, =
 
    * Default edit link for row: Specify =button text=, or specify =alternate text, image URL=. If empty, create link from first field.
       * #Set EDITLINK = Edit
-      * #Set EDITLINK = Edit, %PUBURL%/TWiki/TWikiDocGraphics/edittopic.gif
+      * #Set EDITLINK = Edit, %PUBURL%/TWiki/DocumentGraphics/edittopic.gif
 
 
 ---++ Limitations and Known Issues

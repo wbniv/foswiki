@@ -47,15 +47,15 @@ The editor template includes a number of files that can be used for other settin
 ---+++ %SYSTEMWEB%.<nop>WysiwygPluginIcons
 You can define a list of icons that will be available in the Kupu editor when the %ATTACHURL%/smiley.png toolbar button is pressed. This topic has to contain a list of &lt;IMG&gt; tags. If present, the 'alt' text will be used in place of the &lt;IMG&gt; tag when translating from HTML to TML. Example:
 <verbatim>
-	<img src="%PUBURL%/TWiki/TWikiDocGraphics/tip.gif" />
-	<img src="%PUBURL%/TWiki/TWikiDocGraphics/warning.gif" />
-	<img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" />
-	<img src="%PUBURL%/TWiki/TWikiDocGraphics/choice-yes.gif" />
-	<img src="%PUBURL%/TWiki/TWikiDocGraphics/updated.gif" />
-	<img src="%PUBURL%/TWiki/TWikiDocGraphics/help.gif" />
-	<img src="%PUBURL%/TWiki/TWikiDocGraphics/new.gif" />
-	<img src="%PUBURL%/TWiki/TWikiDocGraphics/starred.gif" />
-	<img src="%PUBURL%/TWiki/TWikiDocGraphics/arrowright.gif" />
+	<img src="%PUBURL%/TWiki/DocumentGraphics/tip.gif" />
+	<img src="%PUBURL%/TWiki/DocumentGraphics/warning.gif" />
+	<img src="%PUBURL%/TWiki/DocumentGraphics/pencil.gif" />
+	<img src="%PUBURL%/TWiki/DocumentGraphics/choice-yes.gif" />
+	<img src="%PUBURL%/TWiki/DocumentGraphics/updated.gif" />
+	<img src="%PUBURL%/TWiki/DocumentGraphics/help.gif" />
+	<img src="%PUBURL%/TWiki/DocumentGraphics/new.gif" />
+	<img src="%PUBURL%/TWiki/DocumentGraphics/starred.gif" />
+	<img src="%PUBURL%/TWiki/DocumentGraphics/arrowright.gif" />
 </verbatim>
 
 ---+++ %SYSTEMWEB%.<nop>WysiwygPluginStrings

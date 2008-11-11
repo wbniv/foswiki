@@ -200,8 +200,8 @@ For the impatient, here is what to do to use it:
 		5 TWiki:Codev/SecurityAlertExecuteCommandsWithSearch (you
 		  *should* already have this one applied)
 		6 Copy the image 
-		  http://twiki.org/p/pub/TWiki/TWikiDocGraphics/changes.gif
-		  into =TWiki/TWikiDocGraphics/= in your =pub/=dir
+		  http://twiki.org/p/pub/TWiki/DocumentGraphics/changes.gif
+		  into =TWiki/DocumentGraphics/= in your =pub/=dir
 	  <br>For BEIJING version:
 		1 [not needed] <strike>TWiki:Codev/ViewMetadataPatch</strike>
 		2 TWiki:Codev/TerserSignature
@@ -214,8 +214,8 @@ For the impatient, here is what to do to use it:
 		7 [optional] TWiki:Codev/AttachmentActionLinkBadName
 		8 TWiki:Codev/TopicMovedMessageTooVisible
 		9 Copy the image 
-		  http://twiki.org/p/pub/TWiki/TWikiDocGraphics/changes.gif
-		  into =TWiki/TWikiDocGraphics/= in your =pub/=dir
+		  http://twiki.org/p/pub/TWiki/DocumentGraphics/changes.gif
+		  into =TWiki/DocumentGraphics/= in your =pub/=dir
 	6 In bin/.htaccess, say that savemulti and searchmulti needs
 	  valid-user, i.e. add:
 		<br> =&lt;Files "savemulti">=
@@ -986,8 +986,8 @@ Versions 2.x support only the Beijing (Feb 2003) Stable TWiki release.
 		* With KSWEBMAP defined, site map points to web maps,
 		  (and changes for each web)
 		* *%X%* you *must*, to use KSWEBMAP, install the icon
-		  http://twiki.org/p/pub/TWiki/TWikiDocGraphics/changes.gif
-		  into =TWiki/TWikiDocGraphics/= in your =pub/=dir
+		  http://twiki.org/p/pub/TWiki/DocumentGraphics/changes.gif
+		  into =TWiki/DocumentGraphics/= in your =pub/=dir
 		* some fixes to theme expansion, on the inheritance of themes
 		* new template: ks_otherindexes 
 	* *2.10* _08 Aug 2003_ performance fix

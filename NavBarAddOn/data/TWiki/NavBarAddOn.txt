@@ -26,7 +26,7 @@ Create a topic that defines the navigation bar.
 	* For each tab define the link (web name / topic name) and the label:
 	  %BR% =$SET(web, %<nop>MAINWEB%)= %M% Name of web (optional)
 	  %BR% =$SET(topic, %<nop>HOMETOPIC%)= %M% Name of topic (required)
-	  %BR% =$SET(label, Home)= %M% Label of tab (required) which may contain an [[%SYSTEMWEB%.TWikiDocGraphics][icon]]
+	  %BR% =$SET(label, Home)= %M% Label of tab (required) which may contain an [[%SYSTEMWEB%.DocumentGraphics][icon]]
 
 ---+++ 2. Use Navigation Bar
 In each participating topic, include the navigation bar topic.

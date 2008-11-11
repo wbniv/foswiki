@@ -41,7 +41,7 @@ These parameters can be used in the =format= tag:
 
 | *Format parameter* | *Comment* |
 | =$fileName=  | Name of the file |
-| =$fileIcon= | Icon image representing this file type (see %SYSTEMWEB%.TWikiDocGraphics) |
+| =$fileIcon= | Icon image representing this file type (see %SYSTEMWEB%.DocumentGraphics) |
 | =$fileSize= | File size |
 | =$fileComment= | Attachment comment |
 | =$fileUser= | Who submitted |

@@ -255,7 +255,7 @@ sub generate_search() {
   my $header = "|*View, edit:*|";
   my $filter = "|*<input type=\"submit\" value=\"Filter\" />*|";
   my $search = "";
-  my $format = "| [[\$web.\$topic][<img src=\\\"%PUBURLPATH%/%SYSTEMWEB%/TWikiDocGraphics/viewtopic.gif\\\" border=\\\"0\\\" alt=\\\"View entry\\\" />]] [[%SCRIPTURL%/edit%SCRIPTSUFFIX%/\$web/\$topic?t=%GMTIME{\"\$hour\$min\$sec\"}%][<img src=\\\"%PUBURLPATH%/%SYSTEMWEB%/TWikiDocGraphics/edittopic.gif\\\" border=\\\"0\\\" alt=\\\"Edit entry\\\" />]] |";
+  my $format = "| [[\$web.\$topic][<img src=\\\"%PUBURLPATH%/%SYSTEMWEB%/DocumentGraphics/viewtopic.gif\\\" border=\\\"0\\\" alt=\\\"View entry\\\" />]] [[%SCRIPTURL%/edit%SCRIPTSUFFIX%/\$web/\$topic?t=%GMTIME{\"\$hour\$min\$sec\"}%][<img src=\\\"%PUBURLPATH%/%SYSTEMWEB%/DocumentGraphics/edittopic.gif\\\" border=\\\"0\\\" alt=\\\"Edit entry\\\" />]] |";
   my $hidden = "";
 
   my $textsize = 30;

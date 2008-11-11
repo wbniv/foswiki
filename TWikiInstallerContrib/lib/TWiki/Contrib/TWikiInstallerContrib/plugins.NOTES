@@ -312,7 +312,7 @@ apt-key
    * (and/or update TWikiPluginInstallerContrib/TWikiInstallerContrib to support install from .tar/.tar.gz)
 * update TWikiPluginInstallerContrib/TWikiInstallerContrib to support installation from raw TWikiFor files
 
-(svn add pub/TWiki/TWikiDocGraphics/twiki.gif)
+(svn add pub/TWiki/DocumentGraphics/twiki.gif)
 
 does %TOPICLIS% support metadata extraction (eg, formfield?)
 should WebTopicList be implementing using %SEARCH% instead?

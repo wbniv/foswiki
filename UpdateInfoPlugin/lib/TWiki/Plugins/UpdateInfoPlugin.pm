@@ -17,7 +17,7 @@
 # 20-Apr-2006:   SteffenPoulsen
 #                  - Cairo+Dakar compatibility
 # 26-Jul-2006:   SteffenPoulsen
-#                  - Updated to use default new and updated icons (from TWiki.TWikiDocGraphics)
+#                  - Updated to use default new and updated icons (from TWiki.DocumentGraphics)
 
 package TWiki::Plugins::UpdateInfoPlugin;
 

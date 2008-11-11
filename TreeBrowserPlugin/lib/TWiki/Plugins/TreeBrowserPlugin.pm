@@ -160,7 +160,7 @@ sub renderTreeView
     my $text = "";
 
     my $attach = TWiki::Func::getPubUrlPath();
-    my $docgraphics = $attach . "/$installWeb/TWikiDocGraphics";
+    my $docgraphics = $attach . "/$installWeb/DocumentGraphics";
     $attach .= "/$installWeb/$pluginName";
     my $attachUrl = TWiki::Func::getUrlHost() . TWiki::Func::getPubUrlPath();
     

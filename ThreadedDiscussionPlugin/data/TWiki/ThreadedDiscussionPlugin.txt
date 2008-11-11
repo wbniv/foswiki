@@ -25,7 +25,7 @@ individually, and discussion points can be commented on individually.
 	* Decreasing indentation many levels at a time is fine
 	* You can specify an icon for a bullet:
 		* Attach the icon to a topic, e.g. =myicon.gif=, or
-		* Use one of the existing icons from TWiki.TWikiDocGraphics
+		* Use one of the existing icons from TWiki.DocumentGraphics
 		* Refer to an attached icon at the beginning of the bullet with:
 			* =icon:myicon Followed by normal bullet text=
 
@@ -65,56 +65,56 @@ __You get: (if installed)__
 </td><td valign="top" bgcolor="#EEEEEE">
 
 <table border="0" cellspacing="0" cellpadding="0"><tr>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td valign="top">one&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">one&nbsp; <img src="%PUBURL%/TWiki/DocumentGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/DocumentGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
 <table border="0" cellspacing="0" cellpadding="0"><tr>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td valign="top">one.a&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">one.a&nbsp; <img src="%PUBURL%/TWiki/DocumentGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/DocumentGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
 <table border="0" cellspacing="0" cellpadding="0"><tr>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td valign="top">one.a.x&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">one.a.x&nbsp; <img src="%PUBURL%/TWiki/DocumentGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/DocumentGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
 <table border="0" cellspacing="0" cellpadding="0"><tr>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td valign="top">one.b&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">one.b&nbsp; <img src="%PUBURL%/TWiki/DocumentGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/DocumentGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
 <table border="0" cellspacing="0" cellpadding="0"><tr>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td valign="top">one.b.x&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">one.b.x&nbsp; <img src="%PUBURL%/TWiki/DocumentGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/DocumentGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
 <table border="0" cellspacing="0" cellpadding="0"><tr>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td valign="top">continue&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">continue&nbsp; <img src="%PUBURL%/TWiki/DocumentGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/DocumentGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
 <table border="0" cellspacing="0" cellpadding="0"><tr>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td valign="top">one.b.y&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">one.b.y&nbsp; <img src="%PUBURL%/TWiki/DocumentGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/DocumentGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
 <table border="0" cellspacing="0" cellpadding="0"><tr>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td valign="top"><img src="%PUBURL%/TWiki/TWikiDocGraphics/person.gif" width="16" height="16" alt="" border="0" />&nbsp; </td>
-<td valign="top">Tim&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top"><img src="%PUBURL%/TWiki/DocumentGraphics/person.gif" width="16" height="16" alt="" border="0" />&nbsp; </td>
+<td valign="top">Tim&nbsp; <img src="%PUBURL%/TWiki/DocumentGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/DocumentGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
 <table border="0" cellspacing="0" cellpadding="0"><tr>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td valign="top"><img src="%PUBURL%/TWiki/TWikiDocGraphics/person.gif" width="16" height="16" alt="" border="0" />&nbsp; </td>
-<td valign="top">Mico&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top"><img src="%PUBURL%/TWiki/DocumentGraphics/person.gif" width="16" height="16" alt="" border="0" />&nbsp; </td>
+<td valign="top">Mico&nbsp; <img src="%PUBURL%/TWiki/DocumentGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/DocumentGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
 <table border="0" cellspacing="0" cellpadding="0"><tr>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td valign="top">two&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">two&nbsp; <img src="%PUBURL%/TWiki/DocumentGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/DocumentGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
 <table border="0" cellspacing="0" cellpadding="0"><tr>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td valign="top">three&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">three&nbsp; <img src="%PUBURL%/TWiki/DocumentGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/DocumentGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
 
 </td><td valign="top" bgcolor="#EEEEEE">
 
@@ -158,24 +158,24 @@ __You get: (if installed)__
 </td><td valign="top" bgcolor="#EEEEEE">
 
 <table border="0" cellspacing="0" cellpadding="0"><tr>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td valign="top">one&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">one&nbsp; <img src="%PUBURL%/TWiki/DocumentGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/DocumentGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
 <table border="0" cellspacing="0" cellpadding="0"><tr>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td valign="top">one.b&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">one.b&nbsp; <img src="%PUBURL%/TWiki/DocumentGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/DocumentGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
 <table border="0" cellspacing="0" cellpadding="0"><tr>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td valign="top">one.b.y&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">one.b.y&nbsp; <img src="%PUBURL%/TWiki/DocumentGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/DocumentGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
 <table border="0" cellspacing="0" cellpadding="0"><tr>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td valign="top"><img src="%PUBURL%/TWiki/TWikiDocGraphics/person.gif" width="16" height="16" alt="" border="0" />&nbsp; </td>
-<td valign="top"><b>Tim</b>&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top"><img src="%PUBURL%/TWiki/DocumentGraphics/person.gif" width="16" height="16" alt="" border="0" />&nbsp; </td>
+<td valign="top"><b>Tim</b>&nbsp; <img src="%PUBURL%/TWiki/DocumentGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/DocumentGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
 
 </td><td valign="top" bgcolor="#EEEEEE">
 
@@ -219,22 +219,22 @@ __You get: (if installed)__
 </td><td valign="top" bgcolor="#EEEEEE">
 
 <table border="0" cellspacing="0" cellpadding="0"><tr>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td valign="top">one&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">one&nbsp; <img src="%PUBURL%/TWiki/DocumentGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/DocumentGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
 <table border="0" cellspacing="0" cellpadding="0"><tr>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td valign="top">one.a&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">one.a&nbsp; <img src="%PUBURL%/TWiki/DocumentGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/DocumentGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
 <table border="0" cellspacing="0" cellpadding="0"><tr>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td valign="top">one.b&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">one.b&nbsp; <img src="%PUBURL%/TWiki/DocumentGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/DocumentGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
 <table border="0" cellspacing="0" cellpadding="0"><tr>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td valign="top">two&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">two&nbsp; <img src="%PUBURL%/TWiki/DocumentGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/DocumentGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
 <table border="0" cellspacing="0" cellpadding="0"><tr>
-<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/TWikiDocGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
-<td valign="top">three&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<td bgcolor="#FFCCCC">&nbsp; </td><td><img src="%PUBURL%/TWiki/DocumentGraphics/empty.gif" width="16" height="16" alt="" border="0" /></td>
+<td valign="top">three&nbsp; <img src="%PUBURL%/TWiki/DocumentGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/DocumentGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
 
 </td><td valign="top" bgcolor="#EEEEEE">
 
@@ -268,7 +268,7 @@ __You get: (if installed)__
 </td><td valign="top" bgcolor="#EEEEEE">
 
 <table border="0" cellspacing="0" cellpadding="0"><tr>
-<td valign="top">Start a discussion.&nbsp; <img src="%PUBURL%/TWiki/TWikiDocGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/TWikiDocGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
+<td valign="top">Start a discussion.&nbsp; <img src="%PUBURL%/TWiki/DocumentGraphics/pencil.gif" alt="Edit" border="0"><img src="%PUBURL%/TWiki/DocumentGraphics/note.gif" alt="Comment" border="0"></td></tr></table>
 
 </td><td valign="top" bgcolor="#EEEEEE">
 
@@ -298,13 +298,13 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
 			* The first element is a =0|1= flag indicating whether to suppress or show thread lines at the top level; the next two arguments indicate width and height of icons, respectively; and the final argument gives the spacer icon between thread lines.
 
 	* Topic at which icons are attached, unless explicitly given.
-		* Set ICONTOPIC = %PUBURL%/%SYSTEMWEB%/TWikiDocGraphics
+		* Set ICONTOPIC = %PUBURL%/%SYSTEMWEB%/DocumentGraphics
 
 	* Labels for the edit and comment buttons. Can be textual or icons.
 		* Set EDITLABEL = Edit
-		* #Set EDITLABEL = <img src="%PUBURL%/%SYSTEMWEB%/TWikiDocGraphics/pencil.gif" alt="Edit" border="0">
+		* #Set EDITLABEL = <img src="%PUBURL%/%SYSTEMWEB%/DocumentGraphics/pencil.gif" alt="Edit" border="0">
 		* Set COMMENTLABEL = Comment
-		* #Set COMMENTLABEL = <img src="%PUBURL%/%SYSTEMWEB%/TWikiDocGraphics/note.gif" alt="Comment" border="0">
+		* #Set COMMENTLABEL = <img src="%PUBURL%/%SYSTEMWEB%/DocumentGraphics/note.gif" alt="Comment" border="0">
 		
 
 ---++ Plugin Installation Instructions

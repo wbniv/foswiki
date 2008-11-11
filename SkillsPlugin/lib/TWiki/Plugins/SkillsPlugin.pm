@@ -487,7 +487,7 @@ sub _getImages {
 sub _getDocPath {
     my $docpath = TWiki::Func::getPubUrlPath() . '/' . # /pub/
                   TWiki::Func::getTwikiWebname() . '/' . # TWiki/
-                  'TWikiDocGraphics'; # doc topic
+                  'DocumentGraphics'; # doc topic
 
     return $docpath;
 }

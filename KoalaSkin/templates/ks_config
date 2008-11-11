@@ -35,7 +35,7 @@ export _KSWEBMAP_maplinks_none="<table class=ks_sitemap border=0 cellspacing=1 c
 export _KSWEBMAP_end="</table>"
 
 function _KSWEBMAP_maplink () {
- maplink="<td align=right><a href='%SCRIPTURL%/view%SCRIPTSUFFIX%/$web/$KSWEBMAPTOPIC' title='Map of web <nop>$web'><img src='%PUBURLPATH%/_ks/sitemap.gif' width=16 height=16 border=0></a><a href='%SCRIPTURL%/view%SCRIPTSUFFIX%/$web/WebChanges' title='Newest changed topics of web <nop>$web'><img src='%PUBURLPATH%/%SYSTEMWEB%/TWikiDocGraphics/changes.gif' width=16 height=16 border=0></a></table>"
+ maplink="<td align=right><a href='%SCRIPTURL%/view%SCRIPTSUFFIX%/$web/$KSWEBMAPTOPIC' title='Map of web <nop>$web'><img src='%PUBURLPATH%/_ks/sitemap.gif' width=16 height=16 border=0></a><a href='%SCRIPTURL%/view%SCRIPTSUFFIX%/$web/WebChanges' title='Newest changed topics of web <nop>$web'><img src='%PUBURLPATH%/%SYSTEMWEB%/DocumentGraphics/changes.gif' width=16 height=16 border=0></a></table>"
 }
 
 function _KSWEBMAP_maplink_none () {

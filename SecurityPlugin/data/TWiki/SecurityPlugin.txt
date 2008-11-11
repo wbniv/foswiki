@@ -30,7 +30,7 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
 		* Set DEBUG = 0
 
 	* My own settings:
-		* Set SECURITYLOCKED = <image src=%PUBURLPATH%/%SYSTEMWEB%/TWikiDocGraphics/lock.gif alt="viewable by authenticated user only according to authorization">
+		* Set SECURITYLOCKED = <image src=%PUBURLPATH%/%SYSTEMWEB%/DocumentGraphics/lock.gif alt="viewable by authenticated user only according to authorization">
 		* Set SECURITYUNLOCKED = <img src=%PUBURLPATH%/%SYSTEMWEB%/SecurityPlugin/unlocked.gif alt="viewable publicly">
 
 ---++ Plugin Installation Instructions

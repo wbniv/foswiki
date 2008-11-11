@@ -747,7 +747,7 @@ sub _formatField_link {
                                              $this->{topic} ) .
                     '#' . $this->getAnchor() },
                   CGI::img( {
-                      src=>'%PUBURL%/TWiki/TWikiDocGraphics/target.gif',
+                      src=>'%PUBURL%/TWiki/DocumentGraphics/target.gif',
                       alt=>'(go to action)'} ));
         $text .= $jump;
     }

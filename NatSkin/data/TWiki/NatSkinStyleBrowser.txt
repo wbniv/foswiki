@@ -24,7 +24,7 @@ See the TWiki.NatSkinPlugin documentation on how to use style settings in your p
 %IFSKINSTATETHEN{final="style"}% %ELSESKINSTATE%
 <tr><td colspan="3"> *%MAKETEXT{"Style"}%:* </td></tr>
 <tr>
-<td><a href="?switchstyle=prev" title="%MAKETEXT{"Switch to previous style"}%"><img src="%PUBURLPATH%/%SYSTEMWEB%/TWikiDocGraphics/arrowleft.gif" border="0" alt="%MAKETEXT{"prev"}%"/></a></td>
+<td><a href="?switchstyle=prev" title="%MAKETEXT{"Switch to previous style"}%"><img src="%PUBURLPATH%/%SYSTEMWEB%/DocumentGraphics/arrowleft.gif" border="0" alt="%MAKETEXT{"prev"}%"/></a></td>
 <td>
 <select name="style">
 <noautolink>
@@ -32,12 +32,12 @@ See the TWiki.NatSkinPlugin documentation on how to use style settings in your p
 </noautolink>
 </select>
 </td>
-<td align="right"><a href="?switchstyle=next" title="%MAKETEXT{"Switch to next style"}%"><img src="%PUBURLPATH%/%SYSTEMWEB%/TWikiDocGraphics/arrowright.gif" border="0" alt="%MAKETEXT{"next"}%"/></a></td>
+<td align="right"><a href="?switchstyle=next" title="%MAKETEXT{"Switch to next style"}%"><img src="%PUBURLPATH%/%SYSTEMWEB%/DocumentGraphics/arrowright.gif" border="0" alt="%MAKETEXT{"next"}%"/></a></td>
 </tr>
 %FISKINSTATE%
 %IFSKINSTATETHEN{final="variation"}% %ELSESKINSTATE%
 <tr><td colspan="3"> *%MAKETEXT{"Variation"}%:* </td></tr>
-<tr><td><a href="?switchvariation=prev" title="%MAKETEXT{"Switch to previous variation"}%"><img src="%PUBURLPATH%/%SYSTEMWEB%/TWikiDocGraphics/arrowleft.gif" border="0" alt="%MAKETEXT{"prev"}%"/></a></td>
+<tr><td><a href="?switchvariation=prev" title="%MAKETEXT{"Switch to previous variation"}%"><img src="%PUBURLPATH%/%SYSTEMWEB%/DocumentGraphics/arrowleft.gif" border="0" alt="%MAKETEXT{"prev"}%"/></a></td>
 <td>
 <select name="stylevariation">
 <noautolink>
@@ -45,7 +45,7 @@ See the TWiki.NatSkinPlugin documentation on how to use style settings in your p
 </noautolink>
 </select>
 </td>
-<td align="right"><a href="?switchvariation=next" title="%MAKETEXT{"Switch to next variation"}%"><img src="%PUBURLPATH%/%SYSTEMWEB%/TWikiDocGraphics/arrowright.gif" border="0" alt="%MAKETEXT{"prev"}%"/></a></td>
+<td align="right"><a href="?switchvariation=next" title="%MAKETEXT{"Switch to next variation"}%"><img src="%PUBURLPATH%/%SYSTEMWEB%/DocumentGraphics/arrowright.gif" border="0" alt="%MAKETEXT{"prev"}%"/></a></td>
 </tr>
 %FISKINSTATE%
 %IFSKINSTATETHEN{final="switches"}% %ELSESKINSTATE%

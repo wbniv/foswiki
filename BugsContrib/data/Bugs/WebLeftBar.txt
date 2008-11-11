@@ -10,7 +10,7 @@
    * [[WebChanges][ %ICON{"changes"}% Changes]] 
       (<a href="%SCRIPTURLPATH{view}%/%WEB%/WebChanges?limit=50" rel=nofollow>50</a>,
        <a href="%SCRIPTURLPATH{view}%/%WEB%/WebChanges?limit=100" rel=nofollow>100</a>)
-     [[%SCRIPTURL{view}%/%INCLUDINGWEB%/WebRss?skin=rss][ %PUBURL%/%SYSTEMWEB%/TWikiDocGraphics/rss-small.gif ]]
+     [[%SCRIPTURL{view}%/%INCLUDINGWEB%/WebRss?skin=rss][ %PUBURL%/%SYSTEMWEB%/DocumentGraphics/rss-small.gif ]]
    * [[WebSearch][ %ICON{"searchtopic"}% Search]]
 
    * *List by CurrentState*

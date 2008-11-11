@@ -113,7 +113,7 @@ sub renderThreadedDiscussion
 
     # Get preference values related to formatting
     my $attachUrl = TWiki::Func::getUrlHost() . TWiki::Func::getPubUrlPath();
-    $attachUrl .= "/$installWeb/TWikiDocGraphics";
+    $attachUrl .= "/$installWeb/DocumentGraphics";
     $threadcolor = (&TWiki::Func::getPreferencesValue( "\U$pluginName\E_THREADCOLOR" ) || "#FFFFFF") unless $threadcolor;
     $iconlocation = (&TWiki::Func::getPreferencesValue( "\U$pluginName\E_ICONTOPIC" ) || "$attachUrl") unless $iconlocation;
     $iconSp = &TWiki::Func::getPreferencesValue( "\U$pluginName\E_SPACEICON" ) || "";
@@ -165,8 +165,8 @@ sub handleLine
     # Add edit links
     my $title = "";
     my $text = "";
-    # edit = /TWiki/TWikiDocGraphics/pencil.gif
-    # comment = /TWiki/TWikiDocGraphics/note.gif
+    # edit = /TWiki/DocumentGraphics/pencil.gif
+    # comment = /TWiki/DocumentGraphics/note.gif
     my $eurl = TWiki::Func::getScriptUrlPath() . "/editthread/$web/$topic";
     $text .= "&nbsp; <a href=\"$eurl\?t=" . time() . "&nr=$listNr&sec=$lineNr&level=$level#SECEDITBOX\"><small>$editLabel</small></a>";
     $text .= "&nbsp;";
@@ -179,7 +179,7 @@ sub handleTagsForIcons
 {
     my ( $theParams, $topic ) = @_;
 
-    $topic = "TWikiDocGraphics" unless $topic;
+    $topic = "DocumentGraphics" unless $topic;
     my $attachUrl = TWiki::Func::getUrlHost() . TWiki::Func::getPubUrlPath();
 
     $theParams =~ s/%PUBURL%/$attachUrl/go;

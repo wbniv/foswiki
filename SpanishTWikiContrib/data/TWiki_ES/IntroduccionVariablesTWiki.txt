@@ -12,7 +12,7 @@ Muchas variables vienen con el sistema, otras serán predefinidas de acuerdo a su
 
 Variables TWiki serán interpretadas _antes_ de que se aplique cualquier regla para formatear texto.
 
-*Imágenes predeterminadas:* Hay muchas imágenes predeterminadas disponibles para el uso dentro de sus páginas. Utilice =%<nop>ICON{"help"}%=, =%<nop>ICON{"tip"}%= y =%<nop>ICON{"warning"}%= para obtener: %H%, %T%, and %X%. TWiki.TWikiDocGraphics %FLAGGB% contiene una lista completa de todas las imágenes.
+*Imágenes predeterminadas:* Hay muchas imágenes predeterminadas disponibles para el uso dentro de sus páginas. Utilice =%<nop>ICON{"help"}%=, =%<nop>ICON{"tip"}%= y =%<nop>ICON{"warning"}%= para obtener: %H%, %T%, and %X%. TWiki.DocumentGraphics %FLAGGB% contiene una lista completa de todas las imágenes.
 
 %ICON{"tip"}% Para impedir la interpretación de variables, ponga un signo de exclamación delante de la variable. Escriba: =!%<nop>ALGUNAVARIABLE%= para obtener !%ALGUNAVARIABLE%. 
 %STOPINCLUDE%
