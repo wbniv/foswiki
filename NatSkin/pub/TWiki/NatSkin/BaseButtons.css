@@ -8,6 +8,7 @@
   margin:0;
   padding:0;
   list-style:none;
+  visibility:hidden; /* will be switched on using javascript */
 }
 .natWebButtons ul li {
   display:inline;

@@ -63,7 +63,7 @@
 
 
 %TMPL:DEF{"topictitle"}%<!-- topictitle -->
-<input type="text" class="twikiInputField required" name="topictitle" id="topictitle" size="40" value="%URLPARAM{"newtopictitle"}%" />
+<input type="text" class="twikiInputField required" name="TopicTitle" id="topictitle" size="40" value="%URLPARAM{"newtopictitle"}%" />
 <div class="twikiFormDescription">
 Free form title text.
 </div>

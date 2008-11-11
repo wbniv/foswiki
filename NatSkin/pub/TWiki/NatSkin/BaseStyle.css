@@ -109,7 +109,6 @@ h4 a:hover, h5 a:hover, h6 a:hover {
   margin-top:0px;
 }
 
-
 p {
   margin:1.0em 0em 0em 0em;
 }
@@ -554,7 +553,11 @@ pre {
   background-image:url(page_white_add.png);
 }
 .natEditTopicAction:hover,
-.natEditTopicAction {
+.natEditTopicAction,
+.natEditFormTopicAction:hover,
+.natEditFormTopicAction,
+.natEditTextTopicAction:hover,
+.natEditTextTopicAction {
   background-image:url(pencil.png);
 }
 .natAttachTopicAction:hover,
@@ -731,18 +734,6 @@ a.natFeedIcon {
 }
 
 /* twiki forms */
-.natTopicForm {
-  overflow:auto;
-  padding:1px; /* konqueror fix */
-}
-.natTopicForm .twikiFirstCol,
-.natTopicFormFirstCol {
-  width:20%;
-  text-align:right;
-  font-weight:bold;
-  padding-left:5px;
-  padding-right:5px;
-}
 /* SMELL: 
  *
  * display:inline-block is implemented by Safari+Konqueror, but not by FF+IE.
@@ -796,6 +787,20 @@ a.natFeedIcon {
 .natTopicFormLabel {
   margin-top:3px;
   margin-bottom:3px;
+}
+.natTopicAttachments .natTopicAction:hover,
+.natTopicAttachments .natTopicAction,
+.natTopicForm .natTopicAction:hover,
+.natTopicForm .natTopicAction {
+  float:right;
+}
+.natTopicAttachments .natTopicAction span,
+.natTopicForm .natTopicAction span {
+  display:none;
+}
+.natTopicAttachments h2,
+.natTopicForm h2 {
+  clear:none;
 }
 
 fieldset {
@@ -909,14 +914,6 @@ td.twikiDiffChangedText {
 }
 .twikiToc img {
   display:none;
-}
-.twikiTocTitle {
-  font-size:130%;
-}
-.twikiToc ul {
-  margin:5px 0px;
-  padding-left:10px;
-  list-style:none;
 }
 
 /* see also page.nat.tmpl */

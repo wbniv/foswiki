@@ -1,18 +1,27 @@
 %{ These templates define the form attached at the bottom of viewed page. }%
 %{ Header definition for topic attachments and top table in attach screen }%
-%TMPL:DEF{FORM:display:header}% <!-- -->
-<div class="natTopicForm">
-<table class='twikiTable'><tr><th class='natTopicFormTitle' colspan='2'>
-[[%A_TITLE%]]
-</th></tr> 
-%TMPL:END%
-%{ Each row }% 
-%TMPL:DEF{FORM:display:row}% <!-- -->
-<tr valign='top'>
-<th class='twikiFirstCol natTopicFormFirstCol'>%A_TITLE%:</th>
-<td>
+%TMPL:DEF{FORM:display:header}% <!-- form:display:header -->
+<div class="natTopicForm twikiFormSteps">
+%USERACTIONS{format="$editform"}%
+<h2 >[[%A_TITLE%]]
+%TWISTYBUTTON{
+  id="topicform"
+  mode="span"
+  link=" " 
+  showimg="%ICONURLPATH{toggleopenleft}%"
+  hideimg="%ICONURLPATH{toggleclose}%"
+}%
+</h2>
+%TWISTYTOGGLE{
+  id="topicform" 
+  start="show" 
+  remember="off" 
+  mode="div"
+}%%TMPL:END%
+%TMPL:DEF{FORM:display:row}% <!-- form:display:row -->
+<div class="twikiFormStep">
+<h3 >%A_TITLE%:</h3>
 %A_VALUE%
-</td></tr> 
-%TMPL:END%
-%{ Footer }% %TMPL:DEF{FORM:display:footer}% </table></div> 
-%TMPL:END%
+</div>%TMPL:END%
+%TMPL:DEF{FORM:display:footer}% <!-- form:display:footer -->
+%ENDTWISTY%</div>%TMPL:END%

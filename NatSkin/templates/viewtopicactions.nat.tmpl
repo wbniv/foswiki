@@ -1,10 +1,9 @@
 <!-- template: viewtopicaction.nat.tmpl -->
 %TMPL:DEF{"usersurl"}%<a class='natUserAction' href='%SCRIPTURLPATH{"view"}%/%MAINWEB%/TWikiUsers' title='%MAKETEXT{"List of registered users"}%'>%MAKETEXT{"Users"}%</a>
-%TMPL:DEF{"sandboxurl"}%<a class='natUserAction' href='%SCRIPTURLPATH{"view"}%/Sandbox/%HOMETOPIC%' title='%MAKETEXT{"Test area with all features enabled"}%'>%MAKETEXT{"Sandbox"}%</a>
 %TMPL:DEF{"topicactions_top"}%<!-- topicactions_top -->
 %USERACTIONS{
-  guest="<div class='natGreeter natGuestGreeter'>$login$sep%TMPL:P{"usersurl"}%$sep%TMPL:P{"sandboxurl"}%$sep$register</div>"
-  format="<div class='natGreeter natUserGreeter'>$user$sep%TMPL:P{"usersurl"}%$sep%TMPL:P{"sandboxurl"}%$sep$logout</div>"
+  guest="<div class='natGreeter natGuestGreeter'>$login$sep%TMPL:P{"usersurl"}%$sep$register</div>"
+  format="<div class='natGreeter natUserGreeter'>$user$sep%TMPL:P{"usersurl"}%$sep$logout</div>"
 }%
 <!-- //topicactions_top -->%TMPL:END%
 %TMPL:DEF{"topicactions"}%%WEBCOMPONENT{"WebTopicActions"}%%TMPL:END%

@@ -1,15 +1,11 @@
 %META:TOPICINFO{author="ProjectContributor" date="1225762335" format="1.1" reprev="1.2" version="$Rev$"}%
-%STARTINCLUDE% <noautolink> 
-<ul>
+%STARTINCLUDE%<!-- twiki.twikiwebbuttons --> 
 %~~ FLEXWEBLIST{
 ~~~   webs="%MAINWEB%,public,%SYSTEMWEB%"
-~~~   include="\w+"
 ~~~   selection="%FORMATLIST{"%BASEWEB%" split="[\/\.]" limit="1"}%"
 ~~~   marker="current"
-~~~   exclude="^TestCases|Trash|Attic"
+~~~   exclude="^(TestCases|Trash|Attic|Sandbox).*"
 ~~~   adminwebs="Applications.*"
-~~~   map="TWiki=System"
-~~~   format="$percntWEBLINK{\"$web\" format=\"<li><a class='natWebLink $marker' href='$dollarurl' title='$dollartooltip'>$name</a></li>\"}$percnt"
-~~~ }%
-</ul>
-</noautolink> %STOPINCLUDE%
+~~~   map="%SYSTEMWEB%=System"
+~~~   format="   $indent* $percntWEBLINK{\"$web\" format=\"<a class='natWebLink $marker' href='$dollarurl' title='$dollartooltip'>$name</a>\"}$percnt$n"
+~~~ }%%STOPINCLUDE%

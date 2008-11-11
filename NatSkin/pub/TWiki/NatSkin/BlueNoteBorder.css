@@ -8,9 +8,12 @@
   margin:0px;
 }
 
-.natWebButtons {
+.natBodyLeft .natSideBarHeader,
+.natBodyRight .natWebButtons {
   border-left:1px #aaaaaa solid;
 }
+.natBodyLeft .natWebButtons,
+.natBodyRight .natSideBarHeader,
 .natTopRight {
   border-right:1px #aaaaaa solid;
 }

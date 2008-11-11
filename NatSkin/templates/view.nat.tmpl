@@ -31,9 +31,10 @@
 %TMPL:P{context="natskin_topicactions_on" then="topicactions"}%<!-- topicactions// -->
 %TMPL:P{"breadcrumbs"}%<!-- breadcrumbs //-->
 <!-- // contentheader -->%TMPL:END%
+%TMPL:DEF{"revinfo"}%<div class="natRevision">%MAKETEXT{"Changed by [_1] on [_2]" args="<span class='natRevisionAuthor'> %REVINFO{"$wikiusername"}% </span>, <a class='natRevisionDate' href='%SCRIPTURLPATH{"rdiff"}%/%WEB%/%TOPIC%?type=last;render=sidebyside' title='%MAKETEXT{"show last change"}%'>%REVINFO{"$date - $hour:$min"}%</a>"}% </div>%TMPL:END%
 %TMPL:DEF{"contentfooter"}%<!-- content footer -->
-%IFDEFINED{"$percntMETA{\"attachments\"}$percnt" then="<div class=\"natTopicAttachments\" id=\"natTopicAttachments\"> $test </div>"}%
-<div class="natRevision"> %REVINFO% </div>
+%META{"attachments"}%<!-- meta:attachments// -->
+%TMPL:P{"revinfo"}%<!-- revinfo //-->
 <!-- //content footer -->%TMPL:END%
 %TMPL:DEF{"broadcast"}%<!-- broadcast -->
 %IFDEFINED{"$percntBROADCASTMESSAGE$percnt" then="<div class='twikiBroadcastMessage'> $test </div>"}%

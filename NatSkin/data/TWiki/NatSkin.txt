@@ -15,7 +15,7 @@
 <table style="float:right">
 <tr>
   <td><img src="%ATTACHURLPATH%/wikiringlogo40x40.png"></td>
-  <td><a href="http://wikiring.de" title="Make your Wiki ring!" style="text-decoration:none;color:#0065CD">
+  <td><a href="http://wikiring.com" title="Make your Wiki ring!" style="text-decoration:none;color:#0065CD">
       Powered by <br /> <nop>WikiRing Consultants </a>
   </td>
 </tr>
@@ -63,7 +63,7 @@ to the right with a single click.
 
 *Componentized templates:*
 
-The underlying templates that generate the TWiki pages are arranged in a flexible and
+The underlying templates that generate the pages are arranged in a flexible and
 manageable way to facilitate easy "skin mix-in", that is overriding specific parts of
 the templates by using the NatSkin as a base skin to create template modifications.
 
@@ -76,12 +76,12 @@ the templates by using the NatSkin as a base skin to create template modificatio
    * <nop>MySideBar: every user can extend the sidebar with a personalized navigation
    * <nop>WebHtmlHead: additional stuff to be put into the html head
    * <nop>WebJavaScript: additional javascript code per web
-   * <nop>WebTopicActions: actions to manipulate TWiki topics
+   * <nop>WebTopicActions: actions to manipulate topics
    * <nop>WebMoreTopicActions: actions when clicking on "More"
 
 *Search &amp; GO* 
 
-NatSearch: a search+go box that combines advanced search with the GO feature of TWiki.
+NatSearch: a search+go box that combines advanced search with the GO feature.
 Compared to the standard WebSearch <nop>NatSearch is trying to maximize usability
 and minimizing workflow disruption. In addition, <nop>NatSearch can be customized
 on an application level to specify the scope of search (using include/exclude rules)
@@ -110,21 +110,23 @@ allways open an extra window.
    * NatSkinPlugin
 
 ---++ Installation Instructions
-   * Get the TWiki:Plugins/NatSkinPlugin supplementary package and install it.
-   * [[http://twiki.org/p/pub/Plugins/%TOPIC%/%TOPIC%.zip][Download]] the !NatSkin ZIP file
+   * Get the <nop>NatSkinPlugin supplementary package and install it.
+   * Download the !NatSkin ZIP file
    * Unzip it in your twiki installation directory. 
    * Test if installed: [[%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%?skin=nat&style=Kubrick][click here]]
 
 ---++ Skin Info
-|  Skin Author: | TWiki:Main/MichaelDaum |
+|  Skin Author: | Michael Daum |
 |  Copyright &copy;: | 2003-2008, Michael Daum http://michaeldaumconsulting.com |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  Skin Version: | v3.0-pre23 |
+|  Skin Version: | v3.0-pre24 |
 |  Dependencies: | NatSkinPlugin |
 |  Description: | Driven by cascading stylesheets, Comes with 12 alternative styles, <nop>MoveableType and Wordpress Look-n-Feel |
 |  Base Name: | nat |
 |  Screenshot: | <div style="overflow:hidden;height:200px"><a href="%ATTACHURL%/BlueNoteStyle.jpeg"><img src="%ATTACHURL%/BlueNoteStyle.jpeg" title="Clean"/></a></div> |
 |  Change&nbsp;History: | <!-- specify latest version first -->&nbsp; |
+|  11 Nov 2008: | rewrite of data forms using divs instead of tables; \
+                  lots of usability fixes |
 |  05 Nov 2008: | redesigned header bar using a default nextwiki logo; \
                   redesigned topic actions making it all icons ; \
                   added superfish dropmenu support to webbuttons ; \

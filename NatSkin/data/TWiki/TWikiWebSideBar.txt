@@ -13,13 +13,14 @@ Default sidebar implementation
    * [[WebChanges][%MAKETEXT{"Changes"}%]]
    * [[WebNotify][%MAKETEXT{"Notifications"}%]]
    * [[WebStatistics][%MAKETEXT{"Statistics"}%]]
+   * [[Sandbox.WebHome][Sandbox]]
 </div>
 %TMPL:P{context="natskin_sidebar_pos2" then="searchbox_pos2"}%<!-- -->
 %IFDEFINEDTHEN{"%IFACCESS{"%MAINWEB%.TWikiAdminGroup" type="change"}%" as="1"}%
 <div class="natSidebarSection" natSideBarAdminLinks">
 <h2 >Admin</h2>
    * [[%BASEWEB%.WebPreferences][%MAKETEXT{"Web Preferences"}%]]
-   * [[%LOCALSITEPREFS%][%MAKETEXT{"TWiki Preferences"}%]]
+   * [[%LOCALSITEPREFS%][%MAKETEXT{"Site Preferences"}%]]
    * [[%SYSTEMWEB%.InstalledPlugins][%MAKETEXT{"Installed Plugins"}%]]
    * [[%SYSTEMWEB%.ManagingWebs][%MAKETEXT{"Managing Webs"}%]]
 </div>

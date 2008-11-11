@@ -36,6 +36,7 @@ pub/TWiki/NatSkin/BlueNoteButtons.css 0644
 pub/TWiki/NatSkin/BlueNoteStyle.css 0644
 pub/TWiki/NatSkin/BlueNoteStyle.jpeg 0644
 pub/TWiki/NatSkin/BlueNoteThin.css 0644
+pub/TWiki/NatSkin/bullet-toc.gif 0644
 pub/TWiki/NatSkin/comment.png 0644
 pub/TWiki/NatSkin/cross.png 0644
 pub/TWiki/NatSkin/database_delete.png 0644
@@ -133,6 +134,7 @@ templates/oopsblacklist.nat.tmpl 0644
 templates/oopschangepasswd.nat.tmpl 0644
 templates/oopsempty.nat.tmpl 0644
 templates/oopserrbase.nat.tmpl 0644
+templates/oopsgeneric.nat.tmpl 0644
 templates/oopshistory.nat.tmpl 0644
 templates/oopslanguagechanged.nat.tmpl 0644
 templates/oopsleaseconflict.nat.tmpl 0644

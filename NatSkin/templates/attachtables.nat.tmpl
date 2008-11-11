@@ -33,7 +33,9 @@
 <!-- //ATTACH:editor -->%TMPL:END%
 
 <!-- topic attachment table -->
-%TMPL:DEF{ATTACH:files:header}%<div class="twikiFormSteps">
+%TMPL:DEF{ATTACH:files:header}%<!-- attach:file:header -->
+<div class="twikiFormSteps natTopicAttachments" id="natTopicAttachments">
+%USERACTIONS{format="$attach"}%
 %TWISTY{
   mode="div" 
   start="show" 
@@ -57,7 +59,7 @@
   </tr>
   </table>
 </div>%TMPL:END%
-%TMPL:DEF{ATTACH:files:footer}% </div> %ENDTWISTY% %TMPL:END%
+%TMPL:DEF{ATTACH:files:footer}% %ENDTWISTY% </div> %TMPL:END%
 
 <!-- table at top of attach screen -->
 
