@@ -772,6 +772,6 @@ The typical TWiki development flow...
    * TWiki:Codev.DocRequest: request for documentation
    * TWiki:Codev.DocsToDo: feature documentation pending
    * TWiki:Codev.FeatureDocumented: documented feature
-   * TWikiDocumentation: reference manual for the latest TWiki
+   * CompleteDocumentation: reference manual for the latest TWiki
 
 __Related Topics:__ DeveloperDocumentationCategory
