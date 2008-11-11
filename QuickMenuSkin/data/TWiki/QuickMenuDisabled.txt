@@ -13,7 +13,7 @@ You have 2 choices:
    * Use a different TWiki skin like:
      [[%SCRIPTURLPATH{"view"}%/%SYSTEMWEB%/PatternSkin?skin=pattern][PatternSkin]]
      or [[%SCRIPTURLPATH{"view"}%/%SYSTEMWEB%/ClassicSkin?skin=classic][ClassicSkin]]
- %BR% To activate a skin see: [[TWikiSkins#Activating_Skins][TWikiSkins]]
+ %BR% To activate a skin see: [[%SYSTEMWEB%.Skins#Activating_Skins][Skins]]
 
 %T% TWikiSkinBrowser lists all the skins installed on your server.
 

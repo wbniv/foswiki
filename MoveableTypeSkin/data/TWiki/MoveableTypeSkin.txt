@@ -175,7 +175,7 @@ Once you are done, you will be able to follow the instructions under 'Enable thi
 
 ---++ Contrib Info
 
-This skin is an example of how to make a [[TWikiSkins][TWikiSkin]] _without_ duplicating the work of the TWiki Core release. It reuses the default skin, and only adds a =twiki.moveabletype.tmpl= 
+This skin is an example of how to make a [[%SYSTEMWEB%.Skins][Skin]] _without_ duplicating the work of the TWiki Core release. It reuses the default skin, and only adds a =twiki.moveabletype.tmpl= 
 (and a viewprint that I hope to remove later), and only defines the bare essentials to create HTML that is similar to an existing system.
 
 You can use this technique to create a TWikiSkin that matches closely the HTML of your existing web site, and thus re-use the existing site's css styling, thus creating a comon look & feel.

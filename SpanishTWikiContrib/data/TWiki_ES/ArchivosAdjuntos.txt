@@ -91,7 +91,7 @@ Archivos adjuntados a un tema serán mostradas en una tabla de contenido que se e
 
 ---++ Controles de archivos adjuntos
 
-Haciendo click en un enlace de ==administrar== le lleva a una página nueva que se parece un poco a esta (depende de la [[TWiki.TWikiSkins][apariencia]] %FLAGGB% que está configurada):
+Haciendo click en un enlace de ==administrar== le lleva a una página nueva que se parece un poco a esta (depende de la [[%SYSTEMWEB%.Skins][apariencia]] %FLAGGB% que está configurada):
 
 <div class="twikiFormSteps">
 <div class="twikiFormStep">

@@ -19,7 +19,7 @@
    * Download the ZIP file from the Skin Home page (see below)
    * Unzip ==QuickMenuSkin.zip== in your twiki installation directory
    * Test if installed: %SCRIPTURL{"view"}%/%WEB%/%TOPIC%?skin=quickmenu
-   * For skin activation see %SYSTEMWEB%.TWikiSkins
+   * For skin activation see %SYSTEMWEB%.Skins
 
 ---++ Settings
 
@@ -114,7 +114,7 @@ The menu bar is built by default from %SYSTEMWEB%.QuickMenuBar, which in turn in
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/QuickMenuSkinDev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/QuickMenuSkinAppraisal |
 
-__Related topic:__ %SYSTEMWEB%.TWikiSkins, %SYSTEMWEB%.TWikiSkinBrowser, %SYSTEMWEB%.UserDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory
+__Related topic:__ [[%SYSTEMWEB.Skins][Skins]], %SYSTEMWEB%.TWikiSkinBrowser, %SYSTEMWEB%.UserDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory
 
 -- TWiki:Main/VernonLyon - 13 Jun 2006
 

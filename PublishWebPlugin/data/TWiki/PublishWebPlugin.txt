@@ -110,7 +110,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 			* This should generate an =test.html= page on topic save
 			* Create =Index= topic and other topics
 	* Publish skin:
-		* Create a new publish skin based on your branding. The [[%SYSTEMWEB%.TWikiSkins][TWiki skin]] can be derived from any =twiki/templates/view.*.tmpl= skin file
+		* Create a new publish skin based on your branding. The [[%SYSTEMWEB%.Skins][skin]] can be derived from any =twiki/templates/view.*.tmpl= skin file
 		* Omit any links to TWiki, such as edit and attach links
 		* The skin can use Plugin specific settings =%<nop>PUBLISHWEB{"breadcrumb"}%= and =%<nop>PUBLISHWEB{"nicetopic"}%=
 		* The skin can introduce skin specific [[Publish.WebPreferences]] settings, such as =%<nop>PUBLISH_SITE%=, =%<nop>PUBLISH_LOGO%=, etc.

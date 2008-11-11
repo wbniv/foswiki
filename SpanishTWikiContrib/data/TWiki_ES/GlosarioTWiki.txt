@@ -10,7 +10,7 @@ _Glosario sencillo de términos TWiki_
 | *Término* | *Definición* |
 | Archivo adjunto: | Cualquier tipo de archivo será subido por navegador y adjuntado a una _página_ de la cual puede ser revisado y descargado. [[ArchivosAdjuntos][Detalles...]] |
 | Formulario: | Formulario de internet al final de una página que puede ser llenado con información adicional y una clasificación de la página específica. [[FormulariosTWiki][Detalles...]] |
-| Máscara _(Skin)_: | Máscaras se sobreponen a la _plantilla_ regular cambiando la distribución del encabezado/pié de _páginas_; el texto de la página no se ve afectado. Máscaras se habilitan típicamente para todo el sitio o una _web_. [[TWiki.TWikiSkins][Detalles...]] %FLAGGB% |
+| Máscara _(Skin)_: | Máscaras se sobreponen a la _plantilla_ regular cambiando la distribución del encabezado/pié de _páginas_; el texto de la página no se ve afectado. Máscaras se habilitan típicamente para todo el sitio o una _web_. [[%SYSTEMWEB%.Skins][Detalles...]] %FLAGGB% |
 | Página Web _(Page)_: | Una página normal de internet. Una página del TWiki se componde de su _máscara/plantilla_ y el contenido de la _página_. |
 | Página TWiki _(Topic)_: | El contenido de una _página_ TWiki, componiéndose de texto, un _formulario_ opcional y _archivos adjuntos_ opcionales. Tiene un NombreWiki que es único dentro de la _web_ correspondiente. [[TemasTWiki][Detalles...]] |
 | Plantillas: | (1) Plantillas regulares definen la distribución del encabezado/pié de las _páginas_; el texto de la página no se ve afectado. (2) Páginas de plantilla definen el contenido estándar para _páginas_ nuevas. [[TWiki.TWikiTemplates][Detalles...]] %FLAGGB% |

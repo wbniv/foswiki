@@ -143,7 +143,7 @@ padding:.5em;
   <td>Select skin for published HTML</td>
   <td>
     <input type="text" name="skin" class="twikiInputField" size="20" value="basic_publish" /><br />
-    The skin provides the template for how topics are published. See %SYSTEMWEB%.TWikiSkins for more informations on skins.<br />
+    The skin provides the template for how topics are published. See [[%SYSTEMWEB.Skins][Skins]] for more informations on skins.<br />
     You are recommended to pick =basic_publish=, or =plain=, or a =print= skin.
     Your installation may also offer a special =export= or =publish= skin.<br />%I% The =view= [[TWikiTemplates][template]] is used to generate published pages, so =view.%URLPARAM{"skin" default="basic_publish"}%.tmpl= is the template that will be used to generate the output. You can preview any topic in this skin simply by appending =?skin=%URLPARAM{"skin" default="basic_publish"}%= to the end of the view URL. Note that the standard =VIEW_TEMPLATE= template override still works when publishing.
 
