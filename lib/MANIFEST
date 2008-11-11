@@ -105,6 +105,7 @@ data/TWiki/DocumentGraphics.txt 0644
 data/TWiki/DontNotify.txt 0644
 data/TWiki/DownloadSources.txt 0644
 data/TWiki/EditDoesNotIncreaseTheRevision.txt 0644
+data/TWiki/EditingShorthand.txt 0644
 data/TWiki/ExampleTopicTemplate.txt 0644
 data/TWiki/FormatTokens.txt 0644
 data/TWiki/FileAttachment.txt 0644
@@ -150,7 +151,6 @@ data/TWiki/StandardColors.txt 0644
 data/TWiki/StartingPoints.txt 0644
 data/TWiki/StaticMethod.txt 0644
 data/TWiki/TWikiAccessControl.txt 0644
-data/TWiki/TWikiEditingShorthand.txt 0644
 data/TWiki/TWikiEnhancementRequests.txt 0644
 data/TWiki/TWikiFAQ.txt 0644
 data/TWiki/TWikiFaqTemplate.txt 0644
