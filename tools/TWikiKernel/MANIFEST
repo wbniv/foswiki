@@ -70,8 +70,8 @@ data/Sandbox/WebSearchAdvanced.txt 0660
 data/Sandbox/WebStatistics.txt 0660
 data/Sandbox/WebTopicCreator.txt 0660
 data/Sandbox/WebTopicList.txt 0660
-data/TWiki/ATasteOfTWiki.txt 0660
-data/TWiki/ATasteOfTWikiTemplate.txt 0660
+data/TWiki/BeginnersStartHere.txt 0660
+data/TWiki/BeginnersStartHereTemplate.txt 0660
 data/TWiki/AccessKeys.txt 0660
 data/TWiki/AdminDocumentationCategory.txt 0660
 data/TWiki/AdminSkillsAssumptions.txt 0660
@@ -330,15 +330,15 @@ pub/Main/WebPreferences/logo.gif
 pub/Sandbox/WebPreferences/favicon.ico 0660
 pub/Sandbox/WebPreferences/logo.gif
 pub/TWiki/TWiki/thoth_baboon.gif 0660
-pub/TWiki/ATasteOfTWiki/Disney_logo.gif 0660
-pub/TWiki/ATasteOfTWiki/BT_logo.gif 0660
-pub/TWiki/ATasteOfTWiki/myco.gif 0660
-pub/TWiki/ATasteOfTWiki/lego.gif 0660
-pub/TWiki/ATasteOfTWiki/whiteboard.gif 0660
-pub/TWiki/ATasteOfTWiki/EpicGames_logo.gif 0660
-pub/TWiki/ATasteOfTWiki/hula.gif 0660
-pub/TWiki/ATasteOfTWiki/SAP_logo.gif 0660
-pub/TWiki/ATasteOfTWiki/Motorola_logo.gif 0660
+pub/TWiki/BeginnersStartHere/Disney_logo.gif 0660
+pub/TWiki/BeginnersStartHere/BT_logo.gif 0660
+pub/TWiki/BeginnersStartHere/myco.gif 0660
+pub/TWiki/BeginnersStartHere/lego.gif 0660
+pub/TWiki/BeginnersStartHere/whiteboard.gif 0660
+pub/TWiki/BeginnersStartHere/EpicGames_logo.gif 0660
+pub/TWiki/BeginnersStartHere/hula.gif 0660
+pub/TWiki/BeginnersStartHere/SAP_logo.gif 0660
+pub/TWiki/BeginnersStartHere/Motorola_logo.gif 0660
 pub/TWiki/DocumentGraphics/_filetypes.txt 0660
 pub/TWiki/DocumentGraphics/arrowbdown.gif 0660
 pub/TWiki/DocumentGraphics/arrowbleft.gif 0660
