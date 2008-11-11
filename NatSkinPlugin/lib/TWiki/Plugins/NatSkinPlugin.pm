@@ -890,6 +890,8 @@ sub renderUserActions {
 
   my $newString = '';
   my $editString = '';
+  my $editFormString = '';
+  my $editTextString = '';
   my $attachString = '';
   my $deleteString = '';
   my $moveString = '';
@@ -957,6 +959,29 @@ sub renderUserActions {
       . '" accesskey="e" title="%TMPL:P{"EDIT_HELP"}%"><span>%TMPL:P{"EDIT"}%</span></a>';
   }
 
+  # edit form
+  if ($isRestrictedAction{'edit'}) {
+    $editFormString = '<span class="natTopicAction natEditFormTopicAction natDisabledTopicAction"><span>%TMPL:P{"EDITFORM"}%</span></span>';
+  } else {
+    $editFormString = 
+      '<a class="natTopicAction natEditFormTopicAction" rel="nofollow" href="'
+      . TWiki::Func::getScriptUrl($baseWeb, $baseTopic, "edit") 
+      . '?t=' . time() 
+      . '&action=form'
+      . '" accesskey="e" title="%TMPL:P{"EDITFORM_HELP"}%"><span>%TMPL:P{"EDITFORM"}%</span></a>';
+  }
+
+  # edit text
+  if ($isRestrictedAction{'edit'}) {
+    $editTextString = '<span class="natTopicAction natEditTextTopicAction natDisabledTopicAction"><span>%TMPL:P{"EDITTEXT"}%</span></span>';
+  } else {
+    $editTextString = 
+      '<a class="natTopicAction natEditTextTopicAction" rel="nofollow" href="'
+      . TWiki::Func::getScriptUrl($baseWeb, $baseTopic, "edit") 
+      . '?t=' . time() 
+      . '&action=text'
+      . '" accesskey="e" title="%TMPL:P{"EDITTEXT_HELP"}%"><span>%TMPL:P{"EDITTEXT"}%</span></a>';
+  }
 
   # attach
   if ($isRestrictedAction{'attach'}) {
@@ -1124,6 +1149,8 @@ sub renderUserActions {
   }
 
   $text =~ s/\$new/$newString/go;
+  $text =~ s/\$editform/$editFormString/go;
+  $text =~ s/\$edittext/$editTextString/go;
   $text =~ s/\$edit/$editString/go;
   $text =~ s/\$attach/$attachString/go;
   $text =~ s/\$move/$moveString/go;

@@ -15,7 +15,7 @@
 <table style="float:right">
 <tr>
   <td><img src="%ATTACHURLPATH%/../NatSkin/wikiringlogo40x40.png"></td>
-  <td><a href="http://wikiring.de" title="Make your Wiki ring!" style="text-decoration:none;color:#0065CD">
+  <td><a href="http://wikiring.com" title="Make your Wiki ring!" style="text-decoration:none;color:#0065CD">
       Powered by <br /> <nop>WikiRing Consultants </a>
   </td>
 </tr>
@@ -110,11 +110,11 @@ the "else" content otherwise. Tested strings can be regular expressions.
 
 This is the multi-line version of [[#IFSKINSTATE][IFSKINSTATE]] that uses the
 same tests as above but takes the content from between the sections; thus,
-arbitrary <nop>TWikiML might be rendered conditionaly. IFSKINSTATETHEN
+arbitrary TML might be rendered conditionaly. IFSKINSTATETHEN
 expressions can be nested safely.  Within a single IFSKINSTATETHEN the
 ELSIFSKINSTATE parts can be repeated arbitrarily.  Before rendering the
 =&lt;then|elsif|else condition>= any =$nop= string will be removed first.
-Thereby nested <nop>TWikiML expressions can be prevented from being expanded in
+Thereby nested TML expressions can be prevented from being expanded in
 advance.
 
 ---+++ KNOWNSTYLES
@@ -204,7 +204,7 @@ returns the previous topic revision taking =NumberOfRevisions= into account
 ---+++ SETSKINSTATE
 *Syntax*: =%<nop>SETSKINSTATE{...}%
 
-set the skin state using TWiki markup. This is different from using topic preference
+set the skin state using TML. This is different from using topic preference
 variables in three respects: (1) you can set the skin state at any place now, i.e.
 INCLUDEing another topic where that topic's preference variables are not evaluated.
 (2) SETSKINSTATE "may come to late" in the rendering pipeline so that it does
@@ -347,8 +347,9 @@ The following variables can be used in the format string:
 |  Plugin Author: | TWiki:Main/MichaelDaum |
 |  Copyright &copy;: | 2003-2008, Michael Daum http://michaeldaumconsulting.com |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  Plugin Version: | v3.00-pre23 |
+|  Plugin Version: | v3.00-pre24 |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  11 Nov 2008: | added topic actions to edit form and text data |
 |  05 Nov 2008: | added NATWEBLOGOURL; \
                   natsearch can now use kinosearch, plucene, or its own native search engine |
 |  03 Jul 2008: | removed unused NATLOGINURL, NATLOGOUTURL, NATDIFFURL; \
@@ -498,7 +499,5 @@ The following variables can be used in the format string:
 |  28 Apr 2005: | pre-release to fix installation on TWiki/Cairo |
 |  16 Mar 2005: | Initial version |
 |  Perl Version: | >=5.6 |
-|  TWiki:Plugins/Benchmark: | TWiki:TWiki/GoodStyle nn%, TWiki:TWiki/FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://nextwiki.org/Extensions/NatSkinPlugin |
 |  Feedback: | http://nextwiki.org/Extensions/NatSkinPluginDev  |
-
