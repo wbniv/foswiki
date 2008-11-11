@@ -40,7 +40,7 @@ Tener la oportunidad de crear enlaces sin algún tipo de formato especial es una 
 
 %INCLUDE{"IntroducciónVariablesTWiki"}%
 
----++ Extensiones (!TWikiPlugins) para formatear
+---++ Extensiones (Plugins) para formatear
 
 Plugins amplian la funcionalidad de TWiki en muchos campos diferentes. Hay una gran cantidad de TWiki plugins que está disponible en la red [[http://twiki.org/cgi-bin/view/Plugins][Plugins]] en TWiki.org.
 

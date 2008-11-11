@@ -14,7 +14,7 @@ This plugin *for each topic name* of this web:
 	* add a set of _stopTopics_ ... topics we don't want to link to (Web Home, Web Preferences ...)
 
 *Settings*
-	* Short description of this Plugin (this appears in TWiki.TWikiPlugins only if you enable it with ==suggestions=on==)
+	* Short description of this Plugin (this appears in [[TWiki.Plugins]] only if you enable it with ==suggestions=on==)
 		* Set SHORTDESCRIPTION = Automatically highlights group of words that *could* become a link
 	* Stopwords to ignore (single letters are always ignored):
 		* Set STOPWORDS = an, and, the, to, for

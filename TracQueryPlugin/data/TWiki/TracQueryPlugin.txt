@@ -1,5 +1,4 @@
 %META:TOPICINFO{author="ThomasWeigert" date="1077529065" format="1.0" version="1.7"}%
-%META:TOPICPARENT{name="TWikiPlugins"}%
 ---++ %TOPIC%
 
 This plugin allows you to query Trac for tickets and other data and format the returned results. This plugin was derived from TWiki:Plugins.BugzillaQueryPlugin, but as the two databases differ significantly, so do the details of these two plugins.

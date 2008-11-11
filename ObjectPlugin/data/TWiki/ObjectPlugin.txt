@@ -1,5 +1,4 @@
 %META:TOPICINFO{author="TWikiGuest" date="1160739585" format="1.1" reprev="1.14" version="1.14"}%
-%META:TOPICPARENT{name="TWikiPlugins"}%
 
 ---+!! The Object Plugin
 
@@ -161,7 +160,7 @@ You should see something below:
 |  Feedback: | http://twiki.org/cgi-bin/view/Plugins/ObjectPluginDev |
 |  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/ObjectPluginAppraisal |
 
-__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
+__Related Topics:__ [[%SYSTEMWEB%.Plugins][Plugins]], %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
 
 <!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the feedback topic on twiki.org instead. -->
 

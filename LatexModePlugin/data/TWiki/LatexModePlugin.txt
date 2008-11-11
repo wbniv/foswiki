@@ -464,5 +464,5 @@ This plugin is an enhanced version of the TWiki:Plugins.MathModePlugin maintaine
 This plugin was created and tested on the 02 Sep 2004 version of TWiki, using <nop>ImageMagick v5.5.7, EPS <nop>GhostScript v7.05, and tetex v2.02.  It has been reported to work (Thanks Jos!) using
 <nop>ImageMagick 6.2.3, tetex 3.0 and ghostscript 8.51 as well.
 
-__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins, TWiki:Plugins.MathModePlugin
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]], TWiki:Plugins.MathModePlugin
 

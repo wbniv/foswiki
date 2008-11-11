@@ -87,7 +87,7 @@ sub initPlugin {
     # Set plugin preferences in LocalSite.cfg, like this:
     # $TWiki::cfg{Plugins}{FirebugLitePlugin}{ExampleSetting} = 1;
     # Always provide a default in case the setting is not defined in
-    # LocalSite.cfg. See TWiki.TWikiPlugins for help in adding your plugin
+    # LocalSite.cfg. See %SYSTEMWEB%.Plugins for help in adding your plugin
     # configuration to the =configure= interface.
     my $setting = $TWiki::cfg{Plugins}{FirebugLitePlugin}{ExampleSetting} || 0;
     $debug = $TWiki::cfg{Plugins}{FirebugLitePlugin}{Debug} || 0;

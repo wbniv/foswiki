@@ -54,7 +54,7 @@ This is a fairly simple initial implementation and probably doesn't yet deserve 
 |  Plugin Home: | TWiki:Plugins/%TOPIC% |
 |  Feedback: | TWiki:Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 
 -- %SYSTEMWEB%.JohnTalintyre - 15 Apr 2002
 	* : Simple example of using FormPivotPlugin

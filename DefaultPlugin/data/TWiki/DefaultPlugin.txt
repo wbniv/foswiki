@@ -3,7 +3,7 @@
 
 ---+ Default TWiki Plugin
 
-This plugin supports some deprecated rendering of older TWiki versions and of <nop>JosWiki. Create a new [[%SYSTEMWEB%.TWikiPlugins][TWikiPlugin]] based on EmptyPlugin if you plan to offer some other functionality.
+This plugin supports some deprecated rendering of older TWiki versions and of <nop>JosWiki. Create a new [[%SYSTEMWEB%.Plugins][Plugin]] based on EmptyPlugin if you plan to offer some other functionality.
 
 The plugin is *disabled* by default. You should enable it on sites where there is very old data using legacy syntax.
 
@@ -52,7 +52,7 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>D
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins, EmptyPlugin
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]], EmptyPlugin
 
 
 

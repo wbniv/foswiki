@@ -354,7 +354,7 @@ The syntax follows that of the !CalendarPlugin. See TWiki:Plugins.CalendarPlugin
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %SYSTEMWEB%.SmiliesPlugin, %SYSTEMWEB%.TWikiPlugins, TWiki:Plugins.CalendarPlugin
+__Related Topics:__ %SYSTEMWEB%.SmiliesPlugin, [[%SYSTEMWEB%.Plugins][Plugins]], TWiki:Plugins.CalendarPlugin
  
 -- TWiki:Main.PeterJones - 01 Jun 2005
 %BR% -- TWiki:Main.DanielRohde - 10 Jun 2005

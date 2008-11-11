@@ -197,7 +197,7 @@ Por ejemplo:
    * La columna ==Values== *tiene que estar vacía* en la definición del formulario correspondiente.
  
 ---++ Ampliar el rango de tipos de datos para formularios
-Puede ampliar el rango de tipos de datos aceptados por formularios utilizando TWiki.TWikiPlugins %FLAGGB%. Todos estos tipos de datos ampliados solamente pueden tener un valor con las siguientes excepciones:
+Puede ampliar el rango de tipos de datos aceptados por formularios utilizando [[TWiki.Plugins]] %FLAGGB%. Todos estos tipos de datos ampliados solamente pueden tener un valor con las siguientes excepciones:
    * cualquier nombre de tipo empezando con =checkbox=
    * cualquier nombre de tipo conteniendo =+multi= en cualquier parte del nombre
 Tipos con nombres como estos pueden recibir varios valores.

@@ -1,5 +1,4 @@
 %META:TOPICINFO{author="tarzan" date="1077529065" format="1.0" version="1.7"}%
-%META:TOPICPARENT{name="TWikiPlugins"}%
 ---++ %TOPIC%
 
 This plugin allows you to make links to Bugzilla or directly query Bugzilla for data and results could be formated. I take a vision from BugzillaLinkPlugin but it doesn't fulfil all needs of our company.
@@ -70,7 +69,7 @@ Extract <nop>BugzillaQueryPlugin.zip, edit the BugzillaQueryPlugin to your needs
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 
 -- Main.RichardBaar - 23 Feb 2004
 

@@ -83,7 +83,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 
 -- TWiki:Main/PascalBuchbinder - 18 Jan 2004
 %META:FILEATTACHMENT{name="picture.jpg" attr="" comment="sample jpeg file" date="1074463218" path="picture.jpg" size="41994" user="PascalBuchbinder" version="1.1"}%

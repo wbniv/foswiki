@@ -105,7 +105,7 @@ Specify plug-in settings in =LocalSite.cfg=:
 | Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 | Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 
 %META:FILEATTACHMENT{name="oT.gif" attr="h" autoattached="1" comment="" date="1158432770" path="oT.gif" size="879" user="UnknownUser" version=""}%
 %META:FILEATTACHMENT{name="I.gif" attr="h" autoattached="1" comment="" date="1158432770" path="I.gif" size="869" user="UnknownUser" version=""}%

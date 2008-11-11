@@ -20,7 +20,7 @@
 # =========================
 #
 # Use EmptyPlugin.pm as a template
-# for your own plugins; see TWiki.TWikiPlugins for details.
+# for your own plugins; see %SYSTEMWEB%.Plugins for details.
 #
 # This plugin implements compatability functions that support
 # data defined using earlier versions of TWiki. The chances are

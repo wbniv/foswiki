@@ -124,7 +124,7 @@ The Plugin can be configured by modifying the following configuration variables.
 | Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/MailToTWikiAddOn |
 | Feedback: | http://TWiki.org/cgi-bin/view/Plugins/MailToTWikiAddOnDev |
 
-__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 
 -- TWiki:Main.AlanBurlison - 27 Jan 2003
 

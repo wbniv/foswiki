@@ -77,7 +77,7 @@ The WikiMaster can add a GPG Key/Fingerprint questionarie at the TWiki.TWikiRegi
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins, EmptyPlugin
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]], EmptyPlugin
 
 -- TWiki:Main/TriBble - 10 Nov 2003
 

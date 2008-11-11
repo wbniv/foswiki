@@ -24,7 +24,7 @@
 
 This is an empty TWiki plugin. It is a fully defined plugin, but is
 disabled by default in a TWiki installation. Use it as a template
-for your own plugins; see TWiki.TWikiPlugins for details.
+for your own plugins; see %SYSTEMWEB%.Plugins for details.
 
 __NOTE:__ To interact with TWiki use ONLY the official API functions
 in the TWiki::Func module. Do not reference any functions or
@@ -42,11 +42,11 @@ code below that line; Perl ignores anything after __END__).
 __NOTE:__ When developing a plugin it is important to remember that
 TWiki is tolerant of plugins that do not compile. In this case,
 the failure will be silent but the plugin will not be available.
-See %SYSTEMWEB%.TWikiPlugins#FAILEDPLUGINS for error messages.
+See [[%SYSTEMWEB%.Plugins#FAILEDPLUGINS]] for error messages.
 
 __NOTE:__ Defining deprecated handlers will cause the handlers to be 
-listed in %SYSTEMWEB%.TWikiPlugins#FAILEDPLUGINS. See
-%SYSTEMWEB%.TWikiPlugins#Handlig_deprecated_functions
+listed in [[%SYSTEMWEB%.Plugins#FAILEDPLUGINS]]. See
+[[%SYSTEMWEB%.Plugins#Handlig_deprecated_functions]]
 for information on regarding deprecated handlers that are defined for
 compatibility with older TWiki versions.
 

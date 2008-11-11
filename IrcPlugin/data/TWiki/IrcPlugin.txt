@@ -48,6 +48,6 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>I
    * queue/log with seperate program to spew messages as it can (and doesn't keep connecting and disconnecting)
    * when a topic is moved to the Trash, IrcPlugin reports ".../Trash/TopicName" was created rather than something more useful like (.../Web/TopicName was moved to Trash) - (read the Meta data for TOPICMOVED, iirc) - well, that's on notification when the topic is created, rather than removed...
 
-__Related Topics:__ DeveloperDocumentationCategory, AdminDocumentationCategory, %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins
+__Related Topics:__ DeveloperDocumentationCategory, AdminDocumentationCategory, %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 
 

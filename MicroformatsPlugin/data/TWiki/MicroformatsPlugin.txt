@@ -39,7 +39,7 @@ This Plugins adds support for a number of [[http://microformats.org][microformat
 |  Feedback: | http://twiki.org/cgi-bin/view/Plugins/MicroformatsPluginDev |
 |  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/MicroformatsPluginAppraisal |
 
-__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
+__Related Topics:__ [[%SYSTEMWEB%.Plugins][Plugins]], %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
 
 
 -- SvenDowideit@fosiki.com - [[http://www.wikiring.com][WikiRing.com]]

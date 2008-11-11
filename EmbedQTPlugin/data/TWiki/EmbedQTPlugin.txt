@@ -47,7 +47,7 @@ __Note:__ You need to install a <nop>QuickTime plugin on the browser to see the 
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
  
 -- TWiki:Main.DonnyKurniawan - 6 Aug 2003
 %META:FILEATTACHMENT{name="sample.mov" attr="h" comment="A small <nop>QuickTime movie" date="1060215181" path="sample.mov" size="494658" user="DonnyKurniawan" version="1.1"}%

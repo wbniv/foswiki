@@ -101,7 +101,7 @@ Formatting is based on a template (quicksearch.tmpl) where the only fields updat
 
 
 
-__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 
 
 -- Main.DaveAlsup - 12 Mar 2002 <br>	

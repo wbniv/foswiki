@@ -152,7 +152,7 @@ height="400px"
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 
 %META:FILEATTACHMENT{name="sample.fla" attr="" autoattached="1" comment="" date="1162495736" path="sample.fla" size="40448" user="UnknownUser" version=""}%
 %META:FILEATTACHMENT{name="sample.swf" attr="" autoattached="1" comment="" date="1162497279" path="sample.swf" size="1981" user="UnknownUser" version=""}%

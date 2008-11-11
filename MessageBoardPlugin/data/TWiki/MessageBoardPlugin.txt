@@ -100,7 +100,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 
 -- TWiki:Main.LuisCamposDeCarvalho - 15 Jun 2004
 %META:FILEATTACHMENT{name="trashcan.png" attr="" comment="" date="1087408473" path="C:\Documents and Settings\lcampos\Desktop\trashcan.png" size="779" user="lcampos" version="1.4"}%

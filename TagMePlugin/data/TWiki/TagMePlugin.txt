@@ -435,7 +435,7 @@ count of known tags, option to delete tags |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %SYSTEMWEB%.TagMeViewAllTags, %SYSTEMWEB%.TagMeViewMyTags, %SYSTEMWEB%.TagMeSearch, %SYSTEMWEB%.TagMeDebugViewTags, %SYSTEMWEB%.TagMeDebugSearch, %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
+__Related Topics:__ %SYSTEMWEB%.TagMeViewAllTags, %SYSTEMWEB%.TagMeViewMyTags, %SYSTEMWEB%.TagMeSearch, %SYSTEMWEB%.TagMeDebugViewTags, %SYSTEMWEB%.TagMeDebugSearch, [[%SYSTEMWEB%.Plugins][Plugins]], %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
 
 -- TWiki:Main.PeterThoeny - 16 Oct 2007
 

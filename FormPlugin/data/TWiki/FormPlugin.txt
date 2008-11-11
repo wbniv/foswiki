@@ -481,7 +481,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 
 %META:FILEATTACHMENT{name="screenshot_validation_example.png" attachment="screenshot_validation_example.png" attr="" comment="Example of validation error feedback" date="1179177105" path="screenshot_validation_example.png" size="23656" stream="screenshot_validation_example.png" user="Main.ProjectContributor" version="1"}%
 %META:FILEATTACHMENT{name="form_on_submit_diagram.png" attr="" autoattached="1" comment="Form on submit diagram" date="1179003044" path="form_on_submit_diagram.png" size="55590" user="Main.ProjectContributor" version="1"}%

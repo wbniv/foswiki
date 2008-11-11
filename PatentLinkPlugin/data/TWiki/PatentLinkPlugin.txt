@@ -4,7 +4,7 @@
 This plugin is designed to create links to US Patent and US Patent Application Numbers based on their numbers.
 
 	* Create a  ==&lt;name&gt;Plugin== topic in the %SYSTEMWEB% web. Do so by visiting http://TWiki.org/cgi-bin/view/Plugins/ and starting a new topic to get the default plugin topic text (don't save the topic). Customize your plugin topic to your needs.
-	* See details in %SYSTEMWEB%.TWikiPlugins.
+	* See details in [[%SYSTEMWEB%.Plugins][Plugins]].
 
 ---++ Syntax Rules
 
@@ -65,5 +65,5 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>P
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 

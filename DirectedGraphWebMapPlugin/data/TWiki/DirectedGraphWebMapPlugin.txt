@@ -71,7 +71,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 	  =%<nop>TOPICMAP{links="1"}%=
 
 	* Simulated: <br />\
-	  <map id="sample" name="sample"><area shape="rect" href="DirectedGraphWebMapPlugin" title="DirectedGraphWebMapPlugin" alt="" coords="272,7,509,50"><area shape="rect" href="DirectedGraphPlugin" title="DirectedGraphPlugin" alt="" coords="8,93,182,136"><area shape="rect" href="GoodStyle" title="GoodStyle" alt="" coords="204,93,307,136"><area shape="rect" href="TWikiPlugins" title="TWikiPlugins" alt="" coords="328,93,453,136"><area shape="rect" href="SitePreferences" title="SitePreferences" alt="" coords="474,93,627,136"><area shape="rect" href="TextFormattingRules" title="TextFormattingRules" alt="" coords="649,93,823,136">
+	  <map id="sample" name="sample"><area shape="rect" href="DirectedGraphWebMapPlugin" title="DirectedGraphWebMapPlugin" alt="" coords="272,7,509,50"><area shape="rect" href="DirectedGraphPlugin" title="DirectedGraphPlugin" alt="" coords="8,93,182,136"><area shape="rect" href="GoodStyle" title="GoodStyle" alt="" coords="204,93,307,136"><area shape="rect" href="Plugins" title="Plugins" alt="" coords="328,93,453,136"><area shape="rect" href="SitePreferences" title="SitePreferences" alt="" coords="474,93,627,136"><area shape="rect" href="TextFormattingRules" title="TextFormattingRules" alt="" coords="649,93,823,136">
 </map><img usemap="#sample" src="%ATTACHURLPATH%/sample.png">
 
 	* Plugin: <br />
@@ -96,7 +96,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 
 -- TWiki:Main.MagnusLewisSmith - 04 Jul 2005
 

@@ -113,5 +113,5 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %SYSTEMWEB%.TWikiPlugins
+__Related Topics:__ [[%SYSTEMWEB%.Plugins][Plugins]]
 

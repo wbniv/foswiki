@@ -17,7 +17,7 @@
 # =========================
 #
 # This is an empty TWiki plugin. Use it as a template
-# for your own plugins; see TWiki.TWikiPlugins for details.
+# for your own plugins; see %SYSTEMWEB%.Plugins for details.
 #
 # Each plugin is a package that contains the subs:
 #

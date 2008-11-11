@@ -95,7 +95,7 @@ __Note:__ You do not need to install anything on your browser to use this plugin
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev &amp; TWiki:Main/StevenSprouse |
 
-__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins, EmptyPlugin
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]], EmptyPlugin
 
 
 %META:FILEATTACHMENT{name="example_1.png" attr="" comment="" date="1099600975" path="example_1.png" size="270" user="StevenSprouse" version="1.1"}%

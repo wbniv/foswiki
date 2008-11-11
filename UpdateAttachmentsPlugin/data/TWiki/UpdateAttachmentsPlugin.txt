@@ -64,7 +64,7 @@ This plugin _may_ not function correctly if =$TWiki::cfg{AutoAttachPubFiles}= is
 |  Feedback: | http://twiki.org/cgi-bin/view/Plugins/UpdateAttachmentsPluginDev |
 |  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/UpdateAttachmentsPluginAppraisal |
 
-__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
+__Related Topics:__ [[%SYSTEMWEB%.Plugins][Plugins]], %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
 
 <!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the feedback topic on twiki.org instead. -->
 

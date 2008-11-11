@@ -77,6 +77,6 @@ Content:
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, TWiki:Plugins/FormFieldsPlugin
+__Related Topics:__ [[%SYSTEMWEB%.Plugins][Plugins]], TWiki:Plugins/FormFieldsPlugin
 
 -- TWiki:Main/EricSchwertfeger - 11 October 2005

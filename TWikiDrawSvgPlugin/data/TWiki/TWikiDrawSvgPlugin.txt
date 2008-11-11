@@ -97,7 +97,7 @@ No settings necessary.
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 
 	* <a href="http://www.w3.org/TR/SVG/"><nop>SVG</a> (Scalable Vector Graphics)
 	* Java(tm) <a href="http://java.sun.com/products/javawebstart/">Web Start</a>

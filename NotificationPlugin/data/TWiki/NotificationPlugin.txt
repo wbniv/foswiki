@@ -1,5 +1,4 @@
 %META:TOPICINFO{author="tarzan" date="1084271820" format="1.0" version="1.9"}%
-%META:TOPICPARENT{name="TWikiPlugins"}%
 ---+!! <nop>%TOPIC%
 
 This plugin allows you to send fine grained notifications of topics you are interested in. It allows you to specify to kinds of notifications - immediate and regular. Immediate notifications are send every time somebody changed the requested topic, regular notifications are the same as default TWiki notifications, but allows better settings.
@@ -131,7 +130,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, %SYSTEMWEB%.TWikiPlugins
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 
 Sponsored by [[http://www.systinet.com][Systinet]] ;-)
 

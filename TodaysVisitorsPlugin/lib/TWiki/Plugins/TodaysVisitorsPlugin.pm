@@ -17,7 +17,7 @@
 # =========================
 #
 # This is the default TWiki plugin. Use EmptyPlugin.pm as a template
-# for your own plugins; see TWiki.TWikiPlugins for details.
+# for your own plugins; see %SYSTEMWEB%.Plugins for details.
 #
 # Each plugin is a package that may contain these functions:        VERSION:
 #
