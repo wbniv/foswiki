@@ -54,7 +54,7 @@ then modify the extension files as required (including MANIFEST). Then when you 
 #DevelopmentModel
 ---++ Development Model
 The build module assumes:
-   1 two kinds of extension modules; 'Plugins' (as in %SYSTEMWEB%.TWikiPlugins) and 'Contribs' (everything else e.g Skins, !TWikiApplications etc),
+   1 two kinds of extension modules; 'Plugins' (as in [[%SYSTEMWEB%.Plugins][Plugins]]) and 'Contribs' (everything else e.g Skins, !TWikiApplications etc),
    1 you have some passing familiarity with build tools such as =make=,
    1 you are *not* developing your extension in a 'production' TWiki
      installation (something that is usually a really bad idea), but are
