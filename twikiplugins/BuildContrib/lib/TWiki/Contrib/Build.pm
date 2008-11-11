@@ -1359,7 +1359,7 @@ END
     my $userAgent =
       new TWiki::Contrib::Build::UserAgent( $this->{UPLOADTARGETSCRIPT},
         $this );
-    $userAgent->agent( 'TWikiContribBuild/' . $VERSION . ' ' );
+    $userAgent->agent( 'ContribBuild/' . $VERSION . ' ' );
 
     my $topic = $this->_getTopicName();
     my ( $user, $pass ) = $this->getCredentials( $this->{UPLOADTARGETSCRIPT} );
