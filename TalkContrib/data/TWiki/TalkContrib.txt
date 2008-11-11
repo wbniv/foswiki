@@ -79,7 +79,7 @@ This <nop>TWikiApplication implements the first using either a SKIN or COVER set
 |  Feedback: | http://twiki.org/cgi-bin/view/Plugins/TalkContribDev |
 |  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/TalkContribAppraisal |
 
-__Related Topics:__ %SYSTEMWEB%.WikiContribs, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
+__Related Topics:__ [[%SYSTEMWEB%.Contribs][Contribs]], %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
 
 <!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the feedback topic on twiki.org instead. -->
 
