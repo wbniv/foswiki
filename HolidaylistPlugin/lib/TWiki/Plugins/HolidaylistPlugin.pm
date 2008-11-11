@@ -90,7 +90,8 @@ $VERSION = '$Rev: 17715 $';
 # of the version number in PLUGINDESCRIPTIONS.
 
 
-$REVISION = '1.0.26'; #dro# added missing anchor in showoptions form action; added row color feature (new attributes: namecolors, rowcolors); added order feature (new attribute: order); added namepos attribute (place names left and/or right of a row)
+$REVISION = '1.0.27'; #dro# changed some defaults (showmonthheader, monthheaderformat, headerformat); fixed alignments (statistics, monthheader); added maxheight attribute
+#$REVISION = '1.0.26'; #dro# added missing anchor in showoptions form action; added row color feature (new attributes: namecolors, rowcolors); added order feature (new attribute: order); added namepos attribute (place names left and/or right of a row)
 #$REVISION = '1.0.25'; #dro# added div tag with style overflow:auto requested by Matthew Thomson; added query parameters feature (hlp_&lt;attribute&gt; in URIs); added option form feature (new attributes: showoptions, optionspos, optionsformat) requested by Matthew Thomson; improved performance; fixed minor icon related bugs;
 #$REVISION = '1.0.24'; #dro# added statistics feature requested by TWiki:Main.GarySprague
 #$REVISION = '1.0.23'; #kjl# fixed Item5190 - does not like whitespace after the smiley. This makes the plugin work with TWiki 4.2.0 and Wysiwyg
@@ -241,6 +242,7 @@ sub initDefaults() {
 		namecolors => undef,
 		order => undef,
 		namepos => 'left',
+		maxheight => undef,
 	);
 
 	# reminder: don't forget change documentation (HolidaylistPlugin topic) if you add a new rendered option
@@ -1146,7 +1148,7 @@ sub renderHolidaylist() {
 	$text .=  $optionrow if ($options{optionspos}=~/^(bottom|both)$/i);
 	$text .= '</noautolink>';
 
-	$text = CGI::div({-class=>'holidayListPluginDiv',-style=>'overflow:auto;'},$text);
+	$text = CGI::div({-class=>'holidayListPluginDiv',-style=>'overflow:auto;'.(defined $options{maxheight}?"max-height:$options{maxheight}":"")},$text);
 
 	return $text;
 }

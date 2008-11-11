@@ -146,6 +146,7 @@ The syntax follows that of the !CalendarPlugin. See TWiki:Plugins.CalendarPlugin
 | daynames | custom daynames (a list separated by a '&brvbar;' and starting on Monday; overwrites lang attribute) | =daynames="M&brvbar;T&brvbar;W&brvbar;T&brvbar;F&brvbar;S&brvbar;S"= |
 | headerformat | table header format of a day; a subset of strftime conversion specifiers is supported (only date not time specificiers; see manual page or TWiki:Codev.ConvergeDateTimeFormattingModels) | =headerformat="&lt;font&nbsp;size=\"-2\">%a&lt;br/&gt;%e&lt;/font&gt;"= |
 | lang | language (related: daynames, monthnames) | =lang="English"= |
+| maxheight | maximum table height | undefined / =maxheight="200px"= |
 | monthheaderformat | month header format (related: showmonthheader) | =monthheaderformat="%b"= |
 | monthnames | custom month names (a list separated by '&brvbar;' and starting on January; overwrites lang attribute) | =monthnames="J&brvbar;F&brvbar;M&brvbar;A&brvbar;M&brvbar;J&brvbar;J&brvbar;A&brvbar;S&brvbar;O&brvbar;N&brvbar;D"= |
 | name | header content of the first cell header |=name="Name"= |
@@ -318,7 +319,7 @@ The syntax follows that of the !CalendarPlugin. See TWiki:Plugins.CalendarPlugin
 |  Plugin Author: | TWiki:Main.PeterJones, TWiki:Main.DanielRohde |
 |  Plugin Version: | v1.027 (BETA) |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
-|  v1.027 (BETA) | TWiki:Main.DanielRohde: changed some defaults (showmonthheader, monthheaderformat, headerformat); fixed alignments (statistics, monthheader) |
+|  v1.027 (BETA) | TWiki:Main.DanielRohde: changed some defaults (showmonthheader, monthheaderformat, headerformat); fixed alignments (statistics, monthheader); added maxheight attribute |
 |  v1.026 (28 Oct 2008) | TWiki:Main.DanielRohde: added missing anchor in showoptions form action; added row color feature (new attributes: namecolors, rowcolors); added order feature (new attribute: order); added namepos attribute (place names left and/or right of a row) |
 |  v1.025 (17 Oct 2008) | TWiki:Main.DanielRohde: added div tag with style overflow:auto requested by Matthew Thomson; added query parameters feature (hlp_&lt;attribute&gt; in URIs); added option form feature (new attributes: showoptions, optionspos, optionsformat) requested by Matthew Thomson; improved performance; fixed minor icon related bugs |
 |  v1.024 (29 Jul 2008) | TWiki:Main.DanielRohde: added statistics feature requested by TWiki:Main.GarySprague |
