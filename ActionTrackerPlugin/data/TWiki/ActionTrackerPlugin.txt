@@ -163,7 +163,7 @@ You can also use the shorthand =me= for the currently logged-in user (this is =T
 
 ---++++ Groups
 
-You can assign an action to a group defined using a TWiki group topic (see %SYSTEMWEB%.TWikiDocumentation). Alternatively you can give a list of people as the value of the attribute. For example,
+You can assign an action to a group defined using a TWiki group topic (see %SYSTEMWEB%.CompleteDocumentation). Alternatively you can give a list of people as the value of the attribute. For example,
 <pre>
 %ACTION<nop>{who=TWikiAdminGroup ...}%
 %ACTION<nop>{who="KnutHaraldsen,MagnusMagnusson" ...}%

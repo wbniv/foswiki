@@ -3,7 +3,7 @@
 
 Search, filter and format multiple TWiki form fields from multiple topics.
 
-This plugin offers more options than the predefined variable [[%SYSTEMWEB%.TWikiDocumentation#FORMFIELD][%<nop>FORMFIELD{"fieldname"}%]].
+This plugin offers more options than the predefined variable [[%SYSTEMWEB%.CompleteDocumentation#FORMFIELD][%<nop>FORMFIELD{"fieldname"}%]].
 
 This plugin uses TWiki:Plugins/TopicDataHelperPlugin
 
@@ -197,4 +197,4 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ [[%SYSTEMWEB%.TWikiDocumentation#FORMFIELD][TWiki Variable FORMFIELD]], %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
+__Related Topics:__ [[%SYSTEMWEB%.CompleteDocumentation#FORMFIELD][TWiki Variable FORMFIELD]], %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]

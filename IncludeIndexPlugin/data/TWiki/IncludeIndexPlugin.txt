@@ -153,10 +153,10 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
 	* Test if the plugin is correctly installed:
 	Between the following two horizontal rulers,
-	the list of topics in the TWikiDocumentation should show up:
+	the list of topics in the CompleteDocumentation should show up:
 <dl><dt></dt><dd>
 -----
-%INCLUDEINDEX{"TWikiDocumentation" format="$n	0 $topic"}%
+%INCLUDEINDEX{"CompleteDocumentation" format="$n	0 $topic"}%
 -----
 </dl>
 

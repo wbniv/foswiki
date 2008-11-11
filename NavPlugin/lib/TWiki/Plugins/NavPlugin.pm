@@ -18,7 +18,7 @@
 #
 # Notes:
 # - Latest version at http://twiki.org/
-# - Installation instructions in $dataDir/Main/TWikiDocumentation.txt
+# - Installation instructions in $dataDir/%SYSTEMWEB%/CompleteDocumentation.txt
 
 package TWiki::Plugins::NavPlugin;
 

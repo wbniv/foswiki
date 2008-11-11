@@ -43,14 +43,14 @@ Se puede utilizar archivos adjuntos para archivar información o para crear soluc
    * Haga click en el archivo en la [[#FileAttachmentTable][tabla de archivos adjuntos]].
 #AttachmentAccess
 
-   * %X% _NOTA:_ No existe control de acceso para archivos adjuntos individuales. Si necesita controlar el acceso a un archivo individual, cree un tema separado para cada uno de los archivos y configure [[TWiki.TWikiDocumentation#TWikiAccessControl][restricciones de acceso]] %FLAGGB% para cada una de los temas.
+   * %X% _NOTA:_ No existe control de acceso para archivos adjuntos individuales. Si necesita controlar el acceso a un archivo individual, cree un tema separado para cada uno de los archivos y configure [[%SYSTEMWEB%.CompleteDocumentation#TWikiAccessControl][restricciones de acceso]] %FLAGGB% para cada una de los temas.
 
 ---++ Mover archivos adjuntos
 
 Un archivo puede ser movido de un tema a otro.
    * Haga click en ==Administrar== del archivo que debe ser movido.
    * En la pantalla de revisión, seleccione la nueva web y/o el nuevo tema.
-   * Haga click en ==Mover==. El archivo y su historial serán movidos. Su ubicación original será guardada como [[TWiki.TWikiDocumentation#Meta_Data_Definition][Meta Data del tema]] %FLAGGB%.
+   * Haga click en ==Mover==. El archivo y su historial serán movidos. Su ubicación original será guardada como [[%SYSTEMWEB%.CompleteDocumentation#Meta_Data_Definition][Meta Data del tema]] %FLAGGB%.
 
 ---++ Borrar archivos adjuntos
 

@@ -23,7 +23,7 @@
 #		A short page, but it involves searching all pages
 #	TWiki/WebIndex
 #		Medium size page, involves lots of RCS
-#	TWiki/TWikiDocumentation
+#	TWiki/CompleteDocumentation
 #		Large page, with lots of includes
 #	benchmark -h
 #		Calls a "hello world" perl script, which loads and compiles
@@ -148,7 +148,7 @@ bench "Hello-world +load twiki"	$baseurl/benchmark?-h
 bench "Short page"		$viewurl/TWiki/BumpyWord
 bench "Formatted search"	$viewurl/TWiki/ProjectContributor
 bench "Large index w/much RCS"	$viewurl/TWiki/WebIndex
-bench "Large page w/INCLUDEs"	$viewurl/TWiki/TWikiDocumentation
+bench "Large page w/INCLUDEs"	$viewurl/TWiki/CompleteDocumentation
 
 else
 	bench "$1" "$2"

@@ -137,7 +137,7 @@ __Note:__ You do not need to install anything on the browser to use this add-on.
 
 ---++ Known Bugs
 	* *Verbatim text runs off the page.* This is a limitation of HTMLDOC. Preformatted text may run off the edge of the page and be truncated.
-	* *HTMLDOC crashes with segmentation faults.* Eg it fails to generate TWiki.TWikiDocumentation. I managed to get it to work a few times, but it generally fails. The error returned is =Conversion failed: 'Inappropriate ioctl for device' at /var/www/twiki/lib/TWiki/Contrib/GenPDF.pm line XXX=
+	* *HTMLDOC crashes with segmentation faults.* Eg it fails to generate %SYSTEMWEB%.CompleteDocumentation. I managed to get it to work a few times, but it generally fails. The error returned is =Conversion failed: 'Inappropriate ioctl for device' at /var/www/twiki/lib/TWiki/Contrib/GenPDF.pm line XXX=
 	* *Some pages don't have a header.* HTMLDOC breaks the page for every level 1 heading (Eg. &lt;h1&gt;) but it doesn't write a header for the new page, so topics with lots of level 1 headings and not much content don't seem to have any headers. Therefore I patched htmldoc-1.8.24 to force a header for every new page:
 <verbatim>
 *** htmldoc-1.8.24/htmldoc/ps-pdf.cxx	Sat Oct 30 05:53:59 2004
