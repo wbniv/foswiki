@@ -80,8 +80,8 @@ unless ($errorcode == 0) {
 chdir($twikihome);
 #TODO: add a performance BM & compare to something golden.
 `perl tools/MemoryCycleTests.pl > $twikihome/TWiki-MemoryCycleTests.log 2>&1`;
-`perlcritic --severity 5 --statistics --top 20 lib/  > $twikihome/TWiki-PerlCritic.log 2>&1`;
-`perlcritic --severity 5 --statistics --top 20 bin/ >> $twikihome/TWiki-PerlCritic.log 2>&1`;
+`/usr/local/bin/perlcritic --severity 5 --statistics --top 20 lib/  > $twikihome/TWiki-PerlCritic.log 2>&1`;
+`/usr/local/bin/perlcritic --severity 5 --statistics --top 20 bin/ >> $twikihome/TWiki-PerlCritic.log 2>&1`;
 #`cd tools; perl check_manifest.pl`;
 #`cd data; grep '%META:TOPICINFO{' */*.txt | grep -v TestCases | grep -v 'author="ProjectContributor".*version="\$Rev'`;
 
