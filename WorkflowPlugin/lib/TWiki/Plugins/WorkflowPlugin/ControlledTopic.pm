@@ -151,8 +151,10 @@ sub changeState {
     $this->setState($state);
 
     my $fmt = TWiki::Func::getPreferencesValue("WORKFLOWHISTORYFORMAT")
-      || '$state -- $date';
-    $fmt = '$n()' . $fmt if $this->{history}->{value};
+      || '<br>$state -- $date';
+    $fmt =~ s/\$wikiusername/TWiki::Func::getWikiUserName()/geo;
+    $fmt =~ s/\$state/$this->getState()/goe;
+    $fmt =~ s/\$date/$this->{state}->{"LASTTIME_$state"}/geo;
     if ( defined &TWiki::Func::decodeFormatTokens ) {
 
         # Compatibility note: also expands $percnt etc.
@@ -165,11 +167,6 @@ sub changeState {
         $fmt =~ s/\$n\(\)/\n/go;
         $fmt =~ s/\$n([^$mixedAlpha]|$)/\n$1/gos;
     }
-    $fmt =~ s/\r//gs;
-    $fmt =~ s/\n/<br>/gs;    # backward compatibility
-    $fmt =~ s/\$wikiusername/TWiki::Func::getWikiUserName($revuser)/geo;
-    $fmt =~ s/\$state/$this->getState()/goe;
-    $fmt =~ s/\$date/$this->{state}->{"LASTTIME_$state"}/geo;
 
     $this->{history}->{value} .= $fmt;
     $this->{meta}->put( "WORKFLOWHISTORY", $this->{history} );

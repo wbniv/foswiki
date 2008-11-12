@@ -1,4 +1,3 @@
-%META:TOPICINFO{author="TWikiGuest" date="1167952813" format="1.1" reprev="1.2" version="1.2"}%
 %WORKFLOWNOTICE%
 
 %WORKFLOWSTATEMESSAGE%
@@ -6,15 +5,14 @@
 Some defect.
 
 
-	* Set WORKFLOW = DefectWorkflow
-	* #Set WORKFLOWHISTORYFORMAT = "	* $state -- $wikiusername, $date"
-	* Set WORKFLOWHISTORYFORMAT = "| $state | $wikiusername | $date |"
-	* Set WORKFLOWHISTORYFORMAT = "$n$state, $wikiusername, $date"
+   * Set WORKFLOW = DefectWorkflow
+
+Example history formats:
+   * #Set WORKFLOWHISTORYFORMAT = $n   * $state -- $wikiusername, $date
+   * #Set WORKFLOWHISTORYFORMAT = $n| $state | $wikiusername | $date |
+   * Set WORKFLOWHISTORYFORMAT = $n $state, $wikiusername, $date
 
 %WORKFLOWTRANSITION% 
 
-
-PS: Note, that the tags %<nop>WORKFLOWBUTTON%, %<nop>WORKFLOWNOTICE%, and
-%<nop>WORKFLOWSTATEMESSAGE% could be placed in the footer or header, as
-well.
+%WORKFLOWHISTORY%
 

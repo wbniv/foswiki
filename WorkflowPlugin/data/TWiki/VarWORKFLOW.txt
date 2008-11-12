@@ -1,11 +1,33 @@
 #VarWEB
----+++ WORKFLOW* -- variables associated with WorkflowPlugin
+---+++ WORKFLOW* -- macros associated with WorkflowPlugin
+The following macros can be used in any topic that has an associated workflow.
 | *Variable* | *Description* |
-| =%<nop>WORKFLOWTRANSITION%= | Expands to either (a) a pull-down menu if the user can perform more than one transition, (b) a button if the current user can only perform one transition, or (c) empty space if the current user is not allowed to perform any action. |
+| =%<nop>WORKFLOWTRANSITION%= | Expands to either (a) a pull-down menu if the user can perform more than one transition, (b) a button if the current user can only perform one transition, or (c) empty space if the current user is not allowed to perform any action. You can change the format of the button using a CSS class (see WORKFLOWTRANSITIONCSSCLASS below) |
 | =%<nop>WORKFLOWSTATEMESSAGE%= | Expands to the corresponding message in the state table. |
 | =%<nop>WORKFLOWLASTTIME_State%= | Expands to the timestamp when the document was last in the _State_ last state. For example, =%<nop>WORKFLOWLASTTIME_APPROVED%= would be replaced by the timestamp when the document was last in the =APPROVED= state. |
 | =%<nop>WORKFLOWLASTVERSION_State%= | Expands to topic version when the document was last in the state _State_. |
 | =%<nop>WORKFLOWHISTORY%= | Expands to the history of state transitions the topic has undergone. The format of the history is dictated by the =WORKFLOWHISTORYFORMAT= (described below). |
 | =%<nop>WORKFLOWSTATE%= | Expands to the current state of the document. It can also be given a =topic= parameter (default), in which case the state of that topic is returned. |
 
-Furthermore, the plugin replaces any variable starting with =WORKFLOW= that is defined in the workflow description file. If the topic is *not* controlled, then any references to =WORKFLOW= variables are simply removed (you can use this behaviour to place these tags in the header or footer in your %SYSTEMWEB%.TWikiTemplates. They appear only if the currently displayed document is controlled. Otherwise, they are just removed and do not disturb the layout)
+Furthermore, the plugin replaces any macro starting with =WORKFLOW= that is defined in the workflow description file.
+
+If the topic is *not* controlled, then any references to =WORKFLOW= macros are simply removed (you can use this behaviour to place these tags in the header or footer in your skin templates. They appear only if the currently displayed document is controlled. Otherwise, they are just removed and do not disturb the layout).
+
+In addition there are two macros you can define in your topics (or !WebPreferences)
+
+WORKFLOWHISTORYFORMAT tells the plugin how to format each new line added to the WORKFLOWHISTORY. The format is used as a template for each new entry, and should include all the formatting necessary to make the history look nice when it is viewed.
+
+In this example the history is formatted as a table:
+   * Set WORKFLOWHISTORYFORMAT = $n| $state | $wikiusername | $date |
+The leading $n expands to a newline character that separates each line of the history.
+You could also format the history as a bullet list:
+   * Set WORKFLOWHISTORYFORMAT = $n   * $state -- $wikiusername, $date
+The standard [[format tokens]] are supported, as well as the following special tokens:
+| *Token* | *Expands to* |
+| =$wikiusername= | Who triggered the transition |
+| =$state= | The target state of the transition |
+| =$date= | Date of the transition |
+
+The appearance of the button to change state can be configured by providing a CSS class. For example,
+   * Set WORKFLOWTRANSITIONCSSCLASS = myCSSClass
+The default is =twikiChangeFormButton twikiSubmit=.
