@@ -15,6 +15,12 @@ This plugin lets you associate a complex work flow with topics in your wiki.
 
 A workflow can be associated with a single topic, or with an entire web. If a topic is under workflow control, you can define a set of _states_ for this topic (e.g. "under revision", "waiting for approval", "approved") and _transitions_ (e.g. "revise", "approve") between these states. Furthermore, you can define which users/groups are permitted to perform specific transistions. In this way, you can control, for example, who is allowed to "approve" a topic and who is not.
 
+<blockquote class="twikiAlert">
+*Upgrade note* If you are upgrading from a version before 10 Nov 2008 please note that the format of the WORKFLOWHISTORYFORMAT preference has changed slightly, in that:
+   1 enclosing double quotes are no longer removed from the value. This changes has been to bring this preference definition into line with other preference definitions.
+   1 =$n= is interpreted as \n, not &lt;br&gt;, in line with the standard [[format tokens]]. If you want a &lt;br&gt; in the format string, then enter it as &lt;br&gt; or $percntBR$percnt.
+</blockquote>
+
 ---++ Usage
 
 A topic is under document control if the preference variable =WORKFLOW= is set
@@ -89,7 +95,7 @@ will define =WORKFLOWNOTICE= in any topic that uses the workflow.
 
 As described above the topic needs to contain a definition for the variable =WORKFLOW= for it to be controlled under the approval workflow. This is best set as a document-specific preference setting in the =More topic actions= screen.
 
-The plugin defines a number of preferences that can be used in the topic under flow control:
+The plugin defines a number of preferences:
 %INCLUDE{VarWORKFLOW}%
 
 If you replace =%<nop>EDITTOPIC%= with =%<nop>WORKFLOWEDITTOPIC%= in your skin templates, then the _Edit_ link is crossed out when the user is not allowed to edit the page in a state.  
@@ -108,17 +114,6 @@ A common requirement is to report on the status of topics that are in different 
 ---++ History and Acknowledgements
 
 This plugin was motivated by [[TWiki:Main.ThomasWeigert][Thomas Weigert]]'s [[TWiki:Plugins.WorkFlowAddOn][WorkFlowAddOn]] and its first version (then called !ApprovalPlugin) was written by [[TWiki:Main.ThomasHartkens][Thomas Hartkens]], albeit it was focused on document approval and control. [[TWiki:Main.ThomasWeigert][Thomas Weigert]] then merged the functionality of the [[TWiki:Plugins.WorkFlowAddOn][WorkFlowAddOn]] into this plugin.
-
----++ Plugin Settings
-Plugin settings are stored as preferences variables. To reference
-a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>WORKFLOWPLUGIN_SHORTDESCRIPTION%==
-
-   * History format. In this example, the first line tells the plugin to format the history as a bullet list, the second just writes a newline separated list. The variables =$state=, =$wikiusername=, =$date=, =$quot=, and =$n= (or =$n()=) can be used in the format statement, with the same meaning as in TWiki.FormattedSearch.
-      * #Set WORKFLOWHISTORYFORMAT = "	* $state -- $wikiusername, $date"
-      * Set WORKFLOWHISTORYFORMAT = "$n$state, $wikiusername, $date"
-
-   * Appearance of the button to change state can be configured by providing a CSS class.
-      * Set CSSCLASS = twikiChangeFormButton twikiSubmit
 
 ---++ Plugin Installation Instructions
 

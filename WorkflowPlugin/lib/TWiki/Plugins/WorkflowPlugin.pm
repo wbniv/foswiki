@@ -139,7 +139,7 @@ sub _WORKFLOWTRANSITION {
     );
 
     my $buttonClass =
-      TWiki::Func::getPreferencesValue("\U$pluginName\E_CSSCLASS")
+      TWiki::Func::getPreferencesValue('WORKFLOWTRANSITIONCSSCLASS')
       || 'twikiChangeFormButton twikiSubmit"';
 
     if ( $numberOfActions == 1 ) {
