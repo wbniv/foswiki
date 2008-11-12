@@ -279,8 +279,8 @@ All format strings may contain the following variables:
 
 Example:
 
-%<nop>DBRECURSE{"TWikiFAQ"}% lists all TWikiFAQs (with properly set topic parent)
-%DBRECURSE{"TWikiFAQ"}%
+%<nop>DBRECURSE{"FrequentlyAskedQuestions"}% lists all FrequentlyAskedQuestions topics (with properly set topic parent)
+%DBRECURSE{"FrequentlyAskedQuestions"}%
 
 
 ---+++ DBSTATS

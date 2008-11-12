@@ -282,12 +282,12 @@ See TWiki::Plugins/FormQueryPluginTutorial for a tutorial describing how to use 
 
 *Write this:*
 
-=%<nop>FORMQUERY{name="q1" search="text=~'__Back to:__ <nop>TWikiFAQ'" web="TWiki"}%= %BR%
+=%<nop>FORMQUERY{name="q1" search="text=~'__Back to:__ <nop>FrequentlyAskedQuestions'" web="TWiki"}%= %BR%
 =%<nop>SHOWQUERY{query="q1" header="TWiki FAQs:" format="   * $pattern(.*?FAQ\:[\n\r]*([^\n\r]+).*) [<nop>[$web.$topic][Answer...]]"}%=
 
 *To get this:*
 
-%FORMQUERY{name="q1" search="text=~'__Back to:__ TWikiFAQ'" web="TWiki"}%
+%FORMQUERY{name="q1" search="text=~'__Back to:__ FrequentlyAskedQuestions'" web="TWiki"}%
 %SHOWQUERY{query="q1" header="TWiki FAQs:" format="   * $pattern(.*?FAQ\:[\n\r]*([^\n\r]+).*) [[$web.$topic][Answer...]]"}%
 
 
