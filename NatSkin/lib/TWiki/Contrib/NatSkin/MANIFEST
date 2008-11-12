@@ -21,6 +21,7 @@ data/TWiki/TWikiWebSideBar.txt 0644
 data/TWiki/TWikiWebTopicActions.txt 0644
 data/TWiki/WebLinks.txt 0644
 lib/TWiki/Contrib/NatSkin.pm 0644
+pub/TWiki/NatSkin/application_form_edit.png 0644
 pub/TWiki/NatSkin/arrow_divide.png 0644
 pub/TWiki/NatSkin/arrow_refresh.png 0644
 pub/TWiki/NatSkin/arrow_refresh_small.png 0644
@@ -37,6 +38,7 @@ pub/TWiki/NatSkin/BlueNoteStyle.css 0644
 pub/TWiki/NatSkin/BlueNoteStyle.jpeg 0644
 pub/TWiki/NatSkin/BlueNoteThin.css 0644
 pub/TWiki/NatSkin/bullet-toc.gif 0644
+pub/TWiki/NatSkin/button-bg.png 0644
 pub/TWiki/NatSkin/comment.png 0644
 pub/TWiki/NatSkin/cross.png 0644
 pub/TWiki/NatSkin/database_delete.png 0644

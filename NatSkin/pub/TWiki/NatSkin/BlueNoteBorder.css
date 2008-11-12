@@ -4,6 +4,9 @@
 .natBody {
   margin:1em 2em;
 }
+.twikiBroadcastMessage {
+  margin:-1em -2em 1em;
+}
 .natEditBody {
   margin:0px;
 }
@@ -26,9 +29,6 @@
 .natMiddle,
 .natSideBar {
   border-bottom:1px #aaaaaa solid;
-}
-.natBottomBar {
-  background:#e5e5e5;
 }
 .natBottomBarContents {
   margin-top:1px; /* konqueror fix */

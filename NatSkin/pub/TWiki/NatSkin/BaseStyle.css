@@ -196,7 +196,6 @@ pre {
   margin:0px auto;
 }
 .natOopsMessage .twikiFormSteps {
-  width:25em;
   margin-bottom:2em;
 }
 .natLayoutTable {
@@ -386,12 +385,9 @@ pre {
 .natEditTopicInfo {
   margin:0.5em 0em 1em 0em;
 }
-.natEditTopicInfo table {
-  width:100%;
-}
 .natEditTopicInfo table th,
 .natEditTopicInfo table td {
-  padding:0px 0px 5px 0px;
+  padding:0em 0.5em 0.5em 0em;
 }
 .natEditBody table th.twikiFirstCol {
   width:10em;
@@ -554,10 +550,13 @@ pre {
 }
 .natEditTopicAction:hover,
 .natEditTopicAction,
-.natEditFormTopicAction:hover,
-.natEditFormTopicAction,
 .natEditTextTopicAction:hover,
 .natEditTextTopicAction {
+  background-image:url(pencil.png);
+}
+.natEditFormTopicAction:hover,
+.natEditFormTopicAction {
+  background-image:url(application_form_edit.png);
   background-image:url(pencil.png);
 }
 .natAttachTopicAction:hover,

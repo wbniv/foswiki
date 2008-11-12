@@ -1,6 +1,4 @@
-%TMPL:INCLUDE{"oops"}%
-<!-- template: oopshistory.nat.tmpl -->
-%TMPL:DEF{"bodyclass"}%natOopsHistoryBody%TMPL:END%
+%TMPL:INCLUDE{"oops"}%<!-- template: oopshistory.nat.tmpl -->
 %TMPL:DEF{"title"}%%TOPICTITLE% (%MAKETEXT{"History"}%) - %WIKITOOLNAME%%TMPL:END%
 %TMPL:DEF{"heading"}%%MAKETEXT{"Compare Revisions of [_1]" args="<nop>%TOPIC%"}% (r%HISTORY_REV1% - r%HISTORY_REV2%)%TMPL:END%
 %TMPL:DEF{"headingstyle"}%natNoteHeading%TMPL:END%
@@ -12,13 +10,13 @@
   <option value="interweave">%MAKETEXT{"Interweave"}%</option>
   <option value="sidebyside">%MAKETEXT{"Side-by-side"}</option>
 %TMPL:END%
-%TMPL:DEF{"renderoptions_crap_disabled"}%
+%TMPL:DEF{"renderoptions_crap_disabled"}%<!-- renderoptions_crap_disabled -->
   <option value="sidebyside">%MAKETEXT{"Side-by-side"}%</option>
   <option value="sequential">%MAKETEXT{"Sequential"}%</option>
   <option value="debug">%MAKETEXT{"Debug"}%</option>
-%TMPL:END%
+<!-- //renderoptions_crap_disabled -->%TMPL:END%
 %TMPL:DEF{"javascript"}%%TMPL:P{"defaultjavascript"}%%TMPL:P{"oopshistoryjavascript"}%%TMPL:END%
-%TMPL:DEF{"oopshistoryjavascript"}%
+%TMPL:DEF{"oopshistoryjavascript"}%<!-- oopshistoryjavascript -->
 <script type="text/javascript">
 /* updates the radio buttons in a way to prevent illegal selections */
 function updateRadio () {
@@ -46,12 +44,12 @@ $(function() {
   $(".natHistoryTable input").click(updateRadio);
 });
 </script>
-%TMPL:END%
+<!-- //oopshistoryjavascript -->%TMPL:END%
 %TMPL:DEF{"rev_table"}%%TMPL:P{context="RevCommentPluginEnabled" then="table_rcp_enabled" else="table_rcp_disabled"}%%TMPL:END%
 %TMPL:DEF{"table_rcp_disabled"}%<!-- table_rcp_disabled -->
 <table class="natHistoryTable" border="0" cellpadding="5">
 <tr>
-  <th>%MAKETEXT{"Revision"}%</th>
+  <th align="right">%MAKETEXT{"Revision"}%</th>
   <th>%MAKETEXT{"Date"}%</th>
   <th>%MAKETEXT{"Author"}%</th>
 </tr>
@@ -72,7 +70,7 @@ $(function() {
 ~~~  header=""
 ~~~  footer="
 ~~~    <tr>
-~~~      <td colspan=\"3\" align=\"center\">
+~~~      <td colspan=\"3\" align='center'>
 ~~~        $percntIFDEFINEDTHEN{\"$next{'test'}\" as=\"test\" glue=\"off\"}$percnt
 *~~        </a>
 ~~~        <a href=\"$next{'%SCRIPTURLPATH{oops}%/%WEB%/%TOPIC%?template=oopshistory&nrev=$nrev'}\">
@@ -111,7 +109,7 @@ $(function() {
 ~~~    </tr>"
 ~~~ }%
 <tr>
-    <td colspan="3" align="center">
+    <td colspan="3" align='center'>
       <input type="submit" class="natOkButton" value="%MAKETEXT{Compare}%">
       <input type="button" class="natCancelButton" value="Cancel" onclick="window.location.href='%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%'">
     </td>
@@ -144,7 +142,7 @@ $(function() {
 ~~~   header=""
 ~~~   footer="
 ~~~    <tr>
-~~~      <td colspan=\"3\" align=\"center\">
+~~~      <td colspan=\"3\" align='center'>
 ~~~        $previous{'first' url='%SCRIPTURLPATH{oops}%/%WEB%/%TOPIC%?template=oopshistory&rev1=1&nrev=$nrev'}
 ~~~        $previous{'earlier' url='%SCRIPTURLPATH{oops}%/%WEB%/%TOPIC%?template=oopshistory&rev1=$rev1&nrev=$nrev'} 
 ~~~        $next{'later' url='%SCRIPTURLPATH{oops}%/%WEB%/%TOPIC%?template=oopshistory&rev1=$rev1&nrev=$nrev'} 
@@ -153,34 +151,19 @@ $(function() {
 ~~~    </tr>"
 ~~~ }%
 <tr>
-    <td colspan="3" align="center">
+    <td colspan="3" align='center'>
       <input type="submit" class="natOkButton" value="%MAKETEXT{Compare}%">
       <input type="button" class="natCancelButton" value="Cancel" onclick="window.location.href='%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%'">
     </td>
 </tr>
 </table>
 <!-- //table_rcp_enabled -->%TMPL:END%
-%TMPL:DEF{"message"}% 
+%TMPL:DEF{"message"}%<!-- message -->
+<div class="twikiFormSteps">
 <form name="main" action="%SCRIPTURLPATH{"%TMPL:P{"diffbin"}%"}%/%WEB%/%TOPIC%">
-<input type="hidden" name="render" value="sidebyside" />
-<input type="hidden" name="type" value="history">
-%TMPL:P{"rev_table"}%</form>
-<form action="%SCRIPTURLPATH{oops}%/%WEB%/%TOPIC%">
-<input type="hidden" name="template" value="oopshistory">
-<table cellpadding="5">
-  <tr>
-    <td><input type="submit" class="natAltButton" value="Show"></td>
-    <td>
-      <select type="select" name="nrev" size="1">
-        <option %IFDEFINED{"$percntHISTORY_NREV$percnt" as="5" then=" selected"}%>5</option>
-        <option %IFDEFINED{"$percntHISTORY_NREV$percnt" as="10" then=" selected"}%>10</option>
-        <option %IFDEFINED{"$percntHISTORY_NREV$percnt" as="20" then=" selected"}%>20</option>
-        <option %IFDEFINED{"$percntHISTORY_NREV$percnt" as="50" then=" selected"}%>50</option>
-      </select>
-      revisions up to
-      <input type="text" name="rev2" value="%HISTORY_REV2%" size="2">
-    </td>
-  </tr>
-</table>
+  <input type="hidden" name="render" value="sidebyside" />
+  <input type="hidden" name="type" value="history">
+%TMPL:P{"rev_table"}%<!-- rev_table// -->
 </form>
-%TMPL:END%
+</div>
+<!-- //message -->%TMPL:END%

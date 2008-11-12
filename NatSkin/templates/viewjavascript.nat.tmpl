@@ -2,19 +2,29 @@
 %TMPL:DEF{"viewjavascript"}%<!-- viewjavascript -->
 <script type="text/javascript">
 $(function() {
-  if (true) { // add overflow div for tables
+  /* add overflow div for tables */
+  if (true) { 
     $(".natMainContents .twikiTable")
       .not($(".twikiTable .twikiTable", this))
       .wrap("<div class='overflow'></div>");
   }
-  if (true) { // install tooltips
-    $(".natSideBar a, .natWebButtons a, .natTopicAction, .natUserAction").tooltip({
+  /* tooltips */
+  if (true) { 
+    $(".natTopicAction, .natUserAction, .natSideBar a, .natWebButtons a").tooltip({
       delay:350,
       track:true,
       showURL:false,
       extraClass:'twiki',
-      showBody:': '
+      //extraClass:'bubble',
+      //showBody:': '
     });
+  }
+  /* move revinfo */
+  if (true) {
+    var target = $(".natMain h1:first");
+    if (target.length) { 
+      $(".natRevision").remove().insertAfter(target);
+    }
   }
 });
 </script>

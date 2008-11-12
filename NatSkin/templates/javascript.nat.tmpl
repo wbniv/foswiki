@@ -49,13 +49,6 @@ $(function() {
       find("li:has(ul)").
       addClass("hasSubMenu");
   }
-  /* move revinfo */
-  if (true) {
-    var target = $(".natMain :header:first");
-    if (target.length) { 
-      $(".natRevision").remove().insertAfter(target);
-    }
-  }
   %TMPL:P{"onloadscript"}% 
 }); 
 </script>

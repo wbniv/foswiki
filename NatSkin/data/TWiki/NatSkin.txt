@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="ProjectContributor" date="1225905328" format="1.1" reprev="1.1" version="$Rev$"}%
+%META:TOPICINFO{author="ProjectContributor" date="1226506238" format="1.1" reprev="1.5" version="$Rev$"}%
 <!--
 
    PLEASE DO NOT EDIT THIS TOPIC
@@ -119,12 +119,15 @@ allways open an extra window.
 |  Skin Author: | Michael Daum |
 |  Copyright &copy;: | 2003-2008, Michael Daum http://michaeldaumconsulting.com |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  Skin Version: | v3.0-pre24 |
+|  Skin Version: | v3.0-pre25 |
 |  Dependencies: | NatSkinPlugin |
 |  Description: | Driven by cascading stylesheets, Comes with 12 alternative styles, <nop>MoveableType and Wordpress Look-n-Feel |
 |  Base Name: | nat |
 |  Screenshot: | <div style="overflow:hidden;height:200px"><a href="%ATTACHURL%/BlueNoteStyle.jpeg"><img src="%ATTACHURL%/BlueNoteStyle.jpeg" title="Clean"/></a></div> |
 |  Change&nbsp;History: | <!-- specify latest version first -->&nbsp; |
+|  12 Nov 2008: | rendering data forms as tables in view again; \
+                  integrated css fixes by Carlo Schulz; \
+                  moving revinfo to first h1 in content area |
 |  11 Nov 2008: | rewrite of data forms using divs instead of tables; \
                   lots of usability fixes |
 |  05 Nov 2008: | redesigned header bar using a default nextwiki logo; \
@@ -408,6 +411,6 @@ allways open an extra window.
 
 %META:FILEATTACHMENT{name="wikiringlogo40x40.png" attachment="wikiringlogo40x40.png" attr="h" comment="" date="1189787359" path="wikiringlogo40x40.png" size="2571" stream="wikiringlogo40x40.png" tmpFilename="" user="ProjectContributor" version="1"}%
 %META:FILEATTACHMENT{name="BlueNoteStyle.jpeg" attachment="BlueNoteStyle.jpeg" attr="h" comment="" date="1225905266" path="BlueNoteStyle.jpeg" size="42093" stream="IO::File=GLOB(0x8f2567c)" tmpFilename="/var/tmp/CGItemp41158" user="ProjectContributor" version="1"}%
-%META:FILEATTACHMENT{name="nextwiki-header.png" attachment="nextwiki-header.png" attr="h" comment="" date="1225886578" path="nextwiki-header.png" size="15861" stream="IO::File=GLOB(0x8f25db0)" tmpFilename="/var/tmp/CGItemp15194" user="ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="nextwiki-header.png" attachment="nextwiki-header.png" attr="h" comment="" date="1226506238" path="nextwiki-header.png" size="16828" stream="IO::File=GLOB(0x8f63c50)" tmpFilename="/var/tmp/CGItemp29744" user="ProjectContributor" version="1"}%
 %META:FILEATTACHMENT{name="nextwiki-header-tile.png" attachment="nextwiki-header-tile.png" attr="h" comment="" date="1225886085" path="nextwiki-header-tile.png" size="762" stream="IO::File=GLOB(0x8f206f0)" tmpFilename="/var/tmp/CGItemp18012" user="ProjectContributor" version="1"}%
-%META:FILEATTACHMENT{name="nextwiki-logo.png" attachment="nextwiki-logo.png" attr="h" comment="" date="1225886097" path="nextwiki-logo.png" size="4415" stream="IO::File=GLOB(0x8f237b8)" tmpFilename="/var/tmp/CGItemp17744" user="ProjectContributor" version="1"}%
+%META:FILEATTACHMENT{name="nextwiki-logo.png" attachment="nextwiki-logo.png" attr="h" comment="" date="1226504153" path="nextwiki-logo.png" size="7060" stream="IO::File=GLOB(0x8f64450)" tmpFilename="/var/tmp/CGItemp29501" user="ProjectContributor" version="1"}%

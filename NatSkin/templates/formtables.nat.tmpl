@@ -17,11 +17,11 @@
   start="show" 
   remember="off" 
   mode="div"
-}%%TMPL:END%
+}%<table class="twikiTable">%TMPL:END%
 %TMPL:DEF{FORM:display:row}% <!-- form:display:row -->
-<div class="twikiFormStep">
-<h3 >%A_TITLE%:</h3>
-%A_VALUE%
-</div>%TMPL:END%
+<tr>
+  <th class="twikiTableFirstCol">%A_TITLE%:</th>
+  <td class="twikiFormValue">%A_VALUE%</td>
+</tr>%TMPL:END%
 %TMPL:DEF{FORM:display:footer}% <!-- form:display:footer -->
-%ENDTWISTY%</div>%TMPL:END%
+</table>%ENDTWISTY%</div>%TMPL:END%

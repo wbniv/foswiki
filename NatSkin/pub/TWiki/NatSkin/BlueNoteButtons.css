@@ -3,9 +3,11 @@
 
 .natSideBarHeader,
 .natWebButtons {
-  background:#9CBAEF;
-  border-top:1px solid white;
-  border-bottom:1px solid white;
+  background-color:#9CBAEF;
+  background-image:url(button-bg.png);
+  background-repeat:repeat-x;
+  background-position:left bottom;
+  border-top:1px solid #E1EAFA;
 }
 .natBodyRight .natWebButtons {
   padding-left:2em;
@@ -42,6 +44,9 @@
 .natWebButtons ul a:hover {
   text-decoration: none;
   background-color:#0055b5;
+  background-image:url(button-bg.png);
+  background-repeat:repeat-x;
+  background-position:left bottom;
   color:white;
 }
 
@@ -131,6 +136,7 @@ ul.superfish a {
   padding:0em 1em;
   _padding:0em 2em; /* broken box model in IE6 */
   display:block;
+  width:100%;
 }
 
 ul.superfish li {
@@ -138,17 +144,22 @@ ul.superfish li {
   background:url(menubg.gif);
   background-position:top left;
   background-repeat:repeat-x;*/
-  border-right:1px solid #fff;
+  border-right:1px solid #E1EAFA;
 }
 ul.superfish {
-  border-left:1px solid #fff;
+  border-left:1px solid #E1EAFA;
 }
 ul.superfish ul {
   border-left:0px;
 }
 ul.superfish li li {
+  /*
   border-bottom:1px solid #fff;
   border-right:1px solid #fff;
+  */
+  border-bottom:1px solid #c2c4c4;
+  border-left:1px solid #c2c4c4;
+  border-right:1px solid #c2c4c4;
   width:9.45em; 
 }
 ul.superfish li:hover, 
@@ -164,22 +175,25 @@ ul.superfish li li.sfHover,
 ul.superfish li li a:focus, 
 ul.superfish li li a:hover, 
 ul.superfish li li a:active {
-  background-color:#9CBAEF;
-  color:#0055b5;
+  background-color:#0055b5;
+  color:#fff;
 }
 ul.superfish li ul {
-  border-top:1px solid #fff;
+  border-top:1px solid #c2c4c4;
   width:11.45em;
+}
+ul.superfish li ul ul {
+  border-top:1px solid #c2c4c4;
 }
 ul.superfish li li a.twikiNewLink,
 ul.superfish li li {
-  background-color:#cfcecf;
+  background:#E9E9EB;
 }
 ul.superfish li li li {
-  background-color:#cfcecf;
+  background:#E9E9EB;
 }
 ul.superfish li li li li {
-  background-color:#cfcecf;
+  background:#E9E9EB;
 }
 ul.superfish li.sfHover ul {
   opacity:0.95;
@@ -205,5 +219,4 @@ ul.superfish li li a {
   margin:0em -1em;
   padding:0em 1em;
   _padding:0em 2em; /* broken box model in IE6 */
-  display:block;
 }

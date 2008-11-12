@@ -1,8 +1,6 @@
-%TMPL:INCLUDE{"oops"}%
-<!-- template: oopsrev.nat.tmpl -->
+%TMPL:INCLUDE{"oops"}%<!-- template: oopsrev.nat.tmpl -->
 %TMPL:DEF{"heading"}%%MAKETEXT{"Compare Revisions of [_1]" args="<nop>%WEB%.%TOPIC%"}%%TMPL:END%
-%TMPL:DEF{"message"}%<!-- -->
-<p>
+%TMPL:DEF{"message"}%<!-- message -->
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td align="right"><b>%MAKETEXT{"Older revision"}%</b>:&nbsp;</td>
@@ -89,4 +87,5 @@
     <input type="button" style="width:10em" class="natCancelButton" value='%MAKETEXT{"Cancel"}%' onclick="javascript:history.back()">
   </form> 
 </td></tr> 
-</table>%TMPL:END%
+</table>
+<!-- //message -->%TMPL:END%
