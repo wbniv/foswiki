@@ -1,7 +1,5 @@
 package TWiki::Plugins::SearchEngineKinoSearchPlugin;
 
-use TWiki::Contrib::SearchEngineKinoSearchAddOn::Search;
-use TWiki::Contrib::SearchEngineKinoSearchAddOn::Index;
 
 # =========================
 use vars qw(
@@ -39,7 +37,7 @@ sub initPlugin
 sub _search {
     my $session = shift;
     
-    use TWiki::Contrib::SearchEngineKinoSearchAddOn::Search;
+    require TWiki::Contrib::SearchEngineKinoSearchAddOn::Search;
     
     my $searcher = TWiki::Contrib::SearchEngineKinoSearchAddOn::Search->newSearch();
     return $searcher->search($debug, $session);
@@ -47,7 +45,7 @@ sub _search {
 sub _index {
     my $session = shift;
 
-    use TWiki::Contrib::SearchEngineKinoSearchAddOn::Index;
+    require TWiki::Contrib::SearchEngineKinoSearchAddOn::Index;
     
     my $indexer = TWiki::Contrib::SearchEngineKinoSearchAddOn::Index->newCreateIndex();
     return $indexer->createIndex($debug, 1);
@@ -55,7 +53,7 @@ sub _index {
 sub _update {
     my $session = shift;
     
-    use TWiki::Contrib::SearchEngineKinoSearchAddOn::Index;
+    require TWiki::Contrib::SearchEngineKinoSearchAddOn::Index;
     
     my $indexer = TWiki::Contrib::SearchEngineKinoSearchAddOn::Index->newUpdateIndex();
     return $indexer->updateIndex($debug);
@@ -71,6 +69,8 @@ sub _KINOSEARCH {
     $format =~ s/\$locked/%LOCKED%/go;
     $format =~ s/\$texthead/%TEXTHEAD%/go;
 
+    require TWiki::Contrib::SearchEngineKinoSearchAddOn::Search;
+    require TWiki::Contrib::SearchEngineKinoSearchAddOn::Index;
     my $docs = TWiki::Contrib::SearchEngineKinoSearchAddOn::Search->docsForQuery($params->{_DEFAULT});
 
     while( my $hit = $docs->fetch_hit_hashref ) {
@@ -100,6 +100,10 @@ sub afterSaveHandler {
     ### my ( $text, $topic, $web, $error, $meta ) = @_;
     my $web = $_[2];
     my $topic = $_[1];
+
+    require TWiki::Contrib::SearchEngineKinoSearchAddOn::Search;
+    require TWiki::Contrib::SearchEngineKinoSearchAddOn::Index;
+
     my $indexer = TWiki::Contrib::SearchEngineKinoSearchAddOn::Index->newUpdateIndex();
     my @topicsToUpdate = ($topic);
     $indexer->removeTopics($web, @topicsToUpdate);
@@ -115,6 +119,9 @@ sub afterRenameHandler {
     my $newweb = $_[3];
     my $newtopic = $_[4];
 
+    require TWiki::Contrib::SearchEngineKinoSearchAddOn::Search;
+    require TWiki::Contrib::SearchEngineKinoSearchAddOn::Index;
+
     my $indexer = TWiki::Contrib::SearchEngineKinoSearchAddOn::Index->newUpdateIndex();
     my @topicsToUpdate = ($oldtopic);
     $indexer->removeTopics($oldweb, @topicsToUpdate);
@@ -128,6 +135,10 @@ sub afterAttachmentSaveHandler {
     ###   my( $attrHashRef, $topic, $web ) = @_;
     my $web = $_[2];
     my $topic = $_[1];
+    
+    require TWiki::Contrib::SearchEngineKinoSearchAddOn::Search;
+    require TWiki::Contrib::SearchEngineKinoSearchAddOn::Index;
+    
     my $indexer = TWiki::Contrib::SearchEngineKinoSearchAddOn::Index->newUpdateIndex();
     my @topicsToUpdate = ($topic);
     $indexer->removeTopics($web, @topicsToUpdate);
