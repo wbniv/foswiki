@@ -50,13 +50,13 @@ $STARTWW = qr/^|(?<=[\s\(])/m;
 $ENDWW = qr/$|(?=[\s\,\.\;\:\!\?\)])/m;
 
 $VERSION = '$Rev$';
-$RELEASE = '3.00-pre24';
+$RELEASE = '3.00-pre25';
 $NO_PREFS_IN_TOPIC = 1;
 $SHORTDESCRIPTION = 'Theming engine for NatSkin';
 
 # TODO generalize and reduce the ammount of variables 
 $defaultSkin    = 'nat';
-$defaultStyle   = 'blutenote';
+$defaultStyle   = 'bluenote';
 $defaultStyleBorder = 'off';
 $defaultStyleButtons = 'off';
 $defaultStyleSideBar = 'left';
@@ -141,7 +141,7 @@ sub initPlugin {
   }
   #writeDebug("useEmailObfuscator=$useEmailObfuscator");
 
-  writeDebug("done doInit");
+  #writeDebug("done doInit");
   return 1;
 }
 
@@ -188,7 +188,7 @@ sub postRenderingHandler {
 # *Variation.css etc files are collected hashed.
 sub initKnownStyles {
 
-  writeDebug("called initKnownStyles");
+  #writeDebug("called initKnownStyles");
   #writeDebug("stylePath=$stylePath, lastStylePath=$lastStylePath");
 
   my $twikiWeb = TWiki::Func::getTwikiWebname();
@@ -228,15 +228,15 @@ sub initKnownStyles {
     if (opendir(DIR, $cssDir))  {
       foreach my $fileName (readdir(DIR)) {
 	if ($fileName =~ /((.*)Style\.css)$/) {
-	  $knownStyles{$2} = $styleWebTopic.'/'.$1 unless $knownStyles{$2};
+	  $knownStyles{lc($2)} = $styleWebTopic.'/'.$1 unless $knownStyles{$2};
 	} elsif ($fileName =~ /((.*)Variation\.css)$/) {
-	  $knownVariations{$2} = $styleWebTopic.'/'.$1 unless $knownVariations{$2};
+	  $knownVariations{lc($2)} = $styleWebTopic.'/'.$1 unless $knownVariations{$2};
 	} elsif ($fileName =~ /((.*)Border\.css)$/) {
-	  $knownBorders{$2} = $styleWebTopic.'/'.$1 unless $knownBorders{$2};
+	  $knownBorders{lc($2)} = $styleWebTopic.'/'.$1 unless $knownBorders{$2};
 	} elsif ($fileName =~ /((.*)Buttons\.css)$/) {
-	  $knownButtons{$2} = $styleWebTopic.'/'.$1 unless $knownButtons{$2};
+	  $knownButtons{lc($2)} = $styleWebTopic.'/'.$1 unless $knownButtons{$2};
 	} elsif ($fileName =~ /((.*)Thin\.css)$/) {
-	  $knownThins{$2} = $styleWebTopic.'/'.$1 unless $knownThins{$1};
+	  $knownThins{lc($2)} = $styleWebTopic.'/'.$1 unless $knownThins{$1};
 	}
       }
       closedir(DIR);
@@ -331,7 +331,7 @@ sub initSkinState {
     $theRefresh = ($theRefresh eq 'on')?1:0;
     $theReset = ($theReset eq 'on')?1:0;
 
-    writeDebug("theReset=$theReset, theRefresh=$theRefresh");
+    #writeDebug("theReset=$theReset, theRefresh=$theRefresh");
 
     if ($theRefresh || $theReset || $theStyle eq 'reset') {
       # clear the style cache
@@ -340,7 +340,7 @@ sub initSkinState {
     }
 
     if ($theReset || $theStyle eq 'reset') {
-      writeDebug("clearing session values");
+      #writeDebug("clearing session values");
       
       $theStyle = '';
       TWiki::Func::clearSessionValue('SKINSTYLE');
@@ -400,8 +400,6 @@ sub initSkinState {
     $theStyle = $defaultStyle unless $found;
   }
   $theStyle = $defaultStyle unless $knownStyles{$theStyle};
-  $skinState{'style'} = $theStyle;
-  #writeDebug("theStyle=$theStyle");
 
   # cycle styles
   if ($theSwitchStyle && !$isFinalStyle) {
@@ -429,6 +427,9 @@ sub initSkinState {
     }
     $skinState{'style'} = $firstStyle if $state == 1;
   }
+
+  $skinState{'style'} = $theStyle;
+  #writeDebug("theStyle=$theStyle");
 
   # handle border
   my $prefStyleBorder = TWiki::Func::getPreferencesValue('STYLEBORDER') ||
@@ -595,7 +596,7 @@ sub initSkinState {
     my $val = $skinState{$key};
     next unless defined($val);
     my $var = lc('natskin_'.$key.'_'.$val);
-    writeDebug("setting context $var");
+    #writeDebug("setting context $var");
     $context->{$var} = 1;
   }
 
@@ -608,7 +609,7 @@ sub initSkinState {
 
   my $prefix = lc($skinState{style}).'.nat';
   $skin = "$prefix,$skin" unless $skin =~ /\b$prefix\b/;
-  writeDebug("setting skin to $skin");
+  #writeDebug("setting skin to $skin");
 
   # store to session and request
   $TWiki::Plugins::SESSION->{prefs}->pushPreferenceValues('SESSION', { SKIN => $skin } );      	
@@ -830,16 +831,21 @@ sub renderGetSkinState {
 sub renderGetSkinStyle {
 
   my $theStyle;
-  my $theVariation;
   $theStyle = $skinState{'style'} || 'off';
+
   return '' if $theStyle eq 'off';
 
+  my $theVariation;
   $theVariation = $skinState{'variation'} unless $skinState{'variation'} =~ /^(off|none)$/;
 
   # SMELL: why not use <link rel="stylesheet" href="..." type="text/css" media="all" />
   my $text = '';
 
-  # SMELL: check if a knownStyle has been used
+  $theStyle = lc $theStyle;
+  $theVariation = lc $theVariation;
+
+  #writeDebug("theStyle=$theStyle");
+  #writeDebug("knownStyle=".join(',', sort keys %knownStyles));
 
   $text = 
     '<link rel="stylesheet" href="%PUBURL%/'.
@@ -1258,7 +1264,7 @@ sub getWebComponent {
 
   ($web, $component) = TWiki::Func::normalizeWebTopicName($web, $component);
 
-  writeDebug("called getWebComponent($component)");
+  #writeDebug("called getWebComponent($component)");
 
   # SMELL: why does preview call for components twice ???
   if ($seenWebComponent{$component} && $seenWebComponent{$component} > 2 && !$multiple) {
@@ -1318,7 +1324,7 @@ sub getWebComponent {
   $text =~ s/.*?%STARTINCLUDE%//gs;
   $text =~ s/%STOPINCLUDE%.*//gs;
 
-  writeDebug("done getWebComponent($web.$component)");
+  #writeDebug("done getWebComponent($web.$component)");
 
   return ($text, $theWeb, $theComponent);
 }

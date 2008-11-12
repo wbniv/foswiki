@@ -347,8 +347,9 @@ The following variables can be used in the format string:
 |  Plugin Author: | TWiki:Main/MichaelDaum |
 |  Copyright &copy;: | 2003-2008, Michael Daum http://michaeldaumconsulting.com |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  Plugin Version: | v3.00-pre24 |
+|  Plugin Version: | v3.00-pre25 |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  12 Nov 2008: | fixed use of uninitialised variable |
 |  11 Nov 2008: | added topic actions to edit form and text data |
 |  05 Nov 2008: | added NATWEBLOGOURL; \
                   natsearch can now use kinosearch, plucene, or its own native search engine |
