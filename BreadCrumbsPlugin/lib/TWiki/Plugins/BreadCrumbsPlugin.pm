@@ -20,7 +20,7 @@ use vars qw(
 );
 
 $VERSION = '$Rev$';
-$RELEASE = 'v2.01';
+$RELEASE = 'v2.20';
 $NO_PREFS_IN_TOPIC = 1;
 $SHORTDESCRIPTION = 'A flexible way to display breadcrumbs navigation';
 

@@ -263,7 +263,7 @@ sub getLocationBreadCrumbs {
   }
   
   # add this topic if it was not covered yet
-  unless ($seen{"$thisWeb.$thisTopic"} || $recurse->{topicoff}) {
+  unless ($seen{"$thisWeb.$thisTopic"} || $recurse->{topicoff} || $thisTopic eq $homeTopic) {
     #writeDebug("finally adding breadcrumb: target=$thisWeb/$thisTopic, name=$thisTopic");
     push @breadCrumbs, {
         target=>"$thisWeb/$thisTopic", 

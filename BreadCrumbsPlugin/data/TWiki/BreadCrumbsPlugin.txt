@@ -163,8 +163,9 @@ separator) may contain special variables:
 |  Plugin Author: | TWiki:Main.MichaelDaum |
 |  Copyright &copy;: | 2006-2008, Michael Daum http://michaeldaumconsulting.com |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  Plugin Version: | v2.10 (%$VERSION%) |
+|  Plugin Version: | v2.20 (%$VERSION%) |
 |  Change History: | &nbsp; |
+|  11 Nov 2008: | hide <nop>WebHome in location breadcrumbs |
 |  15 Sep 2008: | switching off current topic in =topicoff= mode |
 |  01 Sep 2008: | TWiki:Main.OliverKrueger Bugs:Item5972 fixed: minor cosmetics |
 |  28 Apr 2008: | many new features for 2.0: topic titles, ellipsis, ... |
@@ -182,8 +183,6 @@ separator) may contain special variables:
 |  Other Dependencies: | none |
 |  Perl Version: | 5.8 |
 |  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
-|  Plugin Home: | TWiki:Plugins/%TOPIC% |
-|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
-|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+|  Plugin Home: | http://nextwiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://nextwiki.org/Extensions/%TOPIC%Dev |
 
--- TWiki:Main/MichaelDaum - 15 Sep 2008
