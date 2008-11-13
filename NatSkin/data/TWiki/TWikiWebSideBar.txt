@@ -19,6 +19,7 @@ Default sidebar implementation
 %IFDEFINEDTHEN{"%IFACCESS{"%MAINWEB%.TWikiAdminGroup" type="change"}%" as="1"}%
 <div class="natSidebarSection" natSideBarAdminLinks">
 <h2 >Admin</h2>
+   * [[%SCRIPTURL{"configure"}%][%MAKETEXT{"Configure [_1]" args="<nop>%WIKITOOLNAME%"}%]]
    * [[%BASEWEB%.WebPreferences][%MAKETEXT{"Web Preferences"}%]]
    * [[%LOCALSITEPREFS%][%MAKETEXT{"Site Preferences"}%]]
    * [[%SYSTEMWEB%.InstalledPlugins][%MAKETEXT{"Installed Plugins"}%]]

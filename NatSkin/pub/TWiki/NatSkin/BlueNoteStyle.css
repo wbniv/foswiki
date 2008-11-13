@@ -155,6 +155,11 @@ dl dd {
 .natLoginBody .natLoginMessage {
   padding:20px;
 }
+.natLoginBody .twikiFormSteps {
+  margin:1em 0em;
+  padding:1.5em;
+  background:#f6f6f6;
+}
 
 
 /* twiki styles */
@@ -674,7 +679,6 @@ fieldset .twikiFormSteps {
 /* forms */
 .natTopicForm {
   margin:2.0em 0em 0em;
-  /*background:#f6f6f6;*/
 }
 .natTopicAttachments .natTopicAction:hover,
 .natTopicForm .natTopicAction:hover {

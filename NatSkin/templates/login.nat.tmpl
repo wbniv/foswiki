@@ -13,13 +13,13 @@
 %TMPL:DEF{"LOGGED_IN_BANNER"}%%MAKETEXT{"[_1] is currently logged in" args="%USERSWEB%.%WIKINAME%"}%.%TMPL:END%
 %TMPL:DEF{"NEW_USER_NOTE"}%%MAKETEXT{"Enter a new username and password to change identity"}%.%TMPL:END%
 %TMPL:DEF{"UNRECOGNISED_USER"}%%MAKETEXT{"Unrecognised user and/or password."}%%TMPL:END%
-%TMPL:DEF{"heading"}%%MAKETEXT{"Welcome to the [_1]" args="<nop>%WIKITOOLNAME%"}%%TMPL:END%
 %TMPL:DEF{"message"}%<!-- message -->
-<h3>%BANNER%</h3>
-%NOTE%
-
-%TMPL:P{"logon"}%
-%TMPL:P{"seealso"}%
+<div class="twikiFormSteps">
+<h2 id="natLogonBanner">%BANNER%</h2>
+%NOTE%<!-- note// -->
+%TMPL:P{"logon"}%<!-- logon// -->
+%TMPL:P{"seealso"}%<!-- seealso/ -->
+</div>
 <!-- //message-->%TMPL:END%
 %TMPL:DEF{"content"}%<!-- content -->
 <div class="natLogin">

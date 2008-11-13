@@ -250,15 +250,6 @@ pre {
   clear:both;
 }
 
-/* login */
-.natLoginBody .natMainHeaderContents {
-  display:none;
-}
-.natLoginMessage {
-  margin:0px auto;
-  width:500px;
-}
-
 /* topbar */
 .natHeaderArt {
   background-repeat:no-repeat;
@@ -354,15 +345,23 @@ pre {
 }
 
 /* login */
-.natLogonFormHolder {
-  padding:10px 0px 10px 0px;
+.natLoginBody .natMainHeaderContents {
+  display:none;
 }
-.natLogonFormButtons td {
+.natLoginMessage h2 {
+  margin:0px;
+}
+.natLoginMessage {
+  margin:0px auto;
+  width:500px;
+}
+.natLogonFormButtons {
   padding-top:1em;
 }
 .natRememberMe {
   padding-bottom:1em;
 }
+
 
 /* edit */
 .natEditBody .natLayoutTable {

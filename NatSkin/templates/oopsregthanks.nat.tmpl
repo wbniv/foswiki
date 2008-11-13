@@ -1,16 +1,15 @@
-%TMPL:INCLUDE{"oops"}%
-<!-- template: oopsregthanks.nat.tmpl -->
+%TMPL:INCLUDE{"oops"}%<!-- template: oopsregthanks.nat.tmpl -->
 %TMPL:DEF{"title"}%%TOPICTITLE% (%MAKETEXT{"note"}%) - %WIKITOOLNAME%%TMPL:END%
 %TMPL:DEF{"headingstyle"}%natNoteHeading%TMPL:END%
 %TMPL:DEF{"heading"}%%MAKETEXT{"Thank you for registering"}%%TMPL:END%
-%TMPL:DEF{"message"}%<!-- -->
+%TMPL:DEF{"message"}%<!-- message -->
 <ul>
  <li> %MAKETEXT{"Welcome [_1], take a [[[_2]][first tour]] on the [_3]." args="%WIKIUSERNAME%,%SYSTEMWEB%.WelcomeGuest,<nop>%WIKITOOLNAME%"}%</li>
- <li> %MAKETEXT{"Take a look at the [[[_1]][TWikiWeb]] to get help on the [_2]." args="%SYSTEMWEB%.WebHome,<nop>%WIKITOOLNAME%"}%</li>
+ <li> %MAKETEXT{"Take a look at the [[[_1]][%SYSTEMWEB% web]] to get help on the [_2]." args="%SYSTEMWEB%.WebHome,<nop>%WIKITOOLNAME%"}%</li>
  <li> %MAKETEXT{"Review your [[[_1]][personal [_2] homepage]].
      Learn how to customize the <nop>[_2] to your needs.
      Suggestion: How about uploading your picture to your <nop>[_2] homepage?" args="%WIKIUSERNAME%,%WIKITOOLNAME%"}%</li>
  <li> %MAKETEXT{"You are also listed in the [_1] topic" args="%MAINWEB%.%WIKIUSERSTOPIC%"}% </li>
  <li> %MAKETEXT{"A confirmation e-mail has been sent to [_1]" args="%PARAM1%"}%  </li>
 </ul>
-%TMPL:END%
+<!-- //message -->%TMPL:END%

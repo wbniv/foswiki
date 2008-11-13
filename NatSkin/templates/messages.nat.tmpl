@@ -167,7 +167,7 @@ link in your email or enter the code in the box below to activate your membershi
 ---+++ %MAKETEXT{"You are already registered"}%
 %MAKETEXT{"You cannot register twice, the name [_1] is already registered." args="'%PARAM1%'"}%
 
-%MAKETEXT{"Did you want to ~[~[[_1]~]~[reset [_2]'s password~]~]?" args="%SCRIPTURLPATH{"view"}%/TWiki.ResetPassword?username=%PARAM1%,%PARAM1%"}%
+%MAKETEXT{"Did you want to ~[~[[_1]~]~[reset [_2]'s password~]~]?" args="%SCRIPTURLPATH{"view"}%/%SYSTEMWEB%/ResetPassword?username=%PARAM1%,%PARAM1%"}%
 
 %MAKETEXT{"Alternatively go <a href=\"javascript:history.back()\">back</a> in your browser and choose a different username."}%
 %TMPL:END%
@@ -260,11 +260,11 @@ However, the filename has been changed from <b><code>[_2]</code></b> to
 <b><code>[_3]</code></b>. Please make a note of it." args="<nop>%TOPIC%,%PARAM1%,%PARAM2%"}%
 
 %MAKETEXT{"Note:"}%
-%MAKETEXT{"In some cases, TWiki changes the name of the uploaded file to make it safe and accessible across all platforms:
+%MAKETEXT{"In some cases, <nop>%WIKITOOLNAME% changes the name of the uploaded file to make it safe and accessible across all platforms:
    * Spaces are replaced by underscores
    * \"A =.txt= extensiPartneron is appended to some filenames for security reasons\"
    * Some characters such as =~=, =$=, =@=, =%= are removed\"
-You may be able to get your TWiki administrator to change the settings if they are inappropriate for your environment."}%
+You may be able to get your <nop>%WIKITOOLNAME% administrator to change the settings if they are inappropriate for your environment."}%
 
 <form action="%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%">
 <input type="submit" class="natOkButton" value='%MAKETEXT{"OK"}%' />
@@ -362,7 +362,7 @@ template that doesn't exist." args="%PARAM2%"}%
 %TMPL:END%
 %TMPL:DEF{"thanks"}%<!-- thanks -->
 ---+++ %MAKETEXT{"Thank you for registering"}%
-   * %MAKETEXT{"Your personal TWiki topic [_1] has been created" args="%USERSWEB%.%PARAM2%"}% 
+   * %MAKETEXT{"Your personal <nop>%WIKITOOLNAME% topic [_1] has been created" args="%USERSWEB%.%PARAM2%"}% 
    * %MAKETEXT{"You are also listed in the [_1] topic" args="%USERSWEB%.%WIKIUSERSTOPIC%"}%
    * %MAKETEXT{"You can try out this site hands-on in the [[Sandbox.WebHome][Sandbox]] web."}%
 %PARAM1%

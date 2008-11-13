@@ -1,12 +1,11 @@
-%TMPL:INCLUDE{"oopslogonbase"}%
-<!-- template: oopsaccessgroup.nat.tmpl -->
+%TMPL:INCLUDE{"oopslogonbase"}%<!-- template: oopsaccessgroup.nat.tmpl -->
 %TMPL:DEF{"action"}%view%TMPL:END%
 %TMPL:DEF{"heading"}%%MAKETEXT{"Access Denied"}%%TMPL:END%
-%TMPL:DEF{"message"}% <!-- -->
+%TMPL:DEF{"message"}% <!-- message -->
 %MAKETEXT{"Only members of the [_1] are allowed to perform this action." args="%MAINWEB%.%PARAM1%"}%
 
 %TMPL:P{"logon"}%
 
 %MAKETEXT{"See also:"}% %MAINWEB%.TWikiGroups, %SYSTEMWEB%.TWikiAccessControl, %TWIKIREGISTRATION%, 
 %MAINWEB%.%PARAM1%
-%TMPL:END%
+<!-- //message -->%TMPL:END%

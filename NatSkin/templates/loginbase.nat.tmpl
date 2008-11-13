@@ -1,39 +1,44 @@
 <!-- template: loginbase.tmpl -->
 %TMPL:DEF{"onloadscript"}%if (document.LogonForm) {document.LogonForm.username.focus();} %TMPL:END%
-%TMPL:DEF{"rememberbox"}%<div class="natRememberMe">
+%TMPL:DEF{"rememberbox"}%<!-- rememberbox -->
+<div class="twikiFormStep natRememberMe">
 <label>
   <input name="remember" class="twikiCheckbox" type="checkbox" value="1" />
   %MAKETEXT{"Remember me on this computer"}%
 </label>
-</div>%TMPL:END%
-%TMPL:DEF{"logon"}%<!-- -->
-<div class="natLogonFormHolder">
-<form name="LogonForm" action="%IFDEFINED{"%HTTPSLOGON%" as ="on" then="https" else="http"}%://%HTTP_HOST%%SCRIPTURLPATH{"login"}%/%WEB%/%TOPIC%" method="post">
-<table class="natLogonForm" border="0"> 
-<tr class="natLogonFormLogin"> 
-  <th class="twikiFirstCol"><b>%MAKETEXT{"Username"}%</b>: </th>
-  <td><input type="text" size="20" name="username" value='%URLPARAM{"usernamestep"}%' /> 
-      <span class="twikiAlert">**</span>
-  </td>
-</tr>
-<tr class="natLogonFormPassword"> 
-  <th class="twikiFirstCol"><b>%MAKETEXT{"Password"}%</b>: </th>
-  <td><input type="password" size="20" name="password" />
-      <span class="twikiAlert">**</span>
-  </td>
-</tr>
-<tr class="natLogonFormButtons">
-  <th class="twikiFirstCol">&nbsp;</th>
-  <td> %TMPL:P{context="can_remember_login" then="rememberbox"}%
-    <input type="submit" class="natOkButton" value='%MAKETEXT{"Log in"}%' />
-    <input type="reset"  class="natAltButton" value='%MAKETEXT{"Clear"}%' />
-    <input type="button" class="natCancelButton" value='%MAKETEXT{"Cancel"}%' onclick="window.location.href='%WIKILOGOURL%'" /> 
-    <input type="hidden" name="web" value="%WEB%" />
-    <input type="hidden" name="topic" value="%TOPIC%" />
-    <input type="hidden" name="action" value="%TMPL:P{action}%"/>
-  </td>
-</tr>
-</table>
+</div>
+<!-- //rememberbox -->%TMPL:END%
+%TMPL:DEF{"logon"}%<!-- logon -->
+<form id="LogonForm" name="LogonForm" action="%IFDEFINED{"%HTTPSLOGON%" as ="on" then="https" else="http"}%://%HTTP_HOST%%SCRIPTURLPATH{"login"}%/%WEB%/%TOPIC%" method="post">
+<input type="hidden" name="web" value="%WEB%" />
+<input type="hidden" name="topic" value="%TOPIC%" />
+<input type="hidden" name="action" value="%TMPL:P{action}%"/>
 <input type="hidden" name="origurl" value="%IFDEFINED{"%ORIGURL%"}%" />
+<input type="submit" style="display:none" />
+<div class="twikiFormStep">
+---+++ %MAKETEXT{"Username"}%:
+<input type="text" class="twikiFormField required" size="20" id="username" name="username" value='%URLPARAM{"usernamestep"}%' /> 
+</div>
+<div class="twikiFormStep">
+---+++ %MAKETEXT{"Password"}%:
+<input type="password" class="twikiFormField required" size="20" id="password" name="password" />
+</div>
+%TMPL:P{context="can_remember_login" then="rememberbox"}%
+<div class="twikiFormStep natLogonFormButtons">
+  %BUTTON{"%MAKETEXT{"Log In"}%" icon="tick" onclick="$('#LogonForm').submit()"}% 
+  %BUTTON{"%MAKETEXT{"Cancel"}%" icon="cross" target="%WIKILOGOURL%"}%
+  <span class="twikiClear"></span>
+</div>
 </form>
-</div>%TMPL:END%
+%JQSCRIPT{"jquery.validate"}%
+%JQSCRIPT{"jquery.shake"}%
+<script type="text/javascript">
+$(function() {
+  $("#LogonForm").validate();
+  var bannerText = $("#natLogonBanner").text();
+  if (bannerText == '%TMPL:P{UNRECOGNISED_USER}%') {
+    $(".natLogin").shake(3, 10, 180);
+  }
+});
+</script>
+<!-- //logon -->%TMPL:END%
