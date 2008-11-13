@@ -68,15 +68,12 @@ all of the plugins checked into SVN)
 #ClientRequirements
 ---++ Client Requirements
 
-The TWiki [[TWikiInstallationGuide][standard installation]] has relatively low browser requirements:
+The TWiki [[InstallationGuide][standard installation]] has relatively low browser requirements:
 
    * HTML 3.2 compliant
    * Cookies, if persistent sessions are required
 
 CSS and Javascript are used in most skins, although there is a low-fat skin (Classic skin) available that minimises these requirements. Some skins will require more recent releases of browsers. The default skin (Pattern) is tested on IE 6, Safari, and Mozilla 5.0 based browsers (such as Firefox).
-<!--
-SMELL: what are some actual known good version number requirements for these browsers (eg, FireFox 1.0, or 1.0.3, or 1.0.7, or ???), etc.
--->
 
 You can easily select a balance of browser capability versus look and feel. Try the installed skins at %SYSTEMWEB%.TWikiSkinBrowser and more at TWiki:Plugins.SkinPackage.
 
