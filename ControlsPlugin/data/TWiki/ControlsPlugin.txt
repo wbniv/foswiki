@@ -3,9 +3,9 @@
 
 This plugin creates controls that can be used to define HTML forms from possible values defined in a topic.
 
-TWiki.TWikiForms allow possible values for a form field to be defined in a topic (see Section "Defining a Form with Multiple Topics"). The same set of values are often used as the values of HTML form controls (e.g., when defining a search where these values are selectable parameters). Using this plugin, these lists of values can be kept synchronized by having the form controls generated based on the topic that defined the values in the first place.
+%SYSTEMWEB%.DataForms allow possible values for a form field to be defined in a topic (see Section "Defining a Form with Multiple Topics"). The same set of values are often used as the values of HTML form controls (e.g., when defining a search where these values are selectable parameters). Using this plugin, these lists of values can be kept synchronized by having the form controls generated based on the topic that defined the values in the first place.
 
-Background: I often found myself defining the possible values for a field of a TWiki.TWikiForms in a TWiki:Codev/TWikiApplication, and then had to manually define the same possible values for a drop down selection or similar in an HTML form. Keeping these consistent was a nuisance. This plugin automates that process.
+Background: I often found myself defining the possible values for a field of a %SYSTEMWEB%.DataForms in a TWiki:Codev/TWikiApplication, and then had to manually define the same possible values for a drop down selection or similar in an HTML form. Keeping these consistent was a nuisance. This plugin automates that process.
 
 
 ---++ Syntax Rules
@@ -22,7 +22,7 @@ Background: I often found myself defining the possible values for a field of a T
 
 ---++ Example
 
-Below is the definition of the field values for <nop>TopicClassifications from TWiki.TWikiForms:
+Below is the definition of the field values for <nop>TopicClassifications from %SYSTEMWEB%.DataForms:
 	  | *Name* | *Type* | *Tooltip message* |
 	  | <nop>NoDisclosure | option | blah blah... |
 	  | <nop>PublicSupported | option | blah blah... |
@@ -57,7 +57,7 @@ The dynamic aspects of hierarchical menus requires Javascript to be available. W
 	| =initmessage="..."= | A string that will be shown in a dependent menubefore a selection in the parent menu is made | =Select previous level first= |
 	| =nextmessage="..."= | A string that will be shown in a dependent once a selection in the parent menu has been made |  |
 
-The options for each menu are given in a topic as described above. If a menu is hierarchical, its field value must point to another topic where the options for the dependent menu are defined. See TWikiForms for detail of how to define option tables. As a reminder, when a field is defined with the syntax =[<nop>[XXX][YYY]]=, where =XXX= is a topic name, and =YYY= is some text, then while =YYY= is chosen as the displayed text, the topic =XXX= will be consulted for the dependent menu.
+The options for each menu are given in a topic as described above. If a menu is hierarchical, its field value must point to another topic where the options for the dependent menu are defined. See %SYSTEMWEB%.DataForms for detail of how to define option tables. As a reminder, when a field is defined with the syntax =[<nop>[XXX][YYY]]=, where =XXX= is a topic name, and =YYY= is some text, then while =YYY= is chosen as the displayed text, the topic =XXX= will be consulted for the dependent menu.
 
 For hierarchical menus, the name of the controls generated are given by the =name= parameter, with the depth of the control suffixed, starting at =0= for the first level.
 
@@ -122,7 +122,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ TWiki.TWikiForms
+__Related Topics:__ %SYSTEMWEB%.DataForms
 
 -- TWiki:Main/ThomasWeigert - 04 Aug 2006
 

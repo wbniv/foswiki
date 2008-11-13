@@ -56,7 +56,7 @@ sub new
 	$self->{OutputFormWeb}    	= undef; #Defines the TWikiForm to use	
 	$self->{InterruptReason} = undef; #Human readable reason for the interrupt
 	my %FormFields=();
-	$self->{FormFields}    		= \%FormFields;    #Hash containing field values for the TWikiForms
+	$self->{FormFields}    		= \%FormFields;    #Hash containing field values for the DataForms
 	my %Var=();
 	$self->{Var}    		= \%Var;    #Hash containing user variables 
 	#my %Param=();							#No need to be initialized here

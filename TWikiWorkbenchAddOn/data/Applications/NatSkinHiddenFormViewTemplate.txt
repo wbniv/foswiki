@@ -8,5 +8,5 @@
 
 %META:FORM{name="Applications.ApplicationTopic"}%
 %META:FIELD{name="TopicType" attributes="M" title="TopicType" value="TopicView"}%
-%META:FIELD{name="Summary" attributes="M" title="Summary" value="View to hide  %25SYSTEMWEB%25.TWikiForms"}%
+%META:FIELD{name="Summary" attributes="M" title="Summary" value="View to hide  %25SYSTEMWEB%25.DataForms"}%
 %META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

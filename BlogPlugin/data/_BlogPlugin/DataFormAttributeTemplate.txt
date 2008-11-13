@@ -5,15 +5,15 @@
 
 | *Name* | *Type* | *Tooltip message* |
 
-%DBCALL{"RenderTWikiFormList" ATTR="%TOPIC%"}%
+%DBCALL{"RenderDataFormList" ATTR="%TOPIC%"}%
 
 <!--
    * Set ALLOWTOPICCHANGE = %MAINWEB%.BlogAdminGroup
    * Set SIDEBAR = Admin
-   * Set SIDEBARARG = TWikiFormAttribute
+   * Set SIDEBARARG = DataFormAttribute
 -->
 
 %META:FORM{name="TopicForm"}%
 %META:FIELD{name="TopicType" attributes="M" title="TopicType" value="TopicTemplate"}%
-%META:FIELD{name="TopicDescription" attributes="M" title="TopicDescription" value="Template to create TWikiFormAttributes"}%
+%META:FIELD{name="TopicDescription" attributes="M" title="TopicDescription" value="Template to create DataFormAttributes"}%
 

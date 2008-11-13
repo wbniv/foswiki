@@ -10,10 +10,10 @@
 <!--
    * Set ALLOWTOPICCHANGE = %MAINWEB%.BlogAdminGroup
    * Set SIDEBAR = Admin
-   * Set SIDEBARARG = TWikiForm
+   * Set SIDEBARARG = DataForm
 -->
 
 
 %META:FORM{name="TopicForm"}%
-%META:FIELD{name="TopicType" attributes="M" title="TopicType" value="TWikiForm"}%
-%META:FIELD{name="TopicDescription" attributes="M" title="TopicDescription" value="TWikiForm attached to general TWikiTopics"}%
+%META:FIELD{name="TopicType" attributes="M" title="TopicType" value="DataForm"}%
+%META:FIELD{name="TopicDescription" attributes="M" title="TopicDescription" value="DataForm attached to general TWikiTopics"}%

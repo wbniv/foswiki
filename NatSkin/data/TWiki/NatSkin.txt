@@ -159,7 +159,7 @@ allways open an extra window.
                   improved usability of selecting a diff pair in <nop>HistoryPlugin, \
                   improved usability of renaming/trashing topics and attachments, \
                   also autoadding a overflow wrapper for <nop>MediaWikiTables, \
-                  improved usability of selecting/changing <nop>TWikiForms using the new NATFORMLIST tag, \
+                  improved usability of selecting/changing <nop>DataForms using the new NATFORMLIST tag, \
                   woring around text not being hidden when editing the <nop>TWikiForm with <nop>TinyMCE |
 |  02 Oct 2007: | added support for <nop>HistoryPlugin, <nop>TinyMCEPlugin |
 |  21 Sep 2007: | removed own <nop>NatEdit implementation, \

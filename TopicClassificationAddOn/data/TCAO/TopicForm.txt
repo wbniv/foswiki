@@ -9,7 +9,7 @@ The TopicForm can be used for a wide range of TopicTypes that only need to be ma
 as being of a given TopicType.
 If you need more structure then you have to define a specific TWikiForm that 
 extends the TWikiFormAttributes of this form. That is the attributes defined here
-are a minimal set of attributes that all TWikiForms should have. 
+are a minimal set of attributes that all DataForms should have. 
 
 Every TopicType is used in combination with one TWikiForm, that is associated with it,
 either this generic TopicForm or a more specific one. 
@@ -17,7 +17,7 @@ Multiple TopicTypes can share the same TWikiForm. In this case such a TWikiForm 
 Very often there is one TopicType for one TWikiForm.
 Note, that a topic can be of several TopicTypes which indicates that it fullfills several
 duties at once, that is the associated TWikiForm contains the attributes of a couple 
-of TWikiForms.
+of DataForms.
 %ENDSECTION{"documentation"}%
 
 ---++ Definition
@@ -27,7 +27,7 @@ of TWikiForms.
 | SubjectArea | checkbox | 3 | %DBQUERY{"Classification='SubjectArea'" format="$topic" separator=", "}%    | Classify a topic by subject | |
 | Summary   | text   | 50  |   | Short summary or headline of topic  | |
 
-Related Topic: TopicClassification, WebPreferences, %SYSTEMWEB%.TWikiForms
+Related Topic: TopicClassification, WebPreferences, %SYSTEMWEB%.DataForms
 
 <!-- Topic Permissions
    * Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup

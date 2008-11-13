@@ -68,10 +68,10 @@ See TaskSpecList, TaskSpecCreate, TaskSpecForm, TaskSpecTemplate.
 ---++ Supported Commands
 
 ---+++ =OUTPUTFORMWEB=
-Set the Web containing the TWiki.TWikiForms to use while creating the output topic.
+Set the Web containing the %SYSTEMWEB%.DataForms to use while creating the output topic.
 
 ---+++ =OUTPUTFORMTOPIC=
- Set the topic containing the TWiki.TWikiForms to use while creating the output topic.
+ Set the topic containing the %SYSTEMWEB%.DataForms to use while creating the output topic.
 
 ---+++ =OUTPUTWEB=
  Set the topic containing the output topic.
@@ -86,7 +86,7 @@ Set the Web containing the TWiki.TWikiForms to use while creating the output top
 Output some text to the TWiki topic adding % characters on each side. This is most useful to prevent the TWiki variable from being rendered in the Task specification topic.
 	
 ---+++ =FORMFIELD=
- Set a value for a field in the TWiki.TWikiForms implemented by the output topic. =FORMFIELD= Commands typically come before =OUTPUTTOPIC=. If used after the =OUTPUTTOPIC= Command one should use =SAVEFIELDS= to commit any changes made by =FORMFIELD= Commands.
+ Set a value for a field in the %SYSTEMWEB%.DataForms implemented by the output topic. =FORMFIELD= Commands typically come before =OUTPUTTOPIC=. If used after the =OUTPUTTOPIC= Command one should use =SAVEFIELDS= to commit any changes made by =FORMFIELD= Commands.
 
 Field name and field value should be separated by a comma and a single space like in the following example:
 <verbatim>

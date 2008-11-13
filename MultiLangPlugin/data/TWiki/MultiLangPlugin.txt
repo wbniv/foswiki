@@ -125,7 +125,7 @@ i.e. =%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%=
 
 ---+++ Settings to change in %SYSTEMWEB%.DefaultPreferences /%USERSWEB%.SitePreferences / WebPreferences
 
-This plug-in comes with a proposed [[TWikiForms][TWikiForm]]: TWiki.TranslationForm, you may
+This plug-in comes with a proposed [[DataForms][DataForm]]: %SYSTEMWEB%.TranslationForm, you may
 want to add it to <nop>WEBFORMS.
 
 ---++ Plugin Installation Instructions
@@ -136,7 +136,7 @@ __Note:__ You do not need to install anything on the browser to use this plug-in
 	* Unzip =%TOPIC%.zip= in your twiki installation directory. Content:
 	  | *File:* | *Description:* |
 	  | =data/TWiki/%TOPIC%.txt= | Plugin topic |
-	  | =data/TWiki/TranslationForm.txt= | TWikiForms template |
+	  | =data/TWiki/TranslationForm.txt= | DataForms template |
 	  | =lib/TWiki/Plugins/%TOPIC%.pm= | Plugin Perl module |
 	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
 	* Test if the installation was successful:

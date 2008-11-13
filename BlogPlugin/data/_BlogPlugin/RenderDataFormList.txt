@@ -9,9 +9,9 @@
 ---++ Implementation
 <verbatim>
 %STARTINCLUDE%
----++ List of TWikiForms that use the '%ATTR%' attribute
+---++ List of DataForms that use the '%ATTR%' attribute
 | *Name* | *Description* |
-%~~ DBQUERY{"TopicType=~'\bTWikiForm\b' AND text=~'\n\| *(..)?%ATTR% * \|'"
+%~~ DBQUERY{"TopicType=~'\bDataForm\b' AND text=~'\n\| *(..)?%ATTR% * \|'"
 ~~~   format="| $topic | $formfield(TopicDescription) |"
 ~~~ }%
 %STOPINCLUDE%
@@ -19,10 +19,10 @@
 
 ---++ Test
 <div class="alt">
-%DBCALL{"RenderTWikiFormList" ATTR="Headline"}%
+%DBCALL{"RenderDataFormList" ATTR="Headline"}%
 </div>
 <div class="alt">
-%DBCALL{"RenderTWikiFormList" ATTR="BaseRef"}%
+%DBCALL{"RenderDataFormList" ATTR="BaseRef"}%
 </div>
 
 %DBCALL{"RenderFunctionCallers"}%
@@ -36,4 +36,4 @@
 
 %META:FORM{name="TopicForm"}%
 %META:FIELD{name="TopicType" attributes="M" title="TopicType" value="TopicFunction"}%
-%META:FIELD{name="TopicDescription" attributes="" title="TopicDescription" value="Renders a list of TWikiForms that use a given TWikiFormAttribute"}%
+%META:FIELD{name="TopicDescription" attributes="" title="TopicDescription" value="Renders a list of DataForms that use a given DataFormAttribute"}%

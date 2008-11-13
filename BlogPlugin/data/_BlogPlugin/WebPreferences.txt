@@ -138,7 +138,7 @@ Initialization of WebButtons variables (don't change):
    * Set WEBBUTTONSCLASS_ARCHIVE =
    * Set WEBBUTTONSCLASS_ABOUT =
 
-Definition of TWikiForms (expert settings):
+Definition of DataForms (expert settings):
    * Set WEBFORMS = BlogEntryForm, TopicForm, BlogCommentForm, BlogLinkForm, BlogPageForm, SubjectCategoryForm, BlogAuthorForm
 
 TopicFunctions to generate html page header information:

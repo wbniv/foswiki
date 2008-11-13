@@ -5,7 +5,7 @@ One line description, required for extensions repository catalog.
 -->
 This plugin allows you to create an autocomplete input field based on Yahoo's User Interface Library.
 
-All this plugin does is implement Arthur Clemens' TWiki:Plugins/AutoCompleteAddOn as a plugin, which allows users to provide an autocomplete text box using the =%<nop>AUTOCOMPLETE%= syntax, and also in %SYSTEMWEB%.TWikiForms (shown below).
+All this plugin does is implement Arthur Clemens' TWiki:Plugins/AutoCompleteAddOn as a plugin, which allows users to provide an autocomplete text box using the =%<nop>AUTOCOMPLETE%= syntax, and also in %SYSTEMWEB%.DataForms (shown below).
 
 <img src="%ATTACHURLPATH%/AutoCompletePluginScreenshot.png" alt="screenshot.png" />
 
@@ -19,9 +19,9 @@ Before you can use this plugin, you need to set up some data for the autocomplet
 
 This plugin expands the =%<nop>AUTOCOMPLETE{...}%= variable, which takes the parameters described in %TOPIC%#Parameters.
 
----+++ In !TWikiForms
+---+++ In !DataForms
 
-To use this plugin in %SYSTEMWEB%.TWikiForms, create a form template as descibed in %SYSTEMWEB%.TWikiForms#Defining_a_Form. This plugin adds the =autocomplete= type of field. To pass the parameters required by the plugin, place them in the =Values= column. An example is shown below:
+To use this plugin in %SYSTEMWEB%.DataForms, create a form template as descibed in %SYSTEMWEB%.DataForms#Defining_a_Form. This plugin adds the =autocomplete= type of field. To pass the parameters required by the plugin, place them in the =Values= column. An example is shown below:
 
 | *Name* | *Type* | *Size* | *Values* | *Tooltip message* | *Attributes* |
 | Username | autocomplete | 25em | datatopic="Sandbox.AutoCompletePluginTestData" datasection="usernames" delimchar="," itemformat="item[0] + ' (' + item[1] + ')'" | |  | 

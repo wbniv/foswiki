@@ -10,6 +10,6 @@
 | Status  | select | 1 | New, Actioning, Waiting for feedback, Waiting for release, Closed, Discarded  | Current status of item.  |
 | Related topics | text  | 50 |   | Any related BugItems or other topics.    |
 
-Related Topic: TopicClassification, WebPreferences, %SYSTEMWEB%.TWikiForms
+Related Topic: TopicClassification, WebPreferences, %SYSTEMWEB%.DataForms
 
 %META:REVCOMMENT{ncomments="0"}%

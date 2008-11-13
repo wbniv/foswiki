@@ -45,7 +45,7 @@ my %syntax = ( SEARCH => {
         seperator => {type=>'text', default=>'', DOCCO=>'Line separator between hits'},
         type => {type=>'options', option=> ['keyword', 'literal', 'regex'], default=>'', DOCCO=>'Do a keyword search like soap "web service" -shampoo; a literal search like web service; or RegularExpression search like soap;web service;!shampoo'},
 		scope => {type=>'options', option=> ['topic', 'text', 'all'], default=>'text', DOCCO=>'Search topic name (title); the text (body) of topic; or all (both)'},
-		order => {type=>'text', default=>'', DOCCO=>'Sort the results of search by the topic names, topic creation time, last modified time, last editor, or named field of TWikiForms. The sorting is done web by web; if you want to sort across webs, create a formatted table and sort it with TablePlugin\'s initsort. Note that dates are sorted most recent date last (i.e at the bottom of the table).'},
+		order => {type=>'text', default=>'', DOCCO=>'Sort the results of search by the topic names, topic creation time, last modified time, last editor, or named field of DataForms. The sorting is done web by web; if you want to sort across webs, create a formatted table and sort it with TablePlugin\'s initsort. Note that dates are sorted most recent date last (i.e at the bottom of the table).'},
 		limit => {type=>'text', default=>'', DOCCO=>'Limit the number of results returned. This is done after sorting if order is specified'},
 		date => {type=>'text', default=>'', DOCCO=>'limits the results to those pages with latest edit time in the given TimeInterval.'},
 		reverse => {type=>'onoff', default=>'off', DOCCO=>'Reverse the direction of the search'},

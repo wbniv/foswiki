@@ -15,7 +15,7 @@ The idea and first implementation of form-based editing for tables goes back to 
 
 ---++ Template
 
-Before you can edit a table, you need to define a template that describes the layout of the table in the style of TWiki.TWikiForms. The table format is given by a table in the form template: each row defines a table column by giving a field name, field type, size, and initial values, if any. The field type determines how the table row is edited (e.g., as text, textare, radio, checkbox, etc.).
+Before you can edit a table, you need to define a template that describes the layout of the table in the style of %SYSTEMWEB%.DataForms. The table format is given by a table in the form template: each row defines a table column by giving a field name, field type, size, and initial values, if any. The field type determines how the table row is edited (e.g., as text, textare, radio, checkbox, etc.).
 
 For ease of transition of existing systems, the table schema can also be defined in the syntax of TWiki.EditTablePlugin.
 
@@ -24,7 +24,7 @@ For ease of transition of existing systems, the table schema can also be defined
 Add a =%<nop>EDITHIDDENTABLE{...}%= variable just before an existing table to make it editable, or add the variable anywhere in a topic to start a new table. Parameters:
 
 | *Parameter* | *Comment* | *Default* |
-| =template= | Topic which defines the format of the table, in the style of TWiki.TWikiForms. The table format is given by one row per table column defining field name, field type, size, and initial values, if any. |  |
+| =template= | Topic which defines the format of the table, in the style of %SYSTEMWEB%.DataForms. The table format is given by one row per table column defining field name, field type, size, and initial values, if any. |  |
 | =header= | Must be used when the table schema is defined in the syntax of TWiki.EditTablePlugin (see documentation there). |  |
 | =format= | Must be used when the table schema is defined in the syntax of TWiki.EditTablePlugin (see documentation there). |  |
 | =changerows= | Rows can be added and removed if ="on"=; rows can be added but not removed if ="add"=. | =CHANGEROWS= Plugin setting |
@@ -45,7 +45,7 @@ Table cells are given initial values taken from the template, when a table row i
 
 ---+++ Supported Field Type
 
-All field types supported in TWiki.TWikiForms are supported for table fields also. For example, in the screenshot below, the [[http://dynarch.com/mishoo/calendar.epl][Mishoo DHTML calendar]] is used to select the value for a date field.
+All field types supported in %SYSTEMWEB%.DataForms are supported for table fields also. For example, in the screenshot below, the [[http://dynarch.com/mishoo/calendar.epl][Mishoo DHTML calendar]] is used to select the value for a date field.
 |<img src="%ATTACHURLPATH%/editwithcalendar.jpg" alt="Edit Table Calendar Example" />|
 
 ---++ Table editing

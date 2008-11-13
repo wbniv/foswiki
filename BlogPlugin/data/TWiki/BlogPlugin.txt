@@ -15,7 +15,7 @@ This is the supplemental plugin for the BlogUp <nop>TWikiApplication.
 It bundles some of the features found in common blogging applications 
 that are very hard or even impossible to implement using <nop>TWikiML. 
 Note, that most of the tags are tightly related to the
-data model of BlogUp, i.e. it relies on its <nop>TopicType and <nop>TWikiForm 
+data model of BlogUp, i.e. it relies on its <nop>TopicType and <nop>DataForm 
 definitions. 
 
 Shortcut: want to create a blog ... use the BlogFactory.

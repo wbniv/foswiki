@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="ProjectContributor" date="1170220558" format="1.1" version="0"}%
 ---+!! !MetaWorkflowPlugin
 
-This plugin defines a workflow based on updated meta data in a number of topics. It was originally written for use with the [[TWiki:Plugins.WorkflowPlugin][WorkflowPlugin]], but can also be used to create a workflow using TWikiForms or any other changing meta data. To view the meta data of a topic, append ==?raw=debug== to the URL (i.e. %SCRIPTURL{"view"}%/%WEB%/%TOPIC%?raw=debug).
+This plugin defines a workflow based on updated meta data in a number of topics. It was originally written for use with the [[TWiki:Plugins.WorkflowPlugin][WorkflowPlugin]], but can also be used to create a workflow using DataForms or any other changing meta data. To view the meta data of a topic, append ==?raw=debug== to the URL (i.e. %SCRIPTURL{"view"}%/%WEB%/%TOPIC%?raw=debug).
 
 %TOC%
 

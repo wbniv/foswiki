@@ -125,7 +125,7 @@ original TWiki templates.
 		* =%<nop>TOPICS%= can hold a web-specific list of interesting 
 		  topics for the web, to place in a box in the left margin.
 	* a site map (similar to the <nop>WikiWebTable) is generated.
-	* TWiki.TWikiForms position is settable globally and per-web.
+	* %SYSTEMWEB%.DataForms position is settable globally and per-web.
 	* Uses access keys: alt-e edits, alt-s saves...
 	* Uses favicons, so tabs/bookmarks can have a differnt icon per web
 	* Incorporates useful fixes: As TWiki releases tend to be more sparse,
@@ -403,7 +403,7 @@ variables in the <nop>KoalaSkinWebList topic such as:
 	  templates so that other people can re-generate the templates
 	  afterwards. If set to some other string "xxx", will make the files
 	  writables by the group "xxx".
-	* KSFORM_POS is the default position value of TWiki.TWikiForms. Must be
+	* KSFORM_POS is the default position value of %SYSTEMWEB%.DataForms. Must be
 	  one of: FORM_LM, FORM_TL, FORM_TO, FORM_TR, FORM_BL, FORM_BR. 
 	  Defaults to FORM_BL
 	* KSCSS can be set to the URL of an external CSS stylesheet to further
@@ -452,7 +452,7 @@ Must be found at the start of the descriptions, blank-separated
 	  also be written BGCOLOR.
 	* FORM_LM, FORM_TL, FORM_TO, FORM_TR, FORM_BL, FORM_BR
 	  indicates that you want
-	  the optional TWiki.TWikiForms in the topic at different places,
+	  the optional %SYSTEMWEB%.DataForms in the topic at different places,
 	  not just at the bottom left. You can set more than one option,
 	  howevere for editing the edit form will be just at top or bottom,
 	  depending of the last option seen. The default value is set by the
@@ -1183,7 +1183,7 @@ Versions 1.x support only the Athens (Dec 2001) Stable TWiki release.
 		  having wide contents.
 		* New option KSFILEPERMS (= ALL for all users, or unix group
 		  name) at Martin request.
-		* New options to set position of TWiki.TWikiForms per web:
+		* New options to set position of %SYSTEMWEB%.DataForms per web:
 		  FORM_LM, FORM_TL, FORM_TO, FORM_TR, FORM_BL, FORM_BR, and 
 		  global variable KSFORM_POS for the default.
 		* checkbox labels are clickable, see 

@@ -1,5 +1,5 @@
 %META:TOPICINFO{author="ProjectContributor" date="1139335204" format="1.1" version="1.1"}%
-%META:TOPICPARENT{name="TWikiFormAttribute"}%
+%META:TOPICPARENT{name="DataFormAttribute"}%
 ---++ %TOPIC% 
 %FORMFIELD{"TopicDescription"}%
 
@@ -21,7 +21,7 @@ See also: %TOPIC%Template, FrontPage
 </noautolink>
 
 %DBCALL{"RenderTopicList" NAME="%TOPIC%"}%
-%DBCALL{"RenderTWikiFormList" ATTR="%TOPIC%"}%
+%DBCALL{"RenderDataFormList" ATTR="%TOPIC%"}%
 
 <!--
    * Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
@@ -34,5 +34,5 @@ See also: %TOPIC%Template, FrontPage
 
 
 %META:FORM{name="TopicForm"}%
-%META:FIELD{name="TopicType" attributes="M" title="TopicType" value="TopicType, TWikiFormAttribute"}%
-%META:FIELD{name="TopicDescription" attributes="M" title="TopicDescription" value="TopicType and TWikiFormAttribute that describes BlogEntry categories"}%
+%META:FIELD{name="TopicType" attributes="M" title="TopicType" value="TopicType, DataFormAttribute"}%
+%META:FIELD{name="TopicDescription" attributes="M" title="TopicDescription" value="TopicType and DataFormAttribute that describes BlogEntry categories"}%

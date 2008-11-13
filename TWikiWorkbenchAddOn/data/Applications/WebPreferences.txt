@@ -4,7 +4,7 @@
 %TOC%
 <br clear="all" />
 
----+++ TWikiForms
+---+++ DataForms
    * Set WEBFORMS = Applications.TWikiTopic, Applications.TopicStub, Applications.TWikiApplication, Applications.ApplicationTopic, Applications.TopicType
 
 ---+++ Naming

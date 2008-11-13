@@ -32,7 +32,7 @@ __Preferences:__
 	* Default template for new topics and form(s) for this web:
 		* WebTopicEditTemplate: Default template for new topics in this web. (Site-level is used if topic does not exist)
 		* [[%SYSTEMWEB%.WebTopicEditTemplate]]: Site-level default template
-		* %SYSTEMWEB%.TWikiForms: How to enable form(s)
+		* %SYSTEMWEB%.DataForms: How to enable form(s)
 		* Set WEBFORMS = ItemTemplate
 
    * backward compatibility settings

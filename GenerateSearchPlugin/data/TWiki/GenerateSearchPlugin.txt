@@ -5,7 +5,7 @@ This plugin creates a form-driven search over the topics of a selected web.
 
 TWiki:Main/TWikiInstallation demonstrates a widely used TWiki application: A search where the search results can be filtered based on parameters entered by the user in a form.
 
-This plugin generates such searches automatically from the field values defined in a TWiki.TWikiForms. The user is presented with a table of possible fields and can select whether the field should be shown as the result of the search, and whether it should be possible to filter on that field.
+This plugin generates such searches automatically from the field values defined in a %SYSTEMWEB%.DataForms. The user is presented with a table of possible fields and can select whether the field should be shown as the result of the search, and whether it should be possible to filter on that field.
 
 ---++ Syntax Rules
 
@@ -28,7 +28,7 @@ This plugin generates such searches automatically from the field values defined 
 
 ---++ Example
 
-Below is an example form from TWiki.TWikiForms:
+Below is an example form from %SYSTEMWEB%.DataForms:
 | *Name* | *Type* | *Size* | *Values* | *Tooltip message* |
 | <nop>TopicClassification | select | 1 | !NoDisclosure, !PublicSupported, !PublicFAQ | blah blah... |
 | <nop>OperatingSystem | checkbox | 3 | !OsHPUX, !OsLinux, !OsSolaris, !OsWin | blah blah... |
@@ -61,7 +61,7 @@ As can be seen, fields with defined values yield a drop down menu to select the 
 ---++ Plugin Settings
 
 	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
-		* Set SHORTDESCRIPTION = This plugin generates a form-driven search based on a TWiki.TWikiForms.
+		* Set SHORTDESCRIPTION = This plugin generates a form-driven search based on a %SYSTEMWEB%.DataForms.
 
 	* Debug plugin: (See output in =data/debug.txt=)
 		* Set DEBUG = 0
@@ -101,7 +101,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
 
-__Related Topics:__ TWiki.TWikiForms
+__Related Topics:__ %SYSTEMWEB%.DataForms
 
 -- TWiki:Main/ThomasWeigert - 13 Apr 2005
 

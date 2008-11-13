@@ -6,14 +6,14 @@
 | SubjectArea | checkbox | 3 | %DBQUERY{"Classification='SubjectArea'" format="$topic" separator=", "}%    | Classify a topic by subject |  |
 | Summary   | text   | 50  |   | Short summary or headline of topic  |  |
 
-Related Topic: TopicClassification, WebPreferences, %SYSTEMWEB%.TWikiForms
+Related Topic: TopicClassification, WebPreferences, %SYSTEMWEB%.DataForms
 
 <!-- Topic Permissions
    * Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
    * Set ALLOWTOPICRENAME = %MAINWEB%.TWikiAdminGroup
 -->
 
-For more information about how you can use form to organize topics or create simple database applications, see TWiki.TWikiForms.
+For more information about how you can use form to organize topics or create simple database applications, see %SYSTEMWEB%.DataForms.
 
 
 %META:REVCOMMENT{ncomments="0"}%

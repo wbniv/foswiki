@@ -21,7 +21,7 @@
 ~~~    AND text=~'\n\| *(..)?%IFDEFINED{"%ATTR%" then="%ATTR%" else="%BASETOPIC%"}% * \|'
 ~~~   "
 ~~~   header="
-*~~     ---++ <nop>TWikiForms 
+*~~     ---++ <nop>DataForms 
 ~~~     %IFDEFINED{"%THEWEB%" then=" in the %THEWEB% web" glue="off"}%
 ~~~     that use the 
 ~~~     '%IFDEFINED{"%ATTR%" then="%ATTR%" else="%BASETOPIC%"}%' attribute$n
@@ -53,5 +53,5 @@
 
 %META:FORM{name="Applications.TopicForm"}%
 %META:FIELD{name="TopicType" attributes="M" title="TopicType" value="TopicFunction, DocuTopic"}%
-%META:FIELD{name="Summary" attributes="" title="Summary" value="Renders a list of TWikiForms that make use of the given TWikiFormAttribute"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Renders a list of DataForms that make use of the given TWikiFormAttribute"}%
 %META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

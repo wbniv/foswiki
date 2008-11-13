@@ -6,7 +6,7 @@
 | Summary   | text   | 50  |   | Short summary or headline of topic.  |
 | Facets | text  | 50 |   | Classifications that cross-reference to this Classification.    |
 
-Related Topic: TopicClassification, WebPreferences, %SYSTEMWEB%.TWikiForms
+Related Topic: TopicClassification, WebPreferences, %SYSTEMWEB%.DataForms
 
 <!-- Topic Permissions
    * Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup

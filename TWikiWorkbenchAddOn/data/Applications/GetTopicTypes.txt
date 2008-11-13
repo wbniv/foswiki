@@ -8,7 +8,7 @@
 ---++ Documentation
 %STARTSECTION{name="documentation" type="section"}%
 This is a "getter" TopicFunction that returns a list of known TopicTypes
-in a given web. Use it to create a selection in TWikiForms for the !TopicType formfield.
+in a given web. Use it to create a selection in DataForms for the !TopicType formfield.
 It adds the "none" type so that you can have (temporarily) un-typed topics. The 
 type "TopicType" is added _hardcoded_ so that you don't have to rely on that type
 being present in your web and to allow bootstrapping a type system in a web from

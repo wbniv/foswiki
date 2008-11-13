@@ -14,5 +14,5 @@
 
 %META:FORM{name="TopicForm"}%
 %META:FIELD{name="TopicType" attributes="M" title="TopicType" value="TopicView"}%
-%META:FIELD{name="TopicDescription" attributes="M" title="TopicDescription" value="View to hide  %25SYSTEMWEB%25.TWikiForms"}%
+%META:FIELD{name="TopicDescription" attributes="M" title="TopicDescription" value="View to hide  %25SYSTEMWEB%25.DataForms"}%
 %META:TOPICMOVED{by="MichaelDaum" date="1127217314" from="Trash.HiddenFormViewTemplate" to="Blog.HiddenFormViewTemplate"}%

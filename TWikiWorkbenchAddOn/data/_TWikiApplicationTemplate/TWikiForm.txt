@@ -11,7 +11,7 @@ See also: [[%FORMFIELD{"Target"}%]]
 
 %META:FORM{name="Applications.TopicStub"}%
 %META:FIELD{name="TopicType" attributes="" title="TopicType" value="TopicStub, TopicType"}%
-%META:FIELD{name="Summary" attributes="" title="Summary" value="Tool to create TWikiForms"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Tool to create DataForms"}%
 %META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%
 %META:FIELD{name="Target" attributes="" title="Target" value="Applications.TWikiForm"}%
 %META:FIELD{name="Section" attributes="" title="Section" value=""}%

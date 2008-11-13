@@ -7,13 +7,13 @@ This plugin allows you to edit TWiki tables row by row, using a form with approp
 
 ---++ Acknowledgment
 
-This plugin was inspired and steals much from TWiki:Main/PeterThoeny's TWiki:Plugins/EditTablePlugin and tries be compatible with respect to the options and parameters it provides. However, as it supports editing of the table one row at a time, it is not subject to the performance limitations of TWiki:Plugins/EditTablePlugin when faced with large tables. 
+This plugin was inspired and steals much from the !EditTablePlugin and tries be compatible with respect to the options and parameters it provides. However, as it supports editing of the table one row at a time, it is not subject to the performance limitations of TWiki:Plugins/EditTablePlugin when faced with large tables. 
 
 The idea and first implementation of form-based editing for tables goes back to TWiki:Main/ShawnBradford's approach in TWiki:Codev/SimpleTableEntryUsingForms.
 
 ---++ Template
 
-Before you can edit a table, you need to define a template that describes the layout of the table in the style of TWiki.TWikiForms. The table format is given by a table in the form template: each row defines a table column by giving a field name, field type, size, and initial values, if any. The field type determines how the table row is edited (e.g., as text, textare, radio, checkbox, etc.).
+Before you can edit a table, you need to define a template that describes the layout of the table in the style of %SYSTEMWEB%.DataForms. The table format is given by a table in the form template: each row defines a table column by giving a field name, field type, size, and initial values, if any. The field type determines how the table row is edited (e.g., as text, textare, radio, checkbox, etc.).
 
 For ease of transition of existing systems, the table schema can also be defined in the syntax of TWiki.EditTablePlugin.
 
@@ -22,9 +22,9 @@ For ease of transition of existing systems, the table schema can also be defined
 Add a =%<nop>EDITTABLEROW{...}%= variable just before an existing table to make it editable, or add the variable anywhere in a topic to start a new table. Parameters:
 
 | *Parameter* | *Comment* | *Default* |
-| =template= | Topic which defines the format of the table, in the style of TWiki.TWikiForms. The table format is given by one row per table column defining field name, field type, size, and initial values, if any. |  |
-| =header= | Must be used when the table schema is defined in the syntax of TWiki.EditTablePlugin (see documentation there). |  |
-| =format= | Must be used when the table schema is defined in the syntax of TWiki.EditTablePlugin (see documentation there). |  |
+| =template= | Topic which defines the format of the table, in the style of %SYSTEMWEB%.DataForms. The table format is given by one row per table column defining field name, field type, size, and initial values, if any. |  |
+| =header= | Must be used when the table schema is defined in the syntax of %SYSTEMWEB%.EditTablePlugin (see documentation there). |  |
+| =format= | Must be used when the table schema is defined in the syntax of %SYSTEMWEB%.EditTablePlugin (see documentation there). |  |
 | =changerows= | Rows can be added and removed if ="on"=; rows can be added but not removed if ="add"=. | =CHANGEROWS= Plugin setting |
 | =helptopic= | Topic name containing help text shown below the table when editing a table. The %<nop>STARTINCLUDE% and %<nop>STOPINCLUDE% variables can be used in the topic to specify what is shown. | (no help text) |
 | =headerislabel= | Table header cells are read-only (labels) if ="on"=; header cells can be edited if ="off"= or "0" | ="on"= |
@@ -41,7 +41,7 @@ Table cells are given initial values taken from the template, when a table row i
 
 ---+++ Supported Field Type
 
-All field types supported in TWiki.TWikiForms are supported for table fields also. For example, in the screenshot below, the [[http://dynarch.com/mishoo/calendar.epl][Mishoo DHTML calendar]] is used to select the value for a date field.
+All field types supported in %SYSTEMWEB%.DataForms are supported for table fields also. For example, in the screenshot below, the [[http://dynarch.com/mishoo/calendar.epl][Mishoo DHTML calendar]] is used to select the value for a date field.
 |<img src="%ATTACHURLPATH%/editwithcalendar.jpg" alt="Edit Table Calendar Example" />|
 
 ---++ Table editing

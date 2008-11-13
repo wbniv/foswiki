@@ -164,7 +164,7 @@ The following special variables can be used in the format string:
 | =$summary(showvarnames)= | Topic summary, with =%<nop>ALLTWIKI{...}%= variables shown as =ALLTWIKI{...}= |
 | =$summary(noheader)= | Topic summary, with leading =---+ headers= removed%BR% __Note:__ The tokens can be combined into a comma separated list like =$summary(100, showvarnames, noheader)= |
 | =$formname= | The name of the form attached to the topic; empty if none |
-| =$formfield(name)= | The field value of a form field; for example, =$formfield(<nop>TopicClassification)= would get expanded to =PublicFAQ=. This applies only to topics that have a [[TWikiForms][TWikiForm]]. An alternative to using the name of the field directly. |
+| =$formfield(name)= | The field value of a form field; for example, =$formfield(<nop>TopicClassification)= would get expanded to =PublicFAQ=. This applies only to topics that have a [[DataForms][DataForm]]. An alternative to using the name of the field directly. |
 | =$formfield(name, 10)= | Form field value, "<tt>- </tt>" hyphenated each 10 characters |
 | =$formfield(name, 20, -&lt;br /&gt;)= | Form field value, hyphenated each 20 characters with separator "<tt>-&lt;br /&gt;</tt>" |
 | =$formfield(name, 30, ...)= | Form field value, shortended to 30 characters with "<tt>...</tt>" indication |

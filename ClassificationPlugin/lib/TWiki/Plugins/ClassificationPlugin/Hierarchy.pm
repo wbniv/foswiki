@@ -821,7 +821,7 @@ sub getCatFields {
     }
     #writeDebug("looking up form definition for $topicType in web $this->{web}");
 
-    # looup form definition -> ASSUMPTION: TopicTypes must be TWikiForms too
+    # looup form definition -> ASSUMPTION: TopicTypes must be DataForms too
     my $db = TWiki::Plugins::DBCachePlugin::Core::getDB($this->{web});
     my $formDef = $db->fastget($topicType);
     next unless $formDef;
@@ -915,7 +915,7 @@ sub getTagFields {
     }
     #writeDebug("looking up form definition for $topicType");
 
-    # looup form definition -> ASSUMPTION: TopicTypes must be TWikiForms too
+    # looup form definition -> ASSUMPTION: TopicTypes must be DataForms too
     my $db = TWiki::Plugins::DBCachePlugin::Core::getDB($this->{web});
     my $formDef = $db->fastget($topicType);
     next unless $formDef;

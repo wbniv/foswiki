@@ -9,7 +9,7 @@ The TWikiTopic form can be used for a wide range of TopicTypes that only need to
 as being of a given TopicType.
 If you need more structure then you have to define a specific form that 
 extends the attributes of the TWikiTopic form. That is, the attributes defined here
-are a minimal set of attributes that all TWikiForms should share.
+are a minimal set of attributes that all DataForms should share.
 
 Every TopicType is used in combination with one TWikiForm, that is associated with it,
 either this generic TWikiTopic form or a more specific one. 

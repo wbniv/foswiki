@@ -28,7 +28,7 @@ The columns of the spreadsheet and the columns of the TWiki table are correlated
    | *Parameter:* | *Description:* | *Default:* |
    | =topic="..."= | The topic at which the spreadsheet is attached | Current topic |
    | =file="..."= | Default parameter: The name of the attached spreadsheet file (without the extension)  | Current topic |
-   | =template="..."= | A form definition (see TWiki.TWikiForms); it defines the columns of the table to be generated. Must match column headers of the attached spreadsheet. |  |
+   | =template="..."= | A form definition (see %SYSTEMWEB%.DataForms); it defines the columns of the table to be generated. Must match column headers of the attached spreadsheet. |  |
 
 
    * Syntax: =%<nop>UPLOADEXCEL2TABLE{...}%=
@@ -36,7 +36,7 @@ The columns of the spreadsheet and the columns of the TWiki table are correlated
    * Supported parameters:
    | *Parameter:* | *Description:* | *Default:* |
    | =topic="..."= | Default Parameter: The topic where the resultant table will be inserted. The first table found in this topic will be replaced by the generated table. | Current topic |
-   | =template="..."= | A form definition (see TWiki.TWikiForms); it defines the columns of the table to be generated. Must match column headers of the attached spreadsheet. |  |
+   | =template="..."= | A form definition (see %SYSTEMWEB%.DataForms); it defines the columns of the table to be generated. Must match column headers of the attached spreadsheet. |  |
 
 
    * Syntax: =%<nop>TABLE2EXCEL{...}%=
@@ -45,7 +45,7 @@ The columns of the spreadsheet and the columns of the TWiki table are correlated
    | *Parameter:* | *Description:* | *Default:* |
    | =topic="..."= | Default parameter: The topic at which the spreadsheet is attached | Current topic |
    | =file="..."= | The name of the generated spreadsheet file (without the extension)  | Current topic |
-   | =template="..."= | A form definition (see TWiki.TWikiForms); it defines the columns of the table to be generated. Must match column headers of the attached spreadsheet. |  |
+   | =template="..."= | A form definition (see %SYSTEMWEB%.DataForms); it defines the columns of the table to be generated. Must match column headers of the attached spreadsheet. |  |
    | =map="..."= | The topic which contains additional mapping information between the columns of the table and the columns in the generated Excel file. |  |
 
 
@@ -53,7 +53,7 @@ The columns of the spreadsheet and the columns of the TWiki table are correlated
    * Synopsis: Generates an Excel spreadsheet file from the topics which have the designated form, such that each topic will result in a row of the generated spreadsheet and where the fields of the form indicate the columns of the spreadsheet. 
    * Supported parameters:
    | *Parameter:* | *Description:* | *Default:* |
-   | =template="..."= | Default parameter: A form definition (see TWiki.TWikiForms); it defines the columns of the table to be generated. Must match column headers of the attached spreadsheet. |  |
+   | =template="..."= | Default parameter: A form definition (see %SYSTEMWEB%.DataForms); it defines the columns of the table to be generated. Must match column headers of the attached spreadsheet. |  |
    | =map="..."= | The topic which contains additional mapping information between the columns of the table and the columns in the generated Excel file. |  |
 
    * Syntax: =%SCRIPTURL{"excel2topics"}%=
@@ -62,7 +62,7 @@ The columns of the spreadsheet and the columns of the TWiki table are correlated
    | *Parameter:* | *Description:* | *Default:* |
    | =topic="..."= | The topic at which the spreadsheet is attached | Current topic |
    | =file="..."= | Default parameter: The name of the attached spreadsheet file (without the extension)  | Current topic |
-   | =template="..."= | A form definition (see TWiki.TWikiForms); it defines the columns of the table to be generated. Must match column headers of the attached spreadsheet. |  |
+   | =template="..."= | A form definition (see %SYSTEMWEB%.DataForms); it defines the columns of the table to be generated. Must match column headers of the attached spreadsheet. |  |
    | =topiccolumn="..."= | The column that defines the name of the generated topic. If not present, the name is constructed from =ExcelRow= and a sequence number. | =TOPIC= |
    | =topictext="..."= | This column defines the text of the topic. As a safety precaution, it will only generate topic text, if the existing text is not empty. | =TEXT= |
    | =newtopictemplate="..."= | The topic template defining a newly created topic derived from a spreadsheet row. |  |
@@ -73,7 +73,7 @@ Please see the example in Sandbox.IssueExcelExportImport for more detail.
 ---++ Mapping between Excel Spreadsheet and TWiki Table
 
 #ColumnMapping
-In its simplest form, the correspondence between the Excel spreadsheet and the TWiki table is established through a TWiki.TWikiForms template. This for corresponds to the header row in the spreadsheet: each field in the form is the same as a column field in the header row. All fields except date fields are assumed to be of type text.
+In its simplest form, the correspondence between the Excel spreadsheet and the TWiki table is established through a %SYSTEMWEB%.DataForms template. This for corresponds to the header row in the spreadsheet: each field in the form is the same as a column field in the header row. All fields except date fields are assumed to be of type text.
 
 Note that the order of the fields need not be the same, nor do all the column fields have to be present. Missing fields will be omitted in the import or export operations.
 

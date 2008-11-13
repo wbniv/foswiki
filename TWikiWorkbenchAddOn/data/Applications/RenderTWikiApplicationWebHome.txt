@@ -28,7 +28,7 @@
 %~~ DBQUERY{"TopicType=~'\bTWikiForm\b' AND !(TopicType=~'\bTopicType\b')
 ~~~     AND TWikiApplication='%APP%'"
 ~~~   remote="on"
-~~~   header="<h2>[[TWikiForms]]</h2>$n"
+~~~   header="<h2>[[DataForms]]</h2>$n"
 ~~~   web="%BASEWEB%"
 ~~~   hidenull="on"
 ~~~   format="   1 [[$web.$topic][$topic]]: $expand(Summary or TopicTitle)"

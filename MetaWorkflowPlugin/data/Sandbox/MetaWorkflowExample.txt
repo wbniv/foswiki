@@ -2,7 +2,7 @@
 
 ---+++ !MetaWorkflowPlugin Example
 
-This is an example of how to use the TWiki.MetaWorkflowPlugin to create a workflow based on the value of a [[TWiki.TWikiForms][form field]].
+This is an example of how to use the TWiki.MetaWorkflowPlugin to create a workflow based on the value of a [[%SYSTEMWEB%.DataForms][form field]].
 
 This is what's displayed in the =%<nop>METAWORKFLOWCURRENT%=:%BR%
 | %METAWORKFLOWCURRENT% | 

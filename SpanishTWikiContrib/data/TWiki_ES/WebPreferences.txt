@@ -26,7 +26,7 @@ Estas configuraciones sobrescriben los valores estándares solamente para esta we
    * Plantilla estándar para *temas nuevos* de esta web:
       * WebTopicEditTemplate: Site-level default topic template
 
-   * Lista de *formularios* separados por como que pueden ser añadidos a temas de esta web. Ver %SYSTEMWEB%.TWikiForms para más información.
+   * Lista de *formularios* separados por como que pueden ser añadidos a temas de esta web. Ver %SYSTEMWEB%.DataForms para más información.
       * Set WEBFORMS = %SYSTEMWEB%.TranslationForm
 
    * Nota de derechos reservados para la web TWiki.

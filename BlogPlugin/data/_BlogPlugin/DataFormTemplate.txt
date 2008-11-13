@@ -7,13 +7,13 @@
 
 
 
-See also: %SYSTEMWEB%.TWikiForms
+See also: %SYSTEMWEB%.DataForms
 <!--
    * Set ALLOWTOPICCHANGE = %MAINWEB%.BlogAdminGroup
    * Set SIDEBAR = Admin
-   * Set SIDEBARARG = TWikiForm
+   * Set SIDEBARARG = DataForm
 -->
 
 %META:FORM{name="TopicForm"}%
 %META:FIELD{name="TopicType" attributes="M" title="TopicType" value="TopicTemplate"}%
-%META:FIELD{name="TopicDescription" attributes="M" title="TopicDescription" value="Template to create TWikiForm topics"}%
+%META:FIELD{name="TopicDescription" attributes="M" title="TopicDescription" value="Template to create DataForm topics"}%

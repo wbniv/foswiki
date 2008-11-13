@@ -9,7 +9,7 @@ An ApplicationFactory is used to deploy an instance of a TWikiApplication. This 
 done by either copying a template web or copying one or more topics into a target web.
 
 The complete TWikiApplication comprises of the all the components of the application
-(its TopicFunctions, TWikiForms etc).  Think of it as "library" and the application _instance_
+(its TopicFunctions, DataForms etc).  Think of it as "library" and the application _instance_
 the "executable" linked against it.  So there can be multiple instances of an application, 
 all using the same library. Example: there's one <nop>AddressbookApplication, and you
 can create multiple addressbooks using the <nop>AddressBookFactory.

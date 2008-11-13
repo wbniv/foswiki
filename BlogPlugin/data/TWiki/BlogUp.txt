@@ -18,8 +18,8 @@
 %ALIAS{name="TopicType" value="#TopicTypes"}%
 %ALIAS{name="TopicTemplates" value="#TopicTemplates"}%
 %ALIAS{name="TopicTemplate" value="#TopicTemplates"}%
-%ALIAS{name="TWikiForms" value="#TWikiForms"}%
-%ALIAS{name="TWikiForm" value="#TWikiForms"}%
+%ALIAS{name="DataForms" value="#DataForms"}%
+%ALIAS{name="DataForm" value="#DataForms"}%
 -->
 
 <!--
@@ -87,16 +87,16 @@ blog.
 
 ---++ Implementation
 The BlogUp is implemented using the TWikiWorkbench approach consisting (at least) of a set of 
-TopicTypes, TopicFunctions, TWikiForms and TopicTemplates that are used to implement the application.
+TopicTypes, TopicFunctions, DataForms and TopicTemplates that are used to implement the application.
 
 ---+++ TopicTypes
-Each topic is typed using TWikiForms, that is TWikiForms define TopicTypes. 
+Each topic is typed using DataForms, that is DataForms define TopicTypes. 
 A TopicType form has a token and a free-form TopicDescription that describes the purpose of an
 instance of that type.
 
 In general a TopicType is made up of three parts:
    1 the TopicType topic named XXX
-   1 the TWikiForm topic named XXXForm
+   1 the DataForm topic named XXXForm
    1 the TopicTemplate topic named XXXTemplate
  
 The XXX TopicType topic lists an overview of all topics of the given type and a form to create a new one. 
@@ -114,10 +114,10 @@ A TopicFunction is also documenting itself and its parameters.
 
 %DBCALL{"%TOPIC%" section="RenderTopicList" NAME="TopicFunction"}%
 
----+++ TWikiForms
+---+++ DataForms
 %TODO%
 
-%DBCALL{"%TOPIC%" section="RenderTopicList" NAME="TWikiForm"}%
+%DBCALL{"%TOPIC%" section="RenderTopicList" NAME="DataForm"}%
 
 ---+++ TopicTemplates
 %TODO%

@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="JohnTalintyre" date="1018985829" format="1.0" version="1.8"}%
 ---+ Form Pivot Plugin
 
-Basic analysis of values for a [[%SYSTEMWEB%.TWikiForms][form]] used by the topics in a Web.
+Basic analysis of values for a [[%SYSTEMWEB%.DataForms][form]] used by the topics in a Web.
 
 ---++ %TOPIC% Global Settings
 

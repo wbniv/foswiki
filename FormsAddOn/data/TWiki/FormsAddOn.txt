@@ -42,7 +42,7 @@ Everything from "Offices of the ..." to the action bar is the form rendered as p
 
 ---+++ Definition of possible field values through referenced topic
 
-TWiki.TWikiForms allow the possible values for fields to be defined in a table on a referenced topic, in which case the name of the field must be the referenced topic. This AddOn allows the field name to be defined using the syntax for specific links =[<nop>[<nop>...][<nop>...]]=:
+%SYSTEMWEB%.DataForms allow the possible values for fields to be defined in a table on a referenced topic, in which case the name of the field must be the referenced topic. This AddOn allows the field name to be defined using the syntax for specific links =[<nop>[<nop>...][<nop>...]]=:
 	* The item in the first pair of brackets is a reference to another topic defining the possible field values for this field
 	* The item in the second pair of brackets is the field name
 

@@ -170,7 +170,7 @@ Use =%<nop>URLPARAM{"element_name"}%= to retrieve the value of a submitted form 
  %BB% =dateformat= - sets the output format of the date button, for instance: =%Y/%m/%d= - see [[#DateFormats][date formats]] for more info \
  %BB% =submit= - creates a submit button \
  %BB% =hidden= - creates a hidden input field |required |- | =type="selectmulti"= |
-| =options=    |List of selectable value parameters to use with =select=, =dropdown=, =checkbox= or =radio=. You may use TWikiForms notation =option1=Label 1, option2=Label 2=. |- |- | =options="mary, peter, annabel, nicky, jennifer"= or options and labels combined: =options="mary=Mary M, peter=Peter P, annabel=Annabel A, nicky=Nicky N, jennifer=Jennifer J"= |
+| =options=    |List of selectable value parameters to use with =select=, =dropdown=, =checkbox= or =radio=. You may use DataForms notation =option1=Label 1, option2=Label 2=. |- |- | =options="mary, peter, annabel, nicky, jennifer"= or options and labels combined: =options="mary=Mary M, peter=Peter P, annabel=Annabel A, nicky=Nicky N, jennifer=Jennifer J"= |
 | =labels=    |To use with =options=: list of visible labels for each option. |- |If no labels are set the option values are displayed. | =labels="Mary M, Peter P, Annabel A, Nicky N, Jennifer J"= |
 | =default=   |Predefined input: \
 %BB% For single entry elements: the text value. \

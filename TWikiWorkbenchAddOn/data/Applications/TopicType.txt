@@ -5,7 +5,7 @@
 ---++ Documentation
 %STARTSECTION{"documentation"}%
 The TopicType is the root of the type system of the <nop>TWikiWorbench. Every TWikiTopic has got one
-or more <nop>TopicTypes. <nop>TopicTypes often correlate to TWikiForms, where a type indicates the properties
+or more <nop>TopicTypes. <nop>TopicTypes often correlate to DataForms, where a type indicates the properties
 and use of the form being attached to a topic. However, there are also <nop>TopicTypes that only
 serve more as an additional marker to a generic <nop>TWikiForm being used in different applications.
 

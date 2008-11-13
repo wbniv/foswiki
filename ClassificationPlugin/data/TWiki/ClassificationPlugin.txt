@@ -22,7 +22,7 @@
 ---++ Description
 The ClassificationPlugin is a building block for <nop>TWikiApplications in need of
 tagging and hierarchies. The contained <nop>ClassificationApp is a basic
-categorization and tagging solution for TWiki based on TWikiForms.
+categorization and tagging solution for TWiki based on DataForms.
 
 
 ---++ Syntax Rules

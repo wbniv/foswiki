@@ -66,7 +66,7 @@ ___* <===== Max recommended length of the 1rst line ==-->
 		  having wide contents.
 		* New option KSFILEPERMS (= ALL for all users, or unix group
 		  name) at Martin request.
-		* New options to set position of TWiki.TWikiForms per web:
+		* New options to set position of %SYSTEMWEB%.DataForms per web:
 		  FORM_LM, FORM_TL, FORM_TR, FORM_BL, FORM_BR, and 
 		  global variable KSFORM_POS for the default.
 		* checkbox labels are clickable, see 

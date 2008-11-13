@@ -61,7 +61,7 @@
 ~~~
 %~~   DBQUERY{"TopicType=~'\bTWikiForm\b'" web="%BASEWEB%"
 ~~~     hidenull="on"
-~~~     header="<li>[[TWikiForms]]<ul>"
+~~~     header="<li>[[DataForms]]<ul>"
 ~~~     format="<li>$index. 
 ~~~       <a href='%SCRIPTURLPATH{"view"}%/$web/$topic' 
 ~~~          title='$encode($expand(Summary))'>$expand(topictitle)</a>

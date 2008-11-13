@@ -16,16 +16,16 @@
 | Comment | textarea | 80x4 | | informal description | |
 
 
-See also: %SYSTEMWEB%.TWikiForms, BlogLink, BlogLinkTemplate
+See also: %SYSTEMWEB%.DataForms, BlogLink, BlogLinkTemplate
 
 <!--
    * Set ALLOWTOPICCHANGE = %MAINWEB%.BlogAdminGroup
    * Set SIDEBAR = Admin
-   * Set SIDEBARARG = TWikiForm
+   * Set SIDEBARARG = DataForm
 -->
 
 
 %META:FORM{name="TopicForm"}%
-%META:FIELD{name="TopicType" attributes="M" title="TopicType" value="TWikiForm"}%
-%META:FIELD{name="TopicDescription" attributes="M" title="TopicDescription" value="TWikiForm for BlogLinks"}%
+%META:FIELD{name="TopicType" attributes="M" title="TopicType" value="DataForm"}%
+%META:FIELD{name="TopicDescription" attributes="M" title="TopicDescription" value="DataForm for BlogLinks"}%
 %META:TOPICMOVED{by="MichaelDaum" date="1130169768" from="Blog.NewsFeedForm" to="Blog.BlogLinkForm"}%

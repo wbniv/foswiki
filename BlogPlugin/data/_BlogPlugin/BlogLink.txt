@@ -21,6 +21,6 @@ See also: %TOPIC%Template, %TOPIC%Form
 
 
 %META:FORM{name="TopicForm"}%
-%META:FIELD{name="TopicType" attributes="M" title="TopicType" value="TopicType, TWikiFormAttribute"}%
+%META:FIELD{name="TopicType" attributes="M" title="TopicType" value="TopicType, DataFormAttribute"}%
 %META:FIELD{name="TopicDescription" attributes="M" title="TopicDescription" value="TopicType that links to another news or blog site."}%
 %META:TOPICMOVED{by="MichaelDaum" date="1130169705" from="Blog.NewsFeed" to="Blog.BlogLink"}%

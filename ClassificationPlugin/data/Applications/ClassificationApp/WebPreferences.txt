@@ -42,7 +42,7 @@ TopicFunctions to generate html page header information:
 </verbatim>
 
 ---+++ Misc
-Definition of TWikiForms:
+Definition of DataForms:
    * Set WEBFORMS = Applications.TWikiTopic, Applications.TopicStub
    * Set FINALPREFERENCES = ATTACHFILESIZELIMIT, WIKIWEBMASTER, WEBCOPYRIGHT, WEBTOPICLIST, DENYWEBVIEW, ALLOWWEBVIEW, DENYWEBCHANGE, ALLOWWEBCHANGE, WEBDB
 

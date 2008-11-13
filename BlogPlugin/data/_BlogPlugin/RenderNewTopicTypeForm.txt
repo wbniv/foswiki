@@ -5,7 +5,7 @@
 
 ---++ Parameters
    * NAME: name of TopicType which we render a button for
-   * FORM: TWikiForm to be used when creating a topic
+   * FORM: DataForm to be used when creating a topic
    * TEMPLATE: TopicTemplate to be used 
 
 ---++ Implementation
