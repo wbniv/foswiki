@@ -17,7 +17,7 @@ To use it, take a copy of the raw text of this topic, and paste it into a new to
       * Set PUBLISH_FILTER =
    * Skin for published HTML
       * Set PUBLISH_SKIN = text
-   * Comma-separated list of templates to use (defaults to view). Output will be generated for each template in this list (e.g. =view,print=). Note that =VIEW_TEMPLATE= will still override the template if it is set in specific topics (See %SYSTEMWEB%.TWikiTemplates).
+   * Comma-separated list of templates to use (defaults to view). Output will be generated for each template in this list (e.g. =view,print=). Note that =VIEW_TEMPLATE= will still override the template if it is set in specific topics (See %SYSTEMWEB%.SkinTemplates).
       * Set PUBLISH_TEMPLATES = view
    * Format to publish in (=file=, =pdf=, =tgz=, =zip=)
       * Set PUBLISH_FORMAT = file

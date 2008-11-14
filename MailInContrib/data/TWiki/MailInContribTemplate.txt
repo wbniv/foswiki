@@ -3,7 +3,7 @@
 
 *DO NOT MODIFY THIS TOPIC*
 
-This is a normal TWiki topic, but it is also a template file, as described in %SYSTEMWEB%.TWikiTemplates. It contains the template definitions used by the MailInContrib to insert mail messages in topics.
+This is a normal TWiki topic, but it is also a template file, as described in %SYSTEMWEB%.SkinTemplates. It contains the template definitions used by the MailInContrib to insert mail messages in topics.
 
 Each template is specified in the form of a pair of TWiki template definitions, (surrounded by verbatim tags below for readability). The template to use when inserting incoming mail in a topic is decided from the parameters in the =&lt;--MAIL--> comment in the topic. The default template is =normal=.
 

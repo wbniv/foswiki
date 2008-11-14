@@ -2,7 +2,7 @@
 %META:TOPICPARENT{name="SkillsPlugin"}%
 ---++ Display Users Skills On Their Home Pages
 
-This topic will show you how to get the users skills displayed on their home page using the TWikiTemplates system. An example is shown in the screen shot below. This example uses the default PatternSkin, and using an unchanged Main.PatternSkinUserViewTemplate.
+This topic will show you how to get the users skills displayed on their home page using the SkinTemplates system. An example is shown in the screen shot below. This example uses the default PatternSkin, and using an unchanged Main.PatternSkinUserViewTemplate.
 
 <a href="%PUBURLPATH%/%WEB%/SkillsPlugin/skills_screenshot_full.png"><img src="%PUBURLPATH%/%WEB%/SkillsPlugin//skills_screenshot_thumb.png" alt="skills_screenshot_thumb.png" /></a>
 

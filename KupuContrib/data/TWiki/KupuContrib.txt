@@ -28,7 +28,7 @@ The version of Kupu shipped with this plugin is an uncustomised basic Kupu relea
 
 %$INSTALL_INSTRUCTIONS%
 
-Kupu uses a special edit template (see TWiki.TWikiTemplates). 
+Kupu uses a special edit template (see %SYSTEMWEB%.SkinTemplates). 
 
 *Important* Set the name of the skin to use for WYSIWYG editing. This preference can be set in !%USERSWEB%.SitePreferences, !WebPreferences or in individual topics. *If it is not set the editor is disabled*. For example,
 	* <nop>Set WYSWIYGPLUGIN_WYSIWYGSKIN = kupu
