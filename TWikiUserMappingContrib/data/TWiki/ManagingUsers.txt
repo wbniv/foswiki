@@ -12,7 +12,7 @@ configuration.
 ---++ Authentication and Access Control
 
    * TWikiUserAuthentication describes your options for user authentication
-   * TWikiAccessControl describes how to define groups and how to restrict
+   * AccessControl describes how to define groups and how to restrict
      access to content
 
 ---++ Register User

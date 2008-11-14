@@ -173,7 +173,7 @@ Por ejemplo, un formulario sencilla con solamente un campo para un nombre y una 
       * Puede utilizar [[TWiki.FormatTokens][marcas de formato]] %FLAGGB% para evitar que se interpreten otros caracteres.
 *Notas generales:*
    * Cuando se ve un tema, no se leerá la definición correspondiente.
-   * Temas que definan formularios pueden ser protegidos de manera normal, utilizando TWiki.TWikiAccessControl %FLAGGB% para restringir quien puede cambiar la plantilla de un formulario y/o la lista individual de valores. Tome en consideración que se requiere permiso de ver el tema para poder editar los temas que utilizan la definición del formulario, aúnque _no_ se requiere permiso de ver a la definición del formulario para ver un tema donde se utilizó el formulario.
+   * Temas que definan formularios pueden ser protegidos de manera normal, utilizando %SYSTEMWEB%.AccessControl %FLAGGB% para restringir quien puede cambiar la plantilla de un formulario y/o la lista individual de valores. Tome en consideración que se requiere permiso de ver el tema para poder editar los temas que utilizan la definición del formulario, aúnque _no_ se requiere permiso de ver a la definición del formulario para ver un tema donde se utilizó el formulario.
 
 ---+++ Valores en otros temas
 Como se mencionó anteriormente, también puede obtener valores posibles para campos tipo select, checkbox o radio desde otros temas. Por ejemplo, si tiene una línea definida así:

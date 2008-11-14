@@ -327,9 +327,9 @@ should WebTopicList be implementing using %SEARCH% instead?
 
 ---+ seem to be bugs
 
-   * TWiki.ExtendedSelectPlugin renders +option as H1's
+   * %SYSTEMWEB%.ExtendedSelectPlugin renders +option as H1's
 
-   * TWiki/TWikiAccessControl has ^ in table header (that's only without the TablePlugin enabled)
+   * %SYSTEMWEB%.AccessControl has ^ in table header (that's only without the TablePlugin enabled)
 
    * TWikiGroups doesn't seem to be working (eg, showing values from TWikiAdminGroup, but not from BlogAdminGroup and BlogAuthorsGroup)
       * ok, it shows all of the groups now, but doesn't show any of the group members from any of the groups

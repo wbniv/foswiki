@@ -35,7 +35,7 @@ The sort of quizzes we need are simple; multiple choice, or questions answerable
 <input type=button value="Submit Answer" onClick="Submit2()">
 <input type=button value="Show Solutions" onClick="Cheat2()">
 <p />
-=%<nop>QUIZ{"How long is a yard?" type="string" correct="3.5 pints" jump="TWikiAccessControl"}%=
+=%<nop>QUIZ{"How long is a yard?" type="string" correct="3.5 pints" jump="AccessControl"}%=
 <div class='twikiAlert'> Q3: How long is a yard?</div>
 <input type='text' name='field' size='9' maxlength='9'>  <br />
 </td></tr></table><input type=button value="Submit" onClick="Submit3()">

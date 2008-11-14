@@ -40,7 +40,7 @@ __Preferences:__
       * Set NEWTOPICNAME = XXXXXXXXXX
       * would like to use something like IF{"defined AUTOINC1" then="AUTOINC1" else="XXXXXXXXXX"}
 
-	* Users or groups who __are not__ / __are__ allowed to __view__ / __change__ / __rename__ topics in the <nop>%WEB% web: (See %SYSTEMWEB%.TWikiAccessControl)
+	* Users or groups who __are not__ / __are__ allowed to __view__ / __change__ / __rename__ topics in the <nop>%WEB% web: (See %SYSTEMWEB%.AccessControl)
 		* Set DENYWEBVIEW = 
 		* Set ALLOWWEBVIEW = 
 		* Set DENYWEBCHANGE = %MAINWEB%.TWikiGuest
@@ -67,7 +67,7 @@ __Related Topics:__
 	* %SYSTEMWEB%.%WIKIPREFSTOPIC% has site-level preferences.
 	* %MAINWEB%.%WIKIUSERSTOPIC% has a list of user topics. User topics can have optional user preferences.
 	* %SYSTEMWEB%.TWikiVariables has a list of common =%<nop>VARIABLES%=.
-	* %SYSTEMWEB%.TWikiAccessControl explains how to restrict access by users or groups.
+	* %SYSTEMWEB%.AccessControl explains how to restrict access by users or groups.
 
 
 %META:FILEATTACHMENT{name="logo.png" attachment="logo.png" attr="" comment="" date="1127687271" path="logo.png" user="ProjectContributor" version="2"}%

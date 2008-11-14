@@ -154,7 +154,7 @@ By default, the plugin only supports VIEW and CHANGE permissions on webs. You ca
 <verbatim>
 $TWiki::cfg{Plugins}{WebPermissionsPlugin}{modes} = 'VIEW,CHANGE,RENAME';
 </verbatim>
-See %SYSTEMWEB%.TWikiAccessControls for more information on what access modes can be used to control.
+See %SYSTEMWEB%.AccessControl for more information on what access modes can be used to control.
 
 ---++ Plugin Installation Instructions
 

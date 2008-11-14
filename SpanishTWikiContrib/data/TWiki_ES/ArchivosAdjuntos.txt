@@ -43,7 +43,7 @@ Se puede utilizar archivos adjuntos para archivar información o para crear soluc
    * Haga click en el archivo en la [[#FileAttachmentTable][tabla de archivos adjuntos]].
 #AttachmentAccess
 
-   * %X% _NOTA:_ No existe control de acceso para archivos adjuntos individuales. Si necesita controlar el acceso a un archivo individual, cree un tema separado para cada uno de los archivos y configure [[%SYSTEMWEB%.CompleteDocumentation#TWikiAccessControl][restricciones de acceso]] %FLAGGB% para cada una de los temas.
+   * %X% _NOTA:_ No existe control de acceso para archivos adjuntos individuales. Si necesita controlar el acceso a un archivo individual, cree un tema separado para cada uno de los archivos y configure [[%SYSTEMWEB%.CompleteDocumentation#AccessControl][restricciones de acceso]] %FLAGGB% para cada una de los temas.
 
 ---++ Mover archivos adjuntos
 

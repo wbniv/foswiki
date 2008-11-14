@@ -17,7 +17,7 @@
    * [[%SYSTEMWEB%.%WIKIPREFSTOPIC%]] %FLAGGB%, [[%LOCALSITEPREFS%]] %FLAGGB% - preferencias de sitio
    * [[%USERSWEB%.%WIKIUSERSTOPIC%][%WIKIUSERSTOPIC%]] %FLAGGB% - lista de temas de usuario. Temas de usuario pueden contener preferencias personalizadas opcionales
    * [[%SYSTEMWEB%.TWikiVariables][TWikiVariables]] %FLAGGB% - lista de =%<nop>VARIABLES%= comunes
-   * [[%SYSTEMWEB%.TWikiAccessControl][TWikiAccessControl]] %FLAGGB% - le explica como restringir acceso por medio de usuarios o grupos
+   * [[%SYSTEMWEB%.AccessControl][AccessControl]] %FLAGGB% - le explica como restringir acceso por medio de usuarios o grupos
 
 ---++ Herramientas
 %INCLUDE{"%SYSTEMWEB%.RenameWeb"}%
