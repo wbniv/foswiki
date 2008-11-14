@@ -15,7 +15,7 @@
 !include twikiplugins/TablePlugin/lib/TWiki/Plugins/TablePlugin
 !include twikiplugins/TipsContrib/lib/TWiki/Contrib/TipsContrib
 !include twikiplugins/TinyMCEPlugin/lib/TWiki/Plugins/TinyMCEPlugin
-!include twikiplugins/TWikiUserMappingContrib/lib/TWiki/Contrib/TWikiUserMappingContrib
+!include twikiplugins/TopicUserMappingContrib/lib/TWiki/Contrib/TopicUserMappingContrib
 !include twikiplugins/TwistyContrib/lib/TWiki/Contrib/TwistyContrib
 !include twikiplugins/TwistyPlugin/lib/TWiki/Plugins/TwistyPlugin
 !include twikiplugins/WysiwygPlugin/lib/TWiki/Plugins/WysiwygPlugin

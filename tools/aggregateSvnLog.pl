@@ -14,7 +14,7 @@ my %authors = ();
 my %aggregate = ();
 
 #TODO: this will not deal with nested includes
-my @plugins = qw/BehaviourContrib ClassicSkin CommentPlugin EditTablePlugin EmptyPlugin InterwikiPlugin JSCalendarContrib MailerContrib PatternSkin PreferencesPlugin RenderListPlugin SlideShowPlugin SmiliesPlugin SpreadSheetPlugin TablePlugin TipsContrib TinyMCEPlugin TWikiUserMappingContrib TwistyContrib TwistyPlugin WysiwygPlugin/;
+my @plugins = qw/BehaviourContrib ClassicSkin CommentPlugin EditTablePlugin EmptyPlugin InterwikiPlugin JSCalendarContrib MailerContrib PatternSkin PreferencesPlugin RenderListPlugin SlideShowPlugin SmiliesPlugin SpreadSheetPlugin TablePlugin TipsContrib TinyMCEPlugin TopicUserMappingContrib TwistyContrib TwistyPlugin WysiwygPlugin/;
 #add the not released, but required plugins here.
 push @plugins, 'UnitTestContrib';
 
