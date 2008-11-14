@@ -140,9 +140,9 @@ data/TWiki/Plugins.txt 0644
 data/TWiki/PreviewBackground.txt 0644
 data/TWiki/PrintSkin.txt 0644
 data/TWiki/ProjectContributor.txt 0644
+data/TWiki/ProjectLogos.txt 0644
 data/TWiki/QuietSave.txt 0644
 data/TWiki/QuerySearch.txt 0644
-data/TWiki/TWikiReferenceManual.txt 0644
 data/TWiki/RegistrationApprovals.txt 0644
 data/TWiki/RegularExpression.txt 0644
 data/TWiki/ReleaseHistory.txt 0644
@@ -159,10 +159,11 @@ data/TWiki/Skins.txt 0644
 data/TWiki/StandardColors.txt 0644
 data/TWiki/StartingPoints.txt 0644
 data/TWiki/StaticMethod.txt 0644
+data/TWiki/TwentyMinuteTutorial.txt 0644
 data/TWiki/TWikiJavascripts.txt 0644
-data/TWiki/ProjectLogos.txt 0644
 data/TWiki/TWikiMetaData.txt 0644
 data/TWiki/TWikiRenderingShortcut.txt 0644
+data/TWiki/TWikiReferenceManual.txt 0644
 data/TWiki/TWikiScripts.txt 0644
 data/TWiki/TWikiShorthand.txt 0644
 data/TWiki/TWikiSite.txt 0644
@@ -171,10 +172,8 @@ data/TWiki/TWikiSkinBrowser.txt 0644
 data/TWiki/TWikiSystemRequirements.txt 0644
 data/TWiki/TWikiTemplates.txt 0644
 data/TWiki/TWikiTopics.txt 0644
-data/TWiki/TWikiTutorial.txt 0644
 data/TWiki/TWikiUpgradeGuide.txt 0644
 data/TWiki/TWikiUserAuthentication.txt 0644
-data/TWiki/TWikiUsersGuide.txt 0644
 data/TWiki/TWikiVariables.txt 0644
 data/TWiki/TWikiVariablesQuickStart.txt 0644
 data/TWiki/TWikiWebsTable.txt 0644
@@ -185,6 +184,7 @@ data/TWiki/TextFormattingRules.txt 0644
 data/TWiki/TimBernersLee.txt 0644
 data/TWiki/TimeSpecifications.txt 0644
 data/TWiki/UserDocumentationCategory.txt 0644
+data/TWiki/UsersGuide.txt 0644
 data/TWiki/UsingHTML.txt 0644
 data/TWiki/VarACTIVATEDPLUGINS.txt 0644
 data/TWiki/VarALLVARIABLES.txt 0644

@@ -130,6 +130,7 @@ data/TWiki/Plugins.txt 0660
 data/TWiki/PreviewBackground.txt 0660
 data/TWiki/PrintSkin.txt 0660
 data/TWiki/ProjectContributor.txt 0660
+data/TWiki/ProjectLogos.txt 0660
 data/TWiki/QuietSave.txt 0660
 data/TWiki/ReferenceManual.txt 0660
 data/TWiki/RegistrationApprovals.txt 0660
@@ -148,9 +149,9 @@ data/TWiki/Skins.txt 0660
 data/TWiki/StandardColors.txt 0660
 data/TWiki/StartingPoints.txt 0660
 data/TWiki/StaticMethod.txt 0660
+data/TWiki/TwentyMinuteTutorial.txt 0660
 data/TWiki/TWiki.txt 0660
 data/TWiki/TWikiJavascripts.txt 0660
-data/TWiki/ProjectLogos.txt 0660
 data/TWiki/TWikiMetaData.txt 0660
 data/TWiki/TWikiRegistration.txt 0660
 data/TWiki/TWikiScripts.txt 0660
@@ -161,7 +162,6 @@ data/TWiki/TWikiSkinBrowser.txt 0660
 data/TWiki/TWikiSystemRequirements.txt 0660
 data/TWiki/TWikiTemplates.txt 0660
 data/TWiki/TWikiTopics.txt 0660
-data/TWiki/TWikiTutorial.txt 0660
 data/TWiki/TWikiUpgradeGuide.txt 0660
 data/TWiki/TWikiUpgradeTo01Dec2000.txt 0660
 data/TWiki/TWikiUpgradeTo01Dec2001.txt 0660
@@ -169,7 +169,6 @@ data/TWiki/TWikiUpgradeTo01Feb2003.txt 0660
 data/TWiki/TWikiUpgradeTo01May2000.txt 0660
 data/TWiki/TWikiUpgradeToCairo.txt 0660
 data/TWiki/TWikiUserAuthentication.txt 0660
-data/TWiki/TWikiUsersGuide.txt 0660
 data/TWiki/TWikiVariables.txt 0660
 data/TWiki/TWikiVariablesAtoM.txt 0660
 data/TWiki/TWikiVariablesNtoZ.txt 0660
@@ -182,6 +181,7 @@ data/TWiki/TimBernersLee.txt 0660
 data/TWiki/TimeInterval.txt 0660
 data/TWiki/UserDocumentationCategory.txt 0660
 data/TWiki/UserForm.txt 0660
+data/TWiki/UsersGuide.txt 0660
 data/TWiki/UserToolsCategory.txt 0660
 data/TWiki/WabiSabi.txt 0660
 data/TWiki/WebChanges.txt 0660
