@@ -131,7 +131,7 @@ Copy and paste the following section to your %USERSWEB%.SitePreferences topic (o
 ---+++ module-powered-left
 %STARTSECTION{"module-powered-left-three-column"}%%STARTSECTION{"module-powered-left-two-column-left"}%%STARTSECTION{"module-powered-left"}%<div class="module-powered module">
    <div class="module-content">
-      <a href="http://twiki.org"><img src="%PUBURLPATH%/%SYSTEMWEB%/TWikiLogos/T-logo-34x26.png" />TWiki powered</a>
+      <a href="http://twiki.org"><img src="%PUBURLPATH%/%SYSTEMWEB%/ProjectLogos/T-logo-34x26.png" />TWiki powered</a>
 %BR% skin by <a href="http://DistributedINFORMATION.com">Distributed INFORMATION.com</a>
 %BR% [[http://WikiRing.com][a <img src="%PUBURLPATH%/%SYSTEMWEB%/MoveableTypeSkin/wikiringlogo20x20.png" alt="@" width='20' height='20' border='0'  /> WikiRing.com partner]]
    </div>
@@ -140,7 +140,7 @@ Copy and paste the following section to your %USERSWEB%.SitePreferences topic (o
 ---+++ module-powered-right
 %STARTSECTION{"module-powered-right-three-column"}%%STARTSECTION{"module-powered-right-two-column-right"}%%STARTSECTION{"module-powered-right"}%<div class="module-powered module">
    <div class="module-content">
-      <a href="http://twiki.org"><img src="%PUBURLPATH%/%SYSTEMWEB%/TWikiLogos/T-logo-34x26.png" />TWiki powered</a>
+      <a href="http://twiki.org"><img src="%PUBURLPATH%/%SYSTEMWEB%/ProjectLogos/T-logo-34x26.png" />TWiki powered</a>
  skin by <a href="http://DistributedINFORMATION.com">Distributed INFORMATION.com</a>
  [[http://WikiRing.com][a <img src="%PUBURLPATH%/%SYSTEMWEB%/MoveableTypeSkin/wikiringlogo20x20.png" alt="@" width='20' height='20' border='0'  /> WikiRing.com partner]]
    </div>

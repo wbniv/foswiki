@@ -9,7 +9,7 @@ This page serves as the title page for documents created with %SYSTEMWEB%.GenPDF
 
 There is currently no =%<nop>ATTACHURL{topic="%<nop>WEB%.TopicName"}%= so you must expand the full path to attachments like this:
 
-=%<nop>PUBURL%/%<nop>WEB%/TWikiLogos/twikiRobot81x119.gif=
+=%<nop>PUBURL%/%<nop>WEB%/ProjectLogos/twikiRobot81x119.gif=
 
 Also, htmldoc must be able to download it so be sure to use =%<nop>PUBURL%= not =%<nop>PUBURLPATH%=
 <!-- %PDFBANNER% -->
@@ -20,8 +20,8 @@ Also, htmldoc must be able to download it so be sure to use =%<nop>PUBURL%= not 
 &nbsp;%BR%
 &nbsp;%BR%
 &nbsp;%BR%</p>
-<img src="%PUBURL%/%WEB%/TWikiLogos/twikiRobot121x54a.gif" alt="Powered by TWiki" width="121" height="54" align="left" />
-<img src="%PUBURL%/%WEB%/TWikiLogos/twikiRobot81x119.gif" alt="Powered by TWiki" width="81" height="119" align="right" />%BR%
+<img src="%PUBURL%/%WEB%/ProjectLogos/twikiRobot121x54a.gif" alt="Powered by TWiki" width="121" height="54" align="left" />
+<img src="%PUBURL%/%WEB%/ProjectLogos/twikiRobot81x119.gif" alt="Powered by TWiki" width="81" height="119" align="right" />%BR%
 &nbsp;%BR%
 &nbsp;%BR%
 &nbsp;%BR%

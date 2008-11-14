@@ -51,9 +51,9 @@ This topic includes the following settings:
 &nbsp;<br/>
 &nbsp;<br/>
 &nbsp;<br/></p>
-<img src="%PUBURL%/%WEB%/TWikiLogos/twikiRobot121x54a.gif"
+<img src="%PUBURL%/%WEB%/ProjectLogos/twikiRobot121x54a.gif"
 alt="Powered by TWiki" width="121" height="54" align="left" />
-<img src="%PUBURL%/%WEB%/TWikiLogos/twikiRobot81x119.gif"
+<img src="%PUBURL%/%WEB%/ProjectLogos/twikiRobot81x119.gif"
 alt="Powered by TWiki" width="81" height="119" align="right" /><br/>
 &nbsp;<br/>
 &nbsp;<br/>
@@ -119,7 +119,7 @@ Generated: %DISPLAYTIME%
 		* Set GENPDFADDON_TITLETOPIC = TWiki.GenPDFExampleTitleTopic
 		* Set GENPDFADDON_HEADERTOPIC = TWiki.GenPDFExampleHeaderFooterTopic
 		* Set GENPDFADDON_HEADFOOTFONT = helvetica-bold
-		* Set GENPDFADDON_LOGOIMAGE = http://localhost/twiki/pub/TWiki/TWikiLogos/twikiRobot46x50.gif
+		* Set GENPDFADDON_LOGOIMAGE = http://localhost/twiki/pub/TWiki/ProjectLogos/twikiRobot46x50.gif
 		* Set GENPDFADDON_FORMAT = pdf14
 		* Set GENPDFADDON_PERMISSIONS = print,no-copy
 		* Set GENPDFADDON_ORIENTATION = portrait

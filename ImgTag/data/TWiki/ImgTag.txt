@@ -35,7 +35,7 @@ Another small step in the eradication of html in TWiki!
 ---++ Tag Installation Instructions
 
 If this tag is successfully installed and enabled, you'll see an image here:
-%IMG{web="TWiki" topic="TWikiLogos" "T-logo-80x15.gif" caption="Look! An image!"}%
+%IMG{web="TWiki" topic="ProjectLogos" "T-logo-80x15.gif" caption="Look! An image!"}%
 
 
 ---++ Plugin Info

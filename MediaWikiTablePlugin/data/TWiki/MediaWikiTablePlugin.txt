@@ -776,8 +776,8 @@ right side
 {| border="0"
 |+''A table in a table''
 |-
-| align="center" width="150px" | <img src="%PUBURLPATH%/%SYSTEMWEB%/TWikiLogos/T-logo-65x50-t.gif" alt="TWiki" />
-| align="center" width="150px" | <img src="%PUBURLPATH%/%SYSTEMWEB%/TWikiLogos/T-logo-65x50-t.gif" alt="TWiki" />
+| align="center" width="150px" | <img src="%PUBURLPATH%/%SYSTEMWEB%/ProjectLogos/T-logo-65x50-t.gif" alt="TWiki" />
+| align="center" width="150px" | <img src="%PUBURLPATH%/%SYSTEMWEB%/ProjectLogos/T-logo-65x50-t.gif" alt="TWiki" />
 |-
 | align="center" colspan="2" style="border-top:1px solid red; border-right:1px solid red; border-bottom:2px solid red; border-left:1px solid red;" | Two logos
 |}

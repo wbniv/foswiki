@@ -668,7 +668,7 @@ sub test_param_format_PNG_imgWidth_and_imgHeight {
     my $format    = "\$imgWidth x \$imgHeight";
 
     my $source =
-"%ATTACHMENTLIST{topic=\"TWikiLogos\" web=\"%SYSTEMWEB%\" format=\"$format\" file=\"T-logo-140x40.png\" separator=\",\"}%";
+"%ATTACHMENTLIST{topic=\"ProjectLogos\" web=\"%SYSTEMWEB%\" format=\"$format\" file=\"T-logo-140x40.png\" separator=\",\"}%";
 
     my $expected = '140 x 40';
 

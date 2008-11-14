@@ -141,8 +141,8 @@ Para ubicar una imagen en cualquier página, hay dos formas de incluir las imágen
 
 Esta es una manera simple y automática de incluir imágenes. Simplemente escriba la dirección URL del archivo de la imagen, esto le creará la imagen en la página. __NOTA:__ La imagen tiene que ser [[#ImgUpload][accessible]] como URL.
 
-   * __Digite:__ <code> %<nop>PUBURL%/%SYSTEMWEB%/TWikiLogos/T-logo-80x15.gif logo.</code> <br />
-     __Resultado:__ %PUBURL%/%SYSTEMWEB%/TWikiLogos/T-logo-80x15.gif logo.
+   * __Digite:__ <code> %<nop>PUBURL%/%SYSTEMWEB%/ProjectLogos/T-logo-80x15.gif logo.</code> <br />
+     __Resultado:__ %PUBURL%/%SYSTEMWEB%/ProjectLogos/T-logo-80x15.gif logo.
 
 #ImgUpload
 Puede subir imágenes directamente a su servidor por medio de acceso FTP. También puede [[ArchivosAdjuntos][adjuntar]] archivos de imagen a su página - aún podría crear una página que contiene únicamente imágenes, como =BibliotecaDeImágenes= y generar enlaces directamente a esta página:
@@ -153,8 +153,8 @@ Puede subir imágenes directamente a su servidor por medio de acceso FTP. También
 
 Esto es un proceso manual donde tiene más control sobre como se muestra la imagen. Utilice el comando HTML &lt;img&gt; para incluir archivos GIF, JPG y PNG. __Nota:__ El proceso de mostrar la página es más rápido si incluye los parámetros =width= y =height= que contiene el tamaño actual de la imagen. http://www.htmlhelp.com/reference/wilbur/special/img.html contiene más detalles acerca imágenes.
 
-   * __Digite:__ <code> &lt;img src="%<nop>PUBURLPATH%/%SYSTEMWEB%/TWikiLogos/T-logo-80x15.gif" width="80" height="15" border="0" alt="logo" /&gt; logo.</code><br />
-    __Resultado:__ <br /> <img src="%PUBURLPATH%/%SYSTEMWEB%/TWikiLogos/T-logo-80x15.gif" width="80" height="15" border="0" alt="logo" /> logo.
+   * __Digite:__ <code> &lt;img src="%<nop>PUBURLPATH%/%SYSTEMWEB%/ProjectLogos/T-logo-80x15.gif" width="80" height="15" border="0" alt="logo" /&gt; logo.</code><br />
+    __Resultado:__ <br /> <img src="%PUBURLPATH%/%SYSTEMWEB%/ProjectLogos/T-logo-80x15.gif" width="80" height="15" border="0" alt="logo" /> logo.
 
 -----
 ---+++ Puede escribir texto coloreado?

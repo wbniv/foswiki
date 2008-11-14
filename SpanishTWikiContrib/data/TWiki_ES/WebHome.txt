@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="BaseUserMapping_111" date="1216579781" format="1.1" reprev="1.14" version="1.14"}%
 %INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
 
-<a href="http://twiki.org"><img width="235" alt="Colabore con TWiki -- visite TWiki.org" src="/twiki/pub/%SYSTEMWEB%/TWikiLogos/T-logo-235x67-t.gif" style="margin: 0.3em 0pt" title="Colabore con TWiki -- visite TWiki.org" height="67" border="0" /></a> <br />El sitio oficial de TWiki es <a href="http://twiki.org">twiki.org</a>
+<a href="http://twiki.org"><img width="235" alt="Colabore con TWiki -- visite TWiki.org" src="/twiki/pub/%SYSTEMWEB%/ProjectLogos/T-logo-235x67-t.gif" style="margin: 0.3em 0pt" title="Colabore con TWiki -- visite TWiki.org" height="67" border="0" /></a> <br />El sitio oficial de TWiki es <a href="http://twiki.org">twiki.org</a>
 
 ---+!! Benvenid@ a la Web <nop>%WEB%
 
@@ -35,7 +35,7 @@ TWiki es una plataforma de colaboración flexible, poderosa, segura y aún simple 
  </form>
 
 ---++ Aviso legal
-   * TWiki&trade;, el [[TWiki.TWikiLogos][logo TWiki]] y la línea "Collaborate with TWiki" son marcas registradas de [[http://twiki.org/cgi-bin/view/Main/PeterThoeny][Peter Thoeny]]
+   * TWiki&trade;, el [[TWiki.ProjectLogos][logo TWiki]] y la línea "Collaborate with TWiki" son marcas registradas de [[http://twiki.org/cgi-bin/view/Main/PeterThoeny][Peter Thoeny]]
    * __Nota__: Twiki (con la "w" en minúscula) es el caracter de un robot de la serie de televisión _Buck Rogers&trade; in the 25th Century_. TWiki (con la "W" en mayúscula) no es afiliado con Dille Family Trust, el propietario de la marca registrada del nombre _Buck Rogers_
    * TWiki se desarrolla como Software Libre bajo la [[TWiki.GnuGeneralPublicLicense][GNU/GPL]] %FLAGGB%
    * Obtenga la última versión de [[http://TWiki.org/download.html][TWiki.org downloads]]
