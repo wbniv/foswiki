@@ -212,7 +212,9 @@ sub uninstall {
     my $path = '';
     foreach my $c ( @components ) {
         if( -l "$path$c" ) {
-            return unless _checkLink($moduleDir, $path, $c) || $force;
+	    if (!$force) {
+               	return if (!_checkLink($moduleDir, $path, $c));
+	    }
             unlink "$path$c";
             print "Unlinked $path$c\n";
             return;
