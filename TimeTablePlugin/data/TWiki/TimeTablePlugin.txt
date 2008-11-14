@@ -280,9 +280,9 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Plugin Author: | TWiki:Main.DanielRohde |
 |  Copyright: | &copy; 2006, TWiki:Main.DanielRohde |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  Plugin Version: | V1.016 (BETA) |
+|  Plugin Version: | V1.016 (14 Nov 2008) |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
-|  V1.016 (BETA) | TWiki:Main.DanielRohde: added overflow:auto style; fixed unknownparamsmsg bug; |
+|  V1.016 (14 Nov 2008) | TWiki:Main.DanielRohde: added overflow:auto style; fixed unknownparamsmsg bug; |
 |  V1.015 (29 Jul 2008) | TWiki:Main.DanielRohde: fixed rotated table bugs (tooltips, showweekend="off") |
 |  V1.014 (10 Jul 2008) | TWiki:Main.DanielRohde: added documentation requested by TWiki:Main.PeterThoeny; added rotated table feature requested by TWiki:Main.VickiBrown; fixed doc bug reported by TWiki:Main.JoeGainey |
 |  V1.013 (24 May 2007) | TWiki:Main.DanielRohde: fixed major time parsing bug reported by TWiki:Main.LarsEik; fixed major bug: events with a time range before start time should not be displayed; fixed major TTCM bug reported by TWiki:Main.ArthurClemens; added URL parameter feature; added new attributes (textwrapper, tableborder, tablewidth, tablecell...); added browser based text wrapping feature requested by TWiki:Main.ArthurClemens |
