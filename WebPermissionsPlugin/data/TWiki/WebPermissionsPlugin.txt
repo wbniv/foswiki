@@ -89,7 +89,7 @@ The plugin tries very hard to keep the permissions specification you started wit
 					 <optgroup label="Groups">
                         <option>NobodyGroup</option>					 
 					 </optgroup><optgroup label="Users">
-                        <option>TWikiRegistrationAgent</option><option>UnknownUser</option>
+                        <option>RegistrationAgent</option><option>UnknownUser</option>
 				</optgroup></select></td>
 	 </tr><tr height="10">
 	 </tr><tr>

@@ -87,7 +87,7 @@ sub setup_new_session() {
 sub set_up_user {
     my $this = shift;
 
-    my $agent = 'TWikiRegistrationAgent';
+    my $agent = 'RegistrationAgent';
     my $userLogin;
     my $userWikiName;
     my $user_id;
@@ -257,19 +257,19 @@ sub verify_BaseMapping_handleUser {
 	$this->assert($basemapping->handlesUser(undef, $TWiki::cfg{DefaultUserLogin}));
 	$this->assert($basemapping->handlesUser(undef, 'unknown'));
 	$this->assert($basemapping->handlesUser(undef, 'ProjectContributor'));
-	$this->assert($basemapping->handlesUser(undef, 'TWikiRegistrationAgent'));
+	$this->assert($basemapping->handlesUser(undef, 'RegistrationAgent'));
 	
 	$this->assert($basemapping->handlesUser(undef, undef, $TWiki::cfg{AdminUserWikiName}));
 	$this->assert($basemapping->handlesUser(undef, undef, $TWiki::cfg{DefaultUserWikiName}));
 	$this->assert($basemapping->handlesUser(undef, undef, 'UnknownUser'));
 	$this->assert($basemapping->handlesUser(undef, undef, 'ProjectContributor'));
-	$this->assert($basemapping->handlesUser(undef, undef, 'TWikiRegistrationAgent'));
+	$this->assert($basemapping->handlesUser(undef, undef, 'RegistrationAgent'));
 	
 	$this->assert($basemapping->handlesUser(undef, $TWiki::cfg{AdminUserLogin}, $TWiki::cfg{AdminUserWikiName}));
 	$this->assert($basemapping->handlesUser(undef, $TWiki::cfg{DefaultUserLogin}, $TWiki::cfg{DefaultUserWikiName}));
 	$this->assert($basemapping->handlesUser(undef, 'unknown', 'UnknownUser'));
 	$this->assert($basemapping->handlesUser(undef, 'ProjectContributor', 'ProjectContributor'));
-	$this->assert($basemapping->handlesUser(undef, 'TWikiRegistrationAgent', 'TWikiRegistrationAgent'));
+	$this->assert($basemapping->handlesUser(undef, 'RegistrationAgent', 'RegistrationAgent'));
 
 #TODO: work out what we'd like to have happen with bad combinations
 	

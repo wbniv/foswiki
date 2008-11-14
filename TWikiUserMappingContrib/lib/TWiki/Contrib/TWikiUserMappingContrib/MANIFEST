@@ -4,7 +4,7 @@ lib/TWiki/Contrib/TWikiUserMappingContrib.pm 0444 Perl module
 lib/TWiki/Users/TWikiUserMapping.pm 0444 Perl module
 
 # Topic based Usermapping topics
-data/Main/TWikiRegistrationAgent.txt 0644
+data/Main/RegistrationAgent.txt 0644
 data/Main/UserListByPhotograph.txt 0644
 data/Main/UserListHeader.txt 0644
 data/Main/NobodyGroup.txt 0644

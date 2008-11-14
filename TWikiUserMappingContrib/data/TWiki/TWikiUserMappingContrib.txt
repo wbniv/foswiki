@@ -19,7 +19,7 @@ It includes the topics that are used when registering and managing users and gro
 
 it includes:
    * Registration and user management topics
-      * TWiki.TWikiRegistration
+      * TWiki.ikiRegistration
       * TWiki.ResetPassword
       * TWiki.ChangePassword           
       * TWiki.ChangeEmailAddress       
@@ -32,7 +32,7 @@ it includes:
    * default groups and user
       * Main.NobodyGroup
       * Main.TWikiAdminGroup
-      * Main.TWikiRegistrationAgent    
+      * Main.RegistrationAgent    
    * User lists
       * Main.UserList                  
       * Main.UserListHeader            

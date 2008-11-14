@@ -380,7 +380,7 @@ Maximum size of the result set that the server can return; set it to
 <verbatim>$TWiki::cfg{Ldap}{PageSize} = 500; </verbatim>
 
 Prevent certain names from being looked up in LDAP:
-<verbatim>$TWiki::cfg{Ldap}{Exclude} = 'TWikiGuest, ProjectContributor, TWikiRegistrationAgent, TWikiAdminGroup, NobodyGroup'; </verbatim>
+<verbatim>$TWiki::cfg{Ldap}{Exclude} = 'TWikiGuest, ProjectContributor, RegistrationAgent, TWikiAdminGroup, NobodyGroup'; </verbatim>
 
 ---++ Updating the LDAP cache using a cronjob
 In some environments, updating the internal LDAP cache of the <nop>LdapContrib might
@@ -483,7 +483,7 @@ that the <nop>LdapContrib will force an update of the cache data.
                   fixed usage of =limit= argument; \
                   renamed configuration option "<nop>WikiNameRemoveWhiteSpace" to "<nop>NormalizeWikiName"; \
                   support for large databases using paged LDAP search results; \
-                  new configuration option "Exclude" to exclude standard TWiki user accounts, e.g. <nop>TWikiRegistrationAgent, \
+                  new configuration option "Exclude" to exclude standard TWiki user accounts, e.g. <nop>RegistrationAgent, \
                   from being looked up in LDAP; \
                   added support for faster API implementing =isMemberOf=;\
                   added Config.spec file to integrate the <nop>LadpContrib into Twiki's "configure" tool; \
