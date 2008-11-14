@@ -23,15 +23,12 @@ some text that is there.
 THIS
 
 sub new {
-    my $self = shift()->SUPER::new('TWikiuserMappingContribTests', @_);
+    my $self = shift()->SUPER::new( 'TWikiuserMappingContribTests', @_ );
     return $self;
 }
 
 sub fixture_groups {
-    return ( [ 
-        'NormalTWikiUserMapping',
-        'NamedTWikiUserMapping',
-       ] );
+    return ( [ 'NormalTWikiUserMapping', 'NamedTWikiUserMapping', ] );
 }
 
 sub NormalTWikiUserMapping {
@@ -42,6 +39,7 @@ sub NormalTWikiUserMapping {
 
 sub NamedTWikiUserMapping {
     my $this = shift;
+
     # Set a mapping ID for purposes of testing named mappings
     $TWiki::Users::TWikiUserMapping::TWIKI_USER_MAPPING_ID = 'TestMapping_';
     $this->set_up_for_verify();
@@ -58,25 +56,27 @@ sub set_up_for_verify {
 
     $this->SUPER::set_up();
 
-    $this->assert($TWiki::cfg{StoreImpl} =~ /^Rcs/,
-                  "Test does not run with non-RCS store");
+    $this->assert(
+        $TWiki::cfg{StoreImpl} =~ /^Rcs/,
+        "Test does not run with non-RCS store"
+    );
 
-    #default settings	
-    $TWiki::cfg{LoginManager} = 'TWiki::LoginManager::TemplateLogin';
+    #default settings
+    $TWiki::cfg{LoginManager}       = 'TWiki::LoginManager::TemplateLogin';
     $TWiki::cfg{UserMappingManager} = 'TWiki::Users::TWikiUserMapping';
-    $TWiki::cfg{UseClientSessions} = 1;
-    $TWiki::cfg{PasswordManager} = "TWiki::Users::HtPasswdUser";
+    $TWiki::cfg{UseClientSessions}  = 1;
+    $TWiki::cfg{PasswordManager}    = "TWiki::Users::HtPasswdUser";
     $TWiki::cfg{Register}{EnableNewUserRegistration} = 1;
-    $TWiki::cfg{Register}{AllowLoginName} = 0;
-    $TWiki::cfg{DisplayTimeValues} = 'gmtime';
+    $TWiki::cfg{Register}{AllowLoginName}            = 0;
+    $TWiki::cfg{DisplayTimeValues}                   = 'gmtime';
 }
 
 sub setup_new_session() {
     my $this = shift;
-	
-	my ( $query, $text );
-    $query = new Unit::Request ({});
-    $query->path_info( "/Main/WebHome" );
+
+    my ( $query, $text );
+    $query = new Unit::Request( {} );
+    $query->path_info("/Main/WebHome");
     $ENV{SCRIPT_NAME} = "view";
 
     # close this TWiki session - its using the wrong mapper and login
@@ -92,25 +92,28 @@ sub set_up_user {
     my $userWikiName;
     my $user_id;
 
-    if ($this->{twiki}->{users}->supportsRegistration()) {
+    if ( $this->{twiki}->{users}->supportsRegistration() ) {
         $userWikiName = 'JoeDoe';
-        $userLogin = $userWikiName;
-        $userLogin = 'joe' if ($TWiki::cfg{Register}{AllowLoginName});
-	    $user_id = $this->{twiki}->{users}->addUser(
-            $userLogin, $userWikiName, 'secrect_password',
-            'email@home.org.au');
-	    $this->annotate("create $userLogin user - cUID = $user_id , login $userLogin , wikiname: $userWikiName\n");
-    } else {
-        $userLogin = $TWiki::cfg{AdminUserLogin};
-        $user_id = $this->{twiki}->{users}->getCanonicalUserID($userLogin);
-        $userWikiName = $this->{twiki}->{users}->getWikiName($user_id);
-	    $this->annotate("no rego support (using admin)\n");
+        $userLogin    = $userWikiName;
+        $userLogin    = 'joe' if ( $TWiki::cfg{Register}{AllowLoginName} );
+        $user_id =
+          $this->{twiki}->{users}
+          ->addUser( $userLogin, $userWikiName, 'secrect_password',
+            'email@home.org.au' );
+        $this->annotate(
+"create $userLogin user - cUID = $user_id , login $userLogin , wikiname: $userWikiName\n"
+        );
     }
-    $this->{userLogin} = $userLogin;
+    else {
+        $userLogin    = $TWiki::cfg{AdminUserLogin};
+        $user_id      = $this->{twiki}->{users}->getCanonicalUserID($userLogin);
+        $userWikiName = $this->{twiki}->{users}->getWikiName($user_id);
+        $this->annotate("no rego support (using admin)\n");
+    }
+    $this->{userLogin}    = $userLogin;
     $this->{userWikiName} = $userWikiName;
-    $this->{user_id} = $user_id;
+    $this->{user_id}      = $user_id;
 }
-
 
 #TODO: add tests for when you're not using TWikiUserMapping at all...
 #New 4.2 cUID based topics
@@ -118,7 +121,8 @@ sub verify_WikiNameTWikiUserMapping {
     my $this = shift;
     $this->setup_new_session();
     $this->set_up_user();
-  	$this->std_tests($this->{user_id}, $this->{twiki}->{users}->webDotWikiName($this->{user_id}));
+    $this->std_tests( $this->{user_id},
+        $this->{twiki}->{users}->webDotWikiName( $this->{user_id} ) );
 }
 
 sub verify_LoginNameTWikiUserMapping {
@@ -126,7 +130,8 @@ sub verify_LoginNameTWikiUserMapping {
     $TWiki::cfg{Register}{AllowLoginName} = 1;
     $this->setup_new_session();
     $this->set_up_user();
-  	$this->std_tests($this->{user_id}, $this->{twiki}->{users}->webDotWikiName($this->{user_id}));
+    $this->std_tests( $this->{user_id},
+        $this->{twiki}->{users}->webDotWikiName( $this->{user_id} ) );
 }
 
 #legacy topic forms
@@ -135,7 +140,8 @@ sub verify_valid_login_no_Mapper_in_cUID {
     $TWiki::cfg{Register}{AllowLoginName} = 1;
     $this->setup_new_session();
     $this->set_up_user();
-  	$this->std_tests($this->{userLogin}, $this->{twiki}->{users}->webDotWikiName($this->{user_id}));
+    $this->std_tests( $this->{userLogin},
+        $this->{twiki}->{users}->webDotWikiName( $this->{user_id} ) );
 }
 
 sub verify_valid_wikiname_no_Mapper_in_cUID {
@@ -143,7 +149,8 @@ sub verify_valid_wikiname_no_Mapper_in_cUID {
     $TWiki::cfg{Register}{AllowLoginName} = 1;
     $this->setup_new_session();
     $this->set_up_user();
-  	$this->std_tests($this->{userWikiName}, $this->{twiki}->{users}->webDotWikiName($this->{user_id}));
+    $this->std_tests( $this->{userWikiName},
+        $this->{twiki}->{users}->webDotWikiName( $this->{user_id} ) );
 }
 
 sub verify_web_and_wikiname_no_Mapper_in_cUID {
@@ -151,72 +158,93 @@ sub verify_web_and_wikiname_no_Mapper_in_cUID {
     $TWiki::cfg{Register}{AllowLoginName} = 1;
     $this->setup_new_session();
     $this->set_up_user();
-  	$this->std_tests($this->{twiki}->{users}->webDotWikiName($this->{user_id}), $this->{twiki}->{users}->webDotWikiName($this->{user_id}));
+    $this->std_tests(
+        $this->{twiki}->{users}->webDotWikiName( $this->{user_id} ),
+        $this->{twiki}->{users}->webDotWikiName( $this->{user_id} )
+    );
 }
 
 sub verify_valid_login_no_Mapper_in_cUID_NOAllowLoginName {
     my $this = shift;
+
     #$TWiki::cfg{Register}{AllowLoginName} = 1;
     $this->setup_new_session();
     $this->set_up_user();
-  	$this->std_tests($this->{userLogin}, $this->{twiki}->{users}->webDotWikiName($this->{user_id}));
+    $this->std_tests( $this->{userLogin},
+        $this->{twiki}->{users}->webDotWikiName( $this->{user_id} ) );
 }
 
 sub verify_valid_wikiname_no_Mapper_in_cUID_NOAllowLoginName {
     my $this = shift;
+
     #$TWiki::cfg{Register}{AllowLoginName} = 1;
     $this->setup_new_session();
     $this->set_up_user();
-  	$this->std_tests($this->{userWikiName}, $this->{twiki}->{users}->webDotWikiName($this->{user_id}));
+    $this->std_tests( $this->{userWikiName},
+        $this->{twiki}->{users}->webDotWikiName( $this->{user_id} ) );
 }
 
 sub verify_web_and_wikiname_no_Mapper_in_cUID_NOAllowLoginName {
     my $this = shift;
+
     #$TWiki::cfg{Register}{AllowLoginName} = 1;
     $this->setup_new_session();
     $this->set_up_user();
-  	$this->std_tests($this->{twiki}->{users}->webDotWikiName($this->{user_id}), $this->{twiki}->{users}->webDotWikiName($this->{user_id}));
+    $this->std_tests(
+        $this->{twiki}->{users}->webDotWikiName( $this->{user_id} ),
+        $this->{twiki}->{users}->webDotWikiName( $this->{user_id} )
+    );
 }
 
 #error and fallback tests
 sub TODOtest_non_existantIser {
     my $this = shift;
+
     #$TWiki::cfg{Register}{AllowLoginName} = 1;
     $this->setup_new_session();
     $this->set_up_user();
-  	$this->std_tests('nonexistantUser', $this->{users_web}.'.UnknownUser');
+    $this->std_tests( 'nonexistantUser', $this->{users_web} . '.UnknownUser' );
 }
 
 sub std_tests {
-    my ($this, $serializedName, $displayedName) = @_;
-    $this->annotate("topic contains: $serializedName, rendered : $displayedName\n");
-	
-	my $CuidWithMappers = $TopicTemplate;
-	$CuidWithMappers =~ s/UUUUUUUUUU/$serializedName/e;
+    my ( $this, $serializedName, $displayedName ) = @_;
+    $this->annotate(
+        "topic contains: $serializedName, rendered : $displayedName\n");
 
-	$this->assert_not_null($this->{twiki}->{user});
-	$this->{twiki}->{store}->saveTopic($this->{twiki}->{user}, $this->{test_web}, 'CuidWithMappers', $CuidWithMappers);
-#test that all 4 raw internal values are ok cUIDs
-	my ( $date, $user, $rev, $comment ) = $this->{twiki}->{store}->getRevisionInfo($this->{test_web}, 'CuidWithMappers');
-	$this->assert_not_null($user);
+    my $CuidWithMappers = $TopicTemplate;
+    $CuidWithMappers =~ s/UUUUUUUUUU/$serializedName/e;
 
-    my ($meta, $text) = $this->{twiki}->{store}->readTopic($this->{twiki}->{user}, $this->{test_web}, 'CuidWithMappers');
+    $this->assert_not_null( $this->{twiki}->{user} );
+    $this->{twiki}->{store}->saveTopic(
+        $this->{twiki}->{user}, $this->{test_web},
+        'CuidWithMappers',      $CuidWithMappers
+    );
 
-    my $topicinfo = $meta->get( 'TOPICINFO');
-	$this->assert_not_null($topicinfo->{author});
-	$this->assert_str_equals('BaseUserMapping_666', $topicinfo->{author});#render the topic, make sure we're seeing NO cUIDs, and WikiNames for all known users
-	#parse meta output
-    $this->assert( $meta->count( "FILEATTACHMENT" ) == 1, "Should be one item" );
+    #test that all 4 raw internal values are ok cUIDs
+    my ( $date, $user, $rev, $comment ) =
+      $this->{twiki}->{store}
+      ->getRevisionInfo( $this->{test_web}, 'CuidWithMappers' );
+    $this->assert_not_null($user);
 
-    my $file1 = $meta->get( 'FILEATTACHMENT');
-	$this->assert_not_null($file1->{'user'});
-	$this->assert_str_equals('home.org.au.png', $file1->{'name'});
+    my ( $meta, $text ) =
+      $this->{twiki}->{store}->readTopic( $this->{twiki}->{user},
+        $this->{test_web}, 'CuidWithMappers' );
 
+    my $topicinfo = $meta->get('TOPICINFO');
+    $this->assert_not_null( $topicinfo->{author} );
+    $this->assert_str_equals( 'BaseUserMapping_666', $topicinfo->{author} )
+      ; #render the topic, make sure we're seeing NO cUIDs, and WikiNames for all known users
+        #parse meta output
+    $this->assert( $meta->count("FILEATTACHMENT") == 1, "Should be one item" );
 
-	my @attachments = $meta->find( 'FILEATTACHMENT' );
-    foreach my $attachment ( @attachments ) {
-      	$this->annotate("FILEATTACHMENT user = ".$attachment->{'user'});
-		$this->assert_not_null($attachment->{'user'});
+    my $file1 = $meta->get('FILEATTACHMENT');
+    $this->assert_not_null( $file1->{'user'} );
+    $this->assert_str_equals( 'home.org.au.png', $file1->{'name'} );
+
+    my @attachments = $meta->find('FILEATTACHMENT');
+    foreach my $attachment (@attachments) {
+        $this->annotate( "FILEATTACHMENT user = " . $attachment->{'user'} );
+        $this->assert_not_null( $attachment->{'user'} );
     }
 
     #test func outputs
@@ -226,54 +254,87 @@ sub std_tests {
 
     #render attahcment tables, and rev history of attachment tables,
     #all must be wikiname
-	my $renderedMeta = $this ->{twiki}->attach->renderMetaData ( $this->{test_web}, 'CuidWithMappers' , 
-				$meta, {template=>'attachtables.tmpl'} );
-	$this->assert_not_null($renderedMeta);
-	#TODO: redo this with custom tmpl and check each username
-my $output = <<'THIS';
+    my $renderedMeta =
+      $this->{twiki}
+      ->attach->renderMetaData( $this->{test_web}, 'CuidWithMappers', $meta,
+        { template => 'attachtables.tmpl' } );
+    $this->assert_not_null($renderedMeta);
+
+    #TODO: redo this with custom tmpl and check each username
+    my $output = <<'THIS';
 <div class="twikiAttachments">
 | *I* | *%MAKETEXT{"Attachment"}%* | *%MAKETEXT{"Action"}%* | *%MAKETEXT{"Size"}%* | *%MAKETEXT{"Date"}%* | *%MAKETEXT{"Who"}%* | *%MAKETEXT{"Comment"}%* |
 | <img width="16" alt="png" align="top" src="%PUBURLPATH%/TWiki/DocumentGraphics/png.gif" height="16" border="0" /><span class="twikiHidden">png</span> | <a href="%ATTACHURLPATH%/%ENCODE{home.org.au.png}%">home.org.au.png</a> | <a href="%SCRIPTURLPATH{"attach"}%/%WEB%/%TOPIC%?filename=%ENCODE{"home.org.au.png"}%;revInfo=1" title="%MAKETEXT{"change, update, previous revisions, move, delete..."}%" rel="nofollow">%MAKETEXT{"manage"}%</a> |  4.1&nbsp;K|<span class="twikiNoBreak">31 May 2007 - 21:58</span> |TemporaryTWikiuserMappingContribTestsUsersWeb.JoeDoe  |&nbsp;  |
 </div>
 THIS
-	$output =~ s/UUUUUUUUUU/$displayedName/e;
+    $output =~ s/UUUUUUUUUU/$displayedName/e;
     $output =~ s/%PUBURLPATH%/$TWiki::cfg{PubUrlPath}/e;
     $output =~ s/%EXPANDEDPUBURL%/$TWiki::cfg{PubUrlPath}/e;
-	$this->assert_str_equals($output, $renderedMeta."\n");
+    $this->assert_str_equals( $output, $renderedMeta . "\n" );
 
-    
-#see if leases and locks have similar issues
+    #see if leases and locks have similar issues
 }
 
 ###########################################
 sub verify_BaseMapping_handleUser {
-	my $this = shift;
-	my $basemapping = $this->{twiki}->{users}->{basemapping};
-	
-	#ObjectMethod handlesUser ( $cUID, $login, $wikiname) 
-	$this->assert(! $basemapping->handlesUser());
+    my $this        = shift;
+    my $basemapping = $this->{twiki}->{users}->{basemapping};
 
-	$this->assert($basemapping->handlesUser(undef, $TWiki::cfg{AdminUserLogin}));
-	$this->assert($basemapping->handlesUser(undef, $TWiki::cfg{DefaultUserLogin}));
-	$this->assert($basemapping->handlesUser(undef, 'unknown'));
-	$this->assert($basemapping->handlesUser(undef, 'ProjectContributor'));
-	$this->assert($basemapping->handlesUser(undef, 'RegistrationAgent'));
-	
-	$this->assert($basemapping->handlesUser(undef, undef, $TWiki::cfg{AdminUserWikiName}));
-	$this->assert($basemapping->handlesUser(undef, undef, $TWiki::cfg{DefaultUserWikiName}));
-	$this->assert($basemapping->handlesUser(undef, undef, 'UnknownUser'));
-	$this->assert($basemapping->handlesUser(undef, undef, 'ProjectContributor'));
-	$this->assert($basemapping->handlesUser(undef, undef, 'RegistrationAgent'));
-	
-	$this->assert($basemapping->handlesUser(undef, $TWiki::cfg{AdminUserLogin}, $TWiki::cfg{AdminUserWikiName}));
-	$this->assert($basemapping->handlesUser(undef, $TWiki::cfg{DefaultUserLogin}, $TWiki::cfg{DefaultUserWikiName}));
-	$this->assert($basemapping->handlesUser(undef, 'unknown', 'UnknownUser'));
-	$this->assert($basemapping->handlesUser(undef, 'ProjectContributor', 'ProjectContributor'));
-	$this->assert($basemapping->handlesUser(undef, 'RegistrationAgent', 'RegistrationAgent'));
+    #ObjectMethod handlesUser ( $cUID, $login, $wikiname)
+    $this->assert( !$basemapping->handlesUser() );
 
-#TODO: work out what we'd like to have happen with bad combinations
-	
-#TODO: users not in any mapping, and ones in the main mapping
+    $this->assert(
+        $basemapping->handlesUser( undef, $TWiki::cfg{AdminUserLogin} ) );
+    $this->assert(
+        $basemapping->handlesUser( undef, $TWiki::cfg{DefaultUserLogin} ) );
+    $this->assert( $basemapping->handlesUser( undef, 'unknown' ) );
+    $this->assert( $basemapping->handlesUser( undef, 'ProjectContributor' ) );
+    $this->assert( $basemapping->handlesUser( undef, 'RegistrationAgent' ) );
+
+    $this->assert(
+        $basemapping->handlesUser(
+            undef, undef, $TWiki::cfg{AdminUserWikiName}
+        )
+    );
+    $this->assert(
+        $basemapping->handlesUser(
+            undef, undef, $TWiki::cfg{DefaultUserWikiName}
+        )
+    );
+    $this->assert( $basemapping->handlesUser( undef, undef, 'UnknownUser' ) );
+    $this->assert(
+        $basemapping->handlesUser( undef, undef, 'ProjectContributor' ) );
+    $this->assert(
+        $basemapping->handlesUser( undef, undef, 'RegistrationAgent' ) );
+
+    $this->assert(
+        $basemapping->handlesUser(
+            undef, $TWiki::cfg{AdminUserLogin},
+            $TWiki::cfg{AdminUserWikiName}
+        )
+    );
+    $this->assert(
+        $basemapping->handlesUser(
+            undef, $TWiki::cfg{DefaultUserLogin},
+            $TWiki::cfg{DefaultUserWikiName}
+        )
+    );
+    $this->assert(
+        $basemapping->handlesUser( undef, 'unknown', 'UnknownUser' ) );
+    $this->assert(
+        $basemapping->handlesUser(
+            undef, 'ProjectContributor', 'ProjectContributor'
+        )
+    );
+    $this->assert(
+        $basemapping->handlesUser(
+            undef, 'RegistrationAgent', 'RegistrationAgent'
+        )
+    );
+
+    #TODO: work out what we'd like to have happen with bad combinations
+
+    #TODO: users not in any mapping, and ones in the main mapping
 }
 
 1;
