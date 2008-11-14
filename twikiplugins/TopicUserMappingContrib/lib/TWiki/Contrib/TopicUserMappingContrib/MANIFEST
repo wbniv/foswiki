@@ -2,6 +2,7 @@
 data/TWiki/TopicUserMappingContrib.txt 0644 Documentation
 lib/TWiki/Contrib/TopicUserMappingContrib.pm 0444 Perl module
 lib/TWiki/Users/TopicUserMapping.pm 0444 Perl module
+lib/TWiki/Contrib/TopicUserMappingContrib/Config.spec
 
 # Topic based Usermapping topics
 data/Main/RegistrationAgent.txt 0644
