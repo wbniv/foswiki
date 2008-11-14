@@ -14,7 +14,7 @@ TWiki is a flexible, powerful, secure, yet simple web-based collaboration platfo
 ---++ TWiki Documentation and Configuration
 <div style="float:right;width:255px;padding:1em;">%INCLUDE{ "TWikiTipsOfTheDayInclude" warn="off" }%</div>
    * [[WelcomeGuest][Welcome Guest]] - look here first
-   * [[TWikiTutorial][Tutorial]] - 20 minutes TWiki tutorial
+   * [[TwentyMinuteTutorial][Tutorial]] - 20 minute tutorial
    * [[TWikiUsersGuide][User's Guide]] - documentation for TWiki users
    * [[FrequentlyAskedQuestions][Frequently Asked Questions]] - about TWiki
    * [[ReferenceManual][Reference Manual]] - documentation for system administrators
