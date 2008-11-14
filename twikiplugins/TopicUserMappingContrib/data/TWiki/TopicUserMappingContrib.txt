@@ -42,7 +42,7 @@ it includes:
    * User and Group template files
       * TWiki.NewUserTemplate
       * TWiki.UserForm
-      * TWiki.TWikiUsersTemplate
+      * TWiki.UsersTemplate
       * Main.UserHomepageHeader        
       * TWiki.TWikiUserSetting
       * Main.TWikiGroupTemplate        

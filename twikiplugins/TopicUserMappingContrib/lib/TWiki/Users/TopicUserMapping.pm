@@ -338,7 +338,7 @@ sub addUser {
     }
     else {
         ( $meta, $text ) = $store->readTopic( undef, $TWiki::cfg{SystemWebName},
-            'TWikiUsersTemplate' );
+            'UsersTemplate' );
     }
 
     my $result = '';
