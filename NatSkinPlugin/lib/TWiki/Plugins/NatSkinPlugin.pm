@@ -1135,7 +1135,7 @@ sub renderUserActions {
     $helpString = '<span class="natTopicAction natHelpTopicAction natDisabledTopicAction"><span>%TMPL:P{"HELP"}%</span></span>';
   } else {
     my $twikiWeb = TWiki::Func::getTwikiWebname();
-    my $helpTopic = $params->{help} || "TWikiUsersGuide";
+    my $helpTopic = $params->{help} || "UsersGuide";
     my $helpWeb;
     ($helpWeb, $helpTopic) = TWiki::Func::normalizeWebTopicName($twikiWeb, $helpTopic);
     my $helpUrl = TWiki::Func::getScriptUrl($helpWeb, $helpTopic, 'view');

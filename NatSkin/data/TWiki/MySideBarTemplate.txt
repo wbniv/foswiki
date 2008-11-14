@@ -25,7 +25,7 @@
    hideicon="%ICONURLPATH{"toggleopen-mini"}%"
 }%
    * [[%SYSTEMWEB%.WelcomeGuest][%MAKETEXT{"Welcome Guest"}%]] 
-   * [[%SYSTEMWEB%.TWikiUsersGuide][%MAKETEXT{"User's Guide"}%]] 
+   * [[%SYSTEMWEB%.UsersGuide][%MAKETEXT{"User's Guide"}%]] 
    * [[%SYSTEMWEB%.ReferenceManual][%MAKETEXT{"Reference Manual"}%]]
    * [[%SYSTEMWEB%.GoodStyle][%MAKETEXT{"Good Style"}%]] 
    * [[%SYSTEMWEB%.FrequentlyAskedQuestions][%MAKETEXT{"FAQs"}%]] 

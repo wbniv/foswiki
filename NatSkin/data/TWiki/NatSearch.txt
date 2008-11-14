@@ -39,7 +39,7 @@ exclude this term from the hit set.
 ---++ Examples
 | *Search* | *Description* |
 | <nop>TWikiUsers | if the current web is the %MAINWEB% go to the <nop>TWikiUsers  |
-|                 | if the current web is the %SYSTEMWEB% go to the <nop>TWikiUsersGuide |
+|                 | if the current web is the %SYSTEMWEB% go to the <nop>UsersGuide |
 | g:twikiusers | list all topics in all webs whose name match "twikiusers" |
 | g:copyright -webpref | list all topics that contain the word "copyright" but not "webpref" |
 | g:"Good morning" -natskin | list all topics that contain the term "Good morning" but not "natskin" |

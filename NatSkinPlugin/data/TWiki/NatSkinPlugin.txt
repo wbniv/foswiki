@@ -232,7 +232,7 @@ display separate sets of actions for anonymous or authenticated users.
      format string of actions for authenticated users
    * restrictedactions="...": list of user actions that are disabled if the user
      has got no write access to the current topic
-   * help="...": help topic used for =$help=, defaults to %SYSTEMWEB%.TWikiUsersGuide (see below)
+   * help="...": help topic used for =$help=, defaults to %SYSTEMWEB%.UsersGuide (see below)
 
 The "guest" and "format" format strings can use the following variables
    * $attach: link to "attach" topic action
