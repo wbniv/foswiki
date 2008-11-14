@@ -66,9 +66,9 @@ sub BaseUserMapping {
     $this->set_up_for_verify();
 }
 
-sub TWikiUserMapping {
+sub TopicUserMapping {
     my $this = shift;
-    $TWiki::cfg{UserMappingManager} = 'TWiki::Users::TWikiUserMapping';
+    $TWiki::cfg{UserMappingManager} = 'TWiki::Users::TopicUserMapping';
     $this->set_up_for_verify();
 }
 
@@ -85,7 +85,7 @@ sub fixture_groups {
     return (
         [ 'NoLoginManager', 'ApacheLoginManager', 'TemplateLoginManager' ],
         [ 'AllowLoginName', 'DontAllowLoginName' ],
-        ['TWikiUserMapping'],
+        ['TopicUserMapping'],
         [ 'NonePasswordManager', 'HtPasswordPasswordManager' ]
     );
 
@@ -94,8 +94,8 @@ sub fixture_groups {
     return (
         [ 'TemplateLoginManager', 'ApacheLoginManager', 'NoLoginManager' ],
         [ 'AllowLoginName', 'DontAllowLoginName'],
-#        [ 'TWikiUserMapping', 'BaseUserMapping' ] );
-        [ 'TWikiUserMapping' ] );
+#        [ 'TopicUserMapping', 'BaseUserMapping' ] );
+        [ 'TopicUserMapping' ] );
 
 =cut
 
@@ -640,8 +640,8 @@ sub verify_getWikiName_extended {
     #TODO: consider how to render unkown user's
     #$TWiki::cfg{RenderLoggedInButUnknownUsers} is false, or undefined
 
-    $this->assert_str_equals( 'TWikiUserMapping_NonExistantUser',
-        TWiki::Func::getWikiName('TWikiUserMapping_NonExistantUser') );
+    $this->assert_str_equals( 'TopicUserMapping_NonExistantUser',
+        TWiki::Func::getWikiName('TopicUserMapping_NonExistantUser') );
     my $nonexistantuser_cUID =
       $this->{twiki}->{users}
       ->getCanonicalUserID( $loginname{NonExistantuser} );
@@ -924,7 +924,7 @@ sub verify_wikiToUserName_extended {
 
     #TODO: consider how to render unkown user's
     $this->assert_null(
-        TWiki::Func::wikiToUserName('TWikiUserMapping_NonExistantUser') );
+        TWiki::Func::wikiToUserName('TopicUserMapping_NonExistantUser') );
     $this->assert_null(
         TWiki::Func::wikiToUserName( $loginname{NonExistantuser} ) );
     $this->assert_null( TWiki::Func::wikiToUserName('NonExistantUser') );
@@ -995,7 +995,7 @@ sub verify_isAnAdmin_extended {
 
     #TODO: consider how to render unkown user's
     $this->assert(
-        !TWiki::Func::isAnAdmin('TWikiUserMapping_NonExistantUser') );
+        !TWiki::Func::isAnAdmin('TopicUserMapping_NonExistantUser') );
     my $nonexistantuser_cUID =
       $this->{twiki}->{users}
       ->getCanonicalUserID( $loginname{NonExistantuser} );

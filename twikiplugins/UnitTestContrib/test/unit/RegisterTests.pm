@@ -212,9 +212,9 @@ sub BaseUserMapping {
     $this->set_up_for_verify();
 }
 
-sub TWikiUserMapping {
+sub TopicUserMapping {
     my $this = shift;
-    $TWiki::cfg{UserMappingManager} = 'TWiki::Users::TWikiUserMapping';
+    $TWiki::cfg{UserMappingManager} = 'TWiki::Users::TopicUserMapping';
     $this->set_up_for_verify();
 }
 
@@ -229,7 +229,7 @@ sub fixture_groups {
             #'NonePasswdManager',
         ],
         [
-            'TWikiUserMapping',
+            'TopicUserMapping',
 
             #'BaseUserMapping',
         ]
