@@ -235,20 +235,20 @@ sub verify_Load {
         push( @l, $i->next() );
     }
     my $k = join( ",", sort map { $twiki->{users}->getWikiName($_) } @l );
-    $this->assert( $k =~ s/^AaronUser,//,              $k );
-    $this->assert( $k =~ s/^AdminUser,//,              $k );
-    $this->assert( $k =~ s/^AttilaTheHun,//,           $k );
-    $this->assert( $k =~ s/^BungditDin,//,             $k );
-    $this->assert( $k =~ s/^GeorgeUser,//,             $k );
-    $this->assert( $k =~ s/^GungaDin,//,               $k );
-    $this->assert( $k =~ s/^ProjectContributor,//,     $k );
-    $this->assert( $k =~ s/^RegistrationAgent,//, $k );
-    $this->assert( $k =~ s/^SadOldMan,//,              $k );
-    $this->assert( $k =~ s/^SorryOldMan,//,            $k );
-    $this->assert( $k =~ s/^StupidOldMan,//,           $k );
-    $this->assert( $k =~ s/^TWikiGuest,//,             $k );
-    $this->assert( $k =~ s/^UnknownUser,//,            $k );
-    $this->assert( $k =~ s/^ZebediahUser//,            $k );
+    $this->assert( $k =~ s/^AaronUser,//,          $k );
+    $this->assert( $k =~ s/^AdminUser,//,          $k );
+    $this->assert( $k =~ s/^AttilaTheHun,//,       $k );
+    $this->assert( $k =~ s/^BungditDin,//,         $k );
+    $this->assert( $k =~ s/^GeorgeUser,//,         $k );
+    $this->assert( $k =~ s/^GungaDin,//,           $k );
+    $this->assert( $k =~ s/^ProjectContributor,//, $k );
+    $this->assert( $k =~ s/^RegistrationAgent,//,  $k );
+    $this->assert( $k =~ s/^SadOldMan,//,          $k );
+    $this->assert( $k =~ s/^SorryOldMan,//,        $k );
+    $this->assert( $k =~ s/^StupidOldMan,//,       $k );
+    $this->assert( $k =~ s/^TWikiGuest,//,         $k );
+    $this->assert( $k =~ s/^UnknownUser,//,        $k );
+    $this->assert( $k =~ s/^ZebediahUser//,        $k );
     $this->assert_str_equals( "", $k );
 }
 

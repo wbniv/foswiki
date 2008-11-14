@@ -289,8 +289,7 @@ sub verify_BaseMapping_handleUser {
         $basemapping->handlesUser( undef, $TWiki::cfg{DefaultUserLogin} ) );
     $this->assert( $basemapping->handlesUser( undef, 'unknown' ) );
     $this->assert( $basemapping->handlesUser( undef, 'ProjectContributor' ) );
-    $this->assert(
-        $basemapping->handlesUser( undef, 'RegistrationAgent' ) );
+    $this->assert( $basemapping->handlesUser( undef, 'RegistrationAgent' ) );
 
     $this->assert(
         $basemapping->handlesUser(
