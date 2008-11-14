@@ -18,13 +18,13 @@
 package TWiki::Users::LdapUserMapping;
 
 use strict;
-use TWiki::Users::TWikiUserMapping;
+use TWiki::Users::TopicUserMapping;
 use TWiki::Contrib::LdapContrib;
 use TWiki::Plugins;
 
 use vars qw($isLoadedMapping);
 
-@TWiki::Users::LdapUserMapping::ISA = qw(TWiki::Users::TWikiUserMapping);
+@TWiki::Users::LdapUserMapping::ISA = qw(TWiki::Users::TopicUserMapping);
 
 =pod
 

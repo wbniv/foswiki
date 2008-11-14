@@ -21,13 +21,13 @@
 
 ---+ package TWiki::Users::HTTPDUserAdminUserMapping
 
-over-rides TWikiUserMapping to store Groups outside topics.
+over-rides TopicUserMapping to store Groups outside topics.
  
 =cut
 
 package TWiki::Users::HTTPDUserAdminUserMapping;
-use TWiki::Users::TWikiUserMapping;
-use base 'TWiki::Users::TWikiUserMapping';
+use TWiki::Users::TopicUserMapping;
+use base 'TWiki::Users::TopicUserMapping';
 
 use strict;
 use Assert;
@@ -88,7 +88,7 @@ sub new {
     #'none' is a special case, as it means we're not actually using the password manager for
     # registration.
     if ($this->{passwords}->readOnly() && ($TWiki::cfg{PasswordManager} ne 'none')) {
-        $session->writeWarning( 'TWikiUserMapping has TURNED OFF EnableNewUserRegistration, because the password file is read only.' );
+        $session->writeWarning( 'TopicUserMapping has TURNED OFF EnableNewUserRegistration, because the password file is read only.' );
         $TWiki::cfg{Register}{EnableNewUserRegistration} = 0;
     }
 
@@ -138,13 +138,13 @@ sub handlesUser {
     my ($this, $cUID, $login, $wikiname) = @_;
 
     if (defined $cUID && !length($this->{mapping_id})) {
-        # TWikiUserMapping is special - for backwards compatibility, it assumes
+        # TopicUserMapping is special - for backwards compatibility, it assumes
         # responsibility for _all_ non BaseMapping users
-        # if you're needing to mix the TWikiuserMapping with others, 
-        # define $this->{mapping_id} = 'TWikiUserMapping_';
+        # if you're needing to mix the TopicUserMapping with others, 
+        # define $this->{mapping_id} = 'TopicUserMapping_';
         return 1;
     } else {
-        # Used when (if) TWikiUserMapping is subclassed
+        # Used when (if) TopicUserMapping is subclassed
         return 1 if ( defined $cUID && $cUID =~ /^($this->{mapping_id})/ );
     }
 
@@ -168,7 +168,7 @@ characters, and must correspond 1:1 to the login name.
 
 sub getCanonicalUserID {
     my( $this, $login, $dontcheck ) = @_;
-#    print STDERR "\nTWikiUserMapping::getCanonicalUserID($login, ".($dontcheck||'undef').")";
+#    print STDERR "\nTopicUserMapping::getCanonicalUserID($login, ".($dontcheck||'undef').")";
 
     unless ($dontcheck) {
         return unless (_userReallyExists($this, $login));
@@ -516,7 +516,7 @@ sub passwordError {
 
 #######################################################################
 # don't create or use the MAIN.TWikiUsers topic 
-# this is a copy of the functionality in TWikiUserMapping, with the TWikiUser topic part removed
+# this is a copy of the functionality in TopicUserMapping, with the TWikiUser topic part removed
 #TODO: shame that its the UI::Registration code that creates the User topic - tahts close to pointless too
 
 sub addUser {
