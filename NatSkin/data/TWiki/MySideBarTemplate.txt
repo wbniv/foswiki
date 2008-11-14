@@ -26,7 +26,7 @@
 }%
    * [[%SYSTEMWEB%.WelcomeGuest][%MAKETEXT{"Welcome Guest"}%]] 
    * [[%SYSTEMWEB%.TWikiUsersGuide][%MAKETEXT{"User's Guide"}%]] 
-   * [[%SYSTEMWEB%.TWikiReferenceManual][%MAKETEXT{"Reference Manual"}%]]
+   * [[%SYSTEMWEB%.ReferenceManual][%MAKETEXT{"Reference Manual"}%]]
    * [[%SYSTEMWEB%.GoodStyle][%MAKETEXT{"Good Style"}%]] 
    * [[%SYSTEMWEB%.FrequentlyAskedQuestions][%MAKETEXT{"FAQs"}%]] 
    * [[%SYSTEMWEB%.TWikiVariables][%MAKETEXT{"TWiki Variables"}%]] 

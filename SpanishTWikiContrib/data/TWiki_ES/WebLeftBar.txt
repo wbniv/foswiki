@@ -22,7 +22,7 @@
    * TWiki.InstalledPlugins %FLAGGB%
 
    * <b>%MAKETEXT{"Admin Maintenance"}%</b>
-   * [[TWiki.TWikiReferenceManual][Reference Manual]] %FLAGGB%
+   * [[%SYSTEMWEB%.ReferenceManual][Reference Manual]] %FLAGGB%
    * TWiki.AdminToolsCategory %FLAGGB%
    * TWiki.InterWikis %FLAGGB%
    * TWiki.ManagingWebs %FLAGGB%
