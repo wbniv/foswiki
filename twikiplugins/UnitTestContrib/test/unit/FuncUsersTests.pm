@@ -215,11 +215,11 @@ sub verify_eachUser {
     my @correctList;
     if ( $TWiki::cfg{UserMappingManager} eq 'TWiki::Users::BaseUserMapping' ) {
         @correctList =
-          qw/ProjectContributor TWikiGuest TWikiRegistrationAgent UnknownUser/;
+          qw/ProjectContributor TWikiGuest RegistrationAgent UnknownUser/;
     }
     else {
         @correctList =
-          qw/ProjectContributor TWikiGuest TWikiRegistrationAgent UnknownUser User86A UserA UserA86 UserB UserC UserZ/;
+          qw/ProjectContributor TWikiGuest RegistrationAgent UnknownUser User86A UserA UserA86 UserB UserC UserZ/;
         if ( $TWiki::cfg{Register}{AllowLoginName} == 1 ) {
             push @correctList, 'ScumBag'
               ; # this user is created in the base class with the assumption of AllowLoginName
@@ -303,7 +303,9 @@ sub verify_isAnAdmin {
         $u =~ /.*\.(.*)/;
         $TWiki::Plugins::SESSION->{user} = $u;
         my $sadmin = TWiki::Func::isAnAdmin($u);
-        if ( $u eq $TWiki::cfg{AdminUserWikiName} || $u eq 'UserA' ) {
+        if ( $u eq $TWiki::cfg{AdminUserWikiName} ||
+            $u eq 'RegistrationAgent' ||
+            $u eq 'UserA' ) {
             $this->assert( $sadmin, $u );
         }
         else {

@@ -173,7 +173,7 @@ sub verify_AddUsers {
     my $this = shift;
     my $ttpath =
 "$TWiki::cfg{DataDir}/$TWiki::cfg{UsersWebName}/$TWiki::cfg{UsersTopicName}.txt";
-    my $me = "TWikiRegistrationAgent";
+    my $me = "RegistrationAgent";
 
     open( F, ">$ttpath" ) || $this->assert( 0, "open $ttpath failed" );
     print F $initial;
@@ -203,7 +203,7 @@ sub verify_AddUsers {
 sub verify_Load {
     my $this = shift;
 
-    my $me = "TWikiRegistrationAgent";
+    my $me = "RegistrationAgent";
     $ttpath =
 "$TWiki::cfg{DataDir}/$TWiki::cfg{UsersWebName}/$TWiki::cfg{UsersTopicName}.txt";
 
@@ -242,11 +242,11 @@ sub verify_Load {
     $this->assert( $k =~ s/^GeorgeUser,//,             $k );
     $this->assert( $k =~ s/^GungaDin,//,               $k );
     $this->assert( $k =~ s/^ProjectContributor,//,     $k );
+    $this->assert( $k =~ s/^RegistrationAgent,//, $k );
     $this->assert( $k =~ s/^SadOldMan,//,              $k );
     $this->assert( $k =~ s/^SorryOldMan,//,            $k );
     $this->assert( $k =~ s/^StupidOldMan,//,           $k );
     $this->assert( $k =~ s/^TWikiGuest,//,             $k );
-    $this->assert( $k =~ s/^TWikiRegistrationAgent,//, $k );
     $this->assert( $k =~ s/^UnknownUser,//,            $k );
     $this->assert( $k =~ s/^ZebediahUser//,            $k );
     $this->assert_str_equals( "", $k );
@@ -254,7 +254,7 @@ sub verify_Load {
 
 sub groupFix {
     my $this = shift;
-    my $me   = "TWikiRegistrationAgent";
+    my $me   = "RegistrationAgent";
     $twiki->{users}->{mapping}->addUser( "auser", "AaronUser",    $me );
     $twiki->{users}->{mapping}->addUser( "guser", "GeorgeUser",   $me );
     $twiki->{users}->{mapping}->addUser( "zuser", "ZebediahUser", $me );

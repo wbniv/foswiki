@@ -32,7 +32,7 @@ it includes:
    * default groups and user
       * Main.NobodyGroup
       * Main.TWikiAdminGroup
-      * Main.TWikiRegistrationAgent    
+      * Main.RegistrationAgent    
    * User lists
       * Main.UserList                  
       * Main.UserListHeader            
