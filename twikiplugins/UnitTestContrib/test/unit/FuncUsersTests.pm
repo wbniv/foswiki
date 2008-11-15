@@ -257,7 +257,7 @@ sub verify_eachGroupTraditional {
     }
     else {
         @correctList =
-          qw/AdminGroup AandBGroup AandCGroup BandCGroup ScumGroup AdminGroup TWikiBaseGroup/;
+          qw/AandBGroup AandCGroup BandCGroup ScumGroup AdminGroup TWikiBaseGroup/;
     }
     my $correct = join( ',', sort @correctList );
     $this->assert_str_equals( $correct, $ulist );
