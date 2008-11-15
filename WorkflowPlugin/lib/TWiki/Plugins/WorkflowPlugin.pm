@@ -87,7 +87,7 @@ sub _initTOPIC {
 sub _WORKFLOWEDITTOPIC {
     my ( $session, $attributes, $topic, $web ) = @_;
 
-    _initTOPIC( $web, $topic );
+    return '' unless _initTOPIC( $web, $topic );
 
     # replace edit tag
     if ( $TOPIC->canEdit() ) {
@@ -101,14 +101,14 @@ sub _WORKFLOWEDITTOPIC {
 # Tag handler
 sub _WORKFLOWSTATEMESSAGE {
     my ( $session, $attributes, $topic, $web ) = @_;
-    _initTOPIC( $web, $topic );
+    return '' unless _initTOPIC( $web, $topic );
     return $TOPIC->getStateMessage();
 }
 
 # Tag handler
 sub _WORKFLOWHISTORY {
     my ( $session, $attributes, $topic, $web ) = @_;
-    _initTOPIC( $web, $topic );
+    return '' unless _initTOPIC( $web, $topic );
     return $TOPIC->getHistoryText();
 }
 
@@ -116,8 +116,7 @@ sub _WORKFLOWHISTORY {
 sub _WORKFLOWTRANSITION {
     my ( $session, $attributes, $topic, $web ) = @_;
 
-    _initTOPIC( $web, $topic );
-    return undef unless $TOPIC;
+    return '' unless _initTOPIC( $web, $topic );
 
     #
     # Build the button to change the current status
@@ -135,7 +134,9 @@ sub _WORKFLOWTRANSITION {
 
     my @fields = (
         CGI::hidden( 'WORKFLOWSTATE', $cs ),
-        CGI::hidden( 'topic',         "$web.$topic" )
+        CGI::hidden( 'topic',         "$web.$topic" ),
+        # Use a time field to help defeat the cache
+        CGI::hidden( 't',             time() )
     );
 
     my $buttonClass =
@@ -169,17 +170,20 @@ sub _WORKFLOWTRANSITION {
         );
     }
     my $url = TWiki::Func::getScriptUrl( $pluginName, 'changeState', 'rest' );
-    return
+    my $form =
         CGI::start_form( -method => 'POST', -action => $url )
       . join( '', @fields )
       . CGI::end_form();
+    $form =~ s/\r?\n//g; # to avoid breaking TML
+    return $form;
 }
 
 # Tag handler
 sub _WORKFLOWSTATE {
     my ( $session, $attributes, $topic, $web ) = @_;
 
-    _initTOPIC( $web, $topic );
+    return '' unless _initTOPIC( $web, $topic );
+
     my $theWeb = $attributes->{web} || $web;
     my $theTopic = $attributes->{"_DEFAULT"};
     if ( !$theTopic ) {
@@ -230,8 +234,7 @@ sub _WORKFLOWSTATE {
 sub beforeEditHandler {
     my ( $text, $topic, $web, $meta ) = @_;
 
-    _initTOPIC( $web, $topic );
-    return unless $TOPIC;
+    return '' unless _initTOPIC( $web, $topic );
 
     if ( !$TOPIC->canEdit() ) {
         throw TWiki::OopsException(
@@ -307,26 +310,23 @@ sub _changeState {
 # Mop up other WORKFLOW tags without individual handlers
 sub commonTagsHandler {
     my ( $text, $topic, $web ) = @_;
-    _initTOPIC( $web, $topic );
-    return unless $TOPIC;
+    if ( _initTOPIC( $web, $topic ) ) {
+        # show all tags defined by the preferences
+        my $url = TWiki::Func::getScriptUrl( $web, $topic, "view" );
+        $TOPIC->expandWorkflowPreferences( $url, $_[0] );
 
-    # show all tags defined by the preferences
-    my $url = TWiki::Func::getScriptUrl( $web, $topic, "view" );
-    $TOPIC->expandWorkflowPreferences( $url, $_[0] );
-
-    unless ( $TOPIC->debugging() ) {
-
-        # Clean up unexpanded variables
-        $_[0] =~ s/%WORKFLOW[A-Z_]*%//g;
+        return unless ( $TOPIC->debugging() );
     }
+
+    # Clean up unexpanded variables
+    $_[0] =~ s/%WORKFLOW[A-Z_]*%//g;
 }
 
 # Check the the workflow permits a save operation.
 sub beforeSaveHandler {
     my ( $text, $topic, $web ) = @_;
 
-    _initTOPIC( $web, $topic );
-    return unless $TOPIC;
+    return '' unless _initTOPIC( $web, $topic );
 
     # This handler is called by TWiki::Store::saveTopic just before
     # the save action.

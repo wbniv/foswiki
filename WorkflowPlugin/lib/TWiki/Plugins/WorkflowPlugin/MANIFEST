@@ -11,6 +11,7 @@ data/Sandbox/DefectOne.txt 0640 Example defect
 data/Sandbox/DefectTwo.txt 0640 Example defect
 data/Sandbox/ApprovalViewTemplate.txt 0640 Template for DefectTwo style
 data/Sandbox/InitialForm.txt 0640 Forms for defect workflow
+data/Sandbox/InProcessForm.txt 0640 Forms for defect workflow
 data/Sandbox/SubmittedForm.txt 0640 Forms for defect workflow
 data/Sandbox/CompletedForm.txt 0640 Forms for defect workflow
 data/Sandbox/ControlledDocument.txt 0640 Example document
