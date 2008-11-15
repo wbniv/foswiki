@@ -58,7 +58,7 @@ Manual written by [[TWiki:Main.HaraldJoerg][Harald Joerg]]. Examples require [[T
 <blockquote>
 Some of my TWiki users are impressed by the optical effect of what can be done with TWiki:Plugins.TwistyPlugin - and they keep asking me: "How do I do that? I don't understand the documentation, and I don't understand the raw text of your topics!"
 
-They indeed have a point here.  The docs aren't easily understood.  It isn't easy to pick all the variables needed from a single example, and just copypasting sometimes fails in embarrassing ways if non-unique =id= attributes are present in a topic.  Maybe it is easy for a power user, but it surely isn't easy _enough_.  There _ought_ to be a way to make it easier.
+They indeed have a point here.  The docs aren't easily understood.  It isn't easy to pick all the macros needed from a single example, and just copypasting sometimes fails in embarrassing ways if non-unique =id= attributes are present in a topic.  Maybe it is easy for a power user, but it surely isn't easy _enough_.  There _ought_ to be a way to make it easier.
 
 Well, here you are.
 
