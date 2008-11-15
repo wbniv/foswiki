@@ -3,7 +3,7 @@
 
 This Plugin caches TWiki variables in selected topics for faster page rendering.
 
-Most topics in a typical TWiki installation are rendered within a small deviation in terms of speed. Exceptions are topics that contain a lot of dynamic content. This is mainly caused by CPU or I/O intensive %SYSTEMWEB%.TWikiVariables, such as =%<nop>SEARCH{}%= and =%<nop>INCLUDE{}%=. 
+Most topics in a typical TWiki installation are rendered within a small deviation in terms of speed. Exceptions are topics that contain a lot of dynamic content. This is mainly caused by CPU or I/O intensive [[%SYSTEMWEB%.Macros][Macros]], such as =%<nop>SEARCH{}%= and =%<nop>INCLUDE{}%=. 
 
 This Plugin caches all =%<nop>VARIABLES%= located in a topic so that the topic can get rendered as quickly as one without variables. An outdated cache gets refreshed when a user is looking at a topic; in which case it will take longer to render the page. Time-based refresh can also be disabled in favor of an on-demand cache update.
 

@@ -205,7 +205,7 @@ Following variables are expanded in format strings:
    * $formatTime(&lt;formfield-accessor> [,&lt;format>]): format the datefield pointed
      to by the &lt;formfield-accessor> using the given &lt;format>; the format can be
      in any form supported by =TWiki::Func::formatTime()= 
-     (see [[%SYSTEMWEB%.TWikiVariables#DISPLAYTIME_format_formatted_dis][TWikiVariables]] documentation).
+     (see [[%SYSTEMWEB%.Macros#DISPLAYTIME_format_formatted_dis][Macros]] documentation).
    * $expand(&lt;formfield-accessor>): return the formfield pointed to by the 
       &lt;formfield-accessor>
    * $rss(...): encode entities so that the text can be included in an rss feed

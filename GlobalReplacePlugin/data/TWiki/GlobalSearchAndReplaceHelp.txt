@@ -73,6 +73,6 @@ Only members of the Main.AdminGroup will be allowed to commit changes.
 
 __More Help:__
 	* [[%SYSTEMWEB%.RegularExpression]]
-	* [[%SYSTEMWEB%.TWikiVariables]] %<nop>SEARCH% Section
+	* [[%SYSTEMWEB%.Macros]] %<nop>SEARCH% Section
 
 %META:FILEATTACHMENT{name="GSR.gif" attr="h" comment="screen shot" date="1076120418" path="GSR.gif" size="13535" user="PeterThoeny" version="1.1"}%
