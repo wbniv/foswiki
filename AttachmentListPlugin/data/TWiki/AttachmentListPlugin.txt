@@ -39,7 +39,7 @@ This plugin uses TWiki:Plugins/TopicDataHelperPlugin
 | =extension=  | Comma-separated list of file extensions to be listed. To find files that do not have an extension, pass special name =NONE=. | none | =extension="gif, jpg, NONE"= |
 | =excludeextension=  | Comma-separated list of file extensions to not show | none | =excludeextension="htm"= |
 | =user=  | Comma-separated list of user names (that have attached an attachment) to be listed. To find attachments where no user is specified, use =UnknownUser=. | none | =user="ProjectContributor"= |
-| =excludeuser=  | Comma-separated list of user names (that have attached an attachment) to not show | none | =excludeuser="<nop>ProjectContributor, <nop>WikiAdminUser, <nop>WikiGuest, <nop>UnknownUser"= |
+| =excludeuser=  | Comma-separated list of user names (that have attached an attachment) to not show | none | =excludeuser="<nop>ProjectContributor, <nop>AdminUser, <nop>WikiGuest, <nop>UnknownUser"= |
 | =hide=      | Set to "on" to show only non-hidden attachments | show all attachments | =hide="on"= |
 | =fromdate=, =todate=  | Date range filter: show attachments between =fromdate= and =todate=; dates are specified in format =yyyy/mm/dd= \
 %BB% =fromdate="" todate="2007/09/01"= selects all attachments up to 1 Sep 2007 \
