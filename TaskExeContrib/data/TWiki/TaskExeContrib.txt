@@ -199,7 +199,7 @@ Example:
 ---+++ =SENDMAIL=
 
 This command does just that. It sends email. Typically used at the end of a task.
-The parameter format is the one of the well known TWiki.TWikiVariables argument list. 
+The parameter format is the one of the well known [[%SYSTEMWEB%.Macros][Macros]] argument list. 
 Supported parameters are:
    * =from= : Email address of the sender.
    * =to= : Email address of the recipient. Can be a string of semicolon separated addresses.

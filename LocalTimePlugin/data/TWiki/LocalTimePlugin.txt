@@ -21,7 +21,7 @@ Add a %<nop>LOCALTIME% tag to your text to show the current time. You can specif
       * 2001-12-31T23:59:59+01:00
       * 2001-12-31T23:59Z
       * 2001-12-31T23:59+01:00
-   * =format= is the same as for the format specifier in http://t42p/cgi-bin/DEVELOP/bin/view/TWiki/TWikiVariables#VarGMTIME
+   * =format= is the same as for the format specifier in http://t42p/cgi-bin/DEVELOP/bin/view/%SYSTEMWEB%/Macros#VarGMTIME
    * fromtopic="web.topic" - the plugin tries to use the timezone set in the variable TIMEZONE on the topic selected
 
 ---++ Examples

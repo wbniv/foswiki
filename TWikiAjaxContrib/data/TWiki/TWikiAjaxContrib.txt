@@ -114,7 +114,7 @@ twiki.AjaxRequest.load("UPDATES",
 </verbatim>
 </blockquote>
 
-%ICON{hand}% [[TWiki.TWikiVariables#STARTSECTION_marks_the_start_of][Documentation about STARTSECTION variable]] %BR%
+%ICON{hand}% [[%SYSTEMWEB%.Macros#STARTSECTION_marks_the_start_of][Documentation about STARTSECTION variable]] %BR%
 %ICON{hand}% [[TWikiAjaxContribExamples#Page_parts_Named_sections][View demo Named Sections]]
 
 

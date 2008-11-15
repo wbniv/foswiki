@@ -14,7 +14,7 @@ The tag specific UI's require a round trip to the server, but the default can be
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
 
    * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
-      * Set SHORTDESCRIPTION = creates a popup edit UI for TWikiVariables
+      * Set SHORTDESCRIPTION = creates a popup edit UI for [[%SYSTEMWEB%.Macros][Macros]]
 
    * Debug plugin: (See output in =data/debug.txt=)
       * Set DEBUG = 0

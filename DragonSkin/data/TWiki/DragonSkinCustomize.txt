@@ -6,7 +6,7 @@ This topic contains information on how to change user-configurable look-and-feel
 
 
 ---++ TWiki variables used by !DragonSkin
-The following TWiki.TWikiVariables are specific to !DragonSkin and control various look and feel aspects of the skin:
+The following [[%SYSTEMWEB%.Macros][Macros]] are specific to !DragonSkin and control various look and feel aspects of the skin:
 
 	$ DS_BODYFONTSIZE: CSS font size for the overall body of the page.
 	$ DS_LEFTMENUFONTSIZE: CSS font size for the left menu (relative size values will compound with the body font size).
