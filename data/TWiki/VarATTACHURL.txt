@@ -1,5 +1,5 @@
 %META:TOPICINFO{author="ProjectContributor" date="1111929255" format="1.1" version="$Rev$"}%
-%META:TOPICPARENT{name="TWikiVariables"}%
+%META:TOPICPARENT{name="Macros"}%
 #VarATTACHURL
 ---+++ ATTACHURL -- full URL for attachments in the current topic
    * Syntax: =%<nop>ATTACHURL%=

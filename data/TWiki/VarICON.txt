@@ -1,5 +1,5 @@
 %META:TOPICINFO{author="ProjectContributor" date="1111929255" format="1.1" version="$Rev$"}%
-%META:TOPICPARENT{name="TWikiVariables"}%
+%META:TOPICPARENT{name="Macros"}%
 #VarICON
 ---+++ ICON{"name"} -- small documentation graphic or icon of common attachment types
    * Generates the HTML img tag of a small graphic image attached to DocumentGraphics. Images typically have a 16x16 pixel size. You can select a specific image by name, or you can give a full filename, in which case the type of the file will be used to select one of a collection of common file type icons.

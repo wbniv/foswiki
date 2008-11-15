@@ -1,5 +1,5 @@
 %META:TOPICINFO{author="ProjectContributor" date="1170582577" format="1.1" version="$Rev$"}%
-%META:TOPICPARENT{name="TWikiVariables"}%
+%META:TOPICPARENT{name="Macros"}%
 #VarTOPIC
 ---+++ TOPIC -- name of current topic
    * =%<nop>TOPIC%= expands to the name of the topic. If you are looking at the text of an included topic, it is the name of the included topic.

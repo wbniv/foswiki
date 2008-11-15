@@ -1,5 +1,5 @@
 %META:TOPICINFO{author="ProjectContributor" date="1172787018" format="1.1" version="$Rev$"}%
-%META:TOPICPARENT{name="TWikiVariables"}%
+%META:TOPICPARENT{name="Macros"}%
 #VarWEBLIST
 ---+++ WEBLIST{"format"} -- index of all webs
    * List of all webs. Obfusticated webs are excluded, e.g. webs with a =NOSEARCHALL = on= preference variable. The ="format"= defines the format of one web item. The =$name= variable gets expanded to the name of the web, =$qname= gets expanded to double quoted name, =$marker= to =marker= where web matches =selection=.

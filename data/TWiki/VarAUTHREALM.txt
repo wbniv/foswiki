@@ -1,5 +1,5 @@
 %META:TOPICINFO{author="ProjectContributor" date="1111929255" format="1.1" version="$Rev$"}%
-%META:TOPICPARENT{name="TWikiVariables"}%
+%META:TOPICPARENT{name="Macros"}%
 #VarAUTHREALM
 ---+++ AUTHREALM -- authentication realm
    * String defined as {AuthRealm} in [[%SCRIPTURLPATH{"configure"}%][configure]]. This is used in certain password encodings, and in login templates as part of the login prompt.

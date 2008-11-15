@@ -1,5 +1,5 @@
 %META:TOPICINFO{author="ProjectContributor" date="1111929255" format="1.1" version="$Rev$"}%
-%META:TOPICPARENT{name="TWikiVariables"}%
+%META:TOPICPARENT{name="Macros"}%
 #VarENDSECTION
 ---+++ ENDSECTION{"name"} -- marks the end of a named section within a topic
    * Syntax: =%<nop>ENDSECTION{"name"}%=

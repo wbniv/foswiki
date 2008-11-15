@@ -1,5 +1,5 @@
 %META:TOPICINFO{author="ProjectContributor" date="1111929255" format="1.1" version="$Rev$"}%
-%META:TOPICPARENT{name="TWikiVariables"}%
+%META:TOPICPARENT{name="Macros"}%
 #VarTOPICLIST
 ---+++ TOPICLIST{"format"} -- topic index of a web
    * List of all topics in a web. The "format" defines the format of one topic item. It may include variables: The =$topic= variable gets expanded to the topic name, =$marker= to =marker= parameter where topic matches =selection=, and =$web= to the name of the web, or any of the standard FormatTokens.

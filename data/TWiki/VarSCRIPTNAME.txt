@@ -1,5 +1,5 @@
 %META:TOPICINFO{author="ProjectContributor" date="1111929255" format="1.1" version="$Rev$"}%
-%META:TOPICPARENT{name="TWikiVariables"}%
+%META:TOPICPARENT{name="Macros"}%
 #VarSCRIPTNAME
 ---+++ SCRIPTNAME -- name of current script
    * The name of the current script is shown, including script suffix, if any (for example =viewauth.cgi=)

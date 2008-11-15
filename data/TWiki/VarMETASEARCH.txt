@@ -1,5 +1,5 @@
 %META:TOPICINFO{author="ProjectContributor" date="1111929255" format="1.1" version="$Rev$"}%
-%META:TOPICPARENT{name="TWikiVariables"}%
+%META:TOPICPARENT{name="Macros"}%
 #VarMETASEARCH
 ---+++ METASEARCH -- special search of meta data
    * Syntax: =%<nop>METASEARCH{...}%=
@@ -23,7 +23,7 @@
 
 __Related Topics:__ UserDocumentationCategory
 %META:TOPICINFO{author="ProjectContributor" date="1130377817" format="1.1" version="$Rev: 8869 $"}%
-%META:TOPICPARENT{name="TWikiVariables"}%
+%META:TOPICPARENT{name="Macros"}%
 __Note:__ This topic is included by TWikiVariables
 
 -----

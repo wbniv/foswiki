@@ -1,5 +1,5 @@
 %META:TOPICINFO{author="ProjectContributor" date="1167874036" format="1.1" version="$Rev$"}%
-%META:TOPICPARENT{name="TWikiVariables"}%
+%META:TOPICPARENT{name="Macros"}%
 #VarENCODE
 ---+++ ENCODE{"string"} -- encodes a string to HTML entities
    * Encode "special" characters to HTML numeric entities. Encoded characters are:

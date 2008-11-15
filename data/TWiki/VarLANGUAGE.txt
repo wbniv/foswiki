@@ -1,5 +1,5 @@
 %META:TOPICINFO{author="ProjectContributor" date="1111929255" format="1.1" version="$Rev$"}%
-%META:TOPICPARENT{name="TWikiVariables"}%
+%META:TOPICPARENT{name="Macros"}%
 #VarLANGUAGE
 ---+++ LANGUAGE -- current user's language
    * Returns the language code for the language used as the current user. This is the language actually used by TWiki Internationalization (e.g. in user interface).

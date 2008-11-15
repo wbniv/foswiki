@@ -1,5 +1,5 @@
 %META:TOPICINFO{author="ProjectContributor" date="1111929255" format="1.1" version="$Rev$"}%
-%META:TOPICPARENT{name="TWikiVariables"}%
+%META:TOPICPARENT{name="Macros"}%
 #VarSPACEOUT
 ---+++ SPACEOUT{"string"} -- renders string with spaces inserted in sensible places
    * Inserts spaces after lower case letters that are followed by a digit or a capital letter, and after digits that are followed by a capital letter.

@@ -1,5 +1,5 @@
 %META:TOPICINFO{author="ProjectContributor" date="1111929255" format="1.1" version="$Rev$"}%
-%META:TOPICPARENT{name="TWikiVariables"}%
+%META:TOPICPARENT{name="Macros"}%
 #VarBASEWEB
 ---+++ BASEWEB -- base web where an INCLUDE started
    * The web name where the includes started, e.g. the web of the first topic of nested includes. Same as =%<nop>WEB%= in case there is no include.
