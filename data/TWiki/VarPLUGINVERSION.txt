@@ -6,5 +6,5 @@
    * Example: =%<nop>PLUGINVERSION{"InterwikiPlugin"}%= expands to =%PLUGINVERSION{"InterwikiPlugin"}%=
    * Syntax: =%<nop>PLUGINVERSION%= to get the version of the API
    * Expands to: =%PLUGINVERSION%=
-   * Related: [[%IF{"'%INCLUDINGTOPIC%'='TWikiVariables'" then="#"}%VarWIKIVERSION][WIKIVERSION]], [[%IF{"'%INCLUDINGTOPIC%'='TWikiVariables'" then="#"}%VarACTIVATEDPLUGINS][ACTIVATEDPLUGINS]], [[#FAILEDPLUGINS][FAILEDPLUGINS]], [[%IF{"'%INCLUDINGTOPIC%'='TWikiVariables'" then="#"}%VarPLUGINDESCRIPTIONS][PLUGINDESCRIPTIONS]]
+   * Related: [[%IF{"'%INCLUDINGTOPIC%'='Macros'" then="#"}%VarWIKIVERSION][WIKIVERSION]], [[%IF{"'%INCLUDINGTOPIC%'='Macros'" then="#"}%VarACTIVATEDPLUGINS][ACTIVATEDPLUGINS]], [[#FAILEDPLUGINS][FAILEDPLUGINS]], [[%IF{"'%INCLUDINGTOPIC%'='Macros'" then="#"}%VarPLUGINDESCRIPTIONS][PLUGINDESCRIPTIONS]]
 

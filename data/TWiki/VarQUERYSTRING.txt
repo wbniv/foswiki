@@ -6,5 +6,5 @@
    * __%X% Note:__ URLs built this way are typically restricted in length, typically to 2048 characters. If you need more space than this, you will need to use an HTML form and =%<nop>QUERYPARAMS%=.
    * Syntax: =%<nop>QUERYSTRING%=
    * Expands to: <code> %QUERYSTRING% </code>
-   * Related: [[%IF{"'%INCLUDINGTOPIC%'='TWikiVariables'" then="#"}%VarQUERYPARAMS][QUERYPARAMS]], [[%IF{"'%INCLUDINGTOPIC%'='TWikiVariables'" then="#"}%VarURLPARAM][URLPARAM]]
+   * Related: [[%IF{"'%INCLUDINGTOPIC%'='Macros'" then="#"}%VarQUERYPARAMS][QUERYPARAMS]], [[%IF{"'%INCLUDINGTOPIC%'='Macros'" then="#"}%VarURLPARAM][URLPARAM]]
  

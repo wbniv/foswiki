@@ -4,4 +4,4 @@
 ---+++ WIKIVERSION -- the version of the installed TWiki engine
    * Syntax: =%<nop>WIKIVERSION%=
    * Expands to: =%WIKIVERSION%=
-   * Related: [[%IF{"'%INCLUDINGTOPIC%'='TWikiVariables'" then="#"}%VarPLUGINVERSION][PLUGINVERSION]], [[%IF{"'%INCLUDINGTOPIC%'='TWikiVariables'" then="#"}%VarWIKITOOLNAME][WIKITOOLNAME]]
+   * Related: [[%IF{"'%INCLUDINGTOPIC%'='Macros'" then="#"}%VarPLUGINVERSION][PLUGINVERSION]], [[%IF{"'%INCLUDINGTOPIC%'='Macros'" then="#"}%VarWIKITOOLNAME][WIKITOOLNAME]]

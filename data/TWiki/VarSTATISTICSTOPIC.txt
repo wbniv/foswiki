@@ -4,5 +4,5 @@
 ---+++ STATISTICSTOPIC -- name of statistics topic
    * Syntax: =%<nop>STATISTICSTOPIC%=
    * Expands to: =%STATISTICSTOPIC%=, renders as [[%STATISTICSTOPIC%]]
-   * Related: [[%IF{"'%INCLUDINGTOPIC%'='TWikiVariables'" then="#"}%VarHOMETOPIC][HOMETOPIC]], [[%IF{"'%INCLUDINGTOPIC%'='TWikiVariables'" then="#"}%VarNOTIFYTOPIC][NOTIFYTOPIC]], [[%IF{"'%INCLUDINGTOPIC%'='TWikiVariables'" then="#"}%VarTOPIC][TOPIC]]
+   * Related: [[%IF{"'%INCLUDINGTOPIC%'='Macros'" then="#"}%VarHOMETOPIC][HOMETOPIC]], [[%IF{"'%INCLUDINGTOPIC%'='Macros'" then="#"}%VarNOTIFYTOPIC][NOTIFYTOPIC]], [[%IF{"'%INCLUDINGTOPIC%'='Macros'" then="#"}%VarTOPIC][TOPIC]]
 

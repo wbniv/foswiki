@@ -5,5 +5,5 @@
    * Syntax: =%<nop>REVINFO%=
    * Expands to: <code>%REVINFO%</code>
    * Date format defined as {DefaultDateFormat} in [[%SCRIPTURLPATH{"configure"}%][configure]] 
-   * Related: [[%IF{"'%INCLUDINGTOPIC%'='TWikiVariables'" then="#"}%VarREVINFO2][REVINFO{"format"}]]
+   * Related: [[%IF{"'%INCLUDINGTOPIC%'='Macros'" then="#"}%VarREVINFO2][REVINFO{"format"}]]
 

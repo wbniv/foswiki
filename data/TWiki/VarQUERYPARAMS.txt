@@ -16,4 +16,4 @@
 
    * Example:
       * =%<nop>QUERYPARAMS{format="&lt;input type='hidden' name='$name' value='$value' encoding="entity" />"}%=
-   * See also [[VarQUERYSTRING][QUERYSTRING]], [[%IF{"'%INCLUDINGTOPIC%'='TWikiVariables'" then="#"}%VarURLPARAM][URLPARAM]]
+   * See also [[VarQUERYSTRING][QUERYSTRING]], [[%IF{"'%INCLUDINGTOPIC%'='Macros'" then="#"}%VarURLPARAM][URLPARAM]]

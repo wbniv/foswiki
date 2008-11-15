@@ -6,5 +6,5 @@
    * Expands to =%WIKIHOMEURL%=
    * Defined in %SYSTEMWEB%!.DefaultPreferences and normally per default set to =%<nop>SCRIPTURLPATH{"view"}%=
    * __%X% Note:__ For the top bar logo URL use =%<nop>WIKILOGOURL%= defined in WebPreferences instead.
-   * Related: [[%IF{"'%INCLUDINGTOPIC%'='TWikiVariables'" then="#"}%VarVarWIKITOOLNAME][WIKITOOLNAME]]
+   * Related: [[%IF{"'%INCLUDINGTOPIC%'='Macros'" then="#"}%VarVarWIKITOOLNAME][WIKITOOLNAME]]
 

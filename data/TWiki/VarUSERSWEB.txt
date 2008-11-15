@@ -5,4 +5,4 @@
    * The web containing individual user topics, %USERSWEB%.WikiGroups, and customised site-wide preferences.
    * Syntax: =%<nop>USERSWEB%=
    * Expands to: =%USERSWEB%=
-   * Related: [[%IF{"'%INCLUDINGTOPIC%'='TWikiVariables'" then="#"}%VarSYSTEMWEB][SYSTEMWEB]]
+   * Related: [[%IF{"'%INCLUDINGTOPIC%'='Macros'" then="#"}%VarSYSTEMWEB][SYSTEMWEB]]

@@ -23,5 +23,5 @@
 		    =suffix="..."=: Suffix, only appears if there are parents; default =""=. %BR% \
 		    =separator="..."=: Separator between parents; default =" &gt; "=. \
                   | Generates the parent link |
-   * Related: [[%IF{"'%INCLUDINGTOPIC%'='TWikiVariables'" then="#"}%VarMETASEARCH][METASEARCH]]
+   * Related: [[%IF{"'%INCLUDINGTOPIC%'='Macros'" then="#"}%VarMETASEARCH][METASEARCH]]
 

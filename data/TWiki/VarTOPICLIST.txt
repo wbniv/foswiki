@@ -16,5 +16,5 @@
    * Example: =%<nop>TOPICLIST{separator=", "}%= creates a comma separated list of all topics
    * Example: =%<nop>TOPICLIST{" &lt;option&gt;$topic&lt;/option&gt;"}%= creates an option list (for drop down menus)
    * Example: =&lt;select&gt;%<nop>TOPICLIST{" &lt;option $marker value='$topic'&gt;$topic&lt;/option&gt;" separator=" " selection="%<nop>TOPIC%"}%&lt;/select&gt;= creates an option list of web topics with the current topic selected
-   * Related: [[%IF{"'%INCLUDINGTOPIC%'='TWikiVariables'" then="#"}%VarSEARCH][SEARCH]], [[%IF{"'%INCLUDINGTOPIC%'='TWikiVariables'" then="#"}%VarWEBLIST][WEBLIST]]
+   * Related: [[%IF{"'%INCLUDINGTOPIC%'='Macros'" then="#"}%VarSEARCH][SEARCH]], [[%IF{"'%INCLUDINGTOPIC%'='Macros'" then="#"}%VarWEBLIST][WEBLIST]]
 

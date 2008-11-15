@@ -3,5 +3,5 @@
 #VarTOC
 ---+++ TOC -- table of contents of current topic
    * Syntax: =%<nop>TOC%=
-   * Related: [[%IF{"'%INCLUDINGTOPIC%'='TWikiVariables'" then="#"}%VarTOC2][TOC{"Topic"}]]
+   * Related: [[%IF{"'%INCLUDINGTOPIC%'='Macros'" then="#"}%VarTOC2][TOC{"Topic"}]]
 

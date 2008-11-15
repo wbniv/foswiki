@@ -5,4 +5,4 @@
    * The web containing all documentation and default preference settings
    * Syntax: =%<nop>SYSTEMWEB%=
    * Expands to: =%SYSTEMWEB%=
-   * Related: [[%IF{"'%INCLUDINGTOPIC%'='TWikiVariables'" then="#"}%VarUSERSWEB][USERSWEB]]
+   * Related: [[%IF{"'%INCLUDINGTOPIC%'='Macros'" then="#"}%VarUSERSWEB][USERSWEB]]

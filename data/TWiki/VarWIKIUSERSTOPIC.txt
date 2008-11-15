@@ -4,5 +4,5 @@
 ---+++ WIKIUSERSTOPIC -- name of topic listing all registers users
    * Syntax: =%<nop>WIKIUSERSTOPIC%=
    * Expands to: =%WIKIUSERSTOPIC%=, with %USERSWEB% prefix renders as %USERSWEB%.%WIKIUSERSTOPIC%
-   * Related: [[%IF{"'%INCLUDINGTOPIC%'='TWikiVariables'" then="#"}%VarWIKIUSERNAME][WIKIUSERNAME]]
+   * Related: [[%IF{"'%INCLUDINGTOPIC%'='Macros'" then="#"}%VarWIKIUSERNAME][WIKIUSERNAME]]
 
