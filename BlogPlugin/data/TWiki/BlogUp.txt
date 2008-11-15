@@ -64,7 +64,7 @@ of the visitor.
      new SubjectCategories
    3 administrative level: grant access to TopicFunctions that render the site
 
-Roles are assigned using %MAINWEB%.TWikiGroups, i.e. the %MAINWEB%.BlogAuthorGroup and
+Roles are assigned using %MAINWEB%.WikiGroups, i.e. the %MAINWEB%.BlogAuthorGroup and
 the %MAINWEB%.BlogAdminGroup. Each blog is contained in one web; one blog can be a multi-author
 or single-author blog. A multi-author blog will display authorship per posting, not so a single-author
 blog. 

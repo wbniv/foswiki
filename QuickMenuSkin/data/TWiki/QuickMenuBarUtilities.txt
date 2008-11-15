@@ -3,7 +3,7 @@
 utilMenu = new QuickMenu.Menu(menuBar,"%MAKETEXT{"Utilities"}%","","","%MAKETEXT{"Utilities available for this Web"}%");
 if ("%USERINFO{format="$groups"}%".match(/AdminGroup/)) {
   utilMenu.Add("%MAKETEXT{"Users"}%","%SCRIPTURLPATH{"view"}%/%MAINWEB%/WikiUsers","%ICONURLPATH{"person"}%");
-  utilMenu.Add("%MAKETEXT{"Groups"}%","%SCRIPTURLPATH{"view"}%/%MAINWEB%/TWikiGroups","%ICONURLPATH{"group"}%");
+  utilMenu.Add("%MAKETEXT{"Groups"}%","%SCRIPTURLPATH{"view"}%/%MAINWEB%/WikiGroups","%ICONURLPATH{"group"}%");
   utilMenu.Add();
 }
 utilMenu.Add("%MAKETEXT{"Search"}%","%SCRIPTURLPATH{"view"}%/%BASEWEB%/WebSearch","%ICONURLPATH{"searchtopic"}%");

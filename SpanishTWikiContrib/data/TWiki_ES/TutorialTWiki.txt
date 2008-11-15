@@ -27,7 +27,7 @@ Este tutorial le lleva paso por paso y le enseña todos los básicos de este Sitio
 
 ---++ 4. Revise los usuarios y grupos del TWiki.
    * Vaya a la página %USERSWEB%.%WIKIUSERSTOPIC% %FLAGGB%; contiene una lista de todos los usuarios del TWiki. Su nombre aparecerá en esta lista después de haberse registrado.
-   * Vaya a la página %USERSWEB%.TWikiGroups %FLAGGB% en la web %USERSWEB%; contiene una lista de grupos que se utilizan para definir más detalladamente el [[%SYSTEMWEB%.AccessControl][control de acceso]] %FLAGGB% en el TWiki.
+   * Vaya a la página %USERSWEB%.WikiGroups %FLAGGB% en la web %USERSWEB%; contiene una lista de grupos que se utilizan para definir más detalladamente el [[%SYSTEMWEB%.AccessControl][control de acceso]] %FLAGGB% en el TWiki.
 
 ---++ 5. Pruebe los controles de página...
  Las franjas de control coloradas al inicio y/o final de la página contienen una colección de enlaces de acción. Dependiendo de la configuración de la apariencia del TWiki, los enlaces pueden ser diferentes, pero en la mayoría de los casos van a ser los siguientes: 

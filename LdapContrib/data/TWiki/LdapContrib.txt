@@ -104,9 +104,9 @@ to your =lib/LocalSite.cfg= configuration file (or by using the =configure= tool
 <verbatim>$TWiki::cfg{UserMappingManager} = 'TWiki::Users::LdapUserMapping';</verbatim>
 
 In addition you can decide if you want to _add_ the LDAP groups to TWiki or use
-LDAP groups solely. This is controled by the <nop>TWikiGroupsBackoff flag.  If
+LDAP groups solely. This is controled by the <nop>WikiGroupsBackoff flag.  If
 switched on then LDAP groups will be added. If there's a name clash LDAP groups
-take precedence. If switched off <nop>TWikiGroups are ignored.
+take precedence. If switched off <nop>WikiGroups are ignored.
 
 You might decide in not using your LDAP groups in TWiki but still map login names
 to <nop>WikiNames. Both, LDAP user groups _and_ name mapping is done by the
@@ -361,7 +361,7 @@ Flag to indicate wether the member attribute of a group stores a DN:
 <verbatim>$TWiki::cfg{Ldap}{MemberIndirection} = 1; </verbatim>
 
 Enable/disable reusage of groups defined in TWiki natively:
-<verbatim>$TWiki::cfg{Ldap}{TWikiGroupsBackoff} = 1; </verbatim>
+<verbatim>$TWiki::cfg{Ldap}{WikiGroupsBackoff} = 1; </verbatim>
 
 Enable/disable normalization of group names as they come from LDAP:
 <verbatim>$TWiki::cfg{Ldap}{NormalizeGroupNames} = 1; </verbatim>
@@ -450,7 +450,7 @@ that the <nop>LdapContrib will force an update of the cache data.
 |  07 Jan 2008: | fixed initializing the cache |
 |  21 Dec 2007: | added <nop>LdapApacheLogin, \
                   made updating the cache quasi atomic |
-|  22 Nov 2007: | fixed recognition of <nop>TWikiGroups in a mixed setting |
+|  22 Nov 2007: | fixed recognition of <nop>WikiGroups in a mixed setting |
 |  05 Oct 2007: | enabled native user registration using the secondary password manager;\
                   added support to change a user's LDAP password from within TWiki; \
                   added patch for =TWiki.pm= that backports some of the fixes from TWiki-4.2 \

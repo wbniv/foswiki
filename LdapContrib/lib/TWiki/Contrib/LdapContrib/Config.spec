@@ -140,10 +140,10 @@ $TWiki::cfg{Ldap}{MemberAttribute} = 'memberUid';
 $TWiki::cfg{Ldap}{MemberIndirection} = 0;
 
 # **BOOLEAN**
-# Flag indicating wether we fallback to TWikiGroups. If this is switched on, 
-# standard TWiki groups will be used as a fallback if a group definition of a given
+# Flag indicating wether we fallback to WikiGroups. If this is switched on, 
+# standard Wiki groups will be used as a fallback if a group definition of a given
 # name was not found in the LDAP database.
-$TWiki::cfg{Ldap}{TWikiGroupsBackoff} = 1;
+$TWiki::cfg{Ldap}{WikiGroupsBackoff} = 1;
 
 # **BOOLEAN**
 # Enable/disable normalization of group names as they come from LDAP:

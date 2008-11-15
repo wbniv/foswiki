@@ -167,7 +167,7 @@ sub new {
     groupFilter=>$TWiki::cfg{Ldap}{GroupFilter} || 'objectClass=posixGroup',
     memberAttribute=>$TWiki::cfg{Ldap}{MemberAttribute} || 'memberUid',
     memberIndirection=>$TWiki::cfg{Ldap}{MemberIndirection} || 0,
-    twikiGroupsBackoff=>$TWiki::cfg{Ldap}{TWikiGroupsBackoff} || 0,
+    WikiGroupsBackoff=>$TWiki::cfg{Ldap}{WikiGroupsBackoff} || 0,
     bindDN=>$TWiki::cfg{Ldap}{BindDN} || '',
     bindPassword=>$TWiki::cfg{Ldap}{BindPassword} || '',
     mapGroups=>$TWiki::cfg{Ldap}{MapGroups} || 0,

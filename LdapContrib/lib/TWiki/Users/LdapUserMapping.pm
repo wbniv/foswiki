@@ -78,7 +78,7 @@ sub finish {
 ---++++ getListOfGroups( ) -> @listOfUserObjects
 
 Get a list of groups defined in the LDAP database. If 
-=twikiGroupsBackoff= is defined the set of LDAP and native groups will
+=WikiGroupsBackoff= is defined the set of LDAP and native groups will
 merged whereas LDAP groups have precedence in case of a name clash.
 
 =cut
@@ -96,7 +96,7 @@ sub getListOfGroups {
     return $this->SUPER::getListOfGroups()
       unless $this->{ldap}{mapGroups};
 
-    if ($this->{ldap}{twikiGroupsBackoff}) {
+    if ($this->{ldap}{WikiGroupsBackoff}) {
       %groups = map { $_->wikiName() => $_ } $this->SUPER::getListOfGroups();
     } else {
       %groups = ();
@@ -112,7 +112,7 @@ sub getListOfGroups {
   } else {
     # TWiki 4.2
 
-    if ($this->{ldap}{twikiGroupsBackoff}) {
+    if ($this->{ldap}{WikiGroupsBackoff}) {
       %groups = map { $_ => 1 } @{$this->SUPER::_getListOfGroups()};
     } else {
       %groups = ();
@@ -176,10 +176,10 @@ sub groupMembers {
     }
 
   } else {
-    # fallback to twiki groups,
+    # fallback to wiki groups,
     # try also to find the SuperAdminGroup
-    #$this->{ldap}->writeDebug("fallback to twiki groups");
-    if ($this->{ldap}{twikiGroupsBackoff} 
+    #$this->{ldap}->writeDebug("fallback to wiki groups");
+    if ($this->{ldap}{WikiGroupsBackoff} 
       || $groupName eq $TWiki::cfg{SuperAdminGroup}) {
       return $this->SUPER::groupMembers($group) || [];
     } else {
@@ -202,7 +202,7 @@ sub addUserToMapping {
   my $this = shift;
 
   return $this->SUPER::addUserToMapping(@_)
-    if $this->{ldap}{twikiGroupsBackoff};
+    if $this->{ldap}{WikiGroupsBackoff};
 
   return '';
 }
@@ -325,7 +325,7 @@ sub getListOfAllWikiNames {
 
 Establish if a user object refers to a user group or not.
 This returns true for the <nop>SuperAdminGroup or
-the known LDAP groups. Finally, if =twikiGroupsBackoff= 
+the known LDAP groups. Finally, if =WikiGroupsBackoff= 
 is set the native mechanism are used to check if $user is 
 a group
 
@@ -351,7 +351,7 @@ sub isGroup {
   my $isGroup = $this->{ldap}->isGroup($wikiName);
 
   # backoff if it does not know
-  if (!defined($isGroup) && $this->{ldap}{twikiGroupsBackoff}) {
+  if (!defined($isGroup) && $this->{ldap}{WikiGroupsBackoff}) {
     $isGroup = $this->SUPER::isGroup($user) if ref $user;
     $isGroup = ($wikiName =~ /Group$/); # SMELL: api overdesign
   }
@@ -420,7 +420,7 @@ sub userExists {
 
   return 1 if $wikiName;
 
-  if ($this->{ldap}{twikiGroupsBackoff}) {
+  if ($this->{ldap}{WikiGroupsBackoff}) {
     return $this->SUPER::userExists($cUID);
   }
 
@@ -443,7 +443,7 @@ sub eachUser {
   my @allLoginNames = $this->{ldap}->getAllLoginNames();
   my $ldapIter = new TWiki::ListIterator(@allLoginNames);
 
-  return $ldapIter unless $this->{ldap}{twikiGroupsBackoff};
+  return $ldapIter unless $this->{ldap}{WikiGroupsBackoff};
 
   my $backOffIter = $this->SUPER::eachUser(@_);
   my @list = ($ldapIter, $backOffIter);
@@ -486,9 +486,9 @@ sub eachGroupMember {
   my $members = $this->{ldap}->getGroupMembers($groupName) || [];
 
   unless (@$members) {
-    # fallback to twiki groups,
+    # fallback to wiki groups,
     # try also to find the SuperAdminGroup
-    if ($this->{ldap}{twikiGroupsBackoff} 
+    if ($this->{ldap}{WikiGroupsBackoff} 
       || $groupName eq $TWiki::cfg{SuperAdminGroup}) {
       return $this->SUPER::eachGroupMember($groupName);
     }
