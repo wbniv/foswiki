@@ -34,7 +34,7 @@ Deny from env=anonymous_spider
 # if your web hosting provider permits this.  Remove if using mod_perl.
 SetHandler cgi-script
 
-# Password file for TWiki users
+# Password file for Wiki users
 #
 
 # Authentication type (htpasswd file) (comment out this if you configure htpasswd / LDAP support)

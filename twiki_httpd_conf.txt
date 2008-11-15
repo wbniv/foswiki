@@ -59,7 +59,7 @@ BrowserMatchNoCase ^$ blockAccess
 	Options ExecCGI FollowSymLinks
 	SetHandler cgi-script
 
-	# Password file for TWiki users
+	# Password file for Wiki users
 	AuthUserFile /home/httpd/twiki/data/.htpasswd
 	AuthName 'Enter your WikiName: (First name and last name, no space, no dots, capitalized, e.g. JohnSmith). Cancel to register if you do not have one.'
 	AuthType Basic
