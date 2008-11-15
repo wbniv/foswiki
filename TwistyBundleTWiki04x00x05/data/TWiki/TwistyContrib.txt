@@ -154,9 +154,9 @@ You can also set the global TWiki variable TWISTYCONTRIB_DEBUG to 1 to make the 
 <style type="text/css" media="all">
 @import url("%PUBURL%/%SYSTEMWEB%/TwistyContrib/twist.css");
 </style>
-<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiJavascripts/twikilib.js"></script>
-<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiJavascripts/twikiPref.js"></script>
-<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiJavascripts/twikiCSS.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/twikilib.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/twikiPref.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/twikiCSS.js"></script>
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/BehaviourContrib/behaviour.js"></script>
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TwistyContrib/twist.js"></script>
 </verbatim>

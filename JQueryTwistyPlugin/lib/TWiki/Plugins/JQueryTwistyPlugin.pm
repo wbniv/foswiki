@@ -104,7 +104,7 @@ sub _addHeader {
 @import url("%PUBURL%/%SYSTEMWEB%/JQueryTwistyPlugin/twist.css");
 </style>
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JQueryTwistyPlugin/twist.js"></script>
-<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiJavascripts/twikiPref.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/twikiPref.js"></script>
 <script type="text/javascript">
 // <![CDATA[
 var styleText = '<style type="text/css" media="all">.twikiMakeVisible{display:inline;}.twikiMakeVisibleInline{display:inline;}.twikiMakeVisibleBlock{display:block;}.twikiMakeHidden{display:none;}</style>';

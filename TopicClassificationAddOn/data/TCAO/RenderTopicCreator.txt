@@ -36,7 +36,7 @@ This TopicFunction is for creating new topics. It is mostly called indirectly fr
 ---++ Implementation
 <verbatim>
 %STARTINCLUDE%
-<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiJavascripts/twiki.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/twiki.js"></script>
 %INCLUDE{"%SYSTEMWEB%.WebTopicCreator" section="javascriptfunctions" }%
 <script type="text/javascript">
 //<![CDATA[

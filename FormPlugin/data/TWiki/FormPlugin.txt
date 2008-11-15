@@ -465,7 +465,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
 |  08 Mar 2008 | 1.2 Added =condition=, =noformhtml= and =dateformat= attributes. |
 |  19 Oct 2007 | 1.1 Added =date= type. |
-|  09 Jun 2007 | 1.0.5 Added upload parameter; option to turn off form validation; custom javascript has been replaced by code in =pub/TWiki/TWikiJavascripts/twikiForm.js=; added Flickr example. |
+|  09 Jun 2007 | 1.0.5 Added upload parameter; option to turn off form validation; custom javascript has been replaced by code in =pub/TWiki/JavascriptFiles/twikiForm.js=; added Flickr example. |
 |  27 May 2007 | 1.0.4 Update javascript calls to new =twikiForm.js=. |
 |  19 May 2007 | 1.0.3 Added element attributes: =focus=, =disabled=, =readonly=; Javascript parameters =beforeclick=, =onFocus=, =onBlur=, =onMouseOver=, =onMouseOut=, =onSelect=, =onChange=, =onClick=, =onKeyUp=; form parameter =onSubmit=. Fallback for form POSTs and TWiki versions earlier than 4.2: POST requests are converted to GET requests. |
 |  15 May 2007 | 1.0.2 Added form attribute =elementformat=; changed parameter names for consistency: =class= to =cssclass=, =elementformat= to =fieldformat=.  |
