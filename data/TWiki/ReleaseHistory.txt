@@ -1,11 +1,11 @@
-%META:TOPICINFO{author="ProjectContributor" date="1200423469" format="1.1" version="$Rev: 17584 $"}%
+%META:TOPICINFO{author="ProjectContributor" date="1200423469" format="1.1" version="$Rev: 15785 $"}%
 %STARTINCLUDE%
 ---+ Appendix A: TWiki Development Time-line
 
 %TOC%
 
 #FreetownRelease
----++ TWiki Release 4.2.4 (Freetown) released %$DATE%
+---++ TWiki Release 4.2.1 (Freetown) released %$DATE%
 
 Patch release following the 4.2.0 released 22 Jan 2008
 
@@ -87,6 +87,7 @@ If you find an omission please fix it at TWiki:TWiki.TWikiHistory. For the full 
 __Note:__ Order of contributors under "Spec and code", "Templates and skins" and "Documentation" is based on number of SVN file changes for core and default extensions from March 2007 (svn rev:13046) to Jan 2008 (svn rev:16210). (Details at TWikibug:TWiki420SvnLog). Order of contributors under "Testing and bug fixing" is based on Bugs web statistics from 2007-03 to 2007-12. Order of contributors under "TWiki.org wiki champions" and "Customer support" is based on TWiki.org web statistics from 2007-02 to 2007-12.
 
 
+
 #EdinburghRelease
 ---++ TWiki Release 4.1 (Edinburgh), 16 Jan 2007
 
@@ -131,7 +132,7 @@ __New Features and Enhancements of TWiki Release 4.1__
    * *Miscellaneous Feature Enhancements*
       * Change in WikiWord definition: Numbers are treated as lower case letters, e.g. !Y2K is now a !WikiWord.
       * Configurable template load path. Advanced feature for those that work with customized templates.
-      * Added %<nop>VBAR% to TWikiPreferences for vertical bar symbol.
+      * Added %<nop>VBAR% to !TWikiPreferences for vertical bar symbol.
       * On topic creation, force initial letter of topic name to be upper case.
       * Allow date format in form fields.
       * Enhance REVINFO{} variable with same date qualifiers as GMTIME{}.
@@ -485,7 +486,7 @@ __Major New Features__
    * *12 Jun 2002* - TWiki:Main.PeterThoeny
       * New =%<nop>WIKITOOLNAME%= variable in %WIKIPREFSTOPIC%; replacing =$wikiToolName= in TWiki.cfg
    * *31 May 2002* - TWiki:Main.PeterThoeny
-      * New =%<nop>EDITBOXSTYLE%= preferences variable which sets the edit box width automatically to the window width
+      * New =%<nop>EDITBOXSTYLE%= preferences setting which sets the edit box width automatically to the window width
    * *17 May 2002* - TWiki:Main.PeterThoeny
       * New =%<nop>URLENCODE{}%= variable to encodes a string for using in a URL parameter, e.g. =%<nop>URLENCODE{"spaced name"}%= returns =spaced%20name=
    * *17 May 2002* - TWiki:Main.PeterThoeny
@@ -524,7 +525,7 @@ __Major New Features__
    * *21 Aug 2001* - TWiki:Main.PeterThoeny
       * Convert to XHTML 1.0 function: first step to XHTML-ifying TWiki
    * *26 Jun 2001* - TWiki:Main.JohnTalintyre
-      * Category information to forms using the !TWikiMetaData format, see !TWikiForms
+      * Category information to forms using the TWikiMetaData format, see !TWikiForms
    * *07 Jun 2001* - TWiki:Main.PeterThoeny
       * New topic templates as topics instead of templates. Customize by editing the topic. Retired =notedited.tmpl=, =notext.tmpl= and =notwiki.tmpl= templates. More in TWikiTemplates. 
    * *07 Jun 2001* - TWiki:Main.PeterThoeny
@@ -536,7 +537,7 @@ __Major New Features__
    * *01 Jun 2001* - TWiki:Main.KlausWriessnegger, TWiki:Main.AndreaSterbini
       * Forms to change/reset/install passwords, see ChangePassword &amp; ResetPassword
    * *01 May 2001* - TWiki:Main.AndreaSterbini
-      * The %MAINWEB%.AdminGroup (or other group) can be enabled as a [[TWikiAccessControl#SuperAdminGroup][SuperAdminGroup]]. Members have browser edit access to _all_ locked topics. 
+      * The %MAINWEB%.AdminGroup (or other group) can be enabled as a [[AccessControl#SuperAdminGroup][SuperAdminGroup]]. Members have browser edit access to _all_ locked topics. 
    * *01 May 2001* - TWiki:Main.JohnTalintyre
       * Meta information format, see TWikiMetaData
    * *01 May 2001* - TWiki:Main.JohnTalintyre
@@ -574,7 +575,7 @@ __Major New Features__
    * *07 Jan 2001* - TWiki:Main.StanleyKnutson
       * Better error handling when saving a topic. 
    * *05 Jan 2001* - TWiki:Main.PeterThoeny
-      * View authorization based on groups. Define who is allowed to see a TWiki web. More in TWikiAccessControl and TWiki:Codev/AuthenticationBasedOnGroups. 
+      * View authorization based on groups. Define who is allowed to see a TWiki web. More in AccessControl and TWiki:Codev/AuthenticationBasedOnGroups. 
    * *05 Dec 2000* - TWiki:Main.PeterThoeny
       * Improved include handling. Infinite recursion of includes are prevented; new variables =%<nop>BASEWEB%=, =%<nop>INCLUDINGWEB%=, =%<nop>BASETOPIC%= and =%<nop>INCLUDINGTOPIC%= to have more control over include handling. More in TWikiVariables and TWiki:Codev/IncludeHandlingImprovements. 
    * *03 Dec 2000* - TWiki:Main.PeterThoeny
@@ -589,7 +590,7 @@ __Major New Features__
    * *01 Nov 2000* - TWiki:Main.PeterThoeny
       * Added a "Cancel" link in edit that releases the edit lock. 
    * *23 Oct 2000* - TWiki:Main.PeterThoeny
-      * Authorization based on groups. Define fine graned control who is allowed to change or create topics. More in TWikiAccessControl and TWiki:Codev/AuthenticationBasedOnGroups. 
+      * Authorization based on groups. Define fine graned control who is allowed to change or create topics. More in AccessControl and TWiki:Codev/AuthenticationBasedOnGroups. 
    * *05 Oct 2000* - TWiki:Main.PeterThoeny
       * Remember user by IP address so that =view= "knows" the user once authenticated in =edit=. More in TWikiUserAuthentication. 
    * *26 Sep 2000* - TWiki:Main.AlWilliams, TWiki:Main.PeterThoeny
@@ -605,7 +606,7 @@ __Major New Features__
    * *19 Aug 2000* - TWiki:Main.PeterThoeny
       * Ref-By link searches all webs (not just the current web.) 
    * *16 Aug 2000* - TWiki:Main.PeterThoeny
-      * New TWikiPreferences variables =%<nop>HTTP_EQUIV_ON_VIEW%= , =%<nop>HTTP_EQUIV_ON_EDIT%= and =%<nop>HTTP_EQUIV_ON_PREVIEW%= that define the =&lt;meta http-equiv="..."&gt;= meta tags for the TWiki templates. This can be used for example to set a document expiration time. 
+      * New !TWikiPreferences settings =%<nop>HTTP_EQUIV_ON_VIEW%= , =%<nop>HTTP_EQUIV_ON_EDIT%= and =%<nop>HTTP_EQUIV_ON_PREVIEW%= that define the =&lt;meta http-equiv="..."&gt;= meta tags for the TWiki templates. This can be used for example to set a document expiration time. 
    * *29 Jul 2000* - TWiki:Main.PeterThoeny
       * New variables =%<nop>GMTIME{"..."}%= and =%<nop>SERVERTIME{"..."}%= . More in TWikiVariables. 
    * *23 Jul 2000* - TWiki:Main.PeterThoeny
@@ -640,13 +641,13 @@ __Major New Features__
    * *21 Apr 2000* - TWiki:Main.JohnAltstadt, TWiki:Main.PeterThoeny
       * TWikiRegistration is done separately for Intranet use (depends on remote_user) or Internet use (depends on .htpasswd file). 
    * *20 Mar 2000* - TWiki:Main.PeterThoeny
-      * Uploading a file (topic file attachment) will optionally create a link to the uploaded file at the end of the topic. The preference variable =%<nop>ATTACHLINKBOX%= controls the default state of the __link__ check box in the attach file page. 
+      * Uploading a file (topic file attachment) will optionally create a link to the uploaded file at the end of the topic. The preference setting =%<nop>ATTACHLINKBOX%= controls the default state of the __link__ check box in the attach file page. 
    * *11 Mar 2000* - TWiki:Main.PeterThoeny
       * Better security with taint checking ( =Perl -T= option ) 
    * *25 Feb 2000* - TWiki:Main.PeterThoeny
-      * New preference variables =%<nop>EDITBOXWIDTH%= and =%<nop>EDITBOXHEIGHT%= to specify the edit box size. 
+      * New preference settings =%<nop>EDITBOXWIDTH%= and =%<nop>EDITBOXHEIGHT%= to specify the edit box size. 
    * *25 Feb 2000* - TWiki:Main.PeterThoeny
-      * Edit preferences topics to set TWiki variables. There are three level of preferences Site-level (TWikiPreferences), web-level (WebPreferences in each web) and user-level preferences (for each of the Main.WikiUsers). With this, discontinue use of server side include of =wikiwebs.inc= , =wikiwebtable.inc= , =weblist.inc= , =webcopyright.inc= and =webcolors.inc= files.  
+      * Edit preferences topics to set TWiki variables. There are three level of preferences Site-level (!TWikiPreferences), web-level (WebPreferences in each web) and user-level preferences (for each of the Main.WikiUsers). With this, discontinue use of server side include of =wikiwebs.inc= , =wikiwebtable.inc= , =weblist.inc= , =webcopyright.inc= and =webcolors.inc= files.  
    * *11 Feb 2000* - TWiki:Main.PeterThoeny
       * New variable =%<nop>SCRIPTSUFFIX%= / $scriptSuffix containing an optional file extension of the TWiki Perl script. Templates have been changed to use this variable. This allows you to rename the Perl script files to have a file extension like for example ".cgi". 
    * *11 Feb 2000* - TWiki:Main.PeterThoeny
@@ -656,7 +657,7 @@ __Major New Features__
    * *07 Feb 2000* - TWiki:Main.PeterThoeny
       * Inline search. New variable =%<nop>SEARCH{"str" ...}%= to show a search result embedded in a topic text. TWikiVariables has more on the syntax. Inline search combined with the category table feature can be used for example to create a simple bug tracking system. 
    * *04 Feb 2000* - TWiki:Main.PeterThoeny
-      * Access statistics. Each web has a WebStatistics topic that shows monthy statistics with number of topic views and changes, most popular topics, and top contributors. (It needs to be enabled, TWikiDocumentation has more.) 
+      * Access statistics. Each web has a WebStatistics topic that shows monthy statistics with number of topic views and changes, most popular topics, and top contributors. (It needs to be enabled, CompleteDocumentation has more.) 
    * *29 Jan 2000* - TWiki:Main.PeterThoeny
       * Fixed bug where TWiki would not initialize correctly under certain circumstances, i.e. when running it under mod_perl. Sub =initialize= in =wiki.pm= did not handle =$thePathInfo= correctly. 
    * *24 Jan 2000* - TWiki:Main.PeterThoeny
@@ -715,7 +716,7 @@ __Major New Features__
    * *08 Dec 1998* - TWiki:Main.PeterThoeny
       * Signature is shown below the text area when editing a topic. Use this to easily copy & paste your signature into the text. 
    * *07 Dec 1998* - TWiki:Main.PeterThoeny
-      * Possible to add a category table to a TWiki topic. This permits storing and searching for more structured information. Editing a topic shows a HTML form with the usual text area and a table with selectors, checkboxes, radio buttons and text fields. TWikiDocumentation has more on setup. The TWiki.Know web uses this category table to set classification, platform and OS version.  
+      * Possible to add a category table to a TWiki topic. This permits storing and searching for more structured information. Editing a topic shows a HTML form with the usual text area and a table with selectors, checkboxes, radio buttons and text fields. CompleteDocumentation has more on setup. The TWiki.Know web uses this category table to set classification, platform and OS version.  
    * *18 Nov 1998* - TWiki:Main.PeterThoeny
       * Internal log of topic save actions to the file <code>data/logYYYYMM.txt</code>, where <code>YYYYMM</code> the year and month in numeric format is. Intended for auditing only, not accessible from the web. 
    * *10 Nov 1998* - TWiki:Main.PeterThoeny
@@ -771,6 +772,6 @@ The typical TWiki development flow...
    * TWiki:Codev.DocRequest: request for documentation
    * TWiki:Codev.DocsToDo: feature documentation pending
    * TWiki:Codev.FeatureDocumented: documented feature
-   * CompleteDocumentation: reference manual for the latest TWiki
+   * ReferenceManual: reference manual for the latest TWiki
 
 __Related Topics:__ DeveloperDocumentationCategory

@@ -29,7 +29,7 @@ WebHome
 WebHome
 </verbatim>
 
-   * Core spaced out word: %SPACEOUT{"WebHome"}%
+   * Core spaced out word: %SPACEOUT{"%SYSTEMWEB%.WebHome"}%
    * Plugin spaced out: WebHome
       * Testing if the T and W don't show a gap
    * Expected: <a href="#">Web Home</a>
