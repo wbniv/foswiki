@@ -21,6 +21,8 @@ sub new {
 }
 
 # override to build C program in test dir
+=pod
+
 sub target_test {
     my $this = shift;
 
@@ -58,6 +60,8 @@ sub target_test {
 
     $this->SUPER::target_test;
 }
+
+=cut
 
 $build = new WebDAVPluginBuild();
 
