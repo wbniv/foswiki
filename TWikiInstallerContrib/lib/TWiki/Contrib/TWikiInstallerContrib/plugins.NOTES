@@ -180,13 +180,13 @@ mv: cannot stat `testpics': No such file or directory
 ! FileListPlugin - calls TWiki::formatTime and TWiki::Attach
 ! GenerateSearchPlugin - calls TWiki::Form::getFormDef() directly
 ! IncludeRevisionPlugin - doesn't render
-!& LatexModePlugin - viewing the page (after configuring program paths properly) yields: AccessControlException: Access to CHANGE TWiki.LatexModePlugin for TWikiGuest is denied. access not allowed on web[Sun Dec 11 17:27:09 2005] [error] [client 127.0.0.1] Premature end of script headers: view.cgi - need to move the sample to the Sandbox web
+!& LatexModePlugin - viewing the page (after configuring program paths properly) yields: AccessControlException: Access to CHANGE TWiki.LatexModePlugin for WikiGuest is denied. access not allowed on web[Sun Dec 11 17:27:09 2005] [error] [client 127.0.0.1] Premature end of script headers: view.cgi - need to move the sample to the Sandbox web
 ! LoginNameAliasesPlugin - TWiki::Plugins::LoginNameAliasesPlugin::earlyInitPlugin failed: 1
 ! MsOfficeAttachmentsAsHTMLPlugin - no docs, not sure what to do...
 ! NavbarPlugin - fix Colas' TWiki: name, fix parents, fix references back to (%SYSTEMWEB%.)NavbarPlugin - calls TWiki::Store::saveFile()
 ! PhantomPlugin - no skin, probably other stuff...
 ! PollPlugin - problems with TWiki::userToWikiName(), TWiki::editLockTime, TWiki::dataDir
-! PublishContrib - Can't locate object method "param" via package "TWikiGuest" (perhaps you forgot to load "TWikiGuest"?) at ../lib/TWiki.pm line 1044.
+! PublishContrib - Can't locate object method "param" via package "WikiGuest" (perhaps you forgot to load "WikiGuest"?) at ../lib/TWiki.pm line 1044.
 ! QuickSearchPlugin - sh: - : invalid option
 ! RevisionLinkPlugin - Can't locate object method "_getHandler" via package "TWiki" at /home/twiki/public_html/cgi-bin/twiki/lib/TWiki/Store.pm line 629.
 ! SpellCheckerPlugin (still in development)
@@ -351,7 +351,7 @@ tried:
 baseweb: %CALC{$GET(base_web)}%
 <input type="select" ... selection="%CALC{$GET(base_web)}%" ... />
 
-   * are there variables for TWikiGuest?  (if so, TWiki/SitePermissions doesn't use them, who knows where else)
+   * are there variables for WikiGuest?  (if so, TWiki/SitePermissions doesn't use them, who knows where else)
 
 
 ---+ (my) task list
