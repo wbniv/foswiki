@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="ProjectContributor" date="1159249788" format="1.1" version="$Rev: 17114 $"}%
+%META:TOPICINFO{author="ProjectContributor" date="1159249788" format="1.1" version="$Rev: 15598 $"}%
 ---+ Installed Plugins
 Plugins are mainly user-contributed add-ons that enhance and extend TWiki features and capabilities. A limited number of plugins are included in the core TWiki distribution - and any of those can be removed - while the rest are optional, available from TWiki:Plugins.PluginPackage.
 
@@ -18,6 +18,6 @@ See %SYSTEMWEB%.TWikiSkinBrowser for an overview of the installed Skins.
 ---++ Plugin Diagnostics 
 %FAILEDPLUGINS%
 
-__Note:__ The diagnostics are provided by the =%<nop>FAILEDPLUGINS%= variable
+__Note:__ The diagnostics are provided by the =%<nop>FAILEDPLUGINS%= macro
 
 __Related Topics:__ [[Plugins]], %WIKIPREFSTOPIC%, AdminDocumentationCategory, AdminToolsCategory, TWikiSkinBrowser

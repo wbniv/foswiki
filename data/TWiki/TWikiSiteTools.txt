@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="ProjectContributor" date="1177803014" format="1.1" version="$Rev: 14760 $"}%
+%META:TOPICINFO{author="ProjectContributor" date="1177803014" format="1.1" version="$Rev: 13239 $"}%
 %STARTINCLUDE%
 ---+ TWiki Site Tools
 
@@ -13,7 +13,7 @@ TWiki Site Tools include utilities for navigating, searching and keeping up with
 
 Each TWiki web has an automatic e-mail alert service that sends a list of recent changes on a preset schedule, like once a day. Users can subscribe and unsubscribe using %NOTIFYTOPIC% in each web. The Perl script =mailnotify= is called by a background process at regular intervals. The script sends an automated e-mail to subscribed users if topics were changed in a web since the script was last run.
 
-   * You can create a WebNotify link using [[Macros]] with ==%<nop>NOTIFYTOPIC%==
+   * You can create a WebNotify link using [[%SYSTEMWEB%.Macros][Macros]] with ==%<nop>NOTIFYTOPIC%==
 
 %INCLUDE{"WebChangesAlert"}%
 
@@ -29,7 +29,7 @@ WebSearch is an extremely fast and flexible search facility, part of the core TW
    * index-style A-Z alphabetical listing sorted topic title
    * many more
 
-See also: SearchHelp for help; [[Macros]] and FormattedSearch for including hard-coded searches in text.
+See also: SearchHelp for help; [[%SYSTEMWEB%.Macros][Macros]] and FormattedSearch for including hard-coded searches in text.
 
 #WebChanges
 ---++ <nop>WebChanges - what's new
@@ -64,12 +64,12 @@ WebIndex lists all web topics in alphabetical order, with the first couple of li
 
 You can generate a listing manually, or on an automated schedule, of visits to individual pages, on a per web basis. Compiled as a running total on a monthly basis. Includes totals for Topic Views, Topic Saves, Attachment Uploads, Most Popular Topics with number of views, and Top Contributors showing total of saves and attachment uploads. Previous months are saved.
 
-   * You can create a WebStatistics link using [[Macros]] with ==%<nop>STATISTICSTOPIC%==
+   * You can create a WebStatistics link using [[%SYSTEMWEB%.Macros][Macros]] with ==%<nop>STATISTICSTOPIC%==
 
 ---+++ Configuring for automatic operation
 
    * You can automatically generate usage statistics for all webs. To enable this:
-      * Make sure variable *{Log}{view}*, *{Log}{save}* and *{Log}{upload} in are set in [[%SCRIPTURLPATH{"configure"}%][configure]]. This will generate log file entries (see below).
+      * Make sure configure settings *{Log}{view}*, *{Log}{save}* and *{Log}{upload} in are set in [[%SCRIPTURLPATH{"configure"}%][configure]]. This will generate log file entries (see below).
       * The WebStatistics topic must be present in all webs where you want to have statistics. You can use the topic in the Main web as a template.
       * Call the =twiki/bin/statistics= script from a cron job, once a day is recommended. This will update the WebStatistics topics in all webs.
       * __Attention:__ The script must run as the same user as the CGI scripts are running, which is user =nobody= on many systems. Example crontab entry: %BR% =0 0 * * * (cd /path/to/twiki/bin; ./statistics &gt;/dev/null 2&gt;&amp;1)=
@@ -125,7 +125,7 @@ TWiki generates monthly log files which are used by the statistics script
 
 Outgoing mail is required for TWikiRegistration and for [[#WebNotify][recent changes alert]].
 
-TWiki will use the ==Net::SMTP== module if it is installed on your system. Set this with the ==SMTPMAILHOST== variable in DefaultPreferences.
+TWiki will use the ==Net::SMTP== module if it is installed on your system. Set this with the ==SMTPMAILHOST== preference setting in DefaultPreferences.
 
 The notify e-mail uses the default =changes.tmpl= template, or a skin if activated in the DefaultPreferences.
 
@@ -135,7 +135,7 @@ You can use an external mail program, such as ==sendmail==, if the =Net::SMTP= m
 
 !   * %H% Net::SMTP can be easily disabled (if there is an installation error) by setting ==SMTPMAILHOST== in DefaultPreferences to an empty value.
 
-   * %T% You can set a separate ==SMTPSENDERHOST== variable to define the mail sender host (some SMTP installations require this).
+   * %T% You can set a separate ==SMTPSENDERHOST== preference setting to define the mail sender host (some SMTP installations require this).
 
 ---+++ Setting the automatic e-mail schedule
 

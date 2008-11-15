@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="ProjectContributor" date="1111929255" format="1.0" version="$Rev: 17162 $"}%
+%META:TOPICINFO{author="ProjectContributor" date="1111929255" format="1.0" version="$Rev: 15648 $"}%
 ---+!! <nop>%WEB% Web Preferences
 
 The following settings are __web preferences__ of the [[%WEB%.%HOMETOPIC%][%WEB%]] web. These preferences overwrite the __site-level preferences__ in [[%SYSTEMWEB%.%WIKIPREFSTOPIC%]] and [[%LOCALSITEPREFS%]], and can be overwritten by __user preferences__ (your personal topic, eg: %USERSWEB%.%WIKINAME% in the [[%USERSWEB%.%HOMETOPIC%][%USERSWEB%]] web).
@@ -22,11 +22,13 @@ These settings override the defaults for this web only. See [[%SYSTEMWEB%.Defaul
          * Set TOC_TITLE = On this page:
       * The first header level to appear in the TOC:
          * Set TOC_MIN_DEPTH = 2
+      * Use auto linking for the TWiki documentation pages:
+         * Set NOAUTOLINK = 0
 
    * Default template for *new topics* for this web:
       * WebTopicEditTemplate: Site-level default topic template
 
-   * Comma separated list of *forms* that can be attached to topics in this web. See %SYSTEMWEB%.DataForms for more information.
+   * Comma separated list of *forms* that can be attached to topics in this web. See [[%SYSTEMWEB%.DataForms][DataForms]] for more information.
       * Set WEBFORMS = DefaultPreferencesForm
 
    * Copyright notice for the TWiki web.

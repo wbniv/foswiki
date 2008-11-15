@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="ProjectContributor" date="1197351701" format="1.1" version="$Rev: 15968 $"}%
+%META:TOPICINFO{author="ProjectContributor" date="1197351701" format="1.1" version="$Rev: 14446 $"}%
 ---++ Text Formatting FAQ
 
 The most frequently asked questions about text formatting are answered. Also, TextFormattingRules contains the complete TWiki shorthand system on one quick reference page.
@@ -15,7 +15,7 @@ Create a separator - a horizontal rule - by entering three dashes at the beginni
 ---+++ How do I create a heading?
 
 You can create six sizes of headings - &lt;h1&gt;...&lt;h6&gt; in HTML - by typing, from the beginning of a line, three dashes (-), from one to six plus signs (+), a space, and your heading text. The FAQ questions on this page are created with: =---+++ Have a question?=.
-   * You can insert a nested table of contents, generated from headings, by placing =%<nop>TOC%= wherever you like on a page (see [[%SYSTEMWEB%.Macros][Macros]] for more =%<nop>TOC%= options).
+   * You can insert a nested table of contents, generated from headings, by placing =%<nop>TOC%= wherever you like on a page (see [[Macros]] for more =%<nop>TOC%= options).
 
 -----
 #TextEnclosed
@@ -70,7 +70,7 @@ This text will keep its format as it is:
 
 The =pre= tag is standard HTML; =verbatim= is a special TWiki tag that forces text to fixed font mode, and also prevents other tags and TWiki shortcuts from being expanded.
 
-__NOTE:__ VARIABLES are still Set within verbatim tags (this is a historical peculiarity)
+__NOTE:__ preference settings are still Set within verbatim tags (this is a historical peculiarity)
 
 __NOTE:__ The =verbatim= opening and closing tags are converted into =pre= tags; any HTML attributes (e.g., =class=, =id=) in the opening =verbatim= tag are included in the corresponding =pre= tag.
 

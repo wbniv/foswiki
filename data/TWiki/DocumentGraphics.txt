@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="ProjectContributor" date="1222844046" format="1.1" version="$Rev: 17552 $"}%
+%META:TOPICINFO{author="ProjectContributor" date="1222844046" format="1.1" version="$Rev: 16040 $"}%
 ---+!! TWiki Documentation Graphics and Filetype icons
 
 This is the TWiki icon library. The graphics can be used in topics and by web applications. 
@@ -342,13 +342,13 @@ There are several other ways to put an image in a topic.
 
 Shorthand notation:
 <blockquote>
-In [[%USERSWEB%.DefaultPreferences!]] set a variable to an ICON, for example:
+In [[%USERSWEB%.DefaultPreferences!]] set a macro for an ICON, for example:
 
 =<nop>   * Set H = %<nop>ICON{help}%=
 
 Now you can use the icon by writing =%<nop>H%=
 
-For extended use, check out TWiki:Plugins.SmiliesPlugin that uses a different short hand than =<nop>%VARIABLES%=.
+For extended use, check out TWiki:Plugins.SmiliesPlugin that uses a different short hand than =<nop>%MACROS%=.
 </blockquote>
 
 Full path:
