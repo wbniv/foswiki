@@ -112,7 +112,7 @@ sub handleUml {
   my $content = $nameVal . "Content";
 
   my $wikiName = TWiki::Func::getWikiName();
-  my $isGuest = $wikiName eq "TWikiGuest"; # TWiki::Func::isGuest() does not seem to work...
+  my $isGuest = $wikiName eq "WikiGuest"; # TWiki::Func::isGuest() does not seem to work...
   my $isChangeAllowed = 
     !$isGuest &&
     TWiki::Func::checkAccessPermission('CHANGE', $wikiName, undef, $theTopic, $theWeb, undef);

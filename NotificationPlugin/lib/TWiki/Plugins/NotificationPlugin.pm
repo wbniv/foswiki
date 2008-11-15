@@ -365,7 +365,7 @@ sub showNotifyButtons {
   $popup = $1 if ( $attrs =~ /popup=\"(.*?)\"/ );
   $opt = $1 if ( $attrs =~ /optional=\"(.*?)\"/ );
   my $text = "";
-  if ( $TWiki::wikiName ne "TWikiGuest" ) {
+  if ( $TWiki::wikiName ne "WikiGuest" ) {
     $tinOn = "off" if ( !isItemInSection( $TWiki::wikiName, "$web.$topic", 0 ) );
     $winOn = "off" if ( !isItemInSection( $TWiki::wikiName, "$web", 1 ) );
     $tnOn = "off" if ( !isItemInSection( $TWiki::wikiName, "$web.$topic", 3 ) );

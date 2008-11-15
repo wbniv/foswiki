@@ -57,7 +57,7 @@ my %testForms = (
     },
     topic3 => {
         name   => 'FormFieldListTestTopic3',
-        user   => 'TWikiGuest',
+        user   => 'WikiGuest',
         date   => 1300000000,
         form   => 'ProjectForm',
         field1 => {
@@ -663,9 +663,9 @@ sub test_param_excludeuser {
     my $source =
 "%FORMFIELDLIST{topic=\"$allTopics\" excludeuser=\"ScumBag, ProjectContributor\" format=\"topic=\$topicName, last changed by \$topicUser\"}%";
 
-    my $expected = 'topic=FormFieldListTestTopic3, last changed by TWikiGuest
-topic=FormFieldListTestTopic3, last changed by TWikiGuest
-topic=FormFieldListTestTopic3, last changed by TWikiGuest
+    my $expected = 'topic=FormFieldListTestTopic3, last changed by WikiGuest
+topic=FormFieldListTestTopic3, last changed by WikiGuest
+topic=FormFieldListTestTopic3, last changed by WikiGuest
 topic=FormFieldListTestTopic4, last changed by TWikiAdminUser
 topic=FormFieldListTestTopic4, last changed by TWikiAdminUser
 topic=FormFieldListTestTopic4, last changed by TWikiAdminUser';
@@ -1522,9 +1522,9 @@ user=TWikiAdminUser
 user=ProjectContributor
 user=ProjectContributor
 user=ProjectContributor
-user=TWikiGuest
-user=TWikiGuest
-user=TWikiGuest';
+user=WikiGuest
+user=WikiGuest
+user=WikiGuest';
 
     $this->do_test( $testTopic, $expected, $source );
 }

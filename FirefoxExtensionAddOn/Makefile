@@ -27,7 +27,7 @@ cleanBackup:
 	find . \( -name '*~' -o -name '*.bak' -o -name '*.old' \) -exec rm '{}' \;
 
 release :
-	wget -nc --http-user=TWikiGuest --http-passwd=guest -O downloads/releases/TWiki20040901.tar.gz http://twiki.org/release/TWiki20040901.tar.gz
+	wget -nc --http-user=WikiGuest --http-passwd=guest -O downloads/releases/TWiki20040901.tar.gz http://twiki.org/release/TWiki20040901.tar.gz
 
 print :
 	@echo PLATFORM = $(PLATFORM)

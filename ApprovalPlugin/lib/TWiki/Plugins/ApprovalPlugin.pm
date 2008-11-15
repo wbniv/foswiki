@@ -262,7 +262,7 @@ sub _createTransitionForm {
     if( $noactions ){
         # not permitted to change state
         my $logIn = '';
-        my $guest = $TWiki::cfg{DefaultUserWikiName} || 'TWikiGuest';
+        my $guest = $TWiki::cfg{DefaultUserWikiName} || 'WikiGuest';
         #if( TWiki::Func::isGuest() ){
         if( $user eq $guest ){
             my $url = TWiki::Func::getScriptUrl( $web, $topic, 'login' );

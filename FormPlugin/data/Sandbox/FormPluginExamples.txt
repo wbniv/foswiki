@@ -541,7 +541,7 @@ We want to create a form to enter holiday data: a 'from' date and a 'until' date
 We want an easy entry form, but the data must not get corrupted. So:
    * The 'From' field must be filled in
    * The 'Until' field will not be displayed if not filled in, so no dash will be displayed
-   * Entering data is only possible if logged in, otherwise we would get <nop>TWikiGuest entries
+   * Entering data is only possible if logged in, otherwise we would get <nop>WikiGuest entries
    
 <verbatim style="display:none;">
 %TMPL:DEF{PROMPT:holiday_data}%
@@ -562,7 +562,7 @@ type="date"
 dateformat="%Y/%m/%d"
 size="9"
 title="I am on holidays from:"
-disabled="%IF{"$WIKINAME='TWikiGuest'" then="on"}%"
+disabled="%IF{"$WIKINAME='WikiGuest'" then="on"}%"
 validate="nonempty"
 }%
 %FORMELEMENT{
@@ -571,7 +571,7 @@ type="date"
 dateformat="%Y/%m/%d"
 size="9"
 title="Until:"
-disabled="%IF{"$WIKINAME='TWikiGuest'" then="on"}%"
+disabled="%IF{"$WIKINAME='WikiGuest'" then="on"}%"
 }%
 %FORMELEMENT{
 name="comment_from_date"
@@ -588,8 +588,8 @@ condition="$Until=nonempty"
 %FORMELEMENT{
 type="submit"
 buttonlabel="Add my dates"
-disabled="%IF{"$WIKINAME='TWikiGuest'" then="on"}%"
-}% %IF{"$WIKINAME='TWikiGuest'" then="<em>Log in to add your dates</em>"}%
+disabled="%IF{"$WIKINAME='WikiGuest'" then="on"}%"
+}% %IF{"$WIKINAME='WikiGuest'" then="<em>Log in to add your dates</em>"}%
 %ENDFORM%
 </div>
 </div>

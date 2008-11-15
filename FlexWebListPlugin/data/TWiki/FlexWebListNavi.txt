@@ -4,8 +4,8 @@
 The fragment below can be used in a sidebar navigation to establish a "twisted" subweb navigation.
 Use it by adding =%<nop>INCLUDE{"%WEB%.%TOPIC%"}%= to your WebLeftBar or TWikiWebSideBar.
 
-If you want to hide the web navigation from <nop>TWikiGuests then uncomment the following:
-   * #Set DENYTOPICVIEW = %MAINWEB%.TWikiGuest
+If you want to hide the web navigation from <nop>WikiGuests then uncomment the following:
+   * #Set DENYTOPICVIEW = %MAINWEB%.WikiGuest
 
 <verbatim>
 %STARTINCLUDE%%TWISTY{

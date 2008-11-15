@@ -120,5 +120,5 @@ format="<event start='$date' title='$topic' link='%SCRIPTURL{"view"}%/$web/$topi
 
 __Related Topics:__ [[%SYSTEMWEB%.Plugins][Plugins]], %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
 
-%META:FILEATTACHMENT{name="wikiringlogo20x20.png" attr="" autoattached="1" comment="" date="1153741461" path="wikiringlogo20x20.png" size="1343" user="Main.TWikiGuest" version="1"}%
+%META:FILEATTACHMENT{name="wikiringlogo20x20.png" attr="" autoattached="1" comment="" date="1153741461" path="wikiringlogo20x20.png" size="1343" user="Main.WikiGuest" version="1"}%
 %META:FILEATTACHMENT{name="timeline.jpg" attr="" autoattached="1" comment="" date="1153721646" path="timeline.jpg" size="11824" user="UnknownUser" version=""}%

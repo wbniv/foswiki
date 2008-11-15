@@ -77,8 +77,8 @@ Especially for the CalendarPlugin the option =daily= will cause the Topic rerend
 	* When in a Topic =Set ALLOWTOPICVIEW = Main. ...= or =Set DENYTOPICVIEW = Main. ...= is set or
 	* when in the the =WebPreferences= of a web =Set ALLOWWEBVIEW = Main. ...= or =Set DENYWEBVIEW = Main. ...= is set, followed by a user or group, caching is disabled. If activated later, the copy in the cache will be removed.
 	* *Attention!* %T%: _Be aware to keep the exact syntax as above! There has to be exact one space before and after the equal sign, otherwise_ __Security may fail!__
-		* Wrong would be =Set ALLOWTOPICVIEW =Main.TWikiGuest=
-		* Correct is: =Set ALLOWTOPICVIEW = Main.TWikiGuest=
+		* Wrong would be =Set ALLOWTOPICVIEW =Main.WikiGuest=
+		* Correct is: =Set ALLOWTOPICVIEW = Main.WikiGuest=
 
 ---++ Add-On Installation Instructions
 

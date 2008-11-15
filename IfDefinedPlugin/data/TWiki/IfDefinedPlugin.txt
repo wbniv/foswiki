@@ -156,7 +156,7 @@ and allows more complex <nop>TWikiMarkup in the then/else branches.
    * FOO is %IFDEFINED{"%FOO%" as="bar" then=" " else="not" glue="off"}% defined as "bar".
    * BAR is %IFDEFINED{"%BAR%" then=" " else="not" glue="off"}% defined.
    * %WIKIUSERNAME% has %IFACCESS{type="change" then=" " else=" no "}% write access to %TOPIC%
-   * %MAINWEB%.TWikiGuest has %IFACCESS{user="TWikiGuest" type="change" then=" " else=" no "}% write access to %TOPIC%
+   * %MAINWEB%.WikiGuest has %IFACCESS{user="WikiGuest" type="change" then=" " else=" no "}% write access to %TOPIC%
 
 
 ---++ Plugin Installation Instructions

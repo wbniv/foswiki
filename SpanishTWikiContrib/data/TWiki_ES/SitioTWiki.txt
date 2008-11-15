@@ -40,7 +40,7 @@
    * CulturaWiki analiza el tipo de colaboración único que ofrecen sistemas Wiki.
    * ReferenciasWiki enlace a artículos y libros acerca de colaboración y tecnología Wiki.
 
-<blockquote> %X% Si tiene que registrarse para utilizar TWiki, por ejemplo si TWiki está funcionando en una intranet, automáticamente firma las páginas que usted modifique o cree con su NombreWiki. Si su instalación de TWiki no requiere que se registre, TWiki asigna a todos los usuarios el mismo nombre de usuario: %USERSWEB%.TWikiGuest.</blockquote>
+<blockquote> %X% Si tiene que registrarse para utilizar TWiki, por ejemplo si TWiki está funcionando en una intranet, automáticamente firma las páginas que usted modifique o cree con su NombreWiki. Si su instalación de TWiki no requiere que se registre, TWiki asigna a todos los usuarios el mismo nombre de usuario: %USERSWEB%.WikiGuest.</blockquote>
 
 ---++ Aviso legal
 

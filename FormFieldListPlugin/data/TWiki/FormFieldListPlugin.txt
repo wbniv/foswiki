@@ -32,7 +32,7 @@ This plugin uses TWiki:Plugins/TopicDataHelperPlugin
 %TABLE{columnwidths="20%,30%,15%,40%"}%
 | *Parameter* | *Comment* | *Default value* | *Example* |
 | =user=  | Comma-separated list of user names (that have changed the containing topic last) to be listed. To find topics where no user is specified, use =UnknownUser=. | none | =user="ProjectContributor"= |
-| =excludeuser=  | Comma-separated list of user names (that have changed the containing topic last) to not show. | none | =excludeuser="<nop>ProjectContributor, <nop>TWikiAdminUser, <nop>TWikiGuest, <nop>UnknownUser"= |
+| =excludeuser=  | Comma-separated list of user names (that have changed the containing topic last) to not show. | none | =excludeuser="<nop>ProjectContributor, <nop>TWikiAdminUser, <nop>WikiGuest, <nop>UnknownUser"= |
 | =fromdate=, =todate=  | Date range filter: show topics between =fromdate= and =todate= (topic changed dates); dates are specified in format =yyyy/mm/dd= \
 %BB% =fromdate="" todate="2007/09/01"= selects all topics up to 1 Sep 2007 \
 %BB% =fromdate="2007/12/01" todate=""= selects all topics since 1 Dec 2007 | no date filter | =fromdate="2005/01/01"= =todate="2007/01/01"= |

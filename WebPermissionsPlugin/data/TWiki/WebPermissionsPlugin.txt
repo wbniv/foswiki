@@ -61,7 +61,7 @@ The plugin tries very hard to keep the permissions specification you started wit
 <h4><a name="All_Users_and_Groups"></a> All Users and Groups </h4>
 				<select size="14" name="disallowedusers" multiple="multiple" style="width: 100%;">
 					 <optgroup label="Groups"></optgroup>
-					 <optgroup label="Users"><option>ProjectContributor</option><option>TWikiGuest</option></optgroup></select>
+					 <optgroup label="Users"><option>ProjectContributor</option><option>WikiGuest</option></optgroup></select>
 		  </td><td align="center" width="100">
 				<button type="button" style="width: 100%;" class="twikiSubmit" name="action_save" id="save">%LEFT% Remove</button>
 				<button type="button" style="width: 100%;" class="twikiSubmit" name="action_cancel" id="cancel">Add %RIGHT%</button></td>

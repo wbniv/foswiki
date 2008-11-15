@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiGuest" date="1150662011" format="1.1" version="1.10"}%
+%META:TOPICINFO{author="WikiGuest" date="1150662011" format="1.1" version="1.10"}%
 ---+ <nop>%TOPIC%
 
 This plugin allows the user to break a topic into sections which can be edited individually. A secondary usage of this plugin is to render text in portions of a topic where it ordinarily could not be placed. For example, one could place a table within a cell of a table, or bullet lists inside of table cells.

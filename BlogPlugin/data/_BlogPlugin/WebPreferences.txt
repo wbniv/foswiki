@@ -120,9 +120,9 @@ Chose the skin to be used for this web:
 ---+++ Access rights
    * Set #DENYWEBVIEW =
    * Set #ALLOWWEBVIEW =
-   * Set DENYWEBCHANGE = %MAINWEB%.TWikiGuest
+   * Set DENYWEBCHANGE = %MAINWEB%.WikiGuest
    * Set #ALLOWWEBCHANGE = %MAINWEB%.BlogAuthorGroup
-   * Set DENYWEBRENAME = %MAINWEB%.TWikiGuest
+   * Set DENYWEBRENAME = %MAINWEB%.WikiGuest
    * Set ALLOWWEBRENAME = %MAINWEB%.BlogAuthorGroup
    * Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
    * Set ALLOWTOPICRENAME = %MAINWEB%.TWikiAdminGroup

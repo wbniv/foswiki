@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiGuest" date="1081694253" format="1.0" version="1.4"}%
+%META:TOPICINFO{author="WikiGuest" date="1081694253" format="1.0" version="1.4"}%
 ---+ Max Image Size Plugin
 
 This is an plugin to restrict the max size of an image. It gets called before images are saved to disk and changes the size of them according to the RESIZE_GEOMETRY string.
@@ -52,4 +52,4 @@ __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, 
 
 -- %SYSTEMWEB%.MartinCleaver - 11 Apr 2004 <br /> 
 
-%META:FILEATTACHMENT{name="martin-at-cape-rienga.jpg" attr="" comment="" date="1081694473" path="C:\Documents and Settings\Martin Cleaver\My Documents\My Pictures\martin-at-cape-rienga.jpg" size="90785" user="TWikiGuest" version="1.2"}%
+%META:FILEATTACHMENT{name="martin-at-cape-rienga.jpg" attr="" comment="" date="1081694473" path="C:\Documents and Settings\Martin Cleaver\My Documents\My Pictures\martin-at-cape-rienga.jpg" size="90785" user="WikiGuest" version="1.2"}%

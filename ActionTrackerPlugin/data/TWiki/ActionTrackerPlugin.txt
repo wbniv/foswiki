@@ -60,7 +60,7 @@ Write the command =%<nop>ACTION{= _attributes_ =}% ...  %<nop>ENDACTION%= anywhe
 
 For example,
 <pre>
-%<nop>ACTION{ who="TWikiGuest" due="2 Jan 2004" state="open" notify="AttillaTheHun" }% An action for TWikiGuest %<nop>ENDACTION%
+%<nop>ACTION{ who="WikiGuest" due="2 Jan 2004" state="open" notify="AttillaTheHun" }% An action for WikiGuest %<nop>ENDACTION%
 %<nop>ACTION{ who="LittleOysters" due="2 Jan 1884" state="open" }%
 The time has come, the walrus said,
 To speak of many things.
@@ -99,7 +99,7 @@ For example,
 <pre>
 %<nop>ACTIONSEARCH{ who="me" state="late" }%
 %<nop>ACTIONSEARCH{ who="me" open late }%
-%<nop>ACTIONSEARCH{ who="TWikiGuest" state="open" within="7" }%
+%<nop>ACTIONSEARCH{ who="WikiGuest" state="open" within="7" }%
 %<nop>ACTIONSEARCH{ web=".*" who="Genghis.Khan@mongol.empire.org" state="open" within="7" }%
 </pre>
 
@@ -391,9 +391,9 @@ Set to 1 to enable debug features, including the undocumented =%<nop>ACTIONNOTIF
 
 %$INSTALL_INSTRUCTIONS%
 	* If the plugin is installed and enabled correctly you should see a formatted action below:
-%ACTION{who=TWikiGuest,due="1 Jan 2003",open}% Example action %ENDACTION%
+%ACTION{who=WikiGuest,due="1 Jan 2003",open}% Example action %ENDACTION%
 	* ... and the result of a formatted search below:
-%ACTIONSEARCH{topic=ActionTrackerPlugin who=TWikiGuest header="|Who|Due|State|Description|" format="| $who |$due|$state|$text $link|" orient="rows" }%
+%ACTIONSEARCH{topic=ActionTrackerPlugin who=WikiGuest header="|Who|Due|State|Description|" format="| $who |$due|$state|$text $link|" orient="rows" }%
 
 Note that if you want to use the =action= template shipped with the TWiki:Plugins.CommentPlugin to create actions, then you must put the !CommentPlugin *before* the !ActionTrackerPlugin in the ={PluginsOrder}= configuration option.
 

@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiGuest" date="1155224748" format="1.1" version="1.2"}%
+%META:TOPICINFO{author="WikiGuest" date="1155224748" format="1.1" version="1.2"}%
 ---+!! FormQueryPlugin
 
 The FormQueryPlugin provides a query interface to the [[TWiki:Plugins/DBCacheContrib][TWiki::Contrib::DBCacheContrib]] module, giving a way to present query results as formatted tables.

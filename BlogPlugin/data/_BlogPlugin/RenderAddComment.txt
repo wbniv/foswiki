@@ -25,7 +25,7 @@ NONE
 <input type="hidden" name="topic" value="BlogCommentXXXXXXXXXX" />
 <table border="0" width="100%">
 <tr>
-  <td><input type="text" id="name" name="Name" value="%IFDEFINED{"%WIKINAME%" as="TWikiGuest" then=" " else="%WIKINAME%"}%" style="width:60%"/>
+  <td><input type="text" id="name" name="Name" value="%IFDEFINED{"%WIKINAME%" as="WikiGuest" then=" " else="%WIKINAME%"}%" style="width:60%"/>
       <label for="name">Name <span style="color:red;font-size:0.8em">**</span></label>
   </td>
 </tr>

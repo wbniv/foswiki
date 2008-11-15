@@ -6,7 +6,7 @@ Test data topic for %SYSTEMWEB%.AutoCompletePlugin.
 ---++ usernames
 Data is returned as an array of arrays. %BR%
 
-%STARTSECTION{"usernames"}%%SEARCH{ "[F]irstName.*value=.*()" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation,ProjectContributor,TWikiGuest,UnknownUser" format="[\"$topic\", \"$formfield(FirstName) $formfield(LastName)\"]" separator=","}%%ENDSECTION{"usernames"}%
+%STARTSECTION{"usernames"}%%SEARCH{ "[F]irstName.*value=.*()" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation,ProjectContributor,WikiGuest,UnknownUser" format="[\"$topic\", \"$formfield(FirstName) $formfield(LastName)\"]" separator=","}%%ENDSECTION{"usernames"}%
 
 ---++ topiclist
 

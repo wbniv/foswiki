@@ -153,7 +153,7 @@ sub verify_loadSimple {
     $this->assert_equals($topic, $info->get("_up"));
     my $user = $info->get("author");
     $user = $this->{twiki}->{users}->getWikiName($user);
-    $this->assert_str_equals("TWikiGuest", $user);
+    $this->assert_str_equals("WikiGuest", $user);
     $this->assert_str_equals("1.1", $info->get("format"));
 
     $topic = $db->get("FormTest");
@@ -163,7 +163,7 @@ sub verify_loadSimple {
     $this->assert_equals($topic, $info->get("_up"));
     $user = $info->get("author");
     $user = $this->{twiki}->{users}->getWikiName($user);
-    $this->assert_str_equals("TWikiGuest", $user);
+    $this->assert_str_equals("WikiGuest", $user);
     $this->assert_str_equals("1.1", $info->get("format"));
     $this->assert_str_equals("1.1", $info->get("version"));
     $this->assert_str_equals("WebHome", $topic->get("parent"));

@@ -26,7 +26,7 @@ my %delimiter_judo  =  ('[[%TTvar%]]'              => '[[%TTvar%]]',
 # Dummy values needed by TWiki interfaces, but irrelevant to the tests
 my $web         =  'TestWeb';
 my $topic       =  'TestTopic';
-my $user        =  'TWikiGuest';
+my $user        =  'WikiGuest';
 my $installWeb  =  'TWiki';
 
 sub new {

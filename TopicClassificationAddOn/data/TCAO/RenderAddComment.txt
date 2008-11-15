@@ -27,7 +27,7 @@ This section preceeds the comments.
 %INCLUDE{"%TCAOWEB%.RenderCommentCountBar"  warn="off" DESCRIPTOR="%DESCRIPTOR%" }%
 %IFDEFINEDTHEN{"%RESTRICTCOMMENTS%" as="yes" glue="off"}%
 %~~    IFDEFINED{"%WIKINAME%" 
-~~~        as="TWikiGuest" 
+~~~        as="WikiGuest" 
 ~~~        then=" _Please $percntLOGIN$percnt or [[$percntSYSTEMWEB$percnt.TWikiRegistration][register]] to post comments._ " 
 ~~~        else="$percntCOMMENT{type=\"comment\" 
 ~~~             target=\"$percntIFDEFINED{\"%TARGET%\" then=\"$test\" else=\"%BASEWEB%.%BASETOPIC%#AddComment\" glue=\"off\" }$percnt }$percnt" 

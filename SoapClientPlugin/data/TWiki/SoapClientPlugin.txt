@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiGuest" date="1153746501" format="1.1" version="1.2"}%
+%META:TOPICINFO{author="WikiGuest" date="1153746501" format="1.1" version="1.2"}%
 ---+ <nop>%TOPIC%
 
 This plugin will provide a TWiki Topic interface to SOAP::Lite calls (a la TWiki:Codev/TWikiAsWebServicesClient).
@@ -66,4 +66,4 @@ __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, 
 %META:FIELD{name="DevelopedInSVN" attributes="" title="DevelopedInSVN" value="Yes"}%
 %META:FIELD{name="ModificationPolicy" attributes="" title="ModificationPolicy" value="ContactAuthorFirst"}%
 %META:FIELD{name="RelatedTopics" attributes="" title="RelatedTopics" value="SoapClientPluginDev"}%
-%META:FILEATTACHMENT{name="wikiringlogo20x20.png" attachment="wikiringlogo20x20.png" attr="" comment="" date="1153746500" path="wikiringlogo20x20.png" size="1343" stream="wikiringlogo20x20.png" user="Main.TWikiGuest" version="1"}%
+%META:FILEATTACHMENT{name="wikiringlogo20x20.png" attachment="wikiringlogo20x20.png" attr="" comment="" date="1153746500" path="wikiringlogo20x20.png" size="1343" stream="wikiringlogo20x20.png" user="Main.WikiGuest" version="1"}%

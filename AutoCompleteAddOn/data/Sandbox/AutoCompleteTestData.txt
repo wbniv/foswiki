@@ -13,4 +13,4 @@ Pass parameter =topicsweb= for the web.
 Data is returned as an array of arrays. %BR%
 To be used with TWiki:Plugins/PersonalInfoAddOn.
 
-%STARTSECTION{"usernames"}%%SEARCH{ "[F]irstName.*value=.*();[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation,ProjectContributor,TWikiGuest,UnknownUser" format="[\"$topic\", \"$formfield(FirstName) $formfield(LastName)\"]" separator=","}%%ENDSECTION{"usernames"}%
+%STARTSECTION{"usernames"}%%SEARCH{ "[F]irstName.*value=.*();[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation,ProjectContributor,WikiGuest,UnknownUser" format="[\"$topic\", \"$formfield(FirstName) $formfield(LastName)\"]" separator=","}%%ENDSECTION{"usernames"}%

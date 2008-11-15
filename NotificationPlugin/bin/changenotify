@@ -21,7 +21,7 @@ sub main {
   my $theUrl = $query->url;
   ( $topic, $webName, $scriptUrlPath, $userName ) = &TWiki::initialize( $thePathInfo, $theRemoteUser, $theTopic, $theUrl, $query );
 
-  if ( $TWiki::wikiName ne "TWikiGuest" ) {
+  if ( $TWiki::wikiName ne "WikiGuest" ) {
     if ($query->param("action")) {
       if ($query->param("what")) {
         modify_notification($webName, $topic, $query->param("what"), 

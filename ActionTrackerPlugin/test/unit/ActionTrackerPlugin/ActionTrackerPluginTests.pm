@@ -204,13 +204,13 @@ sub testAfterEditHandler {
     my $second = $2;
     my $re = qr/\s+state=\"open\"\s+/;
     $this->assert_matches($re, $first); $first =~ s/$re/ /;
-    $re = qr/\s+creator=\"$this->{users_web}\.TWikiGuest\"\s+/o;
+    $re = qr/\s+creator=\"$this->{users_web}\.WikiGuest\"\s+/o;
     $this->assert_matches($re, $first); $first =~ s/$re/ /;
     $re = qr/\s+due=\"3-Jun-2002\"\s+/;
     $this->assert_matches($re, $first); $first =~ s/$re/ /;
     $re = qr/\s+created=\"3-Jun-2002\"\s+/;
     $this->assert_matches($re, $first); $first =~ s/$re/ /;
-    $re = qr/\s+who=\"$this->{users_web}.TWikiGuest\"\s+/;
+    $re = qr/\s+who=\"$this->{users_web}.WikiGuest\"\s+/;
     $this->assert_matches($re, $first); $first =~ s/$re/ /;
 }
 
@@ -233,13 +233,13 @@ sub testBeforeSaveHandler1 {
         $text,"Topic2",$this->{users_web});
     my $re = qr/ state=\"open\"/;
     $this->assert_matches($re, $text); $text =~ s/$re//;
-    $re = qr/ creator=\"$this->{users_web}.TWikiGuest\"/o;
+    $re = qr/ creator=\"$this->{users_web}.WikiGuest\"/o;
     $this->assert_matches($re, $text); $text =~ s/$re//;
     $re = qr/ created=\"3-Jun-2002\"/o;
     $this->assert_matches($re, $text); $text =~ s/$re//;
     $re = qr/ due=\"3-Jun-2002\"/o;
     $this->assert_matches($re, $text); $text =~ s/$re//;
-    $re = qr/ who=\"$this->{users_web}.TWikiGuest\"/o;
+    $re = qr/ who=\"$this->{users_web}.WikiGuest\"/o;
     $this->assert_matches($re, $text); $text =~ s/$re//;
     $re = qr/ No description/o;
     $this->assert_matches($re, $text); $text =~ s/$re//;
@@ -278,13 +278,13 @@ EOF
         $text,"Topic2",$this->{users_web});
     my $re = qr/ state=\"open\"/o;
     $this->assert_matches($re, $text); $text =~ s/$re//;
-    $re = qr/ creator=\"$this->{users_web}.TWikiGuest\"/o;
+    $re = qr/ creator=\"$this->{users_web}.WikiGuest\"/o;
     $this->assert_matches($re, $text); $text =~ s/$re//;
     $re = qr/ created=\"3-Jun-2002\"/o;
     $this->assert_matches($re, $text); $text =~ s/$re//;
     $re = qr/ due=\"3-Jun-2002\"/o;
     $this->assert_matches($re, $text); $text =~ s/$re//;
-    $re = qr/ who=\"$this->{users_web}.TWikiGuest\"/o;
+    $re = qr/ who=\"$this->{users_web}.WikiGuest\"/o;
     $this->assert_matches($re, $text); $text =~ s/$re//;
 }
 

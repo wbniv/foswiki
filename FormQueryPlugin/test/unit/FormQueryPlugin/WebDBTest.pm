@@ -265,7 +265,7 @@ sub test_calc {
     $this->assert_equals(11, $qr->size());
 
     my $attrs = new TWiki::Attrs( "format=\"|[[\$_up.web.\$_up.topic]]|\$Name|\$Date|\" sort=\"Name\"" );
-    $res = TWiki::Plugins::FormQueryPlugin::WebDB::toTable('q3', "|[[\$_up.web.\$_up.topic]]|\$Name|\$Date|\" sort=\"Name\"", $attrs, "WebHome", "Test", "TWikiGuest", "TWiki");
+    $res = TWiki::Plugins::FormQueryPlugin::WebDB::toTable('q3', "|[[\$_up.web.\$_up.topic]]|\$Name|\$Date|\" sort=\"Name\"", $attrs, "WebHome", "Test", "WikiGuest", "TWiki");
     $this->assert_str_equals("", $res);
     #  $res = TWiki::Plugins::FormQueryPlugin::_handleCalcTable("SHOWCALC", "\$ROW()");
     $res = TWiki::Plugins::SpreadSheetPlugin::Calc::doCalc("\$ROW()");
@@ -280,7 +280,7 @@ sub test_calc {
     $this->assert_equals(11, $qr->size());
 
     $attrs = new TWiki::Attrs( "format=\"|[[\$_up.web.\$_up.name]]|\$Level|\$RealName|\"" );
-    $res = TWiki::Plugins::FormQueryPlugin::WebDB::toTable('q3', "\"|[[\$_up.web.\$_up.name]]|\$Level|\$RealName|\"", $attrs, "WebHome", "Test", "TWikiGuest", "TWiki");
+    $res = TWiki::Plugins::FormQueryPlugin::WebDB::toTable('q3', "\"|[[\$_up.web.\$_up.name]]|\$Level|\$RealName|\"", $attrs, "WebHome", "Test", "WikiGuest", "TWiki");
     $this->assert_str_equals("", $res);
     #  $res = TWiki::Plugins::FormQueryPlugin::_handleCalcTable("SHOWCALC", "\$ROW()");
     # How on earth is this supposed to work? It depends on having parsed the

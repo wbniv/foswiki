@@ -54,7 +54,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 			* Add <tt>&lt;input type="hidden" name="Confirm" value="password"/&gt;</tt>
 		* Make any other changes to the registration form that you need to make (Dept, Office, etc)
 	* You might want to edit your =templates/oopsauth.tmpl= template and remove the stuff about changing passwords, etc.  A sample is included in =pub/TWiki/FakeBasicAuthRegPlugin/oopsauth.tmpl=.
-	* At some point you should probably remove the =!TWikiGuest= user from the =bin/.htpasswd= file (once you're absolutely sure this works or you won't be able to back out and edit content)
+	* At some point you should probably remove the =!WikiGuest= user from the =bin/.htpasswd= file (once you're absolutely sure this works or you won't be able to back out and edit content)
 	* Test if the installation was successful:
 		* Before registering, try editing a page
 			* Make sure the login box pops up

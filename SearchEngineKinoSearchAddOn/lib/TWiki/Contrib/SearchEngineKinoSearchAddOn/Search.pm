@@ -61,7 +61,7 @@ sub search {
     # getting the web, the topic and the user from the SESSION object
     my $webName    = $session->{webName};
     my $topicName  = $session->{topicName};
-    my $remoteUser = $session->{user}||"TWikiGuest";
+    my $remoteUser = $session->{user}||"WikiGuest";
     my $websStr = $query->param('web') || '';
     my $limit   = $self->limit($query);
 
@@ -584,7 +584,7 @@ sub topicAllowed {
 
     my ($self, $restopic, $resweb,  $text, $remoteUser) = (@_);
 
-    # security check - default mapping for user guest is TWikiGuest, so if web/topic
+    # security check - default mapping for user guest is WikiGuest, so if web/topic
     # does not allow this user to view the hit, it will be discarded
     #my $allowView = TWiki::Func::checkAccessPermission( "view", TWiki::Func::userToWikiName($remoteUser) , $text, $restopic, $resweb );
     #print "remoteUser = $remoteUser\n";

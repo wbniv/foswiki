@@ -38,9 +38,9 @@ This plugin is used to help find orphaned topics. It can also be used to count t
 Plugin output (pre-rendered):
 
 <ul>
-<li> <a href="/%SCRIPTURLPATH%/view/Main/TWikiGuestLeftBar" class="twikiLink">TWikiGuestLeftBar</a> (0)
+<li> <a href="/%SCRIPTURLPATH%/view/Main/WikiGuestLeftBar" class="twikiLink">WikiGuestLeftBar</a> (0)
 </li> <li> <a href="/%SCRIPTURLPATH%/view/Main/NobodyGroup" class="twikiLink">NobodyGroup</a> (0)
-</li> <li> <a href="/%SCRIPTURLPATH%/view/Main/TWikiGuestSideBar" class="twikiLink">TWikiGuestSideBar</a> (0)
+</li> <li> <a href="/%SCRIPTURLPATH%/view/Main/WikiGuestSideBar" class="twikiLink">WikiGuestSideBar</a> (0)
 </li> <li> <a href="/%SCRIPTURLPATH%/view/Main/PatternSkinUserViewTemplate" class="twikiLink">PatternSkinUserViewTemplate</a> (0)
 </li> <li> <a href="/%SCRIPTURLPATH%/view/Main/WebLeftBar" class="twikiLink">WebLeftBar</a> (0)
 </li> <li> <a href="/%SCRIPTURLPATH%/view/Main/OrphanTest" class="twikiLink">OrphanTest</a> (0)

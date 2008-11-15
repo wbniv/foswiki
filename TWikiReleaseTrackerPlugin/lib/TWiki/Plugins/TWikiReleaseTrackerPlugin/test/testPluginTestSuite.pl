@@ -22,7 +22,7 @@ use TWiki::Func;
 unless (eval "use TWiki::Plugins::TWikiReleaseTrackerPlugin") {
     print "$@\n";
 }
-TWiki::Plugins::TWikiReleaseTrackerPlugin::initPlugin("TRTTestSuite", "TWiki", "Main.TWikiGuest", "TWiki");
+TWiki::Plugins::TWikiReleaseTrackerPlugin::initPlugin("TRTTestSuite", "TWiki", "Main.WikiGuest", "TWiki");
 
 # =======
 

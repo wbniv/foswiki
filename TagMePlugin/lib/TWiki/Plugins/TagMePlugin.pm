@@ -1016,7 +1016,7 @@ sub _newTag {
 
     return _wrapHtmlErrorFeedbackMessage( "<nop>$user cannot add new tags",
         $note )
-      if ( $user =~ /^(TWikiGuest|guest)$/ );
+      if ( $user =~ /^(WikiGuest|guest)$/ );
 
     $tag = _makeSafeTag($tag);
 

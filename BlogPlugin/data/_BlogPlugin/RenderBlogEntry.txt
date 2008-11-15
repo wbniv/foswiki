@@ -26,7 +26,7 @@
 ~~~ }%
 ~~~ <a name="%WEB%_%NAME%"></a>
 ~~~
-%~~ DBQUERY{%IFDEFINED{"%WIKINAME%" as="TWikiGuest" then="\"State='published'\""}%
+%~~ DBQUERY{%IFDEFINED{"%WIKINAME%" as="WikiGuest" then="\"State='published'\""}%
 ~~~   topic="%NAME%" web="%WEB%"
 ~~~   format="%DBCALL{"%TOPIC%" section="format"
 ~~~     PARAMS="%IFDEFINED{"%URLPARAM{"cat"}%" then="cat=$test"}%"

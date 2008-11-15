@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiGuest" date="1155589527" format="1.1" version="1.2"}%
+%META:TOPICINFO{author="WikiGuest" date="1155589527" format="1.1" version="1.2"}%
 %TABLE2EXCEL{ map="Sandbox.IssueExcelExportImport" file="ExcelImportExport" topic="%TOPIC%" }%
 |TopicClassification|STATUS|NUM|DATE_LOGGED|LOGGED_BY|REGION|REGION_AFFECTED|SERVICE|USERS_AFFECTED|SHORT_DESCRIPTION|SECONDLINE|PROBLEM_DETAILS|ACTION_OWNER|NEXT_STEPS|START|DURATION|SEVERITY|REOC|FIX_PRIORITY|NEXT_UPDATE|LOGS|RELEASE_RELATED|
 | |New|5|20060813|SupportPerson|NYK|NYK|Desktop|Dr. Brain|Blue screen of death during system startup| |Memory faulty| |Replace mem| | |3| |M|20060813| | |

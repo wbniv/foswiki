@@ -2,7 +2,7 @@
 %META:TOPICPARENT{name="WebHome"}%
 ---++ <nop>%WEB% Web Preferences
 
-The following settings are __web preferences__ of the [[%WEB%.%HOMETOPIC%][%WEB%]] web. These preferences overwrite the __site-level preferences__ in %SYSTEMWEB%.%WIKIPREFSTOPIC%, and can be overwritten by __user preferences__ (your personal topic, eg: %MAINWEB%.TWikiGuest in the [[%MAINWEB%.%HOMETOPIC%][%MAINWEB%]] web).
+The following settings are __web preferences__ of the [[%WEB%.%HOMETOPIC%][%WEB%]] web. These preferences overwrite the __site-level preferences__ in %SYSTEMWEB%.%WIKIPREFSTOPIC%, and can be overwritten by __user preferences__ (your personal topic, eg: %MAINWEB%.WikiGuest in the [[%MAINWEB%.%HOMETOPIC%][%MAINWEB%]] web).
 
 
 __Preferences:__

@@ -51,8 +51,8 @@ sub new {
   
   # init properties
   $this->{isDakar} = (defined $TWiki::RELEASE)?1:0;
-  $this->{twikiGuest} = &TWiki::Func::getDefaultUserName();
-  $this->{twikiGuest} = &TWiki::Func::userToWikiName($this->{twikiGuest}, 1);
+  $this->{WikiGuest} = &TWiki::Func::getDefaultUserName();
+  $this->{WikiGuest} = &TWiki::Func::userToWikiName($this->{WikiGuest}, 1);
   $this->{ignoreHosts} = 
     TWiki::Func::getPreferencesValue("USERINFOPLUGIN_IGNORE_HOSTS") || '';
   $this->{ignoreHosts} = join('|', split(/,\s?/, $this->{ignoreHosts}));
@@ -69,7 +69,7 @@ sub new {
   # ignore build-in users 
   $this->{ignoreUsers} .= '|' if $this->{ignoreUsers};
   $this->{ignoreUsers} .= 
-    $this->{twikiGuest} .
+    $this->{WikiGuest} .
     '|'.'TWikiAdminGroup' .
     '|'.'UnknownUser' .
     '|'.$TWiki::cfg{Register}{RegistrationAgentWikiName} .
@@ -116,7 +116,7 @@ sub handleNrGuests {
   writeDebug("called handleNrGuests");
   return $this->{nrGuests} if defined $this->{nrGuests};
 
-  my (undef, $guests) = $this->getVisitorsFromSessionStore($this->{twikiGuest});
+  my (undef, $guests) = $this->getVisitorsFromSessionStore($this->{WikiGuest});
   $this->{nrGuests} = scalar @$guests;
 
   writeDebug("got $this->{nrGuests} nr guests");
@@ -307,7 +307,7 @@ sub getVisitorsFromSessionStore {
     my $dump = &TWiki::Func::readFile($sessionFile);
     next unless $dump;
 
-    my $wikiName = $this->{twikiGuest};
+    my $wikiName = $this->{WikiGuest};
     if ($dump =~ /['"]?AUTHUSER['"]? => ["'](.*?)["']/) {
       $wikiName = $1;
     }
@@ -321,7 +321,7 @@ sub getVisitorsFromSessionStore {
     if ($host) {
       #writeDebug("host=$host");
       next if $host =~ /$this->{ignoreHosts}/;
-      $guests{$host} = 1 if $wikiName eq $this->{twikiGuest};
+      $guests{$host} = 1 if $wikiName eq $this->{WikiGuest};
     }
 
     next if $users{$wikiName};

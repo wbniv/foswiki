@@ -33,7 +33,7 @@ Unlike the normal HTTP access to TWiki, there is no way of authenticating a user
 	* Topic names must be a valid WikiName by default (==WIKITOPICNAMES==)
 	* Topic names can be filtered, and unacceptable ones rejected (==TOPICSMUSTMATCH==)
 
-It may be acceptable in some contexts (e.g. intranet usage) to allow unregistered users email access.  If this is required, set ==MapUnknownToGuest== to true and any unknown senders will be authenticated as the %MAINWEB%.TWikiGuest user, and subject to the normal %MAINWEB%.TWikiGuest access controls.
+It may be acceptable in some contexts (e.g. intranet usage) to allow unregistered users email access.  If this is required, set ==MapUnknownToGuest== to true and any unknown senders will be authenticated as the %MAINWEB%.WikiGuest user, and subject to the normal %MAINWEB%.WikiGuest access controls.
 
 ---++ Topic Locking and Mail Spooling
 

@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiGuest" date="1154157676" format="1.1" version="1.2"}%
+%META:TOPICINFO{author="WikiGuest" date="1154157676" format="1.1" version="1.2"}%
 | *Name*      | *Type* | *Size* | *Values* | *Tooltip message* | *Mandatory* |
 | Story summary   | text   | 60     | |  | M |
 | [[AllIterations][Iteration]]   | select  | 1     | |  | M |

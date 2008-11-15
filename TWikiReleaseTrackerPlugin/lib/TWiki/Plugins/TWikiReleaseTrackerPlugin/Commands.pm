@@ -82,7 +82,7 @@ $Common::installationDir = $settings{shellwd}; # SMELL - hack til have env var f
 unless (eval "use TWiki::Plugins::TWikiReleaseTrackerPlugin") {
     print "$@\n";
   }
-TWiki::Plugins::TWikiReleaseTrackerPlugin::initPlugin("WebHome", "TWiki", "Main.TWikiGuest", "TWiki");
+TWiki::Plugins::TWikiReleaseTrackerPlugin::initPlugin("WebHome", "TWiki", "Main.WikiGuest", "TWiki");
 
 sub loadIndexes {
     TWiki::Plugins::TWikiReleaseTrackerPlugin::FileDigest::loadIndexes("pub/TWiki/TWikiReleaseTrackerPlugin");

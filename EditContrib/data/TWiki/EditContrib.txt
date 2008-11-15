@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiGuest" date="1150177015" format="1.1" version="1.8"}%
+%META:TOPICINFO{author="WikiGuest" date="1150177015" format="1.1" version="1.8"}%
 ---+!! Edit Contrib Package
 
 Provides subroutines useful in writing plugins that edit and save parts of topics.

@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="TWikiGuest" date="1099288894" format="1.0" version="1.1"}%
+%META:TOPICINFO{author="WikiGuest" date="1099288894" format="1.0" version="1.1"}%
 ---+ CommandSet
 
 CommandSets are the extension point for TWikiShellContrib. Without them, it's only an empty shell (no pun intended)

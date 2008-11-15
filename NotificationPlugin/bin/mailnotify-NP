@@ -20,7 +20,7 @@
 # modifications from mailnotify script from Dec 2001 release:
 # - email is now optional, is fetched from the user homepage
 # - webs not beginning by a capital letter are ignored ( _default, ...)
-# - no mail is sent to TWikiGuest
+# - no mail is sent to WikiGuest
 # - if user is a group, recurses through its members
 
 # Set library paths in @INC, at compile time
