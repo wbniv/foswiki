@@ -8,7 +8,7 @@
 
 Variables TWiki son palabras que están encerradas en signos de porcentaje que serán interpretadas en el momento cuando se muestra la página. Por ejemplo, =%<nop>TOPIC%= se convierte en %TOPIC%. Algunas variables pueden tener argumentos adicionales en paréntesis tipo llave - por ejemplo =%<nop>INCLUDE{"OtherTopic" ARG="arg"}%=.
 
-Muchas variables vienen con el sistema, otras serán predefinidas de acuerdo a sus necesidades. También puede definir sus propias variables TWiki para todo el sitio, individualmente para cada web o para cada página. Para más información, revise TWiki.TWikiVariables %FLAGGB%.
+Muchas variables vienen con el sistema, otras serán predefinidas de acuerdo a sus necesidades. También puede definir sus propias variables TWiki para todo el sitio, individualmente para cada web o para cada página. Para más información, revise [[%SYSTEMWEB%.Macros][Macros]] %FLAGGB%.
 
 Variables TWiki serán interpretadas _antes_ de que se aplique cualquier regla para formatear texto.
 
@@ -20,6 +20,6 @@ Variables TWiki serán interpretadas _antes_ de que se aplique cualquier regla pa
 -- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 23 Apr 2008
 
 %META:FORM{name="TWiki.TranslationForm"}%
-%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.TWikiVariablesQuickStart"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.MacrosQuickStart"}%
 %META:FIELD{name="Revision" attributes="" title="Revision" value="3"}%
 %META:FIELD{name="Language" attributes="" title="Language" value="es"}%

@@ -21,7 +21,7 @@ An extended version of the !TWikiVariable =TOPICLIST= which allow you to exclude
    * Example: =%<nop>EXTTOPICLIST{separator=", "}%= creates a comma separated list of all topics
    * Example: =%<nop>EXTTOPICLIST{" &lt;option&gt;$name&lt;/option&gt;"}%= creates an option list (for drop down menus)
    * Example: =&lt;select&gt;%<nop>TOPICLIST{" &lt;option $marker value='$name'&gt;$name&lt;/option&gt;" separator=" " selection="%<nop>TOPIC%"}%&lt;/select&gt;= creates an option list of web topics with the current topic selected
-   * Related: [[TWiki.TWikiVariables#VarSEARCH][SEARCH]], [[TWiki.TWikiVariables#VarTOPICLIST][TOPICLIST]], [[TWiki.TWikiVariables#VarWEBLIST][WEBLIST]]
+   * Related: [[%SYSTEMWEB%.Macros#VarSEARCH][SEARCH]], [[%SYSTEMWEB%.Macros#VarTOPICLIST][TOPICLIST]], [[%SYSTEMWEB%.Macros#VarWEBLIST][WEBLIST]]
 
 
 

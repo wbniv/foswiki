@@ -8,7 +8,7 @@
       * S<nop>et WEBBGCOLOR = #FFFFC0
    * La definición de una preferencia puede ser deshabilitado por medio del signo #. Remueve el signo # para habilitar una configuración personalizada local. Ejemplo:%BR%
       * #Set DENYWEBCHANGE = %USERSWEB%.UnknownUser
-   * Preferencias serán utilizadas como [[%SYSTEMWEB%.TWikiVariables][TWikiVariables]] %FLAGGB%, encerrando el nombre en signos de porcentaje. Ejemplo:
+   * Preferencias serán utilizadas como [[%SYSTEMWEB%.Macros][Macros]] %FLAGGB%, encerrando el nombre en signos de porcentaje. Ejemplo:
       * Cuando escriba la variable =%WEB<nop>BGCOLOR%= , será interpretada como =%WEBBGCOLOR%=
    * El orden secuencial de la definición de preferencias es significante. Defina preferencias que utilizan otras preferencias primero, p.e. defina =<nop>WEBCOPYRIGHT= antes de =<nop>WIKIWEBMASTER= porque =%<nop>WEBCOPYRIGHT%= utiliza la variable =%<nop>WIKIWEBMASTER%=.
    * Usted puede implementar sus propias variables de preferencia y utilizarlas en sus temas y plantillas.
@@ -16,7 +16,7 @@
 ---++ Temas relacionados
    * [[%SYSTEMWEB%.%WIKIPREFSTOPIC%]] %FLAGGB%, [[%LOCALSITEPREFS%]] %FLAGGB% - preferencias de sitio
    * [[%USERSWEB%.%WIKIUSERSTOPIC%][%WIKIUSERSTOPIC%]] %FLAGGB% - lista de temas de usuario. Temas de usuario pueden contener preferencias personalizadas opcionales
-   * [[%SYSTEMWEB%.TWikiVariables][TWikiVariables]] %FLAGGB% - lista de =%<nop>VARIABLES%= comunes
+   * [[%SYSTEMWEB%.Macros][Macros]] %FLAGGB% - lista de =%<nop>VARIABLES%= comunes
    * [[%SYSTEMWEB%.AccessControl][AccessControl]] %FLAGGB% - le explica como restringir acceso por medio de usuarios o grupos
 
 ---++ Herramientas

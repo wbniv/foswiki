@@ -223,7 +223,7 @@ TWiki interpreta páginas con texto sencillo perfectamente, pero puede $RED% __me
    * Una dirección URL normal incorporada en el texto aparecerá como enlace - http://www.google.com
       * También puede hacer ver más bonito las URLs utilizando corchetes:
          * <code>[<nop>[http://www.google.com/][Google]]</code> aparece como [[http://www.google.com/][Google]]
-   * Utilice %<nop>SEARCH. Es un interfaz a un sistema sofisticado de búsqueda que incluye el resultado de una búsqueda en su página. Ver %SYSTEMWEB%.TWikiVariables %FLAGGB% para la lista completa de detalles.
+   * Utilice %<nop>SEARCH. Es un interfaz a un sistema sofisticado de búsqueda que incluye el resultado de una búsqueda en su página. Ver [[%SYSTEMWEB%.Macros][Macros]] %FLAGGB% para la lista completa de detalles.
 
 ---++ Más formatos
    * Hay *muchas* variables más para formatear, ver ComoFormatearTexto y PreguntasSobreFormatearTexto

@@ -65,7 +65,7 @@
 %TMPL:P{"existingattachments"}%%TMPL:P{"topicinfo"}%</form></div>%TMPL:END%
 
 %TMPL:DEF{"notes"}%
-   * %MAKETEXT{"*Help:* Please see <a target='TWikiVariables' onclick=\"return launchWindow('[_1]','FileAttachment')\" href='' rel='nofollow'>FileAttachment</a> for more information about attaching files." args="%SYSTEMWEB%"}%
+   * %MAKETEXT{"*Help:* Please see <a target='Macro' onclick=\"return launchWindow('[_1]','FileAttachment')\" href='' rel='nofollow'>FileAttachment</a> for more information about attaching files." args="%SYSTEMWEB%"}%
    * *File size:* %IF{"$ATTACHFILESIZELIMIT > 0" then="You can upload files up to %ATTACHFILESIZELIMIT% KB in size." else="There is no size limit for uploaded files."}%
    * *Link checkbox:* If the attached file is a JPG, GIF or PNG image and you check the box, it will create an inline image (e.g. show the image) at the end of the topic.  For other file types a simple link will be created.
    * %MAKETEXT{"*Bug:* Internet Explorer 4.0 or earlier: If you get an \"Internal Server Error\" message when you upload a file, you need to try again. It should work the second time."}%

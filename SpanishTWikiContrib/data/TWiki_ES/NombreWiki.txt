@@ -9,7 +9,7 @@ Por ejemplo, el <nop>NombreWiki de Tim Berners-Lee es TWiki.TimBernersLee %FLAGG
 
 %X% Su nombre también puede ser una PalabraWiki válida cuando es utilizado en una página. No obstante la página personal de usuarios registrados de este sitio se encuentra en la web %USERSWEB%. Cuando firma una página con su nombre, agregue %USERSWEB% al inicio (incluyendo el punto). Quiere decir que debe escribir ==%USERSWEB%.%WIKINAME%== para generar un enlace a %USERSWEB%.%WIKINAME%, su página personal en la web %USERSWEB%. Para su comodidad, el sistema suministra su firma para copiar y pegar cuando está editando una página.
 
-%Y% Aún muy poco común, puede utilizar la [[TWiki.TWikiVariables][variable]] %FLAGGB% especial ==%<nop>USERSWEB%== y ponerla antes de su nombre, por ejemplo ==%<nop>USERSWEB%.%WIKINAME%==.
+%Y% Aún muy poco común, puede utilizar la [[%SYSTEMWEB%.Macros][Macro]] %FLAGGB% especial ==%<nop>USERSWEB%== y ponerla antes de su nombre, por ejemplo ==%<nop>USERSWEB%.%WIKINAME%==.
 
 -- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 09 May 2008
 

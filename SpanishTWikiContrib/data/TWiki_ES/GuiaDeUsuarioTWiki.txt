@@ -19,7 +19,7 @@ _Documentación para usuarios TWiki._
       * BuenEstilo: Consejos de trabajo para una plataforma de colaboración
       * TaquigrafiaTWiki: Todos los básicos de la taquigrafía TWiki
       * ComoFormatearTexto: Revise todas las reglas acerca de cómo formatear texto en una sola página
-      * TWiki.TWikiVariables: %FLAGGB% Cómo puede incorporar facilmente texto, imágenes y contenido dinámico
+      * [[%SYSTEMWEB%.Macros][Macros]]: %FLAGGB% Cómo puede incorporar facilmente texto, imágenes y contenido dinámico
       * ArchivosAdjuntos: Suba archivos para distribuir o mostrarlos a través del navegador
       * NotificacionDeCambios: Reciba notificaciones con enlaces a páginas modificadas por correo electrónico
       * GlosarioTWiki: Un glosario sencillo de términos TWiki

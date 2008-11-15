@@ -15,7 +15,7 @@
    * <b>%MAKETEXT{"User Reference"}%</b>
    * UnPocoSobreTWiki
    * ComoFormatearTexto
-   * TWiki.TWikiVariables %FLAGGB%
+   * [[%SYSTEMWEB%.Macros][Macros]] %FLAGGB%
    * TWiki.FormattedSearch %FLAGGB%
    * TWiki.DocumentGraphics %FLAGGB%
    * TWiki.TWikiSkinBrowser %FLAGGB%

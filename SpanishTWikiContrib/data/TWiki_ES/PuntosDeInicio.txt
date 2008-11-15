@@ -19,7 +19,7 @@ Que no se asuste por la documentación - al final todo se reduca a: wiki signific
    * ComoFormatearTexto: El juego completo de reglas para formatear texto
    * PreguntasSobreFormatearTexto: Preguntas comunes tipo "Cómo hago para..." sobre publicaciones en TWiki
 
-   * TWiki.TWikiVariables %FLAGGB%: Cómo se agrega fácilmente texto, gráficos y contenido dinámico
+   * [[%SYSTEMWEB%.Macros][Macros]] %FLAGGB%: Cómo se agrega fácilmente texto, gráficos y contenido dinámico
 
    * TWiki.MainFeatures %FLAGGB%: Las características principales de una plataforma de colaboración TWiki
    * ArchivosAdjuntos: Subir archivos para efectos de distribución o presentación

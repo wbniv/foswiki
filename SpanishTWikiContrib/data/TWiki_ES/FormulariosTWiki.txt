@@ -209,7 +209,7 @@ Tipos con nombres como estos pueden recibir varios valores.
 Una plantilla de formulario especifica los campos de un formulario. Una plantilla de formulario es simplemente una página conteniendo una tabla TWiki, donde cada línea de la tabla especifica un campo del formulario.
 #UsingFormData
 ---+++ Busque por datos de formularios
-Formularios TWiki aceptan datos de ingreso del usuario que se guarda como TWiki.TWikiMetaData %FLAGGB%. Meta data también contiene información generada por el sistema acerca de cambios, archivos adjuntos, etc. Para encontrar, formatear y mostrar datos de formularios y otro tipo de meta data, ver TWiki.TWikiMetaData %FLAGGB%, las variables ==FORMFIELD==, ==SEARCH== y ==METASEARCH== en TWiki.TWikiVariables %FLAGGB% y [[TWiki.FormattedSearch][Búsqueda formateada TWiki]].
+Formularios TWiki aceptan datos de ingreso del usuario que se guarda como TWiki.TWikiMetaData %FLAGGB%. Meta data también contiene información generada por el sistema acerca de cambios, archivos adjuntos, etc. Para encontrar, formatear y mostrar datos de formularios y otro tipo de meta data, ver TWiki.TWikiMetaData %FLAGGB%, las variables ==FORMFIELD==, ==SEARCH== y ==METASEARCH== en [[%SYSTEMWEB%.Macros][Macros]] %FLAGGB% y [[TWiki.FormattedSearch][Búsqueda formateada TWiki]].
 
 <blockquote>
 *Ejemplo* %BR%

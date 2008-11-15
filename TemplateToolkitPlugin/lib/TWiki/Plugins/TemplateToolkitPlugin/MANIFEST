@@ -1,4 +1,4 @@
 data/TWiki/TemplateToolkitPlugin.txt 0764 Plugin description topic
-data/TWiki/VarTEMPLATETOOLKIT.txt 0764 make the plugin variable pickable by TWikiVariables
+data/TWiki/VarTEMPLATETOOLKIT.txt 0764 make the plugin variable pickable by Macro
 lib/TWiki/Plugins/TemplateToolkitPlugin.pm 0764 Plugin module
 pub/TWiki/TemplateToolkitPlugin/demowrapper.tt2 0755 demo template

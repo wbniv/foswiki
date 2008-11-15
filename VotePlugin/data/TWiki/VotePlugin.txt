@@ -101,7 +101,7 @@ Defines the format of a single bar in the results bar chart generated for the co
 (though it still works). The =color= and =bgcolor= parameters have been removed.
 
 You can change the defaults for any or all of the above parameters by defining
-the [[TWikiVariables][TWikiVariable]] =VOTEPLUGIN_DEFAULTS= to be a parameter string e.g.
+the [[Macros][Macro]] =VOTEPLUGIN_DEFAULTS= to be a parameter string e.g.
 <pre>
    *<nop> Set VOTEPLUGIN_DEFAULTS = open="on" global="on" bayesian="on"
 </pre>

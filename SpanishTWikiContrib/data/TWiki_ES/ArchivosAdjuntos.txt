@@ -23,7 +23,7 @@ Se puede utilizar archivos adjuntos para archivar información o para crear soluc
 ---+++ Publicación de páginas Web
 
    * A través de su navegador, puede subir fácilmente imágenes (o archivos de sonido, o cualquier otra cosa que quiere incluir en una página) y ubicarlas en una sola página, utilizarlas en toda la web, o en todo el sitio.
-      * __NOTA:__ Puede también agregar imágenes - u otros archivos - directamente, por ejemplo subiéndolos por FTP. Es requiere un acceso FTP y puede ser más conveniente si tiene que subir una gran cantidad de archivos. Archivos subidos por FTP no pueden ser administrados por los constroles de acceso basados en el navegador. Puede utilizar su navegador para crear accesos directos tipo TWiki.TWikiVariables %FLAGGB%, por ejemplo %<nop>H% = %H%.
+      * __NOTA:__ Puede también agregar imágenes - u otros archivos - directamente, por ejemplo subiéndolos por FTP. Es requiere un acceso FTP y puede ser más conveniente si tiene que subir una gran cantidad de archivos. Archivos subidos por FTP no pueden ser administrados por los constroles de acceso basados en el navegador. Puede utilizar su navegador para crear accesos directos tipo [[%SYSTEMWEB%.Macros][Macros]] %FLAGGB%, por ejemplo %<nop>H% = %H%.
 
 ---++ Subir archivos
 

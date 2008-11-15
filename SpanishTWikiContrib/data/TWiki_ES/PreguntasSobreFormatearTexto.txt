@@ -18,7 +18,7 @@ Genere una línea de separación - una línea horizontal - digitando tres guiones a
 ---+++ Cómo crear un título?
 
 Puede crear títulos de seis tamaños - &lt;h1&gt;...&lt;h6&gt; en HTML - digitando, desde el inicio de una línea, tres guiones (-), de uno a seis signos de más (+), un espacio y el texto del título. Las preguntas de esta página se crearon con: =---+++ Tiene una pregunta?=.
-   * Puede insertar una tabla de contenido anidada, generada en base a los títulos, ubicando =%<nop>TOC%= en algún lado de la página (ver %SYSTEMWEB%.TWikiVariables %FLAGGB% para más opciones de =%<nop>TOC%=).
+   * Puede insertar una tabla de contenido anidada, generada en base a los títulos, ubicando =%<nop>TOC%= en algún lado de la página (ver [[%SYSTEMWEB%.Macros][Macros]] %FLAGGB% para más opciones de =%<nop>TOC%=).
 
 -----
 #TextEnclosed
