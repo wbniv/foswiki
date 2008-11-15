@@ -96,7 +96,7 @@ ISSUES:
 TESTS:
 with --compressed will use gzip
 
-i=1000;while let 'i-->0';do curl --compressed -s http://wikidev.nahaboo.org/TWiki/TWikiVariables >/dev/null& done
+i=1000;while let 'i-->0';do curl --compressed -s http://wikidev.nahaboo.org/System/Macros >/dev/null& done
 
 PCCR ALGORITHM VERSIONS
    * v1 header is in file. tries in order ?query, .gz, .tx, .nc

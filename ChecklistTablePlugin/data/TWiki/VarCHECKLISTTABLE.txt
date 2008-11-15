@@ -1,5 +1,5 @@
 %META:TOPICINFO{author="ProjectContributor" date="1187707015" format="1.1" version="$Rev$"}%
-%META:TOPICPARENT{name="TWikiVariables"}%
+%META:TOPICPARENT{name="Macros"}%
 #VarCHECKLISTTABLE
 ---+++ CHECKLISTTABLE{attributes} -- add a checklist table to a topic
    * The =%<nop>CHECKLISTTABLE%= variable is handled by the ChecklistTablePlugin.

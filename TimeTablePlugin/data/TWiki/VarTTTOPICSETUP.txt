@@ -1,5 +1,5 @@
 %META:TOPICINFO{author="ProjectContributor" date="1181045933" format="1.1" version="$Rev$"}%
-%META:TOPICPARENT{name="TWikiVariables"}%
+%META:TOPICPARENT{name="Macros"}%
 #VarTTTOPICSETUP
 ---+++ TTTOPICSETUP -- add a default topic setup for the [[VarTIMETABLE][TIMETABLE]] variable to a topic
    * The =%<nop>TTTOPICSETUP%= variable is handled by the TimeTablePlugin.

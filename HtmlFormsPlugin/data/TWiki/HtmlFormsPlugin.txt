@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="SvenDowideit" date="1158056830" format="1.1" reprev="1.3" version="1.3"}%
 ---+ %TOPIC%
 
-This plugin can be used to make html forms that set %SYSTEMWEB%.TWikiVariables. SELECT, CHECKBOX and RADIO can be used to select from a comma separated list of options (that could be defined using a SEARCH), while BUTTON, TEXTVALUE and TEXTAREA will set the %SYSTEMWEB%.TWikiVariable based on the value.
+This plugin can be used to make html forms that set [[%SYSTEMWEB%.Macros][Macros]]. SELECT, CHECKBOX and RADIO can be used to select from a comma separated list of options (that could be defined using a SEARCH), while BUTTON, TEXTVALUE and TEXTAREA will set the %SYSTEMWEB%.TWikiVariable based on the value.
 
 I will be using SELECT to allow the user to set a variable to a set of topics, which they will later publish to a web site using TWiki:Plugins/PublishContrib.
 

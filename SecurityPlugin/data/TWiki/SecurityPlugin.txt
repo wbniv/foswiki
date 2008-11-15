@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="MichaelGindonis" date="1121262472" format="1.0" version="1.2"}%
 ---+!! SecurityPlugin
 
-The SecurityPlugin implements a [[TWikiVariables][TWikiVariable]] which will show weather the page being viewed needs authentication or not. Authorization is another issue. Hopefully this is easier and more intuitive than telling users to check whether the current URL has =view= or =viewauth= in it.
+The SecurityPlugin implements a [[%SYSTEMWEB%.Macros][Macro]] which will show weather the page being viewed needs authentication or not. Authorization is another issue. Hopefully this is easier and more intuitive than telling users to check whether the current URL has =view= or =viewauth= in it.
 
 The Plugin is quite simple, it uses ==TWiki::Func::isGuest== to check if the page is authenticated or not. This relies on the fact that URL linking to other topics use the =view= CGI and authenticated pages are referred from the =view= CGI to the =viewauth= CGI (if installed). Of course one could make a page appear authenticated by adding =auth= to the URL (or linking to a URL with viewauth) but this won't happen on the next page if the user acts normally and clicks on the links.
 

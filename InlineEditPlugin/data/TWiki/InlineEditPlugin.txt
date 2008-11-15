@@ -3,10 +3,10 @@
 
 The InlineEditPlugin provides a quick (zero server roundtrip) edit functionality from the TWiki view script.
 It has been architected to allow the definition and choice of Javascript editing component, using a TWiki template file.
-It is intended to be used in conjunction with ComponentEditPlugin to enable editing of TWikiVariables.
+It is intended to be used in conjunction with ComponentEditPlugin to enable editing of [[%SYSTEMWEB%.Macros][Macros]].
 
 This is an initial pre-release and is not intended to be used in production.
-Insufficient testing and feedback has happened - and Its known to have problems with TWikiVariables embeded in HTML attributes.
+Insufficient testing and feedback has happened - and Its known to have problems with [[%SYSTEMWEB%.Macros][Macros]] embeded in HTML attributes.
 
 *WARNING:* when you edit using InlineEditPlugin, it tries to create a topic lock or lease. In Cairo, this is done using the edit script, and in TWiki-4 via rest script. Unfortunatly, this means that they will only work if the respective scripts are authenticated, or a server side session is used.
 
@@ -14,7 +14,7 @@ Insufficient testing and feedback has happened - and Its known to have problems 
 
 &nbsp;
 ---+++ Usage 
-If the InlineEditPlugin is installed and enabled, all you should need to edit a page, is to double click on the rendered topic text. TWikiVariables will be highlighted in Grey boxes, that you can click on to get a popup edit dialog driven by the ComponentEditPlugin.
+If the InlineEditPlugin is installed and enabled, all you should need to edit a page, is to double click on the rendered topic text. [[%SYSTEMWEB%.Macros][Macros]] will be highlighted in Grey boxes, that you can click on to get a popup edit dialog driven by the ComponentEditPlugin.
 
 
 <img width="640" alt="InlineEditPlugin_tinyMCE.png" align="right" src="%ATTACHURLPATH%/InlineEditPlugin_tinyMCE.png" height="410">

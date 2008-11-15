@@ -115,7 +115,7 @@ getEditableHTML = function(topicSectionObject) {
     editableHTML = tml2html._processTags(editableHTML);
     //put round clickable spans..
     for (var i = 0; i < tml2html.refs.length; i++) {
-        //TODO: this won't work :( as it strips %'s off TWikiVariables nested inside other TWikiVariables - but its needed as otherwise OnSave added %'s to the vars
+        //TODO: this won't work :( as it strips %'s off Macros nested inside other Macros - but its needed as otherwise OnSave added %'s to the vars
          tml2html.refs[i] =  tml2html.refs[i].substring(1,  tml2html.refs[i].length-1);
          //TODO:replace this with an over-rideable / configurable function that ComponentEditPlugin can set.
          // because it seems that the onclick context has little access to the surrounding environment

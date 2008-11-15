@@ -70,7 +70,7 @@ function TML2HTML() {
    *   expandVarsInURL(url, options) -> url
    * getViewUrl must generate a URL for the given web and topic.
    * expandVarsinURL gives an opportunity for a caller to expand selected
-   * TWikiVariables embedded in URLs
+   * Macros embedded in URLs
    */
   this.convert = function(content, options) {
     this.opts = options;

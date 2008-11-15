@@ -119,7 +119,7 @@ Let's have a look at a real life example (almost real, some lines have been supp
 </div>
 
    $ Understand the first lines of the table: Initially, the table is sorted so that the routines which are consuming most time are listed first.  Those are the most important to look at.  There is little to gain if you optimize a routine which is taking up less than 1%.
-      1 =TWiki::Render::getRenderedVersion= is the routine which basically converts TWiki markup language (TML) to HTML.  You'll see that the percentage for that routine varies wildly for different topics.  Measuring TWiki.TWikiVariables usually has about 25%.
+      1 =TWiki::Render::getRenderedVersion= is the routine which basically converts TWiki markup language (TML) to HTML.  You'll see that the percentage for that routine varies wildly for different topics.  Measuring [[%SYSTEMWEB%.Macros]] usually has about 25%.
    $ Find patterns: Look at "simiar" lines in the right column.
       1 Many lines in the top region of the table are labeled =BEGIN=.  These are the parts which are run at compile time.  Together they take quite some time.  What you see here is your potential speedup from persistent interpreters like mod_perl.
       1 Many lines start with =Locale::= or have =I18N= in them.  This is caused by the fact that that particular site has internationalisation switched on.  Note that the topic in question did not have any =%<nop>MAKETEXT%= tags at all, but two of them were present in the left bar of pattern skin.  If your site is all-english or you don't care for internationalisation, this may gain you quite a bit.

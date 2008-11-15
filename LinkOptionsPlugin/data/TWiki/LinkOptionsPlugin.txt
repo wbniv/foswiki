@@ -38,11 +38,11 @@ Opening in other target:
 (=_blank= is no target. It will Open in a new window)
 
 Opening in a new window (with options):
-	* *Code:* =[<nop>[%SYSTEMWEB%.TWikiVariables][See the TWiki Variables][NewWin:600x500|Name:winTWikiVariables|Skin:plain]]=
-	* *Expand to:* <a href="%SCRIPTURL%/view%SCRIPTSUFFIX%/%SYSTEMWEB%/TWikiVariables?skin=plain" target="winTWikiVariables"\
- onclick="open('%SCRIPTURL%/view%SCRIPTSUFFIX%/%SYSTEMWEB%/TWikiVariables?skin=plain',\
- 'winTWikiVariables', 'titlebar=0,width=600,height=500,resizable,scrollbars'); return false;">See the TWiki Variables</a>
-		* *If installed:* [[%SYSTEMWEB%.TWikiVariables][See the TWiki Variables][NewWin:600x500|Name:winTWikiVariables|Skin:plain]]
+	* *Code:* =[<nop>[%SYSTEMWEB%.Macros][See the Macros][NewWin:600x500|Name:winMacros|Skin:plain]]=
+	* *Expand to:* <a href="%SCRIPTURL%/view%SCRIPTSUFFIX%/%SYSTEMWEB%/Macros?skin=plain" target="winMacros"\
+ onclick="open('%SCRIPTURL%/view%SCRIPTSUFFIX%/%SYSTEMWEB%/Macros?skin=plain',\
+ 'winMacros', 'titlebar=0,width=600,height=500,resizable,scrollbars'); return false;">See the TWiki Variables</a>
+		* *If installed:* [[%SYSTEMWEB%.Macros][See the Macros][NewWin:600x500|Name:winMacros|Skin:plain]]
 
 Crazy CSS use:
 	* *Code:* =[<nop>[<nop>WebHome][Crazy Link!][color:green|background-color:#FFF0A0|border:3px dotted #FFC030|text-decoration:none|letter-spacing:10px|padding:4px|font-size:15px|font-weight:900]]=
