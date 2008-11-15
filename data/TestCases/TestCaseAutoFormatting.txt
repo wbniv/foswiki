@@ -385,7 +385,7 @@ LinkBoxes
 <!-- expected expand SQUABS -->
 <span class="twikiNewLink">wiki syntax<a href="%SCRIPTURLPATH{"edit"}%/TestCases/WikiSyntax?topicparent=TestCases.TestCaseAutoFormatting" rel="nofollow"  title="Create this topic">?</a></span>
 <p />
-<a class="twikiLink" href="%SCRIPTURLPATH{"view"}%/%USERSWEB%/%WIKIUSERSTOPIC%">%USERSWEB%.Wiki users</a>
+<a class="twikiLink" href="%SCRIPTURLPATH{"view"}%/%USERSWEB%/%WIKIUSERSTOPIC%">%USERSWEB%.User list</a>
 <p />
 escaped:
 [<nop>[wiki syntax]]
@@ -398,7 +398,7 @@ escaped:
 <!-- actual -->
 [[wiki syntax]]
 
-[[%USERSWEB%.Wiki users]]
+[[%USERSWEB%.User list]]
 
 escaped:
 ![[wiki syntax]]
@@ -562,12 +562,12 @@ Note that when viewing this topic the table below may be formatted by <nop>Table
 ---+++ Expected
 <!-- expected expand -->
 <span class="twikiNewLink">AnchorLink#AnchorName<a href="%SCRIPTURLPATH{"edit"}%/TestCases/AnchorLink?topicparent=TestCases.TestCaseAutoFormatting" rel="nofollow" title="Create this topic">?</a></span>
-<a class="twikiAnchorLink" href="%SCRIPTURLPATH{"view"}%/%SYSTEMWEB%/Macros#VarWEBLIST">Macros#VarWEBLIST</a>
+<a class="twikiAnchorLink" href="%SCRIPTURLPATH{"view"}%/%SYSTEMWEB%/SkinTemplates#FindingTemplates">SkinTemplates#FindingTemplates</a>
 <!-- /expected -->
 ---+++ Actual
 <!-- actual -->
 AnchorLink#AnchorName
-%SYSTEMWEB%.Macros#VarWEBLIST
+%SYSTEMWEB%.SkinTemplates#FindingTemplates
 <!-- /actual -->
 
 ---++ Link at end of topic
