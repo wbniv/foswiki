@@ -20,7 +20,7 @@ sub set_up {
     $this->SUPER::set_up(@_);
     $this->{twiki}->{store}->saveTopic( $this->{twiki}->{user},
         $this->{users_web}, "GropeGroup",
-        "   * Set GROUP = ScumBag,TWikiGuest\n" );
+        "   * Set GROUP = ScumBag,WikiGuest\n" );
 }
 
 sub test_basic {
@@ -75,11 +75,11 @@ sub test_formatted {
     );
 
     my $guest_ui = $this->{twiki}->handleCommonTags(
-'%USERINFO{"TWikiGuest" format="W$wikiusernameU$wikinameE$emailsG$groupsE"}%',
+'%USERINFO{"WikiGuest" format="W$wikiusernameU$wikinameE$emailsG$groupsE"}%',
         $this->{test_web}, $this->{test_topic}
     );
     $this->assert_str_equals(
-"WTemporaryUSERINFOUsersWeb.TWikiGuestUTWikiGuestEGTWikiBaseGroup, GropeGroupE",
+"WTemporaryUSERINFOUsersWeb.WikiGuestUWikiGuestEGTWikiBaseGroup, GropeGroupE",
         $guest_ui
     );
 }

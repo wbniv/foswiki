@@ -123,7 +123,7 @@ case "$1" in
 			#if the user has installed without initial universe then we can't do this
 			if [ ! -e /var/lib/twiki/data/.htpasswd ]; then
 			    touch /var/lib/twiki/data/.htpasswd
-		       	    $HTPASSWDCMD -b /var/lib/twiki/data/.htpasswd TWikiGuest guest
+		       	    $HTPASSWDCMD -b /var/lib/twiki/data/.htpasswd WikiGuest guest
 			    chown $TWIKI_OWNER.www-data /var/lib/twiki/data/.htpasswd
 			    chmod 664 /var/lib/twiki/data/.htpasswd
 			fi

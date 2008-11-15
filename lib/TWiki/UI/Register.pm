@@ -854,7 +854,7 @@ sub complete {
     catch Error::Simple with {
         my $e = shift;
 
-#only change the session's identity _if_ the registration was done by TWikiGuest
+#only change the session's identity _if_ the registration was done by WikiGuest
     if ( $session->{user} eq
         $session->{users}->getCanonicalUserID( $TWiki::cfg{DefaultUserLogin} ) )
     {
@@ -915,7 +915,7 @@ sub complete {
     }
 
     # Only change the session's identity _if_ the registration was done by
-    # TWikiGuest, and an email was correctly sent.
+    # WikiGuest, and an email was correctly sent.
     if( $safe2login &&
           $session->{user} eq $session->{users}->getCanonicalUserID(
               $TWiki::cfg{DefaultUserLogin}) ) {
@@ -1176,7 +1176,7 @@ sub _validateRegistration {
     # on any system using (allowloginname=on) already registered could mean
     #      user topic exists, or, Main.UserList mapping exists
     #NOTE: it is important that _any_ user can register any random third party
-    #      this is not only how TWikiGuest registers as someone else, but often
+    #      this is not only how WikiGuest registers as someone else, but often
     #      how users pre-register others.
     my $users    = $session->{users};
     my $user     = $users->getCanonicalUserID( $data->{LoginName} );

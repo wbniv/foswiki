@@ -208,7 +208,7 @@ sub _debugPrintHash {
     my ($statsRef) = @_;
 
 # print "Main.WebHome views = " . ${$statsRef}{'Main'}{'WebHome'}."\n";
-# print "Main web, TWikiGuest contribs = " . ${$statsRef}{'Main'}{'Main.TWikiGuest'}."\n";
+# print "Main web, WikiGuest contribs = " . ${$statsRef}{'Main'}{'Main.WikiGuest'}."\n";
     foreach my $web ( sort keys %$statsRef ) {
         my $count = 0;
         print $web, ' web:', "\n";
@@ -477,7 +477,7 @@ sub _getTopList {
     my $webhashref = $statsRef->{$webName};
 
 # print "Main.WebHome views = " . $statsRef->{$webName}{'WebHome'}."\n";
-# print "Main web, TWikiGuest contribs = " . ${$statsRef}{$webName}{'Main.TWikiGuest'}."\n";
+# print "Main web, WikiGuest contribs = " . ${$statsRef}{$webName}{'Main.WikiGuest'}."\n";
 
     my @list = ();
     my $topicName;
