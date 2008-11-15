@@ -124,8 +124,8 @@ Chose the skin to be used for this web:
    * Set #ALLOWWEBCHANGE = %MAINWEB%.BlogAuthorGroup
    * Set DENYWEBRENAME = %MAINWEB%.WikiGuest
    * Set ALLOWWEBRENAME = %MAINWEB%.BlogAuthorGroup
-   * Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
-   * Set ALLOWTOPICRENAME = %MAINWEB%.TWikiAdminGroup
+   * Set ALLOWTOPICCHANGE = %MAINWEB%.WikiAdminGroup
+   * Set ALLOWTOPICRENAME = %MAINWEB%.WikiAdminGroup
 
 ---+++ Misc
 <nop>DBCachePlugin settings registering the <nop>BlogPlugin's <nop>WebDB

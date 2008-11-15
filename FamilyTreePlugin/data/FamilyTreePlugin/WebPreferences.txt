@@ -52,13 +52,13 @@ These settings override the defaults for this web only. See [[%SYSTEMWEB%.Defaul
       * #Set DENYWEBVIEW = 
       * #Set ALLOWWEBVIEW = 
       * #Set DENYWEBCHANGE = 
-      * #Set ALLOWWEBCHANGE = %MAINWEB%.TWikiAdminGroup
+      * #Set ALLOWWEBCHANGE = %MAINWEB%.WikiAdminGroup
       * #Set DENYWEBRENAME = 
-      * #Set ALLOWWEBRENAME = %MAINWEB%.TWikiAdminGroup
+      * #Set ALLOWWEBRENAME = %MAINWEB%.WikiAdminGroup
 
-   * Users or groups allowed to change or rename this <nop>%TOPIC% topic: (e.g., %MAINWEB%.TWikiAdminGroup)
-      * #Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
-      * Set ALLOWTOPICRENAME = %MAINWEB%.TWikiAdminGroup
+   * Users or groups allowed to change or rename this <nop>%TOPIC% topic: (e.g., %MAINWEB%.WikiAdminGroup)
+      * #Set ALLOWTOPICCHANGE = %MAINWEB%.WikiAdminGroup
+      * Set ALLOWTOPICRENAME = %MAINWEB%.WikiAdminGroup
 
    * Web preferences that are *not* allowed to be overridden by user or topic preferences:
       * Set FINALPREFERENCES = NOSEARCHALL, ATTACHFILESIZELIMIT, WIKIWEBMASTER, WEBCOPYRIGHT, WEBTOPICLIST, DENYWEBVIEW, ALLOWWEBVIEW, DENYWEBCHANGE, ALLOWWEBCHANGE, DENYWEBRENAME, ALLOWWEBRENAME

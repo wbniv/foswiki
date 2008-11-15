@@ -12,5 +12,5 @@ Provides formatting for heading of !WebLog topics.
 %META:FIELD{name="TopicType" attributes="" title="TopicType" value="MasterTopic"}%
 %META:FIELD{name="Summary" attributes="" title="Summary" value="Provides formatting for heading of !WebLog topics."}%
 %META:REVCOMMENT{comment_1=" " minor_1="1" ncomments="1" rev_1="3" t_1="1167174229"}%
-%META:PREFERENCE{name="ALLOWTOPICCHANGE" title="ALLOWTOPICCHANGE" type="Set" value="%2525MAINWEB%2525.TWikiAdminGroup"}%
-%META:PREFERENCE{name="ALLOWTOPICRENAME" title="ALLOWTOPICRENAME" type="Set" value="%2525MAINWEB%2525.TWikiAdminGroup"}%
+%META:PREFERENCE{name="ALLOWTOPICCHANGE" title="ALLOWTOPICCHANGE" type="Set" value="%2525MAINWEB%2525.WikiAdminGroup"}%
+%META:PREFERENCE{name="ALLOWTOPICRENAME" title="ALLOWTOPICRENAME" type="Set" value="%2525MAINWEB%2525.WikiAdminGroup"}%

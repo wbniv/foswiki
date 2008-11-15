@@ -46,7 +46,7 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>A
 		* Set ADVERTSCRIPTBASE = http://adverts.mrjc.com/phpAdsNew 
 
 	* Anyone who can change this can change what ads you show!
-		* Set ALLOWTOPICCHANGE = Main.TWikiAdminGroup
+		* Set ALLOWTOPICCHANGE = Main.WikiAdminGroup
 
 ---++ Plugin Installation Instructions
 

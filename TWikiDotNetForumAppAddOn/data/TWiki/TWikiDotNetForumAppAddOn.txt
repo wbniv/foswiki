@@ -4,7 +4,7 @@
 This discussion forum application is contributed by [[http://www.twiki.net/][<img src="%ATTACHURLPATH%/twikinet80x26d.png" alt="TWIKI.NET" width="80" height="26" border="0" />]], a company cultivating, nurturing and advancing TWiki as the leading open source enterprise wiki.
 
    * The discussion forum application is hosted in a dedicated Forum.WebHome web
-   * Members of the %MAINWEB%.TWikiAdminGroup can create new forums
+   * Members of the %MAINWEB%.WikiAdminGroup can create new forums
    * Anyone can create a new discussion topic in a forum
    * Anyone can add a new comment to an existing discussion topic
 

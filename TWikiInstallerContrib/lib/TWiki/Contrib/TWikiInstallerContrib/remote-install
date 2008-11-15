@@ -52,7 +52,7 @@ use warnings;
 # add feedback (unzip progress meter or something)
 #
 # administrator ($twikiAdmin)
-#	(and update Main.TWikiAdminGroup)
+#	(and update Main.WikiAdminGroup)
 # wikiwebmaster (for email about this wiki site) - 
 #	(and update TWiki.MainPreferences) - $wikiWebMaster
 #
@@ -598,7 +598,7 @@ verify password $htpasswd_avail <input type=password name=configure_password2 id
 <div class=help id=configure_password2_help>Type in the same password again<br/></div></fieldset></div>
 
 <b>TWikiAdmin</b> <input type="text" name="TWikiAdmin" id="TWikiAdmin" size="35" value="$twikiAdmin" /><br />
-<div class=help id=TWikiAdmin_help>This TWiki account will be created and added to the <a target="_new" href="http://twiki.org/cgi-bin/view/TWiki/AccessControl#The_Super_Admin_Group">TWikiAdminGroup</a>. 
+<div class=help id=TWikiAdmin_help>This TWiki account will be created and added to the <a target="_new" href="http://twiki.org/cgi-bin/view/TWiki/AccessControl#The_Super_Admin_Group">WikiAdminGroup</a>. 
 A password will be automatically generated and sent to the email specified by WebMasterEmail below<br/></div>
 
 <b>WebMasterEmail</b> <input type="text" name="WebMasterEmail" id=WebMasterEmail value="$WebMasterEmail" size="35" /><br />

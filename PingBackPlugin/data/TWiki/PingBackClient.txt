@@ -36,6 +36,6 @@ using =%<nop>PINGBACK{"ping" target="http://...."}%=.
 See also PingBackManager.
 
 <!--
-   * Set ALLOWTOPICVIEW = %MAINWEB%.TWikiAdminGroup
+   * Set ALLOWTOPICVIEW = %MAINWEB%.WikiAdminGroup
    * Set ENABLEPINGBACK = on
 -->

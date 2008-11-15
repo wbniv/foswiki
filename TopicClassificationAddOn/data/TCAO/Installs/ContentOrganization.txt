@@ -14,8 +14,8 @@ To enable any of these settings, replace the explanation with the value you want
 %INCLUDE{"%TCAOWEB%.RenderClassificationTopic"}%
 
 <!-- Topic Permissions
-   * Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
-   * Set ALLOWTOPICRENAME = %MAINWEB%.TWikiAdminGroup
+   * Set ALLOWTOPICCHANGE = %MAINWEB%.WikiAdminGroup
+   * Set ALLOWTOPICRENAME = %MAINWEB%.WikiAdminGroup
 -->
 
 

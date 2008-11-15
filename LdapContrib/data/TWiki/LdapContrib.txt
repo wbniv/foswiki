@@ -380,7 +380,7 @@ Maximum size of the result set that the server can return; set it to
 <verbatim>$TWiki::cfg{Ldap}{PageSize} = 500; </verbatim>
 
 Prevent certain names from being looked up in LDAP:
-<verbatim>$TWiki::cfg{Ldap}{Exclude} = 'WikiGuest, ProjectContributor, RegistrationAgent, TWikiAdminGroup, NobodyGroup'; </verbatim>
+<verbatim>$TWiki::cfg{Ldap}{Exclude} = 'WikiGuest, ProjectContributor, RegistrationAgent, WikiAdminGroup, NobodyGroup'; </verbatim>
 
 ---++ Updating the LDAP cache using a cronjob
 In some environments, updating the internal LDAP cache of the <nop>LdapContrib might

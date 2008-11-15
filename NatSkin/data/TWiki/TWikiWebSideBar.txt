@@ -16,7 +16,7 @@ Default sidebar implementation
    * [[Sandbox.WebHome][Sandbox]]
 </div>
 %TMPL:P{context="natskin_sidebar_pos2" then="searchbox_pos2"}%<!-- -->
-%IFDEFINEDTHEN{"%IFACCESS{"%MAINWEB%.TWikiAdminGroup" type="change"}%" as="1"}%
+%IFDEFINEDTHEN{"%IFACCESS{"%MAINWEB%.WikiAdminGroup" type="change"}%" as="1"}%
 <div class="natSidebarSection" natSideBarAdminLinks">
 <h2 >Admin</h2>
    * [[%SCRIPTURL{"configure"}%][%MAKETEXT{"Configure [_1]" args="<nop>%WIKITOOLNAME%"}%]]

@@ -28,8 +28,8 @@ __Single hits__
 | Found elsewhere     | =<nop>WebSearch= | WebSearch | [[%SYSTEMWEB%.WebSearch][WebSearch]] |
 | Found elsewhere (LOOKELSEWHEREFORLOCAL enabled)    | =<nop>%SYSTEMWEB%.WikiUsers= | %SYSTEMWEB%.WikiUsers | [[Main.WikiUsers][WikiUsers]] |
 | Found elsewhere (LOOKELSEWHEREFORLOCAL disabled)    | =<nop>%SYSTEMWEB%.WikiUsers= | %SYSTEMWEB%.WikiUsers | [[TWiki.WikiUsers][WikiUsers]] (non-existing) |
-| Found elsewhere     | =[<nop>[TWikiAdminGroup][twiki admins]]= | [[TWikiAdminGroup][twiki admins]] | [[Main.TWikiAdminGroup][twiki admins]] |
-| Don't touch direct links     | =[<nop>[%MAINWEB%.TWikiAdminGroup][twiki admins]]= | [[%MAINWEB%.TWikiAdminGroup][twiki admins]] | [[Main.TWikiAdminGroup][twiki admins]] |
+| Found elsewhere     | =[<nop>[WikiAdminGroup][twiki admins]]= | [[WikiAdminGroup][twiki admins]] | [[Main.WikiAdminGroup][twiki admins]] |
+| Don't touch direct links     | =[<nop>[%MAINWEB%.WikiAdminGroup][twiki admins]]= | [[%MAINWEB%.WikiAdminGroup][twiki admins]] | [[Main.WikiAdminGroup][twiki admins]] |
 | Found singular  elsewhere     | =<nop>WebSearches= | WebSearches | [[%SYSTEMWEB%.WebSearch][WebSearches]] | 
 | Found elsewhere, spaced wiki word | =[<nop/>[Web search]]= | [[Web search]] | [[%SYSTEMWEB%.WebSearch][Web search]] |
 | Found elsewhere, abbrev | =<nop/>ACRONYM= | ACRONYM | (If <nop/>ACRONYM is a topic defined in one of the LOOKELSEWHERE webs, a link to it should show up) |

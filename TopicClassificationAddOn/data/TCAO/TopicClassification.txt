@@ -19,5 +19,5 @@ Content within the <nop>%BASEWEB% web is organized using the following !TopicCla
 %META:FIELD{name="SubjectArea" attributes="" title="SubjectArea" value=""}%
 %META:FIELD{name="Summary" attributes="" title="Summary" value="The basic overview of how TCAO organizes content within a web."}%
 %META:REVCOMMENT{ncomments="0"}%
-%META:PREFERENCE{name="ALLOWTOPICCHANGE" title="ALLOWTOPICCHANGE" type="Set" value="%25MAINWEB%25.TWikiAdminGroup"}%
-%META:PREFERENCE{name="ALLOWTOPICRENAME" title="ALLOWTOPICRENAME" type="Set" value="%25MAINWEB%25.TWikiAdminGroup"}%
+%META:PREFERENCE{name="ALLOWTOPICCHANGE" title="ALLOWTOPICCHANGE" type="Set" value="%25MAINWEB%25.WikiAdminGroup"}%
+%META:PREFERENCE{name="ALLOWTOPICRENAME" title="ALLOWTOPICRENAME" type="Set" value="%25MAINWEB%25.WikiAdminGroup"}%

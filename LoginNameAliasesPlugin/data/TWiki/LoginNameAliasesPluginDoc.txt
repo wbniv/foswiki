@@ -58,7 +58,7 @@ There are obvious security risks with allowing arbitrary user names to get mappe
 	* The plugin does not do anything unless $useLoginNameAliasesPlugin is set
 	in TWiki.cfg.
 	* The plugin configuration topic, [[TWiki.LoginNameAliasesPlugin][TWiki.LoginNameAliasesPlugin]], should have
-	access permissions set such that only people in the %MAINWEB%.TWikiAdminGroup	(or other people who can be trusted) can change it.  By default, the topic is distributed with this access restriction.
+	access permissions set such that only people in the %MAINWEB%.WikiAdminGroup	(or other people who can be trusted) can change it.  By default, the topic is distributed with this access restriction.
 
 ---++ Caution
 Misconfiguration of this plugin could cause problems for TWiki operation, and/or create various security problems.

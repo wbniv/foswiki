@@ -74,8 +74,8 @@ Preferred drink:
 </FORM>
 ----
 
-	* Set ALLOWTOPICRENAME = %MAINWEB%.TWikiAdminGroup
-	* Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
+	* Set ALLOWTOPICRENAME = %MAINWEB%.WikiAdminGroup
+	* Set ALLOWTOPICCHANGE = %MAINWEB%.WikiAdminGroup
 	* Set DENYTOPICVOTE = %MAINWEB%.WikiGuest
 
 <!--TWikiPoll-->

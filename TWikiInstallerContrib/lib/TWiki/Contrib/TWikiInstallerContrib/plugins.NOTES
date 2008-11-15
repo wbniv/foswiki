@@ -331,7 +331,7 @@ should WebTopicList be implementing using %SEARCH% instead?
 
    * %SYSTEMWEB%.AccessControl has ^ in table header (that's only without the TablePlugin enabled)
 
-   * TWikiGroups doesn't seem to be working (eg, showing values from TWikiAdminGroup, but not from BlogAdminGroup and BlogAuthorsGroup)
+   * TWikiGroups doesn't seem to be working (eg, showing values from WikiAdminGroup, but not from BlogAdminGroup and BlogAuthorsGroup)
       * ok, it shows all of the groups now, but doesn't show any of the group members from any of the groups
 
    * oops error messages like

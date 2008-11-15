@@ -3,10 +3,10 @@
 %INCLUDE{"%TCAOWEB%.RenderCreateNewTopic" }%
 
 <!-- Topic Permissions
-	* Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
-	* Set ALLOWTOPICRENAME = %MAINWEB%.TWikiAdminGroup
+	* Set ALLOWTOPICCHANGE = %MAINWEB%.WikiAdminGroup
+	* Set ALLOWTOPICRENAME = %MAINWEB%.WikiAdminGroup
 -->
 
 
-%META:PREFERENCE{name="ALLOWTOPICCHANGE" title="ALLOWTOPICCHANGE" type="Set" value="%25MAINWEB%25.TWikiAdminGroup"}%
-%META:PREFERENCE{name="ALLOWTOPICRENAME" title="ALLOWTOPICRENAME" type="Set" value="%25MAINWEB%25.TWikiAdminGroup"}%
+%META:PREFERENCE{name="ALLOWTOPICCHANGE" title="ALLOWTOPICCHANGE" type="Set" value="%25MAINWEB%25.WikiAdminGroup"}%
+%META:PREFERENCE{name="ALLOWTOPICRENAME" title="ALLOWTOPICRENAME" type="Set" value="%25MAINWEB%25.WikiAdminGroup"}%

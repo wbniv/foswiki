@@ -37,8 +37,8 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
 		* Set LOGACCESS = 1
 
 	* Access restriction:
-		* Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
-		* Set ALLOWTOPICRENAME = %MAINWEB%.TWikiAdminGroup
+		* Set ALLOWTOPICCHANGE = %MAINWEB%.WikiAdminGroup
+		* Set ALLOWTOPICRENAME = %MAINWEB%.WikiAdminGroup
 
 ---+++ WHITELIST, BLACKLIST and BANLIST settings
 	* WHITELIST: Comma delimited list of IP addresses; possible to use partial addresses ending in a dot
@@ -127,7 +127,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 	* Make sure =pub/TWiki/%TOPIC%/= is writable by the CGI user (typically =nobody=)
 	* Add the hidden form field to the registration form as described in the "Registration protection settings" section (this is already in TWiki 4.0)
 	* From TWiki 4.0 release on: Run the configure utility in your browser to enable the Plugin
-	* Make sure that non-administrators cannot edit this plugin topic. By default, this topic is write protected with an =ALLOWTOPICCHANGE = !TWikiAdminGroup= setting.
+	* Make sure that non-administrators cannot edit this plugin topic. By default, this topic is write protected with an =ALLOWTOPICCHANGE = !WikiAdminGroup= setting.
 	* Test if the installation was successful:
 		1 Using above form, add the IP address of one of your workstations to the BANLIST
 		1 Access TWiki from that workstation

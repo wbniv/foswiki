@@ -11,8 +11,8 @@
 See also: TopicTypeTemplate
 
 <!--
-   * Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
-   * Set ALLOWTOPICRENAME = %MAINWEB%.TWikiAdminGroup
+   * Set ALLOWTOPICCHANGE = %MAINWEB%.WikiAdminGroup
+   * Set ALLOWTOPICRENAME = %MAINWEB%.WikiAdminGroup
    * Set SIDEBAR = Admin
    * Set SIDEBARARG = TopicType
 -->

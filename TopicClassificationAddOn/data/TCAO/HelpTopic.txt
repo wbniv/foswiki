@@ -9,8 +9,8 @@ You can modify the options for creating new topics of this type by changing the 
 %ENDSECTION{"new" type="section"}%
 </div>
 <!-- Topic Permissions
-	* Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
-	* Set ALLOWTOPICRENAME = %MAINWEB%.TWikiAdminGroup
+	* Set ALLOWTOPICCHANGE = %MAINWEB%.WikiAdminGroup
+	* Set ALLOWTOPICRENAME = %MAINWEB%.WikiAdminGroup
 -->
 
 

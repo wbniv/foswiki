@@ -32,7 +32,7 @@
   </tr> 
 </table>%REPEAT% %SPLIT%
 %DBCALL{"Applications.RenderPageNavigation" SKIP="%URLPARAM{"skip" default="0"}%" LIMIT="%URLPARAM{"limit" default="100"}%" MAX="%NTOPICS%" HREF="%SCRIPTURLPATH{"plucsearch"}%/%BASEWEB%/%BASETOPIC%" PARAMS="search=%URLPARAM{"search"}%;web=%URLPARAM{"web"}%;attachments=%URLPARAM{"attachments"}%"}%
-%IFDEFINEDTHEN{"%IFACCESS{"%MAINWEB%.TWikiAdminGroup" type="change"}%" as="1" glue="off"}%
+%IFDEFINEDTHEN{"%IFACCESS{"%MAINWEB%.WikiAdminGroup" type="change"}%" as="1" glue="off"}%
 ---++ Index toos
 %INCLUDE{"%SYSTEMWEB%.SearchEnginePluceneAddOn" section="updateindex"}%
 %FIDEFINED%

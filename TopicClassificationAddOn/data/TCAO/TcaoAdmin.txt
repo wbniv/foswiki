@@ -3,8 +3,8 @@
 %INCLUDE{%TCAOWEB%.RenderClassificationTopic}%
 
 <!-- Topic Permissions
-   * Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
-   * Set ALLOWTOPICRENAME = %MAINWEB%.TWikiAdminGroup
+   * Set ALLOWTOPICCHANGE = %MAINWEB%.WikiAdminGroup
+   * Set ALLOWTOPICRENAME = %MAINWEB%.WikiAdminGroup
 -->
 
 
@@ -12,5 +12,5 @@
 %META:FIELD{name="Classification" attributes="" title="Classification" value="SubjectArea"}%
 %META:FIELD{name="Summary" attributes="" title="Summary" value="Topics related to administrating the TCAO application."}%
 %META:FIELD{name="Facets" attributes="" title="Facets" value="TopicType"}%
-%META:PREFERENCE{name="ALLOWTOPICCHANGE" title="ALLOWTOPICCHANGE" type="Set" value="%2525MAINWEB%2525.TWikiAdminGroup"}%
-%META:PREFERENCE{name="ALLOWTOPICRENAME" title="ALLOWTOPICRENAME" type="Set" value="%2525MAINWEB%2525.TWikiAdminGroup"}%
+%META:PREFERENCE{name="ALLOWTOPICCHANGE" title="ALLOWTOPICCHANGE" type="Set" value="%2525MAINWEB%2525.WikiAdminGroup"}%
+%META:PREFERENCE{name="ALLOWTOPICRENAME" title="ALLOWTOPICRENAME" type="Set" value="%2525MAINWEB%2525.WikiAdminGroup"}%

@@ -51,7 +51,7 @@ The main features are:
 
 ---++ Getting started
 To create a blog use the BlogFactory. Note, however, that only members of 
-the %MAINWEB%.TWikiAdminGroup are allowed to create a new blog. After entering
+the %MAINWEB%.WikiAdminGroup are allowed to create a new blog. After entering
 the mandatory information you will get a new web that is a copy of the _BlogPlugin
 template web.
 

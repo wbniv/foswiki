@@ -40,9 +40,9 @@ __Preferences:__
 		*# Set DENYWEBRENAME = 
 		*# Set ALLOWWEBRENAME = 
 
-	* Users or groups allowed to change or rename this <nop>%TOPIC% topic: (e.g., %MAINWEB%.TWikiAdminGroup)
+	* Users or groups allowed to change or rename this <nop>%TOPIC% topic: (e.g., %MAINWEB%.WikiAdminGroup)
 		* #Set ALLOWTOPICCHANGE = 
-		* Set ALLOWTOPICRENAME = %MAINWEB%.TWikiAdminGroup
+		* Set ALLOWTOPICRENAME = %MAINWEB%.WikiAdminGroup
 
 	* Web preferences that are *not* allowed to be overridden by user preferences:
 		* Set FINALPREFERENCES = NOSEARCHALL, ATTACHFILESIZELIMIT, WIKIWEBMASTER, WEBCOPYRIGHT, WEBTOPICLIST, DENYWEBVIEW, ALLOWWEBVIEW, DENYWEBCHANGE, ALLOWWEBCHANGE, DENYWEBRENAME, ALLOWWEBRENAME

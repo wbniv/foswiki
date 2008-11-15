@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="VlyonYahoo" date="1164125770" format="1.1" reprev="1.1" version="1.1"}%
 <pre>%STARTINCLUDE%<noautolink>
 utilMenu = new QuickMenu.Menu(menuBar,"%MAKETEXT{"Utilities"}%","","","%MAKETEXT{"Utilities available for this Web"}%");
-if ("%USERINFO{format="$groups"}%".match(/TWikiAdminGroup/)) {
+if ("%USERINFO{format="$groups"}%".match(/WikiAdminGroup/)) {
   utilMenu.Add("%MAKETEXT{"Users"}%","%SCRIPTURLPATH{"view"}%/%MAINWEB%/WikiUsers","%ICONURLPATH{"person"}%");
   utilMenu.Add("%MAKETEXT{"Groups"}%","%SCRIPTURLPATH{"view"}%/%MAINWEB%/TWikiGroups","%ICONURLPATH{"group"}%");
   utilMenu.Add();

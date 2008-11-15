@@ -175,7 +175,7 @@ sub new {
     mailAttribute=>$TWiki::cfg{Ldap}{MailAttribute} || 'mail',
 
     exclude=>$TWiki::cfg{Ldap}{Exclude} || 
-      'WikiGuest, TWikiContributor, ProjectContributor, RegistrationAgent, TWikiAdminGroup, NobodyGroup',
+      'WikiGuest, TWikiContributor, ProjectContributor, RegistrationAgent, WikiAdminGroup, NobodyGroup',
 
     pageSize=>$TWiki::cfg{Ldap}{PageSize} || 200,
     isConnected=>0,

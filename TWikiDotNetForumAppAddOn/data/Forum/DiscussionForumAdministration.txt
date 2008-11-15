@@ -37,7 +37,7 @@ return 'Forum' + sOut.substring(0,3);
 
 ---++ Access Control
 
-   * Set ALLOWTOPICVIEW = %MAINWEB%.TWikiAdminGroup
+   * Set ALLOWTOPICVIEW = %MAINWEB%.WikiAdminGroup
 
 __Note:__ This Discussion Forum TWiki Application is &copy; 2007 [[http://www.twiki.net][TWIKI.NET]]
 

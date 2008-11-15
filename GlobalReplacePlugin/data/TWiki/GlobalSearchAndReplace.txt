@@ -2,7 +2,7 @@
 %META:TOPICPARENT{name="GlobalReplacePlugin"}%
 ---++ Global Search and Replace
 
-Welcome %WIKIUSERNAME% <font size=\"-1\">([[%SCRIPTURL%/viewauth%SCRIPTSUFFIX%/%WEB%/%TOPIC%][not me?]])</font>. You must %CALC{"$IF($EXACT(%USERNAME%,guest),[[%SCRIPTURL%/viewauth%SCRIPTSUFFIX%/%WEB%/%TOPIC%][login]] and)"}% be a member of the %MAINWEB%.TWikiAdminGroup to be able to save your search and replace.
+Welcome %WIKIUSERNAME% <font size=\"-1\">([[%SCRIPTURL%/viewauth%SCRIPTSUFFIX%/%WEB%/%TOPIC%][not me?]])</font>. You must %CALC{"$IF($EXACT(%USERNAME%,guest),[[%SCRIPTURL%/viewauth%SCRIPTSUFFIX%/%WEB%/%TOPIC%][login]] and)"}% be a member of the %MAINWEB%.WikiAdminGroup to be able to save your search and replace.
 
 <form name="search" action="%SCRIPTURLPATH%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%" method="post">
 <table border="0" cellspacing="2" cellpadding="1" >
@@ -48,7 +48,7 @@ __Warning:__ Large scale changes can be done quickly; verify your selections car
 //STOP HIDING and </pre> escaping -->
 </script>
 
-	* Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
+	* Set ALLOWTOPICCHANGE = %MAINWEB%.WikiAdminGroup
 
 __Related Topics:__ [[GlobalReplacePlugin]], [[%TOPIC%Help]], GlobalSearchAndReplaceTopics
 

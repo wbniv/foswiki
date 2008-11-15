@@ -86,8 +86,8 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
      | ==data/%SYSTEMWEB%/%TOPIC%.txt== | Plugin topic |
      | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
    * Edit <nop>FundraisingPlugin to suit your needs.
-   * Write-protect %TOPIC% against modifications (with bullet =* Set ALLOWTOPICCHANGE = <nop>%USERSWEB%.TWikiAdminGroup=).
-      * #Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
+   * Write-protect %TOPIC% against modifications (with bullet =* Set ALLOWTOPICCHANGE = <nop>%USERSWEB%.WikiAdminGroup=).
+      * #Set ALLOWTOPICCHANGE = %MAINWEB%.WikiAdminGroup
    * To enable it on all pages, set %<nop>BROADCASTMESSAGE% to %<nop>FUNDRAISINGMESSAGE% in [[%USERSWEB%.SitePreferences]] topic.
 
 ---++ Plugin Info

@@ -43,7 +43,7 @@ After installing this add-on, there are a few additional steps needed before it 
 %INCLUDE{"%TCAOWEB%.RenderInstallTopicClassification" warm="Only displays if prior installation steps have been completed."}%
 
 ---+++ Setting up Topic Classification within a web
-Once %TOPIC% is enabled within a web, you're ready to start defining *TopicTypes* and *SubjectAreas* to be used in that web. To do this, go to those respective topics (e.g. go to !TopicType to add new !TopicTypes) and use form at bottom that is only visible to members of !ModeratorGroup (or %MAINWEB%.TWikiAdminGroup, of course).
+Once %TOPIC% is enabled within a web, you're ready to start defining *TopicTypes* and *SubjectAreas* to be used in that web. To do this, go to those respective topics (e.g. go to !TopicType to add new !TopicTypes) and use form at bottom that is only visible to members of !ModeratorGroup (or %MAINWEB%.WikiAdminGroup, of course).
 
 ---++ Add-On Info
 

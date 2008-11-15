@@ -5,7 +5,7 @@
 
 
 <!-- Topic Permissions
-	* Set ALLOWTOPICCHANGE = %MAINWEB%.TWikiAdminGroup
-	* Set ALLOWTOPICRENAME = %MAINWEB%.TWikiAdminGroup
+	* Set ALLOWTOPICCHANGE = %MAINWEB%.WikiAdminGroup
+	* Set ALLOWTOPICRENAME = %MAINWEB%.WikiAdminGroup
 -->
 

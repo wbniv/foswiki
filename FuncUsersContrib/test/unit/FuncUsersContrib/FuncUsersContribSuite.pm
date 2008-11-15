@@ -110,8 +110,8 @@ sub set_up {
 
         # Create an admin group/user
         $twiki->{store}->saveTopic(
-            $twiki->{user}, $testUsersWeb, 'TWikiAdminGroup',
-            '   * Set GROUP = '.$twikiUserObject->wikiName().", TWikiAdminGroup\n");
+            $twiki->{user}, $testUsersWeb, 'WikiAdminGroup',
+            '   * Set GROUP = '.$twikiUserObject->wikiName().", WikiAdminGroup\n");
 
         $twiki->{store}->createWeb($twikiUserObject, $testSysWeb, $original);
         $twiki->{store}->createWeb($twikiUserObject, $testNormalWeb, '_default');
@@ -168,7 +168,7 @@ sub test_getListOfGroups {
     my $this = shift;
     my $list = TWiki::Func::getListOfGroups();
     my $ulist = join(',', map{$_->stringify()}@$list);
-    $this->assert_str_equals('TemporaryFuncUsersTestsUsersWeb.AandBGroup/TemporaryFuncUsersTestsUsersWeb.AandBGroup,TemporaryFuncUsersTestsUsersWeb.AandCGroup/TemporaryFuncUsersTestsUsersWeb.AandCGroup,TemporaryFuncUsersTestsUsersWeb.BandCGroup/TemporaryFuncUsersTestsUsersWeb.BandCGroup,TWikiAdminGroup/TemporaryFuncUsersTestsUsersWeb.TWikiAdminGroup', $ulist);
+    $this->assert_str_equals('TemporaryFuncUsersTestsUsersWeb.AandBGroup/TemporaryFuncUsersTestsUsersWeb.AandBGroup,TemporaryFuncUsersTestsUsersWeb.AandCGroup/TemporaryFuncUsersTestsUsersWeb.AandCGroup,TemporaryFuncUsersTestsUsersWeb.BandCGroup/TemporaryFuncUsersTestsUsersWeb.BandCGroup,WikiAdminGroup/TemporaryFuncUsersTestsUsersWeb.WikiAdminGroup', $ulist);
 }
 
 sub test_lookupUser {
