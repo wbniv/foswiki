@@ -357,7 +357,7 @@ Texto dentro de los corchetes puede contener espacios obcionales; el nombre del 
 <verbatim>
 [[sintaxis wiki]]
 
-[[Main.TWiki users]]
+[[Main.Wiki users]]
 
 para evitar enlace:
 ![[sintaxis wiki]]
@@ -366,7 +366,7 @@ para evitar enlace:
 
 [[sintaxis wiki]]
 
-[[%MAINWEB%.TWiki users]]
+[[%MAINWEB%.Wiki users]]
 
 para evitar enlace:
 ![[sintaxis wiki]]

@@ -16,7 +16,7 @@ This is a small script to measure the performance of a Plugin. Plugin authors ca
 *Running the script:*
 	* Choose a topic that renders your plugin variables. That may be the plugin topic, or an example topic.
 	* Go to your =bin= directory and call (for instance):
-	* =% ./pluginbenchmark <nop>TablePlugin <nop>GoodStyle <nop>FormattedSearch <nop>Main.TWikiUsers=
+	* =% ./pluginbenchmark <nop>TablePlugin <nop>GoodStyle <nop>FormattedSearch <nop>Main.WikiUsers=
 	
 ---++ Example output
 

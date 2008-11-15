@@ -245,7 +245,7 @@ sub lookup_mailaddr
 
 	# Fetch the %MAINWEB%.TWikiUser topic
 	my $mainweb = TWiki::Func::getMainWebname();
-	my $topic1 = TWiki::Func::readTopicText($mainweb, 'TWikiUsers');
+	my $topic1 = TWiki::Func::readTopicText($mainweb, 'WikiUsers');
 
 	# For each likely-looking user, open the topic, get the email address.
 	while ($topic1 =~ /^\s+\*\s+(\w+)\s+-\s+\S+\s+-\s+/mg) {

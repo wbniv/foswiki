@@ -19,7 +19,7 @@ have to come back and check all the time if something has changed.  To
 subscribe, please click 
 %REDDOT{"WebNotify" text="here" style="margin:0;padding:0;font-size:100%;"}% 
 and add your e-mail address or your <nop>%WIKITOOLNAME% username if you are a 
-[[%MAINWEB%.TWikiUsers][registered user]].
+[[%MAINWEB%.%WIKIUSERSTOPIC%][registered user]].
 
 ---++ Contact
 %STARTINCLUDE%

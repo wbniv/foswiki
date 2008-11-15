@@ -27,7 +27,7 @@ entry for Web
 
 %WEB{name="People" home="Main"}%
 
-%ITEM{name="Everyone" topic="TWikiUsers"}%
+%ITEM{name="Everyone" topic="%WIKIUSERSTOPIC%"}%
 
 %DEFAULTITEMS%
 

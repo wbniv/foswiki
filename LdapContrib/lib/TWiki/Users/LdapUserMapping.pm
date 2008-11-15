@@ -130,7 +130,7 @@ sub getListOfGroups {
 
 =pod 
 
----++++ groupMembers($group) -> @listOfTWikiUsers
+---++++ groupMembers($group) -> @listOfWikiUsers
 
 Returns a list of all members of a given group. Members are 
 TWiki::User objects.

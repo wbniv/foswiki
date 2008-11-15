@@ -119,7 +119,7 @@ package TWikiSite;
 | Version | $self->version() |
 | Number webs | $self->web_count() |
 | Number of users | $self->user_count() |
-| Users | http://sitename/..../Main/TWikiUsers
+| Users | http://sitename/..../Main/WikiUsers
 | Webs names |
 | TWiki prefs | http://sitename/..../TWiki/DefaultPreferences
 | Plugins installed |
@@ -170,7 +170,7 @@ use Net::Google;
 
  # Search interface
 
- $search->query(qw(twikiusers add yourself -Changed));
+ $search->query(qw(WikiUsers add yourself -Changed));
  $search->lr(qw(en fr));
  $search->ie("utf8");
  $search->oe("utf8");
@@ -216,7 +216,7 @@ sub reg_site {
   my ($siteurl, $usersurl) = @_;
 
   my $baseurl = $usersurl;
-  $baseurl =~ s!Main/TWikiUsers!!; 
+  $baseurl =~ s!Main/WikiUsers!!; 
 
 
 #  print "$siteurl: \n";

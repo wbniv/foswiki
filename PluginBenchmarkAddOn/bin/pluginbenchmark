@@ -100,7 +100,7 @@ else {
     print
 "           name, followed by topic names. The TWiki web is assumed unless specified.\n\n";
     print
-"Example:   \% ./pluginbenchmark FooBarPlugin GoodStyle FormattedSearch Main.TWikiUsers\n\n";
+"Example:   \% ./pluginbenchmark FooBarPlugin GoodStyle FormattedSearch Main.WikiUsers\n\n";
     print
 "Notes:     - Before running the benchmarks, disable mod_perl or SpeedyCGI in case used.\n";
     print "           - Run utility on web server.\n";

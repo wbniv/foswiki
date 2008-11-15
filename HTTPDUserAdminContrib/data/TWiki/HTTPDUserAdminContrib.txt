@@ -12,7 +12,7 @@ though the [[http://search.cpan.org/~lds/HTTPD-User-Manage-1.66/lib/HTTPD/UserAd
 
 It has been developed and tested for the TWiki-4.2, though _may_ be useable for previous releases.
 
-You receive maximal performance benefit by using the =SQL= mode, and ensuring ={Register}{AllowLoginName}= is off (so that the %MAINWEB%.TWikiUsers topic is not needed to convert login names to Wiki Names.
+You receive maximal performance benefit by using the =SQL= mode, and ensuring ={Register}{AllowLoginName}= is off (so that the %MAINWEB%.WikiUsers topic is not needed to convert login names to Wiki Names.
 
 See the Extensions | HTTPDUserAdminContrib section of =configure= to set up the specific options.
 

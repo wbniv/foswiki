@@ -195,7 +195,7 @@ sub handleCurrentVisitors {
 
 ###############################################################################
 # render list of 10 most recently registered users.
-# this information is extracted from %MAINWEB%.TWikiUsers
+# this information is extracted from %MAINWEB%.WikiUsers
 sub handleNewUsers {
   my ($this, $attributes) = @_;
 
@@ -338,7 +338,7 @@ sub getVisitorsFromSessionStore {
 }
 
 ###############################################################################
-# extracts all users from Main.TWikiUsers
+# extracts all users from Main.WikiUsers
 sub getUsers {
   my $this = shift;
 

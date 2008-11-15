@@ -213,7 +213,7 @@ sub getLoginName {
 
 ---++ ObjectMethod _userReallyExists ($login) -> boolean
 
-test if the login is in the TWikiUsers topic, or in the password file
+test if the login is in the WikiUsers topic, or in the password file
 depending on the AllowLoginNames setting
 
 =cut
@@ -434,7 +434,7 @@ sub findUserByWikiName {
     if( $this->isGroup( $wn )) {
         push( @users, $wn);
     } elsif( $TWiki::cfg{Register}{AllowLoginName} ) {
-        # Add additional mappings defined in TWikiUsers
+        # Add additional mappings defined in WikiUsers
         
         my @usernames = $this->{passwords}->listMatchingUsers($TWiki::cfg{HTTPDUserAdminContrib}{WikiNameField}, $wn);
         push( @users, @usernames );
@@ -515,7 +515,7 @@ sub passwordError {
 
 
 #######################################################################
-# don't create or use the MAIN.TWikiUsers topic 
+# don't create or use the MAIN.WikiUsers topic 
 # this is a copy of the functionality in TopicUserMapping, with the TWikiUser topic part removed
 #TODO: shame that its the UI::Registration code that creates the User topic - tahts close to pointless too
 
