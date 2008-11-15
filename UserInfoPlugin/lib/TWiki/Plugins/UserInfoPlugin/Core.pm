@@ -72,7 +72,7 @@ sub new {
     $this->{twikiGuest} .
     '|'.'TWikiAdminGroup' .
     '|'.'UnknownUser' .
-    '|'.'RegistrationAgent' .
+    '|'.$TWiki::cfg{Register}{RegistrationAgentWikiName} .
     '|'.'ProjectContributor';
 
   writeDebug("ignoreHosts=$this->{ignoreHosts}");
