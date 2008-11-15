@@ -144,7 +144,7 @@ When you want to use links, write:
 
 	* Set SHORTDESCRIPTION = Twisty section javascript library to open/close content dynamically 
 
-You can also set the global preference setting TWISTYCONTRIB_DEBUG to 1 to make the contrib use uncompressed javascript sources, in the event of problems.
+You can also set the global [[preference setting]] TWISTYCONTRIB_DEBUG to 1 to make the contrib use uncompressed javascript sources, in the event of problems.
 
 
 ---++ Installation Instructions
