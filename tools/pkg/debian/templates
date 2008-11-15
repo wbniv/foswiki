@@ -31,5 +31,5 @@ _Description: Install default wiki Topic Set on initial install?
 Template: twiki/apacheUserCreationNote
 Type: note
 _Description: Admin User Registration configuration required
- After you have created yourself a user, edit the Main.WikiAdminGroup
+ After you have created yourself a user, edit the Main.AdminGroup
  to restrict Admin privileges to that user.
