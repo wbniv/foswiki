@@ -2,7 +2,7 @@
 %META:TOPICPARENT{name="DiscussionForumForm"}%
 %INCLUDE{DiscussionForumBody}%
 <!--
-   * Set ALLOWTOPICCHANGE = %MAINWEB%.WikiAdminGroup
+   * Set ALLOWTOPICCHANGE = %MAINWEB%.AdminGroup
 -->
 
 %META:FORM{name="DiscussionForumForm"}%

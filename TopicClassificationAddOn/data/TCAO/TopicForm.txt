@@ -30,8 +30,8 @@ of DataForms.
 Related Topic: TopicClassification, WebPreferences, %SYSTEMWEB%.DataForms
 
 <!-- Topic Permissions
-   * Set ALLOWTOPICCHANGE = %MAINWEB%.WikiAdminGroup
-   * Set ALLOWTOPICRENAME = %MAINWEB%.WikiAdminGroup
+   * Set ALLOWTOPICCHANGE = %MAINWEB%.AdminGroup
+   * Set ALLOWTOPICRENAME = %MAINWEB%.AdminGroup
 -->
 
 %META:REVCOMMENT{ncomments="0"}%

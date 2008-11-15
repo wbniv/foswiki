@@ -11,7 +11,7 @@
 
 
 <!-- Topic Settings
-   * Set ALLOWTOPICCHANGE = %MAINWEB%.WikiAdminGroup
-   * Set ALLOWTOPICRENAME = %MAINWEB%.WikiAdminGroup
+   * Set ALLOWTOPICCHANGE = %MAINWEB%.AdminGroup
+   * Set ALLOWTOPICRENAME = %MAINWEB%.AdminGroup
    * Set HELPTOPIC = %TCAOWEB%.PostTCAOInstallHelp
 -->

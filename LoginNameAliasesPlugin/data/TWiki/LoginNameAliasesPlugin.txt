@@ -6,7 +6,7 @@ variable set by the web server) to usernames.  Most settings for the plugin are
 controlled on this page.  See TWiki.LoginNameAliasesPluginDoc for documentation on how to use the plugin and what these settings mean.
 
 
-*IMPORTANT: For security reasons, this page should only be editable by people in the %MAINWEB%.WikiAdminGroup.*
+*IMPORTANT: For security reasons, this page should only be editable by people in the %MAINWEB%.AdminGroup.*
 
 Because of security considerations, the plugin is not active unless a variable is set in TWiki.cfg.  
 
@@ -37,5 +37,5 @@ Sample alias (disabled by a # character):
 </verbatim>
 
 
-	* Set ALLOWTOPICCHANGE = %MAINWEB%.WikiAdminGroup
+	* Set ALLOWTOPICCHANGE = %MAINWEB%.AdminGroup
 

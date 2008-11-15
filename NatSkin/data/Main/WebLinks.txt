@@ -13,5 +13,5 @@ Sidebar navigation in the %WEB% web. See also the %SYSTEMWEB%.TWikiWebLinks
 
 
 <!--
-   * Set ALLOWTOPICCHANGE = WikiAdminGroup
+   * Set ALLOWTOPICCHANGE = AdminGroup
 -->

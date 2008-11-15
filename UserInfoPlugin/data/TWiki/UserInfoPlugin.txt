@@ -99,7 +99,7 @@ Recently registered users: %BR%
 |  09 June 2006: | fixed duplicate users in LASTVISITORS; \
                    use IGNORE_USERS in LASTVISITORS |
 |  27 May 2006: | fixed error computing the number of last visitors (TWiki:Main.DavidBright); \
-                  exclude the <no>WikiAdminGroup "user" from the statistics; \
+                  exclude the <no>AdminGroup "user" from the statistics; \
 		  check back if the user found in the logs already approved his account;\
 		  fixed use of non-numerical value in comparison |
 |  17 Feb 2006: | optimized tag parsing; \

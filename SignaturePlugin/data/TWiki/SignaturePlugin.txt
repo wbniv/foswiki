@@ -43,7 +43,7 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>S
 	* Ensure that the script =lib/bin/digisign= is executable and authorized as desired.
 	* If installed correctly you should see a button with the label indicated by the setting below.
 
-%SIGNATURE{name="WikiAdminGroup"}%
+%SIGNATURE{name="AdminGroup"}%
 
 ---++ Plugin Info
 

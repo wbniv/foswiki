@@ -24,8 +24,8 @@ See also: %TOPIC%Template, FrontPage
 %DBCALL{"RenderDataFormList" ATTR="%TOPIC%"}%
 
 <!--
-   * Set ALLOWTOPICCHANGE = %MAINWEB%.WikiAdminGroup
-   * Set ALLOWTOPICRENAME = %MAINWEB%.WikiAdminGroup
+   * Set ALLOWTOPICCHANGE = %MAINWEB%.AdminGroup
+   * Set ALLOWTOPICRENAME = %MAINWEB%.AdminGroup
    * Set SIDEBAR = Admin
    * Set SIDEBARARG = TopicType
 -->

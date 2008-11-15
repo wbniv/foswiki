@@ -9,8 +9,8 @@
 Related Topic: TopicClassification, WebPreferences, %SYSTEMWEB%.DataForms
 
 <!-- Topic Permissions
-   * Set ALLOWTOPICCHANGE = %MAINWEB%.WikiAdminGroup
-   * Set ALLOWTOPICRENAME = %MAINWEB%.WikiAdminGroup
+   * Set ALLOWTOPICCHANGE = %MAINWEB%.AdminGroup
+   * Set ALLOWTOPICRENAME = %MAINWEB%.AdminGroup
 -->
 
 For more information about how you can use form to organize topics or create simple database applications, see %SYSTEMWEB%.DataForms.

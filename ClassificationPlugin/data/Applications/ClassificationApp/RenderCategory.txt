@@ -82,7 +82,7 @@ See the CategoryTemplate.
 ~~~   }%" 
 ~~~   title="Create a new topic in %CATINFO{cat="%BASEWEB%.%BASETOPIC%" format="<nop>$title"}%"
 ~~~ }%  
-%IFDEFINEDTHEN{"%IFACCESS{"%MAINWEB%.WikiAdminGroup" type="change"}%" as="1"}%
+%IFDEFINEDTHEN{"%IFACCESS{"%MAINWEB%.AdminGroup" type="change"}%" as="1"}%
 %BUTTON{"Manage" href="%SCRIPTURLPATH{view}%/%BASEWEB%/Category" title="Manage categories"}%  
 %BUTTON{"Browse" href="%SCRIPTURLPATH{view}%/%BASEWEB%/CategoryBrowser" title="Browse the hierarchy"}%  
 %FIDEFINED%

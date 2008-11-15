@@ -342,7 +342,7 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
 	* List of users and groups that are allowed to change (rename and delete) tags (names separated by commas). %BR%
 	Users that are not allowed to change post their change requests to TagMeChangeRequests. %BR%
 	If not set anyone can change tags.
-		* Set ALLOW_TAG_CHANGE = Main.WikiAdminGroup
+		* Set ALLOW_TAG_CHANGE = Main.AdminGroup
 
 	* Bundles are groups of tags that are presented as menus for
 	  convenience. It is a list of space-separated (or comma-separated

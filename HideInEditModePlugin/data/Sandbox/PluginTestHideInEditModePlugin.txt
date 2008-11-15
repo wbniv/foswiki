@@ -3,7 +3,7 @@
 %STARTHIDDEN%
 
 <!--
-   * Set ALLOWTOPICHIDDEN = %MAINWEB%.WikiAdminGroup
+   * Set ALLOWTOPICHIDDEN = %MAINWEB%.AdminGroup
 -->
 
 This should be hidden in edit mode

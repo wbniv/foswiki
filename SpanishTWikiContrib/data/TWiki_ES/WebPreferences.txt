@@ -43,11 +43,11 @@ Estas configuraciones sobrescriben los valores estándares solamente para esta we
          * Licencia: [[http://creativecommons.org/licenses/by/2.5/][Creative Commons Attribution 2.5 License]]
 
    * Usuarios o grupos quienes __no tienen__ / __tienen__ permiso de __ver__ / __modificar__ / __renombrar__ temas en la web <nop>%WEB%: (Ver %SYSTEMWEB%.AccessControl).
-      * Set ALLOWWEBCHANGE = %USERSWEB%.WikiAdminGroup
-      * Set ALLOWWEBRENAME = %USERSWEB%.WikiAdminGroup
+      * Set ALLOWWEBCHANGE = %USERSWEB%.AdminGroup
+      * Set ALLOWWEBRENAME = %USERSWEB%.AdminGroup
 
    * Usuarios o grupos quienes tienen permiso de modificar o renombrar este tema <nop>%TOPIC%: (e.g., %USERSWEB%.WebAdministratorsGroup)
-      * Set ALLOWTOPICCHANGE = %USERSWEB%.WikiAdminGroup
+      * Set ALLOWTOPICCHANGE = %USERSWEB%.AdminGroup
 
    * Preferencias de web que *no* pueden ser sobrescritos por preferencias de usuarios o temas:
       * Set FINALPREFERENCES = NOSEARCHALL, ATTACHFILESIZELIMIT, WIKIWEBMASTER, WEBCOPYRIGHT, WEBTOPICLIST, DENYWEBVIEW, ALLOWWEBVIEW, DENYWEBCHANGE, ALLOWWEBCHANGE, ALLOWWEBRENAME, DENYWEBRENAME

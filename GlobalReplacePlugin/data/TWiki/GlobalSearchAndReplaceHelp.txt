@@ -64,7 +64,7 @@ Click the checkboxes for the hits you want to replace. Use the =Set All= and =Cl
 
 Once the checkboxes are as required, click =Replace All Check Marked Hits= to commit your changes.
 
-Only members of the Main.WikiAdminGroup will be allowed to commit changes. 
+Only members of the Main.AdminGroup will be allowed to commit changes. 
 
 
 ---++ Known Issues

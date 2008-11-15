@@ -13,8 +13,8 @@ See Main.StylePluginDetails for the detailed description.
 Plugin settings are stored as preferences variables. To reference
 a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>STYLEPLUGIN_SHORTDESCRIPTION%==
 	* Security
-		* Set ALLOWTOPICCHANGE = Main.WikiAdminGroup
-		* Set ALLOWTOPICRENAME = Main.WikiAdminGroup
+		* Set ALLOWTOPICCHANGE = Main.AdminGroup
+		* Set ALLOWTOPICRENAME = Main.AdminGroup
 
 	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = A TWiki notation for adding css style class references with span and div tags

@@ -69,7 +69,7 @@ The parameters of the current implementation are:
 | Revision%BR%(revision) | Revision of the topic to measure.  Use with care, since composing older revisions will introduce RCS artifacts into the figures | most recent revision |
 | Script%BR%(method) | What script from TWiki's =bin= directory is to be measured.%BR%Currently, only =view= is implemented. | =view= |
 | Skin%BR%(pskin) | Which skin to use on the topic to measure.  Using =plain= or =text= skin will allow easier isolation of topic related performance issues.  Comparing your skin against other skins may give some insights. | Installation default skin (%SKIN%) |
-| View as%BR%(viewer) | TWiki user name (usually !WikiName) to disguise as for measurement.  Only available if you are a member of %USERWEB%.WikiAdminGroup.  Use, for example, to view as !WikiGuest or a member of a particularly huge group | visitor of [[Benchmarks.WebHome]] |
+| View as%BR%(viewer) | TWiki user name (usually !WikiName) to disguise as for measurement.  Only available if you are a member of %USERWEB%.AdminGroup.  Use, for example, to view as !WikiGuest or a member of a particularly huge group | visitor of [[Benchmarks.WebHome]] |
 
 
 ---++ How To Use The Results

@@ -8,5 +8,5 @@ Back to GlobalSearchAndReplace.
 
 -- TWiki:Main.PaulineCheung - 12 Jan 2004
 
-	* Set ALLOWTOPICCHANGE = %MAINWEB%.WikiAdminGroup 
+	* Set ALLOWTOPICCHANGE = %MAINWEB%.AdminGroup 
 

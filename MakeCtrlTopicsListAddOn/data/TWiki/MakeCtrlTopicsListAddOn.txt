@@ -28,7 +28,7 @@ The following you have to do once:
 %STARTHIDDEN%
 <!--
 ###MakeCtrlTopicsList:topicmustbechecked
-	* Set ALLOWTOPICHIDDEN = ApproveControlledPagesGroup, WikiAdminGroup
+	* Set ALLOWTOPICHIDDEN = ApproveControlledPagesGroup, AdminGroup
 -->
 |%ORANGE% *The QM department has not yet checked this topic for QM relevance.* %ENDCOLOR%|
 %ENDHIDDEN%

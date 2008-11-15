@@ -93,12 +93,12 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
       * Create an =EDITSYNTAX= setting in your =%USERSWEB%.SitePreferences= and set it to an empty value
       * Edit =twiki/templates/edit.pattern.tmpl= and change ="%<nop>SYSTEMWEB%.WikiSyntaxSummary"= to ="%<nop>SYSTEMWEB%.%EDITSYNTAX%WikiSyntaxSummary"=
       * Change other =twiki/templates/edit.*.tmpl= template files as needed
-   * Secure the =*EditSyntaxRegex= converter topics so that only %MAINWEB%.WikiAdminGroup members can edit the topics.
+   * Secure the =*EditSyntaxRegex= converter topics so that only %MAINWEB%.AdminGroup members can edit the topics.
 
 
 ---++ Limitations
 
-   * *Security risk:* The current implementation does no sanity check on the regular expressions of the Edit Syntax Converter topics. It is potentially possible to execute arbitrary Perl code by editing one of the converter topics. Secure the =*EditSyntaxRegex= converter topics so that only %MAINWEB%.WikiAdminGroup members can edit the topics. It is not recommended to use this Plugin version on a public website.
+   * *Security risk:* The current implementation does no sanity check on the regular expressions of the Edit Syntax Converter topics. It is potentially possible to execute arbitrary Perl code by editing one of the converter topics. Secure the =*EditSyntaxRegex= converter topics so that only %MAINWEB%.AdminGroup members can edit the topics. It is not recommended to use this Plugin version on a public website.
    * The MediawikiEditSyntaxRegex does not yet convert tables.
 
 ---++ Plugin Info

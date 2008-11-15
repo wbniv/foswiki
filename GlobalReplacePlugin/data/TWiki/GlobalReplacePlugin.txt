@@ -48,7 +48,7 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
 
 	* This Plugin ignores locked topics, it writes over locked topics
 	* This Plugin is potentially dangerous. Security measures:
-		1 The operations of this Plugin is restricted to the group which can edit the %SYSTEMWEB%.%WIKIPREFSTOPIC% (usually %MAINWEB%.WikiAdminGroup)
+		1 The operations of this Plugin is restricted to the group which can edit the %SYSTEMWEB%.%WIKIPREFSTOPIC% (usually %MAINWEB%.AdminGroup)
 		1 For public sites, it is recommended to enable this Plugin only for the short time when needed (it is installed if the following variable shows "installed": %GLOBALREPLACE{func="check"}%)
 	* This Plugin has been tested. However, it does not have ANY WARRANTY, does not even have the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE
 

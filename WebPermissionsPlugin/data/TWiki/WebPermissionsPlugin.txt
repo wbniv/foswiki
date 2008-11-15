@@ -69,7 +69,7 @@ The plugin tries very hard to keep the permissions specification you started wit
 <h4><a name="Editors"></a> Editors </h4>
 				<select size="5" name="topiceditors" multiple="multiple" style="width: 100%;">
 					 <optgroup label="Groups">
-                    <option>WikiAdminGroup</option>			 
+                    <option>AdminGroup</option>			 
 					 </optgroup><optgroup label="Users">
                     <option>AnnieLennox</option>
 				</optgroup></select>

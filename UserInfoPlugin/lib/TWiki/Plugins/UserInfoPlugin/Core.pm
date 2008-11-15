@@ -70,7 +70,7 @@ sub new {
   $this->{ignoreUsers} .= '|' if $this->{ignoreUsers};
   $this->{ignoreUsers} .= 
     $this->{WikiGuest} .
-    '|'.'WikiAdminGroup' .
+    '|'.'AdminGroup' .
     '|'.'UnknownUser' .
     '|'.$TWiki::cfg{Register}{RegistrationAgentWikiName} .
     '|'.'ProjectContributor';

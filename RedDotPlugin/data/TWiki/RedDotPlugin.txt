@@ -47,7 +47,7 @@ Note, however, that this feature only works on a TWiki/Dakar engine.
 
 ---++ Examples
 	* %TOPIC%%REDDOT%  will get a red dot only if you are in the 
-	  %MAINWEB%.WikiAdminGroup.
+	  %MAINWEB%.AdminGroup.
 	* %WIKIUSERNAME%%REDDOT{"%WIKIUSERNAME%"}% points to your homepage.
 
 ---++ Plugin Installation Instructions

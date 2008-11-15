@@ -38,8 +38,8 @@ Chose the skin to be used for this web:
    * Set #DENYWEBVIEW =
    * Set #ALLOWWEBVIEW = 
    * Set DENYWEBCHANGE = %MAINWEB%.WikiGuest
-   * Set ALLOWWEBCHANGE = %MAINWEB%.WikiAdminGroup
-   * Set ALLOWTOPICCHANGE = %MAINWEB%.WikiAdminGroup
+   * Set ALLOWWEBCHANGE = %MAINWEB%.AdminGroup
+   * Set ALLOWTOPICCHANGE = %MAINWEB%.AdminGroup
 
 ---+++ Application Pointer
 <nop>DBCachePlugin settings registering the WebDB

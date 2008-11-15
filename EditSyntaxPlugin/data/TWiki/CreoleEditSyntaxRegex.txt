@@ -98,6 +98,6 @@ __See also:__
    * CreoleEditTest - topic to test the two way edit syntax conversions
 
 __Access control:__
-   * #DISABLE Set ALLOWTOPICCHANGE = %MAINWEB%.WikiAdminGroup
+   * #DISABLE Set ALLOWTOPICCHANGE = %MAINWEB%.AdminGroup
 
 -- TWiki:Main.PeterThoeny - 09 Jul 2006
