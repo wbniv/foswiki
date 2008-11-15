@@ -158,7 +158,7 @@ sub test_compatibility1 {
     my $this = shift;
 
     # Create a topic with raw meta to force a wikiname into the author field.
-    # The wikiname must be for a user who is in TWikiUsers.
+    # The wikiname must be for a user who is in WikiUsers.
     # This test is specific to the "traditional" text database implementation,
     # either RcsWrap or RcsLite.
     if (   $TWiki::cfg{StoreImpl} ne 'RcsLite'
@@ -187,7 +187,7 @@ sub test_compatibility2 {
     my $this = shift;
 
     # Create a topic with raw meta to force a login into the author field.
-    # The login must be for a user who is in TWikiUsers.
+    # The login must be for a user who is in WikiUsers.
     # This test is specific to the "traditional" text database implementation,
     # either RcsWrap or RcsLite.
     if (   $TWiki::cfg{StoreImpl} ne 'RcsLite'

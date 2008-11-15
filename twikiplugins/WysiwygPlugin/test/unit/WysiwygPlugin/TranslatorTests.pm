@@ -460,11 +460,11 @@ HERE
         exec => $TML2HTML | $ROUNDTRIP,
         name => 'variousWikiWords',
         html =>
-"<p>${linkon}WebPreferences${linkoff}</p><p>$protecton<br />%MAINWEB%$protectoff.TWikiUsers</p><p>${linkon}CompleteAndUtterNothing${linkoff}</p><p>${linkon}LinkBox$linkoff${linkon}LinkBoxs${linkoff}${linkon}LinkBoxies${linkoff}${linkon}LinkBoxess${linkoff}${linkon}LinkBoxesses${linkoff}${linkon}LinkBoxes${linkoff}</p>",
+"<p>${linkon}WebPreferences${linkoff}</p><p>$protecton<br />%MAINWEB%$protectoff.WikiUsers</p><p>${linkon}CompleteAndUtterNothing${linkoff}</p><p>${linkon}LinkBox$linkoff${linkon}LinkBoxs${linkoff}${linkon}LinkBoxies${linkoff}${linkon}LinkBoxess${linkoff}${linkon}LinkBoxesses${linkoff}${linkon}LinkBoxes${linkoff}</p>",
         tml => <<'YYY',
 WebPreferences
 
-%MAINWEB%.TWikiUsers
+%MAINWEB%.WikiUsers
 
 CompleteAndUtterNothing
 
@@ -475,25 +475,25 @@ YYY
         exec => $HTML2TML | $ROUNDTRIP,
         name => 'variousWikiWordsNopped',
         html =>
-"${nop}${linkon}WebPreferences${linkoff} %${nop}MAINWEB%.TWikiUsers ${nop}CompleteAndUtterNothing",
+"${nop}${linkon}WebPreferences${linkoff} %${nop}MAINWEB%.WikiUsers ${nop}CompleteAndUtterNothing",
         tml =>
-'<nop>WebPreferences %<nop>MAINWEB%.TWikiUsers <nop>CompleteAndUtterNothing',
+'<nop>WebPreferences %<nop>MAINWEB%.WikiUsers <nop>CompleteAndUtterNothing',
     },
     {
         exec => $ROUNDTRIP,
         name => 'squabsWithVars',
         html => <<HERE,
-${linkon}[[wiki syntax]]$linkoff$linkon\[[%MAINWEB%.TWiki users]]${linkoff}
+${linkon}[[wiki syntax]]$linkoff$linkon\[[%MAINWEB%.Wiki users]]${linkoff}
 escaped:
 [<nop>[wiki syntax]]
 HERE
         tml => <<'THERE',
-[[wiki syntax]][[%MAINWEB%.TWiki users]]
+[[wiki syntax]][[%MAINWEB%.Wiki users]]
 escaped:
 ![[wiki syntax]]
 THERE
         finaltml => <<'EVERYWHERE',
-[[wiki syntax]][[%MAINWEB%.TWiki users]] escaped: ![[wiki syntax]]
+[[wiki syntax]][[%MAINWEB%.Wiki users]] escaped: ![[wiki syntax]]
 EVERYWHERE
     },
     {
