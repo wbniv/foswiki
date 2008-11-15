@@ -26,13 +26,13 @@ WebHome
 ---+++ WW web.topic
 
 <verbatim>
-TWiki.TWikiVariables
+WebHome
 </verbatim>
 
-   * Core spaced out word: %SPACEOUT{"TWikiVariables"}%
-   * Plugin spaced out: TWiki.TWikiVariables
+   * Core spaced out word: %SPACEOUT{"WebHome"}%
+   * Plugin spaced out: WebHome
       * Testing if the T and W don't show a gap
-   * Expected: <a href="#">TWiki Variables</a>
+   * Expected: <a href="#">Web Home</a>
 
 ---+++ WW Bracket notation, no link label
 
