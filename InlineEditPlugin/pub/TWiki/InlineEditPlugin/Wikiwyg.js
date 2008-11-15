@@ -78,7 +78,7 @@ showReply = function(reply) {
         document.body.style.cursor = "default";
         window.location.reload();
     } else {
-        alert('Error saving, please take a copy of your changes for saftey, and try again (or see your TWikiAdmin)');
+        alert('Error saving, please take a copy of your changes for saftey, and try again (or see your WikiAdmin)');
     }
 }
 

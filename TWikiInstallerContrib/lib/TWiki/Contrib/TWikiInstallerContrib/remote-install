@@ -51,7 +51,7 @@ use warnings;
 # add repositories (first: http://twiki.org/p/pub/Codev/Release/TWiki-4.1.2.zip)
 # add feedback (unzip progress meter or something)
 #
-# administrator ($twikiAdmin)
+# administrator ($WikiAdmin)
 #	(and update Main.WikiAdminGroup)
 # wikiwebmaster (for email about this wiki site) - 
 #	(and update TWiki.MainPreferences) - $wikiWebMaster
@@ -77,7 +77,7 @@ use English;
 my $q = CGI::new() or die $!;
 # object data
 my $LocalSiteCfg;
-my $twikiAdmin = $q->param('TWikiAdmin') || '';
+my $WikiAdmin = $q->param('WikiAdmin') || '';
 my $WebMasterEmail = $q->param('WebMasterEmail') || $ENV{SERVER_ADMIN} || "webmaster\@$ENV{HTTP_HOST}";
 my $TWikiFor = $q->param('TWikiFor');
 #my $TWikiFor = $q->param('TWikiFor') || 'http://localhost/~twikibuilder/twiki.org.zip';
@@ -110,7 +110,7 @@ function checkEnableInstallButton(e) {
 	
 	var disabled = false;
 	
-	var required_fields = [ 'TWikiFor', 'configure_admin', 'configure_password', 'configure_password2', 'WebMasterEmail', 'TWikiAdmin', 'perl', 'force_installation' ];
+	var required_fields = [ 'TWikiFor', 'configure_admin', 'configure_password', 'configure_password2', 'WebMasterEmail', 'WikiAdmin', 'perl', 'force_installation' ];
 	for ( i=0; i<required_fields.length; ++i ) {
 		var field = required_fields[i];
 		var el = document.getElementById( field );
@@ -597,15 +597,15 @@ password <input $htpasswd_avail type=password name=configure_password id=configu
 verify password $htpasswd_avail <input type=password name=configure_password2 id=configure_password2 /> <span id=password_mismatch></span><br/>
 <div class=help id=configure_password2_help>Type in the same password again<br/></div></fieldset></div>
 
-<b>TWikiAdmin</b> <input type="text" name="TWikiAdmin" id="TWikiAdmin" size="35" value="$twikiAdmin" /><br />
-<div class=help id=TWikiAdmin_help>This TWiki account will be created and added to the <a target="_new" href="http://twiki.org/cgi-bin/view/TWiki/AccessControl#The_Super_Admin_Group">WikiAdminGroup</a>. 
+<b>WikiAdmin</b> <input type="text" name="WikiAdmin" id="WikiAdmin" size="35" value="$WikiAdmin" /><br />
+<div class=help id=WikiAdmin_help>This TWiki account will be created and added to the <a target="_new" href="http://twiki.org/cgi-bin/view/TWiki/AccessControl#The_Super_Admin_Group">WikiAdminGroup</a>. 
 A password will be automatically generated and sent to the email specified by WebMasterEmail below<br/></div>
 
 <b>WebMasterEmail</b> <input type="text" name="WebMasterEmail" id=WebMasterEmail value="$WebMasterEmail" size="35" /><br />
 <div class=help id=WebMasterEmail_help>This will automatically set the TWiki webmaster email address <a target="_new" href="http://twiki.org/cgi-bin/view/TWiki/DefaultPreferences#Email_and_Proxy_Server_Settings">WebMasterEmail</a> <!-- in Main.SitePreferences --><br/></div>
 
 <!--
-<b>WebMasterEmailNAME</b> <input type="text" name="WebMasterEmailNAME" value="TWiki Administrator" size="35" /><br />
+<b>WebMasterEmailNAME</b> <input type="text" name="WebMasterEmailNAME" value="Wiki Administrator" size="35" /><br />
 <br/>
 -->
 
@@ -670,8 +670,8 @@ sub installationMenu {
 				   . $q->a( { -href => "http://www.daemoninc.com/SpeedyCGI/" }, 'SpeedyCGI' ) . ')'
 				   )
 		      . $q->br
-		      . $q->b( 'TWikiAdmin' ) . ': '
-		      . $q->textfield( -name => 'TWikiAdmin', -default => $twikiAdmin, -size => 25 )
+		      . $q->b( 'WikiAdmin' ) . ': '
+		      . $q->textfield( -name => 'WikiAdmin', -default => $WikiAdmin, -size => 25 )
 		      . $q->br
 		      . $q->b( 'WebMasterEmail' ) . ': '
 		      . $q->textfield( -name => 'WebMasterEmail', -default => $WebMasterEmail, -size => 25 )

@@ -91,7 +91,7 @@ you have to register the <nop>LdapUser class as the so called
 
 There is a further option to fallback to TWiki's normal authentication mechanism
 by defining a secondary password manager. This allows you to create native TWiki
-accounts, e.g. a <nop>TWikiAdmin account and authenticate him without LDAP.
+accounts, e.g. a <nop>WikiAdmin account and authenticate him without LDAP.
 Use the following setting to fallback to a htpasswd based authentication.
 <verbatim>$TWiki::cfg{Ldap}{SecondaryPasswordManager} = 'TWiki::Users::HtPasswdUser';</verbatim>
 So whenever authentication against LDAP fails, this second password manager will

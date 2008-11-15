@@ -34,7 +34,7 @@ Add a %<nop>LOCALTIME% tag to your text to show the current time. You can specif
 
 This plugin can be used in combination with the CalendarPlugin, to get a localtime version of your appointments.
 
-Your TWikiAdmin may need to add this plugin to the pluginsOrder to make sure it evaluates before CalendarPlugin.
+Your WikiAdmin may need to add this plugin to the pluginsOrder to make sure it evaluates before CalendarPlugin.
 
 to add a TWikiIrcMeeting add a line like
 <verbatim>   * %<nop>LOCALTIME{"Australia/Sydney" dateGMT="6 Mar 2006 - 15:39" format="$day $month"}% - TWikiIrcMeeting=

@@ -38,7 +38,7 @@ workarounds, or document what we know to be "expensive" functions
 This tool is intended to identify the parts in the code which take up
 most of the time.  It can be run by developers, when trying to
 streamline the code or to estimate performance impacts of their
-changes.  And it can be run by TWiki admins to find out whether
+changes.  And it can be run by Wiki admins to find out whether
 changing a particular config setting, or disabling a particular
 plugin, will gain a benefit.  They may even be able to point a finger
 to points where TWiki, as seen by developers, doesn't scale properly

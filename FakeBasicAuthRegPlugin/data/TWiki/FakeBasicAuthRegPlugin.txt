@@ -86,7 +86,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 
 ---++ Details (Under the hood)
 
-This plugin uses data from the client cert to fill in default values in the TWikiRegistration form (via !%ENV).  TWiki's =register= script bypasses creating a user in the htpasswd file if REMOTE_USER is present, which is great because usually it uses the WikiName as the userid when it creates a user.  Since !FakeBasicAuth requires a userid (and not a WikiName) and a password of "password", this plugin uses a registration handler to do that.  So in essence, anyone with a valid cert can register and will have a userid created for them automatically (which saves the TWiki admin from having to prepopulate the htpasswd file), and no login is necessary when editing, etc, because SSL's !FakeBasicAuth gets that info from the certificate.
+This plugin uses data from the client cert to fill in default values in the TWikiRegistration form (via !%ENV).  TWiki's =register= script bypasses creating a user in the htpasswd file if REMOTE_USER is present, which is great because usually it uses the WikiName as the userid when it creates a user.  Since !FakeBasicAuth requires a userid (and not a WikiName) and a password of "password", this plugin uses a registration handler to do that.  So in essence, anyone with a valid cert can register and will have a userid created for them automatically (which saves the Wiki admin from having to prepopulate the htpasswd file), and no login is necessary when editing, etc, because SSL's !FakeBasicAuth gets that info from the certificate.
 
 ---++ Plugin Settings
 

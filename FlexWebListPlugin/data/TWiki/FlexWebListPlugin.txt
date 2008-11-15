@@ -57,7 +57,7 @@ Parameters:
    * =include=: regular expressions of items that must match in order to be
      included in the output
    * =adminwebs=: a regular expression of webs that are considered to be only relevant for 
-     <nop>TWikiAdmins and are hiddend to non-admin users. In general it is recommended to
+     <nop>WikiAdmins and are hiddend to non-admin users. In general it is recommended to
      hide webs by restricting access rights to it. There are however cases when you want to hide a web
      but still _use_ it although the user is not aware of it. Best example is
      and Application web holding <nop>TWikiApplications. Users are using those

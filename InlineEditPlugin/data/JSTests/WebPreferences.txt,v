@@ -84,7 +84,7 @@ These settings override the defaults for this web only. See [[%SYSTEMWEB%.Defaul
       * #Set DENYWEBRENAME = 
       * #Set ALLOWWEBRENAME = %USERSWEB%.WikiAdminGroup
 
-   * Users or groups allowed to change or rename this <nop>%TOPIC% topic: (e.g., %USERSWEB%.TWikiAdminGroup)
+   * Users or groups allowed to change or rename this <nop>%TOPIC% topic: (e.g., %USERSWEB%.WikiAdminGroup)
       * #Set ALLOWTOPICCHANGE = %USERSWEB%.WikiAdminGroup
       * Set ALLOWTOPICRENAME = %USERSWEB%.WikiAdminGroup
 

@@ -76,7 +76,7 @@ sub new {
         die "{PublishContrib}{Dir} must terminate in a slash";
     }
     unless ($TWiki::cfg{PublishContrib}{URL}) {
-        die "Can't publish because {PublishContrib}{URL} was not set. Please notify your TWiki administrator";
+        die "Can't publish because {PublishContrib}{URL} was not set. Please notify your Wiki administrator";
     }
     if ( ! -d $TWiki::cfg{PublishContrib}{Dir} &&
            ! -e $TWiki::cfg{PublishContrib}{Dir}) {
@@ -84,7 +84,7 @@ sub new {
     }
     unless (-d $TWiki::cfg{PublishContrib}{Dir} &&
               -w $TWiki::cfg{PublishContrib}{Dir}) {
-        die "Can't publish because no useable {PublishContrib}{Dir} was found. Please notify your TWiki administrator";
+        die "Can't publish because no useable {PublishContrib}{Dir} was found. Please notify your Wiki administrator";
     }
 
     my $this = bless({}, $class);

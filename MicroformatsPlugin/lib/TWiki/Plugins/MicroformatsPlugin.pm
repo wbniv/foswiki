@@ -80,7 +80,7 @@ sub addMicroIDToHEAD {
     my $web = shift;
     my $topic = shift;
     #code here adapted from Web::MicroID - not using it yet - adding CPAN dependancies 
-    #scares too many TWiki admins
+    #scares too many Wiki admins
     my $algorithm = $TWiki::cfg{Plugins}{MicroformatsPlugin}{MicroIdAlgol} || 'sha1';
 
     my $algor;

@@ -301,7 +301,7 @@ sub dbQuery {
       # don't check access perms on a topic that does not contain any
       # WARNING: this is hardcoded to assume TWiki-Core permissions - anyone
       # doing pluggable Permissions need to
-      # work out howto abstract this concept - or to disable it (its worth about 400mS per topic in the set. (if you're not TWikiAdmin))
+      # work out howto abstract this concept - or to disable it (its worth about 400mS per topic in the set. (if you're not WikiAdmin))
       if ((!$topicHasPerms && $webViewPermission) || 
           TWiki::Func::checkAccessPermission('VIEW', 
             $wikiName, undef, $topicName, $this->{web})) {

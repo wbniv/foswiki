@@ -10,7 +10,7 @@ use strict;
 #      * (you can specify a path to perl, in case your perl is in a weird place or you want to use a perl accelerator) - all perl references will be patched during the install process
 #      * (you can specify a cgi script extension if that's a requirement on the server) - everything is configured for the script extension and all script filenames have the extension appended during the installation process
 #   2. fetch the twiki-install page, thereby performing the installation
-#      * (installation can be customised by overriding values in the html form (TWikiFor kernel extension perl TWikiAdmin WIKIWEBMASTER force))
+#      * (installation can be customised by overriding values in the html form (TWikiFor kernel extension perl WikiAdmin WIKIWEBMASTER force))
 #      * after the installation, twiki-install disables itself
 #         * (currently, it deletes itself, though i'd probably prefer to have it change its permissions (but for some reason that didn't work when i tried it))
 
@@ -38,7 +38,7 @@ my $Config = {
 Getopt::Long::Configure( 'bundling' );
 my $result = GetOptions( $Config,
 			 'url=s', 'dir=s', 'TWikiFor=s', 'kernel=s', 'extension=s@',
-			 'perl=s', 'TWikiAdmin=s', 'WIKIWEBMASTER=s', 'force|f',
+			 'perl=s', 'WikiAdmin=s', 'WIKIWEBMASTER=s', 'force|f',
 			 'verbose', 'help|?', 'man', 'debug', 'agent=s',
 			 );
 pod2usage( 1 ) if $Config->{help};
@@ -104,7 +104,7 @@ sub PushRemoteTWikiInstall
     my $urlParameters = { install => 'install' };
     # add optional parameters
     map { $urlParameters->{$_} = $Config->{$_} if $Config->{$_} } 
-    	qw( TWikiFor kernel extension perl TWikiAdmin WIKIWEBMASTER force );
+    	qw( TWikiFor kernel extension perl WikiAdmin WIKIWEBMASTER force );
     $urlInstallWithConfig->query_form( $urlParameters );
     $Config->{debug} && print "\n$urlInstallWithConfig\n";
 
@@ -149,7 +149,7 @@ install-twiki.pl -url -dir [-kernel] -force|-f [-extension ...]* [-report|-norep
 
 =item B<-extension>					name of plugin, contrib, or addon to install (eg, SpreadSheetPlugin, TwistyContrib, GetAWebAddon)
 
-=item B<-TWikiAdmin>
+=item B<-WikiAdmin>
 
 =item B<-WIKIWEBMASTER>
 

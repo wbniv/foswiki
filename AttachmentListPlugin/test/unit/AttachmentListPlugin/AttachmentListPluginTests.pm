@@ -63,7 +63,7 @@ my %testAttachments = (
         attachment2 => {
             name    => 'F_report.doc',
             size    => 0,
-            user    => 'TWikiAdminUser',
+            user    => 'WikiAdminUser',
             date    => 1600000000,
             hidden  => '',
             comment => '',
@@ -81,7 +81,7 @@ my %testAttachments = (
         attachment2 => {
             name    => 'H_AUTHORS',
             size    => 2,
-            user    => 'TWikiAdminUser',
+            user    => 'WikiAdminUser',
             date    => 1800000000,
             hidden  => '',
             comment => '',
@@ -89,7 +89,7 @@ my %testAttachments = (
     },
     topic5 => {
         name        => 'AttachmentListTestTopic5',
-        text        => "\n   * Set ALLOWTOPICVIEW = TWikiAdminUser",
+        text        => "\n   * Set ALLOWTOPICVIEW = WikiAdminUser",
         attachment1 => {
             name    => 'I_no_permission.txt',
             size    => 10,
@@ -100,7 +100,7 @@ my %testAttachments = (
         attachment2 => {
             name    => 'J_DIRECTORS',
             size    => 20,
-            user    => 'TWikiAdminUser',
+            user    => 'WikiAdminUser',
             date    => 1800000000,
             hidden  => '',
             comment => '',
@@ -1001,7 +1001,7 @@ sub test_param_excludeuser {
 "%ATTACHMENTLIST{topic=\"*\" format=\"\$fileUser\" separator=\",\" sort=\"\$fileName\" excludeuser=\"$excludeuser\"}%";
 
     my $expected =
-      'MaryDoe,AdamBlithe,TWikiAdminUser,UnknownUser,TWikiAdminUser';
+      'MaryDoe,AdamBlithe,WikiAdminUser,UnknownUser,WikiAdminUser';
 
     $this->do_test( $testTopic1, $expected, $source );
 }
@@ -1317,7 +1317,7 @@ sub test_param_sort_fileUser {
 "%ATTACHMENTLIST{topic=\"*\" format=\"\$fileUser\" separator=\",\" sort=\"\$fileUser\"}%";
 
     my $expected =
-'AdamBlithe,JohnDoe,JohnDoe,KathyJones,MaryDoe,TWikiAdminUser,TWikiAdminUser,UnknownUser';
+'AdamBlithe,JohnDoe,JohnDoe,KathyJones,MaryDoe,WikiAdminUser,WikiAdminUser,UnknownUser';
 
     $this->do_test( $testTopic1, $expected, $source );
 }
@@ -1337,7 +1337,7 @@ sub test_param_sort_fileUser_descending {
 "%ATTACHMENTLIST{topic=\"*\" format=\"\$fileUser\" separator=\",\" sort=\"\$fileUser\" sortorder=\"descending\"}%";
 
     my $expected =
-'UnknownUser,TWikiAdminUser,TWikiAdminUser,MaryDoe,KathyJones,JohnDoe,JohnDoe,AdamBlithe';
+'UnknownUser,WikiAdminUser,WikiAdminUser,MaryDoe,KathyJones,JohnDoe,JohnDoe,AdamBlithe';
 
     $this->do_test( $testTopic1, $expected, $source );
 }
@@ -1357,7 +1357,7 @@ sub test_param_sort_fileUser_reverse {
 "%ATTACHMENTLIST{topic=\"*\" format=\"\$fileUser\" separator=\",\" sort=\"\$fileUser\" sortorder=\"reverse\"}%";
 
     my $expected =
-'UnknownUser,TWikiAdminUser,TWikiAdminUser,MaryDoe,KathyJones,JohnDoe,JohnDoe,AdamBlithe';
+'UnknownUser,WikiAdminUser,WikiAdminUser,MaryDoe,KathyJones,JohnDoe,JohnDoe,AdamBlithe';
 
     $this->do_test( $testTopic1, $expected, $source );
 }
