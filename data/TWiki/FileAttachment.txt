@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="ProjectContributor" date="1111929255" format="1.0" version="$Rev: 17246 $"}%
+%META:TOPICINFO{author="ProjectContributor" date="1111929255" format="1.0" version="$Rev: 15732 $"}%
 %STARTINCLUDE%
 ---+ File Attachments
 
@@ -21,7 +21,7 @@ File Attachments can be used to archive data, or to create powerful customized g
 ---+++ Web Authoring
 
    * Through your Web browser, you can easily upload graphics (or sound files, or anything else you want to link to on a page) and place them on a single page, or use them across a web, or site-wide.
-      * __NOTE:__ You can also add graphics - any files - directly, typically by FTP upload. This requires FTP access, and may be more convenient if you have a large number of files to load. FTP-ed files can't be managed using browser-based Attachment controls. You can use your browser to create TWikiVariables shortcuts, like this %<nop>H% = %H%.
+      * __NOTE:__ You can also add graphics - any files - directly, typically by FTP upload. This requires FTP access, and may be more convenient if you have a large number of files to load. FTP-ed files can't be managed using browser-based Attachment controls. You can use your browser to create [[%SYSTEMWEB%.Macros][Macros]] shortcuts, like this %<nop>H% = %H%.
 
 ---++ Uploading Files
 
@@ -69,7 +69,7 @@ Move unwanted Attachments to web =Trash=, topic =TrashAttachment=.
       1. ==Attach== file: =Sample.txt=
       1. ==Edit== topic and write text: =%<nop>INCLUDE{"%<nop>ATTACHURL%/Sample.txt"}%=
          * Content of attached file is shown inlined.
-         * Read more about INCLUDE in [[VarINCLUDE][TWiki<nop>Variables]]
+         * [[VarINCLUDE][Read more about INCLUDE]].
 
    * GIF, JPG and PNG images can be attached and shown embedded in a topic. Example:
       1. ==Attach== file: =Smile.gif=
