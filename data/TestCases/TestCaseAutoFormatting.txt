@@ -385,7 +385,7 @@ LinkBoxes
 <!-- expected expand SQUABS -->
 <span class="twikiNewLink">wiki syntax<a href="%SCRIPTURLPATH{"edit"}%/TestCases/WikiSyntax?topicparent=TestCases.TestCaseAutoFormatting" rel="nofollow"  title="Create this topic">?</a></span>
 <p />
-<a class="twikiLink" href="%SCRIPTURLPATH{"view"}%/%USERSWEB%/%WIKIUSERSTOPIC%">%USERSWEB%.User list</a>
+<a class="twikiLink" href="%SCRIPTURLPATH{"view"}%/%USERSWEB%/%WIKIUSERSTOPIC%">%USERSWEB%.Wiki users</a>
 <p />
 escaped:
 [<nop>[wiki syntax]]
@@ -398,7 +398,7 @@ escaped:
 <!-- actual -->
 [[wiki syntax]]
 
-[[%USERSWEB%.User list]]
+[[%USERSWEB%.Wiki users]]
 
 escaped:
 ![[wiki syntax]]
