@@ -82,7 +82,7 @@ data/Sandbox/WebSearch.txt 0644
 data/Sandbox/WebSearchAdvanced.txt 0644
 data/Sandbox/WebStatistics.txt 0644
 data/Sandbox/WebTopicList.txt 0644
-data/TWiki/AccessControl.txt 0660
+data/TWiki/AccessControl.txt 0644
 data/TWiki/AccessKeys.txt 0644
 data/TWiki/AdminDocumentationCategory.txt 0644
 data/TWiki/AdminSkillsAssumptions.txt 0644
@@ -95,10 +95,10 @@ data/TWiki/BumpyWord.txt 0644
 data/TWiki/CascadingStyleSheets.txt 0644
 data/TWiki/CategoryCategory.txt 0644
 data/TWiki/ClassMethod.txt 0644
-data/TWiki/CompleteDocumentation.txt 0660
+data/TWiki/CompleteDocumentation.txt 0644
 data/TWiki/Contribs.txt 0644
 data/TWiki/ContributedAddOns.txt 0644
-data/TWiki/DataForms.txt 0660
+data/TWiki/DataForms.txt 0644
 data/TWiki/DefaultPreferences.txt 0644
 data/TWiki/DeleteOrRenameATopic.txt 0644
 data/TWiki/DeleteOrRenameAnAttachment.txt 0644
@@ -110,7 +110,7 @@ data/TWiki/EditDoesNotIncreaseTheRevision.txt 0644
 data/TWiki/EditingShorthand.txt 0644
 data/TWiki/EnhancementRequests.txt 0644
 data/TWiki/ExampleTopicTemplate.txt 0644
-data/TWiki/FaqTemplate.txt 0660
+data/TWiki/FaqTemplate.txt 0644
 data/TWiki/FormatTokens.txt 0644
 data/TWiki/FileAttachment.txt 0644
 data/TWiki/FileAttribute.txt 0644
@@ -131,7 +131,7 @@ data/TWiki/InstalledPlugins.txt 0644
 data/TWiki/InstantEnhancements.txt 0644
 data/TWiki/JavascriptFiles.txt 0644
 data/TWiki/LanguageSelector.txt 0644
-data/TWiki/Macros.txt 0660
+data/TWiki/Macros.txt 0644
 data/TWiki/MacrosQuickStart.txt 0644
 data/TWiki/MainFeatures.txt 0644
 data/TWiki/ManagingTopics.txt 0644
@@ -176,7 +176,6 @@ data/TWiki/TWikiSiteTools.txt 0644
 data/TWiki/TWikiSkinBrowser.txt 0644
 data/TWiki/TWikiSystemRequirements.txt 0644
 data/TWiki/TWikiTopics.txt 0644
-data/TWiki/TWikiUpgradeGuide.txt 0644
 data/TWiki/TWikiUserAuthentication.txt 0644
 data/TWiki/TWikiWebsTable.txt 0644
 data/TWiki/TemplateWeb.txt 0644
@@ -185,6 +184,7 @@ data/TWiki/TextFormattingFAQ.txt 0644
 data/TWiki/TextFormattingRules.txt 0644
 data/TWiki/TimBernersLee.txt 0644
 data/TWiki/TimeSpecifications.txt 0644
+data/TWiki/UpgradeGuide.txt 0644
 data/TWiki/UserDocumentationCategory.txt 0644
 data/TWiki/UsersGuide.txt 0644
 data/TWiki/UsingHTML.txt 0644
@@ -979,7 +979,6 @@ pub/TWiki/ProjectLogos/T-logo-88x31-t.gif 0644
 pub/TWiki/ProjectLogos/T-logo-88x31.png 0644
 pub/TWiki/ProjectLogos/T-logo.svg 0644
 pub/TWiki/ProjectLogos/favicon.ico 0644
-pub/TWiki/TWiki/thoth_baboon.gif 0644
 pub/TWiki/SkinTemplates/base.css 0644
 pub/TWiki/SkinTemplates/default.css 0644
 pub/TWiki/SkinTemplates/oopsmore_diff_debug.gif 0644
