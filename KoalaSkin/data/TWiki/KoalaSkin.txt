@@ -1116,7 +1116,7 @@ Versions 2.x support only the Beijing (Feb 2003) Stable TWiki release.
 		  TWiki version is no more supported. You should re-install
 		  the KoalaSkin v2.x after you have migrated your site to 
 		  the new TWiki stable release
-		  (see TWiki:TWiki/TWikiUpgradeGuide). 
+		  (see TWiki:TWiki/UpgradeGuide). 
 		  Be sure to re-apply the needed (3 for now) patches.
 		* This is a first pass. Things now work, I will now in
 		  detail see all enhancements to the standard templates, and
