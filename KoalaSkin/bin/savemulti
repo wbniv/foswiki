@@ -103,11 +103,13 @@ sub main
      
       # Added by FredericLuddeni - 11 FEV 2004    
       # Run html to twiki parser !!!
-      open(ENTREE, ">/tmp/twikitemp$$.txt");
-      print ENTREE ("$text");
-      close(ENTREE);
-      $text = `./html2twiki /tmp/twikitemp$$.txt`;
-      unlink("/tmp/twikitemp$$.txt");
+      my $sandbox =  $TWiki::sharedSandbox || $TWiki::sandbox;
+      my $filename = $sandbox->normalizeFileName( "/tmp/twikitemp$$.txt" );
+      open ENTREE, "> $filename" or die "Can't write to $filename: $!";
+      print ENTREE $text;
+      close ENTREE;
+      ($text) = $sandbox->sysCommand(`./html2twiki `.$filename);
+      unlink $filename;
     }
 
     my $unlock = $query->param( "unlock" ) || "on";
