@@ -3,15 +3,71 @@ package TWiki::Plugins::FilesysVirtualPlugin
 
 use strict;
 
-use vars qw( $VERSION $RELEASE $SHORTDESCRIPTION );
+our $VERSION = '$Rev$';
+our $RELEASE = '';
+our $SHORTDESCRIPTION = 'Implementation of the Filesys::Virtual protocol over a NextWiki store';
 
-$VERSION = '$Rev$';
-$RELEASE = '';
-$SHORTDESCRIPTION = 'Implementation of the Filesys::Virtual protocol over a NextWiki store';
+my $pluginName = 'FilesysVirtualPlugin';
 
 sub initPlugin {
     return 1;
 }
+
+=pod
+
+The following implementation is required if we decide to use cached permissions
+
+use TWiki::Plugins::FilesysVirtualPlugin::Permissions;
+
+sub initPlugin {
+    my ( $topic, $web, $user, $installWeb ) = @_;
+
+    my $pdb = $TWiki::cfg{Plugins}{FilesysVirtualPlugin}{PermissionsDB};
+
+    if ($pdb) {
+        eval 'use TWiki::Plugins::FilesysVirtualPlugin::Permissions';
+        if ( $@ ) {
+            TWiki::Func::writeWarning( $@ );
+            print STDERR $@; # print to webserver log file
+        } else {
+            $permDB =
+              new TWiki::Plugins::FilesysVirtualPlugin::Permissions( $pdb );
+        }
+    } else {
+        my $mess =
+          "{Plugins}{FilesysVirtualPlugin}{PermissionsDB} is not defined";
+
+        TWiki::Func::writeWarning($mess);
+        print STDERR "$mess\n";
+        return 0;
+    }
+
+    unless( $permDB ) {
+        my $mess = "$pluginName: failed to initialise";
+        TWiki::Func::writeWarning( $mess );
+        print STDERR "$mess\n";
+        return 0;
+    }
+
+    return 1;
+}
+
+sub beforeSaveHandler {
+    my ( $text, $topic, $web ) = @_;
+
+    return unless( $permDB );
+
+    eval {
+        $permDB->processText( $web, $topic, $text );
+    };
+
+    if ( $@ ) {
+        TWiki::Func::writeWarning( "$pluginName: $@" );
+        print STDERR "$pluginName: $@\n";
+    }
+}
+
+=cut
 
 1;
 __DATA__

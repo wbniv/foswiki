@@ -16,10 +16,10 @@ The store is mapped as follows:
    * Topics are seen as plain files that have a .txt extension, e.g. =MyTopic.txt=
    * Attachments are stored in a =Topic_files/= directory, e.g. =MyTopic_files/=
 
-TWiki access controls are respected at all levels in the store. Note:
+Wiki access controls are respected at all levels in the store. Note:
    1 You cannot create subdirectories in =_files= directories
 
-The module currently uses =TWiki::Func= methods with the absolute minimum of unavoidable kick-down to the file system when the APIs just don't provide the required information. At the moment it uses standard access control checking methods, but the plan is to add a permissions cache. For this reason it is a plugin so it can implements handler that watch for topic saves.
+The module currently uses =TWiki::Func= methods with the absolute minimum of unavoidable kick-down to the file system when the APIs just don't provide the required information. At the moment it uses standard access control checking methods, but the plan is to add a permissions cache. For this reason it is a plugin so it can if necessary implement handlers that watch for topic saves.
 
 ---++ Installation Instructions
 
@@ -31,7 +31,7 @@ Many thanks to the following sponsors for supporting this work:
    * http://Kontextwork.de
 
 |  Author(s): | Crawford Currie http://c-dot.co.uk |
-|  Copyright: | &copy; |
+|  Copyright: | &copy; 2008 Crawford Currie http://c-dot.co.uk |
 |  License: | [[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License)]] |
 |  Version: | %$VERSION% |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |

@@ -1,4 +1,5 @@
 # Release manifest for FilesysVirtualPlugin
 data/TWiki/FilesysVirtualPlugin.txt 0644 Documentation
 lib/TWiki/Plugins/FilesysVirtualPlugin.pm 0644 Perl module
+lib/TWiki/Plugins/FilesysVirtualPlugin/Permissions.pm 0644 Perl module
 lib/Filesys/Virtual/NextWiki.pm 0644 Perl module

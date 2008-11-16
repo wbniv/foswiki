@@ -1,0 +1,5 @@
+# Release manifest for WebDAVContrib
+data/TWiki/WebDAVContrib.txt 0644 Documentation
+lib/TWiki/Contrib/WebDAVContrib.pm 0644 Perl module
+lib/Apache/WebDAV.pm
+lib/Apache/NextWikiDAVHandler.pm
