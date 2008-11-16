@@ -74,7 +74,16 @@ sub handleIrcLog
     my $text;
     if ( $href )
     {
-	$text = `wget -O - "$href"`;
+        # This block replaces a call to: wget -O - $href
+        # Don't use wget, use LWP instead
+        require LWP;
+	my $ua = new LWP::UserAgent;
+	# Load proxy settings
+	$ua->env_proxy;
+	my $request = HTTP::Request->new( 'GET' );
+	$request->url( $href );
+	my response = $ua->request( $request );
+	$text = $response->content;
     }
     elsif ( $topic || $web )
     {
