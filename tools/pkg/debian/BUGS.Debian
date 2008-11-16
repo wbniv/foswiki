@@ -2,7 +2,7 @@ Bugs specific to the debian packaging [pre-upload]:
 
 * document the rest too
 * need to enable authentication somehow (what is openafs doing for htaccess?)
-	* so, using TWikiRegistrationPub gives you a different screen, but that
+	* so, using UserRegistrationPub gives you a different screen, but that
 	  just changes what questions you get asked
 	* login only happens as an oops-side-effect, so something has to actually
 	  *fail* to trigger it; 

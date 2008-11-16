@@ -105,7 +105,7 @@ sub registerUser {
 
     my $query = new Unit::Request(
         {
-            'TopicName'     => ['TWikiRegistration'],
+            'TopicName'     => ['UserRegistration'],
             'Twk1Email'     => [$email],
             'Twk1WikiName'  => ["$forename$surname"],
             'Twk1Name'      => ["$forename $surname"],
@@ -117,7 +117,7 @@ sub registerUser {
         }
     );
 
-    $query->path_info("/$this->{users_web}/TWikiRegistration");
+    $query->path_info("/$this->{users_web}/UserRegistration");
 
     my $twiki = new TWiki( undef, $query );
     $twiki->net->setMailHandler( \&TWikiFnTestCase::sentMail );
