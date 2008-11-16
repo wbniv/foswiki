@@ -25,7 +25,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
 	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
 	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
-	  | ==pub/TWiki/%TOPIC%/TWikiRegistration.txt== | Example configuration files |
+	  | ==pub/TWiki/%TOPIC%/UserRegistration.txt== | Example configuration files |
 	  | ==pub/TWiki/%TOPIC%/oopsauth.tmpl== | Example configuration files |
 	  | ==pub/TWiki/%TOPIC%/htaccess.txt== | Example configuration files |
 	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
@@ -38,7 +38,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 			* 'You cannot edit content unless you are registered and have a valid certificate.  Please make sure you have a valid certificate and hit Cancel to register.'
 		* Make sure !AuthType is Basic
 		* Edit the !ErrorDocument line and replace =!URL_path_to_TWiki!= with =/twiki= (or whatever your TWiki root url is); it should NOT contain =https://hostname= in it.  Apache doesn't allow 401 error documents to be full urls.
-	* Edit =data/TWiki/TWikiRegistration.txt= as follows (an example file is included in this package in =pub/TWiki/FakeBasicAuthRegPlugin/TWikiRegistration.txt=):
+	* Edit =data/TWiki/UserRegistration.txt= as follows (an example file is included in this package in =pub/TWiki/FakeBasicAuthRegPlugin/UserRegistration.txt=):
 		* In the *Twk1Name* =input= tag insert<tt> !%ENV{SSL_CLIENT_CN}% </tt>into the empty *value* attribute (this automatically puts your name in the field from your cert)
 		* In the *!Twk1WikiName* =input= tag insert<tt> !%ENV{SSL_CLIENT_CN,[ .']}% </tt>into the empty *value* attribute (this automatically takes your name from your cert and sort of makes it into a WikiName)
 		* In the *!Twk1LoginName* =input= tag (this tag is going to be converted to a hidden but we also want to display the info):
@@ -59,7 +59,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 		* Before registering, try editing a page
 			* Make sure the login box pops up
 			* Click =Cancel= and make sure you're brought to the =oopsauth= page
-		* Go to the TWiki.TWikiRegistration page
+		* Go to the %SYSTEMWEB%.UserRegistration page
 			* Make sure the fields are automatically filled in with the proper values
 			* Go ahead and register (you should receive a registration email if mail is setup properly)
 			* Make sure you can now edit a page without the login box popping up
@@ -86,7 +86,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 
 ---++ Details (Under the hood)
 
-This plugin uses data from the client cert to fill in default values in the TWikiRegistration form (via !%ENV).  TWiki's =register= script bypasses creating a user in the htpasswd file if REMOTE_USER is present, which is great because usually it uses the WikiName as the userid when it creates a user.  Since !FakeBasicAuth requires a userid (and not a WikiName) and a password of "password", this plugin uses a registration handler to do that.  So in essence, anyone with a valid cert can register and will have a userid created for them automatically (which saves the Wiki admin from having to prepopulate the htpasswd file), and no login is necessary when editing, etc, because SSL's !FakeBasicAuth gets that info from the certificate.
+This plugin uses data from the client cert to fill in default values in the UserRegistration form (via !%ENV).  TWiki's =register= script bypasses creating a user in the htpasswd file if REMOTE_USER is present, which is great because usually it uses the WikiName as the userid when it creates a user.  Since !FakeBasicAuth requires a userid (and not a WikiName) and a password of "password", this plugin uses a registration handler to do that.  So in essence, anyone with a valid cert can register and will have a userid created for them automatically (which saves the Wiki admin from having to prepopulate the htpasswd file), and no login is necessary when editing, etc, because SSL's !FakeBasicAuth gets that info from the certificate.
 
 ---++ Plugin Settings
 

@@ -7,4 +7,4 @@ __Format:__ &lt;space&gt;&lt;space&gt;&lt;space&gt;, followed by:%BR%
 =* %MAINWEB%.yourWikiName - yourEmailAddress= (if you want to specify a different e-mail address) %BR%
 =* %MAINWEB%.anyTWikiGroup= (if you want to notify all members of a particular [[%MAINWEB%.WikiGroups][TWikiGroup]])
 
-__Related topics:__ %MAINWEB%.%WIKIUSERSTOPIC%, %SYSTEMWEB%.TWikiRegistration
+__Related topics:__ %MAINWEB%.%WIKIUSERSTOPIC%, %SYSTEMWEB%.UserRegistration

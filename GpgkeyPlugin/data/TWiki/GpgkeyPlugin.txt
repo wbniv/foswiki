@@ -51,7 +51,7 @@ Attributes:
 
 So you can use %<nop>GPGLISTVIEW{topic="GpgkeySigningPartyList"}% to define a specific topic, from which the (gpg-) user list shall be taken.
 
-The WikiMaster can add a GPG Key/Fingerprint questionarie at the TWiki.TWikiRegistration for automatisation.
+The WikiMaster can add a GPG Key/Fingerprint questionarie at the %SYSTEMWEB%.UserRegistration for automatisation.
 
 ---++ Examples
 

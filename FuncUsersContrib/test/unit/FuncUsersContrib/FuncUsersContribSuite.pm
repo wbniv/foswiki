@@ -34,7 +34,7 @@ sub registerUser {
     $TWiki::cfg{Register}{NeedVerification} = 0;
     my $query = new CGI ({
                           'TopicName' => [
-                                          'TWikiRegistration'
+                                          'UserRegistration'
                                          ],
                           'Twk1Email' => [
                                           $email
@@ -62,7 +62,7 @@ sub registerUser {
                                       ]
                          });
 
-    $query->path_info( "/$testUsersWeb/TWikiRegistration" );
+    $query->path_info( "/$testUsersWeb/UserRegistration" );
     my $session = new TWiki( $TWiki::cfg{DefaultUserName}, $query);
     $session->{net}->setMailHandler(\&sentMail);
 

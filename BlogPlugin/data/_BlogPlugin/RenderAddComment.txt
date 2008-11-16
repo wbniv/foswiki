@@ -51,7 +51,7 @@ NONE
   <td align="right" style="padding-top:0.5em;">
     <table width="100%"><tr><td>
       You may have to [[%IFDEFINED{"%LOGINURL%" then="%LOGINURL%" else="%NATLOGINURL%"}%][login]]
-      or [[%SYSTEMWEB%.TWikiRegistration][register]] to comment if you haven't already.
+      or [[%SYSTEMWEB%.UserRegistration][register]] to comment if you haven't already.
     </td><td>
       <input type="submit" class="blogSubmitButton" value="Submit" />
     </td></tr></table>

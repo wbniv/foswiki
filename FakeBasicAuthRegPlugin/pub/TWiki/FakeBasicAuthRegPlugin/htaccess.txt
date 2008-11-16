@@ -50,7 +50,7 @@ AuthType Basic
 # match the $scriptUrlPath in TWiki.cfg
 #ErrorDocument 401 index.htm
 # damnit this doesn't work
-ErrorDocument 401 /twiki/bin/oops/TWiki/TWikiRegistration?template=oopsauth
+ErrorDocument 401 /twiki/bin/oops/TWiki/UserRegistration?template=oopsauth
 
 <Files ~ "[^/]*\.html$">
        SetHandler blabla

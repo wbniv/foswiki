@@ -1,5 +1,5 @@
 data/TWiki/FakeBasicAuthRegPlugin.txt NEW
 lib/TWiki/Plugins/FakeBasicAuthRegPlugin.pm NEW
-pub/TWiki/FakeBasicAuthRegPlugin/TWikiRegistration.txt NEW
+pub/TWiki/FakeBasicAuthRegPlugin/UserRegistration.txt NEW
 pub/TWiki/FakeBasicAuthRegPlugin/htaccess.txt NEW
 pub/TWiki/FakeBasicAuthRegPlugin/oopsauth.tmpl NEW

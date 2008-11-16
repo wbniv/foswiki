@@ -10,7 +10,7 @@ Las configuraciones a continuación son __preferencias de web__ de la web [[%WEB%
 Estas configuraciones sobrescriben los valores estándares solamente para esta web. Ver [[%SYSTEMWEB%.DefaultPreferences#DefaultWebPreferences][lista completa de valores estándares con explicación]].
 
    * Configuraciones de web:
-      * Set WEBTOPICLIST = [[BienvenidoHuesped][Bienvenido]] %SEP% [[TWiki.TWikiRegistration][Registro]] %SEP% [[WebChanges][Cambios]] %SEP% [[WebTopicList][Temas]] %SEP% [[WebIndex][Indice]] %SEP% [[WebSearch][Búsqueda]] %SEP% Ir a <input type="text" name="topic" size="16" />
+      * Set WEBTOPICLIST = [[BienvenidoHuesped][Bienvenido]] %SEP% [[%SYSTEMWEB%.UserRegistration][Registro]] %SEP% [[WebChanges][Cambios]] %SEP% [[WebTopicList][Temas]] %SEP% [[WebIndex][Indice]] %SEP% [[WebSearch][Búsqueda]] %SEP% Ir a <input type="text" name="topic" size="16" />
       * Set WEBBGCOLOR = #99CC99
       * #Set WEBHEADERART = 
       * Set SITEMAPLIST = on

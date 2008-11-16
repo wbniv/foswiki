@@ -8,7 +8,7 @@ See also: RenderAdminTools, RenderSideBar, WebSideBar
 <div class="natSideBarContents">
 %STARTINCLUDE% 
 %IFDEFINEDTHEN{"%WIKINAME%" as="WikiGuest"}%
-%LOGIN% or [[%SYSTEMWEB%.TWikiRegistration][Register]]
+%LOGIN% or [[%SYSTEMWEB%.UserRegistration][Register]]
 %ELSEDEFINED%
 Hello [[%WIKIUSERNAME%][%SPACEOUT{%WIKINAME%}%]]%BR%%LOGOUT%
 %FIDEFINED%

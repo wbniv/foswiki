@@ -13,7 +13,7 @@
 %TMPL:DEF{"sep"}% &#8226; %TMPL:END%
 %{ ******************************************* }%
 %TMPL:DEF{"login_actions"}%
-%IF{"context authenticated" then='%MAKETEXT{"Hello [_1]!" args="[[%WIKIUSERNAME%][%SPACEOUT{%WIKINAME%}%]]"}% %SEP% %LOGOUT%' else='%LOGIN% %MAKETEXT{"or"}% [[%SYSTEMWEB%.TWikiRegistration][%MAKETEXT{"Register"}%]]'}%%TMPL:END%
+%IF{"context authenticated" then='%MAKETEXT{"Hello [_1]!" args="[[%WIKIUSERNAME%][%SPACEOUT{%WIKINAME%}%]]"}% %SEP% %LOGOUT%' else='%LOGIN% %MAKETEXT{"or"}% [[%SYSTEMWEB%.UserRegistration][%MAKETEXT{"Register"}%]]'}%%TMPL:END%
    
 %{ **************************************************************************************************************************************************************************** }%
 %{ ******************************************* }%

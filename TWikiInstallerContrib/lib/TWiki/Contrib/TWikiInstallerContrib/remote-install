@@ -430,7 +430,7 @@ EOT
     . <<EOT;
     AuthName 'Enter your WikiName: (First name and last name, no space, no dots, capitalized, e.g. JohnSmith). Cancel to register if you do not have one.'
     AuthType Basic
-    ErrorDocument 401 /twiki/bin/view/TWiki/TWikiRegistration
+    ErrorDocument 401 /twiki/bin/view/TWiki/UserRegistration
 </FilesMatch>
 EOT
 
@@ -439,7 +439,7 @@ EOT
 #print STDERR "mtw/b: ", $mapTWikiDirs->{bin}->{dest}, "\n";
 open ( HTACCESS, '>', $mapTWikiDirs->{bin}->{dest} . '/.htaccess' ) or warn $!;
 print HTACCESS $BinHtAccess, "\n";
-print HTACCESS "ErrorDocument 401 bin/view$scriptSuffix/TWiki/TWikiRegistration\n";
+print HTACCESS "ErrorDocument 401 bin/view$scriptSuffix/TWiki/UserRegistration\n";
 close HTACCESS;
 
 #foreach my $dir qw( pub/Trash data lib locale logs templates test tools twikiplugins ) {

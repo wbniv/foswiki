@@ -89,7 +89,7 @@ sub initPlugin {
   TWiki::Func::registerTagHandler('KNOWNVARIATIONS', \&renderKnownVariations);
   TWiki::Func::registerTagHandler('WEBCOMPONENT', \&renderWebComponent);
   TWiki::Func::registerTagHandler('IFSKINSTATE', \&renderIfSkinState);
-  TWiki::Func::registerTagHandler('TWIKIREGISTRATION', \&renderTWikiRegistration);
+  TWiki::Func::registerTagHandler('USERREGISTRATION', \&renderUserRegistration);
   TWiki::Func::registerTagHandler('HTMLTITLE', \&renderHtmlTitle);
 
   # REVISIONS, MAXREV, CURREV only worked properly for the PatternSkin :/
@@ -691,15 +691,15 @@ sub renderIfSkinStateThen {
 }
 
 ###############################################################################
-sub renderTWikiRegistration {
+sub renderUserRegistration {
   my $twikiWeb = TWiki::Func::getTwikiWebname();
 
-  my $twikiRegistrationTopic = 
-    TWiki::Func::getPreferencesValue('TWIKIREGISTRATION');
-  $twikiRegistrationTopic = "$twikiWeb.TWikiRegistration" 
-    unless defined $twikiRegistrationTopic;
+  my $userRegistrationTopic = 
+    TWiki::Func::getPreferencesValue('USERREGISTRATION');
+  $userRegistrationTopic = "$twikiWeb.UserRegistration" 
+    unless defined $userRegistrationTopic;
   
-  return $twikiRegistrationTopic;
+  return $userRegistrationTopic;
 }
 
 ###############################################################################
@@ -1116,14 +1116,14 @@ sub renderUserActions {
   }
 
   # registration
-  my $twikiRegistrationTopic= renderTWikiRegistration();
-  if ($twikiRegistrationTopic) {
+  my $userRegistrationTopic= renderUserRegistration();
+  if ($userRegistrationTopic) {
     if ($isRestrictedAction{'register'}) {
       $registerString = '<span class="natUserAction natRegisterUserAction natDisabledUserAction"><span>%TMPL:P{"LOG_OUT"}%</span></span>';
     } else {
       $registerString =
         '<a class="natUserAction natRegisterUserAction" href="%SCRIPTURLPATH{"view"}%/'.
-        $twikiRegistrationTopic.
+        $userRegistrationTopic.
         '" accesskey="r" title="%TMPL:P{"REGISTER_HELP"}%"><span>%TMPL:P{"REGISTER"}%</span></a>';
     }
   } else {

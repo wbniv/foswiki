@@ -3,7 +3,7 @@ To edit pages on this %WIKITOOLNAME% Collaborative Web, you must have a register
 
 To register as a new user, simply fill out this form:
 
-<!-- IMPORTANT NOTE if you want to customize this form: You can delete or add new input variables in this form. Use the topic TWikiRegistrationPub in case this installation is on a public server (just copy the content over to the TWikiRegistration topic). The name="" parameter of the input tags must start with: "Twk0..." (if this is an optional entry), "Twk1..." (if this is a required entry). This will ensure that the fields are processed correctly. -->
+<!-- IMPORTANT NOTE if you want to customize this form: You can delete or add new input variables in this form.  The name="" parameter of the input tags must start with: "Twk0..." (if this is an optional entry), "Twk1..." (if this is a required entry). This will ensure that the fields are processed correctly. -->
 
 <form action="%SCRIPTURL%/register%SCRIPTSUFFIX%/%MAINWEB%/%HOMETOPIC%" method="post">
 <table border="1">

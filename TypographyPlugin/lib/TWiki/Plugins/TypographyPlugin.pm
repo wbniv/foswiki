@@ -93,7 +93,7 @@ sub startRenderingHandler {
 
 	# Render special character sequences.
 
-	if ($_[0] !~ /chgUpper/) {   # Ugly hack to prevent TWikiRegistration page from breaking.
+	if ($_[0] !~ /chgUpper/) {   # Ugly hack to prevent UserRegistration page from breaking.
 
 		if (($isInternetExplorer && $ieMajorVersion >= 5) || ($isModernNetscape && $nsMajorVersion >= 6)) {
 			$_[0] =~ s((?<=[^\w\-])\-\-\-(?=[^\w\-\+]))(&mdash;)go;
