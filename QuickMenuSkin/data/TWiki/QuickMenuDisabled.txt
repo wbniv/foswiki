@@ -15,5 +15,5 @@ You have 2 choices:
      or [[%SCRIPTURLPATH{"view"}%/%SYSTEMWEB%/ClassicSkin?skin=classic][ClassicSkin]]
  %BR% To activate a skin see: [[%SYSTEMWEB%.Skins#Activating_Skins][Skins]]
 
-%T% TWikiSkinBrowser lists all the skins installed on your server.
+%T% SkinBrowser lists all the skins installed on your server.
 

@@ -114,7 +114,7 @@ The menu bar is built by default from %SYSTEMWEB%.QuickMenuBar, which in turn in
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/QuickMenuSkinDev |
 |  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/QuickMenuSkinAppraisal |
 
-__Related topic:__ [[%SYSTEMWEB.Skins][Skins]], %SYSTEMWEB%.TWikiSkinBrowser, %SYSTEMWEB%.UserDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory
+__Related topic:__ [[%SYSTEMWEB.Skins][Skins]], %SYSTEMWEB%.SkinBrowser, %SYSTEMWEB%.UserDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory
 
 -- TWiki:Main/VernonLyon - 13 Jun 2006
 

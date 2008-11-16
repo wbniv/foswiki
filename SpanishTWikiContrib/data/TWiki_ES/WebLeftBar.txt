@@ -18,7 +18,7 @@
    * [[%SYSTEMWEB%.Macros][Macros]] %FLAGGB%
    * TWiki.FormattedSearch %FLAGGB%
    * TWiki.DocumentGraphics %FLAGGB%
-   * TWiki.TWikiSkinBrowser %FLAGGB%
+   * TWiki.SkinBrowser %FLAGGB%
    * TWiki.InstalledPlugins %FLAGGB%
 
    * <b>%MAKETEXT{"Admin Maintenance"}%</b>
