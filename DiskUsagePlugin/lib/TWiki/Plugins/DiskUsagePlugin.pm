@@ -108,12 +108,14 @@ sub logSizes {
 
 
 sub diskusage {
+    my $sandbox = $TWiki::sharedSandbox || $TWiki::sandbox;
     my $web = TWiki::Func::extractNameValuePair( @_, "web" );
     $web =~ s/\W//go;
     TWiki::Func::writeDebug( "- ${pluginName}::diskusage($web)" ) if $debug;
     my $datadir = $TWiki::cfg{DataDir};
     my $cmd = "/usr/bin/du -b $datadir/$web/*.txt 2>&1";
-    my @lines = `$cmd`;
+    my ( $result, $code ) = $sandbox->sysCommand( $cmd );
+    my @lines = split m#$/#, $result;
     my %usageByTopic;
 
     foreach my $line (@lines) {
@@ -126,8 +128,9 @@ sub diskusage {
     }
     my $pubdir = $TWiki::cfg{PubDir};
     $cmd = "/usr/bin/du -b $pubdir/$web/* 2>&1";
+    ( $result, $code ) = $sandbox->sysCommand( $cmd );
+    @lines = split m#$/#, $result;
 
-    @lines = `$cmd`;
     my %pubByTopic;
 
     foreach my $line (@lines) {
@@ -157,8 +160,11 @@ sub diskusage {
 
 sub quotaData {
     my $cmd = "/usr/bin/quota -v 2>&1";
+    my $sandbox = $TWiki::sharedSandbox || $TWiki::sandbox;
 
-    my @lines = `$cmd`;
+    my ( $result, $code ) = $sandbox->sysCommand( $cmd );
+    my @lines = split m#$/#, $result;
+
     my $lastLine = $lines[$#lines] || "";
     my @fields = split /\s+/, $lastLine;
     return ($fields[2], $fields[3]);
