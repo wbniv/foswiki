@@ -4,11 +4,11 @@
 
 %TOC{depth="4"}% 
 %STARTINCLUDE%
----+ Formatear texto en TWiki
+---+ Formatear texto
 
 Trabajar en TWiki es igual de fácil que digitar un texto. No tiene que conocer HTML, aunque puede utilizarlo si prefiere. Los enlaces a otros temas serán creados automáticamente cuando se utiliza una PalabraWiki. Y TWiki shorthand permite utilizar las posibilidades de HTML por medio de un sistema sencillo de codificación que no necesita mucho tiempo para aprenderse. Se lo explicamos a continuación.
 
-#TWikiShorthand
+#ShortHand
 ---++ Taquigrafía TWiki para manipular documentos
 
 %INCLUDE{"TaquigrafiaTWiki"}%

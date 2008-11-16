@@ -8,7 +8,7 @@
 <sticky>=&lt;strike&gt;texto tachado&lt;/strike&gt;=</sticky> para obtener <strike>texto tachado</strike>.
 
 %X% Hay unas consideraciones técnicas y con respecto al uso que se deben tomar en consideración:
-   * En páginas donde aporta varia gente, es mejor *no* utilizar HTML, sino [[#TWikiShorthand][Taquigrafía TWiki]] - eso mantiene limpio el código de la página y facilita su lectura.
+   * En páginas donde aporta varia gente, es mejor *no* utilizar HTML, sino [[ShortHand][Taquigrafía]] - eso mantiene limpio el código de la página y facilita su lectura.
    * Si utliza HTML, refiérese a la sintaxis [[http://www.w3.org/TR/xhtml1/][XHTML 1.0 Transitional]].
    * Utilice las etiquetas <sticky>=&lt;literal&gt;..&lt;/literal&gt;=</sticky> alrededor de bloques de HTML para evitar que la [[#TaquigrafiaTWiki][Taquigrafía TWiki]] sea interpretada casualmente dentro de HTML.
    * %X% Comandos de programación pueden ser bloqueados, dependiendo de la configuración del sistema.
