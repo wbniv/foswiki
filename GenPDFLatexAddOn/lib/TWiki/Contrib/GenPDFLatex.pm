@@ -208,7 +208,6 @@ sub genfile() {
 
         # create a temporary working directory
         my $WDIR = File::Temp::tempdir();
-        `chmod a+rwx $WDIR` if ($debug);
 
         my $latexfile = $WDIR.'/lmp_content.tex';
 
@@ -235,8 +234,13 @@ sub genfile() {
         my $flag = 0;
         my $ret = "";
         do {
-            $ret = `$pdflatex -interaction=nonstopmode $texrel`;
-            $ret .= `$bibtex $base` if ($tex =~ m/\\bibliography\{/);
+	    my $sandbox = $TWiki::sharedSandbox || $TWiki::sandbox;
+	    my ($result, $code) = $sandbox->sysCommand( "$pdflatex -interaction=nonstopmode $texrel" );
+            $ret = $result;
+	    if( $tex =~ m/\\bibliography\{/ ) {
+	      ($result, $code) = $sandbox->sysCommand( "$bibtex $base" );
+	      $ret .= $result;
+	    }
             $flag++ unless ($ret =~ m/Warning.*?Rerun/i);
         } while ($flag < 2);
 
