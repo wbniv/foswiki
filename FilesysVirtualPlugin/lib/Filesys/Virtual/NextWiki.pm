@@ -588,7 +588,7 @@ sub _W_list {
         }
         push(@tops, "$f$TOPIC_EXT");
     }
-    # SMELL: violating Store encapsulation (no other way to getsubwebs!
+    # SMELL: violating Store encapsulation (no other way to get subwebs!
     @list = ('.', '..', @tops,
              $TWiki::Plugins::SESSION->{store}->getListOfWebs(
                  'public,user', $web));
