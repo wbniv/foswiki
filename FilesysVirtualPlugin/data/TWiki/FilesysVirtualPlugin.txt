@@ -1,0 +1,42 @@
+---+!! !FilesysVirtualPlugin
+<!--
+One line description, required for extensions repository catalog.
+   * Set SHORTDESCRIPTION = Implementation of the Filesys::Virtual protocol over a NextWiki store
+-->
+%SHORTDESCRIPTION%
+
+%TOC%
+
+This module provides an implementation =Filesys::Virtual= implementation layered over a NextWiki store. See CPAN:Filesys::Virtual for more information.
+
+Obviously a full filesystem is a lot more generic than a NextWiki store, so there needs to be some mapping between what is in the store and the filesystem, and some constraints on what can and can't be done with the filesystem.
+
+The store is mapped as follows:
+   * Webs are directories
+   * Topics are seen as plain files that have a .txt extension, e.g. =MyTopic.txt=
+   * Attachments are stored in a =Topic_files/= directory, e.g. =MyTopic_files/=
+
+TWiki access controls are respected at all levels in the store. Note:
+   1 You cannot create subdirectories in =_files= directories
+
+The module currently uses =TWiki::Func= methods with the absolute minimum of unavoidable kick-down to the file system when the APIs just don't provide the required information. At the moment it uses standard access control checking methods, but the plan is to add a permissions cache. For this reason it is a plugin so it can implements handler that watch for topic saves.
+
+---++ Installation Instructions
+
+%$INSTALL_INSTRUCTIONS%
+
+---++ Info
+
+Many thanks to the following sponsors for supporting this work:
+   * http://Kontextwork.de
+
+|  Author(s): | Crawford Curri http://c-dot.co.uk |
+|  Copyright: | &copy; |
+|  License: | [[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License)]] |
+|  Version: | %$VERSION% |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Home: | http://nextwiki.org/bin/view/Extensions/FilesysVirtualPlugin |
+|  Feedback: | http://nextwiki.org/bin/view/Extensions/FilesysVirtualPluginDev |
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the feedback topic on twiki.org instead. -->
