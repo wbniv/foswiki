@@ -113,7 +113,8 @@ my $sandbox =  $TWiki::sharedSandbox || $TWiki::sandbox;
 #     my ($web,$topic,$s1,$s2) = @_;
 #     my $fn = &TWiki::Func::getPubDir() . "/".$web.'/'.$topic.'/mapping.txt';
 #     open(F, ">>$fn") or return;
-#     print F `date`;
+#     use POSIX qw/strftime/;
+#     print F strftime, "%a %b %d %X %Z %Y\n", localtime;
 #     print F "\t".$s1."\n";
 #     print F "-"x70;
 #     print F "\n".$s2."\n";
@@ -773,7 +774,6 @@ sub renderEquations {
         ### report errors on 'preview' and 'save'
         if ( ( TWiki::Func::getContext()->{'preview'} ) || 
              ( TWiki::Func::getContext()->{'save'} ) ) {
-            # my $resp = `$GREP -A 3 -i "!" $LATEXLOG`;
             (my $logf = $LATEXFILENAME) =~ s/\.tex$/\.log/;
             # $sandbox->{TRACE} = 1;
             
@@ -933,12 +933,9 @@ sub makePNGs {
 
         } elsif ($opts{'engine'} eq 'mimetex') {
             my $ccmd = $PATHTOMIMETEX.' -d -f %IN|F% ';
-            # my $ccmd = $PATHTOMIMETEX.' -d -f '.$key.'.txt '; # > '.$outimg;
-            # `$ccmd`;
-            
             my ($data,$ret) = $sandbox->sysCommand( $ccmd,
                                             IN => $key.'.txt' );
- 
+
             if ($ret eq 0) {
                 open(OI,">$outimg");
                 binmode(OI);

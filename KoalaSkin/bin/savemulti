@@ -108,7 +108,7 @@ sub main
       open ENTREE, "> $filename" or die "Can't write to $filename: $!";
       print ENTREE $text;
       close ENTREE;
-      ($text) = $sandbox->sysCommand(`./html2twiki `.$filename);
+      ($text) = $sandbox->sysCommand('./html2twiki '.$filename);
       unlink $filename;
     }
 
