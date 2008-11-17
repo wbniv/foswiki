@@ -46,7 +46,7 @@ The heading can be configured just by setting DS_QUICKLINKSHEADING to the string
 The menu items are configured by setting DS_QUICKLINKS to an html unordered list containing the menu links you need:
 For example:
 <verbatim>
-<ul><li>[[TWiki.DragonSkin][Change me]]</li></ul>
+<ul><li>[[%SYSTEMWEB%.DragonSkin][Change me]]</li></ul>
 </verbatim>
 will have one link with the link text &quot;Change me&quot; that points to this page.
 
@@ -64,7 +64,3 @@ It is possible to set a DS_TOPICCSS variable in such a way as to make it difficu
 	2. Edit the page by using access key 3 (usually bound to Alt-3 in your browser).
 	3. On that page, set DS_TOPICCSS to a blank value (or any other safe value).
 	4. Preview and save that page.
-
-
-
-%META:TOPICMOVED{by="cbs" date="1090945787" from="TWiki.DragonSkin" to="TWiki.DragonSkinCustomize"}%

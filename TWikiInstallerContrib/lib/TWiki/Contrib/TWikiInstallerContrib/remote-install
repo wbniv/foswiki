@@ -54,7 +54,7 @@ use warnings;
 # administrator ($WikiAdmin)
 #	(and update Main.AdminGroup)
 # wikiwebmaster (for email about this wiki site) - 
-#	(and update TWiki.MainPreferences) - $wikiWebMaster
+#	(and update %SYSTEMWEB%.SitePreferences) - $wikiWebMaster
 #
 # other TODO?
 # 	could create a TWikiInstallationReport topic...

@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="guest" date="1005881017" format="1.0" version="1.17"}%
 ---++ TopicVarsPlugin TWiki Plugin 
 
-This plugin will allow you to create variables in arbitrary topic pages, and not just WebPreferences. You can then refer to those variables from any topic within the same Web or Wiki. (Perhaps a future iteration will support [[TWiki.InterwikiPlugin][Interwiki]] references, but that's probably not likely, unless we use XML-RPC or something to cut down the overhead of getting those values from afar.)
+This plugin will allow you to create variables in arbitrary topic pages, and not just WebPreferences. You can then refer to those variables from any topic within the same Web or Wiki. (Perhaps a future iteration will support [[%SYSTEMWEB%.InterwikiPlugin][Interwiki]] references, but that's probably not likely, unless we use XML-RPC or something to cut down the overhead of getting those values from afar.)
 
 ---+++ Syntax Rules 
 
@@ -19,7 +19,7 @@ This plugin will allow you to create variables in arbitrary topic pages, and not
 
 ---+++ <nop>%TOPIC% Settings
 
-	* One line description, is shown in the [[TWiki.TextFormattingRules][TextFormattingRules]] topic
+	* One line description, is shown in the [[%SYSTEMWEB%.TextFormattingRules][TextFormattingRules]] topic
 	* Set SHORTDESCRIPTION = Set variables in arbitrary topics and refer to them from other topics within the same web
 
 	* Debug %TOPIC% (see output in <code>data/debug.txt</code>)
@@ -38,7 +38,7 @@ This plugin will allow you to create variables in arbitrary topic pages, and not
 	* Set THE_ANSWER = 42
 	* You should see the answer here: [%THE_ANSWER%] (%<nop>THE_ANSWER%)
 	* and here: [%TopicVarsPlugin.THE_ANSWER%] (%<nop>TopicVarsPlugin.THE_ANSWER%)
-	* and here: [%TWiki.TopicVarsPlugin.THE_ANSWER%] (%<nop>TWiki.TopicVarsPlugin.THE_ANSWER%)
+	* and here: [%System.TopicVarsPlugin.THE_ANSWER%] (%<nop>System.TopicVarsPlugin.THE_ANSWER%)
 
 
 ---+++ Plugin Info 
@@ -52,7 +52,7 @@ This plugin will allow you to create variables in arbitrary topic pages, and not
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
-__Related Topics:__ [[TWiki.InterwikiPlugin][InterwikiPlugin]]
+__Related Topics:__ [[%SYSTEMWEB%.InterwikiPlugin][InterwikiPlugin]]
 
 -- %SYSTEMWEB%.TrippLilley - 15 Nov 2001 <br> 
 

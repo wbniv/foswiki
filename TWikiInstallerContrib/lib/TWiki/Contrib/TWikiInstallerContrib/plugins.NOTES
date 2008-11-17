@@ -180,7 +180,7 @@ mv: cannot stat `testpics': No such file or directory
 ! FileListPlugin - calls TWiki::formatTime and TWiki::Attach
 ! GenerateSearchPlugin - calls TWiki::Form::getFormDef() directly
 ! IncludeRevisionPlugin - doesn't render
-!& LatexModePlugin - viewing the page (after configuring program paths properly) yields: AccessControlException: Access to CHANGE TWiki.LatexModePlugin for WikiGuest is denied. access not allowed on web[Sun Dec 11 17:27:09 2005] [error] [client 127.0.0.1] Premature end of script headers: view.cgi - need to move the sample to the Sandbox web
+!& LatexModePlugin - viewing the page (after configuring program paths properly) yields: AccessControlException: Access to CHANGE %SYSTEMWEB%.LatexModePlugin for WikiGuest is denied. access not allowed on web[Sun Dec 11 17:27:09 2005] [error] [client 127.0.0.1] Premature end of script headers: view.cgi - need to move the sample to the Sandbox web
 ! LoginNameAliasesPlugin - TWiki::Plugins::LoginNameAliasesPlugin::earlyInitPlugin failed: 1
 ! MsOfficeAttachmentsAsHTMLPlugin - no docs, not sure what to do...
 ! NavbarPlugin - fix Colas' TWiki: name, fix parents, fix references back to (%SYSTEMWEB%.)NavbarPlugin - calls TWiki::Store::saveFile()
@@ -201,7 +201,7 @@ T TranslateTagPlugin - *highly unlikely* to work as it includes patches to scrip
 ! XpTrackerPlugin - installs a template web called Tracking; should be renamed _XpTrackerPlugin; also, view.cgi: Use of uninitialized value in concatenation (.) or string at /home/twiki/public_html/cgi-bin/twiki/lib/TWiki/Plugins/XpTrackerPlugin.pm line 70.
 Can't call method "maketext" on an undefined value at
         /home/twiki/public_html/cgi-bin/twiki/lib/TWiki/Access.pm line 175 (#2)
-while processing TWiki.BulkResetPassword (during (re)build of cache)
+while processing %SYSTEMWEB%.BulkResetPassword (during (re)build of cache)
 
 28
 
@@ -221,7 +221,7 @@ Untested - don't have prerequisites
 ? DatabasePlugin - can't test (sql)
 ? LaTeXToMathMLPlugin - need to install itex2MML
 ? LDAPPasswordChangerPlugin - _looks_ like it should work
-? LdapPlugin - ??? (also references TWiki.TWikiLdapRegistration---what is that?)
+? LdapPlugin - ??? (also references %SYSTEMWEB%.TWikiLdapRegistration---what is that?)
 ? MailReminderPlugin - can't test (mysql)
 ? MathModePlugin - need latex2html
 ? MessageBoardPlugin - can't test (sql)
@@ -403,8 +403,6 @@ baseweb: %CALC{$GET(base_web)}%
       * SlashFilenamePlugin
 
    * clicking "attach link" wiped out my topic text (*and* replace it with a non-functional link (using %ATTACHPUBURL%))
-
-   * TWiki.WebReferences - delete? - just put on twiki.org ??? - links from TWiki.TWikiSite and TWiki.WelcomeGuest
 
    * FindElsewherePlugin renders [[%SYSTEMWEB%.BookView][%MAKETEXT{"about BookView"}%]] incorrectly --- [[]]'s show up and link text BookView is a link :(
 

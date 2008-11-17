@@ -278,9 +278,9 @@ in a topic to which .bib files are attached.  The resulting rendered form
 files.
 
 	* Available search templates
-		* TWiki.BibtexSearchTemplate - verbose .bib file query form
-		* TWiki.BibtexSimpleSearchTemplate - !BibTeX key query form
-		* TWiki.BibtexSelectTemplate - query .bib files using bib2bib 'select' syntax
+		* %SYSTEMWEB%.BibtexSearchTemplate - verbose .bib file query form
+		* %SYSTEMWEB%.BibtexSimpleSearchTemplate - !BibTeX key query form
+		* %SYSTEMWEB%.BibtexSelectTemplate - query .bib files using bib2bib 'select' syntax
 
 ---+++ Bibtool Resource Files
 Actually this is an art for itself. The author has taken care to give you a quite reasonable
@@ -374,10 +374,10 @@ have a look at the bibtool manual page and dig into the =bibtoolrcs= file yourse
 		* Set SHORTDESCRIPTION = Embeds <nop>BibTeX entries in a TWiki page
 
 	* Default topic name for <nop>BibTeX files:
-		* Set DEFAULTTOPIC = TWiki.BibtexPlugin
+		* Set DEFAULTTOPIC = %SYSTEMWEB%.BibtexPlugin
 
 	* Default search template
-		* Set DEFAULTSEARCHTEMPLATE = TWiki.BibtexSearchTemplate
+		* Set DEFAULTSEARCHTEMPLATE = %SYSTEMWEB%.BibtexSearchTemplate
 
 
 ---++ Plugin Installation Instructions

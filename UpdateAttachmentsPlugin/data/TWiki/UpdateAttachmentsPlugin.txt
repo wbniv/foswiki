@@ -25,7 +25,7 @@ Warning: because TWiki does not deal well with attachments with special characte
 Warning: checking 28500 topics (many with attachments) takes around 2-3 minutes on my test system, with no plugins that have an beforeSave or afterSave handler registered.
 
 ---+++ Triggering an Attachment Update
-As this is a TWiki.RestHandler based plugin, you can trigger it to run from a suitably authenticated URL (it will only update topics
+As this is a %SYSTEMWEB%.RestHandler based plugin, you can trigger it to run from a suitably authenticated URL (it will only update topics
 your user as permission to edit) - for example, to update the Sandbox web
    * %SCRIPTURL{rest}%/UpdateAttachmentsPlugin/update?topic=Sandbox.WebHome
 

@@ -78,7 +78,7 @@ __Note:__ You do not need to install anything on the browser to use this add-on.
 |  Add-on Version: | 10 Jun 2005 (v1.02) |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
 |  07 Jun 2005: | Initial version |
-|  10 Jun 2005: | Bug fix (incorrect handling of topics "with dash"). <br>Marker string must now be placed at the beginning of the line (this removes doc topic from list). <br>Forces link at non-[[TWiki.WikiWord][WikiWord]]-Topics now.|
+|  10 Jun 2005: | Bug fix (incorrect handling of topics "with dash"). <br>Marker string must now be placed at the beginning of the line (this removes doc topic from list). <br>Forces link at non-[[%SYSTEMWEB%.WikiWord][WikiWord]]-Topics now.|
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | ApprovalPlugin must be installed |
 |  Perl Version: | 5.85 (all 5.x versions should work) |
@@ -94,4 +94,3 @@ __Related Topic:__ %SYSTEMWEB%.ContributedAddOns, ApprovalPlugin
 -----
 
 %META:FILEATTACHMENT{name="MCTLscreenshot.gif" attr="" comment="Example Screenshot" date="1118312007" path="D:\data\Work\twiki-org\MCTLscreenshot.gif" size="41215" user="DetlefMarxsen" version="1.1"}%
-%META:TOPICMOVED{by="DetlefMarxsen" date="1118214755" from="TWiki.MakeCtrlTopicsList" to="TWiki.MakeCtrlTopicsListAddOn"}%

@@ -8,7 +8,7 @@ This plugin renders an attached Excel spreadsheet as a TWiki table, and vice ver
       * Attach an Excel spreadsheat to a TWiki topic and render its content as a TWiki table whenever the topic is viewed.
    * Export to Excel
       * Generate an Excel spreadsheet from a TWiki table, such that each row in the table corresponds to a row in the resultant spreadsheet.
-      * Generate an Excel spreadsheet from a table returned as the result of a TWiki.FormattedSearch, such that each row in the table corresponds to a row in the resultant spreadsheet.
+      * Generate an Excel spreadsheet from a table returned as the result of a %SYSTEMWEB%.FormattedSearch, such that each row in the table corresponds to a row in the resultant spreadsheet.
       * Generate an Excel spreadsheet from all topics that have an indicated form. Each topic results in a row of the spreadsheet, such that each form field is mapped to a column in the spreadsheet.
 
 The code of this plugin is based on the TWiki:Plugins.ExcelImportExportAddOn by TWiki:Main.ClausLanghans.

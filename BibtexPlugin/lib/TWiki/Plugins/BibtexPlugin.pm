@@ -108,10 +108,10 @@ sub doInit {
   # get configuration
   $defaultTopic = TWiki::Func::getPreferencesValue( "\U${pluginName}\E_DEFAULTTOPIC", $web ) || 
     TWiki::Func::getPreferencesValue( "\U${pluginName}\E_DEFAULTTOPIC" ) || 
-    "TWiki.BibtexPlugin";
+    "System.BibtexPlugin";
   $defaultSearchTemplate = TWiki::Func::getPreferencesValue( "\U${pluginName}\E_DEFAULTSEARCHTEMPLATE", $web ) || 
     TWiki::Func::getPreferencesValue( "\U${pluginName}\E_DEFAULTSEARCHTEMPLATE" ) || 
-    "TWiki.BibtexSearchTemplate";
+    "System.BibtexSearchTemplate";
 
   $hostUrl = &TWiki::Func::getUrlHost();
   $pubUrlPath = &TWiki::Func::getPubUrlPath();

@@ -20,7 +20,7 @@
 
 This is an empty TWiki tag. It is a fully defined tag, but is
 disabled by default in a TWiki installation. Use it as a template
-for your own tags; see TWiki.TWikiTags for details.
+for your own tags; see %SYSTEMWEB%.Macros for details.
 
 =cut
 

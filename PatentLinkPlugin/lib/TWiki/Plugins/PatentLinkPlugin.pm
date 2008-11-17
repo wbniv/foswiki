@@ -17,7 +17,7 @@
 # =========================
 #
 # This is a PatentLinkPlugin TWiki plugin.
-# See TWiki.PatentLinkPlugin for details.
+# See %SYSTEMWEB%.PatentLinkPlugin for details.
 #
 # Each plugin is a package that contains the subs:
 #

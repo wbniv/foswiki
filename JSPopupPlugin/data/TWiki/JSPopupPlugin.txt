@@ -11,7 +11,7 @@ There is a running demo of JSPopupPlugin running at the [[http://demo.wikiring.c
 It uses javascript to create a popup window containing either a hidden pre-rendered part of a topic, or a TWiki request that is dynamically requested and served.
 Popups are activated either on a mouse click, when the mouse passes over the anchor, or when the page is loaded.
 
-To make it easy for TWiki.TWikiSkin developers, any html link with the css  =twikiPopupLink= class will get a popup dialog. If the Javascript fails, or this plugin is disabled, the link will gracefully fall back to going to the link in the main browser window.
+To make it easy for %SYSTEMWEB%.TWikiSkin developers, any html link with the css  =twikiPopupLink= class will get a popup dialog. If the Javascript fails, or this plugin is disabled, the link will gracefully fall back to going to the link in the main browser window.
 
 use the =twikiPopupLink= class to get popup dialog elements on urls that can degrade gracefully for users without javascript.
    * =&lt;a class="twikiPopupLink" href="%<nop>SCRIPTURL{attach}%/%<nop>WEB%/%<nop>TOPIC%"&gt;Attach&lt;/a&gt;=

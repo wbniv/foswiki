@@ -83,7 +83,7 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
 	* Set DEBUG = 0
 
 	* Default topic to get references from:
-	* Set DEFAULTBIBLIOGRAPHYTOPIC = TWiki.BibliographyPlugin
+	* Set DEFAULTBIBLIOGRAPHYTOPIC = %SYSTEMWEB%.BibliographyPlugin
 
 	* Default sorting for references:
 	* Set DEFAULTSORTING = alpha

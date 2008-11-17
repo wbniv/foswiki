@@ -4,7 +4,7 @@ Templates for CommentPlugin - See %SYSTEMWEB%.CommentPlugin#Customisation for he
 
 *WARNING: THIS FILE WILL BE OVERWRITTEN WHEN YOU UPGRADE THE COMMENT PLUGIN*
 
-Put your local templates into TWiki.UserTemplates.
+Put your local templates into %SYSTEMWEB%.UserTemplates.
 *LOCAL TEMPLATES WILL OVERRIDE TEMPLATES DEFINED IN THIS FILE*
 
 %TOC%
@@ -119,7 +119,7 @@ Action added to action table directly above comment box
 %TMPL:DEF{PROMPT:action}%
 <table>
  <tr>
-  <td align="right">Action for (TWiki.WikiName):</td>
+  <td align="right">Action for (%SYSTEMWEB%.WikiName):</td>
   <td><input name="who" type="text" size="50" value="%URLPARAM{"who"}%" /></td>
  </tr>
  <tr>
@@ -222,5 +222,5 @@ Talk using TOC adding on end - TWiki:Main/FranzJosefSilli
 </verbatim>
 
 
-%TMPL:INCLUDE{"TWiki.UserTemplates"}% 
+%TMPL:INCLUDE{"%SYSTEMWEB%.UserTemplates"}% 
 

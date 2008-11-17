@@ -20,7 +20,7 @@ This topic describes how to install !DragonSkin and perform some simple administ
 *Note:* When creating !DragonSkin-related CSS classes or TWiki variables, use a prefix of *ds-* for CSS classes (e.g. _ds-myclass_) and *DS_* for TWiki variables (e.g. _DS_MYVARIABLE_). This will help prevent namespace confusion.
 ---+++ Including the left menu from a topic
 	1. Create a topic with the menu contents.  When doing so, be careful about including blank lines in the menu, since the TWiki renderer will insert paragraph tags and mess up the layout.  Also, use %<nop>INCLUDINGWEB% when necessary to make sure that searches and links to topics like !WebPreferences will reference the right web.  Note that including the menu from a topic will be slightly slower than using it directly from the template file.
-	2. Change the templates/dragonmenu.dragon.css file to just have the single line %<nop>INCLUDE{"TWiki.DragonMenuTopic"}% (or whatever your menu topic is called). 
+	2. Change the templates/dragonmenu.dragon.css file to just have the single line %<nop>INCLUDE{"%SYSTEMWEB%.DragonMenuTopic"}% (or whatever your menu topic is called). 
 ---+++ Adding site-specific CSS styles
 If you want to add a site-specific CSS style, add it to pub/%<nop>SYSTEMWEB%/DragonSkin/typography.css, since that file is included in every theme.  Alternatively, add another import rule to the definition of dragoncss in templates/twiki.dragon.tmpl that imports a site-specific css file, and put all local styles in that file.  If your style makes use of TWiki variables, add it to templates/dragoncssvars.dragon.tmpl, so variables will get expanded.
 

@@ -129,7 +129,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 	* Install the [[http://www.imagemagick.org][ImageMagick]]
 	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
 	* Test if the installation was successful:
-	* See the TWiki.FlowchartPluginExample
+	* See the %SYSTEMWEB%.FlowchartPluginExample
 
 ---++ Plugin Info
 
