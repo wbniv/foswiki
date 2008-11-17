@@ -205,14 +205,14 @@ For example,
 <pre>
 %<nop>SHOWQUERY{ query=AFORMQUERY format=ATBLFMT }%
 </pre>
-*Note:* If you render your results in TWiki table format and limit the rows displayed using =limit= (e.g. first 10 from 99 rows), and also use TWiki.TablePlugin to allow sorting on the headers, then only the 10 displayed rows will be sorted by TablePlugin (and not the full 99 rows in the table).
+*Note:* If you render your results in TWiki table format and limit the rows displayed using =limit= (e.g. first 10 from 99 rows), and also use %SYSTEMWEB%.TablePlugin to allow sorting on the headers, then only the 10 displayed rows will be sorted by TablePlugin (and not the full 99 rows in the table).
 
 ---+++ <code>%DOQUERY</code>
 Combines a query and showing the results of that query, <code>%DOQUERY</code> accepts all the same parameters as <code>%FORMQUERY</code> and <code>%SHOWQUERY</code> (except =name= and =query=).
 
 ---+++ Interface to !SpreadSheetPlugin
 ---++++ <code>%QUERYTOCALC</code>
-Used to transform the results of a query into a format which TWiki.SpreadSheetPlugin can operate on. %QUERYTOCALC accepts all the same parameters as %TABLEFORMAT (except name), and also the following parameters: 
+Used to transform the results of a query into a format which %SYSTEMWEB%.SpreadSheetPlugin can operate on. %QUERYTOCALC accepts all the same parameters as %TABLEFORMAT (except name), and also the following parameters: 
 | *Parameter* | *Description* |
 | =query= | Required, gives the name of the query to show |
 | =start= | Optional, first row to display |
@@ -227,7 +227,7 @@ The query must be formatted as a table. This variable produces no output, but mu
 Operates on the result of a query represented as a table, using a previous %QUERYTOCALC. Accepts a single, unnamed parameter:
 | *Parameter* | *Description* |
 | &nbsp; | Required; the calculation to perform |
-The parameter is text as required by the $CALC statement (see TWiki.SpreadSheetPlugins); all operations supported by %CALC are supported by %SHOWCALC. This command behaves identical to %CALC when used following a table; it operates on the implicit table constructed by a preceding %QUERYTOCALC statement. Arbitrary many %SHOWCALC can be performed; all apply to the preceeding implicit table.
+The parameter is text as required by the $CALC statement (see %SYSTEMWEB%.SpreadSheetPlugins); all operations supported by %CALC are supported by %SHOWCALC. This command behaves identical to %CALC when used following a table; it operates on the implicit table constructed by a preceding %QUERYTOCALC statement. Arbitrary many %SHOWCALC can be performed; all apply to the preceeding implicit table.
 
 Example:
 <pre>
@@ -262,7 +262,7 @@ See TWiki::Plugins/FormQueryPluginTutorial for a tutorial describing how to use 
 
 ---++ Formatted query examples
 
-!%TABLEFORMAT% is able to generate (roughly) the same output as TWiki.FormattedSearch, based on an earlier query. Multiple different formatted results can be produced without having to rerun the query.
+!%TABLEFORMAT% is able to generate (roughly) the same output as %SYSTEMWEB%.FormattedSearch, based on an earlier query. Multiple different formatted results can be produced without having to rerun the query.
 
 #SearchBulletList
 ---+++ Bullet list showing topic name and summary
@@ -405,7 +405,7 @@ Assume you want to produce a summary of all the large attachments in a topic (wh
 %SHOWQUERY{query="big" format="|$_up.web.$_up.name|$name|  $percntCALC{$dollarROUND($dollarEVAL($size / 1024), 1)k}$percnt|$percntCALC{$dollarFORMATTIME($date,  $dollarday $dollarmon $dollaryear)}$percnt|"}%
 
 <!--
-One line description, shown in the TWiki.TextFormattingRules topic:
+One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
    * Set SHORTDESCRIPTION = Provides query capabilities across a database defined using forms and embedded tables in TWiki topics. 
 -->
 
@@ -484,8 +484,8 @@ In this case, =$TableDefinition.0.Name= is =Cat=, =$TableDefinition.1.Name= is =
 | | Integrate the Attribute parser from TWiki:Codev/DakarRelease |
 | | Add caseinsensitivity as option |
 | | Handle one line at a time so that query memory can be reused in another query |
-| | Added the special variables supported by TWiki.FormattedSearch |
-| | Changed some of the option names to be more consistent with TWiki.TWikiSearch (e.g., =row_count=) |
+| | Added the special variables supported by %SYSTEMWEB%.FormattedSearch |
+| | Changed some of the option names to be more consistent with %SYSTEMWEB%.TWikiSearch (e.g., =row_count=) |
 | | More flexibility for using tables |
 | | Add a !%DOANDSHOWQUERY% tag |
 | | Support embedding of !%SEARCH% and !%FORMQUERY% in the format option to allow searches and queries to be applied to the result of a query (a poor man's intersection) |

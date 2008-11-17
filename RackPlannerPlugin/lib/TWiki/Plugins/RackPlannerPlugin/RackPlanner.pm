@@ -70,7 +70,7 @@ sub _initDefaults {
 		'units' => 46,
 		'steps' => 1,
 		'emptytext' => '.',
-	 	'unknownparamsmsg'  => '%RED% Sorry, some parameters are unknown: %UNKNOWNPARAMSLIST% %ENDCOLOR% <br/> Allowed parameters are (see TWiki.$pluginName topic for more details): %KNOWNPARAMSLIST%',
+	 	'unknownparamsmsg'  => '%RED% Sorry, some parameters are unknown: %UNKNOWNPARAMSLIST% %ENDCOLOR% <br/> Allowed parameters are (see %SYSTEMWEB%.$pluginName topic for more details): %KNOWNPARAMSLIST%',
 		'fontsize' => 'x-small',
 		'iconsize' => '12px',
 		'dir'=> 'bottomup', # or 'topdown'

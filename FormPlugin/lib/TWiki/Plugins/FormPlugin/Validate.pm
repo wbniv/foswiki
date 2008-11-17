@@ -2,7 +2,7 @@ package TWiki::Plugins::FormPlugin::Validate;
 
 =pod
 
-Changes for TWiki.FormPlugin:
+Changes for %SYSTEMWEB%.FormPlugin:
 - changed package name from CGI::Validate to TWiki::Plugins::FormPlugin::Validate 
 - added an order parameter
 - created array ErrorFields to collect all error fields with data structure:

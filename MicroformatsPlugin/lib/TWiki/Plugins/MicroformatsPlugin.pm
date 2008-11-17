@@ -837,7 +837,7 @@ This is an example of a sub to be called by the =rest= script. The parameter is:
 
 Additional parameters can be recovered via de query object in the $session.
 
-For more information, check TWiki:TWiki.TWikiScripts#rest
+For more information, check %SYSTEMWEB%.CommandAndCGIScripts#rest
 
 *Since:* TWiki::Plugins::VERSION 1.1
 

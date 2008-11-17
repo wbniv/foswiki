@@ -3,7 +3,7 @@
 
 This plugin allows you to edit TWiki tables row by row, using a form with appropriate controls for each field. If preceeded by an =%<nop>EDITHIDDENTABLE{...}%= variable, tables have edit links for each row, and are optionally followed by an *[&nbsp;Edit&nbsp;table&nbsp;]* button. Multiple tables per topic are editable, but only one row at a time can be edited.
 
-This plugin works exactly like TWiki:Plugins.EditTablerowPlugin, but the tables are stored in meta data and, therefore, not visible or editable in topic text. That is useful in TWiki.TWikiApplications, that want to keep the tables in templates.
+This plugin works exactly like TWiki:Plugins.EditTablerowPlugin, but the tables are stored in meta data and, therefore, not visible or editable in topic text. That is useful in TWiki Applications, that want to keep the tables in templates.
 
 %TOC%
 
@@ -17,7 +17,7 @@ The idea and first implementation of form-based editing for tables goes back to 
 
 Before you can edit a table, you need to define a template that describes the layout of the table in the style of %SYSTEMWEB%.DataForms. The table format is given by a table in the form template: each row defines a table column by giving a field name, field type, size, and initial values, if any. The field type determines how the table row is edited (e.g., as text, textare, radio, checkbox, etc.).
 
-For ease of transition of existing systems, the table schema can also be defined in the syntax of TWiki.EditTablePlugin.
+For ease of transition of existing systems, the table schema can also be defined in the syntax of %SYSTEMWEB%.EditTablePlugin.
 
 ---++ Per Table Settings
 
@@ -25,8 +25,8 @@ Add a =%<nop>EDITHIDDENTABLE{...}%= variable just before an existing table to ma
 
 | *Parameter* | *Comment* | *Default* |
 | =template= | Topic which defines the format of the table, in the style of %SYSTEMWEB%.DataForms. The table format is given by one row per table column defining field name, field type, size, and initial values, if any. |  |
-| =header= | Must be used when the table schema is defined in the syntax of TWiki.EditTablePlugin (see documentation there). |  |
-| =format= | Must be used when the table schema is defined in the syntax of TWiki.EditTablePlugin (see documentation there). |  |
+| =header= | Must be used when the table schema is defined in the syntax of %SYSTEMWEB%.EditTablePlugin (see documentation there). |  |
+| =format= | Must be used when the table schema is defined in the syntax of %SYSTEMWEB%.EditTablePlugin (see documentation there). |  |
 | =changerows= | Rows can be added and removed if ="on"=; rows can be added but not removed if ="add"=. | =CHANGEROWS= Plugin setting |
 | =helptopic= | Topic name containing help text shown below the table when editing a table. The %<nop>STARTINCLUDE% and %<nop>STOPINCLUDE% variables can be used in the topic to specify what is shown. | (no help text) |
 | =headerislabel= | Table header cells are read-only (labels) if ="on"=; header cells can be edited if ="off"= or ="0"= | ="on"= |
@@ -37,7 +37,7 @@ Add a =%<nop>EDITHIDDENTABLE{...}%= variable just before an existing table to ma
 
 The =template= and =format= attributes are mutually exclusive. If the =template= tag is present, the indicated template is used to define the table schema.
 
-%X% The TWiki.EditTablePlugin compatability mode is not yet supported.
+%X% The %SYSTEMWEB%.EditTablePlugin compatability mode is not yet supported.
 
 ---+++ Initial Values
 

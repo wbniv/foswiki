@@ -177,7 +177,7 @@ Use =%<nop>URLPARAM{"element_name"}%= to retrieve the value of a submitted form 
 %BB% For multi-select elements: the selected items; a comma delimited string. \
 %BB% For =type="submit"= the button label; you may use =buttonlabel= as well.  |- |- | =default="%<nop>WIKIUSERNAME%"= or =default="mary, peter, annabel"= or =default="Submit"= |
 | =buttonlabel= | The button label. |- |- | =buttonlabel="Submit"= |
-| =hint=      | Input hint optionally displayed next to the form element. |- |- | =hint="Enter a <nop>TWiki.WikiWord"= |
+| =hint=      | Input hint optionally displayed next to the form element. |- |- | =hint="Enter a <nop>%SYSTEMWEB%.WikiWord"= |
 | =mandatory= | Indicates if the form element needs to have a value or selection when the form is submitted. Creates a red asterisk. |- |- | =mandatory="on"= |
 | =validate=  | The type of entry this form element needs to have when the form is submitted: \
  %BB% =nonempty= single entry elements: must have a value; multi-select elements: must have a selection \

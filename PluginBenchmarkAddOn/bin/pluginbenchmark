@@ -124,7 +124,7 @@ exit;
 
 sub compareTopic {
     my ( $theWebTopic, $thePlugin ) = @_;
-    $theWebTopic = "TWiki.$theWebTopic" unless ( $theWebTopic =~ /\./ );
+    $theWebTopic = "System.$theWebTopic" unless ( $theWebTopic =~ /\./ );
     my $str = sprintf( "%-30s", $theWebTopic );
     print "$str  ";
     my $unused = timeTopic( $theWebTopic, "DefaultPlugin", 2 );

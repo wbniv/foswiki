@@ -65,7 +65,7 @@ The parameters of the current implementation are:
 
 | *Parameter%BR%(field name)* | *Description* | *defaults to* |
 | Benchmark Method%BR%(profiler) | Select the tool to use.  Currently only =DProf= is implemented, =SmallProf= is in work | DProf |
-| Topic%BR%(topic) | What to measure, in =Webname.Topicname= notation | [[TWiki.WebHome]] |
+| Topic%BR%(topic) | What to measure, in =Webname.Topicname= notation | [[%SYSTEMWEB%.WebHome]] |
 | Revision%BR%(revision) | Revision of the topic to measure.  Use with care, since composing older revisions will introduce RCS artifacts into the figures | most recent revision |
 | Script%BR%(method) | What script from TWiki's =bin= directory is to be measured.%BR%Currently, only =view= is implemented. | =view= |
 | Skin%BR%(pskin) | Which skin to use on the topic to measure.  Using =plain= or =text= skin will allow easier isolation of topic related performance issues.  Comparing your skin against other skins may give some insights. | Installation default skin (%SKIN%) |
@@ -76,7 +76,7 @@ The parameters of the current implementation are:
 
 ---+++ What You Get
 
-The result of a measurement is made available as a topic in the Benchmarks web.  The name of the topic is derived from the web and topic of your benchmark target, plus a running number, separated by underscores (Example: the first measurement of [[TWiki.WebHome]] will create a topic called !Benchmarks.TWiki_WebHome_0, the next measurement of the same topic will create !Benchmarks.TWiki_WebHome_1, and so on).
+The result of a measurement is made available as a topic in the Benchmarks web.  The name of the topic is derived from the web and topic of your benchmark target, plus a running number, separated by underscores (Example: the first measurement of [[%SYSTEMWEB%.WebHome]] will create a topic called !Benchmarks.TWiki_WebHome_0, the next measurement of the same topic will create !Benchmarks.TWiki_WebHome_1, and so on).
 
 What you get as a result is composed of several parts:  It starts with a form identical to that of [[Benchmarks.WebHome]], but with all parameters set to the values with which the current measurement has been done.  This allows easy re-running the same benchmark again, or changing just one parameter.
 

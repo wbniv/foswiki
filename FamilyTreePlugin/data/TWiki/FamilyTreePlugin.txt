@@ -16,7 +16,7 @@ The standard person include defines the following queries over the data:
 
 Union topics similarly have a standard include (!StdUnion) and a form. Union topics are named for the couple they represent, male then female, separated by a capital 'X'. Children of the union are listed in a simple one-column table in the union topic.
 
-The plugin installs a new web, called [[FamilyTreePlugin.WebHome][FamilyTreePlugin]]. This web contains some standard topics, an example family tree (a small fragment of my own family tree), a left bar topic, and two "creator topics", !NewPerson and !NewUnion, that help you in creating person and union records respectively. You should *not* edit directly in this web, as it will be overwritten if you ever upgrade the plugin. Instead you should create your own new web based on the FamilyTreePlugin web (see TWiki.ManagingWebs) and then remove all topics in the new web with 'Currie' in the name.
+The plugin installs a new web, called [[FamilyTreePlugin.WebHome][FamilyTreePlugin]]. This web contains some standard topics, an example family tree (a small fragment of my own family tree), a left bar topic, and two "creator topics", !NewPerson and !NewUnion, that help you in creating person and union records respectively. You should *not* edit directly in this web, as it will be overwritten if you ever upgrade the plugin. Instead you should create your own new web based on the FamilyTreePlugin web (see %SYSTEMWEB%.ManagingWebs) and then remove all topics in the new web with 'Currie' in the name.
 
 The schema of the database was inspired by the standard LDS "GED" format, so translation back and forth from this format should be fairly straightforward. It would be great if someone could write some scripts to do this.....!
 

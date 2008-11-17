@@ -63,7 +63,7 @@ sub processWeb
     $dummy = "";  # to suppress warning
     my $pubDir = TWiki::getPubDir();
 
-    print "__________________________\nChecking TWiki.$webName\n" unless $opt_q;
+    print "__________________________\nChecking %SYSTEMWEB%.$webName\n" unless $opt_q;
 
     if( ! &TWiki::Store::webExists( $webName ) ) {
 	print STDERR "* ERROR: TWiki $0 does not find web $webName\n";

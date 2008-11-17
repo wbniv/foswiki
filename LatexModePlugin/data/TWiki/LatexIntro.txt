@@ -8,7 +8,7 @@
 
 ---++ Introduction to %BEGINLATEX{inline="1" color="Lightmaroon"}%\Large\LaTeX%ENDLATEX%
 
-%BEGINLATEX{inline="1"}%\LaTeX%ENDLATEX% is a complete typesetting language developed by Leslie Lamport on top of Donald Knuth's %BEGINLATEX{inline="1"}%\TeX%ENDLATEX%. Most of it is implemented using TWiki.LatexModePlugin, but the main use is producing mathematics, since most other formatting is more conveniently accomplished using Wiki constructs. To produce mathematics _in-line_, the  %BEGINLATEX{inline="1"}%\LaTeX%ENDLATEX% text must be surrounded by %BROWN%%<nop>$%ENDCOLOR%
+%BEGINLATEX{inline="1"}%\LaTeX%ENDLATEX% is a complete typesetting language developed by Leslie Lamport on top of Donald Knuth's %BEGINLATEX{inline="1"}%\TeX%ENDLATEX%. Most of it is implemented using %SYSTEMWEB%.LatexModePlugin, but the main use is producing mathematics, since most other formatting is more conveniently accomplished using Wiki constructs. To produce mathematics _in-line_, the  %BEGINLATEX{inline="1"}%\LaTeX%ENDLATEX% text must be surrounded by %BROWN%%<nop>$%ENDCOLOR%
 and %BROWN%$%%ENDCOLOR%. Thus, <verbatim>%$\Gamma \vdash Rx_1\cdots x_n$%</verbatim> looks like this
 %$\Gamma \vdash Rx_1\cdots x_n$%
 in the middle of some text. To _display_ mathematics, it must be surrounded by %BROWN%%<nop>\[%ENDCOLOR%

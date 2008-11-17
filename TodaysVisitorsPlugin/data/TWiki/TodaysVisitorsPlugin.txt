@@ -13,7 +13,7 @@ TodaysVisitorsPlugin extracts the todays visitors from the logfile.
 | =format="..."= | the format of each list item, where $user is expanded to a single visitor |
 | =footer="..."= | is concatenated to the end of the list |
 
-=$n=, =$dollar=, =$percnt= and =$quot= behave the same way as in TWiki.FormattedSearch.
+=$n=, =$dollar=, =$percnt= and =$quot= behave the same way as in %SYSTEMWEB%.FormattedSearch.
 
 ---+++ Example
 =%<nop>TODAYSVISITORS{ header="Todays visitors:" format="	* $user $n" footer="end of list" }%=

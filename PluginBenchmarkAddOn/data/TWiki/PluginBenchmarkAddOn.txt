@@ -24,11 +24,11 @@ This is a small script to measure the performance of a Plugin. Plugin authors ca
 % ./pluginbenchmark SpreadSheetPlugin FormattedSearch GoodStyle
 TWiki Plugin benchmark tool. Time::HiRes is used.
 Measuring, please be patient...
-Topic:								  Without:  With:	  Percent:
+Topic:                          Without:  With:     Percent:
 ------------------------------  --------  --------  --------
-TWiki.SpreadSheetPlugin				0.481	  0.506		 95%
-TWiki.FormattedSearch				  1.677	  1.694		 99%
-TWiki.GoodStyle						  0.301	  0.304		 99%
+System.SpreadSheetPlugin         0.481     0.506       95%
+System.FormattedSearch           1.677     1.694       99%
+System.GoodStyle                 0.301     0.304       99%
 </verbatim>
 
 ---++ Add-On Installation Instructions

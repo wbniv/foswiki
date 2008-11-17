@@ -13,7 +13,7 @@ This Plugins adds support for a number of [[http://microformats.org][microformat
    1 <img src="%ATTACHURLPATH%/MicroID.png" alt="microID"/> [[http://microid.org][MicroID]], which allows a user to Verifiably Claim their User Topic, through the use of a hash of the Url and their registered email address
       * The microid will be automatically added to the html header when viewing any user's topic.
    1 <img src="%ATTACHURLPATH%/icon-hcard.png" alt="xfn"/> [[http://microformats.org/wiki/hcard][hCard]] with a little xfn, a simple, open, distributed format for representing TWiki users. 
-      * useage: =%<nop>HCARD{"WikiName"}% - uses the TWiki.UserForm data on a user's Topic to create a hCard.
+      * useage: =%<nop>HCARD{"WikiName"}% - uses the %SYSTEMWEB%.UserForm data on a user's Topic to create a hCard.
       * perhaps will need to use JS to auto add hCards to user topics?
 
 ---++ Examples

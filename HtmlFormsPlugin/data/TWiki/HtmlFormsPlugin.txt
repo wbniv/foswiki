@@ -41,7 +41,7 @@ select multiple values from a scrolling selection list, and set WHOWILLITBENOW i
 <option value="nicky">nicky</option>
 <option selected="selected" value="jennifer">jennifer</option>
 <option selected="selected" value="bananaman">bananaman</option>
-</select><input type="submit" name="button_name" value="set value (WHOWILLITBENOW)" /><input type="hidden" name="htmlformvalue" value="set"  /><input type="hidden" name="variable" value="WHOWILLITBENOW"  /><input type="hidden" name="redirectto" value="TWiki.HtmlFormsPlugin"  /></form>
+</select><input type="submit" name="button_name" value="set value (WHOWILLITBENOW)" /><input type="hidden" name="htmlformvalue" value="set"  /><input type="hidden" name="variable" value="WHOWILLITBENOW"  /><input type="hidden" name="redirectto" value="%SYSTEMWEB%.HtmlFormsPlugin"  /></form>
 ---
 select multiple values from a checkbox group list, and set WHOWILLITBENOW in this topic
 
@@ -50,7 +50,7 @@ select multiple values from a checkbox group list, and set WHOWILLITBENOW in thi
 %CHECKBOX{options="mary, peter, annabel, nicky, jennifer" currentvalue="%WHOWILLITBENOW%" destinationaddress="WHOWILLITBENOW"}%
 ---+++ demo
 <form method="post" action="" enctype="multipart/form-data">
-<label><input type="checkbox" name="WHOWILLITBENOW" value="mary" />mary</label><br /> <label><input type="checkbox" name="WHOWILLITBENOW" value="peter" />peter</label><br /> <label><input type="checkbox" name="WHOWILLITBENOW" value="annabel" checked="checked" />annabel</label><br /> <label><input type="checkbox" name="WHOWILLITBENOW" value="nicky" />nicky</label><br /> <label><input type="checkbox" name="WHOWILLITBENOW" value="jennifer" checked="checked" />jennifer</label><br /> <label><input type="checkbox" name="WHOWILLITBENOW" value="bananaman" checked="checked" />bananaman</label><br /><input type="submit" name="button_name" value="set value (WHOWILLITBENOW)" /><input type="hidden" name="htmlformvalue" value="set"  /><input type="hidden" name="variable" value="WHOWILLITBENOW"  /><input type="hidden" name="redirectto" value="TWiki.HtmlFormsPlugin"  /></form>
+<label><input type="checkbox" name="WHOWILLITBENOW" value="mary" />mary</label><br /> <label><input type="checkbox" name="WHOWILLITBENOW" value="peter" />peter</label><br /> <label><input type="checkbox" name="WHOWILLITBENOW" value="annabel" checked="checked" />annabel</label><br /> <label><input type="checkbox" name="WHOWILLITBENOW" value="nicky" />nicky</label><br /> <label><input type="checkbox" name="WHOWILLITBENOW" value="jennifer" checked="checked" />jennifer</label><br /> <label><input type="checkbox" name="WHOWILLITBENOW" value="bananaman" checked="checked" />bananaman</label><br /><input type="submit" name="button_name" value="set value (WHOWILLITBENOW)" /><input type="hidden" name="htmlformvalue" value="set"  /><input type="hidden" name="variable" value="WHOWILLITBENOW"  /><input type="hidden" name="redirectto" value="%SYSTEMWEB%.HtmlFormsPlugin"  /></form>
 ---
 select one value from a radio selector list, and set WHOWILLITBENOW in this topic
 
@@ -59,7 +59,7 @@ select one value from a radio selector list, and set WHOWILLITBENOW in this topi
 %RADIO{options="mary, peter, annabel, nicky, jennifer" currentvalue="%WHOWILLITBENOW%" destinationaddress="WHOWILLITBENOW"}%
 ---+++ demo
 <form method="post" action="" enctype="multipart/form-data">
-<label><input type="radio" name="WHOWILLITBENOW" value="mary" />mary</label><br /> <label><input type="radio" name="WHOWILLITBENOW" value="peter" />peter</label><br /> <label><input type="radio" name="WHOWILLITBENOW" value="annabel" checked="checked" />annabel</label><br /> <label><input type="radio" name="WHOWILLITBENOW" value="nicky" />nicky</label><br /> <label><input type="radio" name="WHOWILLITBENOW" value="jennifer" />jennifer</label><br /> <label><input type="radio" name="WHOWILLITBENOW" value="bananaman" />bananaman</label><br /><input type="submit" name="button_name" value="set value (WHOWILLITBENOW)" /><input type="hidden" name="htmlformvalue" value="set"  /><input type="hidden" name="variable" value="WHOWILLITBENOW"  /><input type="hidden" name="redirectto" value="TWiki.HtmlFormsPlugin"  /></form>
+<label><input type="radio" name="WHOWILLITBENOW" value="mary" />mary</label><br /> <label><input type="radio" name="WHOWILLITBENOW" value="peter" />peter</label><br /> <label><input type="radio" name="WHOWILLITBENOW" value="annabel" checked="checked" />annabel</label><br /> <label><input type="radio" name="WHOWILLITBENOW" value="nicky" />nicky</label><br /> <label><input type="radio" name="WHOWILLITBENOW" value="jennifer" />jennifer</label><br /> <label><input type="radio" name="WHOWILLITBENOW" value="bananaman" />bananaman</label><br /><input type="submit" name="button_name" value="set value (WHOWILLITBENOW)" /><input type="hidden" name="htmlformvalue" value="set"  /><input type="hidden" name="variable" value="WHOWILLITBENOW"  /><input type="hidden" name="redirectto" value="%SYSTEMWEB%.HtmlFormsPlugin"  /></form>
 ---
 use a single line text edit, and set WHOWILLITBENOWTEXT in this topic
 
@@ -68,7 +68,7 @@ use a single line text edit, and set WHOWILLITBENOWTEXT in this topic
 %TEXTVALUE{value="There once was a girl"  destinationaddress="WHOWILLITBENOWTEXT"}%
 ---+++ demo
 <form method="post" action="" enctype="multipart/form-data">
-<input type="text" name="WHOWILLITBENOWTEXT" value="There once was a girl" size="50" maxlength="80" /><input type="submit" name="button_name" value="set value (WHOWILLITBENOWTEXT)" /><input type="hidden" name="htmlformvalue" value="set"  /><input type="hidden" name="variable" value="WHOWILLITBENOWTEXT"  /><input type="hidden" name="redirectto" value="TWiki.HtmlFormsPlugin"  /></form>
+<input type="text" name="WHOWILLITBENOWTEXT" value="There once was a girl" size="50" maxlength="80" /><input type="submit" name="button_name" value="set value (WHOWILLITBENOWTEXT)" /><input type="hidden" name="htmlformvalue" value="set"  /><input type="hidden" name="variable" value="WHOWILLITBENOWTEXT"  /><input type="hidden" name="redirectto" value="%SYSTEMWEB%.HtmlFormsPlugin"  /></form>
 ---
 use a multi line text edit, and set WHOWILLITBENOWTEXT in this topic
 
@@ -77,7 +77,7 @@ use a multi line text edit, and set WHOWILLITBENOWTEXT in this topic
 %TEXTAREA{value="There once was a girl" destinationaddress="WHOWILLITBENOWTEXT"}%
 ---+++ demo
 <form method="post" action="" enctype="multipart/form-data">
-<textarea name="WHOWILLITBENOWTEXT"  rows="10" cols="80">There once was a girl</textarea><input type="submit" name="button_name" value="set value (WHOWILLITBENOWTEXT)" /><input type="hidden" name="htmlformvalue" value="set"  /><input type="hidden" name="variable" value="WHOWILLITBENOWTEXT"  /><input type="hidden" name="redirectto" value="TWiki.HtmlFormsPlugin"  /></form>
+<textarea name="WHOWILLITBENOWTEXT"  rows="10" cols="80">There once was a girl</textarea><input type="submit" name="button_name" value="set value (WHOWILLITBENOWTEXT)" /><input type="hidden" name="htmlformvalue" value="set"  /><input type="hidden" name="variable" value="WHOWILLITBENOWTEXT"  /><input type="hidden" name="redirectto" value="%SYSTEMWEB%.HtmlFormsPlugin"  /></form>
 ---
 
 and set WHOWILLITBENOWTEXT in this topic to "There once was a girl"
@@ -87,7 +87,7 @@ and set WHOWILLITBENOWTEXT in this topic to "There once was a girl"
 %BUTTON{value="There once was a girl" destinationaddress="WHOWILLITBENOWTEXT"}%
 ---+++ demo
 <form method="post" action="" enctype="multipart/form-data">
-<input type="hidden" name="WHOWILLITBENOWTEXT" value="There once was a girl"  /><input type="submit" name="button_name" value="set value (WHOWILLITBENOWTEXT)" /><input type="hidden" name="htmlformvalue" value="set"  /><input type="hidden" name="variable" value="WHOWILLITBENOWTEXT"  /><input type="hidden" name="redirectto" value="TWiki.HtmlFormsPlugin"  /></form>
+<input type="hidden" name="WHOWILLITBENOWTEXT" value="There once was a girl"  /><input type="submit" name="button_name" value="set value (WHOWILLITBENOWTEXT)" /><input type="hidden" name="htmlformvalue" value="set"  /><input type="hidden" name="variable" value="WHOWILLITBENOWTEXT"  /><input type="hidden" name="redirectto" value="%SYSTEMWEB%.HtmlFormsPlugin"  /></form>
 ---
 
 

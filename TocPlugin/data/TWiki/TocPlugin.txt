@@ -13,7 +13,7 @@ Adds a number of new tags:
 	* %<nop>REF% - inserts a symbolically named cross-reference URL
 	* %<nop>ANCHOR% - inserts a symbolically named jump target
 
-The TWiki.<nop>TocPluginHelp topic in the installation contains complete help information.
+The %SYSTEMWEB%.<nop>TocPluginHelp topic in the installation contains complete help information.
 
 ---++ <nop>%TOPIC% Settings
 

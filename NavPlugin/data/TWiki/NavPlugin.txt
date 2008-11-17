@@ -28,7 +28,7 @@ You could do this from a Title Page.
 *Index Page*
 
 Every document set needs an index page.  
-The index page must be a valid TWiki.WikiWord name that ends in Index:  &lt; <i>SomeWikiName</i> >Index.
+The index page must be a valid %SYSTEMWEB%.WikiWord name that ends in Index:  &lt; <i>SomeWikiName</i> >Index.
 
 The Index page contains an ordered list of TWiki pages.  This list must use the bullet syntax and start with an <nop>IndexStart and <nop>IndexEnd flag in HTML comments.
 <verbatim>
