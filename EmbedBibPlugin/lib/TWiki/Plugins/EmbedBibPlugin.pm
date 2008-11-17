@@ -174,7 +174,7 @@ sub handleEmbedBib
     my $sandbox = $TWiki::sharedSandbox || $TWiki::sandbox;
     if ( $Style eq "bibtex" )
     {
-        return $sandbox->sysCommand( $bibtoolcommand );
+        return ( $sandbox->sysCommand( $bibtoolcommand ) )[0];
     }
     elsif ( $Style eq "html" )
     {
@@ -210,12 +210,12 @@ EOF
 	# We need to use a temporary file since bibtex2html does not accept
         # input from stdin
 	open(TMPFILE, ">$tmpBibFile") or return "EMBEDBIB Error: fatal error";
-	my $tmpOut = $sandbox->sysCommand( $bibtoolcommand );
+	my ($tmpOut) = $sandbox->sysCommand( $bibtoolcommand );
 	print TMPFILE $tmpOut;
 	print TMPFILE $bibtex2htmlConf;
 	close TMPFILE;
 
-    	$tmpOut = $sandbox->sysCommand( "$bibtex2htmlPath $tmpBibFile $bibtex2htmlArgs" );
+    	($tmpOut) = $sandbox->sysCommand( "$bibtex2htmlPath $tmpBibFile $bibtex2htmlArgs" );
 	unlink $tmpBibFile;
 	return $tmpOut;
     }
