@@ -9,7 +9,7 @@ the site's default settings. Note that each web may have its own defaults build
 in. If you select different style options they have precedence over those.
 
 Register [[%TWIKIREGISTRATION%][here]] to make your settings persistent.
-See the TWiki.NatSkinPlugin documentation on how to use style settings in your personal
+See the %SYSTEMWEB%.NatSkinPlugin documentation on how to use style settings in your personal
 <nop>%WIKITOOLNAME% account.
 
 %STARTINCLUDE%

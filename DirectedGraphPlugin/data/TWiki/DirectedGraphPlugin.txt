@@ -49,7 +49,7 @@ You can use the following parameters in the =dot= tag to control the rendering o
 | =map="on"= | Create a client side map for the generated image. This will turn any =[URL="..."];= attribute in the graph description into a clickable area (see demonstration below). | =off= |
 | =vectorformats="ps svg"= | The PNG file created from the graph per default is a bitmap file. If you need a vector based file rendering or other bitmap types as well, you can specify =ps=, =svg= and =jpg= formats (will be attached to topic, visible under attachments view). Any format supported by !GraphViz is supported by this plugin. It is mapped to the =-T= parameter. | none |
 | =engine="neato"= | Which layout engine to use for the graph: One of =dot=, =neato=, =twopi=, =circo= or =fdp=. | =dot= |
-| =library="Main.GroupIcons"= | Which icon library topic to use for custom shapes ([shapefile] parameter). Needs to be explicitly set, also if icons are attached locally to the current graph topic. See demo below. | =TWiki.DirectedGraphPlugin= |
+| =library="Main.GroupIcons"= | Which icon library topic to use for custom shapes ([shapefile] parameter). Needs to be explicitly set, also if icons are attached locally to the current graph topic. See demo below. | =%SYSTEMWEB%.DirectedGraphPlugin= |
 | =file="file_prefix"= | Overrides the dynamically generated filenames. If specified, must be unique for each graph within a single topic! Suffix is still generated automatically based upon file type.  | =graph_nn= nn increments per graph |
 | =hideattachments="on"= | Set whether or not attachments should be hidden from the attachment table | =on= |
 | =inlineattachment="png"= | Specifies the type of file to be attached inline to the page.  Must be png or jpg. | =png= |
@@ -299,7 +299,7 @@ __You get: (simulated)__ <br />
 </td>
 <td valign="top" width="25%">
 __You get: (if installed)__ <br />
-<dot engine="dot"  size="300x300" library="TWiki.DirectedGraphPlugin">
+<dot engine="dot"  size="300x300" library="%SYSTEMWEB%.DirectedGraphPlugin">
 digraph G { size="2,3!"; dpi="100";
     edge [arrowhead=none color=blue];
     node [fontcolor=blue color=white];
@@ -321,7 +321,7 @@ digraph G { size="2,3!"; dpi="100";
 </td>
 <td valign="top" width="25%">
 __You get: (if installed, antialiased)__ <br />
-<dot engine="dot"  antialias="1" size="300x300" density="100" library="TWiki.DirectedGraphPlugin">
+<dot engine="dot"  antialias="1" size="300x300" density="100" library="%SYSTEMWEB%.DirectedGraphPlugin">
 digraph G { size="2,3!"; dpi="100";
     edge [arrowhead=none color=blue];
     node [fontcolor=blue color=white];
@@ -382,7 +382,7 @@ Changes to the settings marked %X% will cause changes to the file hash.  This wi
       * Set VECTORFORMATS = none
 
    * %X% Default topic to read library icons (shapefiles) from 
-      * Set LIBRARY = TWiki.DirectedGraphPlugin
+      * Set LIBRARY = %SYSTEMWEB%.DirectedGraphPlugin
 
    * Debug plugin: (See output in =data/debug.txt=) 
       * Set DEBUG = 0
@@ -456,7 +456,7 @@ There are two ways to accomplish antialiased output. The older method, enabled b
 
 This method is not compatible with client side image maps unless the imagesize rendered by graphviz is the same as the final output from ImageMagick. For example, the following parameters will result in compatible maps.
 
-   $ dot parameters passed to =convert=: antialias="1" size="300x300" density="100" library="TWiki.DirectedGraphPlugin" 
+   $ dot parameters passed to =convert=: antialias="1" size="300x300" density="100" library="%SYSTEMWEB%.DirectedGraphPlugin" 
       * Size the image size in dots, density is dots per inch.
    $ graph parameters used by =dot=: digraph G { size="2,3!"; dpi="100"; 
       * Size is the image size in inches, ! = scale to fill one dimension.

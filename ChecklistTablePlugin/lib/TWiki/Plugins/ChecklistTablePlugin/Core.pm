@@ -768,7 +768,7 @@ sub _createRowFromCgi {
 sub _initDefaults {
 	%defaults = ( 
 		'_DEFAULT' => undef,
-		'unknownparamsmsg' => '%RED% %SYSTEMWEB%.ChecklistTablePlugin: Sorry, some parameters are unknown: %UNKNOWNPARAMSLIST% %ENDCOLOR% <br/> Allowed parameters are (see TWiki.ChecklistTablePlugin topic for more details): %KNOWNPARAMSLIST%',
+		'unknownparamsmsg' => '%RED% %SYSTEMWEB%.ChecklistTablePlugin: Sorry, some parameters are unknown: %UNKNOWNPARAMSLIST% %ENDCOLOR% <br/> Allowed parameters are (see %SYSTEMWEB%.ChecklistTablePlugin topic for more details): %KNOWNPARAMSLIST%',
 		'header' => '|*State*|*Item*|*Comment*|',
 		'format' => '|item|text,30|textarea,3x30|',
 		'name' => '_default',

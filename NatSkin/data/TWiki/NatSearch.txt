@@ -44,7 +44,7 @@ exclude this term from the hit set.
 | g:copyright -webpref | list all topics that contain the word "copyright" but not "webpref" |
 | g:"Good morning" -natskin | list all topics that contain the term "Good morning" but not "natskin" |
 | e:Sandbox.TestTopic411 | edit <nop>Sandbox.TestTopic411 |
-| TWiki.graphics | search for "graphics" in the TWiki web |
+| System.graphics | search for "graphics" in the System web |
 
 
 ---++ Configuration
