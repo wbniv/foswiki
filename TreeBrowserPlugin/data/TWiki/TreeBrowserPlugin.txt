@@ -41,7 +41,7 @@ Rendering themes can be defined by =&lt;name&gt;_THEME= Plugin settings
       * =Set &lt; _name_ &gt;_THEME = tree=
    * Format of the *icon* render type:
       * =Set &lt; _name_ &gt;_THEME = icon, [&lt; _root icon image_ &gt;], [&lt; _icon image_ &gt;], [&lt; _folder icon image_ &gt;], [&lt; _open folder icon image_ &gt;]=
-      * The _root icon image_ is shown at the root of the tree, the _icon image_ is shown at every leaf node, the _folder icon image_ is shown at every collapsed internal node, and the _open folder icon image_ is shown at every expanded internal node. The icon images point to files attached to TWiki topics and are referenced in the standard manner. If no path is given, the images are taken from TWiki.DocumentGraphics.
+      * The _root icon image_ is shown at the root of the tree, the _icon image_ is shown at every leaf node, the _folder icon image_ is shown at every collapsed internal node, and the _open folder icon image_ is shown at every expanded internal node. The icon images point to files attached to TWiki topics and are referenced in the standard manner. If no path is given, the images are taken from %SYSTEMWEB%.DocumentGraphics.
       * If an icon image is omitted, the following defaults are chosen: %ATTACHURL%/empty.gif, %ATTACHURL%/page.gif, %ATTACHURL%/folder.gif, %ATTACHURL%/folderopen.gif
 
 If !JavaScript is not enabled, the list is rendered as usual, and the =%<nop>TREEBROWSER% tag is omitted.
@@ -158,7 +158,7 @@ document.write(left);
 
 </td></tr></table>
 
-This tree could be used in the TWiki.WebLeftBar, for example. Clicking on the plus icon next to =Webs= will expand the subtree below that node.
+This tree could be used in the %SYSTEMWEB%.WebLeftBar, for example. Clicking on the plus icon next to =Webs= will expand the subtree below that node.
 
 To add _"collapse/expand all nodes"_ functionalities do something like:
 <verbatim><a href="javascript: tree.openAll();">open all</a> | <a href="javascript: tree.closeAll();">close all</a>

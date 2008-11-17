@@ -55,7 +55,7 @@ Another difference from standard Set is that the RHS of a <code>%SET</code> is f
 will set =%<nop>Z%= to the string =10= and NOT the string <code>"%<nop>CALC{"1000 / 100"}%"</code>. This is a critically important difference; values that are <code>%SET</code> can be used alongside plugins (such as SpreadSheetPlugin) that are very sensitive to format.
 
 ---+ <nop>%TOPIC% Settings
-One line description, shown in the TWiki.TextFormattingRules topic:
+One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
 	* Set SHORTDESCRIPTION = Supports parameterised includes.
 
 ---+ Plugin Installation Instructions

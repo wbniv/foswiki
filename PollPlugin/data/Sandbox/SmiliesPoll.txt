@@ -1,6 +1,6 @@
 %META:TOPICINFO{author="guest" date="1063987680" format="1.0" version="1.1"}%
-%META:TOPICPARENT{name="TWiki.PollPlugin"}%
----+++ A Smiling example of the TWiki.PollPlugin
+%META:TOPICPARENT{name="System.PollPlugin"}%
+---+++ A Smiling example of the %SYSTEMWEB%.PollPlugin
 
 __NOTE:__ To use this example you must install also the Main:Plugins.SmiliesPlugin.
 

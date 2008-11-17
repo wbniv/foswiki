@@ -11,9 +11,9 @@ The following settings are __web preferences__ of the [[%WEB%.%HOMETOPIC%][%WEB%
 ---+++ XpTrackerPlugin
 
 	* Turn on TWiki.XpTrackerPlugin
-		* Set INSTALLEDPLUGINS = TWiki.XpTrackerPlugin
+		* Set INSTALLEDPLUGINS = %SYSTEMWEB%.XpTrackerPlugin
 
-	* Customization of TWiki.XpTrackerPlugin
+	* Customization of %SYSTEMWEB%.XpTrackerPlugin
 		* Set XPTRACKERPLUGIN_ADDTLSTORYFIELDS = Storylead
 		   * Additional fields of a story that should be displayed in story summaries.
 		* Set XPTRACKERPLUGIN_STORYACCEPTEDINDICATION = Closed

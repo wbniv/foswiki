@@ -200,7 +200,7 @@ compare with [[http://en.wikipedia.org/wiki/Category:Philosophy_articles_needing
 |  08 Oct 2008: | added =$anchors= to MAKEINDEX (by Dirk Zimoch); \
                   added =nocase= option to FORMATLIST (by Dirk Zimoch); \
                   fixed null/empty string match in FORMATLIST |
-|  20 Aug 2008: | added =selection= and =marker= to FORMATLIST, similar in use as TWiki.VarWEBLIST |
+|  20 Aug 2008: | added =selection= and =marker= to FORMATLIST, similar in use as %SYSTEMWEB%.VarWEBLIST |
 |  03 Jul 2008: | sorting a list _before_, not _after_, formatting it in FORMATLIST |
 |  08 May 2008: | added 'text' parameter to SUBST and EXTRACT; \
                   fixed SUBST as it was pretty useless before |

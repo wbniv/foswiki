@@ -15,7 +15,7 @@ on http://twiki.org. Proposed solutions have often involved making small changes
 designed to be used in a intranet environment where all registered users have both a !WikiName and a user name (which is often the same as a Unix or Windows username).
 
 ---++ Settings
-Behavior of this plugin is controlled through the following settings in the [[TWiki.LoginNameAliasesPlugin][TWiki.LoginNameAliasesPlugin]] topic.  *Important:* the settings topic will not be read if you have renamed your TWiki web or installed this topic in another web.
+Behavior of this plugin is controlled through the following settings in the [[%SYSTEMWEB%.LoginNameAliasesPlugin][%SYSTEMWEB%.LoginNameAliasesPlugin]] topic.  *Important:* the settings topic will not be read if you have renamed your TWiki web or installed this topic in another web.
 
 	* MAP_BLANK_USER = &lt;user&gt;
 	* USE_ALIASES = &lt;boolean&gt;
@@ -57,7 +57,7 @@ This is useful for debugging and keeping a record of user names before they are 
 There are obvious security risks with allowing arbitrary user names to get mapped to arbitrary TWiki users. To mitigate these risks:
 	* The plugin does not do anything unless $useLoginNameAliasesPlugin is set
 	in TWiki.cfg.
-	* The plugin configuration topic, [[TWiki.LoginNameAliasesPlugin][TWiki.LoginNameAliasesPlugin]], should have
+	* The plugin configuration topic, [[%SYSTEMWEB%.LoginNameAliasesPlugin][%SYSTEMWEB%.LoginNameAliasesPlugin]], should have
 	access permissions set such that only people in the %MAINWEB%.AdminGroup	(or other people who can be trusted) can change it.  By default, the topic is distributed with this access restriction.
 
 ---++ Caution
