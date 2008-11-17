@@ -193,7 +193,7 @@ sub initDefaults {
 		'reset' => undef,
 		'showlegend' => 0,
 		'anchors' => 1,
-		'unknownparamsmsg' => '%RED% Sorry, some parameters are unknown: %UNKNOWNPARAMSLIST% %ENDCOLOR% <br/> Allowed parameters are (see TWiki.ChecklistPlugin topic for more details): %KNOWNPARAMSLIST%',
+		'unknownparamsmsg' => '%RED% Sorry, some parameters are unknown: %UNKNOWNPARAMSLIST% %ENDCOLOR% <br/> Allowed parameters are (see %SYSTEMWEB%.ChecklistPlugin topic for more details): %KNOWNPARAMSLIST%',
 		'clipos'=> 'right',
 		'pos'=>'bottom',
 		'statetopic'=> $topic.'ChecklistItemState',

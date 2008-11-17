@@ -39,7 +39,7 @@ Filter: <input type="text" name="ldapfilter" size="25">
 |format |Format of the data returned by the query. <br /> Use $attribute for the fields.  <br />Use the word FIELDLIST if you want a list of the valid fields in the LDAP database for the entry|format="&#124;$fullName&#124;$telephoneNumber&#124;"|
 |order |Sort order |order="sn,givenName"|
 |mvformat |Separater for multiple values |mvformat="&lt;LI&gt;"|
-|notfounderror|Error message you want to get in case LDAP Plugin found nothing, useful to use LDAP to define Javascript vars (see TWiki.TWikiLdapRegistration)|notfounderror=""|
+|notfounderror|Error message you want to get in case LDAP Plugin found nothing, useful to use LDAP to define Javascript vars (see %SYSTEMWEB%.TWikiLdapRegistration)|notfounderror=""|
 |jpegPhoto|LDAP attribute keyname to extract photo, __$jpegPhoto__ is then a URL to an image |JPEGPHOTO="jpegPhoto"|
 
 ---++ <nop>%TOPIC% Settings

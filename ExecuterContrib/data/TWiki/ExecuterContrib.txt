@@ -10,7 +10,7 @@ One line description, required for extensions repository catalog.
 
 ---++ Purpose & scope 
 
-The task executer is running on a remote machine executing a task. It is a key concept of the TWiki.TaskExeContrib.
+The task executer is running on a remote machine executing a task. It is a key concept of the %SYSTEMWEB%.TaskExeContrib.
 Here we describe how to set-up and use an executer machine. We also provide technical information about the executer implementation.
 
 ---++ Installation instructions
@@ -67,7 +67,7 @@ If you are experiencing problems with an Executer you should:
 *\lib\Slion\TWiki\Executer.pm* - Sub class !Slion::TWiki::Client adding functionalities for parsing a Task topic and and executing Commands <br />
 *\lib\Slion\TWiki\Client.pm* - Provides API for reading and writing topics from a TWiki web site <br />
 *\cgi-bin\executer\exestatus* - CGI, output some Javascript for automatic status update from web page. <br />
-*\cgi-bin\executer\exestart* - CGI, used to trigger a [[TWiki.TaskExeContrib#Task][Task]].
+*\cgi-bin\executer\exestart* - CGI, used to trigger a [[%SYSTEMWEB%.TaskExeContrib#Task][Task]].
 
 ---++ Package content
 
@@ -84,7 +84,7 @@ If you are experiencing problems with an Executer you should:
 |  16 May 2007 | Adding support for =$taskspecweb=, =$taskspectopic= and =SENDMAIL= |
 |  15 May 2007 | Adding support for =URLEXISTS=, =IF=, =ELSE=, =ENDIF= |
 |  14 May 2007 | Initial release |
-|  Dependencies: | %$DEPENDENCIES% <br /> Other dependencies might be added through the [[TWiki.TaskExeContrib#Task_Specification][Task specification]]. |
+|  Dependencies: | %$DEPENDENCIES% <br /> Other dependencies might be added through the [[%SYSTEMWEB%.TaskExeContrib#Task_Specification][Task specification]]. |
 |  Contrib Home: | http://twiki.org/cgi-bin/view/Plugins/ExecuterContrib |
 |  Feedback: | http://twiki.org/cgi-bin/view/Plugins/ExecuterContribDev |
 |  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/ExecuterContribAppraisal |

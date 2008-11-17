@@ -153,7 +153,7 @@ Content:
 |  Change History: | V2.0 16 Oct 2002: New version of Plugin by TWiki:Main.MartinWatt |
 |  Change History: | V1.0 29 Jul 2002: Initial version of Plugin by TWiki:Main.MartinWatt based on code by TWiki:Main.RichardBennett |
 |  CPAN Dependencies: | HTTP::Date |
-|  Other Dependencies: | TWiki:TWiki.EditTablePlugin (The latest version (with support for the %<nop>EDITCELL% variable)), TWiki:TWiki.TablePlugin |
+|  Other Dependencies: | TWiki:Plugins.EditTablePlugin (The latest version (with support for the %<nop>EDITCELL% variable)), TWiki:Plugins.TablePlugin |
 |  Perl Version: | 5.0 |
 |  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
 |  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |

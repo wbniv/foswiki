@@ -1,5 +1,5 @@
 %META:TOPICINFO{author="WillNorris" date="1066118460" format="1.0" version="1.1"}%
-%META:TOPICPARENT{name="TWiki.PseudoXmlPlugin"}%
+%META:TOPICPARENT{name="System.PseudoXmlPlugin"}%
 <style>
 .wiki		{ background:green; color:white; }
 .author	 { background:%WEBBGCOLOR%; color:white; }

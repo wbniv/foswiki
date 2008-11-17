@@ -25,7 +25,7 @@ individually, and discussion points can be commented on individually.
 	* Decreasing indentation many levels at a time is fine
 	* You can specify an icon for a bullet:
 		* Attach the icon to a topic, e.g. =myicon.gif=, or
-		* Use one of the existing icons from TWiki.DocumentGraphics
+		* Use one of the existing icons from %SYSTEMWEB%.DocumentGraphics
 		* Refer to an attached icon at the beginning of the bullet with:
 			* =icon:myicon Followed by normal bullet text=
 

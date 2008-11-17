@@ -68,7 +68,7 @@ Attributes, such as fill color, text color or arrow tip, can be changed through 
 ---++ <nop>%TOPIC% Settings
 
 	* Set SHORTDESCRIPTION = Java Applet based drawing editor
-Extra colors to be added to the menu of colors in the applet, as a comma-separated list with colors in HTML format (see TWiki.StandardColors)
+Extra colors to be added to the menu of colors in the applet, as a comma-separated list with colors in HTML format (see %SYSTEMWEB%.StandardColors)
 	* Set EXTRA_COLORS = Aquamarine=#70DB93,New Tan=#EBC79E,Sea Green=#238E68,Motorola Blue=#3ff
 Set to 1 if an "Edit" button is to be generated attached to the image. You will still be able to edit it by clicking on the boundary of the image.
 	* Set EDIT_BUTTON = 1

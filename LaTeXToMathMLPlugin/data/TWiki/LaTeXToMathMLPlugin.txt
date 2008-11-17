@@ -177,4 +177,3 @@ TWiki:Plugins/MathModePlugin
 -- Main.SimonClift - 22 Apr 2003
 
 %META:FILEATTACHMENT{name="xhtml-math11-f.dtd" attr="" comment="W3C's DTD for <nop>MathML with XHTML 1.1" date="1050421607" path="xhtml-math11-f.dtd" size="400317" user="SimonClift" version="1.1"}%
-%META:TOPICMOVED{by="SimonClift" date="1050416433" from="Main.LaTeXToMathMLPlugin" to="TWiki.LaTeXToMathMLPlugin"}%

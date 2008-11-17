@@ -26,7 +26,7 @@ it will be replaced by an appropriate TWiki link. Aliases take only effect withi
 if _alias areas_ between %<nop>STARTALIASAREA% and %<nop>STOPALIASAREA% tags.  
 
 Aliases aren't replaced within html tags (=&lt;html tag ... <nop>TESTALIAS ... &gt;=), TWiki tags (=%<nop>INCLUDE... <nop>TESTALIAS ...%=) and TWiki links
-(=[<nop>[TWiki.WebHome][<nop>TESTALIAS]]=). A word can be prevented of being substituted by
+(=[<nop>[%SYSTEMWEB%.WebHome][<nop>TESTALIAS]]=). A word can be prevented of being substituted by
 prefixing it with =&lt;nop&gt;=.
 
 ---++ Configuration
@@ -126,7 +126,7 @@ macro or listed in the following way:
 |  6 | TESTLINKTESTLINK | TESTLINKTESTLINK | no: this is _one_ word not being aliases |
 |  7 | rtfm | read the fine manual | yes, but be more polite to your users |
 |  8 | <a href="%SCRIPTURL{"view"}%/TESTALIAS" title="TESTALIAS">TESTALIAS</a> | <a href="%SCRIPTURL{"view"}%/yes" title="yes">yes</a> | yes |
-|  9 | [[TWiki.WebHome][TESTALIAS]] | <a href="%SCRIPTURLPATH{"view"}%/%SYSTEMWEB%.WebHome">T<nop>ESTALIAS</a> | no, don't substitute inside a TWiki tag | 
+|  9 | [[%SYSTEMWEB%.WebHome][TESTALIAS]] | <a href="%SCRIPTURLPATH{"view"}%/%SYSTEMWEB%.WebHome">T<nop>ESTALIAS</a> | no, don't substitute inside a TWiki tag | 
 |  10 | [[TESTALIAS]] | <a href="%SCRIPTURL{"edit"}%/%WEB%/TESTALIAS?topicparent=%WEB%.%TOPIC%" class="twikiNewLink" title="Create this topic">T<nop>ESTALIAS</a>| no, don't substitute inside a TWiki tag |
 |  11 | [<nop>[TESTALIAS]] | [<nop>[T<nop>ESTALIAS]] | no, not even inside a _nopped_ TWiki tag | 
 |  12 | <font color="red"> TESTALIAS </font> | <font color="red"> yes </font> | yes, ignores =red= |
@@ -174,7 +174,7 @@ macro or listed in the following way:
 |  21 Mar 2005: | TWiki:Main/MichaelDaum: allow arbitrary string substs |
 |  &nbsp; | configured via a list now (was tables) |
 |  &nbsp; | taking care not to replace inside html tags |
-|  1 Dec 2003: | TWiki:Main.NielsKoldso: Non TWiki.WikiWord aliases as an option | 
+|  1 Dec 2003: | TWiki:Main.NielsKoldso: Non %SYSTEMWEB%.WikiWord aliases as an option | 
 |  &nbsp; | More alias prefixes allowed |
 |  16 Oct 2003: | Speedup |
 |  09 Oct 2003: | Initial Version |

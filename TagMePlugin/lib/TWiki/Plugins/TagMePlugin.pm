@@ -464,12 +464,12 @@ sub _showStyleBlog {
 
     # more
     $text .= "<p class='tagmeBlog'><b>Tags management:</b> 
-        [[TWiki.TagMeCreateNewTag][create tags]] -
-        [[TWiki.TagMeRenameTag][rename tags]] -
-	[[TWiki.TagMeDeleteTag][delete tags]] -
-	[[TWiki.TagMeViewAllTags][view all tags]] -
-	[[TWiki.TagMeViewMyTags][view my tags]] -
-	[[TWiki.TagMeSearch][search with tags]]
+        [[%SYSTEMWEB%.TagMeCreateNewTag][create tags]] -
+        [[%SYSTEMWEB%.TagMeRenameTag][rename tags]] -
+	[[%SYSTEMWEB%.TagMeDeleteTag][delete tags]] -
+	[[%SYSTEMWEB%.TagMeViewAllTags][view all tags]] -
+	[[%SYSTEMWEB%.TagMeViewMyTags][view my tags]] -
+	[[%SYSTEMWEB%.TagMeSearch][search with tags]]
         </p>";
     # footer
     $text .= "</fieldset>".$footer;

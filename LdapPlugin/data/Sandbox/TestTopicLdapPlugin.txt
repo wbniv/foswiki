@@ -1,5 +1,5 @@
 %META:TOPICINFO{author="ProjectContributor" date="1134338119" format="1.1" version="1.1"}%
-%META:TOPICPARENT{name="TWiki.LdapPlugin"}%
+%META:TOPICPARENT{name="System.LdapPlugin"}%
     * %LDAP{host="myldap.myco.com" base="ou=purchasing,o=MYCO" filter="employeenumber=00009707" format="$telephoneNumber"}%
     * %LDAP{host="myldap.myco.com" base="ou=finance,o=MYCO" filter="fullName=Johnson*" format="| $ou | $telephoneNumber |" header="| *Phone* | *OU* |"}%
     * %LDAP{format="Name : $cn <IMG SRC=$jpegPhoto width=100 > " header="" JPEGPHOTO="jpegPhoto"}%

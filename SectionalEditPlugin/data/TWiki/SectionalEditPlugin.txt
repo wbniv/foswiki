@@ -81,7 +81,7 @@ To enable editing of:
 |  13 Feb 2005: | Integrate savemulti capability. Render text before and after the section being edited. |
 |  12 Feb 2005: | Added =SECTIONDEPTH= preference variable. |
 |  11 Feb 2005: | Added =EDITSECTIONS= preference variable with the same effect as inserting an &lt;editsection/&gt; tag in every topic. | 
-|   3 Feb 2005: | Preliminary port to cairo with support for TWiki.PatternSkin. Does not yet support =savemulti=. |
+|   3 Feb 2005: | Preliminary port to cairo with support for !TWiki.PatternSkin. Does not yet support =savemulti=. |
 |   6 Apr 2004: | Custom edit width / edit height / edit style (defaults to same as ordinary edit). BGCOLOR is now interpreted so you can set it to be the same as %WEBBGGOLOR% if you like. Edit bar can be left or right justified. Added &lt;editsections/&gt; tag which automatically splits on section headers =---+= Updated =bin/editsection= program and templates. |
 |  21 Sep 2003: | Fixed a few bugs in plugin (especially the double-quote problem) |
 |  11 May 2003: | [[TWiki:Main.JohnCavanaugh][JohnCavanaugh]]'s tag method added |

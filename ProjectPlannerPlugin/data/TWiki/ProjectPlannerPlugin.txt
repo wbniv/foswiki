@@ -23,7 +23,7 @@ There is a hierarchy of information in the web used by the plugin that will be u
 
 	* <b>Plans</b>. Each Project page has a form for creating plans in addition to the summary of currently entered plans. The template for the Plan page has a table where tasks can be added, allocated and updated.
 
-*Note*: Project and Plan names have to be TWiki.WikiWord. Task names may or may not be. However, if Task names are specified as TWiki.WikiWord, it provides links to add more info about the task and also provides a pretty printed version for online-challenged meetings.
+*Note*: Project and Plan names have to be %SYSTEMWEB%.WikiWord. Task names may or may not be. However, if Task names are specified as %SYSTEMWEB%.WikiWord, it provides links to add more info about the task and also provides a pretty printed version for online-challenged meetings.
 	 
 The top level project creation form is displayed by adding the keyword % PPALLPROJECTS% in any page. The creation of plans and addition of tasks are performed in the resulting forms that are generated when a project is created.
 	
@@ -42,7 +42,7 @@ Plugin settings are stored as preferences variables.
 It is possible to customize the PlanTemplate to have a different layout for the Task Table. However, the Plugin does depend on the fields in the table for processing information for some of the tags. The plugin can tolerate some shuffling of the columns and can automatically parse the <nop>PlanTemplate topic file to figure which column is which field. However, the plugin depends on the exitence of the following required columns for the tasks:
 
 | *Name* | *Comment* |
-| Task Name | Name of the Task, can be a TWiki.WikiWord to enable adding more info |
+| Task Name | Name of the Task, can be a %SYSTEMWEB%.WikiWord to enable adding more info |
 | Summary | brief summary for executive consumption |
 | Module | a module that this task belongs to for Module based processing |
 | Developer | developer assigned to task |

@@ -5,8 +5,8 @@ Use commands to define your task
    * Cmd OUTPUTWEB = Sandbox
    * Cmd OUTPUTTOPIC = TaskExeDemoOutput
 
-   * Cmd OUTPUT = ---+ TWiki.TaskExeContrib demo
+   * Cmd OUTPUT = ---+ System.TaskExeContrib demo
    * Cmd SHELLEXE = dir
 
-%META:FORM{name="TWiki.TaskSpecForm"}%
-%META:FIELD{name="Name" attributes="M" title="Name" value="Test TWiki.TaskExeContrib installation"}%
+%META:FORM{name="System.TaskSpecForm"}%
+%META:FIELD{name="Name" attributes="M" title="Name" value="Test System.TaskExeContrib installation"}%

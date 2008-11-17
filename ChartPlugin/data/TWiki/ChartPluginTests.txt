@@ -215,7 +215,7 @@ This table is used for various legend placement tests as well as logarithmic dat
 | no parameters passed to CHART <p /> =%<nop>CHART{}%= | ChartPlugin error: parameter *name* must be specified </ p> | %CHART{}% |
 | Define =type= but =name= not specified <p /> =%<nop>CHART{type="bar"}%= | ChartPlugin error: parameter *name* must be specified </ p> | %CHART{type="bar"}% |
 | Invalid =type= of =badtype= <p /> =%<nop>CHART{type="badtype"}%= | ChartPlugin error: Invalid value of *badtype* for parameter *type* </ p> | %CHART{type="badtype"}% |
-| Missing topic page <p /> =%<nop>CHART{name="err1" topic="DoesNotExist" type="line"}%= | ChartPlugin error: Error retrieving TWiki topic TWiki.DoesNotExist </ p> | %CHART{name="err1" topic="DoesNotExist" type="line"}% |
+| Missing topic page <p /> =%<nop>CHART{name="err1" topic="DoesNotExist" type="line"}%= | ChartPlugin error: Error retrieving TWiki topic %SYSTEMWEB%.DoesNotExist </ p> | %CHART{name="err1" topic="DoesNotExist" type="line"}% |
 | Missing web  <p /> =%<nop>CHART{name="err1" type="line" web="DoesNotExist"}%= | ChartPlugin error: Error retrieving TWiki topic DoesNotExist.ChartPluginTests </ p> | %CHART{name="err1" type="line" web="DoesNotExist"}% |
 | Invalid table number <p /> =%<nop>CHART{name="err1" table="999" type="line"}%= | ChartPlugin error: parameter *table* is not valid table; the specified table '999' does not exist. </ p> | %CHART{name="err1" table="999" type="line"}% |
 | No data specified <p /> =%<nop>CHART{name="err1" type="line"}%= | ChartPlugin error: parameter *data* must be specified </ p> | %CHART{name="err1" type="line"}% |

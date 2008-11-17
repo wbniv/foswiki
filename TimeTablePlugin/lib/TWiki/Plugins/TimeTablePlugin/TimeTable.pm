@@ -166,7 +166,7 @@ sub _initDefaults {
 		weekendfgcolor => 'black',	#
 		tablebgcolor => 'white',	# table background color
 		timeformat => '24', 		# timeformat 12 or 24
-		unknownparamsmsg => '%RED% Sorry, some parameters are unknown: %UNKNOWNPARAMSLIST% %ENDCOLOR% <br/> Allowed parameters are (see TWiki.'.$pluginName.' topic for more details): %KNOWNPARAMSLIST%',
+		unknownparamsmsg => '%RED% Sorry, some parameters are unknown: %UNKNOWNPARAMSLIST% %ENDCOLOR% <br/> Allowed parameters are (see %SYSTEMWEB%.'.$pluginName.' topic for more details): %KNOWNPARAMSLIST%',
 		displaytime => 0,		# display time in description
 		workingstarttime => '9:00',	# 
 		workingendtime => '17:00',

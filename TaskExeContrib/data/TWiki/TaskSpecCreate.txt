@@ -4,7 +4,7 @@
 
 ---++ Usage
 
-   1 Give a TWiki.WikiName for your new task specification topic. Example: _TaskSpecMySoftwareRelease_.
+   1 Give a %SYSTEMWEB%.WikiName for your new task specification topic. Example: _TaskSpecMySoftwareRelease_.
    1 Give a decriptive name for your new task. Example: _Offical Software Release_.
    1 Click the create button.
    1 Define your [[TaskExeContrib#Task_Specification][task specification]]. 

@@ -4,7 +4,7 @@
 
 ---++ Usage
 
-   1 Give a TWiki.WikiName for your new executer topic. Example: _ExecuterMyPc_.
+   1 Give a %SYSTEMWEB%.WikiName for your new executer topic. Example: _ExecuterMyPc_.
    1 Give the URL for your Executer scripts. Example: _http://my.machine.com/cgi-bin/executer_.
    1 Give the machine name of your Executer. Example: _my-pc_.
    1 Click the register button.
@@ -30,5 +30,3 @@ Of course you can always make your Executer private by using =ALLOWTOPICVIEW= fo
 </table>
 <input type="submit" class="twikiSubmit" value='Register' />
 </form>%STOPINCLUDE%
-
-%META:TOPICMOVED{by="StephaneLenclud" date="1178811576" from="TWiki.ExecuterCreate" to="TWiki.ExecuterRegistration"}%

@@ -180,7 +180,7 @@ sub _getListOfUsers {
             if( $line =~ m/^\s*\* ($TWiki::regex{webNameRegex}\.)?(\w+)\s*(?:-\s*(\S+)\s*)?-\s*\d+ \w+ \d+\s*$/o ) {
                 my $web = $1 || $mainWeb;
                 my $wikiName = $2;
-                if(TWiki::Func::topicExists($web, $wikiName) && $wikiName !~ m/TWiki.*|UnknownUser/){
+                if(TWiki::Func::topicExists($web, $wikiName) && $wikiName !~ m/TWiki.*|UnknownUser|AdminUser|AdminGroup|RegistrationAgent|WikiGuest/){
                     push(@users, $wikiName);
                 }
             }

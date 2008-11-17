@@ -232,13 +232,13 @@ The short summary is:
 To show the tags in the top bar, edit [[%SYSTEMWEB%.WebTopBar]] and copy:
 <verbatim>
 <div class="tagmetags">
-Tags: %TAGME{ tpaction="%URLPARAM{tpaction}%" web="%WEB%" tag="%URLPARAM{tag}%" }%, [[TWiki.TagMeViewAllTags][view all tags]]
+Tags: %TAGME{ tpaction="%URLPARAM{tpaction}%" web="%WEB%" tag="%URLPARAM{tag}%" }%, [[%SYSTEMWEB%.TagMeViewAllTags][view all tags]]
 </div>
 </verbatim>
 
 To show the tags at the bottom of every page, write in [[%USERSWEB%.SitePreferences]]:
 <verbatim>
- * Set WEBCOPYRIGHT = Tags: %TAGME{ tpaction="%URLPARAM{tpaction}%" web="%WEB%" tag="%URLPARAM{tag}%" }%, [[TWiki.TagMeViewAllTags][view all tags]] %BR% Copyright &copy; 1999-%GMTIME{"$year"}% by... etc
+ * Set WEBCOPYRIGHT = Tags: %TAGME{ tpaction="%URLPARAM{tpaction}%" web="%WEB%" tag="%URLPARAM{tag}%" }%, [[%SYSTEMWEB%.TagMeViewAllTags][view all tags]] %BR% Copyright &copy; 1999-%GMTIME{"$year"}% by... etc
 </verbatim>
 
 ---+++ How to show the tags without vote buttons
@@ -291,7 +291,7 @@ To show the 'tags shown on a topic':
 
 <verbatim>
 <div class="tagmetags">
-Tags: %TAGME{ tpaction="%URLPARAM{tpaction}%" web="%WEB%" tag="%URLPARAM{tag}%" }%, [[TWiki.TagMeViewAllTags][view all tags]]
+Tags: %TAGME{ tpaction="%URLPARAM{tpaction}%" web="%WEB%" tag="%URLPARAM{tag}%" }%, [[%SYSTEMWEB%.TagMeViewAllTags][view all tags]]
 </div>
 </verbatim>
 

@@ -15,7 +15,7 @@ The idea and first implementation of form-based editing for tables goes back to 
 
 Before you can edit a table, you need to define a template that describes the layout of the table in the style of %SYSTEMWEB%.DataForms. The table format is given by a table in the form template: each row defines a table column by giving a field name, field type, size, and initial values, if any. The field type determines how the table row is edited (e.g., as text, textare, radio, checkbox, etc.).
 
-For ease of transition of existing systems, the table schema can also be defined in the syntax of TWiki.EditTablePlugin.
+For ease of transition of existing systems, the table schema can also be defined in the syntax of %SYSTEMWEB%.EditTablePlugin.
 
 ---++ Per Table Settings
 
@@ -110,7 +110,7 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, for example, =
 
    * This Plugin does not (yet) support TWiki table formatting like Multi-span cells (e.g. =| ... ||=)
    * You cannot put two =%<nop>EDITTABLE{}%= statements on the same line in the source
-   * Defining the schema in the format of TWiki.EditTablePlugin requires patching of =Form.pm=
+   * Defining the schema in the format of %SYSTEMWEB%.EditTablePlugin requires patching of =Form.pm=
 
 
 ---++ Plugin Installation Instructions
@@ -130,7 +130,7 @@ __Note:__ You do not need to install anything on the browser to use this Plugin.
      | ==templates/editTableRow.tmpl== |  |
    * Verify access and ownership settings for the new scripts.
    * Edit your .htaccess file to require a valid user for the included scripts (if needed).
-   * Apply the [[%ATTACHURL%/Form.pm.formdef_patch][attached patch]] to =lib/TWiki/Form.pm= if you want to use the schema definition in the style of TWiki.EditTablePlugin
+   * Apply the [[%ATTACHURL%/Form.pm.formdef_patch][attached patch]] to =lib/TWiki/Form.pm= if you want to use the schema definition in the style of %SYSTEMWEB%.EditTablePlugin
 
 
 ---++ Plugin Info
@@ -138,7 +138,7 @@ __Note:__ You do not need to install anything on the browser to use this Plugin.
 |  Plugin Author: | TWiki:Main/ThomasWeigert |
 |  Plugin Version: | 20 Sep 2006 |
 |  Change History: | <!-- specify latest version first -->&nbsp; |
-|  20 Sep 2006: | Add compatability with table schema definition from TWiki.EditTablePlugin. Create header row when adding the first line to an empty table. |
+|  20 Sep 2006: | Add compatability with table schema definition from %SYSTEMWEB%.EditTablePlugin. Create header row when adding the first line to an empty table. |
 |  08 Sep 2006: | Use strict warnings. Fix handling of checkbox fields. Move to last edited row after save to avoid scrolling. Do not insert placeholder text in first field. |
 |  01 Sep 2006: | Dakar port. Fix handling of date fields in Dakar. Allow editlink in tag. Move existing table to bottom of edit view. |
 |  07 Jul 2005: | Remove further warning message (thanks to TWiki:Main/KennethLavrsen and TWiki:Main/CrawfordCurrie)   |

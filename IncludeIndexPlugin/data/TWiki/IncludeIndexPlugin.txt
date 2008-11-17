@@ -16,7 +16,7 @@ except:
 	1 %INLCUDEd pages, shown as defined by the format string.
 	  Default is "&nbsp;&nbsp;&nbsp;*&nbsp;", i.e. a bullet list.
 
-The format string accepts the same syntax as a TWiki.FormattedSearch.
+The format string accepts the same syntax as a %SYSTEMWEB%.FormattedSearch.
 Use this to extract reports about your included pages.
 E.g. create a table of current revision information
 for all sub documents of a bigger manual:

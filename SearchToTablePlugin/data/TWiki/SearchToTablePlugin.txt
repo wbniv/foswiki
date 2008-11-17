@@ -66,8 +66,3 @@ Performs a topic search and puts results into a table:
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 
 -- TWiki:Main.KenKachnowich  -  21 Dec 2001 <br> 
-
-
-
-
-%META:TOPICMOVED{by="JohnTalintyre" date="1002163558" from="TWiki.FancyTablePlugin" to="TWiki.TablePlugin"}%

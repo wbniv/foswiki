@@ -7,7 +7,7 @@
 
 ---++ Documentation
 %STARTSECTION{name="documentation" type="section"}%
-This function is called by the TWiki.RenderPlugin to implement the REST handler
+This function is called by the %SYSTEMWEB%.RenderPlugin to implement the REST handler
 for the hierarchy browsers.
 
 The output format for the list formats is fixed currently to be used in RenderCategoryBrowser.

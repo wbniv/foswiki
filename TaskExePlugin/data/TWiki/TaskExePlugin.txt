@@ -34,7 +34,7 @@ Use =TASKPARENT= to specify the parent topic for newly created task specificatio
 Use =EXECUTERPARENT= to specify the parent topic for newly created executer registration. That topic should be in the =TASKWEB= really.
    * Set EXECUTERPARENT = Sandbox.TaskExeParent
 
-Use =INSTALLEDWEB= to specify the Web in which the TWiki.TaskExeManager was installed.
+Use =INSTALLEDWEB= to specify the Web in which the %SYSTEMWEB%.TaskExeManager was installed.
    * Set INSTALLEDWEB = TWiki
 
 ---++ Installation Instructions
@@ -58,5 +58,3 @@ Use =INSTALLEDWEB= to specify the Web in which the TWiki.TaskExeManager was inst
 |  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/TaskPluginAppraisal |
 
 <!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the Dev topic instead. -->
-
-%META:TOPICMOVED{by="StephaneLenclud" date="1179060207" from="TWiki.TaskPlugin" to="TWiki.TaskExePlugin"}%

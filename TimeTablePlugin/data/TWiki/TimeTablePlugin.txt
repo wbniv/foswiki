@@ -238,7 +238,7 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
       * # Set TOOLTIPFIXLEFT = -163
       * # Set TOOLTIPFIXTOP = 0
 
-   * Set unknown parameter message (default: =%<nop>RED% Sorry, some parameters are unknown: %<nop>UNKNOWNPARAMSLIST% %<nop>ENDCOLOR% &lt;br/&gt; Allowed parameters are (see !TWiki.TimeTablePlugin topic for more details): %<nop>KNOWNPARAMSLIST%=)
+   * Set unknown parameter message (default: =%<nop>RED% Sorry, some parameters are unknown: %<nop>UNKNOWNPARAMSLIST% %<nop>ENDCOLOR% &lt;br/&gt; Allowed parameters are (see !%SYSTEMWEB%.TimeTablePlugin topic for more details): %<nop>KNOWNPARAMSLIST%=)
       * # Set UNKNOWNPARAMSMSG = %RED% Following parameter(s) is/are unknown: %UNKNOWNPARAMSLIST% %ENDCOLOR%
 
 

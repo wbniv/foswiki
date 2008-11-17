@@ -323,7 +323,7 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
 	* Enables/Disables link anchors (default: =on=)
 		* # Set ANCHORS = off
 
-	* Set unknown parameter message (default: =%<nop>RED% Sorry, some parameters are unknown: %<nop>UNKNOWNPARAMSLIST% %<nop>ENDCOLOR% &lt;br/&gt; Allowed parameters are (see <nop>TWiki.ChecklistPlugin topic for more details): %<nop>KNOWNPARAMSLIST%= </verbatim>)
+	* Set unknown parameter message (default: =%<nop>RED% Sorry, some parameters are unknown: %<nop>UNKNOWNPARAMSLIST% %<nop>ENDCOLOR% &lt;br/&gt; Allowed parameters are (see <nop>%SYSTEMWEB%.ChecklistPlugin topic for more details): %<nop>KNOWNPARAMSLIST%= </verbatim>)
 		* # Set UNKNOWNPARAMSMSG = %RED% Following parameter(s) is/are unknown: %UNKNOWNPARAMSLIST% %ENDCOLOR%
 
 	* Enables/Disables mail notification (default: =off=; old bevavior: =on=)

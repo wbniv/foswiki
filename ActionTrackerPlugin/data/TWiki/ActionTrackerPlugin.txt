@@ -180,7 +180,7 @@ Each action is assigned a Unique Identifier (UID) when it is created. This UID i
 #NotiFication
 ---+ Notification
 
-ActionTrackerPlugin comes with a notifier script, like the =mailnotify= script used for WebNotify (see TWiki.MonitoringSiteActivity for more information on setting up mailnotify). This script allows you to:
+ActionTrackerPlugin comes with a notifier script, like the =mailnotify= script used for WebNotify. This script allows you to:
 	* examine all the actions in all webs (except those specified NOSEARCHALL) and notify owners of the state of actions,
 	* find actions that have changed state, and notify people who have registered an interest in that action.
 
