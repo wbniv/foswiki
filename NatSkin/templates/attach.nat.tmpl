@@ -25,7 +25,7 @@
     <input type="hidden" name="filename" id="filename" value="%FILENAME%" />
     <div class="twikiFormStep">
       <h3><label for="filepath">%MAKETEXT{"File"}%:</label></h3>
-      <input type="file" name="filepath" id="filepath" size="50"/>
+      <input class="required" type="file" name="filepath" id="filepath" size="50"/>
       %IFDEFINEDTHEN{"$percntURLPARAM{\"message\"}$percnt"}%
         <span class="twikiAlert" id="message" style="padding:0px 10px">
           %URLPARAM{"message"}%

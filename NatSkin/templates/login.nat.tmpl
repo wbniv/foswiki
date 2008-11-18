@@ -30,12 +30,13 @@
 </div></div> 
 <!-- //content -->%TMPL:END%
 %TMPL:DEF{"contact"}%<!-- contact -->
-<div class="natContact"> 
-<hr />
+<div class="twikiGrayText natContact"> 
 %MAKETEXT{"Contact [_1] if you have any questions." args="<a href='mailto:%WIKIWEBMASTER%?subject=%ENCODE{\"%WIKITOOLNAME%: Request for support\"}%&&body=%ENCODE{\"Hello, I have got a question ...\"}%'>%WIKIWEBMASTER%</a>"}%
 </div> 
 <!-- //contact -->%TMPL:END%
 %TMPL:DEF{"seealso"}%<!-- seealso -->
+<div class="twikiFormStep twikiFormLast">
 [[%SYSTEMWEB%.ResetPassword][%MAKETEXT{"Did you forget your password?"}%]] %BR%
 [[%TWIKIREGISTRATION%][%MAKETEXT{"Do you want to become a registered user?"}%]]
+</div>
 <!-- //seealso -->%TMPL:END%

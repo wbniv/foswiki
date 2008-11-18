@@ -1,5 +1,5 @@
 data/Main/NatSkinUserViewTemplate.txt 0644
-data/Main/WikiGuestSideBar.txt 0644
+data/Main/TWikiGuestSideBar.txt 0644
 data/Main/WebLinks.txt 0644
 data/TWiki/MySideBarTemplate.txt 0644
 data/TWiki/MySideBar.txt 0644
@@ -32,6 +32,7 @@ pub/TWiki/NatSkin/BaseButtons.css 0644
 pub/TWiki/NatSkin/BaseStyle.css 0644
 pub/TWiki/NatSkin/BaseThin.css 0644
 pub/TWiki/NatSkin/bin.png 0644
+pub/TWiki/NatSkin/blank.gif 0644
 pub/TWiki/NatSkin/BlueNoteBorder.css 0644
 pub/TWiki/NatSkin/BlueNoteButtons.css 0644
 pub/TWiki/NatSkin/BlueNoteStyle.css 0644
@@ -51,13 +52,16 @@ pub/TWiki/NatSkin/feed-icon-12x12.gif 0644
 pub/TWiki/NatSkin/feed-icon-12x12-gray.gif 0644
 pub/TWiki/NatSkin/feed-icon-12x12-gray.png 0644
 pub/TWiki/NatSkin/feed-icon-12x12.png 0644
+pub/TWiki/NatSkin/foswiki-logo.png 0644
 pub/TWiki/NatSkin/GrayBlend.gif 0644
 pub/TWiki/NatSkin/GrayBlend.png 0644
 pub/TWiki/NatSkin/help.png 0644
+pub/TWiki/NatSkin/iepngfix.htc 0644
 pub/TWiki/NatSkin/link_add.png 0644
 pub/TWiki/NatSkin/magnifier.png 0644
 pub/TWiki/NatSkin/menuarrow.gif 0644
 pub/TWiki/NatSkin/menucorner.gif 0644
+pub/TWiki/NatSkin/nextwiki-header-notrans.png 0644
 pub/TWiki/NatSkin/nextwiki-header.png 0644
 pub/TWiki/NatSkin/nextwiki-header-tile.png 0644
 pub/TWiki/NatSkin/nextwiki-logo.png 0644

@@ -25,8 +25,9 @@
     </label>
   </div>
   <div class="twikiFormButtons">
-    <input type="submit" class="twikiSubmit natOkButton" value="%MAKETEXT{"OK"}%" />
-    <input type="button" class="twikiButton natCancelButton" value="%MAKETEXT{"Cancel"}%" onclick="toggleAttachmentEditor(this, 'off')" />
+    %BUTTON{"%MAKETEXT{"OK"}%" icon="tick" type="submit"}%
+    %BUTTON{"%MAKETEXT{"Cancel"}%" onclick="toggleAttachmentEditor(this, 'off')" icon="cross"}%
+    %CLEAR%
   </div>
 </form>
 </div>
@@ -85,7 +86,7 @@
   </table>
 </div>%TMPL:END%
 %TMPL:DEF{ATTACH:files:footer:A}%<div class="twikiFormStep twikiFormButtons twikiFormLast">
-<input type="button" class="natAltButton" title="Return to topic" value='%MAKETEXT{"Back"}%' onclick="window.location.href = '%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%';">
+%BUTTON{"%MAKETEXT{"Back"}%" style="float:right" class="natAltButton" title="Return to topic" target="%WEB%.%TOPIC%"}%
 </div>%TMPL:END%
 
 <!-- Header definition for top table in attach screen -->

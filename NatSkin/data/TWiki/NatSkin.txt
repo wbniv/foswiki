@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="ProjectContributor" date="1226506238" format="1.1" reprev="1.5" version="$Rev$"}%
+%META:TOPICINFO{author="ProjectContributor" date="1227037698" format="1.1" version="$Rev$"}%
 <!--
 
    PLEASE DO NOT EDIT THIS TOPIC
@@ -119,12 +119,15 @@ allways open an extra window.
 |  Skin Author: | Michael Daum |
 |  Copyright &copy;: | 2003-2008, Michael Daum http://michaeldaumconsulting.com |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  Skin Version: | v3.0-pre27 |
+|  Skin Version: | v3.0-pre28 |
 |  Dependencies: | NatSkinPlugin |
 |  Description: | Driven by cascading stylesheets, Comes with 12 alternative styles, <nop>MoveableType and Wordpress Look-n-Feel |
 |  Base Name: | nat |
 |  Screenshot: | <div style="overflow:hidden;height:200px"><a href="%ATTACHURL%/BlueNoteStyle.jpeg"><img src="%ATTACHURL%/BlueNoteStyle.jpeg" title="Clean"/></a></div> |
 |  Change&nbsp;History: | <!-- specify latest version first -->&nbsp; |
+|  18 Nov 2008: | fixes for IE6; \
+                  new interim logo for foswiki; \
+                  using jquery buttons where possible |
 |  12 Nov 2008: | rendering data forms as tables in view again; \
                   integrated css fixes by Carlo Schulz; \
                   moving revinfo to first h1 in content area |
@@ -406,8 +409,8 @@ allways open an extra window.
 |  12 Aug 2005: | first round of pre-releases numbered 1.91 upwards |
 |  24 Jul 2005: | rewritten the templates, renamed the CSS classes |
 |  25 Jun 2003: | Initial version |
-|  Skin Home: | http://nextwiki.org/Extensions/NatSkin |
-|  Feedback: | http://nextwiki.org/Extensions/NatSkinDev |
+|  Skin Home: | http://foswiki.org/Extensions/NatSkin |
+|  Feedback: | http://foswiki.org/Extensions/NatSkinDev |
 
 %META:FILEATTACHMENT{name="wikiringlogo40x40.png" attachment="wikiringlogo40x40.png" attr="h" comment="" date="1189787359" path="wikiringlogo40x40.png" size="2571" stream="wikiringlogo40x40.png" tmpFilename="" user="ProjectContributor" version="1"}%
 %META:FILEATTACHMENT{name="BlueNoteStyle.jpeg" attachment="BlueNoteStyle.jpeg" attr="h" comment="" date="1225905266" path="BlueNoteStyle.jpeg" size="42093" stream="IO::File=GLOB(0x8f2567c)" tmpFilename="/var/tmp/CGItemp41158" user="ProjectContributor" version="1"}%

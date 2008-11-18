@@ -46,11 +46,12 @@
   </div>
   %FIDEFINED%
   <div class="twikiFormStep twikiFormButtons twikiFormLast">
-    <input type="button" class="natAltButton" value='%MAKETEXT{"Clear all"}%' onClick="checkAll('rename', false);" title="%MAKETEXT{"Clear selection"}%"/>
-    <input type="button" class="natAltButton" value='%MAKETEXT{"Set all"}%' onClick="checkAll('rename', true);" title="%MAKETEXT{"Select all topics"}%"/>
+    %BUTTON{"%MAKETEXT{"Set all"}%" icon="add" onclick="checkAll('rename', true);" title="%MAKETEXT{"Select all topics"}%"}%
+    %BUTTON{"%MAKETEXT{"Clear all"}%" icon="delete" onclick="checkAll('rename', false);" title="%MAKETEXT{"Clear selection"}%"}%
     %IFDEFINEDTHEN{"%URLPARAM{"currentwebonly"}%" as="on"}%
-    <input type="button" class="natCancelButton" value="%MAKETEXT{"Search in all webs"}%" onclick="window.location.href='%SCRIPTURLPATH{"rename"}%/%WEB%/%TOPIC%'" title="Search for backlinks in all webs" />
+    %BUTTON{"%MAKETEXT{"Search in all webs"}%" icon="find" onclick="window.location.href='%SCRIPTURLPATH{"rename"}%/%WEB%/%TOPIC%'" title="%MAKETEXT{"Search for backlinks in all webs"}%"}%
     %FIDEFINED%
+    %CLEAR%
   </div>
 </div>
 </form>

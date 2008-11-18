@@ -17,8 +17,9 @@
 %MAKETEXT{"Please go <a href=\"javascript:history.back()\">back</a> in your browser and try again."}%
 
 <form class="natOopsButtons" name="ButtonBox" action="%WIKILOGOURL%">
-  <input type="button" class="natOkButton" value='%MAKETEXT{"OK"}%' onclick="history.back()" />&nbsp;
-  <input type="button" class="natCancelButton"  value='%MAKETEXT{"Cancel"}%' onclick="window.location.href='%WIKILOGOURL%'"/>
+  %BUTTON{"%MAKETEXT{"OK"}%" icon="tick" onclick="history.back()"}%
+  %BUTTON{"%MAKETEXT{"Cancel"}%" target="%WIKILOGOURL%" icon="cross"}%
+  %CLEAR%
 </form> 
 <!-- //goback -->%TMPL:END%
 %TMPL:DEF{"content"}%<!-- content -->

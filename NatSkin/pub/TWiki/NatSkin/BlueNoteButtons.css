@@ -8,6 +8,8 @@
   background-repeat:repeat-x;
   background-position:left bottom;
   border-top:1px solid #E1EAFA;
+  /* ie 6 */
+  _background-image:none;
 }
 .natBodyRight .natWebButtons {
   padding-left:2em;
@@ -48,6 +50,8 @@
   background-repeat:repeat-x;
   background-position:left bottom;
   color:white;
+  /* ie6 */
+  _background-image:none
 }
 
 /* superfish menu *************************/
@@ -134,9 +138,11 @@ ul.superfish li li li.sfHover ul {
 ul.superfish a {
   margin:0em -1em;
   padding:0em 1em;
-  _padding:0em 2em; /* broken box model in IE6 */
   display:block;
   width:100%;
+  /* ie 6 */
+  _padding:0em 2em; 
+  _width:auto;
 }
 
 ul.superfish li {
@@ -215,8 +221,9 @@ ul.superfish li li a:link,
 ul.superfish li li a {
   display:block;
   background:transparent;
-  _background:inherit;
   margin:0em -1em;
   padding:0em 1em;
-  _padding:0em 2em; /* broken box model in IE6 */
+  /* ie 6 */
+  _background:inherit;
+  _padding:0em 2em; 
 }

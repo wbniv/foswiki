@@ -8,15 +8,21 @@
 %TMPL:DEF{"bodyclass"}%natPreviewBody%TMPL:END%
 %TMPL:DEF{"meta"}% %HTTP_EQUIV_ON_PREVIEW% %TMPL:END%
 %TMPL:DEF{"title"}%%TOPICTITLE% (%MAKETEXT{"preview"}%) - %WIKITOOLNAME%%TMPL:END%
-%TMPL:DEF{"contentheader"}%<div class="natBreadCrumbs">%BREADCRUMBS{"%BASEWEB%.%BASETOPIC%" exclude="%BASETOPIC%" separator="<span class='natSep'>&nbsp;&#187; </span>" footer="<span class='natSep'>&#187;</span><nop>%BASETOPIC%"}%</div>%TMPL:END%
-%TMPL:DEF{"content"}%<!-- content -->
+%TMPL:DEF{"contentheader"}%%TMPL:P{"breadcrumbs"}%%TMPL:END%
+%TMPL:DEF{"breadcrumbs"}%<!-- breadcrumbs -->
+<div class="natBreadCrumbs">
+  %MAKETEXT{"You are here:"}%<span class='natSep'>&nbsp; </span>%IFDEFINED{"$percntTHISBREADCRUMBS$percnt" then="$test" else="$percntBREADCRUMBS{separator=\"<span class='natSep'>&nbsp;&#187; </span>\"}$percnt"}%
+</div>
+<!-- //breadcrumbs -->%TMPL:END%
+%TMPL:DEF{"content"}%%TMPL:P{"content_natskin"}%%TMPL:END%
+%TMPL:DEF{"content_natskin"}%<!-- content_natskin -->
 %TMPL:P{"previewtoolbar"}%<!-- previewtoolbar// -->
 %TEXT%
 %META{"form"}%
-<form name="EditForm" method="post" action="%SCRIPTURLPATH{"save"}%/%WEB%/%TOPIC%">
+<form id="EditForm" name="EditForm" method="post" action="%SCRIPTURLPATH{"save"}%/%WEB%/%TOPIC%">
   <input type="hidden" name="action_addform" value="" />
-  <input type="hidden" name="action_checkpoint" value="" />
   <input type="hidden" name="action_cancel" value="" />
+  <input type="hidden" name="action_checkpoint" value="" />
   <input type="hidden" name="action_preview" value="" />
   <input type="hidden" name="action_replaceform" value="" />
   <input type="hidden" name="action_save" value="" />
@@ -33,4 +39,4 @@
   <input type="hidden" name="rev" value="%URLPARAM{"rev"}%" />
   <input type="hidden" name="text" value="%HIDDENTEXT%" />
 </form>
-<!-- //content-->%TMPL:END%
+<!-- //content_natskin-->%TMPL:END%

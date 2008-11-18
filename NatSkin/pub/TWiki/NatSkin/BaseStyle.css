@@ -20,7 +20,7 @@
 .twikiClear {
   margin:0;
   padding:0;
-  height:0;
+  height:0px;
   line-height:0px;
   clear:both;
   display:block;
@@ -37,10 +37,10 @@
 }
 
 .twikiGrayText {
-  color:#8E9195 !important;
+  color:#8E9195;
 }
 .twikiGrayText a {
-  color:#7B7E81 !important;
+  color:#7B7E81;
 }
 .twikiSmallish i,
 .twikiSmall i {
@@ -48,7 +48,7 @@
 }
 
 /* html elements */
-html {
+.natHtml {
   background:white;
 }
 .twikiEmulatedLink,
@@ -128,6 +128,11 @@ pre {
 }
 .DISnatBody > pre { /* hide from IE */
   /*\*/ overflow:auto !important; /* */ overflow:scroll; /* for Mac Safari */
+}
+
+form {
+  padding:0px;
+  margin:0px;
 }
 
 /* extra divs */
@@ -355,13 +360,6 @@ pre {
   margin:0px auto;
   width:500px;
 }
-.natLogonFormButtons {
-  padding-top:1em;
-}
-.natRememberMe {
-  padding-bottom:1em;
-}
-
 
 /* edit */
 .natEditBody .natLayoutTable {
@@ -833,6 +831,9 @@ legend {
 .twikiFormOptions {
   margin:0.35em 0em;
   line-height:160%;
+}
+.twikiFormStep.twikiFormButtons {
+  margin-top:2em;
 }
 .twikiFormButtons.twikiFormLast {
   margin-top:20px;

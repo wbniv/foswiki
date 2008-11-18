@@ -109,9 +109,9 @@ $(function() {
 ~~~    </tr>"
 ~~~ }%
 <tr>
-    <td colspan="3" align='center'>
-      <input type="submit" class="natOkButton" value="%MAKETEXT{Compare}%">
-      <input type="button" class="natCancelButton" value="Cancel" onclick="window.location.href='%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%'">
+    <td colspan="3">
+      %BUTTON{"%MAKETEXT{Compare}%" icon="tick" type="submit"}%
+      %BUTTON{"%MAKETEXT{Cancel}%" icon="cross" target="%WEB%.%TOPIC%"}%
     </td>
 </tr>
 </table>
@@ -142,7 +142,7 @@ $(function() {
 ~~~   header=""
 ~~~   footer="
 ~~~    <tr>
-~~~      <td colspan=\"3\" align='center'>
+~~~      <td colspan=\"3\">
 ~~~        $previous{'first' url='%SCRIPTURLPATH{oops}%/%WEB%/%TOPIC%?template=oopshistory&rev1=1&nrev=$nrev'}
 ~~~        $previous{'earlier' url='%SCRIPTURLPATH{oops}%/%WEB%/%TOPIC%?template=oopshistory&rev1=$rev1&nrev=$nrev'} 
 ~~~        $next{'later' url='%SCRIPTURLPATH{oops}%/%WEB%/%TOPIC%?template=oopshistory&rev1=$rev1&nrev=$nrev'} 
@@ -152,8 +152,8 @@ $(function() {
 ~~~ }%
 <tr>
     <td colspan="3" align='center'>
-      <input type="submit" class="natOkButton" value="%MAKETEXT{Compare}%">
-      <input type="button" class="natCancelButton" value="Cancel" onclick="window.location.href='%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%'">
+      %BUTTON{"%MAKETEXT{Compare}%" icon="tick" type="submit"}%
+      %BUTTON{"%MAKETEXT{Cancel}%" icon="cross" target="%WEB%.%TOPIC%"}%
     </td>
 </tr>
 </table>

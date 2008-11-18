@@ -1,8 +1,9 @@
 %TMPL:INCLUDE{"attach"}%<!-- template: attachnew.nat.tmpl -->
 %TMPL:DEF{"heading"}%%MAKETEXT{"Upload a file to <nop>[_1]" args="'%TOPICTITLE%'"}%%TMPL:END%
 %TMPL:DEF{"attachaction"}%<!-- attachaction -->
-<input type="submit" class="natOkButton" title="Upload selected file" value='%MAKETEXT{"Submit"}%' />
-<input type="button" class="natCancelButton" title="Cancel and return to topic" value='%MAKETEXT{"Cancel"}%' onclick="window.location.href = '%SCRIPTURLPATH{"view"}%/%WEB%/%TOPIC%';">
+%BUTTON{"%MAKETEXT{"Submit"}%" icon="tick" title="Upload selected file" type="submit"}%
+%BUTTON{"%MAKETEXT{"Cancel"}%" icon="cross" title="Cancel and return to topic" target="%WEB%.%TOPIC%"}%
+%CLEAR%
 <!-- //attachaction -->%TMPL:END%
 %TMPL:DEF{"notes"}% <!-- notes -->
 <p> 

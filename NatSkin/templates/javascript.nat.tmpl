@@ -45,10 +45,11 @@ $(function() {
   if (true) {
     $(".natWebButtonsContents > ul").
       superfish({}).
-      css('visibility', 'visible').
       find("li:has(ul)").
       addClass("hasSubMenu");
+    $(".natWebButtonsContents").css('display', 'block');
   }
+  /* params for ie6 png fixes */
   %TMPL:P{"onloadscript"}% 
 }); 
 </script>

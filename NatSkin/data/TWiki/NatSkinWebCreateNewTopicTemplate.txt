@@ -2,11 +2,11 @@
 %TMPL:INCLUDE{"view"}%
 
 %TMPL:DEF{"content"}%
----+ %MAKETEXT{"Create New Topic in [_1] Web" args="<nop>%BASEWEB%"}%
 %TMPL:P{"formstartstep"}%
+---++ %MAKETEXT{"Create New Topic in the [_1] Web" args="<nop>%BASEWEB%"}%
 %TMPL:P{"topictitlestep"}%
-%TMPL:P{"topicnamestep"}%
-%TMPL:P{"DIStopictemplatestep"}%
+%TMPL:P{"DIStopicnamestep"}%
+%TMPL:P{"topictemplatestep"}%
 %TMPL:P{"formbuttons"}%
 %TMPL:P{"formendstep"}%
 %TMPL:END%
@@ -36,21 +36,21 @@
 
 %TMPL:DEF{"topicnamestep"}%<!-- topicnamestep -->
 <div class='twikiFormStep'>
----+++ %MAKETEXT{"<nop>Name:"}%
+---+++ %MAKETEXT{"Name:"}%
 %TMPL:P{"topicname"}%%TMPL:P{"nonwikiword"}%
 </div>
 <!-- //topicnamestep -->%TMPL:END%
 
 %TMPL:DEF{"topictemplatestep"}%<!-- topictemplatestep -->
 <div class='twikiFormStep'>
----+++ %MAKETEXT{"Use template:"}%
+---+++ %MAKETEXT{"Template:"}%
 %TMPL:P{"topictemplate"}%
 </div>
 <!-- //topictemplate -->%TMPL:END%
 
 %TMPL:DEF{"formbuttons"}%<!-- formbuttons -->
 <div class='twikiFormStep twikiFormButtons twikiFormLast'>
-%TMPL:P{"submit"}%%TMPL:P{"reset"}%%TMPL:P{"cancel"}%
+%TMPL:P{"submit"}%%TMPL:P{"reset"}%%TMPL:P{"cancel"}%%CLEAR%
 </div>
 <!-- //formbuttons -->%TMPL:END%
 
@@ -59,13 +59,14 @@
 <input type="hidden" name="t" value="%GMTIME{"$epoch"}%" />
 <input type="hidden" name="onlynewtopic" value="on" />
 <input type="hidden" name="topicparent" value="%URLPARAM{"topicparent"}%" />
+<input type="hidden" name="topic" id="topic" value="%URLPARAM{"newtopic"}%"/>
 <!-- //formstart -->%TMPL:END%
 
 
 %TMPL:DEF{"topictitle"}%<!-- topictitle -->
 <input type="text" class="twikiInputField required" name="TopicTitle" id="topictitle" size="40" value="%URLPARAM{"newtopictitle"}%" />
 <div class="twikiFormDescription">
-Free form title text.
+%MAKETEXT{"Free form title text."}%
 </div>
 <!--//topictitle -->%TMPL:END%
 
@@ -81,20 +82,20 @@ Free form title text.
 %IF{"'%URLPARAM{"templatetopic"}%'" then='<option selected="selected">%URLPARAM{"templatetopic"}%</option>'}%
 <option value="">%MAKETEXT{"Default template"}%</option>%SEARCH{".*Template$" scope="topic" excludetopic="WebTopicEditTemplate,WebCreateNewTopicTemplate,*ViewTemplate" type="regex" nonoise="on" format="<option>$topic</option>"}%</select> 
 <div class="twikiFormDescription">
-Initialize the new topic using a template.
+%MAKETEXT{"Initialize the new topic using a template."}%
 </div>
 <!-- //topictemplate -->%TMPL:END%
 
 %TMPL:DEF{"submit"}%<!-- submit -->
-<input id="submit" type="submit" class="natOkButton twikiSubmit" value='%MAKETEXT{"OK"}%' />
+%BUTTON{type="submit" icon="tick" value="%MAKETEXT{"OK"}%"}%
 <!-- //submit -->%TMPL:END%
 
 %TMPL:DEF{"reset"}%<!-- reset -->
-<input id="reset" type="reset" class="natAltButton twikiButton" value='%MAKETEXT{"Reset"}%' />
+%BUTTON{type="reset" icon="application_form" value="%MAKETEXT{"Reset"}%"}%
 <!-- //reset -->%TMPL:END%
 
 %TMPL:DEF{"cancel"}%<!-- cancel -->
-<input id="button" type="button" class="natCancelButton twikiButton" value='%MAKETEXT{"Cancel"}%' onclick="window.location.href='%URLPARAM{"origurl" default="%SCRIPTURL{"view"}%/%BASEWEB%/%BASETOPIC%"}%';" />
+%BUTTON{"%MAKETEXT{"Cancel"}%" icon="cross" target="%URLPARAM{"origurl" default="%BASEWEB%.%BASETOPIC%"}%"}%
 <!-- //cancel -->%TMPL:END%
 
 

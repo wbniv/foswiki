@@ -31,8 +31,8 @@
 </html>
 <!-- template: view.plain.nat.tmpl -->
 %TMPL:DEF{"title"}%%HTMLTITLE%%TMPL:END%
-%TMPL:DEF{"content"}%%STARTALIASAREA%%TEXT% 
+%TMPL:DEF{"content"}%<!-- content -->
 %META{"form"}% 
-%STOPALIASAREA% %TMPL:END%
+<!-- //content -->%TMPL:END%
 %TMPL:INCLUDE{"styles"}%
 %TMPL:INCLUDE{"javascript"}%
