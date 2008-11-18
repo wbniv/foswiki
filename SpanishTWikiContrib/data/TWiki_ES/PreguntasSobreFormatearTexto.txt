@@ -1,6 +1,6 @@
 %META:TOPICINFO{author="BaseUserMapping_333" date="1216579969" format="1.1" reprev="1.5" version="1.5"}%
 %META:TOPICPARENT{name="WebHome"}%
-%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+%INCLUDE{"System.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
 
 ---++ Preguntas frecuentes sobre formatear texto
 
@@ -169,7 +169,7 @@ __Nota:__ texto a =%&lt;color&gt;%= tiene que terminar con =%<nop>ENDCOLOR%= . S
 Si necesita más colores puede utilizar HTML, como =&lt;font color="#ff0000"&gt; texto color rojo &lt;/font&gt;=. También puede utilizar el atributo vigente =style= - ejemplo:
 =style="color:#ff0000"= - ubicado en la mayoría de los comandos HTML. =span= es una selección todo-propósito: =&lt;span style="color:#ff0000"&gt;CoLoR&lt;/span&gt;=. Solamente navegadores viejos (como 3.x IE &amp; NS) tienen problemas con =style=.
 
-El código es un _código hexadecimal de color RGB_, que simplemente es Rojo, Verde y Azúl en anotación hexadecimal (base 16, 0-F). Para rojo puro, los componentes RGB son 255-0-0 - rojo puro (255), nada de verde o azúl. En hexadecimal es FF-0-0 o ="#ff0000"= para propósitos de una página internet. TWiki.StandardColors %FLAGGB% lista los colores básicos.
+El código es un _código hexadecimal de color RGB_, que simplemente es Rojo, Verde y Azúl en anotación hexadecimal (base 16, 0-F). Para rojo puro, los componentes RGB son 255-0-0 - rojo puro (255), nada de verde o azúl. En hexadecimal es FF-0-0 o ="#ff0000"= para propósitos de una página internet. %SYSTEMWEB%.StandardColors %FLAGGB% lista los colores básicos.
 
 -----
 %STOPINCLUDE%
@@ -177,7 +177,7 @@ El código es un _código hexadecimal de color RGB_, que simplemente es Rojo, Verd
 
 -- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 21 May 2008
 
-%META:FORM{name="TWiki.TranslationForm"}%
-%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.TextFormattingFAQ"}%
+%META:FORM{name="System.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="System.TextFormattingFAQ"}%
 %META:FIELD{name="Revision" attributes="" title="Revision" value="20"}%
 %META:FIELD{name="Language" attributes="" title="Language" value="es"}%

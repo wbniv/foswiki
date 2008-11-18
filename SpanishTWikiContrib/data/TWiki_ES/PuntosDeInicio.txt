@@ -1,6 +1,6 @@
 %META:TOPICINFO{author="BaseUserMapping_333" date="1216579240" format="1.1" version="1.2"}%
 %META:TOPICPARENT{name="WebPreferences"}%
-%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+%INCLUDE{"System.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
 
 Bienvedid@ al <nop>%WIKITOOLNAME%. Esta página asume que es un usuario nuevo al <nop>%WIKITOOLNAME% y que nunca ha escuchado algo de Wiki antes. A continuación encontrará las páginas más importantes a conocer para que sepa que es Wiki y cómo utilizarlo. Siga cualquier de los enlaces abajo que le interesan y utilice el botón Atrás de su navegador para regresar a esta página si necesita.
 
@@ -21,15 +21,15 @@ Que no se asuste por la documentación - al final todo se reduca a: wiki signific
 
    * [[%SYSTEMWEB%.Macros][Macros]] %FLAGGB%: Cómo se agrega fácilmente texto, gráficos y contenido dinámico
 
-   * TWiki.MainFeatures %FLAGGB%: Las características principales de una plataforma de colaboración TWiki
+   * %SYSTEMWEB%.MainFeatures %FLAGGB%: Las características principales de una plataforma de colaboración TWiki
    * ArchivosAdjuntos: Subir archivos para efectos de distribución o presentación
    * NotificacionDeCambios: Reciba correos de notificación con enlaces a las páginas recién cambiadas
 
-__Temas relacionados:__ TWiki.UserDocumentationCategory %FLAGGB%
+__Temas relacionados:__ %SYSTEMWEB%.UserDocumentationCategory %FLAGGB%
 
 -- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 28 Jun 2008
 
-%META:FORM{name="TWiki.TranslationForm"}%
-%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.StartingPoints"}%
+%META:FORM{name="System.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="System.StartingPoints"}%
 %META:FIELD{name="Revision" attributes="" title="Revision" value="7"}%
 %META:FIELD{name="Language" attributes="" title="Language" value="es"}%

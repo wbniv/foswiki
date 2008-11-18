@@ -66,7 +66,7 @@ Text formatters is engine for text formating syntax. This may format the TWiki p
 
 	* id - The identity of formatter. Each formatter must have this one, it allow to turn on/off formatter per Twiki topic. See variable LOAD and commands LOAD and DISABLE.
 	* Sing # - this is line comment, may used for descriptions.
-	* REGEXP - The main regular expression, with this regular expression TWiki page will matched and formatted. See perlre man page for more information about Regular Expressinons or TWiki.RegularExpressions.
+	* REGEXP - The main regular expression, with this regular expression TWiki page will matched and formatted. See perlre man page for more information about Regular Expressinons or %SYSTEMWEB%.RegularExpressions.
 	* REGEXPIGNORECASE - May be true or false. Default false. This flag signaling regular expressing to ignore case while matching.
 	* REGEXPMULTILINE - Maybe be true or false. Default true. This flag show how lines are matched - by one line or by set of lines. If this flag is true, then matching proccessing per each line, otherwise, all text mathed as one line.
 	* SUBSTITUTION - This is HTML code or just text for replacing matched by REGEXP text. You can use $1, $2, $3 ... etc sings in this variable. See perlre man page for more information about Regular Expressinons.

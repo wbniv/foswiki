@@ -1,6 +1,6 @@
 %META:TOPICINFO{author="BaseUserMapping_333" date="1216579604" format="1.1" reprev="1.5" version="1.5"}%
 %META:TOPICPARENT{name="WebHome"}%
-%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+%INCLUDE{"System.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
 
 %STARTINCLUDE%
 ---+ Glosario TWiki
@@ -13,21 +13,21 @@ _Glosario sencillo de términos TWiki_
 | Máscara _(Skin)_: | Máscaras se sobreponen a la _plantilla_ regular cambiando la distribución del encabezado/pié de _páginas_; el texto de la página no se ve afectado. Máscaras se habilitan típicamente para todo el sitio o una _web_. [[%SYSTEMWEB%.Skins][Detalles...]] %FLAGGB% |
 | Página Web _(Page)_: | Una página normal de internet. Una página del TWiki se componde de su _máscara/plantilla_ y el contenido de la _página_. |
 | Página TWiki _(Topic)_: | El contenido de una _página_ TWiki, componiéndose de texto, un _formulario_ opcional y _archivos adjuntos_ opcionales. Tiene un NombreWiki que es único dentro de la _web_ correspondiente. [[TemasTWiki][Detalles...]] |
-| Plantillas: | (1) Plantillas regulares definen la distribución del encabezado/pié de las _páginas_; el texto de la página no se ve afectado. (2) Páginas de plantilla definen el contenido estándar para _páginas_ nuevas. [[TWiki.TWikiTemplates][Detalles...]] %FLAGGB% |
-| Plugin: | Una extensión preconfigurada del lado de un servidor que agrega cualquier tipo de funciones adicionales perfectamente integradas al TWiki. [[TWiki.Plugins][Detalles...]] %FLAGGB% |
-| Plugin API: | El interfaz estándar para crear TWiki _Plugins_ y programas adicionales que asegura una integración perfecta. [[TWiki.TWikiFuncDotPm][Detalles...]] %FLAGGB% |
+| Plantillas: | (1) Plantillas regulares definen la distribución del encabezado/pié de las _páginas_; el texto de la página no se ve afectado. (2) Páginas de plantilla definen el contenido estándar para _páginas_ nuevas. [[%SYSTEMWEB%.SkinTemplates][Detalles...]] %FLAGGB% |
+| Plugin: | Una extensión preconfigurada del lado de un servidor que agrega cualquier tipo de funciones adicionales perfectamente integradas al TWiki. [[%SYSTEMWEB%.Plugins][Detalles...]] %FLAGGB% |
+| Plugin API: | El interfaz estándar para crear TWiki _Plugins_ y programas adicionales que asegura una integración perfecta. [[%SYSTEMWEB%.TWikiFuncDotPm][Detalles...]] %FLAGGB% |
 | Preferencias: | La configuración de preferencias de todo el sitio, una _web_ específica e individual de cada usuario. Las configuraciones se guardan en las páginas %SYSTEMWEB%.DefaultPreferences %FLAGGB%, WebPreferences %FLAGGB% y %USERSWEB%.WikiUsers %FLAGGB%. [[%SYSTEMWEB%.Macros#PreferencesVariables][Detalles...]] %FLAGGB% |
 | Sitio: | Una instalación de TWiki que consiste de una o más _webs_. [[SitioTWiki][Detalles...]] |
 | TWiki: | Una plataforma de colaboración basada en el internet dirigida al mundo corporativo. Contracción de "TakeFive Wiki". Casualmente, sucede que también es el nombre de un robot de inteligencia artificial de la película de 1979 y una serie de televisión de Buck Rogers. Características incluyen la edición a través del navegador, generación automática de enlaces en texto (basada en ideas de la <nop>WikiWikiWeb original), control de revisión, _archivos adjuntos_, uso de _formularios_, configuración de _preferencias_, control de acceso y más. [[http://TWiki.org/][Detalles...]] %FLAGGB% |
 | TWiki.org: | Sitio oficial de internet, centro de todo el desarrollo. [[http://TWiki.org/][Detalles...]] %FLAGGB% |
 | Variables: | Cadena de caracteres de texto de la forma =%VARIABLE%= que serán convertidos en texto, imágenes o cualquier otro tipo de contenido en el momento de ejecución; hay variables del sistema que son parte del código del paquete principal del TWiki, configuraciones de _preferencias_ y variables de plugins. [[%SYSTEMWEB%.Macros][Detalles...]] %FLAGGB% |
-| Web: | Una colección de _páginas TWiki_ bajo un nombre común. Varias características como búsqueda, privilegios de acceso, disponibilidad de plugins, diseño de plantillas pueden ser controlados individualmente para cada web. [[TWiki.ManagingWebs][Detalles...]] %FLAGGB% |
+| Web: | Una colección de _páginas TWiki_ bajo un nombre común. Varias características como búsqueda, privilegios de acceso, disponibilidad de plugins, diseño de plantillas pueden ser controlados individualmente para cada web. [[%SYSTEMWEB%.ManagingWebs][Detalles...]] %FLAGGB% |
 
-__Páginas relacionadas:__ TWiki.UserDocumentationCategory %FLAGGB%
+__Páginas relacionadas:__ %SYSTEMWEB%.UserDocumentationCategory %FLAGGB%
 
 -- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 22 May 2008
 
-%META:FORM{name="TWiki.TranslationForm"}%
+%META:FORM{name="System.TranslationForm"}%
 %META:FIELD{name="Origin" attributes="" title="Origin" value="%SYSTEMWEB%.GlossaryOfTerms"}%
 %META:FIELD{name="Revision" attributes="" title="Revision" value="5"}%
 %META:FIELD{name="Language" attributes="" title="Language" value="es"}%

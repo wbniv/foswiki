@@ -1,6 +1,6 @@
 %META:TOPICINFO{author="BaseUserMapping_333" date="1217475235" format="1.1" version="1.2"}%
 %META:TOPICPARENT{name="WebLeftBar"}%
-%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+%INCLUDE{"System.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
 
 Esto es un entrenamiento introductorio corto para prinicipiantes TWiki.
 
@@ -338,14 +338,14 @@ Hay muchos plugins más, ver http://TWiki.org/cgi-bin/view/Plugins
    * Contribuciones valiosas también fueron recibidos del TWiki Open Source community; menciones especiales van dirigidas a:
       * TWiki:Main.WalterMundt
       * TWiki:Main.SvenDowideit
-   * La útima versión de esta presentación está disponible en TWiki:TWiki.ATasteOfTWiki, donde también puede dar su retroalimentación
+   * La útima versión de esta presentación está disponible en %SYSTEMWEB%.BeginnersStartHere, donde también puede dar su retroalimentación
 %SLIDESHOWEND%
 
-__Temas relacionados:__ BienvenidoHuesped, TutorialTWiki, TWiki:TWiki.ATasteOfTWikiTemplate %FLAGGB%  
+__Temas relacionados:__ BienvenidoHuesped, TutorialTWiki %FLAGGB%  
 
 -- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 05 Jun 2008
 
-%META:FORM{name="TWiki.TranslationForm"}%
-%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.ATasteOfTWiki"}%
+%META:FORM{name="System.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="System.ATasteOfTWiki"}%
 %META:FIELD{name="Revision" attributes="" title="Revision" value="7"}%
 %META:FIELD{name="Language" attributes="" title="Language" value="es"}%

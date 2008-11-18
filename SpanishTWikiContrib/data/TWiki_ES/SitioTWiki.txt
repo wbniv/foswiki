@@ -1,6 +1,6 @@
 %META:TOPICINFO{author="BaseUserMapping_333" date="1216579285" format="1.1" version="1.6"}%
 %META:TOPICPARENT{name="WebHome"}%
-%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+%INCLUDE{"System.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
 
 ---++ TWiki es una plataforma de colaboración basada en el internet
    * Un sitio TWiki es un ambiente de comunicaciones abiertas, completamente equipado y fácil de utilizar:
@@ -20,9 +20,9 @@
       * facilitar la completación y modificación de texto _(Qué tan fácil? Toque el enlace *Editar* al final de la página...)_
       * permitir que encuentra información _rápidamente_ ([[WebSearch][WebSearch]] %FLAGGB%)
 
-   * TWiki ofrece a la gente una manera intuitiva para encontrarse y colaborar, que aspira los ideales de Zen conocidos como TWiki.WabiSabi %FLAGGB%. Encuentra belleza en el imperfecto y en la evolución fugitiva y constante. (Al final, esto será lo que necesita.)
+   * TWiki ofrece a la gente una manera intuitiva para encontrarse y colaborar, que aspira los ideales de Zen conocidos como %SYSTEMWEB%.WabiSabi %FLAGGB%. Encuentra belleza en el imperfecto y en la evolución fugitiva y constante. (Al final, esto será lo que necesita.)
 
-   * TWiki en uno de los muchos TWiki.WikiWikiClones %FLAGGB%, basados en la [[http://c2.com/][Wiki Wiki Web]] original de Ward Cunningham.
+   * TWiki en uno de los muchos %SYSTEMWEB%.WikiWikiClones %FLAGGB%, basados en la [[http://c2.com/][Wiki Wiki Web]] original de Ward Cunningham.
 
 ---++ "TWiki" significa...
 
@@ -45,17 +45,17 @@
 ---++ Aviso legal
 
    * TWiki&trade;, el logo TWiki y la línea "Collaborate with TWiki" son marcar registradas por TWiki:Main.PeterThoeny - fundador del TWiki.
-   * TWiki está desarrollado como Software Libre bajo la [[TWiki.GnuGeneralPublicLicense][GNU/GPL]] %FLAGGB%
+   * TWiki está desarrollado como Software Libre bajo la [[%SYSTEMWEB%.GnuGeneralPublicLicense][GNU/GPL]] %FLAGGB%
    * TWiki tiene sus orígenes en el GPLed <nop>JosWiki. Muchas gracias a Markus Peter and Dave Harris por crear <nop>JosWiki!
    * La dirección principal de TWiki es http://twiki.org/
    * Puede obtener la última versión de TWiki de http://twiki.org/download.html
    * Este sitio está utilizando la versión *%WIKIVERSION%*
 
-__Páginas relacionadas:__ TWiki.UserDocumentationCategory %FLAGGB%
+__Páginas relacionadas:__ %SYSTEMWEB%.UserDocumentationCategory %FLAGGB%
 
 -- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 02 May 2008
 
-%META:FORM{name="TWiki.TranslationForm"}%
-%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.TWikiSite"}%
+%META:FORM{name="System.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="System.TWikiSite"}%
 %META:FIELD{name="Revision" attributes="" title="Revision" value="26"}%
 %META:FIELD{name="Language" attributes="" title="Language" value="es"}%

@@ -1,6 +1,6 @@
 %META:TOPICINFO{author="BaseUserMapping_333" date="1216579588" format="1.1" reprev="1.8" version="1.8"}%
 %META:TOPICPARENT{name="WebHome"}%
-%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+%INCLUDE{"System.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
 
 %STARTINCLUDE%
 ---+ Formularios TWiki
@@ -16,9 +16,9 @@ Agregando datos de entrada basados en formularios a contenido libre, le permite 
 Pasos típicos para generar una aplicación en base a formularios TWiki:
    1. Definir una plantilla del formulario
    1. Habilitar el formulario para la web
-   1. Agregar el formulario a una [[TWiki.TWikiTemplates#Template_Topics][plantilla de página]] %FLAGGB%
+   1. Agregar el formulario a una [[%SYSTEMWEB%.TWikiTemplates#Template_Topics][plantilla de página]] %FLAGGB%
    1. Generar un formulario HTML para crear temas nuevos en base a plantilla de página
-   1. Generar una [[TWiki.FormattedSearch][búsqueda formateada]] %FLAGGB% para listar los temas que comparten el mismo formulario
+   1. Generar una [[%SYSTEMWEB%.FormattedSearch][búsqueda formateada]] %FLAGGB% para listar los temas que comparten el mismo formulario
 
 ---++ Definir un formulario
 Una plantilla de formulario especifica los compos de un formulario. Una plantilla de formulario es simplemente una página conteniendo una tabla TWiki, donde cada línea de la tabla especifica un campo del formulario
@@ -89,7 +89,7 @@ Formularios tiene que habilitarse individualmente por cada web. La variable ==WE
 
 ---++ Adjuntar un formulario a un tema
 
-   * Edite el tema y siga el botón "Adjuntar formulario" para adjuntar un formulario. Normalmente se adjunta un formulario a una [[TWiki.TWikiTemplates#TemplateTopic][plantilla de página]] %FLAGGB%, sea a la plantilla estándar de la web llamada =WebTopicEditTemplate= o a otro tema nuevo que funcione como plantilla de una aplicación especial. Valores iniciales del formulario también pueden definirse en este momento.
+   * Edite el tema y siga el botón "Adjuntar formulario" para adjuntar un formulario. Normalmente se adjunta un formulario a una [[%SYSTEMWEB%.TWikiTemplates#TemplateTopic][plantilla de página]] %FLAGGB%, sea a la plantilla estándar de la web llamada =WebTopicEditTemplate= o a otro tema nuevo que funcione como plantilla de una aplicación especial. Valores iniciales del formulario también pueden definirse en este momento.
 
    * Adicionalmente, se puede adjuntar un formulario a un tema nuevo utilizando el parametro =formtemplate= en la URL (cuando se edita o guarda). Valores iniciales pueden incorporarse en la URL o como valores resultantes de un formulario.
       * cuando no son casillas: ==name==, ex: ==?BugPriority=1==
@@ -103,7 +103,7 @@ Formularios tiene que habilitarse individualmente por cada web. La variable ==WE
        <input type="submit" class="twikiSubmit" value="Create" />
     </form>
        </verbatim>
-   * __%T% Consejo:__ Para aplicaciones TWiki puede [[TWiki.TWikiTemplates#AutomaticallyGeneratedTopicname][generar automáticamente nombres únicos de temas]] %FLAGGB%.
+   * __%T% Consejo:__ Para aplicaciones TWiki puede [[%SYSTEMWEB%.TWikiTemplates#AutomaticallyGeneratedTopicname][generar automáticamente nombres únicos de temas]] %FLAGGB%.
 
    * __%X% Nota:__ Valores iniciales no serán incorporados en el formulario de un tema nuevo si _solamente_ utiliza el parametro formtemplate.
 
@@ -170,7 +170,7 @@ Por ejemplo, un formulario sencilla con solamente un campo para un nombre y una 
    * Variables como valores iniciales de un formulario serán interpretadas en el momento que se carga la definición del formulario.
       * Si quiere utilizar el caracter =|= como valor inicial de un campo, tiene que anteponer una barra invertida =\|=.
       * Puede utilizar =&lt;nop>= para evitar que se interpreten variables TWiki.
-      * Puede utilizar [[TWiki.FormatTokens][marcas de formato]] %FLAGGB% para evitar que se interpreten otros caracteres.
+      * Puede utilizar [[%SYSTEMWEB%.FormatTokens][marcas de formato]] %FLAGGB% para evitar que se interpreten otros caracteres.
 *Notas generales:*
    * Cuando se ve un tema, no se leerá la definición correspondiente.
    * Temas que definan formularios pueden ser protegidos de manera normal, utilizando %SYSTEMWEB%.AccessControl %FLAGGB% para restringir quien puede cambiar la plantilla de un formulario y/o la lista individual de valores. Tome en consideración que se requiere permiso de ver el tema para poder editar los temas que utilizan la definición del formulario, aúnque _no_ se requiere permiso de ver a la definición del formulario para ver un tema donde se utilizó el formulario.
@@ -197,7 +197,7 @@ Por ejemplo:
    * La columna ==Values== *tiene que estar vacía* en la definición del formulario correspondiente.
  
 ---++ Ampliar el rango de tipos de datos para formularios
-Puede ampliar el rango de tipos de datos aceptados por formularios utilizando [[TWiki.Plugins]] %FLAGGB%. Todos estos tipos de datos ampliados solamente pueden tener un valor con las siguientes excepciones:
+Puede ampliar el rango de tipos de datos aceptados por formularios utilizando [[%SYSTEMWEB%.Plugins]] %FLAGGB%. Todos estos tipos de datos ampliados solamente pueden tener un valor con las siguientes excepciones:
    * cualquier nombre de tipo empezando con =checkbox=
    * cualquier nombre de tipo conteniendo =+multi= en cualquier parte del nombre
 Tipos con nombres como estos pueden recibir varios valores.
@@ -205,11 +205,11 @@ Tipos con nombres como estos pueden recibir varios valores.
 ---++ Avisos and recomendaciones
 ---+++ Genere un formulario HTML para crear nuevos temas basados en formularios
    * Nuevos temas con un formulario se generan a través de un formulario HTML sencillo solicitando un nombre de tema. Por ejemplo, puede tener el tema =<nop>InformeGastosReembolsables= para crear informes nuevos de gastos reembolsables, el tema =<nop>SolicitudDeVacaciones= y así. Estos temas pueden especificar la plantilla de página requerida con el formulario asociado.
-[[TWiki.TWikiTemplates#TemplateTopics][Plantillas de página]] %FLAGGB% contiene más detalles.
+[[%SYSTEMWEB%.TWikiTemplates#TemplateTopics][Plantillas de página]] %FLAGGB% contiene más detalles.
 Una plantilla de formulario especifica los campos de un formulario. Una plantilla de formulario es simplemente una página conteniendo una tabla TWiki, donde cada línea de la tabla especifica un campo del formulario.
 #UsingFormData
 ---+++ Busque por datos de formularios
-Formularios TWiki aceptan datos de ingreso del usuario que se guarda como TWiki.TWikiMetaData %FLAGGB%. Meta data también contiene información generada por el sistema acerca de cambios, archivos adjuntos, etc. Para encontrar, formatear y mostrar datos de formularios y otro tipo de meta data, ver TWiki.TWikiMetaData %FLAGGB%, las variables ==FORMFIELD==, ==SEARCH== y ==METASEARCH== en [[%SYSTEMWEB%.Macros][Macros]] %FLAGGB% y [[TWiki.FormattedSearch][Búsqueda formateada TWiki]].
+Formularios TWiki aceptan datos de ingreso del usuario que se guarda como %SYSTEMWEB%.TWikiMetaData %FLAGGB%. Meta data también contiene información generada por el sistema acerca de cambios, archivos adjuntos, etc. Para encontrar, formatear y mostrar datos de formularios y otro tipo de meta data, ver %SYSTEMWEB%.TWikiMetaData %FLAGGB%, las variables ==FORMFIELD==, ==SEARCH== y ==METASEARCH== en [[%SYSTEMWEB%.Macros][Macros]] %FLAGGB% y [[%SYSTEMWEB%.FormattedSearch][Búsqueda formateada TWiki]].
 
 <blockquote>
 *Ejemplo* %BR%
@@ -227,11 +227,11 @@ Buscando formularios de esta manera es obviamente bastante poco eficiente, pero 
 
 %STOPINCLUDE%
 
-__Temas relacionados:__ TWiki.UserDocumentationCategory %FLAGGB%, TWiki.TWikiTemplates %FLAGGB%
+__Temas relacionados:__ %SYSTEMWEB%.UserDocumentationCategory %FLAGGB%, %SYSTEMWEB%.SkinTemplates %FLAGGB%
 
 -- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 23 May 2008
 
-%META:FORM{name="TWiki.TranslationForm"}%
-%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.TWikiForms"}%
+%META:FORM{name="System.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="System.TWikiForms"}%
 %META:FIELD{name="Revision" attributes="" title="Revision" value="24"}%
 %META:FIELD{name="Language" attributes="" title="Language" value="es"}%

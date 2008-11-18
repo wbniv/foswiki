@@ -1,6 +1,6 @@
 %META:TOPICINFO{author="BaseUserMapping_333" date="1216579571" format="1.1" reprev="1.13" version="1.13"}%
 %META:TOPICPARENT{name="WebHome"}%
-%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+%INCLUDE{"System.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
 
 ---++ Consulta:
 
@@ -8,7 +8,7 @@ Cualquier persona puede modificar una página. Parece peligroso: eso no resulta e
 
 ---++ Respuesta:
 
-TWiki es uno de muchos TWiki.WikiWikiClones %FLAGGB%; el primero fue programado por Ward Cunningham. Colaborar de manera Wiki es diferente de otras herramientas de colaboración como el Usenet. Una __Cultura Wiki__ distinta se forma alrededor de estas herramientas:
+TWiki es uno de muchos %SYSTEMWEB%.WikiWikiClones %FLAGGB%; el primero fue programado por Ward Cunningham. Colaborar de manera Wiki es diferente de otras herramientas de colaboración como el Usenet. Una __Cultura Wiki__ distinta se forma alrededor de estas herramientas:
 
    * Cualquiera y toda la información puede ser eliminada por cualquier persona. Las páginas Wiki representan solamente discusiones y acuerdos porque es mucho más fácil eliminar desvíos, basura e información trivial que introducirlos. Lo que se mantiene automáticamente tiene significado.
 
@@ -20,11 +20,11 @@ TWiki es uno de muchos TWiki.WikiWikiClones %FLAGGB%; el primero fue programado 
 
 (citado de _WhyWikiWorks_ en Ward's original Wiki system, the Portland Pattern Repository, Wiki:WhyWikiWorks %FLAGGB%)
 
-__Temas relacionados:__ SitioTWiki, BienvenidoHuesped, BuenEstilo, SintaxisWiki, PreguntasFrecuentes, TWiki.WhatIsWikiWiki %FLAGGB%, TWiki.WabiSabi %FLAGGB%, TWiki.AccessControl %FLAGGB%
+__Temas relacionados:__ SitioTWiki, BienvenidoHuesped, BuenEstilo, SintaxisWiki, PreguntasFrecuentes, %SYSTEMWEB%.WhatIsWikiWiki %FLAGGB%, %SYSTEMWEB%.WabiSabi %FLAGGB%, %SYSTEMWEB%.AccessControl %FLAGGB%
 
 -- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 08 Dec 2007
 
-%META:FORM{name="TWiki.TranslationForm"}%
-%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.WikiCulture"}%
+%META:FORM{name="System.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="System.WikiCulture"}%
 %META:FIELD{name="Revision" attributes="" title="Revision" value="12"}%
 %META:FIELD{name="Language" attributes="" title="Language" value="es"}%

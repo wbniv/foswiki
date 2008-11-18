@@ -1,6 +1,6 @@
 %META:TOPICINFO{author="BaseUserMapping_333" date="1217597573" format="1.1" version="1.2"}%
 %META:TOPICPARENT{name="WebHome"}%
-%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+%INCLUDE{"System.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
 
 ---++ Taquigrafía TWiki
 
@@ -40,7 +40,7 @@ Segundo párafo
  *Títulos:* %BR%
 Tres o más guiones al principio de una linea, seguidos por el símbolo más y el texto del título. Un más creará un título de primer nivel, dos más uno de segundo nivel, etc. Se puede introducir máximo 6 niveles de títulos.
 
-Puede crear un índice con la variable [[TWiki.VarTOC][%<nop>TOC%]]. Si quiere *excluir* un título del índice, digite =!!= después de =---+=.
+Puede crear un índice con la variable [[%SYSTEMWEB%.VarTOC][%<nop>TOC%]]. Si quiere *excluir* un título del índice, digite =!!= después de =---+=.
 
 %X% Se permite títulos vacíos, pero no aparecerán en el índice.
 </td><td>
@@ -350,7 +350,7 @@ Sandbox.%HOMETOPIC%
  *Enlaces forzados:* %BR%
  Se puede crear un enlace interno forzado encerrando palabras en doble corchete.
 %BR% 
-Texto dentro de los corchetes puede contener espacios obcionales; el nombre del tema será formado escribiendo la primera letra en mayúscula y removiendo los espacios; por ejemplo, =[<nop>[text formatting FAQ]]= enlaza al tema TWiki.TextFormattingFAQ %FLAGGB%. De la misma manera puede referirse a otra red y utilizar anclas.
+Texto dentro de los corchetes puede contener espacios obcionales; el nombre del tema será formado escribiendo la primera letra en mayúscula y removiendo los espacios; por ejemplo, =[<nop>[text formatting FAQ]]= enlaza al tema %SYSTEMWEB%.TextFormattingFAQ %FLAGGB%. De la misma manera puede referirse a otra red y utilizar anclas.
 %BR%
 %T% Para escribir dos corchetes que normalmente generarían un enlace, ponga un signo de exclamación delante del primer corchete.
 </td><td>
@@ -456,7 +456,7 @@ a@b.com
 
 -- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 08 Dec 2007
 
-%META:FORM{name="TWiki.TranslationForm"}%
-%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.TWikiEditingShorthand"}%
+%META:FORM{name="System.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="System.TWikiEditingShorthand"}%
 %META:FIELD{name="Revision" attributes="" title="Revision" value="3"}%
 %META:FIELD{name="Language" attributes="" title="Language" value="es"}%

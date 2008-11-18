@@ -1,6 +1,6 @@
 %META:TOPICINFO{author="BaseUserMapping_333" date="1216579521" format="1.1" reprev="1.17" version="1.17"}%
 %META:TOPICPARENT{name="WebHome"}%
-%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+%INCLUDE{"System.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
 
 %TOC{depth="4"}% 
 %STARTINCLUDE%
@@ -51,7 +51,7 @@ Revise el estado de estas extensiones y su configuración en %SYSTEMWEB%.DefaultP
 
 ---++ Errores comunes de edición
 
-Las reglas para formatear TWiki son bastante fáciles de aplicar y rápidos de digitar. Sin embargo, hay algunas cosillas que hay que tomar en consideración, que también están incluidas en la lista de preguntas frecuentes TWiki.TextFormattingFAQ %FLAGGB%:
+Las reglas para formatear TWiki son bastante fáciles de aplicar y rápidos de digitar. Sin embargo, hay algunas cosillas que hay que tomar en consideración, que también están incluidas en la lista de preguntas frecuentes %SYSTEMWEB%.TextFormattingFAQ %FLAGGB%:
 
    * *P:* Texto encerrado en los signos mayor o menor que como por ejemplo <span class="WYSIWYG_TT"><nombre de archivo></span> no se muestran. Cómo hago para que se muestren tal como están? 
       * *R:* Los signos ='<'= y ='>'= tienen un significado especial en el idioma de programación HTML; definen etiquetas de HTML. Tiene que protegerlos, quiere decir que tiene que escribir ='&lt;'= en lugar de ='<'= y ='&gt;'= en lugar de ='>'=. <br /> Ejemplo: ='prog &lt;nombre del archivo&gt;'= para que se muestre como ='prog <nombre del archivo>'=.
@@ -61,7 +61,7 @@ Las reglas para formatear TWiki son bastante fáciles de aplicar y rápidos de dig
 
 -- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 08 Dec 2007
 
-%META:FORM{name="TWiki.TranslationForm"}%
-%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.TextFormattingRules"}%
+%META:FORM{name="System.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="System.TextFormattingRules"}%
 %META:FIELD{name="Revision" attributes="" title="Revision" value="50"}%
 %META:FIELD{name="Language" attributes="" title="Language" value="es"}%

@@ -1,6 +1,6 @@
 %META:TOPICINFO{author="BaseUserMapping_333" date="1216579634" format="1.1" reprev="1.11" version="1.11"}%
 %META:TOPICPARENT{name="WebHome"}%
-%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+%INCLUDE{"System.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
 
 ---+ Guía de usuario TWiki
 
@@ -15,7 +15,7 @@ _Documentación para usuarios TWiki._
       * SitioTWiki: Introducción ultra-compacta de 2 minutos acerca del TWiki
       * TutorialTWiki: Introducción compacta de 20 minutos acerca del TWiki<p> </p>
       * TemasTWiki: Personalizar, renombrar, mover o eliminar páginas TWiki
-      * TWiki.SearchHelp %FLAGGB%: Consejos y ayuda acerca de búsqueda
+      * %SYSTEMWEB%.SearchHelp %FLAGGB%: Consejos y ayuda acerca de búsqueda
       * BuenEstilo: Consejos de trabajo para una plataforma de colaboración
       * TaquigrafiaTWiki: Todos los básicos de la taquigrafía TWiki
       * ComoFormatearTexto: Revise todas las reglas acerca de cómo formatear texto en una sola página
@@ -29,7 +29,7 @@ _Documentación para usuarios TWiki._
       * PreguntasSobreFormatearTexto: Consultas comunes acerca de cómo preparar documentos para el TWiki
       * Usuarios avanzados también deben revisar el [[%SYSTEMWEB%.ReferenceManual][Manual de referencia]] %FLAGGB% completo!
 
-   * *Ayuda acerca de [[TWiki.InstalledPlugins][Plugins instalados]] %FLAGGB%*
+   * *Ayuda acerca de [[%SYSTEMWEB%.InstalledPlugins][Plugins instalados]] %FLAGGB%*
 
 <blockquote>
 %PLUGINDESCRIPTIONS%
@@ -37,7 +37,7 @@ _Documentación para usuarios TWiki._
 
 -- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 25 Apr 2008
 
-%META:FORM{name="TWiki.TranslationForm"}%
-%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.WikiUsersGuide"}%
+%META:FORM{name="System.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="System.WikiUsersGuide"}%
 %META:FIELD{name="Revision" attributes="" title="Revision" value="2"}%
 %META:FIELD{name="Language" attributes="" title="Language" value="es"}%

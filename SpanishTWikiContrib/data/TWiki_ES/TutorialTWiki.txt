@@ -79,11 +79,11 @@ Eso es! Ahora está list@ con las herramientas básicas del TWiki. Está list@ para
 
 __NOTA:__ Cuando utiliza el TWiki por primera vez, seguramente le parecerá extraño que pueda modificar lo que otra gente escribió - normalmente estamos acostumbrados a _separar_ mensajes individuales, en correos, carteleros, plataformas de colaboración que no sean de tipo Wiki. __No se preocupe.__ No puede eliminar elementos importantes por error - siempre puede revisar versiones anteriores de una página y copiar y pegar de ellos en caso que quiera recuperar algún cambio. Después de poco tiempo, la comunicación tipo TWiki se convertirá en costumbre. Usted la esperará en todo lado!
 
-__Páginas relacionadas:__ TWiki.UserDocumentationCategory %FLAGGB%
+__Páginas relacionadas:__ %SYSTEMWEB%.UserDocumentationCategory %FLAGGB%
 
 -- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 21 Apr 2008
 
-%META:FORM{name="TWiki.TranslationForm"}%
-%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.TWikiTutorial"}%
+%META:FORM{name="System.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="System.TWikiTutorial"}%
 %META:FIELD{name="Revision" attributes="" title="Revision" value="17"}%
 %META:FIELD{name="Language" attributes="" title="Language" value="es"}%
