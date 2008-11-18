@@ -1,4 +1,4 @@
-# Plugin for TWiki Enterprise Collaboration Platform, http://TWiki.org/
+# Plugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
 #
 # Copyright (C) 2006 Sven Dowideit, SvenDowideit@wikiring.com
 # and TWiki Contributors. All Rights Reserved. TWiki Contributors

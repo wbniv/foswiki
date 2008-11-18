@@ -1,5 +1,5 @@
 # $REV$
-# Plugin for TWiki Enterprise Collaboration Platform, http://TWiki.org/
+# Plugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
 #
 # Copyright (C) 2006 Meredith Lesly
 # And the usual copyright per TWiki.pm

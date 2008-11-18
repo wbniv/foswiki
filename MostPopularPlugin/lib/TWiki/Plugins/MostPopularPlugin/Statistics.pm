@@ -1,4 +1,4 @@
-# Module of TWiki Enterprise Collaboration Platform, http://TWiki.org/
+# Module of Foswiki - The Free Open Source Wiki, http://foswiki.org/
 #
 # Adapted from lib/TWiki/UI/Statistics.pm
 # by Koen Martens, kmartens@sonologic.nl

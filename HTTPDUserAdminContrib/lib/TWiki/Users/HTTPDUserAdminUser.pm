@@ -1,4 +1,4 @@
-# Module of TWiki Enterprise Collaboration Platform, http://TWiki.org/
+# Module of Foswiki - The Free Open Source Wiki, http://foswiki.org/
 #
 # Copyright (C) 2007 SvenDowideit@home.org.au
 # All Rights Reserved. 

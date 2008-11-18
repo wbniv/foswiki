@@ -1,4 +1,4 @@
-# Plugin for TWiki Enterprise Collaboration Platform, http://TWiki.org/
+# Plugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
 #
 # Copyright (C) 2001 Andrea Sterbini, a.sterbini@flashnet.it
 # Christian Schultze: debugging, relative month/year, highlight today

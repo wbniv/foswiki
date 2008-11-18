@@ -1,4 +1,4 @@
-# Plugin for TWiki Enterprise Collaboration Platform, http://TWiki.org/
+# Plugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
 #
 # Copyright (C) 2007 Motorola Ltd. 2001
 # Copyright (C) 2007 Crawford Currie http://c-dot.co.uk

@@ -1,4 +1,4 @@
-# Plugin for TWiki Enterprise Collaboration Platform, http://TWiki.org/
+# Plugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
 #
 # Copyright (c) 2007 Michael Daum, daum@wikiring.de
 # Copyright (c) 2008 StéphaneLenclud, twiki@lenclud.com

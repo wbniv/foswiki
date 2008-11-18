@@ -1,4 +1,4 @@
-# Plugin for TWiki Enterprise Collaboration Platform, http://TWiki.org/
+# Plugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
 #
 # (c) 2006 Motorola, thomas.weigert@motorola.com
 # (c) 2006 TWiki:Main.ClausLanghans
