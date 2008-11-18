@@ -80,8 +80,7 @@ m/^\s*\|\s*<nop>(?:\&nbsp\;)?([^\s|]+)\s*\|\s*%ATTACHURL%\/([^\s]+)\s*\|\s*"([^"
     $allPattern =~ s/\|$//o;
     $allPattern .= ")";
     $smiliesPubUrl =
-        TWiki::Func::getUrlHost()
-      . TWiki::Func::getPubUrlPath()
+      TWiki::Func::getPubUrlPath()
       . "/$installWeb/SmiliesPlugin";
 
     # Initialization OK
