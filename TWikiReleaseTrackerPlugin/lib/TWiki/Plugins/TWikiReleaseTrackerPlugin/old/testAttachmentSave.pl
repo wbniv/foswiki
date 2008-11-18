@@ -14,7 +14,7 @@ use TWiki::Store;
 use TWiki::Store::RcsWrap;
 require "TWiki.cfg";
 
-TWiki::Store::saveAttachment("TWiki", "TWikiReleaseTracker", "",
+TWiki::Store::saveAttachment("System", "TWikiReleaseTracker", "",
 			     "testAttachmentSave.pl", 0, 0, 0, 
 			     "test upload", "testAttachmentSave.pl");
 

@@ -1,6 +1,6 @@
 %META:TOPICINFO{author="BaseUserMapping_333" date="1216580029" format="1.1" reprev="1.14" version="1.14"}%
 %META:TOPICPARENT{name="WebHome"}%
-%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+%INCLUDE{"%SYSTEMWEB%.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
 
 %STARTINCLUDE%
 ---+ Tutorial acerca de TWiki de 20 minutos
@@ -19,7 +19,7 @@ Este tutorial le lleva paso por paso y le enseña todos los básicos de este Sitio
    * Para navegar en la web TWiki, toque cualquier enlace. Estos enlaces se llaman [[PalabraWiki][PalabrasWiki]] y consisten de dos o más palabras, cada una iniciando con una letra mayúscula y las palabras pegadas.
    * Siga el enlace PalabraWiki para comprender de qué se trate.
    * Si conoce el nombre de una página, puede saltar directamente a esta misma página, escribiendo su nombre en el campo *Saltar* en la parte superior de cada página. Digite =Sandbox.WebSearch= para saltar a la página de búsqueda. __Aviso:__ No confunda el campo *Saltar* con el campo de búsqueda.
-   * Puede buscar en cada una de las webs del TWiki. Digite el texto de búsqueda en la página %HOMETOPIC% o de la página Sandbox.WebSearch %FLAGGB% que es accesible a través del campo =Buscar= que se encuentra en cada página. TWiki busca aciertos exactos; opcionalmente, puede utilizar también [[TWiki.RegularExpressions][expresiones regulares]] %FLAGGB%.
+   * Puede buscar en cada una de las webs del TWiki. Digite el texto de búsqueda en la página %HOMETOPIC% o de la página Sandbox.WebSearch %FLAGGB% que es accesible a través del campo =Buscar= que se encuentra en cada página. TWiki busca aciertos exactos; opcionalmente, puede utilizar también [[%SYSTEMWEB%.RegularExpressions][expresiones regulares]] %FLAGGB%.
 
 ---++ 3. Abra su propia cuenta...
  Para editar páginas, necesita su propia cuenta. 

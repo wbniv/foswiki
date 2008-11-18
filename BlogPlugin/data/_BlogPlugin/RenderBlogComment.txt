@@ -5,7 +5,7 @@
 
 %RED%Note%ENDCOLOR%, the use of hardcoded rights in REDDOT{grant="..."}
 in the "format" section below
-as long as the TWiki.RedDotPlugin does not support Main.WikiGroups natively. Replace
+as long as the %SYSTEMWEB%.RedDotPlugin does not support Main.WikiGroups natively. Replace
 it with your main BlogAuthor or remove the =grant="..."= completely to allow
 guests to get reddots to their comments.
 

@@ -66,5 +66,5 @@ __Related Topics:__
 	* %SYSTEMWEB%.AccessControl explains how to restrict access by users or groups.
 
 __Tools:__
-%INCLUDE{"TWiki.RenameWeb"}%
+%INCLUDE{"%SYSTEMWEB%.RenameWeb"}%
 %META:REVCOMMENT{ncomments="0"}%

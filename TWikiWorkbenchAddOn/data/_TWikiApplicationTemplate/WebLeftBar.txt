@@ -22,5 +22,5 @@ See also: WebSideBar
 
 %META:FORM{name="Applications.ApplicationTopic"}%
 %META:FIELD{name="TopicType" attributes="M" title="TopicType" value="Applications.WebTool"}%
-%META:FIELD{name="Summary" attributes="" title="Summary" value="WebSideBar used by the TWiki.PatternSkin"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="WebSideBar used by the System.PatternSkin"}%
 %META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

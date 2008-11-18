@@ -1,6 +1,6 @@
 %META:TOPICINFO{author="BaseUserMapping_333" date="1216579394" format="1.1" version="1.4"}%
 %META:TOPICPARENT{name="WebHome"}%
-%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+%INCLUDE{"%SYSTEMWEB%.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
 
 ---++ Pregunta:
 Cómo puedo crear una aplicación sencilla basada en FormulariosTWiki?
@@ -13,7 +13,7 @@ Cómo puedo crear una aplicación sencilla basada en FormulariosTWiki?
    1 Cree una plantilla de página
    1 En modo de edición, agregue el [[FormulariosTWiki][formulario TWiki]] que definió para la plantilla de página utilizando el botón "Agregar formulario"
    1 Cree un formulario HTML con los campos necesarios
-   1 Defina la función =SEARCH= para listar los items (ver TWiki.VarSEARCH para más detalles)
+   1 Defina la función =SEARCH= para listar los items (ver %SYSTEMWEB%.VarSEARCH para más detalles)
 
 Para más información siga los enlaces...
 
@@ -39,13 +39,13 @@ Y la función de =SEARCH=:
 
 __Regresar a:__ PreguntasFrecuentes
 
-__Páginas relacionadas:__ TWiki.UserDocumentationCategory %FLAGGB%
+__Páginas relacionadas:__ %SYSTEMWEB%.UserDocumentationCategory %FLAGGB%
 
 -- __Colaboradores:__ TWiki:Main.MiyokoTakushima - 18 Oct 2004
 
 -- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 23 May 2008
 
-%META:FORM{name="TWiki.TranslationForm"}%
-%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.AnApplicationWithWikiForm"}%
+%META:FORM{name="System.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="System.AnApplicationWithWikiForm"}%
 %META:FIELD{name="Revision" attributes="" title="Revision" value="4"}%
 %META:FIELD{name="Language" attributes="" title="Language" value="es"}%

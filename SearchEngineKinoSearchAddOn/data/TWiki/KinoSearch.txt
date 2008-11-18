@@ -32,7 +32,7 @@
 </verbatim>
 
 ---+++ Search in <nop>WebTopBar
-Add the following lines to <nop>TWiki.WebTopBar. Then you have an
+Add the following lines to <nop>%SYSTEMWEB%.WebTopBar. Then you have an
 additional search field in the upper right corner behaving and looking
 exactly the same as the normal search field there. If you want, you
 can also replace the existing search field with this one.
@@ -62,6 +62,6 @@ can also replace the existing search field with this one.
 
 _Note:_ the current version of !KinoSearch does not support wildcards.
 
-__See also:__ TWiki.SearchEngineKinoSearchAddOn
+__See also:__ %SYSTEMWEB%.SearchEngineKinoSearchAddOn
 
 -- TWiki:Main/MarkusHesse - 12 Dec 2007

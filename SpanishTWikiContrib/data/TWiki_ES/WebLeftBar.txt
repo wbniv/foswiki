@@ -16,25 +16,25 @@
    * UnPocoSobreTWiki
    * ComoFormatearTexto
    * [[%SYSTEMWEB%.Macros][Macros]] %FLAGGB%
-   * TWiki.FormattedSearch %FLAGGB%
-   * TWiki.DocumentGraphics %FLAGGB%
-   * TWiki.SkinBrowser %FLAGGB%
-   * TWiki.InstalledPlugins %FLAGGB%
+   * %SYSTEMWEB%.FormattedSearch %FLAGGB%
+   * %SYSTEMWEB%.DocumentGraphics %FLAGGB%
+   * %SYSTEMWEB%.SkinBrowser %FLAGGB%
+   * %SYSTEMWEB%.InstalledPlugins %FLAGGB%
 
    * <b>%MAKETEXT{"Admin Maintenance"}%</b>
    * [[%SYSTEMWEB%.ReferenceManual][Reference Manual]] %FLAGGB%
-   * TWiki.AdminToolsCategory %FLAGGB%
-   * TWiki.InterWikis %FLAGGB%
-   * TWiki.ManagingWebs %FLAGGB%
-   * TWiki.TWikiSiteTools %FLAGGB%
-   * TWiki.%WIKIPREFSTOPIC% %FLAGGB%
+   * %SYSTEMWEB%.AdminToolsCategory %FLAGGB%
+   * %SYSTEMWEB%.InterWikis %FLAGGB%
+   * %SYSTEMWEB%.ManagingWebs %FLAGGB%
+   * %SYSTEMWEB%.TWikiSiteTools %FLAGGB%
+   * %SYSTEMWEB%.%WIKIPREFSTOPIC% %FLAGGB%
    * %WEBPREFSTOPIC%
 
    * <b>%MAKETEXT{"Categories"}%</b>
-   * [[TWiki.AdminDocumentationCategory][Admin Documentation]] %FLAGGB%
-   * [[TWiki.AdminToolsCategory][Admin Tools]] %FLAGGB%
-   * [[TWiki.DeveloperDocumentationCategory][Developer Doc]] %FLAGGB%
-   * [[TWiki.UserDocumentationCategory][User Documentation]] %FLAGGB%
-   * [[TWiki.UserToolsCategory][User Tools]] %FLAGGB%
+   * [[%SYSTEMWEB%.AdminDocumentationCategory][Admin Documentation]] %FLAGGB%
+   * [[%SYSTEMWEB%.AdminToolsCategory][Admin Tools]] %FLAGGB%
+   * [[%SYSTEMWEB%.DeveloperDocumentationCategory][Developer Doc]] %FLAGGB%
+   * [[%SYSTEMWEB%.UserDocumentationCategory][User Documentation]] %FLAGGB%
+   * [[%SYSTEMWEB%.UserToolsCategory][User Tools]] %FLAGGB%
 
 %INCLUDE{ "%SYSTEMWEB%.WebLeftBarWebsList" }%

@@ -116,8 +116,8 @@ Generated: %DISPLAYTIME%
 		* Set GENPDFADDON_BANNER = Our Slogan %ORANGE%Rocks!!!%ENDCOLOR%
 		* Set GENPDFADDON_TITLE = %BASETOPIC%
 		* Set GENPDFADDON_SUBTITLE = %REVINFO{web="%WEB%" topic="%BASETOPIC%"}%
-		* Set GENPDFADDON_TITLETOPIC = TWiki.GenPDFExampleTitleTopic
-		* Set GENPDFADDON_HEADERTOPIC = TWiki.GenPDFExampleHeaderFooterTopic
+		* Set GENPDFADDON_TITLETOPIC = %SYSTEMWEB%.GenPDFExampleTitleTopic
+		* Set GENPDFADDON_HEADERTOPIC = %SYSTEMWEB%.GenPDFExampleHeaderFooterTopic
 		* Set GENPDFADDON_HEADFOOTFONT = helvetica-bold
 		* Set GENPDFADDON_LOGOIMAGE = http://localhost/twiki/pub/TWiki/ProjectLogos/twikiRobot46x50.gif
 		* Set GENPDFADDON_FORMAT = pdf14

@@ -15,7 +15,7 @@ Create new topic (web page) named:
 </select>
 </form>
 <div class=%PARAM2%>
-<b>Warning! The proposed topic name is not in TWiki.WikiWord notation! </b>
+<b>Warning! The proposed topic name is not in %SYSTEMWEB%.WikiWord notation! </b>
 
 <form action='%SCRIPTURL%/searchmulti%SCRIPTSUFFIX%/%INTURLENCODE{"%WEB%"}%' method="post" name=forcecreate>If you <b>really</b> (read help below) want to do this, you can
 <input type=submit name=Go value="ForceCreate" accesskey=f title='[Alt-F] Force Creation of a new topic, even if not a Wiki Name'> a topic named "<tt>%PARAM1%</tt>",
@@ -53,9 +53,9 @@ but then do not select another topic than the current one in step (2)
         <tr>
           <td class="topicItemCell">
             <div class="headerHelp">
-   * Topics names should be in TWiki.WikiWord notation (Capitalized words
+   * Topics names should be in %SYSTEMWEB%.WikiWord notation (Capitalized words
      joined together), such as <nop>MeetingMinutes22Oct2002, <nop>Version18Dot2
-   * You can force them to have a non TWiki.WikiWord name,
+   * You can force them to have a non %SYSTEMWEB%.WikiWord name,
      but it is *strongly* discouraged,
      as you can always refer to them anyways by a more meaningful name with 
      the <tt>[<nop>[topic_actual_name][displayed_name]]</tt> construct, such as: 

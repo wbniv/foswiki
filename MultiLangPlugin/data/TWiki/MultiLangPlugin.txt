@@ -24,7 +24,7 @@ by itself given WIKILANG is set correctly.
 Patches welcome :)
 
 	* Sometimes it is useful to use different representations of a language's name (e.g. en, English, Englisch (the name of the English language in German)). It would be good (and certainly not too complicated) to allow users to define those mapping with a table in a certain Topic.
-	* To obtain information about topics in other languages the plug-in uses direct access over the file system rather than [[TWiki.TWikiFuncModule][TWiki::Func]] (i.e. TWiki::Store) which would be way more flexible. However, because of the many global variables TWiki uses it isn't easy to instantiate two different Store objects for entirely different TWikis and to do it through a wrapper program is probably much, much slower than the current solution which _just works_ for the default configuration.
+	* To obtain information about topics in other languages the plug-in uses direct access over the file system rather than [[%SYSTEMWEB%.TWikiFuncModule][TWiki::Func]] (i.e. TWiki::Store) which would be way more flexible. However, because of the many global variables TWiki uses it isn't easy to instantiate two different Store objects for entirely different TWikis and to do it through a wrapper program is probably much, much slower than the current solution which _just works_ for the default configuration.
 	* Theoretically it would be nice to be able to use the same TWiki for all languages (e.g. with a custom TWiki::Store implementation). The lack of real L10N support in templates (i.e. something like gettext) is a big problem for such a solution, though.
 	* The complete URL/path part is grown out of some confusion at my side which sources of information to use. I (or someone else) need to take a deep look at that again. (e.g. should it also try to use TOPICURL). I have also generally ignored the possibility that SCRIPTSUFFIX != "", so this is probably horribly broken.
 
@@ -49,7 +49,7 @@ intended to be used in templates:
 The plug-in also provides some new auto-linking abilities:
 
 	* WikiWords can be linked to other languages if the topic in question doesn't exist in the current language. This works similar to the FindElsewherePlugin and some code is borrowed from there.
-	* You can specially request to link a WikiWord to another language by preceding it with the language and a colon (e.g. =de:TWiki.WebHome=). This is inspired by the InterwikiPlugin.
+	* You can specially request to link a WikiWord to another language by preceding it with the language and a colon (e.g. =de:%SYSTEMWEB%.WebHome=). This is inspired by the InterwikiPlugin.
 
 ---++ Skinning support (CSS)
 
@@ -143,7 +143,7 @@ __Note:__ You do not need to install anything on the browser to use this plug-in
 		* %<nop>MLP_USEFORM{ "SCRIPTURLFORM" lang="en"}% = %MLP_USEFORM{ "SCRIPTURLFORM" lang="en"}%
 		* %<nop>TRANSLATIONS% = %TRANSLATIONS%
 		* <nop>Sandbox.OnlyExistsInEN = Sandbox.OnlyExistsInEN
-		* <nop>en:TWiki.WebHome = en:TWiki.WebHome
+		* <nop>en:%SYSTEMWEB%.WebHome = en:%SYSTEMWEB%.WebHome
 		* Interaction between MultiLangPlugin and FindElsewherePlugin. The following link might depend on the order of the both plug-ins in %<nop>INSTALLEDPLUGINS% (current value %INSTALLEDPLUGINS%): <nop>TestTopic1 = TestTopic1
 		* InterwikiPlugin configuration: <nop>English:%<nop>WEB%/%<nop>TOPIC% = English:%WEB%/%TOPIC%
 

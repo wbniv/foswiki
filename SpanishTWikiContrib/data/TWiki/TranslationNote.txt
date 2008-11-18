@@ -32,12 +32,12 @@
 
 ---+++ Explanation
 Each translated topic shall include data related to the original document (generally from the english source documentation) that is stored in the TranslationForm attached to the translated topic. This TranslationForm includes three core elements (fields), based on a the concept developed on TWiki:Codev.TranslationSupport:
-   * Origin: The original, not translated topic, including the web-reference, e.g. =TWiki.WikiUsersGuide=
+   * Origin: The original, not translated topic, including the web-reference, e.g. =%SYSTEMWEB%.WikiUsersGuide=
    * Revision: The revision number of the original topic at the moment of translation
    * Language: Two-character ISO language code representing the language of the translated topic, e.g. =es= for spanish or =en= for english
 Based on the information of that form, the text of TranslationNote is generated automatically by an
 <verbatim>
-%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+%INCLUDE{"%SYSTEMWEB%.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
 </verbatim>
 at the beginning of each translated topic, refering to the original topic (form field _Origin_) in its corresponding revision version (form field _Revision_).
 

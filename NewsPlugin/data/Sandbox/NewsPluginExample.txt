@@ -35,7 +35,7 @@ ___* <===== Max recommended length of the 1rst line ==-->
 		* bugfix: background color for sitemap was omitted.
 		* docfix: TOPICSTOP was not documented
 		* script now checks that the needed variables are defined in
-		  TWiki.TWikiPreferences, and issue warnings on missing ones
+		  %SYSTEMWEB%.DefaultPreferences, and issue warnings on missing ones
 		* default css for html tags &lt;b> and &lt;i>, and twiki __
 		  constructs are rendered in a colored ink. Note that this is
 		  not the case for the twiki * and _ constructs as they are
@@ -49,9 +49,9 @@ ___* <===== Max recommended length of the 1rst line ==-->
 		  TWiki:Codev/SettingParentTopicToNone
 		  (it is only cosmetics, will not break if not applied)
 		* *[!]* define the variable *%<nop>CSS%* in the
-		  TWiki.TWikiPreferences to nothing.
+		  %SYSTEMWEB%.DefaultPreferences to nothing.
 		* *[!]* define the variable *%<nop>TOPICSTOP%* in the
-		  TWiki.TWikiPreferences to nothing.
+		  %SYSTEMWEB%.DefaultPreferences to nothing.
 		* New %<nop>CSS% TWiki var to override CSS per web
 		* New global Koala Skin KSCSS var to define an additional
 		  external style sheet local to the site
@@ -96,7 +96,7 @@ ___* <===== Max recommended length of the 1rst line ==-->
 		* bugfix: navigation bar was badly generated in some cases
 	* *1.17* _21 Aug 2002_
 		* *[!]* add the line to your Site Prefs
-		  (TWiki.TWikiPreferences), to be forward-compatible with the
+		  (%SYSTEMWEB%.DefaultPreferences), to be forward-compatible with the
 		  upcoming TWiki release.
 		  <br> _6 spaces_ * Set EDITBOXSTYLE = width: 99%
 		* bugfix: names like WebHome have been replaced by their

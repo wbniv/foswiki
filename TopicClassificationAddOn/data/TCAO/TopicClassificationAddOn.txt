@@ -36,13 +36,13 @@ __Note:__ You do not need to install anything on the browser to use this add-on.
    1 Unpack the Add-on archive in the root of your TWiki installation.
    1 Add the following preference section to [[%USERSWEB%.SitePreferences]]:
 <verbatim>
----++ TWiki.TopicClassificationAddOn Preferences 
+---++ %SYSTEMWEB%.TopicClassificationAddOn Preferences 
    * TCAOWEB variable for identifying which web holds %TOPIC% infrastructure.
       * Set TCAOWEB = TCAO
       * Set HELP_BACKGROUND_COLOR = #E0B9A6
 </verbatim>
    4 Go to %MAINWEB%.WikiGroups and create a new group called ==ModeratorGroup==. This group can add new classifications within webs where TCAO is enabled. 
-   5 Add the following TWiki.CommentPlugin templates definitions to TWiki.UserCommentsTemplate (create this topic if you have not already).
+   5 Add the following %SYSTEMWEB%.CommentPlugin templates definitions to %SYSTEMWEB%.UserCommentsTemplate (create this topic if you have not already).
 <verbatim>
 ---------------------------------------------------------------------------
 ---+++ tocdiscuss

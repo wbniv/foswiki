@@ -23,7 +23,7 @@ unless (-d $pub) {
 }
 
 unless ( defined $Common::md5IndexDir ) {
-	setIndexTopic("TWiki.TWikiReleaseTrackerPlugin");
+	setIndexTopic("System.TWikiReleaseTrackerPlugin");
 }
 
 unless ( -d $Common::md5IndexDir ) {

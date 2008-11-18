@@ -23,7 +23,7 @@ Topic redirection table is used to specify the namespace redirections to actions
 
 %EDITTABLE{format="|select, 1, Enabled, Disabled|text, 30|select, 1, none, usetemplate, create, view, edit, oops|text, 20|text, 20|text, 20|text, 20|" changerows="on" }%
 | *Enabled?* | *Pattern* | *Action* | *Arg1* | *Arg2* | *Arg3* | *Remarks* |
-| Enabled | ^TWiki.ExampleNo[\d]+OfNamespaceManager | oops | TWiki.ExampleHandlerOfNamespaceManager |  |  | All topics with specified names directed to template |
+| Enabled | ^System.ExampleNo[\d]+OfNamespaceManager | oops | System.ExampleHandlerOfNamespaceManager |  |  | All topics with specified names directed to template |
 
 Default action: Redirects to =edit= script (i.e. twiki standard for undefined links).
 
@@ -61,7 +61,7 @@ A site-wide _topic redirection table_ is defined in this Addon topic, and define
 
 | *Column name* | *Purpose* | *Examples* |
 | Enabled/Disabled | Only those which are enabled are considered |  |
-| Pattern | Matches with string =$web.$topic= using perl regexp | ^TWiki.ExampleTopics[\w]+ |
+| Pattern | Matches with string =$web.$topic= using perl regexp | ^System.ExampleTopics[\w]+ |
 | Action  | Currently available options: =showtemplate=, =edit=, =create= |  |
 | Args	 | Comma separated list of args, depending on arguments (See table below) |  |
 

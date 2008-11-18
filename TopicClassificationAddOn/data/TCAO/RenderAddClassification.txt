@@ -8,7 +8,7 @@
 ---++ Further Development
    * Reduce decision steps:
       * Make the "predefined" radio a drop down for selecting type and add name field after radio for "new".
-   * Disable create button unless a valid name is entered. Can take code from TWiki.WebTopicCreator.
+   * Disable create button unless a valid name is entered. Can take code from %SYSTEMWEB%.WebTopicCreator.
    * For new classification, pull in Facets from template topic.
 
 ---++ Documentation

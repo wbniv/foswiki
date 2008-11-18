@@ -81,15 +81,15 @@ sub compareResult {
 }
 
 sub runTests {
-    saveResult("test1.actualResults", 'indexTopic="TWiki.TRTTestSuite" from="localInstallation" statusFilter="all"');
+    saveResult("test1.actualResults", 'indexTopic="System.TRTTestSuite" from="localInstallation" statusFilter="all"');
     compareResult("test1");
-    saveResult("test2.actualResults", 'from="distroNone" indexTopic="TWiki.TRTTestSuite" to="distro1" statusFilter="all');
+    saveResult("test2.actualResults", 'from="distroNone" indexTopic="System.TRTTestSuite" to="distro1" statusFilter="all');
     compareResult("test2");
-    saveResult("test3.actualResults", 'from="localInstallation" indexTopic="TWiki.TRTTestSuite" to="distro1" statusFilter="all');
+    saveResult("test3.actualResults", 'from="localInstallation" indexTopic="System.TRTTestSuite" to="distro1" statusFilter="all');
     compareResult("test3");
-    saveResult("test4.actualResults", 'from="distro1" indexTopic="TWiki.TRTTestSuite" to="localInstallation" statusFilter="all');
+    saveResult("test4.actualResults", 'from="distro1" indexTopic="System.TRTTestSuite" to="localInstallation" statusFilter="all');
     compareResult("test4");
-    saveResult("test5.actualResults", 'from="distro2" indexTopic="TWiki.TRTTestSuite" to="localInstallation" statusFilter="all');
+    saveResult("test5.actualResults", 'from="distro2" indexTopic="System.TRTTestSuite" to="localInstallation" statusFilter="all');
     compareResult("test5");
 }
 

@@ -25,4 +25,4 @@ Hello [[%WIKIUSERNAME%][%SPACEOUT{%WIKINAME%}%]]%BR%%LOGOUT%
 -->
 %META:FORM{name="TopicForm"}%
 %META:FIELD{name="TopicType" attributes="M" title="TopicType" value="AdminTool"}%
-%META:FIELD{name="TopicDescription" attributes="M" title="TopicDescription" value="WebSideBar used by the TWiki.PatternSkin"}%
+%META:FIELD{name="TopicDescription" attributes="M" title="TopicDescription" value="WebSideBar used by the %SYSTEMWEB%.PatternSkin"}%

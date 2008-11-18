@@ -60,13 +60,13 @@ if [ -e "$config" ]; then source "$config"; fi
 # without arguments: generates the templates
 # -d: generate a distrib in /tmp
 # -c: generate a config file
-# -i: outputs a template for TWiki.KoalaSkinWebList
+# -i: outputs a template for System.KoalaSkinWebList
 # -r: removes koalaskin files
 # -o: offsite, do not check dir presences
 # -x: debug mode, traces shell instructions
 # -ccg: creates WebChangesGroup topics (do it once)
 
-# lists of hierarchical webs: bullet list in topic TWiki.KoalaSkinWebList
+# lists of hierarchical webs: bullet list in topic System.KoalaSkinWebList
 # Format: space-separated items
 #   1 level one bullet / web group / hue [ options] [ / comments ]
 #     hue is a 2-digit hex
@@ -255,7 +255,7 @@ check_weblist () {
   elif test ! -e $data/$wlw/KoalaSkinWebList.txt; then
     if test -e $data/Main/WebList.txt; then
       echo "*** You were using the old weblist at Main.WebList (pre-2.14)."
-      echo "*** Trying to rename into the new TWiki.KoalaSkinWebList..."
+      echo "*** Trying to rename into the new System.KoalaSkinWebList..."
       if mv $data/Main/WebList.txt $data/$wlw/KoalaSkinWebList.txt; then
 	echo OK
       else
@@ -581,7 +581,7 @@ check_ks_variables () {
     for v in $needed_vars; do
       case "$v" in
 	+*) : ;; # ok, found
-	*) W You must define the TWiki variable \"$v\" in TWiki.DefaultPreferences, e.g.:
+	*) W You must define the TWiki variable \"$v\" in System.DefaultPreferences, e.g.:
 	   echo "      * Set $v ="
 	   ;;
       esac
@@ -1332,7 +1332,7 @@ echo 'Create a Topic named KoalaSkinWebList in web TWiki, and edit it to paste t
 
 ---+ List of all Webs
 
-For the TWiki.KoalaSkin
+For the System.KoalaSkin
 
 __Note__ If you change this page, dont forget to run 
 =INSTALL/bin/koalaskin-generate= afterwards for your settings to take effect

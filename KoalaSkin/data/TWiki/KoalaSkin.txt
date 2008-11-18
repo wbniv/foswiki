@@ -61,7 +61,7 @@ system for instance). Expect an easily installable release per month.
 
 This implementation also keeps a lot of the templates structure of the
 original TWiki templates. 
-	* A wiki page TWiki.KoalaSkinWebList is written to describe the web 
+	* A wiki page %SYSTEMWEB%.KoalaSkinWebList is written to describe the web 
 	  pseudo-hierarchy.
 	* A shell (bash 2.x) script generates the TWiki templates from this 
 	  description. This script can be called offline or from TWiki.
@@ -111,7 +111,7 @@ original TWiki templates.
 	* nearly nothing is used from the web preferences, for ease of 
 	  management of a big number of webs. 
 	  Everything is defined in a single wiki topic
-	  TWiki.KoalaSkinWebList. A script then generates (compiles) templates 
+	  %SYSTEMWEB%.KoalaSkinWebList. A script then generates (compiles) templates 
 	  from this information, lowering runtime overhead.
 	  Note that this will generate about 500k of templates per web.
 	* As the templates are "compiled" from a description, it is possible
@@ -224,7 +224,7 @@ For the impatient, here is what to do to use it:
 		<br> =&lt;Files "searchmulti">=
 		<br> &nbsp;&nbsp; =require valid-user=
 		<br> =&lt;/Files>=
-	7 Create a topic TWiki.KoalaSkinWebList
+	7 Create a topic %SYSTEMWEB%.KoalaSkinWebList
 		* Fill it with the output of the script 
 		  =bin/koalaskin-generate -i=
 		  This will give you help on usage.
@@ -266,7 +266,7 @@ That's all!
 
 ---+++ Changing web hierarchy
 To change the web hierarchy, colors, web descriptions, web options...
-	1 edit TWiki.KoalaSkinWebList under TWiki
+	1 edit %SYSTEMWEB%.KoalaSkinWebList under TWiki
 	2 re-run =bin/koalaskin-generate= 
 
 ---+++ Optional components
@@ -295,8 +295,8 @@ facilities for:
 
 If you change the distributed templates, please provide feed back so we can
 see if we can change the skin to get your changes as configuration tweaks in
-TWiki.KoalaSkinWebList, to ease your future upgrades. The goal is to provide variables
-in TWiki.KoalaSkinWebList to specify your customizations, so you only have to call the
+%SYSTEMWEB%.KoalaSkinWebList, to ease your future upgrades. The goal is to provide variables
+in %SYSTEMWEB%.KoalaSkinWebList to specify your customizations, so you only have to call the
 generate script without remembering to add options or patch things afterwards.
 
 ---+++ TWiki preferences variables
@@ -318,7 +318,7 @@ WebPreferences topics of each web:
 	<br> Warning: just setting it to the URL of an external stylesheet 
 	will not work, you will have to include it in the above "link" tag.
 	This is done to allow direct inclusion of inline CSS code for small
-	modifications, this is not the same as the TWiki.KoalaSkinWebList variable KSCSS
+	modifications, this is not the same as the %SYSTEMWEB%.KoalaSkinWebList variable KSCSS
 	which must be an URL.
 	* *Set PRINTCSS =* _css code_
 	<br> optional CSS code to add to the print view
@@ -328,7 +328,7 @@ WebPreferences topics of each web:
 	edit,...). It will be right-aligned just above the webs bar.
 	* *Set RELATEDWEBS =* Web1.<nop>WebHome | Web2.<nop>WebHome | ...
 	<br> If the web has the WEBSRELATEDBAR option set in its entry in the
-	TWiki.KoalaSkinWebList topic, no other web will be shown in the web bar, except
+	%SYSTEMWEB%.KoalaSkinWebList topic, no other web will be shown in the web bar, except
 	the contents of this var will be expansed in the web tab bar, so you
 	should put there links to other webs related to the current one
 	(or any kind of other links).
@@ -424,10 +424,10 @@ variables in the <nop>KoalaSkinWebList topic such as:
 	  ks_lefttopics).
 	* KSTHEME=themes,... 
 	  Can be used to redefine any KoalaSkin template, see Theming.
-To do this, set in TWiki.KoalaSkinWebList the variable to a %-var, that you will
+To do this, set in %SYSTEMWEB%.KoalaSkinWebList the variable to a %-var, that you will
 have to define the default in the site preferences in %SYSTEMWEB%.DefaultPreferences or %USERSWEB%.SitePreferences,
 that then can be used to define things per web. For instance, in
-TWiki.KoalaSkinWebList, with the following declaration you will be able to use
+%SYSTEMWEB%.KoalaSkinWebList, with the following declaration you will be able to use
 %=%<nop>TOPICON%= to redefine the upper left icon per web.
 		* =Set KSICON = %<nop>TOPICON%=
 
@@ -564,7 +564,7 @@ The distrib includes some small themes:
 
 If the generation script finds attached "favicon.ico" files, it uses it as
 favicons, depending to which topic they are attached:
-	* TWiki.KoalaSkinWebList: uses it as default favicon for the site
+	* %SYSTEMWEB%.KoalaSkinWebList: uses it as default favicon for the site
 	* WebHome of a web, uses it only for topics in this web
 If you add or remove a favicon somewhere, the script must be re-run. No need
 to re-runafter modifying an existing one.
@@ -726,7 +726,7 @@ Generates also the common templates dir:
 
 The following topics are also created in webs:
 	* In web TWiki, to be included like e.g. 
-	  %<nop>INCLUDE{TWiki.WebSiteMap_Foo}% to import the site 
+	  %<nop>INCLUDE{%SYSTEMWEB%.WebSiteMap_Foo}% to import the site 
 	  map for the group of webs of parent Foo:
 		* <nop>WebSiteMap a site map as a wiki topic that you can
 		  %INCLUDE anywhere

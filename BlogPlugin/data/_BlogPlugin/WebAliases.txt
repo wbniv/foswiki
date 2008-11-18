@@ -2,7 +2,7 @@
 ---+ %TOPIC%
 %FORMFIELD{"TopicDescription"}%
 
-see also: TWiki.WebAliases, TWiki.AliasPlugin
+see also: %SYSTEMWEB%.WebAliases, %SYSTEMWEB%.AliasPlugin
 
 %STOPALIASAREA%
 %UNALIAS%

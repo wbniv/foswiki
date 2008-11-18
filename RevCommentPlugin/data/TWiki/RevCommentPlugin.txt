@@ -88,7 +88,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
      <ul>
       <li> Here should be the comment of this topic: %REVCOMMENT%
       <li> Look at the recent changes to the TWiki web:
-        TWiki.WebChangesWC
+        %SYSTEMWEB%.WebChangesWC
       <li> If you have also the [[TWiki:Plugins.HistoryPlugin][HistoryPlugin]] installed,
         look at the history of this document:
         %SCRIPTURL%/oops%SCRIPTSUFFIX%/%WEB%/%TOPIC%?template=oopshistory

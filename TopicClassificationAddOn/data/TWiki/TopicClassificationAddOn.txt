@@ -26,7 +26,7 @@ After installing this add-on, there are a few additional steps needed before it 
    * Make sure ={EnableHierarchicalWebs}= is enabled in =configure= (under "Store settings" tab). 
    * Add the following preference section to [[%USERSWEB%.SitePreferences]]:
 <verbatim>
----++ TWiki.TopicClassificationAddOn Preferences 
+---++ %SYSTEMWEB%.TopicClassificationAddOn Preferences 
    * TCAOWEB variable for identifying which web holds %TOPIC% infrastructure.
       * Set TCAOWEB = TCAO
       * Set HELP_BACKGROUND_COLOR = #E0B9A6

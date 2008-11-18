@@ -204,7 +204,7 @@ if ( $filepath ) {
 
 #=============== Function definitions =========================
 # getVirtualTopicTemplate: Gets action and arguments that can serve this virtual topic.
-# TWiki.NoEditAddOn is scanned for a table with first column as 'Enabled' and 
+# %SYSTEMWEB%.NoEditAddOn is scanned for a table with first column as 'Enabled' and 
 # exactly 6 columns.
 sub _getVirtualTopicAction
 { 

@@ -3,7 +3,7 @@
 ---+!! Function: %TOPIC%
 %FORMFIELD{"Summary"}%
 
-This !TopicFunction draws heavily on TWiki.WebTopicCreator, but adds additional form elements for classifying the topic.
+This !TopicFunction draws heavily on %SYSTEMWEB%.WebTopicCreator, but adds additional form elements for classifying the topic.
 
 %TOC{depth="2"}%
 

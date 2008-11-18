@@ -654,7 +654,7 @@ __END__
 =head1 BUGS
 
 See data/TWiki/MultiLangPlugin.txt in the source code or
-TWiki.MultiLangPlugin if you installed it in your TWiki.
+%SYSTEMWEB%.MultiLangPlugin if you installed it in your TWiki.
 
 =head1 COPYRIGHT
 

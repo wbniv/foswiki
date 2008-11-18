@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="ProjectContributor" date="1130442725" format="1.1" version="1.2"}%
 ---+!! %MAKETEXT{"Welcome to the [_1] web" args="<nop>%WEB%"}%
 
-This web contains that topics that are installed by TWiki.TopicClassificationAddOn into individual webs.
+This web contains that topics that are installed by %SYSTEMWEB%.TopicClassificationAddOn into individual webs.
 
 <blockquote>
 <form action="%SCRIPTURLPATH%/search%SCRIPTSUFFIX%/%INTURLENCODE{"%WEB%"}%/">

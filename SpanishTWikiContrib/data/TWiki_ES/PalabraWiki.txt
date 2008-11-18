@@ -1,6 +1,6 @@
 %META:TOPICINFO{author="BaseUserMapping_333" date="1216579719" format="1.1" reprev="1.9" version="1.9"}%
 %META:TOPICPARENT{name="WebHome"}%
-%INCLUDE{"TWiki.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
+%INCLUDE{"%SYSTEMWEB%.TranslationNote" section="%FORMFIELD{"Language"}%" ORIGIN="%FORMFIELD{"Origin"}%" REVISION="%FORMFIELD{"Revision"}%" ORIGINWEB="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,$FIND(., %FORMFIELD{"Origin"}%),$LENGTH(%FORMFIELD{"Origin"}%), )"}%" ORIGINTOPIC="%CALC{"$REPLACE(%FORMFIELD{"Origin"}%,0,$FIND(., %FORMFIELD{"Origin"}%), )"}%"}%
 
 ---+!! Qué es una !PalabraWiki?
  Una !PalabraWiki consiste de dos o más palabras pegadas que empiezan con una letra mayúscula. *PalabrasWiki son títulos de una páginaë*. El título de una página TWiki siempre tiene un formato fijo: dos o más palabras pegadas que empiezan con una letra mayúscula. Igual como por ejemplo el título de esta página: *PalabraWiki*. Cuando digite el nombre de una página, crea un enlace a esta página. Puede digitar =%HOMETOPIC%= y cuando salve la página, se convierte en %HOMETOPIC%. Tan fácil es.
@@ -41,7 +41,7 @@ Cuando escriba el título de una página, se convierte en un enlace. Existen varia
    * Para escribir una *etiqueta personalizada* para un enlace, utilice corchetes: =[<nop>[CómoFormatearTexto][Reglas básicas para la introducción de texto]]= - este se convierte en: [[CómoFormatearTexto][Reglas básicas para la introducción de texto]]
    * Para crear un enlace a una página que se encuentra *en una red diferente*, escriba: =Sandbox.WebSearch= - este se convierte en: Sandbox.WebSearch
    * Para mostrar el nombre de la red dentro del enlace, utilice corchetes: =[<nop>[Sandbox.%HOMETOPIC%]]= - este se convierte en: [[Sandbox.%HOMETOPIC%]]
-   * Para crear un enlace a *otra página Wiki*, utilice: =TWiki:Main/WebHome= - este se convierte en: TWiki:Main/WebHome (sitios están definidos en el TWiki.InterwikiPlugin %FLAGGB%)
+   * Para crear un enlace a *otra página Wiki*, utilice: =TWiki:Main/WebHome= - este se convierte en: TWiki:Main/WebHome (sitios están definidos en el %SYSTEMWEB%.InterwikiPlugin %FLAGGB%)
    * Para crear un enlace a una parte que está *en la misma página*, escriba "#" seguido por el nombre de una palabra ancla. La palabra ancla es "#" seguido por una palabra que tiene que ser una !PalabraWiki. Ejemplo: =#MiAncla=. También puede enlazar a una ancla en otra página: =%SYSTEMWEB%.%HOMETOPIC%#MiAncla=.
    * Para crear un enlace a un título que está *en la misma página*, escriba "#" seguido por el texto del título, reemplazando los espacios por lineas bajas (y sin =!=): =[<nop>[#Buenos_ejemplos_de_PalabrasWiki]]= se convierte en: [[#Buenos_ejemplos_de_PalabrasWiki]]. También puede enlazar el título de otra página: =%SYSTEMWEB%.%HOMETOPIC%#Disclaimer= se convierte en: %SYSTEMWEB%.%HOMETOPIC%#Disclaimer.
 
@@ -60,7 +60,7 @@ __%MAKETEXT{"Related Topics"}%:__ SintaxisWiki, ComoFormatearTexto
 
 -- __Colaboradores (Traducción):__ TWiki:Main.SebastianKlus - 07 Dec 2007
 
-%META:FORM{name="TWiki.TranslationForm"}%
-%META:FIELD{name="Origin" attributes="" title="Origin" value="TWiki.WikiWord"}%
+%META:FORM{name="System.TranslationForm"}%
+%META:FIELD{name="Origin" attributes="" title="Origin" value="System.WikiWord"}%
 %META:FIELD{name="Revision" attributes="" title="Revision" value="8"}%
 %META:FIELD{name="Language" attributes="" title="Language" value="es"}%

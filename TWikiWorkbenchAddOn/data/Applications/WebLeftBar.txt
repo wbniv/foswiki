@@ -22,5 +22,5 @@ See also: RenderSideBar
 
 %META:FORM{name="Applications.ApplicationTopic"}%
 %META:FIELD{name="TopicType" attributes="" title="TopicType" value="WebTool"}%
-%META:FIELD{name="Summary" attributes="" title="Summary" value="Sidebar navigation used by the TWiki.PatternSkin"}%
+%META:FIELD{name="Summary" attributes="" title="Summary" value="Sidebar navigation used by the System.PatternSkin"}%
 %META:FIELD{name="TWikiApplication" attributes="" title="TWikiApplication" value="TWikiWorkbench"}%

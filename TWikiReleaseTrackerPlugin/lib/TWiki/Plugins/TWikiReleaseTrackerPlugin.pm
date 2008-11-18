@@ -84,7 +84,7 @@ sub handleDiffWiki {
  my $compareFromDistribution = getParam( $param, 'from' )
    || 'localInstallation';
  TWiki::Plugins::TWikiReleaseTrackerPlugin::Common::setIndexTopic( getParam( $param, 'indexTopic' )
-    || 'TWiki.TWikiReleaseTrackerPlugin' );
+    || 'System.TWikiReleaseTrackerPlugin' );
 
  $listingFormat{'FSCS'} = getParam( $param, "fscsFormat" )
    || '| $relativeFile | FSCS | $locations |';
