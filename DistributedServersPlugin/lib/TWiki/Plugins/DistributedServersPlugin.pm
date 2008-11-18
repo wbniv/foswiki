@@ -64,10 +64,8 @@ sub postRenderingHandler {
     # do not uncomment, use $_[0], $_[1]... instead
     #my $text = shift;
     my $pubCDNMap = $TWiki::cfg{Plugins}{DistributedServersPlugin}{CDNMap};
-print STDERR  $TWiki::cfg{Plugins}{DistributedServersPlugin}{CDNMap};
     foreach my $from ( keys(%{$pubCDNMap}) ) {
-print STDERR "cdn? $from";
-        $_[0] =~ s|($from)|pubCDN($1)|ge;
+#        $_[0] =~ s|($from)|pubCDN($1)|ge;
     }
 }
 
@@ -76,6 +74,8 @@ sub pubCDN {
     my $pubCDNMap = $TWiki::cfg{Plugins}{DistributedServersPlugin}{CDNMap};
     my $url     = $pubCDNMap->{$fromUrl}[ $pubCDNIndex++ ];
     $pubCDNIndex = 0 if ( $pubCDNIndex >= scalar( @{ $pubCDNMap->{$fromUrl} } ) );
+
+print STDERR "$fromUrl ->  $url";
 
     return $url;
 }
