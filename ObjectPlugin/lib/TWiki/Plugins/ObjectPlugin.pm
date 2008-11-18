@@ -1,4 +1,4 @@
-# ObjectPlugin for TWiki Enterprise Collaboration Platform, http://TWiki.org/
+# ObjectPlugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
 #
 # Copyright (C) TWiki:Main.PiersGoodhew & TWikiContributors.
 

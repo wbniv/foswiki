@@ -1,4 +1,4 @@
-# ChartPlugin for TWiki Enterprise Collaboration Platform, http://TWiki.org/
+# ChartPlugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
 #
 # Copyright (C) 2004-2006 Peter Thoeny, Peter@Thoeny.org
 # Plugin written by http://TWiki.org/cgi-bin/view/Main/TaitCyrus
