@@ -1,0 +1,42 @@
+---+!! !DistributedServersPlugin
+<!--
+One line description, required for extensions repository catalog.
+   * Set SHORTDESCRIPTION = CDN and loadbalancing Wiki support
+-->
+%SHORTDESCRIPTION%
+
+%TOC%
+
+This plugin adds
+   1 CDN support for selected attachments (on a per web basis)
+   2 Browser accelleration, by distributing requests over multiple servers
+   3 (future) geo-DNS based CDN
+   3 (future) distributed Topic rendering
+
+
+For http://nextwiki.org, it delegates all TWiki web pub requests to http://starfish.nextwiki.org/nextwiki.org/pub/TWiki/. 
+To help make NextWiki.org as fast as possible, consider mirroring the files from there and emailing the http://twikifork.org/Community/InfrastructureTaskTeam to get your server added to our Content distribution network.
+
+---++ Installation Instructions
+
+you will need to sync the attachments in the webs that you are CDN'ing - one way is to use rsync and crontab:
+   * =*/5 * * * * /usr/local/bin/rsync -ravl /home/twikifork.org/pub/TWiki -e "ssh -i /root/.ssh/starfish.dsa" nextwiki@fosiki.nextwiki.org:/home/nextwiki/starfish.nextwiki.org/nextwiki.org/pub/ > /root/starfish.log=
+
+%$INSTALL_INSTRUCTIONS%
+
+---++ Plugin Info
+
+|  Plugin Author(s): | SvenDowideit@fosiki.com|
+|  Copyright: | &copy; 2008 SvenDowideit@fosiki.com |
+|  License: | [[http://www.gnu.org/licenses/gpl.html][GPL3 (Gnu General Public License)]] |
+|  Plugin Version: | %$VERSION% |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  Nov2008: | initial simple release for nextwiki.org use |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Plugin Home: | http://nextwiki.org/bin/view/Extensions/DistributedServersPlugin |
+|  Feedback: | http://nextwiki.org/bin/view/Extensions/DistributedServersPluginDev |
+|  Appraisal: | http://nextwiki.org/bin/view/Extensions/DistributedServersPluginAppraisal |
+
+__Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
+
+<!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the feedback topic on twiki.org instead. -->
