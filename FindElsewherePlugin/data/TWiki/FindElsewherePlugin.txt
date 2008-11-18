@@ -27,7 +27,7 @@ __Single hits__
 | Found singular here | =<nop>WebHomes=       | WebHomes       | [[%SYSTEMWEB%.WebHome][WebHomes]] |
 | Found elsewhere     | =<nop>WebSearch= | WebSearch | [[%SYSTEMWEB%.WebSearch][WebSearch]] |
 | Found elsewhere (LOOKELSEWHEREFORLOCAL enabled)    | =<nop>%SYSTEMWEB%.WikiUsers= | %SYSTEMWEB%.WikiUsers | [[Main.WikiUsers][WikiUsers]] |
-| Found elsewhere (LOOKELSEWHEREFORLOCAL disabled)    | =<nop>%SYSTEMWEB%.WikiUsers= | %SYSTEMWEB%.WikiUsers | [[TWiki.WikiUsers][WikiUsers]] (non-existing) |
+| Found elsewhere (LOOKELSEWHEREFORLOCAL disabled)    | =<nop>%SYSTEMWEB%.WikiUsers= | %SYSTEMWEB%.WikiUsers | [[%SYSTEMWEB%.WikiUsers][WikiUsers]] (non-existing) |
 | Found elsewhere     | =[<nop>[AdminGroup][wiki admins]]= | [[AdminGroup][wiki admins]] | [[Main.AdminGroup][wiki admins]] |
 | Don't touch direct links     | =[<nop>[%MAINWEB%.AdminGroup][wiki admins]]= | [[%MAINWEB%.AdminGroup][wiki admins]] | [[Main.AdminGroup][wiki admins]] |
 | Found singular  elsewhere     | =<nop>WebSearches= | WebSearches | [[%SYSTEMWEB%.WebSearch][WebSearches]] | 
@@ -88,7 +88,7 @@ You can list other webs in which to look for topics that don't exist in the curr
 
 ---++++ Singular and plural topics
 
-If the TWiki.WikiWord is plural but doesn't exist, %TOPIC% also looks for the singular word in other webs. You can disable this behaviour by setting DISABLEPLURALTOSINGULAR = 1. (Note this setting is for looking in *other* webs only (plural to singular is still automatically done in the current web, dependent on the setting in =configure=).
+If the %SYSTEMWEB%.WikiWord is plural but doesn't exist, %TOPIC% also looks for the singular word in other webs. You can disable this behaviour by setting DISABLEPLURALTOSINGULAR = 1. (Note this setting is for looking in *other* webs only (plural to singular is still automatically done in the current web, dependent on the setting in =configure=).
 
 ---++++ <nop>ACRONYM link settings
 

@@ -196,7 +196,7 @@ The syntax follows that of the !CalendarPlugin. See TWiki:Plugins.CalendarPlugin
 
 
 *Hints:* 
-	* You can use TWiki.TextFormattingRules for some attribute values: tablecaption, name, holidayicon, adayofficon, workicon, notatworkicon, compatmodeicon, pubholidayicon
+	* You can use %SYSTEMWEB%.TextFormattingRules for some attribute values: tablecaption, name, holidayicon, adayofficon, workicon, notatworkicon, compatmodeicon, pubholidayicon
 	* Every attribute of %<nop>HOLIDAYLIST% can also be used as plugin setting. You only have to use capital letters.
 	* Every attribute can be overwritten by URI query parameters: =hlp_&lt;attribute&gt;= e.g. %SCRIPTURL%/view/%WEB%.%TOPIC%?hlp_startdate=+10#HolidaylistPluginExample
 
@@ -291,7 +291,7 @@ The syntax follows that of the !CalendarPlugin. See TWiki:Plugins.CalendarPlugin
 		* # Set COMPATMODE = 1
 		* # Set COMPATMODEICON = 8-)
 
-	* Set unknown parameter message (default: =%<nop>RED% Sorry, some parameters are unknown: %<nop>UNKNOWNPARAMSLIST% %<nop>ENDCOLOR% &lt;br/&gt; Allowed parameters are (see !TWiki.HolidaylistPlugin topic for more details): %<nop>KNOWNPARAMSLIST%=)
+	* Set unknown parameter message (default: =%<nop>RED% Sorry, some parameters are unknown: %<nop>UNKNOWNPARAMSLIST% %<nop>ENDCOLOR% &lt;br/&gt; Allowed parameters are (see !%SYSTEMWEB%.HolidaylistPlugin topic for more details): %<nop>KNOWNPARAMSLIST%=)
 		* # Set UNKNOWNPARAMSMSG = %RED% Following parameter(s) is/are unknown: %UNKNOWNPARAMSLIST% %ENDCOLOR%
 
 	* Enable/Disable public holiday support (default: 1; public holiday support is enabled), show public holidays as separate lines in table (default: 0; public holidays are not shown as separate rows in table); public holiday icon (default: =<nop>:-)=)

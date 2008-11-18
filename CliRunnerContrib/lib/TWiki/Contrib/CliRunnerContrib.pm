@@ -312,7 +312,7 @@ sub no {
 | *Parameter*       | *Type*      | *Description*                      |
 | =%options=        | hash        | \
 Hash of options to add to the script.  They usually come in "key \
-value" pairs and are described in TWiki.TWikiScripts for every script. |
+value" pairs and are described in %SYSTEMWEB%.TWikiScripts for every script. |
 
 ---++++!! Bugs/Todo
 

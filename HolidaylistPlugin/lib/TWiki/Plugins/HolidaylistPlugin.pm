@@ -197,7 +197,7 @@ sub initDefaults() {
 		daynames	=> undef,	# day names (overwrites lang attribute)
 		monthnames	=> undef,	# month names (overwrites lang attribute)
 		width		=> undef,	# table width
-		unknownparamsmsg=> '%RED% Sorry, some parameters are unknown: %UNKNOWNPARAMSLIST% %ENDCOLOR% <br/> Allowed parameters are (see TWiki.HolidaylistPlugin topic for more details): %KNOWNPARAMSLIST%',
+		unknownparamsmsg=> '%RED% Sorry, some parameters are unknown: %UNKNOWNPARAMSLIST% %ENDCOLOR% <br/> Allowed parameters are (see %SYSTEMWEB%.HolidaylistPlugin topic for more details): %KNOWNPARAMSLIST%',
 		enablepubholidays	=> 1,		# enable public holidays
 		showpubholidays	=> 0,		# show public holidays in a separate row
 		pubholidayicon	=> ':-)',	# public holiday icon

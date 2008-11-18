@@ -8,7 +8,7 @@ our @EXPORT=qw(%config);
 
 %TWiki::Contrib::DistributionContrib::Config::config = (
  serverUrl => "http://twikireleasetracker.mrjc.com/download",
- saveTopic => "TWiki.DistributionContrib",
+ saveTopic => "System.DistributionContrib",
  saveTopicAttachmentName => "remoteFileSavedLocally"
 );
 
