@@ -1,4 +1,4 @@
-# Tag for TWiki Enterprise Collaboration Platform, http://TWiki.org/
+# Tag for Foswiki - The Free Open Source Wiki, http://foswiki.org/
 #
 # Copyright (C) 2006 Meredith Lesly, msnomer@spamcop.net
 # and TWiki Contributors. All Rights Reserved. TWiki Contributors

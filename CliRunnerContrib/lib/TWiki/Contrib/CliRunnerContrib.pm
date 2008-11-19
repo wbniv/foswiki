@@ -1,4 +1,4 @@
-# Contrib for of TWiki Enterprise Collaboration Platform, http://TWiki.org/
+# Contrib for of Foswiki - The Free Open Source Wiki, http://foswiki.org/
 #
 # Copyright (C) 2004 Wind River Systems Inc.
 # Copyright (C) 1999-2006 TWiki Contributors.
