@@ -117,14 +117,14 @@ _development TWiki_.
 
 Now install the !BuildContrib. In a subversion checkout, =cd= to the TWiki root
 and =perl pseudo-install.pl BuildContrib=. In a non-subversion environment,
-install the =BuildContrib= package from TWiki.org.
+install the =BuildContrib= package from foswiki.org.
 
 ---+++ Environment Variables
 
 Your build script has to know how to find the TWiki libraries, so it can
 pick up the components of the build system. Set =TWIKI_LIBS= (which is a
 path, same as =PERL5LIB=) to point to your =lib= directory in your development
-TWiki. =$TWIKI_LIBS= is used to extend @INC _for the duration of the build
+Foswiki. =$TWIKI_LIBS= is used to extend @INC _for the duration of the build
 only_, so it won't mask problems during testing.
 
 The approach we _recommend_ is to set =TWIKI_LIBS= in your login script (e.g. =.login=, =.csh=, =.profile= depending on what shell you prefer).
@@ -255,14 +255,14 @@ where
    * description is a short description of the module and where to get it.
 The installer script written by the build process uses the dependency type
 to decide how to install dependant modules. 'cpan' means 'get the module
-from CPAN' and 'perl' means 'get the module from the Plugins web on TWiki.org'
+from CPAN' and 'perl' means 'get the module from the Extensions web on foswiki.org'
 (or whatever other repositories the admin has specified using =$TWIKI_PACKAGES=
 or =$PLUGINS_URL=).
 
 ---+++ Calculating DEPENDENCIES
 When your module (the _depender_) depends on another module (a _dependee_), it is important to think carefully about what version of the dependee your module requires.
 
-When you are working with TWiki modules (such as contribs and plugins) you should list the version number of the module that you tested with. Normally you will want to use a <code>&gt;</code> condition, so that more recent versions will also work. If a dependency on a TWiki module fails (because the module isn't installed, for example) then the installer script will pull *the latest version* of the module from TWiki.org, whether that is the required version or not. This is a limitation of the way plugins are stored on TWiki.org.
+When you are working with TWiki modules (such as contribs and plugins) you should list the version number of the module that you tested with. Normally you will want to use a <code>&gt;</code> condition, so that more recent versions will also work. If a dependency on a TWiki module fails (because the module isn't installed, for example) then the installer script will pull *the latest version* of the module from foswiki.org, whether that is the required version or not. This is a limitation of the way plugins are stored on foswiki.org.
 
 When you are working with CPAN modules, you need to take account of the fact that there are *two types* of CPAN modules; _built-ins_ and _add-ons_.
 
@@ -279,7 +279,7 @@ A dependency may optionally be preceded by a condition that limits the cases
 where the dependency applies. The condition is specified using a line that
 contans <code>ONLYIF ( _condition_ )</code>, where _condition_ is a Perl
 conditional. This is most useful for enabling dependencies only for certain
-versions of TWiki. For example,
+versions of Foswiki. For example,
 <verbatim>
 TWiki::Rhinos,>=1.000,perl,Required. Download from TWiki:Plugins/RhinosContrib and install.
 ONLYIF ($TWiki::Plugins::VERSION < 1.025)
@@ -300,7 +300,7 @@ The easiest way to write a new build script is to use the
    1 Edit =lib/TWiki/Plugins/BathPlugin/MANIFEST= and make sure it lists
      all the files you want to include in the release package
 During development we recommend you use the =pseudo-install.pl= script to
-soft-link your plugin code into your development TWiki. This script uses the
+soft-link your plugin code into your development Foswiki. This script uses the
 MANIFEST you write and creates softlinks in your development TWiki that allow
 you to run your test code without having to do a full re-install each time you
 make a change.
@@ -374,7 +374,7 @@ When you are happy the release package is built correctly, you can
 upload it.
    * =cd twikiplugins/BathPlugin/lib/TWiki/Plugins/BathPlugin=
    * =perl build.pl upload=
-By default the =upload= target will upload to TWiki.org. You will be prompted
+By default the =upload= target will upload to foswiki.org. You will be prompted
 to enter an alternate upload target, should you require it (e.g. to upload to
 private corporate repository). The upload updates the topic and any associated
 Var topics published by the extension, and uploads zip, tgz, md5 and installer

@@ -16,7 +16,7 @@
 %TOC%
 
 ---++ Summary of Contents
-This module packages the [[http://dynarch.com/mishoo/calendar.epl][Mishoo JSCalendar]] Javascript in a form suitable for use with TWiki.
+This module packages the [[http://dynarch.com/mishoo/calendar.epl][Mishoo JSCalendar]] Javascript in a form suitable for use with Foswiki.
 
 ---++ Detailed Documentation
 %$POD%
