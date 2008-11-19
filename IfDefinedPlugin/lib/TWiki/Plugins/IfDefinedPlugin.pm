@@ -1,4 +1,4 @@
-# Plugin for TWiki Collaboration Platform, http://TWiki.org/
+# Plugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
 #
 # Copyright (C) 2006-2008 Michael Daum http://michaeldaumconsulting.com
 #

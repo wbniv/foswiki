@@ -1,4 +1,4 @@
-# Plugin for TWiki Collaboration Platform, http://TWiki.org/
+# Plugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
 #
 # Copyright (C) 2003 Othello Maurer <maurer@nats.informatik.uni-hamburg.de>
 # Copyright (C) 2003-2007 Michael Daum http://michaeldaumconsulting.com

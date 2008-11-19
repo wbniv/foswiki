@@ -1,4 +1,4 @@
-# Plugin for TWiki Collaboration Platform, http://TWiki.org/
+# Plugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
 #
 # Copyright (C) 2006 Peter Thoeny, peter@thoeny.org
 # Copyright (c) 2006 Fred Morris, m3047-twiki@inwa.net

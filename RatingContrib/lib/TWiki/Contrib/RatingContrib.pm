@@ -64,7 +64,7 @@ HEAD
 1;
 __DATA__
 
-Contrib for TWiki Collaboration Platform, http://TWiki.org/
+Contrib for Foswiki - The Free Open Source Wiki, http://foswiki.org/
 
 Author: Crawford Currie http://c-dot.co.uk
 

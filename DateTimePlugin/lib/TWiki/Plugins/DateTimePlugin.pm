@@ -1,5 +1,5 @@
 # DateTimePlugin.pm
-# Plugin for TWiki Collaboration Platform, http://TWiki.org/
+# Plugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
 #
 # For DateTimePlugin.pm:
 # Copyright (C) 2004 Aurélio A. Heckert, aurelio@im.ufba.br

@@ -1,5 +1,5 @@
 #! perl -w
-# Plugin for TWiki Collaboration Platform, http://TWiki.org/
+# Plugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
 #
 # Copyright (C) 2003 Martin@Cleaver.org
 # Copyright (C) 2000-2003 Andrea Sterbini, a.sterbini@flashnet.it

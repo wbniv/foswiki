@@ -1,4 +1,4 @@
-# Plugin for TWiki Collaboration Platform, http://TWiki.org/
+# Plugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
 # Copyright (C) 2008 Arthur Clemens, arthur@visiblearea.com
 #
 # This program is free software; you can redistribute it and/or
