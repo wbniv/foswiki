@@ -17,8 +17,8 @@ This is not really a skin. It is the set of default templates, shown if no skin 
 |  21 May 2007 | Bugs:Item3969 - 8bit email fix (TWiki:Main.WillNorris) |
 |  25 Jul 2004: | Initial version (v1.000) |
 |  Dependencies: |  |
-|  Skin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Skin Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 
 __Note:__ The Description, Screenshot and Base Name rows are needed by the %SYSTEMWEB%.SkinBrowser
 
