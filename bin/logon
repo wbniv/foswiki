@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 sub BEGIN { $ENV{PTKDB_STOP_TAG_COLOR} = "yellow" } 
 #
-# TWiki Enterprise Collaboration Platform, http://TWiki.org/
+# Foswiki - The Free Open Source Wiki, http://foswiki.org/
 #
 # Copyright (C) 1999-2007 Peter Thoeny, peter@thoeny.org
 # and TWiki Contributors.
