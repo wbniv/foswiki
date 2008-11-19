@@ -3,13 +3,13 @@
 
 This is a convenience package for installing or updating !TwistyPlugin on TWiki 4.0.5.
 Installed extensions are:
-   * http://TWiki.org/cgi-bin/view/Plugins/BehaviourContrib
-   * http://TWiki.org/cgi-bin/view/Plugins/TwistyContrib
-   * http://TWiki.org/cgi-bin/view/Plugins/TwistyPlugin
+   * http://foswiki.org/Extensions/BehaviourContrib
+   * http://foswiki.org/Extensions/TwistyContrib
+   * http://foswiki.org/Extensions/TwistyPlugin
 
 Other Twisty bundles:
-   *  http://TWiki.org/cgi-bin/view/Plugins/TwistyBundleTWiki04x01 for TWiki 4.1
-   *  http://TWiki.org/cgi-bin/view/Plugins/TwistyBundleTWiki04x02 for TWiki 4.2
+   *  http://foswiki.org/Extensions/TwistyBundleTWiki04x01 for TWiki 4.1
+   *  http://foswiki.org/Extensions/TwistyBundleTWiki04x02 for TWiki 4.2
    
 ---++ Installation Instructions
    1 Run the installer to install all files
@@ -29,8 +29,8 @@ Other Twisty bundles:
 |  13 Dec 2007 | 1.0.4 Update !TwistyPlugin 1.4.9. |
 |  24 Nov 2007 | 1.0.1 Update !TwistyPlugin 1.4.8. |
 |  19 Nov 2007 | 1.0 First version (!TwistyPlugin 1.4.5). |
-|  Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
-|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+|  Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
+|  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences

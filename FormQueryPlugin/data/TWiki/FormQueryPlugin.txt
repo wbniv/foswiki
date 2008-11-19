@@ -498,8 +498,8 @@ In this case, =$TableDefinition.0.Name= is =Cat=, =$TableDefinition.1.Name= is =
 |  TWiki Dependencies: | TWiki:Plugins.SpreadSheetPlugin |
 |  Dependencies: | <table border=1><tr><th align="left">Name</th><th align="left">Version</th><th align="left">Description</th></tr><tr><td align="left">TWiki::Contrib::DBCacheContrib</td><td align="left">&gt;=1.001</td><td align="left">Required. Download and install from the TWiki:Plugins/DBCacheContrib code library.</td></tr></tr><tr><td align="left">Time::ParseDate</td><td align="left">Required. Available from [[http://cpan.uwinnipeg.ca/dist/Time-modules][CPAN]].</td></tr><tr><td align="left">Storable</td><td align="left">&gt;=2.07</td><td align="left">2.13 recommended; accelerates cache handling. Available from [[http://cpan.uwinnipeg.ca/dist/Storable][CPAN]]</td></tr><tr><td align="left">TWiki::Plugins::MacrosPlugin</td><td align="left">&gt;=1.000</td><td align="left">Recommended; used for parameterised includes. Download from TWiki:Plugins/MacrosPlugin repository.</td></tr></table> |
 |  Perl Version: | 5.0 |
-|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Demo URL: | http://www.owiki.org/FQP/ |
 
 ---+++ Copyright

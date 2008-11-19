@@ -131,9 +131,9 @@ The same tooltip is displayed if Plugin is installed and not:
 |  10 Sep 2004 | TWiki:Main/PatrickNomblot: tooltip text can comes from any TOPIC |
 |  29 Dec 2005 | TWiki:Main/AndreUlrich: updated to wz_tooltip.js v. 3.38; added further parameters |
 |  Dependencies: | %$DEPENDENCIES% |
-|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
-|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
+|  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 

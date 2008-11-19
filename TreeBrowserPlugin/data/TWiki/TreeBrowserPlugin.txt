@@ -504,9 +504,9 @@ See TWiki:Plugins.TreeBrowserPluginDev.
 |  Perl Version: | 5.005, 5.8.7 |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
 |  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle n%, %SYSTEMWEB%.FormattedSearch n%, %TOPIC% n% |
-|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
-|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
+|  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
 __Related Topics:__ TWiki:Plugins.RenderListPlugin, TWiki:Plugins.TreePlugin
 

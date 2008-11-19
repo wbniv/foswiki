@@ -97,9 +97,9 @@ If you are using !PersonalInfoAddon for TWiki 4.1, and need to update to the ver
 | 05 Mar 2007 | 1.0.1 Small documentation updates.  |
 | 04 Mar 2007 | 1.0 First release.  |
 | Demo url:  |   |
-| Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-| Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
-| Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+| Home: | http://foswiki.org/Extensions/%TOPIC% |
+| Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
+| Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
 
 %META:FILEATTACHMENT{name="userpage_edit.png" attr="" autoattached="1" comment="" date="1181684125" path="userpage_edit.png" size="59193" user="UnknownUser" version=""}%

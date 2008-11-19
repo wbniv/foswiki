@@ -61,9 +61,9 @@ __Note:__ This is a command line tool for administrators; regular TWiki user can
 |  CPAN Dependencies: | LWP |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  Add-on Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
-|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+|  Add-on Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
+|  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
 __Related Topic:__ %SYSTEMWEB%.ContributedAddOns
 

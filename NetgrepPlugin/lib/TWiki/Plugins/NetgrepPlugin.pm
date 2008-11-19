@@ -16,7 +16,7 @@
 # =========================
 #
 # This is the NetgrepPlugin used to embed external information.
-# Plugin home: http://TWiki.org/cgi-bin/view/Plugins/NetgrepPlugin
+# Plugin home: http://foswiki.org/Extensions/NetgrepPlugin
 #
 # Each plugin is a package that contains the subs:
 #

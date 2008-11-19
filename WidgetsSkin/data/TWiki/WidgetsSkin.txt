@@ -154,9 +154,9 @@ You can use this technique to create a TWikiSkin that matches closely the HTML o
 |  7 Dec 2007:  | stop the demo images from overflowing the design, other Skin fixes |
 |  15 Oct 2007: | Doc rewrite - TWiki:Main.CrawfordCurrie |
 |  30 Mar 2007: | initial release of Skin | 
-|  Home: | [[http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%][%TOPIC%]] |
-|  Feedback: | [[http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev][%TOPIC%Dev]] |
-|  Appraisal: | [[http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal][%TOPIC%Appraisal]] |
+|  Home: | [[http://foswiki.org/Extensions/%TOPIC%][%TOPIC%]] |
+|  Feedback: | [[http://foswiki.org/Extensions/%TOPIC%Dev][%TOPIC%Dev]] |
+|  Appraisal: | [[http://foswiki.org/Extensions/%TOPIC%Appraisal][%TOPIC%Appraisal]] |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
 

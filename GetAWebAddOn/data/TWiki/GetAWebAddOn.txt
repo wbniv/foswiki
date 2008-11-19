@@ -49,8 +49,8 @@ The script produces files in the formats:
 |  Other Dependencies: | Archive::Tar |
 |  Perl Version: | 5.005 |
 |  License: | GPL |
-|  Add-on Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Add-on Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 
 __Related Topic:__ %SYSTEMWEB%.ContributedAddOns
 

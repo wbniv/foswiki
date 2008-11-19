@@ -222,9 +222,9 @@ format="   * $C1$C3(\"isempty\" then=\" $C4\" else=\" [[$C3][$C4]]\") %BR%   $C2
 | 07 Mar 2007 | Arthur Clemens: 1.0.1 Fixed CSS bug in Win Explorer 6 in example.  |
 | 04 Mar 2007 | Arthur Clemens: 1.0 First release.  |
 | Demo url:  |   |
-| Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-| Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
-| Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+| Home: | http://foswiki.org/Extensions/%TOPIC% |
+| Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
+| Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
 
 %META:FILEATTACHMENT{name="renderTableDataExample.png" attachment="renderTableDataExample.png" attr="" comment="Edit and render example" date="1173012452" path="renderTableDataExample.png" size="217811" stream="renderTableDataExample.png" user="Main.ProjectContributor" version="1"}%

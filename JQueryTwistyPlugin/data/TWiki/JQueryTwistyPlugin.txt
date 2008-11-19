@@ -454,6 +454,6 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>T
 | 28 Apr 2008 | warn on wrong ordering of TWISTY ... ENDTWISTY |
 | 13 Feb 2008 | minor fixes for jquery-1.2.3 |
 | 15 Nov 2007 | first version forking <nop>TwistyPlugin/<nop>TwistyContrib |
-| Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-| Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
-| Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+| Home: | http://foswiki.org/Extensions/%TOPIC% |
+| Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
+| Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |

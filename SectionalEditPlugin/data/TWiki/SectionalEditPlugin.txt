@@ -95,8 +95,8 @@ To enable editing of:
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | TWiki:Plugins/EditContrib |
 |  Perl Version: | 5.0 |
-|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 
 ---+++ Discussion
 _Discussion of this plugin can be found in [[TWiki:Plugins.%TOPIC%Dev][%TOPIC%Dev]]._

@@ -71,7 +71,7 @@ Silly paragraph
 |  07 Dec 2002: | Removed "=pod" from showing up in html or twiki blocks |
 |  01 Dec 2002: | Initial version |
 |  Dependencies: | %$DEPENDENCIES |
-|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]

@@ -69,8 +69,8 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Other Dependencies: | [[http://librsvg.sourceforge.net][librsvg]] headers, if needed to compile Image::LibRSVG, and [[http://librsvg.sourceforge.net][librsvg]] |
 |  Perl Version: | tested with 5.8.4 |
 |  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
-|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 

@@ -13,7 +13,7 @@ One of target of this plugin - help with documentation for developers. It have c
 
 ---++ Plugin Development 
 
-Please see topic [[http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev][%TOPIC%Dev]].
+Please see topic [[http://foswiki.org/Extensions/%TOPIC%Dev][%TOPIC%Dev]].
 
 If you can say something about this plugin or you have any ideas, i'll be glag if you write in development topic about it.
 
@@ -51,8 +51,8 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 

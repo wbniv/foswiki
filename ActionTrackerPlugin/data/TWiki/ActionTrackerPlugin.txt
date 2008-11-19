@@ -445,8 +445,8 @@ Thanks are due to the following sponsors, who have helped make this plugin possi
 |  11 Jan 2002 | Added ACTIONSEARCH for selected webs and topics; Changed action editor to use a template; Eliminated UNIX dependencies; Fixed formatting of actions in bulleted lists |
 |  9 Jan 2002 | Bugfix version |
 |  Dependencies: | %$DEPENDENCIES% |
-|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/ActionTrackerPlugin |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/ActionTrackerPluginDev |
+|  Plugin Home: | http://foswiki.org/Extensions/ActionTrackerPlugin |
+|  Feedback: | http://foswiki.org/Extensions/ActionTrackerPluginDev |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 

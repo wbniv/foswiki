@@ -101,9 +101,9 @@ Specify plug-in settings in =LocalSite.cfg=:
 | 26 Jul 2006: | 0.4 - TWiki:Main.SteffenPoulsen: Ported to TWiki 4 (Dakar). Leading text removed, less warnings, no double bracket links, CSS classnames around output. |
 | 15 Feb 2002 | Alpha (0.2) release |
 | 08 Feb 2002 | Internal (0.1) release |
-| Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-| Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
-| Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+| Home: | http://foswiki.org/Extensions/%TOPIC% |
+| Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
+| Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 

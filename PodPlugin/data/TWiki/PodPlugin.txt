@@ -62,7 +62,7 @@ Test podplugin - testing podplugin
 |  27 Feb 2001: | Initial version |
 |  Dependencies: | %$DEPENDENCIES% |
 |  Perl Version: | 5.005 |
-|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://twiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
 
 __Related Topics:__ [[%SYSTEMWEB%.Plugins][Plugins]], %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences

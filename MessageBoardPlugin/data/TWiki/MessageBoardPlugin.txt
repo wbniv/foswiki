@@ -97,8 +97,8 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  CPAN Dependencies: | [[http://search.cpan.org/author/TIMB/DBI-1.42/DBI.pm][DBI]] [[http://search.cpan.org/author/LDS/CGI.pm-3.05/CGI.pm][CGI]] |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.6.1 |
-|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 

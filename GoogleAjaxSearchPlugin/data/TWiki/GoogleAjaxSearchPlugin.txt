@@ -124,9 +124,9 @@ To see it work (if installed and the right Google key is set):
 |  22 Jul 2006 | 1.0.2 Added Lazy loading |
 |  22 Jul 2006 | 1.0.1 Added =GOOGLESEARCHLABEL=; various bug fixes |
 |  20 Jul 2006 | 1.0.0 First Version |
-|  Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
-|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+|  Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
+|  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
  

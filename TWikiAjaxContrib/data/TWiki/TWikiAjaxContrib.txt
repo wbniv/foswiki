@@ -484,9 +484,9 @@ See TWikiAjaxContribExamples
 | 4 Nov 2006 | 0.8.1 Changed package =TWiki= to lowercase =twiki=  |
 | 2 Nov 2006 | 0.8 (alpha) First time in the open  |
 | Demo url:  | http://twiki4.visiblearea.com/twiki4/MAIN/bin/view/TWiki/TWikiAjaxContribExamples  |
-| Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-| Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
-| Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+| Home: | http://foswiki.org/Extensions/%TOPIC% |
+| Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
+| Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
 

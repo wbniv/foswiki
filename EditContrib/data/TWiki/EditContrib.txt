@@ -134,8 +134,8 @@ __Note:__ You do not need to install anything on the browser to use this contrib
 |  12 Mar 2005: | Added subroutine setting up section for editing.  |
 |  11 Mar 2005: | Added templates for editing sections. |
 |  08 Mar 2005: | Initial version |
-|  Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 
 __Related Topics:__ TWiki:Plugins/SectionalEditPlugin, TWiki:Plugins/MultiEditPlugin, TWiki:Plugins/ThreadedDiscussionPlugin, TWiki:Plugins/EditTablerowPlugin
 

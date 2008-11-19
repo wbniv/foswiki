@@ -82,9 +82,9 @@ License]]) |
 |  Other Dependencies: | TWiki:Plugins.SpreadSheetPlugin version 17 Jun 2005
 (1.018) |
 |  Perl Version: | 5.005 |
-|  Add-on Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
-|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+|  Add-on Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
+|  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
 __Related Topic:__
 	* %SYSTEMWEB%.ContributedAddOns

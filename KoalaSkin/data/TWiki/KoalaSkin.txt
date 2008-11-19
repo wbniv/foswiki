@@ -36,8 +36,8 @@ By Colas Nahaboo. http://colas.nahaboo.net
 |  Skin CVS Infos: | $Revision: 1.5 $, $Date: 2006/08/27 11:25:31 $ |
 |  Change History: | see  TWiki:Plugins/KoalaSkin#History_of_revisions |
 |  Dependencies: |  |
-|  Skin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Skin Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 
 ---++ Design goals
 
@@ -749,7 +749,7 @@ May be be done for next (or future) version:
 May be done in the future, no guarantee.
 	* group changes must be themable. Should use also ks_lastchanges
 	  and RELATEDWEBS
-	* obey http://TWiki.org/cgi-bin/view/Plugins/SkinPackageHowTo
+	* obey http://foswiki.org/Extensions/SkinPackageHowTo
 	* robot exclusion with metas, see wikini
 	* http://www.twiki.org/cgi-bin/view/Codev/ShorterURLs
 	* CSS for twiki table (header and even/odd rows) on the web color 

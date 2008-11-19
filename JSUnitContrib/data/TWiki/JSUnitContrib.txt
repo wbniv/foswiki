@@ -97,9 +97,9 @@ See: http://www.jsunit.net/documentation/
 | License: | [[http://www.gnu.org/copyleft/gpl.html][GPL]], GNU Library or Lesser General Public License (LGPL), Mozilla Public License 1.1 (MPL 1.1)  |
 | Dependencies: | %$DEPENDENCIES% |
 | 28 Oct 2006 | Version jsunit2.2alpha11  |
-| Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-| Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
-| Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+| Home: | http://foswiki.org/Extensions/%TOPIC% |
+| Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
+| Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
  

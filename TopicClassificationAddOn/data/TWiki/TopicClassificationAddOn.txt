@@ -68,6 +68,6 @@ Once %TOPIC% is enabled within a web, you're ready to start defining *TopicTypes
 |  12965 | TWikibug:Item1715 - Clean up plugin topic. |
 |  12949 | TWikibug:Item1715 - Uploading Version 2.0 of TopicClassificationAddOn |
 |  Dependencies: | %$DEPENDENCIES% |
-|  Add-on Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Add-on Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Demo url: |  |

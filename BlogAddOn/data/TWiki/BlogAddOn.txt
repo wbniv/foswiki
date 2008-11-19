@@ -66,9 +66,9 @@ When installed, see _YourWebWithBlog_.BlogAddOnHome for additional details.
 | 15 Dec 2006 | 1.0.2 RSS feed link to category filter, fixes to sorting/filtering.  |
 | 14 Dec 2006 | 1.0.1 Option to set defaults when including !BlogPost.  |
 | 12 Dec 2006 | 1.0 First release.  |
-| Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-| Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
-| Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+| Home: | http://foswiki.org/Extensions/%TOPIC% |
+| Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
+| Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
 %META:FILEATTACHMENT{name="screenshot_post.png" attr="" autoattached="1" comment="" date="1207599570" path="screenshot_post.png" size="51916" version=""}%
 %META:FILEATTACHMENT{name="screenshot_list.png" attr="" autoattached="1" comment="" date="1207599564" path="screenshot_list.png" size="92290" version=""}%

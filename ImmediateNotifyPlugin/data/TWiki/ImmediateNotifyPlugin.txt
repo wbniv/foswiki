@@ -56,8 +56,8 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  CPAN Dependencies: | CPAN:XML::Stream, CPAN:Net::Jabber (2.0) (Only for Jabber notifications, SMTP notifications will work without these CPAN modules) |
 |  Other Dependencies: | none |
 |  Perl Version: | &gt; 5.6.1 |
-|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]], DefaultPlugin
 

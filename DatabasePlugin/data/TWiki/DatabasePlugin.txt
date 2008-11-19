@@ -88,8 +88,8 @@ Or let's say you wanted to display the next two upcoming scheduled events in the
 |  CPAN Dependencies: | DBI |
 |  Other Dependencies: | phpmyadmin (optional, to support DATABASE_EDIT) |
 |  Perl Version: | 5.0 (tested with 5.6.1 [mysql] and 5.8.0 [Oracle and Local] ) |
-|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 

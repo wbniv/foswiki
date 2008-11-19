@@ -106,8 +106,8 @@ Use  %<nop>CONTRIBUTORS{web="TWiki" topic="DefaultPreferences"  last="7" rev="1.
 |  Other Dependencies: | none |
 |  Perl Version: | 5.0 |
 |  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 100%, %SYSTEMWEB%.FormattedSearch 100%, %TOPIC% 100% |
-|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% (TWiki:Plugins.%TOPIC%) |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev (TWiki:Plugins.%TOPIC%Dev) |
+|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% (TWiki:Plugins.%TOPIC%) |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev (TWiki:Plugins.%TOPIC%Dev) |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 

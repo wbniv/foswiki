@@ -19,7 +19,7 @@
 # =========================
 #
 # This is the HeadlinesPlugin used to show RSS news feeds.
-# Plugin home: http://TWiki.org/cgi-bin/view/Plugins/HeadlinesPlugin
+# Plugin home: http://foswiki.org/Extensions/HeadlinesPlugin
 #
 
 # =========================

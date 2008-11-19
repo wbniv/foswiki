@@ -108,9 +108,9 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  CPAN Dependencies: | <table border="1"><tr><th>Name</th><th>Version</th><th>Description</th></tr><tr><td align="left">DBI</td><td align="left">&gt;=1.35</td><td align="left">Required</td></tr><tr><td align="left">DBD::SQLite</td><td align="left">&gt;=1.14</td><td align="left">Required</td></tr></table> |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.0 |
-|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
-|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
+|  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
 __Related Topics:__ TWiki:Plugins.BugzillaQueryPlugin
 

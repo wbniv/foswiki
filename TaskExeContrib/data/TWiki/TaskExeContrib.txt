@@ -331,9 +331,9 @@ Once installed you should have access to TaskExeManager.
 |  16 May 2007 | Adding support for =$taskspecweb=, =$taskspectopic= and =SENDMAIL= |
 |  15 May 2007 | Adding support for =URLEXISTS=, =IF=, =ELSE=, =ENDIF= |
 |  13 May 2007: | Initial version |
-|  Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
-|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+|  Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
+|  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
 

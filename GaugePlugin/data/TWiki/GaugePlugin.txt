@@ -104,8 +104,8 @@ __Note:__ You do not need to install anything on your browser to use this plugin
 |  CPAN Dependencies: | GD from http://stein.cshl.org/WWW/software/GD |
 |  Other Dependencies: | gd library from http://www.boutell.com/gd (Tested with 1.8.4)<br /> PNG graphics library from http://www.libpng.org/pub/png |
 |  Perl Version: | 5.005 |
-|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 

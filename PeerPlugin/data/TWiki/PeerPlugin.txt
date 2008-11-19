@@ -33,8 +33,8 @@ PeerReviewExamples<br>
 |  CPAN Dependencies: | DBI, DBD (<nop>MySQL) |
 |  Other Dependencies: | <nop>MySQL |
 |  Perl Version: | 5.004 |
-|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 
 %TOPIC% variable settings follow:
 

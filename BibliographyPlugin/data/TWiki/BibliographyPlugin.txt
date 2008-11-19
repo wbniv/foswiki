@@ -50,7 +50,7 @@ paper again %<nop/>CITE{small}%.
 
 With %<nop/>CITEINLINE% you can reference things
 that are not in your bibliography
-%<nop/>CITEINLINE{http://TWiki.org/cgi-bin/view/Plugins/BibliographyPlugin}%.
+%<nop/>CITEINLINE{http://foswiki.org/Extensions/BibliographyPlugin}%.
 
 %<nop/>BIBLIOGRAPHY{}%
 </pre>
@@ -65,7 +65,7 @@ again %CITE{small}%.
 
 With %<nop/>CITEINLINE% you can reference things
 that are not in your bibliography
-%CITEINLINE{http://TWiki.org/cgi-bin/view/Plugins/BibliographyPlugin}%.
+%CITEINLINE{http://foswiki.org/Extensions/BibliographyPlugin}%.
 
 %BIBLIOGRAPHY{}%
     </td>
@@ -116,8 +116,8 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
 |  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 97%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 97% |
-|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 

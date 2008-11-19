@@ -137,9 +137,9 @@ Testing the =catdoc= and =pdf= tools separately is recommended.
 |  Other Dependencies: | [[http://www.swish-e.org][Swish-E]], [[http://www.45.free.net/~vitus/ice/catdoc/][catdoc]], PDF conversion tool e.g. [[http://www.foolabs.com/xpdf/download.html][xpdf]] |
 |  Perl Version: | 5.005 |
 |  License: | GPL |
-|  Add-on Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
-|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+|  Add-on Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
+|  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
 __Related Topic:__ %SYSTEMWEB%.ContributedAddOns
 

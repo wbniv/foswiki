@@ -309,9 +309,9 @@ Usage (only if you are using a customized =javascript= section):
 | 23 Jun 2007 | 1.0.1 Fixed CSS to work with Internet Explorer.  |
 | 16 Jun 2007 | 1.0 First release.  |
 | Demo url:  |   |
-| Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-| Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
-| Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+| Home: | http://foswiki.org/Extensions/%TOPIC% |
+| Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
+| Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
 
 %META:FILEATTACHMENT{name="autocomplete_example.png" attachment="autocomplete_example.png" attr="" comment="Autocomplete example screenshot" date="1181956396" path="autocomplete_example.png" size="19823" stream="autocomplete_example.png" tmpFilename="" user="ProjectContributor" version="1"}%

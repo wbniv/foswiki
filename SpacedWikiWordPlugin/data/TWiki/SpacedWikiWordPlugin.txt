@@ -130,6 +130,6 @@ To install plugin:
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.0 |
-|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev | %STOPINCLUDE%
-|  Download: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
+|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev | %STOPINCLUDE%
+|  Download: | http://foswiki.org/Extensions/%TOPIC% |

@@ -193,8 +193,8 @@ to show the last render date.)
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | -nt operator in ksh/bash |
 |  Perl Version: | 5.x (optional) |
-|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 
 
 

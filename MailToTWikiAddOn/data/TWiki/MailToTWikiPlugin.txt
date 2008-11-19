@@ -121,8 +121,8 @@ The Plugin can be configured by modifying the following configuration variables.
 | CPAN Dependencies: | MIME::Tools |
 | Other Dependencies: | Unix/Linux or Windows/cygwin only |
 | Perl Version: | 5.6.1 |
-| Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/MailToTWikiAddOn |
-| Feedback: | http://TWiki.org/cgi-bin/view/Plugins/MailToTWikiAddOnDev |
+| Plugin Home: | http://foswiki.org/Extensions/MailToTWikiAddOn |
+| Feedback: | http://foswiki.org/Extensions/MailToTWikiAddOnDev |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 

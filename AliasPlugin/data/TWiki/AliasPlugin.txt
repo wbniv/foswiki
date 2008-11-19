@@ -181,8 +181,8 @@ macro or listed in the following way:
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 
 -- TWiki:Main/OthelloMaurer - 09 Oct 2003 %BR%
 -- TWiki:Main/MichaelDaum - 28 Apr 2008

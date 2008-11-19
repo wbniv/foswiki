@@ -100,8 +100,8 @@ Once %TOPIC% is enabled within a web, you're ready to start defining *TopicTypes
 |  Other Dependencies: | see above |
 |  Perl Version: | 5.005 |
 |  License: | GPL |
-|  Add-on Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Add-on Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Demo url: | http://skyloom.com/Demo/TopicClassification |
 
 __Related Topic:__ %SYSTEMWEB%.ContributedAddOns

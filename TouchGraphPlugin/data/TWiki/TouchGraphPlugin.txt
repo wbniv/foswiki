@@ -77,8 +77,8 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Other Dependencies: | [[http://java.sun.com/j2se/1.4.2/download.html][Java Runtime Environment / Java Plugin]] - tested with 1.4 |
 |  Perl Version: | 5.005 |
 |  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
-|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]], TWiki:Plugins/TouchGraphAddOn
 

@@ -110,9 +110,9 @@ The menu bar is built by default from %SYSTEMWEB%.QuickMenuBar, which in turn in
 |  21 Jun 2006: | Added "Account" menu (v1.01) |
 |  13 Jun 2006: | Initial version (v1.00) |
 |  Dependencies: |  |
-|  Skin Home: | http://TWiki.org/cgi-bin/view/Plugins/QuickMenuSkin |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/QuickMenuSkinDev |
-|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/QuickMenuSkinAppraisal |
+|  Skin Home: | http://foswiki.org/Extensions/QuickMenuSkin |
+|  Feedback: | http://foswiki.org/Extensions/QuickMenuSkinDev |
+|  Appraisal: | http://foswiki.org/Extensions/QuickMenuSkinAppraisal |
 
 __Related topic:__ [[%SYSTEMWEB.Skins][Skins]], %SYSTEMWEB%.SkinBrowser, %SYSTEMWEB%.UserDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory
 

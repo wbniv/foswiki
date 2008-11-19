@@ -878,9 +878,9 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Other Dependencies: | !EasyTimline.pl from http://infodisiac.com/Wikipedia/EasyTimeline/Introduction.htm |
 |  Perl Version: | 5.8+ |
 |  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 100%, %TOPIC% 99% |
-|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
-|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
+|  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
 __Related Topics:__ %SYSTEMWEB%.TWikiPlugins, %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.TWikiPreferences
 
@@ -929,7 +929,7 @@ a2 15
 ---+Easy Timeline Plugin 
 This plugin allows one to use the &lt;easytimeline> tags to generate a timeline on the fly.  Just like the &lt;timeline> plugin for [[http://meta.wikimedia.org/wiki/EasyTimeline][MediaWiki]] which I based this plugin on.
 
-Note: I based much of this code on the [[http://TWiki.org/cgi-bin/view/Plugins/RecursiveRenderPlugin][RecursiveRenderPlugin]] so many thanks to it's author for something to learn how to code a twiki plugin from.
+Note: I based much of this code on the [[http://foswiki.org/Extensions/RecursiveRenderPlugin][RecursiveRenderPlugin]] so many thanks to it's author for something to learn how to code a twiki plugin from.
 
 ---++ <nop>%TOPIC%  Syntax
 Simply &lt;easytimeline>

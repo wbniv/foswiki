@@ -176,9 +176,9 @@ You can also set the global [[preference setting]] TWISTYCONTRIB_DEBUG to 1 to m
 |  25 Oct 2006 | 1.2 Arthur Clemens - Updated !JavaScript to support !TwistyPlugin version 1.2  |
 |  26 Sep 2006 | 1.010 Arthur Clemens - Complete !JavaScript rewrite |
 |  12 Sep 2005 | 1.000 First Version |
-|  Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
-|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+|  Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
+|  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
  

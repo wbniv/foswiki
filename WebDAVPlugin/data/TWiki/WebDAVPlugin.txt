@@ -230,8 +230,8 @@ You may want to add a new DAV-edit-link to your attachments table.
 |  Other Dependencies: | %$DEPENDENCIES% |
 |  Perl Version: | 5.005 |
 |  License: | GPL |
-|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 
 ---++ Acknowledgements
    * This product includes software developed by Greg Stein <gstein@lyra.org> for use in the mod_dav module for Apache (http://www.webdav.org/mod_dav/). mod_dav is licensed under the terms of the following license: http://webdav.org/mod_dav/license-1.html

@@ -62,9 +62,9 @@ This skin is based on TWiki:Plugins/PatternSkin, and the same rules for customiz
 |  Change History: | <!-- specify latest version first -->&nbsp; |
 |  16 Mar 2008: | Public release (v1.000) |
 |  Dependencies: | TWiki 4.2; TWiki:Plugins/PatternSkin (automatically provided by TWiki); TWiki:Plugins/TWikiNetSkinPlugin |
-|  Skin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
-|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+|  Skin Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
+|  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
 
 __Related topic:__ [[%SYSTEMWEB.Skins][Skins]], %SYSTEMWEB%.SkinBrowser, %SYSTEMWEB%.UserDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory

@@ -46,8 +46,8 @@ Settings are stored as preferences variables. To reference a setting write ==%<n
 |  Version: | %$VERSION%  |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
 |  23 Aug 2004: | Initial version |
-|  Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 

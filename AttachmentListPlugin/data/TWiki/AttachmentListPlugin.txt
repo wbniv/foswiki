@@ -242,6 +242,6 @@ sort="$fileName"
 | 17 Dec 2006 - v.0.8 | TWiki:Main.ArthurClemens: reworked for TWiki 4.1 and optimized; activated =filter= parameter, added topic view permission check. |
 | 03 Mar 2006 - v.0.7 | TWiki:Main.SopanShewale: reworked for TWiki 4 |
 | 11 Apr 2005 - v.0.6 | TWiki:Main.VinodKulkarni: Initial version |
-| Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-| Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
-| Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+| Home: | http://foswiki.org/Extensions/%TOPIC% |
+| Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
+| Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |

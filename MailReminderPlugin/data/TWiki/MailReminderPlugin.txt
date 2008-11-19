@@ -248,8 +248,8 @@ In shell prompt execute :-  crontab -e [Enter]
 |  CPAN Dependencies: | CPAN:HTML::CalendarMonthSimple >= v1.23, CPAN:Date::Calc |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.000 and up |
-|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
+|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 

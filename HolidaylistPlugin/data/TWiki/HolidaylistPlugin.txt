@@ -351,9 +351,9 @@ The syntax follows that of the !CalendarPlugin. See TWiki:Plugins.CalendarPlugin
 |  Other Dependencies: | %SYSTEMWEB%.SmiliesPlugin |
 |  Perl Version: | 5.0 and up|
 |  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 94%, %SYSTEMWEB%.FormattedSearch 98%, %TOPIC% 86% |
-|  Plugin Home: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC% |
-|  Feedback: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Dev |
-|  Appraisal: | http://TWiki.org/cgi-bin/view/Plugins/%TOPIC%Appraisal |
+|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
+|  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
 __Related Topics:__ %SYSTEMWEB%.SmiliesPlugin, [[%SYSTEMWEB%.Plugins][Plugins]], TWiki:Plugins.CalendarPlugin
  
