@@ -1,0 +1,7 @@
+data/System/TwistyContrib.txt 0644
+lib/Foswiki/Contrib/TwistyContrib.pm 0444
+pub/System/TwistyContrib/twist.css 0644
+pub/System/TwistyContrib/twist.js 0644
+pub/System/TwistyContrib/twist_src.js 0644
+pub/System/TwistyContrib/twist.compressed.js 0644
+pub/System/TwistyContrib/twist.compressed_src.js 0644
