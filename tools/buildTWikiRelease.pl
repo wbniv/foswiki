@@ -27,7 +27,7 @@ my $twikiBranch = 'Release04x02';
 
 unless ( -e $twikiBranch ) {
    print STDERR "doing a fresh checkout\n";
-   `svn co http://svn.nextwiki.org/branches/$twikiBranch > TWiki-svn.log`;
+   `svn co http://svn.foswiki.org/branches/$twikiBranch > TWiki-svn.log`;
    chdir($twikiBranch);
 } else {
 #TODO: should really do an svn revert..
@@ -71,7 +71,7 @@ unless ($errorcode == 0) {
     
     chdir($twikihome);
     if ($SvensAutomatedBuilds) {
-    	sendEmail('nextwiki-svn@lists.sourceforge.net', "Subject: NextWiki $twikiBranch branch has Unit test FAILURES\n\n see http://fosiki.com/$twikiBranch/ for output files.\n".$unittestErrors);
+    	sendEmail('nextwiki-svn@lists.sourceforge.net', "Subject: Foswiki $twikiBranch branch has Unit test FAILURES\n\n see http://fosiki.com/$twikiBranch/ for output files.\n".$unittestErrors);
     	`scp TWiki* distributedinformation\@fosiki.com:/home/distributedinformation/www/$twikiBranch`;
     }
     die "\n\n$errorcode: unit test failures - need to fix them first\n" 
@@ -113,7 +113,7 @@ if ($SvensAutomatedBuilds) {
 	my $buildOutput = `ls -alh *auto*`;
 	$buildOutput .= "\n";
 	$buildOutput .= `grep 'All tests passed' $twikihome/TWiki-UnitTests.log`;
-	sendEmail('Builds@fosiki.com', "Subject: NextWiki $twikiBranch built OK\n\n see http://fosiki.com/$twikiBranch/ for output files.\n".$buildOutput);
+	sendEmail('Builds@fosiki.com', "Subject: Foswiki $twikiBranch built OK\n\n see http://fosiki.com/$twikiBranch/ for output files.\n".$buildOutput);
 	`scp TWiki* distributedinformation\@fosiki.com:/home/distributedinformation/www/$twikiBranch` ;
 }
 
