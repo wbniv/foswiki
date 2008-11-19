@@ -122,7 +122,7 @@ sub load {
     # look for the plugin installation web (needed for attached files)
     # in the order:
     #   1 fully specified web.plugin
-    #   2 TWiki.plugin
+    #   2 System.plugin
     #   3 Plugins.plugin
     #   4 thisweb.plugin
 

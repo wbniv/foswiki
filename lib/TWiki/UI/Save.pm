@@ -349,7 +349,7 @@ Command handler for =save= command.
 This method is designed to be
 invoked via the =UI::run= method.
 
-See TWiki.TWikiScripts for details of parameters.
+See %SYSTEMWEB%.TWikiScripts for details of parameters.
 
 Note: =cmd= has been deprecated in favour of =action=. It will be deleted at
 some point.

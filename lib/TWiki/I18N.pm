@@ -275,7 +275,7 @@ sub language {
 ---++ ObjectMethod enabled_languages() -> %languages
 
 Returns an array with language tags as keys and language (native) names as
-values, for all the languages enabled in this TWiki.TWikiSite. Useful for
+values, for all the languages enabled in this site. Useful for
 listing available languages to the user.
 
 =cut
