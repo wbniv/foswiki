@@ -5,7 +5,7 @@
 function process () {
     [ -f $1 -a "$1" != "mapname.sh" ] && { \
         grep -s -q "TWiki" $1 && {
-            sed -e 's.data/TWiki/.data/System/.g' | \
+            sed -e 's.data/TWiki/.data/System/.g' $1 | \
             sed -e 's.pub/TWiki/.pub/System/.g' | \
             sed -e 's/TWiki::/Foswiki::/g' $1 | \
             sed -e 's/new TWiki(/new Foswiki(/g' | \
