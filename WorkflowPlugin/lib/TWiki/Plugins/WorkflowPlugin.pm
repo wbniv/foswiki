@@ -29,9 +29,10 @@ use Error ':try';
 
 use TWiki::Plugins::WorkflowPlugin::Workflow;
 use TWiki::Plugins::WorkflowPlugin::ControlledTopic;
+use TWiki::OopsException;
 
 our $VERSION          = '$Rev: 0$';
-our $RELEASE          = '5 Nov 2008';
+our $RELEASE          = '21 Nov 2008';
 our $SHORTDESCRIPTION = 'Supports work flows associated with topics';
 our $pluginName       = 'WorkflowPlugin';
 our $TOPIC;
@@ -236,14 +237,15 @@ sub beforeEditHandler {
 
     return '' unless _initTOPIC( $web, $topic );
 
-    if ( !$TOPIC->canEdit() ) {
+    my $query = TWiki::Func::getCgiQuery();
+    if ( !$query->param('INWORKFLOWSEQUENCE') && !$TOPIC->canEdit() ) {
         throw TWiki::OopsException(
             'accessdenied',
             def   => 'topic_access',
             web   => $_[2],
             topic => $_[1],
             params =>
-              [ 'Edit topic', 'You are not permitted to edit this topic' ]
+              [ 'Edit topic', 'You are not permitted to edit this topic. You have been denied access by Workflow Plugin' ]
         );
         return 0;
     }
@@ -282,13 +284,16 @@ sub _changeState {
         my $newForm = $TOPIC->newForm($action);
 
         try {
+            $query->param('INWORKFLOWSEQUENCE' => 1);
             $TOPIC->changeState($action);
             if ($newForm) {
 
                 # If there is a form with the new state, and it's not the same
                 # form as previously, we need to kick into edit mode to support
                 # form field changes.
-                $url = TWiki::Func::getScriptUrl( $web, $topic, 'edit' );
+                $url = TWiki::Func::getScriptUrl(
+                    $web, $topic, 'edit',
+                    INWORKFLOWSEQUENCE => time());
             }
             else {
                 $url = TWiki::Func::getScriptUrl( $web, $topic, 'view' );
@@ -301,6 +306,10 @@ sub _changeState {
                 template => "oopssaveerr",
                 param1   => $error
             );
+        }
+        catch TWiki::OopsException with {
+            shift->redirect( $session );
+
         };
     }
     TWiki::Func::redirectCgiQuery( undef, $url );
@@ -330,18 +339,18 @@ sub beforeSaveHandler {
 
     # This handler is called by TWiki::Store::saveTopic just before
     # the save action.
-
-    if ( !$TOPIC->canEdit() ) {
-        throw TWiki::OopsException(
-            'accessdenied',
-            def   => 'topic_access',
-            web   => $_[2],
-            topic => $_[1],
-            params =>
-              [ 'Save topic', 'You are not permitted to save this topic' ]
-        );
-        return 0;
-    }
+#    my $query = TWiki::Func::getCgiQuery();
+#    if ( !$query->param('INWORKFLOWSEQUENCE') && !$TOPIC->canEdit() ) {
+#        throw TWiki::OopsException(
+#            'accessdenied',
+#            def   => 'topic_access',
+#            web   => $_[2],
+#            topic => $_[1],
+#            params =>
+#              [ 'Save topic', 'You are not permitted to make this transition' ]
+#        );
+#        return 0;
+#   }
 }
 
 1;
