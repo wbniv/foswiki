@@ -27,7 +27,7 @@ require TWiki::Plugins;    # For the API version
 
 use vars
   qw( $VERSION $RELEASE $SHORTDESCRIPTION $debug $pluginName $NO_PREFS_IN_TOPIC $pubCDNIndex);
-$VERSION           = '$Rev$';
+$VERSION           = '$Rev: 767 (18 Nov 2008) $';
 $RELEASE           = 'TWiki-4.2';
 $SHORTDESCRIPTION  = 'CDN and loadbalancing Wiki support';
 $NO_PREFS_IN_TOPIC = 1;
@@ -60,12 +60,18 @@ because PUBURL tags are contextless, we are forced to post process the HTML
 =cut
 
 sub postRenderingHandler {
-
     # do not uncomment, use $_[0], $_[1]... instead
     #my $text = shift;
+
+    # remove duplicated hostPath's
+    my $hostUrl = TWiki::Func::getUrlHost( );
+    $_[0] =~ s|($hostUrl)($hostUrl)|$1|g;
+
     my $pubCDNMap = $TWiki::cfg{Plugins}{DistributedServersPlugin}{CDNMap};
+    #print STDERR  $TWiki::cfg{Plugins}{DistributedServersPlugin}{CDNMap};
     foreach my $from ( keys(%{$pubCDNMap}) ) {
-#        $_[0] =~ s|($from)|pubCDN($1)|ge;
+        #print STDERR "cdn? $from";
+        $_[0] =~ s|($from)|pubCDN($1)|ge;
     }
 }
 
@@ -74,8 +80,6 @@ sub pubCDN {
     my $pubCDNMap = $TWiki::cfg{Plugins}{DistributedServersPlugin}{CDNMap};
     my $url     = $pubCDNMap->{$fromUrl}[ $pubCDNIndex++ ];
     $pubCDNIndex = 0 if ( $pubCDNIndex >= scalar( @{ $pubCDNMap->{$fromUrl} } ) );
-
-print STDERR "$fromUrl ->  $url";
 
     return $url;
 }
