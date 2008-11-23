@@ -13,7 +13,7 @@ __NOTA:__ La versión más reciente de esta colección de preguntas frecuentes se e
 ---++ Agregar nueva pregunta
 
 %X% __NOTA:__ 
-Estas páginas son para pregutas frecuentes __incluyendo__ respuestas; favor hacer preguntas de soporte en la web TWiki:Support.
+Estas páginas son para pregutas frecuentes __incluyendo__ respuestas; favor hacer preguntas de soporte en la web Foswiki:Support.
 Nuevas páginas de preguntas frecuentes serán basadas en la TWikiFaqTemplate.
 
 <form action="%SCRIPTURL{"edit"}%/%WEB%/">
@@ -34,7 +34,7 @@ Otros lugares donde puede encontrar respuestas a sus preguntas:
    * BuenEstilo: Asundos que deben considerarse cuando se cambia texto
    * SintaxisWiki, ComoFormatearTexto: Una guía rápida para conocer lo básico de la taquigrafía TWiki
    * PreguntasSobreFormatearTexto: Respuestas a consultas frecuentes acerca de formatear texto en el TWiki
-   * Si no encuentra ninguna respuesta, haga la consulta - enviala a la web TWiki:Support %FLAGGB%
+   * Si no encuentra ninguna respuesta, haga la consulta - enviala a la web Foswiki:Support %FLAGGB%
 
 -- __Colaboradores:__ TWiki:Main.PeterThoeny, TWiki:Main.MikeMannix, TWiki:Main.CrawfordCurrie
 

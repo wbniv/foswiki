@@ -474,8 +474,6 @@ Must be found at the start of the descriptions, blank-separated
 	* TABNAME=XXX means that the name that will be shown in the navigation
 	  bar tabs will be XXX. useful to give a shorter form for webs with
 	  long names. The real name will be mentioned also in the sitemap.
-	  This is especially useful if using extended web names, see
-	  TWiki:Support/WebNameAsWikiName .
 	  If the name has spaces, please use the "&<nop>nbsp;"
 	  form to represent them, e.g: 
 		* Quality_Assurance TABNAME=Q&<nop>nbsp;A Q A web
