@@ -1,6 +1,6 @@
 # Plugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
 #
-# Copyright (c) by TWiki Contributors. All Rights Reserved. TWiki Contributors
+# Copyright (c) by Foswiki Contributors. All Rights Reserved. Foswiki Contributors
 # are listed in the AUTHORS file in the root of this distribution.
 # NOTE: Please extend that file, not this notice.
 #
@@ -14,17 +14,17 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 #
-# For licensing info read LICENSE file in the TWiki root.
+# For licensing info read LICENSE file in the Foswiki root.
 
 # =========================
-package TWiki::Plugins::SpacedWikiWordPlugin;
+package Foswiki::Plugins::SpacedWikiWordPlugin;
 
 # =========================
 use vars qw(
   $web $topic $user $installWeb $VERSION $RELEASE $debug %dontSpaceSet $spaceOutWikiWordLinks $spaceOutUnderscoreLinks $removeAnchorDashes
 );
 
-# This should always be $Rev: 13634 $ so that TWiki can determine the checked-in
+# This should always be $Rev: 13634 $ so that Foswiki can determine the checked-in
 # status of the plugin. It is used by the build automation tools, so
 # you should leave it alone.
 $VERSION = '$Rev: 13634 $';
@@ -32,47 +32,48 @@ $VERSION = '$Rev: 13634 $';
 # This is a free-form string you can use to "name" your own plugin version.
 # It is *not* used by the build automation tools, but is reported as part
 # of the version number in PLUGINDESCRIPTIONS.
-$RELEASE = 'Dakar';
+$RELEASE = '1.0';
 
 # =========================
 sub initPlugin {
     ( $topic, $web, $user, $installWeb ) = @_;
 
     # check for Plugins.pm versions
-    if ( $TWiki::Plugins::VERSION < 1 ) {
-        &TWiki::Func::writeWarning(
+    if ( $Foswiki::Plugins::VERSION < 1 ) {
+        &Foswiki::Func::writeWarning(
             "Version mismatch between SpacedWikiWordPlugin and Plugins.pm");
         return 0;
     }
 
     # Get plugin debug flag
-    $debug = &TWiki::Func::getPreferencesFlag("SPACEDWIKIWORDPLUGIN_DEBUG");
+    $debug = &Foswiki::Func::getPreferencesFlag("SPACEDWIKIWORDPLUGIN_DEBUG");
 
     $spaceOutWikiWordLinks =
-      &TWiki::Func::getPreferencesValue("SPACE_OUT_WIKI_WORD_LINKS")
-      || &TWiki::Func::getPreferencesValue(
+      &Foswiki::Func::getPreferencesValue("SPACE_OUT_WIKI_WORD_LINKS")
+      || &Foswiki::Func::getPreferencesValue(
         "SPACEDWIKIWORDPLUGIN_SPACE_OUT_WIKI_WORD_LINKS");
 
     $spaceOutUnderscoreLinks =
-      &TWiki::Func::getPreferencesValue("SPACE_OUT_UNDERSCORE_LINKS")
-      || &TWiki::Func::getPreferencesValue(
+      &Foswiki::Func::getPreferencesValue("SPACE_OUT_UNDERSCORE_LINKS")
+      || &Foswiki::Func::getPreferencesValue(
         "SPACEDWIKIWORDPLUGIN_SPACE_OUT_UNDERSCORE_LINKS");
 
     $removeAnchorDashes =
-      &TWiki::Func::getPreferencesValue("REMOVE_ANCHOR_DASHES")
-      || &TWiki::Func::getPreferencesValue(
+      &Foswiki::Func::getPreferencesValue("REMOVE_ANCHOR_DASHES")
+      || &Foswiki::Func::getPreferencesValue(
         "SPACEDWIKIWORDPLUGIN_REMOVE_ANCHOR_DASHES");
 
-    my $dontSpaceWords = &TWiki::Func::getPreferencesValue("DONTSPACE")
-      || &TWiki::Func::getPreferencesValue("SPACEDWIKIWORDPLUGIN_DONTSPACE");
-    $dontSpaceWords =~ s/ //go;
-    %dontSpaceSet = map { $_ => 1 } split( ",", $dontSpaceWords );
+    my $dontSpaceWords = &Foswiki::Func::getPreferencesValue("DONTSPACE")
+      || &Foswiki::Func::getPreferencesValue("SPACEDWIKIWORDPLUGIN_DONTSPACE");
+    $dontSpaceWords =~ s/^\s*(\w+)\s*$/$1/go;
+    $dontSpaceWords =~ s/\s+/ /go;
+    %dontSpaceSet = map { $_ => 1 } split( /[,\s]/, $dontSpaceWords ) if $dontSpaceWords;
 
-    TWiki::Func::registerTagHandler( 'SPACEOUT', \&_SPACEOUT );
+    Foswiki::Func::registerTagHandler( 'SPACEOUT', \&_SPACEOUT );
 
     # Plugin correctly initialized
-    &TWiki::Func::writeDebug(
-        "- TWiki::Plugins::SpacedWikiWord::initPlugin( $web.$topic ) is OK")
+    &Foswiki::Func::writeDebug(
+        "- Foswiki::Plugins::SpacedWikiWord::initPlugin( $web.$topic ) is OK")
       if $debug;
     return 1;
 }
@@ -103,11 +104,11 @@ sub renderWikiWordHandler {
     }
 
     if ( $spaceOutWikiWordLinks && !$hasExplicitLinkLabel ) {
-        if ( $TWiki::Plugins::VERSION < 1.13 ) {
+        if ( $Foswiki::Plugins::VERSION < 1.13 ) {
             $linkLabel = _spaceOutWikiWordLinks($linkLabel);
         }
         else {
-            $linkLabel = TWiki::Func::spaceOutWikiWord($linkLabel);
+            $linkLabel = Foswiki::Func::spaceOutWikiWord($linkLabel);
         }
 
         # eat anchor dash
@@ -121,7 +122,7 @@ sub renderWikiWordHandler {
 
 ---++ _spaceOutWikiWordLinks( $linkLabel ) -> $text
 
-Fallback for older Plugins version. Regexes are copied from TWiki::spaceOutWikiWord.
+Fallback for older Plugins version. Regexes are copied from Foswiki::spaceOutWikiWord.
 
    * =$linkLabel= - the link label to be spaced out
 
@@ -131,9 +132,9 @@ sub _spaceOutWikiWordLinks {
     my ( $linkLabel, $sep ) = @_;
 
     my $separator       = $sep || ' ';
-    my $lowerAlphaRegex = TWiki::Func::getRegularExpression('lowerAlpha');
-    my $upperAlphaRegex = TWiki::Func::getRegularExpression('upperAlpha');
-    my $numericRegex    = TWiki::Func::getRegularExpression('numeric');
+    my $lowerAlphaRegex = Foswiki::Func::getRegularExpression('lowerAlpha');
+    my $upperAlphaRegex = Foswiki::Func::getRegularExpression('upperAlpha');
+    my $numericRegex    = Foswiki::Func::getRegularExpression('numeric');
 
     $linkLabel =~
 s/([$lowerAlphaRegex])([$upperAlphaRegex$numericRegex]+)/$1$separator$2/go;
@@ -160,7 +161,7 @@ sub _spaceOutUnderscoreTopicLinks {
 
 =pod
 
-Override TWiki _SPACEOUT function to enable spacing out of underscore topic links. 
+Override Foswiki _SPACEOUT function to enable spacing out of underscore topic links. 
 
    * =$this= - not used
    * =$params=

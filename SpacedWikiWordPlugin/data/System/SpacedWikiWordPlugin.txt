@@ -83,7 +83,7 @@ Plugin settings are stored as preferences variables.
 	* One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
 		* Set SHORTDESCRIPTION = Display TWiki links spaced out
 
-	* List of words that should not be spaced out (separated by commas):
+	* List of words that should not be spaced out (separated by commas or spaces):
 		* Set DONTSPACE = 
 
 	* Where spacing is applied. %BR%
@@ -119,9 +119,10 @@ To install plugin:
 
 ---++ Plugin Info
 
-|  Plugin Author: | TWiki:Main.MartinCleaver (2002, 2004), TWiki:Main.ArthurClemens (2007) |
-|  Plugin Version: | 05 May 2007 |
+|  Copyright: | &copy; Foswiki:Main.MartinCleaver (2002, 2004), Foswiki:Main.ArthurClemens (2007, 2008) |
+|  Plugin Version: | 23 Nov 2008 |
 |     History: | <!-- specify latest version first -->&nbsp; |
+|  23 Nov 2007 | Arthur Clemens: made compatible to Foswiki; allow =DONTSPACE= to separated words by spaces. | 
 |  05 May 2007 | Arthur Clemens: fixed a wrong function call, thanks TWiki:Main.JohnFitzpatrick. |
 |  04 May 2007 | Arthur Clemens: spacing out uses a Core function (from Plugins version 1.13; fallback for older versions); added support for spacing out of "underscore topic names"; added optional removal of anchor dashes. |
 |  20 Apr 2007 | Arthur Clemens: updated with regexes from TWiki Core =spaceOutWikiWord=; added =DONTSPACE= option. |
