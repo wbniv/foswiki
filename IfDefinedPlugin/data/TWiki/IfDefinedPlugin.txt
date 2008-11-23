@@ -46,7 +46,7 @@ evaluated left-to-right-inside-out.
 
 ---++ Related work
 Similar extensions have been done before but are either only available as an integral part of TWiki-4.0 
-(see TWiki:TWiki04/IfStatements) or unmaintained (see Foswiki:Extensions/ConditionalPlugin).
+(see Foswiki:System.IfStatements) or unmaintained (see Foswiki:Extensions/ConditionalPlugin).
 Especially these two alternatives are rather similar as they defined the same tag (%IF).
 The main differences between those and this plugin here is that they have a more elaborated
 conditon parser that allows to evaluate more complex boolean expressions. Some of the

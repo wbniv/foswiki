@@ -118,7 +118,7 @@ Recently registered users: %BR%
 |  CPAN Dependencies: | Time::Local |
 |  Other Dependencies: | (Foswiki:Extensions/SessionPlugin) |
 |  Perl Version: | 5.8 |
-|  Foswiki:Extensions/Benchmark: | TWiki:TWiki/GoodStyle nn%, TWiki:TWiki/FormattedSearch nn%, %TOPIC% nn% |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | Foswiki:Extensions/%TOPIC% |
 |  Feedback: | Foswiki:Extensions/%TOPIC%Dev |
 |  Appraisal: | Foswiki:Extensions/%TOPIC%Appraisal |
