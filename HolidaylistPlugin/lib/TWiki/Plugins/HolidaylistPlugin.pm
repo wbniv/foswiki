@@ -1536,7 +1536,7 @@ sub renderNav {
 
 	return $nav;
 }
-### dro: following code is derived from TWiki:Plugins.CalendarPlugin:
+### dro: following code is derived from Foswiki:Extensions.CalendarPlugin:
 # =========================
 sub getTopicText() {
 

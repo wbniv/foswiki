@@ -1193,13 +1193,13 @@ sub handleNewTheorem {
 
 =begin text
 
-use TWiki:Plugins.PerlDocPlugin to see a complete list of supported commands
+use Foswiki:Extensions.PerlDocPlugin to see a complete list of supported commands
 
 =end text
 
 =begin man
 
-use TWiki:Plugins.PerlDocPlugin to see a complete list of supported commands
+use Foswiki:Extensions.PerlDocPlugin to see a complete list of supported commands
 
 =end man
 
@@ -1212,7 +1212,7 @@ use TWiki:Plugins.PerlDocPlugin to see a complete list of supported commands
       * emph, em, centering, bf, textit, textbf, centerline
       * large, small, tiny, footnotesize
       * verb
-      * bibliographystyle, bibliography (with the TWiki:Plugins.BibtexPlugin installed)
+      * bibliographystyle, bibliography (with the Foswiki:Extensions.BibtexPlugin installed)
 
    * commands with limited support
       * includegraphics, 
@@ -1240,7 +1240,7 @@ available on the TWiki SVN development tree,
 Download the Parse.pm file and copy it to the
 C<lib/TWiki/Plugins/LatexModePlugin/> directory of your TWiki
 installation.  Documentation for the module is provided in 
-C<pod> format, and can be completely viewed using the TWiki:Plugins.PerlDocPlugin 
+C<pod> format, and can be completely viewed using the Foswiki:Extensions.PerlDocPlugin 
 or partially viewed using C<perldoc> or C<pod2text>.
 
 
@@ -1320,7 +1320,7 @@ solution.
 
 =head3 Including Graphics
 
-There are many ways to include graphics in latex files.  So, I figured the most reasonable way to support them all is to render them using the backend image rendering.  As of TWiki:Plugins.LatexModePlugin v3.3, the rendering of images in TWiki can be done dynamically using =dvipng=, =dvips=, or =pdflatex=.  So, to render images in twiki, one can 
+There are many ways to include graphics in latex files.  So, I figured the most reasonable way to support them all is to render them using the backend image rendering.  As of Foswiki:Extensions.LatexModePlugin v3.3, the rendering of images in TWiki can be done dynamically using =dvipng=, =dvips=, or =pdflatex=.  So, to render images in twiki, one can 
    * use the =includegraphics= command from the =graphicx= package, but do not declare the filename extension.
    * attach the image to the topic, with the file type extension stated. <br> The Plugin recognizes .eps, .pdf, .png, and .jpg file types.
    * the correct rendering engine will be called based on the image filename extension.

@@ -190,7 +190,7 @@ sub handleCitation
 }
 
 # was startRenderingHandler before. changed to preRenderingHandler as indicated
-# in TWiki:Plugins/DeprecatedHandlers.
+# in Foswiki:Extensions/DeprecatedHandlers.
 sub preRenderingHandler
 {
 ### my ( $text, $web ) = @_;   # do not uncomment, use $_[0], $_[1] instead

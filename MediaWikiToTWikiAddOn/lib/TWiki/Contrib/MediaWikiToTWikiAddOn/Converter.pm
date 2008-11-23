@@ -487,7 +487,7 @@ sub saveTopic {
 }
 
 ##############################################################################
-# tables: use TWiki:Plugins.MediaWikiTablePlugin
+# tables: use Foswiki:Extensions.MediaWikiTablePlugin
 # TODO: argh, what about ParserFunctions: http://meta.wikimedia.org/wiki/ParserFunctions
 sub convertMarkup {
   my $this = shift;
@@ -711,7 +711,7 @@ sub handleVerbatim {
 }
 
 ##############################################################################
-# TODO use TWiki:Plugins.EndNotePlugin
+# TODO use Foswiki:Extensions.EndNotePlugin
 sub handleFootNote {
   my ($this, $page, $text, $name) = @_;
 

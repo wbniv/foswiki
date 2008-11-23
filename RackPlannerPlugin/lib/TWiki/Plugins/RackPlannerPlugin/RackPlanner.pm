@@ -792,7 +792,7 @@ sub _getRackStatistics {
 	return { 'emptyUnits'=>$countEmptyUnits, 'occupiedUnits'=>$countOccupiedUnits, 'maxContinuesUnits'=>$maxContinuesEmptyUnits };
 
 }
-### dro: following code is derived from TWiki:Plugins.CalendarPlugin:
+### dro: following code is derived from Foswiki:Extensions.CalendarPlugin:
 # =========================
 sub _getTopicText() {
 

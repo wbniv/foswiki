@@ -19,7 +19,7 @@ use TWiki;
 use vars qw( $VERSION $RELEASE $SHORTDESCRIPTION );
 $VERSION = '$Rev: 0$';
 $RELEASE = 'Dakar';
-$SHORTDESCRIPTION = 'Supports report generation for workflow topics (see [[TWiki:Plugins/WorkflowPlugin][WorkflowPlugin]])';
+$SHORTDESCRIPTION = 'Supports report generation for workflow topics (see [[Foswiki:Extensions/WorkflowPlugin][WorkflowPlugin]])';
 
 my $debugMode  = 0;
 my $queryContext = 0;
@@ -273,7 +273,7 @@ __END__
 
 ---++ Summary
 This package is an add-on to the Workflow Plugin.
-See [[TWiki:Plugins/WorkflowPlugin][WorkflowPlugin]]
+See [[Foswiki:Extensions/WorkflowPlugin][WorkflowPlugin]]
 for an overwiew of Workflows in TWiki.
 
 ---+++ <code>TWiki/Contrib/WorkflowReportsContrib</code> code library
@@ -291,10 +291,10 @@ to update the workflow report topics regularly.
 
 ---++ Acknowledgments
 This contrib package is inspired by the following contributions
-   * [[TWiki:Plugins/WorkflowPlugin][WorkflowPlugin]]
+   * [[Foswiki:Extensions/WorkflowPlugin][WorkflowPlugin]]
    * WebStatistics module
-   * [[TWiki:Plugins/MakeCtrlTopicsListAddOn][MakeCtrlTopicsListAddOn]]
-   * [[TWiki:Plugins/MailerContrib][MailerContrib]]
+   * [[Foswiki:Extensions/MakeCtrlTopicsListAddOn][MakeCtrlTopicsListAddOn]]
+   * [[Foswiki:Extensions/MailerContrib][MailerContrib]]
 
 I would like to express my gratitude to:
 [[TWiki:Main/PeterThoeny][PeterThoeny]], [[TWiki:Main/ThomasWeigert][ThomasWeigert]],
@@ -394,7 +394,7 @@ Settings are stored as preferences variables. To reference a setting
 write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, e.g. ==%<nop>WORKFLOWREPORTSCONTRIB_STUB%==
 
    * One line description:
-      * Set SHORTDESCRIPTION = Supports report generation for workflow topics (see [[TWiki:Plugins/WorkflowPlugin][WorkflowPlugin]])
+      * Set SHORTDESCRIPTION = Supports report generation for workflow topics (see [[Foswiki:Extensions/WorkflowPlugin][WorkflowPlugin]])
 
    * Name of the perl package
       * Set STUB = %$STUB%

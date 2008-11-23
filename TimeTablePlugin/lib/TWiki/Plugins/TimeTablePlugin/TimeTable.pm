@@ -1457,7 +1457,7 @@ sub _processTopicSetup {
 	return $_[0];
 }
 
-### dro: following code is derived from TWiki:Plugins.CalendarPlugin:
+### dro: following code is derived from Foswiki:Extensions.CalendarPlugin:
 # =========================
 sub _getTopicText() {
 

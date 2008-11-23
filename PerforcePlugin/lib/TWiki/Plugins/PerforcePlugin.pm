@@ -104,7 +104,7 @@ $pluginName = 'PerforcePlugin';
 #
 #TODO: use that to test if a plugin is installed. Could be useful if we want to make use of JQueryPlugin
 #
-#eval "require TWiki:Plugins:OtherPlugin"; if $@ { print STDERR "Not installed" }
+#eval "require Foswiki:Extensions:OtherPlugin"; if $@ { print STDERR "Not installed" }
 #if ($TWiki::cfg{Plugins}{OtherPlugin}{Enabled}) { print STDERR "it's enabled" }
 #
 

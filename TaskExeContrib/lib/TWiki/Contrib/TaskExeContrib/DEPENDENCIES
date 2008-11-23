@@ -2,6 +2,6 @@
 # Dependencies for TaskContrib
 # Example:
 # Time::ParseDate,>=2003.0211,cpan,Required.
-TWiki::Plugins::TaskExePlugin,>=latest,perl,Required. Download and install from TWiki:Plugins/TaskExePlugin 
+TWiki::Plugins::TaskExePlugin,>=latest,perl,Required. Download and install from Foswiki:Extensions/TaskExePlugin 
 
 
