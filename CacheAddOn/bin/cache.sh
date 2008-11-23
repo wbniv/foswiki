@@ -13,7 +13,7 @@
 #	Link this to 'view'
 #
 # SEE ALSO:
-#	TWiki:Plugins/CacheAddOn  view  fresh
+#	Foswiki:Extensions/CacheAddOn  view  fresh
 #
 
 # customize...

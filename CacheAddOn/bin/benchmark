@@ -3,7 +3,7 @@
 # @(#)$Id: benchmark 4835 2003-05-19 21:08:57Z pklausner $ GNU (c) Peter Klausner 2002
 #
 # NAME:
-#	benchmark - time a few typical TWiki pages
+#	benchmark - time a few typical Foswiki pages
 #
 # SYNOPSYS:
 #	/your/twiki/url/path/benchmark
@@ -29,15 +29,12 @@
 #		Calls a "hello world" perl script, which loads and compiles
 #		all TWiki code and plug-ins, but does nothing else
 #
-#	If you have representative values, please submit them to
-#	http//twiki.org/cgi-bin/view/Codev/TWikiBenchmarks
-#
 # INSTALLATION
-#	Drop into /your/twiki/bin; make executable by webserver
+#	Drop into /your/foswiki/bin; make executable by webserver
 #	Edit customization section.
 #
 # SEE ALSO:
-#	TWiki:Plugins/CacheAddOn
+#	Foswiki:Extensions/CacheAddOn
 #
 
 # customize here...

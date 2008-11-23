@@ -21,7 +21,7 @@
 #	mkdir cache in TWiki main directory
 #
 # See also:
-#	TWiki:Plugins/CacheChooserAddOn
+#	Foswiki:Extensions/CacheChooserAddOn
 #
 #
 # customize if directories in your TWiki are different from standard installation tree:
