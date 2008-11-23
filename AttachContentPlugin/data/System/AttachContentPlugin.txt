@@ -84,26 +84,24 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
      | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
      | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
      | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+   * Enable the plugin in =configure=
    * Test if the installation was successful: <a href="%SCRIPTURL{save}%/%WEB%/%TOPIC%?action_save=1">Update user data XML</a> to see if an attachment is created/updated
 
 ---++ Plugin Info
 
-|  Plugin Author: | TWiki:Main.MeredithLesly, TWiki:Main.KennethLavrsen, TWiki:Main.ArthurClemens |
-|  Plugin Version: | 16 Apr 2007 (V2.2.0) |
+|  Copyright: | &copy; TWiki:Main.MeredithLesly, TWiki:Main.KennethLavrsen, TWiki:Main.ArthurClemens |
+|  Plugin Version: | 23 Nov 2008 (V2.2.1) |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  23 Nov 2008 (2.2.1) | Foswiki compatible. |
 |  16 Apr 2007 (2.2.0) | Kenneth Lavrsen: Add added =keeppars= parameter. Settings change to being plugin settings only. Removal of plugin tags fixed so text between is still visible. |
 |  15 Apr 2007 (2.1.0) | Arthur Clemens: added parameters =web=, =topic=, =comment= and =hide=. Plugin tags are removed from view. Added configurable default comment. |
 |  19 Oct 2006 (2.0) | TWiki:Main.KennethLavrsen<br />Fixed major security issue. Original version allowed /../ in the filename so files could be stored everywhere<br />Plugin now cleans up the its work area and no longer leaves temporary files<br />Temporary filenames made pseudo random to avoid race condition<br />Plugin now also removed nops and TML square bracket links<br />Attachment is no longer saved when uploading other files and changing attributes. |
 |  09 Feb 2006 (1.0) | Initial version |
-|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+|  TWiki Dependency: | $Foswiki::Plugins::VERSION 1.1 |
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  [[Foswiki:Extensions/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
-|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
-|  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
-
-__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
+|  Support: | http://foswiki.org/Support/%TOPIC% |
 

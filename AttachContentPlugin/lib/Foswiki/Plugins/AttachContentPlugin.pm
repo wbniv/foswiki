@@ -1,8 +1,10 @@
 # Plugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
 #
-# Copyright (c) 2006 by Meredith Lesly, Kenneth Lavrsen
-# and TWiki Contributors. All Rights Reserved. TWiki Contributors
-# are listed in the AUTHORS file in the root of this distribution.
+# Copyright (c) 2008 Foswiki Contributors
+# Copyright (c) 2007 Arthur Clemens
+# Copyright (c) 2006 Meredith Lesly, Kenneth Lavrsen
+# and TWiki Contributors. All Rights Reserved.
+# Contributors are listed in the AUTHORS file in the root of this distribution.
 # NOTE: Please extend that file, not this notice.
 #
 # This program is free software; you can redistribute it and/or
@@ -15,23 +17,23 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 #
-# For licensing info read LICENSE file in the TWiki root.
+# For licensing info read LICENSE file in the Foswiki root.
 
-package TWiki::Plugins::AttachContentPlugin;
+package Foswiki::Plugins::AttachContentPlugin;
 
 # Always use strict to enforce variable scoping
 use strict;
 
-# $VERSION is referred to by TWiki, and is the only global variable that
+# $VERSION is referred to by Foswiki, and is the only global variable that
 # *must* exist in this package
 use vars qw( $VERSION $RELEASE $debug $pluginName );
 use vars qw( $savedAlready $defaultKeepPars $defaultComment ); 
 
-# This should always be $Rev: 11069$ so that TWiki can determine the checked-in
+# This should always be $Rev: 11069$ so that Foswiki can determine the checked-in
 # status of the plugin. It is used by the build automation tools, so
 # you should leave it alone.
 $VERSION = '$Rev: 11069$';
-$RELEASE = '2.2.0';
+$RELEASE = '2.2.1';
 
 # Name of this Plugin, only used in this module
 $pluginName = 'AttachContentPlugin';
@@ -40,14 +42,14 @@ sub initPlugin {
     my( $topic, $web, $user, $installWeb ) = @_;
 
     # check for Plugins.pm versions
-    if( $TWiki::Plugins::VERSION < 1.026 ) {
-        TWiki::Func::writeWarning( "Version mismatch between $pluginName and Plugins.pm" );
+    if( $Foswiki::Plugins::VERSION < 1.026 ) {
+        Foswiki::Func::writeWarning( "Version mismatch between $pluginName and Plugins.pm" );
         return 0;
     }
 
-    $debug = TWiki::Func::getPreferencesFlag("ATTACHCONTENTPLUGIN_DEBUG");
-    $defaultKeepPars = TWiki::Func::getPreferencesFlag("ATTACHCONTENTPLUGIN_KEEPPARS") || 0;
-    $defaultComment = TWiki::Func::getPreferencesValue("ATTACHCONTENTPLUGIN_ATTACHCONTENTCOMMENT") || '';
+    $debug = Foswiki::Func::getPreferencesFlag("ATTACHCONTENTPLUGIN_DEBUG");
+    $defaultKeepPars = Foswiki::Func::getPreferencesFlag("ATTACHCONTENTPLUGIN_KEEPPARS") || 0;
+    $defaultComment = Foswiki::Func::getPreferencesValue("ATTACHCONTENTPLUGIN_ATTACHCONTENTCOMMENT") || '';
 
     # Plugin correctly initialized
     return 1;
@@ -74,13 +76,13 @@ sub commonTagsHandler {
    * =$topic= - the name of the topic in the current CGI query
    * =$web= - the name of the web in the current CGI query
    * =$error= - any error string returned by the save.
-   * =$meta= - the metadata of the saved topic, represented by a TWiki::Meta object 
+   * =$meta= - the metadata of the saved topic, represented by a Foswiki::Meta object 
 
 This handler is called each time a topic is saved.
 
 __NOTE:__ meta-data is embedded in $text (using %META: tags)
 
-__Since:__ TWiki::Plugins::VERSION = '1.020'
+__Since:__ Foswiki::Plugins::VERSION = '1.020'
 
 =cut
 
@@ -88,7 +90,7 @@ sub afterSaveHandler {
     # do not uncomment, use $_[0], $_[1]... instead
     ### my ( $text, $topic, $web, $error, $meta ) = @_;
 
-    my $query = TWiki::Func::getCgiQuery();
+    my $query = Foswiki::Func::getCgiQuery();
     
     # Do not run plugin when managing attachments.
     if( ( $query ) && ( $ENV{'SCRIPT_NAME'} ) && ( $ENV{'SCRIPT_NAME'} =~ /^.*\/upload/ ) ) {
@@ -98,7 +100,7 @@ sub afterSaveHandler {
     return if $savedAlready;
     $savedAlready = 1;
 
-    TWiki::Func::writeDebug( "- ${pluginName}::afterSaveHandler( $_[2].$_[1] )" ) if $debug;
+    Foswiki::Func::writeDebug( "- ${pluginName}::afterSaveHandler( $_[2].$_[1] )" ) if $debug;
 
     $_[0] =~ s/%STARTATTACH{(.*?)}%(.*?)%ENDATTACH%/&handleAttach($1, $2, $_[2], $_[1])/ges;
     $savedAlready = 0;
@@ -125,8 +127,8 @@ sub handleAttach {
 
     my ($inAttr, $inContent, $inWeb, $inTopic) = @_;
 
-    my $attrs = TWiki::Func::expandCommonVariables($inAttr, $inTopic, $inWeb);
-    my %params = TWiki::Func::extractParameters($attrs);
+    my $attrs = Foswiki::Func::expandCommonVariables($inAttr, $inTopic, $inWeb);
+    my %params = Foswiki::Func::extractParameters($attrs);
 
     my $attrFileName = $params{_DEFAULT};
     return '' unless $attrFileName;
@@ -143,11 +145,11 @@ sub handleAttach {
         $keepPars = $defaultKeepPars;
     }
     
-    my $workArea = TWiki::Func::getWorkArea($pluginName);
+    my $workArea = Foswiki::Func::getWorkArea($pluginName);
 
     # Protect against evil filenames - especially for out temp file.
-    # In a future release we can use TWiki::Func::sanitizeAttachmentName
-    # e.g. my ( $fileName, $orgName ) = TWiki::Func::sanitizeAttachmentName( $attrFileName );
+    # In a future release we can use Foswiki::Func::sanitizeAttachmentName
+    # e.g. my ( $fileName, $orgName ) = Foswiki::Func::sanitizeAttachmentName( $attrFileName );
     # For now we will stick to handcrafted code
     
     my $fileName = $attrFileName;
@@ -160,15 +162,15 @@ sub handleAttach {
     # untaint at the same time
     $fileName =~ s/^([\.\/\\]*)*(.*?)$/$2/go;
     # Remove problematic chars
-    $fileName =~ s/$TWiki::cfg{NameFilter}//goi;
+    $fileName =~ s/$Foswiki::cfg{NameFilter}//goi;
     # Append .txt to files like we do to normal attachments
-    $fileName =~ s/$TWiki::cfg{UploadFilter}/$1\.txt/goi;
+    $fileName =~ s/$Foswiki::cfg{UploadFilter}/$1\.txt/goi;
         
     # Temp file in workarea - Filename + 9 digits to avoid race condition 
     my $tempName = $workArea . '/' . $fileName . int(rand(1000000000));
 
     # Turn most TML to text
-    my $content = TWiki::Func::expandCommonVariables($inContent, $topic, $web);
+    my $content = Foswiki::Func::expandCommonVariables($inContent, $topic, $web);
 
     # Turn paragraphs, nops, and bracket links into plain text
     unless ($keepPars) {
@@ -178,16 +180,16 @@ sub handleAttach {
 	    $content =~ s/\[\[(.+?)\]\]/$1/go;
     }
 
-    TWiki::Func::writeDebug("tempName: $tempName") if $debug;
+    Foswiki::Func::writeDebug("tempName: $tempName") if $debug;
     
     # Saving temporary file
-    TWiki::Func::saveFile($tempName, $content);
+    Foswiki::Func::saveFile($tempName, $content);
 
     my @stats = stat $tempName;
     my $fileSize = $stats[7];
     my $fileDate = $stats[9];
     
-    TWiki::Func::saveAttachment($web, $topic, $fileName, { file => $tempName,
+    Foswiki::Func::saveAttachment($web, $topic, $fileName, { file => $tempName,
                                                            filedate => $fileDate,
                                                            filesize => $fileSize,
                                                            filepath => $fileName,
