@@ -62,7 +62,7 @@ Example7: There are several attributes (see [[#AttriButes][Attributes]]) like =d
 
 #SyntaX
 ---++ Syntax
-The syntax follows that of the !CalendarPlugin. See TWiki:Plugins.CalendarPlugin for more details.
+The syntax follows that of the !CalendarPlugin. See Foswiki:Extensions.CalendarPlugin for more details.
 
 
 
@@ -86,9 +86,9 @@ The syntax follows that of the !CalendarPlugin. See TWiki:Plugins.CalendarPlugin
 
 *Notes and hints:*
 	* At least one space character have to stay before and after a seperator ('-'). This allows you to use a '-' in names, locations or icons, e.g. if you have a composite name like Eva-Maria.
-	* If you enable the compatmode (see [[#AttriButes][Attributes]]) you can use all event types of the TWiki:Plugins.CalendarPlugin
-	* If you change the default language ('lang' attribute; see [[#AttriButes][Attributes]]) you can use your language specific month and day names or the abbreviations for any entry type (including TWiki:Plugins.CalendarPlugin event types).
-	* If you change the month names or day names ('monthnames' and 'daynames' attributes; see [[#AttriButes][Attributes]]) you can use it for your entries (including TWiki:Plugins.CalendarPlugin event types).
+	* If you enable the compatmode (see [[#AttriButes][Attributes]]) you can use all event types of the Foswiki:Extensions.CalendarPlugin
+	* If you change the default language ('lang' attribute; see [[#AttriButes][Attributes]]) you can use your language specific month and day names or the abbreviations for any entry type (including Foswiki:Extensions.CalendarPlugin event types).
+	* If you change the month names or day names ('monthnames' and 'daynames' attributes; see [[#AttriButes][Attributes]]) you can use it for your entries (including Foswiki:Extensions.CalendarPlugin event types).
 	* You can hide all calendar entries if you put them into HTML comments, e.g:
 <verbatim>
 		%HOLIDAYLIST%
@@ -110,7 +110,7 @@ The syntax follows that of the !CalendarPlugin. See TWiki:Plugins.CalendarPlugin
 
 | *Attribute* | *Comment* | *Default / Example* |
 |  *Behavior*  |||
-| compatmode  | if set to "1" all TWiki:Plugins.CalendarPlugin event types are supported (related: compatmodeicon) | =compatmode="0"= |
+| compatmode  | if set to "1" all Foswiki:Extensions.CalendarPlugin event types are supported (related: compatmodeicon) | =compatmode="0"= |
 | daynames | custom daynames (a list separated by a '&brvbar;' and starting on Monday; overwrites lang attribute) | =daynames="M&brvbar;T&brvbar;W&brvbar;T&brvbar;F&brvbar;S&brvbar;S"= |
 | days | number of days to show |=days="30"= |
 | enablepubholidays | enables/disables public holidays (bullet list entries with a @all in a person field; related: showpubholidays, pubholidayicon) | =enablepubholidays="1"= |
@@ -134,7 +134,7 @@ The syntax follows that of the !CalendarPlugin. See TWiki:Plugins.CalendarPlugin
 | year | set a year (e.g. 2005, 2006 ...) or a year offset (e.g. +0, +1, -1, ...) | =year="0"= |
 |  *Icons*  |||
 | adayofficon |a day off icon | =adayofficon=":ok:"= |
-| compatmodeicon | icon used for TWiki:Plugins.CalendarPlugin event types (only used if compatmode is enabled) | =compatmodeicon="8-)"= |
+| compatmodeicon | icon used for Foswiki:Extensions.CalendarPlugin event types (only used if compatmode is enabled) | =compatmodeicon="8-)"= |
 | holidayicon | holiday icon | =holidayicon="8-)"= |
 | notatworkicon | not at work icon (only used if you type a location) | =notatworkicon=":-I"= |
 | pubholidayicon | public holiday icon (related: enablepubholidays, showpubholidays)| =pubholidayicon=":-)"= |
@@ -287,7 +287,7 @@ The syntax follows that of the !CalendarPlugin. See TWiki:Plugins.CalendarPlugin
 	* Set work icon (default: &amp;nbsp; - old behavior: =:<nop>mad:= ):
 		* # Set WORKICON = :mad:
 
-	* Set compatibility mode (default: 0; disables all TWiki:Plugins.CalendarPlugin event types) and icon (default: =8<nop>-)=)
+	* Set compatibility mode (default: 0; disables all Foswiki:Extensions.CalendarPlugin event types) and icon (default: =8<nop>-)=)
 		* # Set COMPATMODE = 1
 		* # Set COMPATMODEICON = 8-)
 
@@ -350,12 +350,12 @@ The syntax follows that of the !CalendarPlugin. See TWiki:Plugins.CalendarPlugin
 |  CPAN Dependencies: | *required:* CPAN:Date::Calc %BR% optional: CPAN:HTML::Entities |
 |  Other Dependencies: | %SYSTEMWEB%.SmiliesPlugin |
 |  Perl Version: | 5.0 and up|
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 94%, %SYSTEMWEB%.FormattedSearch 98%, %TOPIC% 86% |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle 94%, %SYSTEMWEB%.FormattedSearch 98%, %TOPIC% 86% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
-__Related Topics:__ %SYSTEMWEB%.SmiliesPlugin, [[%SYSTEMWEB%.Plugins][Plugins]], TWiki:Plugins.CalendarPlugin
+__Related Topics:__ %SYSTEMWEB%.SmiliesPlugin, [[%SYSTEMWEB%.Plugins][Plugins]], Foswiki:Extensions.CalendarPlugin
  
 -- TWiki:Main.PeterJones - 01 Jun 2005
 %BR% -- TWiki:Main.DanielRohde - 10 Jun 2005

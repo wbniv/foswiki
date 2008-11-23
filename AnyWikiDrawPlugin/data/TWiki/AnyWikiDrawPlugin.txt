@@ -14,7 +14,7 @@ The following file formats are supported:
    * Joint Photographics Expert Group (JPEG). &#8211;
      This file format is often used to publish photographs, because it is able to compress them highly. If possible, convert the photograph into PNG for photo retouching, or paste it into an SVG image before adding structural drawing elements to it. JPEG images degrade in quality if they are scaled, or if they are edited multiple times. 
 
-This plugin is very similar in functionality to the TWiki:Plugins.TWikiDrawPlugin. 
+This plugin is very similar in functionality to the Foswiki:Extensions.TWikiDrawPlugin. 
 In a future version, it may be used as a replacement for the !TWikiDrawPlugin.
 
 <nop>AnyWikiDraw</nop> is available for other Wikis as well, currently <nop>TWiki</nop>, <nop>MediaWiki</nop> and <nop>PmWiki</nop> are supported.
@@ -65,7 +65,7 @@ __Warning:__ This is an experimental plugin. Data loss may occur. Install it onl
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  [[Foswiki:Extensions/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |

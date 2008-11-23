@@ -117,7 +117,7 @@ A common requirement is to report on the status of topics that are in different 
 
 ---++ History and Acknowledgements
 
-This plugin was motivated by [[TWiki:Main.ThomasWeigert][Thomas Weigert]]'s [[TWiki:Plugins.WorkFlowAddOn][WorkFlowAddOn]] and its first version (then called !ApprovalPlugin) was written by [[TWiki:Main.ThomasHartkens][Thomas Hartkens]], albeit it was focused on document approval and control. [[TWiki:Main.ThomasWeigert][Thomas Weigert]] then merged the functionality of the [[TWiki:Plugins.WorkFlowAddOn][WorkFlowAddOn]] into this plugin.
+This plugin was motivated by [[TWiki:Main.ThomasWeigert][Thomas Weigert]]'s [[Foswiki:Extensions.WorkFlowAddOn][WorkFlowAddOn]] and its first version (then called !ApprovalPlugin) was written by [[TWiki:Main.ThomasHartkens][Thomas Hartkens]], albeit it was focused on document approval and control. [[TWiki:Main.ThomasWeigert][Thomas Weigert]] then merged the functionality of the [[Foswiki:Extensions.WorkFlowAddOn][WorkFlowAddOn]] into this plugin.
 
 TWiki is a registered trademark of Peter Thoeny.
 
@@ -147,7 +147,7 @@ __Note:__ For strict access control, the plugin should know who is looking at th
 |  10 Aug 2006: | Added conversion script. |
 |  05 Aug 2006: | Converted from !ApprovalPlugin to %TOPIC%. |
 |  26 Jul 2006: | Minor bug fix. Additional examples provided. |
-|  25 Jul 2006: | Added state-based forms and history from TWiki:Plugins/WorkFlowAddOn. Changed time stamp format to be more wiki like. |
+|  25 Jul 2006: | Added state-based forms and history from Foswiki:Extensions/WorkFlowAddOn. Changed time stamp format to be more wiki like. |
 |  24 Jul 2006: | Ported to Dakar. Fixed problem in referencing previous versions. Fixed error messages. Fixed Documentation errors. |
 |  16 Feb 2005: | Initial version of !ApprovalPlugin |
 |  05 Feb 2004: | Initial version of !WorkFlowAddOn |

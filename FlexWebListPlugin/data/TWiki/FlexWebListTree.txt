@@ -2,7 +2,7 @@
 ---+!! %TOPIC%
 
 The fragment below can be used in a sidebar navigation to establish a folder-like subweb navigation.
-This uses the jqTreeview widget of the TWiki:Plugins/JQueryPlugin.
+This uses the jqTreeview widget of the Foswiki:Extensions/JQueryPlugin.
 
 Use it by adding =%<nop>INCLUDE{"%WEB%.%TOPIC%"}%= to your WebLeftBar or TWikiWebSideBar.
 

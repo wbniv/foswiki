@@ -80,7 +80,7 @@ Plugin settings are stored as preferences variables. The following variables are
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 | |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | Author does not have test environment. Feel free to add them |
+|  [[Foswiki:Extensions/Benchmark][Benchmarks]]: | Author does not have test environment. Feel free to add them |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |

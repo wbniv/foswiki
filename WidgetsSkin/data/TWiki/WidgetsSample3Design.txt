@@ -139,7 +139,7 @@ Copy and paste the following section to your %USERSWEB%.SitePreferences topic (o
 
 ---
 ---+++ extra html around each section
-In this case, using TWiki:Plugins.SnazzyRoundedCornersContrib code
+In this case, using Foswiki:Extensions.SnazzyRoundedCornersContrib code
 ---++++ startsectionwrapper
 %STARTSECTION{"startsectionwrapper-nobanner"}%%STARTSECTION{"startsectionwrapper-main"}% <div>
 <div class="xsnazzy">

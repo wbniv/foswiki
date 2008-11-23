@@ -7,7 +7,7 @@ This plugin allows you to edit TWiki tables row by row, using a form with approp
 
 ---++ Acknowledgment
 
-This plugin was inspired and steals much from the !EditTablePlugin and tries be compatible with respect to the options and parameters it provides. However, as it supports editing of the table one row at a time, it is not subject to the performance limitations of TWiki:Plugins/EditTablePlugin when faced with large tables. 
+This plugin was inspired and steals much from the !EditTablePlugin and tries be compatible with respect to the options and parameters it provides. However, as it supports editing of the table one row at a time, it is not subject to the performance limitations of Foswiki:Extensions/EditTablePlugin when faced with large tables. 
 
 The idea and first implementation of form-based editing for tables goes back to TWiki:Main/ShawnBradford's approach in TWiki:Codev/SimpleTableEntryUsingForms.
 
@@ -150,7 +150,7 @@ __Note:__ You do not need to install anything on the browser to use this Plugin.
 |  Other Dependencies: | JSCalendarContrib  |
 |  Perl Version: | 5.0 |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |

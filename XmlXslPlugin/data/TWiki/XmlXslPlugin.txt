@@ -3,7 +3,7 @@
 
 The plugin is used to return HTML containing an XML data island which, when processed by the browser, will show the XSL applied to the XML.
 
-Unlike the TWiki:Plugins.SablotronPlugin which does the transformation at the server, the !XmlXslPlugin does the transformation on the browser.
+Unlike the Foswiki:Extensions.SablotronPlugin which does the transformation at the server, the !XmlXslPlugin does the transformation on the browser.
 
 %TOC%
 
@@ -56,7 +56,7 @@ __Note:__ You do not need to install anything on the browser to use this Plugin.
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | a browser that supports XML transformations/processing |
 |  Perl Version: | 5.0 |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  [[Foswiki:Extensions/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |

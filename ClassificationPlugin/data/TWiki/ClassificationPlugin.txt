@@ -71,7 +71,7 @@ tag- related if they have at least two tags in common.
                   TOP category can be mapped onto a real topic now; \
                   new jquery.tagselector plugin; \
                   reworked view for topictypes making use of new MAKEINDEX of \
-                  TWiki:Plugins/FilterPlugin; \
+                  Foswiki:Extensions/FilterPlugin; \
                   added category and tag search; \
                   speedup for tag clouds |
 |  13 Nov 2007: | added semantic predicates ISA, SUBSUMES, COMPATIBLE to DBQUERY, \
@@ -87,10 +87,10 @@ tag- related if they have at least two tags in common.
 |  CPAN Dependencies: |  |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
-|  Plugin Home: | TWiki:Plugins/%TOPIC% |
-|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
-|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+|  [[Foswiki:Extensions/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | Foswiki:Extensions/%TOPIC% |
+|  Feedback: | Foswiki:Extensions/%TOPIC%Dev |
+|  Appraisal: | Foswiki:Extensions/%TOPIC%Appraisal |
 
 -- TWiki:Main.MichaelDaum - 13 Feb 2008
 

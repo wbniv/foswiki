@@ -9,7 +9,7 @@ One line description, required for extensions repository catalog.
 %TOC%
 
 ---++ Usage
-<nop> TalkContrib adds a wikipedia like _Discuss_ Button to the PatternSkin edit&attach buttons, and to the topic action bar of the Classic, default and TWiki:Plugins.MoveveableTypeSkin. 
+<nop> TalkContrib adds a wikipedia like _Discuss_ Button to the PatternSkin edit&attach buttons, and to the topic action bar of the Classic, default and Foswiki:Extensions.MoveveableTypeSkin. 
 
 When the user initially clicks on the 'Discuss topic' button, it will create a new topic by appending =Talk= to the original topic. 
 From then on, you can switch between the topic and its Discussion topic using that button.
@@ -45,7 +45,7 @@ You can over-ride the Topic formtemplate that is used when creating a new Talk t
 
 
 
-I have tested TalkContrib using TWiki 4.2.0 with the default skin (used as a building block for other skins), ClassicSkin, PatternSkin and TWiki:Plugins.MoveveableTypeSkin.
+I have tested TalkContrib using TWiki 4.2.0 with the default skin (used as a building block for other skins), ClassicSkin, PatternSkin and Foswiki:Extensions.MoveveableTypeSkin.
 ---++ Limitations
 There are 2 known limitations at this time
    1 any topic containing the TALKSUFFIX will be considered a Talk topic - this is due to a bug in %SYSTEMWEB%.VarIF string matching

@@ -9,7 +9,7 @@
 -->
 ---+!! MacrosPlugin
 
-Lets you use parameterised includes in TWiki. This plugin supports tags originally included with the TWiki:Plugins/FormQueryPlugin, but now split out for clarity.
+Lets you use parameterised includes in TWiki. This plugin supports tags originally included with the Foswiki:Extensions/FormQueryPlugin, but now split out for clarity.
 
 %TOC%
 
@@ -77,7 +77,7 @@ __Note:__ These instructions are for the TWiki maintainer. No changes to your br
 | 5223 | Documentation fixes, adding gifs. |
 | 5048 | Cairo readiness |
 | 5002 | Initial version |
-| 28 June 2004 | Initial version, split out from TWiki:Plugins/FormQueryPlugin |
+| 28 June 2004 | Initial version, split out from Foswiki:Extensions/FormQueryPlugin |
 |  Dependencies: | %$DEPENDENCIES% |
 |  Perl Version: | 5.6 |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
@@ -89,7 +89,7 @@ __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, 
 
 Further development of this code is welcomed. It is recommended that you unpack the distribution into a development directory and use the supplied build file which provides targets to run the test suite, and install and uninstall your development code into a test installation. Please, please, _please_ run, and extend if necessary, the test set!
 
-Developer discussion is in TWiki:Plugins/%TOPIC%Dev.
+Developer discussion is in Foswiki:Extensions/%TOPIC%Dev.
 
 ---++ Copyright
 

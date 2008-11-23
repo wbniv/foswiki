@@ -112,7 +112,7 @@ __Note:__ The following instructions are for the administrator who installs the 
 |  CPAN Dependencies: | LWP::Simple |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 100%, %SYSTEMWEB%.FormattedSearch 100%, %TOPIC% 100% |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle 100%, %SYSTEMWEB%.FormattedSearch 100%, %TOPIC% 100% |
 |  Plugin Home: | http://twiki.org/cgi-bin/view/Plugins/EFetchPlugin |
 |  Feedback: | none |
 |  Appraisal: | none |

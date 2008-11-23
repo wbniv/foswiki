@@ -6,7 +6,7 @@ Good for status messages, or to show detailed information without causing the we
 
 There is a running demo of JSPopupPlugin running at the [[http://demo.wikiring.com/twiki/bin/view/Demo/JSPopupPluginDemo][WikiRing demo site]]
 
-*Uses TWiki:Plugins.YahooUserInterfaceContrib*
+*Uses Foswiki:Extensions.YahooUserInterfaceContrib*
 
 It uses javascript to create a popup window containing either a hidden pre-rendered part of a topic, or a TWiki request that is dynamically requested and served.
 Popups are activated either on a mouse click, when the mouse passes over the anchor, or when the page is loaded.
@@ -124,11 +124,11 @@ url="%SCRIPTURL{view}%/%WEB%/%TOPIC%?raw=on"
 | 16 Aug 2008 | update for YUI 2.5.2 |
 | 9 Sept 2007 | fixed it to use the yui event handling, rather than the moved addLoadEvent |
 | 12 Feb 2007 | added POPUPLINK tag |
-|  23 Oct 2006 | added delay by TWiki:Main.OliverKrueger, and added use of TWiki:Plugins.YahooUserInterfaceContrib |
+|  23 Oct 2006 | added delay by TWiki:Main.OliverKrueger, and added use of Foswiki:Extensions.YahooUserInterfaceContrib |
 |  01 May 2006 | Initial version |
 |  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
 |  CPAN Dependencies: |  |
-|  Other Dependencies: | TWiki:Plugins.YahooUserInterfaceContrib |
+|  Other Dependencies: | Foswiki:Extensions.YahooUserInterfaceContrib |
 |  Perl Version: | 5.005 |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |

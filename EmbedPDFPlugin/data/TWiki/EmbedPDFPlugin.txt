@@ -81,7 +81,7 @@ __Note:__ You do not need to have a PDF plugin installed in your browser for thi
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 
-__Related Topics:__ TWiki:Plugins.EmbedPDFPluginDev, %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
+__Related Topics:__ Foswiki:Extensions.EmbedPDFPluginDev, %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 
 %META:FILEATTACHMENT{name="pdf.pdf" attr="" comment="" date="1046959644" path="pdf.pdf" size="6019" user="JohannesMartin" version="1.2"}%
 %META:FILEATTACHMENT{name="pdf-prerendered.jpg" attr="" comment="" date="1048518399" path="pdf-prerendered.jpg" size="3727" user="JohannesMartin" version="1.1"}%

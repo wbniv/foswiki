@@ -71,10 +71,10 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  30 April 2006: | Initial version |
 |  TWiki Dependency: | $TWiki::Plugins::VERSION 1.024 |
 |  CPAN Dependencies: | CPAN:JSON |
-|  Other Dependencies: | TWiki:Plugins.WysiwygPlugin |
+|  Other Dependencies: | Foswiki:Extensions.WysiwygPlugin |
 |  Perl Version: | 5.005 |
 |  License: | GPL ( [[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | [[http://foswiki.org/Extensions/%3Cspan%20id=%27TMLvariable10%27%20class=%27TMLvariable%27%20%3ETOPIC%3C/span%3E][http://foswiki.org/Extensions/%TOPIC%]] |
 |  Feedback: | [[http://foswiki.org/Extensions/%3Cspan%20id=%27TMLvariable12%27%20class=%27TMLvariable%27%20%3ETOPIC%3C/span%3EDev][http://foswiki.org/Extensions/%TOPIC%Dev]] |
 |  Appraisal: | [[http://foswiki.org/Extensions/%3Cspan%20id=%27TMLvariable14%27%20class=%27TMLvariable%27%20%3ETOPIC%3C/span%3EAppraisal][http://foswiki.org/Extensions/%TOPIC%Appraisal]] |

@@ -55,7 +55,7 @@ __Note:__ These instructions are for the TWiki maintainer. No changes to your br
 |  CPAN Dependencies: | CPAN:Date::Format, CPAN:HTML::FormatText, CPAN:HTML::Parse, CPAN:LWP::UserAgent, CPAN:HTML::LinkExtor, CPAN:File::Basename, CPAN:Time::ParseDate, CPAN:Date::Format |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.0 |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 99% |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 99% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 

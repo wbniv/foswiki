@@ -35,7 +35,7 @@ This skin needs TWiki 4.2 or newer.
    * [[%SCRIPTURL{"view"}%/%WEB%/%TOPIC%?skin=twikinet,pattern][Test if installed]]
 
 ---+++ Enhanced look
-Part of the design is done by TWiki:Plugins/TWikiNetSkinPlugin. Install this plugin for rounded tables and h2 headers.
+Part of the design is done by Foswiki:Extensions/TWikiNetSkinPlugin. Install this plugin for rounded tables and h2 headers.
 
 Example when installed:
 <div class="twikiImage">
@@ -44,7 +44,7 @@ Example when installed:
 
 ---++ Creating your own look
 
-This skin is based on TWiki:Plugins/PatternSkin, and the same rules for customization apply.
+This skin is based on Foswiki:Extensions/PatternSkin, and the same rules for customization apply.
 
 
 ---++ Skin Info
@@ -61,7 +61,7 @@ This skin is based on TWiki:Plugins/PatternSkin, and the same rules for customiz
 |  Skin Version: | 16 Mar 2008 (v1.0.1) |
 |  Change History: | <!-- specify latest version first -->&nbsp; |
 |  16 Mar 2008: | Public release (v1.000) |
-|  Dependencies: | TWiki 4.2; TWiki:Plugins/PatternSkin (automatically provided by TWiki); TWiki:Plugins/TWikiNetSkinPlugin |
+|  Dependencies: | TWiki 4.2; Foswiki:Extensions/PatternSkin (automatically provided by TWiki); Foswiki:Extensions/TWikiNetSkinPlugin |
 |  Skin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |

@@ -3,13 +3,13 @@
 
 This plugin allows you to edit TWiki tables row by row, using a form with appropriate controls for each field. If preceeded by an =%<nop>EDITHIDDENTABLE{...}%= variable, tables have edit links for each row, and are optionally followed by an *[&nbsp;Edit&nbsp;table&nbsp;]* button. Multiple tables per topic are editable, but only one row at a time can be edited.
 
-This plugin works exactly like TWiki:Plugins.EditTablerowPlugin, but the tables are stored in meta data and, therefore, not visible or editable in topic text. That is useful in TWiki Applications, that want to keep the tables in templates.
+This plugin works exactly like Foswiki:Extensions.EditTablerowPlugin, but the tables are stored in meta data and, therefore, not visible or editable in topic text. That is useful in TWiki Applications, that want to keep the tables in templates.
 
 %TOC%
 
 ---++ Acknowledgment
 
-This plugin was inspired and steals much from TWiki:Main/PeterThoeny's TWiki:Plugins/EditTablePlugin and tries be compatible with respect to the options and parameters it provides. However, as it supports editing of the table one row at a time, it is not subject to the performance limitations of TWiki:Plugins/EditTablePlugin when faced with large tables. 
+This plugin was inspired and steals much from TWiki:Main/PeterThoeny's Foswiki:Extensions/EditTablePlugin and tries be compatible with respect to the options and parameters it provides. However, as it supports editing of the table one row at a time, it is not subject to the performance limitations of Foswiki:Extensions/EditTablePlugin when faced with large tables. 
 
 The idea and first implementation of form-based editing for tables goes back to TWiki:Main/ShawnBradford's approach in TWiki:Codev/SimpleTableEntryUsingForms.
 
@@ -138,12 +138,12 @@ __Note:__ You do not need to install anything on the browser to use this Plugin.
 |  Plugin Author: | TWiki:Main/ThomasWeigert |
 |  Plugin Version: | 19 Nov 2006 |
 |  Change History: | <!-- specify latest version first -->&nbsp; |
-|  19 Nov 2006: | Initial version, derived from TWiki:Plugins.EditTablerowPlugin |
+|  19 Nov 2006: | Initial version, derived from Foswiki:Extensions.EditTablerowPlugin |
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | JSCalendarContrib  |
 |  Perl Version: | 5.0 |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |

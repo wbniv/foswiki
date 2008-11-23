@@ -48,7 +48,7 @@ if the list of comments is not empty.)
 
 ---
 
-   * If you have also the [[TWiki:Plugins.HistoryPlugin][HistoryPlugin]] installed, 
+   * If you have also the [[Foswiki:Extensions.HistoryPlugin][HistoryPlugin]] installed, 
      the history of a topic may look like this:
 
    * Example History: <br />
@@ -89,7 +89,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
       <li> Here should be the comment of this topic: %REVCOMMENT%
       <li> Look at the recent changes to the TWiki web:
         %SYSTEMWEB%.WebChangesWC
-      <li> If you have also the [[TWiki:Plugins.HistoryPlugin][HistoryPlugin]] installed,
+      <li> If you have also the [[Foswiki:Extensions.HistoryPlugin][HistoryPlugin]] installed,
         look at the history of this document:
         %SCRIPTURL%/oops%SCRIPTSUFFIX%/%WEB%/%TOPIC%?template=oopshistory
       <li> Edit this page and enter a new comment:
@@ -100,7 +100,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
      one. This file has a WC ("with comments") in the name. You should backup
      your old file and rename this file:
    * =data/TWiki/WebChangesWC.txt= --> =data/TWiki/WebChanges.txt=
-   * If [[TWiki:Plugins.HistoryPlugin][HistoryPlugin]] is installed, the template =oopshistory.tmpl= from this plugin is automatically expanded with revision comments once this plugin is installed
+   * If [[Foswiki:Extensions.HistoryPlugin][HistoryPlugin]] is installed, the template =oopshistory.tmpl= from this plugin is automatically expanded with revision comments once this plugin is installed
    * If you are using other skins than the pattern or classical skin, you have to 
      enter a textfield to =templates/edit.<i>skin</i>.tmpl= and =templates/preview.<i>skin</i>.tmpl= :
      Enter the line
@@ -121,7 +121,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |

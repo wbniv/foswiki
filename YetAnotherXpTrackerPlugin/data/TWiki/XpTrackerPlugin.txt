@@ -5,9 +5,9 @@
 
 This is a plugin for light-weight project tracking, in particular suited for XP projects. The original code was
 written by TWiki:Main.RichardBennett, It was converted into this plugin by
-TWiki:Main.MartinWatt and enhanced. This plugin was further extended by TWiki:Main.ThomasWeigert. It is now maintained as a branch of the original TWiki:Plugins/XpTrackerPlugin. The focus of this branch was to support additional customizability of what is being tracked, as well as a low-overhead time tracking mechanism.
+TWiki:Main.MartinWatt and enhanced. This plugin was further extended by TWiki:Main.ThomasWeigert. It is now maintained as a branch of the original Foswiki:Extensions/XpTrackerPlugin. The focus of this branch was to support additional customizability of what is being tracked, as well as a low-overhead time tracking mechanism.
 
-| %X% This is a branch of TWiki:Plugins/XpTrackerPlugin supporting additional needs of our organization. Please consult the description of the original plugin to decide whether you will need these additional features. |
+| %X% This is a branch of Foswiki:Extensions/XpTrackerPlugin supporting additional needs of our organization. Please consult the description of the original plugin to decide whether you will need these additional features. |
 
 %TOC%
 
@@ -216,7 +216,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
    | ==data/_default_XpTracker/GettingStarted.txt== |  |
 
    * Download the other TWiki and CPAN modules that this plugin depends on.
-   * Alternatively, run ==%TOPIC%_installer.pl== to automatically check and install other TWiki modules that this module depends on. Make sure that the DBCacheContrib from TWiki:Plugins.YetAnotherDBCacheContrib is used.
+   * Alternatively, run ==%TOPIC%_installer.pl== to automatically check and install other TWiki modules that this module depends on. Make sure that the DBCacheContrib from Foswiki:Extensions.YetAnotherDBCacheContrib is used.
    * Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
 
 ---+++ Plugin Info
@@ -225,19 +225,19 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Copyright:     | &copy; 2001-2006,  TWiki:Main.RichardBennett, TWiki:Main.MartinWatt, TWiki:Main.ThomasWeigert |
 |  License:       | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
 |  Plugin Version: | 15 Dec 2006 |
-|  15 Dec 2006:    | Leverage the cache mechanism of TWiki:Plugins.YetAnotherDBCacheContrib to speed up expensive searches; small performance hit on very simple topics. Some refactoring.   |
+|  15 Dec 2006:    | Leverage the cache mechanism of Foswiki:Extensions.YetAnotherDBCacheContrib to speed up expensive searches; small performance hit on very simple topics. Some refactoring.   |
 |   1 Dec 2006:    | Optional additional fields in timesheet. Do not generate timesheets, estimate tables, or load tables if not applicable. |
 |  25 Nov 2006:    | Make topic sort configurable. Sort all iterations together in time sheet. Remove unneeded internally used fields. Add team argument to =XPSHOWLOAD=. |
 |  24 Nov 2006:    | Allow creation of topics based on a base with sequence numbers affixed. Added XPCREATETOPIC tag. Use TWiki tables for formatting. |
 |  19 Nov 2006:    | Cleaned up some of the table layout when empty cells are present. Apply rounding to numbers in generated tables. |
-|  31 Jul 2006:    | Dakar port of branch developed and maintained by TWiki:Main.ThomasWeigert. Includes time tracking and recording capabilities built on ideas by TWiki:Main.ThomasEschner. Better task table control via TWiki:Plugins.EditHiddenTablePlugin |
+|  31 Jul 2006:    | Dakar port of branch developed and maintained by TWiki:Main.ThomasWeigert. Includes time tracking and recording capabilities built on ideas by TWiki:Main.ThomasEschner. Better task table control via Foswiki:Extensions.EditHiddenTablePlugin |
 |  19 Nov 2002:    | 3.0 Updated version |
 |  16 Oct 2002:    | 2.0 New version of Plugin by TWiki:Main.MartinWatt |
 |  29 Jul 2002:    | 1.0 Initial version of Plugin by TWiki:Main.MartinWatt based on code by TWiki:Main.RichardBennett |
-|  Dependencies: | <table border="1"><tr><th>Name</th><th>Version</th><th>Description</th></tr><tr><td align="left">TWiki::Plugins::EditHiddenTablePlugin</td><td align="left">&gt;=0</td><td align="left">Required. Download and install from [[TWiki:Plugins/EditHiddenTablePlugin][plugin library]].</td></tr><tr><td align="left">TWiki::Plugins::DBCacheContrib</td><td align="left">&gt;=0</td><td align="left">Required. Download and install from [[TWiki:Plugins/YetAnotherDBCacheContrib][plugin library]].</td></tr><tr><td align="left">TWiki::Plugins::ControlsPlugin</td><td align="left">&gt;=0</td><td align="left">Required. Download and install from [[TWiki:Plugins/ControlsPlugin][plugin library]].</td></tr><tr><td align="left">HTTP::Date</td><td align="left">&gt;=1</td><td align="left">Required. Available from [[http://cpan.uwinnipeg.ca/dist/Time-modules][CPAN]].</td></tr><tr><td align="left">Time::CTime</td><td align="left">&gt;=1</td><td align="left">Required. Available from [[http://cpan.uwinnipeg.ca/dist/Time-modules][CPAN]].</td></tr></table> |
+|  Dependencies: | <table border="1"><tr><th>Name</th><th>Version</th><th>Description</th></tr><tr><td align="left">TWiki::Plugins::EditHiddenTablePlugin</td><td align="left">&gt;=0</td><td align="left">Required. Download and install from [[Foswiki:Extensions/EditHiddenTablePlugin][plugin library]].</td></tr><tr><td align="left">TWiki::Plugins::DBCacheContrib</td><td align="left">&gt;=0</td><td align="left">Required. Download and install from [[Foswiki:Extensions/YetAnotherDBCacheContrib][plugin library]].</td></tr><tr><td align="left">TWiki::Plugins::ControlsPlugin</td><td align="left">&gt;=0</td><td align="left">Required. Download and install from [[Foswiki:Extensions/ControlsPlugin][plugin library]].</td></tr><tr><td align="left">HTTP::Date</td><td align="left">&gt;=1</td><td align="left">Required. Available from [[http://cpan.uwinnipeg.ca/dist/Time-modules][CPAN]].</td></tr><tr><td align="left">Time::CTime</td><td align="left">&gt;=1</td><td align="left">Required. Available from [[http://cpan.uwinnipeg.ca/dist/Time-modules][CPAN]].</td></tr></table> |
 |  Perl Version: | 5.0 |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle xx%, %SYSTEMWEB%.FormattedSearch xx%, %TOPIC% xx% |
-|  Plugin Home: | TWiki:Plugins/%TOPIC% |
-|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
-|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle xx%, %SYSTEMWEB%.FormattedSearch xx%, %TOPIC% xx% |
+|  Plugin Home: | Foswiki:Extensions/%TOPIC% |
+|  Feedback: | Foswiki:Extensions/%TOPIC%Dev |
+|  Appraisal: | Foswiki:Extensions/%TOPIC%Appraisal |
 

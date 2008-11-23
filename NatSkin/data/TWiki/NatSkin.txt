@@ -37,12 +37,12 @@ To get a first impression check out the NatSkinStyleBrowser:
 
 ---++ Acknowledgement
 This is a rework of the 
-TWiki:Plugins/CopyCatSkin by TWiki:Main/MattWilkie. It is used at the 
+Foswiki:Extensions/CopyCatSkin by TWiki:Main/MattWilkie. It is used at the 
 [[http://nats-www.informatik.uni-hamburg.de/Main/WebHome][Natural Language Systems Division]] 
 (NATS) of the University of Hamburg, Germany. 
 
-The NatSkinPlugin is inspired by the TWiki:Plugins/GnuSkin by
-TWiki:Main/JoachimNilsson. The TWiki:Plugins/PhotonSkin by
+The NatSkinPlugin is inspired by the Foswiki:Extensions/GnuSkin by
+TWiki:Main/JoachimNilsson. The Foswiki:Extensions/PhotonSkin by
 TWiki:Main/EstebanManchado (<nop>PhotonSearch) renamed to =natsearch= .
 
 ---++ Feature Overview
@@ -141,11 +141,11 @@ allways open an extra window.
 |  04 Nov 2008: | moved all default styles to a separate !NatSkinClassicsContrib package; \
                   added a new default theme, called "bluenote" together with !CarloSchulz; \
                   added support for !SearchEngineKinoSearchAddOn; |
-|  03 Jul 2008: | added support for TWiki:Plugins/OpenOffice2TWikiAddOn;\
-                  added support for TWiki:Plugins/EmployeePortalPlugin; \
+|  03 Jul 2008: | added support for Foswiki:Extensions/OpenOffice2TWikiAddOn;\
+                  added support for Foswiki:Extensions/EmployeePortalPlugin; \
                   various improvements on all default themes; \
-                  improvements wrt latest release of TWiki:Plugins/NatEditContrib; \
-                  support for TOPICTITLE feature of TWiki:Plugins/DBCachePlugin ;\
+                  improvements wrt latest release of Foswiki:Extensions/NatEditContrib; \
+                  support for TOPICTITLE feature of Foswiki:Extensions/DBCachePlugin ;\
                   fixed oops errors showing html entities instead of readable error msg; \
                   improved usability in error messages; \
                   shrinking urls in attachments to prevent bloating the attachments table; \
@@ -240,7 +240,7 @@ allways open an extra window.
                   added <nop>ImagePlugin css support |
 |  21 Aug 2006: | complete rework of fonts in all styles not to rely on font preference settings in \
                   browsers; enhanced twikiTable appearance; \
-                  added support for TWiki:Plugins.ImagePlugin in natedit; \
+                  added support for Foswiki:Extensions.ImagePlugin in natedit; \
                   fixed sidebar in !PatternStyle + searchbox in position 1; \
                   fixed oopsmore's button style on different locales; \
                   more IE hacks; more i18n fixes |
@@ -266,9 +266,9 @@ allways open an extra window.
 |  31 Jul 2006: | added renameweb templates; \
                   rename topic usability improvements; \
                   some css alignment corrections |
-|  28 Jul 2006: | improved navigation in hierarchical webs by using the new TWiki:Plugins/FlexWebListPlugin \
-                  and TWiki:Plugins/BreadCrumbPlugin; \
-                  dropped usage of the TWiki:Plugins/FilterPlugin as using =FORMATLIST{WEBLIST}= \
+|  28 Jul 2006: | improved navigation in hierarchical webs by using the new Foswiki:Extensions/FlexWebListPlugin \
+                  and Foswiki:Extensions/BreadCrumbPlugin; \
+                  dropped usage of the Foswiki:Extensions/FilterPlugin as using =FORMATLIST{WEBLIST}= \
                   has been superseeded by FLEXWEBLIST; \
                   using the <nop>FlexWebListPlugin + <nop>GluePlugin to generate a better \
                   sidebar navigation showing subwebs in a twisty; \
@@ -378,7 +378,7 @@ allways open an extra window.
 |  10 Nov 2005: | improved NatSkinStyleBrowser |
 |   8 Nov 2005: | firefox layout fixes |
 |   7 Nov 2005: | more safari fixes |
-|   2 Nov 2005: | fixed javascript problems combined with the TWiki:Plugins.TwistyPlugin; \
+|   2 Nov 2005: | fixed javascript problems combined with the Foswiki:Extensions.TwistyPlugin; \
                   trigger printing when clicking on "Print" |
 |  31 Oct 2005: | safari fixes where content leaps out of the main area |
 |  24 Oct 2005: | added <nop>UserView templates; standardised favicon handling |
@@ -394,9 +394,9 @@ allways open an extra window.
                   sidebar from the left to the right etc.; \
                   removed hard-coded links to a _Support_ web; \
                   lots of fixes to catch up with the evolving dakar engine; \
-                  support for the TWiki:Plugins.TwistyPlugin; \
-                  support for the TWiki:Plugins.AliasPlugin; \
-                  skin state support for the TWiki:Plugins.TablePlugin; \
+                  support for the Foswiki:Extensions.TwistyPlugin; \
+                  support for the Foswiki:Extensions.AliasPlugin; \
+                  skin state support for the Foswiki:Extensions.TablePlugin; \
                   new webbuttons in the topbar; \
                   componentized style sheets for different skin states; \
                   improved css of forms and tables; \

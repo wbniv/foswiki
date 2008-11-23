@@ -4,11 +4,11 @@
 -->
 %SHORTDESCRIPTION%
 
-%RED% *This Contrib is no longer supported for TWiki versions from 4.1.0. You are recommended to use the TWiki:Plugins.TinyMCEPlugin instead. If you require the KupuContrib supported, please contact TWiki:Main.CrawfordCurrie* %ENDCOLOR%
+%RED% *This Contrib is no longer supported for TWiki versions from 4.1.0. You are recommended to use the Foswiki:Extensions.TinyMCEPlugin instead. If you require the KupuContrib supported, please contact TWiki:Main.CrawfordCurrie* %ENDCOLOR%
 
 %TOC%
 
-The integration uses the TWiki:Plugins.WysiwygPlugin to translate text to and from a format that Kupu can edit.
+The integration uses the Foswiki:Extensions.WysiwygPlugin to translate text to and from a format that Kupu can edit.
 
 *Caveat*: %TOPIC% is designed for editing TWiki topics, not as a general purpose HTML editor. It will work fine on topics that contain text, TML formatting, and most HTML. However, because of the complexity of transforming TML into HTML and back, complex TML, and mixing HTML and TML may not give the results you expect. You are recommended to use the standard browser textarea editor for editing existing topics that contain mixed HTML and TML, or complex %<nop>TML%-type variables.
 

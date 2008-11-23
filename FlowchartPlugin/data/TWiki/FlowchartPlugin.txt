@@ -2,7 +2,7 @@
 
 You can create flowcharts from textual content on the topic.
 <div align="right">
-  <small>[[TWiki:Plugins.FlowchartPluginPtbr][Este t�pico em Portugu�s do Brasil]]</small>
+  <small>[[Foswiki:Extensions.FlowchartPluginPtbr][Este t�pico em Portugu�s do Brasil]]</small>
 </div>
 %TOC%
 
@@ -74,7 +74,7 @@ To personalize a flowchart, is enough to add parametros to the variable: =%<nop>
 %I% Some flowcharts can become so complex and will be difficult to follow its lines. In this case, increase the area of itens, giving a bigger space between them. _eg:_ =%<nop>FLOWCHART{ area-w="220" area-h="100" }%=
 
 ---++ Construction of the Flowchart and Plugin's Working Way
-   1 The blocks initialized by a heading level two =---++= are read as definition of item of the Flowchart (as the TWiki:Plugins.SlideShowPlugin).
+   1 The blocks initialized by a heading level two =---++= are read as definition of item of the Flowchart (as the Foswiki:Extensions.SlideShowPlugin).
    1 A SVG is created with this information and is annexed in the topic. This SVG file can be had access by =%<nop>ATTACHURL%/flowchart_%<nop>TOPIC%.svg=.
    1 A PNG is generated with the [[http://www.imagemagick.org][ImageMagick]] and reduced, so that the image has a good anti-aliasing, that it is not obtained in the direct conversion. The PNG is annexed in the topic and can be had access by =%<nop>ATTACHURL%/flowchart_%<nop>TOPIC%.png= (use this advantage to separate the flowchart's image of the definition topic when it is interesting).
    1 Is created a map for the image linking the itens of the flowchart whith the origin of its information, where can exist more information for implementation. =%<nop>ATTACHURL%/flowchartMapImg_%<nop>TOPIC%.txt= (use to map the image out off the topic where the flowchart was generated too)
@@ -145,7 +145,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Other Dependencies: | [[http://www.imagemagick.org][ImageMagick]] |
 |  Perl Version: | 5.005 |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |

@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="ProjectContributor" date="1179177105" format="1.1" version="1.1"}%
 ---+!! TWiki AJAX Plugin
 
-*Convenience plugin for [[TWiki:Plugins.TWikiAjaxContrib][TWikiAjaxContrib]].*
+*Convenience plugin for [[Foswiki:Extensions.TWikiAjaxContrib][TWikiAjaxContrib]].*
 
 %TOC%
 
@@ -14,7 +14,7 @@ In a topic write:
 </verbatim>
 to add the necessary javascript library references to the page header.
 
-See TWiki:Plugins.TWikiAjaxContrib for instruction and coding examples.
+See Foswiki:Extensions.TWikiAjaxContrib for instruction and coding examples.
 
 
 ---+++ Demo
@@ -57,7 +57,7 @@ Behaviour.register(myrules);
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>FORMPLUGIN_SHORTDESCRIPTION%==
 
    * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
-      * Set SHORTDESCRIPTION = Convenience plugin for TWiki:Plugins.TWikiAjaxContrib
+      * Set SHORTDESCRIPTION = Convenience plugin for Foswiki:Extensions.TWikiAjaxContrib
 
    * Debug plugin: (See output in =data/debug.txt=)
       * Set DEBUG = 0
@@ -93,7 +93,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Other Dependencies: |- |
 |  Perl Version: | 5.005 |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  [[Foswiki:Extensions/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |

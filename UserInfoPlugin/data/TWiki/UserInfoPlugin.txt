@@ -56,7 +56,7 @@ The format parameter might containt the following variables:
 ---++ Plugin Installation Instructions
 
 This plugin has been tested on TWiki/Beijing, TWiki/Cairo and TWiki/Dakar.
-If you are installing it on TWiki/Cairo you need the TWiki:Plugins/SessionPlugin.
+If you are installing it on TWiki/Cairo you need the Foswiki:Extensions/SessionPlugin.
 TWiki/Dakar has build-in support for cgi sessions.
 	
 	* Download the ZIP file from the Plugin web (see below)
@@ -116,12 +116,12 @@ Recently registered users: %BR%
 |  &nbsp; | fixed =sep= handling, fixed =$host= parsing |
 |  TWiki Dependency: | $TWiki::Plugins::VERSION 1.024 |
 |  CPAN Dependencies: | Time::Local |
-|  Other Dependencies: | (TWiki:Plugins/SessionPlugin) |
+|  Other Dependencies: | (Foswiki:Extensions/SessionPlugin) |
 |  Perl Version: | 5.8 |
-|  TWiki:Plugins/Benchmark: | TWiki:TWiki/GoodStyle nn%, TWiki:TWiki/FormattedSearch nn%, %TOPIC% nn% |
-|  Plugin Home: | TWiki:Plugins/%TOPIC% |
-|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
-|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+|  Foswiki:Extensions/Benchmark: | TWiki:TWiki/GoodStyle nn%, TWiki:TWiki/FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | Foswiki:Extensions/%TOPIC% |
+|  Feedback: | Foswiki:Extensions/%TOPIC%Dev |
+|  Appraisal: | Foswiki:Extensions/%TOPIC%Appraisal |
 
 
 -- TWiki:Main/MichaelDaum - 09 June 2006

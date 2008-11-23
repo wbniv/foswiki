@@ -161,9 +161,9 @@ See also: BlogPlugin, [[_BlogPlugin.WebHome][BlogUp template web]]
 |  Change History: | (see also the change history of the BlogPlugin) |
 |  24 Jan 2006: | Initial version |
 |  Demo: | http://jojowiki.dyndns.org |
-|  Home: | TWiki:Plugins/%TOPIC% |
-|  Feedback: | TWiki:Plugins/BlogPlugin |
-|  Appraisal: | TWiki:Plugins/BlogPluginAppraisal |
+|  Home: | Foswiki:Extensions/%TOPIC% |
+|  Feedback: | Foswiki:Extensions/BlogPlugin |
+|  Appraisal: | Foswiki:Extensions/BlogPluginAppraisal |
 
 -- TWiki:Main/MichaelDaum - 08 Feb 2006
 

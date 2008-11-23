@@ -5,7 +5,7 @@
 These are some simple examples to show how to use the basic features
 of the FlexWebListPlugin. Please create some subwebs in the Sandbox web 
 for a better illustration of the examples below. Some of the examples
-are displayed using the "glue" syntax of the TWiki:Plugins.GluePlugin
+are displayed using the "glue" syntax of the Foswiki:Extensions.GluePlugin
 to ease reading multiline TML expressions and arguments.
 
 %TOC%
@@ -89,7 +89,7 @@ to ease reading multiline TML expressions and arguments.
 %FLEXWEBLIST{exclude="TestCases|Trash.*" subwebs="none" selection="Sandbox" format="$indent   * [[$web.%HOMETOPIC%][$name]]$n" markerformat="$percntFLEXWEBLIST{ webs=\"$web\" format=\"$dollarindent   * [[$dollarweb.%HOMETOPIC%][$dollarname]]$dollarn\" }$percnt"}%
 
 ---+++ Twisty weblist
-needs the TWiki:Plugins/TwistyPlugin
+needs the Foswiki:Extensions/TwistyPlugin
 <verbatim>
 %~~ FLEXWEBLIST{
 ~~~   header="<ul>" 
@@ -112,7 +112,7 @@ needs the TWiki:Plugins/TwistyPlugin
 
 
 ---++ Twisty navigation
-needs the TWiki:Plugins/TwistyPlugin and the TWiki:Plugins/IfDefinedPlugin
+needs the Foswiki:Extensions/TwistyPlugin and the Foswiki:Extensions/IfDefinedPlugin
 
 <verbatim>
 %~~ FLEXWEBLIST{

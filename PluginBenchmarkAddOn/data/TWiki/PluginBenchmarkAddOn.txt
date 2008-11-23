@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="ProjectContributor" date="1159213083" format="1.0" version="1.1"}%
 ---+ Plugin Benchmark Add-On
 
-This is a small script to measure the performance of a Plugin. Plugin authors can use it to measure and document the TWiki:Plugins/Benchmark numbers.
+This is a small script to measure the performance of a Plugin. Plugin authors can use it to measure and document the Foswiki:Extensions/Benchmark numbers.
 
 ---++ Usage
 

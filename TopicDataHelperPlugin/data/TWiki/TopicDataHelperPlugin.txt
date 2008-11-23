@@ -3,7 +3,7 @@
 
 This plugin is targeted to plugin authors.
 
-Helper plugin for collecting, filtering and sorting data objects. This plugin is used by TWiki:Plugins/AttachmentListPlugin and TWiki:Plugins/FormFieldListPlugin to process this kind of parameters:
+Helper plugin for collecting, filtering and sorting data objects. This plugin is used by Foswiki:Extensions/AttachmentListPlugin and Foswiki:Extensions/FormFieldListPlugin to process this kind of parameters:
 
 <verbatim>
 %ATTACHMENTLIST{
@@ -38,7 +38,7 @@ In short, this plugin provides:
 
 ---++ Background
 
-With extending TWiki:Plugins/FormListPlugin I found I had the same needs as with TWiki:Plugins/AttachmentListPlugin. I needed almost the plugin syntax parameters! I decided to abstract out the collecting, filtering and sorting functions and provide them in a re-usable way.
+With extending Foswiki:Extensions/FormListPlugin I found I had the same needs as with Foswiki:Extensions/AttachmentListPlugin. I needed almost the plugin syntax parameters! I decided to abstract out the collecting, filtering and sorting functions and provide them in a re-usable way.
 
 
 ---++ When to use this plugin
@@ -536,7 +536,7 @@ None. See the plugin documentation in the =.pm= file on detailed usage instructi
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  [[Foswiki:Extensions/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 | Home: | http://foswiki.org/Extensions/%TOPIC% |
 | Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 | Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |

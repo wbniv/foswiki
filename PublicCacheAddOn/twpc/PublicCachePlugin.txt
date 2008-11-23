@@ -18,7 +18,7 @@ cache on topic saves.
 |  12 Jan 2008: | Initial version |
 |  TWiki Dependency: | $TWiki::Plugins::VERSION 1.025 |
 |  Dependencies: | %$DEPENDENCIES |
-|  TWiki:Plugins/Benchmark: |  |
+|  Foswiki:Extensions/Benchmark: |  |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |

@@ -118,8 +118,8 @@ and returns the formatted error response.
 |  Change History: | &nbsp; |
 |  15 June 2006: | first public release |
 |  28 May 2006: | Initial version |
-|  Home: | TWiki:Plugins/%TOPIC% |
-|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
-|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+|  Home: | Foswiki:Extensions/%TOPIC% |
+|  Feedback: | Foswiki:Extensions/%TOPIC%Dev |
+|  Appraisal: | Foswiki:Extensions/%TOPIC%Appraisal |
 
 -- TWiki:Main/MichaelDaum - 15 June 2006

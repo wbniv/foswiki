@@ -403,7 +403,7 @@ twiki.AjaxRequest.setProperties(
 
 ---++ Usage
 
-The Yahoo! classes are available as Contrib at TWiki:Plugins.YahooUserInterfaceContrib.
+The Yahoo! classes are available as Contrib at Foswiki:Extensions.YahooUserInterfaceContrib.
 
 Include the required scripts:
 <blockquote>
@@ -416,7 +416,7 @@ Include the required scripts:
 </verbatim>
 </blockquote>
 
-It is recommended to use TWiki:Plugins.BehaviourContrib for interface elements:
+It is recommended to use Foswiki:Extensions.BehaviourContrib for interface elements:
 
 <verbatim>
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/BehaviourContrib/behaviour.compressed.js"></script>

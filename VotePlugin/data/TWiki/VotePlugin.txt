@@ -195,7 +195,7 @@ in !%USERSWEB%.SitePreferences, and add =VOTEPLUGIN_RESETTERS= to =FINALPREFEREN
 |  Change History: | &nbsp; | 
 |  14 Oct 2008 | TWikibug:Item6070 works for hierarchical webs now.  - TWiki:Main/ColasNahaboo |
 |  10 Aug 2008 | TWikibug:Item5768 suppress submission of individual ratings in a multi-row vote TWikibug:Item5769 correct default handling of transcluded rates TWikibug:Item5766 $large is once again large TWikibug:Item5771 support for resetting votes. |
-|  1 Jul 2007: | TWikibug:Item4310 : abstracted out TWiki:Plugins.RatingContrib, and modified the code to be tolerant of forms within forms - TWiki:Main/CrawfordCurrie |
+|  1 Jul 2007: | TWikibug:Item4310 : abstracted out Foswiki:Extensions.RatingContrib, and modified the code to be tolerant of forms within forms - TWiki:Main/CrawfordCurrie |
 |  24 Jun 2007: | TWikibug:ItemItem4298: fixed secret switch. Item4200: added VarVOTE. - TWiki:Main/CrawfordCurrie |
 |  11 Jun 2007: | TWikibug:Item4235 - removed excess newlines, fixed separator - TWiki:Main/CrawfordCurrie |
 |   8 Jun 2007: | Added =submit= - TWiki:Main/CrawfordCurrie |
@@ -213,9 +213,9 @@ in !%USERSWEB%.SitePreferences, and add =VOTEPLUGIN_RESETTERS= to =FINALPREFEREN
 |  16 Mar 2005: | use Cache API only if its there; delayed =use &lt;package&gt;= | 
 |   7 Mar 2005: | Initial version |
 |  Dependencies: | %$DEPENDENCIES% |
-|  Plugin Home: | TWiki:Plugins/%TOPIC% |
-|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
-|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+|  Plugin Home: | Foswiki:Extensions/%TOPIC% |
+|  Feedback: | Foswiki:Extensions/%TOPIC%Dev |
+|  Appraisal: | Foswiki:Extensions/%TOPIC%Appraisal |
 
 %META:FILEATTACHMENT{name="example_select.gif" attr="h" comment="" version="1"}%
 %META:FILEATTACHMENT{name="example_stars.gif" attr="h" comment="" version="1"}%

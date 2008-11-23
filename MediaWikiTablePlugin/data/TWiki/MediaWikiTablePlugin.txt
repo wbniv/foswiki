@@ -31,11 +31,11 @@ as the latter is much more powerful and allows to control the resulting
 HTML markup in much detail.
 
 If you want to enable <nop>MediaWiki wiki markup then
-you might also be interested in the TWiki:Plugins/EditSyntaxPlugin.
+you might also be interested in the Foswiki:Extensions/EditSyntaxPlugin.
 
 If you want to import content in <nop>MediaWiki format and convert it
 to TWiki markup as much as possible then use the 
-TWiki:Plugins/MediaWiki2TWikiAddOn (forthcoming).
+Foswiki:Extensions/MediaWiki2TWikiAddOn (forthcoming).
 
 ---++ Syntax Rules
 The entire *table* is encased with curly brackets and a vertical bar character
@@ -336,7 +336,7 @@ which will generate
 This is a comparison of the three basic ways to compose tables. The TWiki
 collumn just lists the basic markup capabilities. 
 Note, that there are table plugins to enhance the formatting capabilities,
-i.e. the TWiki:Plugins/TablePlugin. For the sake of simplicity its features
+i.e. the Foswiki:Extensions/TablePlugin. For the sake of simplicity its features
 are not under consideration here.
 
 The the notion of =n/a= in some cases means that the element under consideration
@@ -1256,10 +1256,10 @@ Wiki markup like <code>_text_</code> instead of "font-style:italic".
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.8 |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
-|  Plugin Home: | TWiki:Plugins/%TOPIC% |
-|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
-|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | Foswiki:Extensions/%TOPIC% |
+|  Feedback: | Foswiki:Extensions/%TOPIC%Dev |
+|  Appraisal: | Foswiki:Extensions/%TOPIC%Appraisal |
 
 -- TWiki:Main/MichaelDaum - 17 Jul 2008
 

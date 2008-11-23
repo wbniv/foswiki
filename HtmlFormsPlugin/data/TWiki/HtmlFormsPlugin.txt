@@ -3,7 +3,7 @@
 
 This plugin can be used to make html forms that set [[%SYSTEMWEB%.Macros][Macros]]. SELECT, CHECKBOX and RADIO can be used to select from a comma separated list of options (that could be defined using a SEARCH), while BUTTON, TEXTVALUE and TEXTAREA will set the %SYSTEMWEB%.TWikiVariable based on the value.
 
-I will be using SELECT to allow the user to set a variable to a set of topics, which they will later publish to a web site using TWiki:Plugins/PublishContrib.
+I will be using SELECT to allow the user to set a variable to a set of topics, which they will later publish to a web site using Foswiki:Extensions/PublishContrib.
 
 ---++ Syntax Rules
 
@@ -105,7 +105,7 @@ and set WHOWILLITBENOWTEXT in this topic to "There once was a girl"
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 99% |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 99% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |

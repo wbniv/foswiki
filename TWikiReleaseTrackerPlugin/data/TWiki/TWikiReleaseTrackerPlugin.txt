@@ -55,8 +55,8 @@ The TRT centres on the concept of a unique CONTENT identifier - instead of ident
 ---++ Plugin Installation and Set up Instructions
 
 	1 Download the ZIP file from the Plugin web (see below).
-	1 Unzip TWiki:Plugins.EditTablePlugin.zip in your twiki installation directory. (This will facilitate sorting the table entries)
-	1 This plugin requires TWiki:Plugins.BuildContrib and TWiki:Plugins.DistributionContrib to run. If you do not have these two plugins installed, download and install them before proceeding.
+	1 Unzip Foswiki:Extensions.EditTablePlugin.zip in your twiki installation directory. (This will facilitate sorting the table entries)
+	1 This plugin requires Foswiki:Extensions.BuildContrib and Foswiki:Extensions.DistributionContrib to run. If you do not have these two plugins installed, download and install them before proceeding.
 	1 Create a md5 index of your local installation by clicking [[%SCRIPTURL%/view%SCRIPTSUFFIX%/TWiki/TRTChangesFromDistribution?mode=indexLocalInstallation][here]]. _(Repeat this step after modifying installation files to create new index.)_
 	1 Test if the Plugin is correctly installed:
 		* Check the TRTChangesFromDistribution topic and see that the %<nop>DIFFWIKI{}% is expanded into formated report.
@@ -66,10 +66,10 @@ The TRT centres on the concept of a unique CONTENT identifier - instead of ident
 
 ---+++ Basic usage
 ---++++ Web usage
-	* The TRT is shipped with data about standard TWiki "Production Releases". By default, the TRTChangesFromDistribution topic automatically generates a report comparing your local installation against the standard TWiki distribution specified by the WIKIVERSION variable. %RED%Note:%ENDCOLOR% If you are running a "Beta Release," you will need to download the "beta.md5" file from TWiki:Plugins.TWikiReleaseTrackerPluginDev and attach it to your local version of the %TOPIC% topic. 
+	* The TRT is shipped with data about standard TWiki "Production Releases". By default, the TRTChangesFromDistribution topic automatically generates a report comparing your local installation against the standard TWiki distribution specified by the WIKIVERSION variable. %RED%Note:%ENDCOLOR% If you are running a "Beta Release," you will need to download the "beta.md5" file from Foswiki:Extensions.TWikiReleaseTrackerPluginDev and attach it to your local version of the %TOPIC% topic. 
 	* To view the changes for a particular file listed in the report, click on the corresponding link in the "Status" column.
 ---++++ Command line usage
-        * This is strictly experimental - see TWiki:Plugins.TWikiShellContrib and  TWiki:Plugins.TWikiReleaseTrackerPluginCommands
+        * This is strictly experimental - see Foswiki:Extensions.TWikiShellContrib and  Foswiki:Extensions.TWikiReleaseTrackerPluginCommands
 
 ---+++ Comparing differences between standard TWiki installations
 
@@ -125,8 +125,8 @@ See the Parameters section for descriptions of the rest of these:
       
 ---++ Future plans
 	* Make the TRT detect inconsistent indexes and offer to regenerate the localInstallation md5 file if necessary
-	* Make test suite TWiki:Plugins.BuildContrib <nop>TestRunner compatible
-	* Make use of TWiki:Plugins.AttrsContrib
+	* Make test suite Foswiki:Extensions.BuildContrib <nop>TestRunner compatible
+	* Make use of Foswiki:Extensions.AttrsContrib
 	* Investigate why the -w flag to diff is necessary
 	* md5 files will be pulled from a server rather than distributed
 
@@ -138,7 +138,7 @@ See the Parameters section for descriptions of the rest of these:
 |  Plugin Author: | TWiki:Main.MartinCleaver |
 |  Plugin Version: | %$DATE% (%$VERSION%) |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
-|  24 Oct 2004: | Minor bugfixes and inclusion of TWiki:Plugins.TWikiReleaseTrackerPluginCommands |
+|  24 Oct 2004: | Minor bugfixes and inclusion of Foswiki:Extensions.TWikiReleaseTrackerPluginCommands |
 |  29 Aug 2004: | Documentation update (thanks to TWiki:Main.LynnwoodBrown) |
 |  25 Aug 2004: | Diff is now passed the -w flag to ignore whitespace changes | 
 |  24 Aug 2004: | Bugfix when comparing two arbitrary versions |
@@ -148,13 +148,13 @@ See the Parameters section for descriptions of the rest of these:
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 
-If you have comments or questions, please put them at TWiki:Plugins.TWikiReleaseTrackerPluginDev
+If you have comments or questions, please put them at Foswiki:Extensions.TWikiReleaseTrackerPluginDev
 %META:FILEATTACHMENT{name="localInstallation.md5" attr="" comment="" date="1090726845" path="There no API to add attachments from plugins, so I hacked it" size="592" user="MartinCleaver" version="1.1"}%
 %META:FILEATTACHMENT{name="releases.md5" attr="" comment="" date="1090726845" path="There no API to add attachments from plugins, so I hacked it" size="592" user="MartinCleaver" version="1.1"}%
 %META:FILEATTACHMENT{name="plugins.md5" attr="" comment="" date="1090726845" path="There no API to add attachments from plugins, so I hacked it" size="592" user="MartinCleaver" version="1.1"}%

@@ -16,7 +16,7 @@ This contrib provides subroutines that come in handy when editing and saving par
    * =bin/addsection= provides an interface to append sections to a topic
    * =templates/editsection.pattern.tmpl= and =templates/editsection.tmpl= are templates supporting editing of sections.
 
-This contrib is used by TWiki:Plugins/SectionalEditPlugin, TWiki:Plugins/MultiEditPlugin, and TWiki:Plugins/ThreadedDiscussionPlugin. Examining these plugins will provide guidance of how to use these subroutines in implementing your own plugin.
+This contrib is used by Foswiki:Extensions/SectionalEditPlugin, Foswiki:Extensions/MultiEditPlugin, and Foswiki:Extensions/ThreadedDiscussionPlugin. Examining these plugins will provide guidance of how to use these subroutines in implementing your own plugin.
 
 This contrib supports TWiki4 and onward. For a version of this contrib that works with the Cairo release, please download the appropriate version from twiki.org.
 
@@ -137,6 +137,6 @@ __Note:__ You do not need to install anything on the browser to use this contrib
 |  Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 
-__Related Topics:__ TWiki:Plugins/SectionalEditPlugin, TWiki:Plugins/MultiEditPlugin, TWiki:Plugins/ThreadedDiscussionPlugin, TWiki:Plugins/EditTablerowPlugin
+__Related Topics:__ Foswiki:Extensions/SectionalEditPlugin, Foswiki:Extensions/MultiEditPlugin, Foswiki:Extensions/ThreadedDiscussionPlugin, Foswiki:Extensions/EditTablerowPlugin
 
 <!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the Dev topic instead. -->

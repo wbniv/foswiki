@@ -14,7 +14,7 @@ One line description, required for extensions repository catalog.
 Some of the features of %TOPIC% include:
    * Simple installation mechanism to add the TCAO framework to a web and install sample classifications.
    * A "wizard" for creating new topics and apply classification scheme.
-   * Display Classification trees using TWiki:Plugins.TopicTreePlugin.
+   * Display Classification trees using Foswiki:Extensions.TopicTreePlugin.
    * Design your own  classification schemes.
 
 ---++ Add-On Installation Instructions

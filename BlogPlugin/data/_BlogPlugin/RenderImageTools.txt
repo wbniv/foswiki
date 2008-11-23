@@ -63,7 +63,7 @@ Only BlogAuthors will get to see them. See the access rights below.
    * Add to your posting text 
      =&lt;img class="alignright border" src="%<nop>BLOGIMAGES%/SomeImage.gif" />=,
      use classes =alignright=, =alignleft=, =border=
-   * If you've installed the TWiki:Plugins/ImagePlugin use
+   * If you've installed the Foswiki:Extensions/ImagePlugin use
      =%<nop>IMAGE{"SomeImage.gif|frame|left|200px"}%= to create a framed image floating
      left whose geometry does not exceed 200px,
      use =right=, =left=, =center= to position the image. 

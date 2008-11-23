@@ -1,6 +1,6 @@
 %META:TOPICINFO{author="WikiGuest" date="1150610781" format="1.1" reprev="1.20" version="1.20"}%
 ---++ Sectional Edit Plugin
-_Discussion of this plugin can be found in [[TWiki:Plugins.%TOPIC%Dev][%TOPIC%Dev]]._
+_Discussion of this plugin can be found in [[Foswiki:Extensions.%TOPIC%Dev][%TOPIC%Dev]]._
 
 This plugin allows the user to break a topic into sections which can be edited individually.
 
@@ -73,10 +73,10 @@ To enable editing of:
 |   4 Aug 2005: | Updated definition of styles with &lt;sectionedit&gt; tag |
 |   2 May 2005: | Fixed caching problem when using SpeedyCGI |
 |  12 Apr 2005: | Corrected documentation. Add the ability to define styles for the edited sections, in addition to the bar next to an editable section. |
-|  21 Mar 2005: | Integrate 21 Mar version of TWiki:Plugins/EditContrib |
+|  21 Mar 2005: | Integrate 21 Mar version of Foswiki:Extensions/EditContrib |
 |  20 Mar 2005: | Resolved problems due to discrepancies between browsers in handling URL parameters |
-|  12 Mar 2005: | Abstract additional features into TWiki:Plugins/EditContrib |
-|   8 Mar 2005: | Rely on TWiki:Plugins/EditContrib to pull out code common to serveral plugins. |
+|  12 Mar 2005: | Abstract additional features into Foswiki:Extensions/EditContrib |
+|   8 Mar 2005: | Rely on Foswiki:Extensions/EditContrib to pull out code common to serveral plugins. |
 |  27 Feb 2005: | Do not edit attached form, if any, when editing sections. Made more consistent with =lib/TWiki/UI/= | 
 |  13 Feb 2005: | Integrate savemulti capability. Render text before and after the section being edited. |
 |  12 Feb 2005: | Added =SECTIONDEPTH= preference variable. |
@@ -93,13 +93,13 @@ To enable editing of:
 |   7 Feb 2003: | Wordwrap fixed in edit page |
 |   6 Feb 2003: | Initial version |
 |  CPAN Dependencies: | none |
-|  Other Dependencies: | TWiki:Plugins/EditContrib |
+|  Other Dependencies: | Foswiki:Extensions/EditContrib |
 |  Perl Version: | 5.0 |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 
 ---+++ Discussion
-_Discussion of this plugin can be found in [[TWiki:Plugins.%TOPIC%Dev][%TOPIC%Dev]]._
+_Discussion of this plugin can be found in [[Foswiki:Extensions.%TOPIC%Dev][%TOPIC%Dev]]._
 
 __Related Topics:__ [[%SYSTEMWEB%.Plugins][Plugins]], %SYSTEMWEB%.EditContrib
 

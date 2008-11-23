@@ -18,7 +18,7 @@ These defaults can of course be overridden on a use-by-use basis.
 
 A =USEEMBED= flag should be left to "true" - I thought I could be clever before I fully understood the minefield that is browser plugin syntax.
 
-It also supports TWiki:Plugins.EmbedPlugin's =EMBED= syntax to enable it to superceed that plugin:
+It also supports Foswiki:Extensions.EmbedPlugin's =EMBED= syntax to enable it to superceed that plugin:
    * %<nop>EMBED{filename="string" width="number" height="number"}%
 
 ---++Basic Usage
@@ -152,7 +152,7 @@ You should see something below:
 |  Copyright: | &copy; 2006 TWiki:Main.PiersGoodhew, 2008 TWiki:Main.SvenDowideit |
 |  License: | [[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License)]] |
 |  Plugin Version: | %$VERSION% |
-|  20 Oct 2008 | modernise with TWiki:Plugins.BuildContrib, add EMBED Tag, remove WikiWord issues, templatise html output, add youtube supprt - TWiki:Main.SvenDowideit |
+|  20 Oct 2008 | modernise with Foswiki:Extensions.BuildContrib, add EMBED Tag, remove WikiWord issues, templatise html output, add youtube supprt - TWiki:Main.SvenDowideit |
 |  16 Oct 2006 | initial version |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
 |  Dependencies: | %$DEPENDENCIES% |

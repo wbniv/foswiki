@@ -3,7 +3,7 @@
 The <nop>%TOPIC% handles the tag =%<nop>TIMETABLE%= and creates a weekly timetable. 
 The timetable is rendered with HTML tables and should work with all modern web browsers. Please take a look at the [[#TimeTablePluginFeatures][feature list]] for more information.
 
-It also handles the tag =%<nop>TTCM%= (<nop>TimeTable Compatibilty Mode). The compatibility mode allows the usage of all TWiki:Plugins.CalendarPlugin event types. The =%<nop>TTCM%= tag should be placed into the description field of an event and must contain a time range and
+It also handles the tag =%<nop>TTCM%= (<nop>TimeTable Compatibilty Mode). The compatibility mode allows the usage of all Foswiki:Extensions.CalendarPlugin event types. The =%<nop>TTCM%= tag should be placed into the description field of an event and must contain a time range and
 optional colors in a comma separated list (=&lt;time range&gt;[<nop>[','&lt;foreground color&gt;][','&lt;background color&gt;]]=), 
 e.g: 
 <br/> you type:
@@ -62,7 +62,7 @@ Events are defined with bullets. Following event types are supported to define e
 |^| ==&nbsp;* DDD - DDD - HH:MM - HH:MM - description - foreground color, background color== | ==&nbsp;* Mon - Fri - 12:15 - 13:00 - Lunch - white,black== |
 | <b>Duration</b> | instead of an end time (==HH:MM==) in a time range of a single/list/interval event you can define an event duration in days (==d==), hours (==h==) and/or minutes (==m==), e.g. one day: =1d= ; one day and two hours: =1:2d= ; one day, two hours and 30 minutes: =1:2:30d= ; two hours: =2h= ;  two yours and 30 minutes: =2:30h= ; 30 minutes: =30m= | ==&nbsp;* Mon - 10:00 - 2h - every Monday 2 hours at 10 o'clock== |
 
-If you enable the compatibility mode (see Attributes or Plugins Settings sections) you can also use all TWiki:Plugins.CalendarPlugin event types.
+If you enable the compatibility mode (see Attributes or Plugins Settings sections) you can also use all Foswiki:Extensions.CalendarPlugin event types.
 Examples:
 <verbatim>
 %TIMETABLE{compatmode="1" startdate="12 Jun 2006"}%
@@ -76,7 +76,7 @@ Examples:
 *Notes:*
    * The parameter of the %<nop>TTCM% tag *must not contain any whitespaces*.
    * Time ranges in a description field *must not contain any whitespaces*.
-   * If no %<nop>TTCM% tag or no time range was specified in a description of a TWiki:Plugins.CalendarPlugin event the event gets a full-time event (12:01am-11:59pm o'clock, 0-24h).
+   * If no %<nop>TTCM% tag or no time range was specified in a description of a Foswiki:Extensions.CalendarPlugin event the event gets a full-time event (12:01am-11:59pm o'clock, 0-24h).
 
  
 ---++ Attributes
@@ -87,7 +87,7 @@ Example: %<nop>TIMETABLE{lang="Deutsch" timeinterval="15" }%
 | *Attribute* | *Comment* | *Default/Example* |
 |  *Behavior:*  |||
 | clicktooltip | if enabled <nop>JavaScript tooltips are only shown with a mouse click to the table cell instead of 'mouse over' (related: clicktooltiptext) | clicktooltip="off" |
-| compatmode | if set to "1" all TWiki:Plugins.CalendarPlugin event types are supported (related: compatibility mode attributes); %X% the description field can contain a time range (without any whitespaces, e.g. 1pm-2pm) or a %<nop>TTCM%-Tag (e.g. ==%<nop>TTCM{"7:00-1:00pm,white,black"}%== ) with a time range and optional foreground and background color and *without* any *whitespaces* | compatmode="0" |
+| compatmode | if set to "1" all Foswiki:Extensions.CalendarPlugin event types are supported (related: compatibility mode attributes); %X% the description field can contain a time range (without any whitespaces, e.g. 1pm-2pm) or a %<nop>TTCM%-Tag (e.g. ==%<nop>TTCM{"7:00-1:00pm,white,black"}%== ) with a time range and optional foreground and background color and *without* any *whitespaces* | compatmode="0" |
 | days    | days to show | days="7" |
 | endtime | a end time, e.g. 18:00, 6:00pm, ...  | endtime="8:00pm" |
 | lang | Language used for weekdays in the table header and for event entries (e.g: English, Deutsch, Français, Español, Nederlands, Dansk, suomi, ...) | lang="English" |
@@ -231,7 +231,7 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
    * Language (default: English - see manual page of Date::Calc perl module, e.g: English, Deutsch, Français, Español, Nederlands, Dansk, suomi, ...): 
       * # Set LANG = Deutsch
 
-   * Enable/Disable compatibility mode (default: off) to (dis)allow TWiki:Plugins.CalendarPlugin event types:
+   * Enable/Disable compatibility mode (default: off) to (dis)allow Foswiki:Extensions.CalendarPlugin event types:
       * # Set COMPATMODE = 1
 
    * Set tooltip offsets (depends on your %SYSTEMWEB%.Skins):
@@ -295,7 +295,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  V1.006 (23 Jun 2006) | TWiki:Main.DanielRohde: fixed major mod_perl bug (paging in compatmode); added whole-time row feature; fixed minor bugs (empty column color; cutted text) |
 |  V1.005 (8 Jun 2006) | TWiki:Main.DanielRohde: fixed typos (documentation); added new features (compatmode only): inline time range feature and navigation; minor improvements (table header, ...) |
 |  V1.004 (31 May 2006) | TWiki:Main.DanielRohde: fixed typos (documentation, timeformat); added new attributes (days, forcestartdate, nowfgcolor, nowbgcolor); fixed minor bug (periodic repeater); added new event type (list) |
-|  V1.003 (24 May 2006) | TWiki:Main.DanielRohde: added compatibility mode (TWiki:Plugins.CalendarPlugin event types); added documentation and new attributes; fixed bugs (bgcolor bug; conflict rendering; documentation; error logs; warnings);|
+|  V1.003 (24 May 2006) | TWiki:Main.DanielRohde: added compatibility mode (Foswiki:Extensions.CalendarPlugin event types); added documentation and new attributes; fixed bugs (bgcolor bug; conflict rendering; documentation; error logs; warnings);|
 |  V1.002 (22 May 2006): | TWiki:Main.DanielRohde: fixed major bugs (conflict handling, preferences); added documentation; |
 |  V1.001 (19 May 2006): | TWiki:Main.DanielRohde: fixed some major bugs (conflict entries, parameter handling, long descriptions); added documentation; |
 |  V1.000 (16 May 2006): | TWiki:Main.DanielRohde: Initial version |
@@ -303,7 +303,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  CPAN Dependencies: | CPAN:Date::Calc %BR% CPAN:POSIX |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle 92%, %SYSTEMWEB%.FormattedSearch 98%, %TOPIC% 80% |
+|  [[Foswiki:Extensions/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle 92%, %SYSTEMWEB%.FormattedSearch 98%, %TOPIC% 80% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |

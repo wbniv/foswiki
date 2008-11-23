@@ -3,7 +3,7 @@
 
 <nop>%TOPIC% allows for dynamic rendering and display of a Ploticus graph in a TWiki topic.
 
-This plugin is basically a rip off of TWiki:Plugins.GnuPlotPlugin - thanks [[TWiki:Main.AbieSwanepoel][Abie]]!
+This plugin is basically a rip off of Foswiki:Extensions.GnuPlotPlugin - thanks [[TWiki:Main.AbieSwanepoel][Abie]]!
 
 %TOC%
 
@@ -1325,7 +1325,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 
 ---++ Plugin Info 
 
-| Plugin Author: | TWiki:Main.SteffenPoulsen (based on TWiki:Plugins.GnuPlotPlugin by TWiki:Main.AbieSwanepoel) |
+| Plugin Author: | TWiki:Main.SteffenPoulsen (based on Foswiki:Extensions.GnuPlotPlugin by TWiki:Main.AbieSwanepoel) |
 | Plugin Version: | 29 Apr 2006: (V1.100) |
 | Change History: ||
 | 29 Apr 2006: | (v1.100) - Added sandbox security mechanism |
@@ -1335,7 +1335,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 | Other Dependencies: | Ploticus (available from http://ploticus.sourceforge.net/) |
 | Perl Version: | 5.005 |
 | License: | GPL ( [[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-| [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 98% |
+| [[Foswiki:Extensions/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 98% |
 | Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 | Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 | Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |

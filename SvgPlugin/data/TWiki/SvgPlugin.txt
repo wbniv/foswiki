@@ -68,7 +68,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  CPAN Dependencies: | [[http://search.cpan.org/~tomson/Image-LibRSVG-0.04/][Image::LibRSVG]] |
 |  Other Dependencies: | [[http://librsvg.sourceforge.net][librsvg]] headers, if needed to compile Image::LibRSVG, and [[http://librsvg.sourceforge.net][librsvg]] |
 |  Perl Version: | tested with 5.8.4 |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 

@@ -3,7 +3,7 @@
 
 *This contrib packages in a convenient way the !JavaScript library and the CSS file needed to implement Twisty sections.*
 
-!TwistyContrib is installed by default in TWiki 4 and used by [[TWiki:Plugins.TwistyPlugin][Twisty Plugin]].
+!TwistyContrib is installed by default in TWiki 4 and used by [[Foswiki:Extensions.TwistyPlugin][Twisty Plugin]].
 
 It is recommended to use the !TwistyPlugin as it eases the deployment and use of this contrib.
 
@@ -53,10 +53,10 @@ Skins can customize the color of the twisty placeholder by modifiying the =.twis
 
 ---++ Twisty made easy
 
-Manual written by [[TWiki:Main.HaraldJoerg][Harald Joerg]]. Examples require [[TWiki:Plugins.SpreadsheetPlugin][Spreadsheet Plugin]] to work (installed by default).
+Manual written by [[TWiki:Main.HaraldJoerg][Harald Joerg]]. Examples require [[Foswiki:Extensions.SpreadsheetPlugin][Spreadsheet Plugin]] to work (installed by default).
 
 <blockquote>
-Some of my TWiki users are impressed by the optical effect of what can be done with TWiki:Plugins.TwistyPlugin - and they keep asking me: "How do I do that? I don't understand the documentation, and I don't understand the raw text of your topics!"
+Some of my TWiki users are impressed by the optical effect of what can be done with Foswiki:Extensions.TwistyPlugin - and they keep asking me: "How do I do that? I don't understand the documentation, and I don't understand the raw text of your topics!"
 
 They indeed have a point here.  The docs aren't easily understood.  It isn't easy to pick all the variables needed from a single example, and just copypasting sometimes fails in embarrassing ways if non-unique =id= attributes are present in a topic.  Maybe it is easy for a power user, but it surely isn't easy _enough_.  There _ought_ to be a way to make it easier.
 

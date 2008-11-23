@@ -22,7 +22,7 @@ see the [[http://dojotoolkit.org/book/dojo-book-1-0][The Dojo Book]]
 
    
 ---++ Usage
-This Contrib is a conveinience package, and should be used in conjunction with another TWiki Extension - such as TWiki:Plugins.RestPlugin.
+This Contrib is a conveinience package, and should be used in conjunction with another TWiki Extension - such as Foswiki:Extensions.RestPlugin.
 
 It contains one function =TWiki::Contrib::DojoToolkitContrib::requireJS(dojoModuleName), that will add the dojo.js script to the HTML header, and add the =dojo.require= calls in order.
 

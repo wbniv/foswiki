@@ -46,7 +46,7 @@ evaluated left-to-right-inside-out.
 
 ---++ Related work
 Similar extensions have been done before but are either only available as an integral part of TWiki-4.0 
-(see TWiki:TWiki04/IfStatements) or unmaintained (see TWiki:Plugins/ConditionalPlugin).
+(see TWiki:TWiki04/IfStatements) or unmaintained (see Foswiki:Extensions/ConditionalPlugin).
 Especially these two alternatives are rather similar as they defined the same tag (%IF).
 The main differences between those and this plugin here is that they have a more elaborated
 conditon parser that allows to evaluate more complex boolean expressions. Some of the
@@ -59,7 +59,7 @@ which is however more flexible as the string can be generated arbitrarily using 
 Furthermore, and possibly more important, this plugin is backwards compatible and may be used
 on a TWiki/Beijing, TWiki/Cairo and TWiki/Dakar engine.
 
-This plugin has been externalized from the TWiki:Plugins/NatSkinPlugin.
+This plugin has been externalized from the Foswiki:Extensions/NatSkinPlugin.
 
 
 ---++ Syntax Rules
@@ -193,9 +193,9 @@ and allows more complex <nop>TWikiMarkup in the then/else branches.
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.8 |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
-|  Plugin Home: | TWiki:Plugins/%TOPIC% |
-|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | Foswiki:Extensions/%TOPIC% |
+|  Feedback: | Foswiki:Extensions/%TOPIC%Dev |
 
 
 -- TWiki:Main.MichaelDaum - 03 Jul 2008

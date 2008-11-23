@@ -83,13 +83,13 @@ Full syntax overrides site/topic defaults.
 |  4 Apr 2005: | (v1.5) - Support for non-WikiWord topics in <nop/>TWikiML link syntaxes |
 |  2 Apr 2005: | (v1.4) - Support for more <nop/>TWikiML link syntaxes |
 |  1 Apr 2005: | (v1.3) - Plugin is now I18N-aware |
-|  30 Mar 2005: | (v1.2) - implemented changes/fixes from TWiki:Plugins.UpdateInfoPluginDev |
+|  30 Mar 2005: | (v1.2) - implemented changes/fixes from Foswiki:Extensions.UpdateInfoPluginDev |
 |  15 Apr 2002: | Initial version |
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 99% |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 99% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |

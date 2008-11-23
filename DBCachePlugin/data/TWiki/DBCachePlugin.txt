@@ -34,7 +34,7 @@ properties.
 *DBCALL* is named "call" and not "include" as its main purpose is to ease 
 <nop>TWikiApplications where <nop>TopicFunctions are treated as stored procedures.
 It fetches pre-compiled topics or sections of it. "Glue" chars
-(see TWiki:Plugins:GluePlugin) are applied in advance so that the actual rendering time
+(see Foswiki:Extensions:GluePlugin) are applied in advance so that the actual rendering time
 is minimized. DBCALL does therefore not allow to call "external" pages as INCLUDE allows.
 DBCALL's "warn" parameter can only be set to "on" and "off" and does not allow 
 alternative content in case of a warning. The "pattern" feature used to extract a fragment from
@@ -53,7 +53,7 @@ The section between %<nop>STARTINCLUDE% ... %<nop>STOPINCLUDE% is called
 In addition, DBCALL implements so called *TopicMethods*. A method call is of the
 form =%<nop>DBCALL{"SomeTopic->RenderMethod" ...}%= and will infer the actual
 =...RenderMethod= to be called on the base of the _TopicType_ of =SomeTopic=. !TopicTypes
-are a concept introduced by the TWiki:Plugins/TWikiWorkbenchAddOn. It basically refers
+are a concept introduced by the Foswiki:Extensions/TWikiWorkbenchAddOn. It basically refers
 to a convention to tag the type(s) of a topic in a formfield "TopicType". The lookup
 mechanism for !TopicMethods proceeds as normal if the DBCALl is not of the form
 ="SomeTopic->RenderMethod"=. For example, if =SomeTopic= is of type =Video, <nop>MediaType, <nop>ClassifiedTopic=
@@ -124,7 +124,7 @@ The following variables can be used in the format parameter:
    * $urlpath: the attachments urlpath
    * $user: the user that uploaded the attachment
    * $web: the web name of the current topic
-   * $webdav: the action to edit the current attachment using the TWiki:Plugins/WebDavPlugin
+   * $webdav: the action to edit the current attachment using the Foswiki:Extensions/WebDavPlugin
    * $webdavUrl: the url used in the webdav action
    * $wikiuser: the user's home topic that recently changed the current attachment
 
@@ -393,7 +393,7 @@ The <nop>DBCachePlugin supports overloading the contained default database cache
 from =DBCachePlugin::WebDB= being itself a =DBCacheContrib=. The only purpose of the 
 =DBCachePlugin::WebDB= is to extract the <nop>TopicFunctions contained in a topic as described
 above. You can easily extend this functionality by deriving a <nop>WebDB specific to your
-own <nop>TWikiApplication. For example, the TWiki:Plugins.BlogPlugin defines a <no>WebDB of
+own <nop>TWikiApplication. For example, the Foswiki:Extensions.BlogPlugin defines a <no>WebDB of
 its own where it caches the createdate of a topic being either specified in a formfield  or
 given in the timestamp of the first revision of a topic.
 
@@ -410,7 +410,7 @@ is rather a design decision; otherwise each DBQUERY and DBCALL tag would have to
 declare which database it operated on. So currently the rule of thumb is: one
 web one <nop>TWikiApplication making use of this plugin.
 
-returns a database object. See the TWiki:Plugins::DBCacheContrib documentation
+returns a database object. See the Foswiki:Extensions::DBCacheContrib documentation
 for its interfaces.
 
 ---+++ DBCachePlugin::WebDB 
@@ -547,12 +547,12 @@ You can also call the update from the command line - from the twiki/bin dir -
 |  24 Nov 2005: | Initial version |
 |  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
 |  CPAN Dependencies: | none |
-|  Other Dependencies: | TWiki:Plugins/DBCacheContrib (Version TWiki-4, Rev &gt;= 13562)|
+|  Other Dependencies: | Foswiki:Extensions/DBCacheContrib (Version TWiki-4, Rev &gt;= 13562)|
 |  Perl Version: | 5.8 |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
-|  Plugin Home: | TWiki:Plugins/%TOPIC% |
-|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
-|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+|  [[Foswiki:Extensions/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | Foswiki:Extensions/%TOPIC% |
+|  Feedback: | Foswiki:Extensions/%TOPIC%Dev |
+|  Appraisal: | Foswiki:Extensions/%TOPIC%Appraisal |
 
 -- TWiki:Main.MichaelDaum - 24 Sep 2008
 

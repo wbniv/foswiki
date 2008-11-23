@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="ProjectContributor" date="1181956397" format="1.1" version="1.1"}%
 ---+!! Autocomplete Add-on
 
-Autocomplete input field based on Yahoo's User Interface Library (available through TWiki:Plugins/YahooUserInterfaceContrib).
+Autocomplete input field based on Yahoo's User Interface Library (available through Foswiki:Extensions/YahooUserInterfaceContrib).
 
 <div class="twikiImage"><img src="%ATTACHURLPATH%/autocomplete_example.png" alt="autocomplete_example.png" width='606' height='283' /></div>
      
@@ -90,7 +90,7 @@ datasection="topics"
 topicsweb="%SYSTEMWEB%"
 }%
 
-This topic uses TWiki:Plugins/VarCachePlugin to cache search results.
+This topic uses Foswiki:Extensions/VarCachePlugin to cache search results.
 %VARCACHE{}%
 
 ---++ Using autocomplete in a template
@@ -293,7 +293,7 @@ Usage (only if you are using a customized =javascript= section):
    * Download the ZIP file from the Plugin web (see below).
    * Unzip ==%TOPIC%.zip== in your ($TWIKI_ROOT) directory.
    * Optional plugins:
-      * TWiki:Plugins/VarCachePlugin to cache search results 
+      * Foswiki:Extensions/VarCachePlugin to cache search results 
    * Alternatively,
       * Manually resolve the dependencies listed below.
       %$DEPENDENCIES%

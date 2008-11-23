@@ -3,7 +3,7 @@
 
 ---++ Description
 Extract user information from an Ldap directory. Note, you have to install the
-TWiki:Plugins/LdapNgPlugin to make this work. Depending on your directory layout
+Foswiki:Extensions/LdapNgPlugin to make this work. Depending on your directory layout
 and the used schema you have to adjust the filter below.
 
 ---++ Parameters

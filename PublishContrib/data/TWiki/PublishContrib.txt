@@ -392,7 +392,7 @@ Note that =htmldoc= can also be used to generate !PostScript by using the =-t= o
    1 Install Archive::Zip and everything it depends on
 
 ---++ Info
-This add-on started as the TWiki:Plugins/GenHTMLAddon, written by TWiki:Main/CrawfordCurrie at Motorola. It was then rewritten by TWiki:Main/EricScouten, and then fixed and enhanced by TWiki:Main/CrawfordCurrie (http://c-dot.co.uk). It has been further extended by TWiki:Main/SvenDowideit and TWiki:Main/MartinCleaver.
+This add-on started as the Foswiki:Extensions/GenHTMLAddon, written by TWiki:Main/CrawfordCurrie at Motorola. It was then rewritten by TWiki:Main/EricScouten, and then fixed and enhanced by TWiki:Main/CrawfordCurrie (http://c-dot.co.uk). It has been further extended by TWiki:Main/SvenDowideit and TWiki:Main/MartinCleaver.
 
 |  Authors: | TWiki:Main/CrawfordCurrie, TWiki:Main/EricScouten, TWiki:Main.SvenDowideit, TWiki:Main.MartinCleaver|
 |  Dependencies: | %$DEPENDENCIES% |
@@ -427,7 +427,7 @@ This add-on started as the TWiki:Plugins/GenHTMLAddon, written by TWiki:Main/Cra
 |  9695 | Michael Daum - recursively archive resources imported by css files;\
       fixed several html errors in the !PublishContrib and !PublishWeb topics;\
       removed hardcoded reference to print.pattern |
-|  8959 | TWiki-4 version. Also supports publishing to a file area, making TWiki easier to use as a CMS (see also TWiki:Plugins/PublishWebPlugin, which does almost the same thing :-( ) |
+|  8959 | TWiki-4 version. Also supports publishing to a file area, making TWiki easier to use as a CMS (see also Foswiki:Extensions/PublishWebPlugin, which does almost the same thing :-( ) |
 |  6276 | TWikibug:Item196 - bugfix for HTTP_HOST, as described in the Dev topic for the contrib |
 |  5566 | Changed interface to support wildcards, and lightened the plugin by replacing a lot of files with simpler ways of doing things. |
 |  5499 | Added Compress::Zlib dependency, as requested by Brad Taylor |

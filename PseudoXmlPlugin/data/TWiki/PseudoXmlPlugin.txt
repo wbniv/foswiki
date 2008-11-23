@@ -33,7 +33,7 @@ This plugin allows the user to type just any tag, and have the twiki engine conv
 | <code>&lt;wiki>wiki&lt;author>author&lt;/author> more wiki&lt;/wiki> | <wiki>wiki<author>author</author> more wiki</wiki> |
 | <code>&lt;bad>bad tags&lt;/tags></code> | <bad>bad tags</tags> |
 
-feel free to improve the examples by editing TWiki:Plugins/%TOPIC%
+feel free to improve the examples by editing Foswiki:Extensions/%TOPIC%
 
 ---++ Caveats
 	* Nested tags are now expanded, but I think I might have significantly impacted the performance :(

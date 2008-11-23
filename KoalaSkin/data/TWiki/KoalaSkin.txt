@@ -9,7 +9,7 @@ By Colas Nahaboo. http://colas.nahaboo.net
 	* Discussion, support: 
 		* http://twiki.org/cgi-bin/view/Plugins/KoalaSkinDev
 		* koalaskin@koala.ilog.fr is the mailing list for people 
-		  wanting to follow closely discussions on TWiki:Plugins/KoalaSkinDev
+		  wanting to follow closely discussions on Foswiki:Extensions/KoalaSkinDev
 		  Topics discussed on the list will be summarized on the wiki
 		  topic, and new developments on the topic will be announced 
 		  there.
@@ -32,9 +32,9 @@ By Colas Nahaboo. http://colas.nahaboo.net
 |  Screenshot: | <a href="http://twiki.org/p/pub/Plugins/KoalaSkin/koalaskin-shot-view.png"><img src="http://twiki.org/p/pub/Plugins/KoalaSkin/koalaskin-thumb-view.png" alt="Click for full screen image" /></a> |
 |  Base Name: | koalaskin |
 |  Skin Author: | [[http://colas.nahaboo.net][Colas Nahaboo]] |
-|  Skin Version: | see TWiki:Plugins/KoalaSkin  |
+|  Skin Version: | see Foswiki:Extensions/KoalaSkin  |
 |  Skin CVS Infos: | $Revision: 1.5 $, $Date: 2006/08/27 11:25:31 $ |
-|  Change History: | see  TWiki:Plugins/KoalaSkin#History_of_revisions |
+|  Change History: | see  Foswiki:Extensions/KoalaSkin#History_of_revisions |
 |  Dependencies: |  |
 |  Skin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
@@ -145,7 +145,7 @@ original TWiki templates.
 	  easily for some user constructs due to the use of nested tables.
 	  (blockquotes with long lines)
 	  I provide an ugly hack for this, FixForNS4Blockquote.patch 
-	  on TWiki:Plugins/KoalaSkinDev
+	  on Foswiki:Extensions/KoalaSkinDev
 
 ---++ Installing
 
@@ -272,9 +272,9 @@ To change the web hierarchy, colors, web descriptions, web options...
 ---+++ Optional components
 You may want to also install plugins that the KoalaSkin is designed to provide
 facilities for:
-	* TWiki:Plugins/TreePlugin
+	* Foswiki:Extensions/TreePlugin
 	<br> If installed, with *also* the <nop>TreePlugin.topics-v1.tar.gz
-	on TWiki:Plugins/TreePluginDev, its support from the skin can be
+	on Foswiki:Extensions/TreePluginDev, its support from the skin can be
 	enabled by the KSWEBMAP variable
 
 ---+++ Options of the =bin/koalaskin-generate= script
@@ -381,9 +381,9 @@ variables in the <nop>KoalaSkinWebList topic such as:
 	  web request, though.
 	* KSWEBBAR=topic
 	  If present, will add links in the left box to a special topic
-	  to show a map of the current web with the TWiki:Plugins/TreePlugin
+	  to show a map of the current web with the Foswiki:Extensions/TreePlugin
 	  that should be already install, as well as the 
-	  <nop>TreePlugin.topics-v1.tar.gz from TWiki:Plugins/TreePluginDev
+	  <nop>TreePlugin.topics-v1.tar.gz from Foswiki:Extensions/TreePluginDev
 	  Will also add links to maps from the global site map.
 	  The link will point to the topic given as a value, or to
 	  <nop>WebTreeBars if value is "on" or any non-empty, non-topic word.
@@ -557,8 +557,8 @@ The distrib includes some small themes:
 	  (e.g; Koala Skin instead of KoalaSkin) for better indexing by
 	  search engines.
 	  For this, you *need* to install:
-		* TWiki:Plugins/SpacedWikiWordPlugin
-		* TWiki:Plugins/SpacedWikiWordPluginDev#SPACEDTOPICP_patch
+		* Foswiki:Extensions/SpacedWikiWordPlugin
+		* Foswiki:Extensions/SpacedWikiWordPluginDev#SPACEDTOPICP_patch
 
 ---+++ Favicons
 
@@ -819,7 +819,7 @@ Versions 3.x supports the Cairo (Sep 2004) and Beijing (Feb 2003) releases.
 		  <nop>Main.WebList anymore. The generate script will rename
 		  the topic on the first run
 		* fix for TWiki.WikiWords in web descriptions by Benoit Hamet
-		  (see 22 Dec 2004 entry in TWiki:Plugins/KoalaSkinDev )
+		  (see 22 Dec 2004 entry in Foswiki:Extensions/KoalaSkinDev )
 		* patch to apply #1 not needed anymore
 		* various fixes for Cairo
 		* everything should be functional, but with the same looks
@@ -963,7 +963,7 @@ Versions 2.x support only the Beijing (Feb 2003) Stable TWiki release.
 		* new "slim" theme by Nils Boysen. Use by KSTHEME=slim
 		* theme spacedtopic to have the window title use the spaced
 		  topic, needs patch 
-		  TWiki:Plugins/SpacedWikiWordPluginDev#SPACEDTOPICP_patch 
+		  Foswiki:Extensions/SpacedWikiWordPluginDev#SPACEDTOPICP_patch 
 		* bugfix: (by Hans Pype) forms in preview views:
 			* was appearing twice
 			* save from preview cleared the fields
@@ -982,7 +982,7 @@ Versions 2.x support only the Beijing (Feb 2003) Stable TWiki release.
 		  (reported by Edward Plumer)
 	* *2.11* _14 Aug 2003_ Web Maps
 		* new KSWEBMAP option to make use of the 
-		  TWiki:Plugins/TreePlugin, see its doc.
+		  Foswiki:Extensions/TreePlugin, see its doc.
 		* With KSWEBMAP defined, site map points to web maps,
 		  (and changes for each web)
 		* *%X%* you *must*, to use KSWEBMAP, install the icon
@@ -1083,7 +1083,7 @@ Versions 2.x support only the Beijing (Feb 2003) Stable TWiki release.
 		* TABNAME=xxx option to set a (shorter) web name to show
 		  in the top navigation bar.
 		* better -i option, thanks to  Peter Morch and its
-		  TWiki:Plugins/KoalaSkinGeneratePatch .
+		  Foswiki:Extensions/KoalaSkinGeneratePatch .
 		* recommended patches ExtraneousLineInHttpHeader &
 		  DiffsFunctionDoesNotAuthenticateProperly added.
 		* generation added some whitespace to templates, fixed.
@@ -1311,7 +1311,7 @@ Versions 1.x support only the Athens (Dec 2001) Stable TWiki release.
 		  installed as an attachement), see new install instructions.
 		* script can be run from twiki dir without setting DIR
 		* Created the official distribution page on TWiki:
-		  TWiki:Plugins/KoalaSkin
+		  Foswiki:Extensions/KoalaSkin
 	* *1.6* _8 Mar 2002_ 
 		* fixes to colors in search results in bookview mode, and in
 		  rename topic (result of search for pages refering to page to

@@ -7,7 +7,7 @@
 -->
 
 The template setup of the NatSkin differes completely from the standard templates that
-come with the TWiki folowing its own inner logic compared to the TWiki:Plugins/PatternSkin. The
+come with the TWiki folowing its own inner logic compared to the Foswiki:Extensions/PatternSkin. The
 NatSkinTemplates have especially been designed to simplify subskins overwriting parts
 of the NatSkin. 
 

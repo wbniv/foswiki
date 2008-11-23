@@ -5,7 +5,7 @@ One line description, required for extensions repository catalog.
 -->
 This plugin allows you to create an autocomplete input field based on Yahoo's User Interface Library.
 
-All this plugin does is implement Arthur Clemens' TWiki:Plugins/AutoCompleteAddOn as a plugin, which allows users to provide an autocomplete text box using the =%<nop>AUTOCOMPLETE%= syntax, and also in %SYSTEMWEB%.DataForms (shown below).
+All this plugin does is implement Arthur Clemens' Foswiki:Extensions/AutoCompleteAddOn as a plugin, which allows users to provide an autocomplete text box using the =%<nop>AUTOCOMPLETE%= syntax, and also in %SYSTEMWEB%.DataForms (shown below).
 
 <img src="%ATTACHURLPATH%/AutoCompletePluginScreenshot.png" alt="screenshot.png" />
 
@@ -97,7 +97,7 @@ var SubmitJump = function(sType, aArgs) {
 |  14290 | Bugs:Item4304 - Various bug fixes and enhancements |
 |  14277 | Bugs:Item4301 - Initial release |
 |  Dependencies: | %$DEPENDENCIES% |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, AutoCompletePlugin nn% |
+|  [[Foswiki:Extensions/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, AutoCompletePlugin nn% |
 |  Plugin Home: | http://twiki.org/cgi-bin/view/Plugins/AutoCompletePlugin |
 |  Feedback: | http://twiki.org/cgi-bin/view/Plugins/AutoCompletePluginDev |
 |  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/AutoCompletePluginAppraisal |

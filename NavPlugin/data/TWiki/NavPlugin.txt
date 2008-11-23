@@ -10,7 +10,7 @@ If a document does not have a %<nop>DOCNAME% variable defined, the document is d
 
 The NavPlugin uses a simple skin (included with the plugin) for the viewing/navigation.  A small <nop>JavaScript function is used to determine if the navigation icons should be displayed and to insert the correct hyperlinks.
 
-See TWiki:Plugins.NavPluginDev for development discussion.
+See Foswiki:Extensions.NavPluginDev for development discussion.
 
 ---+++ Example
 

@@ -33,12 +33,12 @@ Each user can have multiple pictures and select one of them.
 
 <div class="twikiImage"><img src="%ATTACHURLPATH%/userpage_select_picture.png" alt="Screenshot of personalInfo: set picture screen" width='879' height='534' /></div>
 
-If TWiki:Plugins.ImagePlugin is installed, pictures are scaled on the server so camera pictures can be safely uploaded without fear of network congestion.
+If Foswiki:Extensions.ImagePlugin is installed, pictures are scaled on the server so camera pictures can be safely uploaded without fear of network congestion.
 
 ---+++ Quick search phone list
 When installed at our homepage this quickly became the killer app of our intranet twiki.
 
-If TWiki:Plugins/AttachContentPlugin is installed, data is read from a saved attachment file. Each time a user makes a change to the user topic this file is updated.
+If Foswiki:Extensions/AttachContentPlugin is installed, data is read from a saved attachment file. Each time a user makes a change to the user topic this file is updated.
 
 <div class="twikiImage"><img src="%ATTACHURLPATH%/phonelist.png" alt="Screenshot of phone list quick search" width='314' height='236' /></div>
 
@@ -63,8 +63,8 @@ If you are upgrading from a previous version of this add-on, please note that an
       * TWiki 4.2.x: use =/data/_PersonalInfoAddOn04x02= - this version is being maintained
    * Copy the data files to your %MAINWEB% web.
    * Optional plugins:
-      * TWiki:Plugins/AttachContentPlugin for a faster quick search module 
-      * TWiki:Plugins/ImagePlugin for server-side image rendering (strongly recommended)
+      * Foswiki:Extensions/AttachContentPlugin for a faster quick search module 
+      * Foswiki:Extensions/ImagePlugin for server-side image rendering (strongly recommended)
    * Alternatively,
       * Manually resolve the dependencies listed below.
       %$DEPENDENCIES%

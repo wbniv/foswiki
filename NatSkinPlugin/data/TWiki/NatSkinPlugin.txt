@@ -151,7 +151,7 @@ and Dakar. This version grants to behave the same.
 *Syntax*: =%<nop>NATREVISIONS%= 
 
 substitute for the =%<nop>REVISIONS%= tag which only works on 
-the TWiki:Plugins/PatternSkin.
+the Foswiki:Extensions/PatternSkin.
 
 ---+++ NATWEBLOGO
 *Syntax*: =%<nop>NATWEBLOGO%=
@@ -243,7 +243,7 @@ The "guest" and "format" format strings can use the following variables
    * $logout: link to log out
    * $more: link to more dialog
    * $move: link to move dialog
-   * $pdf: link to export pdf using the TWiki:Plugins/GenPDFAddOn
+   * $pdf: link to export pdf using the Foswiki:Extensions/GenPDFAddOn
    * $print: link to print action
    * $raw: link to display topic in raw format
    * $register: link to registration
@@ -322,7 +322,7 @@ The following variables can be used in the format string:
    * Alternatively, manually make sure the dependencies listed in the table
      below are resolved.
 %$DEPENDENCIES%
-   * Optionally install the TWiki:Plugins/RedDotPlugin to ease editing the sidebar navigation
+   * Optionally install the Foswiki:Extensions/RedDotPlugin to ease editing the sidebar navigation
    * Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
    * Edit [[%SYSTEMWEB%.DefaultPreferences]] or better [[%USERSWEB%.SitePreferences]] and change the SKIN variable to "nat";
      customize the default style adding the variables SKINSTYLE, STYLEBORDER,
@@ -450,7 +450,7 @@ The following variables can be used in the format string:
 |  21 Feb 2006: | externalized the IFDEFINED family into a plugin of its own and \
                   added a new dependency for it |
 |  15 Feb 2006: | properly detect scripted mode on Dakar |
-|  14 Feb 2006: | moved FORMATLIST to TWiki:Plugins/FilterPlugin; \
+|  14 Feb 2006: | moved FORMATLIST to Foswiki:Extensions/FilterPlugin; \
                   added dependency on it; \
                   fixed uninitialized variables with perl-5.8.8; \
                   added escape chars to IFDEFINED; \
@@ -495,7 +495,7 @@ The following variables can be used in the format string:
 |  27 Sep 2005: | added conditional content tags IFSKINSTATE and IFDEFINED; \
                   added web button support |
 |  30 Aug 2005: | added external link detection; fixed IFSKINSTYLE; \
-                  added style support for the TWiki:Plugins/TablePlugin |
+                  added style support for the Foswiki:Extensions/TablePlugin |
 |  26 Aug 2005: | new <nop>NatSkin-2.0 release |
 |  28 Apr 2005: | pre-release to fix installation on TWiki/Cairo |
 |  16 Mar 2005: | Initial version |

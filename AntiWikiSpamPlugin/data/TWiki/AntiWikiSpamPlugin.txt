@@ -11,7 +11,7 @@ list, it _only_ refuses to save it.
 *Major premise is not to create any unnecessary load on the server and not to use excess server resources by holding connections open.*
 
 All its processing is _only_ done on save, or on attach.
-(TWiki:Plugins/BlackListPlugin does alot of processing on _every_ twiki script,
+(Foswiki:Extensions/BlackListPlugin does alot of processing on _every_ twiki script,
 including view)
 
 It uses a timeout on save to check if the list has changed, so if there are no
@@ -69,7 +69,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |

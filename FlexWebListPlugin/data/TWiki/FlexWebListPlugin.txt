@@ -156,7 +156,7 @@ See the FlexWebListExamples.
 |  Change History: | &nbsp; |
 |  03 Jul 2008: | don't blat if there's a subweb with no parent web, habbens in Trash from time to time |
 |  15 Feb 2008: | explicitly disable unwanted webs |
-|  17 Jan 2008: | added treeview example based on TWiki:Plugins/JQueryPlugin |
+|  17 Jan 2008: | added treeview example based on Foswiki:Extensions/JQueryPlugin |
 |  03 Jan 2008: | fixed hiding of subwebs |
 |  13 Sep 2007: | added adminwebs feature |
 |  21 May 2007: | added <nop>FlexWebListNavi |
@@ -177,9 +177,9 @@ See the FlexWebListExamples.
 |  05 Jul 2006: | initial version |
 |  Dependencies: | %$DEPENDENCIES% |
 |  Perl Version: | 5.8 |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
-|  Plugin Home: | TWiki:Plugins/%TOPIC% |
-|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
-|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | Foswiki:Extensions/%TOPIC% |
+|  Feedback: | Foswiki:Extensions/%TOPIC%Dev |
+|  Appraisal: | Foswiki:Extensions/%TOPIC%Appraisal |
 
 -- TWiki:Main/MichaelDaum - 15 Feb 2008

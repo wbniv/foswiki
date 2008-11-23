@@ -10,7 +10,7 @@ Search facility for the NatSkin.
 uses one input field to either jump to a topic or perform a query. You can even
 use it as a quick way to create and edit new topic by entering =e:NewTopic= into the input field.
 
-<nop>NatSearch is heavily inspired by the <nop>PhotonSearch of the TWiki:Plugins/PhotonSkin.
+<nop>NatSearch is heavily inspired by the <nop>PhotonSearch of the Foswiki:Extensions/PhotonSkin.
 
 ---++ Usage
 <nop>NatSearch basically works in three modes that are distinguished depending of the input to

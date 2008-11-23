@@ -28,7 +28,7 @@ by setting the =NEWUSERTEMPLATE= preference variable (e.g. in %USERSWEB%.SitePre
 If not set, it defaults to <nop>NewUserTemplate. This plugin comes with an example template,
 NewLdapUserTemplate, to illustrate how to extract user data from an LDAP directory and integrate
 the information into the user's topic dynamically. You will need to install the
-TWiki:Plugins/LdapNgPlugin and the TWiki:Plugins/GluePlugin to make use of it.
+Foswiki:Extensions/LdapNgPlugin and the Foswiki:Extensions/GluePlugin to make use of it.
 
 ---++ Syntax
 On creation of the user home topic only =%WIKINAME%=, =%USERNAME%= and =%WIKIUSERNAME%=
@@ -61,9 +61,9 @@ This work is partly funded by [[http://www.hennerich.de][T+T Hennerich <nop>GmbH
 |  17 Sep 2007 | replace usernames in formtemplates as well as in the topic text |
 |  18 Dec 2006 | initial release |
 |  Dependencies: | None |
-|  Plugin Home: | TWiki:Plugins/%TOPIC% |
-|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
-|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+|  Plugin Home: | Foswiki:Extensions/%TOPIC% |
+|  Feedback: | Foswiki:Extensions/%TOPIC%Dev |
+|  Appraisal: | Foswiki:Extensions/%TOPIC%Appraisal |
 
 
 %META:FILEATTACHMENT{name="wikiringlogo40x40.png" attachment="wikiringlogo40x40.png" attr="h" comment="" date="1189787359" path="wikiringlogo40x40.png" size="2571" stream="wikiringlogo40x40.png" tmpFilename="" user="ProjectContributor" version="1"}%

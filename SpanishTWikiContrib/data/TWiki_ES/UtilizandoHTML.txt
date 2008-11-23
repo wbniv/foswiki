@@ -20,7 +20,7 @@ Recomendaciones cuando inserte HTML de otras fuentes:
    * No fraccione etiquetas en varias lineas. TWiki requiere que las paréntesis de apertura y de cierre - <sticky>==&lt;...&gt;==</sticky> - de las etiquetas HTML están en la misma linea. Si no, la etiqueta no va a funcionar.
    * En su editor de HTML, guarde sin saltos de lineas forzados cuando utiliza ajustes de texto.
 
-%T% TWiki convierte la notación en taquigrafía a HTML para efectos de presentación de la página. Para copiar el código completo de una página, simplemente revise el código fuente de la página en su navegador y guarde el contenido. Si necesita guardar el código fuente frequentemente, tal vez quiera revisar TWiki:Plugins/PublishAddOn.
+%T% TWiki convierte la notación en taquigrafía a HTML para efectos de presentación de la página. Para copiar el código completo de una página, simplemente revise el código fuente de la página en su navegador y guarde el contenido. Si necesita guardar el código fuente frequentemente, tal vez quiera revisar Foswiki:Extensions/PublishAddOn.
 
 %STOPINCLUDE%
 

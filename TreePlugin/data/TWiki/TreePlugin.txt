@@ -21,7 +21,7 @@ Renders topics' parent-child relationships as hierarchical tree view. Useful for
 | =footer= | Output the value within a =&lt;div&gt;= of class =treePluginFooter=. Suppressed if the tree is empty. | none |
 | =zero= | Output the value within a =&lt;div&gt;= of class =treePluginZero= if the tree is empty. | none |
 | =bookview= | List topics in BookView form. %RED%Not supported from v0.9. Instead use something like: %ENDCOLOR% <verbatim>%TREE{topic="GrandParent" formatting="outline" format="$outnum $topic <br /> $summary <hr />"}%</verbatim> | none |
-| =format= | Specify the format for each node ( =outline= & =coloroutline=). The following pseudo-variable are supported on top of the ones described in %SYSTEMWEB%.FormattedSearch: <br /> =$spacetopic= - the topic with spaces <br /> =$level= - the tree depth of the topic (in whatever format) <br /> =$count= - the topic's child position <br /> =$index= - the index of the topic in the tree. Starts from one. Most useful when used in combination with [[TWiki:Plugins.TreeBrowserPlugin][TreeBrowserPlugin]] <br /> =$outnum= - outline number for the topic (eg, 1.3.4.2) <br /> =$url= - the current topic's URL <br /> =$author= - the topic's last author %RED%Not supported from v0.9. Use =%<nop>AUTHOR%= instead. %ENDCOLOR% <br /> =$modTime= - the topic's modification time. %RED%Not supported from v0.9. Use =$date= instead. %ENDCOLOR% | none |
+| =format= | Specify the format for each node ( =outline= & =coloroutline=). The following pseudo-variable are supported on top of the ones described in %SYSTEMWEB%.FormattedSearch: <br /> =$spacetopic= - the topic with spaces <br /> =$level= - the tree depth of the topic (in whatever format) <br /> =$count= - the topic's child position <br /> =$index= - the index of the topic in the tree. Starts from one. Most useful when used in combination with [[Foswiki:Extensions.TreeBrowserPlugin][TreeBrowserPlugin]] <br /> =$outnum= - outline number for the topic (eg, 1.3.4.2) <br /> =$url= - the current topic's URL <br /> =$author= - the topic's last author %RED%Not supported from v0.9. Use =%<nop>AUTHOR%= instead. %ENDCOLOR% <br /> =$modTime= - the topic's modification time. %RED%Not supported from v0.9. Use =$date= instead. %ENDCOLOR% | none |
 | =formatbranch= | - specify the format for a group of children ( =outline= & =coloroutline=) <br /> =$parent= - the text of a node <br /> =$children= - the text of all the node's children (if any) | none |
 | =levelprefix= | Specify a prefix to a node format. The prefix is inserted =$level= times at the beginning of the rendered node format. It allows generation of trees using TWiki bullet list syntax thus enabling usage of !TreePlugin [[#Combination_with_TreeBrowserPlug][in combination with TreeBrowserPlugin]]. | none |
 | =nodiv= | Suppress the =&lt;div&gt;= around the tree. Set to =2= to suppress =div= around =header=, =footer= and =zero=. Allows for trees concatenation. | none |
@@ -48,7 +48,7 @@ Sandbox page for experimentation:
 %TREE{excludetopic="Web*" formatting="outline" format="* [[$topic][$spacetopic]]" levelprefix="   " startlevel="1"}%
 </verbatim>
 
----+++ Combination with [[TWiki:Plugins.TreeBrowserPlugin][TreeBrowserPlugin]]
+---+++ Combination with [[Foswiki:Extensions.TreeBrowserPlugin][TreeBrowserPlugin]]
 
 =%<nop>TREEBROWSER{"file" title="%<nop>WEB%"}%= %BR% =%<nop>TREEVIEW{web="%<nop>WEB%" topic="GrandParent" formatting="outline" format="* $topic" levelprefix=" "}%=
 
@@ -96,8 +96,8 @@ Specify plug-in settings in =LocalSite.cfg=:
 | 4 Apr 2007 | 0.8 - Adding =excludetopic= parameter. Adding =%<nop>TREE%= as synonym tag. Code cleaning in =TreePlugin.pm=. Fix root issue when no =topic= specified. By TWiki:Main.StephaneLenclud |
 | 14 Mar 2007 | 0.7.1 - Arthur Clemens: Made =startlevel= and =stoplevel= relative to the root topic. |
 | 14 Mar 2007 | 0.7 - Arthur Clemens: =web= parameter is now actually used. Added parameter =startlevel=. |
-| 01 Oct 2006 | 0.6 - TWiki:Main.StephaneLenclud: adding =$index= format subsitution. Useful when used in combination with TWiki:Plugins/TreeBrowserPlugin. Also attempting to restore compatibility with Cairo, but still waiting for someone to test it.  |
-| 16 Sep 2006 | 0.5 - TWiki:Main.StephaneLenclud: adding =levelprefix= parameter to unable usage in combination with TWiki:Plugins/TreeBrowserPlugin. |
+| 01 Oct 2006 | 0.6 - TWiki:Main.StephaneLenclud: adding =$index= format subsitution. Useful when used in combination with Foswiki:Extensions/TreeBrowserPlugin. Also attempting to restore compatibility with Cairo, but still waiting for someone to test it.  |
+| 16 Sep 2006 | 0.5 - TWiki:Main.StephaneLenclud: adding =levelprefix= parameter to unable usage in combination with Foswiki:Extensions/TreeBrowserPlugin. |
 | 26 Jul 2006: | 0.4 - TWiki:Main.SteffenPoulsen: Ported to TWiki 4 (Dakar). Leading text removed, less warnings, no double bracket links, CSS classnames around output. |
 | 15 Feb 2002 | Alpha (0.2) release |
 | 08 Feb 2002 | Internal (0.1) release |

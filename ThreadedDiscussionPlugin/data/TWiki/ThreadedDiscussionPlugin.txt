@@ -324,7 +324,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 
 ---++ Acknowledgment
 
-This plugin was inspired by the TWiki:Plugins/RenderListPlugin and
+This plugin was inspired by the Foswiki:Extensions/RenderListPlugin and
 borrows code heavily from it.
 
 ---++ Plugin Info
@@ -333,18 +333,18 @@ borrows code heavily from it.
 |  Plugin Version: | 12 Apr 2005 |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
 |  12 Apr 2005: | Allow configurable edit and comment labels. Support bullet list style and thread style. More formatting options for thread lines.  |
-|  21 Mar 2005: | Integrate 21 Mar version of  TWiki:Plugins/EditContrib |
-|  12 Mar 2005: | Integrate TWiki:Plugins/EditContrib |
+|  21 Mar 2005: | Integrate 21 Mar version of  Foswiki:Extensions/EditContrib |
+|  12 Mar 2005: | Integrate Foswiki:Extensions/EditContrib |
 |  08 Mar 2005: | Initial version |
 |  CPAN Dependencies: | none |
-|  Other Dependencies: | TWiki:Plugins/EditContrib |
+|  Other Dependencies: | Foswiki:Extensions/EditContrib |
 |  Perl Version: | 5.005 |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
-__Related Topics:__ TWiki:Plugins/EditContrib, TWiki:Plugins/RenderListPlugin
+__Related Topics:__ Foswiki:Extensions/EditContrib, Foswiki:Extensions/RenderListPlugin
 
 -- TWiki:Main/ThomasWeigert - 21 Mar 2005
 

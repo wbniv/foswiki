@@ -39,12 +39,12 @@ Otherwise the click path of the user won't be recorded and the =type= setting to
 BREADCRUMBS will result in an undefined behaviour.
 
 ---+++ Displaying !TopicTitles
-!TopicTitles are a concept introduced by the TWiki:Plugins/DBCachePlugin. These are stored
+!TopicTitles are a concept introduced by the Foswiki:Extensions/DBCachePlugin. These are stored
 in a topic in the =TOPICTITLE= preference variable or in a formfield
 'TopicTitle ' of a !TWikiForm attached to the topic. If a !TopicTitle is
 defined for a topic, it will be displayed in the breadcrumbs instead of the
 normal !WikiWord topic name. For efficiency it is recommended to install the
-TWiki:Plugins/DBCachePlugin to determine the !TopicTitle.
+Foswiki:Extensions/DBCachePlugin to determine the !TopicTitle.
 
 ---++ Syntax
 =%<nop>BREADCRUMBS%, %<nop>BREADCRUMBS{"&lt;web>.&lt;topic>" ...}%=
@@ -182,7 +182,7 @@ separator) may contain special variables:
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.8 |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://nextwiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://nextwiki.org/Extensions/%TOPIC%Dev |
 

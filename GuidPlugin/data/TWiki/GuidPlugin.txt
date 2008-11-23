@@ -2,7 +2,7 @@
 %META:TOPICPARENT{name="TestTopic3"}%
 ---+ GUID Plugin
 
-This pluging is a blantant ripoff of TWiki:Plugins.UniqueIdPlugin by [[TWiki:Main.MichaelSparks][MS]] (THANKS!!!). I wanted a <nop>UniqueID generator that would generate standard GUID/UUID type IDs (guaranteed unique across machines, etc...)
+This pluging is a blantant ripoff of Foswiki:Extensions.UniqueIdPlugin by [[TWiki:Main.MichaelSparks][MS]] (THANKS!!!). I wanted a <nop>UniqueID generator that would generate standard GUID/UUID type IDs (guaranteed unique across machines, etc...)
 
 I found the nice CPAN module of CPAN:Data::UUID that takes care of all of this. This plugin is just a "wrapper" so that TWiki can call the perl module. You MUST have the perl module loaded first.
 

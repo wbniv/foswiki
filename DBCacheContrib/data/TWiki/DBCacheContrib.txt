@@ -19,7 +19,7 @@ Reusable code that treats TWiki forms as if they were table rows in a database.
 This module supports structured queries over a database built on the fly from
 the forms in TWiki topics. It does not support any tags, as it is provided as a
 service for other plugins that want to treat a TWiki web as a simple database;
-for example, the TWiki:Plugins/FormQueryPlugin, which supports the display of
+for example, the Foswiki:Extensions/FormQueryPlugin, which supports the display of
 query results.
 
 The plugin encapsulates code that was formerly in the "engine room" of the

@@ -98,7 +98,7 @@ void nWorld::StepSim()
 | 20 May 2007 | added <nop>JavaScript language file, removed legacy CODE_<i>lang</i> construct | TWiki:Main.WillNorris |
 | 30 Apr 2007 | warnings cleanup; no functional changes | TWiki:Main.WillNorris |
 | 27 Apr 2007 | automatically adds CSS for formatting code fragments | TWiki:Main.WillNorris |
-|  1 Jan 2006 | upgraded to TWiki::Func::extractNameValuePair for better parameter parsing, upgraded TWiki:Plugins.BuildContrib support | TWiki:Main.WillNorris |
+|  1 Jan 2006 | upgraded to TWiki::Func::extractNameValuePair for better parameter parsing, upgraded Foswiki:Extensions.BuildContrib support | TWiki:Main.WillNorris |
 | 26 Jul 2003 | Syntax fixes from TWiki:Main/WillNorris  | TWiki:Main/LingLo |
 | 10 Feb 2003 | Syntax fix from TWiki:Main/JoshMore  | TWiki:Main/LingLo |
 | 28 Dec 2002 | Accepts mixed case language names | TWiki:Main/LingLo |

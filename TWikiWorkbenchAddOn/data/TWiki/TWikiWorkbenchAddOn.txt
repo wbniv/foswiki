@@ -31,6 +31,6 @@ This is a <nop>TWikiApplication to write <nop>TWikiApplications.
 |  30 Apr 2007 | initial version |
 |  Dependencies: | %$DEPENDENCIES% |
 |  Perl Version: | - |
-|  Plugin Home: | TWiki:Plugins/%TOPIC% |
-|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
-|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+|  Plugin Home: | Foswiki:Extensions/%TOPIC% |
+|  Feedback: | Foswiki:Extensions/%TOPIC%Dev |
+|  Appraisal: | Foswiki:Extensions/%TOPIC%Appraisal |

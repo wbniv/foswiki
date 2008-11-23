@@ -1,9 +1,9 @@
 %META:TOPICINFO{author="WikiGuest" date="1155224748" format="1.1" version="1.2"}%
 ---+!! FormQueryPlugin
 
-The FormQueryPlugin provides a query interface to the [[TWiki:Plugins/DBCacheContrib][TWiki::Contrib::DBCacheContrib]] module, giving a way to present query results as formatted tables.
+The FormQueryPlugin provides a query interface to the [[Foswiki:Extensions/DBCacheContrib][TWiki::Contrib::DBCacheContrib]] module, giving a way to present query results as formatted tables.
 
-When using the plugin each topic is treated as a container for data fields. These fields can be the fields in the form attached to the topic, or can be parsed out of the topic. The database is managed by the [[TWiki:Plugins/DBCacheContrib][TWiki::Contrib::DBCacheContrib]] module, which must be installed for this plugin to work.
+When using the plugin each topic is treated as a container for data fields. These fields can be the fields in the form attached to the topic, or can be parsed out of the topic. The database is managed by the [[Foswiki:Extensions/DBCacheContrib][TWiki::Contrib::DBCacheContrib]] module, which must be installed for this plugin to work.
 
 The tutorial section of this topic gives an introduction to formulating and formatting queries using this plugin, and is a good place to start.
 
@@ -338,7 +338,7 @@ A regular expression search is flexible, but there are limitations. For example,
    1. If needed, format and output the result
    1. Else supress the search hit
 
-This requires the TWiki:Plugins.SpreadSheetPlugin. The following example shows all topics that are up to exactly one week old.
+This requires the Foswiki:Extensions.SpreadSheetPlugin. The following example shows all topics that are up to exactly one week old.
 
 *Write this:*
 
@@ -430,7 +430,7 @@ The defaut is to load all tables:
 
 Two special map entries are added to each table row, =topic= and the equivalent of the reverse relation described above, represented by =_up=. So if you load a table type "CookingTimes", each row will have =topic= set to the name of the topic it was loaded from and =_up= set to the map of that topic. This allows you to refer to the fields of the topic that contains a table even after the table has been extracted.
 
-When a table contains calculations using TWiki:Plugins.SpreadSheetPlugin, these are applied before the map entries are created for this table. These calculations must not refer to data outside of the table.
+When a table contains calculations using Foswiki:Extensions.SpreadSheetPlugin, these are applied before the map entries are created for this table. These calculations must not refer to data outside of the table.
 
 If there are multiple EDITTABLE calls with the same table type, all the table
 data is concatenated into a single table.
@@ -459,8 +459,8 @@ In this case, =$TableDefinition.0.Name= is =Cat=, =$TableDefinition.1.Name= is =
       * <nop>Set FORMQUERYPLUGIN_ENABLE = 1
 </pre>
    * You can set a global default for the =moan= parameter by setting the =FORMQUERYPLUGIN_MOAN variable in %USERSWEB%.SitePreferences, WebPreferences in individual webs, or in individual topics.
-   * FormQueryPlugin must appear in the Plugins evaluation order *before* TWiki:Plugins/SpreadSheetPlugin. You can ensure this by putting !FormQueryPlugin immediately after Default<nop>Plugin in the {PluginsOrder} list in =configure=.
-   * Note: If you are using it, TWiki:Plugins/MacrosPlugin must appear in the Plugins evaluation order *before* FormQueryPlugin.
+   * FormQueryPlugin must appear in the Plugins evaluation order *before* Foswiki:Extensions/SpreadSheetPlugin. You can ensure this by putting !FormQueryPlugin immediately after Default<nop>Plugin in the {PluginsOrder} list in =configure=.
+   * Note: If you are using it, Foswiki:Extensions/MacrosPlugin must appear in the Plugins evaluation order *before* FormQueryPlugin.
 
 ---
 ---++ Plugin Info
@@ -470,15 +470,15 @@ In this case, =$TableDefinition.0.Name= is =Cat=, =$TableDefinition.1.Name= is =
 |  Change History: | |
 |  21 May 2007 | Bugs:Item3969 - 8bit email fix (TWiki:Main.WillNorris) |
 |  24 Apr 2007 (13527) | Merge !YetAnotherFormQueryPlugin back in. Fixed a lot. Prepared for use with TWiki 4.2. |
-|  04 Sep 2006 | Expand calculations using TWiki:Plugins.FormQueryPlugin. |
+|  04 Sep 2006 | Expand calculations using Foswiki:Extensions.FormQueryPlugin. |
 |  23 Jun 2006 | Ported to Dakar. |
-|  9 Jul 2005 | Added support for tables defined using TWiki:Plugins/EditTablerowPlugin |
+|  9 Jul 2005 | Added support for tables defined using Foswiki:Extensions/EditTablerowPlugin |
 | | Added support for searches over multiple webs |
 | | Support !%MATCHCOUNT%  |
-| | Allow TWiki:Plugins/SpreadSheetPlugin computation to be applied to the result of a query |
+| | Allow Foswiki:Extensions/SpreadSheetPlugin computation to be applied to the result of a query |
 | | Made "moan" a preference rather than a per call option |
 | | Removed !%TOPICCREATOR% |
-| | Removed !%ARITHMETIC% (as one can use the TWiki:Plugins/SpreadSheetPlugin) |
+| | Removed !%ARITHMETIC% (as one can use the Foswiki:Extensions/SpreadSheetPlugin) |
 | | Removed the color map feature |
 | | Extended !%FQPINFO% to support showing results of queries |
 | | Integrate the Attribute parser from TWiki:Codev/DakarRelease |
@@ -495,8 +495,8 @@ In this case, =$TableDefinition.0.Name= is =Cat=, =$TableDefinition.1.Name= is =
 | 02 Apr 2004  | TWiki:Main/SimonHardyFrancis bugfixes incorporated. TWiki:Main/TimSlidel patches incoporated for mod_perl, autocreate, and collapsing same-type tables in a single topic |
 | 05 Feb 2004  | Bugfix version |
 | 11 Jul 2003  | Initial version |
-|  TWiki Dependencies: | TWiki:Plugins.SpreadSheetPlugin |
-|  Dependencies: | <table border=1><tr><th align="left">Name</th><th align="left">Version</th><th align="left">Description</th></tr><tr><td align="left">TWiki::Contrib::DBCacheContrib</td><td align="left">&gt;=1.001</td><td align="left">Required. Download and install from the TWiki:Plugins/DBCacheContrib code library.</td></tr></tr><tr><td align="left">Time::ParseDate</td><td align="left">Required. Available from [[http://cpan.uwinnipeg.ca/dist/Time-modules][CPAN]].</td></tr><tr><td align="left">Storable</td><td align="left">&gt;=2.07</td><td align="left">2.13 recommended; accelerates cache handling. Available from [[http://cpan.uwinnipeg.ca/dist/Storable][CPAN]]</td></tr><tr><td align="left">TWiki::Plugins::MacrosPlugin</td><td align="left">&gt;=1.000</td><td align="left">Recommended; used for parameterised includes. Download from TWiki:Plugins/MacrosPlugin repository.</td></tr></table> |
+|  TWiki Dependencies: | Foswiki:Extensions.SpreadSheetPlugin |
+|  Dependencies: | <table border=1><tr><th align="left">Name</th><th align="left">Version</th><th align="left">Description</th></tr><tr><td align="left">TWiki::Contrib::DBCacheContrib</td><td align="left">&gt;=1.001</td><td align="left">Required. Download and install from the Foswiki:Extensions/DBCacheContrib code library.</td></tr></tr><tr><td align="left">Time::ParseDate</td><td align="left">Required. Available from [[http://cpan.uwinnipeg.ca/dist/Time-modules][CPAN]].</td></tr><tr><td align="left">Storable</td><td align="left">&gt;=2.07</td><td align="left">2.13 recommended; accelerates cache handling. Available from [[http://cpan.uwinnipeg.ca/dist/Storable][CPAN]]</td></tr><tr><td align="left">TWiki::Plugins::MacrosPlugin</td><td align="left">&gt;=1.000</td><td align="left">Recommended; used for parameterised includes. Download from Foswiki:Extensions/MacrosPlugin repository.</td></tr></table> |
 |  Perl Version: | 5.0 |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |

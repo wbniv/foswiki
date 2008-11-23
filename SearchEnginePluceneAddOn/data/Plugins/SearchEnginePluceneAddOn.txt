@@ -18,7 +18,7 @@ The ==plucindex== script indexes all the content of your data folder, and it use
 
 By now, you should run this script manually after installation to create the index files used by ==plucsearch==. If you want, you can also schedule a weekly or monthly crontab job to create the index files again, or maybe execute it manually when you take down your server for maintenance tasks. It should not be invoked by browser.
 
-Please, to suggest indexing improvements read/post to TWiki:Plugins/SearchEnginePluceneAddOnDev
+Please, to suggest indexing improvements read/post to Foswiki:Extensions/SearchEnginePluceneAddOnDev
 
 ---+++ Searching with plucsearch
 
@@ -38,7 +38,7 @@ Query examples (just type it in your ==PluceneSearch== site topic)
 	* <nop>TopicClassification:ItemToDo
 	* type:pdf and learning
 
-Please, to suggest searching improvements read/post to TWiki:Plugins/SearchEnginePluceneAddOnDev
+Please, to suggest searching improvements read/post to Foswiki:Extensions/SearchEnginePluceneAddOnDev
 
 ---+++ Updating with plucupdate
 
@@ -46,7 +46,7 @@ The ==plucupdate== script uses the web's ==.changes== files to know about topic 
 
 This script should be executed by an hourly crontab. It should not be invoked by browser.
 
-Please, to suggest indexing improvements read/post to TWiki:Plugins/SearchEnginePluceneAddOnDev
+Please, to suggest indexing improvements read/post to Foswiki:Extensions/SearchEnginePluceneAddOnDev
 
 ---+++ Attachment file types to be indexed
 
@@ -57,7 +57,7 @@ All the PDF, HTML and text attachments are also indexed by default. If you want 
 </verbatim>
 or whatever extensions you want. Remember that you may need additional CPAN:Plucene::SearchEngine::Index libraries and install required third party tools such as *antiword* or *xlhtml*.
 
-You can find/post additional CPAN:Plucene::SearchEngine::Index libraries for many file types at TWiki:Plugins/SearchEnginePluceneAddOnDev. Thanks to TWiki:Main/SopanShewale for his contributions.
+You can find/post additional CPAN:Plucene::SearchEngine::Index libraries for many file types at Foswiki:Extensions/SearchEnginePluceneAddOnDev. Thanks to TWiki:Main/SopanShewale for his contributions.
 
 ---++ Add-On Installation Instructions
 

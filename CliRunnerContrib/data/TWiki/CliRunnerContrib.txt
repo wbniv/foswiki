@@ -8,7 +8,7 @@ independent TWiki scripts from your TWiki code (mostly unit tests).
 %X%%X% This Contrib requires the yet-to-be released TWiki version 4.1!
 
 Note that the detailed documentation has been generated automatically
-by the TWiki:Plugins.BuildContrib, and would need care to be
+by the Foswiki:Extensions.BuildContrib, and would need care to be
 comprehensible.  For use cases and examples, see the test cases file
 provided with this contrib, which are not in the distribution, but
 available from SVN.

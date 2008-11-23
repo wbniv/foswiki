@@ -7,7 +7,7 @@ It requires a <nop>MathML enabled browser, such as Mozilla.
 ---++ Syntax Rules
 
 The syntax rules for embedding equations are identical to those of the
-TWiki:Plugins/MathModePlugin and are based on <nop>LaTeX's own markup 
+Foswiki:Extensions/MathModePlugin and are based on <nop>LaTeX's own markup 
 for equations.  The equations themselves are expressed in a language
 very, very similar to <nop>LaTeX called
 [[http://pear.math.pitt.edu/mathzilla/itex2mmlItex.html][Itex]].
@@ -97,7 +97,7 @@ server where TWiki is running.
 	  [[http://pear.math.pitt.edu/mathzilla/itex2mml.html][itex2MML]] on your
 	  system.  The location must be somewhere that your web server can access.
 
-	* If you have it installed, disable the TWiki:Plugins/MathModePlugin by
+	* If you have it installed, disable the Foswiki:Extensions/MathModePlugin by
 	 adding it to the =DISABLEDPLUGINS= line of your [[%LOCALSITEPREFS%]]
 	 page.  For example:%BR%
 		* Set DISABLEDPLUGINS = <nop>MathModePlugin 
@@ -140,11 +140,11 @@ server where TWiki is running.
 
 ---+++ Notes
 
-	1. This plug-in conflicts with the TWiki:Plugins/MathModePlugin 
+	1. This plug-in conflicts with the Foswiki:Extensions/MathModePlugin 
 		which will need to be disabled.  If you re-enable it later, you may need
 		to re-edit pages to update any graphics of math that it would have
 		otherwise generated.  You may wish to clean-up the graphics left by
-		TWiki:Plugins/MathModePlugin in the =pub/= directories.
+		Foswiki:Extensions/MathModePlugin in the =pub/= directories.
 	<p></p>
 	3. Note that documents must be served to Mozilla as =application/xhtml+xml= for the
 	  <nop>MathML portion to be rendered correctly.  This can pose some challenges for
@@ -172,7 +172,7 @@ server where TWiki is running.
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]],
-TWiki:Plugins/MathModePlugin
+Foswiki:Extensions/MathModePlugin
 
 -- Main.SimonClift - 22 Apr 2003
 

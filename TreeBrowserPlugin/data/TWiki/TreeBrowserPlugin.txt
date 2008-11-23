@@ -7,7 +7,7 @@ Renders a bulleted or numbered list as a collapsible/expandable tree of nodes.
 
 ---++ Acknowledgment
 
-This plugin leverages the [[http://www.destroydrop.com/javascripts/tree/][dTree]] !JavaScript tree menu by [[mailto:drop@destroydrop.com][Geir Landr�]] as well as code borrowed from TWiki:Plugins.RenderListPlugin.
+This plugin leverages the [[http://www.destroydrop.com/javascripts/tree/][dTree]] !JavaScript tree menu by [[mailto:drop@destroydrop.com][Geir Landr�]] as well as code borrowed from Foswiki:Extensions.RenderListPlugin.
 
 ---++ Syntax Rules
 
@@ -445,24 +445,24 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>T
      | ==pub/TWiki/%TOPIC%/plusbottom.gif== | part of dtree |
      | ==pub/TWiki/%TOPIC%/question.gif== | part of dtree |
      | ==pub/TWiki/%TOPIC%/trash.gif== | part of dtree |
-     | ==pub/TWiki/%TOPIC%/doc.gif== | icons from [[TWiki:Plugins.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/email.gif== | icons from [[TWiki:Plugins.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/file.gif== | icons from [[TWiki:Plugins.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/group.gif== | icons from [[TWiki:Plugins.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/home.gif== | icons from [[TWiki:Plugins.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/image.gif== | icons from [[TWiki:Plugins.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/pdf.gif== | icons from [[TWiki:Plugins.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/person.gif== | icons from [[TWiki:Plugins.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/persons.gif== | icons from [[TWiki:Plugins.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/ppt.gif== | icons from [[TWiki:Plugins.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/see.gif== | icons from [[TWiki:Plugins.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/sound.gif== | icons from [[TWiki:Plugins.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/trend.gif== | icons from [[TWiki:Plugins.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/virtualhome.gif== | icons from [[TWiki:Plugins.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/virtualperson.gif== | icons from [[TWiki:Plugins.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/virtualpersons.gif== | icons from [[TWiki:Plugins.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/xls.gif== | icons from [[TWiki:Plugins.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/zip.gif== | icons from [[TWiki:Plugins.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/TWiki/%TOPIC%/doc.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/TWiki/%TOPIC%/email.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/TWiki/%TOPIC%/file.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/TWiki/%TOPIC%/group.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/TWiki/%TOPIC%/home.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/TWiki/%TOPIC%/image.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/TWiki/%TOPIC%/pdf.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/TWiki/%TOPIC%/person.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/TWiki/%TOPIC%/persons.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/TWiki/%TOPIC%/ppt.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/TWiki/%TOPIC%/see.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/TWiki/%TOPIC%/sound.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/TWiki/%TOPIC%/trend.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/TWiki/%TOPIC%/virtualhome.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/TWiki/%TOPIC%/virtualperson.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/TWiki/%TOPIC%/virtualpersons.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/TWiki/%TOPIC%/xls.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/TWiki/%TOPIC%/zip.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
 
 ---++ Known issues
 
@@ -473,7 +473,7 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>T
 
 ---++ Planned Enhancements
 
-See TWiki:Plugins.TreeBrowserPluginDev.
+See Foswiki:Extensions.TreeBrowserPluginDev.
    
 ---++ Plugin Info
 
@@ -490,12 +490,12 @@ See TWiki:Plugins.TreeBrowserPluginDev.
 |  10 Mar 2007: | (v1.1) - Adding =autotoggle= parameter. It's useful for menu style. Improved =dmenu.css=. Added =dtreeRoot= CSS class. By [[TWiki:Main.StephaneLenclud][St�phane Lenclud]]. |
 |  09 Mar 2007: | (v1.0) - Improved CSS with variable class name allowing for multiple tree with different style on the same topic. Now bullet =icon:= supports full URL or URI. By [[TWiki:Main.StephaneLenclud][St�phane Lenclud]]. |
 |  09 Mar 2007: | (v0.9) - Adding =style= parameter. Improved CSS. Fixes extra '\n' in dot pm. By [[TWiki:Main.StephaneLenclud][St�phane Lenclud]]. |
-|  07 Mar 2007: | (v0.8) - Adding =noroot= and =warn= parameters. Now using =preRenderingHandler= instead of the deprecated =startRenderingHandler= . =%<nop>TREEBROWSER%= are hidden if there is no tree to render. Fixes TOC icons problem with TWiki:Plugins.NatSkin. By [[TWiki:Main.StephaneLenclud][St�phane Lenclud]]. |
+|  07 Mar 2007: | (v0.8) - Adding =noroot= and =warn= parameters. Now using =preRenderingHandler= instead of the deprecated =startRenderingHandler= . =%<nop>TREEBROWSER%= are hidden if there is no tree to render. Fixes TOC icons problem with Foswiki:Extensions.NatSkin. By [[TWiki:Main.StephaneLenclud][St�phane Lenclud]]. |
 |  01 Oct 2006: | (v0.7) - Adding =useplusminus= , =noindent= and =nocss= parameters. By [[TWiki:Main.StephaneLenclud][St�phane Lenclud]]. |
 |  17 Sep 2006: | (v0.6) - Adding =closesamelevel= and =uselines= functionalities, fix rendering issues with Firefox and pattern skin, fix warnings in apache error logs. By [[TWiki:Main.StephaneLenclud][St�phane Lenclud]] |
 |  12 Apr 2006: | (v0.5) - Minor update for TWiki:Codev.TWikiRelease04x00  |
 |  16 Sep 2005: | (v0.4) - Fix bug in =openAll= and =openTo= functions  |
-|  06 Sep 2005: | (v0.3) - Adopt the rendering themes from TWiki:Plugins.RenderListPlugin |
+|  06 Sep 2005: | (v0.3) - Adopt the rendering themes from Foswiki:Extensions.RenderListPlugin |
 |  05 Sep 2005: | (v0.2) - Support sharing of tree state across topics. If !JavaScript is not enabled, render the list in standard fashion. Correct user input error containig a line that is too deeply indented. |
 |  04 Sep 2005: | (v0.1) - Initial version |
 |  TWiki Dependency: | $TWiki::Plugins::VERSION 1.024 |
@@ -503,12 +503,12 @@ See TWiki:Plugins.TreeBrowserPluginDev.
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005, 5.8.7 |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle n%, %SYSTEMWEB%.FormattedSearch n%, %TOPIC% n% |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle n%, %SYSTEMWEB%.FormattedSearch n%, %TOPIC% n% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
-__Related Topics:__ TWiki:Plugins.RenderListPlugin, TWiki:Plugins.TreePlugin
+__Related Topics:__ Foswiki:Extensions.RenderListPlugin, Foswiki:Extensions.TreePlugin
 
 %META:FILEATTACHMENT{name="dtree.js" attr="h" autoattached="1" comment="" date="1159656769" path="dtree.js" size="12407" user="Main.StephaneLenclud" version="8"}%
 %META:FILEATTACHMENT{name="dtree.css" attr="h" autoattached="1" comment="" date="1159656429" path="dtree.css" size="817" user="Main.StephaneLenclud" version="1"}%

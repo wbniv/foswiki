@@ -3,7 +3,7 @@
 
 This <nop>LaTeX Mode TWiki Plugin allows you to include <nop>LaTeX mark up commands within a TWiki page.  It uses external programs (specifically latex, dvipng or dvips-and-convert, or mimetex) to generate =png= or =gif= images from the mark up.  These images are then included in the rendered TWiki page.  The first time a particular image is generated, there may be a significant lag in page rendering as the images are generated on the server.  Once rendered, the image is saved as an attached file for the page, so subsequent viewings will not require re-renders.  When you remove a math expression from a page, its image is deleted.  
 
-This plugin expands the functionality provided by the TWiki:Plugins.MathModePlugin.
+This plugin expands the functionality provided by the Foswiki:Extensions.MathModePlugin.
 
 %TOC%
 
@@ -233,7 +233,7 @@ To round out the functionality available in standard <nop>LaTeX, the automatic g
 These commands will create an HTML table with a numbered caption either above (TABLE) or below (FIGURE) the included text.  Cross-references to these declared environments can be accessed through %<nop>REFLATEX{&lt;label&gt;}%.
 To keep the counters/cross-references seperate for each of the three types of references, use =eq:= or =eqn:=, =fig:=, and =tbl:= as the first characters in any declared label.
 
-The =span= option is used only by TWiki:Plugins.GenPDFLatex, giving the ability to designate the width of a table or figure in two-column styles. (e.g. for Figures, it expands to =\begin{figure*} ... \end{figure*}=.)  The default span is one-column. 
+The =span= option is used only by Foswiki:Extensions.GenPDFLatex, giving the ability to designate the width of a table or figure in two-column styles. (e.g. for Figures, it expands to =\begin{figure*} ... \end{figure*}=.)  The default span is one-column. 
 
 Sections can be numbered and labeled, for easy cross-referencing.  To label
 a section, add a %<nop>SECLABEL{_label_}% tag after the TWiki section
@@ -403,7 +403,7 @@ finish its processing.  This can be done in Apache via
 Version control is not specifically used for the image files.  Because the images are generated from the raw text, the topic history includes all the versions of the markup for the expressions, and can be re-rendered when you view a different version.
 
 
-This plugin is an enhanced version of the TWiki:Plugins.MathModePlugin maintained by TWiki:Main.MichaelDaum.  There are a number of significant differences:
+This plugin is an enhanced version of the Foswiki:Extensions.MathModePlugin maintained by TWiki:Main.MichaelDaum.  There are a number of significant differences:
 	* equations, tables, and figures can be numbered, with automatic cross-links available
 	* if errors occur during the latex markup processing, they are reported during the editing =preview= screen, but not during the standard =view=.  The motivation for this is that, in general, _authors_ care about the error but _readers_ do not.
 	* as of version 2.5, one can force the recreation of all latex images in a topic.  To do this, add the following text (similar to raw text rendering) to the end of the URL: =?latex=rerender=.  E.g. changing =http<nop>://localhost/twiki/bin/view/TWiki/LatexModePlugin= to  =http<nop>://localhost/twiki/bin/view/TWiki/LatexModePlugin?latex=rerender= will force all of the images to be redrawn.
@@ -444,19 +444,19 @@ This plugin is an enhanced version of the TWiki:Plugins.MathModePlugin maintaine
 |  14 Mar 2006 (v 2.5) | added =rerender= hook, fixed '&gt; in =alt= field' bug. |
 |  21 Feb 2006 (v 2.4) | introduced =donotrenderlist= to patch a critical security hole.  Bug fixes include: disabling <nop>WikiWord link rendering in =alt= fields of =img= tags; improved in-line rendering alignment available; |
 |  1 Feb 2006 (v 2.3) | minor bug fixes: $pathSep changes, now uses &TWiki::Func::extractParameters(), improved efficiency and inline rendering |
-|  11 Nov 2005 (v 2.2) | more mods for TWiki:Plugins.GenPDFLatexAddOn: protect newlines, moved float handler, moved float label checker |
-|  15 Oct 2005 (v 2.1) | minor modifications for TWiki:Plugins.GenPDFLatexAddOn support |
+|  11 Nov 2005 (v 2.2) | more mods for Foswiki:Extensions.GenPDFLatexAddOn: protect newlines, moved float handler, moved float label checker |
+|  15 Oct 2005 (v 2.1) | minor modifications for Foswiki:Extensions.GenPDFLatexAddOn support |
 |  unreleased  (v 2.0) | Major rewrite for Dakar |
 |  30 Sep 2005 (v 1.41) | relaxed the scrubing a little bit... previous version caused problems with REFLATEX |
 |  29 Sep 2005 (v 1.4) | more robust scrubing of =convert= input parameters. errors on =save= now reported. |
 |   5 Sep 2005 (v 1.3) | added image scale parameter, color rendering, and preamble hooks | 
-|  22 Aug 2005 (v 1.2) | Forked from the TWiki:Plugins.MathModePlugin by TWiki:Main.GraemeLufkin |
-|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.025, TWiki:Plugins.DakarContrib |
+|  22 Aug 2005 (v 1.2) | Forked from the Foswiki:Extensions.MathModePlugin by TWiki:Main.GraemeLufkin |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.025, Foswiki:Extensions.DakarContrib |
 |  CPAN Dependencies: | CPAN:Digest::MD5, CPAN:File::Basename, CPAN:Image::Info |
 |  Other Dependencies: | A working installation of =latex=.  A working installation of =convert= or =dvipng=. |
 |  Perl Version: | 5.8.0 |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 100%, %SYSTEMWEB%.FormattedSearch 100%, %TOPIC% 100% |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle 100%, %SYSTEMWEB%.FormattedSearch 100%, %TOPIC% 100% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
@@ -464,5 +464,5 @@ This plugin is an enhanced version of the TWiki:Plugins.MathModePlugin maintaine
 This plugin was created and tested on the 02 Sep 2004 version of TWiki, using <nop>ImageMagick v5.5.7, EPS <nop>GhostScript v7.05, and tetex v2.02.  It has been reported to work (Thanks Jos!) using
 <nop>ImageMagick 6.2.3, tetex 3.0 and ghostscript 8.51 as well.
 
-__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]], TWiki:Plugins.MathModePlugin
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]], Foswiki:Extensions.MathModePlugin
 

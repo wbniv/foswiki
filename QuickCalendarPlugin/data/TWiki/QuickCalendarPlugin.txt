@@ -5,9 +5,9 @@ Generates a monthly calendar and creates link anchors from each day and week to 
 
 This plugin is one of the building blocks for a time management plugin I've written.  But it might be useful by itself.
 
-This plugin is kind of the "reverse" of the TWiki:Plugins/CalendarPlugin (which may also be of interest) which generates a custom calendar from wiki text.  This TWiki:Plugins/QuickCalendarPlugin generates a fixed calendar which links to wiki text.
+This plugin is kind of the "reverse" of the Foswiki:Extensions/CalendarPlugin (which may also be of interest) which generates a custom calendar from wiki text.  This Foswiki:Extensions/QuickCalendarPlugin generates a fixed calendar which links to wiki text.
 
-==New version: v1.300.== For recent changes, see TWiki:Plugins/QuickCalendarPluginDev.
+==New version: v1.300.== For recent changes, see Foswiki:Extensions/QuickCalendarPluginDev.
 
 ---++ Syntax Rules
 
@@ -173,7 +173,7 @@ If you like, you can specify ==doy="on"== as an argument, and get a calendar whi
 
 __Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
 
-	* Download the .PM file from TWiki:Plugins/QuickCalendarPlugin (see below).
+	* Download the .PM file from Foswiki:Extensions/QuickCalendarPlugin (see below).
 	* "Edit" this topic and copy & paste the wiki text into your own site.
 	* Verify the created files exist in your twiki installation directory. Content:
 	  | *File:* | *Description:* |
@@ -208,8 +208,8 @@ The following should display a small calendar of month=12/year=2001
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | POSIX package in Perl (should be standard) |
 |  Perl Version: | 5.005 |
-|  Plugin Home: | TWiki:Plugins/%TOPIC% |
-|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
+|  Plugin Home: | Foswiki:Extensions/%TOPIC% |
+|  Feedback: | Foswiki:Extensions/%TOPIC%Dev |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 

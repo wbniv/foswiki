@@ -18,13 +18,13 @@ Some of the features of %TOPIC% include:
 ---++ Dependencies
 TopicClassificationAddOn makes fairly extensive use of TWiki plugins. These include:
    * 
-   * TWiki:Plugins.DBCacheContrib
-   * TWiki:Plugins.DBCachePlugin
-   * TWiki:Plugins.TopicCreatePlugin
-   * TWiki:Plugins.TreePlugin
-   * TWiki:Plugins.IfDefinedPlugin
-   * TWiki:Plugins.FilterPlugin
-   * TWiki:Plugins.GluePlugin
+   * Foswiki:Extensions.DBCacheContrib
+   * Foswiki:Extensions.DBCachePlugin
+   * Foswiki:Extensions.TopicCreatePlugin
+   * Foswiki:Extensions.TreePlugin
+   * Foswiki:Extensions.IfDefinedPlugin
+   * Foswiki:Extensions.FilterPlugin
+   * Foswiki:Extensions.GluePlugin
 
 It also requires ={EnableHierarchicalWebs}= to be enabled under in =configure= (under "Store settings" tab). 
 

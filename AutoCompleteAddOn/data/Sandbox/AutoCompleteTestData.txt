@@ -11,6 +11,6 @@ Pass parameter =topicsweb= for the web.
 
 ---++ usernames
 Data is returned as an array of arrays. %BR%
-To be used with TWiki:Plugins/PersonalInfoAddOn.
+To be used with Foswiki:Extensions/PersonalInfoAddOn.
 
 %STARTSECTION{"usernames"}%%SEARCH{ "[F]irstName.*value=.*();[W]orkStatus.*value=.*(Current)" web="%MAINWEB%" type="regex" nonoise="on" excludetopic="UserForm,PersonalInfo,PersonalInfoDocumentation,ProjectContributor,WikiGuest,UnknownUser" format="[\"$topic\", \"$formfield(FirstName) $formfield(LastName)\"]" separator=","}%%ENDSECTION{"usernames"}%

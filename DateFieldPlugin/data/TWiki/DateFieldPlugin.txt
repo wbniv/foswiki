@@ -64,8 +64,8 @@ See JSCalendarContrib for additional settings.
 |  03 Jan 2005 | 1.001 make outputformat configurable; changed standard format to sortable dates |
 |  9 Dec 2004 | 1.000 initial version |
 |  Dependencies: | %$DEPENDENCIES% |
-|  Home: | TWiki:Plugins/%TOPIC% |
-|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
+|  Home: | Foswiki:Extensions/%TOPIC% |
+|  Feedback: | Foswiki:Extensions/%TOPIC%Dev |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]], TWiki::Plugins/FormFieldsPlugin
 

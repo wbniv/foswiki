@@ -9,7 +9,7 @@ Se les permite a usuarios de suscribirse a correos electrónicos automatizados qu
    * Un resumen de cambios de todas las páginas que se modificaron en una web específica
    * Un resumen de cambios de una página específica o un juego de páginas lo cual será definido por el usuario
    * El contenido completo de una página específica o un juego de páginas. A esto se refiere con el término "modo de noticias".
-   * El plugin adyacente (TWiki:Plugins.SubscribePlugin %FLAGGB%) les permite fácilmente agregar un botón "Suscripción a cambios" a páginas.
+   * El plugin adyacente (Foswiki:Extensions.SubscribePlugin %FLAGGB%) les permite fácilmente agregar un botón "Suscripción a cambios" a páginas.
 
 <!--
 
@@ -104,7 +104,7 @@ Para el futuro está planoado que los diferentes usuarios tendrán la posibilidad 
 
 Tome en consideración que cuando se utiliza los caracteres =!= o =?= del "modo de noticias", el texto completo de la página será enviado como HTML. Se utiliza la plantilla =newsletter= para generar el contenido de este correo, utilizando la apariencia que está definida para la página.
 
-Adicionalmente, los marcadores %<nop>STARTPUBLISH% y %<nop>STOPPUBLISH% utilizados por TWiki:Plugins.PublishContrib para delimitar el texto que se publica serán respetados en el modo de noticias.
+Adicionalmente, los marcadores %<nop>STARTPUBLISH% y %<nop>STOPPUBLISH% utilizados por Foswiki:Extensions.PublishContrib para delimitar el texto que se publica serán respetados en el modo de noticias.
 
 ---++ Biblioteca de código TWiki/Contrib/MailerContrib
 La segunda parte del módulo es una biblioteca de código que suministra los servicios para otras aplicaciones para modificar la suscripción a través de un interfaz de programación para aplicaciones (API) transparente y bien documentado. Esto les permite (por ejemplo) a desarrolladores de plugins agregar (por ejemplo) un botón tipo "Favor registrarme para este boletín de noticias" al final de su páginas. Desarrolladores deben referirse a la POD documentación para la clase !WebNotify como punto inicial.
@@ -225,8 +225,8 @@ Many thanks to the following sponsors for supporting this work:
 |  1 Oct 2004 | 1.002 Peter<nop>Thoeny provided additional documentation |
 |  27 Sep 2004 | 1.001 runnable as CGI script, minor bugfixes, removed dependency on DB<nop>CacheContrib |
 |  8 Sep 2004 | 1.000 Initial version |
-|  Home: | TWiki:Plugins/%TOPIC% |
-|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
+|  Home: | Foswiki:Extensions/%TOPIC% |
+|  Feedback: | Foswiki:Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
 

@@ -83,9 +83,9 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  16 Mar 2004: | Fixed bug where topics with underlines did not get handled properly |
 |  07 Feb 2004: | Initial version |
 |  CPAN Dependencies: | none |
-|  Other Dependencies: | TWiki:Plugins/SpreadSheetPlugin |
+|  Other Dependencies: | Foswiki:Extensions/SpreadSheetPlugin |
 |  Perl Version: | 5.005 |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 99% |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 99% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |

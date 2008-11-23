@@ -53,8 +53,8 @@ Test:
 |  Other Dependencies: | none |
 |  Perl Required: | 5.005? |
 |  Perl Running: | 5.8.0 |
-|  Plugin Home: | TWiki:Plugins.%TOPIC% |
-|  Feedback: | TWiki:Plugins.%TOPIC%Dev |
+|  Plugin Home: | Foswiki:Extensions.%TOPIC% |
+|  Feedback: | Foswiki:Extensions.%TOPIC%Dev |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 

@@ -84,7 +84,7 @@ Especially for the CalendarPlugin the option =daily= will cause the Topic rerend
 
 __Note:__ You do not need to install anything on the browser to use this add-on. The following instructions are for the administrator who installs the add-on on the server where TWiki is running. 
 
-	* Download ==%TOPIC%.zip== ZIP file from TWiki:Plugins.%TOPIC%
+	* Download ==%TOPIC%.zip== ZIP file from Foswiki:Extensions.%TOPIC%
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
 	  | *File:* | *Description:* |
 	  | ==data/TWiki/%TOPIC%.txt== | Add-on topic |

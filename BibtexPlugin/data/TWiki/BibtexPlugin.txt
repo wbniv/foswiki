@@ -132,7 +132,7 @@ you get (simulated) <img src="%ATTACHURL%/bibtex-cite-ex.png" alt="bibtex select
 
 The text within the citation is dictated by the results of the %<nop>BIBTEXREF% declaration in the topic (see below).
 
-_Note: The %<nop>CITE% macro is also defined by the TWiki:Plugins.BibliographyPlugin.  If both plugins are installed, one must use the alternate declaration, %<nop>BIBCITE{...}%, to access the !BibtexPlugin functionality._
+_Note: The %<nop>CITE% macro is also defined by the Foswiki:Extensions.BibliographyPlugin.  If both plugins are installed, one must use the alternate declaration, %<nop>BIBCITE{...}%, to access the !BibtexPlugin functionality._
 
 ---++ Syntax
 	* =%<nop>BIBTEX{&lt;attributes&gt;}%= - render a set of bibtex files attached to some topic 
@@ -174,11 +174,11 @@ tag on the same topic (see [[#Tips][Tips]]).
 
 ---++ Citations and Automated Reference Lists
 
-As of release v1.3, the %TOPIC% has functionality similar to the TWiki:Plugins.BibliographyPlugin.  Specifically, if a topic has =%<nop>CITE{key}%= declarations through out, the use of =%<nop>BIBTEXREF{...}%= will generate a list of references based on the citations declared.  The output of the reference list is dictated by <nop>BibTeX.  Thus, the HTML output can use all of the flexibility of bibtex, including custom bibtex style templates and string macros.
+As of release v1.3, the %TOPIC% has functionality similar to the Foswiki:Extensions.BibliographyPlugin.  Specifically, if a topic has =%<nop>CITE{key}%= declarations through out, the use of =%<nop>BIBTEXREF{...}%= will generate a list of references based on the citations declared.  The output of the reference list is dictated by <nop>BibTeX.  Thus, the HTML output can use all of the flexibility of bibtex, including custom bibtex style templates and string macros.
 
 The citation keys _must refer to the output key produced by this plugin_, which may differ from the entries in the associated .bib files according to the bibtool resource file in use.  Simply use the output key produced by [[#SearchTemplates][<nop>BibtexPlugin search template]] query results.
 
-Again, if both the TWiki:Plugins.BibliographyPlugin and TWiki:BibtexPlugin are installed, one must use %<nop>BIBCITE{...}% inplace of %<nop>CITE% for the <nop>BibtexPlugin functionality to work.
+Again, if both the Foswiki:Extensions.BibliographyPlugin and TWiki:BibtexPlugin are installed, one must use %<nop>BIBCITE{...}% inplace of %<nop>CITE% for the <nop>BibtexPlugin functionality to work.
 
 ---+++ Example
 
@@ -428,9 +428,9 @@ lines to the .htaccess file:
 |  Other Dependencies: | [[http://lml.ls.fi.upm.es/manuales/bibtool/][BibTool]], \
 		[[http://www-sop.inria.fr/epidaure/personnel/malandain/codes/bibtex2html.html][Bibtex2html]] |
 |  Perl Version: | >=5.6.1 |
-|  Plugin Home: | TWiki:Plugins/BibtexPlugin |
-|  Feedback: | TWiki:Plugins/BibtexPluginDev |
-|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+|  Plugin Home: | Foswiki:Extensions/BibtexPlugin |
+|  Feedback: | Foswiki:Extensions/BibtexPluginDev |
+|  Appraisal: | Foswiki:Extensions/%TOPIC%Appraisal |
 
 %META:FILEATTACHMENT{name="style.css" attr="" autoattached="1" comment="" date="1134157744" path="style.css" size="1221" user="UnknownUser" version=""}%
 %META:FILEATTACHMENT{name="bibtoolrsc" attr="" autoattached="1" comment="" date="1136505651" path="bibtoolrsc" size="1905" user="UnknownUser" version=""}%

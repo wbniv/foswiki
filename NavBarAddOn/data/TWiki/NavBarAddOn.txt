@@ -63,7 +63,7 @@ __Note:__ You do not need to install anything on the browser to use this add-on.
 
 ---++ Known Limitations
 
-This Add-on works properly with different skins on IE, Netspace and Firefox. It works nicely with the !PatternSkin shipped with the TWiki:Codev.TWikiRelease02Sep2004, but not with the latest version of the TWiki:Plugins:PatternSkin due to interference of the Plugin stylesheet with the table layout of the tabs. [[%SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%?skin=classic][Test this topic]] with the %SYSTEMWEB%.ClassicSkin
+This Add-on works properly with different skins on IE, Netspace and Firefox. It works nicely with the !PatternSkin shipped with the TWiki:Codev.TWikiRelease02Sep2004, but not with the latest version of the Foswiki:Extensions:PatternSkin due to interference of the Plugin stylesheet with the table layout of the tabs. [[%SCRIPTURL%/view%SCRIPTSUFFIX%/%WEB%/%TOPIC%?skin=classic][Test this topic]] with the %SYSTEMWEB%.ClassicSkin
 
 ---++ Add-On Info
 
@@ -79,7 +79,7 @@ License]]) |
 |  15 Jul 2005: | Initial version |
 |  TWiki Dependency: | $TWiki::Plugins::VERSION 1.024 (TWiki 01-Sep-2004) |
 |  CPAN Dependencies: | none |
-|  Other Dependencies: | TWiki:Plugins.SpreadSheetPlugin version 17 Jun 2005
+|  Other Dependencies: | Foswiki:Extensions.SpreadSheetPlugin version 17 Jun 2005
 (1.018) |
 |  Perl Version: | 5.005 |
 |  Add-on Home: | http://foswiki.org/Extensions/%TOPIC% |

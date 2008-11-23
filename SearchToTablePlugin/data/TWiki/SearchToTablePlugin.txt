@@ -60,8 +60,8 @@ Performs a topic search and puts results into a table:
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.0 |
-|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% ( TWiki:Plugins/%TOPIC% )|
-|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev ( TWiki:Plugins/%TOPIC%Dev )|
+|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% ( Foswiki:Extensions/%TOPIC% )|
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev ( Foswiki:Extensions/%TOPIC%Dev )|
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 

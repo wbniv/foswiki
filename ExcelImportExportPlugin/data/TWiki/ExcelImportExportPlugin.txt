@@ -11,7 +11,7 @@ This plugin renders an attached Excel spreadsheet as a TWiki table, and vice ver
       * Generate an Excel spreadsheet from a table returned as the result of a %SYSTEMWEB%.FormattedSearch, such that each row in the table corresponds to a row in the resultant spreadsheet.
       * Generate an Excel spreadsheet from all topics that have an indicated form. Each topic results in a row of the spreadsheet, such that each form field is mapped to a column in the spreadsheet.
 
-The code of this plugin is based on the TWiki:Plugins.ExcelImportExportAddOn by TWiki:Main.ClausLanghans.
+The code of this plugin is based on the Foswiki:Extensions.ExcelImportExportAddOn by TWiki:Main.ClausLanghans.
 
 ---++ General comments
 
@@ -144,11 +144,11 @@ Look at the example in Sandbox...
 |  CPAN Dependencies: | <table border="1"><tr><th>Name</th><th>Version</th><th>Description</th></tr><tr><td align="left">Spreadsheet::ParseExcel</td><td align="left">Required. Available from [[http://search.cpan.org][CPAN]].</td></tr><tr><td align="left">Spreadsheet::WriteExcel</td><td align="left">Required. Available from [[http://search.cpan.org][CPAN]].</td></tr><tr><td align="left">Date::Manip</td><td align="left">Required. Available from [[http://search.cpan.org][CPAN]].</td></tr></table> |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
-__Related Topics:__ [[%SYSTEMWEB%.Plugins][Plugins]], %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, TWiki:Plugins.ExcelImportExportAddOn
+__Related Topics:__ [[%SYSTEMWEB%.Plugins][Plugins]], %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, Foswiki:Extensions.ExcelImportExportAddOn
 
 -- TWiki:Main.ThomasWeigert - 13 Aug 2006

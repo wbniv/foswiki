@@ -24,9 +24,9 @@ TWiki users by binding to an LDAP server as well as incorporate LDAP user
 groups into TWiki's access control. Note, however that you need at least
 TWiki-4.0.3 for that.
 Optionally, if you need an interface to query your LDAP directory and display
-the results in a TWiki topic install the TWiki:Plugins/LdapNgPlugin
+the results in a TWiki topic install the Foswiki:Extensions/LdapNgPlugin
 which will make use of the <nop>LdapContrib services. 
-This work is a rewrite of the TWiki:Plugins/LdapPlugin by
+This work is a rewrite of the Foswiki:Extensions/LdapPlugin by
 TWiki:Main/GerardHickey while bringing authentication, user management and
 other LDAP applications onto a common base.
 
@@ -496,9 +496,9 @@ that the <nop>LdapContrib will force an update of the cache data.
 |  19 July 2006: | public release |
 |  24 May 2006: | api adjustments, improved wikiname generation |
 |  28 Apr 2006: | Initial version |
-|  Home: | TWiki:Plugins/%TOPIC% |
-|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
-|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+|  Home: | Foswiki:Extensions/%TOPIC% |
+|  Feedback: | Foswiki:Extensions/%TOPIC%Dev |
+|  Appraisal: | Foswiki:Extensions/%TOPIC%Appraisal |
 
 
 -- TWiki:Main/MichaelDaum - 25 May 2008

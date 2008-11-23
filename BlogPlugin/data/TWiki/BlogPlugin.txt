@@ -226,7 +226,7 @@ And send me a patch if you've coded that into TWiki ;).
 |  Version: | v0.99 |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
 |  31 Aug 2006: | added NO_PREFS_IN_TOPIC;\
-                  added TWiki:Plugins/ImagePlugin support; \
+                  added Foswiki:Extensions/ImagePlugin support; \
 		  fixed <nop>BlogArchive not to compute terms _before_ calling the tagcloud; \
 		  removed whitespaces from <nop>WebPreferences to prevent insecure eval warnings (strange); \
 		  fixed use of <nop>NatSkin's IFSKINSTATE as it glues no more |
@@ -240,7 +240,7 @@ And send me a patch if you've coded that into TWiki ;).
                   reordered sidebar section to "make more sense"; \
 		  minor docu changes; \
 		  added recommendation to use the <nop>BlogPlugin in combination with the \
-		  TWiki:Plugins/NatSkin because some features will work with it only |
+		  Foswiki:Extensions/NatSkin because some features will work with it only |
 |  23 Jul 2006: | added view templates specific to <nop>PatternSkin; \
                   improved the blog's sidebar for <nop>PatternSkin; \
 		  added standard <nop>WebSearch topics; \
@@ -335,7 +335,7 @@ And send me a patch if you've coded that into TWiki ;).
 		  sort them by weight and name (btw. you can weight each tag like =mytag:2=) |
 |  01 Mar 2006: | grand rework of the <nop>BlogArchive; \
                   added <nop>BlogTags for <nop>BlogEntries; \
-                  added dependency on TWiki:Plugins/TagCloudPlugin; \
+                  added dependency on Foswiki:Extensions/TagCloudPlugin; \
 		  added rel="tag" to links to tags and categories to make technorati happy; \
 		  reworked category and archive in sidebar using the new DBSTATS tag of the \
 		  recent <nop>DBCachePlugin resulting in a drastic speed improvement on the front pages; \
@@ -371,7 +371,7 @@ And send me a patch if you've coded that into TWiki ;).
 		  added w3c validation button to the <nop>TWikiWorkbench; \
 		  added example <nop>WebAggregation by rendering own feeds using \
 		  the HeadlinesPlugin; \
-		  added dependency to TWiki:Plugins/FilterPlugin for the FORMATLIST tag; \
+		  added dependency to Foswiki:Extensions/FilterPlugin for the FORMATLIST tag; \
 		  unified redundant navigation renderer; \
 		  improved admin tools using twisties; \
 		  postings are owned by the author by default now; \
@@ -388,9 +388,9 @@ And send me a patch if you've coded that into TWiki ;).
 |  24 Jan 2006: | Initial version |
 |  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
 |  Perl Version: | 5.8 |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
-|  Plugin Home: | TWiki:Plugins/%TOPIC% |
-|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
-|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+|  [[Foswiki:Extensions/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | Foswiki:Extensions/%TOPIC% |
+|  Feedback: | Foswiki:Extensions/%TOPIC%Dev |
+|  Appraisal: | Foswiki:Extensions/%TOPIC%Appraisal |
 
 -- TWiki:Main.MichaelDaum - 31 Aug 2006

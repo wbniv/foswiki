@@ -86,7 +86,7 @@ To run the script you need to set up a cron job. For example, to transfer mail i
 You _must_ run the script from the bin directory.
 Make sure that the cron is run by a user with the permissions needed to read and write the TWiki data directory.
 
-This is a brand-new development, not related in any to the original TWiki:Plugins/MailInAddon. Due acknowledgement is made to those early pioneers for the idea. ;-)
+This is a brand-new development, not related in any to the original Foswiki:Extensions/MailInAddon. Due acknowledgement is made to those early pioneers for the idea. ;-)
 
 ---++ Contrib Info
 
@@ -117,8 +117,8 @@ Many thanks to the following sponsors for supporting this work:
 |  5960 | TWikibug:Item181 - new version, supports DEVELOP and Cairo, and adds support for attachments (you can now mail attachments to topics) |
 |  31 July 2005 | 1.001 Back-ported to Cairo, added spambox (work generously supported by the [[http://www.evolvedmedianetwork.com/][Evolved Media Network]]) |
 |  10 Mar 2005 | 1.000 Initial version |
-|  Home: | TWiki:Plugins/%TOPIC% |
-|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
+|  Home: | Foswiki:Extensions/%TOPIC% |
+|  Feedback: | Foswiki:Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences

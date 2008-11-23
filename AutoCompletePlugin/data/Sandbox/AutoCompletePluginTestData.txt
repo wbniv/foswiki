@@ -14,4 +14,4 @@ Data is returned as an array of arrays. %BR%
 %TOPICLIST{"[\"$name\"]" separator=", " web="%URLPARAM{"web"}%"}%
 %ENDSECTION{"topiclist"}%
 
-_Please feel free to post more examples at TWiki:Plugins.AutoCompletePluginDev and I will include them in the next release._
+_Please feel free to post more examples at Foswiki:Extensions.AutoCompletePluginDev and I will include them in the next release._

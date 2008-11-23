@@ -106,7 +106,7 @@ The script =build-twiki-index.sh= should be run periodically to rebuild the inde
 Even with use of SpeedyCgi, TWiki rendering is not fast.  As a result, I rebuild the index only once per day at 4 am. It takes about 1.5 hours to index our TWiki, which has ~4000 topics and attachments
 
 ---+++ Create Documentation
-Create a =SearchEngineSwishEAddOn= topic in your local TWiki, view the raw text for TWiki:Plugins/SearchEngineSwishEAddOn, and copy the contents to your local TWiki.
+Create a =SearchEngineSwishEAddOn= topic in your local TWiki, view the raw text for Foswiki:Extensions/SearchEngineSwishEAddOn, and copy the contents to your local TWiki.
 
 
 ---++ Future work

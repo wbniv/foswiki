@@ -3,7 +3,7 @@
 
 This add-on generates a latex file for a specified topic, and/or the PDF output of =pdflatex= processing this latex file.  The goal is to provide PDF versions of TWiki topics with nicely rendered mathematics, using a latex document preparation environment installed on the TWiki server.
 
-The package is tightly integrated with the TWiki:Plugins.LatexModePlugin, which is a required prerequisite.
+The package is tightly integrated with the Foswiki:Extensions.LatexModePlugin, which is a required prerequisite.
 
 The goal of this package development is to provide a mechanism for groups to edit and produce latex documents suitable for publication submission.  The use of this package on a TWiki installation provides the following advantages:
    * there is no need for each user to install a latex environment themselves, 
@@ -84,7 +84,7 @@ __Note:__ You do not need to install anything on the browser to use this add-on.
          * Modify the file generation form, <nop>GenPDFLatexForm, to reflect your own needs.  
          * declare which topic to use as the form in a Preferences topic %BR% (e.g.  declare %BR% * Set GENPDFLATEX_OPTIONSPAGE = Main.<nop>GenPDFLatexForm %BR% in the %SYSTEMWEB%.DefaultPreferences or %USERSWEB%.SitePreferences topic)
       * Test if the installation was successful:
-         * point your browser to a TWiki topic that contains TWiki:Plugins.LatexModePlugin markup.
+         * point your browser to a TWiki topic that contains Foswiki:Extensions.LatexModePlugin markup.
          * replace =view= with =genpdflatex= in the url, and reload the page.%BR% _(At this point, you should see the <nop>GenPDFLatex form)_
          * select file generation options
          * press the 'Produce PDF/Latex' button and view the returned .tex/.pdf file.
@@ -118,7 +118,7 @@ Color in the latex/pdf output is possible, with a few caveats.  First, the rende
 
 This code is still very much under development.  All syntax calls,
 e.g. equations, figures, and tables, in the !LatexModePlugin are supported.
-The TWiki:Plugins.BibtexPlugin can be used for bibliography support. 
+The Foswiki:Extensions.BibtexPlugin can be used for bibliography support. 
 
 
 ---++ Add-On Info
@@ -131,12 +131,12 @@ The TWiki:Plugins.BibtexPlugin can be used for bibliography support.
 |  Add-on Version: | 15 Nov 2007 (v2.1, SVN:%$VERSION%) |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
 |  15 Nov 2007 (v2.1): | improved reporting of errors, now includes bibtex support |
-|  30 Sep 2006 (v2.01): | minor change, for compatibility with TWiki:Plugins.LatexModePlugin v3.0 |
+|  30 Sep 2006 (v2.01): | minor change, for compatibility with Foswiki:Extensions.LatexModePlugin v3.0 |
 |  1 Feb 2006 (v1.4): | fixed bug in stripping of &lt;p&gt; tags within latex environments |
 |  6 Dec 2005 (v1.3): | modified for Dakar compatibility |
 |  11 Nov 2005 (v1.2): | Added PDFLATEXLINK tag, tweaked image handling |
 |  15 Oct 2005 (v1.1): | Initial version |
-|  TWiki Dependencies: | TWiki:Plugins.LatexModePlugin v2.0 or greater |
+|  TWiki Dependencies: | Foswiki:Extensions.LatexModePlugin v2.0 or greater |
 |  CPAN Dependencies: | File::Basename, File::Temp, HTML::TreeBuilder, XML::Simple |
 |  Other Dependencies: | HTML::LatexLMP v1.4 or greater (included in the html2latexLMP package attached below), a working latex installation |
 |  Perl Version: | 5.005 |
@@ -145,7 +145,7 @@ The TWiki:Plugins.BibtexPlugin can be used for bibliography support.
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
-__Related Topic:__ TWiki:Plugins.LatexModePlugin, TWiki:Plugins,GenPDFAddOn
+__Related Topic:__ Foswiki:Extensions.LatexModePlugin, Foswiki:Extensions,GenPDFAddOn
 
 %STOPINCLUDE%
 -- TWiki:Main/ScottHoge - 10 Oct 2005

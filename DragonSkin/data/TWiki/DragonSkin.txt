@@ -1,6 +1,6 @@
 %META:TOPICINFO{author="cbs" date="1090941435" format="1.0" version="1.1"}%
 ---+ Dragon Skin
-TWiki:Plugins.DragonSkinDev has development-related information. 
+Foswiki:Extensions.DragonSkinDev has development-related information. 
 
 Dragon skin (named after the logo on the site it was developed for) is intended to provide a prosaic  but relatively organized look-and-feel, while providing easy access to TWiki tools (topic lists, web changes, etc). Some features of this skin:
 	* Fairly straightforward installation

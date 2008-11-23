@@ -149,7 +149,7 @@ Okay, your turn to create an example calling SEARCH.
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
 |  11 Jul 2008: | initial version |
 |  Dependencies: | %$DEPENDENCIES% |
-|  Plugin Home: | TWiki:Plugins/%TOPIC% |
+|  Plugin Home: | Foswiki:Extensions/%TOPIC% |
 |  Feedback: | TWiki:lugins/%TOPIC%Dev |
 |  Appraisal: | TWiki:lugins/%TOPIC%Appraisal |
 

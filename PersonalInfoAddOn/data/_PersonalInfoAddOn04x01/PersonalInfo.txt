@@ -8,7 +8,7 @@ This current topic and PersonalInfoModules work in tandem:
    * PersonalInfo contains customizations for your site
 
 <div class="twikiHelp">
-%IF{"context AttachContentPluginEnabled" then='If you are using =directSearch= you may *<a href="%SCRIPTURL{save}%/%WEB%/%TOPIC%?action_save=1">update the directSearch javascript file now</a>* (by saving this topic the [[%ATTACHURL%/directSearch.js][attachment]] will be updated)' else='!AttachContentPlugin is not enabled.%BR%To read javascript more efficiently in this section, please install and enable TWiki:Plugins/AttachContentPlugin.'}%
+%IF{"context AttachContentPluginEnabled" then='If you are using =directSearch= you may *<a href="%SCRIPTURL{save}%/%WEB%/%TOPIC%?action_save=1">update the directSearch javascript file now</a>* (by saving this topic the [[%ATTACHURL%/directSearch.js][attachment]] will be updated)' else='!AttachContentPlugin is not enabled.%BR%To read javascript more efficiently in this section, please install and enable Foswiki:Extensions/AttachContentPlugin.'}%
 </div>
 
 ---++ How can I customize a section?

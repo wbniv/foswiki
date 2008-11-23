@@ -33,11 +33,11 @@ then redirect back to the current topic it has been included to.
 
 ---++ Previous work
 There are a couple of other plugins that try to implement a section editing feature, along with some
-other more exotic features. The first plugin of that kind was TWiki:Plugins/SectionalEditPlugin.
+other more exotic features. The first plugin of that kind was Foswiki:Extensions/SectionalEditPlugin.
 Later on, its functionality was extended to process sections in a broader sense in the
-TWiki:Plugins/MultiEditPlugin. By the time of this writing both plugins were about to
-be merged again into one TWiki:Plugins/EditSectionPlugin. These three plugins all depend
-on an extra package called TWiki:Plugins/EditContrib which factors out common code. In addition
+Foswiki:Extensions/MultiEditPlugin. By the time of this writing both plugins were about to
+be merged again into one Foswiki:Extensions/EditSectionPlugin. These three plugins all depend
+on an extra package called Foswiki:Extensions/EditContrib which factors out common code. In addition
 <nop>EditContrib contains a patch to the TWiki core engine, available for TWiki-4.0 and TWiki-4.1.x.
 All these plugins are currently non-functional on TWiki-4.2.
 
@@ -113,16 +113,16 @@ For the purpose of simplicity a couple of shortcomings have to be accepted.
      expected if a topic includes text from a _named section_ of another topic using
      =%<nop>INCLUDE{"TargetTopic" section="onlythis"}%=. 
    1 wysiwyg editor:
-     it currently does not work work together with TWiki:Plugins/WysiwygPlugin
+     it currently does not work work together with Foswiki:Extensions/WysiwygPlugin
    1 explicit sectioning: 
      users can't specify any other section to be editable in isolation (e.g. using some
      =&lt;section> ... &lt;/section>= markup) other than by giving the respective section
      a heading.
    1 jQuery: the <nop>EditChapterPlugin currently depends on the JQueryPlugin, used
      to hook into the edit interface. You may be facing an increased javascript download overhead in 
-     your TWiki html pages as you are already using TWiki:Plugins/BehavourContrib, TWiki:Plugins/TwistyContrib
-     and TWiki:Plugins/TwistyPlugin. Consider uninstalling these three and replace them with
-     TWiki:Plugins/JQueryTwistyPlugin. You should have installed JQueryPlugin anyway already.
+     your TWiki html pages as you are already using Foswiki:Extensions/BehavourContrib, Foswiki:Extensions/TwistyContrib
+     and Foswiki:Extensions/TwistyPlugin. Consider uninstalling these three and replace them with
+     Foswiki:Extensions/JQueryTwistyPlugin. You should have installed JQueryPlugin anyway already.
      Last not least you get less javascript but more features.
 
 ---++ Installation Instructions
@@ -148,9 +148,9 @@ Many thanks to the following sponsors for supporting this work:
 |  05 Feb 2008: | compatibility with old <nop>PatternSkin versions |
 |  03 Jan 2008: | initial release |
 |  Dependencies: | %$DEPENDENCIES% |
-|  Plugin Home: | TWiki:Plugins/EditChapterPlugin |
-|  Feedback: | TWiki:Plugins/EditChapterPluginDev |
-|  Appraisal: | TWiki:Plugins/EditChapterPluginAppraisal |
+|  Plugin Home: | Foswiki:Extensions/EditChapterPlugin |
+|  Feedback: | Foswiki:Extensions/EditChapterPluginDev |
+|  Appraisal: | Foswiki:Extensions/EditChapterPluginAppraisal |
 
 <!-- 
   Do _not_ attempt to edit this topic; it is auto-generated. Please add

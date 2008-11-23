@@ -64,7 +64,7 @@ This block is included on every user page when PersonalInfoUserViewTemplate is s
    
 *Some more indepth information what happens when the user saves her data:*
    * When =AllowRedirectUrl= is enabled in configure, topic PersonalInfo will be saved as well. This setting is not advisable for public installations, but is ok for intranets.
-   * If TWiki:Plugins/AttachContentPlugin is enabled, on saving !PersonalInfo the javascript attachment for [[#directSearch][directSearch]] will be saved as well.
+   * If Foswiki:Extensions/AttachContentPlugin is enabled, on saving !PersonalInfo the javascript attachment for [[#directSearch][directSearch]] will be saved as well.
    * The javascript file will make directSearch quite a bit faster. If !AttachContentPlugin is not installed, the search will fall back on TWiki's (slower) live search.
    * The same idea may be used to create an XML file, this is turned off for performance. See [[#phone_ListXML][phoneListXML]].
    * %ICON{warning}% On large intranets this will have a performance hit. Possibly a different timing of updating the javascript will be needed.
@@ -189,7 +189,7 @@ PersonalInfo?section=pictures;template=viewplain
 
 %ICON{hand}% See [[PersonalInfoFaceBook]]
 
-*Note:* for performance this topic uses TWiki:Plugins/VarCachePlugin if installed and enabled.
+*Note:* for performance this topic uses Foswiki:Extensions/VarCachePlugin if installed and enabled.
 
 ---+++ pictureFilterSearch
 *Quickly sift through user pictures.*

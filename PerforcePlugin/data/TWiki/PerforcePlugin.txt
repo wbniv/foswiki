@@ -128,7 +128,7 @@ When using =P4CHANGES= always limit the number of results by either:
    * Restricting the scope of your =p4 changes= command to a specific Perforce depot path or file.
    * Restricting the scope of your =p4 changes= command to a range of changes.
 
-For best user experience we recommend you make use of the REST interfaces through AJAX. Novice web programmer will find the =ajax= parameter useful. Experienced web programmer can make use of the =jquery.spinner.js= provided with TWiki:Plugins.JQueryDevPlugin and soon also available in TWiki:Plugins.JQueryPlugin. Be aware that notably the =P4CHANGESPI= request can take a significant amount of time to complete and goes much smoother when displaying an animation such as a spinner.
+For best user experience we recommend you make use of the REST interfaces through AJAX. Novice web programmer will find the =ajax= parameter useful. Experienced web programmer can make use of the =jquery.spinner.js= provided with Foswiki:Extensions.JQueryDevPlugin and soon also available in Foswiki:Extensions.JQueryPlugin. Be aware that notably the =P4CHANGESPI= request can take a significant amount of time to complete and goes much smoother when displaying an animation such as a spinner.
 
 
 ---++ Plug-in Settings
@@ -182,9 +182,9 @@ NOTE: It turns out that you don't even need to specify an existing =p4client= to
 |  14 Feb 2008: | Initial version |
 |  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
 |  CPAN Dependencies: | none |
-|  Other Dependencies: | [[http://www.perforce.com][Perforce]] command line =p4.exe= <br /> TWiki:Plugins.JQueryPlugin or TWiki:Plugins.JQueryDevPlugin optional. Only for AJAX functionality |
+|  Other Dependencies: | [[http://www.perforce.com][Perforce]] command line =p4.exe= <br /> Foswiki:Extensions.JQueryPlugin or Foswiki:Extensions.JQueryDevPlugin optional. Only for AJAX functionality |
 |  Perl Version: | 5.005 |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  [[Foswiki:Extensions/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plug-in Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |

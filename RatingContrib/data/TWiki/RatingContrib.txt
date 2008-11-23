@@ -11,7 +11,7 @@ This is a rating widget that can support a "line of stars" style input field.
 
 ---++ Usage
 ---+++ In TWiki < 4.2
-The rating widget can be used with the [[TWiki:Plugins.VotePlugin][VotePlugin]]. The widget is like the [[TWiki:Plugins.JSCalendarContrib][JSCalendarContrib]] in that once it is installed, it can be used with any plugin that requires a line - of - stars rating bar. 
+The rating widget can be used with the [[Foswiki:Extensions.VotePlugin][VotePlugin]]. The widget is like the [[Foswiki:Extensions.JSCalendarContrib][JSCalendarContrib]] in that once it is installed, it can be used with any plugin that requires a line - of - stars rating bar. 
 
 ---+++ In TWiki 4.2 and later
 You can use the new =rating= type in form fields. The result of the rating is captured as an integer, and displayed as a line of stars. For example,

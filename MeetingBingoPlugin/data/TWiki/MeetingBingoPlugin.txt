@@ -68,7 +68,7 @@ If this plug-in is installed you should get a bingo card below
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.006 |
-|  TWiki:Plugins/Benchmark: | Plugin does not slow down TWiki measurably unless MEETINGBINGO tag is used |
+|  Foswiki:Extensions/Benchmark: | Plugin does not slow down TWiki measurably unless MEETINGBINGO tag is used |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |

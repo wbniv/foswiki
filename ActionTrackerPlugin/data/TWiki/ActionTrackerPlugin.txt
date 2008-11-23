@@ -395,7 +395,7 @@ Set to 1 to enable debug features, including the undocumented =%<nop>ACTIONNOTIF
 	* ... and the result of a formatted search below:
 %ACTIONSEARCH{topic=ActionTrackerPlugin who=WikiGuest header="|Who|Due|State|Description|" format="| $who |$due|$state|$text $link|" orient="rows" }%
 
-Note that if you want to use the =action= template shipped with the TWiki:Plugins.CommentPlugin to create actions, then you must put the !CommentPlugin *before* the !ActionTrackerPlugin in the ={PluginsOrder}= configuration option.
+Note that if you want to use the =action= template shipped with the Foswiki:Extensions.CommentPlugin to create actions, then you must put the !CommentPlugin *before* the !ActionTrackerPlugin in the ={PluginsOrder}= configuration option.
 
 ---+ Plugin Info
 
@@ -454,7 +454,7 @@ __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, 
 
 Further development of this code is welcomed. It is recommended that you unpack the distribution into a development directory and use the supplied build file which provides targets to run the test suite, and install and uninstall your development code into a test installation. Please, please, _please_ run, and extend if necessary, the test set!
 
-Developer discussion is in TWiki:Plugins/ActionTrackerPluginDev.
+Developer discussion is in Foswiki:Extensions/ActionTrackerPluginDev.
 
 ---++ Copyright
 

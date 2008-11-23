@@ -58,8 +58,8 @@ To use it in your plugin code proceed as follows.
 |  Change History: | |
 |  26 Jan 2006: | Initial version |
 |  09 Dec 2005: | moved in sandbox code from dakar's codebase |
-|  Home: | TWiki:Plugins/%TOPIC% |
-|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
-|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+|  Home: | Foswiki:Extensions/%TOPIC% |
+|  Feedback: | Foswiki:Extensions/%TOPIC%Dev |
+|  Appraisal: | Foswiki:Extensions/%TOPIC%Appraisal |
 
 -- TWiki:Main/MichaelDaum - 26 Jan 2006

@@ -16,7 +16,7 @@ can create multiple addressbooks using the <nop>AddressBookFactory.
 
 There are two types of creators for ApplicationFactories:
    * WebFactoryTemplate: use this to build web-based factories, more or less customized on the base of the one in %SYSTEMWEB%.ManagingWebs
-   * TopicFactoryTemplate: use this to build topic-based factories using the TWiki:Plugins.TopicCreatePlugin
+   * TopicFactoryTemplate: use this to build topic-based factories using the Foswiki:Extensions.TopicCreatePlugin
 
 %RED%TODO:%ENDCOLOR% we might want unify these two approaches in the future to allow a mixture of both ways of deployment.
 %ENDSECTION{name="documentation" type="section"}%

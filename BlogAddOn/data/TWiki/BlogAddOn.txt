@@ -7,7 +7,7 @@ A simple weblog application based on TWiki Forms.
 
 ---++ Screenshots
 <div class="twikiHelp">
-Example list view (with TWiki:Plugins/PersonalInfoAddOn pictures):
+Example list view (with Foswiki:Extensions/PersonalInfoAddOn pictures):
 
 <div class="twikiImage"><img src="%ATTACHURLPATH%/screenshot_list.png" alt="screenshot_list.png" width='929' height='603' /></div>
 
@@ -20,7 +20,7 @@ Example post:
    * Integrates blog posts with TWiki topics
    * Uses editable categories to filter or group posts. Categories can also be used to distinguish multiple blogs with separate 'owners'.
    * Provides a handy interface with sorting and filtering options that can be INCLUDEd in any topic in the same Web
-   * Optionally displays user pictures (if TWiki:Plugins/PersonalInfoAddOn is installed and the =configure= setting ={Plugins}{BlogAddOn}{ShowPersonalInfoAddOnPictures}= is set to =1=. %BR%
+   * Optionally displays user pictures (if Foswiki:Extensions/PersonalInfoAddOn is installed and the =configure= setting ={Plugins}{BlogAddOn}{ShowPersonalInfoAddOnPictures}= is set to =1=. %BR%
    If enabled, the line in =<nop>LocalSite.cfg= should read: %BR%
    =$TWiki::cfg{Plugins}{BlogAddOn}{ShowPersonalInfoAddOnPictures} = '1';=
 
@@ -54,7 +54,7 @@ When installed, see _YourWebWithBlog_.BlogAddOnHome for additional details.
 | Dependencies: | %$DEPENDENCIES% |
 | Plugin&nbsp;Version: | 1.2, 07 Apr 2008 |
 | Change&nbsp;History: | <!-- specify latest version first -->&nbsp; |
-| 07 Apr 2008 | 1.2 Added optional inclusion of author pictures from TWiki:Plugins/PersonalInfoAddOn. *Important upgrade notice:* this version uses =WIKINAME= instead of  =WIKIUSERNAME= in the =Author= form field. This change is not compatible with existing blog topics. If you have existing posts, you must change all author names from =Main.<nop>UserName= to =<nop>UserName=. |
+| 07 Apr 2008 | 1.2 Added optional inclusion of author pictures from Foswiki:Extensions/PersonalInfoAddOn. *Important upgrade notice:* this version uses =WIKINAME= instead of  =WIKIUSERNAME= in the =Author= form field. This change is not compatible with existing blog topics. If you have existing posts, you must change all author names from =Main.<nop>UserName= to =<nop>UserName=. |
 | 26 Jan 2008 | 1.1 Adds the creation date to blog post topic names. Adds an Edit link to the Comments header in a blog post. Increases the height of the comment box. Bug fix: allow topic names with periods. |
 | 26 Jun 2007 | 1.0.9 Fixed html bug in !BlogPost; added comment count to !BlogPost; improved styling of form elements. |
 | 08 Apr 2007 | 1.0.8 Show link to latest comment in !BlogPost listing. Improved readability for comments. This version relies on CommentPlugin svn release number 13313 and PatternSkin svn release number 13320, but !BlogAddOn will now play nicely with other skins as well. | 

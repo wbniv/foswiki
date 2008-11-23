@@ -180,7 +180,7 @@ defining the default CSS properties  (indentation illustrates enclosure).
 |  13 Sep 2007: | fixed parsing of content:encoded |
 |  23 Jul 2006: | improved atom parser; if a posting has no title default to 'Untitled' |
 |  26 Apr 2006: | added lazy compilation |
-|  10 Feb 2006: | packaged using the TWiki:Plugins/BuildContrib; \
+|  10 Feb 2006: | packaged using the Foswiki:Extensions/BuildContrib; \
                   minor fixes |
 |  03 Feb 2006: | off-by-one: limit="n" returned n+1 articles; \
         make FORMAT and HEADER format strings more robust |
@@ -204,10 +204,10 @@ defining the default CSS properties  (indentation illustrates enclosure).
 |  02 Aug 2002: | Implemented caching of feeds, thanks to TWiki:Main/RobDuarte |
 |  11 Jun 2002: | Initial version (V1.000) |
 |  Perl Version: | 5.8 |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 100%, %SYSTEMWEB%.FormattedSearch 99.5%, %TOPIC% 94% |
-|  Plugin Home: | TWiki:Plugins/%TOPIC% |
-|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
-|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle 100%, %SYSTEMWEB%.FormattedSearch 99.5%, %TOPIC% 94% |
+|  Plugin Home: | Foswiki:Extensions/%TOPIC% |
+|  Feedback: | Foswiki:Extensions/%TOPIC%Dev |
+|  Appraisal: | Foswiki:Extensions/%TOPIC%Appraisal |
 
 -- TWiki:Main.PeterThoeny - 11 May 2005 %BR%
 -- TWiki:Main.MichaelDaum - 13 Sep 2007

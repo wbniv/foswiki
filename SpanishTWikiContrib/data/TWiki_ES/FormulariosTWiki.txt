@@ -221,7 +221,7 @@ format="|<b>[[$web.$topic][$topic]]</b> |<nop>$formfield(TopicClassification) |"
 </verbatim>
 </blockquote> 
 
-Buscando formularios de esta manera es obviamente bastante poco eficiente, pero fácil de realizar. Si requiere mayor eficaz, revise algunas de las extensiones estructuradas wiki que apoyan búsquedas de mayor eficaz, e.g. TWiki:Plugins.DBCachePlugin %FLAGGB%.
+Buscando formularios de esta manera es obviamente bastante poco eficiente, pero fácil de realizar. Si requiere mayor eficaz, revise algunas de las extensiones estructuradas wiki que apoyan búsquedas de mayor eficaz, e.g. Foswiki:Extensions.DBCachePlugin %FLAGGB%.
 ---+++ OJO!
    * Algunos navegadores posiblemente eliminen cambios de línea en campos tipo =text= cuando se guarda el tema. Si requiere cambios de línea en un campo, asegure que es de tipo =textarea=.
 

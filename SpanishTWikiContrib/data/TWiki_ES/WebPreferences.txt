@@ -34,11 +34,11 @@ Estas configuraciones sobrescriben los valores estándares solamente para esta we
 
    * Logotipos utilizados para efectos de traducción en esta web:
       * Set FLAGGB = %PUBURL%/%WEB%/WebPreferences/gb.png
-         * Fuente: TWiki:Plugins.FamFamFamContrib
+         * Fuente: Foswiki:Extensions.FamFamFamContrib
          * Copyright: &copy; Mark James http://www.famfamfam.com
          * Licencia: [[http://creativecommons.org/licenses/by/2.5/][Creative Commons Attribution 2.5 License]]
       * #Set FAVICON = %PUBURL%/%WEB%/WebPreferences/favicon.ico
-         * Fuente: TWiki:Plugins.FamFamFamContrib
+         * Fuente: Foswiki:Extensions.FamFamFamContrib
          * Copyright: &copy; Mark James http://www.famfamfam.com
          * Licencia: [[http://creativecommons.org/licenses/by/2.5/][Creative Commons Attribution 2.5 License]]
 

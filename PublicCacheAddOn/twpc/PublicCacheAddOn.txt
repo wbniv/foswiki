@@ -134,7 +134,7 @@ add-on on the server where TWiki is running.
      patches are clearly surrounded by =#TWikiPublicCacheAddOn_Patch...= 
      comments
    * If you *update your TWiki* install, or install afterwards the
-     TWiki:Plugins/NewsPlugin or TWiki:TagMePlugin (or any future plugin
+     Foswiki:Extensions/NewsPlugin or TWiki:TagMePlugin (or any future plugin
      calling the =TWiki::Func::saveFile= function,you must re-do an 
      =install -u= in order to apply the patches above.
    * To be sure people notified of changes by email will actually see the
@@ -441,9 +441,9 @@ your browser to get the css, javascript, and image files, and render the page.
 |  CPAN Dependencies: | LWP::Simple File::Path |
 |  Other Dependencies: | bash, sed, wget, grep, crontab, cc (optional), ... |
 |  Perl Version: | 5.005 |
-|  Add-on Home: | TWiki:Plugins/%TOPIC% |
-|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
-|  Appraisal: | TWiki:Plugins/%TOPIC%Appraisal |
+|  Add-on Home: | Foswiki:Extensions/%TOPIC% |
+|  Feedback: | Foswiki:Extensions/%TOPIC%Dev |
+|  Appraisal: | Foswiki:Extensions/%TOPIC%Appraisal |
 
 __Related Topic:__ %SYSTEMWEB%.ContributedAddOns
 

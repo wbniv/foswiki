@@ -5,7 +5,7 @@ Search, filter and format multiple TWiki form fields from multiple topics.
 
 This plugin offers more options than the predefined variable [[%SYSTEMWEB%.CompleteDocumentation#FORMFIELD][%<nop>FORMFIELD{"fieldname"}%]].
 
-This plugin uses TWiki:Plugins/TopicDataHelperPlugin
+This plugin uses Foswiki:Extensions/TopicDataHelperPlugin
 
 %TOC%
 
@@ -193,7 +193,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  01 Oct 2004: | Bernd Raichle: Initial version. |
 |  Dependencies: | %$DEPENDENCIES% |
 |  Perl Version: | 5.005 |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 

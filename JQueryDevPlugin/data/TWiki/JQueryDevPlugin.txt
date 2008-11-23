@@ -16,7 +16,7 @@ Provides jQuery and jQuery UI. Designed for jQuery developer targeting the TWiki
 
 ---++ Acknowledgement
 
-This plug-in was derived from the excellent TWiki:Plugins.JQueryPlugin from TWiki:Main.MichaelDaum.
+This plug-in was derived from the excellent Foswiki:Extensions.JQueryPlugin from TWiki:Main.MichaelDaum.
 
 ---++ jQuery documentation
 
@@ -91,7 +91,7 @@ Include the jQuery javascript we need
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  [[Foswiki:Extensions/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |

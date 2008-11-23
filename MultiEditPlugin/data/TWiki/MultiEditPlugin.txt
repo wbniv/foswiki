@@ -3,7 +3,7 @@
 
 This plugin allows the user to break a topic into sections which can be edited individually. A secondary usage of this plugin is to render text in portions of a topic where it ordinarily could not be placed. For example, one could place a table within a cell of a table, or bullet lists inside of table cells.
 
-This plugin leverages from TWiki:Plugins/SectionalEditPlugin and TWiki:Plugins/RecursiveRenderPlugin. From the former, it inherits the ability to edit sections of a topic individually; from the latter the ability to place these sections into arbitrary contexts, even if the inserted text could not ordinarily be placed in that context per TWiki ML.
+This plugin leverages from Foswiki:Extensions/SectionalEditPlugin and Foswiki:Extensions/RecursiveRenderPlugin. From the former, it inherits the ability to edit sections of a topic individually; from the latter the ability to place these sections into arbitrary contexts, even if the inserted text could not ordinarily be placed in that context per TWiki ML.
 
 The motivation behind this plugin was to allow the separation of a topic into several [[TWiki:Codev/TWikiApplications][TWikiApplications]], or, at least, into several independently editable sections. The creator of a topic might define the overall layout of a topic, and identify the sections that should be editable individually. (One might even disable the topic actions for other users, such these users would interact with the topic via the editable sections only.
 
@@ -114,19 +114,19 @@ Index: lib/TWiki.pm
 |  10 Jun 2006: | Migrated to Dakar release |
 |   4 Aug 2005: | Cleaned up error log messages  |
 |  2 May 2005: | Fixed caching problem when using Speedy CGI   |
-|  21 Mar 2005: | Utilize 21 Mar version of TWiki:Plugins/EditContrib |
-|  12 Mar 2005: | Abstract additional functionality into TWiki:Plugins/EditContrib  |
-|  08 Mar 2005: | Rely on shared files in TWiki:Plugins/EditContrib |
+|  21 Mar 2005: | Utilize 21 Mar version of Foswiki:Extensions/EditContrib |
+|  12 Mar 2005: | Abstract additional functionality into Foswiki:Extensions/EditContrib  |
+|  08 Mar 2005: | Rely on shared files in Foswiki:Extensions/EditContrib |
 |  02 Mar 2005: | Initial version |
 |  TWiki Dependency: | $TWiki::Plugins::VERSION 1.024 |
 |  CPAN Dependencies: | none |
-|  Other Dependencies: | TWiki:Plugins/EditContrib |
+|  Other Dependencies: | Foswiki:Extensions/EditContrib |
 |  Perl Version: | 5.005 |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
-__Related Topics:__ TWiki:Plugins/SectionalEditPlugin, TWiki:Plugins/RecursiveRenderPlugin
+__Related Topics:__ Foswiki:Extensions/SectionalEditPlugin, Foswiki:Extensions/RecursiveRenderPlugin
 
 -- TWiki:Main/ThomasWeigert - 10 Dec 2006

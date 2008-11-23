@@ -233,7 +233,7 @@ digraph G {
 
 ---+++ Component architecture
 
-This is a typical example of a component architecture drawing (This kind of graph is also easy to do in TWiki:Plugins.TWikiDrawPlugin if you like the look but you prefer to draw it manually using your mouse).
+This is a typical example of a component architecture drawing (This kind of graph is also easy to do in Foswiki:Extensions.TWikiDrawPlugin if you like the look but you prefer to draw it manually using your mouse).
 
 View source of this page for graph description.
 
@@ -504,7 +504,7 @@ Details on how to install cairo, graphviz and imagemagick are beyond the scope o
 |  01 Jul 2004: | Initial version |
 |  TWiki Dependency: | $TWiki::Plugins::VERSION 1.024 |
 |  Dependencies: | %$DEPENDENCIES% |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 99% |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 99%, %TOPIC% 99% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |

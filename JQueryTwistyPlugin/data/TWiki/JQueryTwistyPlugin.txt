@@ -2,7 +2,7 @@
 ---+!! <nop>%TOPIC%
 
 ---++ About a jQuery rework
-This is a fork of the famous TWiki:Plugins/TwistyPlugin by 
+This is a fork of the famous Foswiki:Extensions/TwistyPlugin by 
 [[TWiki:Main.RafaelAlvarez][Rafael Alvarez]] and [[TWiki:Main.ArthurClemens][Arthur Clemens]].
 Instead of being build on top of Behaviour and TWiki's own homebrewed <nop>JavaScript framework,
 this rework is solely based on <nop>jQuery, a lean and simple 3rd party framework which

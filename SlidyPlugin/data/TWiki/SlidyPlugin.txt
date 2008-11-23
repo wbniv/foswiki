@@ -2,7 +2,7 @@
 
 ---+!! Slidy Plugin
 
-This Plugin converts a topic with headings into a slide show. Analogues to TWiki:Plugins.SlideShowPlugin, but based on W3Cs "HTML Slidy" (presentation at http://www.w3.org/Talks/Tools/Slidy/).
+This Plugin converts a topic with headings into a slide show. Analogues to Foswiki:Extensions.SlideShowPlugin, but based on W3Cs "HTML Slidy" (presentation at http://www.w3.org/Talks/Tools/Slidy/).
 
 A few of the technical selling points:
 
@@ -27,9 +27,9 @@ A few of the technical selling points:
 
 ---++ Introduction
 
-(Raw copy from TWiki:Plugins.SlideShowPlugin, needs a refactor)
+(Raw copy from Foswiki:Extensions.SlideShowPlugin, needs a refactor)
 
-There is already a defacto standard for presentations, why this Plugin? This Plugin makes sense for organizations that do already have lots of content in TWiki: It is easy to create a web based presentation that contains many links to related content. The Plugin does not try to compete with the bells and whistles of the other presentation program, but the markup of TWiki and other Plugins like TWiki:Plugins/ChartPlugin, TWiki:Plugins/GaugePlugin, TWiki:Plugins/SpreadSheetPlugin, TWiki:Plugins/TWikiDrawPlugin can be used to create an appealing presentation.
+There is already a defacto standard for presentations, why this Plugin? This Plugin makes sense for organizations that do already have lots of content in TWiki: It is easy to create a web based presentation that contains many links to related content. The Plugin does not try to compete with the bells and whistles of the other presentation program, but the markup of TWiki and other Plugins like Foswiki:Extensions/ChartPlugin, Foswiki:Extensions/GaugePlugin, Foswiki:Extensions/SpreadSheetPlugin, Foswiki:Extensions/TWikiDrawPlugin can be used to create an appealing presentation.
 
 Any topic with headings can be converted into a slide show. Each slide starts with a ="---++"= heading. There are two modes to view a topic:
 
@@ -130,7 +130,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle 98%, %SYSTEMWEB%.FormattedSearch 99%, SlidyPlugin 99% |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle 98%, %SYSTEMWEB%.FormattedSearch 99%, SlidyPlugin 99% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |

@@ -194,7 +194,7 @@ ___* <===== Max recommended length of the 1rst line ==-->
 		  installed as an attachement), see new install instructions.
 		* script can be run from twiki dir without setting DIR
 		* Created the official distribution page on TWiki:
-		  TWiki:Plugins/KoalaSkin
+		  Foswiki:Extensions/KoalaSkin
 	* *1.6* _8 Mar 2002_ 
 		* fixes to colors in search results in bookview mode, and in
 		  rename topic (result of search for pages refering to page to

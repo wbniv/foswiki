@@ -61,7 +61,7 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>P
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.0 |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle /%, %SYSTEMWEB%.FormattedSearch ?%, %TOPIC% ?% |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle /%, %SYSTEMWEB%.FormattedSearch ?%, %TOPIC% ?% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 

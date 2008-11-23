@@ -5,7 +5,7 @@
 
 View permissions are honored: if the user is not allowed to view the referring topic, the attachments are not displayed.
 
-This plugin uses TWiki:Plugins/TopicDataHelperPlugin
+This plugin uses Foswiki:Extensions/TopicDataHelperPlugin
 
 %TOC%
 

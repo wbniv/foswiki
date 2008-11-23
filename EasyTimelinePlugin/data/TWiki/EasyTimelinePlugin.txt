@@ -851,7 +851,7 @@ These instructions assume that the ploticus executable is already installed. Bot
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | !EasyTimline.pl from http://infodisiac.com/Wikipedia/EasyTimeline/Introduction.htm (now included in plugin), and ploticus from http://ploticus.sourceforge.net/doc/download.html |
 |  Perl Version: | 5.8+ |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 100%, %TOPIC% 99% |
+|  [[Foswiki:Extensions/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle 99%, %SYSTEMWEB%.FormattedSearch 100%, %TOPIC% 99% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |

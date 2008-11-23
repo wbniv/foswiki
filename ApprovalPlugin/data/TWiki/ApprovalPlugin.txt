@@ -11,7 +11,7 @@ One line description, required for extensions repository catalog.
 
 ---++ Introduction
 
-This plugin is a rewrite of the TWiki:Plugins.WorkflowPlugin by TWiki:Main.ThomasWeigert, which supports much the same functionality except a couple of the varaibles (=%<nop>WORKFLOWLASTTIME_State%=, =%<nop>WORKFLOWLASTVERSION_State%=) and the use of %SYSTEMWEB%.DataForms in states. However, it does support concurrent reviewing and notifications on state change, which is not supported by the Workflow plugin. It was decided to spin this off seperatly as it is not backwords compatible.
+This plugin is a rewrite of the Foswiki:Extensions.WorkflowPlugin by TWiki:Main.ThomasWeigert, which supports much the same functionality except a couple of the varaibles (=%<nop>WORKFLOWLASTTIME_State%=, =%<nop>WORKFLOWLASTVERSION_State%=) and the use of %SYSTEMWEB%.DataForms in states. However, it does support concurrent reviewing and notifications on state change, which is not supported by the Workflow plugin. It was decided to spin this off seperatly as it is not backwords compatible.
 
 ---++ Usage
 
@@ -115,7 +115,7 @@ __Note__ The examples will only work if the plugin is installed and enabled.
 
 ---++ Notes
 
-   * This plugin should work with groups defined in the transition table, but this is currently *untested*. If you want to use groups, please let us know your findings in TWiki:Plugins.ApprovalPluginDev.
+   * This plugin should work with groups defined in the transition table, but this is currently *untested*. If you want to use groups, please let us know your findings in Foswiki:Extensions.ApprovalPluginDev.
 
    * The users in the transition table must have permission to change the controlled topic when they approve a state, otherwise TWiki will throw an access control exception. There is a message to the user if this is the case.
 

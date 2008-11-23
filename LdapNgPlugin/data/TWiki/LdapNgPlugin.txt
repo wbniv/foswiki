@@ -19,8 +19,8 @@
 </tr>
 </table>
 This plugin provides an interface to query an LDAP directory and display the results in a TWiki topic.
-It is a complete rewrite of the TWiki:Plugins/LdapPlugin by TWiki:Main.GerardHickey to provide
-greater flexibility and performance based on the TWiki:Plugins/LdapContrib package.
+It is a complete rewrite of the Foswiki:Extensions/LdapPlugin by TWiki:Main.GerardHickey to provide
+greater flexibility and performance based on the Foswiki:Extensions/LdapContrib package.
 
 ---++ Syntax Rules
 ---+++ LDAP
@@ -75,7 +75,7 @@ Parameters:
    * =include=: regular expression a user's <nop>WikiName must match to be included in the output
    * =exclude=: regular expression a user's <nop>WikiName must not match
    * =hideunknown=: on/off, enable/disable filtering out users that did not log in yet and thus
-     have no hometopic (e.g. created by TWiki:Plugins/NewUsersPlugin), defaults to 'on'
+     have no hometopic (e.g. created by Foswiki:Extensions/NewUsersPlugin), defaults to 'on'
 
 The =format= string may contain the following variables:
    * $percnt: % sign
@@ -153,8 +153,8 @@ This work was partly funded by Spanlink Communications.
 |  19 Jul 2006: | public release |
 |  25 April 2006: | Initial (internal) version |
 |  Perl Version: | 5.8 |
-|  TWiki:Plugins/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
-|  Plugin Home: | TWiki:Plugins/%TOPIC% |
-|  Feedback: | TWiki:Plugins/%TOPIC%Dev |
+|  Foswiki:Extensions/Benchmark: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  Plugin Home: | Foswiki:Extensions/%TOPIC% |
+|  Feedback: | Foswiki:Extensions/%TOPIC%Dev |
 
 -- TWiki:Main/MichaelDaum - 13 Nov 2007

@@ -75,7 +75,7 @@
 
 [[%SCRIPTURLPATH%/rest/PerforcePlugin/p4changes?topic=%WEB%.%TOPIC%&_DEFAULT=-m 10&format=| $changelist | $date | $description | $user | $status | $n][Get changes through REST]]
 
----++ REST and TWiki:Plugins.JQueryPlugin
+---++ REST and Foswiki:Extensions.JQueryPlugin
 
 <!--
 Include the jQuery javascript we need
@@ -94,7 +94,7 @@ Include the jQuery javascript we need
 
 <div style="display: none" id="loaddiv"> empty </div>
 
----++ TWiki:Plugins.JQueryPlugin the easy way
+---++ Foswiki:Extensions.JQueryPlugin the easy way
 
 <verbatim>
 %P4CHANGES{"-l -m 10" format="| $changelist | $date | $description | $user | $status | $n" ajax="ajaxdivid" label="Show my changes"}%
@@ -102,7 +102,7 @@ Include the jQuery javascript we need
 
 %P4CHANGES{"-l -m 10" format="| $changelist | $date | $description | $user | $status | $n" ajax="ajaxdivid" label="Show my changes"}%
 
----++ TWiki:Plugins.JQueryPlugin with header
+---++ Foswiki:Extensions.JQueryPlugin with header
 
 <verbatim>
 %P4CHANGES{"-l -m 10" format="| $changelist | $date | $description | $user | $status | $n" header="| *Changelist* | *Date* | *Description* | *User* | *Status* |$n" ajax="ajaxdivid1" label="Show my changes"}%

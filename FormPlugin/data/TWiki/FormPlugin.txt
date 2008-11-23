@@ -137,7 +137,7 @@ Most parameters are optional. See below for a detailed explanation.
 | =redirectto= | Redirect topic after form action has been performed. Only for scripts that understand the =redirectto= parameter such as =edit= and =save=. Use the =Webname.TopicName= syntax. |- |- | =redirectto="Main.WebHome"= |
 | =formcssclass= | The CSS class of the form container. Use TWiki's =twikiFormSteps= class together with =twikiFormStep= for elements to divide the form in steps. |- |- | =formcssclass="twikiFormSteps"= |
 | =elementcssclass= | The CSS class of the element container. Use TWiki's =twikiFormStep= class to divide the form in steps. |- |- | =elementcssclass="twikiFormStep"= |
-| =noformhtml= | When set to =on= no form html will be written to the page. This is useful to set form parameters for form elements that use a different form, for instance with TWiki:Plugins.CommentPlugin. |- |- | =noformhtml="on"= |
+| =noformhtml= | When set to =on= no form html will be written to the page. This is useful to set form parameters for form elements that use a different form, for instance with Foswiki:Extensions.CommentPlugin. |- |- | =noformhtml="on"= |
 | =onSubmit=  | Function call that is invoked when the user has pressed the submit button of a form. This event happens just before the form is submitted, and your function can return a value of false in order to abort the submission. Note that the function call should include =(this)=. |- |- | =onSubmit="return notify(this)"= |
 
 
@@ -476,7 +476,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Other Dependencies: |- |
 |  Perl Version: | 5.005 |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  [[TWiki:Plugins/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
+|  [[Foswiki:Extensions/Benchmark][Benchmarks]]: | %SYSTEMWEB%.GoodStyle nn%, %SYSTEMWEB%.FormattedSearch nn%, %TOPIC% nn% |
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
