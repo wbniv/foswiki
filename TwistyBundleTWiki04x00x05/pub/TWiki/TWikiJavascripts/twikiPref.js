@@ -238,6 +238,6 @@ twiki.Pref = {
 	},
 
     // Set to true to suppress mandatory field validation on save
-    // (see twiki_edit.js)
+    // (see foswiki_edit.js)
     validateSuppressed : false
 }
