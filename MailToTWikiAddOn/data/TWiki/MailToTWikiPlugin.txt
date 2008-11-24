@@ -79,9 +79,9 @@ The Plugin can be configured by modifying the following configuration variables.
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Contents are:
 	  | *File:* | *Description:* |
 	  | ==bin/mailtotwiki== | Mail handler script |
-	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
-	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
-	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==data/System/%TOPIC%.txt== | Plugin topic |
+	  | ==data/System/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
 
 	* Configure the library path in the ==mailtotwiki== script
 		* Because this script is run from outside the TWiki directory tree, it needs to know where the TWiki ==lib== directory is.  Edit the script and modify the ==use lib== statement to point to the TWiki ==lib== directory.

@@ -98,7 +98,7 @@ __Note:__ You do not need to install anything on the browser to use this contrib
      | *File:* | *Description:* |
      | ==data/TWiki/%TOPIC%.txt== | Contrib topic |
      | ==data/TWiki/%TOPIC%.txt,v== | Contrib topic repository |
-     | ==lib/TWiki/Contrib/%TOPIC%.pm== | Contrib Perl module |
+     | ==lib/Foswiki/Contrib/%TOPIC%.pm== | Contrib Perl module |
      | ==bin/addsection== | add script |
      | ==bin/savesection== | save script |
      | ==templates/editsection.tmpl== |  |

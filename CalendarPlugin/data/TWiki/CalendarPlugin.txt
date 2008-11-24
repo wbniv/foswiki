@@ -363,9 +363,9 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 			* For earlier or later versions where the line number may be different, search for =todayyear=. It currently (v1.22-v1.25) only appears twice: once to declare and set it, once to use it. On the line that uses it, add the =%RED%&& defined $thisday%ENDCOLOR%= as shown above. -- TWiki:Main.AngusRogerson - 16 Aug 2004
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
 	  | *File:* | *Description:* |
-	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
-	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
-	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==data/System/%TOPIC%.txt== | Plugin topic |
+	  | ==data/System/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
 	  | ==pub/TWiki/%TOPIC%/exclam.gif== | Image file |
 	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
 	* Test if the installation was successful:

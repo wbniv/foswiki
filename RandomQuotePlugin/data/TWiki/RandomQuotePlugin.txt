@@ -60,7 +60,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 	  | ==data/%SYSTEMWEB%/%TOPIC%.txt== | Plugin topic |
 	  | ==data/%SYSTEMWEB%/%TOPIC%.txt,v== | Plugin topic repository |
 	  | ==data/Sandbox/NotableQuotes.txt== | Sample quotes |
-	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
 	* Test if the installation was successful:
 %RANDOMQUOTE{}%
 

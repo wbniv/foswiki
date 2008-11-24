@@ -28,15 +28,15 @@ The %SYSTEMWEB%.<nop>TocPluginHelp topic in the installation contains complete h
 	| ==data/TWiki/TocPlugin.txt== | Plugin topic |
 	| ==data/TWiki/TocPluginHelp.txt== | Plugin help |
 	| ==data/TWiki/WebOrder.txt== | Order topic for TWiki web |
-	| ==lib/TWiki/Plugins/TocPlugin.pm== | Plugin Perl module |
-	| ==lib/TWiki/Plugins/TocPlugin/Attrs.pm== | Library component |
-	| ==lib/TWiki/Plugins/TocPlugin/Anchor.pm== | Library component |
-	| ==lib/TWiki/Plugins/TocPlugin/Section.pm== | Library component |
-	| ==lib/TWiki/Plugins/TocPlugin/TOC.pm== | Library component |
-	| ==lib/TWiki/Plugins/TocPlugin/TOCIF.pm== | Library component |
-	| ==lib/TWiki/Plugins/TocPlugin/TopLevelSection.pm== | Library component |
-	| ==lib/TWiki/Plugins/TocPlugin/test.zip== | Test code |
-	| ==lib/TWiki/Plugins/TocPlugin/build.xml== | Ant build file |
+	| ==lib/Foswiki/Plugins/TocPlugin.pm== | Plugin Perl module |
+	| ==lib/Foswiki/Plugins/TocPlugin/Attrs.pm== | Library component |
+	| ==lib/Foswiki/Plugins/TocPlugin/Anchor.pm== | Library component |
+	| ==lib/Foswiki/Plugins/TocPlugin/Section.pm== | Library component |
+	| ==lib/Foswiki/Plugins/TocPlugin/TOC.pm== | Library component |
+	| ==lib/Foswiki/Plugins/TocPlugin/TOCIF.pm== | Library component |
+	| ==lib/Foswiki/Plugins/TocPlugin/TopLevelSection.pm== | Library component |
+	| ==lib/Foswiki/Plugins/TocPlugin/test.zip== | Test code |
+	| ==lib/Foswiki/Plugins/TocPlugin/build.xml== | Ant build file |
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory.
 	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
 	* If you see a link here: %REF{topic=TocPluginHelp,type=Section,name=installation}% then installation was successful

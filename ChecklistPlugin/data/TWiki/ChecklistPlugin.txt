@@ -369,12 +369,12 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 	1 %X% if you upgrade this plugin it is a good idea to backup your old plugin setups, e.g.: ==cp data/TWiki/%TOPIC%.txt data/TWiki/%TOPIC%Old.txt== 
 	1 Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
 	  | *File:* | *Description:* |
-	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/System/%TOPIC%.txt== | Plugin topic |
 	  | ==data/TWiki/VarCHECKLIST.txt== | documentation |
 	  | ==data/TWiki/VarCHECKLISTSTART.txt== | documentation |
 	  | ==data/TWiki/VarCHECKLISTEND.txt== | documentation |
 	  | ==data/TWiki/VarCLI.txt== | documentation | 
-	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
 	  | ==pub/TWiki/%TOPIC%/itemstatechange.js== | <nop>JavaScript/AJAX module |
 	1 Linux/UNIX: Don't forget to change owner of data/TWiki/%TOPIC%.txt to your WWW server uid/gid (e.g: chown wwwrun:wwwrun ...).
 	1 Configure the Plugin:

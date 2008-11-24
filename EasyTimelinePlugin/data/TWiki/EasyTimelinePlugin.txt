@@ -827,8 +827,8 @@ These instructions assume that the ploticus executable is already installed. Bot
    * Unzip/Untar ==%TOPIC%.zip/tgz== in your twiki installation directory. Contents:
      | *File:* | *Description:* |
      | ==EasyTimelinePlugin_installer.pl== | Installer script |
-     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
-     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+     | ==data/System/%TOPIC%.txt== | Plugin topic |
+     | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
      | ==tools/EasyTimeline.pl== | Mediawiki Easytimeline script (provided for convenience)|
      | ==pub/TWiki/%TOPIC%/*== | Images for plugin topic, and zipped-up mirror of home page |
    * Run the installer script. 

@@ -200,10 +200,10 @@ And send me a patch if you've coded that into TWiki ;).
      | ==data/_BlogPlugin/*.txt== | blog template web |
      | ==data/Main/BlogAdminGroup.txt== | blog admin group |
      | ==data/Main/BlogAuthorGroup.txt== | blog author group |
-     | ==lib/TWiki/Plugins/%TOPIC%.pm== | plugin perl module |
-     | ==lib/TWiki/Plugins/%TOPIC%/Core.pm== | plugin core module |
-     | ==lib/TWiki/Plugins/%TOPIC%/Factory.pm== | rest interface for the <nop>BlogFactory |
-     | ==lib/TWiki/Plugins/%TOPIC%/WebDB.pm== | <nop>WebDB implementation for the <nop>DBCachePlugin |
+     | ==lib/Foswiki/Plugins/%TOPIC%.pm== | plugin perl module |
+     | ==lib/Foswiki/Plugins/%TOPIC%/Core.pm== | plugin core module |
+     | ==lib/Foswiki/Plugins/%TOPIC%/Factory.pm== | rest interface for the <nop>BlogFactory |
+     | ==lib/Foswiki/Plugins/%TOPIC%/WebDB.pm== | <nop>WebDB implementation for the <nop>DBCachePlugin |
    * Open the TWiki [[%SCRIPTURL{"configure"}%][configuration]] dialog,
      enable the plugin and change the <nop>PluginsOrder to 
      _<nop>GluePlugin, <nop>SpreadSheetPlugin, <nop>IfDefinedPlugin, <nop>AliasPlugin_

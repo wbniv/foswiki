@@ -70,10 +70,10 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
    * Download the ZIP file from the Plugin web (see below)
    * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
      | *File:* | *Description:* |
-     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
-     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==data/System/%TOPIC%.txt== | Plugin topic |
+     | ==data/System/%TOPIC%.txt,v== | Plugin topic repository |
      | ==pub/TWiki/%TOPIC%/multieditplugin_example.jgp== |  |
-     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+     | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
      | ==bin/editonesection== |  |
    * Verify access and ownership settings for the new scripts.
    * If you want the editing of included sections to fully work, you need to apply the following patch to =lib/TWiki.pm=. Otherwise the plugin will fail to edit a section included from another topic unless all sections are included from that topic.

@@ -56,7 +56,7 @@ Ths plugin does not use any settings at this time
 Content:
 | *File:* | *Description:* |
 | ==data/TWiki/ExtendedSelectPlugin.txt== | Plugin Topic |
-| ==lib/TWiki/Plugins/ExtendedSelectPlugin.pm== | Plugin Perl Module |
+| ==lib/Foswiki/Plugins/ExtendedSelectPlugin.pm== | Plugin Perl Module |
 
 ---++ Plugin Info
 

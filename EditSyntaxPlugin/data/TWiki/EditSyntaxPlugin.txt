@@ -71,12 +71,12 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
    * Download the ZIP file from the Plugin web (see below)
    * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
      | *File:* | *Description:* |
-     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==data/System/%TOPIC%.txt== | Plugin topic |
      | ==data/TWiki/MediawikiEditSyntaxRegex.txt== | Mediawiki edit syntax converter topic |
      | ==data/TWiki/MediawikiWikiSyntaxSummary.txt== | Mediawiki edit syntax summary topic |
      | ==data/TWiki/MediawikiTextFormattingRules.txt== | Mediawiki edit syntax help topic |
      | ==data/TWiki/MediawikiEditSyntaxTest.txt== | Mediawiki edit syntax test topic |
-     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+     | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
    * Configure the Plugin:
       * TWiki 4.0 and up: Run the [[%SCRIPTURL%/configure%SCRIPTSUFFIX%][configure]] script to enable the Plugin
       * Change the Plugin settings as needed

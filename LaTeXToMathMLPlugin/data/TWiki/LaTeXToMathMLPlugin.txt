@@ -124,10 +124,10 @@ server where TWiki is running.
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
 	  <p></p>
 	  | *File:* | *Description:* |
-	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
-	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==data/System/%TOPIC%.txt== | Plugin topic |
+	  | ==data/System/%TOPIC%.txt,v== | Plugin topic repository |
 	  | ==pub/TWiki/%TOPIC%/xhtml-math11-f.dtd== | XML DTD for XHTML 1.1 and <nop>MathML |
-	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
 	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
 
 	* If your system does not have =itex2MML= on the default path, edit

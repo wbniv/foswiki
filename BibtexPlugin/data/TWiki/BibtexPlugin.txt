@@ -385,11 +385,11 @@ have a look at the bibtool manual page and dig into the =bibtoolrcs= file yourse
 	* Download the .zip or .tgz file from the Plugin web (see below)
 	* extract the plugin files in your twiki installation directory. Content:
 	  | *File:* | *Description:* |
-	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/System/%TOPIC%.txt== | Plugin topic |
 	  | ==data/TWiki/BibtexSearchTemplate.txt== | default query template |
 	  | ==data/TWiki/BibtexSimpleSearchTemplate.txt== | simple query template |
 	  | ==data/TWiki/BibtexSelectTemplate.txt== | expert query template |
-	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
 	  | ==pub/TWiki/BibtexPlugin/sample.bib== | Plugin sample <nop>BibTeX file |
 	  | ==pub/TWiki/BibtexPlugin/style.css== | default style definitions |
 	  | ==pub/TWiki/BibtexPlugin/bibtoolrsc== | bibtool resource file |

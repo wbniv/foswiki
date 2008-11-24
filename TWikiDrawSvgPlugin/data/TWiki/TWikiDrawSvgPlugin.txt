@@ -56,8 +56,8 @@ No settings necessary.
    | ==data/Plugins/%TOPIC%.txt== | Plugin topic |
    | ==data/Plugins/ReadMe-%TOPIC%.txt== | A small introduction to this new Plugin |
    | ==templates/twikidrawsvg.tmpl== | Applet page template |
-   | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
-   | ==lib/TWiki/Plugins/%TOPIC%/source.zip== | Java sources |
+   | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+   | ==lib/Foswiki/Plugins/%TOPIC%/source.zip== | Java sources |
    | ==pub/Plugins/%TOPIC%/twikidrawsvg.jar== | JAR file |
    | ==pub/Plugins/%TOPIC%/example.gif== | Example file |
    | ==pub/Plugins/%TOPIC%/example.gif,v== | Example file |

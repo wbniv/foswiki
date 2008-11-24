@@ -25,9 +25,9 @@ There's a PingBackClient for testing. See also the PingBackManager.
      | *File:* | *Description:* |
      | ==data/TWiki/%TOPIC%.txt== | plugin topic |
      | ==data/TWiki/PingBackClient.txt== | test client |
-     | ==lib/TWiki/Plugins/%TOPIC%.pm== | plugin perl module |
-     | ==lib/TWiki/Plugins/%TOPIC%/Client.pm== | client module |
-     | ==lib/TWiki/Plugins/%TOPIC%/Core.pm== | core perl module |
+     | ==lib/Foswiki/Plugins/%TOPIC%.pm== | plugin perl module |
+     | ==lib/Foswiki/Plugins/%TOPIC%/Client.pm== | client module |
+     | ==lib/Foswiki/Plugins/%TOPIC%/Core.pm== | core perl module |
    * Optionally, run ==%TOPIC%_installer.pl== to automatically check and
      install other TWiki modules that this module depends on. You can also do
      this step manually.

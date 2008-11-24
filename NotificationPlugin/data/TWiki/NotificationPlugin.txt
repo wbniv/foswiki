@@ -76,9 +76,9 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 	* Download the ZIP file from the Plugin web (see below)
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
 	  | *File:* | *Description:* |
-	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/System/%TOPIC%.txt== | Plugin topic |
 	  | ==data/TWiki/NotificationPluginListTemplate.txt== | Template for <nop>NotifyList topics |
-	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
 	  | ==bin/mailnotify-NP== | Perl script for sending regular notifications (could be put in cron)<br>You can rename it if you need old notifications |
 	  | ==bin/changenotify== | Perl script for changing notifications using NTF variable |
 	  | ==templates/htmlchanges.tmpl== | Template for generating HTML mails with notifications |

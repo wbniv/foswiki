@@ -130,14 +130,14 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
    * Download the ZIP file from the Plugin web (see below)
    * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
      | *File:* | *Description:* |
-     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
-     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==data/System/%TOPIC%.txt== | Plugin topic |
+     | ==data/System/%TOPIC%.txt,v== | Plugin topic repository |
      | ==data/TWiki/%TOPIC%Photoarchive.txt== | Plugin test photoarchive topic |
      | ==data/TWiki/%TOPIC%Photoarchive.txt,v== | Plugin test photoarchive topic repository |
      | ==data/TWiki/%TOPIC%Photoarchive/testimage.jpg== | Attached test image |
      | ==data/TWiki/%TOPIC%Photoarchive/testimage.jpg,v== | Attached test image repository |
      | ==pub/TWiki/%TOPIC%== | Directory for future plugin internal data (empty) |
-     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+     | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
    * (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
    * Test if the installation was successful:
       * You see here a sample image included with ==%<nop>PHOTOARCHIVEPLUGINRANDOM%==

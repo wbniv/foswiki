@@ -419,8 +419,8 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>T
    0 Download the zip file.
    0 Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
      | *File:* | *Description:* |
-     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
-     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+     | ==data/System/%TOPIC%.txt== | Plugin topic |
+     | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
      | ==pub/TWiki/%TOPIC%/dtree.css== | part of dtree |
      | ==pub/TWiki/%TOPIC%/dmenu.css== | Menu CSS  |
      | ==pub/TWiki/%TOPIC%/smenu.css== | Nicer menu CSS |

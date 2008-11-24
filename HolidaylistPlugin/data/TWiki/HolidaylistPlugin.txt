@@ -307,9 +307,9 @@ The syntax follows that of the !CalendarPlugin. See Foswiki:Extensions.CalendarP
 	* Download the ZIP file from the Plugin web (see below)
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
 | *File:* | *Description:* |
-| ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+| ==data/System/%TOPIC%.txt== | Plugin topic |
 | ==data/TWiki/VarHOLIDAYLIST.txt== | Documentation |
-| ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+| ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
 | ==pub/TWiki/%TOPIC%/example.gif== | Example image |
 	* Test if the plugin is correctly installed: Copy the example above into a new topic and change the year number to the current year.
 

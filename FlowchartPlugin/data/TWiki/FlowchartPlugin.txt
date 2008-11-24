@@ -118,11 +118,11 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 	* Download the ZIP file from the Plugin web (see below)
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
      | *File:* | *Description:* |
-     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
-     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==data/System/%TOPIC%.txt== | Plugin topic |
+     | ==data/System/%TOPIC%.txt,v== | Plugin topic repository |
      | ==data/TWiki/FlowchartPluginExample.txt== | Plugin Example |
      | ==data/TWiki/FlowchartPluginExample.txt,v== | Plugin Example repository |
-     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+     | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
      | ==pub/TWiki/FlowchartPluginExample/flowchart_FlowchartPluginExample.png== | The example image to show |
      | ==pub/TWiki/FlowchartPluginExample/flowchart_FlowchartPluginExample.svg== | The example base SVG |
      | ==pub/TWiki/FlowchartPluginExample/flowchartMapImg_FlowchartPluginExample.txt== | The example map file |

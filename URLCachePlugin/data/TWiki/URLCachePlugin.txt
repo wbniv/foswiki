@@ -41,7 +41,7 @@ __Note:__ These instructions are for the TWiki maintainer. No changes to your br
 	* Download the ZIP file from the Plugin web (see below). Contents:
 	| *File:* | *Description:* |
 	| ==data/TWiki/URLCachePlugin.txt== | Plugin topic |
-	| ==lib/TWiki/Plugins/URLCachePlugin.pm== | Plugin Perl module |
+	| ==lib/Foswiki/Plugins/URLCachePlugin.pm== | Plugin Perl module |
 
 	* Unzip ==URLCachePlugin.zip== in your twiki installation directory.
 	* If you have some webs that you do not want to use the cache for, set them in the =IGNORE= setting in this topic.

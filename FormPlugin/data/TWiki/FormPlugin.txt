@@ -450,8 +450,8 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
      | *File:* | *Description:* |
      | ==data/TWiki/FormPlugin.txt== | Plugin topic |
      | ==data/Sandbox/FormPluginExamples.txt== | Working examples |
-     | ==lib/TWiki/Plugins/FormPlugin.pm== | Plugin Perl module |
-     | ==lib/TWiki/Plugins/FormPlugin/Validate.pm== | Plugin Perl module for form validation |
+     | ==lib/Foswiki/Plugins/FormPlugin.pm== | Plugin Perl module |
+     | ==lib/Foswiki/Plugins/FormPlugin/Validate.pm== | Plugin Perl module for form validation |
      | ==pub/TWiki/FormPlugin/formplugin.css== | Style Sheet  |
      | ==pub/TWiki/FormPlugin/error.gif== | Error icon  |
 

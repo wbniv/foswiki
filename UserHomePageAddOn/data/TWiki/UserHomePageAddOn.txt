@@ -25,7 +25,7 @@ __Note:__ You do not need to install anything on the browser to use this add-on.
 	* Download the ZIP file from the Add-on Home (see below)
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
 	  | *File:* | *Description:* |
-	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/System/%TOPIC%.txt== | Plugin topic |
 	  | ==bin/userhomepage== | Add-on script |
 	* Require authentification for the ==userhomepage== script. e.g, in apache, edit the
 	  ==bin/.htaccess== file to add: <tt>

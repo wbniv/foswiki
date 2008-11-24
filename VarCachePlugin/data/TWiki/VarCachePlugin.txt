@@ -59,11 +59,11 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 	* Download the ZIP file from the Plugin web (see below)
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
 	  | *File:* | *Description:* |
-	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
-	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==data/System/%TOPIC%.txt== | Plugin topic |
+	  | ==data/System/%TOPIC%.txt,v== | Plugin topic repository |
 	  | ==data/TWiki/%TOPIC%Test.txt== | Plugin test topic |
 	  | ==data/TWiki/%TOPIC%Test.txt,v== | Plugin test topic repository |
-	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
 	  | ==pub/TWiki/%TOPIC%/cachetopic.gif== | Cache icon 16x16 |
 	* TWiki 4.0 and up: Run the [[%SCRIPTURL%/configure%SCRIPTSUFFIX%][configure%SCRIPTSUFFIX%]] script to enable the Plugin
 	* Test if the installation was successful:

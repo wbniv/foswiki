@@ -66,9 +66,9 @@ __Note:__ You do not need to install anything on your browser to use this plugin
 	* Download the ZIP file from the Plugin web (see below)
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
 	  | *File:* | *Description:* |
-	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
-	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
-	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==data/System/%TOPIC%.txt== | Plugin topic |
+	  | ==data/System/%TOPIC%.txt,v== | Plugin topic repository |
 	  | ==pub/TWiki/BarcodePlugin/example_0.png== | Sample =barcode= image |
 	  | ==pub/TWiki/BarcodePlugin/example_1.png== | Sample =barcode= image|
 	  | ==pub/TWiki/BarcodePlugin/example_0.png,v== | Sample =barcode= repository |

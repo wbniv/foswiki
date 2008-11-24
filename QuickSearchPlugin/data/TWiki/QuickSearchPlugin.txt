@@ -58,7 +58,7 @@ Formatting is based on a template (quicksearch.tmpl) where the only fields updat
 
 	| *File:* | *Description:* |
 	| ==data/Plugins/%TOPIC%.txt== | Plugin topic |
-	| ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	| ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
 	| ==twiki/templates/quicksearch.tmpl== | Template for generating topic lists mode |
 
 

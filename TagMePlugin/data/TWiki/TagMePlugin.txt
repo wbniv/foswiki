@@ -362,13 +362,13 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 	* Download the ZIP file from the Plugin web (see below)
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
 	  | *File:* | *Description:* |
-	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/System/%TOPIC%.txt== | Plugin topic |
 	  | ==data/TWiki/TagMeViewAllTags.txt== | Supporting topic to view all tags |
 	  | ==data/TWiki/TagMeViewMyTags.txt== | Supporting topic to view my tags |
 	  | ==data/TWiki/TagMeSearch.txt== | Supporting topic to search for tagged topics |
 	  | ==data/TWiki/TagMeManage.txt== | Supporting topic to create new tags |
 	  | ==data/TWiki/TagMeDebug*.txt== | Supporting topics for debug |
-	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
 	  | ==pub/TWiki/%TOPIC%/*.gif== | Icon files |
 	  | ==templates/view.tagme.tmpl== | Template containing GUI components |
 	* Configure and enable the Plugin:

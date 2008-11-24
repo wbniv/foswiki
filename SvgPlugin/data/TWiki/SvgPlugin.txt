@@ -48,9 +48,9 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 	* Download the ZIP file from the Plugin web (see below)
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
      | *File:* | *Description:* |
-     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
-     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
-     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+     | ==data/System/%TOPIC%.txt== | Plugin topic |
+     | ==data/System/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
      | ==pub/%WEB%/%TOPIC%/TWikiBrasil.svg== | Sample drawing |
      | ==pub/%WEB%/%TOPIC%/TWikiBrasil-320-200.png== | Sample picture |
      | ==pub/%WEB%/%TOPIC%/TWikiBrasil-400x300.png== | Sample picture |

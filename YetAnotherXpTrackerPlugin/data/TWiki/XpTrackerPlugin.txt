@@ -184,13 +184,13 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
    * Download the ZIP file from the Plugin web (see below)
    * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
       | ==data/TWiki/XpTrackerPlugin.txt== |  |
-   | ==lib/TWiki/Plugins/XpTrackerPlugin.pm== |  |
-   | ==lib/TWiki/Plugins/XpTrackerPlugin/HiddenTableDef.pm== |  |
-   | ==lib/TWiki/Plugins/XpTrackerPlugin/WebDB.pm== |  |
+   | ==lib/Foswiki/Plugins/XpTrackerPlugin.pm== |  |
+   | ==lib/Foswiki/Plugins/XpTrackerPlugin/HiddenTableDef.pm== |  |
+   | ==lib/Foswiki/Plugins/XpTrackerPlugin/WebDB.pm== |  |
    | ==templates/oopstimesheet.tmpl== |  |
    | ==templates/oopstimesheetreport.tmpl== |  |
-   | ==lib/TWiki/Plugins/XpTrackerPlugin/build.pl== |  |
-   | ==lib/TWiki/Plugins/XpTrackerPlugin/Business.pm== |  |
+   | ==lib/Foswiki/Plugins/XpTrackerPlugin/build.pl== |  |
+   | ==lib/Foswiki/Plugins/XpTrackerPlugin/Business.pm== |  |
    | ==data/_default_XpTracker/PatternSkinTrackingviewTemplate.txt== |  |
    | ==data/_default_XpTracker/PatternSkinTrackingeditTemplate.txt== |  |
    | ==data/_default_XpTracker/PatternSkinTrackinggenericviewTemplate.txt== |  |

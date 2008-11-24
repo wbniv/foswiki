@@ -23,7 +23,7 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>T
    * Unzip ==%TOPIC%.zip== in your root ($TWIKI_ROOT) directory. Content:
    | *File:* | *Description:* |
    | ==data/TWiki/%TOPIC%.txt== |  |
-   | ==lib/TWiki/Plugins/%TOPIC%.pm== |  |
+   | ==lib/Foswiki/Plugins/%TOPIC%.pm== |  |
 
    * Optionally, if it exists, run ==%TOPIC%_installer== to automatically check and install other TWiki modules that this module depends on. You can also do this step manually.
    * Alternatively, manually make sure the dependencies listed in the table below are resolved.

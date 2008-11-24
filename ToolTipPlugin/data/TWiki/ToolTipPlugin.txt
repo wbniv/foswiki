@@ -81,8 +81,8 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
    * Download the ZIP file from the Plugin web (see below)
    * Unzip *%TOPIC%.zip* in your twiki installation directory. Content:
 | *File:* | *Description:* |
-| ==data/TWiki/%TOPIC%.txt== | Plugin topic |
-| ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+| ==data/System/%TOPIC%.txt== | Plugin topic |
+| ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
 | ==pub/TWiki/ToolTipPlugin/ToolTipBackground.jpg== | sample image |
 | ==pub/TWiki/ToolTipPlugin/ToolTipPhoto.gif== | sample image |
 | ==pub/TWiki/ToolTipPlugin/wz_tooltip.js== | wz tooltip library |

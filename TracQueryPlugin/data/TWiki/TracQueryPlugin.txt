@@ -92,9 +92,9 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
    * Download the ZIP file from the Plugin web (see below)
    * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
      | *File:* | *Description:* |
-     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module. |
+     | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module. |
      | ==data/TWiki/%TOPIC%.txt== | Plugin topic. |
-     | ==lib/TWiki/Plugins/%TOPIC%/Config.spec== | Configuration specification file. |
+     | ==lib/Foswiki/Plugins/%TOPIC%/Config.spec== | Configuration specification file. |
    * Configure and enable the Plugin:
       * TWiki 4.0 and up: Run the [[%SCRIPTURL%/configure%SCRIPTSUFFIX%][configure]] script to enable the Plugin
       * Configure the settings for the trac database. Select the type of data base (SQLite or !MySQL), and enter the appropriate settings. If your data base requires that a user is defined for access, configure =TRAC_USER= and =TRAC_PASSWD=. It might be best to give this user only read-only permissions, via the trac permission settings.

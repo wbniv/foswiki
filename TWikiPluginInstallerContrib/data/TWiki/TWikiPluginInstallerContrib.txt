@@ -95,7 +95,7 @@ Settings are stored as preferences variables. To reference a setting write ==%<n
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
 	| *File:* | *Description:* |
 	| ==data/TWiki/TWikiPluginInstallerContrib.txt== | Plugin doc page |
-	| ==lib/TWiki/Contrib/TWikiPluginInstallerContrib.pm== | Plugin Perl module  |
+	| ==lib/Foswiki/Contrib/TWikiPluginInstallerContrib.pm== | Plugin Perl module  |
 	| ==TWikiPluginInstallerContrib_installer.pl== | Install script |
 
 	* Run ==%TOPIC%_installer== to automatically check and install other modules that this module depends on. You can also do this step manually. Dependencies:

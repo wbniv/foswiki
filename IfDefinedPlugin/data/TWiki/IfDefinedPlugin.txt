@@ -164,8 +164,8 @@ and allows more complex <nop>TWikiMarkup in the then/else branches.
    * [[http://twiki.org/p/pub/Plugins/%TOPIC%/%TOPIC%.zip][Download]] the ZIP file
    * Unzip it in your twiki installation directory. Content: 
    | *File:* | *Description:* |
-   | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
-   | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+   | ==data/System/%TOPIC%.txt== | Plugin topic |
+   | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
    * (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
 
 ---++ Plugin Info

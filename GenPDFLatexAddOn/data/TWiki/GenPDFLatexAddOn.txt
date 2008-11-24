@@ -76,8 +76,8 @@ __Note:__ You do not need to install anything on the browser to use this add-on.
         | ==data/TWiki/GenPDFLatexPlugin.txt== | The Plugin topic |
         | ==data/Main/GenPDFLatexForm.txt== | form listing file generation options |
         | ==bin/genpdflatex== | Add-on script |
-        | ==lib/TWiki/Contrib/GenPDFLatex.pm== | the perl code package module |
-        | ==lib/TWiki/Plugins/GenPDFLatexPlugin.pm== | code for conditional content rendering |
+        | ==lib/Foswiki/Contrib/GenPDFLatex.pm== | the perl code package module |
+        | ==lib/Foswiki/Plugins/GenPDFLatexPlugin.pm== | code for conditional content rendering |
       * if using server authentication, add the =genpdflatex= file to the .htaccess permission list in the =twiki/bin= directory
       * in <nop>GenPDFLatex.pm, declare the =pdflatex= executable path and the =$ENV{'HOME'}= variables, if needed.
       * Set up the pdflatex generation form. Note, this form topic is _optional_.  If no form is declared, the cgi script will use a default form which can be modified by the administrator instead.

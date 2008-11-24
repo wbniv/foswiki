@@ -177,8 +177,8 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 	* "Edit" this topic and copy & paste the wiki text into your own site.
 	* Verify the created files exist in your twiki installation directory. Content:
 	  | *File:* | *Description:* |
-	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
-	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==data/System/%TOPIC%.txt== | Plugin topic |
+	  | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
 	* Test if the installation was successful:
 		* Currently active plugins are: %ACTIVATEDPLUGINS%
 		* Calendars should appear below.

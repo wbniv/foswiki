@@ -465,8 +465,8 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
 	  | *File:* | *Description:* |
 	  | ==XmlQueryPlugin_install.pl== | Script to check installed Perl Modules |
-	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
-	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==data/System/%TOPIC%.txt== | Plugin topic |
+	  | ==data/System/%TOPIC%.txt,v== | Plugin topic repository |
 	  | ==data/TWiki/%TOPIC%Recipe1== | Plugin Example |
 	  | ==data/TWiki/%TOPIC%Recipe2== | Plugin Example |
 	  | ==data/TWiki/%TOPIC%Recipe3== | Plugin Example |
@@ -474,7 +474,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 	  | ==data/TWiki/%TOPIC%Recipe5== | Plugin Example |
 	  | ==data/TWiki/%TOPIC%Recipe6== | Plugin Example |
 	  | ==data/TWiki/%TOPIC%Recipe7== | Plugin Example |
-	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
 	* execute the script *<nop>XmlQueryPlugin_install.pl*
 	* Test if the installation was successful:
 		* %TOPIC%Recipe5

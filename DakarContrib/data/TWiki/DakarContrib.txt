@@ -46,7 +46,7 @@ To use it in your plugin code proceed as follows.
    * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content: 
    | *File:* | *Description:* |
    | ==data/TWiki/%TOPIC%.txt== | contrib topic |
-   | ==lib/TWiki/Contrib/%TOPIC%.pm== | perl module |
+   | ==lib/Foswiki/Contrib/%TOPIC%.pm== | perl module |
 
 ---++ Contrib Info
 

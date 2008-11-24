@@ -38,9 +38,9 @@ I'm a C/PHP/Bash programmer not a Perl one, so there is probably a lot of bugs :
 	* Download the tarball file from the Plugin web (see below)
 	* Untar ==%TOPIC%.tgz== in your twiki installation directory. Content:
 	  | *File:* | *Description:* |
-	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+	  | ==data/System/%TOPIC%.txt== | Plugin topic |
 	  | ==data/TWiki/NotifyOnChildModificationForm*.txt== | Plugin form |
-	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
 
 ---++ <nop>%TOPIC% Settings
 

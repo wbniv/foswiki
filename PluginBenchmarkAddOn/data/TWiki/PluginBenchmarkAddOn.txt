@@ -39,7 +39,7 @@ Instructions for TWiki plugin authors:
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
 	  | *File:* | *Description:* |
 	  | ==data/TWiki/%TOPIC%.txt== | Add-on topic |
-	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==data/System/%TOPIC%.txt,v== | Plugin topic repository |
 	  | ==bin/pluginbenchmark== | Benchmark utility script |
 	* Install CPAN:Time::HiRes if needed:
 		* Run the pluginbenchmark utility from the shell without parameters, it will tell you if Time::HiRes is installed or not.

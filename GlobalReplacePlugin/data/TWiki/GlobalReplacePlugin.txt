@@ -59,15 +59,15 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 	* Download the ZIP file from the Plugin web (see below)
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
 	  | *File:* | *Description:* |
-	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
-	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==data/System/%TOPIC%.txt== | Plugin topic |
+	  | ==data/System/%TOPIC%.txt,v== | Plugin topic repository |
 	  | ==data/TWiki/GlobalSearchAndReplace.txt== | Search replace form topic |
 	  | ==data/TWiki/GlobalSearchAndReplace.txt,v== | Its repository |
 	  | ==data/TWiki/GlobalSearchAndReplaceHelp.txt== | Help topic |
 	  | ==data/TWiki/GlobalSearchAndReplaceHelp.txt,v== | Its repository |
 	  | ==data/TWiki/GlobalSearchAndReplaceTopics.txt== | Replace result topic |
 	  | ==data/TWiki/GlobalSearchAndReplaceTopics.txt,v== | Its repository |
-	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
 	  | ==pub/TWiki/Plugins/GlobalSearchAndReplaceHelp/GSR.gif== | Screenshot |
 	* Test if the installation was successful:
 		* Plugin is installed if the following variable shows "installed": %GLOBALREPLACE{func="check"}%

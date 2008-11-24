@@ -98,11 +98,11 @@ This is a list of all the tags available. These tags can be placed at relevant p
 	* the default ZIP installs in the TWiki common directory. it is advisable to create a separate web for the project planner and copy the Template files to that directory.
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
 | *File:* | *Description:* | 
-| ==data/TWiki/%TOPIC%.txt== | Plugin topic | 
+| ==data/System/%TOPIC%.txt== | Plugin topic | 
 | ==data/_yourweb_/ProjectTemplate.txt== | Page template for project |
 | ==data/_yourweb_/PlanTemplate.txt== | Page template for a plan |
 | ==data/_yourweb_/NewPageError.txt== | Page displayed when a new page creation operation failed |
-| ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module | 
+| ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module | 
 	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
  
 *NOTE*: The <nop>ProjectTemplate.txt and <nop>PlanTemplate.txt files need to be copied to the appropriate _yourweb_ web or you will see a blank page when you create the Project from the PPALLPROJECTS tagged page.

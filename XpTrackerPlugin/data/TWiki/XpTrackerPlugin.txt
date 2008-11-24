@@ -114,7 +114,7 @@ __Note:__ You do not need to install anything on the browser to use this Plugin.
 
 Content:
 | *File:* | *Description:* | 
-| ==data/TWiki/%TOPIC%.txt== | Plugin topic | 
+| ==data/System/%TOPIC%.txt== | Plugin topic | 
 | ==data/Tracking/WebHome.txt== | Home page for XP tracking web |
 | ==data/Tracking/SetupHowto.txt== | Help page - how to set up tracking for a project|
 | ==data/Tracking/TrackingIntro.txt== | Help page - Introduction to web layout |
@@ -131,8 +131,8 @@ Content:
 | ==data/Tracking/XpShowWindowScript.txt== | A utility javascript to show a topic in a new window |
 | ==data/Tracking/XpStoryTemplate.txt== | New Story template |
 | ==data/Tracking/XpTeamTemplate.txt== | New Team Template |
-| ==lib/TWiki/Plugins/%TOPIC%.pm== | Main plugin Perl module | 
-| ==lib/TWiki/Plugins/Xp/*.pm== | plugin Perl submodules | 
+| ==lib/Foswiki/Plugins/%TOPIC%.pm== | Main plugin Perl module | 
+| ==lib/Foswiki/Plugins/Xp/*.pm== | plugin Perl submodules | 
 | ==pub/TWiki/%TOPIC%/sorttable.js== | javascript used to sort tables on the client side | 
 	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
 

@@ -110,9 +110,9 @@ __Note:__ You do not need to install anything on the browser to use this add-on.
    * Download the archive from the Plugin Home (see below)
    * Unpack the archive in your twiki installation directory. Content:
      | *File:* | *Description:* |
-   | ==lib/TWiki/Plugins/ExcelImportExportPlugin.pm== |  |
-   | ==lib/TWiki/Plugins/ExcelImportExportPlugin/Import.pm== |  |
-   | ==lib/TWiki/Plugins/ExcelImportExportPlugin/Export.pm== |  |
+   | ==lib/Foswiki/Plugins/ExcelImportExportPlugin.pm== |  |
+   | ==lib/Foswiki/Plugins/ExcelImportExportPlugin/Import.pm== |  |
+   | ==lib/Foswiki/Plugins/ExcelImportExportPlugin/Export.pm== |  |
    | ==data/TWiki/ExcelImportExportPlugin.txt== |  |
    | ==bin/excel2topics== |  |
    | ==bin/topics2excel== |  |

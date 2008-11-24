@@ -35,8 +35,8 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>S
 	* Download the ZIP file from the Plugin web (see below)
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
 | *File:* | *Description:* | 
-| ==data/TWiki/%TOPIC%.txt== | Plugin topic | 
-| ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module | 
+| ==data/System/%TOPIC%.txt== | Plugin topic | 
+| ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module | 
 | ==lib/bin/digisign== | Support script |
 | ==templates/oopsgeneric.tmpl_twiki40== | Rename to ==templates/oopsgeneric.tmpl== if you are using a TWiki 4.0 installation |
 | ==templates/oopsgeneric.pattern.tmpl_twiki40== | Rename to ==templates/oopsgeneric.pattern.tmpl== if you are using a TWiki 4.0 installation |

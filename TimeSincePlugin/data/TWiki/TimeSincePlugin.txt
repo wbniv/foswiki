@@ -95,8 +95,8 @@ Format strings may contain the following:
    * Unzip it in your twiki installation directory. Content: 
      | *File:* | *Description:* |
      | ==data/TWiki/%TOPIC%.txt== | plugin topic |
-     | ==lib/TWiki/Plugins/%TOPIC%.pm== | plugin perl module |
-     | ==lib/TWiki/Plugins/%TOPIC%/Core.pm== | plugin core |
+     | ==lib/Foswiki/Plugins/%TOPIC%.pm== | plugin perl module |
+     | ==lib/Foswiki/Plugins/%TOPIC%/Core.pm== | plugin core |
    * (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
 
 ---++ Plugin Info

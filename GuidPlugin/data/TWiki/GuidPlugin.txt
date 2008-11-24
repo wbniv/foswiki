@@ -35,9 +35,9 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 	* Download the files below
 	* Put them as follows
      | *File:* | *Description:* |
-     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
-     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
-     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+     | ==data/System/%TOPIC%.txt== | Plugin topic |
+     | ==data/System/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
 	* Test if the plugin is correctly installed:
 		* %<nop>GUID_ID%: %GUID_ID%
 		* %<nop>GUID_ID{type="str"}%: %GUID_ID{type="str"}%

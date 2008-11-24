@@ -60,7 +60,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
    * Unzip ==LightboxPlugin.zip== in the root of your twiki installation %BR% Content:
      | *File:* | *Description:* |
      | ==data/TWiki/LightboxPlugin.txt== | plugin description |
-     | ==lib/TWiki/Plugins/LightboxPlugin.pm== | plugin perl code |
+     | ==lib/Foswiki/Plugins/LightboxPlugin.pm== | plugin perl code |
      | ==pub/TWiki/LightboxPlugin/lightbox.css== | stylesheet |
      | ==pub/TWiki/LightboxPlugin/lightbox.js== | javascript |
      | ==pub/TWiki/LightboxPlugin/blank.gif== | empty image   |

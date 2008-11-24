@@ -260,12 +260,12 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
    * Install the required Perl modules (Date::Calc and POSIX), e.g: perl -MCPAN -e "install Date::Calc"
    * Unzip ==%TOPIC%.zip== in your twiki installation directory. Do not forget to change file permissions. Content:
      | *File:* | *Description:* |
-     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
+     | ==data/System/%TOPIC%.txt== | Plugin topic |
      | ==data/TWiki/VarTIMETABLE.txt== | Documentation |
      | ==data/TWiki/VarTTCM.txt== | Documentation |
      | ==data/TWiki/VarTTTOPICSETUP.txt== | Documentation |
-     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
-     | ==lib/TWiki/Plugins/%TOPIC%/TimeTable.pm== | Plugin Perl library |
+     | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+     | ==lib/Foswiki/Plugins/%TOPIC%/TimeTable.pm== | Plugin Perl library |
      | ==pub/TWiki/%TOPIC%/timetabletooltips.js== | <nop>JavaScript library |
      | ==pub/TWiki/%TOPIC%/example.png== | example image 1 |
      | ==pub/TWiki/%TOPIC%/example2.png== | example image 2 |

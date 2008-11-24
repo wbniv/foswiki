@@ -21,13 +21,13 @@ at the top of the XML document where SablotronXsl is the name of the stylesheet 
 	* Download the ZIP file from the Plugin web (see below)
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
 	  | *File:* | *Description:* |
-	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
-	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==data/System/%TOPIC%.txt== | Plugin topic |
+	  | ==data/System/%TOPIC%.txt,v== | Plugin topic repository |
 	  | ==data/TWiki/SablotronXsl.txt== | Sample stylesheet |
 	  | ==data/TWiki/SablotronXsl.txt,v== | Sample stylesheet repository |
 	  | ==data/TWiki/SablotronXml.txt== | Sample XML document |
 	  | ==data/TWiki/SablotronXml.txt,v== | Sample XML repository |
-	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
 	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
 	* Check SablotronXml if %TOPIC% shows up in the list of activated plugins: %ACTIVATEDPLUGINS%
 

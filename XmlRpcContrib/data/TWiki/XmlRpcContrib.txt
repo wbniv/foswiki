@@ -103,8 +103,8 @@ and returns the formatted error response.
    | *File:* | *Description:* |
    | ==bin/xmlrpc== | server cgi |
    | ==data/TWiki/XmlRpcContrib.txt== | contrib topic |
-   | ==lib/TWiki/Contrib/XmlRpcContrib.pm== | perl module |
-   | ==lib/TWiki/Contrib/XmlRpcContrib/Server.pm== | server module |
+   | ==lib/Foswiki/Contrib/XmlRpcContrib.pm== | perl module |
+   | ==lib/Foswiki/Contrib/XmlRpcContrib/Server.pm== | server module |
    * possibly enable/secure the xmlrpc in =bin/.htaccess= so that it gets
      recognized as a cgi script at least
 
