@@ -1,16 +1,16 @@
 ---+ Public Cache Add-On
 <table align='right'><tr><td bgcolor='#eeeeee'>%TOC%</table>
-Makes TWiki surviving being  
+Makes Foswiki surviving being  
 [[http://en.wikipedia.org/wiki/Slashdot_effect][Slashdotted]]
 - serves pages 100 times faster.
 ---++ Goals
 I made this addon for people (like me) wanting to have their personal (or
-small group) *public web site* on a TWiki. The problems I want to address are
+small group) *public web site* on a Foswiki. The problems I want to address are
 thus the ones important for this scenario:
    * many *more reads* and readers than edits and authors
    * extreme *performance*, serving a page in few 100th of a second.
    * huge *spikes* of visitors, being able to survive a slashdot effect. It 
-     should handle 10000 simultaneous requests on a TWiki topic on a 1Ghz 
+     should handle 10000 simultaneous requests on a Foswiki topic on a 1Ghz 
      machine. It does this by locking to ensure only one process tries to 
      build a page at a time, reducing tremendously the load on the server, even
      if users use server-hostile techniques like the Fasterfox Firefox
@@ -29,7 +29,7 @@ thus the ones important for this scenario:
    * *no need to reload* manually: it must not break the read/edit/save/read 
      cycle: you must not have to have to
      refresh manually a page to see the edits you just did to it.
-   * *compatible* should work with all TWiki features, options and plugins 
+   * *compatible* should work with all Foswiki features, options and plugins 
      (or most of them: not the ones trying to show
      different things to different people). Most important are features 
      needed to have a "standard web site" feel: hierachical webs, short urls,
@@ -42,7 +42,7 @@ thus the ones important for this scenario:
      all page caches are invalidated eventually, we do not try to be smart,
      just fast).
 
-This caching system has thus different goals than TWiki:Codev/TWikiCache that
+This caching system has thus different goals than Foswiki:Development.FoswikiCache that
 will accelerate even page builds, in an exact and optimal way, but will be
 less slashdot-resistant, and the mod_perl, speedycgi, persistent perl perl
 precompilers that will accelerate all operations. It can be used on top of
@@ -85,7 +85,7 @@ The =pcad= web admin panel can be used interactively or via command-line
 By default, if no human editing happens, the cache of pages never expire. To
 force refresh of pages or webs that change without human editing (for instance
 blog pages showing "Edited N days ago"), you must position the 
-=PUBLIC_CACHE_EXPIRE= TWiki variable to the number of seconds after which the
+=PUBLIC_CACHE_EXPIRE= Foswiki macro to the number of seconds after which the
 cache will be automatically cleared. Note that as this will be performed by the
 next run of the crontab job =pccl=, normally each 3 minutes.
    * =Set PUBLIC_CACHE_EXPIRE = 0= (or undefined, or empty) is the default
@@ -100,14 +100,14 @@ next run of the crontab job =pccl=, normally each 3 minutes.
 Note that including external urls, e.g. 
 =%<nop>INCLUDE{http://some.site/external}%= automatically sets a 
 =PUBLIC_CACHE_EXPIRE= of the default value, if not already set by an 
-explicit declaration. This variable is a normal TWiki variable, so you can use
+explicit declaration. This variable is a normal Foswiki macro, so you can use
 it in a web preferences to set a cache policy to a whole web.
 
 ---++ Add-On Installation Instructions
 
 __Note:__ You do not need to install anything on the browser to use this
 add-on. The following instructions are for the administrator who installs the
-add-on on the server where TWiki is running. 
+add-on on the server where Foswiki is running. 
 
    * Download the TGZ file from the Add-on Home (see below)
    * untar ==%TOPIC%.tgz== where you want, not necessarily in your twiki
@@ -115,7 +115,7 @@ add-on on the server where TWiki is running.
    * =cd twpc=
    * if you are *upgrading from a version before 4.0*,
       * first do a =./uninstall TWIKI_DIR/bin=
-      * in your TWiki site, search for all occurences of =PCACHEEXPTIME= vars,
+      * in your Foswiki site, search for all occurences of =PCACHEEXPTIME= vars,
         and replace them with declarations 
         <br> =* Set PUBLIC_CACHE_EXPIRE = 1= (1, or the previous value =NNN= of
         =%<nop>PCACHEEXPTIME{NNN}%= )
@@ -129,13 +129,13 @@ add-on on the server where TWiki is running.
    * the install script should install a crontab job to perfom regular cache
      clean duty every 3 minutes, as
      <br> =*/3 * * * * test -x TWIKI_DIR/bin/pccl && TWIKI_DIR/bin/pccl=
-   * the install script will install small patches to the TWiki code, in
-     =lib/TWiki.pm=, =lib/TWiki/Func.pm=, and =lib/TWiki/UI/View.pm=. The
+   * the install script will install small patches to the Foswiki code, in
+     =lib/Foswiki.pm=, =lib/Foswiki/Func.pm=, and =lib/Foswiki/UI/View.pm=. The
      patches are clearly surrounded by =#TWikiPublicCacheAddOn_Patch...= 
      comments
-   * If you *update your TWiki* install, or install afterwards the
-     Foswiki:Extensions/NewsPlugin or TWiki:TagMePlugin (or any future plugin
-     calling the =TWiki::Func::saveFile= function,you must re-do an 
+   * If you *update your Foswiki* install, or install afterwards the
+     Foswiki:Extensions/NewsPlugin or System:TagMePlugin (or any future plugin
+     calling the =Foswiki::Func::saveFile= function,you must re-do an 
      =install -u= in order to apply the patches above.
    * To be sure people notified of changes by email will actually see the
      changes if they click on the link in their email, add to the *crontab*
@@ -145,9 +145,9 @@ add-on on the server where TWiki is running.
      <br /> =10 * * * * test -x TWIKI_DIR/bin/pcge && TWIKI_DIR/pcge=
      <br /> to check every hour for uncached pages and build them
 
-Note that the argument can just be TWIKI_DIR if your TWiki perl scripts
+Note that the argument can just be TWIKI_DIR if your Foswiki perl scripts
 dir is in the standard place (as a =bin/= subdirectory), otherwise you must
-give the actual path of your TWiki perl scripts directory.
+give the actual path of your Foswiki perl scripts directory.
 
 To update, or change options, just redo install. This will clear the cache. type =./install -h= to see options, i.e:
    * =-u=    update: reuse the same options as last install (options are stored in =bin/pc-options=)
@@ -159,7 +159,7 @@ To update, or change options, just redo install. This will clear the cache. type
       at least this time to clear (default 150s)
    * =-eseconds= default value for %<nop>PUBLIC_CACHE_EXPIRE% (defaults to 3600)
    * -wWebList=  make pcad build menu and pcge default mode not rebuild 
-     these webs. List is comma-separated. (defaults to -wMain,TWiki,Sandbox,Trash)
+     these webs. List is comma-separated. (defaults to -wMain,System,Sandbox,Trash)
    * =-v=    verbose: logs a lot of things in data/twpc-debug.txt
 
 To uninstall:
@@ -236,20 +236,19 @@ Example for SpeedyCgi under apache:
 </verbatim>
 
 ---+++ Tips
-   * Use robots.txt on your site to prevent browsing the TWiki web. e.g,
-     <br> =Disallow: /bin/view/TWiki=
+   * Use robots.txt on your site to prevent browsing the System web. e.g,
+     <br> =Disallow: /bin/view/System=
      <br> You may want to also disallow access to Main, Sandbox, and Trash.
-     Why? The TWiki web represent often an important (more than 500 pages)
-     part of a TWiki web site. This has the drawback of
+     Why? The System web represent often an important (more than 500 pages)
+     part of a Foswiki web site. This has the drawback of
       * Making search engines produce less relevant results for your site
-        (your personal contents will be diluted into the TWiki docs)
+        (your personal contents will be diluted into the Foswiki docs)
       * Google has a time limit for browsing a site. He may thus only crawl
-        part of your TWiki site on first run and not index your actual content
-      * As the cache will be totally cleared on edits, it means that the TWiki
+        part of your Foswiki site on first run and not index your actual content
+      * As the cache will be totally cleared on edits, it means that the Foswiki
         cache will be re-computed over and over on crawling by search
         engines, consuming needless CPU and bandwidth
-   * Use a perl accelerator: TWiki:Codev/ModPerl, TWiki:Codev/SpeedyCGI or 
-     TWiki:Codev/PersistentPerl
+   * Use a perl accelerator: Mod-Perl, Speedy CGI or Persistent Perl
 
 ---++ Implementation
 I have been toying with this idea for a very long time. At last I sat down
@@ -267,11 +266,11 @@ in the distrib, as well as my TODO list):
      recently) , it just build the page normally via vief and serves it 
      without caching it.
    * the "cache builder", *pcbd* (shell) calls the copy of the original 
-     TWiki view script (named *vief*) to make it build the page, and save 
+     Foswiki view script (named *vief*) to make it build the page, and save 
      it in normal and gzipped versions. If it cannot get it (read-protected 
      page) it saves a marker to remember not trying to build it and 
      directly delegate to vief.
-   * an automatically installed TWiki plugin *PublicCachePlugin* (perl) 
+   * an automatically installed Foswiki plugin *PublicCachePlugin* (perl) 
      installs just an afterSaveHandler hook to track the changes in topics, 
      and save the IP Adress of the client browser that edited the page as a 
      "changer". It also interprets the %<nop>PUBLIC_CACHE_EXPIRE% vars.
@@ -304,17 +303,17 @@ Notes
    * While you edit a page, other people will see the old cached version of the page. This provides a very useful simple "publication workflow" to let you work on a page, not showing draft copies, and auto-showing it after 1000 seconds of inactivity. Also it tries to keep things consistent: either you see everything in the old cached version, or everything fresh. We thus avoid the complexities of solving dependencies between pages.
    * Cached pages have ETags so that the browser will not even re-download
    them if they have not changed.
-   * TWiki code is slightly patched (some lines in TWiki.pm, to set
+   * Foswiki code is slightly patched (some lines in Foswiki.pm, to set
    =%<nop>PUBLIC_CACHE_EXPIRE%= on inclusion of external urls). 
    The patch consists of the lines between
    =#TWikiPublicCacheAddOn_PatchInclude_START= and 
    =#TWikiPublicCacheAddOn_PatchInclude_END= .
-   After a TWiki update, 
+   After a Foswiki update, 
    just reinstall this addon. This patch work with 4.x versions, and
    probably newer ones. But it is just for convenience to avoid putting 
    =Set PUBLIC_CACHE_EXPIRE= by hand on all topics using 
    =%<nop>INCLUDE{external-url}%
-   * If you use TWiki:Codev/ModPerl, TWiki:Codev/SpeedyCGI or TWiki:Codev/PersistentPerl, check that you enable
+   * If you use mod-perl, Speedy CGI or Persistent Perl, check that you enable
      it also for =bin/vief= for better performance, and *disable it for view*, as it
      no more a perl file and will crash your server
    * when clearing a cache, if an executable file named =pc-hook= exists in
@@ -334,7 +333,7 @@ Notes
 Work and tested on
    * linux (or any unix with GNU utilities, but untested)
    * TWiki Cairo, Dakar, Edinburgh, Freetown, ... (3.0 -> 4.2). Should work on
-     any version at it is very disconnected from TWiki perl code. Warning:
+     any version at it is very disconnected from TWiki/Foswiki perl code. Warning:
      Cairo(3.0) is only supported in the version 3.1 of this plugin
    * Changes to pages not resulting from an edit will not be shown
      (e.g. %<nopGMTIME%). Anyways, this is discouraged for server
@@ -365,10 +364,10 @@ Work and tested on
 
 ---++ Performance, benchmarks
 Current performance: (celeron 1Ghz, 512M RAM, Apache 1.3, 150 max processes)
-for 20 simultaneous requests for the same TWiki page:
+for 20 simultaneous requests for the same Foswiki page:
 |*Configuration*|*First run, empty cache*|*2nd run, cache built*|
 | Normal 4.2  | 143s load 20 | 143s load 20 |
-| TWiki:Codev/TWikiCache  | 66s load 12 | 65s load 11 |
+| Foswiki:Development.FoswikiCache  | 66s load 12 | 65s load 11 |
 | Cairo+mod_perl+koalaskin  | 28s load 8 | 18s load 9 |
 | Cairo+speedy+koalaskin | 20s load 6 | 17s load 8 |
 | publiccache -v | 9s load 4 | 0.20s load 0 |
@@ -393,15 +392,15 @@ server load stays around 1.2.
 I ran the simple tests on another server on the LAN the command:
 <br> =i=1000;while let 'i-->0';do curl -s --compressed <nop>http://mytwiki/bin/view/System/Macros >/dev/null& done; time wait=
 
-Note that it does *not* mean this cache is better that  TWiki:Codev/TWikiCache
+Note that it does *not* mean this cache is better that  Foswiki:Development.FoswikiCache
 for all uses. If you just look at the time to load a single page:
 |*Configuration*|*1rst time*|*2nd time*|
 | Normal  | 6s | 6s |
 | Normal+speedy  | 6s | 5.5s |
 | publiccache  | 6s | 0.06s |
-| TWiki:Codev/TWikiCache  | 4.3s | 3.3s |
-| TWiki:Codev/TWikiCache + speedy  | 4.5s | 3s |
-You can see that !TWikiCache will be better suited for intranet sites, and the
+| Foswiki:Development.FoswikiCache  | 4.3s | 3.3s |
+| Foswiki:Development.FoswikiCache + speedy  | 4.5s | 3s |
+You can see that !FoswikiCache will be better suited for intranet sites, and the
 only option if you use access control or have personalized views anyways. And
 my "benchmark" is really braindead and do not model typical use. And it only
 measures the time to send the page. In real life, you will have to wait for
@@ -411,8 +410,8 @@ your browser to get the css, javascript, and image files, and render the page.
 
    * Set SHORTDESCRIPTION = Fast cache geared for public site usage
 
-|  Add-on Author: | TWiki:Main.ColasNahaboo |
-|  Copyright: | &copy; 2008, TWiki:Main.ColasNahaboo |
+|  Add-on Author: | Foswiki:Main.ColasNahaboo |
+|  Copyright: | &copy; 2008, Foswiki:Main.ColasNahaboo |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
 |  Add-on Version: | 12 Apr 2008 (V4.006) |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
@@ -437,7 +436,7 @@ your browser to get the css, javascript, and image files, and render the page.
 |  30 Jan 2008: | v2.1 generate standard twiki logs by default |
 |  29 Jan 2008: | algorithm v2, beta, autoconfig |
 |  13 Jan 2008: | Initial version, v1, alpha |
-|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.020 (TWiki 3.0) |
+|  Foswiki Dependency: | $Foswiki::Plugins::VERSION 1.020 (TWiki 3.0) |
 |  CPAN Dependencies: | LWP::Simple File::Path |
 |  Other Dependencies: | bash, sed, wget, grep, crontab, cc (optional), ... |
 |  Perl Version: | 5.005 |
@@ -447,4 +446,4 @@ your browser to get the css, javascript, and image files, and render the page.
 
 __Related Topic:__ %SYSTEMWEB%.ContributedAddOns
 
--- TWiki:Main/ColasNahaboo
+-- Foswiki:Main/ColasNahaboo

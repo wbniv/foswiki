@@ -5,9 +5,9 @@
 
 ---++ Description
 
-This is a simple utility to keep black sheep away from a public TWiki site. The site can be protected against excessive page access (e.g. by bad robots), suspicious activities of users, such as multiple registrations or rapid topic updates indicating Wiki:WikiSpam, or saving text with wiki-spam.
+This is a simple utility to keep black sheep away from a public Foswiki site. The site can be protected against excessive page access (e.g. by bad robots), suspicious activities of users, such as multiple registrations or rapid topic updates indicating Wiki:WikiSpam, or saving text with wiki-spam.
 
-The Plugin monitors activities by IP address and uses three IP address lists to protect the TWiki site:
+The Plugin monitors activities by IP address and uses three IP address lists to protect the Foswiki site:
 	* WHITELIST: Manually maintained list of users who should never get on the BANLIST
 	* BLACKLIST: Manually maintained list of malicious users
 	* BANLIST: Automatically updated list of users with suspicious activities
@@ -20,7 +20,7 @@ Users on the BLACKLIST and BANLIST will have every page access delayed by one mi
 
 The registration form can also be protected from improper use.
 
-To fight Wiki-spam, the Plugin can also add a =rel="nofollow"= parameter to external URLs. Search engines will not follow links that have this parameter, taking away the incentive to add spam to TWiki.
+To fight Wiki-spam, the Plugin can also add a =rel="nofollow"= parameter to external URLs. Search engines will not follow links that have this parameter, taking away the incentive to add spam to Foswiki.
 
 ---++ Plugin Settings
 
@@ -28,7 +28,7 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
 
 ---+++ General settings
 	* One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
-		* Set SHORTDESCRIPTION = Utility to keep malicious users away from a public TWiki site
+		* Set SHORTDESCRIPTION = Utility to keep malicious users away from a public Foswiki site
 
 	* Debug plugin: (See output in =data/debug.txt=)
 		* Set DEBUG = 0
@@ -103,7 +103,7 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
 ---+++ Registration protection settings
 	* Protect registration: (number of minutes to expire, 15 minutes is recommended, 0 to disable)
 		* Set REGEXPIRE = 0
-		* If enabled, a magic number is protecting the registration process. TWiki expects a form field with a magic number. An error message is shown if not valid or if expired. This makes it harder to register a user by a script. A hidden field needs to be added to the registration form:%BR% =&lt;input type="hidden" name="rx" value="%<nop>BLACKLISTPLUGIN{ action="magic" }%" /&gt;=
+		* If enabled, a magic number is protecting the registration process. Foswiki expects a form field with a magic number. An error message is shown if not valid or if expired. This makes it harder to register a user by a script. A hidden field needs to be added to the registration form:%BR% =&lt;input type="hidden" name="rx" value="%<nop>BLACKLISTPLUGIN{ action="magic" }%" /&gt;=
 
 	* Message shown when using registration form incorrectly: (this message is deliberately vague)
 		* Set REGMESSAGE = Registration failed, please try again.
@@ -114,31 +114,29 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
 
 ---++ Plugin Installation Instructions
 
-__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where Foswiki is running. 
 
 	* Download the ZIP file from the Plugin web (see below)
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
 	  | *File:* | *Description:* |
-	  | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
-	  | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
-	  | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
-	  | ==pub/TWiki/%TOPIC%/.htaccess== | Apache access control to protect pub dir |
+	  | ==data/System/%TOPIC%.txt== | Plugin topic |
+	  | ==data/System/%TOPIC%.txt,v== | Plugin topic repository |
+	  | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+	  | ==pub/Foswiki/%TOPIC%/.htaccess== | Apache access control to protect pub dir |
 	  | ==templates/oopsblacklist.tmpl== | Generic oops message |
-	* Make sure =pub/TWiki/%TOPIC%/= is writable by the CGI user (typically =nobody=)
-	* Add the hidden form field to the registration form as described in the "Registration protection settings" section (this is already in TWiki 4.0)
-	* From TWiki 4.0 release on: Run the configure utility in your browser to enable the Plugin
+	* Make sure =pub/Foswiki/%TOPIC%/= is writable by the CGI user (typically =nobody=)
+	* Add the hidden form field to the registration form as described in the "Registration protection settings" section
+	* Run the configure utility in your browser to enable the Plugin
 	* Make sure that non-administrators cannot edit this plugin topic. By default, this topic is write protected with an =ALLOWTOPICCHANGE = !AdminGroup= setting.
 	* Test if the installation was successful:
 		1 Using above form, add the IP address of one of your workstations to the BANLIST
-		1 Access TWiki from that workstation
-			* if you look at a TWiki topic (with the view script) you should see the BLACKLISTMESSAGE (defined above) after a one minute timeout
+		1 Access Foswiki from that workstation
+			* if you look at a Foswiki topic (with the view script) you should see the BLACKLISTMESSAGE (defined above) after a one minute timeout
 			* else, you should get an 500 Internal Server Error for other scripts
 		1 On a different workstation, remove the IP address of the test workstation from the BANLIST
 
 ---++ Known Issues and Limitations
 
-	* Wiki-spam filtering for HTML attachments works in TWiki 01-Sep-2004 and later.
-	* With TWiki 4.0.2 on some platforms, notably Solaris, attached files are uploaded with a zero file size. This is because there is a bug in how TWiki 4.0.2 handles the beforeAttachmentSaveHandler. If affected, upgrade TWiki or apply bug fix [[TWikibug:Item2390][Item2390]]
 	* Scan for script eval() and escape() is currently hardcoded
 
 ---++ Plugin Info
@@ -159,7 +157,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  04 Nov 2005: | Added registration protection with magic number |
 |  30 Oct 2005: | Dakar Release compatibility: Work around Dakar preferencs bug |
 |  29 Oct 2005: | Added wiki-spam filtering to prevent topic save with wiki-spam |
-|  27 Oct 2005: | For BANLIST, add/remove multiple IP addresses at once, contributed by TWiki:Main.MichaelDaum |
+|  27 Oct 2005: | For BANLIST, add/remove multiple IP addresses at once, contributed by Foswiki:Main.MichaelDaum |
 |  22 Jan 2005: | Added NOFOLLOWAGE handling |
 |  19 Jan 2005: | Added score for "view raw" to address e-mail harvester issue |
 |  05 Apr 2004: | Fixed bug in event log (requiring update of earlier Plugin versions); doc updates |

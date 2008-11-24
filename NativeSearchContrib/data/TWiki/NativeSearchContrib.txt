@@ -6,11 +6,11 @@ One line description, required for extensions repository catalog.
 <a style="text-decoration:none" href="http://wikiring.com"><img style="float:right" src="%ATTACHURLPATH%/logo.gif" /></a>
 %SHORTDESCRIPTION%
 
-By default TWiki searches its database by [[http://en.wikipedia.org/wiki/Fork_%28operating_system%29][forking]] the standard [[http://en.wikipedia.org/wiki/Grep][grep]] program in a sub-process to search through the text files in the database cache. This is usually pretty fast, but unfortunately in some environments (specifically with [[http://perl.apache.org/][mod_perl]]) forking a sub-process is very expensive, and another approach is needed.
+By default Foswiki searches its database by [[http://en.wikipedia.org/wiki/Fork_%28operating_system%29][forking]] the standard [[http://en.wikipedia.org/wiki/Grep][grep]] program in a sub-process to search through the text files in the database cache. This is usually pretty fast, but unfortunately in some environments (specifically with [[http://perl.apache.org/][mod_perl]]) forking a sub-process is very expensive, and another approach is needed.
 
-!NativeSearch is a c-code module that can be plugged into TWiki to replace the default searching algorithm. It publishes an [[http://en.wikipedia.org/wiki/XS_(Perl)][XS]] interface that allows it to be called from Perl, without having to fork a sub-process. It has comparable performance to the standard forking search in most environments, but is often significantly faster than forked search when TWiki is run under a CGI accelerator. The effect is most pronounced with mod_perl, but is also there for [[http://www.daemoninc.com/SpeedyCGI/][SpeedyCGI]].
+!NativeSearch is a c-code module that can be plugged into Foswiki to replace the default searching algorithm. It publishes an [[http://en.wikipedia.org/wiki/XS_(Perl)][XS]] interface that allows it to be called from Perl, without having to fork a sub-process. It has comparable performance to the standard forking search in most environments, but is often significantly faster than forked search when Foswiki is run under a CGI accelerator. The effect is most pronounced with mod_perl, but is also there for [[http://www.daemoninc.com/SpeedyCGI/][SpeedyCGI]].
 
-*You require shell access to the server to install this module*. Refer to TWiki:Codev.NativeSearch for a list of systems where the module has been successfully compiled and installed (and please update it if you find a new one).
+*You require shell access to the server to install this module*.
 
 ---++ Installation Instructions
 
@@ -26,7 +26,7 @@ Before you start, there are some prerequisites.
 
 ---+++ Building the c-code
 
-=cd= to the root directory in your TWiki installation. Now, _assuming you have administrator (root) access to the server:_
+=cd= to the root directory in your Foswiki installation. Now, _assuming you have administrator (root) access to the server:_
 <verbatim>
 $ cd tools/native_search
 $ perl Makefile.PL
@@ -42,15 +42,15 @@ Make sure that =perl test.pl= returns something sane, and _NOT_ a
 *If you do not have administrator (root) access to the server*, you can still
 install. Follow the steps above, but use =perl Makefile.PL INSTALLBASE=/your/dir= to install to a different directory. Exactly where you install depends on your system configuration.
 
-Now, in [[%SCRIPTURL{configure}%][configure]], under "Store Settings", you should be able to select the search algorithm =TWiki::Store::SearchAlgorithms::Native= (click the <input type="button" style="background-color:#eef" value="Yes, I've read all the documentation"/> button first if you have TWiki 4.2 or later).
+Now, in [[%SCRIPTURL{configure}%][configure]], under "Store Settings", you should be able to select the search algorithm =Foswiki::Store::SearchAlgorithms::Native= (click the <input type="button" style="background-color:#eef" value="Yes, I've read all the documentation"/> button first if you have TWiki 4.2 or later or Foswiki).
 
-Run a TWiki search, and watch the web server error log for any problems.
+Run a Foswiki search, and watch the web server error log for any problems.
 
 Because performance can differ widely between two apparently similar webserver configurations, you are recommended to do your own benchmarking and select the search algorithm that performs best for you.
 
 ---++ Contrib Info
 
-Another great TWiki extension from the <a style="text-decoration:none" href="http://wikiring.com"><img src="%ATTACHURLPATH%/wikiringlogo20x20.png" alt="" /> *WikiRing* </a> - working together to improve your wiki experience!
+Another great Foswiki extension from the <a style="text-decoration:none" href="http://wikiring.com"><img src="%ATTACHURLPATH%/wikiringlogo20x20.png" alt="" /> *WikiRing* </a> - working together to improve your wiki experience!
 
 Many thanks to the following sponsors for supporting this work:
    * Wind River Systems http://windriver.com

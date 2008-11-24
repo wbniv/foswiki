@@ -2,14 +2,14 @@
 %META:TOPICPARENT{name="FrontPage"}%
 ---+!! SeeSkin
 
-...is a wholly Cascading Style Sheets -based skin for TWiki. It strives to find the right balance between simplicity, a pleasing appearance, and sound structural foundation -- a clean separation of content and display logic. It should look good in modern browsers while remaining completely accessible to older ones.
+...is a wholly Cascading Style Sheets -based skin for Foswiki. It strives to find the right balance between simplicity, a pleasing appearance, and sound structural foundation -- a clean separation of content and display logic. It should look good in modern browsers while remaining completely accessible to older ones.
 
 <div class="inset"> %TOC% </div>
 
 ---++ Quick Install
 
 	1. unpack the archive from twiki-root.
-		1. if you use the TWiki web for your plugins, move =*/Plugins/*= to =*/TWiki/*=
+		1. if you use the System web for your plugins, move =*/Plugins/*= to =*/System/*=
 	2. if you don't already have it, add the =savemulti= script to =$twiki/bin/.htaccess=
 	3. Edit %SYSTEMWEB%.DefaultPreferences, or %USERSWEB%.SitePreferences, or WebPreferences, or your <nop>UserName topic and add the following:
 <verbatim>
@@ -30,9 +30,9 @@ LOGOCHAR was designed to be any single character entity, e.g. &amp;, &copy;, &pa
 
 ---+++ Making %Webs% work
 
-Edit WebPreferences in each of your webs and add INLINESTYLE to customise on a per-web basis. The following settings work out of the box for the TWiki, Plugins, and Sandbox webs. 
+Edit WebPreferences in each of your webs and add INLINESTYLE to customise on a per-web basis. The following settings work out of the box for the System, Plugins, and Sandbox webs. 
 
-*TWiki:*
+*System:*
 <verbatim>
 %PLUGINWEB%.SeeSkin per-web preferences
 		* Set WEBBGCOLOR = #ffe0b0 
@@ -61,7 +61,7 @@ The easiest way to add background images for your webs is to attach them to this
 
 ---+++ Going beyond
 
-EXTernal STYLEsheet is where 90% of magic happens. It is advisable to make a copy and use that for tweaking. This way future upgrades won't clobber your hard work inadvertantly. [[http://www.bradsoft.com/topstyle/index.asp][TopStyle]] is an excellent CSS editor for Windows. See TWiki:Codev/CssResources for tools on other platforms, along with many other good learning resources.
+EXTernal STYLEsheet is where 90% of magic happens. It is advisable to make a copy and use that for tweaking. This way future upgrades won't clobber your hard work inadvertantly. [[http://www.bradsoft.com/topstyle/index.asp][TopStyle]] is an excellent CSS editor for Windows. See Foswiki:Development:CssResources for tools on other platforms, along with many other good learning resources.
 
 For inspiration and a solid demonstration of how dramatically you can change a site "simply" by editing the stylesheet there is no better place to visit than the [[http://csszengarden.com/][CSS Zen Garden]].
 

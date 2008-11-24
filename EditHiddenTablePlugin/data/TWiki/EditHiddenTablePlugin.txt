@@ -77,11 +77,11 @@ After editing, the focus is moved to the row edited, to avoid excessive scrollin
 Line before table: =%<nop>EDITHIDDENTABLE{ template="..." changerows="on" }%=
 <table border="1" cellspacing="1" cellpadding="0">
 <tr><th class="twikiFirstCol" bgcolor="#99CCCC"><a href="%SCRIPTURLPATH%/oops/Test/TableRowOne?template=oopspreview" title="Sort by this column"> Nr</a> </th><th bgcolor="#99CCCC"><a href="%SCRIPTURLPATH%/oops/Test/TableRowOne?template=oopspreview" title="Sort by this column"> Text field</a> </th><th bgcolor="#99CCCC"><a href="%SCRIPTURLPATH%/oops/Test/TableRowOne?template=oopspreview" title="Sort by this column"> Drop down</a> </th><th bgcolor="#99CCCC"><a href="%SCRIPTURLPATH%/oops/Test/TableRowOne?template=oopspreview" title="Sort by this column"> Mood</a> </th><th bgcolor="#99CCCC"><a href="%SCRIPTURLPATH%/oops/Test/TableRowOne?template=oopspreview" title="Sort by this column"> Timestamp</a> </th></tr>
-<tr><td class="twikiFirstCol" bgcolor="#FFFFFF"> <a href="%SCRIPTURLPATH%/oops/Test/TableRowOne?template=oopspreview">1</a> </td><td bgcolor="#FFFFFF"> hello table </td><td bgcolor="#FFFFFF"> one </td><td bgcolor="#FFFFFF"> <img src="%PUBURLPATH%/TWiki/SmiliesPlugin/smile.gif" alt="smile" title="smile" border="0" /> </td><td bgcolor="#FFFFFF"> 19 Mar 2005 23:21 </td></tr>
-<tr><td class="twikiFirstCol" bgcolor="#FFFFCC"> <a href="%SCRIPTURLPATH%/oops/Test/TableRowOne?template=oopspreview">2</a> </td><td bgcolor="#FFFFCC"> &nbsp; </td><td bgcolor="#FFFFCC"> two </td><td bgcolor="#FFFFCC"> <img src="%PUBURLPATH%/TWiki/SmiliesPlugin/frown.gif" alt="frown" title="frown" border="0" /> </td><td bgcolor="#FFFFCC"> 19 Mar 2005 11:21 </td></tr>
+<tr><td class="twikiFirstCol" bgcolor="#FFFFFF"> <a href="%SCRIPTURLPATH%/oops/Test/TableRowOne?template=oopspreview">1</a> </td><td bgcolor="#FFFFFF"> hello table </td><td bgcolor="#FFFFFF"> one </td><td bgcolor="#FFFFFF"> <img src="%PUBURLPATH%/System/SmiliesPlugin/smile.gif" alt="smile" title="smile" border="0" /> </td><td bgcolor="#FFFFFF"> 19 Mar 2005 23:21 </td></tr>
+<tr><td class="twikiFirstCol" bgcolor="#FFFFCC"> <a href="%SCRIPTURLPATH%/oops/Test/TableRowOne?template=oopspreview">2</a> </td><td bgcolor="#FFFFCC"> &nbsp; </td><td bgcolor="#FFFFCC"> two </td><td bgcolor="#FFFFCC"> <img src="%PUBURLPATH%/System/SmiliesPlugin/frown.gif" alt="frown" title="frown" border="0" /> </td><td bgcolor="#FFFFCC"> 19 Mar 2005 11:21 </td></tr>
 </table>
 <form action="%SCRIPTURLPATH%/oops/Test/TableRowOne">
-<input type="image" src="%PUBURLPATH%/TWiki/EditTablePlugin/edittable.gif" alt="Edit this table" onclick="return(false);" /></form>
+<input type="image" src="%PUBURLPATH%/System/EditTablePlugin/edittable.gif" alt="Edit this table" onclick="return(false);" /></form>
 
 If you click on one of the links in the first column, say for the second row, you will be able to edit that table row in a form:
 
@@ -93,7 +93,7 @@ Plugin settings are stored as preferences variables. To reference
 a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, for example, ==%<nop>EDITHIDDENTABLE_SHORTDESCRIPTION%==
 
    * One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
-      * Set SHORTDESCRIPTION = Edit TWiki tables rows using a form
+      * Set SHORTDESCRIPTION = Edit Foswiki tables rows using a form
 
    * Set DEBUG to 1 to get debug messages in =data/debug.txt=.  Default: =0=
       * Set DEBUG = 0
@@ -103,29 +103,29 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, for example, =
 
    * Default edit button: Specify =button text=, or specify =alternate text, image URL=
       * Set EDITBUTTON = Edit table
-      * #Set EDITBUTTON = Edit this table, %PUBURL%/TWiki/EditTablePlugin/edittable.gif
+      * #Set EDITBUTTON = Edit this table, %PUBURL%/System/EditTablePlugin/edittable.gif
 
    * Default edit link for row: Specify =button text=, or specify =alternate text, image URL=. If empty, create link from first field.
       * #Set EDITLINK = Edit
-      * #Set EDITLINK = Edit, %PUBURL%/TWiki/DocumentGraphics/edittopic.gif
+      * #Set EDITLINK = Edit, %PUBURL%/System/DocumentGraphics/edittopic.gif
 
 
 ---++ Limitations and Known Issues
 
-   * This Plugin does not (yet) support TWiki table formatting like Multi-span cells (e.g. =| ... ||=)
+   * This Plugin does not (yet) support Foswiki table formatting like Multi-span cells (e.g. =| ... ||=)
    * You cannot put two =%<nop>EDITTABLE{}%= statements on the same line in the source
 
 ---++ Plugin Installation Instructions
 
-__Note:__ You do not need to install anything on the browser to use this Plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+__Note:__ You do not need to install anything on the browser to use this Plugin. The following instructions are for the administrator who installs the plugin on the server where Foswiki is running. 
 
    * Download the ZIP file from the Plugin web (see below)
    * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
      | *File:* | *Description:* |
-     | ==data/TWiki/%TOPIC%.txt== | Plugin topic |
-     | ==data/TWiki/%TOPIC%.txt,v== | Plugin topic repository |
-     | ==lib/TWiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
-     | ==pub/TWiki/%TOPIC%/*.jpg== | Screenshots for plugin topic |
+     | ==data/System/%TOPIC%.txt== | Plugin topic |
+     | ==data/System/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+     | ==pub/Foswiki/%TOPIC%/*.jpg== | Screenshots for plugin topic |
      | ==bin/editTable== |  |
      | ==bin/uploadTable== |  |
      | ==templates/editnewTable.pattern.tmpl== |  |
