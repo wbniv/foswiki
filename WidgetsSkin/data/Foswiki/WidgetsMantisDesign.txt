@@ -1,11 +1,11 @@
 %META:TOPICPARENT{name="WidgetsSkin"}%
 ---+ <nop>%TOPIC%
-Create your own TWiki <nop>Widget design by attaching your Moveable Type css and images (and a copy of base-weblog.css) to your copy of the WidgetSampleDesign topic. Then configure the settings on the topic to match, so that you can Proof your design. 
+Create your own Foswiki <nop>Widget design by attaching your Moveable Type css and images (and a copy of base-weblog.css) to your copy of the WidgetSampleDesign topic. Then configure the settings on the topic to match, so that you can Proof your design. 
 
 ---++ Enable this design
 Copy and paste the following section to your %USERSWEB%.SitePreferences topic (or !WebPreferences, or your personal topic)
 <textarea readonly rows="13" style="width:85%;margin:10px;">
-   * Set TWiki to use this Widget design, set the following on %USERSWEB%.SitePreferences (don't copy the raw text)
+   * Set Foswiki to use this Widget design, set the following on %USERSWEB%.SitePreferences (don't copy the raw text)
       * Set SKIN=Widget
    * set the Widget skin to use this topic to get the _Moveable Type Common Text sections_ from this topic
       * Set WidgetsSkin_DESIGNTOPIC = %TOPIC%
@@ -73,7 +73,7 @@ Copy and paste the following section to your %USERSWEB%.SitePreferences topic (o
 ---
 ---+++ module-categories-left
 %STARTSECTION{"module-archives-left-three-column"}%%STARTSECTION{"module-archives-left-two-column-left"}%%STARTSECTION{"module-archives-left"}%<div class="module-archives module">
-   <h2 class="module-header">TWiki Webs</h2>
+   <h2 class="module-header">Foswiki Webs</h2>
    <div class="module-content">
          <ul class="module-list">
             <li class="module-list-item">%TMPL:P{"login"}%</li>
@@ -90,7 +90,7 @@ Copy and paste the following section to your %USERSWEB%.SitePreferences topic (o
 
 ---+++ module-categories-right
 %STARTSECTION{"module-archives-right-three-column"}%%STARTSECTION{"module-archives-right-two-column-right"}%%STARTSECTION{"module-archives-right"}%<div class="module-archives module">
-   <h2 class="module-header">TWiki Webs</h2>
+   <h2 class="module-header">Foswiki Webs</h2>
    <div class="module-content">
          <ul class="module-list">
             <li class="module-list-item">%TMPL:P{"login"}%</li>
@@ -131,7 +131,7 @@ Copy and paste the following section to your %USERSWEB%.SitePreferences topic (o
 ---+++ module-powered-left
 %STARTSECTION{"module-powered-left-three-column"}%%STARTSECTION{"module-powered-left-two-column-left"}%%STARTSECTION{"module-powered-left"}%<div class="module-powered module">
    <div class="module-content">
-      <a href="http://twiki.org"><img src="%PUBURLPATH%/%SYSTEMWEB%/ProjectLogos/T-logo-34x26.png" />TWiki powered</a>
+      <a href="http://twiki.org"><img src="%PUBURLPATH%/%SYSTEMWEB%/ProjectLogos/T-logo-34x26.png" />Foswiki powered</a>
 %BR% skin by <a href="http://DistributedINFORMATION.com">Distributed INFORMATION.com</a>
 %BR% [[http://WikiRing.com][a <img src="%PUBURLPATH%/%SYSTEMWEB%/WidgetsSkin/wikiringlogo20x20.png" alt="@" width='20' height='20' border='0'  /> WikiRing.com partner]]
    </div>
@@ -140,7 +140,7 @@ Copy and paste the following section to your %USERSWEB%.SitePreferences topic (o
 ---+++ module-powered-right
 %STARTSECTION{"module-powered-right-three-column"}%%STARTSECTION{"module-powered-right-two-column-right"}%%STARTSECTION{"module-powered-right"}%<div class="module-powered module">
    <div class="module-content">
-      <a href="http://twiki.org"><img src="%PUBURLPATH%/%SYSTEMWEB%/ProjectLogos/T-logo-34x26.png" />TWiki powered</a>
+      <a href="http://twiki.org"><img src="%PUBURLPATH%/%SYSTEMWEB%/ProjectLogos/T-logo-34x26.png" />Foswiki powered</a>
  skin by <a href="http://DistributedINFORMATION.com">Distributed INFORMATION.com</a>
  [[http://WikiRing.com][a <img src="%PUBURLPATH%/%SYSTEMWEB%/WidgetsSkin/wikiringlogo20x20.png" alt="@" width='20' height='20' border='0'  /> WikiRing.com partner]]
    </div>
@@ -152,4 +152,4 @@ Copy and paste the following section to your %USERSWEB%.SitePreferences topic (o
 
 
 %META:FILEATTACHMENT{name="base-weblog.css" attachment="base-weblog.css" attr="" comment="" date="1174054380" path="base-weblog.css" size=""  user="SvenDowideit" version="1"}%
-%META:FILEATTACHMENT{name="TWiki.css" attachment="TWiki.css" attr="" comment="" date="1174054380" path="TWiki.css" user="SvenDowideit" version="1"}%
+%META:FILEATTACHMENT{name="Foswiki.css" attachment="Foswiki.css" attr="" comment="" date="1174054380" path="Foswiki.css" user="SvenDowideit" version="1"}%

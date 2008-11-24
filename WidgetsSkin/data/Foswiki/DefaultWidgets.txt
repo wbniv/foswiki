@@ -6,7 +6,7 @@ Common Widgets used by WidgetsSkin.
 
 Unfortuanatly the =css-browser= Widget on WidgetsSkin won't work, as it relies heavily on a long list of topic Settings - DBCALL style.
 
-Each Contrib and Plugin can define its own set of Widgets that can be included into the TWiki structure, or topics as desired.
+Each Contrib and Plugin can define its own set of Widgets that can be included into the Foswiki structure, or topics as desired.
 
 Need a magical WebWidgets topic that can add widgets to the list for a web - similar to all the other settings. that'll be interesting :/
 
@@ -64,7 +64,7 @@ Need a magical WebWidgets topic that can add widgets to the list for a web - sim
 
 ---+++ widget-weblist
 %STARTSECTION{"widget-weblist"}%<div class="widget-archives widget">
-   <h2 class="widget-header">TWiki Webs</h2>
+   <h2 class="widget-header">Foswiki Webs</h2>
    <div class="widget-content">
          <ul class="widget-list">
             <li class="widget-list-item">%TMPL:P{"login"}%</li>
@@ -188,4 +188,4 @@ powered by the community. 28th October 2008.
 </div>%ENDSECTION{"widget-subscribe"}%
 
 %META:FILEATTACHMENT{name="base-weblog.css" attachment="base-weblog.css" attr="" comment="" date="1174054380" path="base-weblog.css" size="" user="SvenDowideit" version="1"}%
-%META:FILEATTACHMENT{name="TWiki.css" attachment="TWiki.css" attr="" comment="" date="1174054380" path="TWiki.css" user="SvenDowideit" version="1"}%
+%META:FILEATTACHMENT{name="Foswiki.css" attachment="Foswiki.css" attr="" comment="" date="1174054380" path="Foswiki.css" user="SvenDowideit" version="1"}%

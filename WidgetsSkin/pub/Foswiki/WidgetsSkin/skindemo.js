@@ -38,14 +38,14 @@ InitZenCssUrls = function() {
 		    continue;
 		}
 		
-		//only append to url's from this TWiki's scripted cgi-s
+		//only append to url's from this Foswiki's scripted cgi-s
 		if (links[i].href.indexOf(twikiScriptUrlBase) != 0) continue;
 		
 		var URLseperator = ';';
 		if (links[i].href.indexOf('?') == -1) {
 			URLseperator = '?';
 		}
-		//TODO:don't add to non TWiki scripted URLs
+		//TODO:don't add to non Foswiki scripted URLs
 		//TODO: should make skin= to actual URLPARAM..
 		links[i].href = links[i].href+URLseperator+'cssfile='+currentCss+';skin=zengarden;zengardentopic='+currentText;
 	}

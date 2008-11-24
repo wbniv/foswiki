@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="NoneSvenDowideit" date="1174054820" format="1.1" reprev="1.1" version="1.1"}%
 %META:TOPICPARENT{name="WidgetsSkin"}%
 ---+ <nop>%TOPIC%
-This theme has been created by copying and simplifying the WidgetSampleDesign topic and pub/TWiki directory, 
+This theme has been created by copying and simplifying the WidgetSampleDesign topic and pub/Foswiki directory, 
 and then replacing the content of theme.css with css generated using the [[http://styles.movalog.com/generator/][Moveable Type Style Generator]]. 
 
 
@@ -9,7 +9,7 @@ and then replacing the content of theme.css with css generated using the [[http:
 ---++ Enable this design
 Copy and paste the following section to your %USERSWEB%.SitePreferences topic (or !WebPreferences, or your personal topic)
 <textarea readonly rows="13" style="width:85%;margin:10px;">
-   * Set TWiki to use this Widget design, set the following on %USERSWEB%.SitePreferences (don't copy the raw text)
+   * Set Foswiki to use this Widget design, set the following on %USERSWEB%.SitePreferences (don't copy the raw text)
       * Set SKIN=Widget
    * set the Widget skin to use this topic to get the _Moveable Type Common Text sections_ from this topic
       * Set WidgetsSkin_DESIGNTOPIC = %TOPIC%
@@ -80,7 +80,7 @@ Copy and paste the following section to your %USERSWEB%.SitePreferences topic (o
 ---+++ module-powered-left
 %STARTSECTION{"module-powered-right-three-column"}%%STARTSECTION{"module-powered-right-two-column-right"}%%STARTSECTION{"module-powered-right"}%<div class="module-powered module">%STARTSECTION{"module-powered-left-three-column"}%%STARTSECTION{"module-powered-left-two-column-left"}%%STARTSECTION{"module-powered-left"}%<div class="module-powered module">
    <div class="module-content">
-      Powered by<br /><a href="http://twiki.org"><img src="%PUBURLPATH%/%SYSTEMWEB%/ProjectLogos/T-logo-34x26.png" />TWiki</a>
+      Powered by<br /><a href="http://twiki.org"><img src="%PUBURLPATH%/%SYSTEMWEB%/ProjectLogos/T-logo-34x26.png" />Foswiki</a>
 %BR% skin by <a href="http://DistributedINFORMATION.com">Distributed INFORMATION.com</a>
 %BR% [[http://WikiRing.com][a <img src="%PUBURLPATH%/%SYSTEMWEB%/WidgetsSkin/wikiringlogo20x20.png" alt="@" width='20' height='20' border='0'  /> WikiRing.com partner]]
    </div>
@@ -92,4 +92,4 @@ Copy and paste the following section to your %USERSWEB%.SitePreferences topic (o
 
 
 %META:FILEATTACHMENT{name="base-weblog.css" attachment="base-weblog.css" attr="" comment="" date="1174054380" path="base-weblog.css" size=""  user="SvenDowideit" version="1"}%
-%META:FILEATTACHMENT{name="TWiki.css" attachment="TWiki.css" attr="" comment="" date="1174054380" path="TWiki.css" user="SvenDowideit" version="1"}%
+%META:FILEATTACHMENT{name="Foswiki.css" attachment="Foswiki.css" attr="" comment="" date="1174054380" path="Foswiki.css" user="SvenDowideit" version="1"}%

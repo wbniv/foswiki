@@ -4,7 +4,7 @@ use strict;
 # Example build class. Copy this file to the equivalent place in your
 # plugin or contrib and edit.
 #
-# Read the comments at the top of lib/TWiki/Contrib/Build.pm for
+# Read the comments at the top of lib/Foswiki/Contrib/Build.pm for
 # details of how the build process works, and what files you
 # have to provide and where.
 #
@@ -21,11 +21,11 @@ use strict;
 # Standard preamble
 BEGIN { unshift @INC, split( /:/, $ENV{TWIKI_LIBS} ) }
 
-use TWiki::Contrib::Build;
+use Foswiki::Contrib::Build;
 
 # Declare our build package
 package BuildBuild;
-use base qw( TWiki::Contrib::Build );
+use base qw( Foswiki::Contrib::Build );
 
 sub new {
     my $class = shift;
