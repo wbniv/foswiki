@@ -102,7 +102,7 @@ server where TWiki is running.
 	 page.  For example:%BR%
 		* Set DISABLEDPLUGINS = <nop>MathModePlugin 
 
-	* Alter the main =twiki.tmpl= template in the TWiki installation, in the
+	* Alter the main =foswiki.tmpl= template in the TWiki installation, in the
 		=./templates= directory, or in the sub-directory of any Web that will
 		use this plugin.  The line
 		<pre> &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt; </pre>

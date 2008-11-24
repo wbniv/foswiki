@@ -2,7 +2,7 @@ data/TWiki/MoveableTypeSkin.txt  Plugin doc page
 data/TWiki/TestUrls.txt
 
 lib/TWiki/Contrib/MoveableTypeSkin.pm  Plugin Perl module 
-templates/twiki.moveabletype.tmpl
+templates/foswiki.moveabletype.tmpl
 templates/viewprint.moveabletype.tmpl
 
 #demo templates

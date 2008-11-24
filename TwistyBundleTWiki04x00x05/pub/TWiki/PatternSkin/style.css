@@ -54,7 +54,7 @@ pre {
 html>body pre { /* hide from IE */
 	/*\*/ overflow:auto !important; /* */ overflow:scroll; width:auto; /* for Mac Safari */
 }
-/* IE behavior for pre is defined in twiki.pattern.tmpl in conditional comment */
+/* IE behavior for pre is defined in foswiki.pattern.tmpl in conditional comment */
 ol, ul {
 	margin-top:0;
 }

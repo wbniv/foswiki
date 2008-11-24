@@ -190,7 +190,7 @@ The Plugin handles a =%<nop>TAGME{}%= variable that performs different actions. 
 #TagsOnPage
 ---++ How to put tags on every page
 
-To show the tag interface at the top of the page directly below the breadcrumb (like on twiki.org), use the default template =view.tagme.tmpl= in the templates directory.
+To show the tag interface at the top of the page directly below the breadcrumb (like on foswiki.org), use the default template =view.tagme.tmpl= in the templates directory.
 
 This template is in fact a 'skin' template. To enable it, write in [[%USERSWEB%.SitePreferences]]:
 <pre>

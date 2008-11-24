@@ -125,7 +125,7 @@ templates/mailnotify.nat.tmpl 0644
 templates/messages.nat.tmpl 0644
 templates/moveattachment.nat.tmpl 0644
 templates/moveattachmentsidebar.nat.tmpl 0644
-templates/oo2twiki.nat.tmpl 0644
+templates/oo2foswiki.nat.tmpl 0644
 templates/oopsaccesschange.nat.tmpl 0644
 templates/oopsaccesscreateweb.nat.tmpl 0644
 templates/oopsaccessdenied.nat.tmpl 0644

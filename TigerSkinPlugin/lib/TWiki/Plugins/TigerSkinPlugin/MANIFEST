@@ -50,5 +50,5 @@ pub/TWiki/TigerSkin/wikitest_f2.gif NEW
 templates/createtopic.tmpl NEW
 templates/edit.tiger.tmpl NEW
 templates/preview.tiger.tmpl NEW
-templates/twiki.tiger.tmpl NEW
+templates/foswiki.tiger.tmpl NEW
 templates/view.tiger.tmpl NEW

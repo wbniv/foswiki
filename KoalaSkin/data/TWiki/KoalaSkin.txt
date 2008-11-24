@@ -673,7 +673,7 @@ shortcuts often used by your users.
 	  Stub template for the site map of all webs.
 	* =templates/style.koala.tmpl=
 	  Stub CSS stylesheet.
-	* =templates/twiki.koala.tmpl=
+	* =templates/foswiki.koala.tmpl=
 	  Main template definitions
 	* =templates/view.koala.tmp=, 
 	  =templates/edit.koala.tmpl=, ... main templates per scripts
@@ -710,7 +710,7 @@ generates in it the files:
 	* =sitemapwebs.koala.tmpl= The actual sitemap seen from this web
 	  (current web is higlighted for a "you are here" effect)
 	* =style.koala.tmpl= The CSS definitions for this web
-	* =twiki.koala.tmpl= Definitions used in other templates
+	* =foswiki.koala.tmpl= Definitions used in other templates
 	* =view.koala.tmpl= The most used template: viewing pages
 	* =websbar.koala.tmpl=
 	  The navigation bar on top of page with web names in tabs

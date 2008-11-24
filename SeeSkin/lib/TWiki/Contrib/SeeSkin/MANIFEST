@@ -10,6 +10,6 @@ bin/_add_to_htaccess 0550
 templates 0440
 templates/edit.see.tmpl 0440
 templates/preview.see.tmpl 0440
-templates/twiki.see.tmpl 0440
+templates/foswiki.see.tmpl 0440
 templates/view.see.tmpl 0440
 lib/TWiki/Contrib/SeeSkin.pm 0440

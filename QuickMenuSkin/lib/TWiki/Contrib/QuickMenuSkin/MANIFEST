@@ -30,7 +30,7 @@ templates/renamebase.quickmenu.tmpl 0444
 templates/rdiff.quickmenu.tmpl 0444
 templates/search.quickmenu.tmpl 0444
 templates/searchformat.quickmenu.tmpl 0444
-templates/twiki.quickmenu.tmpl 0444
+templates/foswiki.quickmenu.tmpl 0444
 templates/view.plain.quickmenu.tmpl 0444
 templates/view.print.quickmenu.tmpl 0444
 templates/view.quickmenu.tmpl 0444

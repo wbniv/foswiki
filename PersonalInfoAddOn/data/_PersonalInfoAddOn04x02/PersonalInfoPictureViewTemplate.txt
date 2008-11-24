@@ -1,5 +1,5 @@
 %META:TOPICINFO{author="ProjectContributor" date="1166089765" format="1.1" version="1.1"}%
-%TMPL:INCLUDE{"twiki"}%
+%TMPL:INCLUDE{"foswiki"}%
 %TMPL:INCLUDE{"attachtables"}%
 
 %TMPL:DEF{"logo"}%%TMPL:END%

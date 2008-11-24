@@ -113,7 +113,7 @@ div.inset ul li {padding-left:2ex;}
 * html #content textarea { width: 40em; }
 * html #diffs {padding:0;}
 /* Fix IE AccessKey behaviour; 
-	leave commented out, is handled by twiki.see.tmpl */
+	leave commented out, is handled by foswiki.see.tmpl */
 /* a { behavior: url(/twiki/pub/Plugins/SeeSkin/akey.htc) } */
 /* ----------------------- */
 

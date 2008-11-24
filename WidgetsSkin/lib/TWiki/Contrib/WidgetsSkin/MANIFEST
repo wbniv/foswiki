@@ -3,7 +3,7 @@ data/TWiki/DefaultWidgets.txt
 data/TWiki/TestUrls.txt
 
 lib/TWiki/Contrib/WidgetsSkin.pm  Plugin Perl module 
-templates/twiki.widgets.tmpl
+templates/foswiki.widgets.tmpl
 templates/viewprint.widgets.tmpl
 
 #demo templates

@@ -1416,7 +1416,7 @@ FILES='
   bin/ks_lastchanges.sh
   templates/sitemap.koala.tmpl
   templates/style.koala.tmpl
-  templates/twiki.koala.tmpl
+  templates/foswiki.koala.tmpl
   templates/view.koala.tmpl
   templates/edit.koala.tmpl
   templates/preview.koala.tmpl
