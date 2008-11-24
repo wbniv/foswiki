@@ -1,53 +1,53 @@
-data/TWiki/WidgetsSkin.txt  Plugin doc page
-data/TWiki/DefaultWidgets.txt
-data/TWiki/TestUrls.txt
+data/Foswiki/WidgetsSkin.txt  Plugin doc page
+data/Foswiki/DefaultWidgets.txt
+data/Foswiki/TestUrls.txt
 
-lib/TWiki/Contrib/WidgetsSkin.pm  Plugin Perl module 
+lib/Foswiki/Contrib/WidgetsSkin.pm  Plugin Perl module 
 templates/foswiki.widgets.tmpl
 templates/viewprint.widgets.tmpl
 
 #demo templates
-pub/TWiki/WidgetsSkin/skindemo.js
-pub/TWiki/WidgetsSkin/wikiringlogo20x20.png
-pub/TWiki/WidgetsSkin/screenshot.gif
-pub/TWiki/WidgetsSkin/fullscreen.gif
-pub/TWiki/WidgetsSkin/iconic.gif
-pub/TWiki/WidgetsSkin/iconic_preview.gif
-pub/TWiki/WidgetsSkin/preview_splattered_edit.gif
-pub/TWiki/WidgetsSkin/splattered_edit.gif
+pub/Foswiki/WidgetsSkin/skindemo.js
+pub/Foswiki/WidgetsSkin/wikiringlogo20x20.png
+pub/Foswiki/WidgetsSkin/screenshot.gif
+pub/Foswiki/WidgetsSkin/fullscreen.gif
+pub/Foswiki/WidgetsSkin/iconic.gif
+pub/Foswiki/WidgetsSkin/iconic_preview.gif
+pub/Foswiki/WidgetsSkin/preview_splattered_edit.gif
+pub/Foswiki/WidgetsSkin/splattered_edit.gif
 
 
-data/TWiki/WidgetsSampleDesign.txt
-pub/TWiki/WidgetsSampleDesign/base-weblog.css
-pub/TWiki/WidgetsSampleDesign/theme.css
-pub/TWiki/WidgetsSampleDesign/TWiki.css
-pub/TWiki/WidgetsSampleDesign/userpic.gif
+data/Foswiki/WidgetsSampleDesign.txt
+pub/Foswiki/WidgetsSampleDesign/base-weblog.css
+pub/Foswiki/WidgetsSampleDesign/theme.css
+pub/Foswiki/WidgetsSampleDesign/Foswiki.css
+pub/Foswiki/WidgetsSampleDesign/userpic.gif
 
-data/TWiki/WidgetsSample2Design.txt
-pub/TWiki/WidgetsSample2Design/base-weblog.css
-pub/TWiki/WidgetsSample2Design/theme.css
-pub/TWiki/WidgetsSample2Design/TWiki.css
+data/Foswiki/WidgetsSample2Design.txt
+pub/Foswiki/WidgetsSample2Design/base-weblog.css
+pub/Foswiki/WidgetsSample2Design/theme.css
+pub/Foswiki/WidgetsSample2Design/Foswiki.css
 
-data/TWiki/WidgetsSample3Design.txt
-pub/TWiki/WidgetsSample3Design/wikiring-mosaic.png
-pub/TWiki/WidgetsSample3Design/background.png
-pub/TWiki/WidgetsSample3Design/fireworks.png
-pub/TWiki/WidgetsSample3Design/wikiringlogo20x20.png
-pub/TWiki/WidgetsSample3Design/wiki.gif
-pub/TWiki/WidgetsSample3Design/theme.css
-pub/TWiki/WidgetsSample3Design/TWiki.css
-pub/TWiki/WidgetsSample3Design/base-weblog.css
-pub/TWiki/WidgetsSample3Design/userpic.gif
+data/Foswiki/WidgetsSample3Design.txt
+pub/Foswiki/WidgetsSample3Design/wikiring-mosaic.png
+pub/Foswiki/WidgetsSample3Design/background.png
+pub/Foswiki/WidgetsSample3Design/fireworks.png
+pub/Foswiki/WidgetsSample3Design/wikiringlogo20x20.png
+pub/Foswiki/WidgetsSample3Design/wiki.gif
+pub/Foswiki/WidgetsSample3Design/theme.css
+pub/Foswiki/WidgetsSample3Design/Foswiki.css
+pub/Foswiki/WidgetsSample3Design/base-weblog.css
+pub/Foswiki/WidgetsSample3Design/userpic.gif
 
 #WidgetsMantisDesign
-data/TWiki/WidgetsMantisDesign.txt
-pub/TWiki/WidgetsMantisDesign/base-weblog.css
-pub/TWiki/WidgetsMantisDesign/theme.css
-pub/TWiki/WidgetsMantisDesign/TWiki.css
-pub/TWiki/WidgetsMantisDesign/userpic.gif
-pub/TWiki/WidgetsMantisDesign/left-mantis-logo.jpg
-pub/TWiki/WidgetsMantisDesign/top-mantis-logo.jpg
-pub/TWiki/WidgetsMantisDesign/inner-mantis-logo.jpg
+data/Foswiki/WidgetsMantisDesign.txt
+pub/Foswiki/WidgetsMantisDesign/base-weblog.css
+pub/Foswiki/WidgetsMantisDesign/theme.css
+pub/Foswiki/WidgetsMantisDesign/Foswiki.css
+pub/Foswiki/WidgetsMantisDesign/userpic.gif
+pub/Foswiki/WidgetsMantisDesign/left-mantis-logo.jpg
+pub/Foswiki/WidgetsMantisDesign/top-mantis-logo.jpg
+pub/Foswiki/WidgetsMantisDesign/inner-mantis-logo.jpg
 
 
 
