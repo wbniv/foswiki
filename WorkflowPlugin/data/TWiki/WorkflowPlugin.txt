@@ -21,7 +21,7 @@ A workflow can be associated with a single topic, or with an entire web. If a to
    1 =$n= is interpreted as \n, not &lt;br&gt;, in line with the standard [[format tokens]]. If you want a &lt;br&gt; in the format string, then enter it as &lt;br&gt; or $percntBR$percnt.
 </blockquote>
 
-This plugin also works with TWiki&trade; 4.2.3.
+This plugin also works with TWiki<sup>&reg;</sup> 4.2.3.
 
 ---++ Usage
 
@@ -119,7 +119,7 @@ A common requirement is to report on the status of topics that are in different 
 
 This plugin was motivated by [[TWiki:Main.ThomasWeigert][Thomas Weigert]]'s [[Foswiki:Extensions.WorkFlowAddOn][WorkFlowAddOn]] and its first version (then called !ApprovalPlugin) was written by [[TWiki:Main.ThomasHartkens][Thomas Hartkens]], albeit it was focused on document approval and control. [[TWiki:Main.ThomasWeigert][Thomas Weigert]] then merged the functionality of the [[Foswiki:Extensions.WorkFlowAddOn][WorkFlowAddOn]] into this plugin.
 
-TWiki is a registered trademark of Peter Thoeny.
+TWiki<sup>&reg;</sup> is a registered trademark of Peter Thoeny.
 
 ---++ Plugin Installation Instructions
 

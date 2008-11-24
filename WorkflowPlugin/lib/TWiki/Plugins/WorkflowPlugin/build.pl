@@ -3,15 +3,15 @@
 # Build for DefaultPlugin
 #
 BEGIN {
-  foreach my $pc (split(/:/, $ENV{TWIKI_LIBS})) {
+  foreach my $pc (split(/:/, $ENV{FOSWIKI_LIBS})) {
     unshift @INC, $pc;
   }
 }
 
-use TWiki::Contrib::Build;
+use Foswiki::Contrib::Build;
 
 # Create the build object
-$build = new TWiki::Contrib::Build( 'WorkflowPlugin' );
+$build = new Foswiki::Contrib::Build( 'WorkflowPlugin' );
 
 # Build the target on the command line, or the default target
 $build->build($build->{target});
