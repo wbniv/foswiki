@@ -22,7 +22,7 @@ package TWiki::Plugins::RedirectPlugin;
 use vars qw( $VERSION $RELEASE $debug $pluginName );
 use strict;
 
-$VERSION    = '$Rev: 13491 $';
+$VERSION    = '$Rev: 17733 $';
 $RELEASE    = 'Dakar';
 $pluginName = 'RedirectPlugin';
 
@@ -126,12 +126,16 @@ sub REDIRECT {
             $queryString = $1;
         }
         
-        $queryString = "?" . $queryString if $queryString;
+	# AndrewJones: allow us to use %<nop>URLPARAM{redirectfrom}%
+	# in destination topic to display Wikipedia like "Redirected
+	# from ..." text
+	my $q = "?redirectedfrom=$web.$topic";
+	$q .= "&" . $queryString if $queryString;
 
         # topic exists
         TWiki::Func::redirectCgiQuery( $query,
             TWiki::Func::getViewUrl( $newWeb, $newTopic ) . $anchor
-              . $queryString );
+            . $q );
 
     }
 
