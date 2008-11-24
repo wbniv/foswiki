@@ -4,9 +4,9 @@
 %TOC%
 
 
-[[Foswiki:Extensions.BuildContrib][BuildContrib]] and [[Foswiki:Extensions.TWikiShellContrib][TWikiShellContrib]] are two very useful [[TWiki:Codev.TWikiExtensions][TWikiExtensions]] that can simplify the life of TWiki developers (both Core and Plugins) by automating the boring stuff (copying file around, running tests, packaging and uploading).
+[[Foswiki:Extensions.BuildContrib][BuildContrib]] and [[Foswiki:Extensions.TWikiShellContrib][TWikiShellContrib]] are two very useful extensions that can simplify the life of Foswiki developers (both Core and Plugins) by automating the boring stuff (copying file around, running tests, packaging and uploading).
 
-For the sake of simplicity, in this guide the term [[TWiki:Codev.TWikiExtensions][TWikiExtensions]] refers collectively (as defined by the community) to [[Foswiki:Extensions.PluginPackage][Plugins]], [[Foswiki:Extensions.AddOnPackage][Add-Ons]], [[Foswiki:Extensions.ContribPackage][Code Contributions]] and [[Foswiki:Extensions.SkinPackage][Skins]]
+For the sake of simplicity, in this guide the term extension refers collectively (as defined by the community) to [[Foswiki:Extensions.PluginPackage][Plugins]], [[Foswiki:Extensions.AddOnPackage][Add-Ons]], [[Foswiki:Extensions.ContribPackage][Code Contributions]] and [[Foswiki:Extensions.SkinPackage][Skins]]
 
 ---++ Overview
 
@@ -30,7 +30,7 @@ By itself, it does nothing. But by extending it using Foswiki:Extensions.Command
 
 For a complete documentation, check [[Foswiki:Extensions.TWikiShellContrib][Here]].
 
----++ [[Foswiki:Extensions.BuildContrib][BuildContrib]] Quick guide to develop [[TWiki:Codev.TWikiExtensions][TWikiExtensions]]
+---++ [[Foswiki:Extensions.BuildContrib][BuildContrib]] Quick guide to develop [[Foswiki:Development.ExtensionDeveloperGuide][ExtensionDeveloperGuide]]
 
 On the surface, [[Foswiki:Extensions.BuildContrib][BuildContrib]] can be somehow intimidating, but it's concept is pretty simple: By having three files (=MANIFEST=, =DEPENDENCIES= and build.pl) in a known place under the directory, most of the development lifecycle tasks can be automated.
 
@@ -38,13 +38,13 @@ On the surface, [[Foswiki:Extensions.BuildContrib][BuildContrib]] can be somehow
 
 [[Foswiki:Extensions.BuildContrib][BuildContrib]] makes some basic assumptions about the enviroment:
 
-   * The [[TWiki:Codev.TWikiExtensions][TWikiExtensions]] is not being developed your plugin in a live TWiki installation (which is usually a really bad idea), but are instead doing the sensible thing and developing in a separate directory tree, usually - but not always - a CVS checkout area. 
-   * The [[TWiki:Codev.TWikiExtensions][TWikiExtensions]] has a directory for itself outside the twiki root (ok, this is not an assumption, but if you try to generate a manifest for the [[TWiki:Codev.TWikiExtensions][TWikiExtensions]] from a twiki installation it'll end up with a lot of useless entries. Also, it's a good habit to acquire ;))
-   * The enviroment variable TWIKI_LIBS has a colon-separated path list that may point anywhere needed to satisfied any of the [[TWiki:Codev.TWikiExtensions][TWikiExtension]] external dependencies.
-   * The enviroment variable TWIKI_HOME point to the root of your test TWiki installation.
+   * The extension is not being developed in a live Foswiki installation (which is usually a really bad idea), but are instead doing the sensible thing and developing in a separate directory tree, usually - but not always - a CVS checkout area. 
+   * The extension has a directory for itself outside the twiki root (ok, this is not an assumption, but if you try to generate a manifest for the extensions from a Foswiki installation it'll end up with a lot of useless entries. Also, it's a good habit to acquire ;))
+   * The enviroment variable TWIKI_LIBS has a colon-separated path list that may point anywhere needed to satisfied any of the extension external dependencies.
+   * The enviroment variable TWIKI_HOME point to the root of your test Foswiki installation.
    * The your module follows the standards for plugins and contribs i.e. that it
-      1. Has a topic in the data/TWiki directory 
-      1. Has a perl module in the lib/TWiki/Plugins or lib/TWiki/Contrib directory
+      1. Has a topic in the data/System directory 
+      1. Has a perl module in the lib/Foswiki/Plugins or lib/Foswiki/Contrib directory
       1. Has a sub-directory alongside the perl module that contains the extra .pm files specific to the module 
 
 ---+++ Normal Development Cycle 
@@ -52,29 +52,29 @@ On the surface, [[Foswiki:Extensions.BuildContrib][BuildContrib]] can be somehow
 Let's illustrate how [[Foswiki:Extensions.BuildContrib][BuildContrib]] fits in the development lifecycle, step by step.
 
 ---++++ Create the Directory Structure
-The first step to create a [[TWiki:Codev.TWikiExtensions][TWikiExtension]] is create the new directory structure in the checkout area, to maintain the repository up-to-date with local changes.  
+The first step to create a extension is create the new directory structure in the checkout area, to maintain the repository up-to-date with local changes.  
 
-The recommended directory layout & content for [[TWiki:Codev.TWikiExtensions][TWikiExtension]] development is:
+The recommended directory layout & content for extension development is:
 <verbatim>
 |- twikiroot
 |  |- twikiplugins
-|  |  |- TWikiExtensionName
+|  |  |- FoswikiExtensionName
 |  |  |  |- bin
 |  |  |  |- lib
-|  |  |  |  |- TWiki
+|  |  |  |  |- Foswiki
 |  |  |  |  |  |- (Contrib|Plugins)
-|  |  |  |  |  |  |- TWikiExtensionName
+|  |  |  |  |  |  |- FoswikiExtensionName
 |  |  |  |  |  |  |  |- build.pl
 |  |  |  |  |  |  |  |- MANIFEST
 |  |  |  |  |  |  |  |- DEPENDENCIES 
-|  |  |  |  |  |  |- TWikiExtensionName.pm
+|  |  |  |  |  |  |- FoswikiExtensionName.pm
 |  |  |  |- data
-|  |  |  |  |- TWiki
-|  |  |  |  |   |- TWikiExtensionName.txt
+|  |  |  |  |- System
+|  |  |  |  |   |- FoswikiExtensionName.txt
 |  |  |  |- pub
 |  |  |  |- tests
 |  |  |  |  |- unit
-|  |  |  |  |  |- TWikiExtensionNameSuite.pm
+|  |  |  |  |  |- FoswikiExtensionNameSuite.pm
 |  |  |  |- templates
 </verbatim>
 
@@ -89,21 +89,21 @@ A "tentative" =MANIFEST= file will be sent to STDOUT, so it can be copy/pasted o
 
 The =MANIFEST= file should read (at least):
 <verbatim>
-lib/TWiki/(Contrib|Plugins)/TWikiExtensionName.pm
-data/TWiki/TWikiExtensionName.txt
-tests/unit/TWikiExtensionNameSuite.pm
+lib/Foswiki/(Contrib|Plugins)/FoswikiExtensionName.pm
+data/System/FoswikiExtensionName.txt
+tests/unit/FoswikiExtensionNameSuite.pm
 </verbatim>
 
 Note that none of the special files used by [[Foswiki:Extensions.BuildContrib][BuildContrib]] is in the =MANIFEST=, because they are usually not distributed to end-users.
 
 For a complete description of the format of the =MANIFEST= and =DEPENDENCIES= files, check [[BuildContrib][Here]].
 
----++++ "Installing" the TWikiExtension
+---++++ "Installing" the Foswiki Extension
 
-To test the [[TWiki:Codev.TWikiExtensions][TWikiExtension]], it must be "installed" into the twikiroot. There are two options to do it:
+To test the extension, it must be "installed" into the foswikiroot. There are two options to do it:
 
-   1. Make the change in the plugins checkout area, and deploy them to the test TWiki installation OR
-   1. Deploy the plugin to the test TWiki installation, make the changes "live", and then copy back the modifications to the checkout area
+   1. Make the change in the plugins checkout area, and deploy them to the test Foswiki installation OR
+   1. Deploy the plugin to the test Foswiki installation, make the changes "live", and then copy back the modifications to the checkout area
 
 [[Foswiki:Extensions.BuildContrib][BuildContrib]] can help in the first case. Invoking
 
@@ -131,24 +131,24 @@ To package the extension for a release, invoke
 
 =perl build.pl release=
 
-and it will create a =.zip= and a  =.tar.gz= files based in the content of the =MANIFEST= file and an installer called =TWikiExtensionName_installer= (ie. =SamplePlugin_installer=). All these files will be created in the "root" of the plugin directory. (ie: under =twikiplugins/SamplePlugin=).
-As part of the release process, the [[TWiki:Codev.TWikiExtensions][TWikiExtension]] topic is processed an the following tags will be replaced:
-   * =%$MANIFEST%= - TWiki table of files in =MANIFEST= 
+and it will create a =.zip= and a  =.tar.gz= files based in the content of the =MANIFEST= file and an installer called =FoswikiExtensionName_installer= (ie. =SamplePlugin_installer=). All these files will be created in the "root" of the plugin directory. (ie: under =twikiplugins/SamplePlugin=).
+As part of the release process, the extension topic is processed an the following tags will be replaced:
+   * =%$MANIFEST%= - Foswiki table of files in =MANIFEST= 
    * =%$DEPENDENCIES%= - list of dependencies from =DEPENDENCIES= 
    * =%$VERSION%= version from $VERSION in main .pm 
    * =%$DATE%= - local date 
    * =%$POD%= - expands to the POD documentation for the package, excluding test modules.
 
 
----++++ Uploading the changes to TWiki.org
-As the last step of the development lifecycle, the released version must be uploaded to the proper topic in TWiki.org.
+---++++ Uploading the changes to foswiki.org
+As the last step of the development lifecycle, the released version must be uploaded to the proper topic in foswiki.org.
 To do this, invoke:
 
 =perl build.pl upload=
 
-and [[Foswiki:Extensions.BuildContrib][BuildContrib]] will create the release package, and upload it automatically to the proper place in TWiki.org.
+and [[Foswiki:Extensions.BuildContrib][BuildContrib]] will create the release package, and upload it automatically to the proper place in foswiki.org.
 
----++ [[Foswiki:Extensions.TWikiShellContrib][TWikiShellContrib]] Quick guide to develop [[TWiki:Codev.TWikiExtensions][TWikiExtensions]]
+---++ [[Foswiki:Extensions.TWikiShellContrib][TWikiShellContrib]] Quick guide to develop extensions.
 
 The default [[Foswiki:Extensions.CommandSet][CommandSets]] bundled with [[Foswiki:Extensions.TWikiShellContrib][TWikiShellContrib]] can be used to simplify even more the development process, by complementing the operatios already performed by [[Foswiki:Extensions.BuildContrib][BuildContrib]].
 
@@ -166,31 +166,31 @@ Note that no enviroment variables need to be set for [[Foswiki:Extensions.TWikiS
 To illustrate how [[Foswiki:Extensions.TWikiShellContrib][TWikiShellContrib]] fits in the development lifecycle, let's follow the same process as with [[Foswiki:Extensions.BuildContrib][BuildContrib]].
 
 ---++++ Create the Directory Structure
-The first step to create a [[TWiki:Codev.TWikiExtensions][TWikiExtension]] is create the new directory structure in the checkout area, to maintain the repository up-to-date with local changes. 
+The first step to create an extension is to create the new directory structure in the checkout area, to maintain the repository up-to-date with local changes. 
 
 The directory structure is as follows:
 
-A typical directory layout & content for [[TWiki:Codev.TWikiExtensions][TWikiExtension]] development is:
+A typical directory layout & content for extension development is:
 <verbatim>
 |- twikiroot
 |  |- twikiplugins
-|  |  |- TWikiExtensionName
+|  |  |- FoswikiExtensionName
 |  |  |  |- MANIFEST
 |  |  |  |- DEPENDENCIES 
 |  |  |  |- bin
 |  |  |  |- lib
-|  |  |  |  |- TWiki
+|  |  |  |  |- Foswiki
 |  |  |  |  |  |- (Contrib|Plugins)
-|  |  |  |  |  |  |- TWikiExtensionName
+|  |  |  |  |  |  |- FoswikiExtensionName
 |  |  |  |  |  |  |  |- build.pl
-|  |  |  |  |  |  |- TWikiExtensionName.pm
+|  |  |  |  |  |  |- FoswikiExtensionName.pm
 |  |  |  |- data
-|  |  |  |  |- TWiki
-|  |  |  |  |   |- TWikiExtensionName.txt
+|  |  |  |  |- System
+|  |  |  |  |   |- FoswikiExtensionName.txt
 |  |  |  |- pub
 |  |  |  |- tests
 |  |  |  |  |- unit
-|  |  |  |  |  |- TWikiExtensionNameSuite.pm
+|  |  |  |  |  |- FoswikiExtensionNameSuite.pm
 |  |  |  |- templates
 </verbatim>
 
@@ -198,48 +198,48 @@ Note: =twikiplugins= is the checkout area from the plugins repository (either fr
 
 To create this structure, invoke:
 
-=perl twikishell plugin create !TWikiExtensionName=
+=perl twikishell plugin create !FoswikiExtensionName=
 
 and [[Foswiki:Extensions.TWikiShellContrib][TWikiShellContrib]] will create the directory structure with empty skeletons for all the files. The =MANIFEST= file is created automatically.
 
 The =MANIFEST= file should read:
 <verbatim>
-lib/TWiki/Plugins/TWikiExtensionName.pm
-data/TWiki/TWikiExtensionName.txt
-tests/unit/TWikiExtensionNameSuite.pm
+lib/Foswiki/Plugins/FoswikiExtensionName.pm
+data/System/FoswikiExtensionName.txt
+tests/unit/FoswikiExtensionNameSuite.pm
 </verbatim>
 
 Note that none of the special files used by [[Foswiki:Extensions.BuildContrib][BuildContrib]] is in the =MANIFEST=, because they are usually not distributed to end-users.
 
----++++ "Installing" the [[TWiki:Codev.TWikiExtensions][TWikiExtension]]
+---++++ "Installing" the extension
 
-[[Foswiki:Extensions.TWikiShellContrib][TWikiShellContrib]] follows the second option: Deploy the plugin to the test TWiki installation, make the changes "live", and then copy back the modifications to the checkout area.
+[[Foswiki:Extensions.TWikiShellContrib][TWikiShellContrib]] follows the second option: Deploy the plugin to the test Foswiki installation, make the changes "live", and then copy back the modifications to the checkout area.
 
 For that, invoke:
 
-=perl twikishell plugin develop !TWikiExtension=
+=perl twikishell plugin develop !FoswikiExtension=
 
-and it will copy all the content of the plugin directory intro the twiki installation. Also, two files called =TWikiExtensionName.MF= and =TWikiExtensionName.DEP= are created in the twiki root. =TWikiExtension.MF= will have a list of all the copied files, and should be identical to the =MANIFEST= file. Similary, the =TWikiExtension.DEP= should be identical to the =DEPENDENCIES= file.
+and it will copy all the content of the plugin directory intro the twiki installation. Also, two files called =FoswikiExtensionName.MF= and =FoswikiExtensionName.DEP= are created in the twiki root. =FoswikiExtension.MF= will have a list of all the copied files, and should be identical to the =MANIFEST= file. Similary, the =FoswikiExtension.DEP= should be identical to the =DEPENDENCIES= file.
 
 Now, all the changes can be made "live".
 
 After all the changes, invoke:
 
-=perl twikishell plugin putback !TWikiExtension=
+=perl twikishell plugin putback !FoswikiExtension=
 
-and it will copy all the files listed in =TWikiExtension.MF= back to the checkout area, updating the =MANIFEST= and =DEPENDENCIES= with the content of =TWikiExtension.MF= and =TWikiExtension.DEP= respectively.
+and it will copy all the files listed in =FoswikiExtension.MF= back to the checkout area, updating the =MANIFEST= and =DEPENDENCIES= with the content of =FoswikiExtension.MF= and =FoswikiExtension.DEP= respectively.
 
 ---++++ Adding or Removing files
 
-When adding or removing files from the package, the =TWikiExtension.MF= must be updated so the proper =MANIFEST= file can be generated later.
+When adding or removing files from the package, the =FoswikiExtension.MF= must be updated so the proper =MANIFEST= file can be generated later.
 
 ---++++ Running tests
 
 If =Test::Unit= is installed in the system, invoking
 
-=perl twikishell runtest !TWikiExtensionSuite=
+=perl twikishell runtest !FoswikiExtensionSuite=
 
-will try to run automatically the =tests/unit/TWikiExtensionSuite.pm= module.
+will try to run automatically the =tests/unit/FoswikiExtensionSuite.pm= module.
 
 ---++++ Preparing the release package
 
@@ -247,44 +247,44 @@ To release the package, [[Foswiki:Extensions.TWikiShellContrib][TWikiShellContri
 
 So, to create the release file, invoke
 
-=perl twikishell build !TWikiExtension release=
+=perl twikishell build !FoswikiExtension release=
 
 and it will call automatically the proper =build.pl= script with the =release= target
 
----++++ Uploading the changes to TWiki.org
+---++++ Uploading the changes to foswiki.org
 
 In the same way as releasing the package, invoking
 
-=perl twikishell build !TWikiExtension upload=
+=perl twikishell build !FoswikiExtension upload=
 
 will call automatically the proper =build.pl= script with the =upload= target.
 
 ---++++ Additional Operation: Packaging the development version
 
-If for some reason there is the need to package the whole development version of a !TWikiExtension (including the =MANIFEST=, =DEPENDENCIES=,etc), invoke:
+If for some reason there is the need to package the whole development version of an Extension (including the =MANIFEST=, =DEPENDENCIES=,etc), invoke:
 
-=perl twikishell package !TWikiExtension=
+=perl twikishell package !FoswikiExtension=
 
 and it'll create a =tar.gz= file with all the files in the plugin directory
 
 ---++ Summary
 
-Combining [[Foswiki:Extensions.TWikiShellContrib][TWikiShellContrib]] and [[Foswiki:Extensions.BuildContrib][BuildContrib]] ease the development of [[TWiki:Codev.TWikiExtensions][TWikiExtensions]]. The lifecycle becomes:
+Combining [[Foswiki:Extensions.TWikiShellContrib][TWikiShellContrib]] and [[Foswiki:Extensions.BuildContrib][BuildContrib]] ease the development of extensions. The lifecycle becomes:
 
-   * =perl twikishell plugin create !TWikiExtension=
-   * =perl twikishell plugin develop !TWikiExtension=
-   * =perl twikishell runtest !TWikiExtension= or  =perl twikishell build !TWikiExtension test=
-   * =perl twikishell plugin putback !TWikiExtension=
-   * (optionally) =perl twikishell build release !TWikiExtension=
-   * (optionally) =perl twikishell package !TWikiExtension=
-   * =perl twikishell build upload !TWikiExtension=
+   * =perl twikishell plugin create !FoswikiExtension=
+   * =perl twikishell plugin develop !FoswikiExtension=
+   * =perl twikishell runtest !FoswikiExtension= or  =perl twikishell build !FoswikiExtension test=
+   * =perl twikishell plugin putback !FoswikiExtension=
+   * (optionally) =perl twikishell build release !FoswikiExtension=
+   * (optionally) =perl twikishell package !FoswikiExtension=
+   * =perl twikishell build upload !FoswikiExtension=
 
 This could be quite verbose, but creating the proper shellscripts (invoking =perl twikishell shorcuts=), they are abbreviated to:
 
-   * =plugin create !TWikiExtension=
-   * =plugin develop !TWikiExtension=
-   * =runtest !TWikiExtension= or  =build !TWikiExtension test=
-   * =plugin putback !TWikiExtension=
-   * (optionally) =build release !TWikiExtension=
-   * (optionally) =package !TWikiExtension=
-   * =build upload !TWikiExtension=
+   * =plugin create !FoswikiExtension=
+   * =plugin develop !FoswikiExtension=
+   * =runtest !FoswikiExtension= or  =build !FoswikiExtension test=
+   * =plugin putback !FoswikiExtension=
+   * (optionally) =build release !FoswikiExtension=
+   * (optionally) =package !FoswikiExtension=
+   * =build upload !FoswikiExtension=
