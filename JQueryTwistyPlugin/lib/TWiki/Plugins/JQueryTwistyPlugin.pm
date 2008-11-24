@@ -365,7 +365,7 @@ sub _createHtmlProperties {
 
 =pod
 
-Reads a setting from the TWIKIPREF cookie.
+Reads a setting from the FOSWIKIPREF cookie.
 Returns:
    * 1 if the cookie has been set (meaning: show content)
    * 0 if the cookie is '0' (meaning: hide content)
@@ -380,7 +380,7 @@ sub _readCookie {
 
     # which state do we use?
     my $cgi = new CGI;
-    my $cookie = $cgi->cookie('TWIKIPREF');
+    my $cookie = $cgi->cookie('FOSWIKIPREF');
     my $tag    = $idTag;
     $tag =~ s/^(.*)(hide|show|toggle)$/$1/go;
     my $key = $JQUERYTWISTYPLUGIN_COOKIE_PREFIX . $tag;

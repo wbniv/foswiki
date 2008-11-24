@@ -92,7 +92,7 @@ sub _addHeader {
     my $header = <<'END';
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/YahooUserInterfaceContrib/build/yahoo/yahoo.js"></script>
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/YahooUserInterfaceContrib/build/connection/connection.js"></script>
-<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/twikilib.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/foswikilib.js"></script>
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/twikiArray.js"></script>
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/twikiHTML.js"></script>
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiAjaxContrib/twikiAjaxRequest.compressed.js"></script>

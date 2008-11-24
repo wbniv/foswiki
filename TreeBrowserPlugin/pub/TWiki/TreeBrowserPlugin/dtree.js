@@ -515,7 +515,7 @@ dTree.prototype.onload = function() {
     	eDiv	= document.getElementById('d' + this.obj + '0');
         }
 */
-    //twiki.js addLoadEvent
+    //foswiki.js addLoadEvent
 };
 
 // [Cookie] Clears a cookie

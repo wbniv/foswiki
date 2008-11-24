@@ -333,7 +333,7 @@ sub _addHeader {
 <style type="text/css" media="all">
 @import url("%PUBURL%/%SYSTEMWEB%/FormPlugin/formplugin.css");
 </style>
-<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/twikilib.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/foswikilib.js"></script>
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/twikiCSS.js"></script>
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/twikiForm.js"></script>
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/twikiString.js"></script>

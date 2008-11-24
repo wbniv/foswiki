@@ -444,7 +444,7 @@ twiki.AjaxRequest = function () {
 	
 	Or a mixture of code and source urls:
 	<pre>
-	<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/JavascriptFiles/twiki.js"></script>
+	<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/JavascriptFiles/foswiki.js"></script>
 	<script language="javascript">
 	// <![CDATA[
 	function showAlert () {

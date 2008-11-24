@@ -28,7 +28,7 @@ Restrict view to %MAINWEB%.ModeratorGroup. This makes this form invisible for an
 ---++ Implementation
 <verbatim>
 %STARTINCLUDE%
-<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/twiki.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/foswiki.js"></script>
 <script type="text/javascript" language="JavaScript"><!--
 // The following section create a list of Classification Summary fields from the templates.
 <noautolink>
