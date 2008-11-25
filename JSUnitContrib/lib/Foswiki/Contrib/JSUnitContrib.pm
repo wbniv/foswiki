@@ -1,4 +1,4 @@
-package TWiki::Contrib::TWikiAjaxContrib;
+package Foswiki::Contrib::JSUnitContrib;
 
 use vars qw( $VERSION $RELEASE );
 # This should always be $Rev$ so that TWiki can determine the checked-in
