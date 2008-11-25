@@ -81,25 +81,23 @@ See: http://www.jsunit.net/documentation/
 
 ---++ Installation Instructions
 
-	* Download the ZIP file from the Plugin web (see below)
+	* Download the ZIP file from the Extensions web (see below)
 	* Unzip ==%TOPIC%.zip== in your ($TWIKI_ROOT) directory. Content:
 	| *File:* | *Description:* |
 %$MANIFEST%
-	* Optionally, run ==%TOPIC%_installer== to automatically check and install other TWiki modules that this module depends on. You can also do this step manually.
 	* Alternatively, manually make sure the dependencies listed in the table below are resolved.
 	%$DEPENDENCIES%
 
 
 ---++ Contrib Info
 
-| Authors: | TWiki:Main.ArthurClemens |
-| Copyright &copy;: | Copyright (C) 2001-6 Edward Hieatt, edward@jsunit.net. Packaged for TWiki 2006 by Arthur Clemens. Directory =java= removed to reduce package size.  |
+| Copyright &copy;: | Copyright (C) 2001-6 Edward Hieatt, edward@jsunit.net. Packaged for TWiki 2006, Foswiki 2008 by Arthur Clemens. Directory =java= removed to reduce package size.  |
 | License: | [[http://www.gnu.org/copyleft/gpl.html][GPL]], GNU Library or Lesser General Public License (LGPL), Mozilla Public License 1.1 (MPL 1.1)  |
 | Dependencies: | %$DEPENDENCIES% |
+| 26 Nov 2008 | Re-packaged for Foswiki |
 | 28 Oct 2006 | Version jsunit2.2alpha11  |
 | Home: | http://foswiki.org/Extensions/%TOPIC% |
 | Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 | Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
-__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
  
