@@ -3,11 +3,9 @@
 
 *This contrib packages in a convenient way the !JavaScript library and the CSS file needed to implement Twisty sections.*
 
-!TwistyContrib is installed by default in TWiki 4 and Foswiki and used by [[Foswiki:Extensions.TwistyPlugin][Twisty Plugin]].
+!TwistyContrib is installed by default in Foswiki and used by [[Foswiki:Extensions.TwistyPlugin][Twisty Plugin]].
 
 It is recommended to use the !TwistyPlugin as it eases the deployment and use of this contrib.
-
-This Contrib should work with TWiki 4 and newer and with Foswiki.
 
 %TOC{title="On this page:"}%
 
