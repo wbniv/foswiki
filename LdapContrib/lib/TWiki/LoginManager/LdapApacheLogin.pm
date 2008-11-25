@@ -1,6 +1,6 @@
-# Module of Foswiki - The Free Open Source Wiki, http://foswiki.org/
+# Module of Foswiki - The Free and Open Source Wiki, http://foswiki.org/
 #
-# Copyright (C) 2007 Michael Daum http://michaeldaumconsulting.com
+# Copyright (C) 2007-2008 Michael Daum http://michaeldaumconsulting.com
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -12,8 +12,6 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 #
-# For licensing info read LICENSE file in the TWiki root.
-
 package TWiki::LoginManager::LdapApacheLogin;
 
 use strict;
@@ -35,6 +33,9 @@ sub loadSession {
   my $this = shift;
 
   my $authUser = $this->SUPER::loadSession(@_);
+
+  # remove kerberos realm
+  $authUser =~ s/\@.*$//g if defined $authUser;
 
   $this->{ldap}->checkCacheForLoginName($authUser) if defined $authUser;
 

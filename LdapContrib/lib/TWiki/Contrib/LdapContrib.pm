@@ -1,4 +1,4 @@
-# Module of Foswiki - The Free Open Source Wiki, http://foswiki.org/
+# Module of Foswiki - The Free and Open Source Wiki, http://foswiki.org/
 #
 # Copyright (C) 2006-2008 Michael Daum http://michaeldaumconsulting.com
 # Portions Copyright (C) 2006 Spanlink Communications
@@ -29,18 +29,18 @@ use TWiki::Func;
 use vars qw($VERSION $RELEASE %sharedLdapContrib);
 
 $VERSION = '$Rev$';
-$RELEASE = 'v2.99.5';
+$RELEASE = 'v2.99.7';
 
-=begin text
+=pod
 
 ---+++ TWiki::Contrib::LdapContrib
 
-General LDAP services for TWiki. This class encapsulates the TWiki-specific
-means to integrate an LDAP directory service.  Used by TWiki::Users::LdapUser
+General LDAP services module. This class encapsulates the platform-specific
+means to integrate an LDAP directory service.  Used by TWiki::Users::LdapPassword
 for authentication, TWiki::Users::LdapUserMapping for group definitions and
 TWiki::Plugins::LdapNgPlugin to interface general query services.
 
-Typical usage:
+---+++ Typical usage
 <verbatim>
 my $ldap = new TWiki::Contrib::LdapContrib;
 
@@ -56,9 +56,25 @@ my $value = $entry->get_value('cn');
 my @emails = $entry->get_value('mail');
 </verbatim>
 
+---+++ Cache storage format
+
+The cache stores a series of key-value pairs in a DB_File. The following
+keys are used:
+
+   * WIKINAMES - list of all wikiNames
+   * LOGINNAMES - list of all loginNames
+   * GROUPS - list of all groups
+   * GROUPS::$groupName - list of all loginNames in group groupName (membership)
+   * EMAIL2U::$emailAddr - stores the loginName of an emailAddr
+   * U2EMAIL::$loginName - stores the emailAddr of a loginName 
+   * U2W::$loginName - stores the wikiName of a  loginName
+   * W2U::$wikiName - stores the loginName of a wikiName
+   * DN2U::$dn - stores the loginName of a distinguishedName
+   * U2DN::$loginName - stores the distinguishedName of a loginName
+
 =cut
 
-=begin text
+=pod
 
 ---+++ writeDebug($msg, $level) 
 
@@ -76,11 +92,11 @@ sub writeDebug {
 
   $level ||= 1;
 
-  print STDERR $msg."\n" if $level <= $this->{debug};
+  print STDERR "- LdapContrib - $msg\n" if $level <= $this->{debug};
 }
 
 
-=begin text
+=pod
 
 ---+++ writeWarning($msg, $level) 
 
@@ -96,12 +112,12 @@ sub writeWarning {
   if ($session) {
     $session->writeWarning("LdapContrib - $msg");
   } else {
-    print STDERR "LdapContrib - $msg\n";
+    print STDERR "- LdapContrib - $msg\n";
   }
 }
 
 
-=begin text
+=pod
 
 ---++++ new($session, host=>'...', base=>'...', ...) -> $ldap
 
@@ -163,11 +179,13 @@ sub new {
     normalizeGroupName=>$TWiki::cfg{Ldap}{NormalizeGroupNames},
 
     loginFilter=>$TWiki::cfg{Ldap}{LoginFilter} || 'objectClass=posixAccount',
+
     groupAttribute=>$TWiki::cfg{Ldap}{GroupAttribute} || 'cn',
+    primaryGroupAttribute=>$TWiki::cfg{Ldap}{PrimaryGroupAttribute} || '',
     groupFilter=>$TWiki::cfg{Ldap}{GroupFilter} || 'objectClass=posixGroup',
     memberAttribute=>$TWiki::cfg{Ldap}{MemberAttribute} || 'memberUid',
     memberIndirection=>$TWiki::cfg{Ldap}{MemberIndirection} || 0,
-    WikiGroupsBackoff=>$TWiki::cfg{Ldap}{WikiGroupsBackoff} || 0,
+    wikiGroupsBackoff=>$TWiki::cfg{Ldap}{WikiGroupsBackoff} || 0,
     bindDN=>$TWiki::cfg{Ldap}{BindDN} || '',
     bindPassword=>$TWiki::cfg{Ldap}{BindPassword} || '',
     mapGroups=>$TWiki::cfg{Ldap}{MapGroups} || 0,
@@ -184,6 +202,14 @@ sub new {
     useSASL=>$TWiki::cfg{Ldap}{UseSASL} || 0,
     saslMechanism=>$TWiki::cfg{Ldap}{SASLMechanism} || 'PLAIN CRAM-MD4 EXTERNAL ANONYMOUS',
 
+    useTLS=>$TWiki::cfg{Ldap}{UseTLS} || 0,
+    tlsVerify=>$TWiki::cfg{Ldap}{TLSVerify} || 'require',
+    tlsSSLVersion=>$TWiki::cfg{Ldap}{TLSSSLVersion} || 'tlsv1',
+    tlsCAFile=>$TWiki::cfg{Ldap}{TLSCAFile} || '',
+    tlsCAPath=>$TWiki::cfg{Ldap}{TLSCAPath} || '',
+    tlsClientCert=>$TWiki::cfg{Ldap}{TLSClientCert} || '',
+    tlsClientKey=>$TWiki::cfg{Ldap}{TLSClientKey} || '',
+
     secondaryPasswordManager=>$TWiki::cfg{Ldap}{SecondaryPasswordManager} || '',
     @_
   };
@@ -198,7 +224,7 @@ sub new {
 
   # protect against actidental misconfiguration, that might lead
   # to an infinite loop during authorization etc.
-  if ($this->{secondaryPasswordManager} eq 'TWiki::Users::LdapUser') {
+  if ($this->{secondaryPasswordManager} eq 'TWiki::Users::LdapPassword') {
     $this->writeWarning("hey, you want infinite loops? naw.");
     $this->{secondaryPasswordManager} = '';
   }
@@ -220,15 +246,15 @@ sub new {
     unless defined $this->{normalizeGroupName};
   $this->{normalizeWikiName} = 1 unless defined $this->{normalizeWikiName};
 
-  @{$this->{wikiNameAttributes}} = split(/,\s*/, $this->{wikiNameAttribute});
+  @{$this->{wikiNameAttributes}} = split(/\s*,\s*/, $this->{wikiNameAttribute});
 
   # create exclude map
-  my %excludeMap = map {$_ => 1} split(/,\s*/, $this->{exclude});
+  my %excludeMap = map {$_ => 1} split(/\s*,\s*/, $this->{exclude});
   $this->{excludeMap} = \%excludeMap;
 
   # creating alias map
   my %aliasMap = ();
-  foreach my $alias (split(/,\s*/, $this->{wikiNameAliases})) {
+  foreach my $alias (split(/\s*,\s*/, $this->{wikiNameAliases})) {
     if ($alias =~ /^\s*(.+?)\s*=\s*(.+?)\s*$/) {
       $aliasMap{$1} = $2;
     }
@@ -243,7 +269,7 @@ sub new {
   return $this;
 }
 
-=begin text
+=pod
 
 ---++++ getLdapContrib($session) -> $ldap
 
@@ -265,7 +291,7 @@ sub getLdapContrib {
   return $obj;
 }
 
-=begin text
+=pod
 
 ---++++ connect($login, $passwd) -> $boolean
 
@@ -290,6 +316,20 @@ sub connect {
     $this->{error} = "failed to connect to $this->{host}";
     $this->{error} .= ": $@" if $@;
     return 0;
+  }
+
+  # TLS bind
+  if ($this->{useTLS}) {
+    $this->writeDebug("using TLS");
+    my %args = (
+      verify => $this->{tlsVerify},
+      cafile => $this->{tlsCAFile},
+      capath => $this->{tlsCAPath},
+    );
+    $args{"clientcert"} = $this->{tlsClientCert} if $this->{tlsClientCert};
+    $args{"clientkey"} = $this->{tlsClientKey} if $this->{tlsClientKey};
+    $args{"sslversion"} = $this->{tlsSSLVersion} if $this->{tlsSSLVersion};
+    $this->{ldap}->start_tls(%args);
   }
 
   # authenticated bind
@@ -332,7 +372,7 @@ sub connect {
   return $this->{isConnected};
 }
 
-=begin text
+=pod
 
 ---++++ disconnect()
 
@@ -352,7 +392,7 @@ sub disconnect {
   $this->{isConnected} = 0;
 }
 
-=begin text
+=pod
 
 ---++++ finish
 
@@ -374,7 +414,7 @@ sub finish {
 }
 
 
-=begin text
+=pod
 
 ---++++ checkError($msg) -> $errorCode
 
@@ -399,7 +439,7 @@ sub checkError {
   return $code;
 }
 
-=begin text
+=pod
 
 ---++++ getError() -> $errorMsg
 
@@ -414,7 +454,7 @@ sub getError {
 }
 
 
-=begin text
+=pod
 
 ---++++ getAccount($login) -> Net::LDAP::Entry object
 
@@ -451,7 +491,7 @@ sub getAccount {
 }
 
 
-=begin text
+=pod
 
 ---++++ search($filter, %args) -> $msg
 
@@ -513,7 +553,7 @@ sub search {
   return $msg;
 }
 
-=begin text
+=pod
 
 ---++++ cacheBlob($entry, $attribute, $refresh) -> $pubUrlPath
 
@@ -539,8 +579,8 @@ sub cacheBlob {
 
   #$this->writeDebug("called cacheBlob()");
 
-  my $twikiWeb = &TWiki::Func::getTwikiWebname();
-  my $dir = &TWiki::Func::getPubDir().'/'.$twikiWeb.'/LdapContrib';
+  my $systemWeb = &TWiki::Func::getTwikiWebname();
+  my $dir = &TWiki::Func::getPubDir().'/'.$systemWeb.'/LdapContrib';
   my $key = md5_hex($entry->dn().$attr);
   my $fileName = $dir.'/'.$key;
 
@@ -559,10 +599,10 @@ sub cacheBlob {
   }
   
   #$this->writeDebug("done cacheBlob()");
-  return &TWiki::Func::getPubUrlPath().'/'.$twikiWeb.'/LdapContrib/'.$key;
+  return &TWiki::Func::getPubUrlPath().'/'.$systemWeb.'/LdapContrib/'.$key;
 }
 
-=begin text
+=pod
 
 ---++++ initCache()
 
@@ -574,9 +614,9 @@ sub initCache {
   my $this = shift;
 
   return unless $TWiki::cfg{UserMappingManager} =~ /LdapUserMapping/ ||
-                $TWiki::cfg{PasswordManager} =~ /LdapUser/;
+                $TWiki::cfg{PasswordManager} =~ /LdapPassword/;
 
-  $this->writeDebug("called initCache");
+  #$this->writeDebug("called initCache");
 
   # open database
   #$this->writeDebug("opening ldap cache from $this->{cacheFile}");
@@ -585,11 +625,9 @@ sub initCache {
     or die "Cannot open file $this->{cacheFile}: $!";
 
   # refresh by user interaction
-  my $refresh = '';
-  my $session = $this->{session}->{cgiQuery};
-  $refresh = $session->param('refreshldap') || '' if $session;
+  my $refresh = CGI::param('refreshldap') || '';
   $refresh = $refresh eq 'on'?1:0;
-  $this->writeDebug("refreshing cache explicitly") if $refresh;
+  #$this->writeDebug("refreshing cache explicitly") if $refresh;
 
   if ($this->{maxCacheAge} > 0) { # is cache expiration enabled
 
@@ -607,7 +645,7 @@ sub initCache {
       $refresh = 1 if $cacheAge > $this->{maxCacheAge}
     }
 
-    $this->writeDebug("cacheAge=$cacheAge, maxCacheAge=$this->{maxCacheAge}, lastUpdate=$lastUpdate, refresh=$refresh");
+    #$this->writeDebug("cacheAge=$cacheAge, maxCacheAge=$this->{maxCacheAge}, lastUpdate=$lastUpdate, refresh=$refresh");
   }
 
   # clear to reload it
@@ -696,6 +734,7 @@ sub refreshUsersCache {
     base=>$this->{userBase},
     attrs=>[$this->{loginAttribute}, 
             $this->{mailAttribute},
+            $this->{primaryGroupAttribute},
             @{$this->{wikiNameAttributes}}
           ],
     control=>[$page],
@@ -777,7 +816,11 @@ sub refreshGroupsCache {
   my @args = (
     filter=>$this->{groupFilter}, 
     base=>$this->{groupBase}, 
-    attrs=>[$this->{groupAttribute}, $this->{memberAttribute}],
+    attrs=>[
+      $this->{groupAttribute}, 
+      $this->{memberAttribute}, 
+      $this->{primaryGroupAttribute}
+    ],
     control=>[$page],
   );
 
@@ -823,6 +866,41 @@ sub refreshGroupsCache {
   # check for error
   return 0 if $gotError;
 
+  # check for primary group membership
+  foreach my $groupId (keys %{$this->{_primaryGroup}}) {
+    my $groupName = $this->{_groupId}{$groupId};
+    foreach my $member (keys %{$this->{_primaryGroup}{$groupId}}) {
+      $this->writeDebug("adding $member to its primary group $groupName");
+      $this->{_groups}{$groupName}{$member} = 1;
+    }
+  }
+
+  # assert group members to data store 
+  foreach my $groupName (keys %{$this->{_groups}}) {
+
+    my %members = ();
+    foreach my $member (keys %{$this->{_groups}{$groupName}}) {
+
+      # groups may store DNs to members instead of a memberUid, in this case we
+      # have to lookup the corresponding loginAttribute
+      if ($this->{memberIndirection}) {
+	#$this->writeDebug("following indirection for $member");
+	my $memberName = $data->{"DN2U::$member"};
+	if ($memberName) {
+	  $members{$memberName} = 1;
+	} else {
+	  $this->writeDebug("oops, $member not found, but member of $groupName");
+	} 
+      } else {
+	$members{$member} = 1;
+      }
+    }
+    
+    $data->{"GROUPS::$groupName"} = join(',', keys %members);
+    undef $this->{_groups}{$groupName};
+  }
+  undef $this->{_groups};
+
   # remember list of all groups
   $data->{GROUPS} = join(',', keys %groupNames);
 
@@ -852,6 +930,8 @@ sub cacheUserFromEntry {
 
   my $dn = $entry->dn();
   my $loginName = $entry->get_value($this->{loginAttribute});
+  $loginName =~ s/^\s+//o;
+  $loginName =~ s/\s+$//o;
   unless ($loginName) {
     $this->writeDebug("no loginName for $dn ... skipping");
     return 0;
@@ -870,6 +950,8 @@ sub cacheUserFromEntry {
   foreach my $attr (@{$this->{wikiNameAttributes}}) {
     my $value = $entry->get_value($attr);
     next unless $value;
+    $value =~ s/^\s+//o;
+    $value =~ s/\s+$//o;
 
     $value = from_utf8(-string=>$value, -charset=>$TWiki::cfg{Site}{CharSet})
       unless $TWiki::cfg{Site}{CharSet} =~ /^utf-?8$/i;
@@ -882,15 +964,20 @@ sub cacheUserFromEntry {
       $wikiName .= $value;
     }
   }
-  $wikiName ||= $loginName;
+  unless ($wikiName) {
+    if ($this->{normalizeWikiName}) {
+      $wikiName = $this->normalizeWikiName($loginName);
+    } else {
+      $wikiName = $loginName;
+    }
+    $this->writeWarning("no WikiNameAttributes found for $dn ... deriving WikiName from LoginName: '$wikiName'");
+  }
   if (defined($wikiNames->{$wikiName})) {
     $this->writeWarning("$dn clashes with wikiName $wikiNames->{$wikiName} on $wikiName");
-    return 0;
   }
   $wikiNames->{$wikiName} = $dn;
   if (defined($loginNames->{$loginName})) {
     $this->writeWarning("$dn clashes with loginName $loginNames->{$loginName} on $loginName");
-    return 0;
   }
   $loginNames->{$loginName} = $dn;
 
@@ -898,13 +985,33 @@ sub cacheUserFromEntry {
   my $emails;
   @{$emails} = $entry->get_value($this->{mailAttribute});
 
+  # get primary group 
+  if ($this->{primaryGroupAttribute}) {
+    my $groupId = $entry->get_value($this->{primaryGroupAttribute});
+    $this->{_primaryGroup}{$groupId}{$loginName} = 1; # delayed
+  }
+
   # store it
   $this->writeDebug("adding wikiName='$wikiName', loginName='$loginName', dn=$dn");
   $data->{"U2W::$loginName"} = $wikiName;
   $data->{"W2U::$wikiName"} = $loginName;
   $data->{"DN2U::$dn"} = $loginName;
   $data->{"U2DN::$loginName"} = $dn;
-  $data->{"U2EMAILS::$loginName"} = join(',',@$emails);
+  $data->{"U2EMAIL::$loginName"} = join(',',@$emails);
+
+  if ($emails) {
+    foreach my $email (@$emails) {
+      $email =~ s/^\s+//o;
+      $email =~ s/\s+$//o;
+      my $prevMapping = $data->{"EMAIL2U::$email"};
+      my %emails = ();
+      if ($prevMapping) {
+        %emails = map {$_ => 1} split(/\s*,\s*/, $prevMapping);
+      }
+      $emails{$loginName} = $email;
+      $data->{"EMAIL2U::$email"} = join(',', sort keys %emails);
+    }
+  }
 
   return 1;
 }
@@ -932,6 +1039,8 @@ sub cacheGroupFromEntry {
     $this->writeDebug("no groupName for $dn ... skipping");
     return 0;
   }
+  $groupName =~ s/^\s+//o;
+  $groupName =~ s/\s+$//o;
 
   $groupName = from_utf8(-string=>$groupName, -charset=>$TWiki::cfg{Site}{CharSet})
     unless $TWiki::cfg{Site}{CharSet} =~ /^utf-?8$/i;
@@ -956,28 +1065,22 @@ sub cacheGroupFromEntry {
     $groupName .= $groupSuffix;
   }
 
-  # fetch all members of this group
-  my %members = ();
-  foreach my $member ($entry->get_value($this->{memberAttribute})) {
+  # cache groupIds
+  my $groupId = $entry->get_value($this->{primaryGroupAttribute});
+  $this->{_groupId}{$groupId} = $groupName;
 
-    # groups may store DNs to members instead of a memberUid, in this case we
-    # have to lookup the corresponding loginAttribute
-    if ($this->{memberIndirection}) {
-      #$this->writeDebug("following indirection for $member");
-      my $userName = $data->{"DN2U::$member"};
-      if ($userName) {
-	$members{$userName} = 1;
-      } else {
-        $this->writeDebug("oops, $member not found, but member of $groupName");
-      } 
-    } else {
-      $members{$member} = 1;
-    }
+  # fetch all members of this group
+  foreach my $member ($entry->get_value($this->{memberAttribute})) {
+    next unless $member;
+    $member =~ s/^\s+//o;
+    $member =~ s/\s+$//o;
+    $this->{_groups}{$groupName}{$member} = 1; # delay til all groups have been fetched
   }
 
   # store it
   $this->writeDebug("adding groupName='$groupName', dn=$dn");
-  $data->{"GROUPS::$groupName"} = join(',', keys %members);
+  $data->{"DN2U::$dn"} = $groupName;
+  $data->{"U2DN::$groupName"} = $dn;
   $groupNames->{$groupName} = 1;
 
   return 1;
@@ -1048,7 +1151,7 @@ sub normalizeLoginName {
 }
 
 
-=begin text
+=pod
 
 ---++++ getGroupNames() -> @array
 
@@ -1062,12 +1165,12 @@ sub getGroupNames {
   #$this->writeDebug("called getGroupNames()");
 
   my $groupNames = TWiki::Sandbox::untaintUnchecked($this->{data}{GROUPS}) || '';
-  my @groupNames = split(/,/,$groupNames);
+  my @groupNames = split(/\s*,\s*/,$groupNames);
 
   return \@groupNames;
 }
 
-=begin text
+=pod
 
 ---++++ isGroup($wikiName) -> $boolean
 
@@ -1084,7 +1187,8 @@ sub isGroup {
   return undef;
 }
 
-=begin text
+
+=pod
 
 ---++++ getEmails($login) -> @emails
 
@@ -1095,12 +1199,29 @@ fetch emails from LDAP
 sub getEmails {
   my ($this, $login) = @_;
 
-  my $emails = TWiki::Sandbox::untaintUnchecked($this->{data}{"U2EMAILS::".lc($login)}) || '';
-  my @emails = split(/,/,$emails);
+  my $emails = TWiki::Sandbox::untaintUnchecked($this->{data}{"U2EMAIL::".lc($login)}) || '';
+  my @emails = split(/\s*,\s*/,$emails);
   return \@emails;
 }
 
-=begin text
+=pod
+
+---++++ getLoginOfEmail($email) \@users
+
+get all users matching a given email address
+
+=cut
+
+sub getLoginOfEmail {
+  my ($this, $email) = @_;
+
+  my $loginNames = TWiki::Sandbox::untaintUnchecked($this->{data}{"EMAIL2U::".$email}) || '';
+  my @loginNames = split(/\s*,\s*/,$loginNames);
+  return \@loginNames;
+  
+}
+
+=pod
 
 ---++++ getGroupMembers($groupName) -> \@array
 
@@ -1110,10 +1231,27 @@ sub getGroupMembers {
   my ($this, $groupName) = @_;
   return undef if $this->{excludeMap}{$groupName};
 
+  $this->writeDebug("called getGroupMembers $groupName");
+
   my $members = TWiki::Sandbox::untaintUnchecked($this->{data}{"GROUPS::$groupName"}) || '';
-  my @members = split(/,/, $members);
+  my @members = split(/\s*,\s*/, $members);
 
   return \@members;
+}
+
+=pod
+
+---++++ isGroupMember($loginName, $groupName) -> $boolean
+
+check if a given user is member of an ldap group
+
+=cut
+
+sub isGroupMember {
+  my ($this, $loginName, $groupName) = @_;
+
+  my $members = $this->{data}{"GROUPS::$groupName"} || '';
+  return ($members =~ /\b$loginName\b/)?1:0;
 }
 
 =pod 
@@ -1126,6 +1264,8 @@ returns the wikiName of a loginName or undef if it does not exist
 
 sub getWikiNameOfLogin {
   my ($this, $loginName) = @_;
+
+  $this->writeDebug("called getWikiNameOfLogin($loginName)");
   $loginName = lc($loginName);
   return TWiki::Sandbox::untaintUnchecked($this->{data}{"U2W::$loginName"});
 }
@@ -1164,7 +1304,7 @@ sub getAllWikiNames {
   my $this = shift;
 
   my $wikiNames = TWiki::Sandbox::untaintUnchecked($this->{data}{WIKINAMES}) || '';
-  my @wikiNames = split(/,/,$wikiNames);
+  my @wikiNames = split(/\s*,\s*/,$wikiNames);
   return \@wikiNames;
 }
 
@@ -1180,7 +1320,7 @@ sub getAllLoginNames {
   my $this = shift;
 
   my $loginNames = TWiki::Sandbox::untaintUnchecked($this->{data}{LOGINNAMES}) || '';
-  my @loginNames = split(/,/,$loginNames);
+  my @loginNames = split(/\s*,\s*/,$loginNames);
   return \@loginNames;
 }
 
@@ -1237,7 +1377,7 @@ grant that the current loginName is cached. If not, it will download the LDAP
 record for this specific user and update the LDAP cache with this single record.
 
 This happens when the user is authenticated externally, e.g. using apache's
-mod_authz_ldap or some other SSO, and TWiki's internal cache 
+mod_authz_ldap or some other SSO, and the internal cache 
 is not yet updated. It is completely updated regularly on a specific time
 interval (default every 24h). See the LdapContrib settings.
 

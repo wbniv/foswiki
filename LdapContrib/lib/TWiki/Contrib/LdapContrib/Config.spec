@@ -1,11 +1,9 @@
 # ---+ LDAP settings
 # This is the configuration used by the <b>LdapContrib</b> and the
-# <b>LdapNgPlugin</b>. Please have a look at the
-# <a href="http://twiki.org/cgi-bin/view/Plugins/LdapContrib">the
-# LdapContrib documentation</a> for more information.
+# <b>LdapNgPlugin</b>. 
 # <p>
 # To use an LDAP server for authentication you have to use the PasswordManager
-# <b>LdapUser</b>.
+# <b>LdapPassword</b>.
 # To Use groups defined in LDAP enable the UserMappingManager <b>LdapUserMapping</b>.
 # (see the Security Setting section)
 
@@ -48,15 +46,46 @@ $TWiki::cfg{Ldap}{UseSASL} = 0;
 $TWiki::cfg{Ldap}{SASLMechanism} = 'PLAIN CRAM-MD5 EXTERNAL ANONYMOUS';
 
 # **BOOLEAN**
+# Use Transort Layer Security (TLS) to encrypt the connection to the LDAP server.
+# You will need to specify the servers CA File using the TLSCAFile option
+$TWiki::cfg{Ldap}{UseTLS} = 0;
+
+# **STRING**
+# This defines the version of the SSL/TLS protocol to use. Possible values are:
+# 'sslv2', 'sslv3',  'sslv2/3' or 'tlsv1'
+$TWiki::cfg{Ldap}{TLSSSLVersion} = 'tlsv1';
+
+# **STRING**
+# Specify how to verify the servers certificate. Possible values are: 'require', 'optional'
+# or 'require'.
+$TWiki::cfg{Ldap}{TLSVerify} = 'require';
+
+# **STRING**
+# Pathname of the directory containing CA certificates
+$TWiki::cfg{Ldap}{TLSCAPath} = '';
+
+# **STRING**
+# Filename containing the certificate of the CA which signed the server’s certificate.
+$TWiki::cfg{Ldap}{TLSCAFile} = '';
+
+# **STRING**
+# Client side certificate file
+$TWiki::cfg{Ldap}{TLSClientCert} = '';
+
+# **STRING**
+# Client side private key file
+$TWiki::cfg{Ldap}{TLSClientKey} = '';
+
+# **BOOLEAN**
 # Enable/disable debug output to STDERR. This will end up in your web server's log files.
-# But you are adviced to redirect STDERR of TWiki to a separate file. This can be done by
+# But you are adviced to redirect STDERR of the wiki engine to a separate file. This can be done by
 # commenting out the prepaired command in the <code>lib/TWiki/UI.pm</code> file. See the 
 # comments there.
 $TWiki::cfg{Ldap}{Debug} = 0;
 
 # **STRING**
 # <h2>User settings</h2>
-# The options below configure how TWiki will extract account records from LDAP.
+# The options below configure how the wiki will extract account records from LDAP.
 #
 # <!-- work around broken configure -->
 # </td></tr><tr><td colspan="2" class="docdata info">
@@ -96,18 +125,18 @@ $TWiki::cfg{Ldap}{NormalizeLoginNames} = 0;
 $TWiki::cfg{Ldap}{WikiNameAliases} = '';
 
 # **BOOLEAN**
-# Allow/disallow changing the LDAP password using TWiki's ChangePassword feature
+# Allow/disallow changing the LDAP password using the ChangePassword feature
 $TWiki::cfg{Ldap}{AllowChangePassword} = 0;
 
 # **SELECTCLASS none,TWiki::Users::*User**
 # Define a secondary password manager used to authenticate users that are 
-# registered to TWiki natively. Note, that <b>this must not be TWiki::Users::LdapUser again!</b>
+# registered to the wiki natively. Note, that <b>this must not be TWiki::Users::LdapPassword again!</b>
 $TWiki::cfg{Ldap}{SecondaryPasswordManager} = 'none';
 
 # **STRING**
 # <h2>Group settings</h2>
 # The settings below configures the mapping and processing of LoginNames and WikiNames as
-# well as the use of LDAP groups in TWiki. 
+# well as the use of LDAP groups. 
 # In any case you have to select the LdapUserMapping as the UserMappingManager in the
 # Security Section section above.
 #
@@ -126,6 +155,14 @@ $TWiki::cfg{Ldap}{GroupFilter} = 'objectClass=posixGroup';
 # This is the name of the attribute that holds the name of the 
 # group in a group record.
 $TWiki::cfg{Ldap}{GroupAttribute} = 'cn';
+
+# **STRING**
+# This is the name of the attribute that holds the primary group attribute.
+# This attribute is stored as part of the user record and refers to the
+# primary group this user is in. Sometimes, this membership is not captured
+# in the group record itself but in the user record to make it the primary group
+# a user is in.
+$TWiki::cfg{Ldap}{PrimaryGroupAttribute} = 'gidNumber';
 
 # **STRING**
 # The attribute that should be used to collect group members. This is the name of the
@@ -150,7 +187,7 @@ $TWiki::cfg{Ldap}{WikiGroupsBackoff} = 1;
 $TWiki::cfg{Ldap}{NormalizeGroupNames} = 0;
 
 # **BOOLEAN**
-# Enable use of LDAP groups in TWiki. If you switch this off the group-related settings
+# Enable use of LDAP groups. If you switch this off the group-related settings
 # have no effect. This flag is of use if you don't want to define groups in LDAP
 # but still want to map LoginNames to WikiNames on the base of LDAP data.
 $TWiki::cfg{Ldap}{MapGroups} = 1;
