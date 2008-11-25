@@ -1,7 +1,7 @@
 ---+!! %TOPIC%
 <!--
 One line description, required for extensions repository catalog.
-   * Set SHORTDESCRIPTION = Provides framework for organizing  content within a web according to different _types_ of topics (discussion, weblog, reference, etc) and hierarchical "categories". Includes sample topic types and categories. Provides basic framework to design and manage simple TWiki:Codev.TWikiApplications.
+   * Set SHORTDESCRIPTION = Provides framework for organizing  content within a web according to different _types_ of topics (discussion, weblog, reference, etc) and hierarchical "categories". Includes sample topic types and categories. Provides basic framework to design and manage simple Foswiki Applications.
 -->
 %SHORTDESCRIPTION%
 
@@ -9,7 +9,7 @@ One line description, required for extensions repository catalog.
 
 ---+ Topic Classification Add-On 
 
-<b> %TOPIC% (aka TCAO) helps you organize the content in your wiki by classifying topics according to their _function_ and/or _subject matter._ </b> It also provides a user-friendly interface for creating new topics that automatically incorporates this classification system. Together, these basic elements provide a platform that allow you to create any number of simple TWiki:Codev.TWikiApplications.
+<b> %TOPIC% (aka TCAO) helps you organize the content in your wiki by classifying topics according to their _function_ and/or _subject matter._ </b> It also provides a user-friendly interface for creating new topics that automatically incorporates this classification system. Together, these basic elements provide a platform that allow you to create any number of simple Foswiki Applications.
 
 Some of the features of %TOPIC% include:
    * Simple installation mechanism to add the TCAO framework to a web and install sample classifications.
@@ -47,7 +47,7 @@ Once %TOPIC% is enabled within a web, you're ready to start defining *TopicTypes
 
 ---++ Add-On Info
 
-|  Add-on Author: | TWiki:Main.LynnwoodBrown |
+|  Add-on Author: | Foswiki:Main.LynnwoodBrown |
 |  Add-on Version: | %$VERSION% |
 |  Copyright: | &copy; |
 |  License: | [[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License)]] |

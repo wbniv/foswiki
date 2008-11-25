@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="PeterThoeny" date="1152440301" format="1.1" reprev="1.1" version="1.1"}%
 ---+!! Edit Syntax Plugin (Alpha version - unsafe for public websites)
 
-This Plugin allows users to edit TWiki content with their favorite wiki syntax. Users can set their preferred syntax as a user preferences setting in their user homepage. Edit syntax converters convert the TWiki markup language (TML) into another syntax when a user edits a topic, and converts it back after edit. The content is always saved in the TWiki format, that is, users can edit the same content using different edit syntax.
+This Plugin allows users to edit Foswiki content with their favorite wiki syntax. Users can set their preferred syntax as a user preferences setting in their user homepage. Edit syntax converters convert the Topic markup language (TML) into another syntax when a user edits a topic, and converts it back after edit. The content is always saved in the Foswiki format, that is, users can edit the same content using different edit syntax.
 
 %TOC%
 
@@ -12,7 +12,7 @@ The edit syntax rules depend on the edit syntax converter activated by a user.
 
 Currently available converters:
 | *Syntax* | *To Activate* | *Syntax Summary and Help* | *Converter topic* |
-| =TWiki= | =<nop>   * Set EDITSYNTAX = <nop>= | [[%SYSTEMWEB%.WikiSyntaxSummary][Summary]], [[%SYSTEMWEB%.TextFormattingRules][Help]] | N/A |
+| =Foswiki= | =<nop>   * Set EDITSYNTAX = <nop>= | [[%SYSTEMWEB%.WikiSyntaxSummary][Summary]], [[%SYSTEMWEB%.TextFormattingRules][Help]] | N/A |
 %SEARCH{ "EditSyntaxRegex" scope="topic" topic="*EditSyntaxRegex" nonoise="on" format="| =$percntCALC{$SET(name, $SUBSTITUTE($topic, EditSyntaxRegex))$GET(name)}$percnt= | =<nop>   * Set EDITSYNTAX = <nop>$percntCALC{$GET(name)}$percnt= | [[$percntCALC{$GET(name)}$percntWikiSyntaxSummary][Summary]], [[$percntCALC{$GET(name)}$percntTextFormattingRules][Help]] | [[$topic][$percntCALC{$GET(name)}$percnt converter]] |" }%
 
 Syntax converters are activated with an EDITSYNTAX preferences setting in the user homepage. Copy these bullets to the Personal Preferences section:
@@ -22,7 +22,7 @@ Syntax converters are activated with an EDITSYNTAX preferences setting in the us
          * Set <nop>EDITSYNTAX = Mediawiki
 </pre>
 
-To disable the converter (e.g. to use TWiki syntax), set the EDITSYNTAX to an empty value.
+To disable the converter (e.g. to use Foswiki syntax), set the EDITSYNTAX to an empty value.
 
 
 ---++ How to Create a New Edit Syntax Converter
@@ -30,7 +30,7 @@ To disable the converter (e.g. to use TWiki syntax), set the EDITSYNTAX to an em
 Steps to create a new edit syntax converter, using the !FooWiki syntax as an example:
    1. Decide on the base name, =Foowiki=. Base name must not be a !WikiWord, e.g. not =FooWiki=.
    1. Create a =FoowikiEditSyntaxRegex= topic in the %SYSTEMWEB% web, taking MediawikiEditSyntaxRegex as a template.
-      * List regular expressions to convert the syntax from the TWiki to the Foowiki format, and vice versa.
+      * List regular expressions to convert the syntax from the Foswiki to the Foowiki format, and vice versa.
       * The converter format is indicated below.
       * All topics ending in =*EditSyntaxRegex= are listed automatically in the converter topic.
    1. Create a =FoowikiWikiSyntaxSummary= syntax summary topic in the %SYSTEMWEB% web, taking MediawikiWikiSyntaxSummary as a template.
@@ -42,7 +42,7 @@ Steps to create a new edit syntax converter, using the !FooWiki syntax as an exa
 ---+++ Format of Edit Syntax Regular Expression Converter Topic
 
 The converter topic contains bullets of format: =* TYPE: /from/to/= or =* TYPE: /from/to/ # comment=
-   * =TYPE= is =T2X= for "TWiki to External" syntax conversion, or =X2T= for "External to TWiki" syntax conversion.
+   * =TYPE= is =T2X= for "TML (Foswiki topic markup language)  to External" syntax conversion, or =X2T= for "External to TML" syntax conversion.
    * =/from/to/= are regular expressions to convert from one format to the other.
    * =# comments= to annotate the expressions are optional. The hash sign requires a space to be recognized as a space.
    * Empty lines are ignored.
@@ -58,7 +58,7 @@ Example lines:
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>EDITSYNTAXPLUGIN_SHORTDESCRIPTION%==
 
    * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
-      * Set SHORTDESCRIPTION = Edit TWiki content using your preferred wiki syntax
+      * Set SHORTDESCRIPTION = Edit Foswiki content using your preferred wiki syntax
 
    * Debug plugin: (See output in =data/debug.txt=)
       * Set DEBUG = 0
@@ -66,29 +66,27 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
 
 ---++ Plugin Installation Instructions
 
-__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the TWiki server. 
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the Foswiki server. 
 
    * Download the ZIP file from the Plugin web (see below)
    * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
      | *File:* | *Description:* |
      | ==data/System/%TOPIC%.txt== | Plugin topic |
-     | ==data/TWiki/MediawikiEditSyntaxRegex.txt== | Mediawiki edit syntax converter topic |
-     | ==data/TWiki/MediawikiWikiSyntaxSummary.txt== | Mediawiki edit syntax summary topic |
-     | ==data/TWiki/MediawikiTextFormattingRules.txt== | Mediawiki edit syntax help topic |
-     | ==data/TWiki/MediawikiEditSyntaxTest.txt== | Mediawiki edit syntax test topic |
+     | ==data/System/MediawikiEditSyntaxRegex.txt== | Mediawiki edit syntax converter topic |
+     | ==data/System/MediawikiWikiSyntaxSummary.txt== | Mediawiki edit syntax summary topic |
+     | ==data/System/MediawikiTextFormattingRules.txt== | Mediawiki edit syntax help topic |
+     | ==data/System/MediawikiEditSyntaxTest.txt== | Mediawiki edit syntax test topic |
      | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
    * Configure the Plugin:
-      * TWiki 4.0 and up: Run the [[%SCRIPTURL%/configure%SCRIPTSUFFIX%][configure]] script to enable the Plugin
+      * Run the [[%SCRIPTURL%/configure%SCRIPTSUFFIX%][configure]] script to enable the Plugin
       * Change the Plugin settings as needed
-   * Patch TWiki if you are running TWiki 4.0.0 - 4.0.5:
-      * Apply TWiki:Codev/AfterEditHandlerCallFix to fix a bug in the Plugin API.
    * Test if the installation was successful:
       * Enable the Mediawiki syntax with this setting in your home page:
          * =Set EDITSYNTAX = Mediawiki=
       * Edit a test topic that contains headings, bullets, *bold text* and _italic text_
          * You should see the content in Mediawiki syntax
          * Save the test topic
-         * View raw should show you the content in TWiki syntax
+         * View raw should show you the content in Foswiki syntax
    * Show proper edit syntax summary in edit screen:
       * Create an =EDITSYNTAX= setting in your =%USERSWEB%.SitePreferences= and set it to an empty value
       * Edit =twiki/templates/edit.pattern.tmpl= and change ="%<nop>SYSTEMWEB%.WikiSyntaxSummary"= to ="%<nop>SYSTEMWEB%.%EDITSYNTAX%WikiSyntaxSummary"=

@@ -4,40 +4,39 @@
 ---+!! Template Toolkit Plugin
 
 This is a rather slim glue to Andy Wardley's Template Toolkit
-(see http://www.template-toolkit.org/ or TWiki:Codev.TemplateToolkit
-for more, though the latter is pretty stale).
+(see http://www.template-toolkit.org/ for more.
 
 I myself have here and then argued that TT is too heavyweight for use
-as a template system for TWiki, but this does only prevent using TT as
-the _only_ template system for TWiki.
+as a template system for Foswiki, but this does only prevent using TT as
+the _only_ template system for Foswiki.
 
 If, on the other hand, you _do_ have TT installed anyway, and
 especially if you have it running in a mod_perl environment where
 module compilation time is no longer an issue, then you might want to
-share your TT blocks or layouts with TWiki.
+share your TT blocks or layouts with Foswiki.
 
 The implementation as a plugin does not allow to install TT
-as a drop-in replacement for TWiki's own templating system.  But I
+as a drop-in replacement for Foswiki's own templating system.  But I
 think that for first experiments it is possible to emulate that: Use
-very slim TWiki templates to get TWiki's template system out of
+very slim Foswiki templates to get Foswiki's template system out of
 the way, and run your topics through TT instead.
 
 To be honest, I am using this plugin as both a first step to evaluate
-TT as a TWiki template machine, and as a real-life hands-on example
+TT as a Foswiki template machine, and as a real-life hands-on example
 for BenchmarkContrib to play with.
 
 %TOC%
 
 ---++ Syntax Rules
 
-The plugin has just one TWiki tag in the TWiki sense:
+The plugin has just one Foswiki tag in the Foswiki sense:
 
 %STARTSECTION{"VarTEMPLATETOOLKIT"}%
    * Syntax example: =%<nop>TEMPLATETOOLKIT{"on" WRAPPER="myTTtemplate.tt2"}%=
    * If present in a topic with a value of ="on"=, the whole topic will be
      processed by TT.
    * A configuration variable named
-     =$TWiki::cfg{Plugins}{TemplateToolkitPlugin}{UseTT}= can be used
+     =$Foswiki::cfg{Plugins}{TemplateToolkitPlugin}{UseTT}= can be used
      to set a site-wide default
    * Supported Parameters:
      | *Parameter:* | *Description:* | *Default:* |
@@ -51,11 +50,11 @@ Not fully documented, until I figure out how %SCRIPTURL{configure}% will
 pick up plugin configuration vars.
 
 All configuration variables for this plugin are collected under
-=$TWiki::cfg{Plugins}{TemplateToolkitPlugin}=.
+=$Foswiki::cfg{Plugins}{TemplateToolkitPlugin}=.
 
 | *Configuration Variable* | *Description* |
 | ={UseTT}= | Sitewide default for TT usage.  Can be overridden in a topic with the =%<nop>TEMPLATETOOLKIT{...}%= tag. |
-| ={TToptions}= | Hash reference passed as =\%config= parameter to =Template->new()=.  Refer to the TT documentation for details.%BR%Per default, the current topic's attachment directory is used as =INCLUDE_PATH=, and the =START_TAG= option is basically the familiar =[&#37;=, but adjusted to take care for TWiki forced link/variable combinations. |
+| ={TToptions}= | Hash reference passed as =\%config= parameter to =Template->new()=.  Refer to the TT documentation for details.%BR%Per default, the current topic's attachment directory is used as =INCLUDE_PATH=, and the =START_TAG= option is basically the familiar =[&#37;=, but adjusted to take care for Foswiki forced link/variable combinations. |
 
 ---++ Notes on Template Toolkit Syntax
 
@@ -63,13 +62,13 @@ If you are familiar with the Template Toolkit, then you surely know
 that it per default embeds its directives between the delimiters
 =[&#37;= and =%]=.  As almost everything in TT this is configurable,
 but the default delimiters are used quite frequently because they usually
-don't occur in "normal text".  _Usually_.  In TWiki, there is a syntax
+don't occur in "normal text".  _Usually_.  In Foswiki, there is a syntax
 construction which is quite popular, but makes TT croak: Forced links,
-with an embedded TWiki variable.  Example:
+with an embedded Foswiki macro.  Example:
 <verbatim>
 [[%SYSTEMWEB%.%STATISTICSTOPIC%]]
 </verbatim>
-This is a valid TWiki link pointing to
+This is a valid Foswiki link pointing to
 [[%SYSTEMWEB%.%STATISTICSTOPIC%]], but an invalid TT construct
 =[&#37; SYSTEMWEB%.%STATISTICSTOPIC %]= within an additional set of square
 brackets.
@@ -78,11 +77,11 @@ This plugin tries hard to cope with this, so the above example will
 work as intended.  Some recommendations, just in case:
    * It is good practice to write your TT constructs as =[&#37; tt_directive %]=,
      i.e. with surrounding spaces around directives.  By doing so,
-     you'll make sure to never clash with a possible TWiki variable name
+     you'll make sure to never clash with a possible Foswiki macro name
      =%<nop>tt_directive%=.
-   * Separate TT stuff from heavy TWiki lifting or you'll get severe bracketiquotitis.
+   * Separate TT stuff from heavy Foswiki lifting or you'll get severe bracketiquotitis.
    * If you want to use different delimiters, define both ={TToptions}{START_TAG}= and
-     ={TToptions}{END_TAG}= in =$TWiki::cfg{Plugins}{TemplateToolkitPlugin}=.
+     ={TToptions}{END_TAG}= in =$Foswiki::cfg{Plugins}{TemplateToolkitPlugin}=.
    * When writing TT wrappers for use with this plugin, keep in mind that they are
      TT-expanded, but not TML-processed.
 
@@ -100,9 +99,9 @@ the current topic by clicking [[%SCRIPTURL{view}%/%WEB%/%TOPIC%?TT=on][here]].
 
 ---++ Security Considerations
 
-Unlike in typical TT web applications, in a TWiki many people can edit
+Unlike in typical TT web applications, in a Foswiki many people can edit
 the templates, and so they can introduce TT directives.  To keep your
-TWiki unharmed, some precautions should be made:
+Foswiki unharmed, some precautions should be made:
    1 Do not enable EVAL_PERL (it is off per default).
    1 Do not pass critical data structures like the configuration hash
      as TT variables.  Remember that with TT directives it is possible
@@ -113,10 +112,10 @@ TWiki unharmed, some precautions should be made:
 ---++ Future Directions
 
 If time permits, I'll try to:
-   * create a TWiki skin and a TT layout in parallel and run
+   * create a Foswiki skin and a TT layout in parallel and run
      benchmarks on both.
    * document (and extend) configuration items
-   * Add a =TWiki= filter for TT templates so that wrappers can use TWiki variables
+   * Add a =Foswiki= filter for TT templates so that wrappers can use Foswiki macros
    * ...
 
 ---++ Plugin Installation Instructions

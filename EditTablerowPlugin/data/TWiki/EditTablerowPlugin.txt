@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="WikiGuest" date="1158847638" format="1.1" version="1.2"}%
 ---+!! Edit Tablerow Plugin
 
-This plugin allows you to edit TWiki tables row by row, using a form with appropriate controls for each field. If preceeded by an =%<nop>EDITTABLEROW{...}%= variable, tables have edit links for each row, and are optionally followed by an *[&nbsp;Edit&nbsp;table&nbsp;]* button. Multiple tables per topic are editable, but only one row at a time can be edited.
+This plugin allows you to edit Foswiki tables row by row, using a form with appropriate controls for each field. If preceeded by an =%<nop>EDITTABLEROW{...}%= variable, tables have edit links for each row, and are optionally followed by an *[&nbsp;Edit&nbsp;table&nbsp;]* button. Multiple tables per topic are editable, but only one row at a time can be edited.
 
 %TOC%
 
@@ -73,11 +73,11 @@ After editing, the focus is moved to the row edited, to avoid excessive scrollin
 Line before table: =%<nop>EDITTABLEROW{ template="..." changerows="on" }%=
 <table border="1" cellspacing="1" cellpadding="0">
 <tr><th class="twikiFirstCol" bgcolor="#99CCCC"><a href="%SCRIPTURLPATH%/oops/Test/TableRowOne?template=oopspreview" title="Sort by this column"> Nr</a> </th><th bgcolor="#99CCCC"><a href="%SCRIPTURLPATH%/oops/Test/TableRowOne?template=oopspreview" title="Sort by this column"> Text field</a> </th><th bgcolor="#99CCCC"><a href="%SCRIPTURLPATH%/oops/Test/TableRowOne?template=oopspreview" title="Sort by this column"> Drop down</a> </th><th bgcolor="#99CCCC"><a href="%SCRIPTURLPATH%/oops/Test/TableRowOne?template=oopspreview" title="Sort by this column"> Mood</a> </th><th bgcolor="#99CCCC"><a href="%SCRIPTURLPATH%/oops/Test/TableRowOne?template=oopspreview" title="Sort by this column"> Timestamp</a> </th></tr>
-<tr><td class="twikiFirstCol" bgcolor="#FFFFFF"> <a href="%SCRIPTURLPATH%/oops/Test/TableRowOne?template=oopspreview">1</a> </td><td bgcolor="#FFFFFF"> hello table </td><td bgcolor="#FFFFFF"> one </td><td bgcolor="#FFFFFF"> <img src="%PUBURLPATH%/TWiki/SmiliesPlugin/smile.gif" alt="smile" title="smile" border="0" /> </td><td bgcolor="#FFFFFF"> 19 Mar 2005 23:21 </td></tr>
-<tr><td class="twikiFirstCol" bgcolor="#FFFFCC"> <a href="%SCRIPTURLPATH%/oops/Test/TableRowOne?template=oopspreview">2</a> </td><td bgcolor="#FFFFCC"> &nbsp; </td><td bgcolor="#FFFFCC"> two </td><td bgcolor="#FFFFCC"> <img src="%PUBURLPATH%/TWiki/SmiliesPlugin/frown.gif" alt="frown" title="frown" border="0" /> </td><td bgcolor="#FFFFCC"> 19 Mar 2005 11:21 </td></tr>
+<tr><td class="twikiFirstCol" bgcolor="#FFFFFF"> <a href="%SCRIPTURLPATH%/oops/Test/TableRowOne?template=oopspreview">1</a> </td><td bgcolor="#FFFFFF"> hello table </td><td bgcolor="#FFFFFF"> one </td><td bgcolor="#FFFFFF"> <img src="%PUBURLPATH%/System/SmiliesPlugin/smile.gif" alt="smile" title="smile" border="0" /> </td><td bgcolor="#FFFFFF"> 19 Mar 2005 23:21 </td></tr>
+<tr><td class="twikiFirstCol" bgcolor="#FFFFCC"> <a href="%SCRIPTURLPATH%/oops/Test/TableRowOne?template=oopspreview">2</a> </td><td bgcolor="#FFFFCC"> &nbsp; </td><td bgcolor="#FFFFCC"> two </td><td bgcolor="#FFFFCC"> <img src="%PUBURLPATH%/System/SmiliesPlugin/frown.gif" alt="frown" title="frown" border="0" /> </td><td bgcolor="#FFFFCC"> 19 Mar 2005 11:21 </td></tr>
 </table>
 <form action="%SCRIPTURLPATH%/oops/Test/TableRowOne">
-<input type="image" src="%PUBURLPATH%/TWiki/EditTablePlugin/edittable.gif" alt="Edit this table" onclick="return(false);" /></form>
+<input type="image" src="%PUBURLPATH%/System/EditTablePlugin/edittable.gif" alt="Edit this table" onclick="return(false);" /></form>
 
 If you click on one of the links in the first column, say for the second row, you will be able to edit that table row in a form:
 
@@ -89,7 +89,7 @@ Plugin settings are stored as preferences variables. To reference
 a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, for example, ==%<nop>EDITTABLEPLUGIN_SHORTDESCRIPTION%==
 
    * One line description, shown in the %SYSTEMWEB%.TextFormattingRules topic:
-      * Set SHORTDESCRIPTION = Edit TWiki tables rows using a form
+      * Set SHORTDESCRIPTION = Edit Foswiki tables rows using a form
 
    * Set DEBUG to 1 to get debug messages in =data/debug.txt=.  Default: =0=
       * Set DEBUG = 0
@@ -99,23 +99,23 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, for example, =
 
    * Default edit button: Specify =button text=, or specify =alternate text, image URL=
       * Set EDITBUTTON = Edit table
-      * #Set EDITBUTTON = Edit this table, %PUBURL%/TWiki/EditTablePlugin/edittable.gif
+      * #Set EDITBUTTON = Edit this table, %PUBURL%/System/EditTablePlugin/edittable.gif
 
    * Default edit link for row: Specify =button text=, or specify =alternate text, image URL=. If empty, create link from first field.
       * #Set EDITLINK = Edit
-      * #Set EDITLINK = Edit, %PUBURL%/TWiki/DocumentGraphics/edittopic.gif
+      * #Set EDITLINK = Edit, %PUBURL%/System/DocumentGraphics/edittopic.gif
 
 
 ---++ Limitations and Known Issues
 
-   * This Plugin does not (yet) support TWiki table formatting like Multi-span cells (e.g. =| ... ||=)
+   * This Plugin does not (yet) support Foswiki table formatting like Multi-span cells (e.g. =| ... ||=)
    * You cannot put two =%<nop>EDITTABLE{}%= statements on the same line in the source
    * Defining the schema in the format of %SYSTEMWEB%.EditTablePlugin requires patching of =Form.pm=
 
 
 ---++ Plugin Installation Instructions
 
-__Note:__ You do not need to install anything on the browser to use this Plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+__Note:__ You do not need to install anything on the browser to use this Plugin. The following instructions are for the administrator who installs the plugin on the server where Foswiki is running. 
 
    * Download the ZIP file from the Plugin web (see below)
    * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
@@ -123,14 +123,14 @@ __Note:__ You do not need to install anything on the browser to use this Plugin.
      | ==data/System/%TOPIC%.txt== | Plugin topic |
      | ==data/System/%TOPIC%.txt,v== | Plugin topic repository |
      | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
-     | ==pub/TWiki/%TOPIC%/*.jpg== | Screenshots for plugin topic |
+     | ==pub/System/%TOPIC%/*.jpg== | Screenshots for plugin topic |
      | ==bin/editTableRow== |  |
      | ==bin/uploadTableRow== |  |
      | ==templates/editTableRow.pattern.tmpl== |  |
      | ==templates/editTableRow.tmpl== |  |
    * Verify access and ownership settings for the new scripts.
    * Edit your .htaccess file to require a valid user for the included scripts (if needed).
-   * Apply the [[%ATTACHURL%/Form.pm.formdef_patch][attached patch]] to =lib/TWiki/Form.pm= if you want to use the schema definition in the style of %SYSTEMWEB%.EditTablePlugin
+   * Apply the [[%ATTACHURL%/Form.pm.formdef_patch][attached patch]] to =lib/Foswiki/Form.pm= if you want to use the schema definition in the style of %SYSTEMWEB%.EditTablePlugin
 
 
 ---++ Plugin Info
@@ -141,7 +141,7 @@ __Note:__ You do not need to install anything on the browser to use this Plugin.
 |  20 Sep 2006: | Add compatability with table schema definition from %SYSTEMWEB%.EditTablePlugin. Create header row when adding the first line to an empty table. |
 |  08 Sep 2006: | Use strict warnings. Fix handling of checkbox fields. Move to last edited row after save to avoid scrolling. Do not insert placeholder text in first field. |
 |  01 Sep 2006: | Dakar port. Fix handling of date fields in Dakar. Allow editlink in tag. Move existing table to bottom of edit view. |
-|  07 Jul 2005: | Remove further warning message (thanks to TWiki:Main/KennethLavrsen and TWiki:Main/CrawfordCurrie)   |
+|  07 Jul 2005: | Remove further warning message (thanks to Foswiki:Main/KennethLavrsen and Foswiki:Main/CrawfordCurrie)   |
 |  30 Jun 2005: | Fix access control. Remove warning messages from apache log.   |
 |  21 Apr 2005: | Fix to remove conflict with %<nop>TOC% rendering   |
 |  26 Mar 2005: | Removed dependencies on EditContrib and made compatible with Beijing release  |

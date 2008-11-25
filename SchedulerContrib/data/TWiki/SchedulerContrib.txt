@@ -1,12 +1,10 @@
 ---+!! SchedulerContrib Contrib Package
 
-The SchedulerContrib implements the ideas contained in TWiki:Codev.CronCentre.
-
-It makes it possible to control notification schedules from a TWiki page. 
+The SchedulerContrib makes it possible to control notification schedules from a Foswiki page. 
 
 The basic idea is to run a single cron at regular intervals that would invoke a script in the bin directory. This cron program then run continually, waiting to process the next event.
 
-Events are listed on a TWiki page containing cron schedule information and the names of pages containing notification information.
+Events are listed on a Foswiki page containing cron schedule information and the names of pages containing notification information.
 
 For example, our cron could be:
 
@@ -15,8 +13,8 @@ For example, our cron could be:
 The cron schedule page would contain something like this:
 
 | *Schedule* | *Entry point* |
-| Every 2 days | TWiki::Plugins::ActionTrackerPlugin::ActionNotify:actionNotify |
-| Every day | TWiki::Notify::allWebs |
+| Every 2 days | Foswiki::Plugins::ActionTrackerPlugin::ActionNotify:actionNotify |
+| Every day | Foswiki::Notify::allWebs |
 
 This is based on http://search.cpan.org/~roland/Schedule-Cron-0.9/Cron.pm
 

@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="AntonioTerceiro" date="1125283434" format="1.1" version="1.2"}%
 ---+ <nop/>%TOPIC%
 
-BibliographyPlugin manages citations inside a TWiki topic, and can generate an References List at the end of the topic. This should be every usefull for writing conference papers, journal articles, ellaborated news, etc.
+BibliographyPlugin manages citations inside a Foswiki topic, and can generate an References List at the end of the topic. This should be every usefull for writing conference papers, journal articles, ellaborated news, etc.
 
 ---++ Syntax Rules
 
@@ -93,7 +93,7 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
 
 ---++ Plugin Installation Instructions
 
-__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where Foswiki is running. 
 
 	* Download the ZIP file from the Plugin web (see below)
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
@@ -101,7 +101,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
      | ==data/System/%TOPIC%.txt== | Plugin topic |
      | ==data/System/%TOPIC%.txt,v== | Plugin topic repository |
      | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
-	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* (Dakar) Visit =configure= in your Foswiki installation, and enable the plugin in the {Plugins} section.
 	* Test if the installation was successful: see above at [[#Example]]
 
 ---++ Plugin Info

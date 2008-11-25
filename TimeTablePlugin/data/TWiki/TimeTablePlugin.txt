@@ -104,7 +104,7 @@ Example: %<nop>TIMETABLE{lang="Deutsch" timeinterval="15" }%
 | workingendtime | working hours end time | workingendtime="5:00pm" |
 | workingstarttime | working hours start time | workingstarttime="9:00am" |
 |  *Compatibility Mode: <br/>(%X% =compatmode="on"= is required %X%)*  |||
-| cmheaderformat | table header format of a day; a subset of strftime conversion specifiers is supported (only date not time specifiers; see manual page or TWiki:Codev.ConvergeDateTimeFormattingModels) | cmheaderformat="&lt;font&nbsp;title=\"%A - %d %b %Y\" size=\"-2\">%a&lt;br/&gt;%e&lt;/font&gt;" |
+| cmheaderformat | table header format of a day; a subset of strftime conversion specifiers is supported (only date not time specifiers; see manual page or Foswiki:Development.ConvergeDateTimeFormattingModels) | cmheaderformat="&lt;font&nbsp;title=\"%A - %d %b %Y\" size=\"-2\">%a&lt;br/&gt;%e&lt;/font&gt;" |
 | daynames | custom day names (a list separated by a '¦' and starting on Monday; overwrites lang attribute) | daynames="M¦T¦W¦T¦F¦S¦S" |
 | forcestartdate | if set to 1 the timetable starts with the given startdate ('0' means: the timetable view starts with Monday') | forcestartdate="0" |
 | month | set a month (e.g. Jan, Feb ... or 01, 02, ... 12 ) or a month offset (e.g. +0, +1, -2,...) | month="+1" |
@@ -122,7 +122,7 @@ Example: %<nop>TIMETABLE{lang="Deutsch" timeinterval="15" }%
 | eventbgcolor | default background color of an event cell (you can overwrite this with an event entry) | eventbgcolor = "#AAAAAA" |
 | eventfgcolor | default text color of an event cell (you can overwrite this with an event entry) | eventfgcolor = "black" |
 | fontsize | default font size (see [[#TimeTablePluginKnownIssues][Known Issues and Bugs]]) | fontsize="xx-small" | 
-| headerformat | table header format of a day; a subset of strftime conversion specifiers is supported (only date not time specifiers; see manual page or TWiki:Codev.ConvergeDateTimeFormattingModels) | headerformat="&lt;font&nbsp;title=\"%A - %d %b %Y\" size=\"-2\">%a&lt;/font&gt;" |
+| headerformat | table header format of a day; a subset of strftime conversion specifiers is supported (only date not time specifiers; see manual page or Foswiki:Development.ConvergeDateTimeFormattingModels) | headerformat="&lt;font&nbsp;title=\"%A - %d %b %Y\" size=\"-2\">%a&lt;/font&gt;" |
 | monthheaderbgcolor | month header background color (default: tableheadercolor) | monthheaderbgcolor="%<nop>WEBBGCOLOR%" |
 | monthheaderfgcolor | month header text (foreground) color (default: black) | monthheaderfgcolor="black" |
 | monthheaderformat | month header format (related: =showmonthheader=) | monthheaderformat="%B" |
@@ -142,7 +142,7 @@ Example: %<nop>TIMETABLE{lang="Deutsch" timeinterval="15" }%
 | tablewidth | table width (default: undefined) | tablewidth="100%" |
 | todaybgcolor | highlight today column with a background color | todaybgcolor="black" |
 | todayfgcolor | highlight today column with a foreground color | todayfgcolor="white" | 
-| tooltipdateformat| tooltip date format (for %<nop>DATE% substition of tooltipformat); a subset of strftime conversion specifiers is supported (only date not time specifiers; see manual page or TWiki:Codev.ConvergeDateTimeFormattingModels) | tooltipdateformat="%y/%d/%m" |
+| tooltipdateformat| tooltip date format (for %<nop>DATE% substition of tooltipformat); a subset of strftime conversion specifiers is supported (only date not time specifiers; see manual page or Foswiki:Development.ConvergeDateTimeFormattingModels) | tooltipdateformat="%y/%d/%m" |
 | tooltipfixleft | positive or negative offset from the left to fix tooltip position | tooltipfixleft="-163" | 
 | tooltipfixtop | positive or negative offset from the top to fix tooltip position | tooltipfixtop="0" |
 | tooltipformat | format of a tooltip (substituted variables: %<nop>DATE% - date (see tooltipdateformat attribute), %<nop>TIMERANGE% - time range, %<nop>DESCRIPTION% - description field, %<nop>LONGDESCRIPTION% - complete entry) | tooltipformat="%<nop>DATE%&lt;br/&gt;%<nop>TIMERANGE%&lt;br/&gt; %<nop>DESCRIPTION% " |

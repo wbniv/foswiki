@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="WikiGuest" date="1153746501" format="1.1" version="1.2"}%
 ---+ <nop>%TOPIC%
 
-This plugin will provide a TWiki Topic interface to SOAP::Lite calls (a la TWiki:Codev/TWikiAsWebServicesClient).
+This plugin will provide a Foswiki Topic interface to SOAP::Lite calls.
 
 It will cause the rendering of the topic to be as slow as the internet request - so its probably best to do on a local machine only.
 
@@ -16,7 +16,7 @@ It will cause the rendering of the topic to be as slow as the internet request -
 
 ---++ Examples
 
-Examples using the TWiki:Codev/GForgeSoapInterface - http://gforge.org/soap/index.php
+Examples using the G-Forge Soap Interface - http://gforge.org/soap/index.php
    * %<nop>SOAP{service="http://gforge.org/soap/index.php" call="getPublicProjectNames()" format="   * Group: $list_element $n"}%
 %SOAP{service="http://gforge.org/soap/index.php" call="getPublicProjectNames()" format="   * Group: $list_element $n"}%
 
@@ -25,23 +25,23 @@ Examples using the TWiki:Codev/GForgeSoapInterface - http://gforge.org/soap/inde
 Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>INTERWIKIPLUGIN_SHORTDESCRIPTION%==
 
    * One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
-      * Set SHORTDESCRIPTION = Provides a TWiki Topic interface to SOAP::Lite calls
+      * Set SHORTDESCRIPTION = Provides a Foswiki Topic interface to SOAP::Lite calls
 
    * Debug plugin: (See output in =data/debug.txt=)
       * Set DEBUG = 0
 
 ---++ Plugin Installation Instructions
 
-__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where Foswiki is running. 
 
    * Download the ZIP file from the Plugin web (see below)
    * install SOAP::Lite from CPAN
-   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content: <table cellspacing="1" cellpadding="0" border="1">       *File:*  *Description:*        ==data/TWiki/%TOPIC%.txt==  Plugin topic        ==data/TWiki/%TOPIC%.txt,v==  Plugin topic repository        ==lib/TWiki/Plugins/%TOPIC%.pm==  Plugin Perl module  </table>
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content: <table cellspacing="1" cellpadding="0" border="1">       *File:*  *Description:*        ==data/System/%TOPIC%.txt==  Plugin topic        ==data/System/%TOPIC%.txt,v==  Plugin topic repository        ==lib/Foswiki/Plugins/%TOPIC%.pm==  Plugin Perl module  </table>
    * use the configure script to enable
 
 ---++ Plugin Info
 
-|  Plugin Author: | TWiki:Main/SvenDowideit - <img src="%ATTACHURLPATH%/wikiringlogo20x20.png" /> http://www.wikiring.com |
+|  Plugin Author: | Foswiki:Main/SvenDowideit - <img src="%ATTACHURLPATH%/wikiringlogo20x20.png" /> http://www.wikiring.com |
 |  Plugin Version: | 24 July 2006 (V1.100) |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
 |  24 July 2006: | fix docco to reflect the changed example (GForge changed the wsdl), tested on TWiki4.0 |
@@ -54,7 +54,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 
--- TWiki:Main/SvenDowideit
+-- Foswiki:Main/SvenDowideit
 
 %META:FORM{name="PackageForm"}%
 %META:FIELD{name="TopicClassification" attributes="" title="TopicClassification" value="PluginPackage"}%

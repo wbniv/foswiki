@@ -2,7 +2,7 @@
 ---+!! !TalkContrib
 <!--
 One line description, required for extensions repository catalog.
-   * Set SHORTDESCRIPTION = Add Talk pages for TWiki
+   * Set SHORTDESCRIPTION = Add Talk pages for Foswiki
 -->
 %SHORTDESCRIPTION%
 
@@ -13,10 +13,6 @@ One line description, required for extensions repository catalog.
 
 When the user initially clicks on the 'Discuss topic' button, it will create a new topic by appending =Talk= to the original topic. 
 From then on, you can switch between the topic and its Discussion topic using that button.
-
-This Contrib was inspired by a discussion I had with some Sun engineers on the dtrace mailing list about using Wikis to discuss external documentation, 
-TWiki:Codev.TalkPagesForTWiki and its Discussion topic TWiki:Codev.TalkPagesForTWikiTalk
-and by TWiki:Codev.TalkTalk and its Discussion topic TWiki:Codev.TalkTalkTalk - both of which currently use a 4.1.2 VIEW_TEMPLATE version of this Contrib.
 
 ---++ Installation and Configuration Instructions
 ---+++ 'Talk' topics in created in the same web as the topic, with 'Talk' Suffix
@@ -46,6 +42,7 @@ You can over-ride the Topic formtemplate that is used when creating a new Talk t
 
 
 I have tested TalkContrib using TWiki 4.2.0 with the default skin (used as a building block for other skins), ClassicSkin, PatternSkin and Foswiki:Extensions.MoveveableTypeSkin.
+
 ---++ Limitations
 There are 2 known limitations at this time
    1 any topic containing the TALKSUFFIX will be considered a Talk topic - this is due to a bug in %SYSTEMWEB%.VarIF string matching
@@ -54,14 +51,14 @@ There are 2 known limitations at this time
 ---++ Discussion and future ideas
 
 There are many approaches to storing Talk discussions:
-   1 append a 'Talk' suffix to the name of the topic, and link to that (as seen on TWiki.org)
+   1 append a 'Talk' suffix to the name of the topic, and link to that
       * Talk topics are normal topics that conform to a naming scheme, thus are listed in WebChanges seperatly from their parent topics
    2 convert the web and topic name to some reversible but otherwise unlikely combination, and store in a seperate Talk web
    3 use Subwebs with common topic names
    4 use a formfield in the topic to store the Talk
    5 use a META:PREF in the topic to store the Talk
    
-This <nop>TWikiApplication implements the first using either a SKIN or COVER setting or using VIEW_TEMPLATE. The other modes will be examined over time.
+This Foswiki Application implements the first using either a SKIN or COVER setting or using VIEW_TEMPLATE. The other modes will be examined over time.
 
 ---+++ Package installation
 
@@ -69,8 +66,8 @@ This <nop>TWikiApplication implements the first using either a SKIN or COVER set
 
 ---++ Contrib Info
 
-|  Contrib Author: | TWiki:Main.SvenDowideit - SvenDowideit@DistributedINFORMATION.com [[http://DistributedINFORMATION.com][DistributedINFORMATION]] - a <img src="%ATTACHURLPATH%/wikiringlogo20x20.png" /> [[http://www.wikiring.com][WikiRing.com]] partner |
-|  Copyright &copy;: | TWiki:Main.SvenDowideit - SvenDowideit@DistributedINFORMATION.com |
+|  Contrib Author: | Foswiki:Main.SvenDowideit - SvenDowideit@DistributedINFORMATION.com [[http://DistributedINFORMATION.com][DistributedINFORMATION]] - a <img src="%ATTACHURLPATH%/wikiringlogo20x20.png" /> [[http://www.wikiring.com][WikiRing.com]] partner |
+|  Copyright &copy;: | Foswiki:Main.SvenDowideit - SvenDowideit@DistributedINFORMATION.com |
 |  License: | [[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License)]] |
 |  Contrib Version: | %$VERSION% |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |

@@ -5,7 +5,7 @@ This plugin allows the user to break a topic into sections which can be edited i
 
 This plugin leverages from Foswiki:Extensions/SectionalEditPlugin and Foswiki:Extensions/RecursiveRenderPlugin. From the former, it inherits the ability to edit sections of a topic individually; from the latter the ability to place these sections into arbitrary contexts, even if the inserted text could not ordinarily be placed in that context per TWiki ML.
 
-The motivation behind this plugin was to allow the separation of a topic into several [[TWiki:Codev/TWikiApplications][TWikiApplications]], or, at least, into several independently editable sections. The creator of a topic might define the overall layout of a topic, and identify the sections that should be editable individually. (One might even disable the topic actions for other users, such these users would interact with the topic via the editable sections only.
+The motivation behind this plugin was to allow the separation of a topic into several Foswiki Applications, or, at least, into several independently editable sections. The creator of a topic might define the overall layout of a topic, and identify the sections that should be editable individually. (One might even disable the topic actions for other users, such these users would interact with the topic via the editable sections only.
 
 ---++ Syntax Rules
 
@@ -19,7 +19,7 @@ The following topic
 
 <verbatim>
 <table borderwidth="0"><tr valign="top"><td rowspan="2">
-<section>*Welcome to TWiki:* a flexible, powerful, secure, yet simple web-based collaboration platform. Use TWiki to run a project development space, a document management system, a knowledge base or any other groupware tool on either an intranet or on the Internet.</section>
+<section>*Welcome to Foswiki:* a flexible, powerful, secure, yet simple web-based collaboration platform. Use Foswiki to run a project development space, a document management system, a knowledge base or any other groupware tool on either an intranet or on the Internet.</section>
 </td><td align="center" bgcolor="#8490A1"><b>Available webs</b></td></tr><tr>
 <td bgcolor="#b4d5ff">
 <section>%WEBLIST{"   * $web"}%</section>
@@ -59,29 +59,29 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
 
 ---++ Bug Warning
 
-It is not possible based on the current TWiki rendering model to make this feature work when only part of a topic is included. If there are sections identified in an included topic which are before the %<nop>STARTINCLUDE% marker, then the sections in the included topic cannot be properly edited.
+It is not possible based on the current Foswiki rendering model to make this feature work when only part of a topic is included. If there are sections identified in an included topic which are before the %<nop>STARTINCLUDE% marker, then the sections in the included topic cannot be properly edited.
 
 A patch is included below to support sectional editing of included topics.
 
 ---++ Plugin Installation Instructions
 
-__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where Foswiki is running. 
 
    * Download the ZIP file from the Plugin web (see below)
    * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
      | *File:* | *Description:* |
      | ==data/System/%TOPIC%.txt== | Plugin topic |
      | ==data/System/%TOPIC%.txt,v== | Plugin topic repository |
-     | ==pub/TWiki/%TOPIC%/multieditplugin_example.jgp== |  |
+     | ==pub/System/%TOPIC%/multieditplugin_example.jgp== |  |
      | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
      | ==bin/editonesection== |  |
    * Verify access and ownership settings for the new scripts.
-   * If you want the editing of included sections to fully work, you need to apply the following patch to =lib/TWiki.pm=. Otherwise the plugin will fail to edit a section included from another topic unless all sections are included from that topic.
+   * If you want the editing of included sections to fully work, you need to apply the following patch to =lib/Foswiki.pm=. Otherwise the plugin will fail to edit a section included from another topic unless all sections are included from that topic.
    <verbatim>
-Index: lib/TWiki.pm
+Index: lib/Foswiki.pm
 ===================================================================
---- lib/TWiki.pm	(revision 12006)
-+++ lib/TWiki.pm	(working copy)
+--- lib/Foswiki.pm	(revision 12006)
++++ lib/Foswiki.pm	(working copy)
 @@ -2824,6 +2824,9 @@
          return '';
      }
@@ -104,13 +104,13 @@ Index: lib/TWiki.pm
 |  Plugin Version: | 10 Apr 2007 |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
 |  10 Apr 2007: | Support pre in sections.  |
-|  08 Apr 2007: | Update by TWiki:Main.MichaelDaum. Fix for Bugs:Item3847. Handle verbatim in sections. |
+|  08 Apr 2007: | Update by Foswiki:Main.MichaelDaum. Fix for Bugs:Item3847. Handle verbatim in sections. |
 |  10 Dec 2006: | Fix for unnamed sections. |
 |  19 Nov 2006: | Support editing of sections from included topics. Use =strict=. |
 |  09 Sep 2006: | Bug (disabled SectionalEditPlugin) fixed. |
 |  08 Sep 2006: | Allow embedded complex constructs without editing. |
 |  18 Aug 2006: | Fix handling of image tags in labels. Allow skipping of the new =viewprint= (or other) template in addition to skins. |
-|  18 Jun 2006: | Fix for verbatim being taken out due to bug in =TWiki::Func::renderText= |
+|  18 Jun 2006: | Fix for verbatim being taken out due to bug in =Foswiki::Func::renderText= |
 |  10 Jun 2006: | Migrated to Dakar release |
 |   4 Aug 2005: | Cleaned up error log messages  |
 |  2 May 2005: | Fixed caching problem when using Speedy CGI   |

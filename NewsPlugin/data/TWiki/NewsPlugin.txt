@@ -84,7 +84,7 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
 
 ---++ Plugin Installation Instructions
 
-__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where Foswiki is running. 
 
 	* Download the ZIP file from the Plugin web (see below)
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
@@ -100,14 +100,14 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 
 ---++ Plugin Info
 
-|  Plugin Author: | TWiki:Main/ColasNahaboo |
+|  Plugin Author: | Foswiki:Main/ColasNahaboo |
 |  Plugin Version: | 07 Feb 2006 (V1.5) |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
 |  07 Feb 2006 | 1.5 Add "pattern" parameter. |
 |  20 Feb 2003 | 1.4 trim option for removing ending punctuation: . , : ; |
 |  19 Feb 2003 | 1.3 small bugfix |
 |  17 Feb 2003 | 1.2 Initial version |
-|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1%BR% TWiki version of 01 Feb 2003 or better, or the 01 Dec 2001 version with the TWiki:Codev/PluginHookOnSavePatch patch. |
+|  TWiki Dependency: | $Foswiki::Plugins::VERSION 1.1%BR% TWiki version of 01 Feb 2003 or better, or the 01 Dec 2001 version with the TWiki:Codev/PluginHookOnSavePatch patch. |
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
@@ -119,6 +119,6 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 
--- TWiki:Main/ColasNahaboo - 17 Feb 2003%BR%
+-- Foswiki:Main/ColasNahaboo - 17 Feb 2003%BR%
 -- TWiki:Main/DavidBright - 07 Feb 2006%BR%
 

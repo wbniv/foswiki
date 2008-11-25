@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="guest" date="1108706751" format="1.0" version="1.1"}%
 ---+ Forms AddOn
 
-This AddOnPackage provides enhancements to TWiki forms:
+This AddOnPackage provides enhancements to Foswiki forms:
 	* Provide manual control over the appearance (layout and content)of the form.
 	* Allow field values to be supplied for select, radio, and checkbox fields through both a referenced topic or an embedded search.
 	* Allow the same field value definition to be referenced multiple times.
@@ -82,7 +82,7 @@ All form fields can be initialized from the values given in the fourth column of
 
 The initial values in the form for text and text area fields may contain commas; for other fields the individual values are separated by commas. Checkbox fields cannot be initialized. 
 
-Fields are initialized in the following order (note that the form definition is not used if the body text is passed as a query parameter (per TWiki spec):
+Fields are initialized in the following order (note that the form definition is not used if the body text is passed as a query parameter (per Foswiki spec):
 		* Field values passed as query parameters
 		* Field values in a template topic
 		* Field values in the form definition
@@ -105,25 +105,25 @@ The example form during edit renders as follows:
 
 ---++ Acknowledgement
 
-This AddOn leverages code contributions and ideas by TWiki:Main/PeterKlausner and TWiki:Main/SvenDowedit (see also TWiki:Codev/DynamicFormOptionDefinitions).
+This AddOn leverages code contributions and ideas by TWiki:Main/PeterKlausner and Foswiki:Main/SvenDowedit.
 
 
 ---++ Add-On Installation Instructions
 
-__Note:__ You do not need to install anything on the browser to use this add-on. The following instructions are for the administrator who installs the add-on on the server where TWiki is running. 
+__Note:__ You do not need to install anything on the browser to use this add-on. The following instructions are for the administrator who installs the add-on on the server where Foswiki is running. 
 
 	* Download the ZIP file from the Add-on Home (see below)
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
 	  | *File:* | *Description:* |
-	  | ==data/TWiki/%TOPIC%.txt== | Add-on topic |
-	  | ==data/TWiki/%TOPIC%.txt,v== | Add-on topic repository |
+	  | ==data/System/%TOPIC%.txt== | Add-on topic |
+	  | ==data/System/%TOPIC%.txt,v== | Add-on topic repository |
 	  | ==templates/oopsfielderror.tmpl== | Error template |
 	  | ==bin/%TOPIC%.patch== | Patch |
 	  | ==data/Sandbox/SearchForm.txt== | Example form	 |
 	  | ==data/Sandbox/SearchFormTemplate.txt== | Template for example form	 |
 	  | ==data/Sandbox/OfficeSearch.txt== | Topic defining field values	 |
 	  | ==data/Sandbox/SearchFormTest.txt== | Example topic	 |
-	* Patch the following files with =bin/%TOPIC%.patch=: =lib/TWiki/Form.pm=, =lib/TWiki/UI/Preview.pm=, =lib/TWiki/UI/Save.pm=, =lib/TWiki/Render.pm=
+	* Patch the following files with =bin/%TOPIC%.patch=: =lib/Foswiki/Form.pm=, =lib/Foswiki/UI/Preview.pm=, =lib/Foswiki/UI/Save.pm=, =lib/Foswiki/Render.pm=
 	* Test if the installation was successful:
 		* View Sandbox.FormSearchTest.
 

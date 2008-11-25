@@ -41,7 +41,7 @@ Rendering themes can be defined by =&lt;name&gt;_THEME= Plugin settings
       * =Set &lt; _name_ &gt;_THEME = tree=
    * Format of the *icon* render type:
       * =Set &lt; _name_ &gt;_THEME = icon, [&lt; _root icon image_ &gt;], [&lt; _icon image_ &gt;], [&lt; _folder icon image_ &gt;], [&lt; _open folder icon image_ &gt;]=
-      * The _root icon image_ is shown at the root of the tree, the _icon image_ is shown at every leaf node, the _folder icon image_ is shown at every collapsed internal node, and the _open folder icon image_ is shown at every expanded internal node. The icon images point to files attached to TWiki topics and are referenced in the standard manner. If no path is given, the images are taken from %SYSTEMWEB%.DocumentGraphics.
+      * The _root icon image_ is shown at the root of the tree, the _icon image_ is shown at every leaf node, the _folder icon image_ is shown at every collapsed internal node, and the _open folder icon image_ is shown at every expanded internal node. The icon images point to files attached to Foswiki topics and are referenced in the standard manner. If no path is given, the images are taken from %SYSTEMWEB%.DocumentGraphics.
       * If an icon image is omitted, the following defaults are chosen: %ATTACHURL%/empty.gif, %ATTACHURL%/page.gif, %ATTACHURL%/folder.gif, %ATTACHURL%/folderopen.gif
 
 If !JavaScript is not enabled, the list is rendered as usual, and the =%<nop>TREEBROWSER% tag is omitted.
@@ -137,10 +137,10 @@ left.config.shared=true;
 left.config.useStatusText=false;
 left.config.useSelection=false;
 left.config.folderLinks=false;
-left.add(0,-1,"<a href=\"/view/TWiki/WebHome\" class=\"twikiCurrentWebHomeLink twikiLink\">TWiki Web Home</a>");
-left.add(1,0,"<a href=\"/view/TWiki/WebChanges\" class=\"twikiLink\">Changes</a> ",'','','','%ATTACHURLPATH%/page.gif');
-left.add(2,0,"<a href=\"/view/TWiki/WebIndex\" class=\"twikiLink\">Index</a>",'','','','%ATTACHURLPATH%/page.gif');
-left.add(3,0,"<a href=\"/view/TWiki/WebSearch\" class=\"twikiLink\">Search</a>",'','','','%ATTACHURLPATH%/page.gif');
+left.add(0,-1,"<a href=\"/view/System/WebHome\" class=\"twikiCurrentWebHomeLink twikiLink\">System Web Home</a>");
+left.add(1,0,"<a href=\"/view/System/WebChanges\" class=\"twikiLink\">Changes</a> ",'','','','%ATTACHURLPATH%/page.gif');
+left.add(2,0,"<a href=\"/view/System/WebIndex\" class=\"twikiLink\">Index</a>",'','','','%ATTACHURLPATH%/page.gif');
+left.add(3,0,"<a href=\"/view/System/WebSearch\" class=\"twikiLink\">Search</a>",'','','','%ATTACHURLPATH%/page.gif');
 left.add(4,0,"this is a very very very long text",'','','','%ATTACHURLPATH%/page.gif');
 left.add(5,0,"Folder",'','','','%ATTACHURLPATH%/folder.gif','%ATTACHURLPATH%/folderopen.gif');
 left.add(6,5,"Leaf1",'','','','%ATTACHURLPATH%/page.gif');
@@ -209,9 +209,9 @@ To add _"collapse/expand all nodes"_ functionalities do something like:
 menudemo = new dTree('menudemo');
 menudemo.config.style='dmenu';
 menudemo.config.inOrder=true;
-menudemo.config.iconPath='/pub/TWiki/TreeBrowserPlugin/';
+menudemo.config.iconPath='/pub/System/TreeBrowserPlugin/';
 menudemo.updateIconPath();
-menudemo.icon.root='/pub/TWiki/TreeBrowserPlugin/home.gif';
+menudemo.icon.root='/pub/System/TreeBrowserPlugin/home.gif';
 menudemo.config.useIcons=false;
 menudemo.config.shared=true;
 menudemo.config.noIndent=true;
@@ -223,17 +223,17 @@ menudemo.config.folderLinks=false;
 menudemo.config.noRoot=true;
 menudemo.config.autoToggle=true;
 menudemo.add(0,-1,"");
-menudemo.add(1,0,"Vegetables",'','','','/pub/TWiki/TreeBrowserPlugin/folder.gif','/pub/TWiki/TreeBrowserPlugin/folderopen.gif');
-menudemo.add(2,1,"Carot",'','','','/pub/TWiki/TreeBrowserPlugin/page.gif');
-menudemo.add(3,1,"Leek",'','','','/pub/TWiki/TreeBrowserPlugin/page.gif');
-menudemo.add(4,1,"Tomato",'','','','/pub/TWiki/TreeBrowserPlugin/page.gif');
-menudemo.add(5,1,"Potato",'','','','/pub/TWiki/TreeBrowserPlugin/page.gif');
-menudemo.add(6,0,"Fruits",'','','','/pub/TWiki/TreeBrowserPlugin/folder.gif','/pub/TWiki/TreeBrowserPlugin/folderopen.gif');
-menudemo.add(7,6,"Banana",'','','','/pub/TWiki/TreeBrowserPlugin/page.gif');
-menudemo.add(8,6,"Grape fruit",'','','','/pub/TWiki/TreeBrowserPlugin/folder.gif','/pub/TWiki/TreeBrowserPlugin/folderopen.gif');
-menudemo.add(9,8,"Pink",'','','','/pub/TWiki/TreeBrowserPlugin/page.gif');
-menudemo.add(10,8,"Yellow ",'','','','/pub/TWiki/TreeBrowserPlugin/page.gif');
-menudemo.add(11,6,"Peach",'','','','/pub/TWiki/TreeBrowserPlugin/page.gif');
+menudemo.add(1,0,"Vegetables",'','','','/pub/System/TreeBrowserPlugin/folder.gif','/pub/System/TreeBrowserPlugin/folderopen.gif');
+menudemo.add(2,1,"Carot",'','','','/pub/System/TreeBrowserPlugin/page.gif');
+menudemo.add(3,1,"Leek",'','','','/pub/System/TreeBrowserPlugin/page.gif');
+menudemo.add(4,1,"Tomato",'','','','/pub/System/TreeBrowserPlugin/page.gif');
+menudemo.add(5,1,"Potato",'','','','/pub/System/TreeBrowserPlugin/page.gif');
+menudemo.add(6,0,"Fruits",'','','','/pub/System/TreeBrowserPlugin/folder.gif','/pub/System/TreeBrowserPlugin/folderopen.gif');
+menudemo.add(7,6,"Banana",'','','','/pub/System/TreeBrowserPlugin/page.gif');
+menudemo.add(8,6,"Grape fruit",'','','','/pub/System/TreeBrowserPlugin/folder.gif','/pub/System/TreeBrowserPlugin/folderopen.gif');
+menudemo.add(9,8,"Pink",'','','','/pub/System/TreeBrowserPlugin/page.gif');
+menudemo.add(10,8,"Yellow ",'','','','/pub/System/TreeBrowserPlugin/page.gif');
+menudemo.add(11,6,"Peach",'','','','/pub/System/TreeBrowserPlugin/page.gif');
 document.write(menudemo);
 //-->
 </script>
@@ -286,9 +286,9 @@ document.write(menudemo);
 popupdemo = new dTree('popupdemo');
 popupdemo.config.style='dmenu';
 popupdemo.config.inOrder=true;
-popupdemo.config.iconPath='/pub/TWiki/TreeBrowserPlugin/';
+popupdemo.config.iconPath='/pub/System/TreeBrowserPlugin/';
 popupdemo.updateIconPath();
-popupdemo.icon.root='/pub/TWiki/TreeBrowserPlugin/home.gif';
+popupdemo.icon.root='/pub/System/TreeBrowserPlugin/home.gif';
 popupdemo.config.useIcons=false;
 popupdemo.config.shared=true;
 popupdemo.config.noIndent=true;
@@ -307,17 +307,17 @@ popupdemo.config.closePopupDelay=1000;
 popupdemo.config.popupOffset={x:0 , y:0};
 %IF{"$ SKIN='pattern' or $ SKIN='twikiorg,pattern'" then="popupdemo.config.firstPopupOffset={x:-163 , y:0};" else="popupdemo.config.firstPopupOffset={x:0 , y:0};"}%
 popupdemo.add(0,-1,"");
-popupdemo.add(1,0,"Vegetables",'','','','/pub/TWiki/TreeBrowserPlugin/folder.gif','/pub/TWiki/TreeBrowserPlugin/folderopen.gif');
-popupdemo.add(2,1,"Carot",'','','','/pub/TWiki/TreeBrowserPlugin/page.gif');
-popupdemo.add(3,1,"Leek",'','','','/pub/TWiki/TreeBrowserPlugin/page.gif');
-popupdemo.add(4,1,"Tomato",'','','','/pub/TWiki/TreeBrowserPlugin/page.gif');
-popupdemo.add(5,1,"Potato",'','','','/pub/TWiki/TreeBrowserPlugin/page.gif');
-popupdemo.add(6,0,"Fruits",'','','','/pub/TWiki/TreeBrowserPlugin/folder.gif','/pub/TWiki/TreeBrowserPlugin/folderopen.gif');
-popupdemo.add(7,6,"Banana",'','','','/pub/TWiki/TreeBrowserPlugin/page.gif');
-popupdemo.add(8,6,"Grape fruit",'','','','/pub/TWiki/TreeBrowserPlugin/folder.gif','/pub/TWiki/TreeBrowserPlugin/folderopen.gif');
-popupdemo.add(9,8,"Pink",'','','','/pub/TWiki/TreeBrowserPlugin/page.gif');
-popupdemo.add(10,8,"Yellow ",'','','','/pub/TWiki/TreeBrowserPlugin/page.gif');
-popupdemo.add(11,6,"Peach",'','','','/pub/TWiki/TreeBrowserPlugin/page.gif');
+popupdemo.add(1,0,"Vegetables",'','','','/pub/System/TreeBrowserPlugin/folder.gif','/pub/System/TreeBrowserPlugin/folderopen.gif');
+popupdemo.add(2,1,"Carot",'','','','/pub/System/TreeBrowserPlugin/page.gif');
+popupdemo.add(3,1,"Leek",'','','','/pub/System/TreeBrowserPlugin/page.gif');
+popupdemo.add(4,1,"Tomato",'','','','/pub/System/TreeBrowserPlugin/page.gif');
+popupdemo.add(5,1,"Potato",'','','','/pub/System/TreeBrowserPlugin/page.gif');
+popupdemo.add(6,0,"Fruits",'','','','/pub/System/TreeBrowserPlugin/folder.gif','/pub/System/TreeBrowserPlugin/folderopen.gif');
+popupdemo.add(7,6,"Banana",'','','','/pub/System/TreeBrowserPlugin/page.gif');
+popupdemo.add(8,6,"Grape fruit",'','','','/pub/System/TreeBrowserPlugin/folder.gif','/pub/System/TreeBrowserPlugin/folderopen.gif');
+popupdemo.add(9,8,"Pink",'','','','/pub/System/TreeBrowserPlugin/page.gif');
+popupdemo.add(10,8,"Yellow ",'','','','/pub/System/TreeBrowserPlugin/page.gif');
+popupdemo.add(11,6,"Peach",'','','','/pub/System/TreeBrowserPlugin/page.gif');
 document.write(popupdemo);
 //-->
 </script>
@@ -421,48 +421,48 @@ a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>T
      | *File:* | *Description:* |
      | ==data/System/%TOPIC%.txt== | Plugin topic |
      | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
-     | ==pub/TWiki/%TOPIC%/dtree.css== | part of dtree |
-     | ==pub/TWiki/%TOPIC%/dmenu.css== | Menu CSS  |
-     | ==pub/TWiki/%TOPIC%/smenu.css== | Nicer menu CSS |
-     | ==pub/TWiki/%TOPIC%/dtree.js== | part of dtree |
-     | ==pub/TWiki/%TOPIC%/base.gif== | part of dtree |
-     | ==pub/TWiki/%TOPIC%/cd.gif== | part of dtree |
-     | ==pub/TWiki/%TOPIC%/empty.gif== | part of dtree |
-     | ==pub/TWiki/%TOPIC%/folder.gif== | part of dtree |
-     | ==pub/TWiki/%TOPIC%/folderopen.gif== | part of dtree |
-     | ==pub/TWiki/%TOPIC%/globe.gif== | part of dtree |
-     | ==pub/TWiki/%TOPIC%/imgfolder.gif== | part of dtree |
-     | ==pub/TWiki/%TOPIC%/join.gif== | part of dtree |
-     | ==pub/TWiki/%TOPIC%/joinbottom.gif== | part of dtree |
-     | ==pub/TWiki/%TOPIC%/line.gif== | part of dtree |
-     | ==pub/TWiki/%TOPIC%/minus.gif== | part of dtree |
-     | ==pub/TWiki/%TOPIC%/minusbottom.gif== | part of dtree |
-     | ==pub/TWiki/%TOPIC%/musicfolder.gif== | part of dtree |
-     | ==pub/TWiki/%TOPIC%/nolines_minus.gif== | part of dtree |
-     | ==pub/TWiki/%TOPIC%/nolines_plus.gif== | part of dtree |
-     | ==pub/TWiki/%TOPIC%/page.gif== | part of dtree |
-     | ==pub/TWiki/%TOPIC%/plus.gif== | part of dtree |
-     | ==pub/TWiki/%TOPIC%/plusbottom.gif== | part of dtree |
-     | ==pub/TWiki/%TOPIC%/question.gif== | part of dtree |
-     | ==pub/TWiki/%TOPIC%/trash.gif== | part of dtree |
-     | ==pub/TWiki/%TOPIC%/doc.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/email.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/file.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/group.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/home.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/image.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/pdf.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/person.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/persons.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/ppt.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/see.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/sound.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/trend.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/virtualhome.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/virtualperson.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/virtualpersons.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/xls.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
-     | ==pub/TWiki/%TOPIC%/zip.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/System/%TOPIC%/dtree.css== | part of dtree |
+     | ==pub/System/%TOPIC%/dmenu.css== | Menu CSS  |
+     | ==pub/System/%TOPIC%/smenu.css== | Nicer menu CSS |
+     | ==pub/System/%TOPIC%/dtree.js== | part of dtree |
+     | ==pub/System/%TOPIC%/base.gif== | part of dtree |
+     | ==pub/System/%TOPIC%/cd.gif== | part of dtree |
+     | ==pub/System/%TOPIC%/empty.gif== | part of dtree |
+     | ==pub/System/%TOPIC%/folder.gif== | part of dtree |
+     | ==pub/System/%TOPIC%/folderopen.gif== | part of dtree |
+     | ==pub/System/%TOPIC%/globe.gif== | part of dtree |
+     | ==pub/System/%TOPIC%/imgfolder.gif== | part of dtree |
+     | ==pub/System/%TOPIC%/join.gif== | part of dtree |
+     | ==pub/System/%TOPIC%/joinbottom.gif== | part of dtree |
+     | ==pub/System/%TOPIC%/line.gif== | part of dtree |
+     | ==pub/System/%TOPIC%/minus.gif== | part of dtree |
+     | ==pub/System/%TOPIC%/minusbottom.gif== | part of dtree |
+     | ==pub/System/%TOPIC%/musicfolder.gif== | part of dtree |
+     | ==pub/System/%TOPIC%/nolines_minus.gif== | part of dtree |
+     | ==pub/System/%TOPIC%/nolines_plus.gif== | part of dtree |
+     | ==pub/System/%TOPIC%/page.gif== | part of dtree |
+     | ==pub/System/%TOPIC%/plus.gif== | part of dtree |
+     | ==pub/System/%TOPIC%/plusbottom.gif== | part of dtree |
+     | ==pub/System/%TOPIC%/question.gif== | part of dtree |
+     | ==pub/System/%TOPIC%/trash.gif== | part of dtree |
+     | ==pub/System/%TOPIC%/doc.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/System/%TOPIC%/email.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/System/%TOPIC%/file.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/System/%TOPIC%/group.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/System/%TOPIC%/home.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/System/%TOPIC%/image.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/System/%TOPIC%/pdf.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/System/%TOPIC%/person.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/System/%TOPIC%/persons.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/System/%TOPIC%/ppt.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/System/%TOPIC%/see.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/System/%TOPIC%/sound.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/System/%TOPIC%/trend.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/System/%TOPIC%/virtualhome.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/System/%TOPIC%/virtualperson.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/System/%TOPIC%/virtualpersons.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/System/%TOPIC%/xls.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
+     | ==pub/System/%TOPIC%/zip.gif== | icons from [[Foswiki:Extensions.RenderListPlugin][RenderListPlugin]] |
 
 ---++ Known issues
 
@@ -477,22 +477,22 @@ See Foswiki:Extensions.TreeBrowserPluginDev.
    
 ---++ Plugin Info
 
-|  Plugin Author: | TWiki:Main.ThomasWeigert & TWiki:Main.StephaneLenclud |
+|  Plugin Author: | TWiki:Main.ThomasWeigert & Foswiki:Main.StephaneLenclud |
 |  Plugin Version: | %PLUGINVERSION{"TreeBrowserPlugin"}% |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
-|  29 Mar 2007: | (v1.8) - Improved =smenu= CSS and fixing warning.  By [[TWiki:Main.StephaneLenclud][St�phane Lenclud]]. |
-|  18 Mar 2007: | (v1.7) - Improved =smenu= CSS, resolved _highlighting gap issue_ . Now closing sub-menu when highlighting leaf.  By [[TWiki:Main.StephaneLenclud][St�phane Lenclud]]. |
-|  18 Mar 2007: | (v1.6) - Sub-menus now working in IE with =smenu= style. Closing sub-menu when going back one level with mouse cursor.  By [[TWiki:Main.StephaneLenclud][St�phane Lenclud]]. |
-|  18 Mar 2007: | (v1.5) - Adding =useopacity= parameter. Adding =smenu.css=. By [[TWiki:Main.StephaneLenclud][St�phane Lenclud]]. |
-|  16 Mar 2007: | (v1.4) - Adding =firstpopupoffset= allowing workaround for PatternSkin problem. By [[TWiki:Main.StephaneLenclud][St�phane Lenclud]]. |
-|  14 Mar 2007: | (v1.3) - Adding =popup=, =closepopudelay= and =popupoffset= parameters. Implemented pop-up menu. Improved =dmenu.css=. By [[TWiki:Main.StephaneLenclud][St�phane Lenclud]]. |
-|  11 Mar 2007: | (v1.2) - Adding =nodeactions= parameter. Improved =dmenu.css=. By [[TWiki:Main.StephaneLenclud][St�phane Lenclud]]. |
-|  10 Mar 2007: | (v1.1) - Adding =autotoggle= parameter. It's useful for menu style. Improved =dmenu.css=. Added =dtreeRoot= CSS class. By [[TWiki:Main.StephaneLenclud][St�phane Lenclud]]. |
-|  09 Mar 2007: | (v1.0) - Improved CSS with variable class name allowing for multiple tree with different style on the same topic. Now bullet =icon:= supports full URL or URI. By [[TWiki:Main.StephaneLenclud][St�phane Lenclud]]. |
-|  09 Mar 2007: | (v0.9) - Adding =style= parameter. Improved CSS. Fixes extra '\n' in dot pm. By [[TWiki:Main.StephaneLenclud][St�phane Lenclud]]. |
-|  07 Mar 2007: | (v0.8) - Adding =noroot= and =warn= parameters. Now using =preRenderingHandler= instead of the deprecated =startRenderingHandler= . =%<nop>TREEBROWSER%= are hidden if there is no tree to render. Fixes TOC icons problem with Foswiki:Extensions.NatSkin. By [[TWiki:Main.StephaneLenclud][St�phane Lenclud]]. |
-|  01 Oct 2006: | (v0.7) - Adding =useplusminus= , =noindent= and =nocss= parameters. By [[TWiki:Main.StephaneLenclud][St�phane Lenclud]]. |
-|  17 Sep 2006: | (v0.6) - Adding =closesamelevel= and =uselines= functionalities, fix rendering issues with Firefox and pattern skin, fix warnings in apache error logs. By [[TWiki:Main.StephaneLenclud][St�phane Lenclud]] |
+|  29 Mar 2007: | (v1.8) - Improved =smenu= CSS and fixing warning.  By [[Foswiki:Main.StephaneLenclud][St�phane Lenclud]]. |
+|  18 Mar 2007: | (v1.7) - Improved =smenu= CSS, resolved _highlighting gap issue_ . Now closing sub-menu when highlighting leaf.  By [[Foswiki:Main.StephaneLenclud][St�phane Lenclud]]. |
+|  18 Mar 2007: | (v1.6) - Sub-menus now working in IE with =smenu= style. Closing sub-menu when going back one level with mouse cursor.  By [[Foswiki:Main.StephaneLenclud][St�phane Lenclud]]. |
+|  18 Mar 2007: | (v1.5) - Adding =useopacity= parameter. Adding =smenu.css=. By [[Foswiki:Main.StephaneLenclud][St�phane Lenclud]]. |
+|  16 Mar 2007: | (v1.4) - Adding =firstpopupoffset= allowing workaround for PatternSkin problem. By [[Foswiki:Main.StephaneLenclud][St�phane Lenclud]]. |
+|  14 Mar 2007: | (v1.3) - Adding =popup=, =closepopudelay= and =popupoffset= parameters. Implemented pop-up menu. Improved =dmenu.css=. By [[Foswiki:Main.StephaneLenclud][St�phane Lenclud]]. |
+|  11 Mar 2007: | (v1.2) - Adding =nodeactions= parameter. Improved =dmenu.css=. By [[Foswiki:Main.StephaneLenclud][St�phane Lenclud]]. |
+|  10 Mar 2007: | (v1.1) - Adding =autotoggle= parameter. It's useful for menu style. Improved =dmenu.css=. Added =dtreeRoot= CSS class. By [[Foswiki:Main.StephaneLenclud][St�phane Lenclud]]. |
+|  09 Mar 2007: | (v1.0) - Improved CSS with variable class name allowing for multiple tree with different style on the same topic. Now bullet =icon:= supports full URL or URI. By [[Foswiki:Main.StephaneLenclud][St�phane Lenclud]]. |
+|  09 Mar 2007: | (v0.9) - Adding =style= parameter. Improved CSS. Fixes extra '\n' in dot pm. By [[Foswiki:Main.StephaneLenclud][St�phane Lenclud]]. |
+|  07 Mar 2007: | (v0.8) - Adding =noroot= and =warn= parameters. Now using =preRenderingHandler= instead of the deprecated =startRenderingHandler= . =%<nop>TREEBROWSER%= are hidden if there is no tree to render. Fixes TOC icons problem with Foswiki:Extensions.NatSkin. By [[Foswiki:Main.StephaneLenclud][St�phane Lenclud]]. |
+|  01 Oct 2006: | (v0.7) - Adding =useplusminus= , =noindent= and =nocss= parameters. By [[Foswiki:Main.StephaneLenclud][St�phane Lenclud]]. |
+|  17 Sep 2006: | (v0.6) - Adding =closesamelevel= and =uselines= functionalities, fix rendering issues with Firefox and pattern skin, fix warnings in apache error logs. By [[Foswiki:Main.StephaneLenclud][St�phane Lenclud]] |
 |  12 Apr 2006: | (v0.5) - Minor update for TWiki:Codev.TWikiRelease04x00  |
 |  16 Sep 2005: | (v0.4) - Fix bug in =openAll= and =openTo= functions  |
 |  06 Sep 2005: | (v0.3) - Adopt the rendering themes from Foswiki:Extensions.RenderListPlugin |

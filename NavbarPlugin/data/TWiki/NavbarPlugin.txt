@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="ColasNahaboo" date="1032535508" format="1.0" version="1.9"}%
 ---++ A navigation bar plugin
 
-Add "Previous, Up To Contents & Next" navigation icons or text to TWiki topics.
+Add "Previous, Up To Contents & Next" navigation icons or text to Foswiki topics.
 
 ---+++ Principle
 If a topic contains the key %<nop>NAVBARINDEX%, it is parsed on save for bullet lines
@@ -50,12 +50,12 @@ See <nop>NavbarPluginExample at http://koala.ilog.fr/wiki/bin/view/Plugins/Navba
 ---+++ Plugin Installation Instructions
 	* Download the ZIP file from the Plugin web (see below)
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. 
-	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Visit =configure= in your Foswiki installation, and enable the plugin in the {Plugins} section.
 	* Test if the plugin is correctly installed, by
 		* editing [[Sandbox.NavbarPluginExample]] and saving it (once) to generate the index
 		* viewing [[Sandbox.NavbarPluginExample]] and sub-pages
 	* If you want to use it, modify your skin templates to include %<nop>NAVBAR% where you want
-In the standard TWiki skin, you may want to edit =templates/view.tmpl=, to add two lines:
+In the standard Foswiki skin, you may want to edit =templates/view.tmpl=, to add two lines:
 <pre>
 	%<nop>NAVBAR{prefix="&lt;div align=right>" suffix="&lt;/div>"%
 </pre>
@@ -73,7 +73,7 @@ one just before the %<nop>TEXT% line, one just before the %<nop>META{"attachment
 
 ---+++ Plugin Info
 
-|  Plugin Author: | TWiki:Main.ColasNahaboo |
+|  Plugin Author: | Foswiki:Main.ColasNahaboo |
 |  Plugin Version: | v1.2 |
 |  Change History: | <!-- in reverse chronological order --> |
 || *v1.2*, 20 Sep 2002: Topics with numbers in their names were not indexed |
@@ -88,7 +88,7 @@ one just before the %<nop>TEXT% line, one just before the %<nop>META{"attachment
 
 
 ---+++ Files
-	* lib/TWiki/Plugins/NavbarPlugin.pm
+	* lib/Foswiki/Plugins/NavbarPlugin.pm
 	* data/Plugins/NavbarPlugin.txt
 	* data/Plugins/NavbarPluginExample.txt
 	* data/Plugins/NavbarPluginExampleFirst.txt
@@ -101,7 +101,7 @@ one just before the %<nop>TEXT% line, one just before the %<nop>META{"attachment
 	* pub/Plugins/NavbarPlugin/nav-up.gif
 	* pub/Plugins/NavbarPlugin/nav-upi.gif inactive (greyed out) version.
 
--- TWiki:Main.ColasNahaboo - 11 Sep 2002
+-- Foswiki:Main.ColasNahaboo - 11 Sep 2002
 
 %META:FILEATTACHMENT{name="nav-next.gif" attr="" comment="next topic icon" date="1031736959" path="nav-next.gif" size="123" user="ColasNahaboo" version="1.1"}%
 %META:FILEATTACHMENT{name="nav-nexti.gif" attr="" comment="next topic icon (inactive)" date="1031736977" path="nav-nexti.gif" size="90" user="ColasNahaboo" version="1.1"}%

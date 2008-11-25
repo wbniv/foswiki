@@ -1,14 +1,14 @@
 %META:TOPICINFO{author="guest" date="1046815987" format="1.0" version="1.1"}%
 The *CacheAddOn* implements a simple,
-agressive server side caching strategy for TWiki pages.
+agressive server side caching strategy for Foswiki pages.
 The speed-up is considerable.
 
 %TOC%
 
 ---++ Rationale
 
-While the functionality and flexibility of TWiki is all nice and useful,
-it comes at a high price: TWiki _is_ slow.
+While the functionality and flexibility of Foswiki is all nice and useful,
+it comes at a high price: Foswiki _is_ slow.
 Especially, if you make use of the form system
 combined with dynamic searches,
 performance is too slow for slick day-to-day operation,
@@ -18,20 +18,20 @@ This is pityful, as the generated pages could make excellent navigation pages.
 Here benchmark figures for TWiki Dec2001 on a
 [[http://www.sun.com/desktop/sunblade100/][SunBlade100]]
 with few plug-ins installed
-(TWiki:Main.DefaultPlugin TWiki:Main.TablePlugin TWiki:Main.EditTablePlugin TWiki:Main.IncludeIndexPlugin TWiki:Main.InterwikiPlugin TWiki:Main.PdfPlugin TWiki:Main.SpacedWikiWordPlugin TWiki:Main.SpreadSheetPlugin TWiki:Main.TWikiDrawPlugin TWiki:Main.XpTrackerPlugin)
+(Foswiki:Extensions.DefaultPlugin Foswiki:Extensions.TablePlugin Foswiki:Extensions.EditTablePlugin Foswiki:Extensions.IncludeIndexPlugin Foswiki:Extensions.InterwikiPlugin Foswiki:Extensions.PdfPlugin Foswiki:Extensions.SpacedWikiWordPlugin Foswiki:Extensions.SpreadSheetPlugin Foswiki:Extensions.TWikiDrawPlugin Foswiki:Extensions.XpTrackerPlugin)
 
 |					  Test case | Min[s]| Avg[s]| Max[s]| URL path				|
 |	Hello-world = load+compile+init perl |	0.65|	0.75|	0.93| /twiki/benchmark?-h |
-|					 Short page |	1.51|	2.03|	3.10| /twiki/render/TWiki/BumpyWord |
-|			 Formatted search |	2.44|	2.58|	3.17| /twiki/render/TWiki/ProjectContributor |
-|	 Large index w/much RCS |	5.36|	5.82|	7.46| /twiki/render/TWiki/WebIndex |
-|	  Large page w/INCLUDEs |	6.91|	7.21|	8.37| /twiki/render/TWiki/CompleteDocumentation |
+|					 Short page |	1.51|	2.03|	3.10| /twiki/render/System/BumpyWord |
+|			 Formatted search |	2.44|	2.58|	3.17| /twiki/render/System/ProjectContributor |
+|	 Large index w/much RCS |	5.36|	5.82|	7.46| /twiki/render/System/WebIndex |
+|	  Large page w/INCLUDEs |	6.91|	7.21|	8.37| /twiki/render/System/CompleteDocumentation |
 
 mod_perl could cut the fist figure, startup+compile overhead, to zero;
 [[http://daemoninc.com/SpeedyCGI/][SpeedyCGI]] to almost zero.
 If I understand correctly,
-for TWiki you can only _subtract_ that gain of 0.65s from the other figures.
-4.7s instead of 5.3s for the TWiki documentation index -- no big deal.
+for Foswiki you can only _subtract_ that gain of 0.65s from the other figures.
+4.7s instead of 5.3s for the Foswiki documentation index -- no big deal.
 
 Given, that viewing is far more frequent than editing,
 caching could significantly improve the speed of navigation,
@@ -50,7 +50,7 @@ where we _do_ know, whether the topic itself changed or not.
 ---+++ Disadvantages:
 
 	0 Wiki links, mostly to missing topics, may be out-dated;
-	0 TWiki search results are very likely to be out-dated
+	0 Foswiki search results are very likely to be out-dated
 	0 Layout changes in templates are not reflected in cached pages
 	0 Decide for ultra fast, but clunky Unix only ksh/bash implementation
 	  versus optional, cleaner, slower Perl version
@@ -72,10 +72,10 @@ With all these disadvantages, there should be a good reason to do it anyway...
 	0 It _is_ faster:
 	|					  Test case | Min[s]| Avg[s]| Max[s]| URL path				|
 	|	Hello-world = load+compile+init perl |	0.63|	0.68|	0.98| /twiki/benchmark?-h |
-	|					 Short page |	0.05|	0.06|	0.08| /twiki/view/TWiki/BumpyWord |
-	|			 Formatted search |	0.05|	0.06|	0.12| /twiki/view/TWiki/ProjectContributor |
-	|	 Large index w/much RCS |	0.05|	0.06|	0.07| /twiki/view/TWiki/WebIndex |
-	|	  Large page w/INCLUDEs |	0.05|	0.07|	0.10| /twiki/view/TWiki/CompleteDocumentation |
+	|					 Short page |	0.05|	0.06|	0.08| /twiki/view/System/BumpyWord |
+	|			 Formatted search |	0.05|	0.06|	0.12| /twiki/view/System/ProjectContributor |
+	|	 Large index w/much RCS |	0.05|	0.06|	0.07| /twiki/view/System/WebIndex |
+	|	  Large page w/INCLUDEs |	0.05|	0.07|	0.10| /twiki/view/System/CompleteDocumentation |
 
 
 
@@ -86,7 +86,7 @@ Amazingly simple.  Actually,  primitive:
 	0 It passes the environment 1:1 to the actual view = render script, but:
 	0 It inserts a tee into the pipeline from the render script to the web server
 	0 The tee output is stored in the file system
-	0 Next time it's called, it compares the TWiki data file modification
+	0 Next time it's called, it compares the Foswiki data file modification
 	  time with that of the cached page
 	0 If up to date, pipe the cached page to the web server
 	0 Else, run the actual view script as above
@@ -113,12 +113,12 @@ and offers an option to control the maximum age of the cached copies.
 	  | bin/cache.pl | the perl caching wrapper for view/render | perl |
 	  | bin/fresh | shell force rendering a fresh page into the cache | shell |
 	  | bin/edit.cache.diff | patch for edit script | optional for both |
-	  | data/TWiki/CachePlugin.txt | this description | both |
+	  | data/System/CachePlugin.txt | this description | both |
 	0 Create the the =/your/twiki/cache= directory,
 	  make sure everything below is writable for the web server, e.g. <br>
 	  =chgrp www /your/twiki/cache; chmod g+ws /your/twiki/cache=
 	0 Create one sub-directory per web which you want to cache, e.g.:
-	  =/your/twiki/cache/TWiki= for the documentation
+	  =/your/twiki/cache/Foswiki= for the documentation
 	0 To minimize misleading out-dated edit links,
 	  modify the =/your/twiki/bin/edit= script with the supplied patch;
 	  add the =.pl= suffix if necessary

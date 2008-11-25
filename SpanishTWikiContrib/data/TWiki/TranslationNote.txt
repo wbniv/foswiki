@@ -31,7 +31,7 @@
 </verbatim>
 
 ---+++ Explanation
-Each translated topic shall include data related to the original document (generally from the english source documentation) that is stored in the TranslationForm attached to the translated topic. This TranslationForm includes three core elements (fields), based on a the concept developed on TWiki:Codev.TranslationSupport:
+Each translated topic shall include data related to the original document (generally from the english source documentation) that is stored in the TranslationForm attached to the translated topic. This TranslationForm includes three core elements (fields):
    * Origin: The original, not translated topic, including the web-reference, e.g. =%SYSTEMWEB%.WikiUsersGuide=
    * Revision: The revision number of the original topic at the moment of translation
    * Language: Two-character ISO language code representing the language of the translated topic, e.g. =es= for spanish or =en= for english

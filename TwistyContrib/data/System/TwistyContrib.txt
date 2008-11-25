@@ -3,11 +3,11 @@
 
 *This contrib packages in a convenient way the !JavaScript library and the CSS file needed to implement Twisty sections.*
 
-!TwistyContrib is installed by default in TWiki 4 and used by [[Foswiki:Extensions.TwistyPlugin][Twisty Plugin]].
+!TwistyContrib is installed by default in TWiki 4 and Foswiki and used by [[Foswiki:Extensions.TwistyPlugin][Twisty Plugin]].
 
 It is recommended to use the !TwistyPlugin as it eases the deployment and use of this contrib.
 
-This Contrib should work with [[TWiki:Codev.DakarRelease][TWiki 4]] and newer.
+This Contrib should work with TWiki 4 and newer and with Foswiki.
 
 %TOC{title="On this page:"}%
 
@@ -56,7 +56,7 @@ Skins can customize the color of the twisty placeholder by modifiying the =.twis
 Manual written by [[TWiki:Main.HaraldJoerg][Harald Joerg]]. Examples require [[Foswiki:Extensions.SpreadsheetPlugin][Spreadsheet Plugin]] to work (installed by default).
 
 <blockquote>
-Some of my TWiki users are impressed by the optical effect of what can be done with Foswiki:Extensions.TwistyPlugin - and they keep asking me: "How do I do that? I don't understand the documentation, and I don't understand the raw text of your topics!"
+Some of my Foswiki users are impressed by the optical effect of what can be done with Foswiki:Extensions.TwistyPlugin - and they keep asking me: "How do I do that? I don't understand the documentation, and I don't understand the raw text of your topics!"
 
 They indeed have a point here.  The docs aren't easily understood.  It isn't easy to pick all the macros needed from a single example, and just copypasting sometimes fails in embarrassing ways if non-unique =id= attributes are present in a topic.  Maybe it is easy for a power user, but it surely isn't easy _enough_.  There _ought_ to be a way to make it easier.
 
@@ -164,7 +164,7 @@ You can also set the global [[preference setting]] TWISTYCONTRIB_DEBUG to 1 to m
 
 ---++ Contrib Info
 
-|  Authors: | !JavaScript written by TWiki:Main.ArthurClemens; Contrib packaged by  TWiki:Main.RafaelAlvarez; original !JavaScript written by TWiki:Main.SamHasler. |
+|  Authors: | !JavaScript written by Foswiki:Main.ArthurClemens; Contrib packaged by  Foswiki:Main.RafaelAlvarez; original !JavaScript written by Foswiki:Main.SamHasler. |
 |  Copyright &copy;: | 2005 Sam Hasler and Rafael Alvarez; 2006,2007 Arthur Clemens |
 |  License: | [[http://www.gnu.org/copyleft/gpl.html][GPL]] |
 |  Dependencies: | %$DEPENDENCIES% |

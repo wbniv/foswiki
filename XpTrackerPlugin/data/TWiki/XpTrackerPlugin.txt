@@ -23,7 +23,7 @@ The documentation is hosted in the Twiki.org site, and is not being distributed 
 
 There is a hierarchy of information here:
 
-	* *Web* - the TWiki web for XP tracking. One web can be used to track multiple products.
+	* *Web* - the Foswiki web for XP tracking. One web can be used to track multiple products.
 	* *Project* - the project being worked on for a Product. Usually this will be the next major release. Each project has a page, which contains an auto-generated summary of the project progress.
 	* *Team* - Each project has one or more teams, groups of developers that work on one aspect of the project. Each team has a page which contains an auto-generated summary of the team's progress.
 	* *Iteration* - a project is divided into a series of short iterations. Each iteration has a page, the contents of which are also auto-generated.
@@ -98,16 +98,15 @@ This is a list of all the tables available. The names should be self-explanatory
 ---++ Limitations
 	* This version has not been checked against data from V2.0. 
 
----++ Additional TWiki plugins/changes needed to get this plugin to work at its best
+---++ Additional Foswiki plugins/changes needed to get this plugin to work at its best
 
 	* The plugin should work in a standard 01Dec2001, 01Feb2003 and TWiki20040119beta TWiki install, but it is easier to use with these additional plugins:
 		* Foswiki:Extensions.TablePlugin is optional but useful as it allows you to sort tabulated information by column
 		* Foswiki:Extensions.EditTablePlugin is used to simplify entering of stories and tasks. The latest version (with support for the %<nop>EDITCELL% variable) is required.
-	* If not using the latest TWiki version, you need to apply the patch in TWiki:Codev.AfterSavePluginHandler
 
 ---++ Plugin Installation Instructions
 
-__Note:__ You do not need to install anything on the browser to use this Plugin. The following instructions are for the administrator who installs the Plugin on the server where TWiki is running. 
+__Note:__ You do not need to install anything on the browser to use this Plugin. The following instructions are for the administrator who installs the Plugin on the server where Foswiki is running. 
 
 	* Download the ZIP file XpTrackerPlugin.zip from the Plugin web (see below)
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory.
@@ -133,8 +132,8 @@ Content:
 | ==data/Tracking/XpTeamTemplate.txt== | New Team Template |
 | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Main plugin Perl module | 
 | ==lib/Foswiki/Plugins/Xp/*.pm== | plugin Perl submodules | 
-| ==pub/TWiki/%TOPIC%/sorttable.js== | javascript used to sort tables on the client side | 
-	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+| ==pub/System/%TOPIC%/sorttable.js== | javascript used to sort tables on the client side | 
+	* (Dakar) Visit =configure= in your Foswiki installation, and enable the plugin in the {Plugins} section.
 
 
 <b>Installation test</b>

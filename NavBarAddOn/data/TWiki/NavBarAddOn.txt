@@ -2,7 +2,7 @@
 %INCLUDE{NavBarAddOnExample}%
 ---+ Navigation Bar Add-On
 
-Add tabbed navigation bars to TWiki topics. A navigation bar can be defined once for a set of topics and then simply included in those topics.
+Add tabbed navigation bars to Foswiki topics. A navigation bar can be defined once for a set of topics and then simply included in those topics.
 
 ---++ Usage
 
@@ -37,25 +37,25 @@ See working NavBarAddOnExample
 
 ---++ Add-On Installation Instructions
 
-__Note:__ You do not need to install anything on the browser to use this add-on. The following instructions are for the administrator who installs the add-on on the server where TWiki is running. 
+__Note:__ You do not need to install anything on the browser to use this add-on. The following instructions are for the administrator who installs the add-on on the server where Foswiki is running. 
 
 	* Download the ZIP file from the Add-on Home (see below)
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
 	  | *File:* | *Description:* |
-	  | ==data/TWiki/%TOPIC%.txt== | Add-on topic |
-	  | ==data/TWiki/%TOPIC%.txt,v== | Repository of above topic |
-	  | ==data/TWiki/%TOPIC%Example.txt== | Example topic |
-	  | ==data/TWiki/%TOPIC%Example.txt,v== | Repository of above topic |
-	  | ==data/TWiki/%TOPIC%Start.txt== | Nav bar start topic |
-	  | ==data/TWiki/%TOPIC%Start.txt,v== | Repository of above topic |
-	  | ==data/TWiki/%TOPIC%End.txt== | Nav bar end topic |
-	  | ==data/TWiki/%TOPIC%End.txt,v== | Repository of above topic |
-	  | ==pub/TWiki/%TOPIC%/blackpixel.gif== | Image file: Black pixel |
-	  | ==pub/TWiki/%TOPIC%/clearpixel.gif== | Image file: Clear pixel |
-	  | ==pub/TWiki/%TOPIC%/screenshot.gif== | Image file: Screenshot |
-	  | ==pub/TWiki/%TOPIC%/tab_l.gif== | Image file: Left side of tab |
-	  | ==pub/TWiki/%TOPIC%/tab_t.gif== | Image file: Top part of tab |
-	  | ==pub/TWiki/%TOPIC%/tab_r.gif== | Image file: Right side of tab |
+	  | ==data/System/%TOPIC%.txt== | Add-on topic |
+	  | ==data/System/%TOPIC%.txt,v== | Repository of above topic |
+	  | ==data/System/%TOPIC%Example.txt== | Example topic |
+	  | ==data/System/%TOPIC%Example.txt,v== | Repository of above topic |
+	  | ==data/System/%TOPIC%Start.txt== | Nav bar start topic |
+	  | ==data/System/%TOPIC%Start.txt,v== | Repository of above topic |
+	  | ==data/System/%TOPIC%End.txt== | Nav bar end topic |
+	  | ==data/System/%TOPIC%End.txt,v== | Repository of above topic |
+	  | ==pub/System/%TOPIC%/blackpixel.gif== | Image file: Black pixel |
+	  | ==pub/System/%TOPIC%/clearpixel.gif== | Image file: Clear pixel |
+	  | ==pub/System/%TOPIC%/screenshot.gif== | Image file: Screenshot |
+	  | ==pub/System/%TOPIC%/tab_l.gif== | Image file: Left side of tab |
+	  | ==pub/System/%TOPIC%/tab_t.gif== | Image file: Top part of tab |
+	  | ==pub/System/%TOPIC%/tab_r.gif== | Image file: Right side of tab |
 	* Test if the installation was successful:
 		* The navigation bar should look like this screenshot:
 		  %BR% <img src="%ATTACHURLPATH%/screenshot.gif" alt="screenshot"  width="549" height="46" />
@@ -68,7 +68,7 @@ This Add-on works properly with different skins on IE, Netspace and Firefox. It 
 ---++ Add-On Info
 
 
-	* Set SHORTDESCRIPTION = Add tabbed navigation bars to TWiki topics
+	* Set SHORTDESCRIPTION = Add tabbed navigation bars to Foswiki topics
 
 |  Add-on Author: | TWiki:Main.PeterThoeny |
 |  Copyright: | &copy; 2005, TWiki:Main.PeterThoeny |

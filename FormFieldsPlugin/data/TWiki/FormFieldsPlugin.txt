@@ -1,7 +1,7 @@
 %META:TOPICINFO{author="JohnTalintyre" date="1054761286" format="1.0" version="1.3"}%
 ---+ <nop>%TOPIC%
 
-Control the appearance and capability of fields in forms when editing.  If Javascript isn't enabled then the form field will fall back to being a text box or if it is a built in TWiki type, the relavent HTML control.
+Control the appearance and capability of fields in forms when editing.  If Javascript isn't enabled then the form field will fall back to being a text box or if it is a built in Foswiki type, the relavent HTML control.
 
 ---++ Syntax Rules
 
@@ -25,7 +25,7 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
 
 ---++ Plugin Installation Instructions
 
-__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where Foswiki is running. 
 
 	* Download the ZIP file from the Plugin web (see below)
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
@@ -34,7 +34,7 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 	  | ==data/System/%TOPIC%.txt,v== | Plugin topic repository |
 	  | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
 	  | ==templates/formfields== | Contains the basic HTML that is used in the edit controls |
-	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* (Dakar) Visit =configure= in your Foswiki installation, and enable the plugin in the {Plugins} section.
 	* Test if the installation was successful:
 		* _enter samples here_
 
@@ -54,6 +54,6 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
 |  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
 
-__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]], TWiki:Codev/ExtendingFormControls
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
 
 -- TWiki:Main/JohnTalintyre - 04 Jun 2003
