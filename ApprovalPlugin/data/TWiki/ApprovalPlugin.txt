@@ -5,17 +5,15 @@ One line description, required for extensions repository catalog.
 -->
 %SHORTDESCRIPTION%
 
-%X% *Warning: This plugin only works on TWiki 4.2 (Freetown).*
-
 %TOC%
 
 ---++ Introduction
 
-This plugin is a rewrite of the Foswiki:Extensions.WorkflowPlugin by TWiki:Main.ThomasWeigert, which supports much the same functionality except a couple of the varaibles (=%<nop>WORKFLOWLASTTIME_State%=, =%<nop>WORKFLOWLASTVERSION_State%=) and the use of %SYSTEMWEB%.DataForms in states. However, it does support concurrent reviewing and notifications on state change, which is not supported by the Workflow plugin. It was decided to spin this off seperatly as it is not backwords compatible.
+This plugin is a rewrite of the Foswiki:Extensions.WorkflowPlugin by TWiki:Main.ThomasWeigert, which supports much the same functionality except a couple of the macros (=%<nop>WORKFLOWLASTTIME_State%=, =%<nop>WORKFLOWLASTVERSION_State%=) and the use of %SYSTEMWEB%.DataForms in states. However, it does support concurrent reviewing and notifications on state change, which is not supported by the Workflow plugin. It was decided to spin this off seperatly as it is not backwords compatible.
 
 ---++ Usage
 
-This plugin only applies if the topic is under approval control. This means the variable =APPROVALDEFINITION= must be set. This should point to a topic that describes the approval flow (the approval definition topic).
+This plugin only applies if the topic is under approval control. This means the preference setting =APPROVALDEFINITION= must be set. This should point to a topic that describes the approval flow (the approval definition topic).
 
 ---+++ The Approval Definition Topic
 
@@ -130,16 +128,15 @@ __Note__ The examples will only work if the plugin is installed and enabled.
 
 ---++ Plugin Info
 
-|  Plugin Author(s): | TWiki:Main.AndrewRJones |
+|  Plugin Author(s): | Foswiki:Main.AndrewJones |
 |  Plugin Version: | %$VERSION% |
-|  Copyright: | &copy; 2007 - 2008 TWiki:Main.AndrewRJones |
+|  Copyright: | &copy; 2007 - 2008 Foswiki:Main.AndrewJones |
 |  License: | [[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License)]] |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
-|  30 Oct 2008 | Bugs:Item6113 - Small improvements, better code |
-|  12 Sep 2008 | Bugs:Item4422 - Initial version |
+|  30 Oct 2008 | Small improvements, better code |
+|  12 Sep 2008 | Initial version |
 |  Dependencies: | %$DEPENDENCIES% |
-|  Plugin Home: | http://twiki.org/cgi-bin/view/Plugins/ApprovalPlugin |
-|  Feedback: | http://twiki.org/cgi-bin/view/Plugins/ApprovalPluginDev |
-|  Appraisal: | http://twiki.org/cgi-bin/view/Plugins/ApprovalPluginAppraisal |
+|  Plugin Home: | http://foswiki.org/Extensions/ApprovalPlugin |
+|  Feedback: | http://foswiki.org/Extensions/ApprovalPluginDev |
 
 <!-- Do _not_ attempt to edit this topic; it is auto-generated. Please add comments/questions/remarks to the Dev topic instead. -->

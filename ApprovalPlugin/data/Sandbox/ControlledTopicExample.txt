@@ -8,7 +8,7 @@ We can now use any of the =%<nop>APPROVAL{...}%= tags in this topic:
       * ==%<nop>APPROVAL{"statemessage"}%==
       * %APPROVAL{"statemessage"}%
 
-   * Show a preference defined in the definition topic
+   * Show a preference setting defined in the definition topic
       * ==%<nop>APPROVAL{"pref" name="MYPREF"}%==
       * %APPROVAL{"pref" name="MYPREF"}%
 
@@ -19,7 +19,7 @@ We can now use any of the =%<nop>APPROVAL{...}%= tags in this topic:
 We can also set a preference for the history format in the following way:
    * Set APPROVALHISTORYFORMAT = "| $state | $wikiusername | $date |"
 
-The history is displayed by using the ==%<nop>APPROVAL{"history"}%== variable.
+The history is displayed by using the ==%<nop>APPROVAL{"history"}%== macro.
 
 | *State* | *Name* | *Date* |
 %APPROVAL{"history"}%

@@ -2,10 +2,10 @@
 BEGIN {
     unshift @INC, split( /:/, $ENV{TWIKI_LIBS} );
 }
-use TWiki::Contrib::Build;
+use Foswiki::Contrib::Build;
 
 # Create the build object
-$build = new TWiki::Contrib::Build('ApprovalPlugin');
+$build = new Foswiki::Contrib::Build('ApprovalPlugin');
 
 # (Optional) Set the details of the repository for uploads.
 # This can be any web on any accessible TWiki installation.
