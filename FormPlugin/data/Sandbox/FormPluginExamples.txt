@@ -616,7 +616,7 @@ topic="%WEB%.%TOPIC%"
 anchor="NewArticles"
 method="POST"
 validate="on"
-onSubmit="return (twiki.Form.makeSafeForTableEntry) ? twiki.Form.makeSafeForTableEntry(this) : true;"
+onSubmit="return (foswiki.Form.makeSafeForTableEntry) ? foswiki.Form.makeSafeForTableEntry(this) : true;"
 }%
 <!-- <nop>CommentPlugin attributes -->
 <input type="hidden" name="comment_action" value="save"  />

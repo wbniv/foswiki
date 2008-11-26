@@ -46,7 +46,7 @@ You can use many of same attributes as you would in topics, except the following
 | =formname= | Name of the form which the input field is part of | none | =form="userlist"= |
 | =itemformat= | The format of an item string in the autocomplete list. Use if the autocomplete list should display different names than the input field - for instance with full person names. The javascript input argument is =item=. | =item= | =itemformat="item[0] + ' (' + item[1] + ')'"= |
 | =delimchar= | Used to accept multiple delimeted queries. | none | =delimchar=","= |
-| =onblur=, =onfocus=, =onchange=, =onselect=, =onmouseover=, =onmouseout= | Javascript parameters for the textfield. | none | =onfocus="twiki.Form.clearBeforeFocusText(this);"= |
+| =onblur=, =onfocus=, =onchange=, =onselect=, =onmouseover=, =onmouseout= | Javascript parameters for the textfield. | none | =onfocus="foswiki.Form.clearBeforeFocusText(this);"= |
 | =itemselecthandler= | Defines a javascript function to be executed when an item is selected. See http://developer.yahoo.com/yui/autocomplete/#customevents. | none | =itemselecthandler="submitJumpForm"= |
 
 ---+++ Example
@@ -60,7 +60,7 @@ var SubmitJump = function(sType, aArgs) {
     document.myJumpForm.submit();
 }
 </script>
-<form name="myJumpForm" action="%SCRIPTURLPATH{"view"}%/%BASEWEB%/%BASETOPIC%">%AUTOCOMPLETE{name="topic" datatopic="Sandbox.AutoCompletePluginTestData" onfocus="twiki.Form.clearBeforeFocusText(this);" onblur="twiki.Form.restoreBeforeFocusText(this);" datasection="topiclist" value="Jump" formname="myJumpForm" class="twikiInputField twikiInputFieldBeforeFocus"  itemselecthandler="SubmitJump" size="128px" }%</form>
+<form name="myJumpForm" action="%SCRIPTURLPATH{"view"}%/%BASEWEB%/%BASETOPIC%">%AUTOCOMPLETE{name="topic" datatopic="Sandbox.AutoCompletePluginTestData" onfocus="foswiki.Form.clearBeforeFocusText(this);" onblur="foswiki.Form.restoreBeforeFocusText(this);" datasection="topiclist" value="Jump" formname="myJumpForm" class="twikiInputField twikiInputFieldBeforeFocus"  itemselecthandler="SubmitJump" size="128px" }%</form>
 </verbatim>
 
 __Rendered:__
@@ -69,7 +69,7 @@ var SubmitJump = function(sType, aArgs) {
     document.myJumpForm.submit();
 }
 </script>
-<form name="myJumpForm" action="%SCRIPTURLPATH{"view"}%/%BASEWEB%/%BASETOPIC%">%AUTOCOMPLETE{name="topic" datatopic="Sandbox.AutoCompletePluginTestData" onfocus="twiki.Form.clearBeforeFocusText(this);" onblur="twiki.Form.restoreBeforeFocusText(this);" datasection="topiclist" value="Jump" formname="myJumpForm" class="twikiInputField twikiInputFieldBeforeFocus"  itemselecthandler="SubmitJump" size="128px" }%</form>
+<form name="myJumpForm" action="%SCRIPTURLPATH{"view"}%/%BASEWEB%/%BASETOPIC%">%AUTOCOMPLETE{name="topic" datatopic="Sandbox.AutoCompletePluginTestData" onfocus="foswiki.Form.clearBeforeFocusText(this);" onblur="foswiki.Form.restoreBeforeFocusText(this);" datasection="topiclist" value="Jump" formname="myJumpForm" class="twikiInputField twikiInputFieldBeforeFocus"  itemselecthandler="SubmitJump" size="128px" }%</form>
 
 ---++ Installation Instructions
 

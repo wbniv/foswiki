@@ -335,7 +335,7 @@ sub _addHeader {
 </style>
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/foswikilib.js"></script>
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/foswikiCSS.js"></script>
-<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/twikiForm.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/foswikiForm.js"></script>
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/foswikiString.js"></script>
 END
 
@@ -766,7 +766,7 @@ sub _formElement {
     my $focus           = $params->{'focus'};
     if ($focus) {
         my $focusCall =
-            '<script type="text/javascript">twiki.Form.setFocus("'
+            '<script type="text/javascript">foswiki.Form.setFocus("'
           . $currentForm{'name'} . '", "'
           . $name
           . '");</script>';
@@ -787,9 +787,9 @@ sub _formElement {
             $beforeclickCall .= 'var formName="' . $formName . '";';
         }
         $beforeclickCall .=
-            'var el=twiki.Form.getFormElement(formName, "' 
+            'var el=foswiki.Form.getFormElement(formName, "' 
           . $name
-          . '"); twiki.Form.initBeforeFocusText(el,"'
+          . '"); foswiki.Form.initBeforeFocusText(el,"'
           . $beforeclick . '");';
         $beforeclickCall .= '</script>';
         $javascriptCalls .= $beforeclickCall;
@@ -922,8 +922,8 @@ sub _getFormElementHtml {
     my $beforeclick = $params->{'beforeclick'};
     if ($beforeclick) {
         $value   = $beforeclick;
-        $onFocus = 'twiki.Form.clearBeforeFocusText(this)';
-        $onBlur  = 'twiki.Form.restoreBeforeFocusText(this)';
+        $onFocus = 'foswiki.Form.clearBeforeFocusText(this)';
+        $onBlur  = 'foswiki.Form.restoreBeforeFocusText(this)';
 
         # additional init function in _formElement
     }

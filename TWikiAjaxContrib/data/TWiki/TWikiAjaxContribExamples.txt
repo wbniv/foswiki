@@ -12,7 +12,7 @@
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiAjaxContrib/twikiAjaxRequest.compressed.js"></script>
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/BehaviourContrib/behaviour.compressed.js"></script>
 <!-- Additional script for this page -->
-<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/twikiForm.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/foswikiForm.js"></script>
 
 %TOC{title="On this page:"}%
 
@@ -845,7 +845,7 @@ hideimgleft="%ICONURLPATH{code}%"}%
 <blockquote>
 <verbatim>
 function postSearchForm () {
-	var queryString = twiki.Form.formData2QueryString(
+	var queryString = foswiki.Form.formData2QueryString(
 		document.getElementById('searchForm')
 	);
 	twiki.AjaxRequest.load(
@@ -902,7 +902,7 @@ Behaviour.register(myrules);
 <script type="text/javascript">
 // <![CDATA[
 function postSearchForm () {
-	var queryString = twiki.Form.formData2QueryString(
+	var queryString = foswiki.Form.formData2QueryString(
 		document.getElementById('searchForm')
 	);
 	twiki.AjaxRequest.load(
