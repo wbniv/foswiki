@@ -64,7 +64,8 @@ sub commonTagsHandler {
 
     return unless _lazyInit($web, $topic);
 
-    my $debug = $ENV{TWIKI_ASSERTS} ? '_src' : '';
+    my $debug = '';
+    $debug = '_src' if DEBUG;
 
     TWiki::Func::addToHEAD('ACTIONTRACKERPLUGIN_CSS', <<HERE);
 <link rel="stylesheet" href="$options->{CSS}" type="text/css" media="all" />

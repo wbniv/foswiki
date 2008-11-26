@@ -477,7 +477,7 @@ sub _getPageTemplate {
         $header, $topic, $this->{web} );
     $header = TWiki::Func::renderText( $header, $this->{web} );
     $header =~ s/<nop>//go;
-    TWiki::Func::writeHeader($query);
+    TWiki::Func::writeHeader();
     _display $header;
 
     $footer = TWiki::Func::expandCommonVariables( $footer, $topic,
@@ -599,11 +599,15 @@ sub publishTopic {
     my $query = TWiki::Func::getCgiQuery();
     $query->param('topic', "$this->{web}.$topic");
 
-    # Create a new TWiki so that the contexts are correct. This is really,
-    # really inefficient, but is essential at the moment to maintain correct
-    # prefs
-    my $twiki = new TWiki($this->{publisher}, $query);
-    $TWiki::Plugins::SESSION = $twiki;
+    if (defined &TWiki::Func::pushTopicContext) {
+        TWiki::Func::pushTopicContext($this->{web}, $topic);
+    } else {
+        # Create a new TWiki so that the contexts are correct. This is really,
+        # really inefficient, but is essential to maintain correct prefs if
+        # we don't have a modern Func
+        my $twiki = new TWiki($this->{publisher}, $query);
+        $TWiki::Plugins::SESSION = $twiki;
+    }
 
     # Because of Item5388, we have to re-read the topic to get the
     # right session in the $meta. This could be done by patching the
