@@ -8,7 +8,7 @@
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/YahooUserInterfaceContrib/build/connection/connection.js"></script>
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/foswikilib.js"></script>
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/foswikiArray.js"></script>
-<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/twikiHTML.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/foswikiHTML.js"></script>
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TWikiAjaxContrib/twikiAjaxRequest.compressed.js"></script>
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/BehaviourContrib/behaviour.compressed.js"></script>
 <!-- Additional script for this page -->
@@ -130,10 +130,10 @@ function showNewTopicForm(el) {
 	var containerId = "newTopicFormContainer";
 	
 	// remove old container if any
-	twiki.HTML.deleteElementWithId(containerId);
+	foswiki.HTML.deleteElementWithId(containerId);
 	
 	var topicName = el.innerHTML.split("<")[0];
-	var newContainer = twiki.HTML.insertAfterElement(
+	var newContainer = foswiki.HTML.insertAfterElement(
 		el,
 		'div',
 		'',
@@ -204,10 +204,10 @@ function showNewTopicForm(el) {
 	var containerId = "newTopicFormContainer";
 	
 	// remove old container if any
-	twiki.HTML.deleteElementWithId(containerId);
+	foswiki.HTML.deleteElementWithId(containerId);
 	
 	var topicName = el.innerHTML.split("<")[0];
-	var newContainer = twiki.HTML.insertAfterElement(
+	var newContainer = foswiki.HTML.insertAfterElement(
 		el,
 		'div',
 		'',
@@ -546,7 +546,7 @@ function handleHtml (inId, inHtml) {
 		"<div style=\"font-style:italic;\">" +
 		inHtml +
 		"<\/div>";
-	var element = twiki.HTML.setHtmlOfElementWithId(inId, processedHtml);
+	var element = foswiki.HTML.setHtmlOfElementWithId(inId, processedHtml);
 		
 	// example 2: style list elements
 	var attributes = {
@@ -559,13 +559,13 @@ function handleHtml (inId, inHtml) {
 					"margin":"0 0 1em 0"
     			}
     	};
-	twiki.HTML.setNodeAttributesInList(element.getElementsByTagName('ul'), attributes);
+	foswiki.HTML.setNodeAttributesInList(element.getElementsByTagName('ul'), attributes);
 	
 	// example 3: reverse texts
 	reverseNodeTextsInList(element.getElementsByTagName('p'));
 
 	// return HTML to be cached
-	return twiki.HTML.getHtmlOfElementWithId(inId);
+	return foswiki.HTML.getHtmlOfElementWithId(inId);
 }
 
 function reverseNodeTextsInList (inNodeList) {
@@ -651,7 +651,7 @@ function handleHtml (inId, inHtml) {
 		"<div style=\"font-style:italic;\">" +
 		inHtml +
 		"<\/div>";
-	var element = twiki.HTML.setHtmlOfElementWithId(inId, processedHtml);
+	var element = foswiki.HTML.setHtmlOfElementWithId(inId, processedHtml);
 		
 	// example 2: style list elements
 	var attributes = {
@@ -664,13 +664,13 @@ function handleHtml (inId, inHtml) {
 					"margin":"0 0 1em 0"
     			}
     	};
-	twiki.HTML.setNodeAttributesInList(element.getElementsByTagName('ul'), attributes);
+	foswiki.HTML.setNodeAttributesInList(element.getElementsByTagName('ul'), attributes);
 	
 	// example 3: reverse texts
 	reverseNodeTextsInList(element.getElementsByTagName('p'));
 
 	// return HTML to be cached
-	return twiki.HTML.getHtmlOfElementWithId(inId);
+	return foswiki.HTML.getHtmlOfElementWithId(inId);
 }
 
 function reverseNodeTextsInList (inNodeList) {
@@ -760,7 +760,7 @@ function processCountryData (inContainerId, inXml) {
 		outText += "<li>" + countries[i] + "<\/li>"
 	}
 	outText = "<ul>" + outText + "<\/ul>";
-	twiki.HTML.setHtmlOfElementWithId(inContainerId, outText);
+	foswiki.HTML.setHtmlOfElementWithId(inContainerId, outText);
 }
 
 
@@ -818,7 +818,7 @@ function processCountryData (inContainerId, inXml) {
 		outText += "<li>" + countries[i] + "<\/li>"
 	}
 	outText = "<ul>" + outText + "<\/ul>";
-	twiki.HTML.setHtmlOfElementWithId(inContainerId, outText);
+	foswiki.HTML.setHtmlOfElementWithId(inContainerId, outText);
 }
 
 function showCountries () {
@@ -945,7 +945,7 @@ function handleFailed(inName, inStatus) {
 	var html = "<div style=\"background:#ffc; padding:.5em;\">" + 
 		"Could not load contents. Please try again later." + 
 		"<\/div>";
-	twiki.HTML.setHtmlOfElementWithId("failureContainer", html);
+	foswiki.HTML.setHtmlOfElementWithId("failureContainer", html);
 }
 
 function loadFailure () {
@@ -992,7 +992,7 @@ function handleFailed(inName, inStatus) {
 	var html = "<div style=\"background:#ffc; padding:.5em;\">" + 
 		"Could not load contents. Please try again later." + 
 		"<\/div>";
-	twiki.HTML.setHtmlOfElementWithId("failureContainer", html);
+	foswiki.HTML.setHtmlOfElementWithId("failureContainer", html);
 }
 
 function loadFailure () {

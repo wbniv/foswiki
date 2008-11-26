@@ -89,7 +89,7 @@ twiki.AjaxRequest = function () {
 	@private
 	*/
 	function _hideLoadingIndicator (inName) {
-		twiki.HTML.deleteElementWithId(_getIndicatorId(inName));
+		foswiki.HTML.deleteElementWithId(_getIndicatorId(inName));
 	}
 	
 	/**
@@ -260,7 +260,7 @@ twiki.AjaxRequest = function () {
 		}
 
 		var wrappedIndicator = _wrapIndicator(inName, indicatorHtml);
-		twiki.HTML.setHtmlOfElementWithId(ref.container, wrappedIndicator);
+		foswiki.HTML.setHtmlOfElementWithId(ref.container, wrappedIndicator);
 
 		var cache = (ref.cache != undefined) ? ref.cache : false;
 		var callback = {
@@ -551,8 +551,8 @@ twiki.AjaxRequest = function () {
 	@privileged
 	*/
 	this._writeHtml = function(inContainer, inHtml) {
-		var element = twiki.HTML.setHtmlOfElementWithId(inContainer, inHtml);
-		return twiki.HTML.getHtmlOfElementWithId(inContainer);
+		var element = foswiki.HTML.setHtmlOfElementWithId(inContainer, inHtml);
+		return foswiki.HTML.getHtmlOfElementWithId(inContainer);
 	}
 	
 	this._defaultIndicatorHtml = "<img src='indicator.gif' alt='' />"; // for local testing, as a static url makes no sense for TWiki

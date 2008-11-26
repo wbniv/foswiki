@@ -215,10 +215,10 @@ function handleHtml (inId, inHtml) {
 		"<\/div>";
 	
 	// update the container
-	var element = twiki.HTML.setHtmlOfElementWithId(inId, processedHtml);
+	var element = foswiki.HTML.setHtmlOfElementWithId(inId, processedHtml);
 
 	// return HTML to be cached
-	return twiki.HTML.getHtmlOfElementWithId(inId);
+	return foswiki.HTML.getHtmlOfElementWithId(inId);
 }
 </verbatim>
 </blockquote>
@@ -229,14 +229,14 @@ function handleHtml (inId, inHtml) {
 function handleHtml (inId, inHtml) {
 	
 	// update the container
-	var element = twiki.HTML.setHtmlOfElementWithId(inId, processedHtml);
+	var element = foswiki.HTML.setHtmlOfElementWithId(inId, processedHtml);
 
 	// reverse some texts
 	reverseNodeTextsInList(element.getElementsByTagName('code'));
 	reverseNodeTextsInList(element.getElementsByTagName('p'));
 	
 	// return HTML to be cached
-	return twiki.HTML.getHtmlOfElementWithId(inId);
+	return foswiki.HTML.getHtmlOfElementWithId(inId);
 }
 </verbatim>
 </blockquote>
@@ -247,7 +247,7 @@ function handleHtml (inId, inHtml) {
 function handleHtml (inId, inHtml) {
 
 	// update the container
-	var element = twiki.HTML.setHtmlOfElementWithId(inId, processedHtml);
+	var element = foswiki.HTML.setHtmlOfElementWithId(inId, processedHtml);
 	
 	// style list elements
 	var attributes = {
@@ -258,10 +258,10 @@ function handleHtml (inId, inHtml) {
 				"background-color":"#444"
 			}
 	};
-	twiki.HTML.setNodeAttributesInList(element.getElementsByTagName('ul'), attributes);
+	foswiki.HTML.setNodeAttributesInList(element.getElementsByTagName('ul'), attributes);
 	
 	// return HTML to be cached
-	return twiki.HTML.getHtmlOfElementWithId(inId);
+	return foswiki.HTML.getHtmlOfElementWithId(inId);
 }
 </verbatim>
 </blockquote>
@@ -381,7 +381,7 @@ function handleFailed(inName, inStatus) {
 	var html = "<div style=\"background:#ffc; padding:.5em;\">" + 
 		"Could not load contents. Please try again later." + 
 		"<\/div>";
-	twiki.HTML.setHtmlOfElementWithId("failureContainer", html);
+	foswiki.HTML.setHtmlOfElementWithId("failureContainer", html);
 }
 </verbatim>
 
@@ -479,7 +479,7 @@ See TWikiAjaxContribExamples
 | License: | [[http://www.gnu.org/copyleft/gpl.html][GPL]] |
 | Dependencies: | %$DEPENDENCIES% |
 | 15 Nov 2006 | 0.8.4 Support for including topic sections. Allows javascript code to be included with =type="script"= or =type="scriptfile"=  |
-| 6 Nov 2006 | 0.8.3 Updated examples with twiki javascript class twiki.HTML  |
+| 6 Nov 2006 | 0.8.3 Updated examples with twiki javascript class foswiki.HTML  |
 | 5 Nov 2006 | 0.8.2 Updated with dependency on twiki javascript class twiki.Array  |
 | 4 Nov 2006 | 0.8.1 Changed package =TWiki= to lowercase =twiki=  |
 | 2 Nov 2006 | 0.8 (alpha) First time in the open  |
