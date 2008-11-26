@@ -137,7 +137,7 @@ if (typeof YAHOO != "undefined") {
   YAHOO.util.Event.onDOMReady(dp.SyntaxHighlighter.twikirender);
 } else if (typeof twiki != "undefined"){
   // TWiki 4.2
-  twiki.Event.addLoadEvent(dp.SyntaxHighlighter.twikirender);
+  foswiki.Event.addLoadEvent(dp.SyntaxHighlighter.twikirender);
 } else if (typeof addLoadEvent != "undefined") {
   // TWiki 4.1
   addLoadEvent(dp.SyntaxHighlighter.twikirender);

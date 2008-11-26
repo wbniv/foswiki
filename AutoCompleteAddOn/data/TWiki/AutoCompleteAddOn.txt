@@ -104,7 +104,7 @@ This example shows where to place the INCLUDE sections
 %TMPL:DEF{"templatescript"}%
 <script type="text/javascript">
 //<![CDATA[
-	twiki.Event.addLoadEvent(initForm, true);
+	foswiki.Event.addLoadEvent(initForm, true);
 	function initForm() {
 		document.loginform[0].focus();
 	}
@@ -246,7 +246,7 @@ Usage:
 %STARTSECTION{"javascript"}%%INCLUDE{"%TOPIC%" section="yahoo" datatopic="%datatopic%" datasection="%datasection%"}%
 <script type="text/javascript">
 // <![CDATA[
-twiki.Event.addLoadEvent(initAutoComplete, true);
+foswiki.Event.addLoadEvent(initAutoComplete, true);
 function initAutoComplete() {
 	var topics = [%INCLUDE{"%datatopic%" section="%datasection%"}%];
 	var oACDS = new YAHOO.widget.DS_JSArray(topics);
