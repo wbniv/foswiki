@@ -154,7 +154,7 @@ You can also set the global [[preference setting]] TWISTYCONTRIB_DEBUG to 1 to m
 </style>
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/foswikilib.js"></script>
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/twikiPref.js"></script>
-<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/twikiCSS.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/foswikiCSS.js"></script>
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/BehaviourContrib/behaviour.js"></script>
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/TwistyContrib/twist.js"></script>
 </verbatim>

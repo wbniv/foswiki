@@ -60,14 +60,14 @@ twiki.TwistyPlugin = new function () {
 		var contentElem = ref.toggle;
 		if (ref.state == twiki.TwistyPlugin.CONTENT_SHOWN) {
 			// show content
-			twiki.CSS.addClass(showControl, 'twistyHidden');	// hide 'show'
-			twiki.CSS.removeClass(hideControl, 'twistyHidden'); // show 'hide'
-			twiki.CSS.removeClass(contentElem, 'twistyHidden'); // show content
+			foswiki.CSS.addClass(showControl, 'twistyHidden');	// hide 'show'
+			foswiki.CSS.removeClass(hideControl, 'twistyHidden'); // show 'hide'
+			foswiki.CSS.removeClass(contentElem, 'twistyHidden'); // show content
 		} else {
 			// hide content
-			twiki.CSS.removeClass(showControl, 'twistyHidden'); // show 'show'	
-			twiki.CSS.addClass(hideControl, 'twistyHidden'); // hide 'hide'
-			twiki.CSS.addClass(contentElem, 'twistyHidden'); // hide content
+			foswiki.CSS.removeClass(showControl, 'twistyHidden'); // show 'show'	
+			foswiki.CSS.addClass(hideControl, 'twistyHidden'); // hide 'hide'
+			foswiki.CSS.addClass(contentElem, 'twistyHidden'); // hide content
 		}
 		if (inMaySave && ref.saveSetting) {
 	        twiki.Pref.setPref(twiki.TwistyPlugin.COOKIE_PREFIX + ref.name, ref.state);
@@ -89,12 +89,12 @@ twiki.TwistyPlugin = new function () {
 		if (!ref) {
 			ref = new twiki.TwistyPlugin.Storage();
 		}
-		if (twiki.CSS.hasClass(e, "twistyRememberSetting")) ref.saveSetting = true;
-		if (twiki.CSS.hasClass(e, "twistyForgetSetting")) ref.clearSetting = true;
-		if (twiki.CSS.hasClass(e, "twistyStartShow")) ref.startShown = true;
-		if (twiki.CSS.hasClass(e, "twistyStartHide")) ref.startHidden = true;
-		if (twiki.CSS.hasClass(e, "twistyFirstStartShow")) ref.firstStartShown = true;
-		if (twiki.CSS.hasClass(e, "twistyFirstStartHide")) ref.firstStartHidden = true;
+		if (foswiki.CSS.hasClass(e, "twistyRememberSetting")) ref.saveSetting = true;
+		if (foswiki.CSS.hasClass(e, "twistyForgetSetting")) ref.clearSetting = true;
+		if (foswiki.CSS.hasClass(e, "twistyStartShow")) ref.startShown = true;
+		if (foswiki.CSS.hasClass(e, "twistyStartHide")) ref.startHidden = true;
+		if (foswiki.CSS.hasClass(e, "twistyFirstStartShow")) ref.firstStartShown = true;
+		if (foswiki.CSS.hasClass(e, "twistyFirstStartHide")) ref.firstStartHidden = true;
 		ref.name = name;
 		var type = self._getType(e.id);
 		ref[type] = e;
@@ -187,21 +187,21 @@ twiki.TwistyPlugin.init = function(inId) {
 	// else register
 	ref = this._register(e);
 	
-	twiki.CSS.replaceClass(e, "twistyMakeHidden", "twistyHidden");
-	twiki.CSS.removeClass(e, "twikiMakeVisible");
-	twiki.CSS.removeClass(e, "twikiMakeVisibleBlock");
-	twiki.CSS.removeClass(e, "twikiMakeVisibleInline");
-	twiki.CSS.removeClass(e, "twikiMakeHidden");
+	foswiki.CSS.replaceClass(e, "twistyMakeHidden", "twistyHidden");
+	foswiki.CSS.removeClass(e, "twikiMakeVisible");
+	foswiki.CSS.removeClass(e, "twikiMakeVisibleBlock");
+	foswiki.CSS.removeClass(e, "twikiMakeVisibleInline");
+	foswiki.CSS.removeClass(e, "twikiMakeHidden");
 	
 	if (ref.show && ref.hide && ref.toggle) {
 		// all Twisty elements present
 
-		if (twiki.CSS.hasClass(e, "twistyInited1")) {
+		if (foswiki.CSS.hasClass(e, "twistyInited1")) {
 			ref.state = twiki.TwistyPlugin.CONTENT_SHOWN
 			this._update(ref, false);
 			return ref;
 		}
-		if (twiki.CSS.hasClass(e, "twistyInited0")) {
+		if (foswiki.CSS.hasClass(e, "twistyInited0")) {
 			ref.state = twiki.TwistyPlugin.CONTENT_HIDDEN
 			this._update(ref, false);
 			return ref;

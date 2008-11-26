@@ -334,9 +334,9 @@ sub _addHeader {
 @import url("%PUBURL%/%SYSTEMWEB%/FormPlugin/formplugin.css");
 </style>
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/foswikilib.js"></script>
-<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/twikiCSS.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/foswikiCSS.js"></script>
 <script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/twikiForm.js"></script>
-<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/twikiString.js"></script>
+<script type="text/javascript" src="%PUBURL%/%SYSTEMWEB%/JavascriptFiles/foswikiString.js"></script>
 END
 
     TWiki::Func::addToHEAD( 'FORMPLUGIN', $header );
