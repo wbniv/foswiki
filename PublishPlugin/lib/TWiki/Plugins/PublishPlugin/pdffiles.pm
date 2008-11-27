@@ -12,18 +12,20 @@
 # GNU General Public License for more details, published at
 # http://www.gnu.org/copyleft/gpl.html
 #
-# driver for writing individual pdfs for PublishContrib
+# driver for writing individual pdfs for PublishPlugin
 
 use strict;
 
-package TWiki::Contrib::PublishContrib::pdffiles;
+package Foswiki::Plugins::PublishPlugin::pdffiles;
 
 use Error qw( :try );
-use TWiki::Contrib::PublishContrib::file;
-use TWiki::Contrib::PublishContrib::PDFWriter;
+use Foswiki::Plugins::PublishPlugin::file;
+use Foswiki::Plugins::PublishPlugin::PDFWriter;
 my $debug = 1;
-@TWiki::Contrib::PublishContrib::pdffiles::ISA = qw( TWiki::Contrib::PublishContrib::file
-						     TWiki::Contrib::PublishContrib::PDFWriter);
+@Foswiki::Plugins::PublishPlugin::pdffiles::ISA =
+  qw(
+     Foswiki::Plugins::PublishPlugin::file
+     Foswiki::Plugins::PublishPlugin::PDFWriter);
 
 sub new {
     my( $class, $path, $web, $genopt ) = @_;

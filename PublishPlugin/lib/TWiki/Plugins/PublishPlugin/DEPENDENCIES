@@ -1,0 +1,10 @@
+File::Spec,>0,cpan,Required. Used to analyse URL paths.
+File::Copy,>0,cpan,Required. Used to move files around.
+File::Path,>0,cpan,Required to manipulate directories.
+File::Temp,>0,cpan,Required for temporary files.
+LWP,>0,cpan,Optional. Used to include images referenced by absolute URLs
+Archive::Zip,>=0,cpan,Optional. Required to generate .zip output
+Archive::Tar,>=0,cpan,Optional. Required to generate .tgz output
+Net::FTP,>0,cpan,Optional. Required for ftp publishing.
+htmldoc,,c,Optional. Required to generate .pdf output
+Digest::MD5,>0,cpan,Optional. Required for fast upload to ftp servers.

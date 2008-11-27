@@ -12,13 +12,13 @@
 # GNU General Public License for more details, published at
 # http://www.gnu.org/copyleft/gpl.html
 #
-# PDF writer module for PublishContrib
+# PDF writer module for PublishPlugin
 #
 
 use strict;
 
-package TWiki::Contrib::PublishContrib::pdf;
-use base 'TWiki::Contrib::PublishContrib::file';
+package Foswiki::Plugins::PublishPlugin::pdf;
+use base 'Foswiki::Plugins::PublishPlugin::file';
 
 use File::Path;
 
@@ -39,8 +39,8 @@ sub close {
     my @files = map { "$this->{path}/$_" }
       grep { /\.html$/ } @{$this->{files}};
 
-    my $cmd = $TWiki::cfg{PublishContrib}{PDFCmd};
-    die "{PublishContrib}{PDFCmd} not defined" unless $cmd;
+    my $cmd = $Foswiki::cfg{PublishPlugin}{PDFCmd};
+    die "{PublishPlugin}{PDFCmd} not defined" unless $cmd;
 
     my $landed = "$this->{web}.pdf";
     my @extras = split( /\s+/, $this->{genopt} );
@@ -48,10 +48,10 @@ sub close {
     $ENV{HTMLDOC_DEBUG} = 1; # see man htmldoc - goes to apache err log
     $ENV{HTMLDOC_NOCGI} = 1; # see man htmldoc
     my $sb;
-    if (defined $TWiki::sandbox) {
-        $sb = $TWiki::sandbox
+    if (defined $Foswiki::sandbox) {
+        $sb = $Foswiki::sandbox
     } else {
-        $sb = $TWiki::Plugins::SESSION->{sandbox};
+        $sb = $Foswiki::Plugins::SESSION->{sandbox};
     }
     die "Could not find sandbox" unless $sb;
 	$sb->{TRACE} = 1;

@@ -12,13 +12,13 @@
 # GNU General Public License for more details, published at
 # http://www.gnu.org/copyleft/gpl.html
 #
-# Archive::Zip writer module for PublishContrib
+# Archive::Zip writer module for PublishPlugin
 #
+package Foswiki::Plugins::PublishPlugin::zip;
+
 use strict;
 
-package TWiki::Contrib::PublishContrib::zip;
-
-use TWiki::Func;
+use Foswiki::Func;
 use File::Path;
 
 sub new {

@@ -19,8 +19,8 @@
 # allow method POST for 'ftp:' URLs"
 # TODO: clean up ftp site, removing/archiving/backing up old version
 
-package TWiki::Contrib::PublishContrib::ftp;
-use base 'TWiki::Contrib::PublishContrib::file';
+package Foswiki::Plugins::PublishPlugin::ftp;
+use base 'Foswiki::Plugins::PublishPlugin::file';
 
 use strict;
 

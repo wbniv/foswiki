@@ -12,11 +12,11 @@
 # GNU General Public License for more details, published at
 # http://www.gnu.org/copyleft/gpl.html
 #
-# File writer module for PublishContrib
+# File writer module for PublishPlugin
 #
-use strict;
+package Foswiki::Plugins::PublishPlugin::file;
 
-package TWiki::Contrib::PublishContrib::file;
+use strict;
 
 use File::Copy;
 use File::Path;
