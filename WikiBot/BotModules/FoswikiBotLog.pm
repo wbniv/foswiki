@@ -1,8 +1,8 @@
 ################################
-# TWikiBot Log Module          #
+# FoswikiBot Log Module        #
 ################################
 
-package BotModules::TWikiBotLog;
+package BotModules::FoswikiBotLog;
 use vars qw(@ISA);
 use Date::Format;
 use LWP::Simple;
@@ -27,7 +27,7 @@ sub Help {
     my $self = shift;
     my ($event) = @_;
     return {
-        '' => 'This is the TWikiBot logging module. It provides commands to work with [LOGGER].',
+        '' => 'This is the FoswikiBot logging module. It provides commands to work with [LOGGER].',
         'logtime' => 'Requests that the bot provide a link to the current line of the [LOGGER] logs. It has one optional parameter, the channel name.',
     };
 }
