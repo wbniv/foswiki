@@ -62,7 +62,8 @@ sub _publishRESTHandler {
         # Control UI
         $publisher->control($query);
     } else {
-        my $web = $query->param( 'web' ) || $session->{webName};
+        my $web = $query->param( 'web' ) ||
+          $Foswiki::Plugins::SESSION->{webName};
         $query->delete('web');
         $web =~ m#([\w/.]*)#; # clean up and untaint
 
@@ -83,10 +84,11 @@ sub _display {
 
 # Allow manipulation of $Foswiki::cfg{PublishPlugin}{Dir}
 sub _publishControlCentre {
-    my ($this, $query) = @_;
+
+    my $query = TWiki::Func::getCgiQuery();
 
     # SMELL: check access to this interface!
-    unless( Foswiki::Func::isAdmin()) {
+    unless( Foswiki::Func::isAnAdmin()) {
         return CGI::span(
             {class=>'twikiAlert'},
             "Only admins can access the control interface");
@@ -106,39 +108,38 @@ HERE
     if ($action eq 'delete') {
         $file =~ m#([\w./\\]+)#; # untaint
         File::Path::rmtree("$Foswiki::cfg{PublishPlugin}{Dir}/$1");
-        $output .= $query->p("$1 deleted");
+        $output .= CGI::p("$1 deleted");
     }
     if (opendir(D, $Foswiki::cfg{PublishPlugin}{Dir})) {
         my @files = grep(!/^\./, readdir(D));
         if (scalar(@files)) {
-            $output .= $query->start_table();
+            $output .= CGI::start_table();
             foreach my $file (@files) {
                 my $link = "$Foswiki::cfg{PublishPlugin}{URL}/$file";
-                $link = $query->a({href => $link}, $file);
-                my @cols = ( $query->th($link) );
-                my $delcol = $query->start_form({ action => '',
+                $link = CGI::a({href => $link}, $file);
+                my @cols = ( CGI::th($link) );
+                my $delcol = CGI::start_form({ action => '',
                                                method=>'GET',
                                                name => $file });
-                $delcol .= $query->submit(
+                $delcol .= CGI::submit(
                     { type  => 'button',
                       name  => 'Delete'});
-                $delcol .= $query->hidden('file', $file);
-                $delcol .= $query->hidden('action', 'delete');
-                $delcol .= $query->hidden('control', '1');
-                $delcol .= $query->hidden('skin');
-                $delcol .= $query->end_form();
+                $delcol .= CGI::hidden('file', $file);
+                $delcol .= CGI::hidden('action', 'delete');
+                $delcol .= CGI::hidden('control', '1');
+                $delcol .= CGI::hidden('skin');
+                $delcol .= CGI::end_form();
                 push(@cols, $delcol);
-                $output .= $query->Tr({valign=>"baseline"},
-                              join('', map {$query->td($_)} @cols));
+                $output .= CGI::Tr({valign=>"baseline"},
+                              join('', map {CGI::td($_)} @cols));
             }
-            $output .= $query->end_table();
+            $output .= CGI::end_table();
         } else {
             $output .= "The output directory is currently empty";
         }
     } else {
         $output .= "Failed to open '$Foswiki::cfg{PublishPlugin}{Dir}': $!";
     }
-    $output .= $footer;
 
     return $output;
 }

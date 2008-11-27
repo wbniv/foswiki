@@ -3,7 +3,9 @@ package Foswiki::Plugins::PublishPlugin::Publisher;
 
 use strict;
 
+use Foswiki;
 use Foswiki::Func;
+use Error ':try';
 
 sub new {
     my ($class, $session) = @_;
@@ -26,7 +28,7 @@ sub new {
     if ($query && $query->param('configtopic')) {
         $this->{configtopic} = $query->param('configtopic');
         $query->delete('configtopic');
-        $this->_configureFromTopic($ct);
+        $this->_configureFromTopic();
     } elsif ($query) {
         $this->_configureFromQuery($query);
     }
@@ -84,7 +86,7 @@ sub _configureFromTopic {
             $v =~ /(\w*)/;
             $this->{outputformat} = $1;
         } elsif ($k eq 'DEBUG' ) {
-            $debug = $v;
+            $this->{debug} = $v;
         } elsif ($k eq 'VERSIONS') {
             $this->{versionstopic} = $v;
         } elsif ($k eq 'TEMPLATES' ) {
@@ -131,6 +133,11 @@ sub _configureFromQuery {
         my $v = $query->param('versions');
         $this->{versionstopic} = $v;
         $query->delete('versions');
+    }
+    if (defined $query->param('enableplugins')) {
+        my $v = $query->param('enableplugins');
+        $this->{enableplugins} = $v;
+        $query->delete('enableplugins');
     }
     $this->{topicFilter} = $query->param('filter') ||
       $query->param('topicsearch') || '';
@@ -197,10 +204,11 @@ TEXT
     my $enabledPlugins = '';
     my $disabledPlugins = '';
     my @pluginsToEnable;
-    if (defined $query->param('enableplugins')) {
-        @pluginsToEnable = split(/[, ]+/, $query->param('enableplugins'));
+    if ($this->{enableplugins}) {
+        @pluginsToEnable = split(/[, ]+/, $this->{enableplugins});
     }
     foreach my $plugin (keys(%{$Foswiki::cfg{Plugins}})) {
+        next unless ref($Foswiki::cfg{Plugins}{$plugin}) eq 'HASH';
         my $enable = $Foswiki::cfg{Plugins}{$plugin}{Enabled};
         if (scalar(@pluginsToEnable) > 0) {
             $enable = grep(/$plugin/, @pluginsToEnable);
@@ -278,7 +286,8 @@ TEXT
         unless ($@) {
             eval {
                 $this->{archive} =
-                  $generator->new($dir, $this->{web}, $this->{genopt}, $this, $query);
+                  $generator->new($dir, $this->{web}, $this->{genopt},
+                                  $this, TWiki::Func::getCgiQuery());
             };
         }
         if ($@ || (!$this->{archive})) {
@@ -382,7 +391,7 @@ sub logError {
     my ($this, $message) = @_;
     Foswiki::Plugins::PublishPlugin::_display(
         CGI::span({class=>'twikiAlert'}, "ERROR: $message"));
-    Foswiki::Plugins::PublishPlugin::(_display CGI::br());
+    Foswiki::Plugins::PublishPlugin::_display( CGI::br());
     $this->{history} .= "%RED% *ERROR* $message %ENDCOLOR%%BR%\n";
 }
 
@@ -418,7 +427,7 @@ sub publishUsingTemplate {
             $this->logInfo($topic, $dispo);
         } catch Error::Simple with {
             my $e = shift;
-            $this->logError("$topic not published: ".$e->{-text});
+            $this->logError("$topic not published: ".($e->{-text}||''));
         };
     }
 }

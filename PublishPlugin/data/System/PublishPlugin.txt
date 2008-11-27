@@ -13,7 +13,9 @@
    * Set SHORTDESCRIPTION = Generate static output (HTML, PDF) for a web and optionally upload (FTP) the output to a publishing site.
 -->
 
-_Previously known as !GenHTMLAddOn, and then !PublishAddOn, and the !PublishContrib, this is the *original* publishing extension for TWiki, and now for Foswiki_.
+_Previously known as !GenHTMLAddOn, !PublishAddOn, and !PublishContrib, this is the *original* publishing extension for TWiki<sup>&reg;</sup>_.
+
+Now ported and improved for *Foswiki*!.
 
 <img src="%ATTACHURLPATH%/publish.gif" style="float:right" />
 !PublishPlugin provides support for the generation of stand-alone HTML from a web. It will generate fully rendered versions of a set of Foswiki pages together with any attached files.
@@ -61,7 +63,7 @@ padding:.5em;
 </style>
 
 <div class="twikiPageForm">
-<form method="POST" name="publish" action="%SCRIPTURL{publish}%/%URLPARAM{"web" default=""}%">
+<form method="POST" name="publish" action="%SCRIPTURL{rest}%/PublishPlugin/publish">
 <table class="twikiTable" cellpadding="0" cellspacing="0">
 <tr>
   <th colspan="3" style="background-color:gold">Choose what to publish</th>
@@ -162,7 +164,7 @@ padding:.5em;
    </select><br />
     The output will be generated on the server, in the directory pointed to
     by the ={PublishPlugin}{Dir}= configuration setting. You can manage the
-    contents of this directory from the browser using the %>nop>PUBLISHERS_CONTROL_CENTRE% macro.<br />
+    contents of this directory from the browser using the %<nop>PUBLISHERS_CONTROL_CENTRE% macro (See PublishPluginControlCentre).<br />
     *X* The rendered data can get pretty big, and the process itself puts
    a heavy load on the server, especially when using compression on large webs.
   </td>
@@ -449,6 +451,8 @@ This code is a development of the Architectures and System Platforms group of Mo
 The 2005 functionality improvements were sponsored by [[http://www.windriver.com][Wind River Systems]]
 
 The =pdf= and =tgz= output formats were made possible by [[http://www.sabiolabs.com][ =Sabio Labs= ]]
+
+TWiki<sup>&reg;</sup> is a registered trademark of Peter Thoeny.
 
 ---+++ License
 As required for the publication of all extensions to TWiki, the software is published under the terms of the GNU General Public License.
