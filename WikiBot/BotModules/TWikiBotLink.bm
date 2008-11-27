@@ -18,7 +18,7 @@ sub RegisterConfig {
     $self->SUPER::RegisterConfig(@_);
     $self->registerVariables(
       # [ name, save?, settable?, value ]
-	['InterWikis', 1, 1, { 'TWiki' => 'http://twiki.org/cgi-bin/view/' }],
+	['InterWikis', 1, 1, { 'TWiki' => 'http://twiki.org/cgi-bin/view/', Foswiki => 'http://foswiki.org/' }],
     );
 }
 
