@@ -1,8 +1,8 @@
 ################################
-# TWiki Module                 #
+# Foswiki Module               #
 ################################
 
-package BotModules::TWiki;
+package BotModules::Foswiki;
 use WWW::REST;
 use vars qw(@ISA $restdone $restret);
 @ISA = qw(BotModules);
@@ -12,7 +12,7 @@ sub Help {
     my $self = shift;
     my ($event) = @_;
     return {
-        '' => 'This module interfaces with TWiki.',
+        '' => 'This module interfaces with Foswiki.',
         'comment' => 'Posts a comment to a given topic. Usage: comment Web.Topic This is my comment',
     };
 }
@@ -44,7 +44,7 @@ sub insertText {
     my ($tbpTopic, $tbpText, $tbpReference, $tbpRelative, $tbpSignature) = @_;
 
     # These shold be configuration settings
-    my $uname = 'TWikiBot';
+    my $uname = 'FoswikiBot';
     my $pass = 'IloveTWiki';
     my $location = 'http://twiki.qbfreak.net/edinburgh/TWiki-4.1.2/bin/rest/TWikiBotPlugin/inserttext';
 

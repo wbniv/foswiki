@@ -1,5 +1,5 @@
 ################################
-# TWikiBot link Module         #
+# FoswikiBot link Module         #
 ################################
 
 # STATUS: Complete
@@ -8,7 +8,7 @@
 #    * Management commands for InterWikis hash, its huge
 #    * Better means to store links than InterWikis hash?
 
-package BotModules::TWikiBotLink;
+package BotModules::FoswikiBotLink;
 use vars qw(@ISA);
 @ISA = qw(BotModules);
 1;
@@ -18,7 +18,10 @@ sub RegisterConfig {
     $self->SUPER::RegisterConfig(@_);
     $self->registerVariables(
       # [ name, save?, settable?, value ]
-	['InterWikis', 1, 1, { 'TWiki' => 'http://twiki.org/cgi-bin/view/', Foswiki => 'http://foswiki.org/' }],
+	['InterWikis', 1, 1, { 
+	Foswiki => 'http://foswiki.org/',
+	'TWiki' => 'http://twiki.org/cgi-bin/view/', 
+		   } ],
     );
 }
 

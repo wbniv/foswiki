@@ -1,12 +1,12 @@
 ################################
-# TWikiBotRss Module           #
+# FoswikiBotRss Module           #
 ################################
 # based on the RDF module provided with mozbot.
 # removed maxInChannel, hope it doesn't get out of control :)
-# this module is intended to be used with TWiki RSS feeds, which
+# this module is intended to be used with Foswiki RSS feeds, which
 # will always have an item limit
 
-package BotModules::TWikiBotRss;
+package BotModules::FoswikiBotRss;
 use XML::RSS;
 use vars qw(@ISA);
 @ISA = qw(BotModules);
@@ -43,7 +43,7 @@ sub Help {
     my ($event) = @_;
     my %commands; 
     if ($self->isAdmin($event)) {
-        $commands{''} = "The $self->{'_name'} module monitors various TWiki RSS topics. Add new RSS channels to the 'sites' hash. Duplicates with different nicknames are fine. For example, \"vars $self->{'_name'} sites '+|slashdot|http://...'\" and \"vars $self->{'_name'} sites '+|/.|http://...'\" is fine.  To remove a site from the $self->{_name} 'sites' hash, use this syntax \"vars $self->{_name} sites '-slashdot'";
+        $commands{''} = "The $self->{'_name'} module monitors various Foswiki RSS topics. Add new RSS channels to the 'sites' hash. Duplicates with different nicknames are fine. For example, \"vars $self->{'_name'} sites '+|slashdot|http://...'\" and \"vars $self->{'_name'} sites '+|/.|http://...'\" is fine.  To remove a site from the $self->{_name} 'sites' hash, use this syntax \"vars $self->{_name} sites '-slashdot'";
         $commands{'rss mute'} = 'Disable reporting of a site in a channel. (Only does something if the given site exists.) Syntax: rss mute <site> in <channel>';
         $commands{'rss unmute'} = 'Enable reporting of a site in a channel. By default, sites are reported in all channels that the module is active in. Syntax: rss unmute <site> in <channel>';
     } else {

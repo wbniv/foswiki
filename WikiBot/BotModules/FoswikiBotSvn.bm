@@ -1,10 +1,10 @@
 ################################
-# TWikiBotSvn Module           #
+# FoswikiBotSvn Module           #
 ################################
 # based on the RDF module provided with mozbot.
 # Hacked to pieces by Jason Hill aka QBFreak (qbfreak@qbfreak.net)
 
-package BotModules::TWikiBotSvn;
+package BotModules::FoswikiBotSvn;
 #use Data::Dumper;
 use vars qw(@ISA);
 @ISA = qw(BotModules);
@@ -41,11 +41,11 @@ sub Help {
     my ($event) = @_;
     my %commands; 
     if ($self->isAdmin($event)) {
-        $commands{''} = "The $self->{'_name'} module monitors the TWiki Subversion repository. Add new SVN repositories to the 'repos' hash. Duplicates with different nicknames are fine. For example, \"vars $self->{'_name'} repos '+|slashdot|http://...'\" and \"vars $self->{'_name'} repos '+|/.|http://...'\" is fine.  To remove a repository from the $self->{_name} 'repos' hash, use this syntax \"vars $self->{_name} repos '-slashdot'";
+        $commands{''} = "The $self->{'_name'} module monitors the Foswiki Subversion repository. Add new SVN repositories to the 'repos' hash. Duplicates with different nicknames are fine. For example, \"vars $self->{'_name'} repos '+|slashdot|http://...'\" and \"vars $self->{'_name'} repos '+|/.|http://...'\" is fine.  To remove a repository from the $self->{_name} 'repos' hash, use this syntax \"vars $self->{_name} repos '-slashdot'";
         $commands{'svn mute'} = 'Disable reporting of a repository in a channel. (Only does something if the given repository exists.) Syntax: svn mute <repo> in <channel>';
         $commands{'svn unmute'} = 'Enable reporting of a repository in a channel. By default, repositories are reported in all channels that the module is active in. Syntax: svn unmute <repo> in <channel>';
     } else {
-        $commands{''} = "The $self->{'_name'} module monitors the TWiki SVN repository.";
+        $commands{''} = "The $self->{'_name'} module monitors the Foswiki SVN repository.";
     }
     # TODO These commands aren't implimented
     foreach my $repo (keys(%{$self->{'repos'}})) {
