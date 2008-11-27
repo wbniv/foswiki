@@ -1,6 +1,8 @@
-# See bottom of file for license and copyright information
+# See botton of file for license and copyright information
 
+# Equivalent of RcsWrap and RcsLite for a subversion checkout area
 package Foswiki::Store::Subversive;
+use base 'Foswiki::Store::RcsFile';
 
 use strict;
 use Assert;
@@ -11,47 +13,9 @@ require Foswiki::Sandbox;
 
 sub new {
     my ( $class, $session, $web, $topic, $attachment ) = @_;
-
-    ASSERT( $session->isa('Foswiki') ) if DEBUG;
-    my $this = bless( {}, $class );
-    $this->{session} = $session;
-
-    $this->{web} = $web;
-
-    if ($topic) {
-        $this->{topic} = $topic;
-
-        if ($attachment) {
-            $this->{attachment} = $attachment;
-
-            $this->{file} =
-                $Foswiki::cfg{PubDir} . '/' 
-              . $web . '/'
-              . $this->{topic} . '/'
-              . $attachment;
-
-        }
-        else {
-            $this->{file} =
-              $Foswiki::cfg{DataDir} . '/' . $web . '/' . $topic . '.txt';
-        }
-    }
-
+    my $this = $class->SUPER::new($session, $web, $topic, $attachment);
+    undef $this->{rcsFile};
     return $this;
-}
-
-=begin twiki
-
----++ ObjectMethod finish()
-Break circular references.
-
-=cut
-
-# Note to developers; please undef *all* fields in the object explicitly,
-# whether they are references or not. That way this method is "golden
-# documentation" of the live fields in the object.
-sub finish {
-    my $this = shift;
 }
 
 sub init {
@@ -69,8 +33,9 @@ sub init {
         close(F);
 
         my ( $output, $exit ) =
-          $Foswiki::sandbox->sysCommand( 'svn add %FILENAME|F%',
-            FILENAME => $this->{file} );
+          $Foswiki::sandbox->sysCommand(
+              $Foswiki::cfg{SubversionContrib}{svnCommand}.
+                ' add %FILENAME|F%', FILENAME => $this->{file} );
         if ($exit) {
             throw Error::Simple(
                 'svn add of ' . $this->{file} . ' failed: ' . $output );
@@ -92,8 +57,9 @@ sub _mkPathTo {
         elsif ($path) {
             if ( !-e "$path$dir" && -e "$path/.svn" ) {
                 my ( $output, $exit ) =
-                  Foswiki::sandbox->sysCommand( 'svn mkdir %FILENAME|F%',
-                    FILENAME => $path . $dir );
+                  Foswiki::sandbox->sysCommand(
+                      $Foswiki::cfg{SubversionContrib}{svnCommand}.
+                        ' mkdir %FILENAME|F%', FILENAME => $path . $dir );
                 if ($exit) {
                     throw Error::Simple( 'svn mkdir of ' 
                           . $path 
@@ -107,27 +73,22 @@ sub _mkPathTo {
     }
 }
 
-=pod
-
----++ ObjectMethod getRevisionInfo($version) -> ($rev, $date, $user, $comment)
-
-   * =$version= if 0 or undef, or out of range (version number > number of revs) will return info about the latest revision.
-
-Returns (rev, date, user, comment) where rev is the number of the rev for which the info was recovered, date is the date of that rev (epoch s), user is the login name of the user who saved that rev, and comment is the comment associated with the rev.
-
-Designed to be overridden by subclasses, which can call up to this method
-if file-based rev info is required.
-
-=cut
-
 sub getRevisionInfo {
-    my ($this) = @_;
-    my $fileDate = $this->getTimestamp();
+    my ($this, $version) = @_;
+    my $info = Foswiki::sandbox->sysCommand(
+        $Foswiki::cfg{SubversionContrib}{svnCommand}.
+          ' info -r $version %FILENAME|F%',
+        FILENAME => $this->{file} );
+    my $changedAuthor = ($info =~ /^Last Changed Author: (.*)$/) ? $1 : '';
+    my $changedDate = ($info =~ /^Last Changed Date: (.*)$/) ? $1 : '';
+    my $rev = ($info =~ /^Revision: (.*)$/) ? $1 : '';
+    $changedDate = Foswiki::Time::parseTime($changedDate);
     return (
-        1, $fileDate,
-        $Foswiki::cfg{DefaultUserLogin},
-        'Default revision information'
-    );
+        $rev,
+        $changedDate,
+        $this->{session}->{users}
+          ->getCanonicalUserID( $changedAuthor ),
+        '' );
 }
 
 =pod
@@ -152,158 +113,18 @@ Get the time of the most recent revision
 =cut
 
 sub getLatestRevisionTime {
-    return ( stat shift->{file} )[9];
-}
-
-=pod
-
----++ ObjectMethod readMetaData($name) -> $text
-
-Get a meta-data block for this web
-
-=cut
-
-sub readMetaData {
-    my ( $this, $name ) = @_;
-    my $file = $Foswiki::cfg{DataDir} . '/' . $this->{web} . '/' . $name;
-    if ( -e $file ) {
-        return _readFile( $this, $file );
-    }
-    return '';
-}
-
-=pod
-
----++ ObjectMethod saveMetaData( $web, $name ) -> $text
-
-Write a named meta-data string. If web is given the meta-data
-is stored alongside a web.
-
-=cut
-
-sub saveMetaData {
-    my ( $this, $name, $text ) = @_;
-
-    my $file = $Foswiki::cfg{DataDir} . '/' . $this->{web} . '/' . $name;
-
-    return _saveFile( $this, $file, $text );
-}
-
-=pod
-
----++ ObjectMethod getTopicNames() -> @topics
-
-Get list of all topics in a web
-   * =$web= - Web name, required, e.g. ='Sandbox'=
-Return a topic list, e.g. =( 'WebChanges',  'WebHome', 'WebIndex', 'WebNotify' )=
-
-=cut
-
-sub getTopicNames {
     my $this = shift;
 
-    opendir DIR, $Foswiki::cfg{DataDir} . '/' . $this->{web};
-
-    # the name filter is used to ensure we don't return filenames
-    # that contain illegal characters as topic names.
-    my @topicList =
-      sort
-      map { Foswiki::Sandbox::untaintUnchecked($_) }
-      grep { !/$Foswiki::cfg{NameFilter}/ && s/\.txt$// } readdir(DIR);
-    closedir(DIR);
-    return @topicList;
-}
-
-=pod
-
----++ ObjectMethod getWebNames() -> @webs
-
-Gets a list of names of subwebs in the current web
-
-=cut
-
-sub getWebNames {
-    my $this = shift;
-    my $dir  = $Foswiki::cfg{DataDir} . '/' . $this->{web};
-    if ( opendir( DIR, $dir ) ) {
-        my @tmpList =
-          grep { !/$Foswiki::cfg{NameFilter}/ && !/^\./ && -d $dir . '/' . $_ }
-          readdir(DIR);
-        closedir(DIR);
-        return @tmpList;
+    my ( $output, $exit ) =
+      $Foswiki::sandbox->sysCommand(
+          $Foswiki::cfg{SubversionContrib}{svnCommand}.
+            ' info %FILE|F%', FILE => $this->{file} );
+    if ($exit) {
+        throw Error::Simple( 'Subversive: info failed: ' . $! );
     }
-    return ();
-}
-
-=pod
-
----++ ObjectMethod searchInWebContent($searchString, $web, \@topics, \%options ) -> \%map
-
-Search for a string in the content of a web. The search must be over all
-content and all formatted meta-data, though the latter search type is
-deprecated (use searchMetaData instead).
-
-   * =$searchString= - the search string, in egrep format if regex
-   * =$web= - The web to search in
-   * =\@topics= - reference to a list of topics to search
-   * =\%options= - reference to an options hash
-The =\%options= hash may contain the following options:
-   * =type= - if =regex= will perform a egrep-syntax RE search (default '')
-   * =casesensitive= - false to ignore case (defaulkt true)
-   * =files_without_match= - true to return files only (default false)
-
-The return value is a reference to a hash which maps each matching topic
-name to a list of the lines in that topic that matched the search,
-as would be returned by 'grep'. If =files_without_match= is specified, it will
-return on the first match in each topic (i.e. it will return only one
-match per topic, and will not return matching lines).
-
-=cut
-
-sub searchInWebContent {
-    my ( $this, $searchString, $topics, $options ) = @_;
-    ASSERT( defined $options ) if DEBUG;
-    my $type = $options->{type} || '';
-
-    # I18N: 'grep' must use locales if needed,
-    # for case-insensitive searching.  See Foswiki::setupLocale.
-    my $program = '';
-
-    # FIXME: For Cygwin grep, do something about -E and -F switches
-    # - best to strip off any switches after first space in
-    # EgrepCmd etc and apply those as argument 1.
-    if ( $type eq 'regex' ) {
-        $program = $Foswiki::cfg{RCS}{EgrepCmd};
-    }
-    else {
-        $program = $Foswiki::cfg{RCS}{FgrepCmd};
-    }
-
-    $program =~ s/%CS{(.*?)\|(.*?)}%/$options->{casesensitive}?$1:$2/ge;
-    $program =~ s/%DET{(.*?)\|(.*?)}%/$options->{files_without_match}?$2:$1/ge;
-
-    my $sDir = $Foswiki::cfg{DataDir} . '/' . $this->{web} . '/';
-    my $seen = {};
-
-    # process topics in sets, fix for Codev.ArgumentListIsTooLongForSearch
-    my $maxTopicsInSet = 512;        # max number of topics for a grep call
-    my @take           = @$topics;
-    my @set = splice( @take, 0, $maxTopicsInSet );
-    while (@set) {
-        @set = map { "$sDir/$_.txt" } @set;
-        my ( $matches, $exit ) = $Foswiki::sandbox->sysCommand(
-            $program,
-            TOKEN => $searchString,
-            FILES => \@set
-        );
-        foreach my $match ( split( /\r?\n/, $matches ) ) {
-            if ( $match =~ m/([^\/]*)\.txt(:(.*))?$/ ) {
-                push( @{ $seen->{$1} }, $3 );
-            }
-        }
-        @set = splice( @take, 0, $maxTopicsInSet );
-    }
-    return $seen;
+    my $changedDate = ($output =~ /^Last Changed Date: (.*)$/) ? $1 : '';
+    $changedDate = Foswiki::Time::parseTime($changedDate);
+    return $changedDate;
 }
 
 =pod
@@ -344,41 +165,9 @@ if the main file revision is required.
 =cut
 
 sub getRevision {
-    my ($this) = @_;
+    my ($this, $version) = @_;
+die "NOT DONE YET";
     return _readFile( $this, $this->{file} );
-}
-
-=pod
-
----++ ObjectMethod storedDataExists() -> $boolean
-
-Establishes if there is stored data associated with this handler.
-
-=cut
-
-sub storedDataExists {
-    my $this = shift;
-    return -e $this->{file};
-}
-
-=pod
-
----++ ObjectMethod getTimestamp() -> $integer
-
-Get the timestamp of the file
-Returns 0 if no file, otherwise epoch seconds
-
-=cut
-
-sub getTimestamp {
-    my ($this) = @_;
-    my $date = 0;
-    if ( -e $this->{file} ) {
-
-        # SMELL: Why big number if fail?
-        $date = ( stat $this->{file} )[9] || 600000000;
-    }
-    return $date;
 }
 
 =pod
@@ -509,33 +298,6 @@ sub copyAttachment {
     _copyFile( $this, $this->{file}, $new->{file} );
 }
 
-=pod
-
----++ ObjectMethod isAsciiDefault (   ) -> $boolean
-
-Check if this file type is known to be an ascii type file.
-
-=cut
-
-sub isAsciiDefault {
-    my $this = shift;
-    return ( $this->{attachment} =~ /$Foswiki::cfg{RCS}{asciiFileSuffixes}/ );
-}
-
-sub setLock {
-}
-
-sub isLocked {
-    return ( undef, undef );
-}
-
-sub setLease {
-}
-
-sub getLease {
-    return undef;
-}
-
 sub _saveStream {
     my ( $this, $fh ) = @_;
 
@@ -567,7 +329,7 @@ sub _copyFile {
     _mkPathTo( $this, $to );
 
     my ( $output, $exit ) = $Foswiki::sandbox->sysCommand(
-        'svn cp %FROM|F% %TO|F%',
+        $Foswiki::cfg{SubversionContrib}{svnCommand}.' cp %FROM|F% %TO|F%',
         FROM => $from,
         TO   => $to
     );
@@ -582,7 +344,7 @@ sub _moveFile {
 
     _mkPathTo( $this, $to );
     my ( $output, $exit ) = $Foswiki::sandbox->sysCommand(
-        'svn mv %FROM|F% %TO|F%',
+        $Foswiki::cfg{SubversionContrib}{svnCommand}.' mv %FROM|F% %TO|F%',
         FROM => $from,
         TO   => $to
     );
@@ -680,20 +442,11 @@ sub _rmtree {
     my ( $this, $root ) = @_;
 
     my ( $output, $exit ) =
-      $Foswiki::sandbox->sysCommand( 'svn rm %FILENAME|F%', FILENAME => $root );
+      $Foswiki::sandbox->sysCommand( $Foswiki::cfg{SubversionContrib}{svnCommand}.
+                                     ' rm %FILENAME|F%', FILENAME => $root );
     if ($exit) {
         throw Error::Simple( 'svn rm of ' . $root . ' failed: ' . $output );
     }
-}
-
-sub getStream {
-    my ($this) = shift;
-    my $strm;
-    unless ( open( $strm, '<' . $this->{file} ) ) {
-        throw Error::Simple(
-            'RCS: stream open ' . $this->{file} . ' failed: ' . $! );
-    }
-    return $strm;
 }
 
 sub addRevisionFromText {
@@ -718,11 +471,15 @@ sub deleteRevision {
     throw Error::Simple("Not implemented");
 }
 
+# SMELL: this just returns the subversion revision, not the true number of
+# revisions (which is only available from svn log)
 sub numRevisions {
     my $this = shift;
 
     my ( $output, $exit ) =
-      $Foswiki::sandbox->sysCommand( 'svn info %FILE|F%', FILE => $this->{file} );
+      $Foswiki::sandbox->sysCommand(
+          $Foswiki::cfg{SubversionContrib}{svnCommand}.
+            ' info %FILE|F%', FILE => $this->{file} );
     if ($exit) {
         throw Error::Simple( 'Subversive: info failed: ' . $! );
     }
@@ -747,7 +504,8 @@ sub revisionDiff {
     }
 
     my ( $output, $exit ) = $Foswiki::sandbox->sysCommand(
-        'svn diff -r%FT|U% --non-interactive %FILE|F%',
+        $Foswiki::cfg{SubversionContrib}{svnCommand}.
+          ' diff -r%FT|U% --non-interactive %FILE|F%',
         FT   => $ft,
         FILE => $this->{file}
     );
@@ -760,79 +518,23 @@ sub revisionDiff {
 }
 
 sub getRevisionAtTime {
+    my ($this, $date) = @_;
     throw Error::Simple("Not implemented");
-}
-
-=pod
-
----++ ObjectMethod getAttachmentAttributes($web, $topic, $attachment)
-
-returns [stat] for any given web, topic, $attachment
-SMELL - should this return a hash of arbitrary attributes so that 
-SMELL + attributes supported by the underlying filesystem are supported
-SMELL + (eg: windows directories supporting photo "author", "dimension" fields)
-
-=cut
-
-sub getAttachmentAttributes {
-    my ( $this, $web, $topic, $attachment ) = @_;
-    throw Error::Simple(
-        "AutoAttachments are not implemented on the Subversive store");
-
-    ASSERT( defined $attachment ) if DEBUG;
-
-    my $dir = dirForTopicAttachments( $web, $topic );
-    my @stat = stat( $dir . "/" . $attachment );
-
-    return @stat;
-}
-
-=pod
-
----++ ObjectMethod getAttachmentList($web, $topic)
-
-returns @($attachmentName => [stat]) for any given web, topic
-
-=cut
-
-sub getAttachmentList {
-    my ( $this, $web, $topic ) = @_;
-
-    throw Error::Simple(
-        "AutoAttachments are not implemented on the Subversive store");
-
-    my $dir = dirForTopicAttachments( $web, $topic );
-    opendir DIR, $dir || return '';
-    my %attachmentList;
-    my @files = sort grep { m/^[^\.*_]/ } readdir(DIR);
-    @files = grep { !/.*,v/ } @files;
-    foreach my $attachment (@files) {
-        my @stat = stat( $dir . "/" . $attachment );
-        $attachmentList{$attachment} = \@stat;
-    }
-    closedir(DIR);
-    return %attachmentList;
-}
-
-sub dirForTopicAttachments {
-    my ( $web, $topic ) = @_;
-    return $Foswiki::cfg{PubDir} . '/' . $web . '/' . $topic;
+    my $info = Foswiki::sandbox->sysCommand(
+        $Foswiki::cfg{SubversionContrib}{svnCommand}.
+          ' info -r {%DATE|U%} %FILENAME|F%',
+        DATE => Foswiki::FormatTime($date, '$http'),
+        FILENAME => $this->{file} );
+    my $rev = ($info =~ /^Revision: (.*)$/) ? $1 : 0;
+    return $rev;
 }
 
 1;
-__DATA__
-# Module of Foswiki - The Free Open Source Wiki, http://foswiki.org/
-#
-# Copyright (C) 2008 Foswiki Contributors. All Rights Reserved.
-# Foswiki Contributors are listed in the AUTHORS file in the root
-# of this distribution. NOTE: Please extend that file, not this notice.
-#
-# Additional copyrights apply to some or all of the code in this
-# file as follows:
-#
-# Copyright (C) 2005-2007 TWiki Contributors. All Rights Reserved.
-# TWiki Contributors are listed in the AUTHORS file in the root
-# of this distribution. NOTE: Please extend that file, not this notice.
+__END__
+# Copyright (C) 2008 Foswiki Contributors
+# Copyright (C) 2005-2007 TWiki Contributors.
+# Foswiki Contributors are listed in the AUTHORS file in the root of
+# this distribution. NOTE: Please extend that file, not this notice.
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -845,3 +547,5 @@ __DATA__
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 #
 # As per the GPL, removal of this notice is prohibited.
+#
+# Author: Crawford Currie http://c-dot.co.uk

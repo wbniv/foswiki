@@ -1,0 +1,6 @@
+# Release manifest for SubversionStoreContrib
+data/System/SubversionStoreContrib.txt 0644 Documentation
+lib/Foswiki/Store/Subversive.pm 0644 Perl module
+lib/Foswiki/Contrib/SubversionStoreContrib.pm 0644 Perl module
+lib/Foswiki/Contrib/SubversionStoreContrib/Config.spec 0644 Configure options
+
