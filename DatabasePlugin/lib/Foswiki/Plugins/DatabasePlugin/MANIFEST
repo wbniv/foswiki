@@ -1,0 +1,10 @@
+data/System/DatabasePlugin.txt NEW
+lib/Foswiki/Plugins/DatabasePlugin/Config.spec
+lib/Foswiki/Plugins/DatabasePlugin.pm NEW
+lib/Foswiki/Plugins/DatabasePlugin/Connection.pm NEW
+lib/Foswiki/Plugins/DatabasePlugin/DATABASE_EDIT.pm NEW
+lib/Foswiki/Plugins/DatabasePlugin/DATABASE_REPEAT.pm NEW
+lib/Foswiki/Plugins/DatabasePlugin/DATABASE_TABLE.pm NEW
+lib/Foswiki/Plugins/DatabasePlugin/DATABASE_SQL_REPEAT.pm NEW
+lib/Foswiki/Plugins/DatabasePlugin/DATABASE_SQL.pm NEW
+lib/Foswiki/Plugins/DatabasePlugin/DATABASE_SQL_TABLE.pm NEW

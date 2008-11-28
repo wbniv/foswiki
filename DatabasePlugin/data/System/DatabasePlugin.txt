@@ -1,0 +1,96 @@
+---+ Database Plugin
+
+Provide secure access (read and write) to data in an SQL database,
+with flexible results formatting.
+
+Any database that has a DBI interface can be used. 
+
+
+---++ Usage
+
+---+++ %<nop>DATABASE_SQL{description="table_description" sql="sql"}%
+This is the most general of the commands. It allows you to execute arbitrary SQL statements, and provides flexible formatting of the results.
+   * =description= - identifies the database configuration to use (required)
+   * =sql= - The SQL to execute (required)
+   * =format= - (optional) Format to display results in. if you don't give this parameter results will be ignored.
+   * =header= - (optional) The header to display on the results table.
+   * =separator= - string that separates results. Default newline.
+If the SQL statement doesn't return a result (e.g. an =UPDATE= statement) you must *not* give a =format= parameter. The =format= parameter is a string describing the required format for the results, where each =$colname= will expand to the value of that column. See %SYSTEMWEB%.FormattedSearch for more on how =format=, =header= and =separator= work.
+
+---+++ %<nop>DATABASE_SQL_TABLE{description="db1" headers="hdr1,hdr2,hdr3" command="sql command"}%
+   * =description= - identifies the database configuration to use
+   * =headers= - Table headers.
+   * =command= - Any SQL command that returns rows
+   * %X% This syntax is maintained for compatibility. You are recommended to use DATABASE_SQL instead.
+
+---+++ %<nop>DATABASE_SQL_REPEAT{description="description" command="..SQL COMMAND.." columns="col1,col2,col3"}% .... user formatting .... %DATABASE_SQL_REPEAT%
+   * =description= - identifies the database configuration to use
+   * =columns= - The columns in the table to return. Default "*"
+   * =command= - Any SQL command that returns values
+   * %X% This syntax is maintained for compatibility. You are recommended to use DATABASE_SQL instead.
+
+---+++ %<nop>DATABASE_TABLE{description="table_description" headers="hdr1,hdr2,hdr3" columns="col1,col2,col3"}%
+   * =description= - identifies the database+table configuration to use (required)
+   * =columns= - The columns in the table to return. Default "*"
+   * =headers= - Table headers
+   * %X% This command *requires* a table to be specified in the configuration.
+   * %X% This syntax is maintained for compatibility. You are recommended to use DATABASE_SQL instead.
+
+---+++ %<nop>DATABASE_REPEAT{description="table_description" table="mytable" columns="col1,col2,col3"}% .... user formatting .... %DATABASE_REPEAT%
+   * =description= - identifies the database+table configuration to use
+   * =columns= - The columns in the table to return. Default "*"
+   * %X% This command *requires* a table to be specified in the configuration.
+   * %X% This syntax is maintained for compatibility. You are recommended to use DATABASE_SQL instead.
+
+---+++ %<nop>DATABASE_EDIT{description="table_description" display_text="HTML link text"}%
+Creates a frame and invokes an external database editor.
+   * =description= - identifies the database configuration to use
+   * =display_text= - (optional) The columns in the table to return
+
+---++ Examples
+
+=%<nop>DATABASE_SQL{description="mysql_user_info" format="| $User | $Select_priv |" header="| <nop>*User Name* | <nop>*Select Privs* |"}%=
+
+You will get back a table with one row for each matching database entry.
+
+Using the =format= functionality, you can define how the database data is displayed wrapping it in any formatting you choose.  For example, if you wanted to create a single table cell containing the information for 3 fields of the Kalendus calendar, you could use the following:
+
+=%<nop>DATABASE_SQL{description="calendar_events" sql="SELECT * from calendar" format="| $startdate $subject $body |"}%=
+
+Or let's say you wanted to display the next two upcoming scheduled events in the Kalendus calendar.
+
+=%<nop>DATABASE_SQL{description="calendar_events" command="SELECT subject,body,startdate FROM kalendus_event WHERE to_days(startdate) > to_days(now()) order by startdate limit 2" format="$startdate&lt;br />$subject&lt;br />$body"}%=
+
+<!--
+	* Set SHORTDESCRIPTION = Provide access to data in a SQL database
+-->
+
+---+++ Plugin Installation Instructions
+%I% Note for upgraders; the configuration has moved into =configure= now. You will have to copy the settings from your existing =bin/DatabasePluginConfig.pm= manually. it should be fairly obvious what you have to do.
+
+%$INSTALL_INSTRUCTIONS%
+   * If you are using TWiki-4.1 or later, use =configure= to set up the
+     plugin. Otherwise copy and paste the contents of =lib/TWiki/Plugins/DatabasePlugin/Config.spec= into =LocalSite.cfg= and enter your settings manually.
+
+---+++ Plugin Info
+
+|  Plugin Author: | TWiki:Main.TaitCyrus |
+|  Plugin Version: | %$VERSION% |
+|  Change History: | |
+|  28 Nov 2008 | Tasks.Item8018: Switch to foswiki - Main.LarsEik |
+|  17 Sep 2007 | Bugs:Item4343 Minor corrections to Config.spec - TWiki:Main.CrawfordCurrie |
+|  18 March 2007 | Rewritten for efficiency and clarity, and added DATABASE_SQL - TWiki:Main.CrawfordCurrie |
+|  5 May 2003 (v1.3) | Add support for the primary DB to be in a local file instead of in a DB.  It is acknowledged that this reduces security somewhat<BR>Also added support for Oracle (by adding in the concept of a SID) |
+|  20 Mar 2002 (v1.2) | Added table editing ability |
+|  18 Feb 2002 (v1.11): | Removed hard coded $debug=1; |
+|  16 Feb 2002 (v1.1): | Added the two REPEAT functions |
+|  20 Jan 2002 (v1.0): | Initial version  |
+|  CPAN Dependencies: | DBI |
+|  Other Dependencies: | phpmyadmin (optional, to support DATABASE_EDIT) |
+|  Perl Version: | 5.0 (tested with 5.6.1 [mysql] and 5.8.0 [Oracle and Local] ) |
+|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
+
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
+
+
