@@ -144,7 +144,7 @@ The syntax follows that of the !CalendarPlugin. See Foswiki:Extensions.CalendarP
 | cellpadding | table cell padding | =cellpadding="1"= |
 | cellspacing | tabel cell spacing | =cellspacing="0"= |
 | daynames | custom daynames (a list separated by a '&brvbar;' and starting on Monday; overwrites lang attribute) | =daynames="M&brvbar;T&brvbar;W&brvbar;T&brvbar;F&brvbar;S&brvbar;S"= |
-| headerformat | table header format of a day; a subset of strftime conversion specifiers is supported (only date not time specificiers; see manual page or TWiki:Codev.ConvergeDateTimeFormattingModels) | =headerformat="&lt;font&nbsp;size=\"-2\">%a&lt;br/&gt;%e&lt;/font&gt;"= |
+| headerformat | table header format of a day; a subset of strftime conversion specifiers is supported (only date not time specificiers; see manual page or Foswiki:Development.ConvergeDateTimeFormattingModels) | =headerformat="&lt;font&nbsp;size=\"-2\">%a&lt;br/&gt;%e&lt;/font&gt;"= |
 | lang | language (related: daynames, monthnames) | =lang="English"= |
 | maxheight | maximum table height | undefined / =maxheight="200px"= |
 | monthheaderformat | month header format (related: showmonthheader) | =monthheaderformat="%b"= |
@@ -308,9 +308,9 @@ The syntax follows that of the !CalendarPlugin. See Foswiki:Extensions.CalendarP
 	* Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
 | *File:* | *Description:* |
 | ==data/System/%TOPIC%.txt== | Plugin topic |
-| ==data/TWiki/VarHOLIDAYLIST.txt== | Documentation |
+| ==data/System/VarHOLIDAYLIST.txt== | Documentation |
 | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
-| ==pub/TWiki/%TOPIC%/example.gif== | Example image |
+| ==pub/System/%TOPIC%/example.gif== | Example image |
 	* Test if the plugin is correctly installed: Copy the example above into a new topic and change the year number to the current year.
 
 
@@ -323,7 +323,7 @@ The syntax follows that of the !CalendarPlugin. See Foswiki:Extensions.CalendarP
 |  v1.026 (28 Oct 2008) | TWiki:Main.DanielRohde: added missing anchor in showoptions form action; added row color feature (new attributes: namecolors, rowcolors); added order feature (new attribute: order); added namepos attribute (place names left and/or right of a row) |
 |  v1.025 (17 Oct 2008) | TWiki:Main.DanielRohde: added div tag with style overflow:auto requested by Matthew Thomson; added query parameters feature (hlp_&lt;attribute&gt; in URIs); added option form feature (new attributes: showoptions, optionspos, optionsformat) requested by Matthew Thomson; improved performance; fixed minor icon related bugs |
 |  v1.024 (29 Jul 2008) | TWiki:Main.DanielRohde: added statistics feature requested by TWiki:Main.GarySprague |
-|  v1.023 (19 Jan 2008) | TWiki:Main.KennethLavrsen: fixed Item5190 - does not like whitespace after the smiley. This makes the plugin work with TWiki 4.2.0 and Wysiwyg |
+|  v1.023 (19 Jan 2008) | Foswiki:Main.KennethLavrsen: fixed Item5190 - does not like whitespace after the smiley. This makes the plugin work with TWiki 4.2.0 and Wysiwyg |
 |  v1.022 (18 Jun 2007) | TWiki:Main.DanielRohde: added documentation requested by TWiki:Main.PeterThoeny; fixed type (on=off bug) |
 |  v1.021 (20 Apr 2007) | TWiki:Main.DanielRohde: fixed minor HTML bug reported by TWiki:Main.JfMacaud; added month header feature (showmonthheader attribute) requested by Rikard Johansson; fixed some minor bugs (documentation, preferences handling); |
 |  v1.020 (21 Sep 2006) | TWiki:Main.DanielRohde: added week attribute requested by TWiki:Main.JanFilipsky; added tooltip to day headers; |
@@ -337,7 +337,7 @@ The syntax follows that of the !CalendarPlugin. See Foswiki:Extensions.CalendarP
 |  v1.012 (5 Sep 2005): | TWiki:Main.DanielRohde: added public holiday support requested by TWiki:Main.IlltudDaniel; improved documentation; improved forced link handling in alt/title attributes of img tags; fixed documentation bug reported by TWiki:Main.FranzJosefSilli |
 |  v1.011 (11 Jul 2005): | TWiki:Main.DanielRohde: improved performance; fixed major periodic repeater bug; added parameter check; fixed flag parameter handling; allowed language specific month and day names for entries; fixed minor repeater bugs; added new attributes: monthnames, daynames, width, unknownparamsmsg |
 |  v1.010 (5 Jul 2005): | TWiki:Main.DanielRohde: added exception handling; added compatibility mode (new attributes: compatmode, compatmodeicon) with full CalendarPlugin event type support; added documentation |
-|  v1.009 (29 Jun 2005): | TWiki:Main.DanielRohde: fixed major bug (!WikiNames and forced links in names) reported by TWiki:Main.KennethLavrsen; fixed documentation bugs; added INCLUDE expansion (for topics in topic attribute value); added name rendering |
+|  v1.009 (29 Jun 2005): | TWiki:Main.DanielRohde: fixed major bug (!WikiNames and forced links in names) reported by Foswiki:Main.KennethLavrsen; fixed documentation bugs; added INCLUDE expansion (for topics in topic attribute value); added name rendering |
 |  v1.008 (23 Jun 2005): | TWiki:Main.DanielRohde: added new attributes (nwidth,tcwidth,removeatwork,tablecaptionalign,headerformat); performance fixes; allowed digits in month attribute  |
 |  v1.007 (17 Jun 2005): | TWiki:Main.DanielRohde: personal icon support; new attributes (month,year); icon tooltips with dates/person/location/icon; fixed '-' bug |
 |  v1.006 (16 Jun 2005): | TWiki:Main.DanielRohde: added new features (location support; today(fg/bg)color) |

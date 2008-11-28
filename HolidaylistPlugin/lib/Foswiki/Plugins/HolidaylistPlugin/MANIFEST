@@ -1,0 +1,4 @@
+data/System/HolidaylistPlugin.txt 0644 Documentation
+data/System/VarHOLIDAYLIST.txt 0644 Documentation
+lib/Foswiki/Plugins/HolidaylistPlugin.pm 0644 Perl module
+pub/System/HolidaylistPlugin/example.gif 0644 Example image

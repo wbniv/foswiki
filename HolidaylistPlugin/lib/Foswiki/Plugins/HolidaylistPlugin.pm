@@ -2,6 +2,7 @@
 #
 # Copyright (C) 2000-2003 Andrea Sterbini, a.sterbini@flashnet.it
 # Copyright (C) 2001-2004 Peter Thoeny, peter@thoeny.com
+# Copyright (C) 2008 Foswiki Contributors
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -16,7 +17,7 @@
 #
 # =========================
 #
-# This is an empty TWiki plugin. Use it as a template
+# This is an empty Foswiki plugin. Use it as a template
 # for your own plugins; see %SYSTEMWEB%.Plugins for details.
 #
 # Each plugin is a package that may contain these functions:        VERSION:
@@ -46,13 +47,13 @@
 # disabled. To enable a handler remove the leading DISABLE_ from
 # the function name. Remove disabled handlers you do not need.
 #
-# NOTE: To interact with TWiki use the official TWiki functions 
-# in the TWiki::Func module. Do not reference any functions or
-# variables elsewhere in TWiki!!
+# NOTE: To interact with Foswiki use the official Foswiki functions 
+# in the Foswiki::Func module. Do not reference any functions or
+# variables elsewhere in Foswiki!!
 
 
 # =========================
-package TWiki::Plugins::HolidaylistPlugin;    
+package Foswiki::Plugins::HolidaylistPlugin;    
 
 # =========================
 
@@ -80,7 +81,7 @@ use vars qw(
 	%rendererCache
     );
 
-# This should always be $Rev: 17715 $ so that TWiki can determine the checked-in
+# This should always be $Rev: 17715 $ so that Foswiki can determine the checked-in
 # status of the plugin. It is used by the build automation tools, so
 # you should leave it alone.
 $VERSION = '$Rev: 17715 $';
@@ -127,18 +128,18 @@ sub initPlugin
     ( $topic, $web, $user, $installWeb ) = @_;
 
     # check for Plugins.pm versions
-    if( $TWiki::Plugins::VERSION < 1.021 ) {
-        TWiki::Func::writeWarning( "Version mismatch between $pluginName and Plugins.pm" );
+    if( $Foswiki::Plugins::VERSION < 1.021 ) {
+        Foswiki::Func::writeWarning( "Version mismatch between $pluginName and Plugins.pm" );
         return 0;
     }
 
     # Get plugin debug flag
-    $debug = TWiki::Func::getPluginPreferencesFlag( "DEBUG" );
+    $debug = Foswiki::Func::getPluginPreferencesFlag( "DEBUG" );
 
     $defaultsInitialized = 0;
 
     # Plugin correctly initialized
-    TWiki::Func::writeDebug( "- TWiki::Plugins::${pluginName}::initPlugin( $web.$topic ) is OK" ) if $debug;
+    Foswiki::Func::writeDebug( "- Foswiki::Plugins::${pluginName}::initPlugin( $web.$topic ) is OK" ) if $debug;
 
     return 1;
 }
@@ -148,23 +149,23 @@ sub commonTagsHandler
 {
 ### my ( $text, $topic, $web ) = @_;   # do not uncomment, use $_[0], $_[1]... instead
 
-    TWiki::Func::writeDebug( "- ${pluginName}::commonTagsHandler( $_[2].$_[1] )" ) if $debug;
+    Foswiki::Func::writeDebug( "- ${pluginName}::commonTagsHandler( $_[2].$_[1] )" ) if $debug;
 
     # This is the place to define customized tags and variables
-    # Called by TWiki::handleCommonTags, after %INCLUDE:"..."%
+    # Called by Foswiki::handleCommonTags, after %INCLUDE:"..."%
 
     #### eval is bad because Dakar works with exceptions
     ####eval {
 	    $_[0] =~ s/%HOLIDAYLIST%/&handleHolidaylist("", $_[0], $_[1], $_[2])/ge;
 	    $_[0] =~ s/%HOLIDAYLIST{(.*?)}%/&handleHolidaylist($1, $_[0], $_[1], $_[2])/ge;
     ####};
-    ####TWiki::Func::writeWarning("${pluginName}: $@") if $@;
+    ####Foswiki::Func::writeWarning("${pluginName}: $@") if $@;
 
 
 }
 # =========================
 sub initDefaults() {
-	my $webbgcolor = &TWiki::Func::getPreferencesValue("WEBBGCOLOR", $web) || 'white';
+	my $webbgcolor = &Foswiki::Func::getPreferencesValue("WEBBGCOLOR", $web) || 'white';
 	%defaults = (
 		days		=> 30,		# days to show
 		lang		=> 'English',	# language
@@ -282,7 +283,7 @@ sub initRegexs {
 sub initOptions() {
 	my ($attributes) = @_;
 
-	my %params = &TWiki::Func::extractParameters($attributes);
+	my %params = &Foswiki::Func::extractParameters($attributes);
 
 	my @allOptions = keys %defaults;
 
@@ -293,7 +294,7 @@ sub initOptions() {
 	}
 	return 0 if $#unknownParams != -1; 
 
-	my $cgi = TWiki::Func::getCgiQuery();
+	my $cgi = Foswiki::Func::getCgiQuery();
 
 	# Setup options (attributes>plugin preferences>defaults):
 	%options= ();
@@ -309,9 +310,9 @@ sub initOptions() {
 			}
 		} else {
 			if (grep /^\Q$option\E$/, @flagOptions) {
-				$v = TWiki::Func::getPreferencesFlag("\U${pluginName}_$option\E") || undef;
+				$v = Foswiki::Func::getPreferencesFlag("\U${pluginName}_$option\E") || undef;
 			} else {
-				$v = TWiki::Func::getPreferencesValue("\U${pluginName}_$option\E") || undef;
+				$v = Foswiki::Func::getPreferencesValue("\U${pluginName}_$option\E") || undef;
 			}
 			$v = undef if (defined $v) && ($v eq "");
 			$options{$option}=(defined $v)? $v : $defaults{$option};
@@ -393,7 +394,7 @@ sub handleHolidaylist() {
 # =========================
 sub createUnknownParamsMessage {
 	my $msg;
-	$msg = TWiki::Func::getPreferencesValue("UNKNOWNPARAMSMSG") || undef;
+	$msg = Foswiki::Func::getPreferencesValue("UNKNOWNPARAMSMSG") || undef;
 	$msg = $defaults{unknownparamsmsg} unless defined $msg;
 	$msg =~ s/\%UNKNOWNPARAMSLIST\%/join(', ', sort @unknownParams)/eg;
 	$msg =~ s/\%KNOWNPARAMSLIST\%/join(', ', sort keys %defaults)/eg;
@@ -456,7 +457,7 @@ sub getStartDate() {
 		($yy,$mm,$dd) = Monday_of_Week($week, $yy) if ($matched);
 	}
 	# handle paging:
-	my $cgi=TWiki::Func::getCgiQuery();
+	my $cgi=Foswiki::Func::getCgiQuery();
 	if (defined $cgi->param('hlppage'.$hlid)) {
 		if ($cgi->param('hlppage'.$hlid) =~ m/^([\+\-]?[\d\.]+)$/) {
 			my $hlppage = $1; 
@@ -1354,7 +1355,7 @@ sub getStatOption {
 # =========================
 sub renderStatisticsSumRow {
 	my ($sumstatisticsref) = @_;
-	my $cgi=TWiki::Func::getCgiQuery();
+	my $cgi=Foswiki::Func::getCgiQuery();
 	my $text = "";
 	my $row="";
 	my @stattitles=split(/\|/,getStatOption('stattitle','statcoltitle'));
@@ -1374,7 +1375,7 @@ sub renderStatisticsSumRow {
 # =========================
 sub renderStatisticsRow {
 	my ($statisticsref, $sumstatisticsref) = @_;
-	my $cgi=TWiki::Func::getCgiQuery();
+	my $cgi=Foswiki::Func::getCgiQuery();
 	my $text = "";
 	my ($dd,$mm,$yy) = getStartDate();
 
@@ -1442,7 +1443,7 @@ sub renderStatisticsRow {
 sub renderStatisticsCol {
 	my ($statisticsref) = @_;
 	my $text="";
-	my $cgi=TWiki::Func::getCgiQuery();
+	my $cgi=Foswiki::Func::getCgiQuery();
 
 	my @statcoltitles = split(/\|/, getStatOption('stattitle','statcoltitle'));
 	foreach my $statcol (split /\|/, getStatOption('statformat','statcolformat')) {
@@ -1459,7 +1460,7 @@ sub renderNav {
 	my ($nextp) = @_;
 	my $nav = "";
 
-	my $cgi = &TWiki::Func::getCgiQuery();
+	my $cgi = &Foswiki::Func::getCgiQuery();
 	my $newcgi = new CGI($cgi);
 	my $newhalfcgi = new CGI($cgi);
 
@@ -1569,7 +1570,7 @@ sub getTopicText() {
 
 	$text =~ s/%INCLUDE{(.*?)}%/&expandIncludedEvents($1, \@processedTopics)/geo;
 	$text =~s/\%HOLIDAYLIST({(.*?)})?%//sg;
-	$text = TWiki::Func::expandCommonVariables($text,$web,$topic);
+	$text = Foswiki::Func::expandCommonVariables($text,$web,$topic);
 	
 	return $text;
 	
@@ -1580,10 +1581,10 @@ sub readTopicText
 {
 	my( $theWeb, $theTopic ) = @_;
 	my $text = '';
-	if( $TWiki::Plugins::VERSION >= 1.010 ) {
-		$text = &TWiki::Func::readTopicText( $theWeb, $theTopic, '', 1 );
+	if( $Foswiki::Plugins::VERSION >= 1.010 ) {
+		$text = &Foswiki::Func::readTopicText( $theWeb, $theTopic, '', 1 );
 	} else {
-		$text = &TWiki::Func::readTopic( $theWeb, $theTopic );
+		$text = &Foswiki::Func::readTopic( $theWeb, $theTopic );
 	}
 	# return raw topic text, including meta data
 	return $text;
@@ -1595,7 +1596,7 @@ sub expandIncludedEvents
 
 	my ($theWeb, $theTopic) = ($web, $topic);
 
-	my $webTopic = &TWiki::Func::extractNameValuePair( $theAttributes );
+	my $webTopic = &Foswiki::Func::extractNameValuePair( $theAttributes );
 	if( $webTopic =~ /^([^\.]+)[\.\/](.*)$/ ) {
 		$theWeb = $1;
 		$theTopic = $2;
@@ -1688,7 +1689,7 @@ sub _renderText {
 	if (defined $rendererCache{$web}{$text}) {
 		$ret = $rendererCache{$web}{$text};
 	} else {
-		$ret = TWiki::Func::renderText($text, $web);
+		$ret = Foswiki::Func::renderText($text, $web);
 		$rendererCache{$web}{$text}=$ret;
 	}
 	return $ret;
