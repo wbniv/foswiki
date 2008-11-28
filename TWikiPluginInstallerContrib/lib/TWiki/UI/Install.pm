@@ -1,4 +1,4 @@
-# Foswiki - The Free Open Source Wiki, http://foswiki.org/
+# Foswiki - The Free and Open Source Wiki, http://foswiki.org/
 #
 # Copyright (C) 2006 Will Norris. All Rights Reserved. 
 #

@@ -1,4 +1,4 @@
-# Immediate Notify Plugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
+# Immediate Notify Plugin for Foswiki - The Free and Open Source Wiki, http://foswiki.org/
 #
 # Copyright (C) 2003 Walter Mundt, emage@spamcop.net
 # Copyright (C) 2003 Akkaya Consulting GmbH, jpabel@akkaya.de

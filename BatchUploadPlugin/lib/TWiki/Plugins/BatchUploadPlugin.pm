@@ -1,6 +1,6 @@
 package TWiki::Plugins::BatchUploadPlugin;
 
-# Plugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
+# Plugin for Foswiki - The Free and Open Source Wiki, http://foswiki.org/
 #
 # Copyright (C) 2000-2003 Andrea Sterbini, a.sterbini@flashnet.it
 # Copyright (C) 2001-2004 Peter Thoeny, peter@thoeny.com

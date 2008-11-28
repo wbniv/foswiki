@@ -1,4 +1,4 @@
-# Plugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
+# Plugin for Foswiki - The Free and Open Source Wiki, http://foswiki.org/
 #
 # Copyleft (C) 2004 Luis Campos, monsieur_champs@yahoo.com.br
 #

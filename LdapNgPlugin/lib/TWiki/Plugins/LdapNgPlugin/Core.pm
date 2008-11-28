@@ -1,4 +1,4 @@
-# Plugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
+# Plugin for Foswiki - The Free and Open Source Wiki, http://foswiki.org/
 #
 # Copyright (C) 2006 Michael Daum http://wikiring.com
 # Portions Copyright (C) 2006 Spanlink Communications

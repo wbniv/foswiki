@@ -4,7 +4,7 @@
 # via http. Add-on home is at
 # http://twiki.org/cgi-bin/view/Plugins/UploadToTWikiAddOn
 #
-# (Utility for Foswiki - The Free Open Source Wiki, http://foswiki.org/)
+# (Utility for Foswiki - The Free and Open Source Wiki, http://foswiki.org/)
 #
 # Copyright (C) 2007 Peter Thoeny, peter@structuredwikis.com
 #

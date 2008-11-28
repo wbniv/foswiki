@@ -1,4 +1,4 @@
-# Plugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
+# Plugin for Foswiki - The Free and Open Source Wiki, http://foswiki.org/
 #
 # Copyright (C) 2004-2005 Patrick Diamond, patrick_diamond@mailc.net
 # Copyright (C) 2001-2003 Peter Thoeny, peter@thoeny.com

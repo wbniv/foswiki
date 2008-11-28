@@ -1,5 +1,5 @@
 # TWiki::Plugins::MultiLangPlugin
-# Plugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
+# Plugin for Foswiki - The Free and Open Source Wiki, http://foswiki.org/
 #
 # Useful functions for maintaining a site consisting of several
 # TWikis that represent translations of the same content to

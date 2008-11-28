@@ -1,4 +1,4 @@
-# EndNotePlugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
+# EndNotePlugin for Foswiki - The Free and Open Source Wiki, http://foswiki.org/
 #
 # Copyright (C) 2006 Ian Bygrave, ian@bygrave.me.uk
 #

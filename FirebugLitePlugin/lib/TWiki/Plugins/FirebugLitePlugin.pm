@@ -1,4 +1,4 @@
-# Plugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
+# Plugin for Foswiki - The Free and Open Source Wiki, http://foswiki.org/
 #
 # (c) 2008 SvenDowideit@home.org.au
 #

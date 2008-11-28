@@ -1,4 +1,4 @@
-# Plugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
+# Plugin for Foswiki - The Free and Open Source Wiki, http://foswiki.org/
 #
 # Copyright (c) by Foswiki Contributors. All Rights Reserved. Foswiki Contributors
 # are listed in the AUTHORS file in the root of this distribution.

@@ -1,4 +1,4 @@
-# Module of Foswiki - The Free Open Source Wiki, http://foswiki.org/
+# Module of Foswiki - The Free and Open Source Wiki, http://foswiki.org/
 #
 # Copyright (C) 2005-2006 TWiki Contributors. All Rights Reserved.
 # TWiki Contributors

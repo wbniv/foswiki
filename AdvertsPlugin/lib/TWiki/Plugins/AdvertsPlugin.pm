@@ -1,4 +1,4 @@
-# Plugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
+# Plugin for Foswiki - The Free and Open Source Wiki, http://foswiki.org/
 #
 # Copyright (C) 2004 Martin Cleaver, Martin.Cleaver@BCS.org.uk
 # Copyright (C) 2000-2003 Andrea Sterbini, a.sterbini@flashnet.it

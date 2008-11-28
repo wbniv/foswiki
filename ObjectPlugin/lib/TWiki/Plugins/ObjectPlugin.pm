@@ -1,4 +1,4 @@
-# ObjectPlugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
+# ObjectPlugin for Foswiki - The Free and Open Source Wiki, http://foswiki.org/
 #
 # Copyright (C) TWiki:Main.PiersGoodhew & TWikiContributors.
 

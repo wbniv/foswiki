@@ -4,7 +4,7 @@
 # Date:		27 Jan 2003
 # License:	This is released under the Perl Artistic license.
 #
-# Plugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
+# Plugin for Foswiki - The Free and Open Source Wiki, http://foswiki.org/
 #
 # This is a nearly empty stub only used to register installation of the
 # MailToTWiki addon and strip out the TWiki variable that it uses -

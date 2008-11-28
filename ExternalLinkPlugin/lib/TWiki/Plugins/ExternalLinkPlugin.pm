@@ -1,4 +1,4 @@
-# Plugin for Foswiki - The Free Open Source Wiki, http://foswiki.org/
+# Plugin for Foswiki - The Free and Open Source Wiki, http://foswiki.org/
 #
 # Copyright (C) 2005 Aurélio A Heckert <aurium@gmail.com>,
 #                    Nelson Ferraz <nferraz@gmail.com>,

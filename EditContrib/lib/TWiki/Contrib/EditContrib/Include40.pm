@@ -1,4 +1,4 @@
-# Foswiki - The Free Open Source Wiki, http://foswiki.org/
+# Foswiki - The Free and Open Source Wiki, http://foswiki.org/
 
 package TWiki::Contrib::EditContrib::Include40;
 
