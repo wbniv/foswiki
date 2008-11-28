@@ -38,7 +38,8 @@
 # in the &TWiki::Func module. Do not reference any functions or
 # variables elsewhere in TWiki!!
 
-=begin TML
+=begin twiki
+
 ---+ Testing TWiki formatting
 | *simple* | *table* |
 | cell 1 | cell 2 |
@@ -53,7 +54,7 @@ normal paragraph text with *bold* and =fixed font= text.
 
 Last paragraph of this document block
 
-=end TML
+=end twiki
 
 =cut
 
@@ -126,7 +127,7 @@ sub perlDocHandler {
         return "%SYSTEMWEB%.PerlDocPlugin:  Module =$libName= has no documentation.";
     }
 
-    if( $format =~ /(pod|twiki|raw)/ ) {
+    if( $format =~ /(pod|twiki|raw|TML)/ ) {
         $text =~ s/&/&amp\;/go;
         $text =~ s/</&lt\;/go;
         $text =~ s/>/&gt\;/go;
@@ -170,7 +171,7 @@ sub translatePod2TWiki
             if( $tag =~ /^pod$/ ) {
                 $mode = "twiki";
             } elsif( $tag =~ /^begin$/i ) {
-                if( $data =~ /^(html|twiki)/i ) {
+                if( $data =~ /^(html|twiki|TML)/i ) {
                     $data =~ s@([\r\n])( +)@"$1" . "\t" x (length($2)/3)@ges;
                     $data =~ s/^(html|twiki)//i;
                     $text .= "$data\n\n";
@@ -183,7 +184,7 @@ sub translatePod2TWiki
             } elsif( $tag =~ /^head([1-4])$/i ) {
                 $text .= "---" . "+" x $1 . renderInteriorSequences( " $data" ) . "\n";
             } elsif( $tag =~ /^for$/i ) {
-                if( $data =~ /^(html|twiki)/i ) {
+                if( $data =~ /^(html|twiki|TML)/i ) {
                     $data =~ s@([\r\n])( +)@"$1" . "\t" x (length($2)/3)@ges;
                     $data =~ s/^(html|twiki)\s*//i;
                     $text .= "$data\n\n";
@@ -199,7 +200,7 @@ sub translatePod2TWiki
             } else {
                 $text .= renderInteriorSequences( "$_" ) . "\n\n";
             }
-        } elsif( $mode eq "twiki" ) {
+        } elsif( $mode eq "twiki" || $mode eq 'TML' ) {
             if( $tag =~ /^end$/i ) {
                 $mode = "";
             } elsif( $tag !~ /^pod$/i ) {
