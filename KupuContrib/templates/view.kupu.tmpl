@@ -9,8 +9,8 @@ styles will be thrown away when the text is saved. -->
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Cache-Control" content="no-cache" />
   <style type="text/css">
-	%IF{ "$ TWIKILAYOUTURL" then="@import url('%TWIKILAYOUTURL%');"}%
-	%IF{ "$ TWIKISTYLEURL"  then="@import url('%TWIKISTYLEURL%');"}%
+	%IF{ "$ FOSWIKI_LAYOUT_URL" then="@import url('%FOSWIKI_LAYOUT_URL%');"}%
+	%IF{ "$ FOSWIKI_STYLE_URL"  then="@import url('%FOSWIKI_STYLE_URL%');"}%
 	%IF{ "$ USERLAYOUTURL" then="@import url('%USERLAYOUTURL%');"}%
 	%IF{ "$ USERSTYLEURL"  then="@import url('%USERSTYLEURL%');"}%
 	body {
