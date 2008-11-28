@@ -30,7 +30,7 @@
 %{ ******************************************* }%
 %TMPL:DEF{"widgetstwikicss"}%%URLPARAM{"twikicssfile" default="%IF{"defined WIDGETSSKIN_TWIKICSSFILE" then="%WIDGETSSKIN_TWIKICSSFILE%" else="%PUBURLPATH%/%TMPL:P{widgetstext}%/Foswiki.css"}%"}%%TMPL:END%
 %{ ******************************************* }%
-%TMPL:DEF{"twikistyle"}%
+%TMPL:DEF{"styles:default"}%
 <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="%SCRIPTURL{view}%/%BASEWEB%/WebRss" />
 <link rel="alternate" type="application/atom+xml" title="Atom" href="%SCRIPTURL{view}%/%BASEWEB%/WebAtom" />
 <link rel="alternate" type="application/rss+xml" title="RSS" href="%SCRIPTURL{view}%/%BASEWEB%/WebRss" />

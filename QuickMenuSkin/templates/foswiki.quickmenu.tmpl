@@ -30,7 +30,7 @@
 
 
 
-%TMPL:DEF{"twikistyle"}%
+%TMPL:DEF{"styles:default"}%
 %TMPL:INCLUDE{"css.tmpl"}%
 <style type="text/css" media="all">%IF{ "context TwistyPluginEnabled" then="" else="
 	@import url('%PUBURLPATH%/%SYSTEMWEB%/TwistyContrib/twist.css');"}%
@@ -51,7 +51,7 @@
  <link rel="shortcut icon" href="%FAVICON%" type="image/x-icon" />
  <base href="%SCRIPTURL{"view"}%/%WEB%/%TOPIC%" />
  %TMPL:P{"script"}%
- %TMPL:P{"twikistyle"}%
+ %TMPL:P{"styles:default"}%
 </head>%TMPL:END%
 
 
