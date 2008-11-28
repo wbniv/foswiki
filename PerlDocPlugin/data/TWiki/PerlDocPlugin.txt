@@ -39,14 +39,14 @@ Silly paragraph
 
 ---++ Perl code with TWiki markup
 
-TWiki markup can be used inside a =<nop>=begin twiki= ... =<nop>=end twiki= block. Keep in mind that this markup gets parsed correctly only by the <nop>%TOPIC%, other POD translator ignore the block. The TWiki markup is richer and more compact then POD. Example:
+TWiki markup can be used inside a =<nop>=begin TML= ... =<nop>=end TML= block. Keep in mind that this markup gets parsed correctly only by the <nop>%TOPIC%, other POD translator ignore the block. The TWiki markup is richer and more compact then POD. Example:
 
 <pre>
-=begin twiki
+=begin TML
 <nop>---++ Demo of TWiki markup
 Silly paragraph
 
-=end twiki
+=end TML
 
 =cut
 </pre>

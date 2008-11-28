@@ -17,7 +17,7 @@
 #
 # As per the GPL, removal of this notice is prohibited.
 
-=begin twiki
+=begin TML
 
 ---+ package TWiki::Users::HTTPDUserAdminUserMapping
 
@@ -38,7 +38,7 @@ use HTTPD::GroupAdmin;
 #use Monitor;
 #Monitor::MonitorMethod('TWiki::Users::HTTPDUserAdminUserMapping');
 
-=begin twiki
+=begin TML
 
 ---++ ClassMethod new ($session, $impl)
 
@@ -95,7 +95,7 @@ sub new {
     return $this;
 }
 
-=begin twiki
+=begin TML
 
 ---++ ObjectMethod finish()
 Break circular references.
@@ -114,7 +114,7 @@ sub finish {
 }
 
 
-=begin twiki
+=begin TML
 
 ---++ ObjectMethod supportsRegistration () -> false
 return 1 if the UserMapper supports registration (ie can create new users)
@@ -125,7 +125,7 @@ sub supportsRegistration {
     return 1;
 }
 
-=begin twiki
+=begin TML
 
 ---++ ObjectMethod handlesUser ( $cUID, $login, $wikiname) -> $boolean
 
@@ -153,7 +153,7 @@ sub handlesUser {
 }
 
 
-=begin twiki
+=begin TML
 
 ---++ ObjectMethod getCanonicalUserID ($login, $dontcheck) -> cUID
 
@@ -180,7 +180,7 @@ sub getCanonicalUserID {
     return $login;
 }
 
-=begin twiki
+=begin TML
 
 ---++ ObjectMethod getLoginName ($cUID) -> login
 
@@ -209,7 +209,7 @@ sub getLoginName {
     return $user;
 }
 
-=begin twiki
+=begin TML
 
 ---++ ObjectMethod _userReallyExists ($login) -> boolean
 
@@ -227,7 +227,7 @@ sub _userReallyExists {
     return 1;
 }
 
-=begin twiki
+=begin TML
 
 ---++ ObjectMethod removeUser( $user ) -> $boolean
 
@@ -245,7 +245,7 @@ sub removeUser {
 }
 
 
-=begin twiki
+=begin TML
 
 ---++ ObjectMethod getWikiName ($cUID) -> wikiname
 
@@ -281,7 +281,7 @@ sub getWikiName {
  
 }
 
-=begin twiki
+=begin TML
 
 ---++ ObjectMethod userExists($cUID) -> $boolean
 
@@ -319,7 +319,7 @@ sub userExists {
     return undef;
 }
 
-=begin twiki
+=begin TML
 
 ---++ ObjectMethod eachUser () -> listIterator of cUIDs
 
@@ -334,7 +334,7 @@ sub eachUser {
     return $this->{passwords}->fetchUsers();
 }
 
-=begin twiki
+=begin TML
 
 ---++ ObjectMethod findUserByEmail( $email ) -> \@users
    * =$email= - email address to look up
@@ -353,7 +353,7 @@ sub findUserByEmail {
     return $this->{passwords}->findUserByEmail($email);
 }
 
-=begin twiki
+=begin TML
 
 ---++ ObjectMethod getEmails($user) -> @emailAddress
 
@@ -398,7 +398,7 @@ sub getEmails {
     return keys %emails;
 }
 
-=begin twiki
+=begin TML
 
 ---++ ObjectMethod setEmails($user, @emails) -> boolean
 
@@ -416,7 +416,7 @@ sub setEmails {
     $this->{passwords}->setEmails( $this->getLoginName( $user ), @_ );
 }
 
-=begin twiki
+=begin TML
 
 ---++ ObjectMethod findUserByWikiName ($wikiname) -> list of cUIDs associated with that wikiname
 
@@ -456,7 +456,7 @@ sub findUserByWikiName {
     return \@users;
 }
 
-=begin twiki
+=begin TML
 
 ---++ ObjectMethod checkPassword( $userName, $passwordU ) -> $boolean
 
@@ -472,7 +472,7 @@ sub checkPassword {
     return $this->{passwords}->checkPassword( $userName, $pw );
 }
 
-=begin twiki
+=begin TML
 
 ---++ ObjectMethod setPassword( $user, $newPassU, $oldPassU ) -> $boolean
 
@@ -495,7 +495,7 @@ sub setPassword {
         $this->getLoginName( $user ), $newPassU, $oldPassU);
 }
 
-=begin twiki
+=begin TML
 
 ---++ ObjectMethod passwordError( ) -> $string
 
@@ -569,7 +569,7 @@ sub addUser {
 #######################################################################
 # Groups functionality
 
-=begin twiki
+=begin TML
 
 ---++ ObjectMethod eachGroupMember ($group) ->  listIterator of cUIDs
 
@@ -590,7 +590,7 @@ sub eachGroupMember {
 }
 
 
-=begin twiki
+=begin TML
 
 ---++ ObjectMethod isGroup ($user) -> boolean
 TODO: what is $user - wikiname, UID ??
@@ -608,7 +608,7 @@ sub isGroup {
     return $this->{groupDatabase}->exists($user);
 }
 
-=begin twiki
+=begin TML
 
 ---++ ObjectMethod eachGroup () -> ListIterator of groupnames
 
@@ -627,7 +627,7 @@ sub eachGroup {
 }
 
 
-=begin twiki
+=begin TML
 
 ---++ ObjectMethod eachMembership ($cUID) -> ListIterator of groups this user is in
 
@@ -648,7 +648,7 @@ sub eachMembership {
     return $it;
 }
 
-=begin twiki
+=begin TML
 
 ---++ ObjectMethod isAdmin( $user ) -> $boolean
 
@@ -675,7 +675,7 @@ sub isAdmin {
 }
 
 
-=begin twiki
+=begin TML
 
 ---++ ObjectMethod isInGroup ($user, $group, $scanning) -> bool
 

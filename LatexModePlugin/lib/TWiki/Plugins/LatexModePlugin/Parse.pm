@@ -137,7 +137,7 @@ To include full LaTeX source documents in a TWiki topic, insert
 the text to be converted inbetween the tags %BEGINALLTEX% and
 %ENDALLTEX%.
 
-=begin twiki
+=begin TML
 
 
 ---+++ Example
@@ -198,7 +198,7 @@ will be converted to
 
 </verbatim>
 
-=end twiki
+=end TML
 
 =cut
 
@@ -252,7 +252,7 @@ sub handleAlltex
     unlink("/tmp/alltex_uH.txt");
     # printF("handleAlltex($params)");
 
-=begin twiki
+=begin TML
 
 The parsing is done in three stages:
    1. All environments, e.g. =\begin{env} .. \end{env}= are extracted.  Known environments are converted to HTML/TML.  Unknown environments are rendered as images.
@@ -261,7 +261,7 @@ The parsing is done in three stages:
       a. Known commands are converted to HTML/TML.  
       b. Unknown commands are marked as LATEX, for possible rendering in future version of the module or tranlations list.
 
-=end twiki
+=end TML
 
 =cut
 
@@ -1203,7 +1203,7 @@ use Foswiki:Extensions.PerlDocPlugin to see a complete list of supported command
 
 =end man
 
-=begin twiki
+=begin TML
 
    * commands with reasonably complete support (.tex --> HTML/TML)
       * section, subsection, subsubsection
@@ -1223,7 +1223,7 @@ use Foswiki:Extensions.PerlDocPlugin to see a complete list of supported command
    * commands that are ignored
       * vspace, hspace, vfill, noindent, sloppy, mainmatter
 
-=end twiki
+=end TML
 
 All mathmode commands are supported, as all mathmode enviroments are
 rendered as an image using the background C<latex> engine.  Commands

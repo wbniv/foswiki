@@ -100,7 +100,7 @@ sub listMatchingUsers
         return @list;
 }
 
-=begin twiki
+=begin TML
 
 ---++ ObjectMethod finish()
 Break circular references.

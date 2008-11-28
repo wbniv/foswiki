@@ -38,7 +38,7 @@
 # in the &TWiki::Func module. Do not reference any functions or
 # variables elsewhere in TWiki!!
 
-=begin twiki
+=begin TML
 ---+ Testing TWiki formatting
 | *simple* | *table* |
 | cell 1 | cell 2 |
@@ -53,7 +53,7 @@ normal paragraph text with *bold* and =fixed font= text.
 
 Last paragraph of this document block
 
-=end twiki
+=end TML
 
 =cut
 

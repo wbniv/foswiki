@@ -24,7 +24,7 @@
 #
 # As per the GPL, removal of this notice is prohibited.
 
-=begin twiki
+=begin TML
 
 ---+ package TWiki::UI::Statistics
 Statistics extraction and presentation

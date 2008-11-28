@@ -265,7 +265,7 @@ sub _print_message {
 1;
 __END__
 
-=begin twiki
+=begin TML
 ---+ Workflow Reports Contrib Package
 %SHORTDESCRIPTION%
 

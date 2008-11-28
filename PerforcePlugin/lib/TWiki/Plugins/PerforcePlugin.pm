@@ -1097,7 +1097,7 @@ sub DISABLE_afterAttachmentSaveHandler {
     TWiki::Func::writeDebug( "- ${pluginName}::afterAttachmentSaveHandler( $_[2].$_[1] )" ) if $debug;
 }
 
-=begin twiki
+=begin TML
 
 ---++ beforeMergeHandler( $text, $currRev, $currText, $origRev, $origText, $web, $topic )
    * =$text= - the new text of the topic

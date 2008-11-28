@@ -1,6 +1,6 @@
 # See bottom of file for copyright and license information
 
-=begin twiki
+=begin TML
 
 ---+ package TWiki::Plugins::ActionTrackerPlugin::Action
 
