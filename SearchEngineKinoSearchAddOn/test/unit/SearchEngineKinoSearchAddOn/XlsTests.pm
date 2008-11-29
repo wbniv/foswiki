@@ -1,6 +1,6 @@
 # Test for XLS.pm
 package XlsTests;
-use base qw( TWikiFnTestCase );
+use base qw( FoswikiFnTestCase );
 
 use strict;
 

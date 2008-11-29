@@ -3,7 +3,7 @@ use Benchmark;
 
 package WebDBTest;
 
-use base qw(TWikiFnTestCase);
+use base qw(FoswikiFnTestCase);
 
 use TWiki::Plugins::FormQueryPlugin;
 use TWiki::Plugins::FormQueryPlugin::WebDB;

@@ -2,8 +2,8 @@ use strict;
 
 package WorkflowReportsContribTests;
 
-use TWikiTestCase;
-use base qw( TWikiTestCase );
+use FoswikiTestCase;
+use base qw( FoswikiTestCase );
 
 use strict;
 use TWiki;

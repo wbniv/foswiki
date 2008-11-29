@@ -5,7 +5,7 @@ package FuncUsersContribSuite;
 # Some basic tests for adding/removing users in the TWiki users topic,
 # and finding them again.
 
-use base qw(TWikiTestCase);
+use base qw(FoswikiTestCase);
 
 use TWiki;
 use TWiki::Contrib::FuncUsersContrib;

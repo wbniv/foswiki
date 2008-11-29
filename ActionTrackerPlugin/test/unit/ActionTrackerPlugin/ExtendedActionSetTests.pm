@@ -1,6 +1,6 @@
 # tests of actionset when action fields have been extended
 package ExtendedActionSetTests;
-use base qw( TWikiTestCase );
+use base qw( FoswikiTestCase );
 
 use strict;
 

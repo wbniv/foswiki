@@ -1,6 +1,6 @@
 # Test for DOC_abiword.pm
 package Doc_abiwordTests;
-use base qw( TWikiFnTestCase );
+use base qw( FoswikiFnTestCase! );
 
 use strict;
 

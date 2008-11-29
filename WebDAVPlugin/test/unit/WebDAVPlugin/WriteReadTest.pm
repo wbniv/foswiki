@@ -3,7 +3,7 @@ use TDB_File;
 
 package WriteReadTest;
 
-use base qw(TWikiTestCase);
+use base qw(FoswikiTestCase);
 
 use TWiki::Plugins::WebDAVPlugin;
 use TWiki::Plugins::WebDAVPlugin::Permissions;

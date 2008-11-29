@@ -1,6 +1,6 @@
 # Test for DOC_antiword.pm
 package Doc_antiwordTests;
-use base qw( TWikiFnTestCase );
+use base qw( FoswikiFnTestCase! );
 
 use strict;
 

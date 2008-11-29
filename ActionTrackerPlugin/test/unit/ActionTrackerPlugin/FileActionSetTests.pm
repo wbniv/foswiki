@@ -1,6 +1,6 @@
 # Tests for module ActionSet.pm
 package FileActionSetTests;
-use base qw(TWikiFnTestCase);
+use base qw(FoswikiFnTestCase);
 
 use strict;
 

@@ -1,6 +1,6 @@
 # Test for KinoSearch
 package KinoSearchTests;
-use base qw( TWikiFnTestCase );
+use base qw( FoswikiFnTestCase );
 
 use strict;
 

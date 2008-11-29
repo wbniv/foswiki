@@ -6,7 +6,7 @@ use TWiki::Contrib::DBCacheContrib::Map;
 use TWiki::Func;
 
 package DBCacheTest;
-use base qw(TWikiFnTestCase);
+use base qw(FoswikiFnTestCase);
 
 sub new {
     my $self = shift()->SUPER::new('DBCacheTest', @_);

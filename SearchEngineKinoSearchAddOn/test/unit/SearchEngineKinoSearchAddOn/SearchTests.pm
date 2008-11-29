@@ -1,6 +1,6 @@
 # Test for Search.pm
 package SearchTests;
-use base qw( TWikiFnTestCase );
+use base qw( FoswikiFnTestCase );
 
 use strict;
 use CGI;

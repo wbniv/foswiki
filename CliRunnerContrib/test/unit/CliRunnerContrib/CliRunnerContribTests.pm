@@ -2,7 +2,7 @@ use strict;
 
 package CliRunnerContribTests;
 
-use base qw(TWikiTestCase);
+use base qw(FoswikiTestCase);
 
 use TWiki::Contrib::CliRunnerContrib;
 

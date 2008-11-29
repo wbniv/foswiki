@@ -3,7 +3,7 @@ use TDB_File;
 
 package PluginTests;
 
-use base qw(TWikiTestCase);
+use base qw(FoswikiTestCase);
 
 use TWiki::Plugins::WebDAVPlugin;
 

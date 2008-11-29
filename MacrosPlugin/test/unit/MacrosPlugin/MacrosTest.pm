@@ -2,7 +2,7 @@ use strict;
 
 package MacrosTest;
 
-use base qw(TWikiTestCase);
+use base qw(FoswikiTestCase);
 
 use TWiki::Store;
 use TWiki::Func;

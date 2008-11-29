@@ -1,7 +1,7 @@
 use strict;
 
 package AttachmentListPluginTests;
-use base qw(TWikiFnTestCase);
+use base qw(FoswikiFnTestCase);
 
 use TWiki;
 use TWiki::Meta;

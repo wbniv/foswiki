@@ -1,6 +1,6 @@
 # Test for PDF.pm
 package PdfTests;
-use base qw( TWikiFnTestCase );
+use base qw( FoswikiFnTestCase! );
 
 use strict;
 

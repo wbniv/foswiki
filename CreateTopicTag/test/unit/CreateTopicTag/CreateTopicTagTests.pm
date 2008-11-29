@@ -2,7 +2,7 @@ use strict;
 
 package CreateTopicTagTests;
 
-use base qw(TWikiTestCase);
+use base qw(FoswikiTestCase);
 
 use strict;
 use TWiki;

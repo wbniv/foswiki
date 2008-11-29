@@ -2,7 +2,7 @@ use strict;
 
 package DateTimePluginTests;
 
-use base qw( TWikiFnTestCase );
+use base qw( FoswikiFnTestCase );
 
 use strict;
 use TWiki::UI::Save;

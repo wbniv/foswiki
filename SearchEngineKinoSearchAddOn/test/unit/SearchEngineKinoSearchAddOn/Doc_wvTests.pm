@@ -1,6 +1,6 @@
 # Test for DOC_wv.pm
 package Doc_wvTests;
-use base qw( TWikiFnTestCase );
+use base qw( FoswikiFnTestCase );
 
 use strict;
 

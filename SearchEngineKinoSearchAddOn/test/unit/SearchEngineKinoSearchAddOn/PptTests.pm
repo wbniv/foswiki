@@ -1,6 +1,6 @@
 # Test for PPT.pm
 package PptTests;
-use base qw( TWikiFnTestCase );
+use base qw( FoswikiFnTestCase );
 
 use strict;
 

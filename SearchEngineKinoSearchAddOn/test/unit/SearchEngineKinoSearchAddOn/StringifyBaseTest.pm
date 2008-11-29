@@ -1,6 +1,6 @@
 # Test for StringifyBase.pm
 package StringifyBaseTest;
-use base qw( TWikiFnTestCase );
+use base qw( FoswikiFnTestCase );
 
 use strict;
 use File::Temp qw/tmpnam/;

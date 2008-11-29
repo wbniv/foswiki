@@ -2,7 +2,7 @@ use strict;
 
 package MailInContribSuite;
 
-use base qw( TWikiFnTestCase );
+use base qw( FoswikiFnTestCase! );
 
 use TWiki;
 use Error qw( :try );

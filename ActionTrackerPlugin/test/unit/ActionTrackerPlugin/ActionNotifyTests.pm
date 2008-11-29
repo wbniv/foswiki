@@ -1,5 +1,5 @@
 package ActionNotifyTests;
-use base qw(TWikiFnTestCase);
+use base qw(FoswikiFnTestCase);
 
 use strict;
 
@@ -136,7 +136,7 @@ HERE
 nge from original, late
 %ACTION{uid=1234 who=NonEntity notify=ActorFive}% A9: No change
 HERE
-    @TWikiFnTestCase::mails = ();
+    @FoswikiFnTestCase::mails = ();
 }
 
 sub tear_down {
@@ -193,9 +193,9 @@ sub test_B_NotifyLate {
 
     TWiki::Plugins::ActionTrackerPlugin::Action::forceTime("2 Jan 2002");
     TWiki::Plugins::ActionTrackerPlugin::ActionNotify::doNotifications($this->{twiki}->{webName}, "web='($this->{test_web}|$this->{users_web})' late" );
-    if(scalar(@TWikiFnTestCase::mails!= 8)) {
-        my $mess = scalar(@TWikiFnTestCase::mails)." mails received";
-        while ( $html = shift(@TWikiFnTestCase::mails)) {
+    if(scalar(@FoswikiFnTestCase::mails!= 8)) {
+        my $mess = scalar(@FoswikiFnTestCase::mails)." mails received";
+        while ( $html = shift(@FoswikiFnTestCase::mails)) {
             $html =~ m/^(To: .*)$/m;
             $mess .= "$1\n";
         }
@@ -203,7 +203,7 @@ sub test_B_NotifyLate {
     }
 
     my $ok = "";
-    while ( $html = shift(@TWikiFnTestCase::mails)) {
+    while ( $html = shift(@FoswikiFnTestCase::mails)) {
         $this->assert_does_not_match(qr/A[12]:/, $html, $html);
         if ($html =~ /To: actor-1\@an-address\.net/) {
             $this->assert_matches(qr/A3:/,$html, $html);
@@ -292,10 +292,10 @@ sub test_C_ChangedSince {
     my $saw = "";
     my $html;
 
-    if (scalar(@TWikiFnTestCase::mails)!= 1) {
+    if (scalar(@FoswikiFnTestCase::mails)!= 1) {
         my $mess = $this->{twiki}->{webName}.' '.
-          scalar(@TWikiFnTestCase::mails)." mails received, expected 1";
-        while ( $html = shift(@TWikiFnTestCase::mails)) {
+          scalar(@FoswikiFnTestCase::mails)." mails received, expected 1";
+        while ( $html = shift(@FoswikiFnTestCase::mails)) {
             $html =~ m/^(To: .*)$/m;
             $mess .= "$1\n";
             $html =~ m/(Attribute .*)$/m;
@@ -303,7 +303,7 @@ sub test_C_ChangedSince {
         }
         $this->assert(0, "$mess\n");
     }
-    while( $html = shift(@TWikiFnTestCase::mails) ) {
+    while( $html = shift(@FoswikiFnTestCase::mails) ) {
         my $re = qr/^From: /m;
         $this->assert_matches($re, $html);
         $re = qr/^Subject: .*Changes to actions /m;

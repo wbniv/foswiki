@@ -2,7 +2,7 @@ use strict;
 
 package FileTimeTest;
 
-use base qw(TWikiTestCase);
+use base qw(FoswikiTestCase);
 
 use TWiki::Contrib::DBCacheContrib::FileTime;
 use TWiki::Contrib::DBCacheContrib::Array;
