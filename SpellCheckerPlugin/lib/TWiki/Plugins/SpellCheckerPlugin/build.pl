@@ -3,7 +3,7 @@
 # Build for SpellCheckerPlugin
 #
 BEGIN {
-    unshift @INC, split(/:/, $ENV{TWIKI_LIBS});
+    unshift @INC, split(/:/, $ENV{FOSWIKI_LIBS});
 }
 
 use TWiki::Contrib::Build;

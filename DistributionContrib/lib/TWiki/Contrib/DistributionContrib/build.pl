@@ -13,8 +13,8 @@
 #
 # Standard preamble
 BEGIN {
-	warn '$TWIKI_LIBS is not set' unless $ENV{TWIKI_LIBS};
-	foreach my $pc ( split( /:/, $ENV{TWIKI_LIBS} ) ) {
+	warn '$FOSWIKI_LIBS is not set' unless $ENV{FOSWIKI_LIBS};
+	foreach my $pc ( split( /:/, $ENV{FOSWIKI_LIBS} ) ) {
 		unshift @INC, $pc;
 	}
 }

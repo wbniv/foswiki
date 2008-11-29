@@ -1,12 +1,12 @@
 #!/usr/bin/perl -w
 #
 # Build class for FormQueryPlugin
-# Requires the environment variable TWIKI_LIBS to be
+# Requires the environment variable FOSWIKI_LIBS to be
 # set to point at the DBCache repository
 
 # Standard preamble
 BEGIN {
-  foreach my $pc (split(/:/, $ENV{TWIKI_LIBS})) {
+  foreach my $pc (split(/:/, $ENV{FOSWIKI_LIBS})) {
     unshift @INC, $pc;
   }
 }
