@@ -1,4 +1,5 @@
-#---+ Publish Plugin
+#---+ Extensions
+#---++ Publish Plugin
 # **PATH**
 # File path to the directory where published files will be generated.
 # you will normally want this to be visible via a URL, so a subdirectory
