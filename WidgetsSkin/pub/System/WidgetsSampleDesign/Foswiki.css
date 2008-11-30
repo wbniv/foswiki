@@ -86,13 +86,13 @@ from esc tab hack moz min-height solution ***/
 	display:inline;
 }
 
-#patternLeftBar {
-	/* Left bar width is defined in viewleftbar.pattern.tmpl */
+#patternSideBar {
+	/* Left bar width is defined in viewsidebar.pattern.tmpl */
 	float:left;
 	display:inline;
 	overflow:hidden;
 }
-#patternLeftBarContents {
+#patternSideBarContents {
 	position:relative;
 	/* for margins and paddings use style.css */
 }
@@ -130,7 +130,7 @@ from esc tab hack moz min-height solution ***/
    background-color:#fff; /* Sets background of center col */
    border-color:#dadada;
 }
-#patternLeftBar,
+#patternSideBar,
 #patternWrapper {
    background-color:#f6f6f6;
 }
@@ -514,26 +514,26 @@ a:hover .twikiAccessKey {
 }
 
 /* Left bar */
-#patternLeftBarContents {
+#patternSideBarContents {
    color:#000;
 }
-#patternLeftBarContents hr {
+#patternSideBarContents hr {
    color:#e2e2e2;
    background-color:#e2e2e2;
 }
-#patternLeftBarContents a:link,
-#patternLeftBarContents a:visited {
+#patternSideBarContents a:link,
+#patternSideBarContents a:visited {
    color:#444;
 }
-#patternLeftBarContents a:hover {
+#patternSideBarContents a:hover {
    color:#fff;
 }
-#patternLeftBarContents .patternLeftBarPersonal,
-#patternLeftBarContents .patternWebIndicator {
+#patternSideBarContents .patternLeftBarPersonal,
+#patternSideBarContents .patternWebIndicator {
 	border-color:#dadada;
 }
-#patternLeftBarContents b,
-#patternLeftBarContents strong {
+#patternSideBarContents b,
+#patternSideBarContents strong {
 	color:#630000;
 }
 
@@ -1544,7 +1544,7 @@ a.twikiLinkInHeaderRight {
 	line-height:125%;
 	text-align:left;
 }
-#patternLeftBarContents {
+#patternSideBarContents {
 	margin:0 0 1em 0;
 	padding-right:.5em;
 	padding-left:1em;
@@ -1553,7 +1553,7 @@ a.twikiLinkInHeaderRight {
 /* top paddings */
 #patternMainContents,
 #patternBottomBarContents,
-#patternLeftBarContents {
+#patternSideBarContents {
 	padding-top:1em;
 }
 .patternNoViewPage #patternMainContents {
@@ -1602,42 +1602,42 @@ a.twikiLinkInHeaderRight {
 	margin-right:2%;
 }
 
-#patternLeftBarContents {}
-#patternLeftBarContents img {
+#patternSideBarContents {}
+#patternSideBarContents img {
 	margin:0 3px 0 0;
 	vertical-align:text-bottom;
 }
-#patternLeftBarContents a:link,
-#patternLeftBarContents a:visited {
+#patternSideBarContents a:link,
+#patternSideBarContents a:visited {
 	text-decoration:none;
 }
-#patternLeftBarContents .patternLeftBarPersonal a:link,
-#patternLeftBarContents .patternLeftBarPersonal a:visited {
+#patternSideBarContents .patternLeftBarPersonal a:link,
+#patternSideBarContents .patternLeftBarPersonal a:visited {
 	text-decoration:underline;
 }
-#patternLeftBarContents .patternLeftBarPersonal ul a:link,
-#patternLeftBarContents .patternLeftBarPersonal ul a:visited {
+#patternSideBarContents .patternLeftBarPersonal ul a:link,
+#patternSideBarContents .patternLeftBarPersonal ul a:visited {
 	text-decoration:none;
 }
-#patternLeftBarContents .patternLeftBarPersonal ul a:hover {
+#patternSideBarContents .patternLeftBarPersonal ul a:hover {
 	text-decoration:underline;
 }
-#patternLeftBarContents ul {
+#patternSideBarContents ul {
 	padding:0;
 	margin:0;
 	list-style:none;
 }
-#patternLeftBarContents,
-#patternLeftBarContents ul,
-#patternLeftBarContents li {
+#patternSideBarContents,
+#patternSideBarContents ul,
+#patternSideBarContents li {
 	line-height:1.35em;
 }
-#patternLeftBarContents h2 {
+#patternSideBarContents h2 {
 	border:none;
 	background-color:transparent;
 }
-#patternLeftBarContents .patternLeftBarPersonal,
-#patternLeftBarContents .patternWebIndicator {
+#patternSideBarContents .patternLeftBarPersonal,
+#patternSideBarContents .patternWebIndicator {
 	height:1%; /* for IE */
 	width:100%; /* for IE */
 	padding:0 1em .75em 1em;
@@ -1652,10 +1652,10 @@ a.twikiLinkInHeaderRight {
 .patternLeftBarPersonalContent {
 	padding:1em 0 0 0;
 }
-#patternLeftBarContents li {
+#patternSideBarContents li {
 	overflow:hidden;
 }
-html>body #patternLeftBarContents li { /* Mozilla */
+html>body #patternSideBarContents li { /* Mozilla */
 	overflow:visible;
 }
 

@@ -21,7 +21,7 @@ html body {
 #patternOuter {
   margin-left:270px; 
 }
-#patternLeftBar {
+#patternSideBar {
   width:270px; 
   margin-left:-270px; 
   font-size:95%;
@@ -34,7 +34,7 @@ html body {
 .blogAbout {
   font-size:100%;
 }
-.patternLeftBarContents {
+.patternSideBarContents {
   width:auto;
 }
 .blogSideBar {
@@ -63,7 +63,7 @@ html body {
 .blogSideBar .patternFormField {
   width:100%;
 }
-#patternLeftBarContents .blogSideBarSection h1 a {
+#patternSideBarContents .blogSideBarSection h1 a {
   color:#a00; /*T5*/
 }
 

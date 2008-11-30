@@ -15,8 +15,8 @@
 #patternScreen h1 .redDot a,
 #patternScreen h1 .redDot a:link,
 #patternScreen h1 .redDot a:visited,
-#patternLeftBarContents .redDot a:link,
-#patternLeftBarContents .redDot a:visited {
+#patternSideBarContents .redDot a:link,
+#patternSideBarContents .redDot a:visited {
    color:#f00;
    font-size:110%;
 }

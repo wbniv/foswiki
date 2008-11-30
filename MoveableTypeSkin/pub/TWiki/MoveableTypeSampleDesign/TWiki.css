@@ -85,11 +85,11 @@ a:hover.twistyTrigger {
 	color:#333;
 }
 /* TipsContrib - in left bar */
-#patternLeftBar .tipsOfTheDay a:link,
-#patternLeftBar .tipsOfTheDay a:visited {
+#patternSideBar .tipsOfTheDay a:link,
+#patternSideBar .tipsOfTheDay a:visited {
 	color:#a00;
 }
-#patternLeftBar .tipsOfTheDay a:hover {
+#patternSideBar .tipsOfTheDay a:hover {
 	color:#FBF7E8;
 }
 
@@ -374,9 +374,9 @@ tr.twikiDiffDebug .twikiDiffUnchangedText {
 	background-repeat:no-repeat;
 	background-position:0 .35em;
 }
-/*#patternLeftBarContents .patternLeftBarPersonal,*/
+/*#patternSideBarContents .patternLeftBarPersonal,*/
 #twikiLogin,
-#patternLeftBarContents .tipsOfTheDayContents {
+#patternSideBarContents .tipsOfTheDayContents {
 	QQbackground-image:url(gradient_blue.gif);
 	background-repeat:repeat-x;
 }
@@ -600,18 +600,18 @@ blockquote {
 	text-decoration:none;
 }
 /* TipsContrib - in left bar */
-#patternLeftBar .tipsOfTheDay {
+#patternSideBar .tipsOfTheDay {
 }
-#patternLeftBar .tipsOfTheDayHeader img {
+#patternSideBar .tipsOfTheDayHeader img {
 	/* hide lamp icon */
 	display:none;
 }
-#patternLeftBar .tipsOfTheDayContents {
+#patternSideBar .tipsOfTheDayContents {
 	padding:.25em .25em .5em .25em;
 	height:1%; /* or Win IE won't display a background */
 	overflow:hidden;
 }
-#patternLeftBar .tipsOfTheDayHeader {
+#patternSideBar .tipsOfTheDayHeader {
 	display:block;
 	font-weight:normal;
 }
