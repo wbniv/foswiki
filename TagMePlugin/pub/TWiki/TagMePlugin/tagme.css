@@ -25,7 +25,7 @@ div.tagMeNotification {
 }
 .tagMeVoteCount {
 	margin:0 .25em;
-	color:#8E9195; /* use twikiGrayText color */
+	color:#8E9195; /* use foswikiGrayText color */
 }
 .tagmeNavigation a {
 	text-decoration:none;

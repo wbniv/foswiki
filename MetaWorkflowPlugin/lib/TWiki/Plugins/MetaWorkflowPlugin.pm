@@ -112,7 +112,7 @@ sub _returnError {
     my $warn = TWiki::Func::getPreferencesValue("METAWORKFLOWWARNING");
     return if lc$warn eq 'off';
 
-    return "<span class='twikiAlert'>${pluginName} error: $text</span>";
+    return "<span class='foswikiAlert'>${pluginName} error: $text</span>";
 }
 
 sub _Debug {

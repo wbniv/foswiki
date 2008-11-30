@@ -38,12 +38,12 @@ This plugin is used to help find orphaned topics. It can also be used to count t
 Plugin output (pre-rendered):
 
 <ul>
-<li> <a href="/%SCRIPTURLPATH%/view/Main/WikiGuestLeftBar" class="twikiLink">WikiGuestLeftBar</a> (0)
-</li> <li> <a href="/%SCRIPTURLPATH%/view/Main/NobodyGroup" class="twikiLink">NobodyGroup</a> (0)
-</li> <li> <a href="/%SCRIPTURLPATH%/view/Main/WikiGuestSideBar" class="twikiLink">WikiGuestSideBar</a> (0)
-</li> <li> <a href="/%SCRIPTURLPATH%/view/Main/PatternSkinUserViewTemplate" class="twikiLink">PatternSkinUserViewTemplate</a> (0)
-</li> <li> <a href="/%SCRIPTURLPATH%/view/Main/WebLeftBar" class="twikiLink">WebLeftBar</a> (0)
-</li> <li> <a href="/%SCRIPTURLPATH%/view/Main/OrphanTest" class="twikiLink">OrphanTest</a> (0)
+<li> <a href="/%SCRIPTURLPATH%/view/Main/WikiGuestLeftBar" class="foswikiLink">WikiGuestLeftBar</a> (0)
+</li> <li> <a href="/%SCRIPTURLPATH%/view/Main/NobodyGroup" class="foswikiLink">NobodyGroup</a> (0)
+</li> <li> <a href="/%SCRIPTURLPATH%/view/Main/WikiGuestSideBar" class="foswikiLink">WikiGuestSideBar</a> (0)
+</li> <li> <a href="/%SCRIPTURLPATH%/view/Main/PatternSkinUserViewTemplate" class="foswikiLink">PatternSkinUserViewTemplate</a> (0)
+</li> <li> <a href="/%SCRIPTURLPATH%/view/Main/WebLeftBar" class="foswikiLink">WebLeftBar</a> (0)
+</li> <li> <a href="/%SCRIPTURLPATH%/view/Main/OrphanTest" class="foswikiLink">OrphanTest</a> (0)
 </li></ul>
 </td>
 <td>

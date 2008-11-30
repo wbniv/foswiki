@@ -48,7 +48,7 @@ sub _handleTag {
         return hostname();
     } else {
         TWiki::Func::writeWarning( $@ );
-        return "<span class='twikiAlert'>$pluginName error: Sys::Hostname not found in \@INC. Please contact %WIKIWEBMASTER%.";
+        return "<span class='foswikiAlert'>$pluginName error: Sys::Hostname not found in \@INC. Please contact %WIKIWEBMASTER%.";
     }
 }
 

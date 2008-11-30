@@ -18,7 +18,7 @@ So data entry and data display are separated, leading to:
    * less bugs caused by mistyping or messing up complex variable blocks - anyone not familiar with TWiki can type some text in a table cell
    * small display modules that can be moved around, for instance to the homepage
 
-<div class="twikiHelp">
+<div class="foswikiHelp">
 The same principle illustrated with information about Vermeer's paintings:
 
 <a href="%ATTACHURLPATH%/renderTableDataExample.png"><img style="border:1px solid ccc;" src="%ATTACHURLPATH%/renderTableDataExample_thumb.gif" alt="View edit and render example" width='198' height='203' /></a>

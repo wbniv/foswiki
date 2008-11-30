@@ -157,7 +157,7 @@ sub handleTagCloud {
       if $termCount{$term} < $floor || $floor < 0;
   }
   unless (scalar(keys %termCount)) {
-    return '<span class="twikiAlert">nothing found</span>' if $theWarn eq 'on';
+    return '<span class="foswikiAlert">nothing found</span>' if $theWarn eq 'on';
     return '';
   }
 

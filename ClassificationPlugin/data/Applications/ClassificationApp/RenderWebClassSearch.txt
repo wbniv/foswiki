@@ -80,7 +80,7 @@
 ~~~     web=\"$1\"
 ~~~     header=\"
 ~~~       <h2>Results in $1</h2>
-~~~       *Found <span class='twikiAlert'> $dollarcount </span> topic(s)* %BR%
+~~~       *Found <span class='foswikiAlert'> $dollarcount </span> topic(s)* %BR%
 ~~~       <noautolink><div class='clsHitList'> $n
 ~~~       | *Nr* | *Topic* | *Summary* | *Changed* | *By* |$n
 ~~~       $dollarpercntTABLE{tablewidth=\\"100%\\"}$dollarpercnt$n\"

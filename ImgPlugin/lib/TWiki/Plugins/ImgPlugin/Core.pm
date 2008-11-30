@@ -186,7 +186,7 @@ sub handleIMAGE {
     $this->getImageInfo($imgWeb, $imgTopic, $origFile, $params->{size});
 
   unless ($imgInfo) {
-    return "<span class=\"twikiAlert\">$this->{errorMsg}</span>";
+    return "<span class=\"foswikiAlert\">$this->{errorMsg}</span>";
   }
   my $thumbFileUrl = $pubUrlPath.'/'.$imgWeb.'/'.$imgTopic.'/'.$imgInfo->{file};
 

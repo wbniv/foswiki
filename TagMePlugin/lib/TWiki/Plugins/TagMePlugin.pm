@@ -174,7 +174,7 @@ sub _handleTagMe {
     }
     elsif ( $action eq 'autonewadd' ) {
         $text = _newTag($attr, 'silent', 1);
-        $text = _addTag($attr) unless $text =~ /twikiAlert/; 
+        $text = _addTag($attr) unless $text =~ /foswikiAlert/; 
     }
     elsif ( $action eq 'add' ) {
         $text = _addTag($attr);
@@ -1141,7 +1141,7 @@ sub _newTagsAndAdd {
 	if ($tag) {
 	    $args = 'tag="' . $tag . '"';
 	    $text = _newTag($args);
-	    $text = _addTag($args) unless $text =~ /twikiAlert/;
+	    $text = _addTag($args) unless $text =~ /foswikiAlert/;
 	}
     }
     return $text;
@@ -1586,7 +1586,7 @@ sub _wrapHtmlFeedbackMessage {
 # =========================
 sub _wrapHtmlErrorFeedbackMessage {
     my ( $text, $note ) = @_;
-    return _wrapHtmlFeedbackMessage( "<span class=\"twikiAlert\">$text</span>",
+    return _wrapHtmlFeedbackMessage( "<span class=\"foswikiAlert\">$text</span>",
         $note );
 }
 
@@ -1599,7 +1599,7 @@ sub _wrapHtmlFeedbackInline {
 # =========================
 sub _wrapHtmlFeedbackErrorInline {
     my ($text) = @_;
-    return _wrapHtmlFeedbackInline("<span class=\"twikiAlert\">$text</span>");
+    return _wrapHtmlFeedbackInline("<span class=\"foswikiAlert\">$text</span>");
 }
 
 # =========================

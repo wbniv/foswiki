@@ -1268,7 +1268,7 @@ sub getWebComponent {
 
   # SMELL: why does preview call for components twice ???
   if ($seenWebComponent{$component} && $seenWebComponent{$component} > 2 && !$multiple) {
-    return '<span class="twikiAlert">'.
+    return '<span class="foswikiAlert">'.
       "ERROR: component '$component' already included".
       '</span>';
   }

@@ -156,7 +156,7 @@ function showNewTopicForm(el) {
 		});
 }
 var myrules = {
-	'.twikiNewLink a' : function(el) {
+	'.foswikiNewLink a' : function(el) {
 		el.onclick = function() {
 			showNewTopicForm(el.parentNode);
 			return false;
@@ -230,7 +230,7 @@ function showNewTopicForm(el) {
 		});
 }
 var myrules = {
-	'.twikiNewLink a' : function(el) {
+	'.foswikiNewLink a' : function(el) {
 		el.onclick = function() {
 			showNewTopicForm(el.parentNode);
 			return false;
@@ -550,7 +550,7 @@ function handleHtml (inId, inHtml) {
 		
 	// example 2: style list elements
 	var attributes = {
-    		"class":"twikiSmall twikiGrayText",
+    		"class":"twikiSmall foswikiGrayText",
     		"style":
     			{
     				"fontSize":"20px",
@@ -655,7 +655,7 @@ function handleHtml (inId, inHtml) {
 		
 	// example 2: style list elements
 	var attributes = {
-    		"class":"twikiSmall twikiGrayText",
+    		"class":"twikiSmall foswikiGrayText",
     		"style":
     			{
     				"fontSize":"20px",

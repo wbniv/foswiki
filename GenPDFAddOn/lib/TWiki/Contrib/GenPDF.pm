@@ -281,7 +281,7 @@ sub _createTitleFile {
    # convert twikiNewLinks to normal text
    # FIXME - should this be a preference? - should use setPreferencesValue($name, $val) to set NEWTOPICLINK
    # BUG: this will match _everything_ from the first open span, to the last end span, losing alot of content.
-   #$text =~ s/<span class="twikiNewLink".*?>([\w\s]+)<.*?\/span>/$1/gs;
+   #$text =~ s/<span class="foswikiNewLink".*?>([\w\s]+)<.*?\/span>/$1/gs;
 
    # Fix the image tags to use hard-desk path range than url paths.
    # This is needed in case wiki requires read authentication like SSL client
@@ -401,7 +401,7 @@ sub _fixHtml {
    # convert twikiNewLinks to normal text
    # FIXME - should this be a preference? - should use setPreferencesValue($name, $val) to set NEWTOPICLINK
    # BUG: this will match _everything_ from the first open span, to the last end span, losing alot of content.
-   #$html =~ s/<span class="twikiNewLink".*?>([\w\s]+)<.*?\/span>/$1/gs;
+   #$html =~ s/<span class="foswikiNewLink".*?>([\w\s]+)<.*?\/span>/$1/gs;
 
    # Fix the image tags to use hard-disk path rather than relative url paths for
    # images.  Needed if wiki requires authentication like SSL client certifcates.

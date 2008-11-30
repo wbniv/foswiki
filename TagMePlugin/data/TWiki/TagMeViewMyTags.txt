@@ -20,4 +20,4 @@
 </div>%STOPINCLUDE%
 
 %BR%
-<span class="twikiGrayText">Other tag options: [[TagMeCreateNewTag][Create new tag]], [[TagMeRenameTag][Rename tag]], [[TagMeDeleteTag][Delete tag]]</span>
+<span class="foswikiGrayText">Other tag options: [[TagMeCreateNewTag][Create new tag]], [[TagMeRenameTag][Rename tag]], [[TagMeDeleteTag][Delete tag]]</span>

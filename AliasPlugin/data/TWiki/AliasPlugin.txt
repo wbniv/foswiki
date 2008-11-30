@@ -127,7 +127,7 @@ macro or listed in the following way:
 |  7 | rtfm | read the fine manual | yes, but be more polite to your users |
 |  8 | <a href="%SCRIPTURL{"view"}%/TESTALIAS" title="TESTALIAS">TESTALIAS</a> | <a href="%SCRIPTURL{"view"}%/yes" title="yes">yes</a> | yes |
 |  9 | [[%SYSTEMWEB%.WebHome][TESTALIAS]] | <a href="%SCRIPTURLPATH{"view"}%/%SYSTEMWEB%.WebHome">T<nop>ESTALIAS</a> | no, don't substitute inside a TWiki tag | 
-|  10 | [[TESTALIAS]] | <a href="%SCRIPTURL{"edit"}%/%WEB%/TESTALIAS?topicparent=%WEB%.%TOPIC%" class="twikiNewLink" title="Create this topic">T<nop>ESTALIAS</a>| no, don't substitute inside a TWiki tag |
+|  10 | [[TESTALIAS]] | <a href="%SCRIPTURL{"edit"}%/%WEB%/TESTALIAS?topicparent=%WEB%.%TOPIC%" class="foswikiNewLink" title="Create this topic">T<nop>ESTALIAS</a>| no, don't substitute inside a TWiki tag |
 |  11 | [<nop>[TESTALIAS]] | [<nop>[T<nop>ESTALIAS]] | no, not even inside a _nopped_ TWiki tag | 
 |  12 | <font color="red"> TESTALIAS </font> | <font color="red"> yes </font> | yes, ignores =red= |
 |  13 | %RED% %TESTALIAS% %ENDCOLOR%  | %RED% %T<nop>ESTALIAS% %ENDCOLOR% | no, inside two =%= |

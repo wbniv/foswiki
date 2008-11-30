@@ -23,7 +23,7 @@
 
 %TMPL:DEF{"content"}%%TMPL:P{"formstart"}%<div class="twikiFormSteps">
 <div class="twikiFormStep pIPictures">
-<span class="twikiImage">%INCLUDE{"PersonalInfoLayoutModules" section="image" imgName="%FILENAME%" imgWeb="%BASEWEB%" imgTopic="%BASETOPIC%" imgWidth="120"}%</span><span class="twikiSmallish twikiGrayText userPictureActions">%FILENAME%</span>
+<span class="twikiImage">%INCLUDE{"PersonalInfoLayoutModules" section="image" imgName="%FILENAME%" imgWeb="%BASEWEB%" imgTopic="%BASETOPIC%" imgWidth="120"}%</span><span class="twikiSmallish foswikiGrayText userPictureActions">%FILENAME%</span>
 </div><!--/twikiFormStep--></div><!--/twikiFormSteps-->
 %TMPL:P{"topicaction"}%
 %TMPL:P{"formend"}%%TMPL:END%

@@ -60,7 +60,7 @@ sub _KINOSEARCH {
     my($session, $params, $theTopic, $theWeb) = @_;
 
     my $ret = "";
-    my $format = $params->{format}||"\$icon <b>\$match</b> <span class='twikiAlert'>\$locked</span> <br />\$texthead<br /><hr />";
+    my $format = $params->{format}||"\$icon <b>\$match</b> <span class='foswikiAlert'>\$locked</span> <br />\$texthead<br /><hr />";
     $format =~ s/\$icon/%ICON%/go;
     $format =~ s/\$match/%MATCH%/go;
     $format =~ s/\$locked/%LOCKED%/go;

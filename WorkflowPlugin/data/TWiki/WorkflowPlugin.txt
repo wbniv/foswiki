@@ -15,7 +15,7 @@ This plugin lets you associate a complex work flow with topics in your wiki.
 
 A workflow can be associated with a single topic, or with an entire web. If a topic is under workflow control, you can define a set of _states_ for this topic (e.g. "under revision", "waiting for approval", "approved") and _transitions_ (e.g. "revise", "approve") between these states. Furthermore, you can define which users/groups are permitted to perform specific transistions. In this way, you can control, for example, who is allowed to "approve" a topic and who is not.
 
-<blockquote class="twikiAlert">
+<blockquote class="foswikiAlert">
 *Upgrade note* If you are upgrading from a version before 10 Nov 2008 please note that the format of the WORKFLOWHISTORYFORMAT preference has changed slightly, in that:
    1 enclosing double quotes are no longer removed from the value. This changes has been to bring this preference definition into line with other preference definitions.
    1 =$n= is interpreted as \n, not &lt;br&gt;, in line with the standard [[format tokens]]. If you want a &lt;br&gt; in the format string, then enter it as &lt;br&gt; or $percntBR$percnt.

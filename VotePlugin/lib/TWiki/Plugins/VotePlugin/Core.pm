@@ -290,7 +290,7 @@ sub handleVote {
 
     if ($canReset) {
         if ($mess) {
-            $mess = CGI::span({class => 'twikiAlert'}, $mess);
+            $mess = CGI::span({class => 'foswikiAlert'}, $mess);
         } else {
             $mess = CGI::start_form(-name => 'resetForm',
                                     -action => '');
@@ -519,7 +519,7 @@ sub _getLocalDate {
 
 ###############################################################################
 sub inlineError {
-    return '<span class="twikiAlert">Error: '.$_[0].'</span>';
+    return '<span class="foswikiAlert">Error: '.$_[0].'</span>';
 }
 
 ###############################################################################

@@ -90,7 +90,7 @@ sub _publishControlCentre {
     # SMELL: check access to this interface!
     unless( Foswiki::Func::isAnAdmin()) {
         return CGI::span(
-            {class=>'twikiAlert'},
+            {class=>'foswikiAlert'},
             "Only admins can access the control interface");
     }
 

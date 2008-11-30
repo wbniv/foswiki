@@ -57,7 +57,7 @@ The output format for the list formats is fixed currently to be used in RenderCa
 ~~~    $title
 ~~~  </a>
 ~~~  $percntIFDEFINED{\"$cyclic\" as=\"1\" 
-~~~    then=\" <span class='twikiAlert'>C</span>\"
+~~~    then=\" <span class='foswikiAlert'>C</span>\"
 ~~~  }$percnt
 ~~~  $percntIFDEFINED{\"$leafs\" as=\"0\"
 ~~~    then=\"\"

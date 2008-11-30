@@ -36,10 +36,10 @@
   font-size:95%;
 }
 
-.twikiGrayText {
+.foswikiGrayText {
   color:#8E9195;
 }
-.twikiGrayText a {
+.foswikiGrayText a {
   color:#7B7E81;
 }
 .twikiSmallish i,
@@ -51,12 +51,12 @@
 .natHtml {
   background:white;
 }
-.twikiEmulatedLink,
+.foswikiEmulatedLink,
 a {
   text-decoration:none; 
   color:#0065CD;
 }
-.twikiEmulatedLink:hover,
+.foswikiEmulatedLink:hover,
 a:hover { 
   text-decoration:underline; 
   color:#777;
@@ -96,8 +96,8 @@ h4 { font-size:120%; margin-top:10px; margin-bottom:0px; }
 h5 { font-size:110%; margin-top:10px; margin-bottom:0px; }
 h6 { font-size:110%; margin-top:10px; margin-bottom:0px; }
 
-h1 .twikiEmulatedLink, h2 .twikiEmulatedLink, h3 .twikiEmulatedLink,
-h4 .twikiEmulatedLink, h5 .twikiEmulatedLink, h3 .twikiEmulatedLink,
+h1 .foswikiEmulatedLink, h2 .foswikiEmulatedLink, h3 .foswikiEmulatedLink,
+h4 .foswikiEmulatedLink, h5 .foswikiEmulatedLink, h3 .foswikiEmulatedLink,
 h1, h2, h3, h4, h5, h6,
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,
 h1 a:hover, h2 a:hover, h3 a:hover,
@@ -336,12 +336,12 @@ form {
 .natNotes p {
   margin-top:0px;
 }
-.natSideBar .twikiCurrentTopicLink {
+.natSideBar .foswikiCurrentTopicLink {
   color:red;
 }
-.natSideBar h1 .twikiCurrentTopicLink,
-.natSideBar h2 .twikiCurrentTopicLink,
-.natSideBar h3 .twikiCurrentTopicLink {
+.natSideBar h1 .foswikiCurrentTopicLink,
+.natSideBar h2 .foswikiCurrentTopicLink,
+.natSideBar h3 .foswikiCurrentTopicLink {
   color:inherit;
 }
 .natSideBarWebs table {
@@ -386,7 +386,7 @@ form {
 .natEditTopicInfo table td {
   padding:0em 0.5em 0.5em 0em;
 }
-.natEditBody table th.twikiFirstCol {
+.natEditBody table th.foswikiFirstCol {
   width:10em;
 }
 
@@ -409,13 +409,13 @@ form {
 .natSearchRenameContents table {
   width:100%;
 }
-.natSearchRenameContents .twikiTopRow {
+.natSearchRenameContents .foswikiTopRow {
   white-space:pre;
   text-align:left;
   vertical-align:top;
   padding:5px;
 }
-.natSearchRenameContents .twikiSummary {
+.natSearchRenameContents .foswikiSummary {
   padding:5px;
   text-align:left;
   vertical-align:top;
@@ -452,10 +452,10 @@ form {
 .natSearch {
   font-weight:bold;
 }
-.twikiNew {
+.foswikiNew {
   text-transform:lowercase;
 }
-.twikiNew,
+.foswikiNew,
 .natSearchNewTopic {
   color:red; 
   font-style:italic;
@@ -673,12 +673,12 @@ a.natFeedIcon {
 }
 
 /* twiki styles */
-.twikiNewLink {
+.foswikiNewLink {
   color:blue;
   background:#eeeeee;
 }
 
-.twikiAlert {
+.foswikiAlert {
   color:red;
 }
 .twikiBroadcastMessage {
@@ -688,11 +688,11 @@ a.natFeedIcon {
   border-bottom:2px solid orange;
   padding:0.5em 1em;
 }
-.twikiBroadcastMessage .twikiLink,
+.twikiBroadcastMessage .foswikiLink,
 .twikiBroadcastMessage a {
   color:red;
 }
-.twikiBroadcastMessage .twikiLink:hover,
+.twikiBroadcastMessage .foswikiLink:hover,
 .twikiBroadcastMessage a:hover {
   color:black;
   background:orange;
@@ -748,7 +748,7 @@ a.natFeedIcon {
   */
 }
 .twikiPageForm th,
-.twikiPageForm .twikiFirstCol {
+.twikiPageForm .foswikiFirstCol {
   font-weight:bold;
 }
 .natTopicEditForm .natTopicFormTitle,
@@ -900,7 +900,7 @@ td.twikiDiffAddedHeader {
 td.twikiDiffChangedText {
   color:red;
 }
-.twikiWebIndent {
+.foswikiWebIndent {
   margin:0 0 0 1em;
 }
 
@@ -1155,7 +1155,7 @@ img.alignleft {
   text-decoration:none;
   background-image:none;
 }
-.clsTopicInfo .twikiCurrentTopicLink {
+.clsTopicInfo .foswikiCurrentTopicLink {
   color:inherit;
 }
 .clsTopicInfoSep {

@@ -21,7 +21,7 @@
 %STARTINCLUDE%
 <hr align="left">
 ---++ <noautolink>[[%BLOGWEB%.%BLOGENTRY%][%FORMFIELD{"Summary" topic="%BLOGWEB%.%BLOGENTRY%"}%]] </noautolink>
-<span class="twikiGrayText twikiSmallish">Posted on %REVINFO{"$date by $wikiusername" rev="1.1" web="%BLOGWEB%" topic="%BLOGENTRY%"}% <noautolink>%FORMFIELD{"SubjectArea" topic="%BLOGWEB%.%BLOGENTRY%" format=" under $value"}%</noautolink> with %SEARCH{"%BLOGENTRY%" nonoise="on" scope="topic" web="%BLOGWEB%" format="$count(.*?([C]OMMENT_TAG) .*) [[%BLOGWEB%.%BLOGENTRY%#Comments_and_Discussion][comment(s)]]"}%. </span>  
+<span class="foswikiGrayText twikiSmallish">Posted on %REVINFO{"$date by $wikiusername" rev="1.1" web="%BLOGWEB%" topic="%BLOGENTRY%"}% <noautolink>%FORMFIELD{"SubjectArea" topic="%BLOGWEB%.%BLOGENTRY%" format=" under $value"}%</noautolink> with %SEARCH{"%BLOGENTRY%" nonoise="on" scope="topic" web="%BLOGWEB%" format="$count(.*?([C]OMMENT_TAG) .*) [[%BLOGWEB%.%BLOGENTRY%#Comments_and_Discussion][comment(s)]]"}%. </span>  
 
 %INCLUDE{"%BLOGWEB%.%BLOGENTRY%" section="introtext"}% 
 _[[%BLOGWEB%.%BLOGENTRY%][Read more...]]_

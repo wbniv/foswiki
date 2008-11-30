@@ -13,15 +13,15 @@ See also: %SYSTEMWEB%.BlogPlugin, %SYSTEMWEB%.BlogUp
 <div class="twikiPageForm">
 <table>
 <tr>
-  <td class="twikiFirstCol">Name:</td>
+  <td class="foswikiFirstCol">Name:</td>
   <td><input name="newweb" type="text" size="40" value="" /></td>
 </tr>
 <tr>
-  <td class="twikiFirstCol">Slogan:</td>
+  <td class="foswikiFirstCol">Slogan:</td>
   <td><input type="text" name="tagline" size="40" value="" /></td>
 </tr>
 <tr>
-  <td valign="top" class="twikiFirstCol">Options:</td>
+  <td valign="top" class="foswikiFirstCol">Options:</td>
   <td>%TWISTYBUTTON{id="advopts" showlink="Show" hidelink="Hide"}%</td>
 </tr>
 <tr>
@@ -29,7 +29,7 @@ See also: %SYSTEMWEB%.BlogPlugin, %SYSTEMWEB%.BlogUp
   %TWISTYTOGGLE{id="advopts" mode="div" remember="on"}%
   <table>
     <tr style="%CALC{"$IF($EXISTS(%SYSTEMWEB%.NatSkin),,display:none)"}%">
-      <td valign="top" class="twikiFirstCol">Style:</td>
+      <td valign="top" class="foswikiFirstCol">Style:</td>
       <td valign="top">
 	<select name="style">
 	%FORMATLIST{"%KNOWNSTYLES%" pattern="\s*(.*)\s*" format="<option $percntIFSKINSTATE{style=\"$1\" then=\" selected=\\"selected\\"\"}$percnt>$1</option>" join="\n" separator=" "}%
@@ -39,15 +39,15 @@ See also: %SYSTEMWEB%.BlogPlugin, %SYSTEMWEB%.BlogUp
 	</select>
     </tr>
     <tr>
-      <td valign="top" class="twikiFirstCol"><a class="nop" target="_blank" href="http://last.fm">LastFM</a> Nick:</td>
+      <td valign="top" class="foswikiFirstCol"><a class="nop" target="_blank" href="http://last.fm">LastFM</a> Nick:</td>
       <td valign="top"><input name="lastfmnick" type="text" value="" size="40" /></td>
     </tr>
     <tr>
-      <td valign="top" class="twikiFirstCol"><a class="nop" target="_blank" href="http://www.technorati.com">Technorati</a> Code:</td>
+      <td valign="top" class="foswikiFirstCol"><a class="nop" target="_blank" href="http://www.technorati.com">Technorati</a> Code:</td>
       <td valign="top"><input name="technoraticode" type="text" value="" size="40" /></td>
     </tr>
     <tr>
-      <td valign="top" class="twikiFirstCol"><a class="nop" target="_blank" href="https://www.google.com/adsense">Google Adsense</a> Code:</td>
+      <td valign="top" class="foswikiFirstCol"><a class="nop" target="_blank" href="https://www.google.com/adsense">Google Adsense</a> Code:</td>
       <td valign="top"><input name="googleadsensecode" type="text" value="" size="40" /></td>
     </tr>
   </table>
@@ -55,7 +55,7 @@ See also: %SYSTEMWEB%.BlogPlugin, %SYSTEMWEB%.BlogUp
   </td>
 </tr>
 <tr>
-  <td class="twikiFirstCol">&nbsp;</td>
+  <td class="foswikiFirstCol">&nbsp;</td>
   <td>
     <input type="submit" class="twikiSubmit natOkButton" value="Submit" />
     <input type="reset" class="natCancelButton" value="Reset" />

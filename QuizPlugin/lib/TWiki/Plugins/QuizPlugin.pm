@@ -31,13 +31,13 @@ sub handleQuiz {
     my $units = $attrs->{units} || '';
 
     if (!defined($correct)) {
-        return CGI::span({class=>'twikiAlert'},
+        return CGI::span({class=>'foswikiAlert'},
                          "Invalid quiz - need correct answer(s)");
     }
 
     my $result = <<HEADER;
 <form name=quiz$quizNumber>
-<div class='twikiAlert'> Q$quizNumber: $name</div>
+<div class='foswikiAlert'> Q$quizNumber: $name</div>
 HEADER
 
     if ($attrs->{type} eq 'string') {

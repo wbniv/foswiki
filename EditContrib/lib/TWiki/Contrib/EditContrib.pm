@@ -401,7 +401,7 @@ sub finalize_edit {
       # Same as TWiki::Func::renderText( $pretxtRender )
       $pretxtRender = $session->{renderer}->getRenderedVersion( $pretxtRender, $webName, $topic );
       # Disable links and inputs in the text
-      $pretxtRender =~ s#<a\s[^>]*>(.*?)</a>#<span class="twikiEmulatedLink">$1</span>#gis;
+      $pretxtRender =~ s#<a\s[^>]*>(.*?)</a>#<span class="foswikiEmulatedLink">$1</span>#gis;
       $pretxtRender =~ s/<(input|button|textarea) /<$1 disabled="disabled"/gis;
       $pretxtRender =~ s(</?form(|\s.*?)>)()gis;
       $pretxtRender =~ s/(<[^>]*\bon[A-Za-z]+=)('[^']*'|"[^"]*")/$1''/gis;
@@ -421,7 +421,7 @@ sub finalize_edit {
       $postxtRender = $session->{renderer}->getRenderedVersion( $postxtRender, $webName, $topic );
 
       # Disable links and inputs in the text
-      $postxtRender =~ s#<a\s[^>]*>(.*?)</a>#<span class="twikiEmulatedLink">$1</span>#gis;
+      $postxtRender =~ s#<a\s[^>]*>(.*?)</a>#<span class="foswikiEmulatedLink">$1</span>#gis;
       $postxtRender =~ s/<(input|button|textarea) /<$1 disabled="disabled"/gis;
       $postxtRender =~ s(</?form(|\s.*?)>)()gis;
       $postxtRender =~ s/(<[^>]*\bon[A-Za-z]+=)('[^']*'|"[^"]*")/$1''/gis;

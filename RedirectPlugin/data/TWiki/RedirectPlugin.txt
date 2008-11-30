@@ -31,12 +31,12 @@ A redirect now appends the =redirectedfrom= parameter to the url which contains 
 Below is an example you can put in your template:
 
 <verbatim>
-%IF{ "$'URLPARAM{redirectedfrom}'" then="<span class='twikiGrayText'>(Redirected from <a href='%SCRIPTURLPATH{view}%/%URLPARAM{redirectedfrom}%?noredirect=on'>%URLPARAM{redirectedfrom}%</a>)</span>"}%
+%IF{ "$'URLPARAM{redirectedfrom}'" then="<span class='foswikiGrayText'>(Redirected from <a href='%SCRIPTURLPATH{view}%/%URLPARAM{redirectedfrom}%?noredirect=on'>%URLPARAM{redirectedfrom}%</a>)</span>"}%
 </verbatim>
 
 Which will display the following on topics that have been redirected:
 
-<span class="twikiGrayText">(Redirected from <a href="?noredirect=on">Web.Topic</a>)</span>
+<span class="foswikiGrayText">(Redirected from <a href="?noredirect=on">Web.Topic</a>)</span>
 
 ---++ Related Topics
 	* http://twiki.org/cgi-bin/view/Codev/RedirectPage

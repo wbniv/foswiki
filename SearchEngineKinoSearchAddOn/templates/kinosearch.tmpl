@@ -15,7 +15,7 @@
 
 
 %TMPL:DEF{"repeatedsearchblock"}%<div class="patternSearchResultsHeader" style="background-color:%WEBBGCOLOR%"><span class="twikiLeft">%MAKETEXT{"Search results"}%</span><span class="twikiRight">%MAKETEXT{"retrieved at [_1]" args="%DISPLAYTIME{"$hour:$min ($tz)"}%"}%</span><br class="twikiClear" /></div>
-%REPEAT%<div class="patternSearchResult"><div class="twikiTopRow"><div class="twikiLeft">%ICON% <b>%MATCH%</b> %SCORE%<span class="twikiAlert">%LOCKED%</span></div><div class="twikiRight twikiSRAuthor"> %AUTHOR%</div><div class="twikiRight twikiSRRev">%REVISION% - <a href="%SCRIPTURLPATH{"rdiff"}%/%WEB%/%TOPICNAME%" rel='nofollow'>%TIME%</a>&nbsp;</div><br class="twikiClear" /></div><div class="twikiBottomRow"><div class="twikiSummary twikiBlackText">%TEXTHEAD%</div></div></div>%REPEAT%%TMPL:END%
+%REPEAT%<div class="patternSearchResult"><div class="foswikiTopRow"><div class="twikiLeft">%ICON% <b>%MATCH%</b> %SCORE%<span class="foswikiAlert">%LOCKED%</span></div><div class="twikiRight twikiSRAuthor"> %AUTHOR%</div><div class="twikiRight twikiSRRev">%REVISION% - <a href="%SCRIPTURLPATH{"rdiff"}%/%WEB%/%TOPICNAME%" rel='nofollow'>%TIME%</a>&nbsp;</div><br class="twikiClear" /></div><div class="twikiBottomRow"><div class="foswikiSummary twikiBlackText">%TEXTHEAD%</div></div></div>%REPEAT%%TMPL:END%
 
 
 

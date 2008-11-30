@@ -137,10 +137,10 @@ left.config.shared=true;
 left.config.useStatusText=false;
 left.config.useSelection=false;
 left.config.folderLinks=false;
-left.add(0,-1,"<a href=\"/view/System/WebHome\" class=\"twikiCurrentWebHomeLink twikiLink\">System Web Home</a>");
-left.add(1,0,"<a href=\"/view/System/WebChanges\" class=\"twikiLink\">Changes</a> ",'','','','%ATTACHURLPATH%/page.gif');
-left.add(2,0,"<a href=\"/view/System/WebIndex\" class=\"twikiLink\">Index</a>",'','','','%ATTACHURLPATH%/page.gif');
-left.add(3,0,"<a href=\"/view/System/WebSearch\" class=\"twikiLink\">Search</a>",'','','','%ATTACHURLPATH%/page.gif');
+left.add(0,-1,"<a href=\"/view/System/WebHome\" class=\"foswikiCurrentWebHomeLink foswikiLink\">System Web Home</a>");
+left.add(1,0,"<a href=\"/view/System/WebChanges\" class=\"foswikiLink\">Changes</a> ",'','','','%ATTACHURLPATH%/page.gif');
+left.add(2,0,"<a href=\"/view/System/WebIndex\" class=\"foswikiLink\">Index</a>",'','','','%ATTACHURLPATH%/page.gif');
+left.add(3,0,"<a href=\"/view/System/WebSearch\" class=\"foswikiLink\">Search</a>",'','','','%ATTACHURLPATH%/page.gif');
 left.add(4,0,"this is a very very very long text",'','','','%ATTACHURLPATH%/page.gif');
 left.add(5,0,"Folder",'','','','%ATTACHURLPATH%/folder.gif','%ATTACHURLPATH%/folderopen.gif');
 left.add(6,5,"Leaf1",'','','','%ATTACHURLPATH%/page.gif');
@@ -148,10 +148,10 @@ left.add(7,5,"Subfolder",'','','','%ATTACHURLPATH%/folder.gif','%ATTACHURLPATH%/
 left.add(8,7,"Leaf3",'','','','%ATTACHURLPATH%/page.gif');
 left.add(9,5,"Leaf2",'','','','%ATTACHURLPATH%/page.gif');
 left.add(10,0,"<strong>Webs</strong>",'','','','%ATTACHURLPATH%/folder.gif','%ATTACHURLPATH%/folderopen.gif');
-left.add(11,10,"<a href=\"%SCRIPTURLPATH{"view"}%/Sandbox/%HOMETOPIC%\" class=\"twikiLink\">Sandbox</a>",'','','','%ATTACHURLPATH%/page.gif');
-left.add(12,10,"<a href=\"%SCRIPTURLPATH{"view"}%/%MAINWEB%/%HOMETOPIC%\" class=\"twikiLink\">%MAINWEB%</a>",'','','','%ATTACHURLPATH%/page.gif');
-left.add(13,10,"<a href=\"%SCRIPTURLPATH{"view"}%/%SYSTEMWEB%/%HOMETOPIC%\" class=\"twikiLink\">%SYSTEMWEB%</a>",'','','','%ATTACHURLPATH%/page.gif');
-left.add(14,10,"<a href=\"%SCRIPTURLPATH{"view"}%/Trash/%HOMETOPIC%\" class=\"twikiLink\">Trash</a>",'','','','%ATTACHURLPATH%/page.gif');
+left.add(11,10,"<a href=\"%SCRIPTURLPATH{"view"}%/Sandbox/%HOMETOPIC%\" class=\"foswikiLink\">Sandbox</a>",'','','','%ATTACHURLPATH%/page.gif');
+left.add(12,10,"<a href=\"%SCRIPTURLPATH{"view"}%/%MAINWEB%/%HOMETOPIC%\" class=\"foswikiLink\">%MAINWEB%</a>",'','','','%ATTACHURLPATH%/page.gif');
+left.add(13,10,"<a href=\"%SCRIPTURLPATH{"view"}%/%SYSTEMWEB%/%HOMETOPIC%\" class=\"foswikiLink\">%SYSTEMWEB%</a>",'','','','%ATTACHURLPATH%/page.gif');
+left.add(14,10,"<a href=\"%SCRIPTURLPATH{"view"}%/Trash/%HOMETOPIC%\" class=\"foswikiLink\">Trash</a>",'','','','%ATTACHURLPATH%/page.gif');
 document.write(left);
 //-->
 </script></div>

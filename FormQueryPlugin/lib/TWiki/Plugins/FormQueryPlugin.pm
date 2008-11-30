@@ -77,7 +77,7 @@ sub _moan {
     my $whinge = $moan || 'on';
     $whinge = $attrs->{moan} if defined $attrs->{moan};
     if( lc( $whinge ) eq 'on' ) {
-        return CGI::span({class => 'twikiAlert'},
+        return CGI::span({class => 'foswikiAlert'},
                          '%<nop>'.$tag.'{'.$attrs->stringify()."}% :$mess");
     }
     return '';

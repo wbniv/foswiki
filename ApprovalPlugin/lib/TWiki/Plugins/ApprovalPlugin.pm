@@ -626,7 +626,7 @@ sub _Return {
     my( $text, $error ) = @_;
 
     my $out = '<span class="ApprovalPluginMessage ';
-    $out .= 'twikiAlert' if $error;
+    $out .= 'foswikiAlert' if $error;
     $out .= '">';
     $out .= " %SYSTEMWEB%.$pluginName - $text";
     $out .= '</span>';

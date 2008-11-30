@@ -36,7 +36,7 @@ Existing tags: %TAGME{ tpaction="showalltags" format="[[%SCRIPTURL{view}%/%SYSTE
 %STOPINCLUDE%
 
 %BR%
-<span class="twikiGrayText">Other tag options: [[TagMeViewAllTags][View all tags]], [[TagMeViewMyTags][View my tags]], [[TagMeSearch][Search tags]]</span>
+<span class="foswikiGrayText">Other tag options: [[TagMeViewAllTags][View all tags]], [[TagMeViewMyTags][View my tags]], [[TagMeSearch][Search tags]]</span>
 
 %STARTSECTION{"cleanTagJavascript"}%
 <script language="javascript" type="text/javascript">

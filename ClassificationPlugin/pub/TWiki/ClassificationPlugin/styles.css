@@ -8,7 +8,7 @@
 .clsBrowser a {
   text-decoration:none;
 }
-.clsBrowser a.twikiCurrentTopicLink {
+.clsBrowser a.foswikiCurrentTopicLink {
   color:red;
 }
 .clsBrowser .treeview li { 
@@ -103,7 +103,7 @@
 .clsTagCloud .typed {
   background:pink;
 }
-.clsCategoryFactory .twikiFirstCol {
+.clsCategoryFactory .foswikiFirstCol {
   width:100px;
 }
 

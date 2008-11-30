@@ -70,14 +70,14 @@ The =%<nop>NETGREP{...}%= variable gets expanded to the content pulled from an U
 
 <p>
 	</p><table border="1" cellpadding="0" cellspacing="1">
- <tbody><tr><th class="twikiFirstCol" bgcolor="#99cccc"><a href="http://www.open-organizations.org/view/TWiki/NetgrepPlugin?sortcol=0&amp;table=5&amp;up=0#sorted_table" title="Sort by this column"> NETGREP Plugin Error</a> </th></tr>
- <tr><td class="twikiFirstCol" bgcolor="#ffffff"> <a class="twikiLink" href="http://www.open-organizations.org/view/TWiki/NetgrepPlugin">NetgrepPlugin</a>: href parameter (source) is missing </td></tr>
+ <tbody><tr><th class="foswikiFirstCol" bgcolor="#99cccc"><a href="http://www.open-organizations.org/view/TWiki/NetgrepPlugin?sortcol=0&amp;table=5&amp;up=0#sorted_table" title="Sort by this column"> NETGREP Plugin Error</a> </th></tr>
+ <tr><td class="foswikiFirstCol" bgcolor="#ffffff"> <a class="foswikiLink" href="http://www.open-organizations.org/view/TWiki/NetgrepPlugin">NetgrepPlugin</a>: href parameter (source) is missing </td></tr>
  </tbody></table>
 <p>
 </p><p>
 	</p><table border="1" cellpadding="0" cellspacing="1">
- <tbody><tr><th class="twikiFirstCol" bgcolor="#99cccc"><a href="http://www.open-organizations.org/view/TWiki/NetgrepPlugin?sortcol=0&amp;table=6&amp;up=0#sorted_table" title="Sort by this column"> NETGREP Plugin Error</a> </th></tr>
- <tr><td class="twikiFirstCol" bgcolor="#ffffff"> <a class="twikiLink" href="http://www.open-organizations.org/view/TWiki/NetgrepPlugin">NetgrepPlugin</a>: filter parameter is missing </td></tr>
+ <tbody><tr><th class="foswikiFirstCol" bgcolor="#99cccc"><a href="http://www.open-organizations.org/view/TWiki/NetgrepPlugin?sortcol=0&amp;table=6&amp;up=0#sorted_table" title="Sort by this column"> NETGREP Plugin Error</a> </th></tr>
+ <tr><td class="foswikiFirstCol" bgcolor="#ffffff"> <a class="foswikiLink" href="http://www.open-organizations.org/view/TWiki/NetgrepPlugin">NetgrepPlugin</a>: filter parameter is missing </td></tr>
  </tbody></table>
 <p>
 

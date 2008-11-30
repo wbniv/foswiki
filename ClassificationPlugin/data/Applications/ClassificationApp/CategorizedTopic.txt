@@ -31,11 +31,11 @@ See also: CategorizedTopicTemplate, ClassifiedTopic, TaggedTopic
 <input type="hidden" name="Category" value="%IFDEFINED{"%CAT%" then="%CAT%" else="TopCategory"}%" />
 <table>
 <tr>
-  <th class="twikiFirstCol">Name:</th>
+  <th class="foswikiFirstCol">Name:</th>
   <td><input class="twikiInputField" type="text" name="topic" size="40" /></td>
 </tr>
 <tr>
-  <th class="twikiFirstCol">&nbsp;</th>
+  <th class="foswikiFirstCol">&nbsp;</th>
   <td style="padding-top:1em">
     <input type="submit" class="twikiSubmit natOkButton" value="Submit" />
     <input type="reset" class="twikiButton natCancelButton" value="Reset" />

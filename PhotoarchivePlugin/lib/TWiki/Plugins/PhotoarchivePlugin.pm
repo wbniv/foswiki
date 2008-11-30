@@ -398,12 +398,12 @@ sub getDescriptedContent
 		# image on the right
 		if ( ($i % 2) == 0 )
 		{
-			$content .= qq{<tr>\n<td align="left">$pheader->[$i]</td>\n<td align="center"><a href="?PhotoarchivePlugin_file=$pfile->[$i]&PhotoarchivePlugin_page=$virt_page&PhotoarchivePlugin_view=detailed" class="twikiLink"><img src="$descripted" alt="image: $pheader->[$i]" title="$pheader->[$i]" $himage_width $himage_height border="0"></a></td>\n</tr>\n};
+			$content .= qq{<tr>\n<td align="left">$pheader->[$i]</td>\n<td align="center"><a href="?PhotoarchivePlugin_file=$pfile->[$i]&PhotoarchivePlugin_page=$virt_page&PhotoarchivePlugin_view=detailed" class="foswikiLink"><img src="$descripted" alt="image: $pheader->[$i]" title="$pheader->[$i]" $himage_width $himage_height border="0"></a></td>\n</tr>\n};
 		}
 		# image on the left
 		else
 		{
-			$content .= qq{<tr>\n<td align="center"><a href="?PhotoarchivePlugin_file=$pfile->[$i]&PhotoarchivePlugin_page=$virt_page&PhotoarchivePlugin_view=detailed" class="twikiLink"><img src="$descripted" alt="image: $pheader->[$i]" title="$pheader->[$i]" $himage_width $himage_height border="0"></a></td>\n<td align="left">$pheader->[$i]</td>\n</tr>\n};
+			$content .= qq{<tr>\n<td align="center"><a href="?PhotoarchivePlugin_file=$pfile->[$i]&PhotoarchivePlugin_page=$virt_page&PhotoarchivePlugin_view=detailed" class="foswikiLink"><img src="$descripted" alt="image: $pheader->[$i]" title="$pheader->[$i]" $himage_width $himage_height border="0"></a></td>\n<td align="left">$pheader->[$i]</td>\n</tr>\n};
 		}
 
 	}
@@ -415,7 +415,7 @@ sub getDescriptedContent
 	if ( $pageback == 1 )
 	{
 		$pageback = $page - 1;
-		$content .= qq(<a href="?PhotoarchivePlugin_page=$pageback&PhotoarchivePlugin_view=descripted" class="twikiLink">&lt;- back</a>);
+		$content .= qq(<a href="?PhotoarchivePlugin_page=$pageback&PhotoarchivePlugin_view=descripted" class="foswikiLink">&lt;- back</a>);
 	}
 	else
 	{
@@ -425,7 +425,7 @@ sub getDescriptedContent
 	if ( $pagenext == 1 )
 	{
 		$pagenext = $page + 1;
-		$content .= qq(<a href="?PhotoarchivePlugin_page=$pagenext&PhotoarchivePlugin_view=descripted" class="twikiLink">next -&gt;</a>);
+		$content .= qq(<a href="?PhotoarchivePlugin_page=$pagenext&PhotoarchivePlugin_view=descripted" class="foswikiLink">next -&gt;</a>);
 	}
 	else
 	{
@@ -433,7 +433,7 @@ sub getDescriptedContent
 	}
 	$content .= qq(</div>);
 
-	$content = qq(<br />\n<div align="center"><a href="?PhotoarchivePlugin_page=$virt_page&PhotoarchivePlugin_view=thumbs" class="twikiLink">thumbnails</a> &nbsp;&nbsp;&nbsp; descriptions &nbsp;&nbsp;&nbsp; <a href="?PhotoarchivePlugin_page=$virt_page&PhotoarchivePlugin_view=detailed" class="twikiLink">details</a></div>\n<br />\n).$content;
+	$content = qq(<br />\n<div align="center"><a href="?PhotoarchivePlugin_page=$virt_page&PhotoarchivePlugin_view=thumbs" class="foswikiLink">thumbnails</a> &nbsp;&nbsp;&nbsp; descriptions &nbsp;&nbsp;&nbsp; <a href="?PhotoarchivePlugin_page=$virt_page&PhotoarchivePlugin_view=detailed" class="foswikiLink">details</a></div>\n<br />\n).$content;
 
 	return $content;
 
@@ -575,7 +575,7 @@ sub getDetailedContent
 	}
 
 	$content .= qq(<br />\n<table border="0" align="center" width="70%" cellpadding="$detailedspace">\n<tr>\n
-		<td align="center"><h2>$pheader->[$array_counter]</h2></td></tr>\n<tr><td align="center"><a href="$attachment_url$pfile->[$array_counter]" target="Photoarchive" class="twikiLink">\n
+		<td align="center"><h2>$pheader->[$array_counter]</h2></td></tr>\n<tr><td align="center"><a href="$attachment_url$pfile->[$array_counter]" target="Photoarchive" class="foswikiLink">\n
 		<img src="$detailed" border="0" alt="image: $pheader->[$array_counter]" title="$pheader->[$array_counter]"></a></td></tr>\n<tr><td>$pdescription->[$array_counter]</td></tr>\n</table>\n);
 
 	$content .= qq(<br /><div align="center">);
@@ -583,13 +583,13 @@ sub getDetailedContent
 	if ( $array_counter != 0 )
 	{
 		$array_counter--;
-		$content .= qq(<a href="?PhotoarchivePlugin_file=$pfile->[$array_counter]&PhotoarchivePlugin_page=$page&PhotoarchivePlugin_view=detailed" class="twikiLink">&lt;- back</a> --- );
+		$content .= qq(<a href="?PhotoarchivePlugin_file=$pfile->[$array_counter]&PhotoarchivePlugin_page=$page&PhotoarchivePlugin_view=detailed" class="foswikiLink">&lt;- back</a> --- );
 		$array_counter++;
 	}
 	elsif ( $page >= 2 )
 	{
 		$pageback = $page - 1;
-		$content .= qq(<a href="?PhotoarchivePlugin_nextfile=last&PhotoarchivePlugin_page=$pageback&PhotoarchivePlugin_view=detailed" class="twikiLink">&lt;- back</a> --- );
+		$content .= qq(<a href="?PhotoarchivePlugin_nextfile=last&PhotoarchivePlugin_page=$pageback&PhotoarchivePlugin_view=detailed" class="foswikiLink">&lt;- back</a> --- );
 	}
 	else
 	{
@@ -599,13 +599,13 @@ sub getDetailedContent
 	if ( $array_counter != $#image_file  )
 	{
 		$array_counter++;
-		$content .= qq(<a href="?PhotoarchivePlugin_file=$pfile->[$array_counter]&PhotoarchivePlugin_page=$page&PhotoarchivePlugin_view=detailed" class="twikiLink">next -&gt;</a>);
+		$content .= qq(<a href="?PhotoarchivePlugin_file=$pfile->[$array_counter]&PhotoarchivePlugin_page=$page&PhotoarchivePlugin_view=detailed" class="foswikiLink">next -&gt;</a>);
 		$array_counter--;
 	}
 	elsif ( $pagenext == 1 )
 	{
 		$pagenext = $page + 1;
-		$content .= qq(<a href="?PhotoarchivePlugin_nextfile=first&PhotoarchivePlugin_page=$pagenext&PhotoarchivePlugin_view=detailed" class="twikiLink">next -&gt;</a>);
+		$content .= qq(<a href="?PhotoarchivePlugin_nextfile=first&PhotoarchivePlugin_page=$pagenext&PhotoarchivePlugin_view=detailed" class="foswikiLink">next -&gt;</a>);
 	}
 	else
 	{
@@ -614,7 +614,7 @@ sub getDetailedContent
 		
 	$content .= qq(</div>);
 
-	$content = qq(<br />\n<div align="center"><a href="?PhotoarchivePlugin_page=$page&PhotoarchivePlugin_view=thumbs" class="twikiLink">thumbnails</a> &nbsp;&nbsp;&nbsp; <a href="?PhotoarchivePlugin_page=$page&PhotoarchivePlugin_view=descripted" class="twikiLink">descriptions</a> &nbsp;&nbsp;&nbsp; details</div>\n<br />\n).$content;
+	$content = qq(<br />\n<div align="center"><a href="?PhotoarchivePlugin_page=$page&PhotoarchivePlugin_view=thumbs" class="foswikiLink">thumbnails</a> &nbsp;&nbsp;&nbsp; <a href="?PhotoarchivePlugin_page=$page&PhotoarchivePlugin_view=descripted" class="foswikiLink">descriptions</a> &nbsp;&nbsp;&nbsp; details</div>\n<br />\n).$content;
 
 	return $content;
 
@@ -744,7 +744,7 @@ sub getThumbsContent
 
 		$row_counter++;
 		
-		$content .= qq{<td align="center"><a href="?PhotoarchivePlugin_file=$pfile->[$i]&PhotoarchivePlugin_page=$page&PhotoarchivePlugin_view=detailed" class="twikiLink"><img src="$thumb" alt="image: $pheader->[$i]" title="$pheader->[$i]" $himage_width $himage_height border="0"></a></td>\n};
+		$content .= qq{<td align="center"><a href="?PhotoarchivePlugin_file=$pfile->[$i]&PhotoarchivePlugin_page=$page&PhotoarchivePlugin_view=detailed" class="foswikiLink"><img src="$thumb" alt="image: $pheader->[$i]" title="$pheader->[$i]" $himage_width $himage_height border="0"></a></td>\n};
 
 	}
 	
@@ -755,7 +755,7 @@ sub getThumbsContent
 	if ( $pageback == 1 )
 	{
 		$pageback = $page - 1;
-		$content .= qq(<a href="?PhotoarchivePlugin_page=$pageback&PhotoarchivePlugin_view=thumbs" class="twikiLink">&lt;- back</a>);
+		$content .= qq(<a href="?PhotoarchivePlugin_page=$pageback&PhotoarchivePlugin_view=thumbs" class="foswikiLink">&lt;- back</a>);
 	}
 	else
 	{
@@ -765,7 +765,7 @@ sub getThumbsContent
 	if ( $pagenext == 1 )
 	{
 		$pagenext = $page + 1;
-		$content .= qq(<a href="?PhotoarchivePlugin_page=$pagenext&PhotoarchivePlugin_view=thumbs" class="twikiLink">next -&gt;</a>);
+		$content .= qq(<a href="?PhotoarchivePlugin_page=$pagenext&PhotoarchivePlugin_view=thumbs" class="foswikiLink">next -&gt;</a>);
 	}
 	else
 	{
@@ -773,7 +773,7 @@ sub getThumbsContent
 	}
 	$content .= qq(</div>);
 
-	$content = qq(<br />\n<div align="center">thumbnails &nbsp;&nbsp;&nbsp; <a href="?PhotoarchivePlugin_page=$page&PhotoarchivePlugin_view=descripted" class="twikiLink">descriptions</a> &nbsp;&nbsp;&nbsp; <a href="?PhotoarchivePlugin_page=$page&PhotoarchivePlugin_view=detailed" class="twikiLink">details</a></div>\n<br />\n).$content;
+	$content = qq(<br />\n<div align="center">thumbnails &nbsp;&nbsp;&nbsp; <a href="?PhotoarchivePlugin_page=$page&PhotoarchivePlugin_view=descripted" class="foswikiLink">descriptions</a> &nbsp;&nbsp;&nbsp; <a href="?PhotoarchivePlugin_page=$page&PhotoarchivePlugin_view=detailed" class="foswikiLink">details</a></div>\n<br />\n).$content;
 
 	return $content;
 

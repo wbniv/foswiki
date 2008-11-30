@@ -149,7 +149,7 @@ sub handleShow {
   writeDebug("called handleShow");
 
   my $header = $params->{header} || 
-    '<span class="twikiAlert">$count</span> ping(s) found<p/>'.
+    '<span class="foswikiAlert">$count</span> ping(s) found<p/>'.
     '<table class="twikiTable" width="100%">';
   my $format = $params->{format} || 
     '<tr><th>$index</th><th>$date</th></tr>'.
@@ -301,7 +301,7 @@ sub expandVariables {
 
 ###############################################################################
 sub inlineWarning {
-  return '<span class="twikiAlert">'.$_[0].'</span>';
+  return '<span class="foswikiAlert">'.$_[0].'</span>';
 }
 
 1;

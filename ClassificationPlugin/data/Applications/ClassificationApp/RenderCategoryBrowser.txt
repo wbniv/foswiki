@@ -39,7 +39,7 @@
 ~~~         <img src='$icon' alt='$percntENCODE{$title}$percnt'/>
 ~~~         $title</a>
 ~~~       $percntIFDEFINED{\"$cyclic\" as=\"1\" 
-~~~         then=\" <span class='twikiAlert'>C</span>\"
+~~~         then=\" <span class='foswikiAlert'>C</span>\"
 ~~~       }$percnt
 ~~~     $percntIFDEFINED{\"$leafs \" as=\"0 \" then=\" \" else=\" ($leafs)\"}$percnt
 ~~~     $percntIFDEFINED{\"$subcats\" as=\"0\" 

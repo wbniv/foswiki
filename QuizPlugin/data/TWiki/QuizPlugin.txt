@@ -15,7 +15,7 @@ The sort of quizzes we need are simple; multiple choice, or questions answerable
 
 =%<nop>QUIZ{"Why is the sea boiling hot?" type="select" choices="It isn't;Just because;42" correct="Just because"}%=
 
-<div class='twikiAlert'> Q1: Why is the sea boiling hot?</div>
+<div class='foswikiAlert'> Q1: Why is the sea boiling hot?</div>
 <input type='radio' name='field' value='It isn't'> It isn't <br />
 <input type='radio' name='field' value='Just because'> Just because <br />
 <input type='radio' name='field' value='42'> 42 <br />
@@ -25,7 +25,7 @@ The sort of quizzes we need are simple; multiple choice, or questions answerable
 <p />
 =%<nop>QUIZ{"Which of the following are English Counties?" type="select" choices="Peckham;Cheshire;Argyll;Wisconsin;Cornwall" correct="Cheshire;Cornwall"}%=
 
-<div class='twikiAlert'> Q2: Which of the following are English Counties?</div>
+<div class='foswikiAlert'> Q2: Which of the following are English Counties?</div>
 <input type='checkbox' name='field' value='Peckham'> Peckham <br />
 <input type='checkbox' name='field' value='Cheshire'> Cheshire <br />
 <input type='checkbox' name='field' value='Argyll'> Argyll <br />
@@ -36,7 +36,7 @@ The sort of quizzes we need are simple; multiple choice, or questions answerable
 <input type=button value="Show Solutions" onClick="Cheat2()">
 <p />
 =%<nop>QUIZ{"How long is a yard?" type="string" correct="3.5 pints" jump="AccessControl"}%=
-<div class='twikiAlert'> Q3: How long is a yard?</div>
+<div class='foswikiAlert'> Q3: How long is a yard?</div>
 <input type='text' name='field' size='9' maxlength='9'>  <br />
 </td></tr></table><input type=button value="Submit" onClick="Submit3()">
 <input type=button value="Show Solutions" onClick="Cheat3()">

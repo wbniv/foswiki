@@ -197,7 +197,7 @@ sub _definedLang {
 sub _returnError {
     my( $text ) = @_;
 
-    my $out = '<span class="twikiAlert">';
+    my $out = '<span class="foswikiAlert">';
     $out .= "%SYSTEMWEB%.$pluginName - $text";
     $out .= '</span>';
 

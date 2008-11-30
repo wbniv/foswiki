@@ -152,7 +152,7 @@ sub getTextPattern {
 sub formatTable {
     my ( $this, $entries, $theSeparator, $newLine, $sr, $rc, $topic, $web, $user, $installWeb ) = @_;
 	
-    return CGI::span({class=>'twikiAlert'},'Empty table')
+    return CGI::span({class=>'foswikiAlert'},'Empty table')
       if ( $entries->size() == 0 );
 
     my $mixedAlpha = $TWiki::regex{mixedAlpha};
@@ -302,7 +302,7 @@ sub _expandField {
 	if ( !defined( $ret )) {
         if ( $this->{help_undefined} ) {
             $ret = CGI::span(
-                {class=>'twikiAlert'},
+                {class=>'foswikiAlert'},
                 "Undefined field <nop>$vbl").
                   " (defined fields are: ".
                     CGI::code(join( ', <nop>',
@@ -321,7 +321,7 @@ sub _expandTable {
     if ( !defined( $table )) {
         if ( $this->{help_undefined} ) {
             return CGI::span(
-                {class=>'twikiAlert'},
+                {class=>'foswikiAlert'},
                 "Undefined field <nop>$vbl"),
                   " (defined fields are: ".
                     CGI::code(join( ', <nop>',
@@ -350,7 +350,7 @@ sub toTable {
 
     my ( $this, $entries, $sr, $rc, $topic, $web, $user, $installWeb ) = @_;
 	
-    return CGI::span({class=>'twikiAlert'},'Empty table')
+    return CGI::span({class=>'foswikiAlert'},'Empty table')
       if ( $entries->size() == 0 );
 
     # Initialize SpreadSheetPlugin

@@ -72,7 +72,7 @@
     <td class="natAttachmentInfo">
       <div class="natAttachmentName"><a href="%PUBURL%/%WEB%/%TOPIC%/%A_FILE%">%A_FILE%</a> (%A_SIZE%) </div>
       %MAKETEXT{"version [_1] uploaded by [_2] on [_3]" args="%A_REV%,%A_USER%, %A_DATE%"}%
-      %IFDEFINED{"%A_ATTRS%" as="h" then=", <span class='twikiAlert'>hidden</span>"}%
+      %IFDEFINED{"%A_ATTRS%" as="h" then=", <span class='foswikiAlert'>hidden</span>"}%
       <div class="natAttachmentComment"><noautolink>%A_COMMENT%</noautolink></div>
       %TMPL:P{"ATTACH:editor"}% 
     </td>

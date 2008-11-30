@@ -46,7 +46,7 @@ Opening in a new window (with options):
 
 Crazy CSS use:
 	* *Code:* =[<nop>[<nop>WebHome][Crazy Link!][color:green|background-color:#FFF0A0|border:3px dotted #FFC030|text-decoration:none|letter-spacing:10px|padding:4px|font-size:15px|font-weight:900]]=
-	* *Expand to:* <a  style="color:green; background-color:#FFF0A0; border:3px dotted #FFC030; text-decoration:none; letter-spacing:10px; padding:4px; font-size:15px; font-weight:900; " class="twikiLink" href="/twiki/bin/view/TWiki/WebHome">Crazy Link!</a>
+	* *Expand to:* <a  style="color:green; background-color:#FFF0A0; border:3px dotted #FFC030; text-decoration:none; letter-spacing:10px; padding:4px; font-size:15px; font-weight:900; " class="foswikiLink" href="/twiki/bin/view/TWiki/WebHome">Crazy Link!</a>
 		* *If installed:* [[WebHome][Crazy Link!][color:green|background-color:#FFF0A0|border:3px dotted #FFC030|text-decoration:none|letter-spacing:10px|padding:4px|font-size:15px|font-weight:900]]
 
 

@@ -227,13 +227,13 @@ This code will show the button when !JavaScript is off:
 Use parameter =class= to style the content div or class:
 
 <verbatim>
-%TWISTY{mode="div" showlink="Show..." hidelink="Hide" class="twikiHelp"}%
+%TWISTY{mode="div" showlink="Show..." hidelink="Hide" class="foswikiHelp"}%
 my twisty content
 %ENDTWISTY%
 </verbatim>
 
 Generates: %BR%
-%TWISTY{mode="div" showlink="Show..." hidelink="Hide" class="twikiHelp"}%
+%TWISTY{mode="div" showlink="Show..." hidelink="Hide" class="foswikiHelp"}%
 %GREEN% my twisty content %ENDCOLOR%
 %ENDTWISTY%
 

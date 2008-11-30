@@ -44,7 +44,7 @@ Example:
 %GOOGLEAJAXSEARCH%
 <div class="googleAjaxSearch">
 <strong>Search %GOOGLESEARCHWEB% </strong><input class="twikiInputField" size="55" id="googleAjaxSearchInputElement" value=""/>
-<span class="twikiGrayText twikiSmallish">(results by Google !AJAX - Beta)</span>
+<span class="foswikiGrayText twikiSmallish">(results by Google !AJAX - Beta)</span>
 <div id="googleAjaxSearchControl"></div>
 </div><!--//googleAjaxSearch-->
 </verbatim>

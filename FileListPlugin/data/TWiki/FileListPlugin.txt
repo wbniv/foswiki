@@ -73,7 +73,7 @@ These parameters can be used in the =header= and =footer= tags:
 %FILELIST{
 web="%SYSTEMWEB%"
 topic="FileAttachment"
-format="| $fileIcon | [[$fileUrl][$fileName]] ($fileSize) | Submitted by $fileUser on $fileDate | $fileComment |<span class='twikiGrayText'>[[$fileActionUrl][manage]]</span> |"
+format="| $fileIcon | [[$fileUrl][$fileName]] ($fileSize) | Submitted by $fileUser on $fileDate | $fileComment |<span class='foswikiGrayText'>[[$fileActionUrl][manage]]</span> |"
 }%
 </verbatim>
 
@@ -82,7 +82,7 @@ Output (if installed):
 %FILELIST{
 web="%SYSTEMWEB%"
 topic="FileAttachment"
-format="| $fileIcon | [[$fileUrl][$fileName]] ($fileSize) | Submitted by $fileUser on $fileDate | $fileComment |<span class='twikiGrayText'>[[$fileActionUrl][manage]]</span> |"
+format="| $fileIcon | [[$fileUrl][$fileName]] ($fileSize) | Submitted by $fileUser on $fileDate | $fileComment |<span class='foswikiGrayText'>[[$fileActionUrl][manage]]</span> |"
 }%
 
 ---+++ Image output

@@ -242,19 +242,19 @@ sub _print_message {
 
     if( $queryContext ) {
         if( $message =~ s/^\!// ) {
-            $message = CGI::h4( CGI::span( { class=>'twikiAlert' }, $message ));
+            $message = CGI::h4( CGI::span( { class=>'foswikiAlert' }, $message ));
         }
         elsif( $message =~ /^[A-Z]/ ) {
             # SMELL: does not support internationalised script messages
             $message =~ s/^([A-Z].*)/CGI::h3($1)/ge;
         }
         else {
-            $message =~ s/(\*\*\*.*)/CGI::span( { class=>'twikiAlert' }, $1 )/ge;
+            $message =~ s/(\*\*\*.*)/CGI::span( { class=>'foswikiAlert' }, $1 )/ge;
             $message =~ s/^\s\s/&nbsp;&nbsp;/go;
             $message =~ s/^\s/&nbsp;/go;
             $message .= CGI::br();
         }
-        $message =~ s/==([A-Z]*)==/'=='.CGI::span( { class=>'twikiAlert' }, $1 ).'=='/ge;
+        $message =~ s/==([A-Z]*)==/'=='.CGI::span( { class=>'foswikiAlert' }, $1 ).'=='/ge;
     }
     else {
         $message =~ s/&nbsp;/ /go;

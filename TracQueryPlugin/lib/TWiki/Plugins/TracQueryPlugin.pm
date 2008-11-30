@@ -107,7 +107,7 @@ sub handleQuery
 
   my $res = performQuery($attributes);
   my $text = formatResult( $res, $format, $separator, $newline );
-  return CGI::span({class=>'twikiAlert'},'Query returned no results')
+  return CGI::span({class=>'foswikiAlert'},'Query returned no results')
     unless $text;
   return $text;
 

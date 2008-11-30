@@ -178,11 +178,11 @@ needs the Foswiki:Extensions/TwistyPlugin and the Foswiki:Extensions/IfDefinedPl
 %~~ FLEXWEBLIST{
 ~~~   exclude="TestCases|Trash.*"
 ~~~   format="$indent   * <span class=\"$marker\"> $web </span>$n"
-~~~   marker="twikiAlert"
+~~~   marker="foswikiAlert"
 ~~~   selection="%BASEWEB%"
 ~~~ }%
 </verbatim>
-%FLEXWEBLIST{exclude="TestCases|Trash.*" format="$indent   * <span class=\"$marker\"> $web </span>$n" marker="twikiAlert" selection="%BASEWEB%"}%
+%FLEXWEBLIST{exclude="TestCases|Trash.*" format="$indent   * <span class=\"$marker\"> $web </span>$n" marker="foswikiAlert" selection="%BASEWEB%"}%
 
 ---+++ Using markerformat
 <verbatim>
@@ -190,8 +190,8 @@ needs the Foswiki:Extensions/TwistyPlugin and the Foswiki:Extensions/IfDefinedPl
 ~~~   exclude="TestCases|Trash.*"
 ~~~   format="$indent   * [[$web.%HOMETOPIC%][$name]]$n"
 ~~~   markerformat="$indent   * 
-~~~     [[$web.%HOMETOPIC%][<span class=\"twikiAlert\">$name</span>]]$n"
+~~~     [[$web.%HOMETOPIC%][<span class=\"foswikiAlert\">$name</span>]]$n"
 ~~~   selection="%BASEWEB%"
 ~~~ }%
 </verbatim>
-%FLEXWEBLIST{exclude="TestCases|Trash.*" format="$indent   * [[$web.%HOMETOPIC%][$name]]$n" markerformat="$indent   * [[$web.%HOMETOPIC%][<span class=\"twikiAlert\">$name</span>]]$n" selection="%BASEWEB%"}% 
+%FLEXWEBLIST{exclude="TestCases|Trash.*" format="$indent   * [[$web.%HOMETOPIC%][$name]]$n" markerformat="$indent   * [[$web.%HOMETOPIC%][<span class=\"foswikiAlert\">$name</span>]]$n" selection="%BASEWEB%"}% 

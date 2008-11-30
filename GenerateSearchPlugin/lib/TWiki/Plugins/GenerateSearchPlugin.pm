@@ -134,7 +134,7 @@ sub _GENERATESEARCH {
 sub generate_interactive_search {
   my( $searchwebs, $topicregex, $webName, $form, $title, $message, $size, $init, $all, $showlist, $filterlist ) = @_;
 
-  my $twikiForm = new TWiki::Form($TWiki::Plugins::SESSION, $webName, $form );
+  my $foswikiForm = new TWiki::Form($TWiki::Plugins::SESSION, $webName, $form );
 
   my $result = "<form method=POST action=\"%SCRIPTURL{\"rest\"}%/GenerateSearchPlugin/search\">";
   $result .= "<input type=\"hidden\" name=\"topicregex\" value=\"$topicregex\" />";
@@ -151,7 +151,7 @@ sub generate_interactive_search {
   $result .= "<tr><td>Field</td><td>Show</td><td>Filter</td></tr>";
 
   my $ct = 0;
-  foreach my $fieldDef ( @{$twikiForm->{fields}}  ) {
+  foreach my $fieldDef ( @{$foswikiForm->{fields}}  ) {
     my $fieldName = $fieldDef->{name};
     my $name = $fieldName;
     my $title = $fieldDef->{title};
@@ -249,8 +249,8 @@ sub search {
 sub generate_search() {
   my ($searchWeb, $webName, $topic, $query, $session, $form, $heading, $message, $topicregex, $init, $allshow, $allfilter, $showlist, $filterlist) = @_;
 
-  my $twikiForm = new TWiki::Form($TWiki::Plugins::SESSION,  $webName, $form );
-  my @fieldsInfo = @{$twikiForm->{fields}};
+  my $foswikiForm = new TWiki::Form($TWiki::Plugins::SESSION,  $webName, $form );
+  my @fieldsInfo = @{$foswikiForm->{fields}};
 
   my $header = "|*View, edit:*|";
   my $filter = "|*<input type=\"submit\" value=\"Filter\" />*|";

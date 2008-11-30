@@ -22,7 +22,7 @@
 
 %{ A basic row definition, for attachment table and attach screen }%
 %TMPL:DEF{ATTACH:files:row(basic)}%<div class="twikiFormStep genericFileType fileType%A_EXT%">
-<input type="radio" class="twikiRadioButton" id="<nop>Picture%A_FILE%" name="Picture" value="%A_FILE%" %IF{" '%FORMFIELD{"Picture" topic="%BASEWEB%.%BASETOPIC%"}%' = '%A_FILE%' " then="checked=\"checked\"" else=""}% />&nbsp;<span class="twikiImage">%INCLUDE{"PersonalInfoLayoutModules" section="image" imgName="%A_FILE%" imgWeb="%BASEWEB%" imgTopic="%BASETOPIC%" imgWidth="120"}%</span><span class="twikiSmallish twikiGrayText userPictureActions">%A_FILE% <a href="%SCRIPTURLPATH{"rename"}%/%WEB%/%TOPIC%?template=PersonalInfoPictureDeleteView&attachment=%ENCODE{"%A_FILE%"}%" rel='nofollow'>delete</a></span></div>%TMPL:END%
+<input type="radio" class="twikiRadioButton" id="<nop>Picture%A_FILE%" name="Picture" value="%A_FILE%" %IF{" '%FORMFIELD{"Picture" topic="%BASEWEB%.%BASETOPIC%"}%' = '%A_FILE%' " then="checked=\"checked\"" else=""}% />&nbsp;<span class="twikiImage">%INCLUDE{"PersonalInfoLayoutModules" section="image" imgName="%A_FILE%" imgWeb="%BASEWEB%" imgTopic="%BASETOPIC%" imgWidth="120"}%</span><span class="twikiSmallish foswikiGrayText userPictureActions">%A_FILE% <a href="%SCRIPTURLPATH{"rename"}%/%WEB%/%TOPIC%?template=PersonalInfoPictureDeleteView&attachment=%ENCODE{"%A_FILE%"}%" rel='nofollow'>delete</a></span></div>%TMPL:END%
 
 %{ Footer for topic attachment table }%
 %TMPL:DEF{ATTACH:files:footer}%</div><!--/twikiFormSteps--></div><!--/pIPictures-->

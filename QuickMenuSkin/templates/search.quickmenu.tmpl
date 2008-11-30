@@ -17,8 +17,8 @@
 <table class=SearchResults width=100% cellspacing=0 cellpadding=2>
 <tr><th align=left>Results from <nop>%WEB% web<th colspan=2 align=right>%MAKETEXT{"retrieved at [_1]" args="%DISPLAYTIME{"$hour:$min ($tz)"}%"}%</tr>
 %REPEAT%
-<tr><td><a href="%SCRIPTURLPATH{"view"}%/%WEB%/%TOPICNAME%"><b>%TOPICNAME%</b></a><td><a href="%SCRIPTURLPATH{"rdiff"}%/%WEB%/%TOPICNAME%" rel='nofollow'>%TIME%</a> <span class=twikiGrayText>- %REVISION%</span><td align=right> %AUTHOR%</tr>
-<tr><td colspan=3 class=twikiSummary>%TEXTHEAD%</tr>%REPEAT%%TMPL:END%
+<tr><td><a href="%SCRIPTURLPATH{"view"}%/%WEB%/%TOPICNAME%"><b>%TOPICNAME%</b></a><td><a href="%SCRIPTURLPATH{"rdiff"}%/%WEB%/%TOPICNAME%" rel='nofollow'>%TIME%</a> <span class=foswikiGrayText>- %REVISION%</span><td align=right> %AUTHOR%</tr>
+<tr><td colspan=3 class=foswikiSummary>%TEXTHEAD%</tr>%REPEAT%%TMPL:END%
 
 %TMPL:DEF{"content"}%
 <div class=twikiTopic>

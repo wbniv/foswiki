@@ -168,7 +168,7 @@ sub _fixHtml {
    #$html =~ s/&brvbar;/|/g;
 
    # convert twikiNewLinks to normal text
-   $html =~ s/<span class="twikiNewLink".*?>([\w\s]+)<.*?\/span>/$1/gs;
+   $html =~ s/<span class="foswikiNewLink".*?>([\w\s]+)<.*?\/span>/$1/gs;
 
    # Fix the image tags to use hard-disk path rather than relative url paths for
    # images.  Needed if wiki requires authentication like SSL client certifcates.

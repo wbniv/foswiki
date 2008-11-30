@@ -126,7 +126,7 @@ link in your email or enter the code in the box below to activate your membershi
 
 %TMPL:END%
 %TMPL:DEF{"missing_fields"}%<!-- better dialog, uses goback def -->
----+++ %MAKETEXT{"Missing Fields =<span class=\"twikiAlert\">**</span>="}%
+---+++ %MAKETEXT{"Missing Fields =<span class=\"foswikiAlert\">**</span>="}%
 <noautolink>
 %MAKETEXT{"The required field [_1] was not filled in." args="*%PARAM1%*"}%
 </noautolink>
@@ -219,7 +219,7 @@ link in your email or enter the code in the box below to activate your membershi
 ---+++ %MAKETEXT{"Topic Save Error"}%
 %MAKETEXT{"Could not save [_1]." args="<nop>%WEB%.%TOPIC%"}%
 
-%MAKETEXT{"The required field =<span class=\"twikiAlert\">**</span>= *[_1]* was not filled in." args="%PARAM1%"}%
+%MAKETEXT{"The required field =<span class=\"foswikiAlert\">**</span>= *[_1]* was not filled in." args="%PARAM1%"}%
 
 %TMPL:P{"goback"}%
 %TMPL:END%

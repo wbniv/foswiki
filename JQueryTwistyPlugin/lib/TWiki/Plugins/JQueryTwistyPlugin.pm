@@ -183,7 +183,7 @@ sub _ENDTWISTYTOGGLE {
     my ( $session, $params, $theTopic, $theWeb ) = @_;
     my $mode = shift @modes;
 
-    return "<span class='twikiAlert'>woops, ordering error: got an ENDTWISTY before seeing a TWISTY</span>"
+    return "<span class='foswikiAlert'>woops, ordering error: got an ENDTWISTY before seeing a TWISTY</span>"
       unless $mode;
 
     my $modeTag = ($mode) ? '</' . $mode . '>' : '';

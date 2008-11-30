@@ -175,7 +175,7 @@ ul.superfish li a:hover,
 ul.superfish li a:active {
   /*background:url(menubg.gif) 0px -128px;*/
 }
-ul.superfish li li a:hover.twikiNewLink,
+ul.superfish li li a:hover.foswikiNewLink,
 ul.superfish li li:hover, 
 ul.superfish li li.sfHover,
 ul.superfish li li a:focus, 
@@ -191,7 +191,7 @@ ul.superfish li ul {
 ul.superfish li ul ul {
   border-top:1px solid #c2c4c4;
 }
-ul.superfish li li a.twikiNewLink,
+ul.superfish li li a.foswikiNewLink,
 ul.superfish li li {
   background:#E9E9EB;
 }
@@ -213,8 +213,8 @@ ul.superfish li.hasSubMenu {
   background-position:bottom right;
 }
 ul.superfish li li.sfHover a,
-ul.superfish li li a:hover.twikiNewLink,
-ul.superfish li li a.twikiNewLink,
+ul.superfish li li a:hover.foswikiNewLink,
+ul.superfish li li a.foswikiNewLink,
 ul.superfish li li a:hover,
 ul.superfish li li a:active,
 ul.superfish li li a:link,

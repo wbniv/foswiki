@@ -127,7 +127,7 @@ sub _WORKFLOWTRANSITION {
     my $cs              = $TOPIC->getState();
 
     unless ($numberOfActions) {
-        return CGI::span( { class => 'twikiAlert' },
+        return CGI::span( { class => 'foswikiAlert' },
             "NO AVAILABLE ACTIONS in state $cs" )
           if $TOPIC->debugging();
         return '';

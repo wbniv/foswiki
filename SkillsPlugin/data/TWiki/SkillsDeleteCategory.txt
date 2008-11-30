@@ -52,7 +52,7 @@ Category to delete: %BR%
 %STOPINCLUDE%
 
 %BR%
-<span class="twikiGrayText">Other skill options: [[SkillsBrowseAll][Browse All Skills]], [[SkillsEditMySkills][Edit My Skills]], [[SkillsSearch][Search Skills]]</span>
+<span class="foswikiGrayText">Other skill options: [[SkillsBrowseAll][Browse All Skills]], [[SkillsEditMySkills][Edit My Skills]], [[SkillsSearch][Search Skills]]</span>
 
 %STARTSECTION{"dialogJavascript"}%
 <script language="javascript" type="text/javascript">

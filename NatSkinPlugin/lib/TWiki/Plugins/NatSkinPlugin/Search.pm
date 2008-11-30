@@ -274,7 +274,7 @@ sub search {
     if (TWiki::isValidTopicName($theSearchString)) { # SMELL
       $text = TWiki::Plugins::NatSkinPlugin::getWebComponent('WebNothingFound', $web);
     } else {
-      $text = '<div class="natSearch twikiAlert">%TMPL:P{"NOTHING_FOUND"}%</div>';
+      $text = '<div class="natSearch foswikiAlert">%TMPL:P{"NOTHING_FOUND"}%</div>';
     }
     $text .= $tmplSearch if $theSearchBox eq 'on';
     $text = TWiki::Func::expandCommonVariables($text, $theSearchString, $web);
@@ -618,9 +618,9 @@ sub makeTopicSummary {
   foreach my $term (@searchTerms) {
     $term = '\b'.$term.'\b' if $this->{keywordSearch};
     if ($this->{ignoreCase}) {
-      $theText =~ s:($term):<span class="twikiAlert">$1</span>:gi;
+      $theText =~ s:($term):<span class="foswikiAlert">$1</span>:gi;
     } else {
-      $theText =~ s:($term):<span class="twikiAlert">$1</span>:g;
+      $theText =~ s:($term):<span class="foswikiAlert">$1</span>:g;
     }
   }
 

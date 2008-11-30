@@ -1042,7 +1042,7 @@ sub createCategory {
 ###############################################################################
 # static
 sub inlineError {
-  return '<span class="twikiAlert">' . $_[0] . '</span>' ;
+  return '<span class="foswikiAlert">' . $_[0] . '</span>' ;
 }
 
 ###############################################################################

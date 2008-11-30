@@ -382,7 +382,7 @@ sub logInfo {
 sub logWarn {
     my ($this, $message) = @_;
     Foswiki::Plugins::PublishPlugin::_display(
-        CGI::span({class=>'twikiAlert'}, $message));
+        CGI::span({class=>'foswikiAlert'}, $message));
     Foswiki::Plugins::PublishPlugin::_display(CGI::br());
     $this->{history} .= "%ORANGE% *WARNING* $message %ENDCOLOR%%BR%\n";
 }
@@ -390,7 +390,7 @@ sub logWarn {
 sub logError {
     my ($this, $message) = @_;
     Foswiki::Plugins::PublishPlugin::_display(
-        CGI::span({class=>'twikiAlert'}, "ERROR: $message"));
+        CGI::span({class=>'foswikiAlert'}, "ERROR: $message"));
     Foswiki::Plugins::PublishPlugin::_display( CGI::br());
     $this->{history} .= "%RED% *ERROR* $message %ENDCOLOR%%BR%\n";
 }
@@ -552,7 +552,7 @@ sub publishTopic {
     $tmpl =~ s/<base[^>]+>.*?<\/base>//i;
 
     # Clean up unsatisfied WikiWords.
-    $tmpl =~ s/<span class="twikiNewLink">(.*?)<\/span>/
+    $tmpl =~ s/<span class="foswikiNewLink">(.*?)<\/span>/
       $this->_handleNewLink($1)/ge;
 
     # Copy files from pub dir to rsrc dir in static dir.

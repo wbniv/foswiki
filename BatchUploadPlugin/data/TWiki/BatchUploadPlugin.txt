@@ -54,7 +54,7 @@ Versions 1.2 and above include the ability to choose between attaching uploaded 
    * =templates/attach.pattern.tmpl= (=attachform= section):
 <blockquote>
 <verbatim>
- <input type="checkbox" class="twikiCheckbox" id="batchupload" checked name="batchupload" %BATCHUPLOADCHECKBOX% /><label for="batchupload">%MAKETEXT{"Batch upload for zip file"}%</label> <span class="twikiGrayText">%MAKETEXT{"Extracts and uploads individual file in zip archive."}%</span>
+ <input type="checkbox" class="twikiCheckbox" id="batchupload" checked name="batchupload" %BATCHUPLOADCHECKBOX% /><label for="batchupload">%MAKETEXT{"Batch upload for zip file"}%</label> <span class="foswikiGrayText">%MAKETEXT{"Extracts and uploads individual file in zip archive."}%</span>
 </verbatim>
 </blockquote>
    * =templates/attach.tmpl= and  =templates/attach.classic.tmpl= (=content= section):

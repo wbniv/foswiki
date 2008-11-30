@@ -338,7 +338,7 @@ sub _returnError {
 
     _Debug( $text );
 
-    return "<span class='twikiAlert'>${pluginName} error: $text</span>";
+    return "<span class='foswikiAlert'>${pluginName} error: $text</span>";
 }
 
 1;

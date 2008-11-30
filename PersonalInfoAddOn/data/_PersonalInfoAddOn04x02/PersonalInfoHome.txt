@@ -30,7 +30,7 @@ All these files need to reside in your user web (by default Main).
 *This block is intended as a quick introduction of the user (picture!) and to provide the most common information at hand. It makes it easy to edit the data "on the fly".*
 
 This block is included on every user page when PersonalInfoUserViewTemplate is set as view template:
-<div class="twikiHelp">
+<div class="foswikiHelp">
 *To set !PersonalInfoUserViewTemplate as view template, follow these steps:*
    1 Include the personal info block in existing pages using either of these 2 methods:
       * by editing files using the file system: add this line at the bottom: %BR%

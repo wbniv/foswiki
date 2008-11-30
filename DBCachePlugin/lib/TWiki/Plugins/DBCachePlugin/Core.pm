@@ -1388,7 +1388,7 @@ sub extractPattern {
 
 ###############################################################################
 sub inlineError {
-  return "<div class=\"twikiAlert\">$_[0]</div>";
+  return "<div class=\"foswikiAlert\">$_[0]</div>";
 }
 
 

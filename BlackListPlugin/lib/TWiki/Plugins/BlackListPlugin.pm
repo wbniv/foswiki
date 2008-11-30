@@ -497,7 +497,7 @@ sub _handleSpamList
 
     if (@errorMessages) {
       writeDebug("spamlist=$text");
-      return '<div class="twikiAlert">' .  join("<br /> ", @errorMessages) . '</div>';
+      return '<div class="foswikiAlert">' .  join("<br /> ", @errorMessages) . '</div>';
 
     } else {
       if (@infoMessages) {
@@ -555,7 +555,7 @@ sub _handleExcludeList
 
     if (@errorMessages) {
       writeDebug("excludelist=$text");
-      return '<div class="twikiAlert">' .  join("<br /> ", @errorMessages) . '</div>';
+      return '<div class="foswikiAlert">' .  join("<br /> ", @errorMessages) . '</div>';
 
     } else {
       if (@infoMessages) {
@@ -703,7 +703,7 @@ sub _handleBanList
 
     if (@errorMessages) {
       writeDebug("banlist=$text");
-      return '<div class="twikiAlert">' .  join("<br /> ", @errorMessages) . '</div>';
+      return '<div class="foswikiAlert">' .  join("<br /> ", @errorMessages) . '</div>';
 
     } else {
       if (@infoMessages) {

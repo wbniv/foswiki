@@ -13,11 +13,11 @@
 <literal>
   <table cellspacing="0" cellpadding="0" class="twikiTable">
   <tr>
-    <th class="twikiFirstCol">Title:</th>
+    <th class="foswikiFirstCol">Title:</th>
     <td><input class="twikiInputField" type="text" name="TopicTitle" size="80" value="%URLPARAM{"TopicTitle" default="%TOPICTITLE%"}%"/></td>
   </tr>
   <tr>
-    <th class="twikiFirstCol">Summary:</th>
+    <th class="foswikiFirstCol">Summary:</th>
     <td><input class="twikiInputField" type="text" name="Summary" size="80" value="%URLPARAM{"Summary" default="%FORMFIELD{topic="%BASEWEB%.%BASETOPIC%" "Summary"}%"}%" /></td>
   </tr>
   </table>

@@ -17,7 +17,7 @@ This plugin only works with TWiki-4 or later.
 
 ---++ Usage
 
-Install and enable the plugin. It "just works". You can change the size of the context (the number of characters either side of a search term) by setting the [[%SYSTEMWEB%.Macros][Macro]] =SEARCHSUMMARYPLUGIN_CONTEXT= (the default is 30). You can change the CSS class used to highlight search terms by setting =SEARCHSUMMARYPLUGIN_CSSCLASS=. The default is =twikiAlert=.
+Install and enable the plugin. It "just works". You can change the size of the context (the number of characters either side of a search term) by setting the [[%SYSTEMWEB%.Macros][Macro]] =SEARCHSUMMARYPLUGIN_CONTEXT= (the default is 30). You can change the CSS class used to highlight search terms by setting =SEARCHSUMMARYPLUGIN_CSSCLASS=. The default is =foswikiAlert=.
 
 ---++ Installation Instructions
 

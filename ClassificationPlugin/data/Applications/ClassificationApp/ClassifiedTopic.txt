@@ -20,7 +20,7 @@ See also: ClassifiedTopicTemplate, ClassifiedTopicViewTemplate
 <h2>Create a new topic %IFDEFINED{"%URLPARAM{"cat" default="%CAT%"}%" then=" in '[[%BASEWEB%.$test]]'" glue="off"}%</h2>
 %STARTSECTION{"factory"}%<!-- factory -->
 <style type="text/css">
-.twikiPageForm .twikiFirstCol {
+.twikiPageForm .foswikiFirstCol {
   width:8em;
 }
 .twikiPageForm .twikiInputField,
@@ -40,13 +40,13 @@ See also: ClassifiedTopicTemplate, ClassifiedTopicViewTemplate
 <input type="hidden" name="Tag" value="" />
 <table>
 <tr>
-  <th class="twikiFirstCol">%IFDEFINED{"%LABEL%" then="$test" else="Name"}%:</th>
+  <th class="foswikiFirstCol">%IFDEFINED{"%LABEL%" then="$test" else="Name"}%:</th>
   <td><input class="twikiInputField" type="text" name="topic" size="40" />
   &nbsp;%TOGGLE{target=".toggleMe" text="Advanced Options"}%
   </td>
 </tr>
 <tr class="toggleMe" style="display:none">
-  <th class="twikiFirstCol">
+  <th class="foswikiFirstCol">
     <div>Category:</div>
   </th>
   <td>
@@ -68,7 +68,7 @@ See also: ClassifiedTopicTemplate, ClassifiedTopicViewTemplate
   </td>
 </tr>
 <tr class="toggleMe" style="display:none">
-  <th class="twikiFirstCol">
+  <th class="foswikiFirstCol">
     <div>Template:</div>
   </th>
   <td><div>
@@ -88,7 +88,7 @@ See also: ClassifiedTopicTemplate, ClassifiedTopicViewTemplate
   </td>
 </tr>
 <tr>
-  <th class="twikiFirstCol">&nbsp;</th>
+  <th class="foswikiFirstCol">&nbsp;</th>
   <td>
     <input type="submit" class="twikiSubmit natOkButton" value="Submit" />
     <input type="reset" class="twikiButton natAltButton" value="Reset" />

@@ -353,7 +353,7 @@ PREAMBLE
   #writeDebug("exit=$exit");
   #writeDebug("data=$data");
   if ($exit) {
-    $msg = '<div class="twikiAlert">Error during latex2img:<pre>'.
+    $msg = '<div class="foswikiAlert">Error during latex2img:<pre>'.
       $data.'</pre></div>';
   } else {
     # rename the files to the hash code, so we can uniquely identify them

@@ -6,7 +6,7 @@ A simple weblog application based on TWiki Forms.
 %TOC%
 
 ---++ Screenshots
-<div class="twikiHelp">
+<div class="foswikiHelp">
 Example list view (with Foswiki:Extensions/PersonalInfoAddOn pictures):
 
 <div class="twikiImage"><img src="%ATTACHURLPATH%/screenshot_list.png" alt="screenshot_list.png" width='929' height='603' /></div>

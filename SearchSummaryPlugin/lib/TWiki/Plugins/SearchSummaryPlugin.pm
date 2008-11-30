@@ -31,7 +31,7 @@ sub makeTopicSummary {
     my $prefs = $this->{session}->{prefs};
     my $cssClass =
       $prefs->getPreferencesValue('SEARCHSUMMARYPLUGIN_CSSCLASS')
-        || 'twikiAlert';
+        || 'foswikiAlert';
     my $context = 
       $prefs->getPreferencesValue('SEARCHSUMMARYPLUGIN_CONTEXT')
         || 30;

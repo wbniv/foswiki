@@ -477,7 +477,7 @@ sub getTopicInfo {
         if (defined($ti)) {
             return $ti->toString($limit);
         }
-        return CGI::span({class=>'twikiAlert'}, $topic.' not known');
+        return CGI::span({class=>'foswikiAlert'}, $topic.' not known');
     } else {
         return $this->toString();
     }

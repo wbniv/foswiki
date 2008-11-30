@@ -251,7 +251,7 @@ function handleHtml (inId, inHtml) {
 	
 	// style list elements
 	var attributes = {
-		"class":"twikiSmall twikiGrayText",
+		"class":"twikiSmall foswikiGrayText",
 		"style":
 			{
 				"color":"#fff",

@@ -1,9 +1,9 @@
 <!-- template: form.nat.tmpl -->
 %TMPL:DEF{"changeform"}%%TMPL:END%
-%TMPL:DEF{"mandatory"}%<tr><td colspan="2" align="right"><span class="twikiAlert">*</span> %MAKETEXT{"indicates mandatory fields"}% </td></tr> %TMPL:END%
+%TMPL:DEF{"mandatory"}%<tr><td colspan="2" align="right"><span class="foswikiAlert">*</span> %MAKETEXT{"indicates mandatory fields"}% </td></tr> %TMPL:END%
 %TMPL:DEF{"repeatedformrows"}% %REPEAT%
 <tr>
-<th class="twikiFirstCol natTopicFormFirstCol">%ROWTITLE%: %ROWEXTRA%</th>
+<th class="foswikiFirstCol natTopicFormFirstCol">%ROWTITLE%: %ROWEXTRA%</th>
 <td>%ROWVALUE%</td>
 </tr>%REPEAT%<tr><td colspan="2">
 <div class="natTopicFormLabel">%ROWVALUE%</div></td></tr>%REPEAT% %TMPL:END%

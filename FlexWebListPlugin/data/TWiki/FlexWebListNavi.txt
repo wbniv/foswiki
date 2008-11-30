@@ -31,7 +31,7 @@ If you want to hide the web navigation from <nop>WikiGuests then uncomment the f
 ~~~       }$percnt>
 ~~~     <a href=\"%SCRIPTURLPATH{"view"}%/$web/%HOMETOPIC%\"
 ~~~           $percntIFDEFINED{\"%BASEWEB%\" as=\"$web\"
-~~~             then=\" class='twikiCurrentTopicLink'\"
+~~~             then=\" class='foswikiCurrentTopicLink'\"
 ~~~           }$percnt>$name</a>
 ~~~     $percntIFDEFINEDTHEN{\"$nrsubwebs \" as=\"0 \" glue=\"off\"}$percnt
 ~~~     $percntELSEDEFINED$percnt
