@@ -14,13 +14,15 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details, published at
 # http://www.gnu.org/copyleft/gpl.html
+#
+# Copyright (C) 2008 Foswiki Contributors
 
-package TWiki::Plugins::DateFieldPlugin;
+package Foswiki::Plugins::DateFieldPlugin;
 
 use strict;
 use POSIX qw(strftime);
 
-use TWiki::Func;
+use Foswiki::Func;
 
 use vars qw( $VERSION $RELEASE $SHORTDESCRIPTION $NO_PREFS_IN_TOPIC );
 
@@ -33,11 +35,11 @@ sub initPlugin {
     my( $topic, $web, $user, $installWeb ) = @_;
 
     # make sure JSCalendar is there
-    eval 'use TWiki::Contrib::JSCalendarContrib';
+    eval 'use Foswiki::Contrib::JSCalendarContrib';
     if ( $@ ) {
         my $mess = "WARNING: JSCalendar not installed: $@";
         print STDERR "$mess\n";
-        TWiki::Func::writeWarning( $mess );
+        Foswiki::Func::writeWarning( $mess );
         return 0;
     }
 
@@ -45,8 +47,8 @@ sub initPlugin {
 }
 
 sub beforeEditHandler {
-    # Load the 'twiki' calendar setup
-    TWiki::Contrib::JSCalendarContrib::addHEAD( 'twiki' );
+    # Load the 'Foswiki' calendar setup
+    Foswiki::Contrib::JSCalendarContrib::addHEAD( 'foswiki' );
 }
 
 sub renderFormFieldForEditHandler {
@@ -54,13 +56,13 @@ sub renderFormFieldForEditHandler {
     return undef unless $type eq 'date';
 
     my $calendarOutputFormat =
-      TWiki::Func::getPreferencesValue('DATEFORMAT') ||
-          TWiki::Func::getPreferencesValue('DATEFIELDPLUGIN_DATEFORMAT') ||
-              $TWiki::cfg{JSCalendarContrib}{format} ||
+      Foswiki::Func::getPreferencesValue('DATEFORMAT') ||
+          Foswiki::Func::getPreferencesValue('DATEFIELDPLUGIN_DATEFORMAT') ||
+              $Foswiki::cfg{JSCalendarContrib}{format} ||
                 '%d %b %Y';
 
     # Default to local today if preference set
-    if ( TWiki::Func::getPreferencesValue('DATEFIELDPLUGIN_DEFAULTTOTODAY') )
+    if ( Foswiki::Func::getPreferencesValue('DATEFIELDPLUGIN_DEFAULTTOTODAY') )
     {
        $value ||= POSIX::strftime($calendarOutputFormat, localtime(time()));
     }
@@ -70,8 +72,8 @@ sub renderFormFieldForEditHandler {
           -name => 'calendar',
           -onclick =>
             "return showCalendar('date_$name','$calendarOutputFormat')",
-          -src => TWiki::Func::getPubUrlPath() . '/' .
-            TWiki::Func::getTwikiWebname() .
+          -src => Foswiki::Func::getPubUrlPath() . '/' .
+            Foswiki::Func::getTwikiWebname() .
                 '/JSCalendarContrib/img.gif',
           -alt => 'Calendar',
           -align => 'middle' );

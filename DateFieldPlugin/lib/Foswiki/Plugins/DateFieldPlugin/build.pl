@@ -6,8 +6,8 @@ BEGIN {
   }
 }
 
-use TWiki::Contrib::Build;
+use Foswiki::Contrib::Build;
 
-$build = new TWiki::Contrib::Build( "DateFieldPlugin" );
+$build = new Foswiki::Contrib::Build( "DateFieldPlugin" );
 $build->build($build->{target});
 

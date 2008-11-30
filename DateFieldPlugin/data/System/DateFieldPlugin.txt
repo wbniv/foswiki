@@ -11,7 +11,9 @@
 
 Provides support for a new type, =date=, in form fields. When a form field is set to this type it will no longer be editable by normal means, but only through a date selection popup.
 
-*WARNING: TWiki-4 only. If you want to use this plugin with an earlier version of TWiki, please see [[http://twiki.org/cgi-bin/view/Plugins/%TOPIC%?rev=1.5][here]]*
+<!--
+*WARNING: Foswiki >= 1.0 only. If you want to use this plugin with an earlier version of Foswiki, please see [[http://foswiki.org/Extensions/Plugins/%TOPIC%?rev=1.5][here]]*
+-->
 
 ---+ Usage
 
@@ -25,14 +27,14 @@ If you want to use Javascript to create other data types in form fields, you can
 
 ---+ Settings
 <!--
-Required for old TWiki versions
+Required for old Foswiki versions
 	* Set SHORTDESCRIPTION = Adds a =date= type to forms
 -->
-The default date format is taken from the JSCalendarContrib settings. You can change the date format by setting the TWiki variable 'DATEFORMAT' in your !%SYSTEMWEB%.DefaultPreferences, your !%USERSWEB%.SitePreferences, your !WebPreferences or in a topic. For example:
+The default date format is taken from the JSCalendarContrib settings. You can change the date format by setting the Foswiki variable 'DATEFORMAT' in your !%SYSTEMWEB%.DefaultPreferences, your !%USERSWEB%.SitePreferences, your !WebPreferences or in a topic. For example:
    * Set <nop>DATEFORMAT = %c
 Look up =strftime= in Google for a full list of the format options.
 
-The plugin can default to todays date by setting the TWiki variable 'DATEFIELDPLUGIN_DEFAULTTOTODAY' in your !%SYSTEMWEB%.DefaultPreferences, your !%USERSWEB%.SitePreferences, your !WebPreferences or in a topic.  For example:
+The plugin can default to todays date by setting the Foswiki variable 'DATEFIELDPLUGIN_DEFAULTTOTODAY' in your !%SYSTEMWEB%.DefaultPreferences, your !%USERSWEB%.SitePreferences, your !WebPreferences or in a topic.  For example:
    * Set <nop>DATEFIELDPLUGIN_DEFAULTTOTODAY = 1
 
 See JSCalendarContrib for additional settings.
@@ -42,14 +44,14 @@ See JSCalendarContrib for additional settings.
 	* Unpack the archive in your twiki installation directory. Content:
    | *File:* | *Description:* |
 %$MANIFEST%
-	* Run ==%TOPIC%_installer== to automatically check and install other TWiki modules that this module depends on.
+	* Run ==%TOPIC%_installer== to automatically check and install other Foswiki modules that this module depends on.
 		* Alternatively, manually make sure the dependencies listed in the table below are resolved.
    %$DEPENDENCIES%
-	* Visit =configure= in your TWiki installation, and enable the plugin in the ={Plugins}= section.
+	* Visit =configure= in your Foswiki installation, and enable the plugin in the ={Plugins}= section.
 
 ---+ Plugin Info
 
-|  Author: | TWiki:Main.CrawfordCurrie http://www.c-dot.co.uk |
+|  Author: | Foswiki:Main.CrawfordCurrie http://www.c-dot.co.uk |
 |  Version: | %$VERSION% |
 |  Copyright &copy;: | 2004 Deutsche Bank AG |
 |  License: | [[GPL][http://www.gnu.org/copyleft/gpl.html]] |
@@ -67,8 +69,8 @@ See JSCalendarContrib for additional settings.
 |  Home: | Foswiki:Extensions/%TOPIC% |
 |  Feedback: | Foswiki:Extensions/%TOPIC%Dev |
 
-__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]], TWiki::Plugins/FormFieldsPlugin
+__Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]], Extensions.FormFieldsPlugin
 
 This work was commissioned by [[http://www.db.com/][Deutsche Bank AG]].
 
--- TWiki:Main/CrawfordCurrie - %$DATE%
+-- Foswiki:Main/CrawfordCurrie - %$DATE%
