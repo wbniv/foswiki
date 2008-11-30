@@ -76,7 +76,7 @@ sub _display {
     my $msg = join('', @_);
     if (defined $Foswiki::Plugins::SESSION->{response} &&
           !Foswiki::Func::getContext()->{command_line}) {
-        $Foswiki::Plugins::SESSION->{response}->appendToBody($msg);
+        $Foswiki::Plugins::SESSION->{response}->print($msg);
     } else {
         print $msg;
     }

@@ -194,7 +194,7 @@ TEXT
         # running from CGI
         if (defined $Foswiki::Plugins::SESSION->{response}) {
             $Foswiki::Plugins::SESSION->generateHTTPHeaders();
-            $Foswiki::Plugins::SESSION->{response}->body(
+            $Foswiki::Plugins::SESSION->{response}->print(
                 CGI::start_html( -title => 'Foswiki: Publish'));
         }
         ($header, $footer) = $this->_getPageTemplate();
