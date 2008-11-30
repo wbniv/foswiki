@@ -53,7 +53,7 @@ sub renderFormFieldForEditHandler {
     my ( $name, $type, $size, $value, $attributes, $possibleValues ) = @_;
     return undef unless $type eq 'date';
 
-    my $calendarOutputFormat = 
+    my $calendarOutputFormat =
       TWiki::Func::getPreferencesValue('DATEFORMAT') ||
           TWiki::Func::getPreferencesValue('DATEFIELDPLUGIN_DATEFORMAT') ||
               $TWiki::cfg{JSCalendarContrib}{format} ||
