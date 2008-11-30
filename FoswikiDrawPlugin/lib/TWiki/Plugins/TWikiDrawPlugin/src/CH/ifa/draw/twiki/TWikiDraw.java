@@ -1,13 +1,14 @@
 /*
- * @(#)TWikiDraw.java 5.1
+ * @(#)FoswikiDraw.java 5.1
  * Copyright 2000 by Peter Thoeny, Peter@Thoeny.com.
  * It is hereby granted that this software can be used, copied, 
  * modified, and distributed without fee provided that this 
  * copyright notice appears in all copies.
  * Portions Copyright (C) 2001 Motorola - All Rights Reserved
+ * Copyright (C) 2008 Foswiki Contributors
  */
 
-package CH.ifa.draw.twiki;
+package CH.ifa.draw.foswiki;
 
 import Acme.JPM.Encoders.*;
 import CH.ifa.draw.appframe.*;
@@ -26,13 +27,13 @@ import java.util.*;
 import java.io.*;
 import java.net.*;
 
-public  class TWikiDraw extends LightweightDrawApplet {
+public  class FoswikiDraw extends LightweightDrawApplet {
     
     public void	init() {
         String colors = getParameter("extracolors");
-        init(new TWikiFrame(this, colors));
+        init(new FoswikiFrame(this, colors));
         String drawPath = getParameter("drawpath");
-        add(new Label("TWikiDraw editing " + drawPath));
+        add(new Label("FoswikiDraw editing " + drawPath));
     }
     
     /**

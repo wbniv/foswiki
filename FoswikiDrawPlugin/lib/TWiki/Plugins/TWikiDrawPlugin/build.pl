@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 #
-# Build file for TWiki Draw Plugin
+# Build file for Foswiki Draw Plugin
 #
 # Standard preamble
 BEGIN {
@@ -9,16 +9,16 @@ BEGIN {
   }
 }
 
-use TWiki::Contrib::Build;
+use Foswiki::Contrib::Build;
 
 # Declare our build package
-package TWikiDrawPluginBuild;
+package FoswikiDrawPluginBuild;
 
-@TWikiDrawPluginBuild::ISA = ( "TWiki::Contrib::Build" );
+@FoswikiDrawPluginBuild::ISA = ( "Foswiki::Contrib::Build" );
 
 sub new {
     my $class = shift;
-    return bless( $class->SUPER::new( "TWikiDrawPlugin" ), $class );
+    return bless( $class->SUPER::new( "FoswikiDrawPlugin" ), $class );
 }
 
 # Override the build target to build the java code
@@ -27,13 +27,13 @@ sub target_build {
 
   $this->SUPER::target_build();
 
-  $this->pushd($this->{basedir}."/lib/TWiki/Plugins/TWikiDrawPlugin");
+  $this->pushd($this->{basedir}."/lib/Foswiki/Plugins/FoswikiDrawPlugin");
   $this->sys_action("ant -f build.xml build");
   $this->popd();
 }
 
 # Create the build object
-$build = new TWikiDrawPluginBuild();
+$build = new FoswikiDrawPluginBuild();
 
 # Build the target on the command line, or the default target
 

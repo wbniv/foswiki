@@ -12,7 +12,7 @@
 
 %TOC%
 
-This plugin encapsulates the <nop>TWikiDraw Java Applet first developed by TWiki:Main/PeterThoeny from the original <nop>JHotDraw.
+This plugin encapsulates the <nop>FoswikiDraw Java Applet first developed by TWiki:Main/PeterThoeny from the original <nop>JHotDraw.
 
 <nop>JHotDraw is a simple drawing editor that supports drawing in a style similar to that found in MS Powerpoint and MS Word. Various shaped figures can be placed in the drawing and text annotations joined to them.
 
@@ -26,7 +26,7 @@ Browser support for Java 1.1 or later required.
 
 ---++ Syntax Rules
 
-	* Write the command =%<nop>DRAWING{name}%= anywhere in a TWiki topic. You can name the drawing anything you like, allowed characters are =A-Z a-z 0-9 _ - .= . If you have only one drawing in the topic you can simply write =%<nop>DRAWING%= .
+	* Write the command =%<nop>DRAWING{name}%= anywhere in a Foswiki topic. You can name the drawing anything you like, allowed characters are =A-Z a-z 0-9 _ - .= . If you have only one drawing in the topic you can simply write =%<nop>DRAWING%= .
 
 ---+++ Tools
 
@@ -80,8 +80,8 @@ Edit text defined here so you can change it for local languages. Text is shown w
 	* Download the ZIP file from the Plugin web (see below). Contents:
 	| *File:* | *Description:* |
 %$MANIFEST%
-	* Unzip ==%TOPIC%.zip== in your twiki installation directory.
-	* (Dakar) Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+	* Unzip ==%TOPIC%.zip== in your Foswiki installation directory.
+	* (Dakar) Visit =configure= in your Foswiki installation, and enable the plugin in the {Plugins} section.
 	* To test if the plugin is correctly installed, view this topic in the installation and you should see a placeholder box below. Click on it.<br />
 	%DRAWING{empty}%
 	* Here's an example using an image map. Move the mouse over the image and watch the status bar.
@@ -92,7 +92,7 @@ If you add a map to a drawing by setting a URL on any of the figures a map file 
 
 ---+++ Plugin Info
 
-|  Plugin Author: | TWiki:Main/CrawfordCurrie http://www.c-dot.co.uk |
+|  Plugin Author: | Foswiki:Main/CrawfordCurrie http://www.c-dot.co.uk |
 |  Plugin Version: | %$VERSION% |
 |  Change History: | |
 |  8570 | TWikibug:Item1528 - Minor pattern skin template update for TWikiDrawPlugin |
@@ -134,6 +134,7 @@ __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, 
 	* Copyright 2000 by Peter Thoeny, Peter@Thoeny.com. It is hereby granted that this software can be used, copied, modified, and distributed without fee provided that this copyright notice appears in all copies.
 	* Modifications Copyright &copy; 2001 Motorola. All Rights Reserved.
 	* Modifications &copy; 2003-2004 Copyright Crawford Currie http://www.c-dot.co.uk
+	* Foswiki version: &copy; 2008 Foswiki Contributors
  
--- TWiki:Main/CrawfordCurrie - %$DATE%
+-- Foswiki:Main/CrawfordCurrie - %$DATE%
 

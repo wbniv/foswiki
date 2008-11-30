@@ -1,4 +1,4 @@
-package CH.ifa.draw.twiki;
+package CH.ifa.draw.foswiki;
 import java.awt.*;
 import java.awt.event.*;
 ///import java.awt.image.*;

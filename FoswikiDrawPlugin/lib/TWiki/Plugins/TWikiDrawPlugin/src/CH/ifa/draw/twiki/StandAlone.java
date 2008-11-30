@@ -1,4 +1,4 @@
-package CH.ifa.draw.twiki;
+package CH.ifa.draw.foswiki;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -15,7 +15,7 @@ import CH.ifa.draw.contrib.*;
 import CH.ifa.draw.appframe.*;
 
 public class StandAlone implements Application {
-    TWikiFrame frame;
+    FoswikiFrame frame;
     Hashtable params;
 
     StandAlone(String[] args) {
@@ -28,7 +28,7 @@ public class StandAlone implements Application {
                 params.put(var, val);
             }
         }
-        frame = new TWikiFrame(this, null);
+        frame = new FoswikiFrame(this, null);
         frame.pack();
         frame.show();
     }

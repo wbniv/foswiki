@@ -1,18 +1,18 @@
-<!-- ANTfile for TWikiDrawPlugin
+<!-- ANTfile for FoswikiDrawPlugin
   Ant is at http://jakarta.apache.org
 -->
-<project name="TWikiDrawPlugin" default="build" basedir="../../../..">
+<project name="FoswikiDrawPlugin" default="build" basedir="../../../..">
 
     <property environment="ENV"/>
-    <property name="twiki" value="${ENV.TWIKI_HOME}"/>
+    <property name="foswiki" value="${ENV.FOSWIKI_HOME}"/>
     <property name="appletviewer" value="${ENV.JAVA_HOME}/bin/appletviewer"/>
-    <property name="lib.plugins" value="lib/TWiki/Plugins"/>
-    <property name="pub.plugins" value="pub/TWiki"/>
-    <property name="data.plugins" value="data/TWiki"/>
+    <property name="lib.plugins" value="lib/Foswiki/Plugins"/>
+    <property name="pub.plugins" value="pub/System"/>
+    <property name="data.plugins" value="data/System"/>
     <property name="plugin.lib" value="${lib.plugins}/${ant.project.name}"/>
     <property name="plugin.pub" value="${pub.plugins}/${ant.project.name}"/>
     <property name="plugin.data" value="${data.plugins}/${ant.project.name}"/>
-    <property name="jar.file" value="${plugin.pub}/twikidraw.jar"/>
+    <property name="jar.file" value="${plugin.pub}/foswikidraw.jar"/>
     <property name="source.zip" value="${plugin.lib}/source.zip"/>
     <property name="release.zip" value="${ant.project.name}.zip" />
     <property name="classes" value="${plugin.lib}/classes"/>

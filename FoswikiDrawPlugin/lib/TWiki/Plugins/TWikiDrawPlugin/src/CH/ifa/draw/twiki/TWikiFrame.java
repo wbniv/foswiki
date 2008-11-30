@@ -1,13 +1,14 @@
 /*
- * @(#)TWikiDraw.java 5.1
+ * @(#)FoswikiDraw.java 5.1
  * Copyright 2000 by Peter Thoeny, Peter@Thoeny.com.
  * It is hereby granted that this software can be used, copied, 
  * modified, and distributed without fee provided that this 
  * copyright notice appears in all copies.
  * Portions Copyright (C) 2001 Motorola - All Rights Reserved
+ * Copyright (C) 2008 Foswiki Contributors
  */
 
-package CH.ifa.draw.twiki;
+package CH.ifa.draw.foswiki;
 
 import Acme.JPM.Encoders.*;
 import com.eteks.filter.Web216ColorsFilter;
@@ -29,7 +30,7 @@ import java.net.*;
 import java.lang.reflect.*;
 import java.awt.image.FilteredImageSource;
 
-public class TWikiFrame extends DrawFrame {
+public class FoswikiFrame extends DrawFrame {
     
     /**
      * Parameter names
@@ -46,8 +47,8 @@ public class TWikiFrame extends DrawFrame {
     // post can be disabled for testing
     private boolean bPostEnabled = true;
     
-    public TWikiFrame(Application applet, String colors) {
-        super("TWikiDraw", applet);
+    public FoswikiFrame(Application applet, String colors) {
+        super("FoswikiDraw", applet);
         
         this.view().setBackground(Color.white);
         
@@ -310,8 +311,8 @@ public class TWikiFrame extends DrawFrame {
     }
     
     class NewDrawingCommand extends Command {
-        TWikiFrame frame;
-        public NewDrawingCommand(TWikiFrame frm) {
+        FoswikiFrame frame;
+        public NewDrawingCommand(FoswikiFrame frm) {
             super("Clear");
             frame = frm;
         }
@@ -321,8 +322,8 @@ public class TWikiFrame extends DrawFrame {
     }
     
     class ReloadDrawingCommand extends Command {
-        TWikiFrame frame;
-        public ReloadDrawingCommand(TWikiFrame frm) {
+        FoswikiFrame frame;
+        public ReloadDrawingCommand(FoswikiFrame frm) {
             super("Reload");
             frame = frm;
         }
@@ -332,8 +333,8 @@ public class TWikiFrame extends DrawFrame {
     }
     
     class SaveDrawingCommand extends Command {
-        TWikiFrame frame;
-        public SaveDrawingCommand(TWikiFrame frm) {
+        FoswikiFrame frame;
+        public SaveDrawingCommand(FoswikiFrame frm) {
             super("Save and Exit");
             frame = frm;
         }
@@ -344,8 +345,8 @@ public class TWikiFrame extends DrawFrame {
     }
     
     class ExitDrawingCommand extends Command {
-        TWikiFrame frame;
-        public ExitDrawingCommand(TWikiFrame frm) {
+        FoswikiFrame frame;
+        public ExitDrawingCommand(FoswikiFrame frm) {
             super("Exit without saving");
             frame = frm;
         }
@@ -394,7 +395,7 @@ public class TWikiFrame extends DrawFrame {
             if (bPostEnabled)
                 savedDraw = app.post(
                                      savePath, "", "text/plain", drawingPath,
-                                     out.toString(), "TWiki Draw draw file");
+                                     out.toString(), "Foswiki Draw draw file");
             
             // calculate the minimum size of the gif image
             Dimension d = new Dimension(0, 0); // not this.view().getSize();
@@ -428,7 +429,7 @@ public class TWikiFrame extends DrawFrame {
                 // edit border is added LAST so the earlier AREAs take
                 // precedence.
                 String area = "<area shape=\"rect\" coords=\"";
-                String link = "\" href=\"%TWIKIDRAW%\" " +
+                String link = "\" href=\"%FoswikiDRAW%\" " +
                     "alt=\"%EDITTEXT%\" title=\"%EDITTEXT%\" %HOVER% />";
                 map = "<map name=\"%MAPNAME%\">" + map +
                     
@@ -453,7 +454,7 @@ public class TWikiFrame extends DrawFrame {
                     "</map>";
                 savedMap = app.post(
                                     savePath, "", "text/plain", mapPath,
-                                    map, "TWiki Draw map file");
+                                    map, "Foswiki Draw map file");
             } else {
                 // erase any previous map file
                 String mapPath = drawingPath.substring(0, drawingPath.length() - 5);
@@ -494,7 +495,7 @@ public class TWikiFrame extends DrawFrame {
                 savedGif = app.post(
                                     savePath, "", "image/gif",
                                     gifPath, String.valueOf(aChar, 0, aChar.length),
-                                    "TWiki Draw GIF file");
+                                    "Foswiki Draw GIF file");
         } catch (MalformedURLException e) {
             this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             showStatus("Bad Wiki servlet URL: "+e.getMessage());
@@ -520,7 +521,7 @@ public class TWikiFrame extends DrawFrame {
     
     /** debugging messages */
     static void debug(String msg) {
-    	System.err.println("TWikiDraw:" + msg);
+    	System.err.println("FoswikiDraw:" + msg);
     }
     
     /**

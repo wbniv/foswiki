@@ -3,8 +3,9 @@
 # Copyright (C) 2000-2001 Andrea Sterbini, a.sterbini@flashnet.it
 # Copyright (C) 2001-2006 Peter Thoeny, Peter@Thoeny.org
 # Copyright (C) 2002-2006 Crawford Currie, cc@c-dot.co.uk
+# Copyright (C) 2008 Foswiki Contributors
 #
-# For licensing info read LICENSE file in the TWiki root.
+# For licensing info read LICENSE file in the Foswiki root.
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
 # as published by the Free Software Foundation; either version 2
@@ -18,13 +19,13 @@
 #
 # As per the GPL, removal of this notice is prohibited.
 
-package TWiki::Plugins::TWikiDrawPlugin;
+package Foswiki::Plugins::FoswikiDrawPlugin;
 
 use vars qw(
         $web $topic $user $installWeb $VERSION $RELEASE $editButton
     );
 
-# This should always be $Rev: 8154 $ so that TWiki can determine the checked-in
+# This should always be $Rev: 8154 $ so that Foswiki can determine the checked-in
 # status of the plugin. It is used by the build automation tools, so
 # you should leave it alone.
 $VERSION = '$Rev: 8154 $';
@@ -40,15 +41,15 @@ sub initPlugin {
   ( $topic, $web, $user, $installWeb ) = @_;
 
   # check for Plugins.pm versions
-  if( $TWiki::Plugins::VERSION < 1 ) {
-	TWiki::Func::writeWarning( "Version mismatch between TWikiDrawPlugin and Plugins.pm" );
+  if( $Foswiki::Plugins::VERSION < 1 ) {
+	Foswiki::Func::writeWarning( "Version mismatch between FoswikiDrawPlugin and Plugins.pm" );
 	return 0;
   }
 
   # Get plugin debug flag
-  $editButton = TWiki::Func::getPreferencesValue( "TWIKIDRAWPLUGIN_EDIT_BUTTON" );
-  $editmess = TWiki::Func::getPreferencesValue( "TWIKIDRAWPLUGIN_EDIT_TEXT" ) ||
-    "Edit drawing using TWiki Draw applet (requires a Java 1.1 enabled browser)";
+  $editButton = Foswiki::Func::getPreferencesValue( "FOSWIKIDRAWPLUGIN_EDIT_BUTTON" );
+  $editmess = Foswiki::Func::getPreferencesValue( "FOSWIKIDRAWPLUGIN_EDIT_TEXT" ) ||
+    "Edit drawing using Foswiki Draw applet (requires a Java 1.1 enabled browser)";
   $editmess =~ s/['"]/`/g;
 
   return 1;
@@ -56,17 +57,17 @@ sub initPlugin {
 
 sub handleDrawing {
   my( $attributes, $topic, $web ) = @_;
-  my $nameVal = TWiki::Func::extractNameValuePair( $attributes );
+  my $nameVal = Foswiki::Func::extractNameValuePair( $attributes );
   if( ! $nameVal ) {
 	$nameVal = "untitled";
   }
   $nameVal =~ s/[^A-Za-z0-9_\.\-]//go; # delete special characters
 
-  # should really use TWiki server-side include mechanism....
-  my $mapFile = TWiki::Func::getPubDir() . "/$web/$topic/$nameVal.map";
+  # should really use Foswiki server-side include mechanism....
+  my $mapFile = Foswiki::Func::getPubDir() . "/$web/$topic/$nameVal.map";
   my $img = "src=\"%ATTACHURLPATH%/$nameVal.gif\"";
   my $editUrl =
-	TWiki::Func::getOopsUrl($web, $topic, "twikidraw", $nameVal);
+	Foswiki::Func::getOopsUrl($web, $topic, "foswikidraw", $nameVal);
   my $imgText = "";
   my $edittext = $editmess;
   $edittext =~ s/%F%/$nameVal/g;
@@ -78,12 +79,12 @@ sub handleDrawing {
 	my $mapname = $nameVal;
 	$mapname =~ s/^.*\/([^\/]+)$/$1/;
 	$img .= " usemap=\"#$mapname\"";
-	my $map = TWiki::Func::readFile($mapFile);
+	my $map = Foswiki::Func::readFile($mapFile);
     # Unashamed hack to handle Web.TopicName links
     $map =~ s/href=\"((\w+)\.)?(\w+)(#\w+)?\"/&_processHref($2,$3,$4,$web)/ge;
-	$map = TWiki::Func::expandCommonVariables( $map, $topic );
+	$map = Foswiki::Func::expandCommonVariables( $map, $topic );
 	$map =~ s/%MAPNAME%/$mapname/g;
-	$map =~ s/%TWIKIDRAW%/$editUrl/g;
+	$map =~ s/%FOSWIKIDRAW%/$editUrl/g;
 	$map =~ s/%EDITTEXT%/$edittext/g;
 	$map =~ s/%HOVER%/$hover/g;
 	$map =~ s/[\r\n]+//g;
