@@ -1,0 +1,45 @@
+---+!! <nop>%TOPIC%
+
+_This Drupal-Connector exports the SID of drupal and makes it available in Foswiki_
+
+%TOC%
+
+---++ USAGE
+Use the macro <verbatim>%DRUPALSID%</verbatim> to display the sid. You can use this in links or further pugins.
+
+---++ Plugin Settings
+
+Plugin settings are stored as preferences variables. To reference a plugin setting write ==%<nop>&lt;plugin&gt;_&lt;setting&gt;%==, i.e. ==%<nop>NEWPLUGIN_SHORTDESCRIPTION%==
+
+   * You need to set the Drupal->SessionHash string in the configure script of Foswiki. You find this hash in your Drupal installation. Please consider the Drupal documentation
+      * Hint: You can find the hash by easy checking your cookies when logged in in drupal.
+
+---++ Plugin Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the TWiki server. 
+
+   * Download the ZIP file from the Plugin Home (see below)
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/System/%TOPIC%.txt== | Plugin topic |
+     | ==data/System/%TOPIC%.txt,v== | Plugin topic repository |
+     | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
+
+---++ Plugin Info
+
+|  Plugin Author: | Foswiki:Main.EugenMayer|
+|  Copyright: | &copy; 2007, Impressive.media |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Plugin Version: | 01 Dez 2008 (V0.1) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  01 dEZ 2008: | Initial version |
+|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
+|  CPAN Dependencies: | HTTP::Cookies::Find |
+|  Other Dependencies: | none |
+|  Perl Version: | 5.005 |
+|  [[Foswiki:Extensions/Benchmark][Benchmarks]]: |  |
+|  Plugin Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
+|  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
+
+__Related Topics:__ [[%SYSTEMWEB%.Plugins][Plugins]], %SYSTEMWEB%.DeveloperDocumentationCategory, %SYSTEMWEB%.AdminDocumentationCategory, %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences
