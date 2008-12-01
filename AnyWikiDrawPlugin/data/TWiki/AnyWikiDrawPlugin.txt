@@ -41,10 +41,6 @@ __Warning:__ This is an experimental plugin. Data loss may occur. Install it onl
    * The parameter height specifies the height of the drawing.
  
 
----++ Examples
-
----++ Plugin Settings
-
 ---++ Installation Instructions
 
    * Download on of the archive and unpack into your TWiki installation directory.
@@ -59,6 +55,7 @@ __Warning:__ This is an experimental plugin. Data loss may occur. Install it onl
 |  License: | Client-side code: LGPL ([[http://www.gnu.org/licenses/lgpl.html][Lesser GNU General Public License]]) and/or CC-By 3.0 ([[http://creativecommons.org/licenses/by/3.0/][Creative Commons Attribution 3.0]]). Server-side code: GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]).  |
 |  Plugin Version: | 30 Aug 2007 (V1.000) |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  1 Dec 2008: | Updated for Foswiki 1.0.0 |
 |  14 Feb 2008: | Proper packaging and code cleaning by TWiki:Main.StephaneLenclud |
 |  30 Aug 2007: | Initial version |
 |  TWiki Dependency: | $TWiki::Plugins::VERSION 1.1 |
