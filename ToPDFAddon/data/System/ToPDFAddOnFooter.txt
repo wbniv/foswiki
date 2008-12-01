@@ -1,0 +1,82 @@
+---+ To PDF Add-On
+This addons converts TWiki topics into PDF`s. Comparing to GenPDF or others, its main goal yet is to support CSS as far as possible and therefore the PDF should just loook like the original topic
+
+This Add On is based on GenPDF and finally, it should have the same great functionality as GenPDF. The reason its seperated is, because it will take some time to finish ToPDF to be that "user friendly" for every TWiki user, as GenPDF is. So ToPDF will exist as a alternative converter until the full functionallity of GenPDF is ported/combined. 
+
+---++ Usage
+   * the whole script is based on GenPDF
+   * as backend it uses html2pdf, a php5 script to convert html files into PDFs. It supports CSS 2.0 and even float content.
+
+---++ Add-On Installation Instructions
+
+__Note:__ You do not need to install anything on the browser to use this add-on. The following instructions are for the administrator who installs the add-on on the server where TWiki is running. 
+
+---+++ Dependecies( Tested with linux, should work under windows too)
+---++++ Linux
+   * PHP5 as client modes, so for the use in the command line
+   * Ghostscript-GPL ( worked with 8.61, please add other versions here, if you tested it )
+   * pdflib ( worked with 7.0.2, please add other versions here, if you have tested it )
+*optional*
+   * gnu-gs-fonts-std:  Ghostscript Standard Fonts
+   * gnu-gs-fonts-other: Ghostscript Extra Fonts
+---++++ Windows
+   * tba
+   
+---+++ Installation instructions
+   * Download the ZIP file from the Add-on Home (see below)
+   * Install all dependecies
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+     | *File:* | *Description:* |
+     | ==data/TWiki/%TOPIC%.txt== | Add-on topic |
+     | ==data/TWiki/%TOPIC%.txt,v== | Add-on topic repository |
+     | ==pub/TWiki/%TOPIC%/html2pdf== | html2pdf conversion Script including .htaccess which permits any browser-use|
+     | ==bin/topdf== | Add-on script |
+   * Configuration  
+      * pub/%TOPIC%/html2pdf/configure.inc.php
+         * !HTML2PS_DIR: your absolute path to the pub/%TOPIC%/html2pdf directory
+         * !TYPE1_FONTS_REPOSITORY: your absolute path to the ghostscript fonts ( e.g /usr/share/fonts/default/ghostscript/ )
+         * !DEFAULT_ENCODING: set this to your twik encoding
+         * !GS_PATH: your ghostscript path ( usually /usr/bin/gs )
+      * pub/%TOPIC%/header.inc.php
+         * Set your header and footer if needed   
+ 
+      * Add the PDF button to your viewtopicactions.skin.tmpl ( or somewhere else )
+         * <verbatim>"%SCRIPTURLPATH%/topdf%SCRIPTSUFFIX%/%WEB%/%TOPIC%?pdftitle=%TOPIC%&t=%GMTIME{"$epoch"}%</verbatim>
+   * Test if the installation was successful:
+      * open view/TWiki/ToPDFAddOn and click this [["%SCRIPTURLPATH%/topdf%SCRIPTSUFFIX%/%WEB%/%TOPIC%?pdftitle=%TOPIC%&t=%GMTIME{"$epoch"}%][link]] and hopefully you get a PDF of the ToPDFAddOn topic. 
+
+---++ We have work to do.
+First of all, currently new features are not the first goal, more it is a user friendly installation, configuration and use
+   * let html2pdf/config.inc.php read lib/LocaSite.cfg ( regexp ) and get PubDir to automatically define the location of html2pdf ($PubDir/TWiki/ToPDFAddOn/html2pdf)
+   * header/footer should be read out of a TWiki topic ( like a template ). We need to define some usefull variables like web/topic/user/version etc.
+   * pagewidth, media,cssmedia,landscape and margins should be configured though TWiki
+      * we could pass them through the console script, which would result in a huge command line ( which is limitted in lenght ). This would be optimal, as we could pass thins like media / landscape individual for a topic
+      * we could parse the LocalSite.cfg like we do with the path( so set them through configure ). Not practical for all parameters
+      * Any ideas?
+ 
+---++ Add-On Info
+
+   * Set SHORTDESCRIPTION = Converts topics ( TML ) into PDF
+
+|  Add-on Author: | Foswiki:Main.MayerEugen |
+|  Copyright: | &copy; 2006, Impressive.media |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Add-on Version: | 01 Jun 2008 (V1.000) |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  21 Jun 2008: | Ported to Foswiki, cleaned up |
+|  01 Jun 2008: | Initial version |
+|  Foswiki Dependency: |  |
+|  CPAN Dependencies: | none |
+|  Other Dependencies: | htmltopdf(included in the package) |
+|  Perl Version: | 5.005 |
+|  Add-on Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Feedback: | http://foswiki.org/Extensions/%TOPIC%Dev |
+|  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
+
+__Related Topic:__ %SYSTEMWEB%.TWikiAddOns
+
+-- Foswiki:Main/MayerEugen - 01 Jun 2008
+
+
+
+      
