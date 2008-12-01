@@ -1,0 +1,7 @@
+data/System/RevComment.txt 0644
+data/System/RevCommentPlugin.txt 0644
+data/System/WebChangesWC.txt 0644
+data/System/WebRssBaseWC.txt 0644
+lib/Foswiki/Plugins/RevCommentPlugin.pm 0644
+pub/System/RevCommentPlugin/ExampleHistory.png 0644
+pub/System/RevCommentPlugin/ExampleWebChanges.png 0644

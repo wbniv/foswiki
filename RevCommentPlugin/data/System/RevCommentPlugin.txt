@@ -5,7 +5,7 @@ This plugin allows to enter a short summary of changes made to a topic for a new
 This summary can be displayed e.g. in a history page of the topic or on the !WebChanges page
 of a web. Changes may also be marked as "minor" by using the "Quiet save" button.
 
-Since in TWiki it is possible to make several changes within the edit lock time (normally
+Since in Foswiki it is possible to make several changes within the edit lock time (normally
 60 minutes) which are accumulated in only one new revision, it is also possible to
 have several comments for one revision.
 
@@ -72,22 +72,22 @@ Plugin settings are stored as preferences variables. To reference a plugin setti
 
 ---++ Plugin Installation Instructions
 
-__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where TWiki is running. 
+__Note:__ You do not need to install anything on the browser to use this plugin. The following instructions are for the administrator who installs the plugin on the server where Foswiki is running. 
 
    * Download the ZIP file from the Plugin web (see below)
-   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
+   * Unzip ==%TOPIC%.zip== in your Foswiki installation directory. Content:
      | *File:* | *Description:* |
      | ==data/System/%TOPIC%.txt== | Plugin topic |
      | ==data/System/%TOPIC%.txt,v== | Plugin topic repository |
      | ==lib/Foswiki/Plugins/%TOPIC%.pm== | Plugin Perl module |
-     | ==data/TWiki/WebChangesWC.txt== | Replacement for ==WebChanges.txt==, see below |
-     | ==data/TWiki/RevComment.txt== | Help text |
-   * Visit =configure= in your TWiki installation, and enable the plugin in the {Plugins} section.
+     | ==data/System/WebChangesWC.txt== | Replacement for ==WebChanges.txt==, see below |
+     | ==data/System/RevComment.txt== | Help text |
+   * Visit =configure= in your Foswiki installation, and enable the plugin in the {Plugins} section.
 
    * Test if the installation was successful:
      <ul>
       <li> Here should be the comment of this topic: %REVCOMMENT%
-      <li> Look at the recent changes to the TWiki web:
+      <li> Look at the recent changes to the System web:
         %SYSTEMWEB%.WebChangesWC
       <li> If you have also the [[Foswiki:Extensions.HistoryPlugin][HistoryPlugin]] installed,
         look at the history of this document:
@@ -99,24 +99,24 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
    * This distribution contains a topic which can replace an existing
      one. This file has a WC ("with comments") in the name. You should backup
      your old file and rename this file:
-   * =data/TWiki/WebChangesWC.txt= --> =data/TWiki/WebChanges.txt=
+   * =data/System/WebChangesWC.txt= --> =data/System/WebChanges.txt=
    * If [[Foswiki:Extensions.HistoryPlugin][HistoryPlugin]] is installed, the template =oopshistory.tmpl= from this plugin is automatically expanded with revision comments once this plugin is installed
    * If you are using other skins than the pattern or classical skin, you have to 
      enter a textfield to =templates/edit.<i>skin</i>.tmpl= and =templates/preview.<i>skin</i>.tmpl= :
      Enter the line
-     &lt;input class="twikiEditComment" type="text" size="%<nop>EDITBOXWIDTH%" style="%<nop>EDITBOXSTYLE%" name="comment"&gt;
+     &lt;input class="foswikiEditComment" type="text" size="%<nop>EDITBOXWIDTH%" style="%<nop>EDITBOXSTYLE%" name="comment"&gt;
      to the template, between the &lt;form&gt; and &lt;/form&gt; tags.
      
 
 ---++ Plugin Info
 
-|  Plugin Author: | TWiki:Main.JChristophFuchs & TWiki:Main.SteffenPoulsen |
+|  Plugin Author: | TWiki:Main.JChristophFuchs & Foswiki:Main.SteffenPoulsen |
 |  Plugin Version: | 14 Apr 2006 (V1.110) |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
 |  14 Apr 2006: | &lt;noautolink&gt; added to default pre/post rendering output of REVCOMMENT tag |
 |  14 Apr 2006: | Minor update for Dakar 4.0.2 |
 |  22 Apr 2005: | Initial version |
-|  TWiki Dependency: | $TWiki::Plugins::VERSION 1.024 |
+|  Dependency: | $Foswiki::Plugins::VERSION 1.024 |
 |  CPAN Dependencies: | none |
 |  Other Dependencies: | none |
 |  Perl Version: | 5.005 |
@@ -127,6 +127,3 @@ __Note:__ You do not need to install anything on the browser to use this plugin.
 |  Appraisal: | http://foswiki.org/Extensions/%TOPIC%Appraisal |
 
 __Related Topics:__ %SYSTEMWEB%.DefaultPreferences, %USERSWEB%.SitePreferences, [[%SYSTEMWEB%.Plugins][Plugins]]
-
--- TWiki:Main.JChristophFuchs - 22 Apr 2005
-

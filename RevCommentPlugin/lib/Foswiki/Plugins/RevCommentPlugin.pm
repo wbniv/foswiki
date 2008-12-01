@@ -1,6 +1,7 @@
 # Plugin for Foswiki - The Free and Open Source Wiki, http://foswiki.org/
 #
 # Copyright (C) 2005 by TWiki:Main.JChristophFuchs
+# Copyright (C) 2008 Foswiki Contributors
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -15,10 +16,10 @@
 #
 
 # =========================
-package TWiki::Plugins::RevCommentPlugin;
+package Foswiki::Plugins::RevCommentPlugin;
 use strict;
 
-use TWiki::Func;
+use Foswiki::Func;
 
 # =========================
 use vars qw(
@@ -30,7 +31,7 @@ use vars qw(
   $commentFromUpload $attachmentComments $cachedCommentWeb $cachedCommentTopic $minorMark
 );
 
-# This should always be $Rev: 9841 $ so that TWiki can determine the checked-in
+# This should always be $Rev: 9841 $ so that Foswiki can determine the checked-in
 # status of the plugin. It is used by the build automation tools, so
 # you should leave it alone.
 $VERSION = '$Rev: 9841 $';
@@ -49,8 +50,8 @@ sub initPlugin {
     ( $topic, $web, $user, $installWeb ) = @_;
 
     # check for Plugins.pm versions
-    if ( $TWiki::Plugins::VERSION < 1.021 ) {
-        TWiki::Func::writeWarning(
+    if ( $Foswiki::Plugins::VERSION < 1.021 ) {
+        Foswiki::Func::writeWarning(
             "Version mismatch between $pluginName and Plugins.pm");
         return 0;
     }
@@ -58,20 +59,20 @@ sub initPlugin {
     $commentFromUpload = undef;
 
     # Get plugin debug flag
-    $debug = TWiki::Func::getPluginPreferencesFlag("DEBUG");
+    $debug = Foswiki::Func::getPluginPreferencesFlag("DEBUG");
 
     # Get plugin preferences, the variable defined by:          * Set EXAMPLE = ...
     $attachmentComments =
-      TWiki::Func::getPluginPreferencesValue("ATTACHMENT_COMMENTS") || 1;
+      Foswiki::Func::getPluginPreferencesValue("ATTACHMENT_COMMENTS") || 1;
 
     $cachedCommentWeb   = '';
     $cachedCommentTopic = '';
 
     # Plugin correctly initialized
-    TWiki::Func::writeDebug(
-        "- TWiki::Plugins::${pluginName}::initPlugin( $web.$topic ) is OK")
+    Foswiki::Func::writeDebug(
+        "- Foswiki::Plugins::${pluginName}::initPlugin( $web.$topic ) is OK")
       if $debug;
-    TWiki::Func::writeDebug(
+    Foswiki::Func::writeDebug(
         "- --- attachmentComments = " . $attachmentComments )
       if $debug;
     return 1;
@@ -80,11 +81,11 @@ sub initPlugin {
 sub commonTagsHandler {
 ### my ( $text, $topic, $web ) = @_;   # do not uncomment, use $_[0], $_[1]... instead
 
-    TWiki::Func::writeDebug("- ${pluginName}::commonTagsHandler( $_[2].$_[1] )")
+    Foswiki::Func::writeDebug("- ${pluginName}::commonTagsHandler( $_[2].$_[1] )")
       if $debug;
 
     # This is the place to define customized tags and variables
-    # Called by TWiki::handleCommonTags, after %INCLUDE:"..."%
+    # Called by Foswiki::handleCommonTags, after %INCLUDE:"..."%
 
     $_[0] =~ s/%REVCOMMENT%/&handleRevComment()/ge;
     $_[0] =~ s/%REVCOMMENT{(.*?)}%/&handleRevComment($1)/ge;
@@ -95,16 +96,16 @@ sub beforeSaveHandler {
 ### my ( $text, $topic, $web, $meta ) = @_;   # do not uncomment, use $_[0], $_[1]... instead
     my ( $topic, $web, $meta ) = @_[ 1 .. 3 ];
 
-    TWiki::Func::writeDebug("- ${pluginName}::beforeSaveHandler( $_[2].$_[1] )")
+    Foswiki::Func::writeDebug("- ${pluginName}::beforeSaveHandler( $_[2].$_[1] )")
       if $debug;
 
-    # This handler is called by TWiki::Store::saveTopic just before the save action.
-    # New hook in TWiki::Plugins $VERSION = '1.010'
+    # This handler is called by Foswiki::Store::saveTopic just before the save action.
+    # New hook in Foswiki::Plugins $VERSION = '1.010'
 
-    my $query = TWiki::Func::getCgiQuery();
+    my $query = Foswiki::Func::getCgiQuery();
 
     # Get current revision
-    my ( $date, $user, $currev ) = TWiki::Func::getRevisionInfo( $_[2], $_[1] );
+    my ( $date, $user, $currev ) = Foswiki::Func::getRevisionInfo( $_[2], $_[1] );
     $currev ||= 0;
 
     my @comments = _extractComments($meta);
@@ -160,14 +161,14 @@ sub beforeSaveHandler {
 }
 
 sub beforeAttachmentSaveHandler {
-    TWiki::Func::writeDebug(
+    Foswiki::Func::writeDebug(
         "- ${pluginName}::beforeAttachmentSaveHandler( $_[2].$_[1] )")
       if $debug;
 
     return unless $attachmentComments;
-    TWiki::Func::writeDebug("--- still here") if $debug;
+    Foswiki::Func::writeDebug("--- still here") if $debug;
 
-    my $query = TWiki::Func::getCgiQuery();
+    my $query = Foswiki::Func::getCgiQuery();
     if ( defined( $query->param('filename') )
         && $query->param('filename') eq $_[0]->{attachment} )
     {
@@ -219,21 +220,21 @@ sub _putComments {
 
 sub handleRevComment {
 
-    TWiki::Func::writeDebug(
-        "- TWiki::Plugins::${pluginName}::handleRevComments: Args=>$_[0]<\n")
+    Foswiki::Func::writeDebug(
+        "- Foswiki::Plugins::${pluginName}::handleRevComments: Args=>$_[0]<\n")
       if $debug;
     my $params = $_[0] || '';
 
     # SMELL: this "convenience" should probably be removed; you can \" in Attributes
     $params =~ s/''/"/g;
 
-    my %params = TWiki::Func::extractParameters($params);
+    my %params = Foswiki::Func::extractParameters($params);
 
     my $web   = $params{web}   || $web;
     my $topic = $params{topic} || $topic;
     my $rev   = $params{rev}
       || $params{_DEFAULT}
-      || ( TWiki::Func::getRevisionInfo( $web, $topic ) )[2];
+      || ( Foswiki::Func::getRevisionInfo( $web, $topic ) )[2];
     $rev =~ s/^1\.//;
     my $delimiter = $params{delimiter};
     $delimiter = '</li><li style="margin-left:-1em;">'
@@ -247,13 +248,13 @@ sub handleRevComment {
     my $minor = $params{minor};
     $minor = '<i>(minor)</i> ' unless defined($minor);
 
-    unless ( TWiki::Func::topicExists( $web, $topic ) ) {
+    unless ( Foswiki::Func::topicExists( $web, $topic ) ) {
         return "Topic $web.$topic does not exist";
     }
     my @comments;
 
     # SMELL: doesn't respect access permissions (too bad there isn't a version that does, like readTopic() does...)
-    my ( $meta, undef ) = TWiki::Func::readTopic( $web, $topic, $rev );
+    my ( $meta, undef ) = Foswiki::Func::readTopic( $web, $topic, $rev );
 
     @comments = _extractComments($meta);
     foreach my $comment (@comments) {
