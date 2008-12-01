@@ -2,8 +2,9 @@
 #
 # Copyright (C) 2004-2006 Peter Thoeny, Peter@Thoeny.org
 # Plugin written by http://TWiki.org/cgi-bin/view/Main/TaitCyrus
+# Copyright (C) 2008 Foswiki Contributors
 #
-# For licensing info read LICENSE file in the TWiki root.
+# For licensing info read LICENSE file in the Foswiki root.
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
 # as published by the Free Software Foundation; either version 2
@@ -19,7 +20,7 @@
 #
 # =========================
 #
-# This file contains routines for dealing with TWiki plugin parameters.
+# This file contains routines for dealing with Foswiki plugin parameters.
 #
 # Access is via object oriented Perl and is as follows.
 #
@@ -33,7 +34,7 @@
 #    				  default value for the parameter
 
 # =========================
-package TWiki::Plugins::ChartPlugin::Parameters;
+package Foswiki::Plugins::ChartPlugin::Parameters;
 
 use Exporter;
 @ISA = ();
@@ -111,7 +112,7 @@ sub getAllParameters
     return %{$$this{"PARAMETERS"}};
 }
 
-# Return the value for the specified TWiki plugin parameter.  If the
+# Return the value for the specified Foswiki plugin parameter.  If the
 # parameter does not exist, then return the specified default value.  The
 # parameter is deleted from the list of specified parameters allowing the
 # code to determine what parameters remain and were not requested.
@@ -131,7 +132,7 @@ sub printParameters {
     my %parameters = $this->getAllParameters();
     for my $key (keys %parameters) {
 	my $val = $parameters{$key};
-	&TWiki::Func::writeDebug( "- TWiki::Plugins::ChartPlugin::Parameters::[$key]=[$val]");
+	&Foswiki::Func::writeDebug( "- Foswiki::Plugins::ChartPlugin::Parameters::[$key]=[$val]");
     }
 }
 

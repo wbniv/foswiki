@@ -2,8 +2,9 @@
 #
 # Copyright (C) 2004-2006 Peter Thoeny, Peter@Thoeny.org
 # Plugin written by http://TWiki.org/cgi-bin/view/Main/TaitCyrus
+# Copyright (C) 2008 Foswiki Contributors
 #
-# For licensing info read LICENSE file in the TWiki root.
+# For licensing info read LICENSE file in the Foswiki root.
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
 # as published by the Free Software Foundation; either version 2
@@ -164,7 +165,7 @@
 #    			- Get the space between bar graphs
 
 # =========================
-package TWiki::Plugins::ChartPlugin::Chart;
+package Foswiki::Plugins::ChartPlugin::Chart;
 
 use Exporter;
 use GD;

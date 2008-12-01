@@ -2,8 +2,9 @@
 #
 # Copyright (C) 2004-2006 Peter Thoeny, Peter@Thoeny.org
 # Plugin written by http://TWiki.org/cgi-bin/view/Main/TaitCyrus
+# Copyright (C) 2008 Foswiki Contributors
 #
-# For licensing info read LICENSE file in the TWiki root.
+# For licensing info read LICENSE file in the Foswiki root.
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
 # as published by the Free Software Foundation; either version 2
@@ -33,7 +34,7 @@
 # In addition to having it's own getter/setters.
 
 # =========================
-package TWiki::Plugins::ChartPlugin;
+package Foswiki::Plugins::ChartPlugin;
 
 use strict;
 
@@ -60,15 +61,15 @@ sub initPlugin {
     ( my $topic, my $web, my $user, $installWeb ) = @_;
 
     # check for Plugins.pm versions
-    if( $TWiki::Plugins::VERSION < 1 ) {
-        &TWiki::Func::writeWarning( "Version mismatch between ChartPlugin and Plugins.pm" );
+    if( $Foswiki::Plugins::VERSION < 1 ) {
+        &Foswiki::Func::writeWarning( "Version mismatch between ChartPlugin and Plugins.pm" );
         return 0;
     }
 
     # Get plugin debug flag
-    $debug = &TWiki::Func::getPreferencesFlag( "CHARTPLUGIN_DEBUG" ) || 0;
+    $debug = &Foswiki::Func::getPreferencesFlag( "CHARTPLUGIN_DEBUG" ) || 0;
 
-    &TWiki::Func::writeDebug( "- TWiki::Plugins::ChartPlugin::initPlugin($web.$topic) is OK" ) if $debug;
+    &Foswiki::Func::writeDebug( "- Foswiki::Plugins::ChartPlugin::initPlugin($web.$topic) is OK" ) if $debug;
 
     # Mark that we are not fully initialized yet.  Only get the default
     # values from the plugin topic page iff a CHART is found in a topic
@@ -84,9 +85,9 @@ sub _init_defaults {
     $pluginInitialized = 1;
     require Exporter;
     foreach my $module qw( GD POSIX
-                           TWiki::Plugins::ChartPlugin::Chart
-                           TWiki::Plugins::ChartPlugin::Parameters
-                           TWiki::Plugins::ChartPlugin::Table) {
+                           Foswiki::Plugins::ChartPlugin::Chart
+                           Foswiki::Plugins::ChartPlugin::Parameters
+                           Foswiki::Plugins::ChartPlugin::Table) {
         eval "require $module";
         if ($@) {
             $initError = "Required Perl module '$module' not found: $@";
@@ -95,36 +96,36 @@ sub _init_defaults {
     }
 
     # Get default chart type
-    $defaultType = TWiki::Func::getPreferencesValue( "CHARTPLUGIN_TYPE" ) || 'line';
+    $defaultType = Foswiki::Func::getPreferencesValue( "CHARTPLUGIN_TYPE" ) || 'line';
     # Get default chart values
-    $defaultWidth = &TWiki::Func::getPreferencesValue( "CHARTPLUGIN_WIDTH" ) || 60;
-    $defaultHeight = &TWiki::Func::getPreferencesValue( "CHARTPLUGIN_HEIGHT" ) || 16;
-    my $defaultAreaColors = &TWiki::Func::getPreferencesValue( "CHARTPLUGIN_AREA_COLORS" )
+    $defaultWidth = &Foswiki::Func::getPreferencesValue( "CHARTPLUGIN_WIDTH" ) || 60;
+    $defaultHeight = &Foswiki::Func::getPreferencesValue( "CHARTPLUGIN_HEIGHT" ) || 16;
+    my $defaultAreaColors = &Foswiki::Func::getPreferencesValue( "CHARTPLUGIN_AREA_COLORS" )
       || "#FF0000 #FFFF00 #00FF00";
     @defaultAreaColors = split(/[\s,]+/, $defaultAreaColors);
-    my $defaultLineColors = &TWiki::Func::getPreferencesValue( "CHARTPLUGIN_LINE_COLORS" )
+    my $defaultLineColors = &Foswiki::Func::getPreferencesValue( "CHARTPLUGIN_LINE_COLORS" )
       || "#FFFF00 #FF00FF #00FFFF";
     @defaultLineColors = split(/[\s,]+/, $defaultLineColors);
     # Get default chart bgcolor
-    $defaultBGcolor = &TWiki::Func::getPreferencesValue( "CHARTPLUGIN_BGCOLOR" ) || '#FFFFFF #FFFFFF';
+    $defaultBGcolor = &Foswiki::Func::getPreferencesValue( "CHARTPLUGIN_BGCOLOR" ) || '#FFFFFF #FFFFFF';
     # Get default number of Y axis grids
-    $defaultNumYGrids = &TWiki::Func::getPreferencesValue( "CHARTPLUGIN_NUMYGRIDS" ) || 10;
+    $defaultNumYGrids = &Foswiki::Func::getPreferencesValue( "CHARTPLUGIN_NUMYGRIDS" ) || 10;
     # Get default value to use if there is no data seen in the table
-    $defaultDataValue = &TWiki::Func::getPreferencesValue( "CHARTPLUGIN_DEFAULTDATA" );
+    $defaultDataValue = &Foswiki::Func::getPreferencesValue( "CHARTPLUGIN_DEFAULTDATA" );
     # Get default value for the scale (linear/semilog)
-    $defaultScale = &TWiki::Func::getPreferencesValue( "CHARTPLUGIN_SCALE" );
+    $defaultScale = &Foswiki::Func::getPreferencesValue( "CHARTPLUGIN_SCALE" );
     # Get default grid color.
-    $defaultGridColor = &TWiki::Func::getPreferencesValue( "CHARTPLUGIN_GRIDCOLOR" ) || '#000000';
+    $defaultGridColor = &Foswiki::Func::getPreferencesValue( "CHARTPLUGIN_GRIDCOLOR" ) || '#000000';
     # Get default value for the size, in pixels, of drawn data points
-    $defaultPointSize = &TWiki::Func::getPreferencesValue( "CHARTPLUGIN_POINTSIZE" ) || 2;
+    $defaultPointSize = &Foswiki::Func::getPreferencesValue( "CHARTPLUGIN_POINTSIZE" ) || 2;
     # Get default value for the width, in pixels, of drawn lines
-    $defaultLineWidth = &TWiki::Func::getPreferencesValue( "CHARTPLUGIN_LINEWIDTH" ) || 3;
+    $defaultLineWidth = &Foswiki::Func::getPreferencesValue( "CHARTPLUGIN_LINEWIDTH" ) || 3;
     # Get default value for the leading space before the first bar.
-    $defaultBarLeadingSpace = &TWiki::Func::getPreferencesValue( "CHARTPLUGIN_BARLEADINGSPACE" ) || 0;
+    $defaultBarLeadingSpace = &Foswiki::Func::getPreferencesValue( "CHARTPLUGIN_BARLEADINGSPACE" ) || 0;
     # Get default value for the trailing space after the last bar.
-    $defaultBarTrailingSpace = &TWiki::Func::getPreferencesValue( "CHARTPLUGIN_BARTRAILINGSPACE" ) || 0;
+    $defaultBarTrailingSpace = &Foswiki::Func::getPreferencesValue( "CHARTPLUGIN_BARTRAILINGSPACE" ) || 0;
     # Get default value for the space between bars.
-    $defaultBarSpace = &TWiki::Func::getPreferencesValue( "CHARTPLUGIN_BARSPACE" ) || 0;
+    $defaultBarSpace = &Foswiki::Func::getPreferencesValue( "CHARTPLUGIN_BARSPACE" ) || 0;
 }
 
 # Object constructor for creating a ChartPlugin Perl object.  The object is
@@ -147,7 +148,7 @@ sub _tables { my ($this) = @_; return $this->{TABLES}; }
 # Setter for storing the Parameters object
 sub _setParameters {
     my ($this, $args) = @_;
-    $this->{PARAMETERS} = TWiki::Plugins::ChartPlugin::Parameters->new($args);
+    $this->{PARAMETERS} = Foswiki::Plugins::ChartPlugin::Parameters->new($args);
 }
 
 # Getter for Parameters object
@@ -171,15 +172,15 @@ sub _setTopicContents {
         $topicContents = $this->{CURRENT_TOPICONTENTS};
     } else {
         # A difference, so read in the topic.
-        (my $meta, $topicContents) = TWiki::Func::readTopic( $inWeb, $inTopic );
+        (my $meta, $topicContents) = Foswiki::Func::readTopic( $inWeb, $inTopic );
         # Check to make sure the web.topic actually exists.  If not, return
         # undef so the caller can catch the error.
         return undef if ($topicContents eq "");
-        $topicContents = TWiki::Func::expandCommonVariables($topicContents, $inTopic, $inWeb);
+        $topicContents = Foswiki::Func::expandCommonVariables($topicContents, $inTopic, $inWeb);
     }
 
     # Lets parse the specified topic contents looking for tables.
-    $this->_setTables(TWiki::Plugins::ChartPlugin::Table->new($topicContents));
+    $this->_setTables(Foswiki::Plugins::ChartPlugin::Table->new($topicContents));
     return 1;
 }
 
@@ -213,7 +214,7 @@ sub _make_filename {
 
     # before save, create directories if they don't exist.
     # If the top level "pub/$web" directory doesn't exist, create it.
-    my $dir = TWiki::Func::getPubDir() . "/$web";
+    my $dir = Foswiki::Func::getPubDir() . "/$web";
     if( ! -e "$dir" ) {
         umask( 002 );
         mkdir( $dir, 0775 );
@@ -252,7 +253,7 @@ sub _makeChart {
     $this->_setParameters ($args);
 
     # Make a chart object in which we will place user specified parameters
-    my $chart = TWiki::Plugins::ChartPlugin::Chart->new();
+    my $chart = Foswiki::Plugins::ChartPlugin::Chart->new();
 
     # See if the parameter 'type' is available.  This is a required
     # parameter.  If it is missing, then generate an error message.
@@ -326,7 +327,7 @@ sub _makeChart {
     # Before we parse any further parameters, lets get the contents of the
     # specified web/topic.
     if (! $this->_setTopicContents($inWeb, $inTopic)) {
-        return _make_error("Error retrieving TWiki topic $inWeb<nop>.$inTopic");
+        return _make_error("Error retrieving Foswiki topic $inWeb<nop>.$inTopic");
     }
 
     # Determine which table the user wants to chart
@@ -448,7 +449,7 @@ sub _makeChart {
     if ($legend) {
         my $cnt = my @d = $this->_tables->getData($tableName, $legend);
         if ($cnt > 1) {
-            @d = TWiki::Plugins::ChartPlugin::Table::transpose( @d );
+            @d = Foswiki::Plugins::ChartPlugin::Table::transpose( @d );
             $cnt = scalar(@d);
         }
         if ($cnt > 1) {

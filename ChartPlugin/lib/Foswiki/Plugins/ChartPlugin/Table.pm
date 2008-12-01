@@ -2,8 +2,9 @@
 #
 # Copyright (C) 2004-2006 Peter Thoeny, Peter@Thoeny.org
 # Plugin written by http://TWiki.org/cgi-bin/view/Main/TaitCyrus
+# Copyright (C) 2008 Foswiki Contributors
 #
-# For licensing info read LICENSE file in the TWiki root.
+# For licensing info read LICENSE file in the Foswiki root.
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
 # as published by the Free Software Foundation; either version 2
@@ -19,7 +20,7 @@
 #
 # =========================
 #
-# This file contains routines for dealing with TWiki tables.
+# This file contains routines for dealing with Foswiki tables.
 #
 # Access is via object oriented Perl and is as follows.
 #
@@ -41,7 +42,7 @@
 #    				  specified in the range
 
 # =========================
-package TWiki::Plugins::ChartPlugin::Table;
+package Foswiki::Plugins::ChartPlugin::Table;
 
 use strict;
 
@@ -115,16 +116,16 @@ sub getTableRanges {
 }
 
 # This routine is only intended for debug purposes.  All it does is to
-# output the contents of the table object to the TWiki debug.txt file.
+# output the contents of the table object to the Foswiki debug.txt file.
 sub getTableInfo {
     my ($this) = @_;
 
     foreach my $table (1..$this->getNumberOfTables()) {
         my @t = $this->getTable($table);
-        &TWiki::Func::writeDebug( "- TWiki::Plugins::ChartPlugin::TABLE[$table][@t]");
+        &Foswiki::Func::writeDebug( "- Foswiki::Plugins::ChartPlugin::TABLE[$table][@t]");
         foreach my $row (@t) {
             my @col = @$row;
-            &TWiki::Func::writeDebug( "- TWiki::Plugins::ChartPlugin::ROW[$row][@col]");
+            &Foswiki::Func::writeDebug( "- Foswiki::Plugins::ChartPlugin::ROW[$row][@col]");
         }
     }
 }
@@ -214,7 +215,7 @@ sub _trim {
     }
 }
 
-# Given a table name and a range of TWiki table data (in
+# Given a table name and a range of Foswiki table data (in
 # SpreadSheetPlugin format), return the specified data.  Assume that the
 # data is row oriented unless only a single column is specified.
 # NOTE: All data is returned as a 2 dimensional array even in the case of a
@@ -292,7 +293,7 @@ sub transpose {
 
 sub max { $_[0] > $_[1] ? $_[0] : $_[1] }
 
-# Given a range of TWiki table data (in SpreadSheetPlugin format), return
+# Given a range of Foswiki table data (in SpreadSheetPlugin format), return
 # an array containing the number of rows/columns specified by the range.
 sub getRowColumnCount {
     my ($this, $tableName, $spreadSheetSyntax) = @_;

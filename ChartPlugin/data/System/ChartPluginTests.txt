@@ -215,8 +215,8 @@ This table is used for various legend placement tests as well as logarithmic dat
 | no parameters passed to CHART <p /> =%<nop>CHART{}%= | ChartPlugin error: parameter *name* must be specified </ p> | %CHART{}% |
 | Define =type= but =name= not specified <p /> =%<nop>CHART{type="bar"}%= | ChartPlugin error: parameter *name* must be specified </ p> | %CHART{type="bar"}% |
 | Invalid =type= of =badtype= <p /> =%<nop>CHART{type="badtype"}%= | ChartPlugin error: Invalid value of *badtype* for parameter *type* </ p> | %CHART{type="badtype"}% |
-| Missing topic page <p /> =%<nop>CHART{name="err1" topic="DoesNotExist" type="line"}%= | ChartPlugin error: Error retrieving TWiki topic %SYSTEMWEB%.DoesNotExist </ p> | %CHART{name="err1" topic="DoesNotExist" type="line"}% |
-| Missing web  <p /> =%<nop>CHART{name="err1" type="line" web="DoesNotExist"}%= | ChartPlugin error: Error retrieving TWiki topic DoesNotExist.ChartPluginTests </ p> | %CHART{name="err1" type="line" web="DoesNotExist"}% |
+| Missing topic page <p /> =%<nop>CHART{name="err1" topic="DoesNotExist" type="line"}%= | ChartPlugin error: Error retrieving Foswiki topic %SYSTEMWEB%.DoesNotExist </ p> | %CHART{name="err1" topic="DoesNotExist" type="line"}% |
+| Missing web  <p /> =%<nop>CHART{name="err1" type="line" web="DoesNotExist"}%= | ChartPlugin error: Error retrieving Foswiki topic DoesNotExist.ChartPluginTests </ p> | %CHART{name="err1" type="line" web="DoesNotExist"}% |
 | Invalid table number <p /> =%<nop>CHART{name="err1" table="999" type="line"}%= | ChartPlugin error: parameter *table* is not valid table; the specified table '999' does not exist. </ p> | %CHART{name="err1" table="999" type="line"}% |
 | No data specified <p /> =%<nop>CHART{name="err1" type="line"}%= | ChartPlugin error: parameter *data* must be specified </ p> | %CHART{name="err1" type="line"}% |
 | invalid =xaxis= value <p /> =%<nop>CHART{data="R2:C4..R7:C7" name="err1" type="line" xaxis="R2:C4..R7:C7"}%= | ChartPlugin error: parameter *xaxis* specifies multiple rows and columns. </ p> | %CHART{data="R2:C4..R7:C7" name="err1" type="line" xaxis="R2:C4..R7:C7"}% |
@@ -227,7 +227,3 @@ This table is used for various legend placement tests as well as logarithmic dat
 | Use an invalid =data= range <p /> =%<nop>CHART{data="R2:C4" name="err1"}%= | ChartPlugin error: parameter *data* value of 'R2:C4' is not valid </ p> | %CHART{data="R2:C4" name="err1"}% |
 | Use an invalid =legend= range <p /> =%<nop>CHART{data="R2:C4..R7:C7" legend="R1:C4" name="err1"}%= | ChartPlugin error: parameter *legend* contains an invalid value 'R1:C4'. </ p> | %CHART{data="R2:C4..R7:C7" legend="R1:C4" name="err1"}% |
 | =scale=semilog= and data &lt;= 0 <p /> =%<nop>CHART{data="R2:C3..R7:C7" name="err1" scale="semilog"}%= | ChartPlugin error: data (0) &lt;= 0 not valid when scale=semilog </ p> | %CHART{data="R2:C3..R7:C7" name="err1" scale="semilog"}% |
-
--- TWiki:Main.TaitCyrus - 3 June 2004 <br />
--- TWiki:Main.PeterThoeny - 14 Sept 2002
-

@@ -21,7 +21,3 @@ This topic just contains two tables which are referenced from the ChartPluginTes
 | *Remote:Actual Value* | 39.52 | 55.52 | 36.52 | 62.52 | 72.52 | 68.52 |
 | *Test:Averages* | %CALC{"$EVAL($SUM(xR3:C2..R7:C2)/5)"}% | %CALC{"$AVERAGE(R3:C3..R7:C3)"}%| %CALC{"$AVERAGE(R3:C4..R7:C4)"}%| %CALC{"$AVERAGE(R3:C5..R7:C5)"}%| %CALC{"$AVERAGE(R3:C6..R7:C6)"}%| %CALC{"$AVERAGE(R3:C7..R7:C7)"}%|
 | *Remote:Comment* | initial measure | | | | | |
-
--- TWiki:Main.TaitCyrus - 3 June 2004 <br />
--- TWiki:Main.PeterThoeny - 20 Jun 2002
-
