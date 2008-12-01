@@ -228,7 +228,7 @@ sub _ANYWIKIDRAW
 		} 
 	else
 		{
-		if ($query->param('editDrawing') eq $fileName)
+		if (($query->param('editDrawing')||'') eq $fileName)
 			{
 			return editAnyDrawing($fileName, $width, $height, $theTopic, $theWeb);
 			}
@@ -948,7 +948,7 @@ sub handleAnyDrawing {
   } else {
   	$img = "src=\"%ATTACHURLPATH%/$nameVal\"";
   }
-  my $editUrl = $ENV["REQUEST_URI"]."?editDrawing=$nameVal";
+  my $editUrl = TWiki::Func::getScriptUrl($web, $topic, "view", editDrawing=>$nameVal);
   my $imgText = "";
   my $edittext = $editmess;
   $edittext =~ s/%F%/$nameVal/g;

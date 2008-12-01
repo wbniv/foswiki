@@ -22,30 +22,9 @@ BEGIN {
     unshift @INC, split( /:/, $ENV{FOSWIKI_LIBS} );
 }
 
-use TWiki::Contrib::Build;
+use Foswiki::Contrib::Build;
 
-# Declare our build package
-package BuildBuild;
-use base qw( TWiki::Contrib::Build );
-
-sub new {
-    my $class = shift;
-    return bless( $class->SUPER::new( "AnyWikiDrawPlugin" ), $class );
-}
-
-# Example: Override the build target
-sub target_build {
-    my $this = shift;
-
-    $this->SUPER::target_build();
-
-    # Do other build stuff here
-}
-
-package main;
-
-# Create the build object
-$build = new BuildBuild();
+my $build = new Foswiki::Contrib::Build('AnyWikiDrawPlugin');
 
 # Build the target on the command line, or the default target
 $build->build($build->{target});
