@@ -28,7 +28,7 @@ sub target_build {
   $this->SUPER::target_build();
 
   $this->pushd($this->{basedir}."/lib/Foswiki/Plugins/FoswikiDrawPlugin");
-  $this->sys_action("ant -f build.xml build");
+  $this->sys_action("ant", "-f", "build.xml", "build");
   $this->popd();
 }
 
