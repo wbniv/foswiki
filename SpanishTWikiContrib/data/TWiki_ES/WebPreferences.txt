@@ -54,5 +54,4 @@ Estas configuraciones sobrescriben los valores estándares solamente para esta we
 
 %INCLUDE{%WEB%.WebPreferencesHelp}%
 
-%META:FILEATTACHMENT{name="favicon.ico" attachment="favicon.ico" attr="" comment="favicon; famfamfam Flag Icons (Spain)" date="1217702480" path="favicon.ico" size="1406" stream="IO::File=GLOB(0x159e150)" tmpFilename="" user="BaseUserMapping_333" version="2"}%
 %META:FILEATTACHMENT{name="gb.png" attachment="gb.png" attr="" comment="famfamfam Flag Icons (Great Britain)" date="1210972260" path="gb.png" size="599" stream="gb.png" tmpFilename="C:\temp\CGItemp41423" user="SebastianKlus" version="1"}%
