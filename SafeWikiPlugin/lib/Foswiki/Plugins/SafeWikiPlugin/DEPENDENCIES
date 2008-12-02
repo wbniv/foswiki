@@ -1,0 +1,2 @@
+# Dependencies for SafeWikiPlugin
+HTML::Parser,>=0,cpan,Required

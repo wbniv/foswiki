@@ -2,15 +2,16 @@
 
 =pod
 
----+ package TWiki::Plugins::SafeWikiPlugin::Node
+---+ package Foswiki::Plugins::SafeWikiPlugin::Node
 
 A tree node in an HTML parse tree
 
 =cut
 
-package TWiki::Plugins::SafeWikiPlugin::Node;
+package Foswiki::Plugins::SafeWikiPlugin::Node;
 
 use strict;
+use Assert;
 
 sub new {
     my( $class, $tag, $attrs ) = @_;
@@ -68,10 +69,10 @@ sub addChild {
 # generate the parse tree, applying filters
 sub generate {
     my ($this, $filterURI, $filterHandler) = @_;
-    my $tag = uc( $this->{tag} );
+    my $tag = $this->{tag};
 
     # make the names of the function versions
-    my $f = '_'.$tag;
+    my $f = '_'.uc( $tag );
     $f =~ s/[^\w]//; # clean up !DOCTYPE etc
 
     # See if we have a tag-specific function for this tag type
@@ -110,6 +111,7 @@ sub filterHandlers {
     foreach my $attr (keys %{$this->{attrs}}) {
         next unless $attr =~ /^on[a-z]+$/i;
         $this->{attrs}->{$attr} = &$filter($this->{attrs}->{$attr});
+        ASSERT(defined $this->{attrs}->{$attr});
     }
 }
 
@@ -120,6 +122,7 @@ sub filterURIs {
     foreach my $attr (@_) {
         if (defined($this->{attrs}->{$attr})) {
             $this->{attrs}->{$attr} = &$filter($this->{attrs}->{$attr});
+            ASSERT(defined $this->{attrs}->{$attr});
         }
     }
     return 1;
@@ -133,7 +136,7 @@ sub filterURIs {
 sub _A {
     my ($this, $filter) = @_;
     $this->filterURIs($filter, 'href')
-      if $TWiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
+      if $Foswiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
     return 1;
 }
 
@@ -146,35 +149,35 @@ sub _APPLET {
 sub _AREA {
     my ($this, $filter) = @_;
     $this->filterURIs($filter, 'href')
-      if $TWiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
+      if $Foswiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
     return 1;
 }
 
 sub _BASE {
     my ($this, $filter) = @_;
     $this->filterURIs($filter, 'href')
-      if $TWiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
+      if $Foswiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
     return 1;
 }
 
 sub _BLOCKQUOTE {
     my ($this, $filter) = @_;
     $this->filterURIs($filter, 'cite')
-      if $TWiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
+      if $Foswiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
     return 1;
 }
 
 sub _BODY {
     my ($this, $filter) = @_;
     $this->filterURIs($filter, 'background')
-      if $TWiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
+      if $Foswiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
     return 1;
 }
 
 sub _DEL {
     my ($this, $filter) = @_;
     $this->filterURIs($filter, 'cite')
-      if $TWiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
+      if $Foswiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
     return 1;
 }
 
@@ -182,49 +185,49 @@ sub _EMBED {
     my ($this, $filter) = @_;
     $this->filterURIs($filter, 'pluginspace', 'pluginurl', 'src');
     $this->filterURIs($filter, 'href', 'target', 'src')
-      if $TWiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
+      if $Foswiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
     return 1;
 }
 
 sub _FORM {
     my ($this, $filter) = @_;
     $this->filterURIs($filter, 'action')
-      if $TWiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
+      if $Foswiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
     return 1;
 }
 
 sub _FRAME {
     my ($this, $filter) = @_;
     $this->filterURIs($filter, 'src', 'longdesc')
-      if $TWiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
+      if $Foswiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
     return 1;
 }
 
 sub _IFRAME {
     my ($this, $filter) = @_;
     $this->filterURIs($filter, 'src', 'longdesc')
-      if $TWiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
+      if $Foswiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
     return 1;
 }
 
 sub _IMG {
     my ($this, $filter) = @_;
     $this->filterURIs($filter, 'src', 'longdesc', 'usemap')
-      if $TWiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
+      if $Foswiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
     return 1;
 }
 
 sub _INPUT {
     my ($this, $filter) = @_;
     $this->filterURIs($filter, 'src', 'usemap')
-      if $TWiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
+      if $Foswiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
     return 1;
 }
 
 sub _LINK {
     my ($this, $filter) = @_;
     $this->filterURIs($filter, 'href')
-      if $TWiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
+      if $Foswiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
     return 1;
 }
 
@@ -232,7 +235,7 @@ sub _OBJECT {
     my ($this, $filter) = @_;
     $this->filterURIs($filter, 'archive', 'codebase');
     $this->filterURIs($filter, 'data', 'usemap')
-      if $TWiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
+      if $Foswiki::cfg{Plugins}{SafeWikiPlugin}{FilterAll};
     return 1;
 }
 

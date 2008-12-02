@@ -1,6 +1,6 @@
 # See bottom of file for notices
 
-package TWiki::Plugins::SafeWikiPlugin::Leaf;
+package Foswiki::Plugins::SafeWikiPlugin::Leaf;
 
 use strict;
 

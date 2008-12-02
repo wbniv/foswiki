@@ -1,28 +1,25 @@
 # See bottom of file for notices
-package TWiki::Plugins::SafeWikiPlugin;
+package Foswiki::Plugins::SafeWikiPlugin;
 
 use strict;
 use Assert;
 
-use vars qw( $VERSION $RELEASE $SHORTDESCRIPTION $NO_PREFS_IN_TOPIC
-             $URIFILTER $CODEFILTER );
+require Foswiki::Plugins::SafeWikiPlugin::Parser;
 
-$VERSION = '$Rev$';
+our $VERSION = '$Rev$';
+our $RELEASE = '1.0';
+our $SHORTDESCRIPTION = 'Secure your Foswiki so it can\'t be used for mounting phishing attacks';
+our $NO_PREFS_IN_TOPIC = 1;
 
-$RELEASE = '1.0';
-
-$SHORTDESCRIPTION = 'Secure your TWiki so it can\'t be used for mounting phishing attacks';
-
-$NO_PREFS_IN_TOPIC = 1;
-
-use vars qw( $parser  );
-require TWiki::Plugins::SafeWikiPlugin::Parser;
+our $URIFILTER;
+our $CODEFILTER;
+our $parser;
 
 sub initPlugin {
     #my( $topic, $web, $user, $installWeb ) = @_;
 
     unless( $parser ) {
-        $parser = new TWiki::Plugins::SafeWikiPlugin::Parser();
+        $parser = new Foswiki::Plugins::SafeWikiPlugin::Parser();
     }
 
     return $parser ? 1 : 0;
@@ -35,7 +32,7 @@ sub completePageHandler {
     return unless $_[1] =~ m#^Content-type: text/html#mi;
 
     # Parse the HTML and generate a parse tree
-    # This handler can be patched into pre-4.2 revs of TWiki
+    # This handler can be patched into pre-4.2 revs of Foswiki
     my $tree = $parser->parseHTML( $_[0] );
 
     # Now re-generate HTML, applying security constraints as we go.
@@ -49,30 +46,31 @@ sub _filterURI {
     my $uri = shift;
     return '' unless $uri;
     unless (defined($URIFILTER)) {
-        # the eval expands $TWiki::cfg vars
+        # the eval expands $Foswiki::cfg vars
         $URIFILTER =
-          join('|', map {s/(\$TWiki::cfg({.*?})+)/eval($1)/ge; "($_)" }
-                 @{$TWiki::cfg{Plugins}{SafeWikiPlugin}{SafeURI}});
+          join('|', map {s/(\$Foswiki::cfg({.*?})+)/eval($1)/ge; "($_)" }
+                 @{$Foswiki::cfg{Plugins}{SafeWikiPlugin}{SafeURI}});
     }
     return $uri if $uri =~ /$URIFILTER/o;
-    TWiki::Func::writeWarning("SafeWikiPlugin: Disarmed URI '$uri' on "
+    Foswiki::Func::writeWarning("SafeWikiPlugin: Disarmed URI '$uri' on "
                                 .$ENV{REQUEST_URI}.$ENV{QUERY_STRING});
-    return $TWiki::cfg{Plugins}{SafeWikiPlugin}{DisarmURI};
+    return $Foswiki::cfg{Plugins}{SafeWikiPlugin}{DisarmURI} ||
+      'URI filtered by SafeWikiPlugin';
 }
 
 sub _filterHandler {
     my $code = shift;
     return '' unless $code;
     unless (defined($CODEFILTER)) {
-        # the eval expands $TWiki::cfg vars
+        # the eval expands $Foswiki::cfg vars
         $CODEFILTER =
-          join('|', map { s/(\$TWiki::cfg({.*?})+)/eval($1)/ge; qr/($_)/ }
-                 @{$TWiki::cfg{Plugins}{SafeWikiPlugin}{SafeHandler}});
+          join('|', map { s/(\$Foswiki::cfg({.*?})+)/eval($1)/ge; qr/($_)/ }
+                 @{$Foswiki::cfg{Plugins}{SafeWikiPlugin}{SafeHandler}});
     }
     return $code if $code =~ /$CODEFILTER/o;
-    TWiki::Func::writeWarning("SafeWikiPlugin: Disarmed on* '$code' on "
+    Foswiki::Func::writeWarning("SafeWikiPlugin: Disarmed on* '$code' on "
                                 .$ENV{REQUEST_URI}.$ENV{QUERY_STRING});
-    return $TWiki::cfg{Plugins}{SafeWikiPlugin}{DisarmHandler};
+    return $Foswiki::cfg{Plugins}{SafeWikiPlugin}{DisarmHandler};
 }
 
 1;

@@ -1,12 +1,12 @@
 # See bottom of file for notices
 
-package TWiki::Plugins::SafeWikiPlugin::Parser;
+package Foswiki::Plugins::SafeWikiPlugin::Parser;
 use base 'HTML::Parser';
 
 use strict;
 
-require TWiki::Plugins::SafeWikiPlugin::Node;
-require TWiki::Plugins::SafeWikiPlugin::Leaf;
+require Foswiki::Plugins::SafeWikiPlugin::Node;
+require Foswiki::Plugins::SafeWikiPlugin::Leaf;
 
 sub new {
     my ($class) = @_;
@@ -18,7 +18,7 @@ sub new {
         default_h => [\&_text, 'self,text'],
         comment_h => [\&_comment, 'self,text'] );
     $this->empty_element_tags(1);
-    if ($TWiki::cfg{Plugins}{SafeWikiPlugin}{CheckPurity}) {
+    if ($Foswiki::cfg{Plugins}{SafeWikiPlugin}{CheckPurity}) {
         $this->strict_end(1);
         $this->strict_names(1);
     }
@@ -72,13 +72,13 @@ sub _openTag {
 
     push( @{$this->{stack}}, $this->{stackTop} ) if $this->{stackTop};
     $this->{stackTop} =
-      new TWiki::Plugins::SafeWikiPlugin::Node($tag, $attrs);
+      new Foswiki::Plugins::SafeWikiPlugin::Node($tag, $attrs);
 }
 
 sub _closeTag {
     my( $this, $tag ) = @_;
 
-    if ($TWiki::cfg{Plugins}{SafeWikiPlugin}{CheckPurity}) {
+    if ($Foswiki::cfg{Plugins}{SafeWikiPlugin}{CheckPurity}) {
         if (!$this->{stackTop} || $this->{stackTop}->{tag} ne $tag) {
             die "Unclosed <$this->{stackTop}->{tag} at </$tag\n".
               $this->stringify();
@@ -90,7 +90,7 @@ sub _closeTag {
 sub _text {
     my( $this, $text ) = @_;
     return unless length($text);
-    my $l = new TWiki::Plugins::SafeWikiPlugin::Leaf($text);
+    my $l = new Foswiki::Plugins::SafeWikiPlugin::Leaf($text);
     if (defined $this->{stackTop}) {
         die "Unexpected leaf: ".$this->stringify()
           if $this->{stackTop}->isLeaf();
