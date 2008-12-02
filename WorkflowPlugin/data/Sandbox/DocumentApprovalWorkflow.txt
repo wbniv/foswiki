@@ -29,10 +29,10 @@ Workflow history: %<nop>WORKFLOWHISTORY%
 | WAITINGFORQM  | nobody       | This document is waiting for approval by the Quality Manager. |
 | WAITINGFORCTO | nobody       | This document is waiting for approval by the CTO.|
 ---++ Transitions
-| *State*        | *Action* | *Next State*  | *Allowed*                        | *Form*        |
-| APPROVED       | revise   | UNDERREVISION |                      | ApprovedForm  |
-| UNDERREVISION  | ready for approval | WAITINGFORQM  |                      | InProcessForm |
-| WAITINGFORQM   | approve  | WAITINGFORCTO |       |               |
-| WAITINGFORQM   | reject   | UNDERREVISION |       |               |
-| WAITINGFORCTO  | approve  | APPROVED      |       | ApprovedForm  |
-| WAITINGFORCTO  | reject   | UNDERREVISION |       |               |
+| *State*        | *Action* | *Next State*  | *Allowed* | *Form*        |
+| APPROVED       | revise   | UNDERREVISION |           | ApprovedForm  |
+| UNDERREVISION  | ready for approval | WAITINGFORQM  | | InProcessForm |
+| WAITINGFORQM   | approve  | WAITINGFORCTO |           |               |
+| WAITINGFORQM   | reject   | UNDERREVISION |           |               |
+| WAITINGFORCTO  | approve  | APPROVED      |           | ApprovedForm  |
+| WAITINGFORCTO  | reject   | UNDERREVISION |           |               |

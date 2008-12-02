@@ -240,7 +240,7 @@ sub beforeEditHandler {
     my $query = TWiki::Func::getCgiQuery();
     if ( !$query->param('INWORKFLOWSEQUENCE') && !$TOPIC->canEdit() ) {
         throw TWiki::OopsException(
-            'accessdenied',
+            'accessdenied', status => 403,
             def   => 'topic_access',
             web   => $_[2],
             topic => $_[1],
@@ -284,35 +284,40 @@ sub _changeState {
         my $newForm = $TOPIC->newForm($action);
 
         try {
-            $query->param('INWORKFLOWSEQUENCE' => 1);
-            $TOPIC->changeState($action);
-            if ($newForm) {
-
-                # If there is a form with the new state, and it's not the same
-                # form as previously, we need to kick into edit mode to support
-                # form field changes.
-                $url = TWiki::Func::getScriptUrl(
-                    $web, $topic, 'edit',
-                    INWORKFLOWSEQUENCE => time());
+            try {
+                $query->param('INWORKFLOWSEQUENCE' => 1);
+                if ($newForm) {
+                    # If there is a form with the new state, and it's not
+                    # the same form as previously, we need to kick into edit
+                    # mode to support form field changes.
+                    $url = TWiki::Func::getScriptUrl(
+                        $web, $topic, 'edit',
+                        INWORKFLOWSEQUENCE => time());
+                }
+                else {
+                    $url = TWiki::Func::getScriptUrl( $web, $topic, 'view' );
+                }
+                # SMELL: don't do this until the edit is over
+                $TOPIC->changeState($action);
+                TWiki::Func::redirectCgiQuery( undef, $url );
+            } catch Error::Simple with {
+                my $error = shift;
+                throw TWiki::OopsException(
+                    'oopssaveerr',
+                    web => $web, topic => $topic,
+                    params => [ $error || '?' ]);
+            };
+        } catch TWiki::OopsException with {
+            my $e = shift;
+            if ($e->can('generate')) {
+                $e->generate( $session );
+            } else {
+                # Deprecated, TWiki compatibility only
+                $e->redirect( $session );
             }
-            else {
-                $url = TWiki::Func::getScriptUrl( $web, $topic, 'view' );
-            }
-        }
-        catch Error::Simple with {
-            my $error = shift;
-            $url = TWiki::Func::getScriptUrl(
-                $web, $topic, 'oops',
-                template => "oopssaveerr",
-                param1   => $error
-            );
-        }
-        catch TWiki::OopsException with {
-            shift->redirect( $session );
 
         };
     }
-    TWiki::Func::redirectCgiQuery( undef, $url );
     return undef;
 }
 
