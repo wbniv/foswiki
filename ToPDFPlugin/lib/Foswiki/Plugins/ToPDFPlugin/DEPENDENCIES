@@ -1,4 +1,4 @@
-HTTP::Cookies::Find,>0,cpan,Required
+ HTTP::Cookies::Find,>0,cpan,Required
 Encode,>0,cpan,Required
 Encode::Encoding,>0,cpan,Required
 File::Basename,>0,cpan,Required

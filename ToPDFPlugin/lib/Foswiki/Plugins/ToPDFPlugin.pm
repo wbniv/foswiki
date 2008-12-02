@@ -19,9 +19,9 @@
 
 =pod
 
-=head1 TWiki::Contrib::ToPDF
+=head1 Foswiki::Plugins::ToPDFPlugin
 
-TWiki::Contrib::ToPDF - Displays TWiki page as PDF using html2pdf
+TWiki::Plugins::ToPDFPlugin - Displays Foswiki topics as PDF using html2pdf
 
 =head1 DESCRIPTION
 
@@ -34,13 +34,14 @@ outside the package.
 
 =cut
 
-package Foswiki::Contrib::ToPDFPlugin;
+package Foswiki::ToPDFPlugin::ToPDFPlugin;
 
 use strict;
 
-use CGI;
-use Foswiki::Func;
-use Foswiki::UI::View;
+require CGI;
+require Foswiki::Func;
+require Foswiki::Plugins; # For the API version
+require Foswiki::UI::View;
 use File::Temp qw( tempfile );
 use File::Basename;
 use Error qw( :try );
@@ -49,11 +50,7 @@ use Encode;
 use Encode::Encoding;
 #use utf8;
 
-use vars qw( $VERSION $RELEASE );
-
-$VERSION = '$Rev: 15468 $';
-
-$RELEASE = 'Dakar';
+use vars qw( $VERSION $RELEASE $SHORTDESCRIPTION $debug $pluginName $NO_PREFS_IN_TOPIC );
 
 $| = 1; # Autoflush buffers
 
@@ -61,14 +58,79 @@ our $query;
 our %tree;
 our %prefs;
 
-=pod
+# $VERSION is referred to by Foswiki, and is the only global variable that
+# *must* exist in this package.
 
-=head2 _getRenderedView($webName, $topic)
 
-Generates rendered HTML of $topic in $webName using Foswiki rendering functions and
-returns it.
- 
+# This should always be $Rev$ so that Foswiki can determine the checked-in
+# status of the plugin. It is used by the build automation tools, so
+# you should leave it alone.
+$VERSION = '$Rev$';
+
+# This is a free-form string you can use to "name" your own plugin version.
+# It is *not* used by the build automation tools, but is reported as part
+# of the version number in PLUGINDESCRIPTIONS.
+$RELEASE = 'Foswiki-1.0';
+
+# Short description of this plugin
+# One line description, is shown in the %SYSTEMWEB%.TextFormattingRules topic:
+$SHORTDESCRIPTION = 'Displays Foswiki topics as PDF using html2pdf';
+
+# You must set $NO_PREFS_IN_TOPIC to 0 if you want your plugin to use preferences
+# stored in the plugin topic. This default is required for compatibility with
+# older plugins, but imposes a significant performance penalty, and
+# is not recommended. Instead, use $Foswiki::cfg entries set in LocalSite.cfg, or
+# if you want the users to be able to change settings, then use standard Foswiki
+# preferences that can be defined in your %USERSWEB%.SitePreferences and overridden
+# at the web and topic level.
+$NO_PREFS_IN_TOPIC = 1;
+
+# Name of this Plugin, only used in this module
+$pluginName = 'ToPDFPlugin';
+
+=begin TML
+
+---++ initPlugin($topic, $web, $user, $installWeb) -> $boolean
+   * =$topic= - the name of the topic in the current CGI query
+   * =$web= - the name of the web in the current CGI query
+   * =$user= - the login name of the user
+   * =$installWeb= - the name of the web the plugin is installed in
+
+REQUIRED
+
+Called to initialise the plugin. If everything is OK, should return
+a non-zero value. On non-fatal failure, should write a message
+using Foswiki::Func::writeWarning and return 0. In this case
+%<nop>FAILEDPLUGINS% will indicate which plugins failed.
+
+In the case of a catastrophic failure that will prevent the whole
+installation from working safely, this handler may use 'die', which
+will be trapped and reported in the browser.
+
+You may also call =Foswiki::Func::registerTagHandler= here to register
+a function to handle variables that have standard Foswiki syntax - for example,
+=%<nop>MYTAG{"my param" myarg="My Arg"}%. You can also override internal
+Foswiki variable handling functions this way, though this practice is unsupported
+and highly dangerous!
+
+__Note:__ Please align variables names with the Plugin name, e.g. if 
+your Plugin is called FooBarPlugin, name variables FOOBAR and/or 
+FOOBARSOMETHING. This avoids namespace issues.
+
+
 =cut
+
+sub initPlugin {
+    my( $topic, $web, $user, $installWeb ) = @_;
+
+    # check for Plugins.pm versions
+    if( $Foswiki::Plugins::VERSION < 1.026 ) {
+        Foswiki::Func::writeWarning( "Version mismatch between $pluginName and Plugins.pm" );
+        return 0;
+    }
+
+    return 1;
+}
 
 sub _getRenderedView {
    my ($webName, $topic) = @_;
@@ -87,7 +149,7 @@ sub _getRenderedView {
 
    $text = Foswiki::Func::renderText($text);
    # Expand and render the template
-   my $tmpl = Foswiki::Func::readTemplate( "viewprint", $Foswiki::cfg{Plugins}{ToPDF}{PrintTemplate} );
+   my $tmpl = Foswiki::Func::readTemplate( "viewprint", $Foswiki::cfg{Plugins}{ToPDFPlugin}{PrintTemplate} );
    $tmpl = Foswiki::Func::expandCommonVariables( $tmpl, $topic, $webName, $meta);
    $tmpl =~ s/%TEXT%/$text/g;
    $tmpl = Foswiki::Func::renderText($tmpl, $webName);
@@ -198,12 +260,13 @@ This is the core method to convert the current page into PDF format.
 
 sub viewPDF {
    my $session = shift;
+   die "here we go";
    # using Foswiki::UI so i have a sessin object. There had been some issues with the user / caller of the script and
    # with the old implementation. But there have also been thoughts of the Foswiki::UI way being to "heavy" for this puporse
    # SMELL: maybe Foswiki::UI should not be used. RestHandler is an option
    
    # this is for letting Foswiki::Func functions work properly ( as in plugin scope )
-   $Foswiki::Plugins::SESSION=$session;
+   # $Foswiki::Plugins::SESSION=$session;
    # initialize module wide variables
    my $query = $session->{cgiQuery};
 
@@ -239,7 +302,7 @@ sub viewPDF {
    my $pubDir = Foswiki::Func::getPubDir();
    # SMELL the path to the php binary should be configureable or the script shoudl depend on it to be in PATH
    
-   #my $Cmd = "/usr/bin/php $pubDir/System/ToPDFPlugin/topdf.php $inputFile $outputFilename $outputDir \"$webName/$topic\" \"$userName\"";
+
    #have to be utf8 to let html2pdf work properly. They will be converted to the specified encoding in html2pdf later.
    my $utf8topic = encode("utf8",$topic);
    my $utf8webName = encode("utf8",$webName);
@@ -267,7 +330,7 @@ sub viewPDF {
    print CGI::header( -TYPE => 'application/pdf',-Content_Disposition => $cd.'pdf');   
    open my $ofh, '<', $finalPDF or die "I cannot open $finalPDF for reading, cap'n: $!";
    while(<$ofh>){
-	  print;
+      print;
    }
    close $ofh;
 
@@ -293,24 +356,24 @@ sub _renderTopics {
    my($session,@webTopicPairs) = @_; 
    my @topicHTMLfiles;
    foreach my $webTopicPair (@webTopicPairs) {
-	my ($webName, $topic) = ($webTopicPair->{'web'},$webTopicPair->{'topic'}); 
-	my $topicAsHTML = _renderTopic($session,$webName,$topic);
+    my ($webName, $topic) = ($webTopicPair->{'web'},$webTopicPair->{'topic'}); 
+    my $topicAsHTML = _renderTopic($session,$webName,$topic);
 
-	 # Save this to a temp file for converting by command line
-	 my ($cfh, $newFile) = tempfile('html2pdfXXXX',
-						  DIR => "/tmp",
-						  UNLINK => 0, # DEBUG
-						  SUFFIX => '.html');
-	 @topicHTMLfiles = (@topicHTMLfiles,$newFile);
+     # Save this to a temp file for converting by command line
+     my ($cfh, $newFile) = tempfile('html2pdfXXXX',
+                          DIR => "/tmp",
+                          UNLINK => 0, # DEBUG
+                          SUFFIX => '.html');
+     @topicHTMLfiles = (@topicHTMLfiles,$newFile);
          # throw in our content
-	 print $cfh $topicAsHTML; 
-	 close($cfh);
+     print $cfh $topicAsHTML; 
+     close($cfh);
    }
    return @topicHTMLfiles;
 }
 
 sub _getHeaderFile {
-	my($session) = @_; 
+    my($session) = @_; 
     my ($cfh, $path ) = tempfile('html2pdfHeaderXXXX',
                           DIR => "/tmp",
                           UNLINK => 0,

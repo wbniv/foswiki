@@ -1,15 +1,17 @@
----+ ToPDF Plugin *beta!
-This addons converts TWiki topics into PDF`s. Comparing to GenPDF or others, its main goal yet is to support CSS as far as possible and therefore the PDF should just look like the original topic.
-In addition it supports to render the topic in a diffrrent template before generating the PDF to customize the topic, remove anything not needed or just adjust the "printing" view to paper.
+---+ !ToPDF Plugin *beta!
+This plugin converts Foswiki topics into PDF`s. Comparing to !GenPDF or others, its main goal yet is to support CSS as far as possible and therefore the PDF should just look like the original topic.
+In addition it supports to render the topic in a diffrrent template before generating the PDF to customize the topic, remove anything not needed or just adjust the "printing" view for papers.
 
-This Plugin was based on GenPDF
+This Plugin was based on !GenPDF
+
+%TOC%
 
 ---++ Usage
    * as backend it uses html2pdf, a php5 script to convert html files into PDFs. It supports CSS 2.0 and even float content.
 
----++ Add-On Installation Instructions
+---++ Plugin Installation Instructions
 
-__Note:__ You do not need to install anything on the browser to use this add-on. The following instructions are for the administrator who installs the add-on on the server where TWiki is running. 
+__Note:__ You do not need to install anything on the browser to use this Plugin. The following instructions are for the administrator who installs the Plugin on the server where Foswiki is running. 
 
 ---+++ Dependecies( Tested with linux, should work under windows too)
 ---++++ Linux
@@ -27,44 +29,41 @@ __Note:__ You do not need to install anything on the browser to use this add-on.
 ---+++ Installation instructions
    * Download the ZIP file from the Add-on Home (see below)
    * Install all dependecies
-   * Unzip ==%TOPIC%.zip== in your twiki installation directory. Content:
-     | *File:* | *Description:* |
-     | ==data/TWiki/%TOPIC%.txt== | Add-on topic |
-     | ==data/TWiki/%TOPIC%.txt,v== | Add-on topic repository |
-     | ==pub/TWiki/%TOPIC%/html2pdf== | html2pdf conversion Script including .htaccess which permits any browser-use|
-     | ==bin/topdf== | Add-on script |
+   * Unzip ==%TOPIC%.zip== in your twiki installation directory.
    * Configuration  
       * Use the Foswiki configure script to define
 | *Option* | *Default* | *Description* |
-| DefaultEncoding | iso-8859-1 | normaly your Foswiki encoding |
-| GhostscriptPath | /usr/bin/gs | path to Ghostscript |
-| FontsPath | /usr/share/fonts/default/ghostscript/ | path to your fonts reporsitory |
-| PrintTemplate | PatternSkin | template to use for rendering the topic with, before creating the PDF |
-| RenderImages | 1 | render and show images |
-| RenderForms | 0 | render forms |
-| RenderLinks | 1 | render links and make them clickable  |
-| PageWidth | 755 | width of the page, important if linebreaks should be exact |
-| MediaType | "A4" | Media format |
-| DateFormat | "d.m.y" | date format to use when filling in header/footer |
+| !DefaultEncoding | iso-8859-1 | normaly your Foswiki encoding |
+| !BaseUrl | foswiki.org |  what is the URL of the page. Important! Its needed to define what can be fetched locally and what is remote |
+| !GhostscriptPath | /usr/bin/gs | path to Ghostscript |
+| !FontsPath | /usr/share/fonts/default/ghostscript/ | path to your fonts reporsitory |
+| !PrintTemplate | PatternSkin | template to use for rendering the topic with, before creating the PDF |
+| !RenderImages | 1 | render and show images |
+| !RenderForms | 0 | render forms |
+| !RenderLinks | 1 | render links and make them clickable  |
+| !PageWidth | 755 | width of the page, important if linebreaks should be exact |
+| !MediaType | "A4" | Media format |
+| !DateFormat | "d.m.y" | date format to use when filling in header/footer |
+| !CreateTOC | 0 | Create TOC ( not the toc of Foswiki ) |
       * Customize [[ToPDFPluginHeader]] and [[ToPDFPluginFooter]] for using your footers and headers
       * Add the PDF button to your viewtopicactions.skin.tmpl ( or somewhere else )
          * <verbatim>"%SCRIPTURLPATH%/topdf%SCRIPTSUFFIX%/%WEB%/%TOPIC%?pdftitle=%TOPIC%&t=%GMTIME{"$epoch"}%</verbatim>
    * Test if the installation was successful:
       * open view/System/%TOPIC% and click this [["%SCRIPTURLPATH%/topdf%SCRIPTSUFFIX%/%WEB%/%TOPIC%?pdftitle=%TOPIC%&t=%GMTIME{"$epoch"}%][link]] and hopefully you get a PDF of the ToPDFPlugin topic. 
   
----++ Add-On Info
+---++ Plugin Info
 
    * Set SHORTDESCRIPTION = Converts topics ( TML ) into PDF
 
 |  Plugin Author: | Foswiki:Main.MayerEugen |
 |  Copyright: | &copy; 2006, Impressive.media |
 |  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
-|  Plugin Version: | 01 Jun 2008 (V1.000) |
+|  Plugin Version: | 01 Dez 2008 (V0.1) |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
 |  01 Dez 2008: | Ported to Foswiki and made for auto-build. Simplified configuration a lot and added new configuration abilities like template, renderForms, renderImages. Everything availble thorugh configure script now. Header and Footer are Foswiki-Topics now. Fixed some bugs with images and encoding. |
 |  01 Jun 2008: | Initial version |
 |  Foswiki Dependency: |  |
-|  CPAN Dependencies: | none |
+|  CPAN Dependencies: | HTTP::Cookies::Find,Encode,Encode::Encoding,File::Basename,URI::Escape |
 |  Other Dependencies: | htmltopdf(included in the package) |
 |  Perl Version: | 5.005 |
 |  Add-on Home: | http://foswiki.org/Extensions/%TOPIC% |
@@ -74,7 +73,3 @@ __Note:__ You do not need to install anything on the browser to use this add-on.
 __Related Topic:__ 
 
 -- Foswiki:Main/MayerEugen - 01 Jun 2008
-
-
-
-      

@@ -8,6 +8,6 @@ BEGIN {
 
 use Foswiki::Contrib::Build;
 
-$build = new Foswiki::Contrib::Build( "DrupalConSidExportPlugin" );
+$build = new Foswiki::Contrib::Build( "ToPDFPlugin" );
 $build->build($build->{target});
 
